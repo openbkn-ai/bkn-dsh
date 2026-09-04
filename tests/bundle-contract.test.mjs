@@ -51,3 +51,30 @@ test('browser entry registers a lazy module factory for the DSH module table', (
   })
   assert.equal(typeof exports.apply, 'function')
 })
+
+test('publishes the controlled Python runner and its protocol schemas', () => {
+  const manifest = readJson('../package.json')
+
+  assert.deepEqual(
+    manifest.files.filter((path) => path.startsWith('runner/')),
+    [
+      'runner/pyproject.toml',
+      'runner/openbkn_dsh_runner/*.py',
+    ],
+  )
+  assert.equal(manifest.files.includes('schemas/**'), true)
+  assert.equal(existsSync(new URL('../runner/pyproject.toml', import.meta.url)), true)
+  assert.equal(existsSync(new URL('../schemas/runner-request.schema.json', import.meta.url)), true)
+})
+
+test('does not publish an overly broad runner directory glob', () => {
+  const manifest = readJson('../package.json')
+
+  assert.equal(manifest.files.includes('runner/**'), false)
+})
+
+test('ignores generated Python bytecode in the source worktree', () => {
+  const ignore = readFileSync(new URL('../.gitignore', import.meta.url), 'utf8')
+
+  assert.match(ignore, /^__pycache__\/$/m)
+})
