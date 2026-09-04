@@ -72,3 +72,9 @@ test('does not publish an overly broad runner directory glob', () => {
 
   assert.equal(manifest.files.includes('runner/**'), false)
 })
+
+test('ignores generated Python bytecode in the source worktree', () => {
+  const ignore = readFileSync(new URL('../.gitignore', import.meta.url), 'utf8')
+
+  assert.match(ignore, /^__pycache__\/$/m)
+})
