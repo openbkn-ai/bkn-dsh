@@ -41,7 +41,7 @@
     "build": "pnpm run build:types && tsdown",
     "build:types": "tsc --emitDeclarationOnly",
     "prepack": "pnpm run build",
-    "test": "node --test tests/**/*.test.mjs",
+    "test": "node --import tsx --test tests/*.test.mjs tests/*.test.ts",
     "typecheck": "tsc --noEmit"
   },
   "dependencies": {
@@ -53,6 +53,7 @@
   "devDependencies": {
     "@deepseek-ai/cordis": "^4.0.2",
     "tsdown": "^0.22.2",
+    "tsx": "^4.23.13",
     "typescript": "^5.9.3"
   }
 }
