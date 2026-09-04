@@ -1,0 +1,58 @@
+{
+  "name": "@openbkn/dsh-business-context",
+  "version": "0.1.0",
+  "description": "OpenBKN business knowledge-network context for DeepSeek Harness",
+  "license": "Apache-2.0",
+  "type": "module",
+  "main": "./lib/index.js",
+  "types": "./lib/types/index.d.ts",
+  "exports": {
+    ".": {
+      "types": "./lib/types/index.d.ts",
+      "default": "./lib/index.js"
+    },
+    "./client": {
+      "types": "./lib/types/client/index.d.ts",
+      "default": "./lib/client.js"
+    },
+    "./package.json": "./package.json"
+  },
+  "files": [
+    "lib/index.js",
+    "lib/client.js",
+    "lib/types/**/*.d.ts",
+    "cordis.patch.yml",
+    "README.md",
+    "README.zh.md",
+    "LICENSE"
+  ],
+  "dsh": {
+    "bundle": {
+      "patch": "./cordis.patch.yml"
+    },
+    "client": {
+      "inject": [
+        "@deepseek-ai/dsh-client-ui-slots"
+      ],
+      "platform": "web"
+    }
+  },
+  "scripts": {
+    "build": "pnpm run build:types && tsdown",
+    "build:types": "tsc --emitDeclarationOnly",
+    "prepack": "pnpm run build",
+    "test": "node --test tests/**/*.test.mjs",
+    "typecheck": "tsc --noEmit"
+  },
+  "dependencies": {
+    "@deepseek-ai/schemastery": "^3.18.2"
+  },
+  "peerDependencies": {
+    "@deepseek-ai/cordis": "^4.0.2"
+  },
+  "devDependencies": {
+    "@deepseek-ai/cordis": "^4.0.2",
+    "tsdown": "^0.22.2",
+    "typescript": "^5.9.3"
+  }
+}
