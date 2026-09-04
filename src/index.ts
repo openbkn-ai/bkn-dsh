@@ -1,5 +1,6 @@
 import type { Context } from '@deepseek-ai/cordis'
 import { Config as ConfigSchema, type Config as PluginConfig } from './config.js'
+import { OpenBknBusinessContextService } from './business-context-service.js'
 
 export { ConfigSchema as Config }
 export type { PluginConfig }
@@ -17,13 +18,19 @@ export type {
   BusinessNetworkBoundEvent,
   SessionEventLike,
 } from './session-binding.js'
+export { bindDshSessionBusinessNetwork, readDshSessionBusinessNetwork } from './dsh-session-binding.js'
+export type { DshSessionBindingLog, DshSessionLog } from './dsh-session-binding.js'
+export { OsdkRunnerClient, OsdkRunnerError } from './osdk-runner.js'
+export type { JsonValue, OsdkRunnerConfig, OsdkRunnerErrorCode, RunnerSubprocess } from './osdk-runner.js'
+export { OpenBknBusinessContextService } from './business-context-service.js'
+export { mountBoundBusinessNetworkTool } from './scoped-business-context.js'
 
 /** Cordis identity used by the bundle's Host row. */
 export const name = 'openbkn-business-context'
 
-/**
- * The first release slice establishes the load contract only. Auth, network
- * binding, tools, and UI contributions are added as independently tested
- * effects rather than hidden startup work.
- */
-export function apply(_ctx: Context, _config: PluginConfig): void {}
+export const inject = ['agents']
+
+/** Register the host service; it contributes no model-visible tool globally. */
+export async function apply(ctx: Context, config: PluginConfig): Promise<void> {
+  await ctx.plugin(OpenBknBusinessContextService, config)
+}
