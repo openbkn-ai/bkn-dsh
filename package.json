@@ -41,7 +41,7 @@
     "build": "pnpm run build:types && tsdown",
     "build:types": "tsc --emitDeclarationOnly",
     "prepack": "pnpm run build",
-    "test": "node --import tsx --test tests/*.test.mjs tests/*.test.ts",
+    "test": "pnpm run build && node --import tsx --test tests/*.test.mjs tests/*.test.ts",
     "typecheck": "tsc --noEmit"
   },
   "dependencies": {
