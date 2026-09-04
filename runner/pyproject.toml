@@ -1,0 +1,17 @@
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
+[project]
+name = "openbkn-dsh-runner"
+version = "0.1.0"
+requires-python = ">=3.10"
+dependencies = [
+  "bkn-osdk @ git+https://github.com/openbkn-ai/bkn-sdk.git@669cb0fc8c87c3a461e4553772ee50fd66508f05#subdirectory=python",
+]
+
+[tool.hatch.build.targets.wheel]
+packages = ["openbkn_dsh_runner"]
+
+[tool.hatch.metadata]
+allow-direct-references = true

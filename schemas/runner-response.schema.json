@@ -1,0 +1,21 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "OpenBKN DSH Runner Response",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["version", "ok"],
+  "properties": {
+    "version": { "const": 1 },
+    "ok": { "type": "boolean" },
+    "result": { "type": "object" },
+    "error": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["code", "message"],
+      "properties": {
+        "code": { "enum": ["invalid_request", "operation_failed", "platform_unavailable"] },
+        "message": { "type": "string" }
+      }
+    }
+  }
+}
