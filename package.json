@@ -1,73 +1,18 @@
 {
-  "name": "@openbkn/dsh-business-context",
+  "name": "@openbkn/bkn-dsh-workspace",
   "version": "0.1.0",
   "description": "OpenBKN business knowledge-network context for DeepSeek Harness",
   "license": "Apache-2.0",
-  "type": "module",
-  "main": "./lib/index.js",
-  "types": "./lib/types/index.d.ts",
-  "exports": {
-    ".": {
-      "types": "./lib/types/index.d.ts",
-      "default": "./lib/index.js"
-    },
-    "./client": {
-      "types": "./lib/types/client/index.d.ts",
-      "default": "./lib/client.js"
-    },
-    "./package.json": "./package.json"
-  },
-  "files": [
-    "lib/index.js",
-    "lib/client.js",
-    "lib/types/**/*.d.ts",
-    "cordis.patch.yml",
-    "runner/pyproject.toml",
-    "runner/openbkn_dsh_runner/*.py",
-    "schemas/**",
-    "README.md",
-    "README.zh.md",
-    "LICENSE"
-  ],
-  "dsh": {
-    "bundle": {
-      "patch": "./cordis.patch.yml"
-    },
-    "client": {
-      "inject": [
-        "@deepseek-ai/dsh-client-ui-slots"
-      ],
-      "platform": "web"
-    }
-  },
+  "private": true,
   "scripts": {
-    "build": "pnpm run build:types && tsdown",
-    "build:types": "tsc --emitDeclarationOnly",
-    "prepack": "pnpm run build",
-    "test:runner": "python3 -m unittest discover -s runner/tests -v",
-    "test": "pnpm run build && node --import tsx --test tests/*.test.mjs tests/*.test.ts",
-    "typecheck": "tsc --noEmit"
-  },
-  "dependencies": {
-    "@deepseek-ai/schemastery": "^3.18.2"
-  },
-  "peerDependencies": {
-    "@deepseek-ai/cordis": "^4.0.2",
-    "@deepseek-ai/dsh-agent": "0.1.2-rc.1",
-    "@deepseek-ai/dsh-session": "0.1.2-rc.1",
-    "@deepseek-ai/dsh-subprocess": "0.1.2-rc.1",
-    "@deepseek-ai/dsh-tools": "0.1.2-rc.1",
-    "@deepseek-ai/dsh-util-values": "0.1.2-rc.1"
+    "build": "pnpm --filter @openbkn/dsh-business-context run build",
+    "test:runner": "pnpm --filter @openbkn/dsh-business-context run test:runner",
+    "test": "pnpm --filter @openbkn/dsh-business-context run test",
+    "typecheck": "pnpm --filter @openbkn/dsh-business-context run typecheck",
+    "package:check": "node scripts/package-bundle.mjs --check"
   },
   "devDependencies": {
-    "@deepseek-ai/cordis": "^4.0.2",
-    "@deepseek-ai/dsh-agent": "0.1.2-rc.1",
-    "@deepseek-ai/dsh-session": "0.1.2-rc.1",
-    "@deepseek-ai/dsh-subprocess": "0.1.2-rc.1",
-    "@deepseek-ai/dsh-tools": "0.1.2-rc.1",
-    "@deepseek-ai/dsh-util-values": "0.1.2-rc.1",
-    "tsdown": "^0.22.2",
-    "tsx": "^4.23.13",
-    "typescript": "^5.9.3"
+    "@deepseek-ai/dsh-typert-generator": "0.1.2-rc.1",
+    "tsdown": "^0.22.2"
   }
 }

@@ -1,0 +1,5 @@
+packages:
+  - packages/*
+
+overrides:
+  '@deepseek-ai/dsh-typert-generator': link:../../../../../DSH/deepseek-harness/packages/typert/generator
