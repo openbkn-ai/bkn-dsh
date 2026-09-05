@@ -40,6 +40,7 @@ export type OsdkRunnerErrorCode =
   | 'PLATFORM_MISMATCH'
   | 'RUNNER_START_FAILED'
   | 'RUNNER_FAILED'
+  | 'PLATFORM_UNAVAILABLE'
   | 'RUNNER_ABORTED'
   | 'OUTPUT_OVERFLOW'
   | 'INVALID_RESPONSE'
@@ -181,8 +182,13 @@ export class OsdkRunnerClient {
     if (stdout === undefined) throw new OsdkRunnerError('INVALID_RESPONSE', 'OpenBKN context runner returned no response.')
     if (stdout.lossy) throw new OsdkRunnerError('OUTPUT_OVERFLOW', 'OpenBKN context result exceeded the configured size limit.')
     const failure = parseFailure(stdout.text)
-    if (failure?.error.code === 'authentication_required') {
-      throw new OsdkRunnerError('AUTHENTICATION_REQUIRED', 'OpenBKN authentication is required.')
+    if (failure !== undefined) {
+      if (failure.error.code === 'authentication_required') {
+        throw new OsdkRunnerError('AUTHENTICATION_REQUIRED', 'OpenBKN authentication is required.')
+      }
+      if (failure.error.code === 'platform_unavailable') {
+        throw new OsdkRunnerError('PLATFORM_UNAVAILABLE', 'OpenBKN platform data is temporarily unavailable.')
+      }
     }
     if (outcome.exitCode !== 0 || outcome.signal !== null) {
       throw new OsdkRunnerError('RUNNER_FAILED', 'OpenBKN context runner did not complete successfully.')

@@ -74,6 +74,10 @@ export class OpenBknUiController {
       const networks = await this.port.listNetworks(signal)
       this.publish({ open: true, phase: 'ready', auth, networks })
     } catch (error: unknown) {
+      if (isPlatformUnavailableError(error)) {
+        this.publish({ ...this.state, phase: 'error', networks: [], message: 'OpenBKN 平台的业务知识网络目录暂不可用。已保存 Token 未被修改；请确认本机 OpenBKN 服务恢复后重试。' })
+        return
+      }
       if (isAuthenticationRequiredError(error)) {
         this.publish({
           open: true,
@@ -98,6 +102,10 @@ export class OpenBknUiController {
       const auth = await this.port.status()
       this.publish({ open: true, phase: 'ready', auth, networks })
     } catch (error: unknown) {
+      if (isPlatformUnavailableError(error)) {
+        this.publish({ ...this.state, phase: 'error', message: 'OpenBKN 平台的业务知识网络目录暂不可用。已保存 Token 未被修改；请确认本机 OpenBKN 服务恢复后重试。' })
+        return
+      }
       if (isAuthenticationRequiredError(error)) {
         this.publish({
           open: true,
@@ -142,6 +150,16 @@ function isAuthenticationRequiredError(error: unknown): error is {
   if (typeof error !== 'object' || error === null) return false
   const candidate = error as { code?: unknown; details?: unknown }
   if (candidate.code !== 'openbkn/authentication-required' || typeof candidate.details !== 'object' || candidate.details === null) return false
+  return typeof (candidate.details as { baseUrl?: unknown }).baseUrl === 'string'
+}
+
+function isPlatformUnavailableError(error: unknown): error is {
+  readonly code: 'openbkn/platform-unavailable'
+  readonly details: { readonly baseUrl: string }
+} {
+  if (typeof error !== 'object' || error === null) return false
+  const candidate = error as { code?: unknown; details?: unknown }
+  if (candidate.code !== 'openbkn/platform-unavailable' || typeof candidate.details !== 'object' || candidate.details === null) return false
   return typeof (candidate.details as { baseUrl?: unknown }).baseUrl === 'string'
 }
 

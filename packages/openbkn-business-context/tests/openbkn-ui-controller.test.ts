@@ -109,6 +109,27 @@ test('explains that a Context Loader-only token cannot load the platform catalog
   assert.match(controller.snapshot().message ?? '', /平台访问权限/)
 })
 
+test('keeps the saved token and identifies a temporarily unavailable platform catalogue', async () => {
+  const unavailable = Object.assign(new Error('unavailable'), {
+    code: 'openbkn/platform-unavailable',
+    details: { baseUrl: authenticated.baseUrl },
+  })
+  const controller = new OpenBknUiController({
+    status: async () => authenticated,
+    configureToken: async () => { throw unavailable },
+    listNetworks: async () => { throw unavailable },
+    bindNetworkWorkspace: async () => { throw new Error('must not bind') },
+    bindNetwork: async () => { throw new Error('must not bind') },
+  }, async () => 'session-1')
+
+  controller.open()
+  await controller.configureToken('platform-token')
+
+  assert.equal(controller.snapshot().phase, 'error')
+  assert.match(controller.snapshot().message ?? '', /目录暂不可用/)
+  assert.match(controller.snapshot().message ?? '', /Token 未被修改/)
+})
+
 test('creates the selected network session before binding it', async () => {
   let bound = 0
   const controller = new OpenBknUiController({

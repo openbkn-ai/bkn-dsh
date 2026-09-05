@@ -33,6 +33,7 @@ declare module '@deepseek-ai/dsh-typert-protocol' {
       readonly baseUrl: string
       readonly layer: 'context-loader-mcp' | 'platform-api'
     }
+    'openbkn/platform-unavailable': { readonly baseUrl: string }
   }
 }
 
@@ -188,6 +189,14 @@ export class OpenBknBusinessContextService extends TypertRemoteService {
           'openbkn/authentication-required',
           'OpenBKN authentication is required.',
           { baseUrl: this.config.baseUrl },
+        )
+      }
+      if (error instanceof OsdkRunnerError && error.code === 'PLATFORM_UNAVAILABLE') {
+        throw new RemoteError(
+          'openbkn/platform-unavailable',
+          'The OpenBKN platform knowledge-network catalogue is temporarily unavailable.',
+          { baseUrl: this.config.baseUrl },
+          { cause: error },
         )
       }
       throw new RemoteError(

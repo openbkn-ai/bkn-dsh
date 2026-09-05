@@ -193,3 +193,31 @@ test('preserves the runner authentication classification without exposing diagno
       && !error.message.includes('private platform diagnostic'),
   )
 })
+
+test('preserves an unavailable platform classification without exposing diagnostics', async () => {
+  const runtime = {
+    spawn() {
+      return {
+        done: Promise.resolve({ exitCode: 1, signal: null }),
+        collected: {
+          stdout: { readFrom: () => ({
+            text: JSON.stringify({ version: 1, ok: false, error: { code: 'platform_unavailable', message: 'private gateway diagnostic' } }),
+            nextOffset: 0, lossy: false,
+          }) },
+          stderr: { readFrom: () => ({ text: 'private platform diagnostic', nextOffset: 0, lossy: false }) },
+        },
+      }
+    },
+  }
+  const client = new OsdkRunnerClient(runtime, {
+    baseUrl: 'https://poc.openbkn.ai', runnerPath: 'python3', requestTimeoutMs: 30_000,
+    maxResultBytes: 1_024, allowInsecureTls: false,
+  })
+
+  await assert.rejects(
+    client.listKnowledgeNetworks(AbortSignal.timeout(1_000), '/workspace'),
+    (error: unknown) => error instanceof OsdkRunnerError
+      && error.code === 'PLATFORM_UNAVAILABLE'
+      && !error.message.includes('private'),
+  )
+})
