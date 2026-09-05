@@ -16,14 +16,16 @@ test('honours an explicitly configured Context Loader endpoint', () => {
   )
 })
 
-test('mounts the standard MCP client with an ephemeral bearer header and verifies its managed tool', async () => {
+test('mounts the compatible MCP client with an ephemeral bearer header and verifies its managed tool', async () => {
   let mounted: unknown
   const tools = new Map<string, unknown>()
+  let disposed = 0
   const ctx = {
     tools: { get: (name: string) => tools.get(name) },
     plugin: async (_plugin: unknown, config: { headers: Record<string, string> }) => {
       mounted = config
       tools.set('mcp__openbkn__bkn_start_interaction', {})
+      return { dispose: async () => { disposed += 1; tools.delete('mcp__openbkn__bkn_start_interaction') } }
     },
   }
   const manager = new OpenBknMcpManager(ctx as never, { baseUrl: 'http://localhost:8081' } as never, async () => 'test-token')
@@ -35,4 +37,7 @@ test('mounts the standard MCP client with an ephemeral bearer header and verifie
     headers: { Authorization: 'Bearer test-token' }, toolCallTimeoutMs: 20_000, failOnStartupError: true,
     reconnect: { enabled: true, initialDelayMs: 500, maxDelayMs: 30_000, maxAttempts: 10 },
   })
+
+  await manager.refresh()
+  assert.equal(disposed, 1)
 })

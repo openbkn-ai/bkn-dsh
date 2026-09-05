@@ -67,6 +67,26 @@ test('returns to sign-in when the platform rejects a locally present credential'
   })
 })
 
+test('explains whether a failed verification came from MCP or the platform catalogue', async () => {
+  const failure = Object.assign(new Error('platform unavailable'), {
+    code: 'openbkn/connection-failed',
+    details: { baseUrl: authenticated.baseUrl, layer: 'platform-api' as const },
+  })
+  const controller = new OpenBknUiController({
+    status: async () => authenticated,
+    configureToken: async () => { throw failure },
+    listNetworks: async () => { throw failure },
+    bindNetworkWorkspace: async () => { throw new Error('must not bind') },
+    bindNetwork: async () => { throw new Error('must not bind') },
+  }, async () => 'session-1')
+
+  controller.open()
+  await controller.configureToken('token')
+
+  assert.equal(controller.snapshot().phase, 'error')
+  assert.match(controller.snapshot().message ?? '', /Context Loader MCP 已连接/)
+})
+
 test('creates the selected network session before binding it', async () => {
   let bound = 0
   const controller = new OpenBknUiController({

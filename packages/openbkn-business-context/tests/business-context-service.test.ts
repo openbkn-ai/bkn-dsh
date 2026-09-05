@@ -54,12 +54,12 @@ test('stores a token through DSH credentials before testing the managed OpenBKN 
   let tested = 0
   const service = Object.create(OpenBknBusinessContextService.prototype) as {
     ctx: { credentials: { set(ref: string, value: string): Promise<void> } }
-    ensureMcpConnection(): Promise<void>
+    refreshMcpConnection(): Promise<void>
     listNetworksAfterAuthentication(signal: AbortSignal): Promise<readonly unknown[]>
     remoteConfigureToken(token: string, signal: AbortSignal): Promise<readonly unknown[]>
   }
   service.ctx = { credentials: { set: async (_ref, value) => { saved = value } } }
-  service.ensureMcpConnection = async () => { tested += 1 }
+  service.refreshMcpConnection = async () => { tested += 1 }
   service.listNetworksAfterAuthentication = async () => [{ id: 'kn-supply' }]
 
   const networks = await service.remoteConfigureToken('  managed-token-value  ', AbortSignal.timeout(1_000))

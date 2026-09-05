@@ -29,6 +29,10 @@ declare module '@deepseek-ai/cordis' {
 declare module '@deepseek-ai/dsh-typert-protocol' {
   interface RemoteErrorDetailsMap {
     'openbkn/authentication-required': { readonly baseUrl: string }
+    'openbkn/connection-failed': {
+      readonly baseUrl: string
+      readonly layer: 'context-loader-mcp' | 'platform-api'
+    }
   }
 }
 
@@ -71,7 +75,16 @@ export class OpenBknBusinessContextService extends TypertRemoteService {
     const value = token.trim()
     if (value.length === 0) throw new Error('An OpenBKN token is required.')
     await this.ctx.credentials.set(credentialRef(OPENBKN_MCP_TOKEN_REF), value)
-    await this.ensureMcpConnection()
+    try {
+      await this.refreshMcpConnection()
+    } catch (error: unknown) {
+      throw new RemoteError(
+        'openbkn/connection-failed',
+        'The OpenBKN Context Loader MCP could not be connected.',
+        { baseUrl: this.config.baseUrl, layer: 'context-loader-mcp' },
+        { cause: error },
+      )
+    }
     return await this.listNetworksAfterAuthentication(signal)
   }
 
@@ -177,7 +190,12 @@ export class OpenBknBusinessContextService extends TypertRemoteService {
           { baseUrl: this.config.baseUrl },
         )
       }
-      throw error
+      throw new RemoteError(
+        'openbkn/connection-failed',
+        'The OpenBKN platform API could not be queried.',
+        { baseUrl: this.config.baseUrl, layer: 'platform-api' },
+        { cause: error },
+      )
     }
     return parseVisibleBusinessNetworks(payload).map(network => {
       const workspacePath = this.ctx.openbknWorkspaceBindingRegistry.get(this.config.baseUrl, network.id)?.workspacePath
@@ -279,6 +297,11 @@ export class OpenBknBusinessContextService extends TypertRemoteService {
   private async ensureMcpConnection(): Promise<void> {
     if (this.ctx.tools === undefined) return
     await this.mcpManager().ensure()
+  }
+
+  private async refreshMcpConnection(): Promise<void> {
+    if (this.ctx.tools === undefined) return
+    await this.mcpManager().refresh()
   }
 
   private mcpManager(): OpenBknMcpManager {

@@ -32,7 +32,11 @@ def main(stdin: TextIO = sys.stdin, stdout: TextIO = sys.stdout, osdk: Any | Non
         }})
         return 1
     except Exception as error:
-        if getattr(error, "status", None) in {401, 403}:
+        status = getattr(error, "status", None)
+        response = getattr(error, "response", None)
+        if status is None:
+            status = getattr(response, "status_code", None)
+        if status in {401, 403}:
             emit(stdout, {"version": PROTOCOL_VERSION, "ok": False, "error": {
                 "code": "authentication_required",
                 "message": "OpenBKN authentication is required",

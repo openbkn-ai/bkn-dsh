@@ -13,6 +13,7 @@ const REQUIRED_TOOL = 'mcp__openbkn__bkn_start_interaction'
  */
 export class OpenBknMcpManager {
   private starting: Promise<void> | undefined
+  private fiber: { dispose(): Promise<void> } | undefined
 
   constructor(
     private readonly ctx: Context,
@@ -28,12 +29,24 @@ export class OpenBknMcpManager {
     await this.starting
   }
 
+  /** Reconnect the client after DSH rotates the managed credential. */
+  async refresh(): Promise<void> {
+    await this.starting
+    const fiber = this.fiber
+    this.fiber = undefined
+    await fiber?.dispose()
+    await this.ensure()
+  }
+
   private async start(): Promise<void> {
+    // DSH 0.1.2's published MCP client has no `credentialHeaders` schema yet.
+    // Resolve at connection time only; the value never enters plugin profile
+    // configuration, session state, browser state, or prompts.
     const token = await this.resolveToken()
     if (token === undefined || token.length === 0) {
       throw new Error('OpenBKN Context Loader MCP requires a configured token.')
     }
-    await this.ctx.plugin(McpClient, McpClient.Config({
+    const fiber = await this.ctx.plugin(McpClient, McpClient.Config({
       transport: 'streamable-http',
       serverName: 'openbkn',
       url: resolveMcpUrl(this.config),
@@ -42,7 +55,10 @@ export class OpenBknMcpManager {
       failOnStartupError: true,
       reconnect: { enabled: true, initialDelayMs: 500, maxDelayMs: 30_000, maxAttempts: 10 },
     }))
+    this.fiber = fiber
     if (this.ctx.tools.get(REQUIRED_TOOL) === undefined) {
+      this.fiber = undefined
+      await fiber.dispose()
       throw new Error('OpenBKN Context Loader MCP did not publish its managed interaction tools.')
     }
   }

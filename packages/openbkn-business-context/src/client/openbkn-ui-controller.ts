@@ -83,7 +83,7 @@ export class OpenBknUiController {
         })
         return
       }
-      this.publish({ ...this.state, phase: 'error', networks: [], message: 'Unable to reach OpenBKN. Check the platform connection and try again.' })
+      this.publish({ ...this.state, phase: 'error', networks: [], message: connectionFailureMessage(error) })
     }
   }
 
@@ -96,8 +96,12 @@ export class OpenBknUiController {
       const networks = await this.port.configureToken(token)
       const auth = await this.port.status()
       this.publish({ open: true, phase: 'ready', auth, networks })
-    } catch {
-      this.publish({ ...this.state, phase: 'error', message: 'OpenBKN connection could not be verified. Check the token and platform address, then try again.' })
+    } catch (error: unknown) {
+      if (isAuthenticationRequiredError(error)) {
+        this.publish({ open: true, phase: 'authentication-required', auth: { kind: 'authentication-required', baseUrl: error.details.baseUrl }, networks: [] })
+        return
+      }
+      this.publish({ ...this.state, phase: 'error', message: connectionFailureMessage(error) })
     }
   }
 
@@ -132,4 +136,16 @@ function isAuthenticationRequiredError(error: unknown): error is {
   const candidate = error as { code?: unknown; details?: unknown }
   if (candidate.code !== 'openbkn/authentication-required' || typeof candidate.details !== 'object' || candidate.details === null) return false
   return typeof (candidate.details as { baseUrl?: unknown }).baseUrl === 'string'
+}
+
+function connectionFailureMessage(error: unknown): string {
+  if (typeof error === 'object' && error !== null) {
+    const candidate = error as { code?: unknown, details?: unknown }
+    if (candidate.code === 'openbkn/connection-failed' && typeof candidate.details === 'object' && candidate.details !== null) {
+      const layer = (candidate.details as { layer?: unknown }).layer
+      if (layer === 'context-loader-mcp') return '无法连接 OpenBKN Context Loader MCP。请检查平台地址、网络连接和 Token 的 MCP 访问权限。'
+      if (layer === 'platform-api') return 'Context Loader MCP 已连接，但无法读取业务知识网络目录。请确认 Token 具有 OpenBKN 平台访问权限。'
+    }
+  }
+  return '无法验证 OpenBKN 连接。请检查 Token 和平台地址后重试。'
 }
