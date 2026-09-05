@@ -3,7 +3,7 @@ import type { AuthSnapshot, BusinessNetworkBinding, BusinessNetworkSummary } fro
 /** Minimal browser-safe port over the generated OpenBKN Remote contract. */
 export interface OpenBknUiPort {
   status(signal?: AbortSignal): Promise<AuthSnapshot>
-  beginLogin(): Promise<void>
+  configureToken(token: string, signal?: AbortSignal): Promise<readonly BusinessNetworkSummary[]>
   listNetworks(signal?: AbortSignal): Promise<readonly BusinessNetworkSummary[]>
   bindNetworkWorkspace(networkId: string, workspacePath: string, signal?: AbortSignal): Promise<BusinessNetworkSummary>
   bindNetwork(sessionId: string, networkId: string, signal?: AbortSignal): Promise<BusinessNetworkBinding>
@@ -74,28 +74,49 @@ export class OpenBknUiController {
       const networks = await this.port.listNetworks(signal)
       this.publish({ open: true, phase: 'ready', auth, networks })
     } catch (error: unknown) {
+      if (isPlatformUnavailableError(error)) {
+        this.publish({ ...this.state, phase: 'error', networks: [], message: 'OpenBKN 平台的业务知识网络目录暂不可用。已保存 Token 未被修改；请确认本机 OpenBKN 服务恢复后重试。' })
+        return
+      }
       if (isAuthenticationRequiredError(error)) {
         this.publish({
           open: true,
           phase: 'authentication-required',
           auth: { kind: 'authentication-required', baseUrl: error.details.baseUrl },
           networks: [],
+          message: 'Context Loader MCP 已连接，但该 Token 无法读取 OpenBKN 平台的业务知识网络目录。请使用具有平台访问权限的用户访问 Token 或 AppKey。',
         })
         return
       }
-      this.publish({ ...this.state, phase: 'error', networks: [], message: 'Unable to reach OpenBKN. Check the platform connection and try again.' })
+      this.publish({ ...this.state, phase: 'error', networks: [], message: connectionFailureMessage(error) })
     }
   }
 
-  async beginLogin(): Promise<void> {
+  /** Save and test a token without retaining it in controller state. */
+  async configureToken(token: string): Promise<void> {
     if (!this.state.open) return
 
     this.publish({ ...this.state, phase: 'loading', message: undefined })
     try {
-      await this.port.beginLogin()
-      await this.refresh()
-    } catch {
-      this.publish({ ...this.state, phase: 'error', message: 'OpenBKN sign-in could not be completed. Try again from the OpenBKN entry.' })
+      const networks = await this.port.configureToken(token)
+      const auth = await this.port.status()
+      this.publish({ open: true, phase: 'ready', auth, networks })
+    } catch (error: unknown) {
+      if (isPlatformUnavailableError(error)) {
+        this.publish({ ...this.state, phase: 'error', message: 'OpenBKN 平台的业务知识网络目录暂不可用。已保存 Token 未被修改；请确认本机 OpenBKN 服务恢复后重试。' })
+        return
+      }
+      if (isAuthenticationRequiredError(error)) {
+        this.publish({
+          open: true,
+          phase: 'authentication-required',
+          auth: { kind: 'authentication-required', baseUrl: error.details.baseUrl },
+          networks: [],
+          message: 'Context Loader MCP 已连接，但该 Token 无法读取 OpenBKN 平台的业务知识网络目录。请使用具有平台访问权限的用户访问 Token 或 AppKey。',
+        })
+        return
+      }
+      this.publish({ ...this.state, phase: 'error', message: connectionFailureMessage(error) })
     }
   }
 
@@ -130,4 +151,26 @@ function isAuthenticationRequiredError(error: unknown): error is {
   const candidate = error as { code?: unknown; details?: unknown }
   if (candidate.code !== 'openbkn/authentication-required' || typeof candidate.details !== 'object' || candidate.details === null) return false
   return typeof (candidate.details as { baseUrl?: unknown }).baseUrl === 'string'
+}
+
+function isPlatformUnavailableError(error: unknown): error is {
+  readonly code: 'openbkn/platform-unavailable'
+  readonly details: { readonly baseUrl: string }
+} {
+  if (typeof error !== 'object' || error === null) return false
+  const candidate = error as { code?: unknown; details?: unknown }
+  if (candidate.code !== 'openbkn/platform-unavailable' || typeof candidate.details !== 'object' || candidate.details === null) return false
+  return typeof (candidate.details as { baseUrl?: unknown }).baseUrl === 'string'
+}
+
+function connectionFailureMessage(error: unknown): string {
+  if (typeof error === 'object' && error !== null) {
+    const candidate = error as { code?: unknown, details?: unknown }
+    if (candidate.code === 'openbkn/connection-failed' && typeof candidate.details === 'object' && candidate.details !== null) {
+      const layer = (candidate.details as { layer?: unknown }).layer
+      if (layer === 'context-loader-mcp') return '无法连接 OpenBKN Context Loader MCP。请检查平台地址、网络连接和 Token 的 MCP 访问权限。'
+      if (layer === 'platform-api') return 'Context Loader MCP 已连接，但无法读取业务知识网络目录。请确认 Token 具有 OpenBKN 平台访问权限。'
+    }
+  }
+  return '无法验证 OpenBKN 连接。请检查 Token 和平台地址后重试。'
 }

@@ -1,4 +1,4 @@
-import { useEffect } from 'react'
+import { useEffect, useState } from 'react'
 import type { InjectFace, PropsRuntime } from '@deepseek-ai/dsh-client-ui-slots'
 import type { OpenBknUiController, OpenBknOverlayState } from './openbkn-ui-controller.ts'
 
@@ -6,14 +6,14 @@ export interface OpenBknOverlayInjected {
   hooks: { ui: OpenBknUiController }
   close(): void
   refresh(): Promise<void>
-  beginLogin(): Promise<void>
+  configureToken(token: string): Promise<void>
   openNetwork(networkId: string, mode: 'continue' | 'new' | 'create-workspace'): Promise<void>
 }
 
 export type OpenBknOverlayProps = PropsRuntime<'shell.overlay'> & InjectFace<OpenBknOverlayInjected>
 
 /** Frame-wide, additive OpenBKN control plane. It is intentionally outside DSH chat scroll containers. */
-export function OpenBknOverlay({ useUi, close, refresh, beginLogin, openNetwork }: OpenBknOverlayProps) {
+export function OpenBknOverlay({ useUi, close, refresh, configureToken, openNetwork }: OpenBknOverlayProps) {
   const state = useUi((value: OpenBknOverlayState) => value)
 
   useEffect(() => {
@@ -39,16 +39,16 @@ export function OpenBknOverlay({ useUi, close, refresh, beginLogin, openNetwork 
           <button type="button" onClick={close} aria-label="Close" style={closeStyle}>×</button>
         </header>
         <div style={{ padding: 20 }}>
-          <OverlayBody state={state} beginLogin={beginLogin} refresh={refresh} openNetwork={openNetwork} />
+          <OverlayBody state={state} configureToken={configureToken} refresh={refresh} openNetwork={openNetwork} />
         </div>
       </section>
     </div>
   )
 }
 
-function OverlayBody({ state, beginLogin, refresh, openNetwork }: {
+function OverlayBody({ state, configureToken, refresh, openNetwork }: {
   state: OpenBknOverlayState
-  beginLogin(): Promise<void>
+  configureToken(token: string): Promise<void>
   refresh(): Promise<void>
   openNetwork(networkId: string, mode: 'continue' | 'new' | 'create-workspace'): Promise<void>
 }) {
@@ -57,11 +57,13 @@ function OverlayBody({ state, beginLogin, refresh, openNetwork }: {
   }
 
   if (state.phase === 'authentication-required') {
-    const mismatch = state.auth?.kind === 'platform-mismatch'
     return (
       <div>
-        <p style={{ marginTop: 0, lineHeight: 1.6 }}>{mismatch ? '当前 CLI 登录的平台与本插件配置不一致。' : '登录 OpenBKN 后，即可查看您有权限访问的业务知识网络。'}</p>
-        <button type="button" style={primaryStyle} onClick={() => void beginLogin()}>登录 OpenBKN</button>
+        <p style={{ marginTop: 0, lineHeight: 1.6 }}>先登录 OpenBKN，再输入该账号的访问 Token（或 AppKey）。Token 只保存在本机 DSH 凭据存储中，用于自动连接 Context Loader MCP；保存后会立即测试连接并加载可访问网络。</p>
+        <p style={{ ...mutedStyle, marginTop: 0 }}>平台地址：{displayBaseUrl(state.auth)}</p>
+        {state.message ? <p role="status" style={authenticationNoticeStyle}>{state.message}</p> : null}
+        <p style={{ margin: '0 0 12px' }}><a href={displayBaseUrl(state.auth)} target="_blank" rel="noreferrer" style={loginLinkStyle}>登录 OpenBKN 并获取访问 Token ↗</a></p>
+        <TokenForm configureToken={configureToken} />
         <button type="button" style={secondaryStyle} onClick={() => void refresh()}>刷新状态</button>
       </div>
     )
@@ -97,6 +99,22 @@ function OverlayBody({ state, beginLogin, refresh, openNetwork }: {
   )
 }
 
+function TokenForm({ configureToken }: { configureToken(token: string): Promise<void> }) {
+  const [token, setToken] = useState('')
+  return <form onSubmit={event => { event.preventDefault(); void configureToken(token).finally(() => setToken('')) }} style={{ display: 'grid', gap: 10, marginBottom: 10 }}>
+    <label style={{ display: 'grid', gap: 6, fontSize: 13, fontWeight: 650 }}>
+      OpenBKN Token
+      <input aria-label="OpenBKN Token" type="password" autoComplete="off" value={token} onChange={event => setToken(event.target.value)} style={tokenStyle} />
+    </label>
+    <span><button type="submit" style={primaryStyle} disabled={token.trim().length === 0}>保存并测试连接</button></span>
+  </form>
+}
+
+function displayBaseUrl(auth: OpenBknOverlayState['auth']): string {
+  if (auth?.kind === 'platform-mismatch') return auth.expectedBaseUrl
+  return auth?.baseUrl ?? '—'
+}
+
 const backdropStyle = { pointerEvents: 'auto' as const, position: 'fixed' as const, inset: 0, display: 'grid', placeItems: 'center', background: 'rgb(15 23 42 / 38%)', padding: 20 }
 const dialogStyle = { width: 'min(560px, 100%)', maxHeight: 'min(720px, calc(100vh - 40px))', overflow: 'auto' as const, borderRadius: 16, background: '#fff', boxShadow: '0 24px 70px rgb(15 23 42 / 28%)', color: '#172033' }
 const headerStyle = { display: 'flex', alignItems: 'start', justifyContent: 'space-between', padding: '20px 20px 16px', borderBottom: '1px solid #e6eaf0' }
@@ -108,3 +126,6 @@ const mutedStyle = { color: '#64748b', fontSize: 14 }
 const networkStyle = { textAlign: 'left' as const, display: 'grid', gap: 8, padding: 14, border: '1px solid #d9e4e8', borderRadius: 12, background: '#fff', color: '#172033' }
 const workspaceStyle = { color: '#64748b', fontSize: 12, overflow: 'hidden', textOverflow: 'ellipsis', whiteSpace: 'nowrap' as const }
 const actionsStyle = { display: 'flex', gap: 8, justifyContent: 'flex-end' }
+const tokenStyle = { border: '1px solid #cbd5e1', borderRadius: 8, padding: '9px 10px', font: 'inherit' }
+const loginLinkStyle = { color: '#087d72', fontSize: 14, fontWeight: 650 }
+const authenticationNoticeStyle = { margin: '0 0 12px', padding: '10px 12px', borderRadius: 8, background: '#fff7e8', color: '#9a6700', fontSize: 13, lineHeight: 1.55 }

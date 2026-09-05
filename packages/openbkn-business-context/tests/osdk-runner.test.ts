@@ -56,6 +56,20 @@ test('runs only the fixed platform runner operation with a host-derived knowledg
   assert.doesNotMatch((spec as { stdio: { stdin: { data: string } } }).stdio.stdin.data, /"kn_id"/)
 })
 
+test('passes a resolved managed credential only to the one-shot OSDK subprocess', async () => {
+  const fake = successfulRuntime({ entries: [] })
+  const client = new OsdkRunnerClient(fake.runtime, {
+    baseUrl: 'https://poc.openbkn.ai', runnerPath: 'python3', requestTimeoutMs: 30_000,
+    maxResultBytes: 1_024, allowInsecureTls: false,
+    resolveToken: async () => 'managed-token-value',
+  })
+
+  await client.listKnowledgeNetworks(AbortSignal.timeout(1_000), '/workspace')
+
+  assert.equal(fake.spec().env.BKN_TOKEN, 'managed-token-value')
+  assert.doesNotMatch((fake.spec() as { stdio: { stdin: { data: string } } }).stdio.stdin.data, /managed-token-value/)
+})
+
 test('lists the current CLI identity network catalogue without accepting a client-supplied network id', async () => {
   const fake = successfulRuntime({ entries: [{ id: 'kn-supply', name: 'Supply risk' }] })
   const client = new OsdkRunnerClient(fake.runtime, {
@@ -177,5 +191,33 @@ test('preserves the runner authentication classification without exposing diagno
     (error: unknown) => error instanceof OsdkRunnerError
       && error.code === 'AUTHENTICATION_REQUIRED'
       && !error.message.includes('private platform diagnostic'),
+  )
+})
+
+test('preserves an unavailable platform classification without exposing diagnostics', async () => {
+  const runtime = {
+    spawn() {
+      return {
+        done: Promise.resolve({ exitCode: 1, signal: null }),
+        collected: {
+          stdout: { readFrom: () => ({
+            text: JSON.stringify({ version: 1, ok: false, error: { code: 'platform_unavailable', message: 'private gateway diagnostic' } }),
+            nextOffset: 0, lossy: false,
+          }) },
+          stderr: { readFrom: () => ({ text: 'private platform diagnostic', nextOffset: 0, lossy: false }) },
+        },
+      }
+    },
+  }
+  const client = new OsdkRunnerClient(runtime, {
+    baseUrl: 'https://poc.openbkn.ai', runnerPath: 'python3', requestTimeoutMs: 30_000,
+    maxResultBytes: 1_024, allowInsecureTls: false,
+  })
+
+  await assert.rejects(
+    client.listKnowledgeNetworks(AbortSignal.timeout(1_000), '/workspace'),
+    (error: unknown) => error instanceof OsdkRunnerError
+      && error.code === 'PLATFORM_UNAVAILABLE'
+      && !error.message.includes('private'),
   )
 })

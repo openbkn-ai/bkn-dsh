@@ -1,15 +1,15 @@
 import { Context } from '@deepseek-ai/cordis'
+import { credentialRef } from '@deepseek-ai/dsh-credentials'
 import type { Agent } from '@deepseek-ai/dsh-agent'
 import type { SessionId } from '@deepseek-ai/dsh-session/types'
 import { Remote, RemoteError, TypertRemoteService } from '@deepseek-ai/dsh-typert-protocol'
-import { AuthCoordinator } from './auth.js'
 import { parseVisibleBusinessNetworks } from './business-network-catalog.js'
 import { Config, type Config as PluginConfig } from './config.js'
 import { bindDshSessionBusinessNetwork, readDshSessionBusinessNetwork } from './dsh-session-binding.js'
 import { appendDshSessionTurnProvenance, readDshSessionTurnProvenance } from './dsh-session-provenance.js'
 import { findCompletedNativeMcpProvenance } from './native-mcp-provenance.js'
-import { OpenBknCliSubprocess } from './openbkn-cli-subprocess.js'
 import { OsdkRunnerClient, OsdkRunnerError } from './osdk-runner.js'
+import { OPENBKN_MCP_TOKEN_REF, OpenBknMcpManager } from './openbkn-mcp-manager.js'
 import { buildProvenanceView } from './provenance-view.js'
 import { buildNetworkCapabilityProfile, type NetworkCapabilityProfile } from './network-capability-profile.js'
 import { mountBoundBusinessNetworkTool } from './scoped-business-context.js'
@@ -29,6 +29,11 @@ declare module '@deepseek-ai/cordis' {
 declare module '@deepseek-ai/dsh-typert-protocol' {
   interface RemoteErrorDetailsMap {
     'openbkn/authentication-required': { readonly baseUrl: string }
+    'openbkn/connection-failed': {
+      readonly baseUrl: string
+      readonly layer: 'context-loader-mcp' | 'platform-api'
+    }
+    'openbkn/platform-unavailable': { readonly baseUrl: string }
   }
 }
 
@@ -38,11 +43,12 @@ declare module '@deepseek-ai/dsh-typert-protocol' {
  * will call this service through its host bridge in the next slice.
  */
 export class OpenBknBusinessContextService extends TypertRemoteService {
-  static inject = ['agents', 'subprocess', 'openbknWorkspaceBindingRegistry']
+  static inject = ['agents', 'credentials', 'subprocess', 'tools', 'openbknWorkspaceBindingRegistry']
   static Config = Config
 
   private readonly mounted = new WeakSet<Agent>()
   private readonly capabilityProfiles = new WeakMap<Agent, NetworkCapabilityProfile>()
+  private mcpManagerInstance: OpenBknMcpManager | undefined
 
   constructor(ctx: Context, readonly config: PluginConfig) {
     super(ctx, 'openbknBusinessContext')
@@ -51,16 +57,36 @@ export class OpenBknBusinessContextService extends TypertRemoteService {
     for (const agent of ctx.agents.list()) this.mountIfBound(agent)
   }
 
-  /** Return only the safe login state; the browser never receives a credential value. */
+  /** Return only the safe credential presence state; the browser never receives a credential value. */
   @Remote('status')
   async remoteStatus(signal: AbortSignal): Promise<AuthSnapshot> {
-    return await this.authCoordinator().status(signal)
+    if (signal.aborted) throw signal.reason
+    const credential = await this.ctx.credentials.describe(credentialRef(OPENBKN_MCP_TOKEN_REF))
+    return credential.configured
+      ? { kind: 'authenticated', baseUrl: this.config.baseUrl }
+      : { kind: 'authentication-required', baseUrl: this.config.baseUrl }
   }
 
-  /** Start the configured CLI login flow; no token or generic command reaches the Client. */
-  @Remote('beginLogin')
-  async remoteBeginLogin(): Promise<void> {
-    await this.authCoordinator().beginLogin()
+  /**
+   * Save one user-entered token to DSH's credential provider, connect the
+   * standard MCP client by reference, then return only visible network DTOs.
+   */
+  @Remote('configureToken')
+  async remoteConfigureToken(token: string, signal: AbortSignal): Promise<readonly BusinessNetworkSummary[]> {
+    const value = token.trim()
+    if (value.length === 0) throw new Error('An OpenBKN token is required.')
+    await this.ctx.credentials.set(credentialRef(OPENBKN_MCP_TOKEN_REF), value)
+    try {
+      await this.refreshMcpConnection()
+    } catch (error: unknown) {
+      throw new RemoteError(
+        'openbkn/connection-failed',
+        'The OpenBKN Context Loader MCP could not be connected.',
+        { baseUrl: this.config.baseUrl, layer: 'context-loader-mcp' },
+        { cause: error },
+      )
+    }
+    return await this.listNetworksAfterAuthentication(signal)
   }
 
   /** Read the immutable network identity already recorded on one live DSH session. */
@@ -141,13 +167,19 @@ export class OpenBknBusinessContextService extends TypertRemoteService {
     return binding === undefined ? [] : resolveSuggestedPrompts(this.config.suggestedPrompts, binding.displayName)
   }
 
-  /** List only the business networks authorized for the current CLI identity. */
+  /** List only the business networks authorized by the managed OpenBKN token. */
   @Remote('listNetworks')
   async remoteListNetworks(signal: AbortSignal): Promise<readonly BusinessNetworkSummary[]> {
-    const status = await this.authCoordinator().status(signal)
+    const status = await this.remoteStatus(signal)
     if (status.kind !== 'authenticated') {
       throw new Error('OpenBKN authentication is required before listing business networks.')
     }
+    await this.ensureMcpConnection()
+    return await this.listNetworksAfterAuthentication(signal)
+  }
+
+  /** A successful MCP initial handshake plus OSDK catalogue read is the connection test. */
+  private async listNetworksAfterAuthentication(signal: AbortSignal): Promise<readonly BusinessNetworkSummary[]> {
     let payload: unknown
     try {
       payload = await this.osdkRunner().listKnowledgeNetworks(signal, '.')
@@ -159,7 +191,20 @@ export class OpenBknBusinessContextService extends TypertRemoteService {
           { baseUrl: this.config.baseUrl },
         )
       }
-      throw error
+      if (error instanceof OsdkRunnerError && error.code === 'PLATFORM_UNAVAILABLE') {
+        throw new RemoteError(
+          'openbkn/platform-unavailable',
+          'The OpenBKN platform knowledge-network catalogue is temporarily unavailable.',
+          { baseUrl: this.config.baseUrl },
+          { cause: error },
+        )
+      }
+      throw new RemoteError(
+        'openbkn/connection-failed',
+        'The OpenBKN platform API could not be queried.',
+        { baseUrl: this.config.baseUrl, layer: 'platform-api' },
+        { cause: error },
+      )
     }
     return parseVisibleBusinessNetworks(payload).map(network => {
       const workspacePath = this.ctx.openbknWorkspaceBindingRegistry.get(this.config.baseUrl, network.id)?.workspacePath
@@ -170,7 +215,7 @@ export class OpenBknBusinessContextService extends TypertRemoteService {
   /** Persist a selected local DSH workspace only after the network is authorized. */
   @Remote('bindNetworkWorkspace')
   async remoteBindNetworkWorkspace(networkId: string, workspacePath: string, signal: AbortSignal): Promise<BusinessNetworkSummary> {
-    const status = await this.authCoordinator().status(signal)
+    const status = await this.remoteStatus(signal)
     if (status.kind !== 'authenticated') throw new Error('OpenBKN authentication is required before selecting a workspace.')
     const network = parseVisibleBusinessNetworks(await this.osdkRunner().listKnowledgeNetworks(signal, '.'))
       .find(candidate => candidate.id === networkId.trim())
@@ -195,7 +240,7 @@ export class OpenBknBusinessContextService extends TypertRemoteService {
     networkId: string,
     signal: AbortSignal,
   ): Promise<BusinessNetworkBinding> {
-    const status = await this.authCoordinator().status(signal)
+    const status = await this.remoteStatus(signal)
     if (status.kind !== 'authenticated') {
       throw new Error('OpenBKN authentication is required before binding a business network.')
     }
@@ -258,15 +303,32 @@ export class OpenBknBusinessContextService extends TypertRemoteService {
     appendDshSessionTurnProvenance(agent.session, provenance.messageId, provenance.handle)
   }
 
-  private authCoordinator(): AuthCoordinator {
-    return new AuthCoordinator(
-      new OpenBknCliSubprocess(this.ctx.subprocess, '.', this.config.baseUrl),
-      this.config.baseUrl,
-    )
+  private async ensureMcpConnection(): Promise<void> {
+    if (this.ctx.tools === undefined) return
+    await this.mcpManager().ensure()
+  }
+
+  private async refreshMcpConnection(): Promise<void> {
+    if (this.ctx.tools === undefined) return
+    await this.mcpManager().refresh()
+  }
+
+  private mcpManager(): OpenBknMcpManager {
+    return this.mcpManagerInstance ??= new OpenBknMcpManager(this.ctx, this.config, () => this.resolveOpenBknToken())
   }
 
   private osdkRunner(): OsdkRunnerClient {
-    return new OsdkRunnerClient(this.ctx.subprocess, this.config)
+    return new OsdkRunnerClient(this.ctx.subprocess, {
+      ...this.config,
+      resolveToken: () => this.resolveOpenBknToken(),
+    })
+  }
+
+  /** Resolve only the DSH-managed token; legacy environment variables are not silently migrated. */
+  private async resolveOpenBknToken(): Promise<string | undefined> {
+    const ref = credentialRef(OPENBKN_MCP_TOKEN_REF)
+    const managed = await this.ctx.credentials.resolve(ref)
+    return managed?.value
   }
 }
 

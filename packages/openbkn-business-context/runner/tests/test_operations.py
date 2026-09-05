@@ -10,14 +10,22 @@ from openbkn_dsh_runner.operations import execute
 from openbkn_dsh_runner.protocol import Request
 
 
+class FakeKn:
+    def __init__(self) -> None:
+        self.detail_calls: list[tuple[str, str]] = []
+
+    def get_kn_detail(self, network_id: str, *, detail_level: str) -> dict[str, object]:
+        self.detail_calls.append((network_id, detail_level))
+        return {"result": {"id": network_id, "name": "Supply risk"}}
+
+
 class FakeOsdk:
     def __init__(self) -> None:
         self.calls: list[tuple[str, dict[str, object]]] = []
+        self.kn = FakeKn()
 
     def call(self, path: str, *, query: dict[str, object]) -> dict[str, object]:
         self.calls.append((path, query))
-        if path.endswith("/kn-supply"):
-            return {"result": {"id": "kn-supply", "name": "Supply risk"}}
         return {"entries": [{"id": "kn-supply", "name": "Supply risk"}]}
 
 
@@ -30,7 +38,7 @@ class ExecuteTests(unittest.TestCase):
         self.assertEqual(response, {"entries": [{"id": "kn-supply", "name": "Supply risk"}]})
         self.assertEqual(
             osdk.calls,
-            [("/api/ontology-manager/v1/knowledge-networks", {"limit": 100})],
+            [("/api/bkn-backend/v1/knowledge-networks", {"limit": 100})],
         )
 
     def test_reads_detail_only_for_the_host_bound_network(self) -> None:
@@ -44,10 +52,7 @@ class ExecuteTests(unittest.TestCase):
         response = execute(request, osdk)
 
         self.assertEqual(response, {"id": "kn-supply", "name": "Supply risk"})
-        self.assertEqual(
-            osdk.calls,
-            [("/api/ontology-manager/v1/knowledge-networks/kn-supply", {})],
-        )
+        self.assertEqual(osdk.kn.detail_calls, [("kn-supply", "summary")])
 
     def test_reads_one_interaction_operations_only_for_the_host_bound_interaction(self) -> None:
         osdk = FakeOsdk()

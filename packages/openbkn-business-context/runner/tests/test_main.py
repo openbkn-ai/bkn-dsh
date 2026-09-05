@@ -53,6 +53,23 @@ class RunnerMainTests(unittest.TestCase):
         )
         self.assertNotIn("platform diagnostic", output.getvalue())
 
+    def test_classifies_http_client_response_authentication_errors(self) -> None:
+        class Response:
+            status_code = 403
+
+        class RejectedCredential(Exception):
+            response = Response()
+
+        class UnauthorizedOsdk(FakeOsdk):
+            def call(self, _path: str, *, query: dict[str, object]) -> dict[str, object]:
+                raise RejectedCredential("private response")
+
+        output = io.StringIO()
+        code = main(io.StringIO('{"version": 1, "operation": "list_knowledge_networks"}'), output, UnauthorizedOsdk())
+
+        self.assertEqual(code, 1)
+        self.assertEqual(json.loads(output.getvalue())["error"]["code"], "authentication_required")
+
     def test_emits_one_safe_error_response_and_resets_osdk_after_a_bad_request(self) -> None:
         output = io.StringIO()
         osdk = FakeOsdk()
