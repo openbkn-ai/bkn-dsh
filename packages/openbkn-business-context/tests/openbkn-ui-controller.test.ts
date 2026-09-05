@@ -64,6 +64,7 @@ test('returns to sign-in when the platform rejects a locally present credential'
     phase: 'authentication-required',
     auth: authenticationRequired,
     networks: [],
+    message: 'Context Loader MCP 已连接，但该 Token 无法读取 OpenBKN 平台的业务知识网络目录。请使用具有平台访问权限的用户访问 Token 或 AppKey。',
   })
 })
 
@@ -85,6 +86,27 @@ test('explains whether a failed verification came from MCP or the platform catal
 
   assert.equal(controller.snapshot().phase, 'error')
   assert.match(controller.snapshot().message ?? '', /Context Loader MCP 已连接/)
+})
+
+test('explains that a Context Loader-only token cannot load the platform catalogue', async () => {
+  const rejected = Object.assign(new Error('OpenBKN authentication is required.'), {
+    code: 'openbkn/authentication-required',
+    details: { baseUrl: authenticated.baseUrl },
+  })
+  const controller = new OpenBknUiController({
+    status: async () => authenticated,
+    configureToken: async () => { throw rejected },
+    listNetworks: async () => { throw new Error('must not list') },
+    bindNetworkWorkspace: async () => { throw new Error('must not bind') },
+    bindNetwork: async () => { throw new Error('must not bind') },
+  }, async () => 'session-1')
+
+  controller.open()
+  await controller.configureToken('context-loader-only-token')
+
+  assert.equal(controller.snapshot().phase, 'authentication-required')
+  assert.match(controller.snapshot().message ?? '', /MCP 已连接/)
+  assert.match(controller.snapshot().message ?? '', /平台访问权限/)
 })
 
 test('creates the selected network session before binding it', async () => {

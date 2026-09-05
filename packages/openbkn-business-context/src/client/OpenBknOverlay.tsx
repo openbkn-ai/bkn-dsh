@@ -61,6 +61,7 @@ function OverlayBody({ state, configureToken, refresh, openNetwork }: {
       <div>
         <p style={{ marginTop: 0, lineHeight: 1.6 }}>先登录 OpenBKN，再输入该账号的访问 Token（或 AppKey）。Token 只保存在本机 DSH 凭据存储中，用于自动连接 Context Loader MCP；保存后会立即测试连接并加载可访问网络。</p>
         <p style={{ ...mutedStyle, marginTop: 0 }}>平台地址：{displayBaseUrl(state.auth)}</p>
+        {state.message ? <p role="status" style={authenticationNoticeStyle}>{state.message}</p> : null}
         <p style={{ margin: '0 0 12px' }}><a href={displayBaseUrl(state.auth)} target="_blank" rel="noreferrer" style={loginLinkStyle}>登录 OpenBKN 并获取访问 Token ↗</a></p>
         <TokenForm configureToken={configureToken} />
         <button type="button" style={secondaryStyle} onClick={() => void refresh()}>刷新状态</button>
@@ -127,3 +128,4 @@ const workspaceStyle = { color: '#64748b', fontSize: 12, overflow: 'hidden', tex
 const actionsStyle = { display: 'flex', gap: 8, justifyContent: 'flex-end' }
 const tokenStyle = { border: '1px solid #cbd5e1', borderRadius: 8, padding: '9px 10px', font: 'inherit' }
 const loginLinkStyle = { color: '#087d72', fontSize: 14, fontWeight: 650 }
+const authenticationNoticeStyle = { margin: '0 0 12px', padding: '10px 12px', borderRadius: 8, background: '#fff7e8', color: '#9a6700', fontSize: 13, lineHeight: 1.55 }

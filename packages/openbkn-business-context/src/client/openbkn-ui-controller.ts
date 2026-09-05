@@ -80,6 +80,7 @@ export class OpenBknUiController {
           phase: 'authentication-required',
           auth: { kind: 'authentication-required', baseUrl: error.details.baseUrl },
           networks: [],
+          message: 'Context Loader MCP 已连接，但该 Token 无法读取 OpenBKN 平台的业务知识网络目录。请使用具有平台访问权限的用户访问 Token 或 AppKey。',
         })
         return
       }
@@ -98,7 +99,13 @@ export class OpenBknUiController {
       this.publish({ open: true, phase: 'ready', auth, networks })
     } catch (error: unknown) {
       if (isAuthenticationRequiredError(error)) {
-        this.publish({ open: true, phase: 'authentication-required', auth: { kind: 'authentication-required', baseUrl: error.details.baseUrl }, networks: [] })
+        this.publish({
+          open: true,
+          phase: 'authentication-required',
+          auth: { kind: 'authentication-required', baseUrl: error.details.baseUrl },
+          networks: [],
+          message: 'Context Loader MCP 已连接，但该 Token 无法读取 OpenBKN 平台的业务知识网络目录。请使用具有平台访问权限的用户访问 Token 或 AppKey。',
+        })
         return
       }
       this.publish({ ...this.state, phase: 'error', message: connectionFailureMessage(error) })
