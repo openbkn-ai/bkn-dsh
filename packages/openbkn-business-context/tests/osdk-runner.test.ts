@@ -56,6 +56,20 @@ test('runs only the fixed platform runner operation with a host-derived knowledg
   assert.doesNotMatch((spec as { stdio: { stdin: { data: string } } }).stdio.stdin.data, /"kn_id"/)
 })
 
+test('passes a resolved managed credential only to the one-shot OSDK subprocess', async () => {
+  const fake = successfulRuntime({ entries: [] })
+  const client = new OsdkRunnerClient(fake.runtime, {
+    baseUrl: 'https://poc.openbkn.ai', runnerPath: 'python3', requestTimeoutMs: 30_000,
+    maxResultBytes: 1_024, allowInsecureTls: false,
+    resolveToken: async () => 'managed-token-value',
+  })
+
+  await client.listKnowledgeNetworks(AbortSignal.timeout(1_000), '/workspace')
+
+  assert.equal(fake.spec().env.BKN_TOKEN, 'managed-token-value')
+  assert.doesNotMatch((fake.spec() as { stdio: { stdin: { data: string } } }).stdio.stdin.data, /managed-token-value/)
+})
+
 test('lists the current CLI identity network catalogue without accepting a client-supplied network id', async () => {
   const fake = successfulRuntime({ entries: [{ id: 'kn-supply', name: 'Supply risk' }] })
   const client = new OsdkRunnerClient(fake.runtime, {

@@ -2,8 +2,10 @@ import Schema from '@deepseek-ai/schemastery'
 
 /** Deployment settings that are safe to keep in a DSH configuration patch. */
 export interface Config {
-  /** OpenBKN platform base URL; credentials stay exclusively in the OpenBKN CLI. */
+  /** OpenBKN platform base URL; credentials stay exclusively in DSH credentials. */
   baseUrl: string
+  /** Optional Context Loader MCP endpoint; defaults to the standard platform route. */
+  mcpUrl?: string
   /** Optional OpenBKN business domain used to constrain platform requests. */
   businessDomain?: string
   /** Path to the controlled Python runner used in a later capability slice. */
@@ -25,6 +27,7 @@ export interface Config {
 /** Runtime schema and conservative defaults for the host plugin row. */
 export const Config: Schema<Config> = Schema.object({
   baseUrl: Schema.string().required(),
+  mcpUrl: Schema.string(),
   businessDomain: Schema.string(),
   runnerPath: Schema.string().default('python3'),
   requestTimeoutMs: Schema.natural().min(1).default(30_000),

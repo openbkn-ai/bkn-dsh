@@ -92,7 +92,7 @@ function registerSlots(ctx: Context): void {
     open: () => controller.open(),
     close: () => controller.close(),
     refresh: () => controller.refresh(),
-    beginLogin: () => controller.beginLogin(),
+    configureToken: (token: string) => controller.configureToken(token),
     openNetwork: (networkId: string, mode: NetworkSessionMode) => controller.openNetwork(networkId, mode),
   })
 
@@ -159,7 +159,7 @@ function remotePort(ctx: Context): OpenBknUiPort & {
   const remote = ctx.remote.openbknBusinessContext
   return {
     status: async signal => unwrap(await remote.status(signal)),
-    beginLogin: async () => unwrap(await remote.beginLogin()),
+    configureToken: async (token, signal) => unwrap(await remote.configureToken(token, signal)),
     getNetworkBinding: async (sessionId: SessionId) => unwrap(await remote.getNetworkBinding(sessionId)),
     getTurnProvenance: async (sessionId: SessionId, messageId: string) => unwrap(await remote.getTurnProvenance(sessionId, messageId)),
     getTurnProvenanceView: async (sessionId: SessionId, messageId: string) => unwrap(await remote.getTurnProvenanceView(sessionId, messageId)),

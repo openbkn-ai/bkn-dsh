@@ -8,7 +8,7 @@ const authenticationRequired = { kind: 'authentication-required' as const, baseU
 test('loads only the visible network catalogue after OpenBKN authentication succeeds', async () => {
   const controller = new OpenBknUiController({
     status: async () => authenticated,
-    beginLogin: async () => {},
+    configureToken: async () => [],
     listNetworks: async () => [{ id: 'kn-supply', displayName: 'Supply risk', description: 'Delivery risk' }],
     bindNetworkWorkspace: async () => ({ id: 'kn-supply', displayName: 'Supply risk' }),
     bindNetwork: async () => ({ platformBaseUrl: authenticated.baseUrl, knowledgeNetworkId: 'kn-supply', displayName: 'Supply risk' }),
@@ -29,7 +29,7 @@ test('does not request the catalogue while OpenBKN authentication is required', 
   let listed = 0
   const controller = new OpenBknUiController({
     status: async () => authenticationRequired,
-    beginLogin: async () => {},
+    configureToken: async () => [],
     listNetworks: async () => { listed += 1; return [] },
     bindNetworkWorkspace: async () => { throw new Error('must not bind') },
     bindNetwork: async () => { throw new Error('must not bind') },
@@ -50,7 +50,7 @@ test('returns to sign-in when the platform rejects a locally present credential'
   })
   const controller = new OpenBknUiController({
     status: async () => authenticated,
-    beginLogin: async () => {},
+    configureToken: async () => [],
     listNetworks: async () => { throw rejected },
     bindNetworkWorkspace: async () => { throw new Error('must not bind') },
     bindNetwork: async () => { throw new Error('must not bind') },
@@ -71,7 +71,7 @@ test('creates the selected network session before binding it', async () => {
   let bound = 0
   const controller = new OpenBknUiController({
     status: async () => authenticated,
-    beginLogin: async () => {},
+    configureToken: async () => [],
     listNetworks: async () => [{ id: 'kn-supply', displayName: 'Supply risk' }],
     bindNetworkWorkspace: async () => ({ id: 'kn-supply', displayName: 'Supply risk' }),
     bindNetwork: async () => { bound += 1; return { platformBaseUrl: authenticated.baseUrl, knowledgeNetworkId: 'kn-supply', displayName: 'Supply risk' } },
@@ -89,7 +89,7 @@ test('binds the selected visible network to the newly opened network session', a
   const calls: unknown[] = []
   const controller = new OpenBknUiController({
     status: async () => authenticated,
-    beginLogin: async () => {},
+    configureToken: async () => [],
     listNetworks: async () => [{ id: 'kn-supply', displayName: 'Supply risk', workspacePath: '/workspace/supply' }],
     bindNetworkWorkspace: async () => ({ id: 'kn-supply', displayName: 'Supply risk' }),
     bindNetwork: async (sessionId, networkId) => {

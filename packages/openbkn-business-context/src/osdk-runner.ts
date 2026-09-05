@@ -52,13 +52,15 @@ export class OsdkRunnerError extends Error {
   }
 }
 
-/** Host-side runner configuration; credentials are deliberately absent. */
+/** Host-side runner configuration. Credentials are resolved just-in-time and never persisted here. */
 export interface OsdkRunnerConfig {
   readonly baseUrl: string
   readonly runnerPath: string
   readonly requestTimeoutMs: number
   readonly maxResultBytes: number
   readonly allowInsecureTls: boolean
+  /** Resolves the managed OpenBKN token immediately before one subprocess invocation. */
+  readonly resolveToken?: () => Promise<string | undefined>
 }
 
 interface RunnerSuccess {
@@ -132,6 +134,7 @@ export class OsdkRunnerClient {
     cwd: string,
   ): Promise<JsonValue> {
     const baseUrl = normalizeBaseUrl(this.config.baseUrl)
+    const token = await this.config.resolveToken?.()
 
     const request = JSON.stringify({
       version: RUNNER_PROTOCOL_VERSION,
@@ -154,6 +157,7 @@ export class OsdkRunnerClient {
         env: {
           ...(noProxy === undefined ? {} : { NO_PROXY: noProxy }),
           BKN_BASE_URL: baseUrl,
+          ...(token === undefined || token.length === 0 ? {} : { BKN_TOKEN: token }),
           PYTHONPATH: [PACKAGED_RUNNER_PATH, process.env.PYTHONPATH].filter(Boolean).join(delimiter),
           OPENBKN_DSH_MAX_RESULT_BYTES: String(this.config.maxResultBytes),
           OPENBKN_DSH_INSECURE_TLS: String(this.config.allowInsecureTls),

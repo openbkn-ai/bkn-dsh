@@ -6,13 +6,15 @@ from typing import Any, Protocol
 
 from .protocol import Request
 
-KNOWLEDGE_NETWORKS_PATH = "/api/ontology-manager/v1/knowledge-networks"
+KNOWLEDGE_NETWORKS_PATH = "/api/bkn-backend/v1/knowledge-networks"
 INTERACTIONS_PATH = "/api/agent-observability/v1/interactions"
 BUSINESS_PROVENANCE_PATH = "/api/agent-observability/v1/business-provenance/interactions"
 
 
 class PlatformOsdk(Protocol):
     """The exact subset of platform-level OSDK used by this runner slice."""
+
+    kn: Any
 
     def call(self, path: str, *, query: dict[str, object]) -> dict[str, object]: ...
 
@@ -25,7 +27,7 @@ def execute(request: Request, osdk: PlatformOsdk) -> dict[str, object]:
         network_id = request.context.get("knowledge_network_id")
         if network_id is None:
             raise ValueError("get_knowledge_network_detail requires host-bound network context")
-        return unwrap_result(osdk.call(f"{KNOWLEDGE_NETWORKS_PATH}/{network_id}", query={}))
+        return unwrap_result(osdk.kn.get_kn_detail(network_id, detail_level="summary"))
     if request.operation in {"get_interaction_operations", "get_interaction_business_provenance"}:
         interaction_id = request.context.get("interaction_id")
         if interaction_id is None:

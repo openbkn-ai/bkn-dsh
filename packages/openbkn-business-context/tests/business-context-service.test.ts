@@ -49,17 +49,24 @@ test('rejects a stale or foreign Agent before it can mutate a DSH session', () =
   }), /not a live/i)
 })
 
-test('exposes a Remote login action without exposing a CLI command surface', async () => {
-  let started = 0
+test('stores a token through DSH credentials before testing the managed OpenBKN connection', async () => {
+  let saved: string | undefined
+  let tested = 0
   const service = Object.create(OpenBknBusinessContextService.prototype) as {
-    authCoordinator(): { beginLogin(): Promise<void> }
-    remoteBeginLogin(): Promise<void>
+    ctx: { credentials: { set(ref: string, value: string): Promise<void> } }
+    ensureMcpConnection(): Promise<void>
+    listNetworksAfterAuthentication(signal: AbortSignal): Promise<readonly unknown[]>
+    remoteConfigureToken(token: string, signal: AbortSignal): Promise<readonly unknown[]>
   }
-  service.authCoordinator = () => ({ beginLogin: async () => { started += 1 } })
+  service.ctx = { credentials: { set: async (_ref, value) => { saved = value } } }
+  service.ensureMcpConnection = async () => { tested += 1 }
+  service.listNetworksAfterAuthentication = async () => [{ id: 'kn-supply' }]
 
-  await service.remoteBeginLogin()
+  const networks = await service.remoteConfigureToken('  managed-token-value  ', AbortSignal.timeout(1_000))
 
-  assert.equal(started, 1)
+  assert.equal(saved, 'managed-token-value')
+  assert.equal(tested, 1)
+  assert.deepEqual(networks, [{ id: 'kn-supply' }])
 })
 
 test('reads the durable binding for one live session without consulting CLI credentials', async () => {
@@ -259,13 +266,13 @@ test('returns only a safe network catalogue after confirming the CLI identity is
   const service = Object.create(OpenBknBusinessContextService.prototype) as {
     config: typeof config
     ctx: { openbknWorkspaceBindingRegistry: { get(baseUrl: string, networkId: string): undefined } }
-    authCoordinator(): { status(signal: AbortSignal): Promise<{ kind: 'authenticated'; baseUrl: string }> }
+    remoteStatus(signal: AbortSignal): Promise<{ kind: 'authenticated'; baseUrl: string }>
     osdkRunner(): { listKnowledgeNetworks(signal: AbortSignal, cwd: string): Promise<unknown> }
     remoteListNetworks(signal: AbortSignal): Promise<unknown>
   }
   service.config = config
   service.ctx = { openbknWorkspaceBindingRegistry: { get: () => undefined } }
-  service.authCoordinator = () => ({ status: async () => ({ kind: 'authenticated', baseUrl: 'https://poc.openbkn.ai' }) })
+  service.remoteStatus = async () => ({ kind: 'authenticated', baseUrl: 'https://poc.openbkn.ai' })
   service.osdkRunner = () => ({
     listKnowledgeNetworks: async (signal, cwd) => {
       signalSeen = signal
@@ -283,11 +290,11 @@ test('returns only a safe network catalogue after confirming the CLI identity is
 
 test('refuses to list networks while OpenBKN authentication is not active', async () => {
   const service = Object.create(OpenBknBusinessContextService.prototype) as {
-    authCoordinator(): { status(signal: AbortSignal): Promise<{ kind: 'authentication-required'; baseUrl: string }> }
+    remoteStatus(signal: AbortSignal): Promise<{ kind: 'authentication-required'; baseUrl: string }>
     osdkRunner(): never
     remoteListNetworks(signal: AbortSignal): Promise<unknown>
   }
-  service.authCoordinator = () => ({ status: async () => ({ kind: 'authentication-required', baseUrl: 'https://poc.openbkn.ai' }) })
+  service.remoteStatus = async () => ({ kind: 'authentication-required', baseUrl: 'https://poc.openbkn.ai' })
   service.osdkRunner = () => { throw new Error('runner must not start') }
 
   await assert.rejects(service.remoteListNetworks(AbortSignal.timeout(1_000)), /authentication/i)
@@ -299,14 +306,14 @@ test('binds only a network confirmed in the current identity catalogue', async (
   const service = Object.create(OpenBknBusinessContextService.prototype) as {
     config: typeof config
     ctx: { agents: { get(sessionId: string): object | undefined }; logger: { warn(): void } }
-    authCoordinator(): { status(signal: AbortSignal): Promise<{ kind: 'authenticated'; baseUrl: string }> }
+    remoteStatus(signal: AbortSignal): Promise<{ kind: 'authenticated'; baseUrl: string }>
     osdkRunner(): { listKnowledgeNetworks(signal: AbortSignal, cwd: string): Promise<unknown> }
     bind(agent: object, request: unknown): { kind: 'bound'; event: { data: unknown } }
     remoteBindNetwork(sessionId: string, networkId: string, signal: AbortSignal): Promise<unknown>
   }
   service.config = config
   service.ctx = { agents: { get: sessionId => sessionId === 'session-1' ? agent : undefined }, logger: { warn: () => {} } }
-  service.authCoordinator = () => ({ status: async () => ({ kind: 'authenticated', baseUrl: 'https://poc.openbkn.ai' }) })
+  service.remoteStatus = async () => ({ kind: 'authenticated', baseUrl: 'https://poc.openbkn.ai' })
   service.osdkRunner = () => ({ listKnowledgeNetworks: async () => ({
     entries: [{ id: 'kn-supply', name: 'Supply risk', comment: 'Delivery risk' }],
   }) })
@@ -334,7 +341,7 @@ test('keeps binding available and records a safe diagnostic when the optional ca
       agents: { get(sessionId: string): typeof agent | undefined }
       logger: { warn(format: string, code: string): void }
     }
-    authCoordinator(): { status(signal: AbortSignal): Promise<{ kind: 'authenticated'; baseUrl: string }> }
+    remoteStatus(signal: AbortSignal): Promise<{ kind: 'authenticated'; baseUrl: string }>
     osdkRunner(): {
       listKnowledgeNetworks(signal: AbortSignal, cwd: string): Promise<unknown>
       getKnowledgeNetworkDetail(binding: unknown, signal: AbortSignal, cwd: string): Promise<unknown>
@@ -347,7 +354,7 @@ test('keeps binding available and records a safe diagnostic when the optional ca
     agents: { get: sessionId => sessionId === 'session-1' ? agent : undefined },
     logger: { warn: (format, code) => { warnings.push(`${format} ${code}`) } },
   }
-  service.authCoordinator = () => ({ status: async () => ({ kind: 'authenticated', baseUrl: 'https://poc.openbkn.ai' }) })
+  service.remoteStatus = async () => ({ kind: 'authenticated', baseUrl: 'https://poc.openbkn.ai' })
   service.osdkRunner = () => ({
     listKnowledgeNetworks: async () => ({ entries: [{ id: 'kn-supply', name: 'Supply risk' }] }),
     getKnowledgeNetworkDetail: async () => { throw new Error('private platform detail') },
@@ -367,12 +374,12 @@ test('keeps binding available and records a safe diagnostic when the optional ca
 
 test('refuses a requested network that is not visible to the current identity', async () => {
   const service = Object.create(OpenBknBusinessContextService.prototype) as {
-    authCoordinator(): { status(signal: AbortSignal): Promise<{ kind: 'authenticated'; baseUrl: string }> }
+    remoteStatus(signal: AbortSignal): Promise<{ kind: 'authenticated'; baseUrl: string }>
     osdkRunner(): { listKnowledgeNetworks(signal: AbortSignal, cwd: string): Promise<unknown> }
     bind(): never
     remoteBindNetwork(agent: object, networkId: string, signal: AbortSignal): Promise<unknown>
   }
-  service.authCoordinator = () => ({ status: async () => ({ kind: 'authenticated', baseUrl: 'https://poc.openbkn.ai' }) })
+  service.remoteStatus = async () => ({ kind: 'authenticated', baseUrl: 'https://poc.openbkn.ai' })
   service.osdkRunner = () => ({ listKnowledgeNetworks: async () => ({ entries: [] }) })
   service.bind = () => { throw new Error('must not bind') }
 
