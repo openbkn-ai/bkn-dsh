@@ -4,7 +4,7 @@ import { apply } from '../src/index.ts'
 import { mountBoundBusinessNetworkTool } from '../src/scoped-business-context.ts'
 
 const config = {
-  baseUrl: 'https://poc.openbkn.ai', runnerPath: 'python3', requestTimeoutMs: 30_000,
+  baseUrl: 'https://poc.openbkn.ai', requestTimeoutMs: 30_000,
   maxResultBytes: 1_024, allowInsecureTls: false,
 }
 

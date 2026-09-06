@@ -6,6 +6,7 @@ export interface OpenBknOverlayInjected {
   hooks: { ui: OpenBknUiController }
   close(): void
   refresh(): Promise<void>
+  beginLogin(): Promise<void>
   configureToken(token: string): Promise<void>
   openNetwork(networkId: string, mode: 'continue' | 'new' | 'create-workspace'): Promise<void>
 }
@@ -13,7 +14,7 @@ export interface OpenBknOverlayInjected {
 export type OpenBknOverlayProps = PropsRuntime<'shell.overlay'> & InjectFace<OpenBknOverlayInjected>
 
 /** Frame-wide, additive OpenBKN control plane. It is intentionally outside DSH chat scroll containers. */
-export function OpenBknOverlay({ useUi, close, refresh, configureToken, openNetwork }: OpenBknOverlayProps) {
+export function OpenBknOverlay({ useUi, close, refresh, beginLogin, configureToken, openNetwork }: OpenBknOverlayProps) {
   const state = useUi((value: OpenBknOverlayState) => value)
 
   useEffect(() => {
@@ -39,15 +40,16 @@ export function OpenBknOverlay({ useUi, close, refresh, configureToken, openNetw
           <button type="button" onClick={close} aria-label="Close" style={closeStyle}>×</button>
         </header>
         <div style={{ padding: 20 }}>
-          <OverlayBody state={state} configureToken={configureToken} refresh={refresh} openNetwork={openNetwork} />
+          <OverlayBody state={state} beginLogin={beginLogin} configureToken={configureToken} refresh={refresh} openNetwork={openNetwork} />
         </div>
       </section>
     </div>
   )
 }
 
-function OverlayBody({ state, configureToken, refresh, openNetwork }: {
+function OverlayBody({ state, beginLogin, configureToken, refresh, openNetwork }: {
   state: OpenBknOverlayState
+  beginLogin(): Promise<void>
   configureToken(token: string): Promise<void>
   refresh(): Promise<void>
   openNetwork(networkId: string, mode: 'continue' | 'new' | 'create-workspace'): Promise<void>
@@ -59,11 +61,11 @@ function OverlayBody({ state, configureToken, refresh, openNetwork }: {
   if (state.phase === 'authentication-required') {
     return (
       <div>
-        <p style={{ marginTop: 0, lineHeight: 1.6 }}>先登录 OpenBKN，再输入该账号的访问 Token（或 AppKey）。Token 只保存在本机 DSH 凭据存储中，用于自动连接 Context Loader MCP；保存后会立即测试连接并加载可访问网络。</p>
+        <p style={{ marginTop: 0, lineHeight: 1.6 }}>使用本机 OpenBKN CLI 登录。登录完成后，插件会在 Host 内同步凭据、连接 Context Loader MCP，并加载你有权限访问的业务知识网络。</p>
         <p style={{ ...mutedStyle, marginTop: 0 }}>平台地址：{displayBaseUrl(state.auth)}</p>
         {state.message ? <p role="status" style={authenticationNoticeStyle}>{state.message}</p> : null}
-        <p style={{ margin: '0 0 12px' }}><a href={displayBaseUrl(state.auth)} target="_blank" rel="noreferrer" style={loginLinkStyle}>登录 OpenBKN 并获取访问 Token ↗</a></p>
-        <TokenForm configureToken={configureToken} />
+        <p style={{ margin: '0 0 12px' }}><button type="button" style={primaryStyle} onClick={() => void beginLogin()}>使用 OpenBKN CLI 登录并同步</button></p>
+        <details style={{ marginBottom: 10 }}><summary style={loginLinkStyle}>手动输入 Token（兼容无 CLI 部署）</summary><div style={{ marginTop: 10 }}><TokenForm configureToken={configureToken} /></div></details>
         <button type="button" style={secondaryStyle} onClick={() => void refresh()}>刷新状态</button>
       </div>
     )

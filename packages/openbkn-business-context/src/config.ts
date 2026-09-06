@@ -8,8 +8,8 @@ export interface Config {
   mcpUrl?: string
   /** Optional OpenBKN business domain used to constrain platform requests. */
   businessDomain?: string
-  /** Path to the controlled Python runner used in a later capability slice. */
-  runnerPath: string
+  /** Absolute path to the OpenBKN CLI used only for the Host login/token handshake. */
+  cliPath: string
   /** Upper bound for one OpenBKN request. */
   requestTimeoutMs: number
   /** Maximum result payload admitted into DSH context. */
@@ -29,7 +29,7 @@ export const Config: Schema<Config> = Schema.object({
   baseUrl: Schema.string().required(),
   mcpUrl: Schema.string(),
   businessDomain: Schema.string(),
-  runnerPath: Schema.string().default('python3'),
+  cliPath: Schema.string().default('openbkn'),
   requestTimeoutMs: Schema.natural().min(1).default(30_000),
   maxResultBytes: Schema.natural().min(1).default(1_000_000),
   maxGraphNodes: Schema.natural().min(1).default(200),

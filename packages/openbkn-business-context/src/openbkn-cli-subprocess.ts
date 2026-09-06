@@ -24,7 +24,7 @@ export interface CliSubprocess {
   }
 }
 
-/** DSH-managed invocation of the OpenBKN CLI; only status and normal browser login are accepted. */
+/** DSH-managed invocation of the OpenBKN CLI with a fixed authentication contract. */
 export class OpenBknCliSubprocess implements OpenBknCli {
   private readonly baseUrl: string
 
@@ -32,6 +32,7 @@ export class OpenBknCliSubprocess implements OpenBknCli {
     private readonly subprocess: CliSubprocess,
     private readonly cwd: string,
     baseUrl: string,
+    private readonly cliPath = 'openbkn',
   ) {
     this.baseUrl = normalizeBaseUrl(baseUrl)
   }
@@ -57,9 +58,10 @@ export class OpenBknCliSubprocess implements OpenBknCli {
   }
 
   private resolveArgv(args: readonly string[]): readonly string[] {
-    if (isAuthStatusCommand(args)) return ['openbkn', 'auth', 'status', '--json']
+    if (isAuthStatusCommand(args)) return [this.cliPath, 'auth', 'status', '--json']
+    if (isAuthTokenCommand(args)) return [this.cliPath, 'auth', 'token']
     if (isAuthLoginCommand(args, this.baseUrl)) {
-      return ['openbkn', 'auth', 'login', this.baseUrl]
+      return [this.cliPath, 'auth', 'login', this.baseUrl]
     }
     throw new Error('OpenBKN CLI command is not allowed by this plugin.')
   }
@@ -67,6 +69,10 @@ export class OpenBknCliSubprocess implements OpenBknCli {
 
 function isAuthStatusCommand(args: readonly string[]): boolean {
   return args.length === 3 && args[0] === 'auth' && args[1] === 'status' && args[2] === '--json'
+}
+
+function isAuthTokenCommand(args: readonly string[]): boolean {
+  return args.length === 2 && args[0] === 'auth' && args[1] === 'token'
 }
 
 function isAuthLoginCommand(args: readonly string[], baseUrl: string): boolean {

@@ -3,7 +3,7 @@ export interface OpenBknCli {
   run(args: readonly string[], signal?: AbortSignal): Promise<CliResult>
 }
 
-/** Process result exposed to the coordinator; credential output is never requested. */
+/** Process result exposed only inside the Host authentication coordinator. */
 export interface CliResult {
   readonly code: number
   readonly stdout: string
@@ -31,9 +31,9 @@ export class OpenBknCliError extends Error {
 }
 
 /**
- * Owns only authentication lifecycle decisions. OpenBKN CLI remains the
- * credential store and refresh authority; this class never calls `token` or
- * `export`, and therefore never receives a credential value.
+ * Owns authentication lifecycle decisions. OpenBKN CLI remains the credential
+ * store and refresh authority. Its token value is read only after an exact
+ * platform fence and is returned only to Host-side credential synchronization.
  */
 export class AuthCoordinator {
   private readonly baseUrl: string
@@ -76,6 +76,25 @@ export class AuthCoordinator {
   async beginLogin(): Promise<void> {
     const result = await this.cli.run(['auth', 'login', this.baseUrl])
     if (result.code !== 0) throw cliFailure('start login', result)
+  }
+
+  /**
+   * Read one refreshed token for the configured, authenticated platform.
+   * Callers must immediately write it to DSH credentials and must never expose
+   * this value through a Remote result, UI state, diagnostics, or logs.
+   */
+  async readToken(signal?: AbortSignal): Promise<string> {
+    const snapshot = await this.status(signal)
+    if (snapshot.kind !== 'authenticated') {
+      throw new OpenBknCliError('OpenBKN CLI is not authenticated for the configured platform')
+    }
+    const result = await this.cli.run(['auth', 'token'], signal)
+    if (result.code !== 0) throw cliFailure('read authentication token', result)
+    const token = result.stdout.trim()
+    if (token.length === 0 || token.length > 16_384 || /[\r\n]/.test(token)) {
+      throw new OpenBknCliError('OpenBKN CLI returned an invalid authentication token')
+    }
+    return token
   }
 }
 

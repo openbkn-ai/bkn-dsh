@@ -1,4 +1,6 @@
 import { Context } from '@deepseek-ai/cordis'
+import type {} from '@deepseek-ai/dsh-subprocess'
+import type {} from '@deepseek-ai/dsh-tools'
 import { credentialRef } from '@deepseek-ai/dsh-credentials'
 import type { Agent } from '@deepseek-ai/dsh-agent'
 import type { SessionId } from '@deepseek-ai/dsh-session/types'
@@ -8,7 +10,9 @@ import { Config, type Config as PluginConfig } from './config.js'
 import { bindDshSessionBusinessNetwork, readDshSessionBusinessNetwork } from './dsh-session-binding.js'
 import { appendDshSessionTurnProvenance, readDshSessionTurnProvenance } from './dsh-session-provenance.js'
 import { findCompletedNativeMcpProvenance } from './native-mcp-provenance.js'
-import { OsdkRunnerClient, OsdkRunnerError } from './osdk-runner.js'
+import { OpenBknPlatformReader, PlatformReaderError } from './platform-reader.js'
+import { AuthCoordinator, OpenBknCliError } from './auth.js'
+import { OpenBknCliSubprocess } from './openbkn-cli-subprocess.js'
 import { OPENBKN_MCP_TOKEN_REF, OpenBknMcpManager } from './openbkn-mcp-manager.js'
 import { buildProvenanceView } from './provenance-view.js'
 import { buildNetworkCapabilityProfile, type NetworkCapabilityProfile } from './network-capability-profile.js'
@@ -57,14 +61,41 @@ export class OpenBknBusinessContextService extends TypertRemoteService {
     for (const agent of ctx.agents.list()) this.mountIfBound(agent)
   }
 
-  /** Return only the safe credential presence state; the browser never receives a credential value. */
+  /**
+   * Return the CLI-authenticated state and synchronize its token into the
+   * DSH credential vault when needed. The token stays Host-only throughout.
+   * A pre-existing manually configured DSH credential remains a fallback for
+   * deployments without a usable CLI login.
+   */
   @Remote('status')
   async remoteStatus(signal: AbortSignal): Promise<AuthSnapshot> {
     if (signal.aborted) throw signal.reason
-    const credential = await this.ctx.credentials.describe(credentialRef(OPENBKN_MCP_TOKEN_REF))
-    return credential.configured
-      ? { kind: 'authenticated', baseUrl: this.config.baseUrl }
-      : { kind: 'authentication-required', baseUrl: this.config.baseUrl }
+    try {
+      const auth = await this.authCoordinator().status(signal)
+      if (auth.kind === 'authenticated') {
+        await this.synchronizeCliCredential(signal)
+      }
+      return auth
+    } catch (error: unknown) {
+      // A configured manual credential is a restricted-deployment fallback,
+      // not permission to hide a failed CLI synchronization. Once the CLI has
+      // established this platform identity, its token is authoritative.
+      const credential = await this.ctx.credentials.describe(credentialRef(OPENBKN_MCP_TOKEN_REF))
+      if (!credential.configured) throw error
+      if (error instanceof OpenBknCliError) {
+        return { kind: 'authentication-required', baseUrl: this.config.baseUrl }
+      }
+      throw error
+    }
+  }
+
+  /** Start the CLI's configured-platform browser login, then synchronize and verify it. */
+  @Remote('beginLogin')
+  async remoteBeginLogin(signal: AbortSignal): Promise<readonly BusinessNetworkSummary[]> {
+    if (signal.aborted) throw signal.reason
+    await this.authCoordinator().beginLogin()
+    await this.synchronizeCliCredential(signal)
+    return await this.listNetworksAfterAuthentication(signal)
   }
 
   /**
@@ -127,28 +158,27 @@ export class OpenBknBusinessContextService extends TypertRemoteService {
     const handle = readDshSessionTurnProvenance(agent.session, messageId)
     if (handle === undefined) return undefined
     const cwd = agent.session.header.cwd ?? '.'
-    const runner = this.osdkRunner()
-    // BKN Safe does not assemble or advertise this EE BFF capability. Probe
-    // the two documented read models independently: a deployment can expose
-    // either Core facts or the EE projection, and neither failure should hide
-    // the other model's safe data from the browser.
-    const [core, enterprise] = await Promise.allSettled([
-      runner.getInteractionOperations(handle.interactionId, signal, cwd),
-      runner.getInteractionBusinessProvenance(handle.interactionId, signal, cwd),
+    const reader = this.platformReader()
+    // Trace Community operations and the Trace 3 authorized assembly are
+    // independent read models. A failure in one must not hide safe facts from
+    // the other; the browser receives no raw MCP or OSDK payload in either case.
+    const [core, graph] = await Promise.allSettled([
+      reader.getInteractionOperations(handle.interactionId, signal, cwd),
+      reader.getInteractionBusinessGraph(handle.interactionId, signal, cwd),
     ])
     if (signal.aborted) throw signal.reason
-    if (core.status === 'rejected' && enterprise.status === 'rejected') {
+    if (core.status === 'rejected' && graph.status === 'rejected') {
       this.ctx.logger.warn(
-        'openbkn-business-context: provenance reads failed (core=%s, enterprise=%s)',
+        'openbkn-business-context: provenance reads failed (core=%s, graph=%s)',
         safeRunnerFailureCode(core.reason),
-        safeRunnerFailureCode(enterprise.reason),
+        safeRunnerFailureCode(graph.reason),
       )
       throw new Error('OpenBKN provenance records are unavailable for this interaction.')
     }
     return buildProvenanceView(
       handle,
       core.status === 'fulfilled' ? core.value : undefined,
-      enterprise.status === 'fulfilled' ? enterprise.value : undefined,
+      graph.status === 'fulfilled' ? graph.value : undefined,
       {
       maxGraphNodes: this.config.maxGraphNodes,
       maxGraphEdges: this.config.maxGraphEdges,
@@ -182,16 +212,16 @@ export class OpenBknBusinessContextService extends TypertRemoteService {
   private async listNetworksAfterAuthentication(signal: AbortSignal): Promise<readonly BusinessNetworkSummary[]> {
     let payload: unknown
     try {
-      payload = await this.osdkRunner().listKnowledgeNetworks(signal, '.')
+      payload = await this.platformReader().listKnowledgeNetworks(signal, '.')
     } catch (error: unknown) {
-      if (error instanceof OsdkRunnerError && error.code === 'AUTHENTICATION_REQUIRED') {
+      if (error instanceof PlatformReaderError && error.code === 'AUTHENTICATION_REQUIRED') {
         throw new RemoteError(
           'openbkn/authentication-required',
           'OpenBKN authentication is required.',
           { baseUrl: this.config.baseUrl },
         )
       }
-      if (error instanceof OsdkRunnerError && error.code === 'PLATFORM_UNAVAILABLE') {
+      if (error instanceof PlatformReaderError && error.code === 'PLATFORM_UNAVAILABLE') {
         throw new RemoteError(
           'openbkn/platform-unavailable',
           'The OpenBKN platform knowledge-network catalogue is temporarily unavailable.',
@@ -217,7 +247,7 @@ export class OpenBknBusinessContextService extends TypertRemoteService {
   async remoteBindNetworkWorkspace(networkId: string, workspacePath: string, signal: AbortSignal): Promise<BusinessNetworkSummary> {
     const status = await this.remoteStatus(signal)
     if (status.kind !== 'authenticated') throw new Error('OpenBKN authentication is required before selecting a workspace.')
-    const network = parseVisibleBusinessNetworks(await this.osdkRunner().listKnowledgeNetworks(signal, '.'))
+    const network = parseVisibleBusinessNetworks(await this.platformReader().listKnowledgeNetworks(signal, '.'))
       .find(candidate => candidate.id === networkId.trim())
     if (network === undefined) throw new Error('The requested OpenBKN business network is not visible to the current identity.')
     const canonicalPath = await canonicalDirectory(workspacePath)
@@ -245,7 +275,7 @@ export class OpenBknBusinessContextService extends TypertRemoteService {
       throw new Error('OpenBKN authentication is required before binding a business network.')
     }
     const network = parseVisibleBusinessNetworks(
-      await this.osdkRunner().listKnowledgeNetworks(signal, '.'),
+      await this.platformReader().listKnowledgeNetworks(signal, '.'),
     ).find(candidate => candidate.id === networkId.trim())
     if (network === undefined) {
       throw new Error('The requested OpenBKN business network is not visible to the current identity.')
@@ -264,7 +294,7 @@ export class OpenBknBusinessContextService extends TypertRemoteService {
     try {
       this.capabilityProfiles.set(agent, buildNetworkCapabilityProfile(
         binding,
-        await this.osdkRunner().getKnowledgeNetworkDetail(binding, signal, agent.session.header.cwd ?? '.'),
+        await this.platformReader().getKnowledgeNetworkDetail(binding, signal, agent.session.header.cwd ?? '.'),
       ))
     } catch (error: unknown) {
       this.ctx.logger.warn(
@@ -317,8 +347,20 @@ export class OpenBknBusinessContextService extends TypertRemoteService {
     return this.mcpManagerInstance ??= new OpenBknMcpManager(this.ctx, this.config, () => this.resolveOpenBknToken())
   }
 
-  private osdkRunner(): OsdkRunnerClient {
-    return new OsdkRunnerClient(this.ctx.subprocess, {
+  private authCoordinator(): AuthCoordinator {
+    return new AuthCoordinator(new OpenBknCliSubprocess(this.ctx.subprocess, '.', this.config.baseUrl, this.config.cliPath), this.config.baseUrl)
+  }
+
+  /** Synchronize exactly one configured-platform CLI token into DSH credentials. */
+  private async synchronizeCliCredential(signal: AbortSignal): Promise<void> {
+    const token = await this.authCoordinator().readToken(signal)
+    await this.ctx.credentials.set(credentialRef(OPENBKN_MCP_TOKEN_REF), token)
+    await this.refreshMcpConnection()
+  }
+
+  /** Historical private seam retained for unit fixtures; it now returns the Host HTTP reader, never a Python OSDK process. */
+  private platformReader(): OpenBknPlatformReader {
+    return new OpenBknPlatformReader({
       ...this.config,
       resolveToken: () => this.resolveOpenBknToken(),
     })
@@ -333,11 +375,11 @@ export class OpenBknBusinessContextService extends TypertRemoteService {
 }
 
 function safeRunnerFailureCode(error: unknown): string {
-  return error instanceof OsdkRunnerError ? error.code : 'UNCLASSIFIED'
+  return error instanceof PlatformReaderError ? error.code : 'UNCLASSIFIED'
 }
 
 function safeCapabilityProfileFailureCode(error: unknown): string {
-  return error instanceof OsdkRunnerError ? error.code : 'PROFILE_UNAVAILABLE'
+  return error instanceof PlatformReaderError ? error.code : 'PROFILE_UNAVAILABLE'
 }
 
 function normalizeBaseUrl(value: string): string {

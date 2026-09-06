@@ -11,10 +11,6 @@ const required = new Set([
   'lib/index.js',
   'lib/typert.host.js',
   'lib/typert.remote-client.js',
-  'runner/openbkn_dsh_runner/operations.py',
-  'runner/pyproject.toml',
-  'schemas/runner-request.schema.json',
-  'schemas/runner-response.schema.json',
 ])
 const forbidden = [
   '.git/', '.env', 'node_modules/', 'src/', 'tests/', 'docs/',
