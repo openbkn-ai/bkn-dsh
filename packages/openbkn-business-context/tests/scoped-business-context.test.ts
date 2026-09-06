@@ -9,7 +9,7 @@ const config = {
 }
 
 test('mounts the OpenBKN tool only in an agent scope with a compatible durable binding', () => {
-  const injected: string[][] = []
+  let restricted = 0
   const agent = {
     session: {
       snapshotEvents: () => [{
@@ -17,11 +17,17 @@ test('mounts the OpenBKN tool only in an agent scope with a compatible durable b
         data: { platformBaseUrl: 'https://poc.openbkn.ai', knowledgeNetworkId: 'kn-supply', displayName: '供应链风险网络' },
       }],
     },
-    ctx: { inject: (dependencies: string[]) => { injected.push(dependencies) } },
+    ctx: {
+      tools: {
+        restrict: () => { restricted += 1; return () => {} },
+        guard: () => () => {},
+      },
+      systemPrompt: { section: () => () => {} },
+    },
   }
 
   assert.equal(mountBoundBusinessNetworkTool(agent, config), true)
-  assert.deepEqual(injected, [['systemPrompt', 'tools']])
+  assert.equal(restricted, 1)
 })
 
 test('limits an auto-bound business session to governed OpenBKN tools', () => {
@@ -33,22 +39,20 @@ test('limits an auto-bound business session to governed OpenBKN tools', () => {
       }],
     },
     ctx: {
-      inject: (_dependencies: string[], apply: (ctx: unknown) => void) => apply({
-        tools: {
-          restrict: (filter: { readonly allow: readonly string[] }) => {
-            restrictions.push(filter)
-            return () => {}
-          },
-          guard: (guard: (execution: { readonly name: string }) => string | undefined) => {
-            guards.push(guard)
-            return () => {}
-          },
-        },
-        systemPrompt: { section: (section: { readonly name: string; readonly order: number; readonly text: string }) => {
-          sections.push(section)
+      tools: {
+        restrict: (filter: { readonly allow: readonly string[] }) => {
+          restrictions.push(filter)
           return () => {}
-        } },
-      }),
+        },
+        guard: (guard: (execution: { readonly name: string }) => string | undefined) => {
+          guards.push(guard)
+          return () => {}
+        },
+      },
+      systemPrompt: { section: (section: { readonly name: string; readonly order: number; readonly text: string }) => {
+        sections.push(section)
+        return () => {}
+      } },
     },
   }
   const restrictions: Array<{ readonly allow: readonly string[] }> = []

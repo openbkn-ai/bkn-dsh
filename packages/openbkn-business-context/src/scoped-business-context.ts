@@ -55,12 +55,10 @@ const scopedPolicyPlugin = (binding: ReturnType<typeof readDshSessionBusinessNet
 export function mountBoundBusinessNetworkTool(agent: Agent, config: PlatformReaderConfig, profile?: NetworkCapabilityProfile): boolean {
   const binding = readDshSessionBusinessNetwork(agent.session as unknown as DshSessionLog)
   if (binding === undefined || normalizeBaseUrl(binding.platformBaseUrl) !== normalizeBaseUrl(config.baseUrl)) return false
-  // `agent/created` is a publication notification, so a nested plugin can
-  // become visible after first-turn prompt/tool assembly has begun. Inject the
-  // contribution directly into the already-scoped Agent context instead.
-  agent.ctx.inject(['systemPrompt', 'tools'], scope => {
-    scopedPolicyPlugin(binding, profile).apply(scope)
-  })
+  // This event fires before `agent/session-start`, but `Context.inject()` may
+  // schedule a later fiber. The standard preset has already composed these
+  // services, so apply the contribution synchronously to this Agent scope.
+  scopedPolicyPlugin(binding, profile).apply(agent.ctx)
   return true
 }
 
