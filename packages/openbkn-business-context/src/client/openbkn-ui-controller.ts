@@ -36,7 +36,11 @@ export class OpenBknUiController {
   private state: OpenBknOverlayState = { open: false, phase: 'idle', networks: [] }
   private readonly listeners = new Set<Listener>()
 
-  constructor(private readonly port: OpenBknUiPort, private readonly openNetworkSession: OpenNetworkSession) {}
+  constructor(
+    private readonly port: OpenBknUiPort,
+    private readonly openNetworkSession: OpenNetworkSession,
+    private readonly refreshBoundSession?: (sessionId: string) => void,
+  ) {}
 
   snapshot(): OpenBknOverlayState {
     return this.state
@@ -131,6 +135,7 @@ export class OpenBknUiController {
     try {
       const sessionId = await this.openNetworkSession(network, mode)
       await this.port.bindNetwork(sessionId, networkId, signal)
+      this.refreshBoundSession?.(sessionId)
       this.close()
     } catch {
       this.publish({ ...this.state, phase: 'error', message: 'This network could not be bound to the current conversation. Try again.' })

@@ -63,10 +63,10 @@ export async function apply(ctx: Context): Promise<() => Promise<void>> {
 
 /** Register only additive DSH slots; native navigation and conversation surfaces remain untouched. */
 function registerSlots(ctx: Context): void {
-  const controller = new OpenBknUiController(remotePort(ctx), createNetworkSessionOpener(ctx, remotePort(ctx)))
   const provenanceOverlay = new ProvenanceOverlayController()
   const provenanceControllers = new Map<SessionId, TurnProvenanceController>()
   const suggestionControllers = new Map<SessionId, SuggestionDockController>()
+  const bindingControllers = new Map<SessionId, BoundNetworkController>()
   const provenanceFor = (sessionId: SessionId): TurnProvenanceController => {
     let controller = provenanceControllers.get(sessionId)
     if (controller === undefined) {
@@ -87,6 +87,17 @@ function registerSlots(ctx: Context): void {
     }
     return controller
   }
+  const suggestionsControllersLoad = (sessionId: SessionId): void => {
+    suggestionControllers.get(sessionId)?.load()
+  }
+  const controller = new OpenBknUiController(
+    remotePort(ctx),
+    createNetworkSessionOpener(ctx, remotePort(ctx)),
+    sessionId => {
+      bindingControllers.get(sessionId as SessionId)?.load()
+      suggestionsControllersLoad(sessionId as SessionId)
+    },
+  )
   const inject = () => ({
     hooks: { ui: controller as HostObservable<ReturnType<typeof controller.getSnapshot>> },
     open: () => controller.open(),
@@ -116,6 +127,7 @@ function registerSlots(ctx: Context): void {
     name: 'conversation.session.header.actions', id: 'openbkn-bound-network', order: 30,
     inject: (sessionId: SessionId) => {
       const binding = new BoundNetworkController(async () => unwrap(await ctx.remote.openbknBusinessContext.getNetworkBinding(sessionId)))
+      bindingControllers.set(sessionId, binding)
       return { hooks: { binding }, load: () => binding.load() }
     },
   }, BoundNetworkBadge))
