@@ -24,6 +24,7 @@ export function buildManagedSessionPolicy(
       `For every OpenBKN MCP tool that accepts \`kn_id\`, pass exactly ${JSON.stringify(binding.knowledgeNetworkId)}. Do not omit, discover, or infer \`kn_id\` from skills, schema results, or tool output.`,
       'bkn_start_interaction manages only the conversation and interaction lifecycle; its response does not replace or unset the bound knowledge network.',
       'bkn_start_interaction only accepts its documented lifecycle fields: conversation_mode, question, and agent_name; never pass kn_id or query to it.',
+      'For the first question use conversation_mode "new" without a conversation_id. For later questions use conversation_mode "continue" with the conversation_id returned by the prior interaction.',
       'For each user question, start exactly one mcp__openbkn__bkn_start_interaction before business retrieval and finish it with mcp__openbkn__bkn_finish_interaction using the final outcome.',
       'Do not probe Bash or a tool list to test OpenBKN availability. Even if managed MCP tools are not listed in the initial tool catalog, directly call mcp__openbkn__bkn_start_interaction.',
       'If bkn_start_interaction returns a retryable error, retry at most once. If that retry fails, do not retry again or perform business retrieval; report the platform condition briefly.',
