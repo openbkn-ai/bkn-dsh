@@ -1,5 +1,6 @@
 import type { Context } from '@deepseek-ai/cordis'
 import type { Agent } from '@deepseek-ai/dsh-agent'
+import type { ToolExecution } from '@deepseek-ai/dsh-tools'
 import { readDshSessionBusinessNetwork, type DshSessionLog } from './dsh-session-binding.js'
 import { buildManagedSessionPolicy } from './managed-session-policy.js'
 import type { NetworkCapabilityProfile } from './network-capability-profile.js'
@@ -11,6 +12,7 @@ interface ScopedSystemPrompt {
 
 interface ScopedTools {
   restrict(filter: { readonly allow: readonly string[] }): () => void
+  guard(guard: (execution: Readonly<ToolExecution>) => string | undefined): () => void
 }
 
 const MANAGED_OPENBKN_TOOLS = [
@@ -30,7 +32,14 @@ const scopedPolicyPlugin = (binding: ReturnType<typeof readDshSessionBusinessNet
     if (binding === undefined) return
     const policy = buildManagedSessionPolicy(binding, profile)
     const systemPrompt = (ctx as Context & { systemPrompt: ScopedSystemPrompt }).systemPrompt
-    ;(ctx as Context & { tools: ScopedTools }).tools.restrict({ allow: MANAGED_OPENBKN_TOOLS })
+    const tools = (ctx as Context & { tools: ScopedTools }).tools
+    tools.restrict({ allow: MANAGED_OPENBKN_TOOLS })
+    // Presets may contribute file and shell tools in the Agent's own scope,
+    // which DSH intentionally keeps visible through `restrict()`. A scoped
+    // guard is the native monotonic enforcement point for this business mode.
+    tools.guard(execution => MANAGED_OPENBKN_TOOLS.includes(execution.name as typeof MANAGED_OPENBKN_TOOLS[number])
+      ? undefined
+      : 'This OpenBKN business session only permits managed OpenBKN tools.')
     systemPrompt.section({ name: 'openbkn:managed-session', order: 520, text: policy.governance })
     if (policy.capabilities.length > 0) {
       systemPrompt.section({ name: 'openbkn:network-capabilities', order: 521, text: policy.capabilities })
