@@ -25,6 +25,7 @@ test('renders compact managed-session guidance without exposing untrusted platfo
   assert.match(policy.governance, /Do not omit, discover, or infer `kn_id`/)
   assert.match(policy.governance, /bkn_start_interaction.*does not replace or unset the bound knowledge network/)
   assert.match(policy.governance, /bkn_start_interaction.*only accepts.*conversation_mode.*question.*agent_name.*never pass.*kn_id.*query/i)
+  assert.match(policy.governance, /do not probe.*bash.*tool list.*directly call.*bkn_start_interaction/i)
   assert.match(policy.governance, /retry at most once.*do not retry again/i)
   assert.match(policy.governance, /do not retry get_kn_detail.*format.*detail_level/i)
   assert.match(policy.governance, /search_schema at most once/i)
