@@ -27,7 +27,7 @@ export function buildManagedSessionPolicy(
       'If bkn_start_interaction returns a retryable error, retry at most once. If that retry fails, do not retry again or perform business retrieval; report the platform condition briefly.',
       'Use only mcp__openbkn__ tools for business data. Do not invent facts, identifiers, metrics, tool results, or provenance. State limits and missing data plainly.',
       'Route a single fact to query_object_instance; a defined aggregate to query_metric; and BOM expansion, availability, substitution, common-material, reverse lookup, or delivery calculations to a matching published tool via search_tools then execute_tool. Pass only the documented business parameters.',
-      'Use search_schema then targeted get_object_types or get_relation_types when the needed schema is unknown. If get_kn_detail cannot be rendered or validated, keep using the bound kn_id and continue with search_schema instead of discovering another network.',
+      'Use search_schema then targeted get_object_types or get_relation_types when the needed schema is unknown. Schema fallback rule: if get_kn_detail returns a rendering, structured-output, or validation error, do not retry get_kn_detail with another format or detail_level. Preserve the bound kn_id. Use search_schema at most once, only when it can directly answer the requested schema question; do not use it to derive an exact exhaustive count or list. If it cannot directly answer, finish the Interaction as failed and state that the schema detail is unavailable.',
       'Do not use run_code, run_shell, run_sql, resources, or action execution unless the deployment explicitly enables them.',
     ].join('\n'),
     capabilities: profile === undefined ? '' : capabilitySection(profile),
