@@ -97,6 +97,61 @@ test('synchronizes an authenticated CLI token into DSH credentials before report
   assert.equal(refreshed, 1)
 })
 
+test('refreshes the managed MCP credential before the first step of a bound business turn', async () => {
+  let synchronized = 0
+  let delegated = 0
+  const service = Object.create(OpenBknBusinessContextService.prototype) as {
+    remoteStatus(signal: AbortSignal): Promise<unknown>
+    refreshManagedMcpAtTurnStart(
+      agent: { session: { snapshotEvents(): readonly unknown[] } },
+      step: number,
+      signal: AbortSignal,
+      next: () => Promise<{ readonly kind: 'enter' }>,
+    ): Promise<{ readonly kind: 'enter' }>
+  }
+  service.remoteStatus = async () => { synchronized += 1; return { kind: 'authenticated', baseUrl: config.baseUrl } }
+  const agent = {
+    session: {
+      snapshotEvents: () => [{
+        type: 'openbkn/business-network-bound',
+        data: { platformBaseUrl: config.baseUrl, knowledgeNetworkId: 'kn-supply', displayName: 'Supply' },
+      }],
+    },
+  }
+
+  const result = await service.refreshManagedMcpAtTurnStart(
+    agent,
+    1,
+    AbortSignal.timeout(1_000),
+    async () => { delegated += 1; return { kind: 'enter' } },
+  )
+
+  assert.deepEqual(result, { kind: 'enter' })
+  assert.equal(synchronized, 1)
+  assert.equal(delegated, 1)
+})
+
+test('does not refresh the MCP connection for later steps or unbound sessions', async () => {
+  let synchronized = 0
+  const service = Object.create(OpenBknBusinessContextService.prototype) as {
+    remoteStatus(signal: AbortSignal): Promise<unknown>
+    refreshManagedMcpAtTurnStart(
+      agent: { session: { snapshotEvents(): readonly unknown[] } },
+      step: number,
+      signal: AbortSignal,
+      next: () => Promise<{ readonly kind: 'enter' }>,
+    ): Promise<{ readonly kind: 'enter' }>
+  }
+  service.remoteStatus = async () => { synchronized += 1; return { kind: 'authenticated', baseUrl: config.baseUrl } }
+  const next = async () => ({ kind: 'enter' as const })
+  const unboundAgent = { session: { snapshotEvents: () => [] } }
+
+  await service.refreshManagedMcpAtTurnStart(unboundAgent, 1, AbortSignal.timeout(1_000), next)
+  await service.refreshManagedMcpAtTurnStart(unboundAgent, 2, AbortSignal.timeout(1_000), next)
+
+  assert.equal(synchronized, 0)
+})
+
 test('reads the durable binding for one live session without consulting CLI credentials', async () => {
   const agent = {
     id: 'session-1',

@@ -57,6 +57,8 @@ export class OpenBknBusinessContextService extends TypertRemoteService {
   constructor(ctx: Context, readonly config: PluginConfig) {
     super(ctx, 'openbknBusinessContext')
     ctx.on('agent/created', ({ agent }) => { this.mountIfBound(agent) })
+    ctx.on('agent/pre-step', async ({ agent, step, signal }, next) =>
+      await this.refreshManagedMcpAtTurnStart(agent, step, signal, next))
     ctx.on('agent/turn-stopping', ({ agent, turn }) => { this.captureTurnProvenance(agent, turn) })
     for (const agent of ctx.agents.list()) this.mountIfBound(agent)
   }
@@ -323,6 +325,23 @@ export class OpenBknBusinessContextService extends TypertRemoteService {
     if (this.mounted.has(agent)) return
     if (!mountBoundBusinessNetworkTool(agent, this.config, this.capabilityProfiles.get(agent))) return
     this.mounted.add(agent)
+  }
+
+  /**
+   * Reconcile the CLI-owned credential before a bound business turn reaches
+   * its first model step. This is the only per-turn lifecycle point: later
+   * tool-planning steps retain the same connection and do not re-authenticate.
+   */
+  private async refreshManagedMcpAtTurnStart<T>(
+    agent: Agent,
+    step: number,
+    signal: AbortSignal,
+    next: () => Promise<T>,
+  ): Promise<T> {
+    if (step === 1 && readDshSessionBusinessNetwork(agent.session) !== undefined) {
+      await this.remoteStatus(signal)
+    }
+    return await next()
   }
 
   /** Persist only an explicitly completed OpenBKN interaction when its turn ends. */
