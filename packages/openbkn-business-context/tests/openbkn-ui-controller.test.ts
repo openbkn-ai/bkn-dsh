@@ -168,3 +168,20 @@ test('binds the selected visible network to the newly opened network session', a
   assert.deepEqual(calls, [{ sessionId: 'session-1', networkId: 'kn-supply' }])
   assert.equal(controller.snapshot().open, false)
 })
+
+test('refreshes native additive session contributions after binding a new session', async () => {
+  const refreshed: string[] = []
+  const controller = new OpenBknUiController({
+    status: async () => authenticated,
+    configureToken: async () => [],
+    listNetworks: async () => [{ id: 'kn-supply', displayName: 'Supply risk', workspacePath: '/workspace/supply' }],
+    bindNetworkWorkspace: async () => ({ id: 'kn-supply', displayName: 'Supply risk' }),
+    bindNetwork: async (_sessionId, networkId) => ({ platformBaseUrl: authenticated.baseUrl, knowledgeNetworkId: networkId, displayName: 'Supply risk' }),
+  }, async () => 'session-1', sessionId => { refreshed.push(sessionId) })
+
+  controller.open()
+  await controller.refresh()
+  await controller.openNetwork('kn-supply', 'new')
+
+  assert.deepEqual(refreshed, ['session-1'])
+})
