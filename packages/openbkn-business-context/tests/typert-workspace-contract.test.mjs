@@ -32,8 +32,6 @@ test('places all plugin runtime assets inside the publishable package', () => {
   for (const path of [
     'src/index.ts',
     'src/client/index.tsx',
-    'runner/pyproject.toml',
-    'schemas/runner-request.schema.json',
     'cordis.patch.yml',
   ]) {
     assert.equal(existsSync(new URL(path, packageRoot)), true, path)

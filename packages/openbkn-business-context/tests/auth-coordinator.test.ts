@@ -74,3 +74,23 @@ test('starts login for the configured platform without passing or retaining a to
   assert.deepEqual(cli.invocations, [['auth', 'login', 'https://poc.openbkn.ai']])
   assert.equal(JSON.stringify(cli.invocations).includes('token'), false)
 })
+
+test('reads one CLI token only after the authenticated platform has been fenced', async () => {
+  const cli = new FakeCli([json({
+    baseUrl: 'https://poc.openbkn.ai', hasToken: true, expired: false,
+  }), { code: 0, stdout: 'token-value\n', stderr: '' }])
+  const auth = new AuthCoordinator(cli, 'https://poc.openbkn.ai')
+
+  assert.equal(await auth.readToken(), 'token-value')
+  assert.deepEqual(cli.invocations, [['auth', 'status', '--json'], ['auth', 'token']])
+})
+
+test('refuses to request a CLI token for an unauthenticated or foreign platform', async () => {
+  const cli = new FakeCli([json({
+    baseUrl: 'https://other.openbkn.ai', hasToken: true, expired: false,
+  })])
+  const auth = new AuthCoordinator(cli, 'https://poc.openbkn.ai')
+
+  await assert.rejects(auth.readToken(), /configured platform/i)
+  assert.deepEqual(cli.invocations, [['auth', 'status', '--json']])
+})

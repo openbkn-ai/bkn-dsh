@@ -3,6 +3,7 @@ import type { AuthSnapshot, BusinessNetworkBinding, BusinessNetworkSummary } fro
 /** Minimal browser-safe port over the generated OpenBKN Remote contract. */
 export interface OpenBknUiPort {
   status(signal?: AbortSignal): Promise<AuthSnapshot>
+  beginLogin(signal?: AbortSignal): Promise<readonly BusinessNetworkSummary[]>
   configureToken(token: string, signal?: AbortSignal): Promise<readonly BusinessNetworkSummary[]>
   listNetworks(signal?: AbortSignal): Promise<readonly BusinessNetworkSummary[]>
   bindNetworkWorkspace(networkId: string, workspacePath: string, signal?: AbortSignal): Promise<BusinessNetworkSummary>
@@ -121,6 +122,19 @@ export class OpenBknUiController {
         return
       }
       this.publish({ ...this.state, phase: 'error', message: connectionFailureMessage(error) })
+    }
+  }
+
+  /** Run the Host-only OpenBKN CLI login, then present its verified catalogue. */
+  async beginLogin(signal?: AbortSignal): Promise<void> {
+    if (!this.state.open) return
+    this.publish({ ...this.state, phase: 'loading', message: undefined })
+    try {
+      const networks = await this.port.beginLogin(signal)
+      const auth = await this.port.status(signal)
+      this.publish({ open: true, phase: 'ready', auth, networks })
+    } catch (error: unknown) {
+      this.publish({ ...this.state, phase: 'error', networks: [], message: connectionFailureMessage(error) })
     }
   }
 

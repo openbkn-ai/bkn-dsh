@@ -3,7 +3,7 @@ import type { Agent } from '@deepseek-ai/dsh-agent'
 import { readDshSessionBusinessNetwork, type DshSessionLog } from './dsh-session-binding.js'
 import { buildManagedSessionPolicy } from './managed-session-policy.js'
 import type { NetworkCapabilityProfile } from './network-capability-profile.js'
-import type { OsdkRunnerConfig } from './osdk-runner.js'
+import type { PlatformReaderConfig } from './platform-reader.js'
 
 interface ScopedSystemPrompt {
   section(section: { readonly name: string; readonly order: number; readonly text: string }): () => void
@@ -43,7 +43,7 @@ const scopedPolicyPlugin = (binding: ReturnType<typeof readDshSessionBusinessNet
  * unbound or differently configured session gets no registration at all, so
  * native DSH conversations keep their original tool catalogue.
  */
-export function mountBoundBusinessNetworkTool(agent: Agent, config: OsdkRunnerConfig, profile?: NetworkCapabilityProfile): boolean {
+export function mountBoundBusinessNetworkTool(agent: Agent, config: PlatformReaderConfig, profile?: NetworkCapabilityProfile): boolean {
   const binding = readDshSessionBusinessNetwork(agent.session as unknown as DshSessionLog)
   if (binding === undefined || normalizeBaseUrl(binding.platformBaseUrl) !== normalizeBaseUrl(config.baseUrl)) return false
   agent.ctx.plugin(scopedPolicyPlugin(binding, profile))

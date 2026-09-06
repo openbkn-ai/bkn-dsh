@@ -18,8 +18,8 @@
     "lib/index.js", "lib/client.js", "lib/types/**/*.d.ts",
     "lib/typert.host.js", "lib/typert.host.d.ts",
     "lib/typert.remote-client.js", "lib/typert.remote-client.d.ts",
-    "cordis.patch.yml", "runner/pyproject.toml", "runner/openbkn_dsh_runner/*.py",
-    "schemas/**", "README.md", "README.zh.md", "LICENSE"
+    "cordis.patch.yml",
+    "README.md", "README.zh.md", "LICENSE"
   ],
   "dsh": {
     "bundle": { "patch": "./cordis.patch.yml" },
@@ -32,7 +32,6 @@
     "build": "pnpm run build:host && pnpm run build:client",
     "build:host": "tsc -p tsconfig.package.host.json && tsdown --env.DSH_BUILD_FACE host",
     "build:client": "tsc -p tsconfig.package.client.json && tsdown --env.DSH_BUILD_FACE client",
-    "test:runner": "python3 -m unittest discover -s runner/tests -v",
     "test": "pnpm run build && node --import tsx --test tests/*.test.mjs tests/*.test.ts",
     "typecheck": "tsc -b ../.."
   },

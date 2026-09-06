@@ -42,3 +42,12 @@ test('rejects a login request that attempts to select another OpenBKN platform',
   )
   assert.equal(fake.spec(), undefined)
 })
+
+test('allows only the fixed CLI token command for Host credential synchronization', async () => {
+  const fake = runtime()
+  const cli = new OpenBknCliSubprocess(fake.subprocess, '.', 'https://poc.openbkn.ai')
+
+  await cli.run(['auth', 'token'])
+
+  assert.deepEqual(fake.spec().argv, ['openbkn', 'auth', 'token'])
+})

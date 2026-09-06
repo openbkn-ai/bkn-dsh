@@ -28,11 +28,9 @@ export function buildProvenanceView(
     interactionId: handle.interactionId,
     execution: {
       status: handle.status,
-      operations: projectOperations(
-        record(operationsResponse)?.entries ?? record(enterpriseProjection)?.operations,
-      ),
+      operations: projectOperations(operationRecords(operationsResponse)),
     },
-    business: projectBusiness(enterpriseProjection, limits),
+    business: projectBusiness(enterpriseProjection, operationsResponse, limits),
     evidence: { kind: 'unavailable' },
   }
 }
@@ -58,18 +56,56 @@ function projectOperations(value: unknown): readonly ProvenanceOperationView[] {
   })
 }
 
-function projectBusiness(value: unknown | undefined, limits: ProvenanceViewLimits) {
-  const projection = record(value)
-  if (projection === undefined) return { kind: 'unavailable' } as const
+function projectBusiness(value: unknown | undefined, operationsResponse: unknown, limits: ProvenanceViewLimits) {
+  const graph = record(value)
+  const assembly = graph === undefined ? undefined : record(graph.assembly)
+  if (assembly === undefined) return { kind: 'unavailable' } as const
   const elementsRemaining = { value: limits.maxGraphNodes }
   const edgesRemaining = { value: limits.maxGraphEdges }
+  const coreLabels = new Map(projectOperations(operationRecords(operationsResponse)).map(operation => [operation.id, operation.label]))
+  const byOperation = new Map<string, ProvenanceBusinessOperation>()
+  for (const edge of records(assembly.operation_business_edges)) {
+    if (edgesRemaining.value < 1) break
+    const operationId = stringValue(edge.operation_id)
+    const element = projectTraceBusinessRef(record(edge.business_ref), elementsRemaining)
+    if (operationId === undefined || element === undefined) continue
+    edgesRemaining.value -= 1
+    const existing = byOperation.get(operationId)
+    if (existing !== undefined) {
+      byOperation.set(operationId, { ...existing, elements: [...existing.elements, element] })
+      continue
+    }
+    byOperation.set(operationId, {
+      id: operationId,
+      attempt: 0,
+      toolName: coreLabels.get(operationId) ?? 'OpenBKN operation',
+      status: 'resolved',
+      elements: [element],
+      missingFacts: [],
+    })
+  }
   return {
     kind: 'ready' as const,
-    operations: records(projection.operations).flatMap(entry => projectBusinessOperation(entry, elementsRemaining)),
-    conversationContext: records(projection.conversation_context).flatMap(projectConversationContext),
-    contextRelations: records(projection.context_relations).flatMap(entry => projectContextRelation(entry, edgesRemaining)),
-    derivedFacts: records(projection.derived_facts).flatMap(entry => projectDerivedFact(entry, edgesRemaining)),
+    operations: [...byOperation.values()],
+    // The Trace 3 interaction graph currently contracts operation-to-ref
+    // links, not object-to-object semantic relations or cross-turn facts.
+    // Preserve that distinction instead of deriving a richer graph locally.
+    conversationContext: [],
+    contextRelations: [],
+    derivedFacts: [],
   }
+}
+
+function projectTraceBusinessRef(entry: Record<string, unknown> | undefined, remaining: { value: number }): ProvenanceBusinessElement | undefined {
+  if (entry === undefined || remaining.value < 1) return undefined
+  const technicalRef = record(entry.technical_ref)
+  const display = record(entry.display)
+  const id = technicalRef === undefined ? undefined : stringValue(technicalRef.ref_id)
+  const kind = technicalRef === undefined ? undefined : traceRefKind(technicalRef.ref_type)
+  const name = display === undefined ? undefined : stringValue(display.name)
+  if (id === undefined || kind === undefined || name === undefined) return undefined
+  remaining.value -= 1
+  return { id, kind, name }
 }
 
 function projectBusinessOperation(entry: Record<string, unknown>, elementsRemaining: { value: number }): readonly ProvenanceBusinessOperation[] {
@@ -132,6 +168,12 @@ function records(value: unknown): readonly Record<string, unknown>[] {
   return Array.isArray(value) ? value.flatMap(item => record(item) === undefined ? [] : [record(item)!]) : []
 }
 
+/** Community deployments expose either `entries` or the documented `operations` list. */
+function operationRecords(value: unknown): unknown {
+  const response = record(value)
+  return response?.entries ?? response?.operations
+}
+
 function stringValue(value: unknown): string | undefined {
   return typeof value === 'string' && value.trim() ? value.trim().slice(0, 512) : undefined
 }
@@ -143,3 +185,14 @@ function stringArray(value: unknown): readonly string[] {
 function numberValue(value: unknown): number | undefined { return typeof value === 'number' && Number.isSafeInteger(value) && value >= 0 ? value : undefined }
 function provenanceStatus(value: unknown): ProvenanceBusinessOperation['status'] | undefined { return value === 'resolved' || value === 'ambiguous' || value === 'unresolved' || value === 'not_evaluable' ? value : undefined }
 function elementKind(value: unknown): ProvenanceBusinessElement['kind'] | undefined { return value === 'object' || value === 'relation' || value === 'action' || value === 'property' || value === 'logic' || value === 'metric' ? value : undefined }
+function traceRefKind(value: unknown): ProvenanceBusinessElement['kind'] | undefined {
+  switch (value) {
+    case 'object': case 'object_type': case 'object_instance': case 'knowledge_network': return 'object'
+    case 'relation': case 'relation_type': return 'relation'
+    case 'action': case 'action_type': return 'action'
+    case 'property': case 'property_type': return 'property'
+    case 'logic': case 'logic_property': return 'logic'
+    case 'metric': return 'metric'
+    default: return undefined
+  }
+}
