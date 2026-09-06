@@ -11,7 +11,6 @@ interface ScopedSystemPrompt {
 }
 
 interface ScopedTools {
-  restrict(filter: { readonly allow: readonly string[] }): () => void
   guard(guard: (execution: Readonly<ToolExecution>) => string | undefined): () => void
 }
 
@@ -33,10 +32,10 @@ const scopedPolicyPlugin = (binding: ReturnType<typeof readDshSessionBusinessNet
     const policy = buildManagedSessionPolicy(binding, profile)
     const systemPrompt = (ctx as Context & { systemPrompt: ScopedSystemPrompt }).systemPrompt
     const tools = (ctx as Context & { tools: ScopedTools }).tools
-    tools.restrict({ allow: MANAGED_OPENBKN_TOOLS })
-    // Presets may contribute file and shell tools in the Agent's own scope,
-    // which DSH intentionally keeps visible through `restrict()`. A scoped
-    // guard is the native monotonic enforcement point for this business mode.
+    // Context Loader tools are dynamically registered after the agent is
+    // created, so `restrict()` cannot safely name them here. A scoped guard is
+    // DSH's monotonic enforcement point and works regardless of registration
+    // timing; it also covers tools contributed by the agent preset itself.
     tools.guard(execution => MANAGED_OPENBKN_TOOLS.includes(execution.name as typeof MANAGED_OPENBKN_TOOLS[number])
       ? undefined
       : 'This OpenBKN business session only permits managed OpenBKN tools.')
