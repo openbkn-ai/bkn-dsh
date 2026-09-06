@@ -24,6 +24,43 @@ test('mounts the OpenBKN tool only in an agent scope with a compatible durable b
   assert.equal(mounted.length, 1)
 })
 
+test('limits an auto-bound business session to governed OpenBKN tools', () => {
+  const mounted: Array<{ apply: (ctx: unknown) => void }> = []
+  const agent = {
+    session: {
+      snapshotEvents: () => [{
+        type: 'openbkn/business-network-bound',
+        data: { platformBaseUrl: 'https://poc.openbkn.ai', knowledgeNetworkId: 'kn-supply', displayName: '供应链风险网络' },
+      }],
+    },
+    ctx: { plugin: (plugin: (typeof mounted)[number]) => { mounted.push(plugin) } },
+  }
+  const restrictions: Array<{ readonly allow: readonly string[] }> = []
+  const sections: Array<{ readonly name: string; readonly text: string }> = []
+
+  assert.equal(mountBoundBusinessNetworkTool(agent, config), true)
+  mounted[0].apply({
+    tools: { restrict: (filter: { readonly allow: readonly string[] }) => {
+      restrictions.push(filter)
+      return () => {}
+    } },
+    systemPrompt: { section: (section: { readonly name: string; readonly order: number; readonly text: string }) => {
+      sections.push(section)
+      return () => {}
+    } },
+  })
+
+  assert.deepEqual(restrictions, [{ allow: [
+    'mcp__openbkn__bkn_start_interaction', 'mcp__openbkn__bkn_finish_interaction',
+    'mcp__openbkn__get_kn_detail', 'mcp__openbkn__search_schema', 'mcp__openbkn__get_object_types', 'mcp__openbkn__get_relation_types',
+    'mcp__openbkn__query_object_instance', 'mcp__openbkn__query_instance_subgraph', 'mcp__openbkn__explore_subgraph', 'mcp__openbkn__search_instance',
+    'mcp__openbkn__query_metric', 'mcp__openbkn__get_logic_properties_values',
+    'mcp__openbkn__list_skills', 'mcp__openbkn__find_skills', 'mcp__openbkn__get_skill_content', 'mcp__openbkn__read_skill_file',
+    'mcp__openbkn__search_tools', 'mcp__openbkn__execute_tool',
+  ] }])
+  assert.equal(sections[0].name, 'openbkn:managed-session')
+})
+
 test('does not alter a native or differently configured DSH agent scope', () => {
   const mounted: unknown[] = []
   const agent = {

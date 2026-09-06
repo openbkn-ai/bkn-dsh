@@ -28,6 +28,7 @@ test('renders compact managed-session guidance without exposing untrusted platfo
   assert.match(policy.governance, /do not retry get_kn_detail.*format.*detail_level/i)
   assert.match(policy.governance, /search_schema at most once/i)
   assert.match(policy.governance, /exact.*count.*fail/i)
+  assert.match(policy.governance, /Do not use run_code, run_shell, run_sql, resources, or action execution unless the deployment explicitly enables them/i)
   assert.match(policy.capabilities, /kn-supply/)
   assert.match(policy.capabilities, /product/)
   assert.match(policy.capabilities, /execute_tool/)
