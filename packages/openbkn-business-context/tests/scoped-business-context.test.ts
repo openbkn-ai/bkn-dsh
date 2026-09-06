@@ -8,8 +8,8 @@ const config = {
   maxResultBytes: 1_024, allowInsecureTls: false,
 }
 
-test('mounts the OpenBKN tool only in an agent scope with a compatible durable binding', () => {
-  const mounted: Array<{ apply: (ctx: unknown) => void }> = []
+test('mounts managed policy without requiring dynamic MCP tools at session creation', () => {
+  let guarded = 0
   const agent = {
     session: {
       snapshotEvents: () => [{
@@ -17,11 +17,49 @@ test('mounts the OpenBKN tool only in an agent scope with a compatible durable b
         data: { platformBaseUrl: 'https://poc.openbkn.ai', knowledgeNetworkId: 'kn-supply', displayName: '供应链风险网络' },
       }],
     },
-    ctx: { plugin: (plugin: (typeof mounted)[number]) => { mounted.push(plugin) } },
+    ctx: {
+      tools: {
+        guard: () => { guarded += 1; return () => {} },
+      },
+      systemPrompt: { section: () => () => {} },
+    },
   }
 
   assert.equal(mountBoundBusinessNetworkTool(agent, config), true)
-  assert.equal(mounted.length, 1)
+  assert.equal(guarded, 1)
+})
+
+test('guards an auto-bound business session to governed OpenBKN tools', () => {
+  const agent = {
+    session: {
+      snapshotEvents: () => [{
+        type: 'openbkn/business-network-bound',
+        data: { platformBaseUrl: 'https://poc.openbkn.ai', knowledgeNetworkId: 'kn-supply', displayName: '供应链风险网络' },
+      }],
+    },
+    ctx: {
+      tools: {
+        guard: (guard: (execution: { readonly name: string }) => string | undefined) => {
+          guards.push(guard)
+          return () => {}
+        },
+      },
+      systemPrompt: { section: (section: { readonly name: string; readonly order: number; readonly text: string }) => {
+        sections.push(section)
+        return () => {}
+      } },
+    },
+  }
+  const sections: Array<{ readonly name: string; readonly text: string }> = []
+  const guards: Array<(execution: { readonly name: string }) => string | undefined> = []
+
+  assert.equal(mountBoundBusinessNetworkTool(agent, config), true)
+
+  assert.equal(sections[0].name, 'openbkn:managed-session')
+  assert.equal(guards.length, 1)
+  assert.equal(guards[0]({ name: 'mcp__openbkn__execute_tool' }), undefined)
+  assert.match(guards[0]({ name: 'mcp__openbkn__run_code' }) ?? '', /only permits managed OpenBKN tools/i)
+  assert.match(guards[0]({ name: 'bash' }) ?? '', /only permits managed OpenBKN tools/i)
 })
 
 test('does not alter a native or differently configured DSH agent scope', () => {

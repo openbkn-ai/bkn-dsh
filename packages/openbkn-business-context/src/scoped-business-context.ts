@@ -1,5 +1,6 @@
 import type { Context } from '@deepseek-ai/cordis'
 import type { Agent } from '@deepseek-ai/dsh-agent'
+import type { ToolExecution } from '@deepseek-ai/dsh-tools'
 import { readDshSessionBusinessNetwork, type DshSessionLog } from './dsh-session-binding.js'
 import { buildManagedSessionPolicy } from './managed-session-policy.js'
 import type { NetworkCapabilityProfile } from './network-capability-profile.js'
@@ -10,7 +11,7 @@ interface ScopedSystemPrompt {
 }
 
 interface ScopedTools {
-  restrict(filter: { readonly allow: readonly string[] }): () => void
+  guard(guard: (execution: Readonly<ToolExecution>) => string | undefined): () => void
 }
 
 const MANAGED_OPENBKN_TOOLS = [
@@ -30,7 +31,14 @@ const scopedPolicyPlugin = (binding: ReturnType<typeof readDshSessionBusinessNet
     if (binding === undefined) return
     const policy = buildManagedSessionPolicy(binding, profile)
     const systemPrompt = (ctx as Context & { systemPrompt: ScopedSystemPrompt }).systemPrompt
-    ;(ctx as Context & { tools: ScopedTools }).tools.restrict({ allow: MANAGED_OPENBKN_TOOLS })
+    const tools = (ctx as Context & { tools: ScopedTools }).tools
+    // Context Loader tools are dynamically registered after the agent is
+    // created, so `restrict()` cannot safely name them here. A scoped guard is
+    // DSH's monotonic enforcement point and works regardless of registration
+    // timing; it also covers tools contributed by the agent preset itself.
+    tools.guard(execution => MANAGED_OPENBKN_TOOLS.includes(execution.name as typeof MANAGED_OPENBKN_TOOLS[number])
+      ? undefined
+      : 'This OpenBKN business session only permits managed OpenBKN tools.')
     systemPrompt.section({ name: 'openbkn:managed-session', order: 520, text: policy.governance })
     if (policy.capabilities.length > 0) {
       systemPrompt.section({ name: 'openbkn:network-capabilities', order: 521, text: policy.capabilities })
@@ -46,7 +54,10 @@ const scopedPolicyPlugin = (binding: ReturnType<typeof readDshSessionBusinessNet
 export function mountBoundBusinessNetworkTool(agent: Agent, config: PlatformReaderConfig, profile?: NetworkCapabilityProfile): boolean {
   const binding = readDshSessionBusinessNetwork(agent.session as unknown as DshSessionLog)
   if (binding === undefined || normalizeBaseUrl(binding.platformBaseUrl) !== normalizeBaseUrl(config.baseUrl)) return false
-  agent.ctx.plugin(scopedPolicyPlugin(binding, profile))
+  // This event fires before `agent/session-start`, but `Context.inject()` may
+  // schedule a later fiber. The standard preset has already composed these
+  // services, so apply the contribution synchronously to this Agent scope.
+  scopedPolicyPlugin(binding, profile).apply(agent.ctx)
   return true
 }
 

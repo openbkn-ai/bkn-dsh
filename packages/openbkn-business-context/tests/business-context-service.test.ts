@@ -152,6 +152,58 @@ test('does not refresh the MCP connection for later steps or unbound sessions', 
   assert.equal(synchronized, 0)
 })
 
+test('auto-binds a new native DSH session when its workspace has one OpenBKN association', () => {
+  let bound: unknown
+  let mounted = 0
+  const agent = { id: 'session-1', session: { header: { cwd: '/Users/leecky/Documents/DSH_work/bkn-dsh' }, snapshotEvents: () => [] } }
+  const service = Object.create(OpenBknBusinessContextService.prototype) as {
+    config: typeof config
+    ctx: { openbknWorkspaceBindingRegistry: { findUniqueByWorkspace(baseUrl: string, path: string): unknown } }
+    bind(agent: object, binding: unknown): unknown
+    mountIfBound(agent: object): void
+    bindWorkspaceNetworkIfUnique(agent: object): void
+  }
+  service.config = config
+  service.ctx = { openbknWorkspaceBindingRegistry: {
+    findUniqueByWorkspace: () => ({
+      knowledgeNetworkId: 'kn-supply', displayName: 'Supply network', workspacePath: agent.session.header.cwd,
+    }),
+  } }
+  service.bind = (_agent, binding) => { bound = binding }
+  service.mountIfBound = () => { mounted += 1 }
+
+  service.bindWorkspaceNetworkIfUnique(agent)
+
+  assert.deepEqual(bound, {
+    platformBaseUrl: config.baseUrl,
+    knowledgeNetworkId: 'kn-supply',
+    displayName: 'Supply network',
+  })
+  assert.equal(mounted, 0)
+})
+
+test('leaves a native DSH session unbound when its workspace has no unique association', () => {
+  let bound = 0
+  let mounted = 0
+  const agent = { id: 'session-1', session: { header: { cwd: '/Users/leecky/Documents/DSH_work/bkn-dsh' }, snapshotEvents: () => [] } }
+  const service = Object.create(OpenBknBusinessContextService.prototype) as {
+    config: typeof config
+    ctx: { openbknWorkspaceBindingRegistry: { findUniqueByWorkspace(baseUrl: string, path: string): undefined } }
+    bind(agent: object, binding: unknown): unknown
+    mountIfBound(agent: object): void
+    bindWorkspaceNetworkIfUnique(agent: object): void
+  }
+  service.config = config
+  service.ctx = { openbknWorkspaceBindingRegistry: { findUniqueByWorkspace: () => undefined } }
+  service.bind = () => { bound += 1 }
+  service.mountIfBound = () => { mounted += 1 }
+
+  service.bindWorkspaceNetworkIfUnique(agent)
+
+  assert.equal(bound, 0)
+  assert.equal(mounted, 1)
+})
+
 test('reads the durable binding for one live session without consulting CLI credentials', async () => {
   const agent = {
     id: 'session-1',

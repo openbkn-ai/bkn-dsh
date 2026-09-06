@@ -56,11 +56,13 @@ export class OpenBknBusinessContextService extends TypertRemoteService {
 
   constructor(ctx: Context, readonly config: PluginConfig) {
     super(ctx, 'openbknBusinessContext')
-    ctx.on('agent/created', ({ agent }) => { this.mountIfBound(agent) })
+    ctx.on('agent/created', ({ agent }) => { this.bindWorkspaceNetworkIfUnique(agent) })
     ctx.on('agent/pre-step', async ({ agent, step, signal }, next) =>
       await this.refreshManagedMcpAtTurnStart(agent, step, signal, next))
     ctx.on('agent/turn-stopping', ({ agent, turn }) => { this.captureTurnProvenance(agent, turn) })
-    for (const agent of ctx.agents.list()) this.mountIfBound(agent)
+    // DSH can restore Agents before this service is constructed. Treat those
+    // resumed sessions exactly like newly created native sessions.
+    for (const agent of ctx.agents.list()) this.bindWorkspaceNetworkIfUnique(agent)
   }
 
   /**
@@ -256,6 +258,7 @@ export class OpenBknBusinessContextService extends TypertRemoteService {
     await this.ctx.openbknWorkspaceBindingRegistry.put({
       platformBaseUrl: this.config.baseUrl,
       knowledgeNetworkId: network.id,
+      displayName: network.displayName,
       workspacePath: canonicalPath,
     })
     return { ...network, workspacePath: canonicalPath }
@@ -325,6 +328,35 @@ export class OpenBknBusinessContextService extends TypertRemoteService {
     if (this.mounted.has(agent)) return
     if (!mountBoundBusinessNetworkTool(agent, this.config, this.capabilityProfiles.get(agent))) return
     this.mounted.add(agent)
+  }
+
+  /**
+   * Project one user-approved workspace association into a newly live native
+   * DSH session. A missing or ambiguous association deliberately leaves the
+   * native session untouched.
+   */
+  private bindWorkspaceNetworkIfUnique(agent: Agent): void {
+    if (readDshSessionBusinessNetwork(agent.session) !== undefined) {
+      this.mountIfBound(agent)
+      return
+    }
+    const workspacePath = agent.session.header.cwd
+    if (workspacePath === undefined) {
+      this.mountIfBound(agent)
+      return
+    }
+    const record = this.ctx.openbknWorkspaceBindingRegistry.findUniqueByWorkspace(this.config.baseUrl, workspacePath)
+    if (record === undefined) {
+      this.mountIfBound(agent)
+      return
+    }
+    this.bind(agent, {
+      platformBaseUrl: this.config.baseUrl,
+      knowledgeNetworkId: record.knowledgeNetworkId,
+      // Legacy mappings persisted before display metadata use the stable id
+      // rather than guessing a business-facing name.
+      displayName: record.displayName ?? record.knowledgeNetworkId,
+    })
   }
 
   /**

@@ -1,4 +1,4 @@
-import { isAbsolute } from 'node:path'
+import { isAbsolute, resolve } from 'node:path'
 import { Service, type Context } from '@deepseek-ai/cordis'
 import { domainTable, defineDomain, type KvTable } from '@deepseek-ai/dsh-storage-domain'
 import { z } from 'zod'
@@ -14,6 +14,8 @@ declare module '@deepseek-ai/cordis' {
 export const workspaceBindingRecord = z.object({
   platformBaseUrl: z.string().url(),
   knowledgeNetworkId: z.string().trim().min(1),
+  /** Optional only for records written before business display metadata existed. */
+  displayName: z.string().trim().min(1).max(512).optional(),
   workspacePath: z.string().trim().refine(isAbsolute, 'workspacePath must be absolute'),
   updatedAt: z.string().datetime(),
 })
@@ -54,8 +56,33 @@ export class OpenBknWorkspaceBindingRegistry extends Service {
     return this.requireTable().get(workspaceBindingKey(platformBaseUrl, knowledgeNetworkId))
   }
 
+  /**
+   * Return the one network associated with a native DSH workspace. Ambiguous
+   * workspace associations deliberately produce no result so a session is
+   * never bound to a network by guesswork.
+   */
+  findUniqueByWorkspace(platformBaseUrl: string, workspacePath: string): WorkspaceBindingRecord | undefined {
+    const expectedPlatform = normalizeBaseUrl(platformBaseUrl)
+    const expectedPath = normalizeWorkspacePath(workspacePath)
+    let match: WorkspaceBindingRecord | undefined
+    for (const [, candidate] of this.requireTable().entries()) {
+      if (normalizeBaseUrl(candidate.platformBaseUrl) !== expectedPlatform) continue
+      if (normalizeWorkspacePath(candidate.workspacePath) !== expectedPath) continue
+      if (match !== undefined) return undefined
+      match = candidate
+    }
+    return match
+  }
+
   async put(input: Omit<WorkspaceBindingRecord, 'updatedAt'>): Promise<WorkspaceBindingRecord> {
     const record = workspaceBindingRecord.parse({ ...input, updatedAt: new Date().toISOString() })
+    for (const [, candidate] of this.requireTable().entries()) {
+      if (normalizeBaseUrl(candidate.platformBaseUrl) !== normalizeBaseUrl(record.platformBaseUrl)) continue
+      if (normalizeWorkspacePath(candidate.workspacePath) !== normalizeWorkspacePath(record.workspacePath)) continue
+      if (candidate.knowledgeNetworkId !== record.knowledgeNetworkId) {
+        throw new Error('This local DSH workspace is already associated with another OpenBKN knowledge network.')
+      }
+    }
     await this.requireTable().put(workspaceBindingKey(record.platformBaseUrl, record.knowledgeNetworkId), record)
     return record
   }
@@ -68,4 +95,8 @@ export class OpenBknWorkspaceBindingRegistry extends Service {
 
 function normalizeBaseUrl(value: string): string {
   return value.trim().replace(/\/+$/, '')
+}
+
+function normalizeWorkspacePath(value: string): string {
+  return resolve(value)
 }
