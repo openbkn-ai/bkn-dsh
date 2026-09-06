@@ -9,7 +9,7 @@ const config = {
 }
 
 test('mounts the OpenBKN tool only in an agent scope with a compatible durable binding', () => {
-  const mounted: Array<{ apply: (ctx: unknown) => void }> = []
+  const injected: string[][] = []
   const agent = {
     session: {
       snapshotEvents: () => [{
@@ -17,15 +17,14 @@ test('mounts the OpenBKN tool only in an agent scope with a compatible durable b
         data: { platformBaseUrl: 'https://poc.openbkn.ai', knowledgeNetworkId: 'kn-supply', displayName: '供应链风险网络' },
       }],
     },
-    ctx: { plugin: (plugin: (typeof mounted)[number]) => { mounted.push(plugin) } },
+    ctx: { inject: (dependencies: string[]) => { injected.push(dependencies) } },
   }
 
   assert.equal(mountBoundBusinessNetworkTool(agent, config), true)
-  assert.equal(mounted.length, 1)
+  assert.deepEqual(injected, [['systemPrompt', 'tools']])
 })
 
 test('limits an auto-bound business session to governed OpenBKN tools', () => {
-  const mounted: Array<{ apply: (ctx: unknown) => void }> = []
   const agent = {
     session: {
       snapshotEvents: () => [{
@@ -33,22 +32,23 @@ test('limits an auto-bound business session to governed OpenBKN tools', () => {
         data: { platformBaseUrl: 'https://poc.openbkn.ai', knowledgeNetworkId: 'kn-supply', displayName: '供应链风险网络' },
       }],
     },
-    ctx: { plugin: (plugin: (typeof mounted)[number]) => { mounted.push(plugin) } },
+    ctx: {
+      inject: (_dependencies: string[], apply: (ctx: unknown) => void) => apply({
+        tools: { restrict: (filter: { readonly allow: readonly string[] }) => {
+          restrictions.push(filter)
+          return () => {}
+        } },
+        systemPrompt: { section: (section: { readonly name: string; readonly order: number; readonly text: string }) => {
+          sections.push(section)
+          return () => {}
+        } },
+      }),
+    },
   }
   const restrictions: Array<{ readonly allow: readonly string[] }> = []
   const sections: Array<{ readonly name: string; readonly text: string }> = []
 
   assert.equal(mountBoundBusinessNetworkTool(agent, config), true)
-  mounted[0].apply({
-    tools: { restrict: (filter: { readonly allow: readonly string[] }) => {
-      restrictions.push(filter)
-      return () => {}
-    } },
-    systemPrompt: { section: (section: { readonly name: string; readonly order: number; readonly text: string }) => {
-      sections.push(section)
-      return () => {}
-    } },
-  })
 
   assert.deepEqual(restrictions, [{ allow: [
     'mcp__openbkn__bkn_start_interaction', 'mcp__openbkn__bkn_finish_interaction',
