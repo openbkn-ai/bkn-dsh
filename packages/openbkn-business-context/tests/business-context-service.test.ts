@@ -7,6 +7,10 @@ const config = {
   maxResultBytes: 1_024, allowInsecureTls: false,
 }
 
+test('does not load the DSH LLM service for a static empty-session entry', () => {
+  assert.equal(OpenBknBusinessContextService.inject.includes('llm'), false)
+})
+
 function serviceFor(agent: object) {
   const service = Object.create(OpenBknBusinessContextService.prototype) as {
     config: typeof config
@@ -381,7 +385,7 @@ test('uses the formal Trace 3 business graph without treating BKN Safe capabilit
   })
 })
 
-test('returns configured prompt templates only for a live bound session', () => {
+test('returns one introduction only before a bound session has an assistant answer', () => {
   const agent = {
     id: 'session-1',
     session: { snapshotEvents: () => [{ type: 'openbkn/business-network-bound', data: {
@@ -389,15 +393,32 @@ test('returns configured prompt templates only for a live bound session', () => 
     } }] },
   }
   const service = Object.create(OpenBknBusinessContextService.prototype) as {
-    config: typeof config & { suggestedPrompts: readonly string[] }
     ctx: { agents: { get(sessionId: string): typeof agent | undefined } }
     remoteGetSessionSuggestions(sessionId: string): readonly string[]
   }
-  service.config = { ...config, suggestedPrompts: ['Assess {network}.'] }
   service.ctx = { agents: { get: sessionId => sessionId === 'session-1' ? agent : undefined } }
 
-  assert.deepEqual(service.remoteGetSessionSuggestions('session-1'), ['Assess Supply risk.'])
+  assert.deepEqual(service.remoteGetSessionSuggestions('session-1'), ['了解「Supply risk」知识网络。'])
   assert.throws(() => service.remoteGetSessionSuggestions('stale-session'), /not a live/i)
+})
+
+test('returns no prompt after a bound business session has an assistant answer', () => {
+  const agent = {
+    id: 'session-1',
+    session: { snapshotEvents: () => [
+      { type: 'openbkn/business-network-bound', data: {
+        platformBaseUrl: 'https://poc.openbkn.ai', knowledgeNetworkId: 'kn-supply', displayName: 'Supply risk',
+      } },
+      { type: 'assistant/message', data: { message: { id: 'answer' } } },
+    ] },
+  }
+  const service = Object.create(OpenBknBusinessContextService.prototype) as {
+    ctx: { agents: { get(sessionId: string): typeof agent | undefined } }
+    remoteGetSessionSuggestions(sessionId: string): readonly string[]
+  }
+  service.ctx = { agents: { get: sessionId => sessionId === 'session-1' ? agent : undefined } }
+
+  assert.deepEqual(service.remoteGetSessionSuggestions('session-1'), [])
 })
 
 test('returns only a safe network catalogue after confirming the CLI identity is authenticated', async () => {

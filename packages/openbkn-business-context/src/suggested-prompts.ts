@@ -1,15 +1,10 @@
-const MAX_PROMPTS = 5
-const MAX_PROMPT_LENGTH = 400
+const MAX_NETWORK_NAME_LENGTH = 400
 
-/** Resolve a small deployment-configured prompt set without reading conversation content in the browser. */
-export function resolveSuggestedPrompts(templates: readonly string[], networkName: string): readonly string[] {
-  const network = networkName.trim()
-  const prompts: string[] = []
-  for (const template of templates) {
-    if (prompts.length === MAX_PROMPTS || typeof template !== 'string') continue
-    const prompt = template.replaceAll('{network}', network).trim()
-    if (prompt.length === 0 || prompt.length > MAX_PROMPT_LENGTH || prompts.includes(prompt)) continue
-    prompts.push(prompt)
+/** The only prompt shown before a bound business session has a completed answer. */
+export function emptyBusinessSessionPrompt(displayName: string): string {
+  const name = displayName.trim()
+  if (name.length === 0 || name.length > MAX_NETWORK_NAME_LENGTH || /[\u0000-\u001F\u007F]/.test(name)) {
+    throw new TypeError('OpenBKN business network name is invalid.')
   }
-  return prompts
+  return `了解「${name}」知识网络。`
 }

@@ -17,7 +17,7 @@ import { OPENBKN_MCP_TOKEN_REF, OpenBknMcpManager } from './openbkn-mcp-manager.
 import { buildProvenanceView } from './provenance-view.js'
 import { buildNetworkCapabilityProfile, type NetworkCapabilityProfile } from './network-capability-profile.js'
 import { mountBoundBusinessNetworkTool } from './scoped-business-context.js'
-import { resolveSuggestedPrompts } from './suggested-prompts.js'
+import { emptyBusinessSessionPrompt } from './suggested-prompts.js'
 import { OpenBknWorkspaceBindingRegistry } from './workspace-binding-registry.js'
 import type { BindBusinessNetworkResult, BusinessNetworkBinding } from './session-binding.js'
 import type { AuthSnapshot, BusinessNetworkSummary, ProvenanceHandle, ProvenanceView } from './types.js'
@@ -59,7 +59,9 @@ export class OpenBknBusinessContextService extends TypertRemoteService {
     ctx.on('agent/created', ({ agent }) => { this.bindWorkspaceNetworkIfUnique(agent) })
     ctx.on('agent/pre-step', async ({ agent, step, signal }, next) =>
       await this.refreshManagedMcpAtTurnStart(agent, step, signal, next))
-    ctx.on('agent/turn-stopping', ({ agent, turn }) => { this.captureTurnProvenance(agent, turn) })
+    ctx.on('agent/turn-stopping', ({ agent, turn }) => {
+      this.captureTurnProvenance(agent, turn)
+    })
     // DSH can restore Agents before this service is constructed. Treat those
     // resumed sessions exactly like newly created native sessions.
     for (const agent of ctx.agents.list()) this.bindWorkspaceNetworkIfUnique(agent)
@@ -190,7 +192,7 @@ export class OpenBknBusinessContextService extends TypertRemoteService {
     )
   }
 
-  /** Return deployment-configured, draft-only prompts for one already-bound live session. */
+  /** Return the one optional, draft-only introduction for an empty bound session. */
   @Remote('getSessionSuggestions')
   remoteGetSessionSuggestions(sessionId: SessionId): readonly string[] {
     const agent = this.ctx.agents.get(sessionId)
@@ -198,7 +200,9 @@ export class OpenBknBusinessContextService extends TypertRemoteService {
       throw new Error('OpenBKN suggestion target is not a live DSH session.')
     }
     const binding = readDshSessionBusinessNetwork(agent.session)
-    return binding === undefined ? [] : resolveSuggestedPrompts(this.config.suggestedPrompts, binding.displayName)
+    if (binding === undefined) return []
+    if (agent.session.snapshotEvents().some(event => event.type === 'assistant/message')) return []
+    return [emptyBusinessSessionPrompt(binding.displayName)]
   }
 
   /** List only the business networks authorized by the managed OpenBKN token. */
