@@ -58,7 +58,7 @@ test('guards an auto-bound business session to governed OpenBKN tools', () => {
   assert.equal(sections[0].name, 'openbkn:managed-session')
   assert.equal(guards.length, 1)
   assert.equal(guards[0]({ name: 'mcp__openbkn__execute_tool' }), undefined)
-  assert.match(guards[0]({ name: 'mcp__openbkn__run_code' }) ?? '', /only permits managed OpenBKN tools/i)
+  assert.equal(guards[0]({ name: 'mcp__openbkn__run_code' }), undefined)
   assert.match(guards[0]({ name: 'bash' }) ?? '', /only permits managed OpenBKN tools/i)
 })
 

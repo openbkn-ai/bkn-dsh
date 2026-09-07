@@ -26,7 +26,7 @@ import { ProvenanceOverlay, ProvenanceOverlayController } from './ProvenanceOver
 import type { ProvenanceView } from '../types.ts'
 import { SuggestionDock } from './SuggestionDock.tsx'
 import { TurnProvenanceActions } from './TurnProvenanceActions.tsx'
-import { SuggestionDockController } from './suggestion-dock-controller.ts'
+import { SuggestionDockController, synchronizeSuggestionDockForEvents } from './suggestion-dock-controller.ts'
 import { TurnProvenanceController } from './turn-provenance-controller.ts'
 
 /** Browser-side Cordis identity. */
@@ -66,6 +66,7 @@ function registerSlots(ctx: Context): void {
   const provenanceOverlay = new ProvenanceOverlayController()
   const provenanceControllers = new Map<SessionId, TurnProvenanceController>()
   const suggestionControllers = new Map<SessionId, SuggestionDockController>()
+  const observedSuggestionSessions = new Set<SessionId>()
   const bindingControllers = new Map<SessionId, BoundNetworkController>()
   const provenanceFor = (sessionId: SessionId): TurnProvenanceController => {
     let controller = provenanceControllers.get(sessionId)
@@ -140,6 +141,7 @@ function registerSlots(ctx: Context): void {
       const conversation = actx.get('conversation')
       if (conversation === undefined) throw new Error('OpenBKN suggestion dock requires the DSH conversation service.')
       const suggestions = suggestionsFor(sessionId)
+      observeSuggestionLifecycle(ctx, actx, sessionId, suggestions, observedSuggestionSessions)
       return {
         hooks: { suggestions },
         load: () => suggestions.load(),
@@ -161,6 +163,31 @@ function registerSlots(ctx: Context): void {
   ctx.slots.inject('tool.call.toolview', () => ctx.slots.register({
     name: 'tool.call.toolview', key: 'openbkn_get_business_network_context',
   }, OpenBknContextToolView))
+}
+
+/** Subscribe inside the native session scope; no polling and no replacement conversation surface. */
+function observeSuggestionLifecycle(
+  ctx: Context,
+  actx: Context,
+  sessionId: SessionId,
+  suggestions: SuggestionDockController,
+  observed: Set<SessionId>,
+): void {
+  if (observed.has(sessionId)) return
+  const binding = ctx.sessions.binding(sessionId)
+  if (binding === undefined) return
+  observed.add(sessionId)
+  actx.effect(() => {
+    const unsubscribe = binding.eventSource.subscribe(() => {
+      const change = binding.eventSource.getSnapshot().change
+      if (change.kind !== 'append') return
+      synchronizeSuggestionDockForEvents(suggestions, change.entries.map((entry: { readonly event: { readonly type: string } }) => entry.event))
+    })
+    return () => {
+      observed.delete(sessionId)
+      unsubscribe()
+    }
+  }, 'openbkn empty-session entry dock')
 }
 
 function remotePort(ctx: Context): OpenBknUiPort & {

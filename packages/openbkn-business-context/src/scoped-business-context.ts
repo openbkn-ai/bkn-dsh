@@ -19,6 +19,7 @@ const MANAGED_OPENBKN_TOOLS = [
   'mcp__openbkn__get_kn_detail', 'mcp__openbkn__search_schema', 'mcp__openbkn__get_object_types', 'mcp__openbkn__get_relation_types',
   'mcp__openbkn__query_object_instance', 'mcp__openbkn__query_instance_subgraph', 'mcp__openbkn__explore_subgraph', 'mcp__openbkn__search_instance',
   'mcp__openbkn__query_metric', 'mcp__openbkn__get_logic_properties_values',
+  'mcp__openbkn__run_code',
   'mcp__openbkn__list_skills', 'mcp__openbkn__find_skills', 'mcp__openbkn__get_skill_content', 'mcp__openbkn__read_skill_file',
   'mcp__openbkn__search_tools', 'mcp__openbkn__execute_tool',
 ] as const

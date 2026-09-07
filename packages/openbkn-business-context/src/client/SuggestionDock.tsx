@@ -10,13 +10,13 @@ export interface SuggestionDockInjected {
 
 export type SuggestionDockProps = PropsRuntime<'conversation.input.dock'> & InjectFace<SuggestionDockInjected>
 
-/** Bound-network prompt shortcuts; clicking fills DSH's native draft and never sends automatically. */
+/** One bound-network empty-session entry; clicking only fills DSH's native draft. */
 export function SuggestionDock({ useSuggestions, load, setDraft }: SuggestionDockProps) {
   const prompts = useSuggestions((value: readonly string[]) => value)
   useEffect(() => { void load() }, [load])
   if (prompts.length === 0) return null
 
-  return <div aria-label="OpenBKN suggested prompts" style={{ display: 'flex', flexWrap: 'wrap', gap: 8, padding: '0 0 10px' }}>
+  return <div aria-label="OpenBKN business session entry" style={{ display: 'flex', flexWrap: 'wrap', gap: 8, padding: '0 0 10px' }}>
     {prompts.map((prompt: string) => <button key={prompt} type="button" onClick={() => setDraft(prompt)} style={buttonStyle}>{prompt}</button>)}
   </div>
 }

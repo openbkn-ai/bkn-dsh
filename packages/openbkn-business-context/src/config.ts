@@ -18,8 +18,6 @@ export interface Config {
   maxGraphNodes: number
   /** Maximum business-context graph edge count rendered for one turn. */
   maxGraphEdges: number
-  /** Deployment-configured draft-only question templates; `{network}` resolves to the bound network name. */
-  suggestedPrompts: string[]
   /** Explicit opt-in only; disabled by default for local production use. */
   allowInsecureTls: boolean
 }
@@ -34,10 +32,5 @@ export const Config: Schema<Config> = Schema.object({
   maxResultBytes: Schema.natural().min(1).default(1_000_000),
   maxGraphNodes: Schema.natural().min(1).default(200),
   maxGraphEdges: Schema.natural().min(1).default(400),
-  suggestedPrompts: Schema.array(Schema.string()).default([
-    '概览 {network} 中最需要关注的业务风险与原因。',
-    '识别关键对象之间的影响关系，并说明需要核实的信息。',
-    '给出下一步最值得执行的业务分析步骤。',
-  ]),
   allowInsecureTls: Schema.boolean().default(false),
 })
