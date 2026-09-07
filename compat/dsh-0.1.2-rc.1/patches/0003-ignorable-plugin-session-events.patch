@@ -1,0 +1,33 @@
+diff --git a/packages/core/session/src/index.ts b/packages/core/session/src/index.ts
+index c55cc5fb6a..3e9e5afa83 100644
+--- a/packages/core/session/src/index.ts
++++ b/packages/core/session/src/index.ts
+@@ -18 +18 @@
+-import type { CreateSessionOptions, EpochHeader, PrepareSessionOptions, RequestContext, SessionEvent, SessionEventMap, SessionEventType, SessionHeader, SessionId, SurfaceIntent, SurfaceEventType } from './types.ts'
++import type { CreateSessionOptions, EpochHeader, LogOnlyEventIntent, PrepareSessionOptions, RequestContext, SessionEvent, SessionEventMap, SessionEventType, SessionHeader, SessionId, SurfaceIntent, SurfaceEventType } from './types.ts'
+@@ -671 +671 @@
+-    ...opts: T extends SurfaceEventType ? [opts: SurfaceIntent] : []
++    ...opts: T extends SurfaceEventType ? [opts: SurfaceIntent] : [opts?: LogOnlyEventIntent]
+@@ -673 +673,3 @@
+-    const surfaceOpts: SurfaceIntent | undefined = opts[0]
++    const surfaceOpts: SurfaceIntent | LogOnlyEventIntent | undefined = opts[0]
++    const surfaceIntent = surfaceOpts as SurfaceIntent | undefined
++    const logOnlyIntent = surfaceOpts as LogOnlyEventIntent | undefined
+@@ -675,2 +677,2 @@
+-      ...surfaceOpts?.sourceEventSeqs === undefined ? {} : { sourceEventSeqs: surfaceOpts.sourceEventSeqs },
+-      ...surfaceOpts?.surfaceOp === undefined ? {} : { surfaceOp: surfaceOpts.surfaceOp },
++      ...surfaceIntent?.sourceEventSeqs === undefined ? {} : { sourceEventSeqs: surfaceIntent.sourceEventSeqs },
++      ...surfaceIntent?.surfaceOp === undefined ? {} : { surfaceOp: surfaceIntent.surfaceOp },
+@@ -696,0 +699 @@
++      ...logOnlyIntent?.ignorable === true ? { ignorable: true as const } : {},
+diff --git a/packages/core/session/src/types.ts b/packages/core/session/src/types.ts
+index 461c31ad36..ae62e6ce75 100644
+--- a/packages/core/session/src/types.ts
++++ b/packages/core/session/src/types.ts
+@@ -467,0 +468,6 @@
++/** Optional envelope metadata for a plugin-owned, non-surface log record. */
++export interface LogOnlyEventIntent {
++  /** Permit an older Harness to skip this informational extension record. */
++  readonly ignorable?: true
++}
++

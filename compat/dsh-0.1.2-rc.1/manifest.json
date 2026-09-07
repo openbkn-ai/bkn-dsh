@@ -1,0 +1,36 @@
+{
+  "format": 1,
+  "compatibilityVersion": "dsh-0.1.2-rc.1/openbkn-business-context.1",
+  "dsh": {
+    "tag": "dsh-v0.1.2-rc.1",
+    "baseCommit": "a66e4702047846cdaa10c66c9d3df3951f5ea70d",
+    "upstream": "https://github.com/deepseek-ai/deepseek-harness.git"
+  },
+  "patches": [
+    {
+      "file": "patches/0001-credential-backed-mcp-headers.patch",
+      "sha256": "ee71571d2daa2186a28283e3e82d24347bea8fca850b9b4d9bfcac3729650e41",
+      "files": [
+        "packages/mcp/mcp-client/package.json",
+        "packages/mcp/mcp-client/src/connection.ts",
+        "packages/mcp/mcp-client/src/index.ts",
+        "packages/mcp/mcp-client/src/transport.ts"
+      ]
+    },
+    {
+      "file": "patches/0002-third-party-typert-protocol.patch",
+      "sha256": "e1cfa035812e28fc606a6872335c0079af22df37a0e6a7e2c812d8aa0cbde5b1",
+      "files": [
+        "packages/typert/generator/src/analyzer.ts"
+      ]
+    },
+    {
+      "file": "patches/0003-ignorable-plugin-session-events.patch",
+      "sha256": "857d1356e0697e7c4e14eddb830d7115d33e34c1d4a13a79211796faec86bb16",
+      "files": [
+        "packages/core/session/src/index.ts",
+        "packages/core/session/src/types.ts"
+      ]
+    }
+  ]
+}

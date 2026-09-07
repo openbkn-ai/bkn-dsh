@@ -1,0 +1,7 @@
+diff --git a/packages/typert/generator/src/analyzer.ts b/packages/typert/generator/src/analyzer.ts
+index 79fcc7505d..6e2eee11b6 100644
+--- a/packages/typert/generator/src/analyzer.ts
++++ b/packages/typert/generator/src/analyzer.ts
+@@ -1847,0 +1848,2 @@
++    if (externalModuleIdentityForFile(declaration.getSourceFile().fileName)?.package
++      === '@deepseek-ai/dsh-typert-protocol') return true
