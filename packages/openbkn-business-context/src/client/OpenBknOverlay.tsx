@@ -1,6 +1,8 @@
-import { useEffect, useState } from 'react'
+import { useEffect, useMemo, useState } from 'react'
 import type { InjectFace, PropsRuntime } from '@deepseek-ai/dsh-client-ui-slots'
 import type { OpenBknUiController, OpenBknOverlayState } from './openbkn-ui-controller.ts'
+import { INITIAL_NETWORK_DIRECTORY_LIMIT, selectNetworkDirectory } from './network-directory.ts'
+import type { BusinessNetworkSummary } from '../types.ts'
 
 export interface OpenBknOverlayInjected {
   hooks: { ui: OpenBknUiController }
@@ -54,6 +56,19 @@ function OverlayBody({ state, beginLogin, configureToken, refresh, openNetwork }
   refresh(): Promise<void>
   openNetwork(networkId: string, mode: 'continue' | 'new' | 'create-workspace'): Promise<void>
 }) {
+  const [query, setQuery] = useState('')
+  const [limit, setLimit] = useState(INITIAL_NETWORK_DIRECTORY_LIMIT)
+  const [selectedNetworkId, setSelectedNetworkId] = useState<string | undefined>()
+  useEffect(() => {
+    setQuery('')
+    setLimit(INITIAL_NETWORK_DIRECTORY_LIMIT)
+    setSelectedNetworkId(undefined)
+  }, [state.networks])
+  const directory = useMemo(
+    () => selectNetworkDirectory(state.networks, query, limit),
+    [state.networks, query, limit],
+  )
+
   if (state.phase === 'loading' || state.phase === 'binding') {
     return <p style={mutedStyle}>{state.phase === 'binding' ? '正在绑定当前会话…' : '正在连接 OpenBKN…'}</p>
   }
@@ -80,25 +95,57 @@ function OverlayBody({ state, beginLogin, configureToken, refresh, openNetwork }
       <p style={{ marginTop: 0, ...mutedStyle }}>
         选择业务知识网络后，在其专属 DSH 工作区中继续或创建会话。
       </p>
-      {state.networks.length === 0 ? <p style={mutedStyle}>当前账号没有可用的业务知识网络。</p> : null}
+      {state.networks.length === 0 ? <p style={mutedStyle}>当前账号没有可用的业务知识网络。</p> : <>
+        <label style={searchLabelStyle}>
+          搜索业务知识网络
+          <input
+            aria-label="搜索业务知识网络"
+            type="search"
+            value={query}
+            onChange={event => { setQuery(event.target.value); setLimit(INITIAL_NETWORK_DIRECTORY_LIMIT); setSelectedNetworkId(undefined) }}
+            placeholder="名称、ID 或说明"
+            style={searchInputStyle}
+          />
+        </label>
+        <p style={{ margin: '10px 0', ...mutedStyle }}>找到 {directory.total} 个网络；已关联本地工作区的网络优先显示。</p>
+      </>}
       <div style={{ display: 'grid', gap: 10 }}>
-        {state.networks.map(network => (
-          <article key={network.id} style={networkStyle}>
-            <strong>{network.displayName}</strong>
-            {network.description ? <span style={mutedStyle}>{network.description}</span> : null}
-            {network.workspacePath
-              ? <><span style={workspaceStyle}>已关联工作区 · {network.workspacePath}</span><span style={actionsStyle}>
-                <button type="button" style={secondaryStyle} onClick={() => void openNetwork(network.id, 'continue')}>继续会话</button>
-                <button type="button" style={primaryStyle} onClick={() => void openNetwork(network.id, 'new')}>新建会话</button>
-              </span></>
-              : <><span style={workspaceStyle}>尚未关联本地工作区</span><span style={actionsStyle}>
-                <button type="button" style={primaryStyle} onClick={() => void openNetwork(network.id, 'create-workspace')}>新建工作区</button>
-              </span></>}
-          </article>
-        ))}
+        {directory.networks.map(network => <NetworkRow
+          key={network.id}
+          network={network}
+          expanded={selectedNetworkId === network.id}
+          onToggle={() => setSelectedNetworkId(current => current === network.id ? undefined : network.id)}
+          openNetwork={openNetwork}
+        />)}
       </div>
+      {directory.total > 0 && directory.networks.length === 0 ? <p style={mutedStyle}>没有匹配的业务知识网络。</p> : null}
+      {directory.hasMore ? <p style={{ margin: '12px 0 0' }}><button type="button" style={secondaryStyle} onClick={() => setLimit(current => current + INITIAL_NETWORK_DIRECTORY_LIMIT)}>加载更多</button></p> : null}
     </div>
   )
+}
+
+function NetworkRow({ network, expanded, onToggle, openNetwork }: {
+  network: BusinessNetworkSummary
+  expanded: boolean
+  onToggle(): void
+  openNetwork(networkId: string, mode: 'continue' | 'new' | 'create-workspace'): Promise<void>
+}) {
+  return <article style={networkStyle}>
+    <div style={networkSummaryStyle}>
+      <div><strong>{network.displayName}</strong><div style={networkIdStyle}>{network.id}</div></div>
+      <button type="button" style={secondaryStyle} aria-expanded={expanded} onClick={onToggle}>{expanded ? '收起' : '查看'}</button>
+    </div>
+    <span style={workspaceStyle}>{network.workspacePath ? `已关联工作区 · ${network.workspacePath}` : '尚未关联本地工作区'}</span>
+    {expanded ? <>
+      {network.description ? <span style={descriptionStyle}>{network.description}</span> : null}
+      {network.workspacePath
+        ? <span style={actionsStyle}>
+          <button type="button" style={secondaryStyle} onClick={() => void openNetwork(network.id, 'continue')}>继续会话</button>
+          <button type="button" style={primaryStyle} onClick={() => void openNetwork(network.id, 'new')}>新建会话</button>
+        </span>
+        : <span style={actionsStyle}><button type="button" style={primaryStyle} onClick={() => void openNetwork(network.id, 'create-workspace')}>新建工作区</button></span>}
+    </> : null}
+  </article>
 }
 
 function TokenForm({ configureToken }: { configureToken(token: string): Promise<void> }) {
@@ -126,8 +173,13 @@ const primaryStyle = { border: 0, borderRadius: 9, background: '#078b7f', color:
 const secondaryStyle = { ...primaryStyle, background: '#eef5f5', color: '#087d72' }
 const mutedStyle = { color: '#64748b', fontSize: 14 }
 const networkStyle = { textAlign: 'left' as const, display: 'grid', gap: 8, padding: 14, border: '1px solid #d9e4e8', borderRadius: 12, background: '#fff', color: '#172033' }
+const networkSummaryStyle = { display: 'flex', justifyContent: 'space-between', gap: 12, alignItems: 'center' }
+const networkIdStyle = { color: '#64748b', fontSize: 12, marginTop: 2, fontFamily: 'ui-monospace, SFMono-Regular, Menlo, monospace' }
 const workspaceStyle = { color: '#64748b', fontSize: 12, overflow: 'hidden', textOverflow: 'ellipsis', whiteSpace: 'nowrap' as const }
+const descriptionStyle = { color: '#64748b', fontSize: 14, lineHeight: 1.55 }
 const actionsStyle = { display: 'flex', gap: 8, justifyContent: 'flex-end' }
 const tokenStyle = { border: '1px solid #cbd5e1', borderRadius: 8, padding: '9px 10px', font: 'inherit' }
+const searchLabelStyle = { display: 'grid', gap: 6, fontSize: 13, fontWeight: 650 }
+const searchInputStyle = { border: '1px solid #cbd5e1', borderRadius: 8, padding: '9px 10px', font: 'inherit' }
 const loginLinkStyle = { color: '#087d72', fontSize: 14, fontWeight: 650 }
 const authenticationNoticeStyle = { margin: '0 0 12px', padding: '10px 12px', borderRadius: 8, background: '#fff7e8', color: '#9a6700', fontSize: 13, lineHeight: 1.55 }
