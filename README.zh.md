@@ -26,3 +26,21 @@ bkn-dsh 是一个增量式 DeepSeek Harness 插件。授权用户可为一个会
 - 降低获得可信业务洞察的交互成本，无需用户掌握查询语言。
 
 发布包内的 README 也提供面向包使用者的同等产品介绍。
+
+## 安装并开始使用
+
+通过 DeepSeek Harness 原生插件管理器安装 bkn-dsh：
+
+```bash
+pnpm dsh plugin --profile web add @openbkn/dsh-business-context
+```
+
+重启 DSH Web。在 Web 界面侧栏选择 **OpenBKN**，填写平台地址并按引导完成 OpenBKN 认证。插件仅将平台地址保存为非敏感 DSH 设置，Token 保存于 DSH credential；随后它会测试 MCP 连接、列出当前用户可见的知识网络，并让用户在该网络关联的本地工作区中继续或新建会话。
+
+不要把 OpenBKN Token 写入 Cordis YAML 文件。
+
+## DSH 兼容性
+
+若使用 DSH `dsh-v0.1.2-rc.1` 的源码构建，本版本需要 [RC 兼容补丁包](compat/dsh-0.1.2-rc.1/README.zh.md) 中的三项能力。该工具刻意采取失败即拒绝的策略：仅支持精确、干净的该版本源码，绝不修改桌面应用包或其他 DSH 版本。先应用并验证兼容补丁，再按 DSH 常规方式构建并安装插件。
+
+后续 DSH 版本若已在上游提供这些能力，则无需使用此补丁包。
