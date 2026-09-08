@@ -4,7 +4,14 @@ import { tmpdir } from 'node:os'
 import { join } from 'node:path'
 import test from 'node:test'
 
-import { packageCompatibleRuntime } from '../scripts/package-compatible-runtime.mjs'
+import { packageCompatibleRuntime, windowsZipArgs } from '../scripts/package-compatible-runtime.mjs'
+
+test('builds Windows built-in tar arguments for a ZIP archive', () => {
+  assert.deepEqual(
+    windowsZipArgs('/build/bundle', '/out/bundle.zip'),
+    ['-a', '-c', '-f', '/out/bundle.zip', '-C', '/build', 'bundle'],
+  )
+})
 
 test('assembles, archives, and writes a checksum for one declared target', () => {
   const root = mkdtempSync(join(tmpdir(), 'openbkn-runtime-package-'))
