@@ -1,0 +1,62 @@
+name: compatible-runtime
+
+on:
+  workflow_dispatch:
+  push:
+    tags: ["openbkn-dsh-runtime-v*"]
+
+permissions:
+  contents: write
+
+jobs:
+  build:
+    strategy:
+      fail-fast: false
+      matrix:
+        include:
+          - runner: macos-14
+            platform: darwin-arm64
+          - runner: macos-13
+            platform: darwin-x64
+          - runner: windows-2022
+            platform: win32-x64
+    runs-on: ${{ matrix.runner }}
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: pnpm
+      - name: Enable pnpm
+        run: corepack enable
+      - name: Install and build bkn-dsh
+        run: |
+          pnpm install --frozen-lockfile
+          pnpm --filter @openbkn/dsh-business-context build
+          pnpm --filter @openbkn/dsh-business-context pack --pack-destination release/plugin
+      - name: Checkout pinned DSH source
+        run: git clone --depth 1 --branch dsh-v0.1.2-rc.1 https://github.com/deepseek-ai/deepseek-harness.git release/deepseek-harness
+      - name: Build compatible DSH runtime
+        run: pnpm runtime:build -- --dsh release/deepseek-harness --output release/runtime
+      - name: Prepare DSH-native Web profile
+        run: pnpm runtime:profile -- --runtime release/runtime --plugin release/plugin/openbkn-dsh-business-context-0.1.3.tgz --output release/profile
+      - name: Package runtime archive
+        run: pnpm runtime:package -- --runtime release/runtime --profile release/profile --plugin release/plugin/openbkn-dsh-business-context-0.1.3.tgz --output release/artifacts --platform ${{ matrix.platform }}
+      - uses: actions/upload-artifact@v4
+        with:
+          name: openbkn-dsh-runtime-${{ matrix.platform }}
+          path: release/artifacts/*
+          if-no-files-found: error
+
+  publish:
+    if: startsWith(github.ref, 'refs/tags/openbkn-dsh-runtime-v')
+    needs: build
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/download-artifact@v4
+        with:
+          path: release
+          merge-multiple: true
+      - uses: softprops/action-gh-release@v2
+        with:
+          files: release/*

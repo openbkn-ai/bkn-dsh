@@ -11,7 +11,8 @@
     "typecheck": "pnpm --filter @openbkn/dsh-business-context run typecheck",
     "package:check": "node scripts/package-bundle.mjs --check",
     "runtime:build": "node scripts/build-compatible-runtime.mjs",
-    "runtime:package": "node scripts/package-compatible-runtime.mjs"
+    "runtime:package": "node scripts/package-compatible-runtime.mjs",
+    "runtime:profile": "node scripts/prepare-compatible-runtime-profile.mjs"
   },
   "devDependencies": {
     "@deepseek-ai/dsh-typert-generator": "0.1.2-rc.1",
