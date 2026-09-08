@@ -36,12 +36,16 @@ jobs:
           cache: pnpm
       - name: Checkout pinned DSH source
         run: git clone --depth 1 --branch dsh-v0.1.2-rc.1 https://github.com/deepseek-ai/deepseek-harness.git release/deepseek-harness
-      - name: Install bkn-dsh with the pinned DSH build generator
+      - name: Install bkn-dsh dependencies
         run: |
-          pnpm add -Dw @deepseek-ai/dsh-typert-generator@link:release/deepseek-harness/packages/typert/generator
           pnpm install --no-frozen-lockfile
       - name: Build compatible DSH runtime
         run: pnpm runtime:build -- --dsh release/deepseek-harness --output release/runtime
+      - name: Link pinned DSH build generator for plugin compilation
+        shell: bash
+        run: |
+          mkdir -p node_modules/@deepseek-ai
+          ln -sfn "$GITHUB_WORKSPACE/release/deepseek-harness/packages/typert/generator" node_modules/@deepseek-ai/dsh-typert-generator
       - name: Build and pack bkn-dsh
         run: |
           pnpm --filter @openbkn/dsh-business-context build

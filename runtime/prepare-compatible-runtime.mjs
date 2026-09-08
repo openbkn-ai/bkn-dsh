@@ -40,9 +40,9 @@ export function buildCompatibleRuntime({ outputDirectory, run = defaultRun, ...o
   }
 
   const prepared = prepareCompatibleRuntimeSource(options)
-  run('pnpm', ['install', '--frozen-lockfile'], { cwd: target })
-  run('pnpm', ['run', 'build'], { cwd: target })
-  run('pnpm', [
+  run(pnpmCommand(), ['install', '--frozen-lockfile'], { cwd: target })
+  run(pnpmCommand(), ['run', 'build'], { cwd: target })
+  run(pnpmCommand(), [
     '--filter',
     'dsh-python-runtime-closure',
     'deploy',
@@ -55,6 +55,10 @@ export function buildCompatibleRuntime({ outputDirectory, run = defaultRun, ...o
   ], { cwd: target })
   restoreLegacyDeployHoists({ target, outputDirectory: output })
   return { ...prepared, outputDirectory: output }
+}
+
+function pnpmCommand() {
+  return process.platform === 'win32' ? 'pnpm.cmd' : 'pnpm'
 }
 
 /**
