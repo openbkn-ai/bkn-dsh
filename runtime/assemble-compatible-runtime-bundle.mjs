@@ -27,6 +27,15 @@ exec node "$bundle_dir/runtime/lib/bin.js" "$@"
 `
 }
 
+function windowsLauncher() {
+  return `@echo off
+setlocal
+if "%OPENBKN_DSH_HOME%"=="" set "OPENBKN_DSH_HOME=%LOCALAPPDATA%\\OpenBKN\\dsh"
+set "DSH_HOME=%OPENBKN_DSH_HOME%"
+node "%~dp0..\\runtime\\lib\\bin.js" %*
+`
+}
+
 /**
  * Copy a pre-deployed DSH CLI and its patched production closure into one
  * user-unpackable bundle. It deliberately accepts no global DSH path.
@@ -52,5 +61,8 @@ export function assembleCompatibleRuntimeBundle({ runtimeDirectory, outputDirect
   const launcherPath = join(directory, 'bin', 'dsh')
   writeFileSync(launcherPath, launcher())
   chmodSync(launcherPath, 0o755)
+  if (platform.startsWith('win32-')) {
+    writeFileSync(join(directory, 'bin', 'dsh.cmd'), windowsLauncher())
+  }
   return { directory, archive }
 }

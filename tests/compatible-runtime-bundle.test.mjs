@@ -53,6 +53,31 @@ test('rejects a runtime directory without the patched dependency closure', () =>
   )
 })
 
+test('writes a Windows launcher for a Windows bundle', () => {
+  const root = mkdtempSync(join(tmpdir(), 'openbkn-runtime-bundle-'))
+  const runtimeDirectory = join(root, 'runtime-source')
+  const outputDirectory = join(root, 'out')
+  const pluginTarball = join(root, 'plugin.tgz')
+  mkdirSync(join(runtimeDirectory, 'lib'), { recursive: true })
+  for (const dependency of ['dsh-mcp-client', 'dsh-session', 'dsh-typert-generator']) {
+    mkdirSync(join(runtimeDirectory, 'node_modules', '@deepseek-ai', dependency), { recursive: true })
+  }
+  writeFileSync(join(runtimeDirectory, 'lib', 'bin.js'), '#!/usr/bin/env node\n')
+  writeFileSync(pluginTarball, 'plugin archive\n')
+  const windowsManifest = manifest()
+  windowsManifest.bundle.archives = [{ platform: 'win32-x64', file: 'openbkn-dsh-runtime.zip' }]
+
+  const bundle = assembleCompatibleRuntimeBundle({
+    runtimeDirectory,
+    outputDirectory,
+    pluginTarball,
+    manifest: windowsManifest,
+    platform: 'win32-x64',
+  })
+
+  assert.match(readFileSync(join(bundle.directory, 'bin', 'dsh.cmd'), 'utf8'), /DSH_HOME/)
+})
+
 function manifest() {
   return {
     bundle: {
