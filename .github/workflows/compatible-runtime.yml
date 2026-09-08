@@ -23,6 +23,10 @@ jobs:
     runs-on: ${{ matrix.runner }}
     steps:
       - uses: actions/checkout@v4
+      - name: Preserve repository LF patch bytes
+        run: |
+          git config --global core.autocrlf false
+          git checkout -- .
       - uses: pnpm/action-setup@v4
         with:
           version: 10
@@ -30,15 +34,18 @@ jobs:
         with:
           node-version: 22
           cache: pnpm
-      - name: Install and build bkn-dsh
-        run: |
-          pnpm install --frozen-lockfile
-          pnpm --filter @openbkn/dsh-business-context build
-          pnpm --filter @openbkn/dsh-business-context pack --pack-destination release/plugin
       - name: Checkout pinned DSH source
         run: git clone --depth 1 --branch dsh-v0.1.2-rc.1 https://github.com/deepseek-ai/deepseek-harness.git release/deepseek-harness
+      - name: Install bkn-dsh with the pinned DSH build generator
+        run: |
+          pnpm add -Dw @deepseek-ai/dsh-typert-generator@link:release/deepseek-harness/packages/typert/generator
+          pnpm install --no-frozen-lockfile
       - name: Build compatible DSH runtime
         run: pnpm runtime:build -- --dsh release/deepseek-harness --output release/runtime
+      - name: Build and pack bkn-dsh
+        run: |
+          pnpm --filter @openbkn/dsh-business-context build
+          pnpm --filter @openbkn/dsh-business-context pack --pack-destination release/plugin
       - name: Prepare DSH-native Web profile
         run: pnpm runtime:profile -- --runtime release/runtime --plugin release/plugin/openbkn-dsh-business-context-0.1.3.tgz --output release/profile
       - name: Package runtime archive
