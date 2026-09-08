@@ -21,6 +21,10 @@ function defaultArchive({ directory, destination, format }) {
     return
   }
   if (format === 'zip') {
+    if (process.platform === 'win32') {
+      execFileSync('powershell.exe', ['-NoProfile', '-Command', 'Compress-Archive -LiteralPath $args[0] -DestinationPath $args[1] -Force', directory, destination], { stdio: 'inherit' })
+      return
+    }
     execFileSync('zip', ['-qr', destination, basename(directory)], { cwd: resolve(directory, '..'), stdio: 'inherit' })
     return
   }
