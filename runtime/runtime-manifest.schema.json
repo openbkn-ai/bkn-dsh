@@ -1,0 +1,66 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "type": "object",
+  "required": ["format", "bundle", "dsh", "plugin", "compatibility"],
+  "properties": {
+    "format": { "const": 1 },
+    "bundle": {
+      "type": "object",
+      "required": ["name", "version", "node", "archives"],
+      "properties": {
+        "name": { "const": "openbkn-dsh-runtime" },
+        "version": { "pattern": "^0\\.1\\.2-rc\\.1-openbkn\\.[1-9][0-9]*$" },
+        "node": { "type": "string", "minLength": 1 },
+        "archives": {
+          "type": "array",
+          "minItems": 1,
+          "items": {
+            "type": "object",
+            "required": ["platform", "file"],
+            "properties": {
+              "platform": { "enum": ["darwin-arm64", "darwin-x64", "win32-x64"] },
+              "file": { "pattern": "\\.(tar\\.gz|zip)$" }
+            }
+          }
+        }
+      }
+    },
+    "dsh": {
+      "type": "object",
+      "required": ["tag", "baseCommit", "upstream"],
+      "properties": {
+        "tag": { "const": "dsh-v0.1.2-rc.1" },
+        "baseCommit": { "pattern": "^[0-9a-f]{40}$" },
+        "upstream": { "pattern": "^https://" }
+      }
+    },
+    "plugin": {
+      "type": "object",
+      "required": ["packageName", "version", "artifact"],
+      "properties": {
+        "packageName": { "const": "@openbkn/dsh-business-context" },
+        "version": { "type": "string", "minLength": 1 },
+        "artifact": { "pattern": "\\.tgz$" }
+      }
+    },
+    "compatibility": {
+      "type": "object",
+      "required": ["directory", "patches"],
+      "properties": {
+        "directory": { "pattern": "^compat/" },
+        "patches": {
+          "type": "array",
+          "minItems": 1,
+          "items": {
+            "type": "object",
+            "required": ["file", "sha256"],
+            "properties": {
+              "file": { "pattern": "^patches/" },
+              "sha256": { "pattern": "^[0-9a-f]{64}$" }
+            }
+          }
+        }
+      }
+    }
+  }
+}
