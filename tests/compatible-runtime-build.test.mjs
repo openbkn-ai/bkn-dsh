@@ -1,12 +1,12 @@
 import assert from 'node:assert/strict'
 import { execFileSync } from 'node:child_process'
 import { createHash } from 'node:crypto'
-import { mkdtempSync, mkdirSync, readFileSync, writeFileSync } from 'node:fs'
+import { existsSync, mkdtempSync, mkdirSync, readFileSync, writeFileSync } from 'node:fs'
 import { tmpdir } from 'node:os'
 import { join } from 'node:path'
 import test from 'node:test'
 
-import { prepareCompatibleRuntimeSource } from '../runtime/prepare-compatible-runtime.mjs'
+import { buildCompatibleRuntime, prepareCompatibleRuntimeSource } from '../runtime/prepare-compatible-runtime.mjs'
 
 test('refuses a dirty runtime source before applying compatibility patches', () => {
   const fixture = createFixture()
@@ -23,6 +23,34 @@ test('applies and verifies one release-matched compatibility series', () => {
 
   assert.equal(result.compatibilityVersion, 'fixture.1')
   assert.equal(readFileSync(join(fixture.target, 'feature.txt'), 'utf8'), 'enabled\n')
+})
+
+test('builds an explicit patched source into a separate deployed runtime directory', () => {
+  const fixture = createFixture()
+  const outputDirectory = join(fixture.root, 'deployed-runtime')
+  const commands = []
+
+  buildCompatibleRuntime({
+    ...fixture,
+    outputDirectory,
+    run: (command, args, options) => {
+      commands.push({ command, args, cwd: options.cwd })
+      if (args.includes('deploy')) mkdirSync(join(outputDirectory, 'node_modules', '@deepseek-ai', 'dsh-mcp-client'), { recursive: true })
+    },
+  })
+
+  assert.equal(existsSync(join(outputDirectory, 'node_modules', '@deepseek-ai', 'dsh-mcp-client')), true)
+  assert.deepEqual(commands.map(({ args }) => args.at(-1)), ['--frozen-lockfile', 'build', '--legacy'])
+  assert.ok(commands.every(({ cwd }) => cwd === fixture.target))
+})
+
+test('refuses to deploy a runtime into its DSH source checkout', () => {
+  const fixture = createFixture()
+
+  assert.throws(
+    () => buildCompatibleRuntime({ ...fixture, outputDirectory: join(fixture.target, 'runtime') }),
+    /outside the DSH source checkout/,
+  )
 })
 
 function createFixture() {
@@ -42,6 +70,7 @@ function createFixture() {
   const patch = 'diff --git a/feature.txt b/feature.txt\nindex df967b9..28d2700 100644\n--- a/feature.txt\n+++ b/feature.txt\n@@ -1 +1 @@\n-base\n+enabled\n'
   writeFileSync(join(packageDirectory, 'patches', 'feature.patch'), patch)
   return {
+    root,
     target,
     packageDirectory,
     releaseManifest: {
