@@ -9,12 +9,13 @@
   "patches": [
     {
       "file": "patches/0001-credential-backed-mcp-headers.patch",
-      "sha256": "ee71571d2daa2186a28283e3e82d24347bea8fca850b9b4d9bfcac3729650e41",
+      "sha256": "99db7d3d97472c2c3fff36e1e4d8952e9718cbe00d3612143fe0e52639673e23",
       "files": [
         "packages/mcp/mcp-client/package.json",
         "packages/mcp/mcp-client/src/connection.ts",
         "packages/mcp/mcp-client/src/index.ts",
-        "packages/mcp/mcp-client/src/transport.ts"
+        "packages/mcp/mcp-client/src/transport.ts",
+        "packages/mcp/mcp-client/tsconfig.json"
       ]
     },
     {
@@ -30,6 +31,13 @@
       "files": [
         "packages/core/session/src/index.ts",
         "packages/core/session/src/types.ts"
+      ]
+    },
+    {
+      "file": "patches/0004-compatible-runtime-lockfile.patch",
+      "sha256": "fb8c628482e3c68b7815a8d4e8d32f8b2d6d891fb5ba792e4644247cf700f5f5",
+      "files": [
+        "pnpm-lock.yaml"
       ]
     }
   ]
