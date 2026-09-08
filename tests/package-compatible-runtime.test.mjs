@@ -4,12 +4,12 @@ import { tmpdir } from 'node:os'
 import { join } from 'node:path'
 import test from 'node:test'
 
-import { packageCompatibleRuntime, windowsCompressArchiveCommand } from '../scripts/package-compatible-runtime.mjs'
+import { packageCompatibleRuntime, windowsZipArgs } from '../scripts/package-compatible-runtime.mjs'
 
-test('quotes Windows archive paths directly in the PowerShell command', () => {
-  assert.equal(
-    windowsCompressArchiveCommand("C:\\build's\\bundle", "C:\\out's\\bundle.zip"),
-    "Compress-Archive -LiteralPath 'C:\\build''s\\bundle' -DestinationPath 'C:\\out''s\\bundle.zip' -Force",
+test('builds Windows built-in tar arguments for a ZIP archive', () => {
+  assert.deepEqual(
+    windowsZipArgs('/build/bundle', '/out/bundle.zip'),
+    ['-a', '-c', '-f', '/out/bundle.zip', '-C', '/build', 'bundle'],
   )
 })
 
