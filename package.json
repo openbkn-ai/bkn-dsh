@@ -9,7 +9,8 @@
     "test:runner": "pnpm --filter @openbkn/dsh-business-context run test:runner",
     "test": "pnpm --filter @openbkn/dsh-business-context run test",
     "typecheck": "pnpm --filter @openbkn/dsh-business-context run typecheck",
-    "package:check": "node scripts/package-bundle.mjs --check"
+    "package:check": "node scripts/package-bundle.mjs --check",
+    "runtime:build": "node scripts/build-compatible-runtime.mjs"
   },
   "devDependencies": {
     "@deepseek-ai/dsh-typert-generator": "0.1.2-rc.1",
