@@ -23,12 +23,13 @@ jobs:
     runs-on: ${{ matrix.runner }}
     steps:
       - uses: actions/checkout@v4
+      - uses: pnpm/action-setup@v4
+        with:
+          version: 10
       - uses: actions/setup-node@v4
         with:
           node-version: 22
           cache: pnpm
-      - name: Enable pnpm
-        run: corepack enable
       - name: Install and build bkn-dsh
         run: |
           pnpm install --frozen-lockfile
