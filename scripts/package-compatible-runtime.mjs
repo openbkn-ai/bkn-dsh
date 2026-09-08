@@ -15,6 +15,11 @@ function archiveFor(manifest, platform) {
   return archive
 }
 
+export function windowsCompressArchiveCommand(directory, destination) {
+  const quote = (value) => `'${value.replaceAll("'", "''")}'`
+  return `Compress-Archive -LiteralPath ${quote(directory)} -DestinationPath ${quote(destination)} -Force`
+}
+
 function defaultArchive({ directory, destination, format }) {
   if (format === 'tar.gz') {
     execFileSync('tar', ['-C', resolve(directory, '..'), '-czf', destination, basename(directory)], { stdio: 'inherit' })
@@ -22,7 +27,7 @@ function defaultArchive({ directory, destination, format }) {
   }
   if (format === 'zip') {
     if (process.platform === 'win32') {
-      execFileSync('powershell.exe', ['-NoProfile', '-Command', 'Compress-Archive -LiteralPath $args[0] -DestinationPath $args[1] -Force', directory, destination], { stdio: 'inherit' })
+      execFileSync('powershell.exe', ['-NoProfile', '-Command', windowsCompressArchiveCommand(directory, destination)], { stdio: 'inherit' })
       return
     }
     execFileSync('zip', ['-qr', destination, basename(directory)], { cwd: resolve(directory, '..'), stdio: 'inherit' })

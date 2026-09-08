@@ -4,7 +4,14 @@ import { tmpdir } from 'node:os'
 import { join } from 'node:path'
 import test from 'node:test'
 
-import { packageCompatibleRuntime } from '../scripts/package-compatible-runtime.mjs'
+import { packageCompatibleRuntime, windowsCompressArchiveCommand } from '../scripts/package-compatible-runtime.mjs'
+
+test('quotes Windows archive paths directly in the PowerShell command', () => {
+  assert.equal(
+    windowsCompressArchiveCommand("C:\\build's\\bundle", "C:\\out's\\bundle.zip"),
+    "Compress-Archive -LiteralPath 'C:\\build''s\\bundle' -DestinationPath 'C:\\out''s\\bundle.zip' -Force",
+  )
+})
 
 test('assembles, archives, and writes a checksum for one declared target', () => {
   const root = mkdtempSync(join(tmpdir(), 'openbkn-runtime-package-'))
