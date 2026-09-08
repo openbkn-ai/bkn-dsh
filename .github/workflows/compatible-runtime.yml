@@ -36,24 +36,13 @@ jobs:
           cache: pnpm
       - name: Checkout pinned DSH source
         run: git clone --depth 1 --branch dsh-v0.1.2-rc.1 https://github.com/deepseek-ai/deepseek-harness.git release/deepseek-harness
+      - name: Point generator override at pinned DSH source
+        run: node scripts/configure-pinned-dsh-generator.mjs --dsh release/deepseek-harness
       - name: Install bkn-dsh dependencies
         run: |
           pnpm install --no-frozen-lockfile
       - name: Build compatible DSH runtime
         run: pnpm runtime:build -- --dsh release/deepseek-harness --output release/runtime
-      - name: Link pinned DSH build generator for plugin compilation
-        shell: bash
-        run: |
-          # pnpm preserves the repository's developer-only link override.  On
-          # Windows it can materialize as a non-directory reparse entry, which
-          # cannot host the @deepseek-ai scope. The CI workspace is disposable,
-          # so replace only that non-directory entry with the pinned source
-          # build below; a normal scope directory is retained.
-          if [ ! -d node_modules/@deepseek-ai ]; then
-            rm -rf node_modules/@deepseek-ai
-          fi
-          mkdir -p node_modules/@deepseek-ai
-          ln -sfn "$GITHUB_WORKSPACE/release/deepseek-harness/packages/typert/generator" node_modules/@deepseek-ai/dsh-typert-generator
       - name: Build and pack bkn-dsh
         run: |
           pnpm --filter @openbkn/dsh-business-context build
