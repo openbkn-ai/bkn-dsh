@@ -89,5 +89,6 @@ export function restoreLegacyDeployHoists({ target, outputDirectory }) {
 }
 
 function defaultRun(command, args, { cwd }) {
-  execFileSync(command, args, { cwd, stdio: 'inherit' })
+  // Node cannot execute a Windows .cmd shim directly without a shell.
+  execFileSync(command, args, { cwd, stdio: 'inherit', shell: process.platform === 'win32' })
 }
