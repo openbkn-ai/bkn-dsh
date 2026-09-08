@@ -44,6 +44,13 @@ jobs:
       - name: Link pinned DSH build generator for plugin compilation
         shell: bash
         run: |
+          # pnpm preserves the repository's developer-only link override.  On
+          # Windows it may be a dangling symlink, which cannot be used as the
+          # @deepseek-ai scope directory.  The CI workspace is disposable, so
+          # replace only such a link with the pinned source build below.
+          if [ -L node_modules/@deepseek-ai ]; then
+            rm -f node_modules/@deepseek-ai
+          fi
           mkdir -p node_modules/@deepseek-ai
           ln -sfn "$GITHUB_WORKSPACE/release/deepseek-harness/packages/typert/generator" node_modules/@deepseek-ai/dsh-typert-generator
       - name: Build and pack bkn-dsh
