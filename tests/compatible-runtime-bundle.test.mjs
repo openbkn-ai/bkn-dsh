@@ -11,16 +11,18 @@ test('assembles a self-contained runtime with the patched dependency closure and
   const runtimeDirectory = join(root, 'runtime-source')
   const outputDirectory = join(root, 'out')
   const pluginTarball = join(root, 'plugin.tgz')
-  mkdirSync(join(runtimeDirectory, 'lib'), { recursive: true })
-  for (const dependency of ['dsh-mcp-client', 'dsh-session', 'dsh-typert-generator']) {
+  const profileDirectory = profile(root)
+  mkdirSync(join(runtimeDirectory, 'node_modules', '@deepseek-ai', 'dsh', 'lib'), { recursive: true })
+  for (const dependency of ['dsh-mcp-client', 'dsh-session']) {
     mkdirSync(join(runtimeDirectory, 'node_modules', '@deepseek-ai', dependency), { recursive: true })
     writeFileSync(join(runtimeDirectory, 'node_modules', '@deepseek-ai', dependency, 'patched.txt'), 'patched\n')
   }
-  writeFileSync(join(runtimeDirectory, 'lib', 'bin.js'), '#!/usr/bin/env node\n')
+  writeFileSync(join(runtimeDirectory, 'node_modules', '@deepseek-ai', 'dsh', 'lib', 'bin.js'), '#!/usr/bin/env node\n')
   writeFileSync(pluginTarball, 'plugin archive\n')
 
   const bundle = assembleCompatibleRuntimeBundle({
     runtimeDirectory,
+    profileDirectory,
     outputDirectory,
     pluginTarball,
     manifest: manifest(),
@@ -28,22 +30,28 @@ test('assembles a self-contained runtime with the patched dependency closure and
   })
 
   assert.equal(readFileSync(join(bundle.directory, 'runtime', 'node_modules', '@deepseek-ai', 'dsh-mcp-client', 'patched.txt'), 'utf8'), 'patched\n')
+  assert.equal(readFileSync(join(bundle.directory, 'runtime', 'node_modules', '@deepseek-ai', 'dsh', 'lib', 'bin.js'), 'utf8'), '#!/usr/bin/env node\n')
   assert.equal(readFileSync(join(bundle.directory, 'plugins', 'openbkn-dsh-business-context-0.1.3.tgz'), 'utf8'), 'plugin archive\n')
+  assert.equal(readFileSync(join(bundle.directory, 'profile-template', 'web', 'package.json'), 'utf8').includes('dsh-business-context'), true)
   assert.match(readFileSync(join(bundle.directory, 'bin', 'dsh'), 'utf8'), /DSH_HOME/)
+  assert.match(readFileSync(join(bundle.directory, 'bin', 'dsh'), 'utf8'), /bootstrap-openbkn-plugin/)
+  assert.equal(readFileSync(join(bundle.directory, 'bootstrap-openbkn-plugin.mjs'), 'utf8').includes('initializeProfile'), true)
   assert.equal(statSync(join(bundle.directory, 'bin', 'dsh')).mode & 0o111, 0o111)
 })
 
 test('rejects a runtime directory without the patched dependency closure', () => {
   const root = mkdtempSync(join(tmpdir(), 'openbkn-runtime-bundle-'))
   const runtimeDirectory = join(root, 'runtime-source')
-  mkdirSync(join(runtimeDirectory, 'lib'), { recursive: true })
-  writeFileSync(join(runtimeDirectory, 'lib', 'bin.js'), '#!/usr/bin/env node\n')
+  mkdirSync(join(runtimeDirectory, 'node_modules', '@deepseek-ai', 'dsh', 'lib'), { recursive: true })
+  writeFileSync(join(runtimeDirectory, 'node_modules', '@deepseek-ai', 'dsh', 'lib', 'bin.js'), '#!/usr/bin/env node\n')
   const pluginTarball = join(root, 'plugin.tgz')
+  const profileDirectory = profile(root)
   writeFileSync(pluginTarball, 'plugin archive\n')
 
   assert.throws(
     () => assembleCompatibleRuntimeBundle({
       runtimeDirectory,
+      profileDirectory,
       outputDirectory: join(root, 'out'),
       pluginTarball,
       manifest: manifest(),
@@ -58,17 +66,19 @@ test('writes a Windows launcher for a Windows bundle', () => {
   const runtimeDirectory = join(root, 'runtime-source')
   const outputDirectory = join(root, 'out')
   const pluginTarball = join(root, 'plugin.tgz')
-  mkdirSync(join(runtimeDirectory, 'lib'), { recursive: true })
-  for (const dependency of ['dsh-mcp-client', 'dsh-session', 'dsh-typert-generator']) {
+  const profileDirectory = profile(root)
+  mkdirSync(join(runtimeDirectory, 'node_modules', '@deepseek-ai', 'dsh', 'lib'), { recursive: true })
+  for (const dependency of ['dsh-mcp-client', 'dsh-session']) {
     mkdirSync(join(runtimeDirectory, 'node_modules', '@deepseek-ai', dependency), { recursive: true })
   }
-  writeFileSync(join(runtimeDirectory, 'lib', 'bin.js'), '#!/usr/bin/env node\n')
+  writeFileSync(join(runtimeDirectory, 'node_modules', '@deepseek-ai', 'dsh', 'lib', 'bin.js'), '#!/usr/bin/env node\n')
   writeFileSync(pluginTarball, 'plugin archive\n')
   const windowsManifest = manifest()
   windowsManifest.bundle.archives = [{ platform: 'win32-x64', file: 'openbkn-dsh-runtime.zip' }]
 
   const bundle = assembleCompatibleRuntimeBundle({
     runtimeDirectory,
+    profileDirectory,
     outputDirectory,
     pluginTarball,
     manifest: windowsManifest,
@@ -87,4 +97,14 @@ function manifest() {
     },
     plugin: { artifact: 'openbkn-dsh-business-context-0.1.3.tgz' },
   }
+}
+
+function profile(root) {
+  const directory = join(root, 'profile', 'web')
+  mkdirSync(join(directory, 'node_modules', '@openbkn', 'dsh-business-context'), { recursive: true })
+  writeFileSync(join(directory, 'package.json'), JSON.stringify({
+    dsh: { profile: { bundles: ['@openbkn/dsh-business-context'] } },
+  }))
+  writeFileSync(join(directory, 'node_modules', '@openbkn', 'dsh-business-context', 'package.json'), JSON.stringify({ version: '0.1.3' }))
+  return directory
 }

@@ -6,7 +6,7 @@ import { tmpdir } from 'node:os'
 import { join } from 'node:path'
 import test from 'node:test'
 
-import { buildCompatibleRuntime, prepareCompatibleRuntimeSource } from '../runtime/prepare-compatible-runtime.mjs'
+import { buildCompatibleRuntime, prepareCompatibleRuntimeSource, restoreLegacyDeployHoists } from '../runtime/prepare-compatible-runtime.mjs'
 
 test('refuses a dirty runtime source before applying compatibility patches', () => {
   const fixture = createFixture()
@@ -35,12 +35,27 @@ test('builds an explicit patched source into a separate deployed runtime directo
     outputDirectory,
     run: (command, args, options) => {
       commands.push({ command, args, cwd: options.cwd })
-      if (args.includes('deploy')) mkdirSync(join(outputDirectory, 'node_modules', '@deepseek-ai', 'dsh-mcp-client'), { recursive: true })
+      if (args.includes('deploy')) {
+        mkdirSync(join(fixture.target, 'python', 'sdk-runtime', 'node_modules', '@deepseek-ai', 'dsh', 'lib'), { recursive: true })
+        writeFileSync(join(fixture.target, 'python', 'sdk-runtime', 'node_modules', '@deepseek-ai', 'dsh', 'lib', 'bin.js'), 'cli\n')
+        mkdirSync(join(outputDirectory, 'node_modules', '@deepseek-ai', 'dsh-mcp-client'), { recursive: true })
+        writeFileSync(join(outputDirectory, 'package.json'), JSON.stringify({ dependencies: { '@deepseek-ai/dsh': 'workspace:^' } }))
+      }
     },
   })
 
   assert.equal(existsSync(join(outputDirectory, 'node_modules', '@deepseek-ai', 'dsh-mcp-client')), true)
-  assert.deepEqual(commands.map(({ args }) => args.at(-1)), ['--frozen-lockfile', 'build', '--legacy'])
+  assert.deepEqual(commands[2].args, [
+    '--filter',
+    'dsh-python-runtime-closure',
+    'deploy',
+    outputDirectory,
+    '--legacy',
+    '--prod',
+    '--config.node-linker=hoisted',
+    '--config.auto-install-peers=false',
+    '--config.link-workspace-packages=true',
+  ])
   assert.ok(commands.every(({ cwd }) => cwd === fixture.target))
 })
 
@@ -51,6 +66,22 @@ test('refuses to deploy a runtime into its DSH source checkout', () => {
     () => buildCompatibleRuntime({ ...fixture, outputDirectory: join(fixture.target, 'runtime') }),
     /outside the DSH source checkout/,
   )
+})
+
+test('restores direct runtime-closure dependencies omitted by legacy deploy without copying nested node_modules', () => {
+  const root = mkdtempSync(join(tmpdir(), 'openbkn-compatible-runtime-'))
+  const target = join(root, 'dsh')
+  const output = join(root, 'runtime')
+  mkdirSync(join(target, 'python', 'sdk-runtime', 'node_modules', '@deepseek-ai', 'dsh', 'lib'), { recursive: true })
+  mkdirSync(join(target, 'python', 'sdk-runtime', 'node_modules', '@deepseek-ai', 'dsh', 'node_modules', 'unwanted'), { recursive: true })
+  mkdirSync(output, { recursive: true })
+  writeFileSync(join(target, 'python', 'sdk-runtime', 'node_modules', '@deepseek-ai', 'dsh', 'lib', 'bin.js'), 'cli\n')
+  writeFileSync(join(output, 'package.json'), JSON.stringify({ dependencies: { '@deepseek-ai/dsh': 'workspace:^' } }))
+
+  restoreLegacyDeployHoists({ target, outputDirectory: output })
+
+  assert.equal(readFileSync(join(output, 'node_modules', '@deepseek-ai', 'dsh', 'lib', 'bin.js'), 'utf8'), 'cli\n')
+  assert.equal(existsSync(join(output, 'node_modules', '@deepseek-ai', 'dsh', 'node_modules')), false)
 })
 
 function createFixture() {

@@ -8,11 +8,13 @@ This source package prepares an exact DeepSeek Harness `dsh-v0.1.2-rc.1` checkou
 
 Only a clean Git source checkout at commit `a66e4702047846cdaa10c66c9d3df3951f5ea70d` is supported. Do not use it on a desktop application bundle, a different DSH release, or a worktree with local changes.
 
-The series adds only the capabilities required by the plugin:
+The series adds only the capabilities required by the plugin and reproducible
+runtime build:
 
 - credential references for streamable HTTP MCP headers;
 - recognition of the published Typert protocol in an external plugin;
 - ignorable, plugin-owned non-surface session records.
+- lockfile entries for the added source dependencies.
 
 It never reads or writes an OpenBKN token.
 
@@ -25,10 +27,13 @@ node compat/dsh-0.1.2-rc.1/apply.mjs --dsh /path/to/deepseek-harness
 node compat/dsh-0.1.2-rc.1/verify.mjs --dsh /path/to/deepseek-harness
 ```
 
-Rebuild the patched DSH checkout using its normal build instructions. Then install bkn-dsh through DSH's native plugin command:
+Rebuild the patched DSH checkout using its normal build instructions. Then
+build the local plugin artifact and install it through DSH's native plugin command:
 
 ```bash
-pnpm dsh plugin --profile web add @openbkn/dsh-business-context
+pnpm --filter @openbkn/dsh-business-context build
+pnpm --filter @openbkn/dsh-business-context pack --pack-destination /tmp/openbkn-plugin
+pnpm dsh plugin --profile web add file:/tmp/openbkn-plugin/openbkn-dsh-business-context-0.1.3.tgz
 ```
 
 To remove the complete series before changing DSH version:

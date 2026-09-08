@@ -29,18 +29,34 @@ The published package README contains the same product overview for package cons
 
 ## Install and start
 
-Install bkn-dsh through the native DeepSeek Harness plugin manager:
+### Recommended: OpenBKN-compatible DSH Runtime
 
-```bash
-pnpm dsh plugin --profile web add @openbkn/dsh-business-context
-```
+For users of DSH `0.1.2-rc.1`, download the matching OpenBKN Runtime archive from the project releases. It contains the pinned DSH runtime, the version-fenced compatibility bridge, and the bkn-dsh plugin artifact. It uses DSH's native plugin manager on first start; it does not patch or change an existing DSH installation.
 
-Restart DSH Web. In the Web UI, select **OpenBKN** in the sidebar, enter the platform address, and authenticate through the guided OpenBKN flow. The plugin stores the platform address as a non-sensitive DSH setting and keeps the token in DSH credentials. It then tests the MCP connection, lists the networks visible to the signed-in user, and lets the user continue or create a conversation in that network's associated local workspace.
+The only prerequisite is Node.js 20 or later. The release profile is created
+with DSH's native plugin manager at build time and is copied into the isolated
+home on first start, so customers do not need `pnpm` or registry access.
 
-No OpenBKN token belongs in a Cordis YAML file.
+1. In the download directory, verify the archive with its adjacent `.sha256` file, then unpack it:
 
-## DSH compatibility
+   ```bash
+   shasum -a 256 -c openbkn-dsh-runtime-*.sha256
+   ```
+2. Start the bundled DSH Web runtime:
 
-This version needs the three compatibility capabilities described in [the RC compatibility package](compat/dsh-0.1.2-rc.1/README.md) when it is used with a source build of DSH `dsh-v0.1.2-rc.1`. The package is intentionally fail-closed: it supports only that exact clean source revision, never a desktop bundle or a different DSH version. Apply and verify the compatibility package before installing the plugin, then build DSH normally.
+   ```bash
+   ./openbkn-dsh-runtime-*/bin/dsh web
+   ```
 
-Later DSH releases that provide these capabilities upstream do not need this patch package.
+   On Windows, run `bin\\dsh.cmd web` from the unpacked directory and verify
+   the release checksum with `Get-FileHash` before unpacking.
+3. In DSH Web, click **OpenBKN** in the sidebar. Enter the OpenBKN platform address, complete the guided CLI sign-in or enter a platform token, and test the connection.
+4. Select an authorized business knowledge network. Create its local workspace or continue an existing one, then start the business conversation.
+
+The runtime keeps its profile under an isolated OpenBKN DSH home (`OPENBKN_DSH_HOME` can override it), so it does not alter `~/.dsh`. The platform address is a non-sensitive DSH setting; the token is stored only in DSH credentials. Do not put an OpenBKN token in Cordis YAML.
+
+### Source-build path for DSH maintainers
+
+The compatibility package is for maintainers who intentionally build the exact upstream DSH source revision `dsh-v0.1.2-rc.1`. It is fail-closed and must not be applied to a desktop bundle or another DSH version. See [the compatibility package](compat/dsh-0.1.2-rc.1/README.md) for its exact source-build procedure.
+
+Later DSH releases that provide the required capabilities upstream do not need this bridge.

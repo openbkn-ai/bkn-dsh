@@ -29,18 +29,31 @@ bkn-dsh 是一个增量式 DeepSeek Harness 插件。授权用户可为一个会
 
 ## 安装并开始使用
 
-通过 DeepSeek Harness 原生插件管理器安装 bkn-dsh：
+### 推荐方式：OpenBKN 兼容 DSH Runtime
 
-```bash
-pnpm dsh plugin --profile web add @openbkn/dsh-business-context
-```
+对于 DSH `0.1.2-rc.1` 用户，请从项目 Releases 下载匹配的 OpenBKN Runtime 压缩包。该包包含固定版本的 DSH Runtime、版本受限的兼容桥接以及 bkn-dsh 插件产物；首次启动时仍使用 DSH 原生插件管理器激活插件，不会修改已有 DSH 安装。
 
-重启 DSH Web。在 Web 界面侧栏选择 **OpenBKN**，填写平台地址并按引导完成 OpenBKN 认证。插件仅将平台地址保存为非敏感 DSH 设置，Token 保存于 DSH credential；随后它会测试 MCP 连接、列出当前用户可见的知识网络，并让用户在该网络关联的本地工作区中继续或新建会话。
+唯一前置条件为 Node.js 20 或更高版本。发布 profile 在构建阶段由 DSH 原生插件管理器创建，首次启动时复制到隔离 Home；客户侧无需 `pnpm`，也不需要访问 npm registry。
 
-不要把 OpenBKN Token 写入 Cordis YAML 文件。
+1. 在下载目录使用同目录的 `.sha256` 文件校验压缩包，然后解压：
 
-## DSH 兼容性
+   ```bash
+   shasum -a 256 -c openbkn-dsh-runtime-*.sha256
+   ```
+2. 启动包内的 DSH Web：
 
-若使用 DSH `dsh-v0.1.2-rc.1` 的源码构建，本版本需要 [RC 兼容补丁包](compat/dsh-0.1.2-rc.1/README.zh.md) 中的三项能力。该工具刻意采取失败即拒绝的策略：仅支持精确、干净的该版本源码，绝不修改桌面应用包或其他 DSH 版本。先应用并验证兼容补丁，再按 DSH 常规方式构建并安装插件。
+   ```bash
+   ./openbkn-dsh-runtime-*/bin/dsh web
+   ```
 
-后续 DSH 版本若已在上游提供这些能力，则无需使用此补丁包。
+   Windows 请先使用 `Get-FileHash` 校验发布摘要，再在解压目录运行 `bin\\dsh.cmd web`。
+3. 打开 DSH Web，在侧栏点击 **OpenBKN**；填写 OpenBKN 平台地址，通过引导完成 CLI 登录或输入平台 Token，并测试连接。
+4. 选择有权限的业务知识网络，为它新建本地工作区或继续已有工作区，然后开始业务会话。
+
+Runtime 使用隔离的 OpenBKN DSH Home（可用 `OPENBKN_DSH_HOME` 覆盖），不会改动 `~/.dsh`。平台地址仅作为非敏感 DSH 设置保存；Token 只保存在 DSH credential。不要将 OpenBKN Token 写入 Cordis YAML。
+
+### 面向 DSH 维护者的源码构建路径
+
+兼容补丁只适用于主动构建精确上游源码版本 `dsh-v0.1.2-rc.1` 的维护者。它采用失败即拒绝策略，不能应用于桌面应用包或其他 DSH 版本。具体源码构建步骤请见 [兼容补丁包](compat/dsh-0.1.2-rc.1/README.zh.md)。
+
+后续 DSH 版本若已提供所需能力，则无需使用此桥接。

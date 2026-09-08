@@ -13,7 +13,7 @@ test('loads one fully pinned compatible-runtime release manifest', () => {
   assert.match(manifest.dsh.baseCommit, /^[0-9a-f]{40}$/)
   assert.match(manifest.plugin.packageName, /^@openbkn\//)
   assert.match(manifest.plugin.artifact, /\.tgz$/)
-  assert.ok(manifest.compatibility.patches.length > 0)
+  assert.equal(manifest.compatibility.patches.length, 4)
 })
 
 test('rejects a release manifest without a pinned upstream commit', () => {
