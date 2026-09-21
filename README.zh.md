@@ -73,6 +73,8 @@ Runtime 使用隔离的 OpenBKN DSH Home（可用 `OPENBKN_DSH_HOME` 覆盖）�
 
 已知上游限制：直接以源码 dev 形式运行 DSH 时，任何插件的工具派发都会失败（`Cannot read properties of undefined (reading 'prepare')`）；完整问答需打包形态——上方的推荐 Runtime，或本仓库的 `scripts/build-compatible-runtime.mjs --dsh <干净源码树> --output <目录>`。
 
+已知插件限制：若某一轮在 `bkn_start_interaction` 与 `bkn_finish_interaction` 之间被取消或失败，该 Interaction 会留在平台侧不闭合。插件刻意不自动补 finish（平台对注入式收尾的语义尚未验证），只记录一条无载荷告警；观测项应跟踪「未闭合 Interaction 计数」。自动收尾属后续工作。
+
 ## 先决条件与试用路径
 
 插件需要一个可达的 OpenBKN 平台，且至少有一个你有权限访问的知识网络。
