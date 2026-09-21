@@ -27,6 +27,29 @@ export { TURN_PROVENANCE_EVENT, TurnProvenanceConflictError, appendTurnProvenanc
 export type { TurnProvenanceEvent } from './turn-provenance.js'
 export { normalizeProvenanceHandle } from './provenance-handle.js'
 export type { ProvenanceHandle } from './types.js'
+export { LIFECYCLE_TOOLS, MANAGED_IN_INTERACTION_TOOLS, managedConversationSectionText } from './scoped-business-context.js'
+export {
+  CONVERSATION_INVALID_ERROR_CODES,
+  FINISH_INTERACTION_TOOL,
+  MANAGED_CONVERSATION_EVENT,
+  START_INTERACTION_TOOL,
+  classifyFailure,
+  denialFor,
+  initialState,
+  lastConversationEvent,
+  onToolResult,
+  onTurnStart,
+  projectLifecycleOutcome,
+  recordConversationEvent,
+  restoreFrom,
+} from './interaction-lifecycle.js'
+export type {
+  InteractionLifecycleState,
+  LifecycleOutcomeLike,
+  LifecycleToolResultProjection,
+  ManagedConversationEventData,
+  ManagedConversationSession,
+} from './interaction-lifecycle.js'
 export { emptyBusinessSessionPrompt } from './suggested-prompts.js'
 export { buildManagedSessionPolicy, OPENBKN_DSH_INTERACTION_AGENT_NAME } from './managed-session-policy.js'
 export type { ManagedSessionPolicy } from './managed-session-policy.js'
