@@ -76,6 +76,27 @@ OPENBKN_PROBE_INSECURE_TLS=1 node tests/probes/dsh-event-model.probe.mjs --v0-6 
 
 **通过**——7 项入口全数核验（静态重跑计数一致、HEAD 纯净树独立 worktree 复验、commit 清单吻合、审核处置链逐条落地、平台 Trace 交叉核验、两处实现取舍与基线口径均接受）；2 条 P3 文档勘误（轮次加法口径、非访问轮证据等级）已按建议修正至本文件与 `docs/evidence/2026-09-22-interaction-baseline.md` §3.1。复核注意事项：`trace search` 默认 limit 50 会截断，全量统计必须翻页；平台能力缺口建议后续向 bkn-foundry 提出（lifecycle 事件入 Trace 或 interaction list-by-conversation 枚举）。
 
+## 6b. QA 补测：第二知识网络与诱导/边界问法（2026-09-22）
+
+应要求补测两项并**全部通过**：① **第二知识网络**（`worldcup_vega_catalog_bkn`，世界杯，非供应链）复验分诊；② **诱导性/边界性问法**（原验收未覆盖的问法类型）。同一会话 11 轮、唯一 conversation `conv_86e003f0…`：
+
+- 非访问 6 轮全部 0 调用（寒暄、绑定问询、越位——足球域内通用知识、NBA 域外、已答事实复述、业务上下文中的天气诱导）；
+- 访问 5 轮每轮恰 1 Interaction 且全部闭合：2 completed + 3 **failed**——被明确指示用工具查网外内容（天气/越位字段/2030 东道主）时，模型合规访问后如实报告无数据并以 `outcome=failed` 收尾，**以「查无结果」形态自然覆盖了 §6 未覆盖项中「检索失败→finish(failed)」**（工具报错注入仍属未覆盖）；
+- 错误前提（「中国男足夺冠」）不编造：查证后纠正为「网内最好成绩 1999 女足亚军」并说明数据边界；通用知识附答时显式声明「非本网络数据」；
+- 无拒绝回路、无零业务 conversation、无残留。
+
+证据与环境增补备忘：`docs/evidence/2026-09-22-interaction-worldcup-supplement.md`（要点：UI 添加 workspace 走原生目录选择器不可自动化，可靠路径为改 workspace 存储文件+重启进程；页面 innerText 不含 `bkn_*` 工具名，工具调用判定必须以平台 trace 为准）。
+
+## 6c. QA 补测（二）：故障注入与受控回退（2026-09-22）
+
+原「未覆盖项」中三项已补 L4 实测（证据：`docs/evidence/2026-09-22-interaction-fault-injection.md`）：
+
+- **会话失效受控回退**（事件伪造死 id 等价触发）：真实 `resource_not_disclosed` 信封 → tombstone 落盘（seq 251）→ 恰一次受控 new（`conv_f71fecf3`，双侧确认）→ 后续轮 continue 续接正常；模型在失效轮不重试、以已有上下文作答并声明来源。全链路通过。
+- **invalid_params 不清 id**（模型级参数注入，`conversation_mode "renew"`）：真实嵌套信封、事件零新增、下一轮 continue 原 id 恢复。
+- **finish 自身失败**（`outcome "bogus"`）：finish 失败 → interaction 保持 open → 模型以合法 outcome 重试 → 闭合 completed。
+
+仍不可注入（如实记录）：401（MCP initialize 即验 token，换坏 token 会挂工具面而非产生运行中 401）、超时（`toolCallTimeoutMs` 编译于插件、本地平台响应快）、5xx、平台真实 close（lifecycle 路由要求内部信任 headers + 业务域授权，admin 不可调，设计使然——建议向 bkn-foundry 提测试钩子需求）。网络层代理注入被插件 CLI 平台 fence 与 mcpUrl origin fence 挡住——**两道 fence 的拦截行为本身构成插件安全设计的正面验证**。意外收获：代理实验产生两轮「工具面不可用」真实样本，模型三次失败即停、不编造、0 新 Interaction。
+
 ## 7. QA 审核建议入口
 
 1. 重跑 §4 全部命令并核对计数。
