@@ -1,5 +1,6 @@
 import type { JsonValue } from '@deepseek-ai/dsh-util-values'
 import type { BusinessNetworkBinding } from './session-binding.js'
+import { normalizeBaseUrl } from './base-url.js'
 
 export type PlatformReaderErrorCode =
   | 'AUTHENTICATION_REQUIRED'
@@ -231,7 +232,6 @@ function fixedUrl(baseUrl: string, path: string, allowInsecureTls: boolean): URL
   return url
 }
 
-function normalizeBaseUrl(value: string): string { return value.trim().replace(/\/+$/, '') }
 function record(value: unknown): Record<string, unknown> | undefined { return typeof value === 'object' && value !== null && !Array.isArray(value) ? value as Record<string, unknown> : undefined }
 function safeParse(text: string): unknown { try { return JSON.parse(text) } catch { return undefined } }
 

@@ -22,6 +22,7 @@ import { OpenBknWorkspaceBindingRegistry } from './workspace-binding-registry.js
 import type { BindBusinessNetworkResult, BusinessNetworkBinding } from './session-binding.js'
 import type { AuthSnapshot, BusinessNetworkSummary, ProvenanceHandle, ProvenanceView } from './types.js'
 import { realpath, stat } from 'node:fs/promises'
+import { normalizeBaseUrl } from './base-url.js'
 
 declare module '@deepseek-ai/cordis' {
   interface Context {
@@ -468,10 +469,6 @@ function safeRunnerFailureCode(error: unknown): string {
 
 function safeCapabilityProfileFailureCode(error: unknown): string {
   return error instanceof PlatformReaderError ? error.code : 'PROFILE_UNAVAILABLE'
-}
-
-function normalizeBaseUrl(value: string): string {
-  return value.trim().replace(/\/+$/, '')
 }
 
 async function canonicalDirectory(path: string): Promise<string> {

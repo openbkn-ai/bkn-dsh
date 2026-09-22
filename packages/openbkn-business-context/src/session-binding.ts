@@ -1,4 +1,5 @@
 import type { BusinessNetworkBinding } from './types.js'
+import { normalizeBaseUrl } from './base-url.js'
 
 export type { BusinessNetworkBinding } from './types.js'
 
