@@ -76,6 +76,8 @@ Two artifacts work together on your own DSH source checkout at the exact upstrea
 
 Known upstream limitation: running DSH directly from source in dev form breaks tool dispatch for any plugin (`Cannot read properties of undefined (reading 'prepare')`); full Q&A requires a packaged form — the recommended Runtime above, or `scripts/build-compatible-runtime.mjs --dsh <clean-checkout> --output <dir>` from this repository.
 
+Known plugin limitation: a turn that is cancelled or fails between `bkn_start_interaction` and `bkn_finish_interaction` leaves that Interaction unclosed on the platform side. The plugin deliberately does not auto-finish it (the platform semantics of an injected finish are not yet verified); it logs a payload-free warning instead, and observability should track the unclosed-Interaction count. Automatic closing is future work.
+
 ## Prerequisites and trial path
 
 The plugin needs a reachable OpenBKN platform with at least one knowledge network you can access.
