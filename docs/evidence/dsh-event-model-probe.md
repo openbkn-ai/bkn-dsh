@@ -2,7 +2,7 @@
 
 > 用途：`docs/plans/2026-09-20-interaction-noise-reduction.md`（v3）第 2 节 V0 的**运行时部分**，静态部分见 `docs/evidence/2026-09-21-dsh-event-model-static.md`。
 > 性质：真实运行时实测（非源码推断）。probe 可重复执行，手动运行，不进 CI 与发布包（`package.json` 的 `files` 白名单只含 `lib/` 等，`tests/` 不发布）。
-> 运行对象：npm 安装的插件 pinned 依赖 `@deepseek-ai/dsh-tools@0.1.6-alpha.2`（与源码树 `dsh-v0.1.6-alpha.2` 同版本；源码树带 compat 补丁，见第 4 节边界）。平台侧为本机 kind 集群 OpenBKN EE 0.1.4（自签 TLS，probe 以 `OPENBKN_PROBE_INSECURE_TLS=1` 显式放行）。
+> 运行对象：npm 安装的插件 pinned 依赖 `@deepseek-ai/dsh-tools@0.1.6-alpha.2`（与源码树 `dsh-v0.1.6-alpha.2` 同版本；源码树带 compat 补丁，见第 4 节边界）。平台侧为本机 kind 集群 OpenBKN EE 0.1.4（自签 TLS，probe 以 `NODE_EXTRA_CA_CERTS=~/.dsh/openbkn-dev-ca.pem` 在启动时注入平台 CA）。
 > 日期：2026-09-21。观测只含计数、布尔、错误码与工具短名，无参数值、响应体、业务数据或凭据。
 
 ## 1. 命令与版本
@@ -10,7 +10,7 @@
 ```bash
 cd packages/openbkn-business-context
 node tests/probes/dsh-event-model.probe.mjs            # V0-1..V0-4（本地真实运行时）
-OPENBKN_PROBE_INSECURE_TLS=1 node tests/probes/dsh-event-model.probe.mjs --v0-6   # + V0-6（平台侧）
+NODE_EXTRA_CA_CERTS=~/.dsh/openbkn-dev-ca.pem node tests/probes/dsh-event-model.probe.mjs --v0-6   # + V0-6（平台侧）
 ```
 
 DSH 运行时版本：`@deepseek-ai/dsh-tools@0.1.6-alpha.2 (npm)`。插件版本：`@openbkn/dsh-business-context@0.1.5-rc.1`（开发工作树）。
@@ -22,6 +22,8 @@ DSH 运行时版本：`@deepseek-ai/dsh-tools@0.1.6-alpha.2 (npm)`。插件版�
 {"check":"V0-2 model-path guard coverage: exec.agent present; agentless execution bypasses scoped guard","dshVersion":"@deepseek-ai/dsh-tools@0.1.6-alpha.2 (npm)","command":"node tests/probes/dsh-event-model.probe.mjs","observation":{"guardInvocationsForAgentCall":1,"guardAgentMissingCount":0,"guardInvocationsAfterAgentlessCall":1},"verdict":"pass"}
 {"check":"V0-3 synchronous tools/result listener updates state before the next guard judgment","dshVersion":"@deepseek-ai/dsh-tools@0.1.6-alpha.2 (npm)","command":"node tests/probes/dsh-event-model.probe.mjs","observation":{"startResultIsError":false,"managedCallGuardDenied":false,"managedCallIsError":false},"verdict":"pass"}
 {"check":"V0-4 cancellation/throw paths still emit tools/result","dshVersion":"@deepseek-ai/dsh-tools@0.1.6-alpha.2 (npm)","command":"node tests/probes/dsh-event-model.probe.mjs","observation":{"throwPathResultEmitted":true,"abortBeforeDispatchResultEmitted":true,"abortBeforeDispatchCode":"ABORTED_BEFORE_DISPATCH","abortDuringBodyResultEmitted":true,"abortDuringBodyCode":[null]},"verdict":"pass"}
+> 注（2026-09-22）：下述 V0-6/V0-7 记录以旧开关 `OPENBKN_PROBE_INSECURE_TLS=1` 采集；该开关已废弃（CodeQL 告警处置，改为启动时 `NODE_EXTRA_CA_CERTS` 注入平台 CA），现行调用方式见上方命令块。
+
 {"check":"V0-6 platform conversation-invalidation error shapes (no successful interaction started)","dshVersion":"@deepseek-ai/dsh-tools@0.1.6-alpha.2 (npm)","command":"OPENBKN_PROBE_INSECURE_TLS=1 node tests/probes/dsh-event-model.probe.mjs --v0-6","observation":{"shapes":{"forgedConversationContinue":{"toolIsError":true,"codeTokens":["resource_not_disclosed"]},"invalidParameter":{"toolIsError":true,"codeTokens":["invalid_params"]},"unauthenticated":{"transportError":"SdkHttpError"},"timeout":{"transportError":"Error"}},"machineDistinguishableFromParameterError":true},"verdict":"pass"}
 {"check":"V0-7 production-chain extraction of the platform envelope through a DSH ToolExecutionResult","dshVersion":"@deepseek-ai/dsh-tools@0.1.6-alpha.2 (npm)","command":"OPENBKN_PROBE_INSECURE_TLS=1 node tests/probes/dsh-event-model.probe.mjs --v0-6","observation":{"toolResultIsError":true,"extractedErrorCode":"resource_not_disclosed","classification":"conversation-invalid"},"verdict":"pass"}
 ```
