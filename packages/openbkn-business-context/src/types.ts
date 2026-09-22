@@ -77,12 +77,14 @@ export interface ProvenanceBusinessOperation {
   readonly missingFacts: readonly string[]
 }
 
+/** Reserved for a platform conversation-context contract that has not been disclosed yet; no producer today. */
 export interface ProvenanceConversationContext {
   readonly knowledgeNetworkId: string
   readonly sourceInteractionId: string
   readonly sourceOperationId: string
 }
 
+/** Reserved for a platform cross-operation derivation contract that has not been disclosed yet; no producer today. */
 export interface ProvenanceDerivedFact {
   readonly rule: string
   readonly sourceOperationId: string
@@ -90,7 +92,7 @@ export interface ProvenanceDerivedFact {
   readonly elementId: string
 }
 
-/** A relationship disclosed by the Enterprise Interaction projection. */
+/** Reserved for a platform object-to-object relation contract that has not been disclosed yet; no producer today. */
 export interface ProvenanceContextRelation {
   readonly id: string
   readonly knowledgeNetworkId: string
@@ -152,21 +154,12 @@ export interface ProvenanceReceiptRef {
   readonly operationId?: string
   readonly toolLabel?: string
   readonly status?: string
-  readonly durability?: string
   readonly source: 'platform' | 'mcp-result'
   /** Copyable verification hint, e.g. `openbkn trace receipts get <id>`; never executed. */
   readonly verifyHint?: string
-  /** Present only when an enterprise resolver can parse receipt content. */
-  readonly detail?: ProvenanceReceiptDetail
-}
-
-/**
- * Reserved for a real enterprise receipt-content contract. Defined only from a
- * verified platform response shape; inventing fields here produced the original
- * placeholder-evidence defect.
- */
-export interface ProvenanceReceiptDetail {
-  readonly fields: readonly { readonly name: string; readonly value: string }[]
+  // No receipt-content fields: the platform has not disclosed a receipt detail
+  // contract (V2, docs/evidence/2026-09-20-provenance-v1-v2.md), so none is
+  // defined here.
 }
 
 export type ProvenanceEvidenceView =

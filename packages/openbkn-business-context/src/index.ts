@@ -29,7 +29,6 @@ export { normalizeProvenanceHandle, sameProvenanceHandle } from './provenance-ha
 export { buildTurnTimeline } from './turn-timeline.js'
 export type { TurnTimelineLocator } from './turn-timeline.js'
 export type { ProvenanceHandle } from './types.js'
-export { LIFECYCLE_TOOLS, MANAGED_IN_INTERACTION_TOOLS, managedConversationSectionText } from './scoped-business-context.js'
 export {
   CONVERSATION_INVALID_ERROR_CODES,
   FINISH_INTERACTION_TOOL,

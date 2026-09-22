@@ -8,5 +8,5 @@
     "allowImportingTsExtensions": true,
     "rewriteRelativeImportExtensions": true
   },
-  "include": ["src/client/**/*.ts", "src/client/**/*.tsx", "src/business-graph-model.ts", "src/types.ts"]
+  "include": ["src/client/**/*.ts", "src/client/**/*.tsx", "src/business-graph-model.ts", "src/timeline-fold.ts", "src/types.ts"]
 }

@@ -1,6 +1,7 @@
 import { useEffect, useRef, useState, type ReactNode } from 'react'
 import type { HostObservable, InjectFace, PropsRuntime } from '@deepseek-ai/dsh-client-ui-slots'
 import { buildBusinessGraphModel, businessGraphGeometry } from '../business-graph-model.ts'
+import { foldTimeline, type TimelineFoldGroup } from '../timeline-fold.ts'
 import type { ProvenanceBusinessView, ProvenanceDegradation, ProvenanceHandle, ProvenanceTimelineNode, ProvenanceView } from '../types.ts'
 import type {} from '@deepseek-ai/dsh-client-ui-layout/client'
 
@@ -105,30 +106,11 @@ function Execution({ handle, view }: { handle: ProvenanceHandle; view: Provenanc
   </div>
 }
 
-interface TimelineGroup {
-  readonly nodes: readonly ProvenanceTimelineNode[]
-}
-
 function Timeline({ nodes }: { nodes: readonly ProvenanceTimelineNode[] }) {
-  // Presentation-only folding: consecutive same-tool, same-outcome calls render
-  // as one row; a folded row intentionally shows no platform reference.
-  const groups: TimelineGroup[] = []
-  for (const node of nodes) {
-    const last = groups[groups.length - 1]?.nodes
-    const foldable = node.tool !== undefined && node.platform === undefined
-    if (foldable && last !== undefined && last.length > 0) {
-      const candidate = last[last.length - 1]!
-      if (candidate.tool === node.tool && candidate.outcome === node.outcome && candidate.platform === undefined) {
-        groups[groups.length - 1] = { nodes: [...last, node] }
-        continue
-      }
-    }
-    groups.push({ nodes: [node] })
-  }
-  return <div style={timelineStyle}>{groups.map((group, index) => <TimelineRow key={group.nodes[0]?.seq ?? index} group={group} />)}</div>
+  return <div style={timelineStyle}>{foldTimeline(nodes).map((group, index) => <TimelineRow key={group.nodes[0]?.seq ?? index} group={group} />)}</div>
 }
 
-function TimelineRow({ group }: { group: TimelineGroup }) {
+function TimelineRow({ group }: { group: TimelineFoldGroup }) {
   const node = group.nodes[0]!
   const folded = group.nodes.length > 1
   if (node.kind === 'question' || node.kind === 'answer') {

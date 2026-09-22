@@ -1,6 +1,6 @@
 import assert from 'node:assert/strict'
 import test from 'node:test'
-import { buildTurnTimeline } from '../src/turn-timeline.ts'
+import { buildTurnTimeline, foldTimeline } from '../src/turn-timeline.ts'
 
 interface Event { readonly type: string; readonly time: number; readonly data: unknown }
 
@@ -101,4 +101,41 @@ test('never projects argument values or response bodies into summaries', () => {
   for (const leak of ['SENSITIVE-QUESTION-42', 'SENSITIVE-KN', 'SENSITIVE-CONV-ID', 'SENSITIVE-ARGS', 'SENSITIVE-CONDITION', 'SENSITIVE-ROW-NAME', 'SENSITIVE-MESSAGE-TEXT', 'SENSITIVE-CODE', 'SENSITIVE-STDOUT']) {
     assert.equal(serialized.includes(leak), false, leak)
   }
+})
+
+test('foldTimeline collapses consecutive same-tool same-outcome calls into one group', () => {
+  const groups = foldTimeline([
+    { seq: 0, kind: 'question', at: 1_000 },
+    { seq: 1, kind: 'managed', tool: 'query_object_instance', at: 1_100, durationMs: 40, outcome: 'ok' },
+    { seq: 2, kind: 'managed', tool: 'query_object_instance', at: 1_200, durationMs: 50, outcome: 'ok' },
+    { seq: 3, kind: 'managed', tool: 'query_object_instance', at: 1_300, durationMs: 60, outcome: 'ok' },
+    { seq: 4, kind: 'answer', at: 1_400 },
+  ])
+  assert.deepEqual(groups.map(group => group.nodes.length), [1, 3, 1])
+  // The folded row renders the first node's timestamps and duration.
+  assert.equal(groups[1]!.nodes[0]!.at, 1_100)
+  assert.equal(groups[1]!.nodes[0]!.durationMs, 40)
+})
+
+test('foldTimeline never folds nodes carrying platform facts', () => {
+  const groups = foldTimeline([
+    { seq: 0, kind: 'managed', tool: 'query_object_instance', at: 1_000, outcome: 'ok' },
+    { seq: 1, kind: 'managed', tool: 'query_object_instance', at: 1_100, outcome: 'ok', platform: { operationId: 'op-1' } },
+    { seq: 2, kind: 'managed', tool: 'query_object_instance', at: 1_200, outcome: 'ok' },
+  ])
+  // A platform-bearing node breaks the run in both directions: one row cannot
+  // stand in for several operation ids.
+  assert.deepEqual(groups.map(group => group.nodes.length), [1, 1, 1])
+})
+
+test('foldTimeline keeps different outcomes and different tools apart', () => {
+  const groups = foldTimeline([
+    { seq: 0, kind: 'managed', tool: 'query_object_instance', at: 1_000, outcome: 'ok' },
+    { seq: 1, kind: 'managed', tool: 'query_object_instance', at: 1_100, outcome: 'error' },
+    { seq: 2, kind: 'managed', tool: 'search_instance', at: 1_200, outcome: 'error' },
+    { seq: 3, kind: 'managed', tool: 'query_object_instance', at: 1_300, outcome: 'ok' },
+  ])
+  assert.deepEqual(groups.map(group => group.nodes.length), [1, 1, 1, 1])
+  // Non-consecutive repeats of the same tool and outcome stay separate runs.
+  assert.equal(groups[0]!.nodes[0]!.tool, groups[3]!.nodes[0]!.tool)
 })
