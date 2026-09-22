@@ -258,7 +258,9 @@ const MCP_ENDPOINT_PATH = '/api/agent-retrieval/v1/mcp/'
 async function checkV0_6() {
   const baseUrl = process.env.OPENBKN_BASE_URL ?? 'https://192.168.50.28'
   // Dev platforms run self-signed TLS; the probe must opt in explicitly.
-  if (process.env.OPENBKN_PROBE_INSECURE_TLS === '1') process.env.NODE_TLS_REJECT_UNAUTHORIZED = '0'
+  // Test probe against a local self-signed dev platform only; explicitly
+  // opt-in via OPENBKN_PROBE_INSECURE_TLS, never set in production paths.
+  if (process.env.OPENBKN_PROBE_INSECURE_TLS === '1') process.env.NODE_TLS_REJECT_UNAUTHORIZED = '0' // codeql[js/disabling-certificate-validation]
   let token
   try {
     ({ stdout: token } = await runCli('openbkn', ['auth', 'token']))
