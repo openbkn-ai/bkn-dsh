@@ -42,7 +42,7 @@ DSH 运行时版本：`@deepseek-ai/dsh-tools@0.1.6-alpha.2 (npm)`。插件版�
 | V0-2 | 模型发起的调用 `exec.agent` 一定存在 | 带 agent 的执行 guard 恰好触发 1 次、`exec.agent === undefined` 计 0 次；随后一次无 agent 的执行后 guard 总数不变（scoped guard 整体旁路，C3 实测确认） | **成立（限带 agent 的执行）** |
 | V0-3 | start 的成功结果先于下一次 guard 判定到达 | 同步监听器置位后，紧接的受管工具调用未被误拒（C2 成立） | **成立（监听器同步时）** |
 | V0-4 | 取消 / 超时 / 抛错时结果事件仍到达 | 抛错、派发前取消、body 内取消三条路径都发出 `tools/result`；派发前取消的 `error.info.code === 'ABORTED_BEFORE_DISPATCH'`，**body 内取消的 info.code 为空**（识别「用户取消」只能依赖派发前取消码，派发后取消需按错误文本/状态另行处理） | **成立** |
-| V0-5 | 会话恢复后不残留 open 状态 | probe 未单独模拟；由实现结构保证（`open` 仅存内存且每轮重置，`conversationId` 从会话事件回放）+ `interaction-lifecycle` 单测（`restoreFrom`/`onTurnStart`）+ 9.2 行为验收「重载会话后问业务问题」覆盖 | **结构性覆盖** |
+| V0-5 | 会话恢复后不残留 open 状态 | 2026-09-22 行为验收实测：页面重载恢复 13 轮会话后业务问题仍 continue 同一 conversation（`docs/evidence/2026-09-22-interaction-baseline.md` §3.2） | **实测成立** |
 | V0-6 | 平台「conversation 失效」错误码可机器判定 | 伪造 `conversation_id` + `continue` → 工具结果 `isError: true`，错误码 `resource_not_disclosed`；对照：参数错误 `invalid_params`、未认证与超时均为传输层错误（无工具级错误码）。**形状可机器区分** | **成立** |
 
 ### V0-6 的平台源码佐证（bkn-foundry，EE 0.1.4）

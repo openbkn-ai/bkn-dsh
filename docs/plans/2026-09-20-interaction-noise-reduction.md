@@ -72,7 +72,7 @@
 | V0-2 | 模型发起的 MCP 调用其 `exec.agent` 一定存在 | guard 内记录 `exec.agent === undefined` 的次数 | 关键规则下沉 global guard 并自行按 agent 过滤 | **成立**（guard 内 agent 缺失计 0；无 agent 执行旁路 scoped guard 实测确认） |
 | V0-3 | `start_interaction` 的成功结果先于下一次 guard 判定到达 | 连续 start→检索，断言检索未被误拒 | 改在 `tools/post-execute`（waterfall，可 await）更新状态 | **成立**（同步监听器下紧接收管调用未被误拒） |
 | V0-4 | 取消 / 超时 / 工具抛错时 `tools/result` 仍到达，状态可收敛 | 三种失败各跑一次 | 增加 turn-stopping 兜底重置 | **成立**（三路径均有结果事件；派发前取消 code=`ABORTED_BEFORE_DISPATCH`，body 内取消无 info.code） |
-| V0-5 | 会话恢复后不残留上一次的 open 状态 | 恢复会话后立即发业务问题 | 在 Agent 恢复钩子显式初始化 | **结构性覆盖**（open 仅内存且每轮重置；restoreFrom/onTurnStart 单测 + 9.2 重载会话验收） |
+| V0-5 | 会话恢复后不残留上一次的 open 状态 | 恢复会话后立即发业务问题 | 在 Agent 恢复钩子显式初始化 | **实测成立**（2026-09-22 行为验收：页面重载恢复 13 轮会话后业务问题仍 continue 同一 conversation，见 `docs/evidence/2026-09-22-interaction-baseline.md` §3.2） |
 | **V0-6** | **平台对「conversation 不存在／已关闭／无效」返回什么可机器判定的错误码** | 用伪造的 `conversation_id` 调 `bkn_start_interaction --conversation_mode continue`，记录错误码与 message 形状；再与超时、认证失效、参数错误三类错误对照 | 无法机器区分 → **不实现自动回退**，改为向用户提示并要求人工新开会话（见 5.3） | **成立**（伪造 id→`resource_not_disclosed`；参数错误→`invalid_params`；未认证/超时为传输层错误。可机器区分，受控回退按 5.3 实施；平台源码佐证 `conversation_owner_mismatch` 亦属不可继续） |
 
 **可复现要求（v3 新增）**：
