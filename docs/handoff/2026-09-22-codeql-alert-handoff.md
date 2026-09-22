@@ -2,7 +2,7 @@
 
 > 自包含文档，面向接手人；无需原会话上下文。
 
-> **决策（2026-09-22，最终）**：告警二（探针 TLS）已**根治**——采纳同事给出的简化方案（优于本文路径 a 的 re-exec）：删除 `NODE_TLS_REJECT_UNAUTHORIZED` 开关行，调用时在命令前带 `NODE_EXTRA_CA_CERTS=<平台 CA pem>`（该变量本就于命令行设置、Node 启动时读取，无需子进程）。落地 commit `f48ca83`（探针 + 两份文档命令同步，历史 JSON 证据保留加注记）；实测 V0-1..V0-7 全 pass 无 TLS 错误；**CodeQL 转绿**，PR ref 无 open 告警（#11/#12 维持 dismissed），`OPENBKN_PROBE_INSECURE_TLS` 废弃。告警一的 ReDoS 修复已包含在 PR 内；main 存量 6 处 ReDoS（告警 #1–#6）仍建议日后单独小 PR 统一修复。本文转为决策记录存档。
+> **决策（2026-09-22，最终）**：告警二（探针 TLS）已**根治**——采纳同事给出的简化方案（优于本文路径 a 的 re-exec）：删除 `NODE_TLS_REJECT_UNAUTHORIZED` 开关行，调用时在命令前带 `NODE_EXTRA_CA_CERTS=<平台 CA pem>`（该变量本就于命令行设置、Node 启动时读取，无需子进程）。落地 commit `b5ece5f`（本分支改写英文提交信息后的同内容提交；改写前的 `f48ca83` 位于 #31 的旧分支，不在本 PR）（探针 + 两份文档命令同步，历史 JSON 证据保留加注记）；实测 V0-1..V0-7 全 pass 无 TLS 错误；**CodeQL 转绿**，PR ref 无 open 告警（#11/#12 维持 dismissed），`OPENBKN_PROBE_INSECURE_TLS` 废弃。告警一的 ReDoS 修复已包含在 PR 内；main 存量 6 处 ReDoS（告警 #1–#6）仍建议日后单独小 PR 统一修复。本文转为决策记录存档。
 
 ## 背景与范围
 

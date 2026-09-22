@@ -17,13 +17,13 @@ DSH 运行时版本：`@deepseek-ai/dsh-tools@0.1.6-alpha.2 (npm)`。插件版�
 
 ## 2. 证据记录
 
+> 注（2026-09-22）：下方 json 块中的 V0-6/V0-7 记录以旧开关 `OPENBKN_PROBE_INSECURE_TLS=1` 采集；该开关已废弃（CodeQL 告警处置，改为启动时 `NODE_EXTRA_CA_CERTS` 注入平台 CA），现行调用方式见上方命令块。
+
 ```json
 {"check":"V0-1 agent-scoped tools/result only receives its own Agent","dshVersion":"@deepseek-ai/dsh-tools@0.1.6-alpha.2 (npm)","command":"node tests/probes/dsh-event-model.probe.mjs","observation":{"scopedCallsReceived":{"a":2,"b":2},"foreignEventsSeen":false,"untaggedListenerSeesAllAgents":true},"verdict":"pass"}
 {"check":"V0-2 model-path guard coverage: exec.agent present; agentless execution bypasses scoped guard","dshVersion":"@deepseek-ai/dsh-tools@0.1.6-alpha.2 (npm)","command":"node tests/probes/dsh-event-model.probe.mjs","observation":{"guardInvocationsForAgentCall":1,"guardAgentMissingCount":0,"guardInvocationsAfterAgentlessCall":1},"verdict":"pass"}
 {"check":"V0-3 synchronous tools/result listener updates state before the next guard judgment","dshVersion":"@deepseek-ai/dsh-tools@0.1.6-alpha.2 (npm)","command":"node tests/probes/dsh-event-model.probe.mjs","observation":{"startResultIsError":false,"managedCallGuardDenied":false,"managedCallIsError":false},"verdict":"pass"}
 {"check":"V0-4 cancellation/throw paths still emit tools/result","dshVersion":"@deepseek-ai/dsh-tools@0.1.6-alpha.2 (npm)","command":"node tests/probes/dsh-event-model.probe.mjs","observation":{"throwPathResultEmitted":true,"abortBeforeDispatchResultEmitted":true,"abortBeforeDispatchCode":"ABORTED_BEFORE_DISPATCH","abortDuringBodyResultEmitted":true,"abortDuringBodyCode":[null]},"verdict":"pass"}
-> 注（2026-09-22）：下述 V0-6/V0-7 记录以旧开关 `OPENBKN_PROBE_INSECURE_TLS=1` 采集；该开关已废弃（CodeQL 告警处置，改为启动时 `NODE_EXTRA_CA_CERTS` 注入平台 CA），现行调用方式见上方命令块。
-
 {"check":"V0-6 platform conversation-invalidation error shapes (no successful interaction started)","dshVersion":"@deepseek-ai/dsh-tools@0.1.6-alpha.2 (npm)","command":"OPENBKN_PROBE_INSECURE_TLS=1 node tests/probes/dsh-event-model.probe.mjs --v0-6","observation":{"shapes":{"forgedConversationContinue":{"toolIsError":true,"codeTokens":["resource_not_disclosed"]},"invalidParameter":{"toolIsError":true,"codeTokens":["invalid_params"]},"unauthenticated":{"transportError":"SdkHttpError"},"timeout":{"transportError":"Error"}},"machineDistinguishableFromParameterError":true},"verdict":"pass"}
 {"check":"V0-7 production-chain extraction of the platform envelope through a DSH ToolExecutionResult","dshVersion":"@deepseek-ai/dsh-tools@0.1.6-alpha.2 (npm)","command":"OPENBKN_PROBE_INSECURE_TLS=1 node tests/probes/dsh-event-model.probe.mjs --v0-6","observation":{"toolResultIsError":true,"extractedErrorCode":"resource_not_disclosed","classification":"conversation-invalid"},"verdict":"pass"}
 ```
