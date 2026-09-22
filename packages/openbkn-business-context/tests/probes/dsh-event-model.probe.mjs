@@ -10,7 +10,7 @@
  *
  * Usage (from packages/openbkn-business-context):
  *   node tests/probes/dsh-event-model.probe.mjs            # V0-1..V0-4, local runtime
- *   OPENBKN_PROBE_INSECURE_TLS=1 \
+ *   NODE_EXTRA_CA_CERTS=~/.dsh/openbkn-dev-ca.pem \
  *     node tests/probes/dsh-event-model.probe.mjs --v0-6   # + V0-6 platform shapes and
  *                                                           #   V0-7 production-chain extraction
  *                                                           #   (requires a built lib/ and the
@@ -257,10 +257,8 @@ const MCP_ENDPOINT_PATH = '/api/agent-retrieval/v1/mcp/'
 
 async function checkV0_6() {
   const baseUrl = process.env.OPENBKN_BASE_URL ?? 'https://192.168.50.28'
-  // Dev platforms run self-signed TLS; the probe must opt in explicitly.
-  // Test probe against a local self-signed dev platform only; explicitly
-  // opt-in via OPENBKN_PROBE_INSECURE_TLS, never set in production paths.
-  if (process.env.OPENBKN_PROBE_INSECURE_TLS === '1') process.env.NODE_TLS_REJECT_UNAUTHORIZED = '0' // codeql[js/disabling-certificate-validation]
+  // Dev platforms run self-signed TLS: trust the platform CA at launch via
+  // NODE_EXTRA_CA_CERTS (see Usage) instead of disabling verification.
   let token
   try {
     ({ stdout: token } = await runCli('openbkn', ['auth', 'token']))

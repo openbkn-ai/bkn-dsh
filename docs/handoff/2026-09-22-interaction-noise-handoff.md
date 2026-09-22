@@ -41,7 +41,7 @@ pnpm --filter @openbkn/dsh-business-context typecheck      # 通过
 pnpm run package:check                                     # 通过（probe 不进发布包）
 cd packages/openbkn-business-context
 node tests/probes/dsh-event-model.probe.mjs                # V0-1..V0-4，实测 4/4 pass
-OPENBKN_PROBE_INSECURE_TLS=1 node tests/probes/dsh-event-model.probe.mjs --v0-6   # + V0-6/V0-7（需 openbkn CLI 已登录 + 自签平台）
+NODE_EXTRA_CA_CERTS=~/.dsh/openbkn-dev-ca.pem node tests/probes/dsh-event-model.probe.mjs --v0-6   # + V0-6/V0-7（需 openbkn CLI 已登录 + 自签平台）
 ```
 
 注意：本地跑 pnpm 后检查 `pnpm-lock.yaml` 是否被改写为 `link:../deepseek-harness`，被改写则 `git checkout -- pnpm-lock.yaml`（CLAUDE.md 明令不提交该 diff）。
