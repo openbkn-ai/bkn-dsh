@@ -12,9 +12,13 @@ export type PlatformReaderErrorCode =
 
 /** A bounded Host-side error. It never includes platform response bodies. */
 export class PlatformReaderError extends Error {
-  constructor(readonly code: PlatformReaderErrorCode, message: string, options?: ErrorOptions) {
+  /** The platform's own required_action from a permission_denied envelope, truncated. */
+  readonly requiredAction?: string
+
+  constructor(readonly code: PlatformReaderErrorCode, message: string, options?: ErrorOptions & { readonly requiredAction?: string }) {
     super(message, options)
     this.name = 'PlatformReaderError'
+    this.requiredAction = options?.requiredAction
   }
 }
 
@@ -127,7 +131,11 @@ export class OpenBknPlatformReader {
         const body = await response.text().catch(() => '')
         const failure = body.length <= 4096 ? record(safeParse(body))?.error : undefined
         if (string(record(failure)?.code) === 'permission_denied') {
-          throw new PlatformReaderError('LICENSE_REQUIRED', 'The requested OpenBKN capability requires an enterprise license for this business domain.')
+          throw new PlatformReaderError(
+            'LICENSE_REQUIRED',
+            'The requested OpenBKN capability requires an enterprise license for this business domain.',
+            { requiredAction: truncateRequiredAction(string(record(failure)?.required_action)) },
+          )
         }
       }
       throw new PlatformReaderError('AUTHENTICATION_REQUIRED', 'OpenBKN authentication is required.')
@@ -234,6 +242,11 @@ function fixedUrl(baseUrl: string, path: string, allowInsecureTls: boolean): URL
 function normalizeBaseUrl(value: string): string { return value.trim().replace(/\/+$/, '') }
 function record(value: unknown): Record<string, unknown> | undefined { return typeof value === 'object' && value !== null && !Array.isArray(value) ? value as Record<string, unknown> : undefined }
 function safeParse(text: string): unknown { try { return JSON.parse(text) } catch { return undefined } }
+/** Pass the platform's next-step token through, bounded; never the message body around it. */
+function truncateRequiredAction(value: string | undefined): string | undefined {
+  if (value === undefined || value.length === 0) return undefined
+  return value.length > 256 ? value.slice(0, 256) : value
+}
 
 /** Read a response body as text, aborting the stream once the byte cap is exceeded. */
 async function readCappedBody(response: Response, capBytes: number): Promise<string> {

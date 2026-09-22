@@ -228,8 +228,17 @@ test('reads the durable binding for one live session without consulting CLI cred
 })
 
 test('reads provenance only from the finalized assistant message in one live session', () => {
-  const handle = {
+  const stored = {
     schemaVersion: 1 as const,
+    interactionId: 'interaction-1',
+    requestIds: [],
+    traceIds: [],
+    receiptIds: [],
+    status: 'completed' as const,
+    partial: true,
+  }
+  const handle = {
+    schemaVersion: 2 as const,
     interactionId: 'interaction-1',
     requestIds: [],
     traceIds: [],
@@ -240,7 +249,7 @@ test('reads provenance only from the finalized assistant message in one live ses
   const agent = {
     id: 'session-1',
     session: { snapshotEvents: () => [{ type: 'openbkn/turn-provenance', data: {
-      messageId: 'assistant-message-1', handle,
+      messageId: 'assistant-message-1', handle: stored,
     } }] },
   }
   const service = Object.create(OpenBknBusinessContextService.prototype) as {
@@ -256,14 +265,22 @@ test('reads provenance only from the finalized assistant message in one live ses
 
 test('retains Community execution facts when the formal Enterprise projection is not disclosed', async () => {
   const handle = {
-    schemaVersion: 1 as const, interactionId: 'int-123', requestIds: [], traceIds: [], receiptIds: [],
-    status: 'completed' as const, partial: true,
+    schemaVersion: 2 as const, interactionId: 'int-123', requestIds: [], traceIds: [], receiptIds: [],
+    status: 'completed' as const, partial: true, conversationId: 'conv-123', turn: 3,
   }
   const agent = {
     id: 'session-1',
     session: {
       header: { cwd: '/workspace' },
-      snapshotEvents: () => [{ type: 'openbkn/turn-provenance', data: { messageId: 'assistant-message-1', handle } }],
+      snapshotEvents: () => [
+        { type: 'openbkn/turn-provenance', data: { messageId: 'assistant-message-1', handle } },
+        { type: 'user/message', time: 1_000, data: { turn: 3, message: { id: 'user-1', role: 'user', content: [{ type: 'text', text: 'How many orders?' }] } } },
+        { type: 'tool/call', time: 1_100, data: { turn: 3, step: 1, callId: 'call-1', name: 'mcp__openbkn__bkn_start_interaction', arguments: '{"conversation_mode":"new"}' } },
+        { type: 'tool/result', time: 1_140, data: { turn: 3, step: 1, message: { source: { kind: 'tool', callId: 'call-1' }, content: [{ type: 'tool-result', content: [{ type: 'text', text: '{"interaction_id":"int-123","conversation_id":"conv-123","execution_status":"in_progress"}' }] }] } } },
+        { type: 'tool/call', time: 1_200, data: { turn: 3, step: 2, callId: 'call-2', name: 'mcp__openbkn__query_object_instance', arguments: '{}' } },
+        { type: 'tool/result', time: 1_290, data: { turn: 3, step: 2, message: { source: { kind: 'tool', callId: 'call-2' }, content: [{ type: 'tool-result', content: [{ type: 'text', text: '{"nodes":[1,2,3]}' }] }] } } },
+        { type: 'assistant/message', time: 1_500, data: { turn: 3, step: 3, message: { id: 'assistant-message-1', role: 'assistant', content: [{ type: 'text', text: 'Answer.' }] } } },
+      ],
     },
   }
   const service = Object.create(OpenBknBusinessContextService.prototype) as {
@@ -276,7 +293,7 @@ test('retains Community execution facts when the formal Enterprise projection is
     remoteGetTurnProvenanceView(sessionId: string, messageId: string, signal: AbortSignal): Promise<unknown>
   }
   service.config = { ...config, maxGraphNodes: 10, maxGraphEdges: 10 }
-  service.ctx = { agents: { get: sessionId => sessionId === 'session-1' ? agent : undefined } }
+  service.ctx = { agents: { get: sessionId => sessionId === 'session-1' ? agent : undefined }, logger: { warn: () => {} } }
   const calls: unknown[] = []
   service.platformReader = () => ({
     getInteractionOperations: async (interactionId, _signal, cwd) => {
@@ -295,24 +312,39 @@ test('retains Community execution facts when the formal Enterprise projection is
     { kind: 'operations', interactionId: 'int-123', cwd: '/workspace' },
     { kind: 'enterprise', cwd: '/workspace' },
   ])
-  assert.deepEqual(view, {
-    interactionId: 'int-123',
-    execution: { status: 'completed', operations: [{ id: 'op-1', label: 'query_metric', protocol: undefined, status: undefined, startedAt: undefined, finishedAt: undefined, requestId: undefined, traceId: undefined, receiptId: undefined }] },
-    business: { kind: 'unavailable' },
-    evidence: { kind: 'unavailable' },
+  assert.deepEqual(view.timeline.map(node => [node.kind, node.tool]), [
+    ['question', undefined],
+    ['lifecycle', 'bkn_start_interaction'],
+    ['managed', 'query_object_instance'],
+    ['answer', undefined],
+  ])
+  assert.deepEqual(view.execution.operations, [{ id: 'op-1', label: 'query_metric', protocol: undefined, status: undefined, startedAt: undefined, finishedAt: undefined, requestId: undefined, traceId: undefined, receiptId: undefined }])
+  assert.deepEqual(view.business, { kind: 'unavailable' })
+  assert.deepEqual(view.evidence, { kind: 'unavailable', reason: 'no-receipts' })
+  assert.deepEqual(view.sources, {
+    timeline: 'local-session', operations: 'platform', business: 'unavailable', evidence: 'unavailable',
+    degraded: [{ pane: 'business', reason: 'platform-unavailable' }],
   })
 })
 
 test('retains Community execution facts when an enabled Enterprise projection is temporarily unavailable', async () => {
   const handle = {
-    schemaVersion: 1 as const, interactionId: 'int-123', requestIds: [], traceIds: [], receiptIds: [],
-    status: 'completed' as const, partial: true,
+    schemaVersion: 2 as const, interactionId: 'int-123', requestIds: [], traceIds: [], receiptIds: [],
+    status: 'completed' as const, partial: true, conversationId: 'conv-123', turn: 3,
   }
   const agent = {
     id: 'session-1',
     session: {
       header: { cwd: '/workspace' },
-      snapshotEvents: () => [{ type: 'openbkn/turn-provenance', data: { messageId: 'assistant-message-1', handle } }],
+      snapshotEvents: () => [
+        { type: 'openbkn/turn-provenance', data: { messageId: 'assistant-message-1', handle } },
+        { type: 'user/message', time: 1_000, data: { turn: 3, message: { id: 'user-1', role: 'user', content: [{ type: 'text', text: 'How many orders?' }] } } },
+        { type: 'tool/call', time: 1_100, data: { turn: 3, step: 1, callId: 'call-1', name: 'mcp__openbkn__bkn_start_interaction', arguments: '{"conversation_mode":"new"}' } },
+        { type: 'tool/result', time: 1_140, data: { turn: 3, step: 1, message: { source: { kind: 'tool', callId: 'call-1' }, content: [{ type: 'tool-result', content: [{ type: 'text', text: '{"interaction_id":"int-123","conversation_id":"conv-123","execution_status":"in_progress"}' }] }] } } },
+        { type: 'tool/call', time: 1_200, data: { turn: 3, step: 2, callId: 'call-2', name: 'mcp__openbkn__query_object_instance', arguments: '{}' } },
+        { type: 'tool/result', time: 1_290, data: { turn: 3, step: 2, message: { source: { kind: 'tool', callId: 'call-2' }, content: [{ type: 'tool-result', content: [{ type: 'text', text: '{"nodes":[1,2,3]}' }] }] } } },
+        { type: 'assistant/message', time: 1_500, data: { turn: 3, step: 3, message: { id: 'assistant-message-1', role: 'assistant', content: [{ type: 'text', text: 'Answer.' }] } } },
+      ],
     },
   }
   const service = Object.create(OpenBknBusinessContextService.prototype) as {
@@ -325,7 +357,7 @@ test('retains Community execution facts when an enabled Enterprise projection is
     remoteGetTurnProvenanceView(sessionId: string, messageId: string, signal: AbortSignal): Promise<unknown>
   }
   service.config = { ...config, maxGraphNodes: 10, maxGraphEdges: 10 }
-  service.ctx = { agents: { get: sessionId => sessionId === 'session-1' ? agent : undefined } }
+  service.ctx = { agents: { get: sessionId => sessionId === 'session-1' ? agent : undefined }, logger: { warn: () => {} } }
   service.platformReader = () => ({
     getInteractionOperations: async () => ({ entries: [{ operation_id: 'op-1', tool_name: 'query_metric' }] }),
     getInteractionBusinessGraph: async () => { throw new Error('business graph is not ready') },
@@ -333,24 +365,30 @@ test('retains Community execution facts when an enabled Enterprise projection is
 
   const view = await service.remoteGetTurnProvenanceView('session-1', 'assistant-message-1', AbortSignal.timeout(1_000))
 
-  assert.deepEqual(view, {
-    interactionId: 'int-123',
-    execution: { status: 'completed', operations: [{ id: 'op-1', label: 'query_metric', protocol: undefined, status: undefined, startedAt: undefined, finishedAt: undefined, requestId: undefined, traceId: undefined, receiptId: undefined }] },
-    business: { kind: 'unavailable' },
-    evidence: { kind: 'unavailable' },
-  })
+  assert.equal(view.timeline.length, 4)
+  assert.deepEqual(view.execution.operations, [{ id: 'op-1', label: 'query_metric', protocol: undefined, status: undefined, startedAt: undefined, finishedAt: undefined, requestId: undefined, traceId: undefined, receiptId: undefined }])
+  assert.deepEqual(view.business, { kind: 'unavailable' })
+  assert.deepEqual(view.sources.degraded, [{ pane: 'business', reason: 'platform-unavailable' }])
 })
 
 test('uses the formal Trace 3 business graph without treating BKN Safe capabilities as its gate', async () => {
   const handle = {
-    schemaVersion: 1 as const, interactionId: 'int-123', requestIds: [], traceIds: [], receiptIds: [],
-    status: 'completed' as const, partial: true,
+    schemaVersion: 2 as const, interactionId: 'int-123', requestIds: [], traceIds: [], receiptIds: [],
+    status: 'completed' as const, partial: true, conversationId: 'conv-123', turn: 3,
   }
   const agent = {
     id: 'session-1',
     session: {
       header: { cwd: '/workspace' },
-      snapshotEvents: () => [{ type: 'openbkn/turn-provenance', data: { messageId: 'assistant-message-1', handle } }],
+      snapshotEvents: () => [
+        { type: 'openbkn/turn-provenance', data: { messageId: 'assistant-message-1', handle } },
+        { type: 'user/message', time: 1_000, data: { turn: 3, message: { id: 'user-1', role: 'user', content: [{ type: 'text', text: 'How many orders?' }] } } },
+        { type: 'tool/call', time: 1_100, data: { turn: 3, step: 1, callId: 'call-1', name: 'mcp__openbkn__bkn_start_interaction', arguments: '{"conversation_mode":"new"}' } },
+        { type: 'tool/result', time: 1_140, data: { turn: 3, step: 1, message: { source: { kind: 'tool', callId: 'call-1' }, content: [{ type: 'tool-result', content: [{ type: 'text', text: '{"interaction_id":"int-123","conversation_id":"conv-123","execution_status":"in_progress"}' }] }] } } },
+        { type: 'tool/call', time: 1_200, data: { turn: 3, step: 2, callId: 'call-2', name: 'mcp__openbkn__query_object_instance', arguments: '{}' } },
+        { type: 'tool/result', time: 1_290, data: { turn: 3, step: 2, message: { source: { kind: 'tool', callId: 'call-2' }, content: [{ type: 'tool-result', content: [{ type: 'text', text: '{"nodes":[1,2,3]}' }] }] } } },
+        { type: 'assistant/message', time: 1_500, data: { turn: 3, step: 3, message: { id: 'assistant-message-1', role: 'assistant', content: [{ type: 'text', text: 'Answer.' }] } } },
+      ],
     },
   }
   const service = Object.create(OpenBknBusinessContextService.prototype) as {
@@ -363,7 +401,7 @@ test('uses the formal Trace 3 business graph without treating BKN Safe capabilit
     remoteGetTurnProvenanceView(sessionId: string, messageId: string, signal: AbortSignal): Promise<unknown>
   }
   service.config = { ...config, maxGraphNodes: 10, maxGraphEdges: 10 }
-  service.ctx = { agents: { get: sessionId => sessionId === 'session-1' ? agent : undefined } }
+  service.ctx = { agents: { get: sessionId => sessionId === 'session-1' ? agent : undefined }, logger: { warn: () => {} } }
   service.platformReader = () => ({
     getInteractionOperations: async () => { throw new Error('Core route is unavailable on this deployment') },
     getInteractionBusinessGraph: async () => ({
@@ -377,11 +415,15 @@ test('uses the formal Trace 3 business graph without treating BKN Safe capabilit
 
   const view = await service.remoteGetTurnProvenanceView('session-1', 'assistant-message-1', AbortSignal.timeout(1_000))
 
-  assert.deepEqual(view, {
-    interactionId: 'int-123',
-    execution: { status: 'completed', operations: [] },
-    business: { kind: 'ready', operations: [{ id: 'op-1', attempt: 0, toolName: 'OpenBKN operation', status: 'resolved', elements: [{ id: 'object_type:kn-supply:supplier', kind: 'object', name: '供应商' }], missingFacts: [] }], conversationContext: [], derivedFacts: [], contextRelations: [] },
-    evidence: { kind: 'unavailable' },
+  assert.equal(view.timeline.length, 4)
+  assert.deepEqual(view.execution.operations, [])
+  assert.deepEqual(view.business, { kind: 'ready', operations: [{ id: 'op-1', attempt: 0, toolName: 'OpenBKN operation', status: 'resolved', elements: [{ id: 'object_type:kn-supply:supplier', kind: 'object', name: '供应商' }], missingFacts: [] }], conversationContext: [], derivedFacts: [], contextRelations: [] })
+  assert.deepEqual(view.sources, {
+    timeline: 'local-session', operations: 'unavailable', business: 'platform-enterprise', evidence: 'unavailable',
+    degraded: [
+      { pane: 'operations', reason: 'platform-unavailable' },
+      { pane: 'evidence', reason: 'platform-unavailable' },
+    ],
   })
 })
 
@@ -549,10 +591,61 @@ test('refuses a requested network that is not visible to the current identity', 
   )
 })
 
-test('provenance license decision covers unlicensed, licensed, and undetermined deployments', async () => {
-  const { provenanceLicenseDecision } = await import('../src/business-context-service.ts')
-  assert.deepEqual(provenanceLicenseDecision({ licensed: false, edition: 'community' }), { kind: 'license-required', edition: 'community' })
-  assert.deepEqual(provenanceLicenseDecision({ licensed: false }), { kind: 'license-required', edition: '' })
-  assert.deepEqual(provenanceLicenseDecision({ licensed: true, edition: 'enterprise' }), { kind: 'unavailable' })
-  assert.deepEqual(provenanceLicenseDecision(undefined), { kind: 'unavailable' })
+// Verified against OpenBKN 0.1.4 (docs/evidence/2026-09-20-provenance-v1-v2.md):
+// the observability read routes have no license gate — the 403 allow-list /
+// account denial is classified as domain-not-authorized on any deployment
+// license, and capabilities are never consulted for this classification.
+test('degrades each platform pane by failure class instead of throwing, and always returns the local timeline', async () => {
+  const handle = {
+    schemaVersion: 2 as const, interactionId: 'int-123', requestIds: [], traceIds: [], receiptIds: [],
+    status: 'completed' as const, partial: true, turn: 3,
+  }
+  const timelineEvents = [
+    { type: 'openbkn/turn-provenance', data: { messageId: 'assistant-message-1', handle } },
+    { type: 'user/message', time: 1_000, data: { turn: 3, message: { id: 'user-1', role: 'user', content: [{ type: 'text', text: 'Q?' }] } } },
+    { type: 'assistant/message', time: 1_500, data: { turn: 3, step: 2, message: { id: 'assistant-message-1', role: 'assistant', content: [{ type: 'text', text: 'A.' }] } } },
+  ]
+  const cases: readonly { name: string; code: string; requiredAction?: string; expect: { readonly reason: string; readonly requiredAction?: string } }[] = [
+    // The 403 classification does not depend on the deployment license: both
+    // an unlicensed community deployment and a licensed one deny reads only
+    // through the domain allow-list / account authorization.
+    { name: 'permission gate on an unlicensed deployment', code: 'LICENSE_REQUIRED', requiredAction: 'request_authorization', expect: { reason: 'domain-not-authorized', requiredAction: 'request_authorization' } },
+    { name: 'permission gate on a licensed deployment', code: 'LICENSE_REQUIRED', requiredAction: 'request_authorization', expect: { reason: 'domain-not-authorized', requiredAction: 'request_authorization' } },
+    { name: 'expired token', code: 'AUTHENTICATION_REQUIRED', expect: { reason: 'authentication-required' } },
+    { name: 'platform unreachable', code: 'PLATFORM_UNAVAILABLE', expect: { reason: 'platform-unavailable' } },
+  ]
+  for (const entry of cases) {
+    const agent = {
+      id: 'session-1',
+      session: { header: { cwd: '/workspace' }, snapshotEvents: () => timelineEvents },
+    }
+    let licenseCalls = 0
+    const service = Object.create(OpenBknBusinessContextService.prototype) as unknown as {
+      config: Record<string, unknown>
+      ctx: { agents: { get(sessionId: string): typeof agent | undefined }; logger: { warn: () => void } }
+      platformReader(): unknown
+      remoteGetTurnProvenanceView(sessionId: string, messageId: string, signal: AbortSignal): Promise<{ sources: { degraded: readonly { pane: string; reason: string; edition?: string; requiredAction?: string }[] }; timeline: readonly unknown[] }>
+    }
+    service.config = { ...config, maxGraphNodes: 10, maxGraphEdges: 10 }
+    service.ctx = { agents: { get: sessionId => sessionId === 'session-1' ? agent : undefined }, logger: { warn: () => {} } }
+    const { PlatformReaderError } = await import('../src/platform-reader.ts')
+    service.platformReader = () => ({
+      getInteractionOperations: async () => { throw new PlatformReaderError(entry.code, 'read failed', entry.requiredAction === undefined ? undefined : { requiredAction: entry.requiredAction }) },
+      getInteractionBusinessGraph: async () => { throw new PlatformReaderError(entry.code, 'read failed', entry.requiredAction === undefined ? undefined : { requiredAction: entry.requiredAction }) },
+      getLicenseEdition: async () => {
+        licenseCalls += 1
+        throw new Error('capabilities must not be consulted for read-path classification')
+      },
+    })
+
+    const view = await service.remoteGetTurnProvenanceView('session-1', 'assistant-message-1', AbortSignal.timeout(1_000))
+
+    assert.equal(view.timeline.length, 2, entry.name)
+    assert.deepEqual(view.sources.degraded, [
+      { pane: 'operations', ...entry.expect },
+      { pane: 'business', ...entry.expect },
+      { pane: 'evidence', ...entry.expect },
+    ], entry.name)
+    assert.equal(licenseCalls, 0, entry.name)
+  }
 })

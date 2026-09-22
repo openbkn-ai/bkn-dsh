@@ -3,9 +3,14 @@ import type {
   ProvenanceBusinessOperation,
   ProvenanceConversationContext,
   ProvenanceContextRelation,
+  ProvenanceDegradation,
   ProvenanceDerivedFact,
+  ProvenanceEvidenceView,
   ProvenanceHandle,
   ProvenanceOperationView,
+  ProvenanceReceiptRef,
+  ProvenanceSources,
+  ProvenanceTimelineNode,
   ProvenanceView,
 } from './types.js'
 
@@ -14,24 +19,145 @@ export interface ProvenanceViewLimits {
   readonly maxGraphEdges: number
 }
 
+/** Platform read failures the service already classified, keyed by pane. */
+export interface ProvenanceViewDegradations {
+  readonly operations?: ProvenanceDegradation
+  readonly business?: ProvenanceDegradation
+}
+
 /**
- * Projects Community execution facts plus the exact EE-owned interaction
- * projection. It never derives BKN mappings from raw Core or MCP payloads.
+ * Assemble the layered provenance view: the local timeline (Layer 0) always
+ * renders, while platform facts (Layer 1) and the enterprise projection
+ * (Layer 2) only refine their own panes. It never derives BKN mappings from
+ * raw Core or MCP payloads, and never blocks one layer behind another.
  */
 export function buildProvenanceView(
   handle: ProvenanceHandle,
-  operationsResponse: unknown,
+  timeline: readonly ProvenanceTimelineNode[],
+  operationsResponse: unknown | undefined,
   enterpriseProjection: unknown | undefined,
+  degradations: ProvenanceViewDegradations,
   limits: ProvenanceViewLimits,
 ): ProvenanceView {
+  const operations = operationsResponse === undefined ? [] : projectOperations(operationRecords(operationsResponse))
+  const business = projectBusiness(enterpriseProjection, operationsResponse, limits)
+  const evidence = projectEvidence(operations, handle, degradations.operations)
+  const sources = projectSources(operationsResponse, business, evidence, degradations)
   return {
     interactionId: handle.interactionId,
+    ...(handle.conversationId === undefined ? {} : { conversationId: handle.conversationId }),
+    sources,
+    timeline: attachPlatformFacts(timeline, operations),
     execution: {
       status: handle.status,
-      operations: projectOperations(operationRecords(operationsResponse)),
+      operations,
     },
-    business: projectBusiness(enterpriseProjection, operationsResponse, limits),
-    evidence: { kind: 'unavailable' },
+    business,
+    evidence,
+  }
+}
+
+function projectSources(
+  operationsResponse: unknown | undefined,
+  business: ProvenanceView['business'],
+  evidence: ProvenanceEvidenceView,
+  degradations: ProvenanceViewDegradations,
+): ProvenanceSources {
+  const degraded: ProvenanceDegradation[] = []
+  if (degradations.operations !== undefined) degraded.push(degradations.operations)
+  if (degradations.business !== undefined) degraded.push(degradations.business)
+  if (evidence.kind === 'unavailable' && evidence.reason !== 'no-receipts' && degradations.operations !== undefined) {
+    degraded.push({ ...degradations.operations, pane: 'evidence' })
+  }
+  return {
+    timeline: 'local-session',
+    operations: operationsResponse === undefined ? 'unavailable' : 'platform',
+    business: business.kind === 'ready' ? 'platform-enterprise' : 'unavailable',
+    evidence: evidence.kind === 'ready'
+      ? evidence.receipts.some(receipt => receipt.source === 'platform') ? 'platform' : 'mcp-result'
+      : 'unavailable',
+    degraded,
+  }
+}
+
+/**
+ * Attach Layer 1 operation facts to Layer 0 tool nodes. Alignment is by tool
+ * name plus order within the interaction; any count mismatch or missing
+ * started_at abandons that tool's whole group — a missing platform fact is
+ * preferable to a wrong one.
+ */
+function attachPlatformFacts(
+  timeline: readonly ProvenanceTimelineNode[],
+  operations: readonly ProvenanceOperationView[],
+): readonly ProvenanceTimelineNode[] {
+  if (timeline.length === 0 || operations.length === 0) return timeline
+  const nodesByTool = new Map<string, { index: number; node: ProvenanceTimelineNode }[]>()
+  timeline.forEach((node, index) => {
+    if (node.tool === undefined) return
+    const group = nodesByTool.get(node.tool) ?? []
+    group.push({ index, node })
+    nodesByTool.set(node.tool, group)
+  })
+  const operationsByTool = new Map<string, ProvenanceOperationView[]>()
+  for (const operation of operations) {
+    const tool = operation.label
+    const group = operationsByTool.get(tool) ?? []
+    group.push(operation)
+    operationsByTool.set(tool, group)
+  }
+  const platformByIndex = new Map<number, NonNullable<ProvenanceTimelineNode['platform']>>()
+  for (const [tool, nodes] of nodesByTool) {
+    const toolOperations = (operationsByTool.get(tool) ?? [])
+      .slice()
+      .sort((left, right) => compareTimestamp(left.startedAt, right.startedAt))
+    if (toolOperations.length !== nodes.length || toolOperations.some(operation => operation.startedAt === undefined)) continue
+    for (let index = 0; index < nodes.length; index += 1) {
+      const operation = toolOperations[index]!
+      platformByIndex.set(nodes[index]!.index, {
+        ...(operation.id === undefined ? {} : { operationId: operation.id }),
+        ...(operation.requestId === undefined ? {} : { requestId: operation.requestId }),
+        ...(operation.traceId === undefined ? {} : { traceId: operation.traceId }),
+        ...(operation.receiptId === undefined ? {} : { receiptId: operation.receiptId }),
+        ...(operation.status === undefined ? {} : { status: operation.status }),
+      })
+    }
+  }
+  if (platformByIndex.size === 0) return timeline
+  return timeline.map((node, index) => platformByIndex.has(index) ? { ...node, platform: platformByIndex.get(index) } : node)
+}
+
+/**
+ * Receipt references come from the platform operations read model first; ids
+ * disclosed inside MCP results (none in the verified contract) follow. An
+ * authorized turn with no receipt-bearing operations is a `no-receipts` fact,
+ * kept visibly distinct from an unauthorized read.
+ */
+function projectEvidence(
+  operations: readonly ProvenanceOperationView[],
+  handle: ProvenanceHandle,
+  operationsDegradation: ProvenanceDegradation | undefined,
+): ProvenanceEvidenceView {
+  const receipts: ProvenanceReceiptRef[] = []
+  for (const operation of operations) {
+    if (operation.receiptId === undefined) continue
+    receipts.push({
+      receiptId: operation.receiptId,
+      ...(operation.id === undefined ? {} : { operationId: operation.id }),
+      ...(operation.label === undefined ? {} : { toolLabel: operation.label }),
+      ...(operation.status === undefined ? {} : { status: operation.status }),
+      source: 'platform',
+      verifyHint: `openbkn trace receipts get ${operation.receiptId}`,
+    })
+  }
+  for (const receiptId of handle.receiptIds) {
+    if (receipts.some(receipt => receipt.receiptId === receiptId)) continue
+    receipts.push({ receiptId, source: 'mcp-result' })
+  }
+  if (receipts.length > 0) return { kind: 'ready', receipts }
+  if (operationsDegradation === undefined) return { kind: 'unavailable', reason: 'no-receipts' }
+  return {
+    kind: 'unavailable',
+    reason: operationsDegradation.reason === 'platform-unavailable' ? 'platform-unavailable' : 'not-authorized',
   }
 }
 
@@ -196,4 +322,8 @@ function traceRefKind(value: unknown): ProvenanceBusinessElement['kind'] | undef
     case 'metric': return 'metric'
     default: return undefined
   }
+}
+
+function compareTimestamp(left: string | undefined, right: string | undefined): number {
+  return (left ?? '').localeCompare(right ?? '')
 }
