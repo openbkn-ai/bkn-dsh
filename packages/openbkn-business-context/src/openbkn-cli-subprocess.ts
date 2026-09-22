@@ -1,4 +1,5 @@
 import type { CliResult, OpenBknCli } from './auth.js'
+import { normalizeBaseUrl } from './base-url.js'
 
 const OUTPUT_LIMIT = 64 * 1024
 const GRACE_MS = 3_000
@@ -82,6 +83,3 @@ function isAuthLoginCommand(args: readonly string[], baseUrl: string): boolean {
     && normalizeBaseUrl(args[2] ?? '') === baseUrl
 }
 
-function normalizeBaseUrl(value: string): string {
-  return value.trim().replace(/\/+$/, '')
-}

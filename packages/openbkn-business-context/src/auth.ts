@@ -11,6 +11,7 @@ export interface CliResult {
 }
 
 import type { AuthSnapshot } from './types.js'
+import { normalizeBaseUrl } from './base-url.js'
 
 export type { AuthSnapshot } from './types.js'
 
@@ -127,10 +128,6 @@ function parseStatus(stdout: string): CliAuthStatus {
     ...(candidate.userId === undefined ? {} : { userId: candidate.userId }),
     ...(candidate.username === undefined ? {} : { username: candidate.username }),
   }
-}
-
-function normalizeBaseUrl(value: string): string {
-  return value.replace(/\/+$/, '')
 }
 
 function cliFailure(action: string, result: CliResult): OpenBknCliError {

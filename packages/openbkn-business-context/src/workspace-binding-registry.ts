@@ -2,6 +2,7 @@ import { isAbsolute, resolve } from 'node:path'
 import { Service, type Context } from '@deepseek-ai/cordis'
 import { domainTable, defineDomain, type KvTable } from '@deepseek-ai/dsh-storage-domain'
 import { z } from 'zod'
+import { normalizeBaseUrl } from './base-url.js'
 
 declare module '@deepseek-ai/cordis' {
   interface Context {
@@ -91,10 +92,6 @@ export class OpenBknWorkspaceBindingRegistry extends Service {
     if (this.table === undefined) throw new Error('OpenBKN workspace binding registry is not ready.')
     return this.table
   }
-}
-
-function normalizeBaseUrl(value: string): string {
-  return value.trim().replace(/\/+$/, '')
 }
 
 function normalizeWorkspacePath(value: string): string {
