@@ -4,6 +4,7 @@
 > ① `runtime/prepare-compatible-runtime.mjs` 的 LOCAL-ONLY workaround 已随 BLOCKER-3 修复删除（osx-sign 处理折叠进补丁 0003，恢复 frozen 安装）；
 > ② 「401/403 + permission_denied → LICENSE_REQUIRED」已按复审收窄：401 一律认证错误，403 仅在 `licensed === false` 时提示企业版；
 > ③ 测试计数自 117 起随各轮新增用例增长（当前 119）。历史正文保留下文不作改写。
+> ④ 「溯源视图现状」节对 403 的归因（需在管理面对 bd_public 做生命周期授权）经 v0.1.4 源码核实为**误诊**：真实原因是插件当时未发送 `x-business-domain` 头（空域被 chart 默认允许清单 `BKN_TRACE_PUBLIC_LIFECYCLE_BUSINESS_DOMAINS=bd_public` 拒绝），打通靠的是补发该头，与升级企业版/license 无关。详见 `2026-09-20-provenance-v1-v2.md` V1 修订记录。
 
 日期：2026-09-19。环境：打包版 OpenBKN Runtime（`openbkn-dsh-runtime-0.1.6-alpha.2-openbkn.1-darwin-arm64`，bin/dsh web，端口 3082）+ supply_ontology_hand 样例 + DeepSeek 平台模型（deepseek_flash，用户提供的 API Key 经 DSH 环境变量注入，未落任何文件）。
 
