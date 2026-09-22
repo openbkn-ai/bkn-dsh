@@ -33,21 +33,25 @@
 | 指标 | 基线（旧版历史） | 改后（本次验收） |
 | --- | --- | --- |
 | 零业务 conversation 占比 | 3/9 = **33%** | **0%**（整个验收会话仅 1 个 conversation，其中全部 Interaction 均含业务调用） |
-| 非访问轮 Interaction 产生率 | 不可枚举（见 §2） | **0**（寒暄 ×2、绑定问询、通用知识、已有结论直答——共 5 轮，0 调用 0 Interaction 0 trace） |
-| 访问轮 Interaction 数 | — | **每轮恰好 1**（9 个 Interaction 全部落在唯一 conversation `conv_b2e12831…`） |
+| 非访问轮 Interaction 产生率 | 不可枚举（见 §2） | **0**（见下方证据等级说明） |
+| 访问轮 Interaction 数 | — | **每轮恰好 1**（QA 全量翻页复核：126 条 trace 归属 10 个 interaction，一一对应、全部终态 completed） |
+
+**轮次构成说明（QA 复核勘误后修正）**：统计时刻（01:08 前）为 9 个访问轮 Interaction；其后取消用例的重问轮与 01:11 的独立核对问又各产生 1 个，平台现存共 10 个。「13 轮 = 5 非访问 + 9 访问」的简单加法不成立——13 轮实际含 5 个非访问轮、8 个常规访问轮、2 个取消用例的中断/重问轮（同问题）及统计后的核对轮；每个 Interaction 恰对应一次提问，「每访问轮恰 1」性质不受影响。
+
+**非访问轮 0 Interaction 的证据等级**：主证据是**本地行为观测**——5 个非访问轮的会话页面均无任何 `mcp__openbkn__` 工具调用块，且分诊门控与 guard 结构保证「无 start 即拒一切业务调用」；「conversation 总数不增」仅为**侧证**——lifecycle-only Interaction 在平台 Trace 不可见（§2），且 continue 模式不新增 conversation，故平台侧计数无法反证非访问轮行为。该限制与基线口径限制同源，若需平台级反证须先补 lifecycle 事件入 Trace 或 interaction 枚举能力（建议向 bkn-foundry 提出）。
 
 ### 3.2 用例结果（§9.2）
 
 | 用例 | 结果 | 证据 |
 | --- | --- | --- |
-| 你好 / 绑定问询 / BOM 通用知识 | ✓ 0 调用 0 Interaction | conversation 总数在三轮后仍为基线值；页面无工具块 |
+| 你好 / 绑定问询 / BOM 通用知识 | ✓ 0 调用 0 Interaction | 主证据：页面无工具块（见 §3.1 证据等级说明） |
 | Schema 类（有哪些对象类型） | ✓ 恰 1 Interaction；模型试图二次 start 被 guard 拒（规则 3 文案），照文案复用，无「拒→重试→再拒」回路 | `int_13f2f310…`：get_kn_detail×1；页面时序 start→(拒)→schema→finish |
 | 检索（销售订单数） | ✓ 恰 1 Interaction，答案 40 张与 M5 独立核对一致 | `int_5f2df1fc…`：start→schema→metric×2→query→finish |
 | 双子问题（库存+供应商） | ✓ **共享恰 1 Interaction**（8 个操作在其内） | `int_5ccf1e05…` |
-| 业务→寒暄→业务 | ✓ 寒暄轮 0 新增；业务回归新 Interaction 同 conversation | `int_e2c1fa49…`；interaction 计数 3→3→4 |
+| 业务→寒暄→业务 | ✓ 寒暄轮 0 新增（页面无工具块，主证据同上）；业务回归新 Interaction 同 conversation | `int_e2c1fa49…`；interaction 计数 3→3→4 |
 | 长会话压缩后 | ✓ `/compact`（63 项 ~37.8K tok）后业务问题仍 continue 同 conversation | `int_924251c1…` |
-| **重载会话后** | ✓ 页面重载恢复全部 13 轮后业务问题仍 continue 同 conversation——**V0-5 由结构性覆盖升级为实测** | `int_4f88bc38…` |
-| 已有结论直答（追问会话内已查过的事实） | ✓ 0 调用（分诊门控的额外正例：模型复用会话内事实直接回答） | turn 13 无新 Interaction/trace |
+| **重载会话后** | ✓ 页面重载恢复会话后业务问题仍 continue 同 conversation——**V0-5 由结构性覆盖升级为实测** | `int_4f88bc38…` |
+| 已有结论直答（追问会话内已查过的事实） | ✓ 页面无工具块直答（分诊门控正例） | 统计时刻无新 Interaction/trace；QA 复核提示其后 01:11 的同型核对问产生了 1 个 Interaction，属统计后追加轮，见 §3.1 轮次构成说明 |
 | 用户取消（页面 Esc 中断流式回复） | ✓ **优于预期**：DSH 继续执行完该轮工具并正常 finish，未产生未闭合 Interaction；告警未触发（turn 结束时 open=false） | `int_3e3525b7…` 终态 `completed`（中断瞬间的 `active` 为执行中态，非残留） |
 
 ### 3.3 未覆盖项（如实记录）
