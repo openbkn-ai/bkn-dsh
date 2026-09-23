@@ -12,7 +12,7 @@
 
 bkn-dsh 是一个增量式 DeepSeek Harness 插件。授权用户可为一个会话选择一个 OpenBKN 业务知识网络，在明确边界内分析问题，并查看每轮已完成回答可用的业务溯源。
 
-> 版本前提：业务溯源视图需要 OpenBKN 企业版 License 并完成业务域授权（`x-business-domain`）。社区版用户看到的是升级提示而非溯源数据；插件其余能力在社区版上均可使用。
+> 版本前提：业务溯源视图需要有效的 OpenBKN 令牌，且 `businessDomain` 在部署允许清单内（`x-business-domain`；社区 chart 出厂即允许 `bd_public`，无需管理面操作）。经对 OpenBKN 0.1.4 核实：observability 读路由**没有 License 门**，社区部署同样能看完整溯源面板；业务图在社区部署上的富集引用可能较少（企业版 optimizer，未实测）。读取路径不会出现升级提示——403 一律意味着业务域或账号被拒。
 
 ## 面向谁
 

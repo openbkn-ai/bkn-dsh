@@ -18,7 +18,7 @@ bkn-dsh connects DeepSeek Harness to OpenBKN so an authorized user can:
 - select a business knowledge network they are allowed to access;
 - analyze business questions within that network's objects, relationships, rules, and metrics;
 - keep each conversation scoped to one explicit business context;
-- inspect the business sources, execution trace, context graph, and evidence behind each result.
+- inspect a layered provenance view per result: a local execution timeline that always renders, platform operation facts (request/trace/receipt ids) and the enterprise business graph that each degrade independently, and a receipt list with CLI verification hints.
 
 The integration is designed as an additive DSH plugin. It preserves the native DSH conversation experience while OpenBKN remains the authority for identity, permissions, business semantics, and traceable evidence.
 

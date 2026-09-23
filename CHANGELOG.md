@@ -4,6 +4,13 @@ All notable changes to this project are documented here.
 
 ## Unreleased
 
+Layered business provenance (design: `docs/plans/2026-09-20-provenance-layered-redesign.md`; verification: `docs/evidence/2026-09-20-provenance-v1-v2.md` and `docs/evidence/2026-09-22-timeline-e2e-stage1.md`).
+
+- The provenance panel is rebuilt as independent layers: a local execution timeline rebuilt at read time from DSH session events (question → lifecycle/managed calls with durations and whitelist-only summaries → answer; consecutive same-tool calls fold for display), platform operation facts attached to timeline nodes only when the tool-name pairing is unambiguous, and the enterprise business graph as its own pane. A platform failure now degrades only its own pane; the local timeline always renders.
+- Evidence chain: receipts listed from the platform operations read model with a copyable `openbkn trace receipts get <id>` hint; "this turn produced no receipts" is distinguished from "not authorized to read".
+- Provenance handle schema v2 adds `conversationId` and `turn`; stored schema-v1 events upgrade in memory, never conflict with a v2 re-capture, and the session log stays append-only.
+- **Behavior change**: `getTurnProvenanceView` no longer throws `openbkn/provenance-license-required` and no longer consults capabilities to decide an upgrade hint. Verified against OpenBKN 0.1.4: the observability read routes are gated by the deployment's static business-domain allow-list (chart default `bd_public`), not by license — so a 403 `permission_denied` always degrades as `domain-not-authorized` (with the platform's `required_action`), 401 as `authentication-required`, and everything else as `platform-unavailable`. The `license-required` degradation enum is kept for a future platform that actually gates reads by license.
+
 Interaction noise reduction (design: `docs/plans/2026-09-20-interaction-noise-reduction.md`; runtime evidence: `docs/evidence/dsh-event-model-probe.md`).
 
 - An Interaction is now the boundary for every model-initiated OpenBKN access, not one per user question. Turns that need nothing from OpenBKN (greetings, clarifications, general knowledge, questions about the binding itself) call no managed tool and create no platform Interaction; a turn that touches OpenBKN — including schema or skill reads — creates exactly one, enforced by a scoped guard (denials carry the exact next step, and `conversation_mode`/`conversation_id` mistakes are corrected with the held value). The managed tool catalogue converges from three groups to two: lifecycle tools, and everything else inside the Interaction.
