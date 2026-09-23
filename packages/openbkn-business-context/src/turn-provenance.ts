@@ -1,4 +1,4 @@
-import { normalizeProvenanceHandle } from './provenance-handle.js'
+import { normalizeProvenanceHandle, sameProvenanceHandle } from './provenance-handle.js'
 import type { ProvenanceHandle } from './types.js'
 
 /** Durable session event binding one finalized assistant message to one OpenBKN interaction. */
@@ -34,7 +34,7 @@ export function appendTurnProvenance(
   if (existing === undefined) {
     return { type: TURN_PROVENANCE_EVENT, data: { messageId: normalizedMessageId, handle: normalizedHandle } }
   }
-  if (!sameHandle(existing, normalizedHandle)) throw new TurnProvenanceConflictError(normalizedMessageId)
+  if (!sameProvenanceHandle(existing, normalizedHandle)) throw new TurnProvenanceConflictError(normalizedMessageId)
   return undefined
 }
 
@@ -51,7 +51,7 @@ export function readTurnProvenance(
     if (candidate.messageId !== normalizedMessageId) continue
     if (handle === undefined) {
       handle = candidate.handle
-    } else if (!sameHandle(handle, candidate.handle)) {
+    } else if (!sameProvenanceHandle(handle, candidate.handle)) {
       throw new TurnProvenanceConflictError(normalizedMessageId)
     }
   }
@@ -73,10 +73,6 @@ function normalizeMessageId(value: unknown): string {
     throw new TypeError('OpenBKN turn provenance message id is invalid.')
   }
   return normalized
-}
-
-function sameHandle(left: ProvenanceHandle, right: ProvenanceHandle): boolean {
-  return JSON.stringify(left) === JSON.stringify(right)
 }
 
 function isRecord(value: unknown): value is Record<string, unknown> {

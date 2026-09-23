@@ -12,7 +12,7 @@ Enterprise decisions need trusted business objects, metrics, rules, relationship
 
 bkn-dsh is an additive DeepSeek Harness plugin that lets authorized users select one OpenBKN business knowledge network for a conversation, analyze within that explicit scope, and inspect available business provenance for each completed answer.
 
-> Version prerequisite: the provenance views require an OpenBKN enterprise license with business-domain authorization (`x-business-domain`). Community-edition users see an upgrade prompt instead of provenance data — the rest of the plugin works on the community edition.
+> Version prerequisite: the provenance views need a valid OpenBKN token and a `businessDomain` the deployment allows (`x-business-domain`; the stock chart allow-lists `bd_public`, no admin action needed). Verified against OpenBKN 0.1.4: the observability read routes have **no license gate**, so community deployments show the full provenance panel; the business graph may carry fewer enriched references there (enterprise optimizer, unverified). No upgrade prompt is ever shown for reads — a 403 always means the domain or account was refused.
 
 ## Who it serves
 

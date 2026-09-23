@@ -1,7 +1,8 @@
-import { useEffect, useRef, useState } from 'react'
+import { useEffect, useRef, useState, type ReactNode } from 'react'
 import type { HostObservable, InjectFace, PropsRuntime } from '@deepseek-ai/dsh-client-ui-slots'
 import { buildBusinessGraphModel, businessGraphGeometry } from '../business-graph-model.ts'
-import type { ProvenanceBusinessView, ProvenanceHandle, ProvenanceView } from '../types.ts'
+import { foldTimeline, type TimelineFoldGroup } from '../timeline-fold.ts'
+import type { ProvenanceBusinessView, ProvenanceDegradation, ProvenanceHandle, ProvenanceTimelineNode, ProvenanceView } from '../types.ts'
 import type {} from '@deepseek-ai/dsh-client-ui-layout/client'
 
 type Tab = 'execution' | 'graph' | 'evidence'
@@ -56,18 +57,17 @@ export function ProvenanceOverlay({ useProvenanceOverlay, load, close }: Provena
   const [view, setView] = useState<ProvenanceView | undefined>()
   const [loading, setLoading] = useState(false)
   const [failed, setFailed] = useState(false)
-  const [licenseRequired, setLicenseRequired] = useState(false)
   const dialog = useRef<HTMLElement>(null)
   useEffect(() => {
     if (state.handle === undefined || state.sessionId === undefined || state.messageId === undefined) return
     let active = true
-    setTab('execution'); setView(undefined); setFailed(false); setLicenseRequired(false); setLoading(true)
+    setTab('execution'); setView(undefined); setFailed(false); setLoading(true)
     void load(state.sessionId, state.messageId).then(next => {
       if (active) setView(next)
-    }).catch(error => {
-      if (!active) return
-      if ((error as { code?: unknown })?.code === 'openbkn/provenance-license-required') setLicenseRequired(true)
-      else setFailed(true)
+    }).catch(() => {
+      // Platform facts degrade inside the view; reaching here means the turn
+      // record itself could not be read, which stays a whole-panel failure.
+      if (active) setFailed(true)
     }).finally(() => {
       if (active) setLoading(false)
     })
@@ -86,16 +86,57 @@ export function ProvenanceOverlay({ useProvenanceOverlay, load, close }: Provena
     <section ref={dialog} tabIndex={-1} role="dialog" aria-modal="true" aria-label="OpenBKN business provenance" onMouseDown={event => event.stopPropagation()} style={dialogStyle}>
       <header style={headerStyle}><div><div style={eyebrowStyle}>TRACE-BACKED PROVENANCE</div><h2 style={{ margin: '4px 0 0', fontSize: 28 }}>业务溯源</h2></div><button type="button" aria-label="Close" onClick={close} style={closeStyle}>×</button></header>
       <nav aria-label="Provenance views" style={tabBarStyle}><TabButton active={tab === 'execution'} onClick={() => setTab('execution')}>执行溯源</TabButton><TabButton active={tab === 'graph'} onClick={() => setTab('graph')}>业务上下文图</TabButton><TabButton active={tab === 'evidence'} onClick={() => setTab('evidence')}>证据链</TabButton></nav>
-      <main style={{ padding: 28 }}>{loading ? <Loading /> : licenseRequired ? <LicenseRequired /> : failed || view === undefined ? <LoadFailed /> : tab === 'execution' ? <Execution handle={state.handle} view={view} /> : tab === 'graph' ? <BusinessGraph view={view} /> : <EvidenceChain view={view} />}</main>
+      <main style={{ padding: 28 }}>{loading ? <Loading /> : failed || view === undefined ? <LoadFailed /> : tab === 'execution' ? <Execution handle={state.handle} view={view} /> : tab === 'graph' ? <BusinessGraph view={view} /> : <EvidenceChain view={view} />}</main>
     </section>
   </div>
 }
 
 function Execution({ handle, view }: { handle: ProvenanceHandle; view: ProvenanceView }) {
-  return <div style={{ display: 'grid', gap: 16 }}><p style={mutedStyle}>仅展示本轮由 OpenBKN 受管交互实际记录的操作事实。</p><section style={summaryStyle}><Metric label="Interaction ID" value={handle.interactionId} mono /><Metric label="执行状态" value={view.execution.status ?? handle.status} /><Metric label="已记录操作" value={String(view.execution.operations.length)} /></section>{view.execution.operations.length === 0 ? <Empty text="当前交互未记录可展示的操作事实。" /> : <div style={timelineStyle}>{view.execution.operations.map((operation, index) => <article key={operation.id} style={operationStyle}><div style={timelineIndexStyle}>{String(index + 1).padStart(2, '0')}</div><div style={{ display: 'grid', gap: 7 }}><div style={{ display: 'flex', justifyContent: 'space-between', gap: 12 }}><strong>{operation.label}</strong><Status value={operation.status} /></div><span style={mutedStyle}>{[operation.protocol, operation.startedAt, operation.finishedAt].filter(Boolean).join(' · ')}</span><div style={referenceRowStyle}>{operation.requestId === undefined ? null : <Reference label="Request" value={operation.requestId} />}{operation.traceId === undefined ? null : <Reference label="Trace" value={operation.traceId} />}{operation.receiptId === undefined ? null : <Reference label="Receipt" value={operation.receiptId} />}</div></div></article>)}</div>}</div>
+  const operationsDegradation = view.sources.degraded.find(entry => entry.pane === 'operations')
+  return <div style={{ display: 'grid', gap: 20 }}>
+    <section style={summaryStyle}><Metric label="Interaction ID" value={handle.interactionId} mono /><Metric label="执行状态" value={view.execution.status ?? handle.status} /><Metric label="时间链节点" value={String(view.timeline.length)} /></section>
+    <section style={{ display: 'grid', gap: 10 }}>
+      <PaneHeading badge={<SourceBadge label="本地会话" mark={handle.partial ? 'partial' : undefined} />} title="执行时间链" note="由本机会话事件重建，不依赖平台授权；耗时为本机口径。" />
+      {view.timeline.length === 0 ? <Empty text="本轮会话事件不足以重建时间链（旧版本记录的会话可能缺少事件时间戳）。" /> : <Timeline nodes={view.timeline} />}
+    </section>
+    <section style={{ display: 'grid', gap: 10 }}>
+      <PaneHeading badge={<SourceBadge label={operationsDegradation === undefined ? '平台' : '平台 · 不可用'} mark={operationsDegradation?.reason} />} title="平台执行事实" note={operationsDegradation === undefined ? '平台口径的操作状态、耗时与 Request / Trace / Receipt 引用。' : undefined} />
+      {operationsDegradation !== undefined ? <DegradedPane degradation={operationsDegradation} /> : view.execution.operations.length === 0 ? <Empty text="当前交互未记录可展示的操作事实。" /> : <div style={timelineStyle}>{view.execution.operations.map((operation, index) => <article key={operation.id} style={operationStyle}><div style={timelineIndexStyle}>{String(index + 1).padStart(2, '0')}</div><div style={{ display: 'grid', gap: 7 }}><div style={{ display: 'flex', justifyContent: 'space-between', gap: 12 }}><strong>{operation.label}</strong><Status value={operation.status} /></div><span style={mutedStyle}>{[operation.protocol, operation.startedAt, operation.finishedAt].filter(Boolean).join(' · ')}</span><div style={referenceRowStyle}>{operation.requestId === undefined ? null : <Reference label="Request" value={operation.requestId} />}{operation.traceId === undefined ? null : <Reference label="Trace" value={operation.traceId} />}{operation.receiptId === undefined ? null : <Reference label="Receipt" value={operation.receiptId} />}</div></div></article>)}</div>}
+    </section>
+  </div>
+}
+
+function Timeline({ nodes }: { nodes: readonly ProvenanceTimelineNode[] }) {
+  return <div style={timelineStyle}>{foldTimeline(nodes).map((group, index) => <TimelineRow key={group.nodes[0]?.seq ?? index} group={group} />)}</div>
+}
+
+function TimelineRow({ group }: { group: TimelineFoldGroup }) {
+  const node = group.nodes[0]!
+  const folded = group.nodes.length > 1
+  if (node.kind === 'question' || node.kind === 'answer') {
+    return <article style={{ ...timelineNodeStyle, borderStyle: 'dashed' }}>
+      <span style={kindChipStyle(node.kind)}>{node.kind === 'question' ? '提问' : '回答'}</span>
+      <span style={mutedStyle}>{node.summary ?? (node.kind === 'question' ? '本轮提问' : '本轮回答')}</span>
+      <span style={durationStyle}>{formatClock(node.at)}</span>
+    </article>
+  }
+  return <article style={timelineNodeStyle}>
+    <span style={kindChipStyle(node.kind)}>{kindLabel(node.kind)}</span>
+    <div style={{ display: 'grid', gap: 4, minWidth: 0 }}>
+      <div style={{ display: 'flex', gap: 10, alignItems: 'baseline', flexWrap: 'wrap' as const }}>
+        <strong style={{ overflowWrap: 'anywhere' as const }}>{node.tool}{folded ? ` ×${group.nodes.length}` : ''}</strong>
+        {node.outcome === 'error' ? <span style={{ color: '#b42318', fontSize: 13, fontWeight: 700 }}>error</span> : null}
+        {node.platform === undefined ? null : <span style={referenceRowStyle}>{node.platform.operationId === undefined ? null : <Reference label="Op" value={node.platform.operationId} />}{node.platform.receiptId === undefined ? null : <Reference label="Receipt" value={node.platform.receiptId} />}{node.platform.status === undefined ? null : <Reference label="Status" value={node.platform.status} />}</span>}
+      </div>
+      {node.summary === undefined ? null : <span style={mutedStyle}>{node.summary}</span>}
+    </div>
+    <span style={durationStyle}>{node.durationMs === undefined ? '未返回' : formatDuration(node.durationMs)}</span>
+  </article>
 }
 
 function BusinessGraph({ view }: { view: ProvenanceView }) {
+  const degradation = view.sources.degraded.find(entry => entry.pane === 'business')
+  if (degradation !== undefined) return <DegradedPane degradation={degradation} />
   if (view.business.kind === 'unavailable') return <Empty text="当前部署未提供已授权的 Enterprise 业务投影。插件不会从 Community 调用事实、模型文本或 MCP 原始输出推断图谱。" />
   return <ReadyBusinessGraph business={view.business} />
 }
@@ -126,20 +167,122 @@ function ReadyBusinessGraph({ business }: { business: Extract<ProvenanceBusiness
   </div>
 }
 
+function EvidenceChain({ view }: { view: ProvenanceView }) {
+  const degradation = view.sources.degraded.find(entry => entry.pane === 'evidence')
+  if (degradation !== undefined) return <DegradedPane degradation={degradation} />
+  if (view.evidence.kind === 'unavailable') {
+    return <Empty text="本轮没有产生需要回执的业务操作（例如仅做了 schema 或元数据查询），因此没有证据链记录；这与「无权查看」不同。" />
+  }
+  return <div style={{ display: 'grid', gap: 14 }}>
+    <PaneHeading badge={<SourceBadge label={view.sources.evidence === 'mcp-result' ? 'MCP 结果' : '平台'} />} title="业务回执清单" note="回执是业务操作落库的耐久凭据；下方指引可在本机 CLI 中核验，面板自身不执行任何命令。" />
+    <div style={timelineStyle}>{view.evidence.receipts.map((receipt, index) => <article key={`${receipt.receiptId}:${index}`} style={operationStyle}>
+      <div style={timelineIndexStyle}>{String(index + 1).padStart(2, '0')}</div>
+      <div style={{ display: 'grid', gap: 7 }}>
+        <div style={{ display: 'flex', justifyContent: 'space-between', gap: 12 }}><strong style={{ overflowWrap: 'anywhere' as const }}>{receipt.receiptId}</strong><Status value={receipt.status} /></div>
+        <span style={mutedStyle}>{[receipt.toolLabel, receipt.operationId === undefined ? undefined : `operation ${receipt.operationId}`, receipt.source === 'platform' ? '来源：平台' : '来源：MCP 结果'].filter(Boolean).join(' · ')}</span>
+        {receipt.verifyHint === undefined ? null : <code style={asideCodeStyle}>{receipt.verifyHint}</code>}
+      </div>
+    </article>)}</div>
+  </div>
+}
+
 function nodeBorderColor(kind: string): string { return kind === 'logic' || kind === 'metric' ? '#f4b860' : kind === 'object' ? '#70a0ff' : '#8ac7c0' }
 function nodeTypeColor(kind: string) { return kind === 'logic' || kind === 'metric' ? { background: '#fff4e5', color: '#b45309' } : kind === 'object' ? { background: '#eaf1ff', color: '#2563eb' } : { background: '#e7f7f4', color: '#087d72' } }
 
-function EvidenceChain({ view }: { view: ProvenanceView }) {
-  return <Empty text="当前 Interaction 的正式 Enterprise 投影尚未定义证据链 DTO。插件不会从原始调用或模型回答拼装 claims、证据引用或结论。" />
+function DegradedPane({ degradation }: { degradation: ProvenanceDegradation }) {
+  const copy = degradationCopy(degradation)
+  return <div style={emptyStyle}><strong>{copy.title}</strong><span>{copy.detail}</span>{copy.action === undefined ? null : <span style={{ color: '#087d72', fontWeight: 650 }}>{copy.action}</span>}</div>
+}
+
+function degradationCopy(degradation: ProvenanceDegradation): { title: string; detail: string; action?: string } {
+  switch (degradation.reason) {
+    case 'license-required':
+      return {
+        title: '此面板需要企业版 License',
+        detail: `当前部署许可（${degradation.edition ?? '社区版'}）未包含该平台能力。时间链不受影响，已有记录不会丢失。`,
+        action: '下一步：升级并激活 OpenBKN 企业版 License。',
+      }
+    case 'domain-not-authorized':
+      return {
+        title: '业务域未获授权',
+        detail: `平台拒绝了本次读取：请求的业务域未列入部署允许清单，或当前账号未被授权（与 License 无关，升级版本不会解决）。${degradation.requiredAction === undefined ? '' : `平台提示：${degradation.requiredAction}。`}`,
+        action: '下一步：核对插件的 businessDomain 配置（默认 bd_public），或联系平台管理员将该业务域加入部署允许清单。',
+      }
+    case 'authentication-required':
+      return {
+        title: '需要重新认证',
+        detail: '平台令牌已失效或未配置，本面板暂时无法读取平台数据。',
+        action: '下一步：重新登录 OpenBKN 后重试。',
+      }
+    case 'record-not-disclosed':
+      return {
+        title: '平台未找到此记录',
+        detail: '该 Interaction 在当前平台上不存在或未向当前账号披露（例如平台重建后历史记录已丢失）。重试不会改变结果。时间链不受影响。',
+      }
+    default:
+      return {
+        title: '平台数据暂时不可用',
+        detail: 'OpenBKN 平台暂时不可达，本面板稍后重试即可。时间链不受影响。',
+        action: '下一步：稍后重试，或检查平台连接。',
+      }
+  }
+}
+
+function PaneHeading({ badge, title, note }: { badge: ReactNode; title: string; note?: string }) {
+  return <header style={{ display: 'flex', alignItems: 'baseline', justifyContent: 'space-between', gap: 12, flexWrap: 'wrap' as const }}>
+    <strong style={{ fontSize: 16 }}>{title}</strong>
+    <span style={{ display: 'inline-flex', gap: 8, alignItems: 'center' }}>{note === undefined ? null : <span style={mutedStyle}>{note}</span>}{badge}</span>
+  </header>
+}
+
+function SourceBadge({ label, mark }: { label: string; mark?: string }) {
+  return <span style={{ display: 'inline-flex', gap: 6, alignItems: 'center' }}>
+    <span style={sourceBadgeStyle}>{label}</span>
+    {mark === undefined ? null : <span style={{ ...sourceBadgeStyle, background: '#fff4e5', color: '#b45309' }}>{mark === 'partial' ? '部分标识符' : degradationMark(mark)}</span>}
+  </span>
+}
+
+function degradationMark(reason: string): string {
+  switch (reason) {
+    case 'license-required': return '需企业版'
+    case 'domain-not-authorized': return '域未授权'
+    case 'authentication-required': return '需重新认证'
+    case 'record-not-disclosed': return '记录未披露'
+    default: return '平台不可用'
+  }
+}
+
+function kindLabel(kind: ProvenanceTimelineNode['kind']): string {
+  switch (kind) {
+    case 'lifecycle': return '生命周期'
+    case 'managed': return '受管访问'
+    default: return kind
+  }
+}
+
+function kindChipStyle(kind: ProvenanceTimelineNode['kind']) {
+  const base = { width: 'fit-content', padding: '3px 8px', borderRadius: 6, fontSize: 11, fontWeight: 700 }
+  if (kind === 'question' || kind === 'answer') return { ...base, background: '#f1f5f9', color: '#475569' }
+  if (kind === 'lifecycle') return { ...base, background: '#e7f7f4', color: '#087d72' }
+  return { ...base, background: '#eaf1ff', color: '#2563eb' }
+}
+
+function formatDuration(durationMs: number): string {
+  if (durationMs < 1000) return `${durationMs} ms`
+  return `${(durationMs / 1000).toFixed(1)} s`
+}
+
+function formatClock(at: number): string {
+  const date = new Date(at)
+  return Number.isNaN(date.getTime()) ? '' : date.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit', second: '2-digit' })
 }
 
 function Metric({ label, value, mono = false }: { label: string; value: string; mono?: boolean }) { return <div style={{ display: 'grid', gap: 5, padding: 16, background: '#fff' }}><span style={mutedStyle}>{label}</span><strong style={mono ? { fontFamily: 'ui-monospace, SFMono-Regular, Menlo, monospace', overflowWrap: 'anywhere' } : undefined}>{value}</strong></div> }
 function Reference({ label, value }: { label: string; value: string }) { return <span style={referenceStyle}><small>{label}</small><code>{value}</code></span> }
 function Status({ value }: { value?: string }) { return <span style={{ color: value === 'failed' ? '#b42318' : '#087d72', fontSize: 13, fontWeight: 700 }}>{value ?? 'recorded'}</span> }
 function Empty({ text }: { text: string }) { return <div style={emptyStyle}><strong>暂无可展示的受管数据</strong><span>{text}</span></div> }
-function Loading() { return <div style={emptyStyle}><strong>正在读取本轮业务溯源…</strong><span>仅查询该 Interaction 已授权的 OpenBKN 记录。</span></div> }
+function Loading() { return <div style={emptyStyle}><strong>正在读取本轮业务溯源…</strong><span>时间链由本机会话重建；平台数据仅查询该 Interaction 已授权的记录。</span></div> }
 function LoadFailed() { return <div style={emptyStyle}><strong>业务溯源暂时无法读取</strong><span>请检查 OpenBKN 平台连接和当前用户权限后重试。不会使用模型文本替代平台记录。</span></div> }
-function LicenseRequired() { return <div style={emptyStyle}><strong>业务溯源为企业版能力</strong><span>当前平台许可（社区版）未包含执行溯源、业务上下文图与证据链。升级并激活企业版 License 后即可查看，已有记录不会丢失。</span></div> }
 function TabButton({ active, onClick, children }: { active: boolean; onClick(): void; children: string }) { return <button type="button" onClick={onClick} style={{ border: 0, borderBottom: active ? '3px solid #087d72' : '3px solid transparent', background: 'transparent', color: active ? '#087d72' : '#64748b', padding: '14px 18px', fontWeight: active ? 750 : 550, cursor: 'pointer', fontSize: 15 }}>{children}</button> }
 
 const backdropStyle = { pointerEvents: 'auto' as const, position: 'fixed' as const, inset: 0, display: 'grid', placeItems: 'center', background: 'rgb(15 23 42 / 38%)', padding: 20 }
@@ -153,6 +296,9 @@ const summaryStyle = { display: 'grid', gridTemplateColumns: 'minmax(0, 2fr) rep
 const timelineStyle = { display: 'grid', gap: 12 }
 const operationStyle = { display: 'grid', gridTemplateColumns: '42px minmax(0, 1fr)', gap: 14, padding: 16, border: '1px solid #e1e8ee', borderRadius: 12 }
 const timelineIndexStyle = { color: '#087d72', fontWeight: 750, paddingTop: 2 }
+const timelineNodeStyle = { display: 'grid', gridTemplateColumns: 'fit-content(120px) minmax(0, 1fr) fit-content(90px)', gap: 12, alignItems: 'start', padding: '12px 16px', border: '1px solid #e1e8ee', borderRadius: 12 }
+const durationStyle = { color: '#64748b', fontSize: 13, textAlign: 'right' as const, whiteSpace: 'nowrap' as const }
+const sourceBadgeStyle = { padding: '3px 8px', borderRadius: 6, background: '#e7f7f4', color: '#087d72', fontSize: 11, fontWeight: 700, whiteSpace: 'nowrap' as const }
 const referenceRowStyle = { display: 'flex', flexWrap: 'wrap' as const, gap: 8 }
 const referenceStyle = { display: 'inline-flex', alignItems: 'baseline', gap: 5, padding: '4px 7px', borderRadius: 6, background: '#f1f5f9', color: '#475569', maxWidth: '100%', overflowWrap: 'anywhere' as const }
 const emptyStyle = { display: 'grid', gap: 12, minHeight: 250, placeContent: 'center', padding: 28, border: '1px dashed #cbd5e1', borderRadius: 12, color: '#64748b', textAlign: 'center' as const, lineHeight: 1.65 }

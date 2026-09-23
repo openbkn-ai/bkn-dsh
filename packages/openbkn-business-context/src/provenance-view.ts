@@ -1,11 +1,14 @@
 import type {
+  EvidenceUnavailableReason,
   ProvenanceBusinessElement,
   ProvenanceBusinessOperation,
-  ProvenanceConversationContext,
-  ProvenanceContextRelation,
-  ProvenanceDerivedFact,
+  ProvenanceDegradation,
+  ProvenanceEvidenceView,
   ProvenanceHandle,
   ProvenanceOperationView,
+  ProvenanceReceiptRef,
+  ProvenanceSources,
+  ProvenanceTimelineNode,
   ProvenanceView,
 } from './types.js'
 
@@ -14,24 +17,152 @@ export interface ProvenanceViewLimits {
   readonly maxGraphEdges: number
 }
 
+/** Platform read failures the service already classified, keyed by pane. */
+export interface ProvenanceViewDegradations {
+  readonly operations?: ProvenanceDegradation
+  readonly business?: ProvenanceDegradation
+}
+
 /**
- * Projects Community execution facts plus the exact EE-owned interaction
- * projection. It never derives BKN mappings from raw Core or MCP payloads.
+ * Assemble the layered provenance view: the local timeline (Layer 0) always
+ * renders, while platform facts (Layer 1) and the enterprise projection
+ * (Layer 2) only refine their own panes. It never derives BKN mappings from
+ * raw Core or MCP payloads, and never blocks one layer behind another.
  */
 export function buildProvenanceView(
   handle: ProvenanceHandle,
-  operationsResponse: unknown,
+  timeline: readonly ProvenanceTimelineNode[],
+  operationsResponse: unknown | undefined,
   enterpriseProjection: unknown | undefined,
+  degradations: ProvenanceViewDegradations,
   limits: ProvenanceViewLimits,
 ): ProvenanceView {
+  const operations = operationsResponse === undefined ? [] : projectOperations(operationRecords(operationsResponse))
+  const business = projectBusiness(enterpriseProjection, operationsResponse, limits)
+  const evidence = projectEvidence(operations, handle, degradations.operations)
+  const sources = projectSources(operationsResponse, business, evidence, degradations)
   return {
     interactionId: handle.interactionId,
+    ...(handle.conversationId === undefined ? {} : { conversationId: handle.conversationId }),
+    sources,
+    timeline: attachPlatformFacts(timeline, operations),
     execution: {
       status: handle.status,
-      operations: projectOperations(operationRecords(operationsResponse)),
+      operations,
     },
-    business: projectBusiness(enterpriseProjection, operationsResponse, limits),
-    evidence: { kind: 'unavailable' },
+    business,
+    evidence,
+  }
+}
+
+/** Only retryable platform failures keep the unavailable wording; authorization and missing-record causes read differently. */
+function evidenceReasonFor(reason: ProvenanceDegradation['reason']): EvidenceUnavailableReason {
+  if (reason === 'platform-unavailable') return 'platform-unavailable'
+  if (reason === 'record-not-disclosed') return 'record-not-disclosed'
+  return 'not-authorized'
+}
+
+function projectSources(
+  operationsResponse: unknown | undefined,
+  business: ProvenanceView['business'],
+  evidence: ProvenanceEvidenceView,
+  degradations: ProvenanceViewDegradations,
+): ProvenanceSources {
+  const degraded: ProvenanceDegradation[] = []
+  if (degradations.operations !== undefined) degraded.push(degradations.operations)
+  if (degradations.business !== undefined) degraded.push(degradations.business)
+  if (evidence.kind === 'unavailable' && evidence.reason !== 'no-receipts' && degradations.operations !== undefined) {
+    degraded.push({ ...degradations.operations, pane: 'evidence' })
+  }
+  return {
+    timeline: 'local-session',
+    operations: operationsResponse === undefined ? 'unavailable' : 'platform',
+    business: business.kind === 'ready' ? 'platform-enterprise' : 'unavailable',
+    evidence: evidence.kind === 'ready'
+      ? evidence.receipts.some(receipt => receipt.source === 'platform') ? 'platform' : 'mcp-result'
+      : 'unavailable',
+    degraded,
+  }
+}
+
+/**
+ * Attach Layer 1 operation facts to Layer 0 tool nodes. Alignment is by tool
+ * name plus order within the interaction; any count mismatch or missing
+ * started_at abandons that tool's whole group — a missing platform fact is
+ * preferable to a wrong one.
+ */
+function attachPlatformFacts(
+  timeline: readonly ProvenanceTimelineNode[],
+  operations: readonly ProvenanceOperationView[],
+): readonly ProvenanceTimelineNode[] {
+  if (timeline.length === 0 || operations.length === 0) return timeline
+  const nodesByTool = new Map<string, { index: number; node: ProvenanceTimelineNode }[]>()
+  timeline.forEach((node, index) => {
+    if (node.tool === undefined) return
+    const group = nodesByTool.get(node.tool) ?? []
+    group.push({ index, node })
+    nodesByTool.set(node.tool, group)
+  })
+  const operationsByTool = new Map<string, ProvenanceOperationView[]>()
+  for (const operation of operations) {
+    const tool = operation.label
+    const group = operationsByTool.get(tool) ?? []
+    group.push(operation)
+    operationsByTool.set(tool, group)
+  }
+  const platformByIndex = new Map<number, NonNullable<ProvenanceTimelineNode['platform']>>()
+  for (const [tool, nodes] of nodesByTool) {
+    const toolOperations = (operationsByTool.get(tool) ?? [])
+      .slice()
+      .sort((left, right) => compareTimestamp(left.startedAt, right.startedAt))
+    if (toolOperations.length !== nodes.length || toolOperations.some(operation => operation.startedAt === undefined)) continue
+    for (let index = 0; index < nodes.length; index += 1) {
+      const operation = toolOperations[index]!
+      platformByIndex.set(nodes[index]!.index, {
+        ...(operation.id === undefined ? {} : { operationId: operation.id }),
+        ...(operation.requestId === undefined ? {} : { requestId: operation.requestId }),
+        ...(operation.traceId === undefined ? {} : { traceId: operation.traceId }),
+        ...(operation.receiptId === undefined ? {} : { receiptId: operation.receiptId }),
+        ...(operation.status === undefined ? {} : { status: operation.status }),
+      })
+    }
+  }
+  if (platformByIndex.size === 0) return timeline
+  return timeline.map((node, index) => platformByIndex.has(index) ? { ...node, platform: platformByIndex.get(index) } : node)
+}
+
+/**
+ * Receipt references come from the platform operations read model first; ids
+ * disclosed inside MCP results (none in the verified contract) follow. An
+ * authorized turn with no receipt-bearing operations is a `no-receipts` fact,
+ * kept visibly distinct from an unauthorized read.
+ */
+function projectEvidence(
+  operations: readonly ProvenanceOperationView[],
+  handle: ProvenanceHandle,
+  operationsDegradation: ProvenanceDegradation | undefined,
+): ProvenanceEvidenceView {
+  const receipts: ProvenanceReceiptRef[] = []
+  for (const operation of operations) {
+    if (operation.receiptId === undefined) continue
+    receipts.push({
+      receiptId: operation.receiptId,
+      ...(operation.id === undefined ? {} : { operationId: operation.id }),
+      ...(operation.label === undefined ? {} : { toolLabel: operation.label }),
+      ...(operation.status === undefined ? {} : { status: operation.status }),
+      source: 'platform',
+      verifyHint: `openbkn trace receipts get ${operation.receiptId}`,
+    })
+  }
+  for (const receiptId of handle.receiptIds) {
+    if (receipts.some(receipt => receipt.receiptId === receiptId)) continue
+    receipts.push({ receiptId, source: 'mcp-result' })
+  }
+  if (receipts.length > 0) return { kind: 'ready', receipts }
+  if (operationsDegradation === undefined) return { kind: 'unavailable', reason: 'no-receipts' }
+  return {
+    kind: 'unavailable',
+    reason: evidenceReasonFor(operationsDegradation.reason),
   }
 }
 
@@ -108,58 +239,6 @@ function projectTraceBusinessRef(entry: Record<string, unknown> | undefined, rem
   return { id, kind, name }
 }
 
-function projectBusinessOperation(entry: Record<string, unknown>, elementsRemaining: { value: number }): readonly ProvenanceBusinessOperation[] {
-  const id = stringValue(entry.operation_id)
-  const attempt = numberValue(entry.attempt)
-  const toolName = stringValue(entry.tool_name)
-  const status = provenanceStatus(entry.status)
-  if (id === undefined || attempt === undefined || toolName === undefined || status === undefined) return []
-  const elements = records(entry.elements).flatMap(element => projectBusinessElement(element, elementsRemaining))
-  return [{ id, attempt, toolName, status, knowledgeNetworkId: stringValue(entry.knowledge_network_id), elements, missingFacts: stringArray(entry.missing_facts) }]
-}
-
-function projectBusinessElement(entry: Record<string, unknown>, remaining: { value: number }): readonly ProvenanceBusinessElement[] {
-  if (remaining.value < 1) return []
-  const kind = elementKind(entry.kind)
-  const id = stringValue(entry.id)
-  const name = stringValue(entry.name)
-  if (kind === undefined || id === undefined || name === undefined) return []
-  remaining.value -= 1
-  const parentId = stringValue(entry.parent_id)
-  const field = stringValue(entry.field)
-  return [{ kind, id, name, ...(parentId === undefined ? {} : { parentId }), ...(field === undefined ? {} : { field }) }]
-}
-
-function projectConversationContext(entry: Record<string, unknown>): readonly ProvenanceConversationContext[] {
-  const knowledgeNetworkId = stringValue(entry.knowledge_network_id)
-  const sourceInteractionId = stringValue(entry.source_interaction_id)
-  const sourceOperationId = stringValue(entry.source_operation_id)
-  return knowledgeNetworkId === undefined || sourceInteractionId === undefined || sourceOperationId === undefined ? [] : [{ knowledgeNetworkId, sourceInteractionId, sourceOperationId }]
-}
-
-function projectContextRelation(entry: Record<string, unknown>, remaining: { value: number }): readonly ProvenanceContextRelation[] {
-  if (remaining.value < 1) return []
-  const id = stringValue(entry.id)
-  const knowledgeNetworkId = stringValue(entry.knowledge_network_id)
-  const name = stringValue(entry.name)
-  const sourceObjectId = stringValue(entry.source_object_id)
-  const targetObjectId = stringValue(entry.target_object_id)
-  if (id === undefined || knowledgeNetworkId === undefined || name === undefined || sourceObjectId === undefined || targetObjectId === undefined) return []
-  remaining.value -= 1
-  return [{ id, knowledgeNetworkId, name, sourceObjectId, targetObjectId }]
-}
-
-function projectDerivedFact(entry: Record<string, unknown>, remaining: { value: number }): readonly ProvenanceDerivedFact[] {
-  if (remaining.value < 1) return []
-  const rule = stringValue(entry.rule)
-  const sourceOperationId = stringValue(entry.source_operation_id)
-  const operationId = stringValue(entry.operation_id)
-  const elementId = stringValue(entry.element_id)
-  if (rule === undefined || sourceOperationId === undefined || operationId === undefined || elementId === undefined) return []
-  remaining.value -= 1
-  return [{ rule, sourceOperationId, operationId, elementId }]
-}
-
 function record(value: unknown): Record<string, unknown> | undefined {
   return typeof value === 'object' && value !== null && !Array.isArray(value) ? value as Record<string, unknown> : undefined
 }
@@ -179,13 +258,6 @@ function stringValue(value: unknown): string | undefined {
   return typeof value === 'string' && value.trim() ? value.trim().slice(0, 512) : undefined
 }
 
-function stringArray(value: unknown): readonly string[] {
-  return Array.isArray(value) ? value.flatMap(item => stringValue(item) === undefined ? [] : [stringValue(item)!]).slice(0, 32) : []
-}
-
-function numberValue(value: unknown): number | undefined { return typeof value === 'number' && Number.isSafeInteger(value) && value >= 0 ? value : undefined }
-function provenanceStatus(value: unknown): ProvenanceBusinessOperation['status'] | undefined { return value === 'resolved' || value === 'ambiguous' || value === 'unresolved' || value === 'not_evaluable' ? value : undefined }
-function elementKind(value: unknown): ProvenanceBusinessElement['kind'] | undefined { return value === 'object' || value === 'relation' || value === 'action' || value === 'property' || value === 'logic' || value === 'metric' ? value : undefined }
 function traceRefKind(value: unknown): ProvenanceBusinessElement['kind'] | undefined {
   switch (value) {
     case 'object': case 'object_type': case 'object_instance': case 'knowledge_network': return 'object'
@@ -196,4 +268,8 @@ function traceRefKind(value: unknown): ProvenanceBusinessElement['kind'] | undef
     case 'metric': return 'metric'
     default: return undefined
   }
+}
+
+function compareTimestamp(left: string | undefined, right: string | undefined): number {
+  return (left ?? '').localeCompare(right ?? '')
 }

@@ -15,7 +15,7 @@ test('associates an explicitly completed OpenBKN MCP interaction with its final 
     { type: 'tool/call', data: { turn: 7, step: 3, callId: finishCallId, name: 'mcp__openbkn__bkn_finish_interaction', arguments: '{}' } },
     { type: 'tool/result', data: { turn: 7, step: 3, message: {
       source: { kind: 'tool', callId: finishCallId }, content: [{ type: 'tool-result', toolCallId: finishCallId, content: [{
-        type: 'text', text: '{"execution_status":"completed","evidence_status":"complete","interaction_id":"int-7"}',
+        type: 'text', text: '{"execution_status":"completed","evidence_status":"complete","interaction_id":"int-7","conversation_id":"conv-7"}',
       }] }], role: 'user', id: 'tool-result' },
     } },
     { type: 'assistant/message', data: { turn: 7, step: 4, message: {
@@ -26,15 +26,34 @@ test('associates an explicitly completed OpenBKN MCP interaction with its final 
   assert.deepEqual(result, {
     messageId: 'assistant-final',
     handle: {
-      schemaVersion: 1,
+      schemaVersion: 2,
       interactionId: 'int-7',
       requestIds: [],
       traceIds: [],
       receiptIds: [],
       status: 'completed',
       partial: true,
+      conversationId: 'conv-7',
+      turn: 7,
     },
   })
+})
+
+test('keeps a handle v2 without a conversation id when the finish response omits one', () => {
+  const result = findCompletedNativeMcpProvenance([
+    { type: 'tool/call', data: { turn: 3, step: 1, callId: finishCallId, name: 'mcp__openbkn__bkn_finish_interaction', arguments: '{}' } },
+    { type: 'tool/result', data: { turn: 3, step: 1, message: {
+      source: { kind: 'tool', callId: finishCallId }, content: [{ type: 'tool-result', toolCallId: finishCallId, content: [{
+        type: 'text', text: '{"execution_status":"completed","interaction_id":"int-3"}',
+      }] }], role: 'user', id: 'tool-result' },
+    } },
+    { type: 'assistant/message', data: { turn: 3, step: 2, message: {
+      id: 'assistant-final', role: 'assistant', content: [{ type: 'text', text: 'Done.' }], source: { kind: 'model' },
+    } } },
+  ], 3)
+
+  assert.equal(result?.handle.conversationId, undefined)
+  assert.equal('conversationId' in (result?.handle ?? {}), false)
 })
 
 test('does not fabricate provenance when the current turn has no completed OpenBKN interaction', () => {

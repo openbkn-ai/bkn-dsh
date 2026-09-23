@@ -36,7 +36,7 @@ node scripts/check-runtime-portability.mjs --output release/artifacts --platform
 - Scripts imported by tests must not run side effects at import time (run the CLI body only when executed as the main module).
 - Manifest / pnpm-output parsing fails closed with context (`readManifest`, `readCompatibilityManifest`, `parsePackManifest`): wrap with the file path and the next step, keep `cause`, never swallow.
 - Security boundary: the OpenBKN token lives only in DSH credentials. Never write it to Cordis YAML, settings, fixtures, or logs. The platform address is non-sensitive.
-- Provenance error mapping: 401 → `AUTHENTICATION_REQUIRED`; only 403 + `permission_denied` on the observability routes → `LICENSE_REQUIRED`, and a license hint is shown only when capabilities report `licensed: false`.
+- Provenance degradation: platform failures never throw out of `getTurnProvenanceView`; each pane degrades by itself. The reader still emits `LICENSE_REQUIRED` for 403 + `permission_denied` on the observability routes (and passes through the truncated `required_action`), but the service maps it unconditionally to `domain-not-authorized` — verified against OpenBKN 0.1.4, those read routes are gated by the deployment's static business-domain allow-list, not by license, and capabilities are never consulted. The `license-required` degradation enum is kept unused for a future license-gated read route.
 
 ## Repo etiquette
 

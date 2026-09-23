@@ -4,6 +4,7 @@ import type { BusinessNetworkBinding } from './session-binding.js'
 export type PlatformReaderErrorCode =
   | 'AUTHENTICATION_REQUIRED'
   | 'LICENSE_REQUIRED'
+  | 'RECORD_NOT_DISCLOSED'
   | 'PLATFORM_MISMATCH'
   | 'PLATFORM_UNAVAILABLE'
   | 'REQUEST_ABORTED'
@@ -12,9 +13,13 @@ export type PlatformReaderErrorCode =
 
 /** A bounded Host-side error. It never includes platform response bodies. */
 export class PlatformReaderError extends Error {
-  constructor(readonly code: PlatformReaderErrorCode, message: string, options?: ErrorOptions) {
+  /** The platform's own required_action from a permission_denied envelope, truncated. */
+  readonly requiredAction?: string
+
+  constructor(readonly code: PlatformReaderErrorCode, message: string, options?: ErrorOptions & { readonly requiredAction?: string }) {
     super(message, options)
     this.name = 'PlatformReaderError'
+    this.requiredAction = options?.requiredAction
   }
 }
 
@@ -127,10 +132,27 @@ export class OpenBknPlatformReader {
         const body = await response.text().catch(() => '')
         const failure = body.length <= 4096 ? record(safeParse(body))?.error : undefined
         if (string(record(failure)?.code) === 'permission_denied') {
-          throw new PlatformReaderError('LICENSE_REQUIRED', 'The requested OpenBKN capability requires an enterprise license for this business domain.')
+          throw new PlatformReaderError(
+            'LICENSE_REQUIRED',
+            'The requested OpenBKN capability requires an enterprise license for this business domain.',
+            { requiredAction: truncateRequiredAction(string(record(failure)?.required_action)) },
+          )
         }
       }
       throw new PlatformReaderError('AUTHENTICATION_REQUIRED', 'OpenBKN authentication is required.')
+    }
+    if (response.status === 404) {
+      // A 404 with error.code resource_not_disclosed means the record is not
+      // on the platform (or is not disclosed to this caller — the platform
+      // deliberately does not distinguish). Retrying cannot fix that, so it
+      // gets its own code; every other 404 stays a generic unavailable.
+      // Bounded read like the 403 branch: nothing but the code crosses.
+      const body = await response.text().catch(() => '')
+      const failure = body.length <= 4096 ? record(safeParse(body))?.error : undefined
+      if (string(record(failure)?.code) === 'resource_not_disclosed') {
+        throw new PlatformReaderError('RECORD_NOT_DISCLOSED', 'The requested OpenBKN record is not disclosed.')
+      }
+      throw new PlatformReaderError('PLATFORM_UNAVAILABLE', 'OpenBKN platform data is temporarily unavailable.')
     }
     if (!response.ok) throw new PlatformReaderError('PLATFORM_UNAVAILABLE', 'OpenBKN platform data is temporarily unavailable.')
     const contentLength = response.headers.get('content-length')
@@ -234,6 +256,11 @@ function fixedUrl(baseUrl: string, path: string, allowInsecureTls: boolean): URL
 function normalizeBaseUrl(value: string): string { return value.trim().replace(/\/+$/, '') }
 function record(value: unknown): Record<string, unknown> | undefined { return typeof value === 'object' && value !== null && !Array.isArray(value) ? value as Record<string, unknown> : undefined }
 function safeParse(text: string): unknown { try { return JSON.parse(text) } catch { return undefined } }
+/** Pass the platform's next-step token through, bounded; never the message body around it. */
+function truncateRequiredAction(value: string | undefined): string | undefined {
+  if (value === undefined || value.length === 0) return undefined
+  return value.length > 256 ? value.slice(0, 256) : value
+}
 
 /** Read a response body as text, aborting the stream once the byte cap is exceeded. */
 async function readCappedBody(response: Response, capBytes: number): Promise<string> {

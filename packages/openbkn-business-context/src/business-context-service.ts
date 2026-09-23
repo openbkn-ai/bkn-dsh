@@ -18,9 +18,10 @@ import { buildProvenanceView } from './provenance-view.js'
 import { buildNetworkCapabilityProfile, type NetworkCapabilityProfile } from './network-capability-profile.js'
 import { mountBoundBusinessNetworkTool } from './scoped-business-context.js'
 import { emptyBusinessSessionPrompt } from './suggested-prompts.js'
+import { buildTurnTimeline } from './turn-timeline.js'
 import { OpenBknWorkspaceBindingRegistry } from './workspace-binding-registry.js'
 import type { BindBusinessNetworkResult, BusinessNetworkBinding } from './session-binding.js'
-import type { AuthSnapshot, BusinessNetworkSummary, ProvenanceHandle, ProvenanceView } from './types.js'
+import type { AuthSnapshot, BusinessNetworkSummary, ProvenanceDegradation, ProvenanceHandle, ProvenanceView } from './types.js'
 import { realpath, stat } from 'node:fs/promises'
 
 declare module '@deepseek-ai/cordis' {
@@ -38,7 +39,6 @@ declare module '@deepseek-ai/dsh-typert-protocol' {
       readonly layer: 'context-loader-mcp' | 'platform-api'
     }
     'openbkn/platform-unavailable': { readonly baseUrl: string }
-    'openbkn/provenance-license-required': { readonly edition: string }
   }
 }
 
@@ -154,6 +154,11 @@ export class OpenBknBusinessContextService extends TypertRemoteService {
    * Resolve the selected turn's provenance on demand through the fixed
    * platform OSDK catalogue. The browser receives a bounded presentation DTO,
    * never raw MCP output, OSDK routes, or credentials.
+   *
+   * The local timeline (Layer 0) is rebuilt from session events and always
+   * renders. Platform reads (Layers 1/2) degrade independently: a failure is
+   * classified into `sources.degraded` instead of failing the whole view, so
+   * a partially authorized deployment still sees the local execution chain.
    */
   @Remote('getTurnProvenanceView')
   async remoteGetTurnProvenanceView(
@@ -169,41 +174,50 @@ export class OpenBknBusinessContextService extends TypertRemoteService {
     if (handle === undefined) return undefined
     const cwd = agent.session.header.cwd ?? '.'
     const reader = this.platformReader()
-    // Trace Community operations and the Trace 3 authorized assembly are
-    // independent read models. A failure in one must not hide safe facts from
-    // the other; the browser receives no raw MCP or OSDK payload in either case.
+    const timeline = buildTurnTimeline(
+      agent.session.snapshotEvents(),
+      handle.turn === undefined ? { messageId } : { turn: handle.turn },
+    )
+    // Trace operations and the authorized assembly are independent read
+    // models. Each failure degrades only its own pane; neither hides the
+    // local timeline, and the browser receives no raw payload in any case.
     const [core, graph] = await Promise.allSettled([
       reader.getInteractionOperations(handle.interactionId, signal, cwd),
       reader.getInteractionBusinessGraph(handle.interactionId, signal, cwd),
     ])
     if (signal.aborted) throw signal.reason
-    if (core.status === 'rejected' && graph.status === 'rejected') {
-      this.ctx.logger.warn(
-        'openbkn-business-context: provenance reads failed (core=%s, graph=%s)',
-        safeRunnerFailureCode(core.reason),
-        safeRunnerFailureCode(graph.reason),
-      )
-      if (safeRunnerFailureCode(core.reason) === 'LICENSE_REQUIRED' || safeRunnerFailureCode(graph.reason) === 'LICENSE_REQUIRED') {
-        const license = await this.platformReader().getLicenseEdition(signal).then(
-          value => value,
-          () => undefined,
-        )
-        const decision = provenanceLicenseDecision(license)
-        if (decision.kind === 'unavailable') {
-          throw new Error('OpenBKN provenance records are unavailable for this interaction.')
-        }
-        throw new RemoteError(
-          'openbkn/provenance-license-required',
-          'Business provenance is an enterprise capability; the current deployment license does not include it.',
-          { edition: decision.edition },
-        )
+    // Verified against OpenBKN 0.1.4 (docs/evidence/2026-09-20-provenance-v1-v2.md):
+    // the observability read routes have no license gate. A 403
+    // permission_denied there always means the request's business domain is
+    // not in the deployment's static allow-list (chart-shipped, default
+    // bd_public) or the account was refused by BKN Safe; a license gap on the
+    // platform instead answers 404 capability_not_licensed on the MCP write
+    // path, never 403 here. So the reader's LICENSE_REQUIRED classification
+    // maps to the domain-authorization degradation, never an upgrade hint.
+    const classify = (pane: 'operations' | 'business', failure: unknown): ProvenanceDegradation => {
+      const error = failure instanceof PlatformReaderError ? failure : undefined
+      if (error?.code === 'AUTHENTICATION_REQUIRED') return { pane, reason: 'authentication-required' }
+      if (error?.code === 'RECORD_NOT_DISCLOSED') return { pane, reason: 'record-not-disclosed' }
+      if (error?.code === 'LICENSE_REQUIRED') {
+        return { pane, reason: 'domain-not-authorized', ...(error.requiredAction === undefined ? {} : { requiredAction: error.requiredAction }) }
       }
-      throw new Error('OpenBKN provenance records are unavailable for this interaction.')
+      return { pane, reason: 'platform-unavailable' }
+    }
+    const operations = core.status === 'rejected' ? classify('operations', core.reason) : undefined
+    const business = graph.status === 'rejected' ? classify('business', graph.reason) : undefined
+    if (operations !== undefined || business !== undefined) {
+      this.ctx.logger.warn(
+        'openbkn-business-context: provenance reads degraded (operations=%s, business=%s)',
+        operations === undefined ? 'ok' : operations.reason,
+        business === undefined ? 'ok' : business.reason,
+      )
     }
     return buildProvenanceView(
       handle,
+      timeline,
       core.status === 'fulfilled' ? core.value : undefined,
       graph.status === 'fulfilled' ? graph.value : undefined,
+      { ...(operations === undefined ? {} : { operations }), ...(business === undefined ? {} : { business }) },
       {
       maxGraphNodes: this.config.maxGraphNodes,
       maxGraphEdges: this.config.maxGraphEdges,
@@ -446,24 +460,6 @@ export class OpenBknBusinessContextService extends TypertRemoteService {
     const managed = await this.ctx.credentials.resolve(ref)
     return managed?.value
   }
-}
-
-/**
- * A permission_denied gate is only a license statement when the deployment is
- * verifiably unlicensed; an enterprise deployment that still denies the read
- * has a domain-authorization problem instead, and must not be told to upgrade.
- * Capabilities being unreachable leaves the cause undetermined: report the
- * generic unavailable failure rather than guessing an upgrade path.
- */
-export function provenanceLicenseDecision(license: { edition?: string; licensed?: boolean } | undefined):
-  | { readonly kind: 'license-required'; readonly edition: string }
-  | { readonly kind: 'unavailable' } {
-  if (license === undefined || license.licensed !== false) return { kind: 'unavailable' }
-  return { kind: 'license-required', edition: license.edition ?? '' }
-}
-
-function safeRunnerFailureCode(error: unknown): string {
-  return error instanceof PlatformReaderError ? error.code : 'UNCLASSIFIED'
 }
 
 function safeCapabilityProfileFailureCode(error: unknown): string {

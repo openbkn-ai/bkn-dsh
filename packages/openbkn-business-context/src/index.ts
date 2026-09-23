@@ -25,9 +25,10 @@ export { appendDshSessionTurnProvenance, readDshSessionTurnProvenance } from './
 export type { DshSessionProvenanceLog, DshSessionProvenanceWriter } from './dsh-session-provenance.js'
 export { TURN_PROVENANCE_EVENT, TurnProvenanceConflictError, appendTurnProvenance, readTurnProvenance } from './turn-provenance.js'
 export type { TurnProvenanceEvent } from './turn-provenance.js'
-export { normalizeProvenanceHandle } from './provenance-handle.js'
+export { normalizeProvenanceHandle, sameProvenanceHandle } from './provenance-handle.js'
+export { buildTurnTimeline } from './turn-timeline.js'
+export type { TurnTimelineLocator } from './turn-timeline.js'
 export type { ProvenanceHandle } from './types.js'
-export { LIFECYCLE_TOOLS, MANAGED_IN_INTERACTION_TOOLS, managedConversationSectionText } from './scoped-business-context.js'
 export {
   CONVERSATION_INVALID_ERROR_CODES,
   FINISH_INTERACTION_TOOL,

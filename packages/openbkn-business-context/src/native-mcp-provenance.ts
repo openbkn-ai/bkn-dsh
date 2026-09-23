@@ -29,7 +29,7 @@ export function findCompletedNativeMcpProvenance(
     calls.set(data.callId, data.name)
   }
 
-  const completed = new Map<string, { interactionId: string; resultIndex: number }>()
+  const completed = new Map<string, { interactionId: string; conversationId?: string; resultIndex: number }>()
   for (const [index, event] of events.entries()) {
     if (event.type !== 'tool/result') continue
     const data = record(event.data)
@@ -39,7 +39,7 @@ export function findCompletedNativeMcpProvenance(
     const callId = source?.kind === 'tool' && typeof source.callId === 'string' ? source.callId : undefined
     if (callId === undefined || calls.get(callId) !== OPENBKN_FINISH_INTERACTION_TOOL) continue
     const interactionId = completedInteractionId(message)
-    if (interactionId !== undefined) completed.set(callId, { interactionId, resultIndex: index })
+    if (interactionId !== undefined) completed.set(callId, { interactionId, conversationId: lifecycleConversationId(message), resultIndex: index })
   }
   if (completed.size !== 1) return undefined
 
@@ -49,15 +49,18 @@ export function findCompletedNativeMcpProvenance(
   return {
     messageId: answer,
     handle: {
-      schemaVersion: 1,
+      schemaVersion: 2,
       interactionId: completedInteraction.interactionId,
       requestIds: [],
       traceIds: [],
       receiptIds: [],
       status: 'completed',
-      // The current MCP response identifies an interaction, but not safe graph
-      // or evidence references. The overlay must state that limitation.
+      // The verified MCP contract (2026-09-20) discloses interaction and
+      // conversation ids on lifecycle calls only; request/trace/receipt ids
+      // exist solely in the platform operations read model.
       partial: true,
+      ...(completedInteraction.conversationId === undefined ? {} : { conversationId: completedInteraction.conversationId }),
+      turn,
     },
   }
 }
@@ -76,6 +79,18 @@ function finalAssistantMessageAfter(events: readonly EventLike[], turn: number, 
 }
 
 function completedInteractionId(message: Record<string, unknown> | undefined): string | undefined {
+  const parsed = firstLifecycleRecord(message)
+  if (parsed?.execution_status !== 'completed') return undefined
+  return identifier(parsed.interaction_id)
+}
+
+function lifecycleConversationId(message: Record<string, unknown> | undefined): string | undefined {
+  const parsed = firstLifecycleRecord(message)
+  if (parsed === undefined) return undefined
+  return identifier(parsed.conversation_id)
+}
+
+function firstLifecycleRecord(message: Record<string, unknown> | undefined): Record<string, unknown> | undefined {
   if (message === undefined || !Array.isArray(message.content)) return undefined
   for (const block of message.content) {
     const toolResult = record(block)
@@ -84,9 +99,7 @@ function completedInteractionId(message: Record<string, unknown> | undefined): s
       const text = record(content)
       if (text?.type !== 'text' || typeof text.text !== 'string') continue
       const parsed = jsonRecord(text.text)
-      if (parsed?.execution_status !== 'completed') continue
-      const interactionId = identifier(parsed.interaction_id)
-      if (interactionId !== undefined) return interactionId
+      if (parsed?.interaction_id !== undefined) return parsed
     }
   }
   return undefined
