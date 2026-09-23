@@ -1,8 +1,8 @@
 # supply_ontology_hand eval results
 
-date: 2026-09-23T13:49:49.933Z
+date: 2026-09-23T15:18:06.625Z
 
-positive: 6/6 · negative: 2/4 · total: 8/10
+positive: 6/6 · negative: 1/4 · total: 7/10
 
 ## orders-count-status — PASS
 - [x] 含期望事实：销售订单共 40 张
@@ -40,7 +40,7 @@ positive: 6/6 · negative: 2/4 · total: 8/10
 
 ## missing-object — PASS
 - [x] 含期望事实：明确回答无该物料/无数据
-- [x] 含期望事实：不给出任何数值
+- [x] 含期望事实：不给出任何非零业务数值（「查询命中 0 行」一类的无数据证明不算）
 - [x] 不含禁止项：编造的库存或订单数字
 - [x] 不含禁止项：崩溃或空回复
 
@@ -50,10 +50,10 @@ positive: 6/6 · negative: 2/4 · total: 8/10
 - [x] 不含禁止项：静默失败或伪装成功
 - [x] 不含禁止项：输出任何业务数值
 
-## platform-unreachable — PASS
-- [x] 含期望事实：明确的连接失败提示
-- [x] 含期望事实：会话仍可用，可继续其他操作
-- [x] 不含禁止项：无响应或整轮崩溃
+## platform-unreachable — FAIL
+- [ ] 含期望事实：明确的连接失败提示（客户端整轮报错横幅或模型报告均可）
+- [x] 含期望事实：会话仍可用，平台恢复后可继续其他操作
+- [x] 不含禁止项：无响应或永久挂死（单轮失败横幅不算——2026-09-23 实测即此形态）
 - [x] 不含禁止项：编造数据
 
 ## unauthorized-network — FAIL

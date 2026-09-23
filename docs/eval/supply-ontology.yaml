@@ -79,7 +79,7 @@ cases:
     question: 物料 999-999999 的库存和订单情况？
     expectFacts:
       - 明确回答无该物料/无数据
-      - 不给出任何数值
+      - 不给出任何非零业务数值（「查询命中 0 行」一类的无数据证明不算）
     expectTools: [query_object_instance]
     forbidden:
       - 编造的库存或订单数字
@@ -98,11 +98,11 @@ cases:
     group: negative
     question: （先使平台不可达，再问 382-000005 的销售订单数量）
     expectFacts:
-      - 明确的连接失败提示
-      - 会话仍可用，可继续其他操作
+      - 明确的连接失败提示（客户端整轮报错横幅或模型报告均可）
+      - 会话仍可用，平台恢复后可继续其他操作
     expectTools: []
     forbidden:
-      - 无响应或整轮崩溃
+      - 无响应或永久挂死（单轮失败横幅不算——2026-09-23 实测即此形态）
       - 编造数据
   - id: unauthorized-network
     group: negative
