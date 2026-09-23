@@ -1,7 +1,7 @@
 import assert from 'node:assert/strict'
 import test from 'node:test'
 import { execFileSync } from 'node:child_process'
-import { cpSync, mkdirSync, mkdtempSync, readFileSync, realpathSync, rmSync, symlinkSync, writeFileSync } from 'node:fs'
+import { cpSync, mkdirSync, mkdtempSync, readFileSync, realpathSync, rmSync, symlinkSync, unlinkSync, writeFileSync } from 'node:fs'
 import { tmpdir } from 'node:os'
 import { join, resolve, sep } from 'node:path'
 
@@ -22,13 +22,25 @@ function outsideDir(name) {
 /** Create symlinks when the platform allows it; otherwise skip the test honestly. */
 function canCreateSymlinks() {
   const probe = join(tmpdir(), `openbkn-symlink-probe-${process.pid}`)
-  rmSync(probe, { force: true })
+  removeLink(probe)
   try {
     symlinkSync(join(tmpdir(), '.'), probe, 'dir')
-    rmSync(probe, { force: true })
-    return true
   } catch {
     return false
+  }
+  removeLink(probe)
+  return true
+}
+
+/**
+ * Remove the probe link itself, never its target. Node 24's rmSync rejects a
+ * directory symlink with ERR_FS_EISDIR, so unlink it directly.
+ */
+function removeLink(path) {
+  try {
+    unlinkSync(path)
+  } catch (error) {
+    if (error?.code !== 'ENOENT') throw error
   }
 }
 
