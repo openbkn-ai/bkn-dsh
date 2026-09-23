@@ -126,11 +126,9 @@ export class OpenBknPlatformReader {
     if (response.status === 403) {
       // Only the observability lifecycle routes answer the deployment
       // license/domain gate with permission_denied; elsewhere that code means
-      // a caller-authorization problem. The body is a small JSON error
-      // envelope, so a bounded read is safe.
+      // a caller-authorization problem.
       if (options?.licenseGated === true) {
-        const body = await response.text().catch(() => '')
-        const failure = body.length <= 4096 ? record(safeParse(body))?.error : undefined
+        const failure = await errorEnvelope(response)
         if (string(record(failure)?.code) === 'permission_denied') {
           throw new PlatformReaderError(
             'LICENSE_REQUIRED',
@@ -141,14 +139,14 @@ export class OpenBknPlatformReader {
       }
       throw new PlatformReaderError('AUTHENTICATION_REQUIRED', 'OpenBKN authentication is required.')
     }
-    if (response.status === 404) {
-      // A 404 with error.code resource_not_disclosed means the record is not
-      // on the platform (or is not disclosed to this caller — the platform
+    if (response.status === 404 && options?.licenseGated === true) {
+      // Scoped to the observability routes like the 403 gate above, so the
+      // catalog routes keep their existing error mapping. There, a 404 with
+      // error.code resource_not_disclosed means the record is not on the
+      // platform (or is not disclosed to this caller — the platform
       // deliberately does not distinguish). Retrying cannot fix that, so it
       // gets its own code; every other 404 stays a generic unavailable.
-      // Bounded read like the 403 branch: nothing but the code crosses.
-      const body = await response.text().catch(() => '')
-      const failure = body.length <= 4096 ? record(safeParse(body))?.error : undefined
+      const failure = await errorEnvelope(response)
       if (string(record(failure)?.code) === 'resource_not_disclosed') {
         throw new PlatformReaderError('RECORD_NOT_DISCLOSED', 'The requested OpenBKN record is not disclosed.')
       }
@@ -251,6 +249,19 @@ function fixedUrl(baseUrl: string, path: string, allowInsecureTls: boolean): URL
   }
   assertHttpsEndpoint(url, allowInsecureTls)
   return url
+}
+
+/** Bounded error-envelope read shared by the 403/404 gates: stream-capped, never buffered whole. */
+async function errorEnvelope(response: Response): Promise<Record<string, unknown> | undefined> {
+  let text: string
+  try {
+    text = await readCappedBody(response, 4096)
+  } catch {
+    // Oversized or unreadable body: no envelope, caller falls through to the generic path.
+    return undefined
+  }
+  const parsed = record(safeParse(text))
+  return parsed === undefined ? undefined : record(parsed.error)
 }
 
 function normalizeBaseUrl(value: string): string { return value.trim().replace(/\/+$/, '') }
