@@ -71,6 +71,13 @@ test('maps a 404 resource_not_disclosed to RECORD_NOT_DISCLOSED without exposing
   await assert.rejects(reader.getInteractionOperations('int-1', AbortSignal.timeout(1_000)), (error: unknown) => error instanceof PlatformReaderError && error.code === 'RECORD_NOT_DISCLOSED' && !error.message.includes('req-404'))
 })
 
+test('keeps a 404 resource_not_disclosed on non-observability routes a generic platform unavailability', async () => {
+  const reader = new OpenBknPlatformReader({ baseUrl: 'http://localhost:8081', requestTimeoutMs: 1_000, maxResultBytes: 1024, allowInsecureTls: false, resolveToken: async () => 'token' }, async () => response({
+    error: { code: 'resource_not_disclosed' },
+  }, 404))
+  await assert.rejects(reader.listKnowledgeNetworks(AbortSignal.timeout(1_000)), (error: unknown) => error instanceof PlatformReaderError && error.code === 'PLATFORM_UNAVAILABLE')
+})
+
 test('keeps any other 404 a generic platform unavailability', async () => {
   const reader = new OpenBknPlatformReader({ baseUrl: 'http://localhost:8081', requestTimeoutMs: 1_000, maxResultBytes: 1024, allowInsecureTls: false, resolveToken: async () => 'token' }, async () => response({
     error: { code: 'other_code' },
