@@ -612,6 +612,7 @@ test('degrades each platform pane by failure class instead of throwing, and alwa
     { name: 'permission gate on an unlicensed deployment', code: 'LICENSE_REQUIRED', requiredAction: 'request_authorization', expect: { reason: 'domain-not-authorized', requiredAction: 'request_authorization' } },
     { name: 'permission gate on a licensed deployment', code: 'LICENSE_REQUIRED', requiredAction: 'request_authorization', expect: { reason: 'domain-not-authorized', requiredAction: 'request_authorization' } },
     { name: 'expired token', code: 'AUTHENTICATION_REQUIRED', expect: { reason: 'authentication-required' } },
+    { name: 'record missing on the platform', code: 'RECORD_NOT_DISCLOSED', expect: { reason: 'record-not-disclosed' } },
     { name: 'platform unreachable', code: 'PLATFORM_UNAVAILABLE', expect: { reason: 'platform-unavailable' } },
   ]
   for (const entry of cases) {

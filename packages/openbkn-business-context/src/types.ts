@@ -146,6 +146,8 @@ export type EvidenceUnavailableReason =
   'no-receipts'
   | /** The business domain or deployment license does not authorize the read. */
   'not-authorized'
+  | /** The record is not on the platform, or not disclosed to this caller. */
+  'record-not-disclosed'
   | 'platform-unavailable'
 
 /** One durable receipt reference; verification stays a host-side CLI hint. */
@@ -170,6 +172,7 @@ export type ProvenanceDegradationReason =
   | 'license-required'
   | 'domain-not-authorized'
   | 'authentication-required'
+  | 'record-not-disclosed'
   | 'platform-unavailable'
 
 /** One pane that could not be completed, with the platform's own next step. */

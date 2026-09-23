@@ -214,6 +214,11 @@ function degradationCopy(degradation: ProvenanceDegradation): { title: string; d
         detail: '平台令牌已失效或未配置，本面板暂时无法读取平台数据。',
         action: '下一步：重新登录 OpenBKN 后重试。',
       }
+    case 'record-not-disclosed':
+      return {
+        title: '平台未找到此记录',
+        detail: '该 Interaction 在当前平台上不存在或未向当前账号披露（例如平台重建后历史记录已丢失）。重试不会改变结果。时间链不受影响。',
+      }
     default:
       return {
         title: '平台数据暂时不可用',
@@ -242,6 +247,7 @@ function degradationMark(reason: string): string {
     case 'license-required': return '需企业版'
     case 'domain-not-authorized': return '域未授权'
     case 'authentication-required': return '需重新认证'
+    case 'record-not-disclosed': return '记录未披露'
     default: return '平台不可用'
   }
 }

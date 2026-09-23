@@ -1,4 +1,5 @@
 import type {
+  EvidenceUnavailableReason,
   ProvenanceBusinessElement,
   ProvenanceBusinessOperation,
   ProvenanceDegradation,
@@ -52,6 +53,13 @@ export function buildProvenanceView(
     business,
     evidence,
   }
+}
+
+/** Only retryable platform failures keep the unavailable wording; authorization and missing-record causes read differently. */
+function evidenceReasonFor(reason: ProvenanceDegradation['reason']): EvidenceUnavailableReason {
+  if (reason === 'platform-unavailable') return 'platform-unavailable'
+  if (reason === 'record-not-disclosed') return 'record-not-disclosed'
+  return 'not-authorized'
 }
 
 function projectSources(
@@ -154,7 +162,7 @@ function projectEvidence(
   if (operationsDegradation === undefined) return { kind: 'unavailable', reason: 'no-receipts' }
   return {
     kind: 'unavailable',
-    reason: operationsDegradation.reason === 'platform-unavailable' ? 'platform-unavailable' : 'not-authorized',
+    reason: evidenceReasonFor(operationsDegradation.reason),
   }
 }
 

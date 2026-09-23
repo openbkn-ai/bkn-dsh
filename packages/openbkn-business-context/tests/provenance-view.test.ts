@@ -119,6 +119,13 @@ test('keeps the timeline intact and records pane degradations when the platform 
   assert.deepEqual(view.evidence, { kind: 'unavailable', reason: 'platform-unavailable' })
 })
 
+test('maps a missing-record degradation to its own evidence reason', () => {
+  const view = buildProvenanceView(handle, timeline, undefined, undefined, {
+    operations: { pane: 'operations', reason: 'record-not-disclosed' },
+  }, limits)
+  assert.deepEqual(view.evidence, { kind: 'unavailable', reason: 'record-not-disclosed' })
+})
+
 test('distinguishes an unauthorized evidence read from a turn that produced no receipts', () => {
   const domain = buildProvenanceView(handle, timeline, undefined, undefined, {
     operations: { pane: 'operations', reason: 'domain-not-authorized', requiredAction: 'request_authorization' },

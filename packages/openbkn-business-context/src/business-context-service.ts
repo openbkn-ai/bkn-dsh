@@ -197,6 +197,7 @@ export class OpenBknBusinessContextService extends TypertRemoteService {
     const classify = (pane: 'operations' | 'business', failure: unknown): ProvenanceDegradation => {
       const error = failure instanceof PlatformReaderError ? failure : undefined
       if (error?.code === 'AUTHENTICATION_REQUIRED') return { pane, reason: 'authentication-required' }
+      if (error?.code === 'RECORD_NOT_DISCLOSED') return { pane, reason: 'record-not-disclosed' }
       if (error?.code === 'LICENSE_REQUIRED') {
         return { pane, reason: 'domain-not-authorized', ...(error.requiredAction === undefined ? {} : { requiredAction: error.requiredAction }) }
       }

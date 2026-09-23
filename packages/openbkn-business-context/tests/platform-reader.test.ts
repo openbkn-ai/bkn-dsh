@@ -64,6 +64,30 @@ test('maps a 403 permission_denied domain gate to LICENSE_REQUIRED without expos
   await assert.rejects(reader.getInteractionOperations('int-1', AbortSignal.timeout(1_000)), (error: unknown) => error instanceof PlatformReaderError && error.code === 'LICENSE_REQUIRED' && !error.message.includes('req-1'))
 })
 
+test('maps a 404 resource_not_disclosed to RECORD_NOT_DISCLOSED without exposing the response', async () => {
+  const reader = new OpenBknPlatformReader({ baseUrl: 'http://localhost:8081', requestTimeoutMs: 1_000, maxResultBytes: 1024, allowInsecureTls: false, resolveToken: async () => 'token' }, async () => response({
+    error: { code: 'resource_not_disclosed', message: 'request was not found in the authorized scope', request_id: 'req-404' },
+  }, 404))
+  await assert.rejects(reader.getInteractionOperations('int-1', AbortSignal.timeout(1_000)), (error: unknown) => error instanceof PlatformReaderError && error.code === 'RECORD_NOT_DISCLOSED' && !error.message.includes('req-404'))
+})
+
+test('keeps any other 404 a generic platform unavailability', async () => {
+  const reader = new OpenBknPlatformReader({ baseUrl: 'http://localhost:8081', requestTimeoutMs: 1_000, maxResultBytes: 1024, allowInsecureTls: false, resolveToken: async () => 'token' }, async () => response({
+    error: { code: 'other_code' },
+  }, 404))
+  await assert.rejects(reader.getInteractionOperations('int-1', AbortSignal.timeout(1_000)), (error: unknown) => error instanceof PlatformReaderError && error.code === 'PLATFORM_UNAVAILABLE')
+})
+
+test('keeps an oversized 404 body a generic platform unavailability', async () => {
+  const reader = new OpenBknPlatformReader({ baseUrl: 'http://localhost:8081', requestTimeoutMs: 1_000, maxResultBytes: 1024, allowInsecureTls: false, resolveToken: async () => 'token' }, async () => response(`{"error":{"code":"resource_not_disclosed","pad":"${'x'.repeat(5000)}"}}`, 404))
+  await assert.rejects(reader.getInteractionOperations('int-1', AbortSignal.timeout(1_000)), (error: unknown) => error instanceof PlatformReaderError && error.code === 'PLATFORM_UNAVAILABLE')
+})
+
+test('keeps a non-JSON 404 a generic platform unavailability', async () => {
+  const reader = new OpenBknPlatformReader({ baseUrl: 'http://localhost:8081', requestTimeoutMs: 1_000, maxResultBytes: 1024, allowInsecureTls: false, resolveToken: async () => 'token' }, async () => response('<html>gone</html>', 404))
+  await assert.rejects(reader.getInteractionOperations('int-1', AbortSignal.timeout(1_000)), (error: unknown) => error instanceof PlatformReaderError && error.code === 'PLATFORM_UNAVAILABLE')
+})
+
 test('keeps a 401 permission_denied on observability routes an authentication failure', async () => {
   const reader = new OpenBknPlatformReader({ baseUrl: 'http://localhost:8081', requestTimeoutMs: 1_000, maxResultBytes: 1024, allowInsecureTls: false, resolveToken: async () => 'integration-token' }, async () => response({
     error: { code: 'permission_denied', message: '需要有效的 OAuth Bearer Token', required_action: 'request_authorization', request_id: 'req-2' },

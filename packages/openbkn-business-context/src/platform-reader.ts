@@ -4,6 +4,7 @@ import type { BusinessNetworkBinding } from './session-binding.js'
 export type PlatformReaderErrorCode =
   | 'AUTHENTICATION_REQUIRED'
   | 'LICENSE_REQUIRED'
+  | 'RECORD_NOT_DISCLOSED'
   | 'PLATFORM_MISMATCH'
   | 'PLATFORM_UNAVAILABLE'
   | 'REQUEST_ABORTED'
@@ -139,6 +140,19 @@ export class OpenBknPlatformReader {
         }
       }
       throw new PlatformReaderError('AUTHENTICATION_REQUIRED', 'OpenBKN authentication is required.')
+    }
+    if (response.status === 404) {
+      // A 404 with error.code resource_not_disclosed means the record is not
+      // on the platform (or is not disclosed to this caller — the platform
+      // deliberately does not distinguish). Retrying cannot fix that, so it
+      // gets its own code; every other 404 stays a generic unavailable.
+      // Bounded read like the 403 branch: nothing but the code crosses.
+      const body = await response.text().catch(() => '')
+      const failure = body.length <= 4096 ? record(safeParse(body))?.error : undefined
+      if (string(record(failure)?.code) === 'resource_not_disclosed') {
+        throw new PlatformReaderError('RECORD_NOT_DISCLOSED', 'The requested OpenBKN record is not disclosed.')
+      }
+      throw new PlatformReaderError('PLATFORM_UNAVAILABLE', 'OpenBKN platform data is temporarily unavailable.')
     }
     if (!response.ok) throw new PlatformReaderError('PLATFORM_UNAVAILABLE', 'OpenBKN platform data is temporarily unavailable.')
     const contentLength = response.headers.get('content-length')
