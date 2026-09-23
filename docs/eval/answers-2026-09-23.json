@@ -1,0 +1,62 @@
+{
+  "run": "2026-09-23T13:30+08:00",
+  "environment": "rebuilt kind cluster (ghcr hotfix images, EE, license activated), plugin build 0c602f6 (= main 63cfd08 code), DSH 0.1.6-alpha.2 standard preset, DeepSeek-V41-Flash",
+  "judge": "agent (criteria judged against answer texts recorded in docs/evidence/2026-09-23-g6-eval-batch.md)",
+  "orders-count-status": [
+    true,
+    true,
+    true,
+    true,
+    true
+  ],
+  "finished-goods-inventory": [
+    true,
+    true,
+    true,
+    true,
+    true
+  ],
+  "standard-lead-time": [
+    true,
+    true,
+    true
+  ],
+  "bom-structure": [
+    true,
+    true,
+    true
+  ],
+  "purchase-flow": [
+    true,
+    true,
+    true
+  ],
+  "sales-order-detail": [
+    true,
+    true,
+    true
+  ],
+  "missing-object": [
+    true,
+    true,
+    true,
+    true
+  ],
+  "invalid-token": [
+    false,
+    true,
+    true,
+    true
+  ],
+  "platform-unreachable": [
+    true,
+    true,
+    true,
+    true
+  ],
+  "unauthorized-network": [
+    false,
+    false,
+    false
+  ]
+}

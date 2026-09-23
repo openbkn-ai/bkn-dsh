@@ -40,6 +40,8 @@ node scripts/check-runtime-portability.mjs --output release/artifacts --platform
 
 ## Repo etiquette
 
+- Pre-release accuracy check: run the G6 eval batch (`node docs/eval/run-eval.mjs --list` for the questions; grade a recorded run with `--answers`) against a live platform + model, and file the results markdown under `docs/evidence/`. Not in CI — it needs credentials.
+
 - Remotes: `origin` = openbkn-ai/bkn-dsh (upstream, pull-only for this user), `fork` = kalias/bkn-dsh. Work lands on fork branches; `compatible-runtime` runs via `workflow_dispatch` on the fork.
 - Commits use conventional prefixes (`feat:`, `fix:`, `chore:`, `docs:`, `test:`, `ci:`).
 - Pushes, tags and releases need explicit user approval. Two tag prefixes release different artifacts:
