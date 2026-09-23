@@ -23,7 +23,7 @@
 - **时间链 4 节点**：提问 → `bkn_start_interaction · continue · conversation: yes`（213 ms）→ `run_code`（2.1 s，**挂上平台 Op/Receipt/Status**）→ `bkn_finish_interaction · completed`（60 ms）→ 回答。
 - **平台执行事实 6 条**：`run_code`、`query_metric ×2`、`query_object_instance ×2`（均带 Request/Trace/Receipt 全链路 id）。
 - **证据链 6 条回执**，均含 `openbkn trace receipts get <id>` 指引。
-- **计数与差值（如实记录，不在本批改代码）**：本地时间链工具节点 3 个（start、run_code、finish），平台 operations 6 条。差值原因：模型把两次 metric 查询与两次实例查询**嵌套在 run_code 内部**派发（PTC 工具派发形态，与噪声治理批次观察一致），嵌套调用对本机会话事件不产生独立 `tool/call`。对齐规则正确处理：仅数量一致的 `run_code` 组（1:1）挂平台事实，其余平台条目只出现在执行事实明细，不误挂。
+- **计数与差值（如实记录，不在本批改代码）**：本地时间链工具节点 3 个（start、run_code、finish），平台 operations 6 条。差值原因：模型把两次 metric 查询与两次实例查询**放在 `mcp__openbkn__run_code` 内部**执行，与噪声治理批次观察一致。`run_code` 在 **OpenBKN 平台侧**执行，其内部访问不经过 DSH 工具注册表（噪声治理方案 §0），因此不会在本机会话里产生独立的 `tool/call`。（初版把这写成「PTC 工具派发形态」，不准确：DSH 的 PTC 在该 alpha 版本不可用，且与此无关。2026-09-23 审查更正。）对齐规则正确处理：仅数量一致的 `run_code` 组（1:1）挂平台事实，其余平台条目只出现在执行事实明细，不误挂。
 
 ### 2.2 域未授权
 
@@ -77,7 +77,7 @@
 2. `mac.sh -y bkn install` 重装数据层与主栈；redis 镜像 `openbkn-ai/redis:1.11.2-…` 在 SWR 上**只有 amd64**（arm64 Mac）→ 以 `--platform linux/amd64` 拉取后 ctr 注入，Rosetta 模拟运行正常（mariadb/kafka/opensearch 均原生 arm64 可拉）。
 3. EE 镜像切换（`openbkn-ee.sh install`）、optimizer bootstrap、license 重应用、样例 KN 重建与平台健康复核：见下节「恢复后状态」（进行中/完成时更新）。
 
-**教训**（已入记忆）：`cluster down` 是删除不是停机；模拟「平台不可达」应使用 `kubectl scale deploy ingress-nginx-controller --replicas=0` 一类可逆操作。SWR 部分镜像无 arm64 是本机重装的固有坑，注入器脚本模式（amd64 拉取 + ctr import）为标准解法。
+**教训**（2026-09-23 审查核实：初版称「已入记忆」，但记忆目录里并没有；现已写入工作区 `CLAUDE.md` 的 Constraints）：`cluster down` 是删除不是停机；模拟「平台不可达」应使用 `kubectl scale deploy ingress-nginx-controller --replicas=0` 一类可逆操作。SWR 部分镜像无 arm64 是本机重装的固有坑，注入器脚本模式（amd64 拉取 + ctr import）为标准解法。
 
 ## 6. 恢复后状态（2026-09-23 凌晨完成）
 
@@ -92,3 +92,16 @@
 - [x] DSH 对接终验：网络目录/令牌同步正常；旧 interaction（随集群删除）在面板中正确降级 `platform-unavailable`（404 `resource_not_disclosed` → 该分类对「记录已不存在」文案偏「稍后重试」，如实记录，不在本批改）；时间链完好
 
 **恢复后残留（用户侧动作）**：① license 发行侧解绑旧实例（如需彻底激活）；② skills 注册需 Studio 管理面配置默认 OSS 存储（`{data:[]}`，公开 API 路径未定位到）；③ worldcup 样例未重建（MySQL 数据仍在，重跑 `run.sh` 即可）；④ `authorization-private` 桩为宿主进程，重启机器后需按 `platform-local-recovery/README.md` 拉起。
+
+## 7. 恢复后的环境漂移（2026-09-23 审查补记）
+
+§2.1–2.5 的结论都在集群删除前取得，不受下面这些差异影响；但此后在本集群上做的任何验收（T4b、G6 评测等）都必须先引用本节。
+
+| 项 | 事故前 | 重建后 | 对后续验收的影响 |
+| --- | --- | --- | --- |
+| `authorization-private` | 平台自带服务 | 宿主机上的**放行桩**（`platform-local-recovery/authz-stub.mjs`），`operation-check` 恒为 `true`、`resource-filter` 原样放行全部候选操作；监听 `0.0.0.0:30920`，没有认证 | **凡是依赖 vega 资源/操作授权的负例，在本集群上都会假通过，不能作为证据**。observability 读路由的门是 chart 静态域允许清单（V1），不经过此服务，所以域未授权这一格不受影响 |
+| `sandbox-control-plane` / `agent-retrieval` / `agent-operator-integration` | `0.1.4-hotfix-supply-sample-p1` | `:0.1.4`（hotfix 标签在 SWR 上不存在） | hotfix 修过的样例问题可能复现；冒烟 12/12 通过不能证明 hotfix 覆盖的场景也没问题 |
+| redis / minio / library / nginx / sandbox-control-plane 等 | 原生镜像 | amd64 镜像，经 Rosetta 模拟运行 | 性能和耗时口径不可与事故前对比 |
+| ingress TLS | 旧自签 CA | 新自签 CA（`platform-local-recovery/tls/`） | DSH 需要改用新 CA；旧的 `~/.dsh/openbkn-dev-ca.pem` 已不匹配 |
+| license | 已激活 | 已导入，capabilities 显示 enterprise/valid，但发行侧激活返回 409 | 对读路由无影响（V1） |
+| 历史 interaction / conversation | 存在 | 全部丢失 | 老会话打开溯源时，平台侧三段显示 `platform-unavailable`（平台返回 404 `resource_not_disclosed`）；文案「稍后重试」对永久缺失的记录有误导，已登记为后续缺陷 |
