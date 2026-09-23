@@ -42,3 +42,55 @@ test('mounts the compatible MCP client with an ephemeral bearer header and verif
   await manager.refresh()
   assert.equal(disposed, 1)
 })
+
+test('turns an MCP handshake rejection into an actionable re-login hint (G6 finding)', async () => {
+  // The MCP SDK brands a 401 probe with code CLIENT_HTTP_AUTHENTICATION and
+  // DSH's mcp-client wraps it as "initial connection or tool synchronization
+  // failed"; the cause chain keeps the brand.
+  const handshakeError = Object.assign(
+    new Error('mcp-client(openbkn): initial connection or tool synchronization failed'),
+    { cause: Object.assign(new Error('Version negotiation failed: the server requires authorization (HTTP 401)'), { code: 'CLIENT_HTTP_AUTHENTICATION' }) },
+  )
+  const tools = new Map<string, unknown>()
+  const ctx = {
+    tools: { get: (name: string) => tools.get(name) },
+    plugin: async () => { throw handshakeError },
+  }
+  const manager = new OpenBknMcpManager(ctx as never, { baseUrl: 'http://localhost:8081' } as never, async () => 'stale-token')
+
+  await assert.rejects(manager.ensure(), (error: unknown) => {
+    const message = error instanceof Error ? error.message : String(error)
+    return message.includes('Re-login with `openbkn auth login`')
+      && message.includes('HTTP 401')
+      && !message.includes('stale-token')
+  })
+})
+
+test('keeps a plain startup failure in its original shape', async () => {
+  const tools = new Map<string, unknown>()
+  const ctx = {
+    tools: { get: (name: string) => tools.get(name) },
+    plugin: async () => { throw new Error('connect ECONNREFUSED 127.0.0.1:1') },
+  }
+  const manager = new OpenBknMcpManager(ctx as never, { baseUrl: 'http://localhost:8081' } as never, async () => 'test-token')
+
+  await assert.rejects(manager.ensure(), /ECONNREFUSED/)
+})
+
+test('recognizes a 403 brand as an account-authorization hint, not re-login', async () => {
+  const handshakeError = Object.assign(
+    new Error('mcp-client(openbkn): initial connection or tool synchronization failed'),
+    { cause: Object.assign(new Error('Version negotiation failed: the server denied access (HTTP 403)'), { code: 'CLIENT_HTTP_FORBIDDEN' }) },
+  )
+  const tools = new Map<string, unknown>()
+  const ctx = {
+    tools: { get: (name: string) => tools.get(name) },
+    plugin: async () => { throw handshakeError },
+  }
+  const manager = new OpenBknMcpManager(ctx as never, { baseUrl: 'http://localhost:8081' } as never, async () => 'token')
+
+  await assert.rejects(manager.ensure(), (error: unknown) => {
+    const message = error instanceof Error ? error.message : String(error)
+    return message.includes('authorize this account') && !message.includes('auth login')
+  })
+})
