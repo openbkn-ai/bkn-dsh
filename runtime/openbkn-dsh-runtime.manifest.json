@@ -2,16 +2,16 @@
   "format": 1,
   "bundle": {
     "name": "openbkn-dsh-runtime",
-    "version": "0.1.6-alpha.2-openbkn.1",
+    "version": "0.1.6-alpha.2-openbkn.2",
     "node": "^22.19.0 || >=24.0.0",
     "archives": [
       {
         "platform": "darwin-arm64",
-        "file": "openbkn-dsh-runtime-0.1.6-alpha.2-openbkn.1-darwin-arm64.tar.gz"
+        "file": "openbkn-dsh-runtime-0.1.6-alpha.2-openbkn.2-darwin-arm64.tar.gz"
       },
       {
         "platform": "win32-x64",
-        "file": "openbkn-dsh-runtime-0.1.6-alpha.2-openbkn.1-win32-x64.zip"
+        "file": "openbkn-dsh-runtime-0.1.6-alpha.2-openbkn.2-win32-x64.zip"
       }
     ]
   },
