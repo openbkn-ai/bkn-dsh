@@ -4,6 +4,10 @@ All notable changes to this project are documented here.
 
 ## Unreleased
 
+Nothing yet.
+
+## 0.1.5-rc.2 (2026-09-24)
+
 Layered business provenance (design: `docs/plans/2026-09-20-provenance-layered-redesign.md`; verification: `docs/evidence/2026-09-20-provenance-v1-v2.md` and `docs/evidence/2026-09-22-timeline-e2e-stage1.md`).
 
 - The provenance panel is rebuilt as independent layers: a local execution timeline rebuilt at read time from DSH session events (question → lifecycle/managed calls with durations and whitelist-only summaries → answer; consecutive same-tool calls fold for display), platform operation facts attached to timeline nodes only when the tool-name pairing is unambiguous, and the enterprise business graph as its own pane. A platform failure now degrades only its own pane; the local timeline always renders.
@@ -12,6 +16,9 @@ Layered business provenance (design: `docs/plans/2026-09-20-provenance-layered-r
 - A 404 `resource_not_disclosed` from the observability routes now degrades the platform panes as `record-not-disclosed` ("the record is not on this platform, or not disclosed to this account; retrying will not change that") instead of a retryable `platform-unavailable`; the evidence pane gets the matching unavailable reason. Other routes and every other 404 keep the existing `platform-unavailable` mapping, and the 403/404 error-envelope reads are stream-capped at 4 KB (shared helper) instead of buffered whole.
 - Package surface: the managed tool-group constants (`LIFECYCLE_TOOLS`, `MANAGED_IN_INTERACTION_TOOLS`) and `managedConversationSectionText` are no longer re-exported from the package entry — import `scoped-business-context` directly. No in-repo consumers; the removal only narrows the published export surface.
 - **Behavior change**: `getTurnProvenanceView` no longer throws `openbkn/provenance-license-required` and no longer consults capabilities to decide an upgrade hint. Verified against OpenBKN 0.1.4: the observability read routes are gated by the deployment's static business-domain allow-list (chart default `bd_public`), not by license — so a 403 `permission_denied` always degrades as `domain-not-authorized` (with the platform's `required_action`), 401 as `authentication-required`, and everything else as `platform-unavailable`. The `license-required` degradation enum is kept for a future platform that actually gates reads by license.
+
+- Stale OpenBKN credentials no longer masquerade as a plugin failure: the MCP manager recognizes the SDK's 401/403 handshake brands in the cause chain and reports the matching next step ("re-login with `openbkn auth login`" / "ask the administrator to authorize this account"). Found by the G6 eval batch (`docs/evidence/2026-09-23-g6-eval-batch.md`).
+- Runtime bundle version moves to `0.1.6-alpha.2-openbkn.2` (manifest only; binaries unchanged) so a future runtime archive built from this manifest carries the rc.2 profile and never collides with an existing rc.1 home at bootstrap. npm-only release: no runtime archives are rebuilt for rc.2.
 
 Interaction noise reduction (design: `docs/plans/2026-09-20-interaction-noise-reduction.md`; runtime evidence: `docs/evidence/dsh-event-model-probe.md`).
 
