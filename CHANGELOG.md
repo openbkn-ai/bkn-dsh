@@ -4,6 +4,10 @@ All notable changes to this project are documented here.
 
 ## Unreleased
 
+Nothing yet.
+
+## 0.1.5-rc.2 (2026-09-24)
+
 Layered business provenance (design: `docs/plans/2026-09-20-provenance-layered-redesign.md`; verification: `docs/evidence/2026-09-20-provenance-v1-v2.md` and `docs/evidence/2026-09-22-timeline-e2e-stage1.md`).
 
 - The provenance panel is rebuilt as independent layers: a local execution timeline rebuilt at read time from DSH session events (question → lifecycle/managed calls with durations and whitelist-only summaries → answer; consecutive same-tool calls fold for display), platform operation facts attached to timeline nodes only when the tool-name pairing is unambiguous, and the enterprise business graph as its own pane. A platform failure now degrades only its own pane; the local timeline always renders.
