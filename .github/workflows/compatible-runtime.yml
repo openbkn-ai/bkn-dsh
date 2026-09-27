@@ -138,6 +138,19 @@ jobs:
     needs: build
     runs-on: ubuntu-latest
     steps:
+      - uses: actions/checkout@v4
+      - name: Write release notes with the pinned DSH pairing
+        shell: bash
+        run: |
+          set -euo pipefail
+          dsh_tag=$(node -p 'JSON.parse(require("fs").readFileSync("runtime/openbkn-dsh-runtime.manifest.json", "utf8")).dsh.tag')
+          echo "dsh_tag=${dsh_tag}" >> "$GITHUB_ENV"
+          {
+            echo "Prebuilt OpenBKN-compatible DSH runtime bundle."
+            echo
+            echo "- Pinned DSH: \`${dsh_tag}\` — check \`dsh --version\` before installing."
+            echo "- The bundled profile already carries the matching plugin. Source-build users: see the version-pairing table in the README for the compatibility series and plugin release that pair with this DSH revision."
+          } > release-notes.md
       - uses: actions/download-artifact@v4
         with:
           path: release
@@ -145,3 +158,5 @@ jobs:
       - uses: softprops/action-gh-release@v2
         with:
           files: release/*
+          body_path: release-notes.md
+          name: ${{ github.ref_name }} (DSH ${{ env.dsh_tag }})
