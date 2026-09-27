@@ -3,7 +3,11 @@ import { fileURLToPath } from 'node:url'
 
 const commitPattern = /^[0-9a-f]{40}$/
 const digestPattern = /^[0-9a-f]{64}$/
-const bundleVersionPattern = /^0\.1\.7-rc\.2-openbkn\.[1-9][0-9]*$/
+// Versions read <dsh-version>-openbkn.<openbkn-platform-version>: the DSH
+// revision the artifact pairs with, and the OpenBKN platform release it is
+// verified against. A trailing "-<n>" disambiguates a republished bundle
+// whose inputs did not change (bootstrap-home collision insurance).
+const bundleVersionPattern = /^0\.1\.7-rc\.2-openbkn\.0\.1\.4(-[1-9][0-9]*)?$/
 const platforms = new Set(['darwin-arm64', 'win32-x64'])
 
 function fail(message) {
@@ -45,7 +49,13 @@ export function loadRuntimeManifest(source) {
 
   const plugin = asObject(manifest.plugin, 'plugin')
   if (string(plugin.packageName, 'plugin.packageName') !== '@openbkn/dsh-business-context') fail('plugin.packageName is unsupported')
-  string(plugin.version, 'plugin.version')
+  // Since the 0.1.7-rc.2 round the plugin version carries the paired DSH
+  // version and the OpenBKN platform release (see bundleVersionPattern), so a
+  // manifest can never pair a plugin release with a DSH revision it was not
+  // built for.
+  if (!string(plugin.version, 'plugin.version').startsWith(`${string(dsh.tag, 'dsh.tag').replace(/^dsh-v/, '')}-openbkn.`)) {
+    fail('plugin.version must carry the pinned DSH version (<dsh-version>-openbkn.N)')
+  }
   if (!string(plugin.artifact, 'plugin.artifact').endsWith('.tgz')) fail('plugin.artifact must be a tgz archive')
 
   const compatibility = asObject(manifest.compatibility, 'compatibility')

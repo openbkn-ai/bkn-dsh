@@ -64,7 +64,7 @@ the DSH workspace's CLI; this repository does not provide one):
 pnpm --filter @openbkn/dsh-business-context build
 pnpm --filter @openbkn/dsh-business-context pack --pack-destination /tmp/openbkn-plugin
 cd /path/to/deepseek-harness
-pnpm dsh plugin --profile web add file:/tmp/openbkn-plugin/openbkn-dsh-business-context-0.1.6-rc.1.tgz
+pnpm dsh plugin --profile web add file:/tmp/openbkn-plugin/openbkn-dsh-business-context-0.1.7-rc.2-openbkn.0.1.4.tgz
 ```
 
 To remove the complete series before changing DSH version:
