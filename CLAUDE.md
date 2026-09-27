@@ -2,7 +2,7 @@
 
 This file provides guidance to Claude Code (claude.ai/code) when working with code in this repository.
 
-bkn-dsh = OpenBKN business-context plugin for DeepSeek Harness (DSH). Plugin source: `packages/openbkn-business-context` (`@openbkn/dsh-business-context`). Target DSH is pinned to `dsh-v0.1.6-alpha.2`; `compat/dsh-0.1.6-alpha.2/` is the fail-closed patch series and `runtime/` + `scripts/` build the self-contained OpenBKN DSH Runtime archive.
+bkn-dsh = OpenBKN business-context plugin for DeepSeek Harness (DSH). Plugin source: `packages/openbkn-business-context` (`@openbkn/dsh-business-context`). Target DSH is pinned to `dsh-v0.1.7-rc.2`; `compat/dsh-0.1.7-rc.2/` is the fail-closed patch series and `runtime/` + `scripts/` build the self-contained OpenBKN DSH Runtime archive.
 
 ## Commands
 
@@ -10,12 +10,12 @@ Order matters: the plugin build imports `@deepseek-ai/dsh-typert-generator/tsdow
 
 ```bash
 node scripts/configure-pinned-dsh-generator.mjs --dsh <dsh-checkout>   # point the generator override at a DSH source tree
-node compat/dsh-0.1.6-alpha.2/apply.mjs  --dsh <dsh-checkout>          # add --revert to remove the series
-node compat/dsh-0.1.6-alpha.2/verify.mjs --dsh <dsh-checkout>
+node compat/dsh-0.1.7-rc.2/apply.mjs  --dsh <dsh-checkout>          # add --revert to remove the series
+node compat/dsh-0.1.7-rc.2/verify.mjs --dsh <dsh-checkout>
 pnpm runtime:build -- --dsh <dsh-checkout> --output release/runtime    # builds patched DSH + generator
 
 pnpm --filter @openbkn/dsh-business-context test                      # builds both faces, then runs tests
-node --test compat/dsh-0.1.6-alpha.2/tests/*.test.mjs tests/*.test.mjs runtime/tests/*.test.mjs
+node --test compat/dsh-0.1.7-rc.2/tests/*.test.mjs tests/*.test.mjs runtime/tests/*.test.mjs
 pnpm run package:check
 
 pnpm runtime:profile -- --runtime release/runtime --plugin <tgz> --output release/profile

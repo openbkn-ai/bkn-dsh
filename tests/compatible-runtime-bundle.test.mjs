@@ -95,8 +95,8 @@ function manifest() {
   return {
     bundle: {
       name: 'openbkn-dsh-runtime',
-      version: '0.1.6-alpha.2-openbkn.1',
-      archives: [{ platform: 'darwin-arm64', file: 'openbkn-dsh-runtime-0.1.6-alpha.2-openbkn.1-darwin-arm64.tar.gz' }],
+      version: '0.1.7-rc.2-openbkn.1',
+      archives: [{ platform: 'darwin-arm64', file: 'openbkn-dsh-runtime-0.1.7-rc.2-openbkn.1-darwin-arm64.tar.gz' }],
     },
     plugin: { artifact: 'openbkn-dsh-business-context-0.1.3.tgz' },
   }

@@ -505,7 +505,7 @@ jobs:
 
             这是 bkn-dsh —— DeepSeek Harness(DSH) 的 OpenBKN 业务上下文插件。插件源码在
             packages/openbkn-business-context（`@openbkn/dsh-business-context`，TypeScript
-            + ESM，host 与 client 两个构建面）；compat/dsh-0.1.6-alpha.2/ 是针对固定 DSH
+            + ESM，host 与 client 两个构建面）；compat/dsh-0.1.7-rc.2/ 是针对固定 DSH
             版本的 fail-closed 补丁系列；runtime/ 与 scripts/ 组装自包含的 OpenBKN DSH
             Runtime 归档。约定与已知坑见 CLAUDE.md。
 

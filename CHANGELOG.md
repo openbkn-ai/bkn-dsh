@@ -4,7 +4,13 @@ All notable changes to this project are documented here.
 
 ## Unreleased
 
-Nothing yet.
+Retarget the plugin and the compatible runtime from `dsh-v0.1.6-alpha.2` to DSH `dsh-v0.1.7-rc.2` (`477b4f420553e8a52c2fbccc464d7561b239c443`).
+
+- Bump every `@deepseek-ai/dsh-*` peer/dev dependency to `0.1.7-rc.2`, the host-provided `@deepseek-ai/cordis` range to `^4.0.4` and `@deepseek-ai/schemastery` to `^3.18.4` (matching the 0.1.7 host closure), and regenerate the compatibility series as `compat/dsh-0.1.7-rc.2/` (manifest, fail-closed apply/verify, tests, bilingual README). The previous series stays archived under `compat/dsh-0.1.6-alpha.2/`.
+- Patch series: 0001 (third-party Typert protocol recognition) and 0002 (ignorable session-event write side) carry unchanged content against `0.1.7-rc.2` — regenerated only for line offsets and blob hashes. 0003 (release lockfile) is rebuilt for the new closure: the upstream lockfile is itself consistent now, but `pnpm deploy` rejects the runtime closure while `patchedDependencies` declares patches for packages outside it (`@electron/osx-sign`, `@fortune-sheet/core`, `@fortune-sheet/react`, `exceljs`), so the patch drops those four registrations and carries the pnpm-11.7-regenerated lockfile. Client-side fixes from those four upstream patches ship neither before nor after (they never deploy).
+- API re-check against `dsh-v0.1.7-rc.2`: the MCP client package is unchanged (the literal-Authorization mount keeps needing no MCP-side patch), `tools/result`/`ToolExecution` signatures and `finalizeContent` are unchanged, `dsh-credentials` is unchanged, and `typert-protocol` only gains exports. `tsc` and the full plugin suite pass against the 0.1.7 types.
+- Sync the compatible-runtime workflow (clone tag, compat paths, version assertion), the release-plugin and upstream-dsh-watch compat paths, the runtime manifests (bundle `0.1.7-rc.2-openbkn.1`), READMEs (en/zh), the install guide, and CLAUDE/skill docs to the new pin.
+- Verified on a clean `dsh-v0.1.7-rc.2` worktree: apply/verify/revert round-trip, frozen pnpm 11.7 install, full DSH build and runtime-closure deploy, plugin tests 204/204, compat/runtime/bundle test battery, package audit, runtime archive packaging + portability scan, bundle entrypoint `--version` reporting `0.1.7-rc.2`, and a local web/headless smoke: profile boot with the rc.2 plugin accepted by the 0.1.7 version fence, a real model turn, old v3 sessions scanned without errors while new turns are written as v4 sessions, and stale OpenBKN credentials surfacing the actionable re-login hint.
 
 ## 0.1.5-rc.2 (2026-09-24)
 
