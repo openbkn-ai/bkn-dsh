@@ -9,7 +9,7 @@
       "required": ["name", "version", "node", "archives"],
       "properties": {
         "name": { "const": "openbkn-dsh-runtime" },
-        "version": { "pattern": "^0\\.1\\.7-rc\\.2-openbkn\\.0\\.1\\.4(-[1-9][0-9]*)?$" },
+        "version": { "pattern": "^0\\.1\\.7-rc\\.2-openbkn\\.0\\.2\\.0(-[1-9][0-9]*)?$" },
         "node": { "type": "string", "minLength": 1 },
         "archives": {
           "type": "array",

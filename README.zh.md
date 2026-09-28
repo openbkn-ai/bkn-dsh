@@ -98,9 +98,9 @@ Runtime 使用隔离的 OpenBKN DSH Home（可用 `OPENBKN_DSH_HOME` 覆盖）�
 
 | 你的 DSH 版本 | 兼容补丁系列 | 应安装的插件 | 预构建 Runtime 归档 |
 | --- | --- | --- | --- |
-| `dsh-v0.1.7-rc.2`（当前锁定） | [`compat/dsh-0.1.7-rc.2/`](compat/dsh-0.1.7-rc.2/) | `@openbkn/dsh-business-context@0.1.7-rc.2-openbkn.0.1.4`，或从本仓库（`main`）构建 | 下一个 `openbkn-dsh-runtime-v*` tag 发布时产出 |
+| `dsh-v0.1.7-rc.2`（当前锁定） | [`compat/dsh-0.1.7-rc.2/`](compat/dsh-0.1.7-rc.2/) | `@openbkn/dsh-business-context@0.1.7-rc.2-openbkn.0.2.0`，或从本仓库（`main`）构建 | 下一个 `openbkn-dsh-runtime-v*` tag 发布时产出 |
 | `dsh-v0.1.6-alpha.2`（上一代系列） | [`compat/dsh-0.1.6-alpha.2/`](compat/dsh-0.1.6-alpha.2/)（存档） | npm 上的 `@openbkn/dsh-business-context@0.1.5-rc.2`，或从 git tag [`v0.1.5-rc.2`](https://github.com/openbkn-ai/bkn-dsh/tree/v0.1.5-rc.2) 源码构建 | [openbkn-dsh-runtime-v0.1.6-alpha.2-openbkn.1](https://github.com/openbkn-ai/bkn-dsh/releases/tag/openbkn-dsh-runtime-v0.1.6-alpha.2-openbkn.1) |
 
-自 `0.1.7-rc.2` 这一轮起，插件与 Runtime 归档共用一套版本命名——`<DSH版本>-openbkn.<OpenBKN平台版本>`——版本号一眼可见两个兼容维度：`0.1.7-rc.2-openbkn.0.1.4` 即"配 DSH `0.1.7-rc.2`、对 OpenBKN 平台 `0.1.4` 验证"。runtime manifest 校验器会拒绝插件版本与其锁定的 DSH 版本不一致的清单。本轮之前的发布保留其历史版本号。
+自 `0.1.7-rc.2` 这一轮起，插件与 Runtime 归档共用一套版本命名——`<DSH版本>-openbkn.<OpenBKN平台版本>`——版本号一眼可见两个兼容维度：`0.1.7-rc.2-openbkn.0.2.0` 即"配 DSH `0.1.7-rc.2`、面向 OpenBKN 平台 `0.2.0`"。runtime manifest 校验器会拒绝插件版本与其锁定的 DSH 版本不一致的清单。本轮之前的发布保留其历史版本号。
 
 插件声明的 DSH peers 必须与你的 runtime 匹配——DSH 的版本围栏会拒绝不匹配的安装。**不要为 `0.1.6-alpha.2` runtime 从当前 `main` 构建插件**：`0.1.7-rc.2` retarget 之后 main 的 peers 已声明为 `0.1.7-rc.2`，安装会被拒绝。Runtime 归档是自包含的（已打补丁的 DSH runtime 加配对插件），完全绕开配对问题。[`compat/dsh-0.1.2-rc.1/`](compat/dsh-0.1.2-rc.1/) 是历史存档，无 npm 配对版本。
