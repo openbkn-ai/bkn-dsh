@@ -27,6 +27,16 @@ test('renders no badge when the session has no binding or its read fails', async
   assert.deepEqual(failed.getSnapshot(), { kind: 'absent' })
 })
 
+/** Waits until `condition` holds; retry chains use real timers, so fixed
+ *  sleeps race under CI load — poll instead. */
+async function waitFor(condition: () => boolean, timeoutMs = 2_000): Promise<void> {
+  const deadline = Date.now() + timeoutMs
+  while (!condition()) {
+    if (Date.now() > deadline) throw new Error('waitFor timed out')
+    await new Promise(resolve => setTimeout(resolve, 2))
+  }
+}
+
 test('retries a not-yet-live session read before settling, then succeeds', async () => {
   let attempts = 0
   const controller = new BoundNetworkController(async () => {
@@ -36,7 +46,7 @@ test('retries a not-yet-live session read before settling, then succeeds', async
   }, 1, 5)
 
   await controller.load()
-  await new Promise(resolve => setTimeout(resolve, 10))
+  await waitFor(() => attempts >= 3)
 
   assert.equal(attempts, 3)
   assert.equal(controller.getSnapshot().kind, 'bound')
@@ -50,7 +60,7 @@ test('settles on absent after exhausting not-yet-live retries', async () => {
   }, 1, 3)
 
   await controller.load()
-  await new Promise(resolve => setTimeout(resolve, 20))
+  await waitFor(() => attempts >= 4)
 
   assert.equal(attempts, 4)
   assert.deepEqual(controller.getSnapshot(), { kind: 'absent' })
