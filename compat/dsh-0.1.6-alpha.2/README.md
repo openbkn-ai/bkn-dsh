@@ -46,7 +46,10 @@ node compat/dsh-0.1.6-alpha.2/verify.mjs --dsh /path/to/deepseek-harness
 Rebuild the patched DSH checkout using its normal build instructions. Then install the plugin — **the plugin build must declare `0.1.6-alpha.2` peers, and building from this repository's current `main` does not**: since the `dsh-v0.1.7-rc.2` retarget, a `main` build declares `0.1.7-rc.2` peers and a `0.1.6-alpha.2` runtime refuses the install. Use one of these instead:
 
 ```bash
-# Preferred: the npm release that pairs with 0.1.6-alpha.2
+# Preferred: the npm release that pairs with 0.1.6-alpha.2.
+# Run from the patched DSH checkout — `pnpm dsh` is the DSH workspace's CLI;
+# this repository does not provide one.
+cd /path/to/deepseek-harness
 pnpm dsh plugin --profile web add @openbkn/dsh-business-context@0.1.5-rc.2
 ```
 
@@ -59,6 +62,7 @@ node scripts/configure-pinned-dsh-generator.mjs --dsh /path/to/deepseek-harness
 pnpm install
 pnpm --filter @openbkn/dsh-business-context build
 pnpm --filter @openbkn/dsh-business-context pack --pack-destination /tmp/openbkn-plugin
+cd /path/to/deepseek-harness
 pnpm dsh plugin --profile web add file:/tmp/openbkn-plugin/openbkn-dsh-business-context-0.1.5-rc.2.tgz
 ```
 
