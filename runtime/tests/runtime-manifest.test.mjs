@@ -1,4 +1,5 @@
 import assert from 'node:assert/strict'
+import { readFileSync } from 'node:fs'
 import test from 'node:test'
 
 import { loadRuntimeManifest } from '../runtime-manifest.mjs'
@@ -14,6 +15,22 @@ test('loads one fully pinned compatible-runtime release manifest', () => {
   assert.match(manifest.plugin.packageName, /^@openbkn\//)
   assert.match(manifest.plugin.artifact, /\.tgz$/)
   assert.equal(manifest.compatibility.patches.length, 3)
+})
+
+test('keeps the JSON schema in sync with the pinned manifest', () => {
+  const manifest = loadRuntimeManifest(new URL('../openbkn-dsh-runtime.manifest.json', import.meta.url))
+  const schema = JSON.parse(readFileSync(new URL('../runtime-manifest.schema.json', import.meta.url), 'utf8'))
+
+  assert.match(
+    manifest.bundle.version,
+    new RegExp(schema.properties.bundle.properties.version.pattern),
+    'runtime-manifest.schema.json bundle.version pattern drifted from the pinned manifest',
+  )
+  assert.equal(
+    schema.properties.dsh.properties.tag.const,
+    manifest.dsh.tag,
+    'runtime-manifest.schema.json dsh.tag const drifted from the pinned manifest',
+  )
 })
 
 test('rejects a release manifest without a pinned upstream commit', () => {

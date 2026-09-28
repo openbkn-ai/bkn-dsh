@@ -4,7 +4,7 @@ All notable changes to this project are documented here.
 
 ## Unreleased
 
-Retarget the plugin and the compatible runtime from `dsh-v0.1.6-alpha.2` to DSH `dsh-v0.1.7-rc.2` (`477b4f420553e8a52c2fbccc464d7561b239c443`).
+Retarget the plugin and the compatible runtime from `dsh-v0.1.6-alpha.2` to DSH `dsh-v0.1.7-rc.2` (`477b4f420553e8a52c2fbccc464d7561b239c443`). The plugin moves to `0.1.6-rc.1` with this retarget — its peers now declare `0.1.7-rc.2`, so the artifact name no longer collides with the published `0.1.5-rc.2` that pairs with DSH `0.1.6-alpha.2` (the runtime manifest and every install walkthrough reference the new version).
 
 - Bump every `@deepseek-ai/dsh-*` peer/dev dependency to `0.1.7-rc.2`, the host-provided `@deepseek-ai/cordis` range to `^4.0.4` and `@deepseek-ai/schemastery` to `^3.18.4` (matching the 0.1.7 host closure), and regenerate the compatibility series as `compat/dsh-0.1.7-rc.2/` (manifest, fail-closed apply/verify, tests, bilingual README). The previous series stays archived under `compat/dsh-0.1.6-alpha.2/`.
 - Patch series: 0001 (third-party Typert protocol recognition) and 0002 (ignorable session-event write side) carry unchanged content against `0.1.7-rc.2` — regenerated only for line offsets and blob hashes. 0003 (release lockfile) is rebuilt for the new closure: the upstream lockfile is itself consistent now, but `pnpm deploy` rejects the runtime closure while `patchedDependencies` declares patches for packages outside it (`@electron/osx-sign`, `@fortune-sheet/core`, `@fortune-sheet/react`, `exceljs`), so the patch drops those four registrations and carries the pnpm-11.7-regenerated lockfile. Client-side fixes from those four upstream patches ship neither before nor after (they never deploy).

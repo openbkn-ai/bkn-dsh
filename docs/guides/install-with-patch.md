@@ -1,6 +1,6 @@
 # 在自己的 DSH 上安装并使用 bkn-dsh 插件
 
-> 适用：DSH `dsh-v0.1.7-rc.2`（唯一受支持版本）。两样东西：**插件包**（`release/plugin/openbkn-dsh-business-context-0.1.5-rc.2.tgz`）与**补丁脚本**（`compat/dsh-0.1.7-rc.2/`）。
+> 适用：DSH `dsh-v0.1.7-rc.2`（唯一受支持版本）。两样东西：**插件包**（`release/plugin/openbkn-dsh-business-context-0.1.6-rc.1.tgz`）与**补丁脚本**（`compat/dsh-0.1.7-rc.2/`）。
 > 端到端验证记录见 `docs/evidence/m6-stock-dsh-install.md` 与 `docs/evidence/m6-patched-dsh-and-runtime.md`（2026-09-20）。
 
 ## 为什么需要补丁脚本
@@ -14,7 +14,7 @@ git clone --depth 1 --branch dsh-v0.1.7-rc.2 \
   https://github.com/deepseek-ai/deepseek-harness.git ~/dsh-src
 cd ~/dsh-src && pnpm install && pnpm build
 
-# 打补丁（在本仓库根执行；要求目标树干净、精确处于 ddefc45f）
+# 打补丁（在本仓库根执行；要求目标树干净、精确处于 477b4f42）
 node compat/dsh-0.1.7-rc.2/apply.mjs  --dsh ~/dsh-src
 node compat/dsh-0.1.7-rc.2/verify.mjs --dsh ~/dsh-src   # 应输出 verified
 ```
@@ -29,8 +29,8 @@ node compat/dsh-0.1.7-rc.2/apply.mjs --dsh ~/dsh-src --revert
 
 ```bash
 cd ~/dsh-src
-pnpm dsh plugin --profile web add file:<bkn-dsh>/release/plugin/openbkn-dsh-business-context-0.1.5-rc.2.tgz
-pnpm dsh plugin --profile web list    # 应列出 @openbkn/dsh-business-context@0.1.5-rc.2
+pnpm dsh plugin --profile web add file:<bkn-dsh>/release/plugin/openbkn-dsh-business-context-0.1.6-rc.1.tgz
+pnpm dsh plugin --profile web list    # 应列出 @openbkn/dsh-business-context@0.1.6-rc.1
 ```
 
 卸载：

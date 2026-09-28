@@ -28,7 +28,12 @@ The series adds only the capabilities required by the plugin:
   removes those four registrations and carries the lockfile regenerated with
   pnpm 11.7 for a frozen, repeatable install. Client-side fixes carried by
   those four upstream patches are therefore not part of the deployed runtime
-  closure (they were not part of it anyway; `pnpm deploy` rejects them).
+  closure (they were not part of it anyway; `pnpm deploy` rejects them). The
+  regeneration re-resolves a few versions inside exactly those subtrees
+  (micromark/markdown tooling in root devDependencies and the client UI, and
+  glob/rimraf under the desktop-packaging chain) — none of them deploy into
+  the runtime closure, verified by inspecting the deployed closure and by
+  the end-to-end smoke.
 
 The plugin deliberately does not use a credential-reference MCP header here:
 it mounts the MCP client with a literal Authorization header resolved at
@@ -56,7 +61,7 @@ build the local plugin artifact and install it through DSH's native plugin comma
 ```bash
 pnpm --filter @openbkn/dsh-business-context build
 pnpm --filter @openbkn/dsh-business-context pack --pack-destination /tmp/openbkn-plugin
-pnpm dsh plugin --profile web add file:/tmp/openbkn-plugin/openbkn-dsh-business-context-0.1.5-rc.2.tgz
+pnpm dsh plugin --profile web add file:/tmp/openbkn-plugin/openbkn-dsh-business-context-0.1.6-rc.1.tgz
 ```
 
 To remove the complete series before changing DSH version:
