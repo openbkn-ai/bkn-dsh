@@ -10,7 +10,7 @@
 
 补丁仅提供插件所需的能力：外部插件的已发布 Typert 协议识别（`analyzer.ts` 的 `isTypeMetaSymbol`；缺失时插件 10 个公开 Remote 方法只能发现 0 个），以及可忽略插件非界面会话记录的写入侧（`Session.append` 尚不接受非界面事件的 ignorable 标记，缺失时插件事件被按必需事件持久化、会话重启后无法加载；读取侧上游已原生支持）。
 
-与 `dsh-v0.1.6-alpha.2` 不同：上游锁文件本身已与自身 `patchedDependencies` 一致（pristine 工作树上 `pnpm install --frozen-lockfile` 可直接通过），但 runtime 闭包的 deploy 在 `patchedDependencies` 声明了不属于部署闭包的补丁时会拒绝运行——在 `dsh-v0.1.7-rc.2` 上是 `@electron/osx-sign`、`@fortune-sheet/core`、`@fortune-sheet/react`、`exceljs` 四项。补丁③移除这四项注册并以 pnpm 11.7 重新生成锁文件，使安装可冻结、可重复。这四个上游补丁携带的客户端侧修复因此不进入部署的 runtime 闭包（本来也不会进入：`pnpm deploy` 直接拒绝它们）。重生成会在且只会在这些子树内带来少量版本重解析（根 devDependencies 与客户端 UI 的 micromark/markdown 工具链、桌面打包链下的 glob/rimraf）——经核对部署闭包产物与端到端冒烟，它们都不进入部署的 runtime 闭包。
+与 `dsh-v0.1.6-alpha.2` 不同：上游锁文件本身已与自身 `patchedDependencies` 一致（pristine 工作树上 `pnpm install --frozen-lockfile` 可直接通过），但 runtime 闭包的 deploy 在 `patchedDependencies` 声明了不属于部署闭包的补丁时会拒绝运行——在 `dsh-v0.1.7-rc.2` 上是 `@electron/osx-sign`、`@fortune-sheet/core`、`@fortune-sheet/react`、`exceljs` 四项。补丁③移除这四项注册，并以上游锁文件为基线、仅剥离这四项及其 `(patch_hash=…)` 后缀派生出新锁文件——其余解析与上游逐字节一致，冻结安装可重复，且全量 `pnpm run build` 可通过（早期的整棵重生成会把 micromark 工具链重解析出两份共存的 `micromark-util-types`，客户端 typecheck 直接失败）。这四个上游补丁携带的客户端侧修复因此不进入部署的 runtime 闭包（本来也不会进入：`pnpm deploy` 直接拒绝它们）。
 
 插件刻意不在此使用凭证引用式 MCP 请求头：它在挂载时解析 Token 传入字面 Authorization 头、每回合重新挂载轮换，兼容打补丁与已发布两种 `@deepseek-ai/dsh-mcp-client`——0.1.7 的 MCP client 公开面（`Config`、transport、headers、reconnect）与 `0.1.6-alpha.2` 相比没有变化。DSH 侧的凭证头实现保留在 `kalias/deepseek-harness` 的 `fix/mcp-credential-headers` 分支，供上游通道打开后贡献。
 
