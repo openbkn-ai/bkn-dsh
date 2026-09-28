@@ -7,7 +7,7 @@ const digestPattern = /^[0-9a-f]{64}$/
 // revision the artifact pairs with, and the OpenBKN platform release it is
 // verified against. A trailing "-<n>" disambiguates a republished bundle
 // whose inputs did not change (bootstrap-home collision insurance).
-const bundleVersionPattern = /^0\.1\.7-rc\.2-openbkn\.0\.1\.4(-[1-9][0-9]*)?$/
+const bundleVersionPattern = /^0\.1\.7-rc\.2-openbkn\.0\.2\.0(-[1-9][0-9]*)?$/
 const platforms = new Set(['darwin-arm64', 'win32-x64'])
 
 function fail(message) {

@@ -1,6 +1,6 @@
 # 在自己的 DSH 上安装并使用 bkn-dsh 插件
 
-> 适用：DSH `dsh-v0.1.7-rc.2`（唯一受支持版本）。两样东西：**插件包**（`release/plugin/openbkn-dsh-business-context-0.1.7-rc.2-openbkn.0.1.4.tgz`）与**补丁脚本**（`compat/dsh-0.1.7-rc.2/`）。
+> 适用：DSH `dsh-v0.1.7-rc.2`（唯一受支持版本）。两样东西：**插件包**（`release/plugin/openbkn-dsh-business-context-0.1.7-rc.2-openbkn.0.2.0.tgz`）与**补丁脚本**（`compat/dsh-0.1.7-rc.2/`）。
 > 端到端验证记录见 `docs/evidence/m6-stock-dsh-install.md` 与 `docs/evidence/m6-patched-dsh-and-runtime.md`（2026-09-20）。
 
 ## 为什么需要补丁脚本
@@ -29,8 +29,8 @@ node compat/dsh-0.1.7-rc.2/apply.mjs --dsh ~/dsh-src --revert
 
 ```bash
 cd ~/dsh-src
-pnpm dsh plugin --profile web add file:<bkn-dsh>/release/plugin/openbkn-dsh-business-context-0.1.7-rc.2-openbkn.0.1.4.tgz
-pnpm dsh plugin --profile web list    # 应列出 @openbkn/dsh-business-context@0.1.7-rc.2-openbkn.0.1.4
+pnpm dsh plugin --profile web add file:<bkn-dsh>/release/plugin/openbkn-dsh-business-context-0.1.7-rc.2-openbkn.0.2.0.tgz
+pnpm dsh plugin --profile web list    # 应列出 @openbkn/dsh-business-context@0.1.7-rc.2-openbkn.0.2.0
 ```
 
 卸载：

@@ -28,7 +28,7 @@ node scripts/check-runtime-portability.mjs --output release/artifacts --platform
 
 ## Gotchas
 
-- Plugin and runtime-bundle versions read `<dsh-version>-openbkn.<openbkn-platform-version>` (e.g. `0.1.7-rc.2-openbkn.0.1.4`): the DSH revision they pair with plus the OpenBKN platform release they are verified against. A republished bundle with unchanged inputs appends `-<n>`. The manifest validator refuses a `plugin.version` that does not start with the pinned DSH version.
+- Plugin and runtime-bundle versions read `<dsh-version>-openbkn.<openbkn-platform-version>` (e.g. `0.1.7-rc.2-openbkn.0.2.0`): the DSH revision they pair with plus the OpenBKN platform release they are built for. A republished bundle with unchanged inputs appends `-<n>`. The manifest validator refuses a `plugin.version` that does not start with the pinned DSH version.
 - The committed `pnpm-lock.yaml` is generated for the CI generator path `release/deepseek-harness`. Local installs against another DSH path need `--no-frozen-lockfile`; never commit the resulting lockfile / `pnpm-workspace.yaml` override diff.
 - Never hand-edit the DSH checkout. Changes to it go through a new patch in `compat/<version>/patches/` with sha256 updated in `manifest.json`; apply/verify refuse a dirty tree, wrong tag/commit, or mismatched patch hashes.
 - Patch files must keep LF bytes (CI sets `core.autocrlf false`); do not let an editor or git reformat them.
