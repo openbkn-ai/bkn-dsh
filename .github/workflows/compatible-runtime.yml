@@ -49,7 +49,7 @@ jobs:
           node-version: 22
           cache: pnpm
       - name: Checkout pinned DSH source
-        run: git clone --depth 1 --branch dsh-v0.1.6-alpha.2 https://github.com/deepseek-ai/deepseek-harness.git release/deepseek-harness
+        run: git clone --depth 1 --branch dsh-v0.1.7-rc.2 https://github.com/deepseek-ai/deepseek-harness.git release/deepseek-harness
       - name: Point generator override at pinned DSH source
         run: node scripts/configure-pinned-dsh-generator.mjs --dsh release/deepseek-harness
       - name: Install bkn-dsh dependencies
@@ -59,9 +59,9 @@ jobs:
         shell: bash
         run: |
           set -euo pipefail
-          node compat/dsh-0.1.6-alpha.2/apply.mjs --dsh release/deepseek-harness
-          node compat/dsh-0.1.6-alpha.2/verify.mjs --dsh release/deepseek-harness
-          node compat/dsh-0.1.6-alpha.2/apply.mjs --dsh release/deepseek-harness --revert
+          node compat/dsh-0.1.7-rc.2/apply.mjs --dsh release/deepseek-harness
+          node compat/dsh-0.1.7-rc.2/verify.mjs --dsh release/deepseek-harness
+          node compat/dsh-0.1.7-rc.2/apply.mjs --dsh release/deepseek-harness --revert
       - name: Build compatible DSH runtime
         run: pnpm runtime:build -- --dsh release/deepseek-harness --output release/runtime
       - name: Test plugin and compatibility tooling
@@ -71,7 +71,7 @@ jobs:
         run: |
           set -euo pipefail
           pnpm --filter @openbkn/dsh-business-context test
-          node --test compat/dsh-0.1.6-alpha.2/tests/*.test.mjs tests/*.test.mjs runtime/tests/*.test.mjs
+          node --test compat/dsh-0.1.7-rc.2/tests/*.test.mjs tests/*.test.mjs runtime/tests/*.test.mjs
           pnpm run package:check
       - name: Build and pack bkn-dsh
         # bash so a failed build cannot hide behind a successful pack
@@ -105,7 +105,7 @@ jobs:
             version="$(OPENBKN_DSH_HOME="$smoke_home" "$bundle/bin/dsh" --version)"
           fi
           echo "entrypoint reported: $version"
-          grep -q "0.1.6-alpha.2" <<< "$version"
+          grep -q "0.1.7-rc.2" <<< "$version"
       - uses: actions/upload-artifact@v4
         with:
           name: openbkn-dsh-runtime-${{ matrix.platform }}

@@ -3,7 +3,7 @@ import { fileURLToPath } from 'node:url'
 
 const commitPattern = /^[0-9a-f]{40}$/
 const digestPattern = /^[0-9a-f]{64}$/
-const bundleVersionPattern = /^0\.1\.6-alpha\.2-openbkn\.[1-9][0-9]*$/
+const bundleVersionPattern = /^0\.1\.7-rc\.2-openbkn\.[1-9][0-9]*$/
 const platforms = new Set(['darwin-arm64', 'win32-x64'])
 
 function fail(message) {
@@ -39,7 +39,7 @@ export function loadRuntimeManifest(source) {
   }
 
   const dsh = asObject(manifest.dsh, 'dsh')
-  if (string(dsh.tag, 'dsh.tag') !== 'dsh-v0.1.6-alpha.2') fail('dsh.tag is unsupported')
+  if (string(dsh.tag, 'dsh.tag') !== 'dsh-v0.1.7-rc.2') fail('dsh.tag is unsupported')
   if (!commitPattern.test(string(dsh.baseCommit, 'dsh.baseCommit'))) fail('dsh.baseCommit must be a pinned 40-character commit')
   if (!string(dsh.upstream, 'dsh.upstream').startsWith('https://')) fail('dsh.upstream must use https')
 

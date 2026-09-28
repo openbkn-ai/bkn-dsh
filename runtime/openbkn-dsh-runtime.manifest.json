@@ -2,43 +2,43 @@
   "format": 1,
   "bundle": {
     "name": "openbkn-dsh-runtime",
-    "version": "0.1.6-alpha.2-openbkn.2",
+    "version": "0.1.7-rc.2-openbkn.1",
     "node": "^22.19.0 || >=24.0.0",
     "archives": [
       {
         "platform": "darwin-arm64",
-        "file": "openbkn-dsh-runtime-0.1.6-alpha.2-openbkn.2-darwin-arm64.tar.gz"
+        "file": "openbkn-dsh-runtime-0.1.7-rc.2-openbkn.1-darwin-arm64.tar.gz"
       },
       {
         "platform": "win32-x64",
-        "file": "openbkn-dsh-runtime-0.1.6-alpha.2-openbkn.2-win32-x64.zip"
+        "file": "openbkn-dsh-runtime-0.1.7-rc.2-openbkn.1-win32-x64.zip"
       }
     ]
   },
   "dsh": {
-    "tag": "dsh-v0.1.6-alpha.2",
-    "baseCommit": "ddefc45fbc7f8e46dd73185e68295696d1297887",
+    "tag": "dsh-v0.1.7-rc.2",
+    "baseCommit": "477b4f420553e8a52c2fbccc464d7561b239c443",
     "upstream": "https://github.com/deepseek-ai/deepseek-harness.git"
   },
   "plugin": {
     "packageName": "@openbkn/dsh-business-context",
-    "version": "0.1.5-rc.2",
-    "artifact": "openbkn-dsh-business-context-0.1.5-rc.2.tgz"
+    "version": "0.1.6-rc.1",
+    "artifact": "openbkn-dsh-business-context-0.1.6-rc.1.tgz"
   },
   "compatibility": {
-    "directory": "compat/dsh-0.1.6-alpha.2",
+    "directory": "compat/dsh-0.1.7-rc.2",
     "patches": [
       {
         "file": "patches/0001-third-party-typert-protocol.patch",
-        "sha256": "32f4628286105dcad259723f6c2031c53907e9b5390e21e4ff695fe02a9802bb"
+        "sha256": "a4f03a3ea4fcab1824ccfb113e71f5aab6d525a751adb8a971d375dcd8391d81"
       },
       {
         "file": "patches/0002-plugin-ignorable-session-events.patch",
-        "sha256": "14fa9a2ce95a69ee820e85534c2b1ba6da858c4587225a7671d4ff18286000ee"
+        "sha256": "f1f57d262493176fc96de806c31a4b5a90bcb151ade0ba961491ab00e6347bd9"
       },
       {
         "file": "patches/0003-compatible-runtime-lockfile.patch",
-        "sha256": "887a3366648244622bd82c5a467edf22caf5eef698b6f74ff0ce506bd8f08f01"
+        "sha256": "a9d936a07e4c76be1abf00479a7c776b403e762a2d50741b6faadbe59f8b7396"
       }
     ]
   }

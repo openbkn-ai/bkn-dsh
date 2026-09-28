@@ -9,7 +9,7 @@
       "required": ["name", "version", "node", "archives"],
       "properties": {
         "name": { "const": "openbkn-dsh-runtime" },
-        "version": { "pattern": "^0\\.1\\.2-rc\\.1-openbkn\\.[1-9][0-9]*$" },
+        "version": { "pattern": "^0\\.1\\.7-rc\\.2-openbkn\\.[1-9][0-9]*$" },
         "node": { "type": "string", "minLength": 1 },
         "archives": {
           "type": "array",
@@ -29,7 +29,7 @@
       "type": "object",
       "required": ["tag", "baseCommit", "upstream"],
       "properties": {
-        "tag": { "const": "dsh-v0.1.6-alpha.2" },
+        "tag": { "const": "dsh-v0.1.7-rc.2" },
         "baseCommit": { "pattern": "^[0-9a-f]{40}$" },
         "upstream": { "pattern": "^https://" }
       }

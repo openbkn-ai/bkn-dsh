@@ -146,9 +146,9 @@ jobs:
         shell: bash
         run: |
           set -euo pipefail
-          node compat/dsh-0.1.6-alpha.2/apply.mjs --dsh release/deepseek-harness
-          node compat/dsh-0.1.6-alpha.2/verify.mjs --dsh release/deepseek-harness
-          node compat/dsh-0.1.6-alpha.2/apply.mjs --dsh release/deepseek-harness --revert
+          node compat/dsh-0.1.7-rc.2/apply.mjs --dsh release/deepseek-harness
+          node compat/dsh-0.1.7-rc.2/verify.mjs --dsh release/deepseek-harness
+          node compat/dsh-0.1.7-rc.2/apply.mjs --dsh release/deepseek-harness --revert
 
       # Builds the patched DSH and, with it, the typert generator the plugin
       # build imports.
@@ -161,7 +161,7 @@ jobs:
         run: |
           set -euo pipefail
           pnpm --filter @openbkn/dsh-business-context test
-          node --test compat/dsh-0.1.6-alpha.2/tests/*.test.mjs tests/*.test.mjs runtime/tests/*.test.mjs
+          node --test compat/dsh-0.1.7-rc.2/tests/*.test.mjs tests/*.test.mjs runtime/tests/*.test.mjs
           pnpm run package:check
 
       - name: Build plugin

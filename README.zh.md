@@ -33,7 +33,7 @@ bkn-dsh 是一个增量式 DeepSeek Harness 插件。授权用户可为一个会
 
 ### 推荐方式：OpenBKN 兼容 DSH Runtime
 
-对于 DSH `0.1.6-alpha.2` 用户，请从项目 Releases 下载匹配的 OpenBKN Runtime 压缩包。该包包含固定版本的 DSH Runtime、版本受限的兼容桥接以及 bkn-dsh 插件产物；首次启动时仍使用 DSH 原生插件管理器激活插件，不会修改已有 DSH 安装。
+对于 DSH `0.1.7-rc.2` 用户，请从项目 Releases 下载匹配的 OpenBKN Runtime 压缩包。该包包含固定版本的 DSH Runtime、版本受限的兼容桥接以及 bkn-dsh 插件产物；首次启动时仍使用 DSH 原生插件管理器激活插件，不会修改已有 DSH 安装。
 
 唯一前置条件为 Node.js ^22.19.0 或 >=24.0.0（与锁定的 DSH 版本一致）。Runtime 压缩包仅发布 darwin-arm64 与 win32-x64 两个平台；不提供 Intel Mac（darwin-x64）构建。发布 profile 在构建阶段由 DSH 原生插件管理器创建，首次启动时复制到隔离 Home；客户侧无需 `pnpm`，也不需要访问 npm registry。
 
@@ -56,20 +56,20 @@ Runtime 使用隔离的 OpenBKN DSH Home（可用 `OPENBKN_DSH_HOME` 覆盖）�
 
 ### 源码构建路径：插件包 + 兼容补丁
 
-在你自己的 DSH 源码树（精确处于上游 `dsh-v0.1.6-alpha.2` 版本）上，两样东西配合使用：
+在你自己的 DSH 源码树（精确处于上游 `dsh-v0.1.7-rc.2` 版本）上，两样东西配合使用：
 
 1. **插件包** —— `openbkn-dsh-business-context-<版本>.tgz`（从项目 Release 下载，或 `pnpm --filter @openbkn/dsh-business-context pack` 自行构建）。通过 DSH 原生插件管理器安装与卸载。
-2. **兼容补丁脚本** —— 本仓库的 [`compat/dsh-0.1.6-alpha.2/`](compat/dsh-0.1.6-alpha.2/)，在构建 DSH 前应用于其源码树：
+2. **兼容补丁脚本** —— 本仓库的 [`compat/dsh-0.1.7-rc.2/`](compat/dsh-0.1.7-rc.2/)，在构建 DSH 前应用于其源码树：
 
    ```bash
-   git clone --depth 1 --branch dsh-v0.1.6-alpha.2 https://github.com/deepseek-ai/deepseek-harness.git ~/dsh-src
-   node compat/dsh-0.1.6-alpha.2/apply.mjs  --dsh ~/dsh-src   # 在本仓库根执行
-   node compat/dsh-0.1.6-alpha.2/verify.mjs --dsh ~/dsh-src
+   git clone --depth 1 --branch dsh-v0.1.7-rc.2 https://github.com/deepseek-ai/deepseek-harness.git ~/dsh-src
+   node compat/dsh-0.1.7-rc.2/apply.mjs  --dsh ~/dsh-src   # 在本仓库根执行
+   node compat/dsh-0.1.7-rc.2/verify.mjs --dsh ~/dsh-src
    cd ~/dsh-src && pnpm install && pnpm build
    pnpm dsh plugin --profile web add file:<插件 tgz 路径>
    ```
 
-**补丁是必需项而非可选项**：未打补丁的 DSH 上，插件可以安装、加载并绑定知识网络，但其持久化的会话事件在每次 DSH 重启后被拒绝重载（上游事件白名单是构建期静态集合）。补丁补上缺失的写入侧，使会话正常重载、并在卸载插件后仍可移植。补丁采用失败即拒绝策略，不能应用于桌面应用包或其他 DSH 版本；更换 DSH 版本前先用 `apply.mjs --revert` 还原。详见[兼容补丁包](compat/dsh-0.1.6-alpha.2/README.zh.md)与分步[安装指南](docs/guides/install-with-patch.md)（配置、凭证、卸载与已知注意事项）。
+**补丁是必需项而非可选项**：未打补丁的 DSH 上，插件可以安装、加载并绑定知识网络，但其持久化的会话事件在每次 DSH 重启后被拒绝重载（上游事件白名单是构建期静态集合）。补丁补上缺失的写入侧，使会话正常重载、并在卸载插件后仍可移植。补丁采用失败即拒绝策略，不能应用于桌面应用包或其他 DSH 版本；更换 DSH 版本前先用 `apply.mjs --revert` 还原。详见[兼容补丁包](compat/dsh-0.1.7-rc.2/README.zh.md)与分步[安装指南](docs/guides/install-with-patch.md)（配置、凭证、卸载与已知注意事项）。
 
 已知上游限制：直接以源码 dev 形式运行 DSH 时，任何插件的工具派发都会失败（`Cannot read properties of undefined (reading 'prepare')`）；完整问答需打包形态——上方的推荐 Runtime，或本仓库的 `scripts/build-compatible-runtime.mjs --dsh <干净源码树> --output <目录>`。
 
@@ -92,4 +92,4 @@ Runtime 使用隔离的 OpenBKN DSH Home（可用 `OPENBKN_DSH_HOME` 覆盖）�
 
 ## 支持的 DSH 版本
 
-一次只支持一个上游 DSH 版本——当前为 `dsh-v0.1.6-alpha.2`，由[兼容 manifest](compat/dsh-0.1.6-alpha.2/manifest.json) 锁定。定时 workflow（`upstream-dsh-watch`）监控上游 tag，一旦有版本超过锁定版本即开出跟踪 issue；在兼容系列针对新版本重新生成之前，更新的 DSH 版本不在支持范围内。
+一次只支持一个上游 DSH 版本——当前为 `dsh-v0.1.7-rc.2`，由[兼容 manifest](compat/dsh-0.1.7-rc.2/manifest.json) 锁定。定时 workflow（`upstream-dsh-watch`）监控上游 tag，一旦有版本超过锁定版本即开出跟踪 issue；在兼容系列针对新版本重新生成之前，更新的 DSH 版本不在支持范围内。
