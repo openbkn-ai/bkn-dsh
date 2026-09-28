@@ -96,3 +96,12 @@ The plugin needs a reachable OpenBKN platform with at least one knowledge networ
 ## Supported DSH versions
 
 Exactly one upstream DSH revision is supported at a time — currently `dsh-v0.1.7-rc.2`, pinned by [the compatibility manifest](compat/dsh-0.1.7-rc.2/manifest.json). A scheduled workflow (`upstream-dsh-watch`) watches upstream tags and opens a tracking issue whenever a release moves ahead of the pin; until the compatibility series is regenerated for it, newer DSH revisions are out of scope.
+
+Check your version with `dsh --version`, then pair it like this:
+
+| Your DSH version | Compatibility series | Plugin to install | Prebuilt runtime archive |
+| --- | --- | --- | --- |
+| `dsh-v0.1.7-rc.2` (current pin) | [`compat/dsh-0.1.7-rc.2/`](compat/dsh-0.1.7-rc.2/) | build from this repository (`main`), or the next plugin release | published when the next `openbkn-dsh-runtime-v*` tag is cut |
+| `dsh-v0.1.6-alpha.2` (previous series) | [`compat/dsh-0.1.6-alpha.2/`](compat/dsh-0.1.6-alpha.2/) (archived) | `@openbkn/dsh-business-context@0.1.5-rc.2` from npm, or a source build from git tag [`v0.1.5-rc.2`](https://github.com/openbkn-ai/bkn-dsh/tree/v0.1.5-rc.2) | [openbkn-dsh-runtime-v0.1.6-alpha.2-openbkn.1](https://github.com/openbkn-ai/bkn-dsh/releases/tag/openbkn-dsh-runtime-v0.1.6-alpha.2-openbkn.1) |
+
+The plugin's declared DSH peers must match your runtime — DSH's version fence refuses mismatched installs. **Do not build the plugin from current `main` for a `0.1.6-alpha.2` runtime**: since the `0.1.7-rc.2` retarget its peers declare `0.1.7-rc.2`, and the install will be rejected. The runtime archives are self-contained (patched DSH runtime plus the matching plugin), so they sidestep pairing entirely. [`compat/dsh-0.1.2-rc.1/`](compat/dsh-0.1.2-rc.1/) is a historical archive with no npm pairing.
