@@ -43,14 +43,30 @@ node compat/dsh-0.1.6-alpha.2/apply.mjs --dsh /path/to/deepseek-harness
 node compat/dsh-0.1.6-alpha.2/verify.mjs --dsh /path/to/deepseek-harness
 ```
 
-Rebuild the patched DSH checkout using its normal build instructions. Then
-build the local plugin artifact and install it through DSH's native plugin command:
+Rebuild the patched DSH checkout using its normal build instructions. Then install the plugin — **the plugin build must declare `0.1.6-alpha.2` peers, and building from this repository's current `main` does not**: since the `dsh-v0.1.7-rc.2` retarget, a `main` build declares `0.1.7-rc.2` peers and a `0.1.6-alpha.2` runtime refuses the install. Use one of these instead:
 
 ```bash
+# Preferred: the npm release that pairs with 0.1.6-alpha.2.
+# Run from the patched DSH checkout — `pnpm dsh` is the DSH workspace's CLI;
+# this repository does not provide one.
+cd /path/to/deepseek-harness
+pnpm dsh plugin --profile web add @openbkn/dsh-business-context@0.1.5-rc.2
+```
+
+Or build the tarball from the matching git tag (clone this repository next to your DSH checkout, or pass your DSH path to the configure script):
+
+```bash
+git clone --branch v0.1.5-rc.2 https://github.com/openbkn-ai/bkn-dsh.git ~/bkn-dsh-0.1.6
+cd ~/bkn-dsh-0.1.6
+node scripts/configure-pinned-dsh-generator.mjs --dsh /path/to/deepseek-harness
+pnpm install
 pnpm --filter @openbkn/dsh-business-context build
 pnpm --filter @openbkn/dsh-business-context pack --pack-destination /tmp/openbkn-plugin
-pnpm dsh plugin --profile web add file:/tmp/openbkn-plugin/openbkn-dsh-business-context-0.1.5-rc.1.tgz
+cd /path/to/deepseek-harness
+pnpm dsh plugin --profile web add file:/tmp/openbkn-plugin/openbkn-dsh-business-context-0.1.5-rc.2.tgz
 ```
+
+The [version-pairing table](../../README.md#supported-dsh-versions) in the repository README lists every supported DSH revision with its series and plugin pairing.
 
 To remove the complete series before changing DSH version:
 

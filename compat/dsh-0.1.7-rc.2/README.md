@@ -56,12 +56,15 @@ node compat/dsh-0.1.7-rc.2/verify.mjs --dsh /path/to/deepseek-harness
 ```
 
 Rebuild the patched DSH checkout using its normal build instructions. Then
-build the local plugin artifact and install it through DSH's native plugin command:
+build the local plugin artifact (from this repository) and install it through
+DSH's native plugin command (from the patched DSH checkout — `pnpm dsh` is
+the DSH workspace's CLI; this repository does not provide one):
 
 ```bash
 pnpm --filter @openbkn/dsh-business-context build
 pnpm --filter @openbkn/dsh-business-context pack --pack-destination /tmp/openbkn-plugin
-pnpm dsh plugin --profile web add file:/tmp/openbkn-plugin/openbkn-dsh-business-context-0.1.6-rc.1.tgz
+cd /path/to/deepseek-harness
+pnpm dsh plugin --profile web add file:/tmp/openbkn-plugin/openbkn-dsh-business-context-0.1.7-rc.2-openbkn.0.1.4.tgz
 ```
 
 To remove the complete series before changing DSH version:

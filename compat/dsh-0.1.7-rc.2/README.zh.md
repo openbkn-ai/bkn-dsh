@@ -25,12 +25,13 @@ node compat/dsh-0.1.7-rc.2/apply.mjs --dsh /path/to/deepseek-harness
 node compat/dsh-0.1.7-rc.2/verify.mjs --dsh /path/to/deepseek-harness
 ```
 
-按 DSH 自身的构建说明重新构建打了补丁的源码树，然后构建本地插件产物并通过 DSH 原生插件命令安装：
+按 DSH 自身的构建说明重新构建打了补丁的源码树，然后构建本地插件产物（在本仓库执行），并通过 DSH 原生插件命令安装（在打过补丁的 DSH 检出目录执行——`pnpm dsh` 是 DSH 工作区的 CLI，本仓库不提供）：
 
 ```bash
 pnpm --filter @openbkn/dsh-business-context build
 pnpm --filter @openbkn/dsh-business-context pack --pack-destination /tmp/openbkn-plugin
-pnpm dsh plugin --profile web add file:/tmp/openbkn-plugin/openbkn-dsh-business-context-0.1.6-rc.1.tgz
+cd /path/to/deepseek-harness
+pnpm dsh plugin --profile web add file:/tmp/openbkn-plugin/openbkn-dsh-business-context-0.1.7-rc.2-openbkn.0.1.4.tgz
 ```
 
 切换 DSH 版本前先移除整个补丁系列：

@@ -31,9 +31,10 @@ jobs:
           const pkg = JSON.parse(fs.readFileSync("packages/openbkn-business-context/package.json", "utf8"))
           const artifact = `${pkg.name.replace("@openbkn/", "openbkn-")}-${pkg.version}.tgz`
           const bundle = `${manifest.bundle.name}-${manifest.bundle.version}`
-          fs.appendFileSync(process.env.GITHUB_ENV, `PLUGIN_ARTIFACT=${artifact}\nBUNDLE_NAME=${bundle}\n`)
+          fs.appendFileSync(process.env.GITHUB_ENV, `PLUGIN_ARTIFACT=${artifact}\nBUNDLE_NAME=${bundle}\nDSH_TAG=${manifest.dsh.tag}\n`)
           console.log(`PLUGIN_ARTIFACT=${artifact}`)
           console.log(`BUNDLE_NAME=${bundle}`)
+          console.log(`DSH_TAG=${manifest.dsh.tag}`)
           '
       - name: Preserve repository LF patch bytes
         shell: bash
@@ -49,7 +50,9 @@ jobs:
           node-version: 22
           cache: pnpm
       - name: Checkout pinned DSH source
-        run: git clone --depth 1 --branch dsh-v0.1.7-rc.2 https://github.com/deepseek-ai/deepseek-harness.git release/deepseek-harness
+        # bash so ${DSH_TAG} expands on the windows-2022 leg (pwsh default would drop it)
+        shell: bash
+        run: git clone --depth 1 --branch "${DSH_TAG}" https://github.com/deepseek-ai/deepseek-harness.git release/deepseek-harness
       - name: Point generator override at pinned DSH source
         run: node scripts/configure-pinned-dsh-generator.mjs --dsh release/deepseek-harness
       - name: Install bkn-dsh dependencies
@@ -105,7 +108,8 @@ jobs:
             version="$(OPENBKN_DSH_HOME="$smoke_home" "$bundle/bin/dsh" --version)"
           fi
           echo "entrypoint reported: $version"
-          grep -q "0.1.7-rc.2" <<< "$version"
+          # DSH_TAG = "dsh-vX"; the entrypoint reports the bare upstream version "X"
+          grep -q "${DSH_TAG#dsh-v}" <<< "$version"
       - uses: actions/upload-artifact@v4
         with:
           name: openbkn-dsh-runtime-${{ matrix.platform }}
@@ -138,6 +142,19 @@ jobs:
     needs: build
     runs-on: ubuntu-latest
     steps:
+      - uses: actions/checkout@v4
+      - name: Write release notes with the pinned DSH pairing
+        shell: bash
+        run: |
+          set -euo pipefail
+          dsh_tag=$(node -p 'JSON.parse(require("fs").readFileSync("runtime/openbkn-dsh-runtime.manifest.json", "utf8")).dsh.tag')
+          echo "dsh_tag=${dsh_tag}" >> "$GITHUB_ENV"
+          {
+            echo "Prebuilt OpenBKN-compatible DSH runtime bundle."
+            echo
+            echo "- Pinned DSH: \`${dsh_tag}\` — check \`dsh --version\` before installing."
+            echo "- The bundled profile already carries the matching plugin. Source-build users: see the version-pairing table in the README for the compatibility series and plugin release that pair with this DSH revision."
+          } > release-notes.md
       - uses: actions/download-artifact@v4
         with:
           path: release
@@ -145,3 +162,5 @@ jobs:
       - uses: softprops/action-gh-release@v2
         with:
           files: release/*
+          body_path: release-notes.md
+          name: ${{ github.ref_name }} (DSH ${{ env.dsh_tag }})

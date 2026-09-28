@@ -9,7 +9,7 @@
       "required": ["name", "version", "node", "archives"],
       "properties": {
         "name": { "const": "openbkn-dsh-runtime" },
-        "version": { "pattern": "^0\\.1\\.7-rc\\.2-openbkn\\.[1-9][0-9]*$" },
+        "version": { "pattern": "^0\\.1\\.7-rc\\.2-openbkn\\.0\\.1\\.4(-[1-9][0-9]*)?$" },
         "node": { "type": "string", "minLength": 1 },
         "archives": {
           "type": "array",
@@ -39,7 +39,7 @@
       "required": ["packageName", "version", "artifact"],
       "properties": {
         "packageName": { "const": "@openbkn/dsh-business-context" },
-        "version": { "type": "string", "minLength": 1 },
+        "version": { "type": "string", "minLength": 1, "pattern": "^0\\.1\\.7-rc\\.2-openbkn\\." },
         "artifact": { "pattern": "\\.tgz$" }
       }
     },
