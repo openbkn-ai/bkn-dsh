@@ -23,13 +23,30 @@ node compat/dsh-0.1.6-alpha.2/apply.mjs --dsh /path/to/deepseek-harness
 node compat/dsh-0.1.6-alpha.2/verify.mjs --dsh /path/to/deepseek-harness
 ```
 
-按 DSH 自身的构建说明重新构建打了补丁的源码树，然后构建本地插件产物并通过 DSH 原生插件命令安装：
+按 DSH 自身的构建说明重新构建打了补丁的源码树，然后安装插件——**插件构建必须声明 `0.1.6-alpha.2` peers，而从本仓库当前 `main` 构建不满足**：`dsh-v0.1.7-rc.2` retarget 之后，main 构建出的插件声明 `0.1.7-rc.2` peers，会被 `0.1.6-alpha.2` runtime 拒装。请改用以下任一方式：
 
 ```bash
+# 首选：与 0.1.6-alpha.2 配对的 npm 发布版。
+# 在打过补丁的 DSH 检出目录执行——`pnpm dsh` 是 DSH 工作区的 CLI，
+# 本仓库不提供。
+cd /path/to/deepseek-harness
+pnpm dsh plugin --profile web add @openbkn/dsh-business-context@0.1.5-rc.2
+```
+
+或从配对的 git tag 构建插件包（把本仓库克隆到你的 DSH 检出旁边，或把你的 DSH 路径传给 configure 脚本）：
+
+```bash
+git clone --branch v0.1.5-rc.2 https://github.com/openbkn-ai/bkn-dsh.git ~/bkn-dsh-0.1.6
+cd ~/bkn-dsh-0.1.6
+node scripts/configure-pinned-dsh-generator.mjs --dsh /path/to/deepseek-harness
+pnpm install
 pnpm --filter @openbkn/dsh-business-context build
 pnpm --filter @openbkn/dsh-business-context pack --pack-destination /tmp/openbkn-plugin
-pnpm dsh plugin --profile web add file:/tmp/openbkn-plugin/openbkn-dsh-business-context-0.1.5-rc.1.tgz
+cd /path/to/deepseek-harness
+pnpm dsh plugin --profile web add file:/tmp/openbkn-plugin/openbkn-dsh-business-context-0.1.5-rc.2.tgz
 ```
+
+每个受支持的 DSH 版本与补丁系列、插件配对的对照表见仓库 README 的[版本配对表](../../README.zh.md#支持的-dsh-版本)。
 
 切换 DSH 版本前先移除整个补丁系列：
 
