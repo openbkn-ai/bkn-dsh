@@ -25,15 +25,15 @@ The series adds only the capabilities required by the plugin:
   `patchedDependencies` declares patches for packages outside the deployed
   closure — on `dsh-v0.1.7-rc.2` that is `@electron/osx-sign`,
   `@fortune-sheet/core`, `@fortune-sheet/react`, and `exceljs`. The patch
-  removes those four registrations and carries the lockfile regenerated with
-  pnpm 11.7 for a frozen, repeatable install. Client-side fixes carried by
-  those four upstream patches are therefore not part of the deployed runtime
-  closure (they were not part of it anyway; `pnpm deploy` rejects them). The
-  regeneration re-resolves a few versions inside exactly those subtrees
-  (micromark/markdown tooling in root devDependencies and the client UI, and
-  glob/rimraf under the desktop-packaging chain) — none of them deploy into
-  the runtime closure, verified by inspecting the deployed closure and by
-  the end-to-end smoke.
+  removes those four registrations and derives the lockfile from the upstream
+  one by only stripping those four entries and their `(patch_hash=…)` suffixes
+  — every other resolution stays byte-identical to upstream, for a frozen,
+  repeatable install that also passes the full-tree `pnpm run build` (a
+  earlier full regeneration re-resolved the micromark toolchain into two
+  coexisting `micromark-util-types` versions and broke the client typecheck).
+  Client-side fixes carried by those four upstream patches are therefore not
+  part of the deployed runtime closure (they were not part of it anyway;
+  `pnpm deploy` rejects them).
 
 The plugin deliberately does not use a credential-reference MCP header here:
 it mounts the MCP client with a literal Authorization header resolved at
