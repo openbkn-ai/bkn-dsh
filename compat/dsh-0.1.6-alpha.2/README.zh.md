@@ -23,7 +23,7 @@ node compat/dsh-0.1.6-alpha.2/apply.mjs --dsh /path/to/deepseek-harness
 node compat/dsh-0.1.6-alpha.2/verify.mjs --dsh /path/to/deepseek-harness
 ```
 
-按 DSH 自身的构建说明重新构建打了补丁的源码树，然后安装插件——**插件构建必须声明 `0.1.6-alpha.2` peers，而从本仓库当前 `main` 构建不满足**：`dsh-v0.1.7-rc.2` retarget 之后，main 构建出的插件声明 `0.1.7-rc.2` peers，会被 `0.1.6-alpha.2` runtime 拒装。请改用以下任一方式：
+按 DSH 自身的构建说明重新构建打了补丁的源码树，然后安装插件——**插件构建必须声明 `0.1.6-alpha.2` peers，而从本仓库当前 `main` 构建不满足**：后续 retarget（现为 `dsh-v0.2.0-rc.2`）之后，main 构建出的插件声明最新 DSH peers，会被 `0.1.6-alpha.2` runtime 拒装。请改用以下任一方式：
 
 ```bash
 # 首选：与 0.1.6-alpha.2 配对的 npm 发布版。

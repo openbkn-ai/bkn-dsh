@@ -10,21 +10,21 @@ Rebuild and verify the Runtime for `$ARGUMENTS` (a platform: `darwin-arm64` or `
 
 - bkn-dsh working tree is clean (`git status --short` empty) — record `git rev-parse --short HEAD` as the build base.
 - `corepack pnpm@11.7.0 --version` works; `node --version` satisfies `^22.19.0 || >=24.0.0`.
-- The DSH checkout is at tag `dsh-v0.1.7-rc.2` with a clean tree. The workspace copy at `../deepseek-harness` may carry applied patches: never `git checkout`/`reset` it — revert with `node compat/dsh-0.1.7-rc.2/apply.mjs --dsh ../deepseek-harness --revert` only after the user confirms. Prefer a fresh clone at `release/deepseek-harness` (gitignored), which also matches the committed lockfile.
+- The DSH checkout is at tag `dsh-v0.2.0-rc.2` with a clean tree. The workspace copy at `../deepseek-harness` may carry applied patches: never `git checkout`/`reset` it — revert with `node compat/dsh-0.2.0-rc.2/apply.mjs --dsh ../deepseek-harness --revert` only after the user confirms. Prefer a fresh clone at `release/deepseek-harness` (gitignored), which also matches the committed lockfile.
 
 ## Steps
 
 ```bash
 DSH=release/deepseek-harness
-[ -d "$DSH" ] || git clone --depth 1 --branch dsh-v0.1.7-rc.2 https://github.com/deepseek-ai/deepseek-harness.git "$DSH"
+[ -d "$DSH" ] || git clone --depth 1 --branch dsh-v0.2.0-rc.2 https://github.com/deepseek-ai/deepseek-harness.git "$DSH"
 node scripts/configure-pinned-dsh-generator.mjs --dsh "$DSH"
 corepack pnpm@11.7.0 install --frozen-lockfile
-node compat/dsh-0.1.7-rc.2/apply.mjs --dsh "$DSH"
-node compat/dsh-0.1.7-rc.2/verify.mjs --dsh "$DSH"
-node compat/dsh-0.1.7-rc.2/apply.mjs --dsh "$DSH" --revert
+node compat/dsh-0.2.0-rc.2/apply.mjs --dsh "$DSH"
+node compat/dsh-0.2.0-rc.2/verify.mjs --dsh "$DSH"
+node compat/dsh-0.2.0-rc.2/apply.mjs --dsh "$DSH" --revert
 corepack pnpm@11.7.0 runtime:build -- --dsh "$DSH" --output release/runtime
 corepack pnpm@11.7.0 --filter @openbkn/dsh-business-context test
-node --test compat/dsh-0.1.7-rc.2/tests/*.test.mjs tests/*.test.mjs runtime/tests/*.test.mjs
+node --test compat/dsh-0.2.0-rc.2/tests/*.test.mjs tests/*.test.mjs runtime/tests/*.test.mjs
 corepack pnpm@11.7.0 run package:check
 corepack pnpm@11.7.0 --filter @openbkn/dsh-business-context build
 corepack pnpm@11.7.0 --filter @openbkn/dsh-business-context pack --pack-destination release/plugin

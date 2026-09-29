@@ -43,7 +43,7 @@ node compat/dsh-0.1.6-alpha.2/apply.mjs --dsh /path/to/deepseek-harness
 node compat/dsh-0.1.6-alpha.2/verify.mjs --dsh /path/to/deepseek-harness
 ```
 
-Rebuild the patched DSH checkout using its normal build instructions. Then install the plugin — **the plugin build must declare `0.1.6-alpha.2` peers, and building from this repository's current `main` does not**: since the `dsh-v0.1.7-rc.2` retarget, a `main` build declares `0.1.7-rc.2` peers and a `0.1.6-alpha.2` runtime refuses the install. Use one of these instead:
+Rebuild the patched DSH checkout using its normal build instructions. Then install the plugin — **the plugin build must declare `0.1.6-alpha.2` peers, and building from this repository's current `main` does not**: after later retargets (currently `dsh-v0.2.0-rc.2`), a `main` build declares the newest DSH peers and a `0.1.6-alpha.2` runtime refuses the install. Use one of these instead:
 
 ```bash
 # Preferred: the npm release that pairs with 0.1.6-alpha.2.

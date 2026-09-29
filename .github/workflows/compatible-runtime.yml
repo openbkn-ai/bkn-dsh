@@ -62,9 +62,9 @@ jobs:
         shell: bash
         run: |
           set -euo pipefail
-          node compat/dsh-0.1.7-rc.2/apply.mjs --dsh release/deepseek-harness
-          node compat/dsh-0.1.7-rc.2/verify.mjs --dsh release/deepseek-harness
-          node compat/dsh-0.1.7-rc.2/apply.mjs --dsh release/deepseek-harness --revert
+          node compat/dsh-0.2.0-rc.2/apply.mjs --dsh release/deepseek-harness
+          node compat/dsh-0.2.0-rc.2/verify.mjs --dsh release/deepseek-harness
+          node compat/dsh-0.2.0-rc.2/apply.mjs --dsh release/deepseek-harness --revert
       - name: Build compatible DSH runtime
         run: pnpm runtime:build -- --dsh release/deepseek-harness --output release/runtime
       - name: Test plugin and compatibility tooling
@@ -74,7 +74,7 @@ jobs:
         run: |
           set -euo pipefail
           pnpm --filter @openbkn/dsh-business-context test
-          node --test compat/dsh-0.1.7-rc.2/tests/*.test.mjs tests/*.test.mjs runtime/tests/*.test.mjs
+          node --test compat/dsh-0.2.0-rc.2/tests/*.test.mjs tests/*.test.mjs runtime/tests/*.test.mjs
           pnpm run package:check
       - name: Build and pack bkn-dsh
         # bash so a failed build cannot hide behind a successful pack

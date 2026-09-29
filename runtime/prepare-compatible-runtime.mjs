@@ -1,5 +1,5 @@
-import { applyCompatibility, loadManifest } from '../compat/dsh-0.1.7-rc.2/apply.mjs'
-import { verifyCompatibility } from '../compat/dsh-0.1.7-rc.2/verify.mjs'
+import { applyCompatibility, loadManifest } from '../compat/dsh-0.2.0-rc.2/apply.mjs'
+import { verifyCompatibility } from '../compat/dsh-0.2.0-rc.2/verify.mjs'
 import { execFileSync } from 'node:child_process'
 import { cpSync, existsSync, mkdirSync, readFileSync } from 'node:fs'
 import { dirname, join, relative, resolve, sep } from 'node:path'

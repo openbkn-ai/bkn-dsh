@@ -1,0 +1,34 @@
+{
+  "format": 1,
+  "compatibilityVersion": "dsh-0.2.0-rc.2/openbkn-business-context.1",
+  "dsh": {
+    "tag": "dsh-v0.2.0-rc.2",
+    "baseCommit": "639ed015397290b3745d163aafe02ffee4aa3f84",
+    "upstream": "https://github.com/deepseek-ai/deepseek-harness.git"
+  },
+  "patches": [
+    {
+      "file": "patches/0001-third-party-typert-protocol.patch",
+      "sha256": "a4f03a3ea4fcab1824ccfb113e71f5aab6d525a751adb8a971d375dcd8391d81",
+      "files": [
+        "packages/typert/generator/src/analyzer.ts"
+      ]
+    },
+    {
+      "file": "patches/0002-plugin-ignorable-session-events.patch",
+      "sha256": "d6881fdaa125da9ed7f819a37b2e3447817ee896f4a418dc25d80a6d8518e651",
+      "files": [
+        "packages/core/session/src/index.ts",
+        "packages/core/session/src/types.ts"
+      ]
+    },
+    {
+      "file": "patches/0003-compatible-runtime-lockfile.patch",
+      "sha256": "af0a29e4eb70220b8b4dc1ff45f5a580ae16ec0ad80aad1795c994ba87c8f762",
+      "files": [
+        "pnpm-workspace.yaml",
+        "pnpm-lock.yaml"
+      ]
+    }
+  ]
+}

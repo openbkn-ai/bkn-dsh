@@ -2,31 +2,31 @@
   "format": 1,
   "bundle": {
     "name": "openbkn-dsh-runtime",
-    "version": "0.1.7-rc.2-openbkn.0.2.0",
+    "version": "0.2.0-rc.2-openbkn.0.2.0",
     "node": "^22.19.0 || >=24.0.0",
     "archives": [
       {
         "platform": "darwin-arm64",
-        "file": "openbkn-dsh-runtime-0.1.7-rc.2-openbkn.0.2.0-darwin-arm64.tar.gz"
+        "file": "openbkn-dsh-runtime-0.2.0-rc.2-openbkn.0.2.0-darwin-arm64.tar.gz"
       },
       {
         "platform": "win32-x64",
-        "file": "openbkn-dsh-runtime-0.1.7-rc.2-openbkn.0.2.0-win32-x64.zip"
+        "file": "openbkn-dsh-runtime-0.2.0-rc.2-openbkn.0.2.0-win32-x64.zip"
       }
     ]
   },
   "dsh": {
-    "tag": "dsh-v0.1.7-rc.2",
-    "baseCommit": "477b4f420553e8a52c2fbccc464d7561b239c443",
+    "tag": "dsh-v0.2.0-rc.2",
+    "baseCommit": "639ed015397290b3745d163aafe02ffee4aa3f84",
     "upstream": "https://github.com/deepseek-ai/deepseek-harness.git"
   },
   "plugin": {
     "packageName": "@openbkn/dsh-business-context",
-    "version": "0.1.7-rc.2-openbkn.0.2.0",
-    "artifact": "openbkn-dsh-business-context-0.1.7-rc.2-openbkn.0.2.0.tgz"
+    "version": "0.2.0-rc.2-openbkn.0.2.0",
+    "artifact": "openbkn-dsh-business-context-0.2.0-rc.2-openbkn.0.2.0.tgz"
   },
   "compatibility": {
-    "directory": "compat/dsh-0.1.7-rc.2",
+    "directory": "compat/dsh-0.2.0-rc.2",
     "patches": [
       {
         "file": "patches/0001-third-party-typert-protocol.patch",
@@ -34,11 +34,11 @@
       },
       {
         "file": "patches/0002-plugin-ignorable-session-events.patch",
-        "sha256": "f1f57d262493176fc96de806c31a4b5a90bcb151ade0ba961491ab00e6347bd9"
+        "sha256": "d6881fdaa125da9ed7f819a37b2e3447817ee896f4a418dc25d80a6d8518e651"
       },
       {
         "file": "patches/0003-compatible-runtime-lockfile.patch",
-        "sha256": "8c670310893023d89d38b55b571a00c0a4cf7ab4bf0b8eb0a222fa036acf4768"
+        "sha256": "af0a29e4eb70220b8b4dc1ff45f5a580ae16ec0ad80aad1795c994ba87c8f762"
       }
     ]
   }

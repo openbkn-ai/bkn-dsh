@@ -1,6 +1,6 @@
 # 在自己的 DSH 上安装并使用 bkn-dsh 插件
 
-> 适用：DSH `dsh-v0.1.7-rc.2`（唯一受支持版本）。两样东西：**插件包**（`release/plugin/openbkn-dsh-business-context-0.1.7-rc.2-openbkn.0.2.0.tgz`）与**补丁脚本**（`compat/dsh-0.1.7-rc.2/`）。
+> 适用：DSH `dsh-v0.2.0-rc.2`（唯一受支持版本）。两样东西：**插件包**（`release/plugin/openbkn-dsh-business-context-0.2.0-rc.2-openbkn.0.2.0.tgz`）与**补丁脚本**（`compat/dsh-0.2.0-rc.2/`）。
 > 端到端验证记录见 `docs/evidence/m6-stock-dsh-install.md` 与 `docs/evidence/m6-patched-dsh-and-runtime.md`（2026-09-20）。
 
 ## 为什么需要补丁脚本
@@ -10,27 +10,27 @@
 ## 步骤一：准备打好补丁的 DSH 源码树
 
 ```bash
-git clone --depth 1 --branch dsh-v0.1.7-rc.2 \
+git clone --depth 1 --branch dsh-v0.2.0-rc.2 \
   https://github.com/deepseek-ai/deepseek-harness.git ~/dsh-src
 cd ~/dsh-src && pnpm install && pnpm build
 
-# 打补丁（在本仓库根执行；要求目标树干净、精确处于 477b4f42）
-node compat/dsh-0.1.7-rc.2/apply.mjs  --dsh ~/dsh-src
-node compat/dsh-0.1.7-rc.2/verify.mjs --dsh ~/dsh-src   # 应输出 verified
+# 打补丁（在本仓库根执行；要求目标树干净、精确处于 639ed015）
+node compat/dsh-0.2.0-rc.2/apply.mjs  --dsh ~/dsh-src
+node compat/dsh-0.2.0-rc.2/verify.mjs --dsh ~/dsh-src   # 应输出 verified
 ```
 
 还原补丁（升级 DSH 版本前）：
 
 ```bash
-node compat/dsh-0.1.7-rc.2/apply.mjs --dsh ~/dsh-src --revert
+node compat/dsh-0.2.0-rc.2/apply.mjs --dsh ~/dsh-src --revert
 ```
 
 ## 步骤二：安装插件包
 
 ```bash
 cd ~/dsh-src
-pnpm dsh plugin --profile web add file:<bkn-dsh>/release/plugin/openbkn-dsh-business-context-0.1.7-rc.2-openbkn.0.2.0.tgz
-pnpm dsh plugin --profile web list    # 应列出 @openbkn/dsh-business-context@0.1.7-rc.2-openbkn.0.2.0
+pnpm dsh plugin --profile web add file:<bkn-dsh>/release/plugin/openbkn-dsh-business-context-0.2.0-rc.2-openbkn.0.2.0.tgz
+pnpm dsh plugin --profile web list    # 应列出 @openbkn/dsh-business-context@0.2.0-rc.2-openbkn.0.2.0
 ```
 
 卸载：
