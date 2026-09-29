@@ -7,6 +7,15 @@ const config = {
   maxResultBytes: 1_024, allowInsecureTls: false,
 }
 
+// Services built with Object.create skip the class-field initializer; give
+// them an empty binding store so bindings resolve from the given log events
+// alone, and any unexpected write fails the test.
+Object.defineProperty(OpenBknBusinessContextService.prototype, 'bindingRecords', {
+  configurable: true,
+  writable: true,
+  value: { read: () => undefined, write: async () => { throw new Error('must not write a binding record') } },
+})
+
 test('does not load the DSH LLM service for a static empty-session entry', () => {
   assert.equal(OpenBknBusinessContextService.inject.includes('llm'), false)
 })
@@ -16,7 +25,7 @@ function serviceFor(agent: object) {
     config: typeof config
     ctx: { agents: { get(id: string): object | undefined } }
     mountIfBound(agent: object): void
-    bind(agent: object, requested: { platformBaseUrl: string; knowledgeNetworkId: string; displayName: string }): unknown
+    bind(agent: object, requested: { platformBaseUrl: string; knowledgeNetworkId: string; displayName: string }): Promise<unknown>
   }
   service.config = config
   service.ctx = { agents: { get: () => agent } }
@@ -24,33 +33,46 @@ function serviceFor(agent: object) {
   return service
 }
 
-test('rejects a mismatched platform before it can append an immutable DSH session binding', () => {
-  const appended: unknown[] = []
-  const agent = {
-    id: 'session-1',
-    session: {
-      snapshotEvents: () => [],
-      append: (type: string, data: unknown) => { appended.push({ type, data }) },
-    },
-  }
+test('rejects a mismatched platform before it can persist an immutable session binding', async () => {
+  const agent = { id: 'session-1', session: { id: 'session-1', snapshotEvents: () => [] } }
   const service = serviceFor(agent)
 
-  assert.throws(() => service.bind(agent, {
+  await assert.rejects(service.bind(agent, {
     platformBaseUrl: 'https://other.openbkn.ai', knowledgeNetworkId: 'kn-other', displayName: 'Other',
   }), /configured OpenBKN platform/i)
-  assert.deepEqual(appended, [])
 })
 
-test('rejects a stale or foreign Agent before it can mutate a DSH session', () => {
-  const agent = {
-    id: 'session-1',
-    session: { snapshotEvents: () => [], append: () => { throw new Error('must not append') } },
-  }
+test('rejects a stale or foreign Agent before it can bind a DSH session', async () => {
+  const agent = { id: 'session-1', session: { id: 'session-1', snapshotEvents: () => [] } }
   const service = serviceFor({ id: 'session-1' })
 
-  assert.throws(() => service.bind(agent, {
+  await assert.rejects(service.bind(agent, {
     platformBaseUrl: 'https://poc.openbkn.ai', knowledgeNetworkId: 'kn-supply', displayName: 'Supply',
   }), /not a live/i)
+})
+
+test('enables the business capability only after the binding record is durable', async () => {
+  const agent = { id: 'session-1', session: { id: 'session-1', snapshotEvents: () => [] } }
+  const order: string[] = []
+  const service = serviceFor(agent) as ReturnType<typeof serviceFor> & { bindingRecords: unknown }
+  let fail = true
+  service.bindingRecords = {
+    read: () => undefined,
+    write: async () => {
+      order.push('write')
+      if (fail) throw new Error('disk full')
+    },
+  }
+  service.mountIfBound = () => { order.push('mount') }
+  const requested = { platformBaseUrl: config.baseUrl, knowledgeNetworkId: 'kn-supply', displayName: 'Supply' }
+
+  await assert.rejects(service.bind(agent, requested), /disk full/)
+  assert.deepEqual(order, ['write'])
+
+  fail = false
+  order.length = 0
+  await service.bind(agent, requested)
+  assert.deepEqual(order, ['write', 'mount'])
 })
 
 test('stores a token through DSH credentials before testing the managed OpenBKN connection', async () => {
@@ -156,16 +178,16 @@ test('does not refresh the MCP connection for later steps or unbound sessions', 
   assert.equal(synchronized, 0)
 })
 
-test('auto-binds a new native DSH session when its workspace has one OpenBKN association', () => {
+test('auto-binds a new native DSH session when its workspace has one OpenBKN association', async () => {
   let bound: unknown
   let mounted = 0
   const agent = { id: 'session-1', session: { header: { cwd: '/Users/leecky/Documents/DSH_work/bkn-dsh' }, snapshotEvents: () => [] } }
   const service = Object.create(OpenBknBusinessContextService.prototype) as {
     config: typeof config
     ctx: { openbknWorkspaceBindingRegistry: { findUniqueByWorkspace(baseUrl: string, path: string): unknown } }
-    bind(agent: object, binding: unknown): unknown
+    bind(agent: object, binding: unknown): Promise<unknown>
     mountIfBound(agent: object): void
-    bindWorkspaceNetworkIfUnique(agent: object): void
+    bindWorkspaceNetworkIfUnique(agent: object): Promise<void>
   }
   service.config = config
   service.ctx = { openbknWorkspaceBindingRegistry: {
@@ -173,10 +195,10 @@ test('auto-binds a new native DSH session when its workspace has one OpenBKN ass
       knowledgeNetworkId: 'kn-supply', displayName: 'Supply network', workspacePath: agent.session.header.cwd,
     }),
   } }
-  service.bind = (_agent, binding) => { bound = binding }
+  service.bind = async (_agent, binding) => { bound = binding }
   service.mountIfBound = () => { mounted += 1 }
 
-  service.bindWorkspaceNetworkIfUnique(agent)
+  await service.bindWorkspaceNetworkIfUnique(agent)
 
   assert.deepEqual(bound, {
     platformBaseUrl: config.baseUrl,
@@ -186,26 +208,26 @@ test('auto-binds a new native DSH session when its workspace has one OpenBKN ass
   assert.equal(mounted, 0)
 })
 
-test('leaves a native DSH session unbound when its workspace has no unique association', () => {
+test('leaves a native DSH session unbound when its workspace has no unique association', async () => {
   let bound = 0
   let mounted = 0
   const agent = { id: 'session-1', session: { header: { cwd: '/Users/leecky/Documents/DSH_work/bkn-dsh' }, snapshotEvents: () => [] } }
   const service = Object.create(OpenBknBusinessContextService.prototype) as {
     config: typeof config
     ctx: { openbknWorkspaceBindingRegistry: { findUniqueByWorkspace(baseUrl: string, path: string): undefined } }
-    bind(agent: object, binding: unknown): unknown
+    bind(agent: object, binding: unknown): Promise<unknown>
     mountIfBound(agent: object): void
-    bindWorkspaceNetworkIfUnique(agent: object): void
+    bindWorkspaceNetworkIfUnique(agent: object): Promise<void>
   }
   service.config = config
   service.ctx = { openbknWorkspaceBindingRegistry: { findUniqueByWorkspace: () => undefined } }
-  service.bind = () => { bound += 1 }
+  service.bind = async () => { bound += 1 }
   service.mountIfBound = () => { mounted += 1 }
 
-  service.bindWorkspaceNetworkIfUnique(agent)
+  await service.bindWorkspaceNetworkIfUnique(agent)
 
   assert.equal(bound, 0)
-  assert.equal(mounted, 1)
+  assert.equal(mounted, 0)
 })
 
 test('reads the durable binding for one live session without consulting CLI credentials', async () => {
@@ -510,7 +532,7 @@ test('binds only a network confirmed in the current identity catalogue', async (
     ctx: { agents: { get(sessionId: string): object | undefined }; logger: { warn(): void } }
     remoteStatus(signal: AbortSignal): Promise<{ kind: 'authenticated'; baseUrl: string }>
     platformReader(): { listKnowledgeNetworks(signal: AbortSignal, cwd: string): Promise<unknown> }
-    bind(agent: object, request: unknown): { kind: 'bound'; event: { data: unknown } }
+    bind(agent: object, request: unknown): Promise<{ kind: 'bound'; binding: unknown }>
     remoteBindNetwork(sessionId: string, networkId: string, signal: AbortSignal): Promise<unknown>
   }
   service.config = config
@@ -519,10 +541,10 @@ test('binds only a network confirmed in the current identity catalogue', async (
   service.platformReader = () => ({ listKnowledgeNetworks: async () => ({
     entries: [{ id: 'kn-supply', name: 'Supply risk', comment: 'Delivery risk' }],
   }) })
-  service.bind = (candidate, request) => {
+  service.bind = async (candidate, request) => {
     assert.equal(candidate, agent)
     requested = request
-    return { kind: 'bound', event: { data: request } }
+    return { kind: 'bound', binding: request }
   }
 
   assert.deepEqual(await service.remoteBindNetwork('session-1', 'kn-supply', AbortSignal.timeout(1_000)), {
@@ -548,7 +570,7 @@ test('keeps binding available and records a safe diagnostic when the optional ca
       listKnowledgeNetworks(signal: AbortSignal, cwd: string): Promise<unknown>
       getKnowledgeNetworkDetail(binding: unknown, signal: AbortSignal, cwd: string): Promise<unknown>
     }
-    bind(agent: object, request: unknown): { kind: 'bound'; event: { data: unknown } }
+    bind(agent: object, request: unknown): Promise<{ kind: 'bound'; binding: unknown }>
     remoteBindNetwork(sessionId: string, networkId: string, signal: AbortSignal): Promise<unknown>
   }
   service.config = config
@@ -561,9 +583,9 @@ test('keeps binding available and records a safe diagnostic when the optional ca
     listKnowledgeNetworks: async () => ({ entries: [{ id: 'kn-supply', name: 'Supply risk' }] }),
     getKnowledgeNetworkDetail: async () => { throw new Error('private platform detail') },
   })
-  service.bind = (_agent, request) => {
+  service.bind = async (_agent, request) => {
     requested = request
-    return { kind: 'bound', event: { data: request } }
+    return { kind: 'bound', binding: request }
   }
 
   const result = await service.remoteBindNetwork('session-1', 'kn-supply', AbortSignal.timeout(1_000))

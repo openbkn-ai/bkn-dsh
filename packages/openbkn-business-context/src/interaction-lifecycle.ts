@@ -8,14 +8,24 @@
  * Two lifetimes are deliberately separated (§5.1): `open` is a per-turn
  * in-memory flag that never survives a turn boundary, while `conversationId`
  * is the cross-turn platform continuity identity whose source of truth is the
- * durable session event log — never model memory.
+ * durable session event log — never model memory. The log's own lifecycle
+ * tool results are that source: a restore replays them in log order.
  */
+
+import { toolResultIsError, toolResultTexts } from './tool-result-message.js'
 
 export const START_INTERACTION_TOOL = 'mcp__openbkn__bkn_start_interaction'
 export const FINISH_INTERACTION_TOOL = 'mcp__openbkn__bkn_finish_interaction'
 
-/** Durable DSH event type for the managed OpenBKN conversation continuity. */
+/**
+ * DSH event type earlier plugin releases appended on every conversation
+ * change. Nothing writes it any more; `lastConversationEvent` still reads it
+ * for diagnostics on existing logs.
+ */
 export const MANAGED_CONVERSATION_EVENT = 'openbkn/managed-conversation'
+
+/** The same event after DSH's session-format v3→v4 `plugin:` namespacing of ignorable extensions. */
+export const MIGRATED_MANAGED_CONVERSATION_EVENT = `plugin:${MANAGED_CONVERSATION_EVENT}`
 
 declare module '@deepseek-ai/dsh-session/types' {
   interface SessionEventMap {
@@ -60,16 +70,10 @@ export interface ManagedConversationEventData {
   readonly recordedAt: number
 }
 
-/** Minimal event-log shape shared by restore and append paths. */
+/** Minimal event-log shape read by restore. */
 export interface SessionEventLike {
   readonly type: string
   readonly data: unknown
-}
-
-/** DSH Session capability surface needed to persist conversation events. */
-export interface ManagedConversationSession {
-  append(type: typeof MANAGED_CONVERSATION_EVENT, data: ManagedConversationEventData, options?: { readonly ignorable?: true }): void
-  snapshotEvents(): readonly SessionEventLike[]
 }
 
 /** A closed turn with no held conversation — the state before any OpenBKN access. */
@@ -78,15 +82,46 @@ export function initialState(): InteractionLifecycleState {
 }
 
 /**
- * Rebuild the state from a session event log. `open` is always false after a
- * restore (the flag never survives a turn boundary); `conversationId` follows
- * the last durable conversation event, so a tombstone (`invalidated`) read as
- * undefined is exactly the "no prior conversation available" prompt state.
+ * Rebuild the state from a session event log by replaying, in log order, the
+ * same transitions the live `tools/result` listener applied: `turn/start`
+ * resets the per-turn flags and each logged start/finish result feeds
+ * {@link onToolResult}. DSH logs a failed tool as `Error: <message>` with the
+ * same `<message>` the live result carried in `error.message`, so the platform
+ * error code reads identically. `open` is always false after a restore (the
+ * flag never survives a turn boundary). A fork's log holds only its inherited
+ * prefix, so it resumes the conversation held at its fork point.
  */
 export function restoreFrom(events: readonly SessionEventLike[]): InteractionLifecycleState {
-  const last = lastConversationEvent(events)
-  const conversationId = last !== undefined && last.status === 'active' ? last.conversationId : undefined
-  return conversationId === undefined ? initialState() : { ...initialState(), conversationId }
+  const lifecycleCalls = new Map<string, string>()
+  let state = initialState()
+  for (const event of events) {
+    const data = asRecord(event.data)
+    if (event.type === 'turn/start') {
+      state = onTurnStart(state)
+      continue
+    }
+    if (event.type === 'tool/call') {
+      const name = data?.name
+      if (typeof data?.callId === 'string' && (name === START_INTERACTION_TOOL || name === FINISH_INTERACTION_TOOL)) {
+        lifecycleCalls.set(data.callId, name)
+      }
+      continue
+    }
+    if (event.type !== 'tool/result') continue
+    const message = asRecord(data?.message)
+    const source = asRecord(message?.source)
+    const callId = typeof message?.toolCallId === 'string' ? message.toolCallId
+      : source?.kind === 'tool' && typeof source.callId === 'string' ? source.callId : undefined
+    const name = callId === undefined ? undefined : lifecycleCalls.get(callId)
+    if (name === undefined) continue
+    const failed = toolResultIsError(message)
+    const texts = toolResultTexts(message)
+    const outcome: LifecycleOutcomeLike = failed
+      ? { isError: true, error: { message: (texts[0] ?? '').replace(/^Error: /, '') } }
+      : { isError: false, content: texts.map(text => ({ type: 'text', text })) }
+    state = onToolResult(state, name, !failed, projectLifecycleOutcome(outcome))
+  }
+  return state.conversationId === undefined ? initialState() : { ...initialState(), conversationId: state.conversationId }
 }
 
 /**
@@ -98,7 +133,7 @@ export function restoreFrom(events: readonly SessionEventLike[]): InteractionLif
 export function lastConversationEvent(events: readonly SessionEventLike[]): ManagedConversationEventData | undefined {
   let last: ManagedConversationEventData | undefined
   for (const event of events) {
-    if (event.type !== MANAGED_CONVERSATION_EVENT) continue
+    if (event.type !== MANAGED_CONVERSATION_EVENT && event.type !== MIGRATED_MANAGED_CONVERSATION_EVENT) continue
     const data = parseConversationEvent(event.data)
     if (data !== undefined) last = data
   }
@@ -297,15 +332,6 @@ export function denialFor(
     return 'This turn already completed its one OpenBKN interaction; no further OpenBKN access is possible in this turn. Answer from the results you already have, and let the user ask again if separate business work is needed.'
   }
   return 'Start mcp__openbkn__bkn_start_interaction before any OpenBKN access in this turn, then retry this call.'
-}
-
-/** Append one durable conversation event; the session log stays the source of truth. */
-export function recordConversationEvent(
-  session: ManagedConversationSession,
-  conversationId: string,
-  status: ManagedConversationEventData['status'],
-): void {
-  session.append(MANAGED_CONVERSATION_EVENT, { conversationId, status, recordedAt: Date.now() }, { ignorable: true })
 }
 
 function parseConversationEvent(data: unknown): ManagedConversationEventData | undefined {

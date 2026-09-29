@@ -9,6 +9,7 @@ export { AuthCoordinator, OpenBknCliError } from './auth.js'
 export type { AuthSnapshot, CliResult, OpenBknCli } from './auth.js'
 export {
   BUSINESS_NETWORK_BOUND_EVENT,
+  MIGRATED_BUSINESS_NETWORK_BOUND_EVENT,
   bindBusinessNetwork,
   BusinessNetworkBindingConflictError,
   readBusinessNetworkBinding,
@@ -16,14 +17,15 @@ export {
 export type {
   BindBusinessNetworkResult,
   BusinessNetworkBinding,
-  BusinessNetworkBoundEvent,
   SessionEventLike,
 } from './session-binding.js'
-export { bindDshSessionBusinessNetwork, readDshSessionBusinessNetwork } from './dsh-session-binding.js'
-export type { DshSessionBindingLog, DshSessionLog } from './dsh-session-binding.js'
-export { appendDshSessionTurnProvenance, readDshSessionTurnProvenance } from './dsh-session-provenance.js'
-export type { DshSessionProvenanceLog, DshSessionProvenanceWriter } from './dsh-session-provenance.js'
-export { TURN_PROVENANCE_EVENT, TurnProvenanceConflictError, appendTurnProvenance, readTurnProvenance } from './turn-provenance.js'
+export { SessionBindingStore } from './session-binding-store.js'
+export type { SessionBindingRecord } from './session-binding-store.js'
+export { bindDshSessionBusinessNetwork, inheritForkedBusinessNetwork, readDshSessionBusinessNetwork } from './dsh-session-binding.js'
+export type { DshForkableSessionLog, DshSessionLog, SessionBindingRecords } from './dsh-session-binding.js'
+export { readDshSessionTurnProvenance } from './dsh-session-provenance.js'
+export type { DshSessionProvenanceLog } from './dsh-session-provenance.js'
+export { MIGRATED_TURN_PROVENANCE_EVENT, TURN_PROVENANCE_EVENT, TurnProvenanceConflictError, readTurnProvenance } from './turn-provenance.js'
 export type { TurnProvenanceEvent } from './turn-provenance.js'
 export { normalizeProvenanceHandle, sameProvenanceHandle } from './provenance-handle.js'
 export { buildTurnTimeline } from './turn-timeline.js'
@@ -33,6 +35,7 @@ export {
   CONVERSATION_INVALID_ERROR_CODES,
   FINISH_INTERACTION_TOOL,
   MANAGED_CONVERSATION_EVENT,
+  MIGRATED_MANAGED_CONVERSATION_EVENT,
   START_INTERACTION_TOOL,
   classifyFailure,
   denialFor,
@@ -41,7 +44,6 @@ export {
   onToolResult,
   onTurnStart,
   projectLifecycleOutcome,
-  recordConversationEvent,
   restoreFrom,
 } from './interaction-lifecycle.js'
 export type {
@@ -49,7 +51,6 @@ export type {
   LifecycleOutcomeLike,
   LifecycleToolResultProjection,
   ManagedConversationEventData,
-  ManagedConversationSession,
 } from './interaction-lifecycle.js'
 export { emptyBusinessSessionPrompt } from './suggested-prompts.js'
 export { buildManagedSessionPolicy, OPENBKN_DSH_INTERACTION_AGENT_NAME } from './managed-session-policy.js'

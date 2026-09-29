@@ -1,4 +1,5 @@
 import assert from 'node:assert/strict'
+import { readFileSync } from 'node:fs'
 import test from 'node:test'
 import {
   CONVERSATION_INVALID_ERROR_CODES,
@@ -12,10 +13,8 @@ import {
   onToolResult,
   onTurnStart,
   projectLifecycleOutcome,
-  recordConversationEvent,
   restoreFrom,
   type InteractionLifecycleState,
-  type ManagedConversationSession,
 } from '../src/interaction-lifecycle.ts'
 
 test('initial state is closed with no conversation held', () => {
@@ -60,48 +59,79 @@ test('onTurnStart resets per-turn flags and preserves whatever conversation the 
   assert.equal(state.conversationId, 'conv-1')
 })
 
-test('restoreFrom takes the last active conversation event', () => {
-  const events = [
-    { type: MANAGED_CONVERSATION_EVENT, data: { conversationId: 'conv-1', status: 'active', recordedAt: 1 } },
-    { type: MANAGED_CONVERSATION_EVENT, data: { conversationId: 'conv-2', status: 'active', recordedAt: 2 } },
-  ]
+// ---------------------------------------------------------------------------
+// restoreFrom: replay the logged lifecycle results (no plugin event involved).
+// ---------------------------------------------------------------------------
+
+const turnStart = (turn: number) => ({ type: 'turn/start', data: { turn } })
+const call = (callId: string, name: string, turn: number) => ({ type: 'tool/call', data: { turn, step: 1, callId, name, arguments: '{}' } })
+const result = (callId: string, turn: number, text: string, isError = false) => ({
+  type: 'tool/result',
+  data: { turn, step: 1, message: { role: 'tool', toolCallId: callId, source: { kind: 'tool', callId }, isError, content: [{ type: 'text', text }] } },
+})
+const started = (callId: string, turn: number, conversationId: string) => [
+  call(callId, START_INTERACTION_TOOL, turn),
+  result(callId, turn, JSON.stringify({ interaction_id: `int-${callId}`, conversation_id: conversationId, execution_status: 'active' })),
+]
+const refused = (callId: string, turn: number, code: string) => [
+  call(callId, START_INTERACTION_TOOL, turn),
+  result(callId, turn, `Error: ${JSON.stringify({ error: { code, message: 'refused' } })}`, true),
+]
+
+test('restoreFrom resumes the conversation of the last logged successful start', () => {
+  const events = [turnStart(1), ...started('a', 1, 'conv-1'), turnStart(2), ...started('b', 2, 'conv-2')]
   const state = restoreFrom(events)
   assert.equal(state.conversationId, 'conv-2')
   assert.equal(state.open, false)
+  assert.equal(state.startsThisTurn, 0)
 })
 
-test('restoreFrom reads a tombstone as no conversation available', () => {
-  const events = [
-    { type: MANAGED_CONVERSATION_EVENT, data: { conversationId: 'conv-1', status: 'active', recordedAt: 1 } },
-    { type: MANAGED_CONVERSATION_EVENT, data: { conversationId: 'conv-1', status: 'invalidated', recordedAt: 2 } },
-  ]
+test('restoreFrom drops a conversation the platform invalidated, and never resurrects it', () => {
+  const events = [turnStart(1), ...started('a', 1, 'conv-1'), turnStart(2), ...refused('b', 2, 'resource_not_disclosed')]
   assert.equal(restoreFrom(events).conversationId, undefined)
+  assert.equal(restoreFrom([...events, turnStart(3), ...started('c', 3, 'conv-3')]).conversationId, 'conv-3')
 })
 
-test('restoreFrom of an old session without conversation events yields undefined', () => {
-  assert.equal(restoreFrom([{ type: 'openbkn/business-network-bound', data: {} }]).conversationId, undefined)
-  assert.equal(restoreFrom([]).conversationId, undefined)
-})
-
-test('restoreFrom ignores malformed conversation events', () => {
+test('restoreFrom keeps the conversation through non-invalidating failures and guard denials', () => {
   const events = [
-    { type: MANAGED_CONVERSATION_EVENT, data: { conversationId: 'conv-1', status: 'active', recordedAt: 1 } },
-    { type: MANAGED_CONVERSATION_EVENT, data: 'malformed' },
+    turnStart(1), ...started('a', 1, 'conv-1'),
+    turnStart(2), ...refused('b', 2, 'invalid_params'),
+    call('c', START_INTERACTION_TOOL, 2), result('c', 2, 'Error: An OpenBKN interaction is already open in this turn.', true),
   ]
   assert.equal(restoreFrom(events).conversationId, 'conv-1')
 })
 
-test('recordConversationEvent appends an ignorable durable event', () => {
-  const appended: Array<{ type: string; data: unknown; options?: { ignorable?: true } }> = []
-  const session: ManagedConversationSession = {
-    append(type, data, options) { appended.push({ type, data, options }) },
-    snapshotEvents: () => appended,
+test('restoreFrom reads legacy tool-result wrappers too', () => {
+  const legacy = {
+    type: 'tool/result',
+    data: { turn: 1, step: 1, message: { role: 'user', source: { kind: 'tool', callId: 'a' }, content: [{
+      type: 'tool-result', toolCallId: 'a', content: [{ type: 'text', text: '{"interaction_id":"int-a","conversation_id":"conv-legacy"}' }],
+    }] } },
   }
-  recordConversationEvent(session, 'conv-1', 'active')
-  assert.equal(appended.length, 1)
-  assert.equal(appended[0]!.type, MANAGED_CONVERSATION_EVENT)
-  assert.deepEqual(appended[0]!.options, { ignorable: true })
-  assert.deepEqual(restoreFrom(session.snapshotEvents()).conversationId, 'conv-1')
+  assert.equal(restoreFrom([turnStart(1), call('a', START_INTERACTION_TOOL, 1), legacy]).conversationId, 'conv-legacy')
+})
+
+test('restoreFrom ignores recorded plugin events and unrelated tools', () => {
+  assert.equal(restoreFrom([]).conversationId, undefined)
+  assert.equal(restoreFrom([
+    { type: MANAGED_CONVERSATION_EVENT, data: { conversationId: 'conv-recorded', status: 'active', recordedAt: 1 } },
+    turnStart(1), call('x', 'mcp__openbkn__search_schema', 1), result('x', 1, '{"conversation_id":"conv-x"}'),
+  ]).conversationId, undefined)
+})
+
+test('a fork (a log prefix) resumes the conversation held at its fork point', () => {
+  const events = [turnStart(1), ...started('a', 1, 'conv-1'), turnStart(2), ...started('b', 2, 'conv-2')]
+  assert.equal(restoreFrom(events.slice(0, 3)).conversationId, 'conv-1')
+})
+
+test('replaying real logs reproduces the conversation state the plugin recorded at the time', () => {
+  const fixtures = ['v4-desktop-session.json', 'v3-migrated-session-5ef9.json', 'v3-migrated-session-0165.json', 'v3-migrated-session-7979.json']
+  for (const name of fixtures) {
+    const events = JSON.parse(readFileSync(new URL(`./fixtures/${name}`, import.meta.url), 'utf8')) as { type: string; data: unknown }[]
+    const recorded = lastConversationEvent(events)
+    assert.notEqual(recorded, undefined, name)
+    assert.equal(restoreFrom(events).conversationId, recorded?.status === 'active' ? recorded.conversationId : undefined, name)
+  }
 })
 
 test('lastConversationEvent returns the durable record verbatim, recordedAt included', () => {
@@ -112,9 +142,8 @@ test('lastConversationEvent returns the durable record verbatim, recordedAt incl
   ]
   assert.deepEqual(lastConversationEvent(events), { conversationId: 'conv-2', status: 'active', recordedAt: 1_700_000_000_002 })
   // The verbatim read keeps a closing tombstone distinguishable from "no event
-  // ever existed"; only restoreFrom collapses both to "no id held".
+  // ever existed".
   assert.deepEqual(lastConversationEvent(events.slice(0, 2)), { conversationId: 'conv-1', status: 'invalidated', recordedAt: 1_700_000_000_001 })
-  assert.equal(restoreFrom(events.slice(0, 2)).conversationId, undefined)
   // A missing or non-finite recordedAt degrades to 0 instead of being invented.
   assert.deepEqual(
     lastConversationEvent([{ type: MANAGED_CONVERSATION_EVENT, data: { conversationId: 'conv-3', status: 'active' } }]),
