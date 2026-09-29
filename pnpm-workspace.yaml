@@ -5,4 +5,10 @@ allowBuilds:
   esbuild: true
 
 overrides:
-  '@deepseek-ai/dsh-typert-generator': link:../deepseek-harness/packages/typert/generator
+  '@deepseek-ai/dsh-typert-generator': link:release/deepseek-harness/packages/typert/generator
+
+minimumReleaseAgeExclude:
+  # The whole point of a retarget is the fresh @deepseek-ai release line;
+  # waiting out the supply-chain release-age window would defeat it (same
+  # policy DSH upstream applies to its own fresh pins).
+  - '@deepseek-ai/dsh-*'
