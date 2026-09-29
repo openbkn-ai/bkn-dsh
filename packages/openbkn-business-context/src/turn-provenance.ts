@@ -1,8 +1,15 @@
 import { normalizeProvenanceHandle, sameProvenanceHandle } from './provenance-handle.js'
 import type { ProvenanceHandle } from './types.js'
 
-/** Durable session event binding one finalized assistant message to one OpenBKN interaction. */
+/**
+ * Session event earlier plugin releases appended to bind one finalized
+ * assistant message to one OpenBKN interaction. Provenance is now re-derived
+ * from the log; existing events stay readable and must agree with it.
+ */
 export const TURN_PROVENANCE_EVENT = 'openbkn/turn-provenance'
+
+/** The same event after DSH's session-format v3→v4 `plugin:` namespacing of ignorable extensions. */
+export const MIGRATED_TURN_PROVENANCE_EVENT = `plugin:${TURN_PROVENANCE_EVENT}`
 
 export interface TurnProvenanceEvent {
   readonly type: typeof TURN_PROVENANCE_EVENT
@@ -22,22 +29,6 @@ export class TurnProvenanceConflictError extends Error {
   }
 }
 
-/** Return the one append-only provenance event to write, or undefined if already recorded identically. */
-export function appendTurnProvenance(
-  events: readonly SessionEventLike[],
-  messageId: string,
-  handle: ProvenanceHandle,
-): TurnProvenanceEvent | undefined {
-  const normalizedMessageId = normalizeMessageId(messageId)
-  const normalizedHandle = normalizeProvenanceHandle(handle)
-  const existing = readTurnProvenance(events, normalizedMessageId)
-  if (existing === undefined) {
-    return { type: TURN_PROVENANCE_EVENT, data: { messageId: normalizedMessageId, handle: normalizedHandle } }
-  }
-  if (!sameProvenanceHandle(existing, normalizedHandle)) throw new TurnProvenanceConflictError(normalizedMessageId)
-  return undefined
-}
-
 /** Recover the committed handle for exactly one finalized assistant message. */
 export function readTurnProvenance(
   events: readonly SessionEventLike[],
@@ -46,7 +37,7 @@ export function readTurnProvenance(
   const normalizedMessageId = normalizeMessageId(messageId)
   let handle: ProvenanceHandle | undefined
   for (const event of events) {
-    if (event.type !== TURN_PROVENANCE_EVENT) continue
+    if (event.type !== TURN_PROVENANCE_EVENT && event.type !== MIGRATED_TURN_PROVENANCE_EVENT) continue
     const candidate = parseTurnProvenanceEvent(event.data)
     if (candidate.messageId !== normalizedMessageId) continue
     if (handle === undefined) {

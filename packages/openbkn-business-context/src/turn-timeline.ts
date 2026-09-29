@@ -1,4 +1,5 @@
 import { LIFECYCLE_TOOLS, MANAGED_IN_INTERACTION_TOOLS } from './scoped-business-context.js'
+import { toolResultIsError, toolResultTexts } from './tool-result-message.js'
 import type { ProvenanceTimelineNode } from './types.js'
 
 interface EventLike {
@@ -59,7 +60,7 @@ export function buildTurnTimeline(events: readonly EventLike[], locator: TurnTim
         tool: call.name.slice(OPENBKN_TOOL_PREFIX.length),
         at: call.time,
         durationMs: Math.max(0, time - call.time),
-        outcome: toolResultFailed(message) ? 'error' : 'ok',
+        outcome: toolResultIsError(message) ? 'error' : 'ok',
         summary: summarize(call.name, call.arguments, message),
       })
       continue
@@ -87,7 +88,8 @@ export function buildTurnTimeline(events: readonly EventLike[], locator: TurnTim
 type MutableNode = Omit<ProvenanceTimelineNode, 'seq'> & { seq?: number }
 
 /** A v1 handle stores no turn; recover it from the turn's final assistant message. */
-function turnForMessage(events: readonly EventLike[], messageId: string): number | undefined {
+/** The turn of the last assistant message with this id, if the log holds one. */
+export function turnForMessage(events: readonly EventLike[], messageId: string): number | undefined {
   let turn: number | undefined
   for (const event of events) {
     if (event.type !== 'assistant/message') continue
@@ -109,14 +111,6 @@ function kindForTool(name: string): ProvenanceTimelineNode['kind'] {
 /** Terminal events sort after the calls that preceded them within one timestamp. */
 function rank(node: MutableNode): number {
   return node.kind === 'question' ? 0 : node.kind === 'answer' ? 2 : 1
-}
-
-function toolResultFailed(message: Record<string, unknown> | undefined): boolean {
-  if (message === undefined) return false
-  for (const block of Array.isArray(message.content) ? message.content : []) {
-    if (record(block)?.isError === true) return true
-  }
-  return false
 }
 
 /**
@@ -158,16 +152,9 @@ function firstText(content: unknown): string | undefined {
 
 /** First JSON object produced by this tool call's text blocks. */
 function firstResultRecord(message: Record<string, unknown> | undefined): Record<string, unknown> | undefined {
-  if (message === undefined) return undefined
-  for (const block of Array.isArray(message.content) ? message.content : []) {
-    const toolResult = record(block)
-    if (toolResult?.type !== 'tool-result' || !Array.isArray(toolResult.content)) continue
-    for (const content of toolResult.content) {
-      const text = record(content)
-      if (text?.type !== 'text' || typeof text.text !== 'string') continue
-      const parsed = parseJsonRecord(text.text)
-      if (parsed !== undefined) return parsed
-    }
+  for (const text of toolResultTexts(message)) {
+    const parsed = parseJsonRecord(text)
+    if (parsed !== undefined) return parsed
   }
   return undefined
 }

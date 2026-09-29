@@ -1,5 +1,6 @@
 import type { JsonValue } from '@deepseek-ai/dsh-util-values'
 import type { BusinessNetworkBinding } from './session-binding.js'
+import { trimTrailingSlashes } from './trailing-slashes.js'
 
 export type PlatformReaderErrorCode =
   | 'AUTHENTICATION_REQUIRED'
@@ -264,7 +265,7 @@ async function errorEnvelope(response: Response): Promise<Record<string, unknown
   return parsed === undefined ? undefined : record(parsed.error)
 }
 
-function normalizeBaseUrl(value: string): string { return value.trim().replace(/\/+$/, '') }
+function normalizeBaseUrl(value: string): string { return trimTrailingSlashes(value.trim()) }
 function record(value: unknown): Record<string, unknown> | undefined { return typeof value === 'object' && value !== null && !Array.isArray(value) ? value as Record<string, unknown> : undefined }
 function safeParse(text: string): unknown { try { return JSON.parse(text) } catch { return undefined } }
 /** Pass the platform's next-step token through, bounded; never the message body around it. */

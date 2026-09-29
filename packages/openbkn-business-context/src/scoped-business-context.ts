@@ -1,7 +1,6 @@
 import type { Context } from '@deepseek-ai/cordis'
 import type { Agent } from '@deepseek-ai/dsh-agent'
 import type { ToolExecution, ToolExecutionResult } from '@deepseek-ai/dsh-tools'
-import { readDshSessionBusinessNetwork } from './dsh-session-binding.js'
 import {
   FINISH_INTERACTION_TOOL,
   START_INTERACTION_TOOL,
@@ -9,13 +8,14 @@ import {
   onToolResult,
   onTurnStart,
   projectLifecycleOutcome,
-  recordConversationEvent,
   restoreFrom,
   type InteractionLifecycleState,
 } from './interaction-lifecycle.js'
 import { buildManagedSessionPolicy } from './managed-session-policy.js'
 import type { NetworkCapabilityProfile } from './network-capability-profile.js'
 import type { PlatformReaderConfig } from './platform-reader.js'
+import type { BusinessNetworkBinding } from './types.js'
+import { trimTrailingSlashes } from './trailing-slashes.js'
 
 interface ScopedSystemPrompt {
   section(section: { readonly name: string; readonly order: number; readonly text: string | (() => string) }): () => void
@@ -79,7 +79,7 @@ export function managedConversationSectionText(conversationId: string | undefine
 
 /** Agent-scoped prompt rows: only mounted after the session has a compatible binding. */
 const scopedPolicyPlugin = (
-  binding: ReturnType<typeof readDshSessionBusinessNetwork>,
+  binding: BusinessNetworkBinding | undefined,
   agent: Agent,
   profile?: NetworkCapabilityProfile,
 ) => ({
@@ -110,9 +110,8 @@ const scopedPolicyPlugin = (
     // updated before the next guard judgment (V0-3, probe-verified).
     events.on('tools/result', (exec, result) => {
       if (exec.name !== START_INTERACTION_TOOL && exec.name !== FINISH_INTERACTION_TOOL) return
-      const before = lifecycle
+      // No write: the logged tool result itself is what `restoreFrom` replays.
       lifecycle = onToolResult(lifecycle, exec.name, result.isError !== true, projectLifecycleOutcome(result))
-      persistConversationChange(agent, before, lifecycle)
     })
     // Turn boundary (§6.4): reset the per-turn flags; the conversation id
     // survives inside `lifecycle` and the section below renders from it.
@@ -154,27 +153,18 @@ const scopedPolicyPlugin = (
  * unbound or differently configured session gets no registration at all, so
  * native DSH conversations keep their original tool catalogue.
  */
-export function mountBoundBusinessNetworkTool(agent: Agent, config: PlatformReaderConfig, profile?: NetworkCapabilityProfile): boolean {
-  const binding = readDshSessionBusinessNetwork(agent.session)
+export function mountBoundBusinessNetworkTool(
+  agent: Agent,
+  config: PlatformReaderConfig,
+  binding: BusinessNetworkBinding | undefined,
+  profile?: NetworkCapabilityProfile,
+): boolean {
   if (binding === undefined || normalizeBaseUrl(binding.platformBaseUrl) !== normalizeBaseUrl(config.baseUrl)) return false
   // This event fires before `agent/session-start`, but `Context.inject()` may
   // schedule a later fiber. The standard preset has already composed these
   // services, so apply the contribution synchronously to this Agent scope.
   scopedPolicyPlugin(binding, agent, profile).apply(agent.ctx)
   return true
-}
-
-/** Write a durable conversation event only when the held identity changed. */
-function persistConversationChange(agent: Agent, before: InteractionLifecycleState, after: InteractionLifecycleState): void {
-  if (after.conversationId !== undefined && before.conversationId !== after.conversationId) {
-    recordConversationEvent(agent.session, after.conversationId, 'active')
-    return
-  }
-  if (before.conversationId !== undefined && after.conversationId === undefined && after.conversationInvalidatedThisTurn) {
-    // A platform-judged invalidation dropped the id from memory; tombstone it
-    // so a restored session replay never resurrects it (§5.3).
-    recordConversationEvent(agent.session, before.conversationId, 'invalidated')
-  }
 }
 
 /**
@@ -190,10 +180,5 @@ function recordArgs(value: unknown): Readonly<Record<string, unknown>> {
 }
 
 function normalizeBaseUrl(value: string): string {
-  // Linear trailing-slash strip; the previous regex form was flagged by
-  // CodeQL as polynomial ReDoS on library input (alert #3).
-  const trimmed = value.trim()
-  let end = trimmed.length
-  while (end > 0 && trimmed.charCodeAt(end - 1) === 47) end -= 1
-  return end === trimmed.length ? trimmed : trimmed.slice(0, end)
+  return trimTrailingSlashes(value.trim())
 }

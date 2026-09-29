@@ -7,9 +7,15 @@ import type { SessionId } from '@deepseek-ai/dsh-session/types'
 import { Remote, RemoteError, TypertRemoteService } from '@deepseek-ai/dsh-typert-protocol'
 import { parseVisibleBusinessNetworks } from './business-network-catalog.js'
 import { Config, type Config as PluginConfig } from './config.js'
-import { bindDshSessionBusinessNetwork, readDshSessionBusinessNetwork } from './dsh-session-binding.js'
-import { appendDshSessionTurnProvenance, readDshSessionTurnProvenance } from './dsh-session-provenance.js'
-import { findCompletedNativeMcpProvenance } from './native-mcp-provenance.js'
+import { dshHomePath } from '@deepseek-ai/dsh-home-paths'
+import {
+  bindDshSessionBusinessNetwork,
+  inheritForkedBusinessNetwork,
+  readDshSessionBusinessNetwork,
+  type SessionBindingRecords,
+} from './dsh-session-binding.js'
+import { readDshSessionTurnProvenance } from './dsh-session-provenance.js'
+import { SessionBindingStore } from './session-binding-store.js'
 import { OpenBknPlatformReader, PlatformReaderError } from './platform-reader.js'
 import { AuthCoordinator, OpenBknCliError } from './auth.js'
 import { OpenBknCliSubprocess } from './openbkn-cli-subprocess.js'
@@ -23,6 +29,7 @@ import { OpenBknWorkspaceBindingRegistry } from './workspace-binding-registry.js
 import type { BindBusinessNetworkResult, BusinessNetworkBinding } from './session-binding.js'
 import type { AuthSnapshot, BusinessNetworkSummary, ProvenanceDegradation, ProvenanceHandle, ProvenanceView } from './types.js'
 import { realpath, stat } from 'node:fs/promises'
+import { trimTrailingSlashes } from './trailing-slashes.js'
 
 declare module '@deepseek-ai/cordis' {
   interface Context {
@@ -43,9 +50,10 @@ declare module '@deepseek-ai/dsh-typert-protocol' {
 }
 
 /**
- * Owns the only selection transition: append the immutable DSH session event,
- * then activate the model tool only inside that Agent scope. The browser UI
- * will call this service through its host bridge in the next slice.
+ * Owns the only selection transition: durably record the immutable binding in
+ * the plugin's own per-session store (never the DSH session log, which hosts
+ * without an ignorable-event write path could not reload), then activate the
+ * model tool only inside that Agent scope.
  */
 export class OpenBknBusinessContextService extends TypertRemoteService {
   static inject = ['agents', 'credentials', 'subprocess', 'tools', 'openbknWorkspaceBindingRegistry']
@@ -54,21 +62,20 @@ export class OpenBknBusinessContextService extends TypertRemoteService {
   private readonly mounted = new WeakSet<Agent>()
   private readonly capabilityProfiles = new WeakMap<Agent, NetworkCapabilityProfile>()
   private mcpManagerInstance: OpenBknMcpManager | undefined
+  /** Per-session binding records under `$DSH_HOME/openbkn/session-bindings`. */
+  bindingRecords: SessionBindingRecords = new SessionBindingStore(dshHomePath('openbkn', 'session-bindings'))
 
   constructor(ctx: Context, readonly config: PluginConfig) {
     super(ctx, 'openbknBusinessContext')
-    ctx.on('agent/created', ({ agent }) => {
-      this.bindWorkspaceNetworkIfUnique(agent)
+    ctx.on('agent/created', async ({ agent }) => {
+      await this.restoreBinding(agent)
       return undefined
     })
     ctx.on('agent/pre-step', async ({ agent, step, signal }, next) =>
       await this.refreshManagedMcpAtTurnStart(agent, step, signal, next))
-    ctx.on('agent/turn-stopping', ({ agent, turn }) => {
-      this.captureTurnProvenance(agent, turn)
-    })
     // DSH can restore Agents before this service is constructed. Treat those
     // resumed sessions exactly like newly created native sessions.
-    for (const agent of ctx.agents.list()) this.bindWorkspaceNetworkIfUnique(agent)
+    for (const agent of ctx.agents.list()) void this.restoreBinding(agent)
   }
 
   /**
@@ -137,7 +144,7 @@ export class OpenBknBusinessContextService extends TypertRemoteService {
     if (agent === undefined) {
       throw new Error('OpenBKN business-network binding target is not a live DSH session.')
     }
-    return readDshSessionBusinessNetwork(agent.session)
+    return this.bindingOf(agent)
   }
 
   /** Read only the provenance already committed for one finalized assistant message. */
@@ -232,7 +239,7 @@ export class OpenBknBusinessContextService extends TypertRemoteService {
     if (agent === undefined) {
       throw new Error('OpenBKN suggestion target is not a live DSH session.')
     }
-    const binding = readDshSessionBusinessNetwork(agent.session)
+    const binding = this.bindingOf(agent)
     if (binding === undefined) return []
     if (agent.session.snapshotEvents().some(event => event.type === 'assistant/message')) return []
     return [emptyBusinessSessionPrompt(binding.displayName)]
@@ -344,27 +351,73 @@ export class OpenBknBusinessContextService extends TypertRemoteService {
         safeCapabilityProfileFailureCode(error),
       )
     }
-    const result = this.bind(agent, binding)
-    return result.kind === 'bound' ? result.event.data : result.binding
+    const result = await this.bind(agent, binding)
+    return result.binding
   }
 
-  /** Persist one network selection, reject conflicts, then scope the capability to this Agent. */
-  bind(agent: Agent, requested: BusinessNetworkBinding): BindBusinessNetworkResult {
+  /**
+   * Persist one network selection, reject conflicts, then scope the capability
+   * to this Agent. The capability is enabled only after the binding record is
+   * durable; a failed write rejects and leaves the session unbound.
+   */
+  async bind(agent: Agent, requested: BusinessNetworkBinding): Promise<BindBusinessNetworkResult> {
     if (this.ctx.agents.get(agent.id) !== agent) {
       throw new Error('OpenBKN business-network selection target is not a live DSH agent.')
     }
     if (normalizeBaseUrl(requested.platformBaseUrl) !== normalizeBaseUrl(this.config.baseUrl)) {
       throw new Error('OpenBKN business-network selection must use the configured OpenBKN platform.')
     }
-    const result = bindDshSessionBusinessNetwork(agent.session, requested)
+    const result = await bindDshSessionBusinessNetwork(agent.session, this.bindingRecords, requested)
     this.mountIfBound(agent)
     return result
   }
 
+  private bindingOf(agent: Agent): BusinessNetworkBinding | undefined {
+    return readDshSessionBusinessNetwork(agent.session, this.bindingRecords)
+  }
+
   private mountIfBound(agent: Agent): void {
     if (this.mounted.has(agent)) return
-    if (!mountBoundBusinessNetworkTool(agent, this.config, this.capabilityProfiles.get(agent))) return
+    if (!mountBoundBusinessNetworkTool(agent, this.config, this.bindingOf(agent), this.capabilityProfiles.get(agent))) return
     this.mounted.add(agent)
+  }
+
+  /**
+   * Bring a newly live session's binding into effect: its own record or log
+   * event, a fork's inherited binding, or a unique workspace association. A
+   * failure leaves the session unbound (no OpenBKN capability) and is logged;
+   * it never blocks the native DSH session.
+   */
+  private async restoreBinding(agent: Agent): Promise<void> {
+    try {
+      await inheritForkedBusinessNetwork(agent.session, this.bindingRecords)
+      await this.bindWorkspaceNetworkIfUnique(agent)
+    } catch (error: unknown) {
+      this.warnBindingUnavailable(error)
+    }
+  }
+
+  /**
+   * The binding as a native-session lifecycle hook sees it: an unreadable,
+   * malformed, or conflicting binding counts as unbound (and is logged), the
+   * same outcome `restoreBinding` gave the session, so the OpenBKN capability
+   * stays off but native DSH turns keep running. Remote reads still surface
+   * the error to the UI through `bindingOf`.
+   */
+  private bindingOrUnbound(agent: Agent): BusinessNetworkBinding | undefined {
+    try {
+      return this.bindingOf(agent)
+    } catch (error: unknown) {
+      this.warnBindingUnavailable(error)
+      return undefined
+    }
+  }
+
+  private warnBindingUnavailable(error: unknown): void {
+    this.ctx.logger.warn(
+      'openbkn-business-context: session binding unavailable; the session stays unbound (code=%s)',
+      error instanceof Error ? error.name : 'unknown',
+    )
   }
 
   /**
@@ -372,22 +425,16 @@ export class OpenBknBusinessContextService extends TypertRemoteService {
    * DSH session. A missing or ambiguous association deliberately leaves the
    * native session untouched.
    */
-  private bindWorkspaceNetworkIfUnique(agent: Agent): void {
-    if (readDshSessionBusinessNetwork(agent.session) !== undefined) {
+  private async bindWorkspaceNetworkIfUnique(agent: Agent): Promise<void> {
+    if (this.bindingOf(agent) !== undefined) {
       this.mountIfBound(agent)
       return
     }
     const workspacePath = agent.session.header.cwd
-    if (workspacePath === undefined) {
-      this.mountIfBound(agent)
-      return
-    }
+    if (workspacePath === undefined) return
     const record = this.ctx.openbknWorkspaceBindingRegistry.findUniqueByWorkspace(this.config.baseUrl, workspacePath)
-    if (record === undefined) {
-      this.mountIfBound(agent)
-      return
-    }
-    this.bind(agent, {
+    if (record === undefined) return
+    await this.bind(agent, {
       platformBaseUrl: this.config.baseUrl,
       knowledgeNetworkId: record.knowledgeNetworkId,
       // Legacy mappings persisted before display metadata use the stable id
@@ -407,18 +454,10 @@ export class OpenBknBusinessContextService extends TypertRemoteService {
     signal: AbortSignal,
     next: () => Promise<T>,
   ): Promise<T> {
-    if (step === 1 && readDshSessionBusinessNetwork(agent.session) !== undefined) {
+    if (step === 1 && this.bindingOrUnbound(agent) !== undefined) {
       await this.remoteStatus(signal)
     }
     return await next()
-  }
-
-  /** Persist only an explicitly completed OpenBKN interaction when its turn ends. */
-  private captureTurnProvenance(agent: Agent, turn: number): void {
-    if (readDshSessionBusinessNetwork(agent.session) === undefined) return
-    const provenance = findCompletedNativeMcpProvenance(agent.session.snapshotEvents(), turn)
-    if (provenance === undefined) return
-    appendDshSessionTurnProvenance(agent.session, provenance.messageId, provenance.handle)
   }
 
   private async ensureMcpConnection(): Promise<void> {
@@ -467,7 +506,7 @@ function safeCapabilityProfileFailureCode(error: unknown): string {
 }
 
 function normalizeBaseUrl(value: string): string {
-  return value.trim().replace(/\/+$/, '')
+  return trimTrailingSlashes(value.trim())
 }
 
 async function canonicalDirectory(path: string): Promise<string> {

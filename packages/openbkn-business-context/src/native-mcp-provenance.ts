@@ -1,3 +1,4 @@
+import { toolResultIsError, toolResultTexts } from './tool-result-message.js'
 import type { ProvenanceHandle } from './types.js'
 
 const OPENBKN_FINISH_INTERACTION_TOOL = 'mcp__openbkn__bkn_finish_interaction'
@@ -79,6 +80,8 @@ function finalAssistantMessageAfter(events: readonly EventLike[], turn: number, 
 }
 
 function completedInteractionId(message: Record<string, unknown> | undefined): string | undefined {
+  // A failed finish call never yields a completed interaction, whatever its text says.
+  if (toolResultIsError(message)) return undefined
   const parsed = firstLifecycleRecord(message)
   if (parsed?.execution_status !== 'completed') return undefined
   return identifier(parsed.interaction_id)
@@ -91,16 +94,9 @@ function lifecycleConversationId(message: Record<string, unknown> | undefined): 
 }
 
 function firstLifecycleRecord(message: Record<string, unknown> | undefined): Record<string, unknown> | undefined {
-  if (message === undefined || !Array.isArray(message.content)) return undefined
-  for (const block of message.content) {
-    const toolResult = record(block)
-    if (toolResult?.type !== 'tool-result' || !Array.isArray(toolResult.content)) continue
-    for (const content of toolResult.content) {
-      const text = record(content)
-      if (text?.type !== 'text' || typeof text.text !== 'string') continue
-      const parsed = jsonRecord(text.text)
-      if (parsed?.interaction_id !== undefined) return parsed
-    }
+  for (const text of toolResultTexts(message)) {
+    const parsed = jsonRecord(text)
+    if (parsed?.interaction_id !== undefined) return parsed
   }
   return undefined
 }

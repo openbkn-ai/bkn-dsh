@@ -1,15 +1,13 @@
-import type { SessionEventMap } from '@deepseek-ai/dsh-session/types'
-import {
-  TURN_PROVENANCE_EVENT,
-  appendTurnProvenance,
-  readTurnProvenance,
-  type TurnProvenanceEvent,
-} from './turn-provenance.js'
+import type {} from '@deepseek-ai/dsh-session/types'
+import { findCompletedNativeMcpProvenance } from './native-mcp-provenance.js'
+import { sameProvenanceHandle } from './provenance-handle.js'
+import { TurnProvenanceConflictError, readTurnProvenance, type TurnProvenanceEvent } from './turn-provenance.js'
+import { turnForMessage } from './turn-timeline.js'
 import type { ProvenanceHandle } from './types.js'
 
 declare module '@deepseek-ai/dsh-session/types' {
   interface SessionEventMap {
-    /** Immutable OpenBKN references for one finalized assistant message. */
+    /** Provenance event written by earlier plugin releases; read-only now. */
     'openbkn/turn-provenance': TurnProvenanceEvent['data']
   }
 }
@@ -19,25 +17,25 @@ export interface DshSessionProvenanceLog {
   snapshotEvents(): readonly { readonly type: string; readonly data: unknown }[]
 }
 
-/** Real-DSH session surface used when a completed turn is committed. */
-export interface DshSessionProvenanceWriter extends DshSessionProvenanceLog {
-  append(type: typeof TURN_PROVENANCE_EVENT, data: SessionEventMap[typeof TURN_PROVENANCE_EVENT], options?: { readonly ignorable?: true }): void
-}
-
-/** Read one message's committed provenance directly from the append-only DSH log. */
+/**
+ * Resolve one finalized answer's provenance from the DSH log itself. The
+ * handle is a pure function of DSH's own logged tool calls and results (the
+ * explicit `bkn_finish_interaction` completion in the answer's turn), so it is
+ * re-derived on every read instead of being stored. A provenance event that an
+ * earlier plugin release wrote for the same answer must agree with the
+ * re-derived one; a disagreement is reported, never silently resolved.
+ */
 export function readDshSessionTurnProvenance(
   session: DshSessionProvenanceLog,
   messageId: string,
 ): ProvenanceHandle | undefined {
-  return readTurnProvenance(session.snapshotEvents(), messageId)
-}
-
-/** Append a completed-turn handle once; identical retries are intentionally idempotent. */
-export function appendDshSessionTurnProvenance(
-  session: DshSessionProvenanceWriter,
-  messageId: string,
-  handle: ProvenanceHandle,
-): void {
-  const event = appendTurnProvenance(session.snapshotEvents(), messageId, handle)
-  if (event !== undefined) session.append(event.type, event.data, { ignorable: true })
+  const events = session.snapshotEvents()
+  const recorded = readTurnProvenance(events, messageId)
+  const turn = recorded?.turn ?? turnForMessage(events, messageId.trim())
+  const derived = turn === undefined ? undefined : findCompletedNativeMcpProvenance(events, turn)
+  const derivedHandle = derived !== undefined && derived.messageId === messageId.trim() ? derived.handle : undefined
+  if (recorded !== undefined && derivedHandle !== undefined && !sameProvenanceHandle(recorded, derivedHandle)) {
+    throw new TurnProvenanceConflictError(messageId.trim())
+  }
+  return recorded ?? derivedHandle
 }

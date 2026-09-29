@@ -1,9 +1,20 @@
 import type { BusinessNetworkBinding } from './types.js'
+import { trimTrailingSlashes } from './trailing-slashes.js'
 
 export type { BusinessNetworkBinding } from './types.js'
 
-/** Durable DSH event type for the business network selected by a session. */
+/**
+ * DSH event type earlier plugin releases appended for the selected business
+ * network. New bindings live in the plugin's own binding store; logs that
+ * already carry this event stay readable.
+ */
 export const BUSINESS_NETWORK_BOUND_EVENT = 'openbkn/business-network-bound'
+
+/**
+ * The same event after DSH's session-format v3→v4 migration, which namespaces
+ * every unknown ignorable event as `plugin:<type>` while keeping its payload.
+ */
+export const MIGRATED_BUSINESS_NETWORK_BOUND_EVENT = `plugin:${BUSINESS_NETWORK_BOUND_EVENT}`
 
 /** Minimal DSH session-log shape needed to restore an OpenBKN binding. */
 export interface SessionEventLike {
@@ -11,14 +22,9 @@ export interface SessionEventLike {
   readonly data: unknown
 }
 
-/** The event that a DSH adapter appends exactly once after a selection. */
-export interface BusinessNetworkBoundEvent {
-  readonly type: typeof BUSINESS_NETWORK_BOUND_EVENT
-  readonly data: BusinessNetworkBinding
-}
-
+/** `bound`: the caller must persist `binding` before using it; `already-bound`: nothing to write. */
 export type BindBusinessNetworkResult =
-  | { readonly kind: 'bound'; readonly event: BusinessNetworkBoundEvent }
+  | { readonly kind: 'bound'; readonly binding: BusinessNetworkBinding }
   | { readonly kind: 'already-bound'; readonly binding: BusinessNetworkBinding }
 
 /** A durable session already names a different OpenBKN network or platform. */
@@ -38,7 +44,7 @@ export function readBusinessNetworkBinding(
 ): BusinessNetworkBinding | undefined {
   let binding: BusinessNetworkBinding | undefined
   for (const event of events) {
-    if (event.type !== BUSINESS_NETWORK_BOUND_EVENT) continue
+    if (event.type !== BUSINESS_NETWORK_BOUND_EVENT && event.type !== MIGRATED_BUSINESS_NETWORK_BOUND_EVENT) continue
     const next = parseBinding(event.data)
     if (binding === undefined) {
       binding = next
@@ -52,26 +58,21 @@ export function readBusinessNetworkBinding(
 }
 
 /**
- * Decide whether selection emits the one durable event. The caller appends the
- * returned event through DSH's session log; no in-memory side store exists.
+ * Decide whether a selection creates the session's one immutable binding.
+ * `existing` is the binding already resolved for the session, if any.
  */
 export function bindBusinessNetwork(
-  events: readonly SessionEventLike[],
+  existing: BusinessNetworkBinding | undefined,
   requested: BusinessNetworkBinding,
 ): BindBusinessNetworkResult {
   const next = normalizeBinding(requested)
-  const existing = readBusinessNetworkBinding(events)
-  if (existing === undefined) {
-    return {
-      kind: 'bound',
-      event: { type: BUSINESS_NETWORK_BOUND_EVENT, data: next },
-    }
-  }
+  if (existing === undefined) return { kind: 'bound', binding: next }
   if (!sameIdentity(existing, next)) throw new BusinessNetworkBindingConflictError(existing, next)
   return { kind: 'already-bound', binding: existing }
 }
 
-function parseBinding(value: unknown): BusinessNetworkBinding {
+/** Validate and normalize one stored binding payload (a log event or a binding record). */
+export function parseBinding(value: unknown): BusinessNetworkBinding {
   if (typeof value !== 'object' || value === null || Array.isArray(value)) {
     throw new TypeError('OpenBKN business-network binding event is malformed')
   }
@@ -89,7 +90,7 @@ function parseBinding(value: unknown): BusinessNetworkBinding {
 }
 
 function normalizeBinding(binding: BusinessNetworkBinding): BusinessNetworkBinding {
-  const platformBaseUrl = binding.platformBaseUrl.replace(/\/+$/, '')
+  const platformBaseUrl = trimTrailingSlashes(binding.platformBaseUrl)
   const knowledgeNetworkId = binding.knowledgeNetworkId.trim()
   const displayName = binding.displayName.trim()
   if (platformBaseUrl.length === 0 || knowledgeNetworkId.length === 0 || displayName.length === 0) {
@@ -98,7 +99,8 @@ function normalizeBinding(binding: BusinessNetworkBinding): BusinessNetworkBindi
   return { platformBaseUrl, knowledgeNetworkId, displayName }
 }
 
-function sameIdentity(left: BusinessNetworkBinding, right: BusinessNetworkBinding): boolean {
+/** Two bindings name the same platform and knowledge network (display names may differ). */
+export function sameIdentity(left: BusinessNetworkBinding, right: BusinessNetworkBinding): boolean {
   return left.platformBaseUrl === right.platformBaseUrl
     && left.knowledgeNetworkId === right.knowledgeNetworkId
 }

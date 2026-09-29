@@ -22,6 +22,24 @@ interface FakeAgent {
   readonly appended: Array<{ readonly type: string; readonly data: unknown }>
 }
 
+/** A conversation the session already holds, as DSH logged the successful start that opened it. */
+function heldConversation(conversationId: string): Array<{ type: string; data: unknown }> {
+  return [
+    { type: 'turn/start', data: { turn: 1 } },
+    { type: 'tool/call', data: { turn: 1, step: 1, callId: 'held-start', name: 'mcp__openbkn__bkn_start_interaction', arguments: '{}' } },
+    { type: 'tool/result', data: { turn: 1, step: 1, message: {
+      role: 'tool', toolCallId: 'held-start', source: { kind: 'tool', callId: 'held-start' }, isError: false,
+      content: [{ type: 'text', text: `{"interaction_id":"int-held","conversation_id":"${conversationId}","execution_status":"active"}` }],
+    } } },
+    { type: 'turn/end', data: { turn: 1 } },
+  ]
+}
+
+/** Mount with the binding the service resolved for this session. */
+function mount(fake: FakeAgent): boolean {
+  return mountBoundBusinessNetworkTool(fake.agent as never, config, BOUND_EVENT.data)
+}
+
 /** A minimal Agent scope whose guard, sections, events, and session log are captured. */
 function fakeAgent(events: Array<{ type: string; data: unknown }> = [BOUND_EVENT]): FakeAgent {
   const guards: FakeAgent['guards'] = []
@@ -68,7 +86,7 @@ function startFailed(fake: FakeAgent, errorCode: string): void {
 
 test('mounts the managed policy, guard, and lifecycle listeners in one Agent scope', () => {
   const fake = fakeAgent()
-  assert.equal(mountBoundBusinessNetworkTool(fake.agent as never, config), true)
+  assert.equal(mount(fake), true)
   assert.equal(fake.guards.length, 1)
   assert.ok(fake.listeners['tools/result'])
   assert.ok(fake.listeners['agent/pre-step'])
@@ -80,13 +98,13 @@ test('mounts the managed policy, guard, and lifecycle listeners in one Agent sco
 
 test('guards a non-managed tool out regardless of interaction state', () => {
   const fake = fakeAgent()
-  assert.equal(mountBoundBusinessNetworkTool(fake.agent as never, config), true)
+  assert.equal(mount(fake), true)
   assert.match(fake.guards[0]!({ name: 'bash' }) ?? '', /only permits managed OpenBKN tools/i)
 })
 
 test('rule 2: schema access is denied before any start, allowed inside an open interaction', () => {
   const fake = fakeAgent()
-  assert.equal(mountBoundBusinessNetworkTool(fake.agent as never, config), true)
+  assert.equal(mount(fake), true)
   const schema = { name: 'mcp__openbkn__search_schema', arguments: {} }
   assert.match(fake.guards[0]!(schema) ?? '', /Start mcp__openbkn__bkn_start_interaction before any OpenBKN access/)
   startSucceeded(fake)
@@ -95,64 +113,70 @@ test('rule 2: schema access is denied before any start, allowed inside an open i
 
 test('rule 3: a repeat start is denied while the interaction is open', () => {
   const fake = fakeAgent()
-  assert.equal(mountBoundBusinessNetworkTool(fake.agent as never, config), true)
+  assert.equal(mount(fake), true)
   startSucceeded(fake)
   assert.match(fake.guards[0]!({ name: START, arguments: { conversation_mode: 'continue', conversation_id: 'conv-1' } }) ?? '', /already open in this turn/)
 })
 
 test('rule 5: finish is denied without an open interaction', () => {
   const fake = fakeAgent()
-  assert.equal(mountBoundBusinessNetworkTool(fake.agent as never, config), true)
+  assert.equal(mount(fake), true)
   assert.match(fake.guards[0]!({ name: FINISH, arguments: { outcome: 'completed' } }) ?? '', /No OpenBKN interaction is open/)
 })
 
-test('a successful start persists the conversation as an ignorable session event', () => {
+test('a successful start holds the conversation without writing to the session log', () => {
   const fake = fakeAgent()
-  assert.equal(mountBoundBusinessNetworkTool(fake.agent as never, config), true)
+  assert.equal(mount(fake), true)
   startSucceeded(fake, 'conv-9')
-  assert.equal(fake.appended.length, 1)
-  assert.equal(fake.appended[0]!.type, 'openbkn/managed-conversation')
-  assert.equal((fake.appended[0]!.data as { conversationId: string }).conversationId, 'conv-9')
-  assert.equal((fake.appended[0]!.data as { status: string }).status, 'active')
+  assert.deepEqual(fake.appended, [])
+  const section = fake.sections.find(entry => entry.name === 'openbkn:managed-conversation')!
+  assert.match((section.text as () => string)(), /conv-9/)
+})
+
+test('a conversation held in the log survives a restore; a plugin event alone restores nothing', () => {
+  const restored = fakeAgent([BOUND_EVENT, ...heldConversation('conv-7')])
+  assert.equal(mount(restored), true)
+  assert.match((restored.sections.find(entry => entry.name === 'openbkn:managed-conversation')!.text as () => string)(), /conv-7/)
+
+  const recordedOnly = fakeAgent([BOUND_EVENT, { type: 'openbkn/managed-conversation', data: { conversationId: 'conv-7', status: 'active', recordedAt: 1 } }])
+  assert.equal(mount(recordedOnly), true)
+  assert.match((recordedOnly.sections.find(entry => entry.name === 'openbkn:managed-conversation')!.text as () => string)(), /No prior OpenBKN conversation/)
 })
 
 test('rule 4: new is denied while the session holds a conversation, naming the held id', () => {
-  const fake = fakeAgent([BOUND_EVENT, { type: 'openbkn/managed-conversation', data: { conversationId: 'conv-7', status: 'active', recordedAt: 1 } }])
-  assert.equal(mountBoundBusinessNetworkTool(fake.agent as never, config), true)
+  const fake = fakeAgent([BOUND_EVENT, ...heldConversation('conv-7')])
+  assert.equal(mount(fake), true)
   const denial = fake.guards[0]!({ name: START, arguments: { conversation_mode: 'new' } }) ?? ''
   assert.match(denial, /conversation_mode "continue"/)
   assert.match(denial, /conv-7/)
 })
 
 test('rule 4: a mismatched continue is denied with the correct id', () => {
-  const fake = fakeAgent([BOUND_EVENT, { type: 'openbkn/managed-conversation', data: { conversationId: 'conv-7', status: 'active', recordedAt: 1 } }])
-  assert.equal(mountBoundBusinessNetworkTool(fake.agent as never, config), true)
+  const fake = fakeAgent([BOUND_EVENT, ...heldConversation('conv-7')])
+  assert.equal(mount(fake), true)
   const denial = fake.guards[0]!({ name: START, arguments: { conversation_mode: 'continue', conversation_id: 'conv-other' } }) ?? ''
   assert.match(denial, /does not match/)
   assert.match(denial, /conv-7/)
 })
 
-test('controlled invalidation: the dead id leaves memory, is tombstoned, and one new is allowed', () => {
-  const fake = fakeAgent([BOUND_EVENT, { type: 'openbkn/managed-conversation', data: { conversationId: 'conv-7', status: 'active', recordedAt: 1 } }])
-  assert.equal(mountBoundBusinessNetworkTool(fake.agent as never, config), true)
+test('controlled invalidation: the dead id leaves memory and one new is allowed, with no log writes', () => {
+  const fake = fakeAgent([BOUND_EVENT, ...heldConversation('conv-7')])
+  assert.equal(mount(fake), true)
   const section = fake.sections.find(entry => entry.name === 'openbkn:managed-conversation')!
   assert.match((section.text as () => string)(), /conv-7/)
   startFailed(fake, 'resource_not_disclosed')
-  const tombstones = fake.appended.filter(event => (event.data as { status?: string }).status === 'invalidated')
-  assert.equal(tombstones.length, 1)
-  assert.equal((tombstones[0]!.data as { conversationId: string }).conversationId, 'conv-7')
   assert.match((section.text as () => string)(), /No prior OpenBKN conversation is available/, 'the prompt must stop offering the dead id')
   assert.equal(fake.guards[0]!({ name: START, arguments: { conversation_mode: 'new' } }), undefined)
-  // The recovery's new id is persisted as the next active conversation.
+  // The recovery's new id becomes the held conversation; the logged tool
+  // results are what a later restore replays, so nothing is appended.
   startSucceeded(fake, 'conv-8')
-  const actives = fake.appended.filter(event => (event.data as { status?: string }).status === 'active')
-  assert.deepEqual(actives.map(event => (event.data as { conversationId: string }).conversationId), ['conv-8'])
+  assert.deepEqual(fake.appended, [])
   assert.match((section.text as () => string)(), /conv-8/)
 })
 
 test('a turn that finished its interaction cannot open a second one', () => {
   const fake = fakeAgent()
-  assert.equal(mountBoundBusinessNetworkTool(fake.agent as never, config), true)
+  assert.equal(mount(fake), true)
   startSucceeded(fake, 'conv-1')
   fake.listeners['tools/result']![0]!(
     { name: FINISH, arguments: { outcome: 'completed' } },
@@ -164,7 +188,7 @@ test('a turn that finished its interaction cannot open a second one', () => {
 
 test('after the turn completed, a managed tool is told the access is over — not sent into a start that would be rejected', () => {
   const fake = fakeAgent()
-  assert.equal(mountBoundBusinessNetworkTool(fake.agent as never, config), true)
+  assert.equal(mount(fake), true)
   startSucceeded(fake, 'conv-1')
   fake.listeners['tools/result']![0]!(
     { name: FINISH, arguments: { outcome: 'completed' } },
@@ -176,8 +200,8 @@ test('after the turn completed, a managed tool is told the access is over — no
 })
 
 test('a non-invalidating failure keeps the conversation and denies a careless new', () => {
-  const fake = fakeAgent([BOUND_EVENT, { type: 'openbkn/managed-conversation', data: { conversationId: 'conv-7', status: 'active', recordedAt: 1 } }])
-  assert.equal(mountBoundBusinessNetworkTool(fake.agent as never, config), true)
+  const fake = fakeAgent([BOUND_EVENT, ...heldConversation('conv-7')])
+  assert.equal(mount(fake), true)
   startFailed(fake, 'invalid_params')
   assert.equal(fake.appended.filter(event => event.type === 'openbkn/managed-conversation').length, 0)
   assert.match(fake.guards[0]!({ name: START, arguments: { conversation_mode: 'new' } }) ?? '', /conversation_mode "continue"/)
@@ -185,7 +209,7 @@ test('a non-invalidating failure keeps the conversation and denies a careless ne
 
 test('the conversation section renders the held identity and refreshes through state changes', () => {
   const fake = fakeAgent()
-  assert.equal(mountBoundBusinessNetworkTool(fake.agent as never, config), true)
+  assert.equal(mount(fake), true)
   const section = fake.sections.find(entry => entry.name === 'openbkn:managed-conversation')!
   const render = section.text as () => string
   assert.match(render(), /No prior OpenBKN conversation is available/)
@@ -196,7 +220,7 @@ test('the conversation section renders the held identity and refreshes through s
 
 test('pre-step resets the per-turn state; turn-stopping warns with a countable, locatable record', async () => {
   const fake = fakeAgent()
-  assert.equal(mountBoundBusinessNetworkTool(fake.agent as never, config), true)
+  assert.equal(mount(fake), true)
   startSucceeded(fake)
   let nextCalled = false
   await fake.listeners['agent/pre-step']![0]({ step: 1 }, async () => { nextCalled = true })
@@ -217,7 +241,8 @@ test('does not alter a native or differently configured DSH agent scope', () => 
     session: { snapshotEvents: () => [] },
     ctx: { plugin: (plugin: unknown) => { mounted.push(plugin) } },
   }
-  assert.equal(mountBoundBusinessNetworkTool(agent as never, config), false)
+  assert.equal(mountBoundBusinessNetworkTool(agent as never, config, undefined), false)
+  assert.equal(mountBoundBusinessNetworkTool(agent as never, config, { ...BOUND_EVENT.data, platformBaseUrl: 'https://other.openbkn.ai' }), false)
   assert.deepEqual(mounted, [])
 })
 

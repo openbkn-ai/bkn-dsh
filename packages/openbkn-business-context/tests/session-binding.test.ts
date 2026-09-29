@@ -9,8 +9,8 @@ import {
 
 const otherEvent: SessionEventLike = { type: 'user/message', data: { text: 'hello' } }
 
-test('binds one configured-platform knowledge network as a durable session event', () => {
-  const result = bindBusinessNetwork([], {
+test('decides a first binding and normalizes it for persistence', () => {
+  const result = bindBusinessNetwork(undefined, {
     platformBaseUrl: 'https://poc.openbkn.ai/',
     knowledgeNetworkId: 'kn-supply',
     displayName: '供应链风险网络',
@@ -18,18 +18,15 @@ test('binds one configured-platform knowledge network as a durable session event
 
   assert.deepEqual(result, {
     kind: 'bound',
-    event: {
-      type: 'openbkn/business-network-bound',
-      data: {
-        platformBaseUrl: 'https://poc.openbkn.ai',
-        knowledgeNetworkId: 'kn-supply',
-        displayName: '供应链风险网络',
-      },
+    binding: {
+      platformBaseUrl: 'https://poc.openbkn.ai',
+      knowledgeNetworkId: 'kn-supply',
+      displayName: '供应链风险网络',
     },
   })
 })
 
-test('reuses the existing binding idempotently instead of appending another event', () => {
+test('reuses the existing binding idempotently instead of writing another one', () => {
   const events: SessionEventLike[] = [{
     type: 'openbkn/business-network-bound',
     data: {
@@ -39,7 +36,7 @@ test('reuses the existing binding idempotently instead of appending another even
     },
   }]
 
-  assert.deepEqual(bindBusinessNetwork(events, {
+  assert.deepEqual(bindBusinessNetwork(readBusinessNetworkBinding(events), {
     platformBaseUrl: 'https://poc.openbkn.ai',
     knowledgeNetworkId: 'kn-supply',
     displayName: '新显示名称不改变身份',
@@ -63,7 +60,7 @@ test('rejects binding another business network into the same DSH session', () =>
     },
   }]
 
-  assert.throws(() => bindBusinessNetwork(events, {
+  assert.throws(() => bindBusinessNetwork(readBusinessNetworkBinding(events), {
     platformBaseUrl: 'https://poc.openbkn.ai',
     knowledgeNetworkId: 'kn-customer',
     displayName: '客户经营网络',

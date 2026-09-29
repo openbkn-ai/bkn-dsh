@@ -1,4 +1,5 @@
 import type { CliResult, OpenBknCli } from './auth.js'
+import { trimTrailingSlashes } from './trailing-slashes.js'
 
 const OUTPUT_LIMIT = 64 * 1024
 const GRACE_MS = 3_000
@@ -83,5 +84,5 @@ function isAuthLoginCommand(args: readonly string[], baseUrl: string): boolean {
 }
 
 function normalizeBaseUrl(value: string): string {
-  return value.trim().replace(/\/+$/, '')
+  return trimTrailingSlashes(value.trim())
 }

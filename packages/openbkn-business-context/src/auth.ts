@@ -11,6 +11,7 @@ export interface CliResult {
 }
 
 import type { AuthSnapshot } from './types.js'
+import { trimTrailingSlashes } from './trailing-slashes.js'
 
 export type { AuthSnapshot } from './types.js'
 
@@ -130,7 +131,7 @@ function parseStatus(stdout: string): CliAuthStatus {
 }
 
 function normalizeBaseUrl(value: string): string {
-  return value.replace(/\/+$/, '')
+  return trimTrailingSlashes(value)
 }
 
 function cliFailure(action: string, result: CliResult): OpenBknCliError {

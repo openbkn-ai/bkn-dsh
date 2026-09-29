@@ -43,7 +43,7 @@ node scripts/check-runtime-portability.mjs --output release/artifacts --platform
 
 - Pre-release accuracy check: run the G6 eval batch (`node docs/eval/run-eval.mjs --list` for the questions; grade a recorded run with `--answers`) against a live platform + model, and file the results markdown under `docs/evidence/`. Not in CI — it needs credentials.
 
-- Remotes: `origin` = openbkn-ai/bkn-dsh (upstream, pull-only for this user), `fork` = kalias/bkn-dsh. Work lands on fork branches; `compatible-runtime` runs via `workflow_dispatch` on the fork.
+- Remote: `origin` = openbkn-ai/bkn-dsh, the only remote; the maintainer has push access. Work lands on a feature branch pushed to `origin` and merges into `main` through a PR (squash, PR number in the subject). PRs trigger only Claude Code Review (code paths) and CodeQL — no build/test CI — so run the plugin tests, `package:check`, and the repo `node --test` suites locally before opening one. `compatible-runtime` runs via `workflow_dispatch` or an `openbkn-dsh-runtime-v*` tag.
 - Commits use conventional prefixes (`feat:`, `fix:`, `chore:`, `docs:`, `test:`, `ci:`).
 - Pushes, tags and releases need explicit user approval. Two tag prefixes release different artifacts:
   `openbkn-dsh-runtime-v*` builds the runtime archives and cuts a GitHub Release (`compatible-runtime.yml`);
