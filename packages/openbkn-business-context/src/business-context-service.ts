@@ -393,11 +393,31 @@ export class OpenBknBusinessContextService extends TypertRemoteService {
       await inheritForkedBusinessNetwork(agent.session, this.bindingRecords)
       await this.bindWorkspaceNetworkIfUnique(agent)
     } catch (error: unknown) {
-      this.ctx.logger.warn(
-        'openbkn-business-context: session binding unavailable; the session stays unbound (code=%s)',
-        error instanceof Error ? error.name : 'unknown',
-      )
+      this.warnBindingUnavailable(error)
     }
+  }
+
+  /**
+   * The binding as a native-session lifecycle hook sees it: an unreadable,
+   * malformed, or conflicting binding counts as unbound (and is logged), the
+   * same outcome `restoreBinding` gave the session, so the OpenBKN capability
+   * stays off but native DSH turns keep running. Remote reads still surface
+   * the error to the UI through `bindingOf`.
+   */
+  private bindingOrUnbound(agent: Agent): BusinessNetworkBinding | undefined {
+    try {
+      return this.bindingOf(agent)
+    } catch (error: unknown) {
+      this.warnBindingUnavailable(error)
+      return undefined
+    }
+  }
+
+  private warnBindingUnavailable(error: unknown): void {
+    this.ctx.logger.warn(
+      'openbkn-business-context: session binding unavailable; the session stays unbound (code=%s)',
+      error instanceof Error ? error.name : 'unknown',
+    )
   }
 
   /**
@@ -434,7 +454,7 @@ export class OpenBknBusinessContextService extends TypertRemoteService {
     signal: AbortSignal,
     next: () => Promise<T>,
   ): Promise<T> {
-    if (step === 1 && this.bindingOf(agent) !== undefined) {
+    if (step === 1 && this.bindingOrUnbound(agent) !== undefined) {
       await this.remoteStatus(signal)
     }
     return await next()

@@ -178,6 +178,54 @@ test('does not refresh the MCP connection for later steps or unbound sessions', 
   assert.equal(synchronized, 0)
 })
 
+test('an unreadable or conflicting binding leaves the turn running as a native, unbound session', async () => {
+  const conflictingLog = [{ type: 'openbkn/business-network-bound', data: { platformBaseUrl: config.baseUrl, knowledgeNetworkId: 'kn-supply', displayName: 'Supply' } }]
+  const cases = [
+    { name: 'malformed record', events: [], read: () => { throw new Error('OpenBKN session binding /x.json is malformed') } },
+    {
+      name: 'log and record disagree',
+      events: conflictingLog,
+      read: (sessionId: string) => ({
+        schemaVersion: 1 as const, sessionId, boundAtSeq: 0, recordedAt: '2026-09-30T00:00:00.000Z',
+        binding: { platformBaseUrl: config.baseUrl, knowledgeNetworkId: 'kn-other', displayName: 'Other' },
+      }),
+    },
+  ]
+  for (const { name, events, read } of cases) {
+    const warnings: unknown[][] = []
+    let synchronized = 0
+    let delegated = 0
+    const service = Object.create(OpenBknBusinessContextService.prototype) as {
+      ctx: { logger: { warn(...args: unknown[]): void } }
+      bindingRecords: { read(sessionId: string): unknown; write(): Promise<void> }
+      remoteStatus(signal: AbortSignal): Promise<unknown>
+      refreshManagedMcpAtTurnStart(
+        agent: { session: { id: string; snapshotEvents(): readonly unknown[] } },
+        step: number,
+        signal: AbortSignal,
+        next: () => Promise<{ readonly kind: 'enter' }>,
+      ): Promise<{ readonly kind: 'enter' }>
+    }
+    service.ctx = { logger: { warn: (...args) => { warnings.push(args) } } }
+    service.bindingRecords = { read, write: async () => { throw new Error('must not write') } }
+    service.remoteStatus = async () => { synchronized += 1; return { kind: 'authenticated', baseUrl: config.baseUrl } }
+
+    const result = await service.refreshManagedMcpAtTurnStart(
+      { session: { id: 'session-1', snapshotEvents: () => events } },
+      1,
+      AbortSignal.timeout(1_000),
+      async () => { delegated += 1; return { kind: 'enter' } },
+    )
+
+    assert.deepEqual(result, { kind: 'enter' }, name)
+    assert.equal(delegated, 1, name)
+    assert.equal(synchronized, 0, name)
+    assert.equal(warnings.length, 1, name)
+    assert.match(String(warnings[0]![0]), /session binding unavailable; the session stays unbound/, name)
+    assert.doesNotMatch(JSON.stringify(warnings), /x\.json|kn-other/, `${name}: the log line carries only an error code`)
+  }
+})
+
 test('auto-binds a new native DSH session when its workspace has one OpenBKN association', async () => {
   let bound: unknown
   let mounted = 0
