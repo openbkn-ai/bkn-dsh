@@ -8,9 +8,9 @@ test('loads one fully pinned compatible-runtime release manifest', () => {
   const manifest = loadRuntimeManifest(new URL('../openbkn-dsh-runtime.manifest.json', import.meta.url))
 
   assert.equal(manifest.bundle.name, 'openbkn-dsh-runtime')
-  assert.match(manifest.bundle.version, /^0\.1\.7-rc\.2-openbkn\.0\.2\.0(-\d+)?$/)
+  assert.match(manifest.bundle.version, /^0\.2\.0-rc\.2-openbkn\.0\.2\.0(-\d+)?$/)
   assert.deepEqual(manifest.bundle.archives.map((archive) => archive.platform), ['darwin-arm64', 'win32-x64'])
-  assert.equal(manifest.dsh.tag, "dsh-v0.1.7-rc.2")
+  assert.equal(manifest.dsh.tag, "dsh-v0.2.0-rc.2")
   assert.match(manifest.dsh.baseCommit, /^[0-9a-f]{40}$/)
   assert.match(manifest.plugin.packageName, /^@openbkn\//)
   assert.match(manifest.plugin.artifact, /\.tgz$/)
@@ -22,19 +22,19 @@ test('rejects a plugin version that does not carry the pinned DSH version', () =
     format: 1,
     bundle: {
       name: 'openbkn-dsh-runtime',
-      version: '0.1.7-rc.2-openbkn.0.2.0',
+      version: '0.2.0-rc.2-openbkn.0.2.0',
       node: '>=20',
       archives: [{ platform: 'darwin-arm64', file: 'openbkn-dsh-runtime.tar.gz' }],
     },
-    dsh: { tag: 'dsh-v0.1.7-rc.2', baseCommit: 'a'.repeat(40), upstream: 'https://github.com/deepseek-ai/deepseek-harness.git' },
+    dsh: { tag: 'dsh-v0.2.0-rc.2', baseCommit: 'a'.repeat(40), upstream: 'https://github.com/deepseek-ai/deepseek-harness.git' },
     plugin: { packageName: '@openbkn/dsh-business-context', version: '0.1.6-rc.1', artifact: 'plugin.tgz' },
-    compatibility: { directory: 'compat/dsh-0.1.7-rc.2', patches: [{ file: 'patches/0001.patch', sha256: 'a'.repeat(64) }] },
+    compatibility: { directory: 'compat/dsh-0.2.0-rc.2', patches: [{ file: 'patches/0001.patch', sha256: 'a'.repeat(64) }] },
   }
 
   assert.throws(() => loadRuntimeManifest(base), /plugin\.version must carry/)
   assert.doesNotThrow(() => loadRuntimeManifest({
     ...base,
-    plugin: { ...base.plugin, version: '0.1.7-rc.2-openbkn.0.2.0' },
+    plugin: { ...base.plugin, version: '0.2.0-rc.2-openbkn.0.2.0' },
   }))
 })
 
@@ -65,12 +65,12 @@ test('rejects a release manifest without a pinned upstream commit', () => {
       format: 1,
       bundle: {
         name: 'openbkn-dsh-runtime',
-        version: '0.1.7-rc.2-openbkn.0.2.0',
+        version: '0.2.0-rc.2-openbkn.0.2.0',
         node: '>=20',
         archives: [{ platform: 'darwin-arm64', file: 'openbkn-dsh-runtime.tar.gz' }],
       },
-      dsh: { tag: 'dsh-v0.1.7-rc.2', baseCommit: 'main', upstream: 'https://github.com/deepseek-ai/deepseek-harness.git' },
-      plugin: { packageName: '@openbkn/dsh-business-context', version: '0.1.7-rc.2-openbkn.0.2.0', artifact: 'plugin.tgz' },
+      dsh: { tag: 'dsh-v0.2.0-rc.2', baseCommit: 'main', upstream: 'https://github.com/deepseek-ai/deepseek-harness.git' },
+      plugin: { packageName: '@openbkn/dsh-business-context', version: '0.2.0-rc.2-openbkn.0.2.0', artifact: 'plugin.tgz' },
       compatibility: { patches: [{ file: 'patches/0001.patch', sha256: 'a'.repeat(64) }] },
     }),
     /baseCommit/,

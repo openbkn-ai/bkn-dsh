@@ -7,7 +7,7 @@ const digestPattern = /^[0-9a-f]{64}$/
 // revision the artifact pairs with, and the OpenBKN platform release it is
 // verified against. A trailing "-<n>" disambiguates a republished bundle
 // whose inputs did not change (bootstrap-home collision insurance).
-const bundleVersionPattern = /^0\.1\.7-rc\.2-openbkn\.0\.2\.0(-[1-9][0-9]*)?$/
+const bundleVersionPattern = /^0\.2\.0-rc\.2-openbkn\.0\.2\.0(-[1-9][0-9]*)?$/
 const platforms = new Set(['darwin-arm64', 'win32-x64'])
 
 function fail(message) {
@@ -43,7 +43,7 @@ export function loadRuntimeManifest(source) {
   }
 
   const dsh = asObject(manifest.dsh, 'dsh')
-  if (string(dsh.tag, 'dsh.tag') !== 'dsh-v0.1.7-rc.2') fail('dsh.tag is unsupported')
+  if (string(dsh.tag, 'dsh.tag') !== 'dsh-v0.2.0-rc.2') fail('dsh.tag is unsupported')
   if (!commitPattern.test(string(dsh.baseCommit, 'dsh.baseCommit'))) fail('dsh.baseCommit must be a pinned 40-character commit')
   if (!string(dsh.upstream, 'dsh.upstream').startsWith('https://')) fail('dsh.upstream must use https')
 

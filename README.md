@@ -33,7 +33,7 @@ The published package README contains the same product overview for package cons
 
 ### Recommended: OpenBKN-compatible DSH Runtime
 
-For users of DSH `0.1.7-rc.2`, download the matching OpenBKN Runtime archive from the project releases. It contains the pinned DSH runtime, the version-fenced compatibility bridge, and the bkn-dsh plugin artifact. It uses DSH's native plugin manager on first start; it does not patch or change an existing DSH installation.
+For users of DSH `0.2.0-rc.2`, download the matching OpenBKN Runtime archive from the project releases. It contains the pinned DSH runtime, the version-fenced compatibility bridge, and the bkn-dsh plugin artifact. It uses DSH's native plugin manager on first start; it does not patch or change an existing DSH installation.
 
 The only prerequisite is Node.js ^22.19.0 or >=24.0.0 (matching the pinned DSH release). Runtime archives are published for darwin-arm64 and win32-x64; there is no Intel-mac (darwin-x64) build. The release profile is created
 with DSH's native plugin manager at build time and is copied into the isolated
@@ -59,20 +59,20 @@ The runtime keeps its profile under an isolated OpenBKN DSH home (`OPENBKN_DSH_H
 
 ### Source-build path: plugin package + compatibility patch
 
-Two artifacts work together on your own DSH source checkout at the exact upstream revision `dsh-v0.1.7-rc.2`:
+Two artifacts work together on your own DSH source checkout at the exact upstream revision `dsh-v0.2.0-rc.2`:
 
 1. **Plugin package** — `openbkn-dsh-business-context-<version>.tgz` (from the project releases, or build it with `pnpm --filter @openbkn/dsh-business-context pack`). It installs and uninstalls through DSH's native plugin manager.
-2. **Compatibility patch script** — [`compat/dsh-0.1.7-rc.2/`](compat/dsh-0.1.7-rc.2/) in this repository, applied to the DSH source tree before you build it:
+2. **Compatibility patch script** — [`compat/dsh-0.2.0-rc.2/`](compat/dsh-0.2.0-rc.2/) in this repository, applied to the DSH source tree before you build it:
 
    ```bash
-   git clone --depth 1 --branch dsh-v0.1.7-rc.2 https://github.com/deepseek-ai/deepseek-harness.git ~/dsh-src
-   node compat/dsh-0.1.7-rc.2/apply.mjs  --dsh ~/dsh-src   # from this repository
-   node compat/dsh-0.1.7-rc.2/verify.mjs --dsh ~/dsh-src
+   git clone --depth 1 --branch dsh-v0.2.0-rc.2 https://github.com/deepseek-ai/deepseek-harness.git ~/dsh-src
+   node compat/dsh-0.2.0-rc.2/apply.mjs  --dsh ~/dsh-src   # from this repository
+   node compat/dsh-0.2.0-rc.2/verify.mjs --dsh ~/dsh-src
    cd ~/dsh-src && pnpm install && pnpm build
    pnpm dsh plugin --profile web add file:<path-to-plugin-tgz>
    ```
 
-**The patch is required, not optional**: on an unpatched DSH the plugin installs, loads, and binds knowledge networks, but the session events it persists are rejected on every DSH restart (the upstream event whitelist is a build-time static set). The patch adds the missing write side so sessions reload normally and stay portable after the plugin is uninstalled. It is fail-closed and must not be applied to a desktop bundle or another DSH version; revert it with `apply.mjs --revert` before changing DSH versions. See [the compatibility package](compat/dsh-0.1.7-rc.2/README.md) and the step-by-step [install guide](docs/guides/install-with-patch.md) (configuration, credentials, uninstall, known caveats).
+**The patch is required, not optional**: on an unpatched DSH the plugin installs, loads, and binds knowledge networks, but the session events it persists are rejected on every DSH restart (the upstream event whitelist is a build-time static set). The patch adds the missing write side so sessions reload normally and stay portable after the plugin is uninstalled. It is fail-closed and must not be applied to a desktop bundle or another DSH version; revert it with `apply.mjs --revert` before changing DSH versions. See [the compatibility package](compat/dsh-0.2.0-rc.2/README.md) and the step-by-step [install guide](docs/guides/install-with-patch.md) (configuration, credentials, uninstall, known caveats).
 
 Known upstream limitation: running DSH directly from source in dev form breaks tool dispatch for any plugin (`Cannot read properties of undefined (reading 'prepare')`); full Q&A requires a packaged form — the recommended Runtime above, or `scripts/build-compatible-runtime.mjs --dsh <clean-checkout> --output <dir>` from this repository.
 
@@ -95,15 +95,16 @@ The plugin needs a reachable OpenBKN platform with at least one knowledge networ
 
 ## Supported DSH versions
 
-Exactly one upstream DSH revision is supported at a time — currently `dsh-v0.1.7-rc.2`, pinned by [the compatibility manifest](compat/dsh-0.1.7-rc.2/manifest.json). A scheduled workflow (`upstream-dsh-watch`) watches upstream tags and opens a tracking issue whenever a release moves ahead of the pin; until the compatibility series is regenerated for it, newer DSH revisions are out of scope.
+Exactly one upstream DSH revision is supported at a time — currently `dsh-v0.2.0-rc.2`, pinned by [the compatibility manifest](compat/dsh-0.2.0-rc.2/manifest.json). A scheduled workflow (`upstream-dsh-watch`) watches upstream tags and opens a tracking issue whenever a release moves ahead of the pin; until the compatibility series is regenerated for it, newer DSH revisions are out of scope.
 
 Check your version with `dsh --version`, then pair it like this:
 
 | Your DSH version | Compatibility series | Plugin to install | Prebuilt runtime archive |
 | --- | --- | --- | --- |
-| `dsh-v0.1.7-rc.2` (current pin) | [`compat/dsh-0.1.7-rc.2/`](compat/dsh-0.1.7-rc.2/) | `@openbkn/dsh-business-context@0.1.7-rc.2-openbkn.0.2.0`, or build from this repository (`main`) | published when the next `openbkn-dsh-runtime-v*` tag is cut |
+| `dsh-v0.2.0-rc.2` (current pin) | [`compat/dsh-0.2.0-rc.2/`](compat/dsh-0.2.0-rc.2/) | `@openbkn/dsh-business-context@0.2.0-rc.2-openbkn.0.2.0`, or build from this repository (`main`) | published when the next `openbkn-dsh-runtime-v*` tag is cut |
+| `dsh-v0.1.7-rc.2` (previous series) | [`compat/dsh-0.1.7-rc.2/`](compat/dsh-0.1.7-rc.2/) (archived) | `@openbkn/dsh-business-context@0.1.7-rc.2-openbkn.0.2.0` from npm, or build from git tag [`v0.1.7-rc.2-openbkn.0.2.0`](https://github.com/openbkn-ai/bkn-dsh/tree/v0.1.7-rc.2-openbkn.0.2.0) | [openbkn-dsh-runtime-v0.1.7-rc.2-openbkn.0.2.0](https://github.com/openbkn-ai/bkn-dsh/releases/tag/openbkn-dsh-runtime-v0.1.7-rc.2-openbkn.0.2.0) |
 | `dsh-v0.1.6-alpha.2` (previous series) | [`compat/dsh-0.1.6-alpha.2/`](compat/dsh-0.1.6-alpha.2/) (archived) | `@openbkn/dsh-business-context@0.1.5-rc.2` from npm, or a source build from git tag [`v0.1.5-rc.2`](https://github.com/openbkn-ai/bkn-dsh/tree/v0.1.5-rc.2) | [openbkn-dsh-runtime-v0.1.6-alpha.2-openbkn.1](https://github.com/openbkn-ai/bkn-dsh/releases/tag/openbkn-dsh-runtime-v0.1.6-alpha.2-openbkn.1) |
 
-Since the `0.1.7-rc.2` round, the plugin and the runtime bundle share one version scheme — `<dsh-version>-openbkn.<openbkn-platform-version>` — so the version number declares both compatibility dimensions at a glance: `0.1.7-rc.2-openbkn.0.2.0` pairs DSH `0.1.7-rc.2` with OpenBKN platform `0.2.0`. The runtime manifest validator rejects any manifest whose plugin version does not carry its pinned DSH revision. Releases before this round keep their historical version numbers.
+Since the `0.2.0-rc.2` round, the plugin and the runtime bundle share one version scheme — `<dsh-version>-openbkn.<openbkn-platform-version>` — so the version number declares both compatibility dimensions at a glance: `0.2.0-rc.2-openbkn.0.2.0` pairs DSH `0.2.0-rc.2` with OpenBKN platform `0.2.0`. The runtime manifest validator rejects any manifest whose plugin version does not carry its pinned DSH revision. Releases before this round keep their historical version numbers.
 
-The plugin's declared DSH peers must match your runtime — DSH's version fence refuses mismatched installs. **Do not build the plugin from current `main` for a `0.1.6-alpha.2` runtime**: since the `0.1.7-rc.2` retarget its peers declare `0.1.7-rc.2`, and the install will be rejected. The runtime archives are self-contained (patched DSH runtime plus the matching plugin), so they sidestep pairing entirely. [`compat/dsh-0.1.2-rc.1/`](compat/dsh-0.1.2-rc.1/) is a historical archive with no npm pairing.
+The plugin's declared DSH peers must match your runtime — DSH's version fence refuses mismatched installs. **Do not build the plugin from current `main` for a `0.1.6-alpha.2` runtime**: since the `0.2.0-rc.2` retarget its peers declare `0.2.0-rc.2`, and the install will be rejected. The runtime archives are self-contained (patched DSH runtime plus the matching plugin), so they sidestep pairing entirely. [`compat/dsh-0.1.2-rc.1/`](compat/dsh-0.1.2-rc.1/) is a historical archive with no npm pairing.

@@ -4,7 +4,11 @@ All notable changes to this project are documented here.
 
 ## Unreleased
 
-Nothing yet.
+Retarget the plugin and the compatible runtime from `dsh-v0.1.7-rc.2` to DSH `dsh-v0.2.0-rc.2` (`639ed015397290b3745d163aafe02ffee4aa3f84`). The release version is `0.2.0-rc.2-openbkn.0.2.0`.
+
+- Bump every `@deepseek-ai/dsh-*` peer/dev dependency to `0.2.0-rc.2` (all published on npm) and regenerate the compatibility series as `compat/dsh-0.2.0-rc.2/`; the previous series stays archived under `compat/dsh-0.1.7-rc.2/`.
+- Patch series: 0001 (third-party Typert protocol recognition) and 0002 (ignorable session-event write side) carry unchanged content against `0.2.0-rc.2` — the upstream touchpoints are line-identical to the 0.1.7 round (regenerated only for blob hashes). 0003 derives the lockfile from upstream's exact resolutions minus the four non-closure patch registrations (`@electron/osx-sign`, `@fortune-sheet/core`, `@fortune-sheet/react`, `exceljs`; upstream's `patchedDependencies` list is otherwise unchanged apart from `@earendil-works/pi-ai` moving to 0.87.1).
+- Sync the CI workflows, runtime manifests (bundle `0.2.0-rc.2-openbkn.0.2.0`), validator + schema patterns, test fixtures, README pairing tables, the install guide, and CLAUDE/skill docs to the new pin.
 
 ## 0.1.7-rc.2-openbkn.0.2.0 (2026-09-28)
 
