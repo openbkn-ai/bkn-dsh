@@ -29,6 +29,7 @@ import { OpenBknWorkspaceBindingRegistry } from './workspace-binding-registry.js
 import type { BindBusinessNetworkResult, BusinessNetworkBinding } from './session-binding.js'
 import type { AuthSnapshot, BusinessNetworkSummary, ProvenanceDegradation, ProvenanceHandle, ProvenanceView } from './types.js'
 import { realpath, stat } from 'node:fs/promises'
+import { trimTrailingSlashes } from './trailing-slashes.js'
 
 declare module '@deepseek-ai/cordis' {
   interface Context {
@@ -485,7 +486,7 @@ function safeCapabilityProfileFailureCode(error: unknown): string {
 }
 
 function normalizeBaseUrl(value: string): string {
-  return value.trim().replace(/\/+$/, '')
+  return trimTrailingSlashes(value.trim())
 }
 
 async function canonicalDirectory(path: string): Promise<string> {

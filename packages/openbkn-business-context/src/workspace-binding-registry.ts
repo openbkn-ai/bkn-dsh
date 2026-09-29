@@ -2,6 +2,7 @@ import { isAbsolute, resolve } from 'node:path'
 import { Service, type Context } from '@deepseek-ai/cordis'
 import { domainTable, defineDomain, type KvTable } from '@deepseek-ai/dsh-storage-domain'
 import { z } from 'zod'
+import { trimTrailingSlashes } from './trailing-slashes.js'
 
 declare module '@deepseek-ai/cordis' {
   interface Context {
@@ -94,7 +95,7 @@ export class OpenBknWorkspaceBindingRegistry extends Service {
 }
 
 function normalizeBaseUrl(value: string): string {
-  return value.trim().replace(/\/+$/, '')
+  return trimTrailingSlashes(value.trim())
 }
 
 function normalizeWorkspacePath(value: string): string {

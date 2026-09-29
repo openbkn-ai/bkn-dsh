@@ -1,4 +1,5 @@
 import type { BusinessNetworkBinding } from './types.js'
+import { trimTrailingSlashes } from './trailing-slashes.js'
 
 export type { BusinessNetworkBinding } from './types.js'
 
@@ -89,7 +90,7 @@ export function parseBinding(value: unknown): BusinessNetworkBinding {
 }
 
 function normalizeBinding(binding: BusinessNetworkBinding): BusinessNetworkBinding {
-  const platformBaseUrl = binding.platformBaseUrl.replace(/\/+$/, '')
+  const platformBaseUrl = trimTrailingSlashes(binding.platformBaseUrl)
   const knowledgeNetworkId = binding.knowledgeNetworkId.trim()
   const displayName = binding.displayName.trim()
   if (platformBaseUrl.length === 0 || knowledgeNetworkId.length === 0 || displayName.length === 0) {

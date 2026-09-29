@@ -15,6 +15,7 @@ import { buildManagedSessionPolicy } from './managed-session-policy.js'
 import type { NetworkCapabilityProfile } from './network-capability-profile.js'
 import type { PlatformReaderConfig } from './platform-reader.js'
 import type { BusinessNetworkBinding } from './types.js'
+import { trimTrailingSlashes } from './trailing-slashes.js'
 
 interface ScopedSystemPrompt {
   section(section: { readonly name: string; readonly order: number; readonly text: string | (() => string) }): () => void
@@ -179,10 +180,5 @@ function recordArgs(value: unknown): Readonly<Record<string, unknown>> {
 }
 
 function normalizeBaseUrl(value: string): string {
-  // Linear trailing-slash strip; the previous regex form was flagged by
-  // CodeQL as polynomial ReDoS on library input (alert #3).
-  const trimmed = value.trim()
-  let end = trimmed.length
-  while (end > 0 && trimmed.charCodeAt(end - 1) === 47) end -= 1
-  return end === trimmed.length ? trimmed : trimmed.slice(0, end)
+  return trimTrailingSlashes(value.trim())
 }
