@@ -4,6 +4,20 @@ All notable changes to this project are documented here.
 
 ## Unreleased
 
+Official DeepSeek Harness desktop support: the plugin no longer writes anything to the DSH session log, so hosts without a write path for ignorable plugin events — the official desktop app `0.2.0-rc.2` and unpatched source builds — reload bound sessions ([#48](https://github.com/openbkn-ai/bkn-dsh/pull/48); analysis `docs/plans/2026-09-29-official-desktop-support.md`, review `docs/reviews/2026-09-29-desktop-support-plan-review.md`, evidence `docs/evidence/2026-09-29-desktop-direct-install.md`). Not part of the published `0.2.0-rc.2-openbkn.0.2.0`.
+
+- **Behavior change — binding storage**: the network binding is a per-session file under `$DSH_HOME/openbkn/session-bindings/<sessionId>.json`, written atomically; the business capability mounts only after the write succeeds, and a failed write leaves the session unbound. A fork inherits the parent binding only when its inherited log prefix reaches the bind point; a freshly spawned sub-agent inherits nothing. DSH's per-session cross-process write lease keeps each file single-writer.
+- **Behavior change — derived state**: answer provenance is re-derived on read from the logged `bkn_finish_interaction` result, and managed-conversation continuity is restored by replaying the logged start/finish results. `openbkn/*` events written by earlier releases stay readable and must agree with the plugin's record or the re-derived state; a disagreement is reported, not silently resolved.
+- An unreadable, malformed, or conflicting binding record leaves the session unbound (logged with an error code only) instead of failing every turn; native DSH turns keep running.
+- Fix: DSH 0.2 (session format v4) tool messages — `role: "tool"`, text content without the `tool-result` wrapper, message-level `isError` — broke provenance capture (no provenance entry under answers) and timeline error states.
+- Fix: DSH's v3→v4 migration renames ignorable plugin events to `plugin:openbkn/*`; those are now recognized, so sessions from 0.1.x Runtimes keep their binding, conversation, and provenance on 0.2.0-rc.2.
+- Fix: platform URLs are stripped of trailing slashes in linear time across the plugin (CodeQL `js/polynomial-redos`, seven call sites share one helper).
+- Compatibility: patch 0002 (ignorable session-event write side) is no longer needed at run time for plugin builds that include this change; builds released before it, including `0.2.0-rc.2-openbkn.0.2.0`, still need it. Patch 0001 remains required to build the plugin and the Runtime from source.
+- New peer dependency `@deepseek-ai/dsh-home-paths` (already in DSH's own dependency closure). Tests use real session-log fixtures (the official desktop v4 log and three Runtime 0.1.7 v3 logs converted by DSH's restore path, reduced to structure and ids): all 27 historically recorded provenances re-derive identically, and replayed conversation state matches the recorded state.
+- Known limitation: binding records are not removed when a DSH session is deleted.
+
+## 0.2.0-rc.2-openbkn.0.2.0 (2026-09-29)
+
 Retarget the plugin and the compatible runtime from `dsh-v0.1.7-rc.2` to DSH `dsh-v0.2.0-rc.2` (`639ed015397290b3745d163aafe02ffee4aa3f84`). The release version is `0.2.0-rc.2-openbkn.0.2.0`.
 
 - Bump every `@deepseek-ai/dsh-*` peer/dev dependency to `0.2.0-rc.2` (all published on npm) and regenerate the compatibility series as `compat/dsh-0.2.0-rc.2/`; the previous series stays archived under `compat/dsh-0.1.7-rc.2/`.

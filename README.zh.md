@@ -54,6 +54,28 @@ bkn-dsh 是一个增量式 DeepSeek Harness 插件。授权用户可为一个会
 
 Runtime 使用隔离的 OpenBKN DSH Home（可用 `OPENBKN_DSH_HOME` 覆盖），不会改动 `~/.dsh`。平台地址仅作为非敏感 DSH 设置保存；Token 只保存在 DSH credential。不要将 OpenBKN Token 写入 Cordis YAML。
 
+### 官方 DeepSeek Harness 桌面版
+
+插件也能在官方 DeepSeek Harness 桌面版 `0.2.0-rc.2` 上运行，不需要改动桌面应用。已在 macOS arm64 上验证：安装、绑定、带工具调用的问答、业务溯源，以及重启应用后重新打开会话（[证据](docs/evidence/2026-09-29-desktop-direct-install.md)）。前提是插件构建包含 [#48](https://github.com/openbkn-ai/bkn-dsh/pull/48)，也就是"插件状态不再写入 DSH 会话日志"这一改动；它是在 `0.2.0-rc.2-openbkn.0.2.0` 发布之后才合入 `main` 的。**已发布的 `0.2.0-rc.2-openbkn.0.2.0` 不含这一改动：用它在桌面版里绑定的会话，重启后会无法打开。** 在下一个插件版本发布之前，请从 `main` 构建插件包（`pnpm --filter @openbkn/dsh-business-context pack`）。
+
+1. 先启动一次桌面版，让它初始化 profile，然后完全退出。
+2. 用桌面版自带的命令安装插件（应用菜单里的「管理 dsh 命令…」也可以把 `dsh` 加到 PATH）：
+
+   ```bash
+   "/Applications/DeepSeek Harness.app/Contents/Resources/runtime/cli/bin/dsh" plugin --profile desktop add file:<插件 tgz 路径>
+   ```
+3. 在桌面 profile 的补丁层 `~/.dsh/profiles/desktop/cordis.patch.yml` 里填写平台地址（如果设置了 `$DSH_HOME`，就在它下面）：
+
+   ```yaml
+   - id: openbkn-business-context
+     config:
+       baseUrl: https://<你的 OpenBKN 平台地址>
+   ```
+4. 执行一次 `openbkn auth login <平台地址>` 登录。插件通过 `openbkn` CLI 读取 Token，所以登录 shell 的 PATH 里要能找到这个 CLI（桌面版会加载登录 shell 的环境）。
+5. 重新打开桌面版，在侧栏点击 **OpenBKN**，选择网络和工作区，开始业务会话。
+
+自签证书的平台：目前只验证过从终端启动应用并注入 CA 的方式，即 `NODE_EXTRA_CA_CERTS=<平台 CA pem> "/Applications/DeepSeek Harness.app/Contents/MacOS/DeepSeek Harness"`；把这个变量写进登录 shell、再从 Dock 启动的方式尚未验证。Windows 桌面版尚未验证。卸载时先关闭应用，再执行 `dsh plugin --profile desktop remove @openbkn/dsh-business-context`。
+
 ### 源码构建路径：插件包 + 兼容补丁
 
 在你自己的 DSH 源码树（精确处于上游 `dsh-v0.2.0-rc.2` 版本）上，两样东西配合使用：
@@ -69,9 +91,11 @@ Runtime 使用隔离的 OpenBKN DSH Home（可用 `OPENBKN_DSH_HOME` 覆盖）�
    pnpm dsh plugin --profile web add file:<插件 tgz 路径>
    ```
 
-**补丁是必需项而非可选项**：未打补丁的 DSH 上，插件可以安装、加载并绑定知识网络，但其持久化的会话事件在每次 DSH 重启后被拒绝重载（上游事件白名单是构建期静态集合）。补丁补上缺失的写入侧，使会话正常重载、并在卸载插件后仍可移植。补丁采用失败即拒绝策略，不能应用于桌面应用包或其他 DSH 版本；更换 DSH 版本前先用 `apply.mjs --revert` 还原。详见[兼容补丁包](compat/dsh-0.2.0-rc.2/README.zh.md)与分步[安装指南](docs/guides/install-with-patch.md)（配置、凭证、卸载与已知注意事项）。
+**从 [#48](https://github.com/openbkn-ai/bkn-dsh/pull/48) 起的插件构建，运行时不再需要补丁。** 这些构建不往 DSH 会话日志写任何东西：知识网络绑定存放在 `$DSH_HOME/openbkn/session-bindings/`，业务溯源和平台会话续接都从 DSH 自己记录的工具结果里现算。因此在未打补丁的 DSH 上，会话也能正常重载，卸载插件后仍然可读（已在官方桌面版上验证，桌面版用的就是同一套未打补丁的会话代码）。从源码构建插件包和 Runtime 时，仍然要用这套补丁：补丁 0001 让 DSH 的 Typert 生成器识别插件发布的协议。#48 之前发布的插件构建（包括已发布的 `0.2.0-rc.2-openbkn.0.2.0`）仍然需要补丁 0002（可忽略会话事件的写入侧）：在未打补丁的 DSH 上，它们写下的会话事件每次重启都会被拒绝。补丁采用失败即拒绝策略，不能应用于桌面应用包或其他 DSH 版本；更换 DSH 版本前先用 `apply.mjs --revert` 还原。详见[兼容补丁包](compat/dsh-0.2.0-rc.2/README.zh.md)与分步[安装指南](docs/guides/install-with-patch.md)（配置、凭证、卸载与已知注意事项）。
 
 已知上游限制：直接以源码 dev 形式运行 DSH 时，任何插件的工具派发都会失败（`Cannot read properties of undefined (reading 'prepare')`）；完整问答需打包形态——上方的推荐 Runtime，或本仓库的 `scripts/build-compatible-runtime.mjs --dsh <干净源码树> --output <目录>`。
+
+已知插件限制：DSH 会话被删除后，它的绑定记录不会自动清除（每条几百字节，位于 `$DSH_HOME/openbkn/session-bindings/`）；需要时可以手动删除。
 
 已知插件限制：若某一轮在 `bkn_start_interaction` 与 `bkn_finish_interaction` 之间被取消或失败，该 Interaction 会留在平台侧不闭合。插件刻意不自动补 finish（平台对注入式收尾的语义尚未验证），只记录一条无载荷告警；观测项应跟踪「未闭合 Interaction 计数」。自动收尾属后续工作。
 
@@ -88,7 +112,7 @@ Runtime 使用隔离的 OpenBKN DSH Home（可用 `OPENBKN_DSH_HOME` 覆盖）�
 
 - **Runtime N → N+1**：把新归档解到新目录启动即可；隔离的 OpenBKN DSH Home（`OPENBKN_DSH_HOME`，默认在用户数据目录下）跨 Runtime 版本保留会话与设置，无需手工迁移。
 - **源码构建树**：更换 DSH 版本前先用 `apply.mjs --revert` 还原补丁系列，切换版本后若有对应系列再重新应用。
-- **卸载插件**：`dsh plugin --profile <name> remove @openbkn/dsh-business-context`，并删除该 profile 目录下残留的 `node_modules/@openbkn`。打了兼容补丁时，装插件期间创建的会话在卸载后仍可读（插件事件可忽略）；未打补丁时，含插件事件的存量会话会被拒绝重载。
+- **卸载插件**：`dsh plugin --profile <name> remove @openbkn/dsh-business-context`，并删除该 profile 目录下残留的 `node_modules/@openbkn`。#48 起的插件构建写下的会话里没有插件事件，在任何 DSH 上都保持可读；它们在 `$DSH_HOME/openbkn/session-bindings/` 下的绑定记录会留下，可以手动删除。更早的构建写下的会话，只有当初写在打过补丁的 DSH 上才仍然可读（插件事件可忽略）；写在未打补丁的 DSH 上的会话会被拒绝重载，卸载或升级插件都修复不了。
 
 ## 支持的 DSH 版本
 
@@ -98,7 +122,8 @@ Runtime 使用隔离的 OpenBKN DSH Home（可用 `OPENBKN_DSH_HOME` 覆盖）�
 
 | 你的 DSH 版本 | 兼容补丁系列 | 应安装的插件 | 预构建 Runtime 归档 |
 | --- | --- | --- | --- |
-| `dsh-v0.2.0-rc.2`（当前锁定） | [`compat/dsh-0.2.0-rc.2/`](compat/dsh-0.2.0-rc.2/) | `@openbkn/dsh-business-context@0.2.0-rc.2-openbkn.0.2.0`，或从本仓库（`main`）构建 | 下一个 `openbkn-dsh-runtime-v*` tag 发布时产出 |
+| `dsh-v0.2.0-rc.2`（当前锁定） | [`compat/dsh-0.2.0-rc.2/`](compat/dsh-0.2.0-rc.2/) | `@openbkn/dsh-business-context@0.2.0-rc.2-openbkn.0.2.0`（需要补丁），或从本仓库（`main`）构建（运行时不需要补丁） | [openbkn-dsh-runtime-v0.2.0-rc.2-openbkn.0.2.0](https://github.com/openbkn-ai/bkn-dsh/releases/tag/openbkn-dsh-runtime-v0.2.0-rc.2-openbkn.0.2.0) |
+| DeepSeek Harness 桌面版 `0.2.0-rc.2` | 不适用（桌面版不打补丁） | 在下一个插件版本发布前，从本仓库（`main`）构建；已发布的 `0.2.0-rc.2-openbkn.0.2.0` 在桌面版上会导致会话无法重载 | 不适用 |
 | `dsh-v0.1.7-rc.2`（上一代系列） | [`compat/dsh-0.1.7-rc.2/`](compat/dsh-0.1.7-rc.2/)（存档） | npm 上的 `@openbkn/dsh-business-context@0.1.7-rc.2-openbkn.0.2.0`，或从 git tag [`v0.1.7-rc.2-openbkn.0.2.0`](https://github.com/openbkn-ai/bkn-dsh/tree/v0.1.7-rc.2-openbkn.0.2.0) 源码构建 | [openbkn-dsh-runtime-v0.1.7-rc.2-openbkn.0.2.0](https://github.com/openbkn-ai/bkn-dsh/releases/tag/openbkn-dsh-runtime-v0.1.7-rc.2-openbkn.0.2.0) |
 | `dsh-v0.1.6-alpha.2`（上一代系列） | [`compat/dsh-0.1.6-alpha.2/`](compat/dsh-0.1.6-alpha.2/)（存档） | npm 上的 `@openbkn/dsh-business-context@0.1.5-rc.2`，或从 git tag [`v0.1.5-rc.2`](https://github.com/openbkn-ai/bkn-dsh/tree/v0.1.5-rc.2) 源码构建 | [openbkn-dsh-runtime-v0.1.6-alpha.2-openbkn.1](https://github.com/openbkn-ai/bkn-dsh/releases/tag/openbkn-dsh-runtime-v0.1.6-alpha.2-openbkn.1) |
 
