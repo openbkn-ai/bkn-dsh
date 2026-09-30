@@ -23,6 +23,8 @@ interface ScopedSystemPrompt {
 
 interface ScopedTools {
   guard(guard: (execution: Readonly<ToolExecution>) => string | undefined): () => void
+  /** The definition visible to `scope` (the Agent), if any. */
+  get(name: string, scope?: object): unknown
 }
 
 interface ScopedAgentEvents {
@@ -55,6 +57,43 @@ export const MANAGED_IN_INTERACTION_TOOLS = [
 ] as const
 
 const MANAGED_OPENBKN_TOOLS = [...LIFECYCLE_TOOLS, ...MANAGED_IN_INTERACTION_TOOLS] as const
+
+/**
+ * Managed tools whose Context Loader schema takes `kn_id` (all required except
+ * `search_instance`, where the plugin requires it anyway so the scope is never
+ * left to a platform default). The bound network is enforced here, at the
+ * execution boundary, not only in the prompt. Tools without `kn_id` — the
+ * platform's `run_code`, skills, lifecycle — are not scoped by this check.
+ */
+export const KN_SCOPED_TOOLS: ReadonlySet<string> = new Set([
+  'mcp__openbkn__get_kn_detail', 'mcp__openbkn__search_schema',
+  'mcp__openbkn__get_object_types', 'mcp__openbkn__get_relation_types',
+  'mcp__openbkn__query_object_instance', 'mcp__openbkn__query_instance_subgraph',
+  'mcp__openbkn__explore_subgraph', 'mcp__openbkn__search_instance',
+  'mcp__openbkn__query_metric', 'mcp__openbkn__get_logic_properties_values',
+  'mcp__openbkn__find_skills',
+])
+
+/** Denial for a `kn_id` that is missing, not a string, or not the bound network. */
+export function knScopeDenial(name: string, args: Readonly<Record<string, unknown>>, boundNetworkId: string): string | undefined {
+  if (!KN_SCOPED_TOOLS.has(name) || args.kn_id === boundNetworkId) return undefined
+  return `This session is bound to OpenBKN knowledge network "${boundNetworkId}"; call ${name} with kn_id "${boundNetworkId}". Other networks cannot be queried from this session.`
+}
+
+/**
+ * DSH's PTC-mode tool. PTC runs model-written programs in a Node process
+ * with direct Node APIs, and logs nested calls as `tool/ptc-dispatch`, which
+ * the lifecycle replay, provenance, and timeline readers do not read yet, so a
+ * bound session refuses it and asks for Standard mode instead.
+ */
+const PTC_RUN_CODE_TOOL = 'run_code'
+const PTC_UNSUPPORTED_DENIAL = 'OpenBKN business sessions do not support PTC mode, so run_code is disabled here. '
+  + 'Do not retry or work around it; tell the user that OpenBKN queries need a new session in Standard mode (标准模式).'
+const PTC_UNSUPPORTED_SECTION = [
+  'This session runs in PTC mode, which OpenBKN business sessions do not support: run_code is disabled, so no OpenBKN tool can be reached.',
+  'Do not call any tool. Reply to the user, in their language, that querying the bound OpenBKN network requires a new session in Standard mode (标准模式),',
+  'chosen in the mode menu before the first message is sent.',
+].join(' ')
 
 const CONVERSATION_SECTION_NAME = 'openbkn:managed-conversation'
 const CONVERSATION_SECTION_ORDER = 522
@@ -97,14 +136,16 @@ const scopedPolicyPlugin = (
     // timing; it also covers tools contributed by the agent preset itself.
     let lifecycle: InteractionLifecycleState = restoreFrom(agent.session.snapshotEvents())
     tools.guard(execution => {
+      if (execution.name === PTC_RUN_CODE_TOOL) return PTC_UNSUPPORTED_DENIAL
       if (!MANAGED_OPENBKN_TOOLS.includes(execution.name as typeof MANAGED_OPENBKN_TOOLS[number])) {
         return 'This OpenBKN business session only permits managed OpenBKN tools.'
       }
       // Rules 2–5 of the interaction boundary (§6.3) all live in the pure
-      // `denialFor`; this whitelist (rule 1) is the only catalogue decision
-      // here, and the guard itself stays side-effect free — state moves only
-      // through settled results below.
-      return denialFor(lifecycle, execution.name, recordArgs(execution.arguments))
+      // `denialFor`; this whitelist (rule 1) and the network scope are the
+      // only other decisions here, and the guard itself stays side-effect
+      // free — state moves only through settled results below.
+      const args = recordArgs(execution.arguments)
+      return denialFor(lifecycle, execution.name, args) ?? knScopeDenial(execution.name, args, binding.knowledgeNetworkId)
     })
     // Constraint C2: this listener must stay synchronous so the state is
     // updated before the next guard judgment (V0-3, probe-verified).
@@ -131,6 +172,13 @@ const scopedPolicyPlugin = (
           lifecycle.interactionId ?? 'unknown',
         )
       }
+    })
+    // Evaluated per assembly: PTC is a per-session preset whose tool may be
+    // composed after this mount. An empty text renders no section.
+    systemPrompt.section({
+      name: 'openbkn:ptc-unsupported',
+      order: 519,
+      text: () => tools.get(PTC_RUN_CODE_TOOL, agent) === undefined ? '' : PTC_UNSUPPORTED_SECTION,
     })
     systemPrompt.section({ name: 'openbkn:managed-session', order: 520, text: policy.governance })
     if (policy.capabilities.length > 0) {

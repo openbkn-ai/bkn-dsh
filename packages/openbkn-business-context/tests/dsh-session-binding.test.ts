@@ -10,6 +10,7 @@ import {
   type SessionBindingRecords,
 } from '../src/dsh-session-binding.ts'
 import { SessionBindingStore, type SessionBindingRecord } from '../src/session-binding-store.ts'
+import { BusinessNetworkBindingConflictError } from '../src/session-binding.ts'
 
 const supply = { platformBaseUrl: 'https://poc.openbkn.ai', knowledgeNetworkId: 'kn-supply', displayName: '供应链风险网络' }
 const other = { platformBaseUrl: 'https://poc.openbkn.ai', knowledgeNetworkId: 'kn-other', displayName: 'Other' }
@@ -136,4 +137,85 @@ test('the file store fails closed on malformed, foreign, or unsafe records', asy
   } finally {
     rmSync(root, { recursive: true, force: true })
   }
+})
+
+test('orphan cleanup removes only old records whose session DSH no longer stores', async () => {
+  const root = mkdtempSync(join(tmpdir(), 'openbkn-bindings-'))
+  try {
+    const store = new SessionBindingStore(root)
+    const old = '2026-09-01T00:00:00.000Z'
+    await store.write({ ...record('gone-old'), recordedAt: old })
+    await store.write({ ...record('kept-live'), recordedAt: old })
+    await store.write({ ...record('gone-recent'), recordedAt: '2026-09-29T00:00:00.000Z' })
+    await store.write({ ...record('unverifiable'), recordedAt: old })
+    writeFileSync(join(root, 'malformed.json'), '{not json')
+    writeFileSync(join(root, 'notes.txt'), 'not a record')
+    const asked: string[] = []
+    const removed = await store.pruneOrphans(async sessionId => {
+      asked.push(sessionId)
+      if (sessionId === 'unverifiable') throw new Error('storage fault')
+      return sessionId === 'kept-live'
+    }, new Date('2026-09-23T00:00:00.000Z'))
+
+    assert.deepEqual(removed, ['gone-old'])
+    // Recent and malformed records are never even checked against DSH.
+    assert.deepEqual(asked.sort(), ['gone-old', 'kept-live', 'unverifiable'])
+    assert.deepEqual(readdirSync(root).sort(), ['gone-recent.json', 'kept-live.json', 'malformed.json', 'notes.txt', 'unverifiable.json'])
+  } finally {
+    rmSync(root, { recursive: true, force: true })
+  }
+})
+
+test('orphan cleanup of a store that was never written is a no-op', async () => {
+  const root = mkdtempSync(join(tmpdir(), 'openbkn-bindings-'))
+  try {
+    assert.deepEqual(await new SessionBindingStore(join(root, 'absent')).pruneOrphans(async () => false, new Date()), [])
+  } finally {
+    rmSync(root, { recursive: true, force: true })
+  }
+})
+
+test('concurrent binds of one session to different networks: exactly one wins, the other conflicts', async () => {
+  const root = mkdtempSync(join(tmpdir(), 'openbkn-bindings-'))
+  try {
+    const store = new SessionBindingStore(root)
+    const target = session('session-race')
+    const results = await Promise.allSettled([
+      bindDshSessionBusinessNetwork(target, store, supply),
+      bindDshSessionBusinessNetwork(target, store, other),
+    ])
+    const won = results.filter(result => result.status === 'fulfilled')
+    const lost = results.filter(result => result.status === 'rejected')
+    assert.equal(won.length, 1)
+    assert.equal(lost.length, 1)
+    assert.ok((lost[0] as PromiseRejectedResult).reason instanceof BusinessNetworkBindingConflictError)
+    const winner = (won[0] as PromiseFulfilledResult<{ binding: typeof supply }>).value.binding
+    assert.equal(store.read('session-race')?.binding.knowledgeNetworkId, winner.knowledgeNetworkId)
+  } finally {
+    rmSync(root, { recursive: true, force: true })
+  }
+})
+
+test('concurrent binds of one session to the same network are idempotent; other sessions are not blocked', async () => {
+  const records = memoryRecords()
+  const results = await Promise.all([
+    bindDshSessionBusinessNetwork(session('session-a'), records, supply),
+    bindDshSessionBusinessNetwork(session('session-a'), records, supply),
+    bindDshSessionBusinessNetwork(session('session-b'), records, other),
+  ])
+  assert.deepEqual(results.map(result => result.kind), ['bound', 'already-bound', 'bound'])
+  assert.deepEqual(records.writes.map(write => write.sessionId), ['session-a', 'session-b'])
+})
+
+test('a failed write does not block the next bind of the same session', async () => {
+  const records = memoryRecords()
+  records.failNext = new Error('disk full')
+  const [first, second] = await Promise.allSettled([
+    bindDshSessionBusinessNetwork(session('session-a'), records, supply),
+    bindDshSessionBusinessNetwork(session('session-a'), records, supply),
+  ])
+  assert.equal(first.status, 'rejected')
+  assert.equal(second.status, 'fulfilled')
+  assert.equal((second as PromiseFulfilledResult<{ kind: string }>).value.kind, 'bound')
+  assert.equal(records.read('session-a')?.binding.knowledgeNetworkId, 'kn-supply')
 })

@@ -2,7 +2,7 @@
 
 This file provides guidance to Claude Code (claude.ai/code) when working with code in this repository.
 
-bkn-dsh = OpenBKN business-context plugin for DeepSeek Harness (DSH). Plugin source: `packages/openbkn-business-context` (`@openbkn/dsh-business-context`). Target DSH is pinned to `dsh-v0.2.0-rc.2`; `compat/dsh-0.2.0-rc.2/` is the fail-closed patch series and `runtime/` + `scripts/` build the self-contained OpenBKN DSH Runtime archive.
+bkn-dsh = OpenBKN business-context plugin for DeepSeek Harness (DSH). Plugin source: `packages/openbkn-business-context` (`@openbkn/dsh-business-context`). Target DSH is pinned to `dsh-v0.2.0-rc.2`. The plugin runs on an unpatched DSH (desktop app, npm CLI, source build) and writes nothing to the DSH session log; `compat/dsh-0.2.0-rc.2/` is the fail-closed patch series needed only to build the plugin and the runtime from source, and `runtime/` + `scripts/` build the self-contained OpenBKN DSH Runtime archive. **Runtime archives are discontinued (decision 2026-09-30)**: the product goal is that installing the plugin alone delivers every feature; do not cut new `openbkn-dsh-runtime-v*` releases, and the runtime tooling is slated for removal.
 
 ## Commands
 
@@ -43,7 +43,7 @@ node scripts/check-runtime-portability.mjs --output release/artifacts --platform
 
 - Pre-release accuracy check: run the G6 eval batch (`node docs/eval/run-eval.mjs --list` for the questions; grade a recorded run with `--answers`) against a live platform + model, and file the results markdown under `docs/evidence/`. Not in CI — it needs credentials.
 
-- Remote: `origin` = openbkn-ai/bkn-dsh, the only remote; the maintainer has push access. Work lands on a feature branch pushed to `origin` and merges into `main` through a PR (squash, PR number in the subject). PRs trigger only Claude Code Review (code paths) and CodeQL — no build/test CI — so run the plugin tests, `package:check`, and the repo `node --test` suites locally before opening one. Rulesets `main`/`protect` block direct pushes and require one approving review; the author cannot approve their own PR, and docs-only PRs get no automatic Claude review, so request one by dispatching `automation-claude-review.yml` with the PR number (or ask a human reviewer). `compatible-runtime` runs via `workflow_dispatch` or an `openbkn-dsh-runtime-v*` tag.
+- Remote: `origin` = openbkn-ai/bkn-dsh, the only remote; the maintainer has push access. Work lands on a feature branch pushed to `origin` and merges into `main` through a PR (squash, PR number in the subject). PRs trigger only Claude Code Review (code paths) and CodeQL — no build/test CI — so run the plugin tests, `package:check`, and the repo `node --test` suites locally before opening one. Rulesets `main`/`protect` block direct pushes and require one approving review; the author cannot approve their own PR, and docs-only PRs get no automatic Claude review, so request one by commenting `/review` on the PR or by dispatching `automation-claude-review.yml` with the PR number (or ask a human reviewer). Both paths share one concurrency group: a newer run cancels a running one. `compatible-runtime` runs via `workflow_dispatch` or an `openbkn-dsh-runtime-v*` tag.
 - Commits use conventional prefixes (`feat:`, `fix:`, `chore:`, `docs:`, `test:`, `ci:`).
 - Pushes, tags and releases need explicit user approval. Two tag prefixes release different artifacts:
   `openbkn-dsh-runtime-v*` builds the runtime archives and cuts a GitHub Release (`compatible-runtime.yml`);

@@ -53,28 +53,50 @@ export function readDshSessionBusinessNetwork(
   return fromLog ?? fromRecord
 }
 
+/** Per store, per session: the settled tail of the binding decisions queued so far. */
+const decisionQueues = new WeakMap<object, Map<string, Promise<void>>>()
+
+/**
+ * Run one read-decide-write binding decision after every earlier decision
+ * for the same session and store has settled. The record write is async, so
+ * without this two concurrent binds could both read "unbound" and both
+ * report success for different networks. A rejected decision does not block
+ * the ones queued after it.
+ */
+function serializeDecision<T>(records: object, sessionId: string, decide: () => Promise<T>): Promise<T> {
+  let queues = decisionQueues.get(records)
+  if (queues === undefined) decisionQueues.set(records, queues = new Map())
+  const run = (queues.get(sessionId) ?? Promise.resolve()).then(decide)
+  const tail = run.then(() => undefined, () => undefined)
+  queues.set(sessionId, tail)
+  void tail.then(() => { if (queues.get(sessionId) === tail) queues.delete(sessionId) })
+  return run
+}
+
 /**
  * Persist the selected business network without touching the DSH session log.
  * Resolves only once the record is durable, so callers enable the business
  * capability strictly after persistence; reselecting the same network is a
- * no-op.
+ * no-op, and a concurrent bind to another network is a conflict.
  */
-export async function bindDshSessionBusinessNetwork(
+export function bindDshSessionBusinessNetwork(
   session: DshSessionLog,
   records: SessionBindingRecords,
   requested: BusinessNetworkBinding,
 ): Promise<BindBusinessNetworkResult> {
-  const result = bindBusinessNetwork(readDshSessionBusinessNetwork(session, records), requested)
-  if (result.kind === 'bound') {
-    await records.write({
-      schemaVersion: 1,
-      sessionId: session.id,
-      binding: result.binding,
-      boundAtSeq: session.snapshotEvents().length,
-      recordedAt: new Date().toISOString(),
-    })
-  }
-  return result
+  return serializeDecision(records, session.id, async () => {
+    const result = bindBusinessNetwork(readDshSessionBusinessNetwork(session, records), requested)
+    if (result.kind === 'bound') {
+      await records.write({
+        schemaVersion: 1,
+        sessionId: session.id,
+        binding: result.binding,
+        boundAtSeq: session.snapshotEvents().length,
+        recordedAt: new Date().toISOString(),
+      })
+    }
+    return result
+  })
 }
 
 /**
@@ -84,16 +106,18 @@ export async function bindDshSessionBusinessNetwork(
  * makes the child independent of the parent's record afterwards.
  * @returns the inherited binding, or undefined when nothing was inherited.
  */
-export async function inheritForkedBusinessNetwork(
+export function inheritForkedBusinessNetwork(
   session: DshForkableSessionLog,
   records: SessionBindingRecords,
 ): Promise<BusinessNetworkBinding | undefined> {
   const parentSession = session.header.parentSession
-  if (session.header.isSeeded !== true || parentSession === undefined) return undefined
-  if (readDshSessionBusinessNetwork(session, records) !== undefined) return undefined
-  const parent = records.read(parentSession)
-  if (parent === undefined || parent.boundAtSeq >= session.inheritedEventCount) return undefined
-  await records.write({ ...parent, sessionId: session.id, recordedAt: new Date().toISOString() })
-  return parent.binding
+  if (session.header.isSeeded !== true || parentSession === undefined) return Promise.resolve(undefined)
+  return serializeDecision(records, session.id, async () => {
+    if (readDshSessionBusinessNetwork(session, records) !== undefined) return undefined
+    const parent = records.read(parentSession)
+    if (parent === undefined || parent.boundAtSeq >= session.inheritedEventCount) return undefined
+    await records.write({ ...parent, sessionId: session.id, recordedAt: new Date().toISOString() })
+    return parent.binding
+  })
 }
 

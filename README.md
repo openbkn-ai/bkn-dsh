@@ -31,74 +31,84 @@ The published package README contains the same product overview for package cons
 
 ## Install and start
 
-### Recommended: OpenBKN-compatible DSH Runtime
+From plugin `0.2.0-rc.2-openbkn.0.2.0-1` on, an unpatched DeepSeek Harness `0.2.0-rc.2` is all you need: install the plugin package with DSH's own plugin manager. The same package works on all three forms of DSH:
 
-For users of DSH `0.2.0-rc.2`, download the matching OpenBKN Runtime archive from the project releases. It contains the pinned DSH runtime, the version-fenced compatibility bridge, and the bkn-dsh plugin artifact. It uses DSH's native plugin manager on first start; it does not patch or change an existing DSH installation.
+| DSH form | How you run it |
+| --- | --- |
+| Official desktop app `0.2.0-rc.2` | the DeepSeek Harness app |
+| npm CLI | `npm install -g @deepseek-ai/dsh@0.2.0-rc.2`, then `dsh web` |
+| Source checkout, built | `dsh-v0.2.0-rc.2` checkout after `pnpm install && pnpm run build`, then `node apps/cli/lib/bin.js web` |
 
-The only prerequisite is Node.js ^22.19.0 or >=24.0.0 (matching the pinned DSH release). Runtime archives are published for darwin-arm64 and win32-x64; there is no Intel-mac (darwin-x64) build. The release profile is created
-with DSH's native plugin manager at build time and is copied into the isolated
-home on first start, so customers do not need `pnpm` or registry access.
+Verified on macOS arm64 for all three forms: install, binding, Q&A with tool calls, business provenance, reopening a session after a restart, and continuing its platform conversation ([evidence](docs/evidence/2026-09-29-desktop-direct-install.md)). Windows is not verified yet.
 
-1. In the download directory, verify the archive with its adjacent `.sha256` file, then unpack it:
+### Before you start
 
-   ```bash
-   shasum -a 256 -c openbkn-dsh-runtime-*.sha256
-   ```
-2. Start the bundled DSH Web runtime:
+1. **OpenBKN CLI sign-in.** Install the CLI (`npm install -g @openbkn/bkn-sdk`) and run `openbkn auth login <platform-url>` once. The plugin reads the token through the `openbkn` CLI, so the CLI must be on the `PATH` of the DSH process (the desktop app takes it from your login shell).
+2. **Self-signed platform certificate** (skip for a publicly trusted one). DSH must trust the platform CA through `NODE_EXTRA_CA_CERTS=<CA pem path>`:
+   - `dsh web` from a terminal: prefix the command with the variable.
+   - Desktop app on macOS: `export NODE_EXTRA_CA_CERTS=…` in `~/.zprofile` or `~/.zshrc`. The app reads the login-shell environment at startup, including Dock and Finder launches.
+   - Desktop app on Windows (not yet verified): set it as a user environment variable, then restart the app.
+3. **Use Standard mode.** A session bound to an OpenBKN network must run in DSH's **Standard mode** (标准模式). PTC mode is not supported yet: the plugin refuses `run_code` there and the model asks you to start a new session in Standard mode. The mode is chosen in the mode menu before the first message is sent and cannot be changed afterwards.
 
-   ```bash
-   ./openbkn-dsh-runtime-*/bin/dsh web
-   ```
+### 1. Install the plugin
 
-   On Windows, run `bin\\dsh.cmd web` from the unpacked directory and verify
-   the release checksum with `Get-FileHash` before unpacking.
-3. In DSH Web, click **OpenBKN** in the sidebar. Enter the OpenBKN platform address, complete the guided CLI sign-in or enter a platform token, and test the connection.
-4. Select an authorized business knowledge network. Create its local workspace or continue an existing one, then start the business conversation.
+Close the desktop app (or stop `dsh web`) first. The desktop app must have been started once so that its profile exists.
 
-The runtime keeps its profile under an isolated OpenBKN DSH home (`OPENBKN_DSH_HOME` can override it), so it does not alter `~/.dsh`. The platform address is a non-sensitive DSH setting; the token is stored only in DSH credentials. Do not put an OpenBKN token in Cordis YAML.
+```bash
+# Desktop app (macOS). The app menu "Manage dsh command…" can also put `dsh` on your PATH.
+"/Applications/DeepSeek Harness.app/Contents/Resources/runtime/cli/bin/dsh" plugin --profile desktop add @openbkn/dsh-business-context@0.2.0-rc.2-openbkn.0.2.0-1
 
-### Official DeepSeek Harness desktop app
+# npm CLI
+dsh plugin --profile web add @openbkn/dsh-business-context@0.2.0-rc.2-openbkn.0.2.0-1
 
-The plugin also runs on the official DeepSeek Harness desktop app `0.2.0-rc.2` without changing the app. Verified on macOS arm64: install, binding, Q&A with tool calls, business provenance, and reopening a session after an app restart ([evidence](docs/evidence/2026-09-29-desktop-direct-install.md)). This needs a plugin build that keeps its state out of the DSH session log ([#48](https://github.com/openbkn-ai/bkn-dsh/pull/48), on `main` after the `0.2.0-rc.2-openbkn.0.2.0` release). **The published `0.2.0-rc.2-openbkn.0.2.0` predates it: sessions it binds in the desktop app refuse to reopen after a restart.** Until the next plugin release, build the package from `main` (`pnpm --filter @openbkn/dsh-business-context pack`).
+# Source checkout, from the DSH checkout root
+node apps/cli/lib/bin.js plugin --profile web add @openbkn/dsh-business-context@0.2.0-rc.2-openbkn.0.2.0-1
+```
 
-1. Start the desktop app once so it initializes its profile, then quit it completely.
-2. Install the plugin with the app's bundled command (the app menu **Manage dsh command…** can also put `dsh` on your PATH):
+On Windows, run `dsh.cmd` in place of `dsh`.
 
-   ```bash
-   "/Applications/DeepSeek Harness.app/Contents/Resources/runtime/cli/bin/dsh" plugin --profile desktop add file:<path-to-plugin-tgz>
-   ```
-3. Set the platform address in the desktop profile's patch layer, `~/.dsh/profiles/desktop/cordis.patch.yml` (under `$DSH_HOME` if you set one):
+### 2. Set the platform address
 
-   ```yaml
-   - id: openbkn-business-context
-     config:
-       baseUrl: https://<your-openbkn-platform>
-   ```
-4. Sign in once with `openbkn auth login <platform-url>`. The plugin reads the token through the `openbkn` CLI, so the CLI must be on the PATH your login shell sets up (the desktop app loads the login-shell environment).
-5. Reopen the app, click **OpenBKN** in the sidebar, pick a network and a workspace, and start the business conversation.
+Add the entry below to the profile's patch layer, `~/.dsh/profiles/<profile>/cordis.patch.yml` (`desktop` or `web`; under `$DSH_HOME` if you set one). The file is a YAML list. A newly created profile may hold only `[]`: replace that line with the entry, because appending after `[]` makes the file invalid.
 
-Self-signed platform certificates are verified only with the app started from a terminal as `NODE_EXTRA_CA_CERTS=<platform CA pem> "/Applications/DeepSeek Harness.app/Contents/MacOS/DeepSeek Harness"`; exporting the variable from the login shell for a Dock launch is untested. The Windows desktop app is untested. Uninstall with `dsh plugin --profile desktop remove @openbkn/dsh-business-context` while the app is closed.
+```yaml
+- id: openbkn-business-context
+  config:
+    baseUrl: https://<your-openbkn-platform>
+```
 
-### Source-build path: plugin package + compatibility patch
+The platform address is not sensitive. Never put the OpenBKN token in Cordis YAML; the plugin keeps it only in DSH credentials.
 
-Two artifacts work together on your own DSH source checkout at the exact upstream revision `dsh-v0.2.0-rc.2`:
+### 3. Bind a network and ask
 
-1. **Plugin package** — `openbkn-dsh-business-context-<version>.tgz` (from the project releases, or build it with `pnpm --filter @openbkn/dsh-business-context pack`). It installs and uninstalls through DSH's native plugin manager.
-2. **Compatibility patch script** — [`compat/dsh-0.2.0-rc.2/`](compat/dsh-0.2.0-rc.2/) in this repository, applied to the DSH source tree before you build it:
+1. Start DSH (open the desktop app, or run `dsh web`) and click **OpenBKN** in the sidebar.
+2. Pick an authorized knowledge network and create its local workspace (**新建工作区** / New workspace opens the folder chooser), or continue its existing workspace.
+3. In the new session, keep **标准模式** (Standard mode), then ask. Each completed answer offers **查看业务溯源** (view business provenance: execution trace, business context graph, evidence).
 
-   ```bash
-   git clone --depth 1 --branch dsh-v0.2.0-rc.2 https://github.com/deepseek-ai/deepseek-harness.git ~/dsh-src
-   node compat/dsh-0.2.0-rc.2/apply.mjs  --dsh ~/dsh-src   # from this repository
-   node compat/dsh-0.2.0-rc.2/verify.mjs --dsh ~/dsh-src
-   cd ~/dsh-src && pnpm install && pnpm build
-   pnpm dsh plugin --profile web add file:<path-to-plugin-tgz>
-   ```
+With `dsh web` on macOS, the folder chooser opens on the machine that runs `dsh web`. A remote or SSH session uses DSH's browse backend, which cannot create a workspace from the plugin panel: associate the network with an existing local workspace first.
 
-**Plugin builds from [#48](https://github.com/openbkn-ai/bkn-dsh/pull/48) on no longer need the patch at run time.** They write nothing to the DSH session log: the network binding lives in `$DSH_HOME/openbkn/session-bindings/`, and provenance and conversation continuity are re-derived from DSH's own logged tool results. Sessions therefore reload on an unpatched DSH and stay readable after the plugin is uninstalled (verified on the official desktop app, which ships the same unpatched session code). The series is still what builds the plugin package and the Runtime from source: patch 0001 lets DSH's Typert generator recognize the plugin's published protocol. Plugin builds released before #48 — including the published `0.2.0-rc.2-openbkn.0.2.0` — still need patch 0002 (the ignorable session-event write side): on an unpatched DSH their persisted session events are rejected on every restart. The patch is fail-closed and must not be applied to a desktop bundle or another DSH version; revert it with `apply.mjs --revert` before changing DSH versions. See [the compatibility package](compat/dsh-0.2.0-rc.2/README.md) and the step-by-step [install guide](docs/guides/install-with-patch.md) (configuration, credentials, uninstall, known caveats).
+### Uninstall
 
-Known upstream limitation: running DSH directly from source in dev form breaks tool dispatch for any plugin (`Cannot read properties of undefined (reading 'prepare')`); full Q&A requires a packaged form — the recommended Runtime above, or `scripts/build-compatible-runtime.mjs --dsh <clean-checkout> --output <dir>` from this repository.
+With DSH stopped, run `dsh plugin --profile <profile> remove @openbkn/dsh-business-context` and delete the leftover `node_modules/@openbkn` in that profile directory. Sessions stay readable: the plugin writes nothing to the DSH session log. Binding records under `$DSH_HOME/openbkn/session-bindings/` stay behind; while the plugin is installed, it removes the record of a session DSH no longer stores once the record is seven days old.
 
-Known plugin limitation: binding records are not removed when a DSH session is deleted (a few hundred bytes each under `$DSH_HOME/openbkn/session-bindings/`); delete stale ones by hand if needed.
+### Backup and known limitations
+
+- **Backup and moving machines**: copy `$DSH_HOME/openbkn/session-bindings/` (per-session network bindings) and `$DSH_HOME/storages/openbkn_workspace_bindings.json` (workspace ↔ network associations) together with the session logs. Provenance and conversation continuity are re-derived from the session log, but the bindings are not.
+- **Network scope**: in a bound session the plugin refuses any direct query whose `kn_id` is missing or names another network. Tools that run code or published tools on the platform (`run_code`, `execute_published_tool`) take no `kn_id`; what they reach inside is scoped by the platform, not by this plugin.
+- **Unbound sessions**: OpenBKN tools are refused in any session that is not bound through the OpenBKN panel, including a session whose binding record cannot be read, or conflicts with its log, when the session is opened. Such a session still opens and keeps its history; the plugin logs a payload-free warning, but the UI does not show a binding-error state yet. A record that becomes unreadable while its session is already running does not revoke the running session's access until the session is reopened.
+- **One running host while changing associations**: each host keeps the workspace associations in memory and rewrites the whole store from that copy, so taking turns is not enough — a host that was already running overwrites the other's change on its next write. When the desktop app and `dsh web` share one `$DSH_HOME`, quit the other host before creating or changing a workspace association, and restart a host before using it to change associations after the other one did.
+
+### Upgrading from `0.2.0-rc.2-openbkn.0.2.0`
+
+That release wrote plugin events into the session log. Sessions it bound on an unpatched DSH (desktop app, npm CLI, unpatched source build) are refused on reload, and neither upgrading nor uninstalling the plugin repairs them. Start new sessions after upgrading. Sessions it wrote on a patched DSH or in a Runtime archive stay readable.
+
+### Runtime archives (discontinued)
+
+OpenBKN Runtime archives are no longer published: installing the plugin into DSH is the only supported way to use it. The last archive, [`openbkn-dsh-runtime-v0.2.0-rc.2-openbkn.0.2.0`](https://github.com/openbkn-ai/bkn-dsh/releases/tag/openbkn-dsh-runtime-v0.2.0-rc.2-openbkn.0.2.0) (patched DSH `0.2.0-rc.2` with plugin `0.2.0-rc.2-openbkn.0.2.0`), stays downloadable but receives no updates.
+
+### Building from source
+
+The [compatibility series](compat/dsh-0.2.0-rc.2/README.md) is needed only to build the plugin package from this repository, not to use the plugin: patch 0001 lets DSH's Typert generator recognize the plugin's published protocol. Patch 0002 is retired (no plugin build from `…-1` on uses it), and patch 0003 served only the discontinued Runtime archives. See the [source-build guide](docs/guides/install-with-patch.md).
 
 Known plugin limitation: a turn that is cancelled or fails between `bkn_start_interaction` and `bkn_finish_interaction` leaves that Interaction unclosed on the platform side. The plugin deliberately does not auto-finish it (the platform semantics of an injected finish are not yet verified); it logs a payload-free warning instead, and observability should track the unclosed-Interaction count. Automatic closing is future work.
 
@@ -111,12 +121,6 @@ The plugin needs a reachable OpenBKN platform with at least one knowledge networ
 3. **Credentials** — `openbkn auth login <platform-url>` once; the plugin reads the token through the CLI handshake only.
 4. **Bind** — open the OpenBKN panel in DSH, pick the network, and start a session in its workspace.
 
-## Upgrade and uninstall
-
-- **Runtime N → N+1**: download the new archive into a fresh directory and start it; the isolated OpenBKN DSH home (`OPENBKN_DSH_HOME`, default under your data directory) carries sessions and settings across runtime versions, so nothing is migrated by hand.
-- **Source-build trees**: before changing the DSH revision, revert the compatibility series (`apply.mjs --revert`), switch, and re-apply the matching series if one exists for the new revision.
-- **Uninstall the plugin**: `dsh plugin --profile <name> remove @openbkn/dsh-business-context`, then remove the leftover `node_modules/@openbkn` inside that profile directory. Sessions written by plugin builds from #48 on contain no plugin events and stay readable on any DSH; their binding records under `$DSH_HOME/openbkn/session-bindings/` stay behind and can be deleted by hand. Sessions written by earlier builds stay readable only if they were written on a patched DSH (their plugin events are ignorable); on an unpatched DSH they are refused on reload, and neither uninstalling nor upgrading the plugin repairs them.
-
 ## Supported DSH versions
 
 Exactly one upstream DSH revision is supported at a time — currently `dsh-v0.2.0-rc.2`, pinned by [the compatibility manifest](compat/dsh-0.2.0-rc.2/manifest.json). A scheduled workflow (`upstream-dsh-watch`) watches upstream tags and opens a tracking issue whenever a release moves ahead of the pin; until the compatibility series is regenerated for it, newer DSH revisions are out of scope.
@@ -125,11 +129,10 @@ Check your version with `dsh --version`, then pair it like this:
 
 | Your DSH version | Compatibility series | Plugin to install | Prebuilt runtime archive |
 | --- | --- | --- | --- |
-| `dsh-v0.2.0-rc.2` (current pin) | [`compat/dsh-0.2.0-rc.2/`](compat/dsh-0.2.0-rc.2/) | `@openbkn/dsh-business-context@0.2.0-rc.2-openbkn.0.2.0` (needs the patch), or build from this repository (`main`; no patch needed at run time) | [openbkn-dsh-runtime-v0.2.0-rc.2-openbkn.0.2.0](https://github.com/openbkn-ai/bkn-dsh/releases/tag/openbkn-dsh-runtime-v0.2.0-rc.2-openbkn.0.2.0) |
-| DeepSeek Harness desktop app `0.2.0-rc.2` | not applicable (the app is not patched) | build from this repository (`main`) until the next plugin release — the published `0.2.0-rc.2-openbkn.0.2.0` does not reload sessions there | not applicable |
+| `dsh-v0.2.0-rc.2` (current pin): desktop app, npm CLI, or source build | not needed to use the plugin; [`compat/dsh-0.2.0-rc.2/`](compat/dsh-0.2.0-rc.2/) builds it from source | `@openbkn/dsh-business-context@0.2.0-rc.2-openbkn.0.2.0-1` from npm (Standard mode) | discontinued; last one: [openbkn-dsh-runtime-v0.2.0-rc.2-openbkn.0.2.0](https://github.com/openbkn-ai/bkn-dsh/releases/tag/openbkn-dsh-runtime-v0.2.0-rc.2-openbkn.0.2.0) |
 | `dsh-v0.1.7-rc.2` (previous series) | [`compat/dsh-0.1.7-rc.2/`](compat/dsh-0.1.7-rc.2/) (archived) | `@openbkn/dsh-business-context@0.1.7-rc.2-openbkn.0.2.0` from npm, or build from git tag [`v0.1.7-rc.2-openbkn.0.2.0`](https://github.com/openbkn-ai/bkn-dsh/tree/v0.1.7-rc.2-openbkn.0.2.0) | [openbkn-dsh-runtime-v0.1.7-rc.2-openbkn.0.2.0](https://github.com/openbkn-ai/bkn-dsh/releases/tag/openbkn-dsh-runtime-v0.1.7-rc.2-openbkn.0.2.0) |
 | `dsh-v0.1.6-alpha.2` (previous series) | [`compat/dsh-0.1.6-alpha.2/`](compat/dsh-0.1.6-alpha.2/) (archived) | `@openbkn/dsh-business-context@0.1.5-rc.2` from npm, or a source build from git tag [`v0.1.5-rc.2`](https://github.com/openbkn-ai/bkn-dsh/tree/v0.1.5-rc.2) | [openbkn-dsh-runtime-v0.1.6-alpha.2-openbkn.1](https://github.com/openbkn-ai/bkn-dsh/releases/tag/openbkn-dsh-runtime-v0.1.6-alpha.2-openbkn.1) |
 
-Since the `0.2.0-rc.2` round, the plugin and the runtime bundle share one version scheme — `<dsh-version>-openbkn.<openbkn-platform-version>` — so the version number declares both compatibility dimensions at a glance: `0.2.0-rc.2-openbkn.0.2.0` pairs DSH `0.2.0-rc.2` with OpenBKN platform `0.2.0`. The runtime manifest validator rejects any manifest whose plugin version does not carry its pinned DSH revision. Releases before this round keep their historical version numbers.
+Since the `0.2.0-rc.2` round, the plugin and the runtime bundle share one version scheme — `<dsh-version>-openbkn.<openbkn-platform-version>` — so the version number declares both compatibility dimensions at a glance: `0.2.0-rc.2-openbkn.0.2.0` pairs DSH `0.2.0-rc.2` with OpenBKN platform `0.2.0`, and a republish with the same pair appends `-<n>` (`0.2.0-rc.2-openbkn.0.2.0-1`). The runtime manifest validator rejects any manifest whose plugin version does not carry its pinned DSH revision. Releases before this round keep their historical version numbers.
 
-The plugin's declared DSH peers must match your runtime — DSH's version fence refuses mismatched installs. **Do not build the plugin from current `main` for a `0.1.6-alpha.2` runtime**: since the `0.2.0-rc.2` retarget its peers declare `0.2.0-rc.2`, and the install will be rejected. The runtime archives are self-contained (patched DSH runtime plus the matching plugin), so they sidestep pairing entirely. [`compat/dsh-0.1.2-rc.1/`](compat/dsh-0.1.2-rc.1/) is a historical archive with no npm pairing.
+The plugin's declared DSH peers must match your runtime — DSH's version fence refuses mismatched installs. **Do not build the plugin from current `main` for a `0.1.6-alpha.2` runtime**: since the `0.2.0-rc.2` retarget its peers declare `0.2.0-rc.2`, and the install will be rejected. [`compat/dsh-0.1.2-rc.1/`](compat/dsh-0.1.2-rc.1/) is a historical archive with no npm pairing.

@@ -1,6 +1,6 @@
 import { randomUUID } from 'node:crypto'
 import { readFileSync } from 'node:fs'
-import { mkdir, open, rename, rm } from 'node:fs/promises'
+import { mkdir, open, readdir, rename, rm } from 'node:fs/promises'
 import { join } from 'node:path'
 import { parseBinding } from './session-binding.js'
 import type { BusinessNetworkBinding } from './types.js'
@@ -75,6 +75,41 @@ export class SessionBindingStore {
       await rm(temporary, { force: true })
       throw error
     }
+  }
+
+  /**
+   * Remove records whose session DSH no longer stores. DSH has no session
+   * delete verb, so a record only outlives its session when the log was
+   * removed outside DSH. Sessions materialize lazily and an unmaterialized
+   * one is visible only to the process that created it, so a record is
+   * removed only when it is older than `recordedBefore` and `exists` answers
+   * false; a malformed record or a failing `exists` is left alone.
+   * @returns the session ids whose records were removed.
+   */
+  async pruneOrphans(exists: (sessionId: string) => Promise<boolean>, recordedBefore: Date): Promise<string[]> {
+    let names: string[]
+    try {
+      names = await readdir(this.root)
+    } catch (error: unknown) {
+      if ((error as NodeJS.ErrnoException | null)?.code === 'ENOENT') return []
+      throw error
+    }
+    const removed: string[] = []
+    for (const name of names) {
+      if (!name.endsWith('.json')) continue
+      const sessionId = name.slice(0, -'.json'.length)
+      if (!SESSION_ID.test(sessionId)) continue
+      try {
+        const record = this.read(sessionId)
+        if (record === undefined || !(Date.parse(record.recordedAt) < recordedBefore.getTime())) continue
+        if (await exists(sessionId)) continue
+        await rm(this.pathFor(sessionId), { force: true })
+        removed.push(sessionId)
+      } catch {
+        // Unreadable, malformed, or unverifiable: keep the record.
+      }
+    }
+    return removed
   }
 
   private pathFor(sessionId: string): string {

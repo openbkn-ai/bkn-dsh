@@ -49,6 +49,21 @@ declare module '@deepseek-ai/dsh-typert-protocol' {
   }
 }
 
+/** The one `sessionPersistence` read the orphan cleanup needs. */
+interface SessionPersistenceStat {
+  stat(sessionId: string): Promise<unknown>
+}
+
+/**
+ * A record younger than this is never treated as orphaned: another process
+ * may hold its session unmaterialized (invisible to this process's `stat`).
+ */
+const ORPHAN_BINDING_GRACE_MS = 7 * 24 * 60 * 60 * 1000
+
+const OPENBKN_TOOL_PREFIX = 'mcp__openbkn__'
+const UNBOUND_OPENBKN_TOOL_DENIAL = 'OpenBKN tools are available only in a session bound to an OpenBKN knowledge network. '
+  + 'Do not retry; tell the user to open a business session from the OpenBKN sidebar entry (in Standard mode, 标准模式).'
+
 /**
  * Owns the only selection transition: durably record the immutable binding in
  * the plugin's own per-session store (never the DSH session log, which hosts
@@ -73,9 +88,17 @@ export class OpenBknBusinessContextService extends TypertRemoteService {
     })
     ctx.on('agent/pre-step', async ({ agent, step, signal }, next) =>
       await this.refreshManagedMcpAtTurnStart(agent, step, signal, next))
+    // The Context Loader client registers its tools globally, so every
+    // session would see them; only a session whose scoped policy is mounted
+    // may call them.
+    ctx.tools.guard(execution => this.openBknToolDenial(execution))
     // DSH can restore Agents before this service is constructed. Treat those
     // resumed sessions exactly like newly created native sessions.
     for (const agent of ctx.agents.list()) void this.restoreBinding(agent)
+    // Hosts without session persistence have no stored sessions to compare.
+    ctx.inject(['sessionPersistence'], (persistenceCtx: Context) => {
+      void this.pruneOrphanBindings(persistenceCtx.get('sessionPersistence') as SessionPersistenceStat)
+    })
   }
 
   /**
@@ -340,18 +363,21 @@ export class OpenBknBusinessContextService extends TypertRemoteService {
     }
     // Profile retrieval is host-only and advisory. The verified binding owns
     // network identity, so a profile failure keeps the fixed scoped policy.
+    // The candidate stays local until `bind` settles: a concurrent request for
+    // another network must not replace the profile the winner mounts.
+    let profile: NetworkCapabilityProfile | undefined
     try {
-      this.capabilityProfiles.set(agent, buildNetworkCapabilityProfile(
+      profile = buildNetworkCapabilityProfile(
         binding,
         await this.platformReader().getKnowledgeNetworkDetail(binding, signal, agent.session.header.cwd ?? '.'),
-      ))
+      )
     } catch (error: unknown) {
       this.ctx.logger.warn(
         'openbkn-business-context: capability profile unavailable; continuing with the verified network binding and fixed managed-session policy (code=%s)',
         safeCapabilityProfileFailureCode(error),
       )
     }
-    const result = await this.bind(agent, binding)
+    const result = await this.bind(agent, binding, profile)
     return result.binding
   }
 
@@ -360,7 +386,7 @@ export class OpenBknBusinessContextService extends TypertRemoteService {
    * to this Agent. The capability is enabled only after the binding record is
    * durable; a failed write rejects and leaves the session unbound.
    */
-  async bind(agent: Agent, requested: BusinessNetworkBinding): Promise<BindBusinessNetworkResult> {
+  async bind(agent: Agent, requested: BusinessNetworkBinding, profile?: NetworkCapabilityProfile): Promise<BindBusinessNetworkResult> {
     if (this.ctx.agents.get(agent.id) !== agent) {
       throw new Error('OpenBKN business-network selection target is not a live DSH agent.')
     }
@@ -368,6 +394,11 @@ export class OpenBknBusinessContextService extends TypertRemoteService {
       throw new Error('OpenBKN business-network selection must use the configured OpenBKN platform.')
     }
     const result = await bindDshSessionBusinessNetwork(agent.session, this.bindingRecords, requested)
+    // Only the settled binding's own profile is published, and only before the
+    // policy mounts (a mounted policy keeps the profile it was built with).
+    if (profile !== undefined && profile.knowledgeNetworkId === result.binding.knowledgeNetworkId && !this.mounted.has(agent)) {
+      this.capabilityProfiles.set(agent, profile)
+    }
     this.mountIfBound(agent)
     return result
   }
@@ -376,9 +407,26 @@ export class OpenBknBusinessContextService extends TypertRemoteService {
     return readDshSessionBusinessNetwork(agent.session, this.bindingRecords)
   }
 
+  /**
+   * Global guard: an OpenBKN tool runs only for an Agent carrying the scoped
+   * business policy (lifecycle, network scope, PTC refusal). Unbound sessions,
+   * sessions whose binding could not be read or conflicted when restored,
+   * sessions bound to another platform, and fresh sub-agents are refused. The
+   * check is the mounted policy, not a re-read of the record, so a record that
+   * breaks after mounting takes effect when the session is reopened.
+   */
+  private openBknToolDenial(execution: { readonly name: string; readonly agent?: Agent }): string | undefined {
+    if (!execution.name.startsWith(OPENBKN_TOOL_PREFIX)) return undefined
+    if (execution.agent !== undefined && this.mounted.has(execution.agent)) return undefined
+    return UNBOUND_OPENBKN_TOOL_DENIAL
+  }
+
   private mountIfBound(agent: Agent): void {
     if (this.mounted.has(agent)) return
-    if (!mountBoundBusinessNetworkTool(agent, this.config, this.bindingOf(agent), this.capabilityProfiles.get(agent))) return
+    const binding = this.bindingOf(agent)
+    const profile = this.capabilityProfiles.get(agent)
+    const matchingProfile = profile !== undefined && profile.knowledgeNetworkId === binding?.knowledgeNetworkId ? profile : undefined
+    if (!mountBoundBusinessNetworkTool(agent, this.config, binding, matchingProfile)) return
     this.mounted.add(agent)
   }
 
@@ -410,6 +458,25 @@ export class OpenBknBusinessContextService extends TypertRemoteService {
     } catch (error: unknown) {
       this.warnBindingUnavailable(error)
       return undefined
+    }
+  }
+
+  /** Remove binding records of sessions DSH no longer stores; see `SessionBindingStore.pruneOrphans`. */
+  private async pruneOrphanBindings(persistence: SessionPersistenceStat): Promise<void> {
+    if (!(this.bindingRecords instanceof SessionBindingStore)) return
+    try {
+      const removed = await this.bindingRecords.pruneOrphans(
+        async sessionId => await persistence.stat(sessionId) !== undefined,
+        new Date(Date.now() - ORPHAN_BINDING_GRACE_MS),
+      )
+      if (removed.length > 0) {
+        this.ctx.logger.info('openbkn-business-context: removed %d binding record(s) of sessions DSH no longer stores', removed.length)
+      }
+    } catch (error: unknown) {
+      this.ctx.logger.warn(
+        'openbkn-business-context: binding record cleanup skipped (code=%s)',
+        error instanceof Error ? error.name : 'unknown',
+      )
     }
   }
 

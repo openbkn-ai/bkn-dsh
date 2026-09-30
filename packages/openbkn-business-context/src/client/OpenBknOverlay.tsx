@@ -94,6 +94,7 @@ function OverlayBody({ state, beginLogin, configureToken, refresh, openNetwork }
     <div>
       <p style={{ marginTop: 0, ...mutedStyle }}>
         选择业务知识网络后，在其专属 DSH 工作区中继续或创建会话。
+        业务会话需使用<strong>标准模式</strong>：请在发送第一条消息前，在模式菜单中选定（暂不支持 PTC 模式，已有的 PTC 会话无法切换）。
       </p>
       {state.networks.length === 0 ? <p style={mutedStyle}>当前账号没有可用的业务知识网络。</p> : <>
         <label style={searchLabelStyle}>

@@ -2,7 +2,9 @@
 
 [中文](README.zh.md)
 
-This source package prepares an exact DeepSeek Harness `dsh-v0.2.0-rc.2` checkout for OpenBKN Business Context. It is a temporary compatibility bridge, not a replacement for DSH's plugin manager.
+This source package prepares an exact DeepSeek Harness `dsh-v0.2.0-rc.2` checkout for **building** the OpenBKN Business Context plugin package from this repository (OpenBKN Runtime archives are discontinued). It is a temporary compatibility bridge, not a replacement for DSH's plugin manager.
+
+**Using the plugin needs no patch.** From plugin `0.2.0-rc.2-openbkn.0.2.0-1` on, the plugin installs on an unpatched DSH `0.2.0-rc.2` — the official desktop app, the npm CLI, or a source checkout — through DSH's own plugin manager; see the repository README.
 
 ## Supported target
 
@@ -13,11 +15,12 @@ The series adds only the capabilities required by the plugin:
 - recognition of the published Typert protocol in an external plugin
   (`packages/typert/generator/src/analyzer.ts`, `isTypeMetaSymbol`); without
   it the analyzer discovers 0 of the plugin's 10 public Remote methods;
-- the write side of ignorable plugin session records: `Session.append` accepts
-  a `LogOnlyEventIntent` (`{ ignorable: true }`) for non-surface events. The
-  read side is native in `dsh-v0.2.0-rc.2`, but without the write side a
-  plugin-owned event is persisted as required and the stored session refuses
-  to reload in any harness that lacks the plugin.
+- **retired:** the write side of ignorable plugin session records
+  (`Session.append` accepting a `LogOnlyEventIntent`, `{ ignorable: true }`,
+  for non-surface events). Plugin builds from `0.2.0-rc.2-openbkn.0.2.0-1` on
+  write nothing to the session log and no longer use it. It stays in the
+  series only so the published `openbkn-dsh-runtime-v0.2.0-rc.2-openbkn.0.2.0`
+  archive remains reproducible, and will be dropped from the next series.
 
 - the release-lockfile pair: the upstream lockfile itself is consistent with
   its own `patchedDependencies` (a frozen `pnpm install` succeeds on the
@@ -56,15 +59,17 @@ node compat/dsh-0.2.0-rc.2/verify.mjs --dsh /path/to/deepseek-harness
 ```
 
 Rebuild the patched DSH checkout using its normal build instructions. Then
-build the local plugin artifact (from this repository) and install it through
-DSH's native plugin command (from the patched DSH checkout — `pnpm dsh` is
-the DSH workspace's CLI; this repository does not provide one):
+build the local plugin artifact from this repository (the full sequence is in
+[the source-build guide](../../docs/guides/install-with-patch.md)). The
+package can be installed into any DSH `0.2.0-rc.2`, patched or not, through
+DSH's native plugin command (`pnpm dsh` is the DSH workspace's CLI; this
+repository does not provide one):
 
 ```bash
 pnpm --filter @openbkn/dsh-business-context build
 pnpm --filter @openbkn/dsh-business-context pack --pack-destination /tmp/openbkn-plugin
 cd /path/to/deepseek-harness
-pnpm dsh plugin --profile web add file:/tmp/openbkn-plugin/openbkn-dsh-business-context-0.2.0-rc.2-openbkn.0.2.0.tgz
+pnpm dsh plugin --profile web add file:/tmp/openbkn-plugin/openbkn-dsh-business-context-0.2.0-rc.2-openbkn.0.2.0-1.tgz
 ```
 
 To remove the complete series before changing DSH version:
@@ -75,14 +80,10 @@ node compat/dsh-0.2.0-rc.2/apply.mjs --dsh /path/to/deepseek-harness --revert
 
 The command verifies every patch digest, the exact base revision, a clean target, and the full patch series before modifying anything. If a check fails, it makes no change.
 
-## Known upstream limitation (source-dev form)
+## Source-dev form
 
 Running DSH directly from a source tree in dev form (`pnpm dsh web` over tsx)
-broke tool dispatch for every plugin in `dsh-v0.1.6-alpha.2` — any tool call
-failed with `Cannot read properties of undefined (reading 'prepare')`
-regardless of the agent preset, native tools included. It is upstream
-behavior, identical on patched and unpatched trees, and it is not covered by
-this patch series. Whether it still reproduces on `dsh-v0.2.0-rc.2` has not
-been confirmed; if source-dev tool calls fail with that signature, use a
-packaged runtime (see the repository README). Binding, network reads, and
-session persistence worked in source-dev form on `dsh-v0.1.6-alpha.2`.
+broke tool dispatch for every plugin in `dsh-v0.1.6-alpha.2` (`Cannot read
+properties of undefined (reading 'prepare')`). On `dsh-v0.2.0-rc.2` it did not
+reproduce in the 2026-09-30 test: Q&A with tool calls worked in dev form. The
+supported form is still the built one (`node apps/cli/lib/bin.js web`).

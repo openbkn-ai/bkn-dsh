@@ -41,14 +41,17 @@ function mount(fake: FakeAgent): boolean {
 }
 
 /** A minimal Agent scope whose guard, sections, events, and session log are captured. */
-function fakeAgent(events: Array<{ type: string; data: unknown }> = [BOUND_EVENT]): FakeAgent {
+function fakeAgent(events: Array<{ type: string; data: unknown }> = [BOUND_EVENT], visibleTools: readonly string[] = []): FakeAgent {
   const guards: FakeAgent['guards'] = []
   const sections: FakeAgent['sections'] = []
   const listeners: FakeAgent['listeners'] = {}
   const logs: FakeAgent['logs'] = []
   const appended: FakeAgent['appended'] = []
   const ctx = {
-    tools: { guard: (guard: FakeAgent['guards'][number]) => { guards.push(guard); return () => {} } },
+    tools: {
+      guard: (guard: FakeAgent['guards'][number]) => { guards.push(guard); return () => {} },
+      get: (name: string) => visibleTools.includes(name) ? { name } : undefined,
+    },
     systemPrompt: { section: (section: FakeAgent['sections'][number]) => { sections.push(section); return () => {} } },
     on: (event: string, listener: (...args: unknown[]) => unknown) => {
       ;(listeners[event] ??= []).push(listener)
@@ -92,8 +95,25 @@ test('mounts the managed policy, guard, and lifecycle listeners in one Agent sco
   assert.ok(fake.listeners['agent/pre-step'])
   assert.ok(fake.listeners['agent/turn-stopping'])
   assert.deepEqual(fake.sections.map(section => section.name), [
-    'openbkn:managed-session', 'openbkn:managed-conversation',
+    'openbkn:ptc-unsupported', 'openbkn:managed-session', 'openbkn:managed-conversation',
   ])
+})
+
+test('PTC mode: run_code is refused with a switch-to-Standard instruction, and the prompt says so up front', () => {
+  const standard = fakeAgent()
+  mount(standard)
+  const standardNotice = standard.sections.find(entry => entry.name === 'openbkn:ptc-unsupported')!
+  assert.equal((standardNotice.text as () => string)(), '', 'no PTC notice outside PTC mode')
+
+  const ptc = fakeAgent([BOUND_EVENT], ['run_code'])
+  mount(ptc)
+  const notice = ptc.sections.find(entry => entry.name === 'openbkn:ptc-unsupported')!
+  assert.match((notice.text as () => string)(), /PTC mode.*Standard mode \(标准模式\)/s)
+  // Refused before the lifecycle rules, even inside an open interaction.
+  startSucceeded(ptc)
+  assert.match(ptc.guards[0]!({ name: 'run_code', arguments: { code: 'return 1' } }) ?? '', /do not support PTC mode.*Do not retry/s)
+  // The platform's own managed run_code stays governed by the lifecycle rules.
+  assert.equal(ptc.guards[0]!({ name: 'mcp__openbkn__run_code', arguments: {} }), undefined)
 })
 
 test('guards a non-managed tool out regardless of interaction state', () => {
@@ -105,7 +125,7 @@ test('guards a non-managed tool out regardless of interaction state', () => {
 test('rule 2: schema access is denied before any start, allowed inside an open interaction', () => {
   const fake = fakeAgent()
   assert.equal(mount(fake), true)
-  const schema = { name: 'mcp__openbkn__search_schema', arguments: {} }
+  const schema = { name: 'mcp__openbkn__search_schema', arguments: { kn_id: 'kn-supply', query: 'orders' } }
   assert.match(fake.guards[0]!(schema) ?? '', /Start mcp__openbkn__bkn_start_interaction before any OpenBKN access/)
   startSucceeded(fake)
   assert.equal(fake.guards[0]!(schema), undefined)
@@ -270,4 +290,22 @@ test('the two managed tool groups exactly partition the managed OpenBKN catalogu
   ]
   assert.deepEqual([...new Set(union)].sort(), [...expected].sort())
   assert.equal(union.length, expected.length)
+})
+
+test('network scope: kn_id must be the bound network, as a string, and cannot be omitted', () => {
+  const fake = fakeAgent()
+  mount(fake)
+  startSucceeded(fake)
+  const bound = BOUND_EVENT.data.knowledgeNetworkId
+  const call = (name: string, args: Record<string, unknown>) => fake.guards[0]!({ name, arguments: args })
+  assert.equal(call('mcp__openbkn__query_metric', { kn_id: bound, metric_id: 'm' }), undefined)
+  for (const args of [{ kn_id: 'kn-other', metric_id: 'm' }, { metric_id: 'm' }, { kn_id: [bound] }, { kn_id: null }, { kn_id: bound.toUpperCase() }]) {
+    assert.match(call('mcp__openbkn__query_metric', args) ?? '', new RegExp(`bound to OpenBKN knowledge network "${bound}"`), JSON.stringify(args))
+  }
+  // search_instance takes an optional kn_id on the platform; the plugin still requires the bound one.
+  assert.match(call('mcp__openbkn__search_instance', {}) ?? '', /kn_id/)
+  assert.equal(call('mcp__openbkn__search_instance', { kn_id: bound }), undefined)
+  // Tools without kn_id keep their own contract.
+  assert.equal(call('mcp__openbkn__run_code', { code: 'x' }), undefined)
+  assert.equal(call('mcp__openbkn__get_skill_content', { skill_id: 's' }), undefined)
 })
