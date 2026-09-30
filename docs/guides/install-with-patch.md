@@ -5,13 +5,13 @@
 
 ## 什么时候需要兼容补丁
 
-只有**从本仓库构建插件包或 Runtime 归档**时才需要 `compat/dsh-0.2.0-rc.2/` 补丁系列：
+只有**从本仓库构建插件包**时才需要 `compat/dsh-0.2.0-rc.2/` 补丁系列（Runtime 归档已停止发布）：
 
 | 补丁 | 作用 | 现状 |
 | --- | --- | --- |
 | 0001 Typert 外部协议识别 | 让 DSH 的 Typert 生成器识别插件发布的协议；没有它，构建时发现不到插件的 Remote 方法 | 构建插件包需要 |
 | 0002 可忽略会话事件的写入侧 | 让插件能写带 `ignorable` 标记的会话事件 | **已退役**：从 `0.2.0-rc.2-openbkn.0.2.0-1` 起插件不写会话日志，不再用到它；仍留在系列里，保证已发布的 Runtime 归档可复现 |
-| 0003 Runtime 锁文件 | 去掉运行时依赖闭包之外的 4 个 `patchedDependencies`，让 `pnpm deploy` 可以执行 | 构建 Runtime 归档需要 |
+| 0003 Runtime 锁文件 | 去掉运行时依赖闭包之外的 4 个 `patchedDependencies`，让 `pnpm deploy` 可以执行 | 只服务于已停止发布的 Runtime 归档 |
 
 在源码检出上**运行**插件，不需要打任何补丁。
 
@@ -34,7 +34,6 @@ pnpm --filter @openbkn/dsh-business-context pack --pack-destination /tmp/openbkn
 
 还原补丁（更换 DSH 版本前）：`node compat/dsh-0.2.0-rc.2/apply.mjs --dsh ~/dsh-build --revert`。
 
-构建 Runtime 归档见仓库 `CLAUDE.md` 的命令一节（`pnpm runtime:build` → `runtime:profile` → `runtime:package`），参考流程是 `.github/workflows/compatible-runtime.yml`。
 
 ## 在 DSH 源码检出上使用插件（不打补丁）
 

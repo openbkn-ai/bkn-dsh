@@ -2,7 +2,7 @@
 
 [English](README.md)
 
-该源码包用于在精确版本的 DeepSeek Harness `dsh-v0.2.0-rc.2` 源码树上，从本仓库**构建** OpenBKN Business Context 插件包和 OpenBKN Runtime 归档。它是临时兼容桥接，不替代 DSH 原生插件管理。
+该源码包用于在精确版本的 DeepSeek Harness `dsh-v0.2.0-rc.2` 源码树上，从本仓库**构建** OpenBKN Business Context 插件包（OpenBKN Runtime 归档已停止发布）。它是临时兼容桥接，不替代 DSH 原生插件管理。
 
 **使用插件不需要补丁。** 从插件 `0.2.0-rc.2-openbkn.0.2.0-1` 起，插件通过 DSH 自己的插件管理器装在未打补丁的 DSH `0.2.0-rc.2` 上即可使用——官方桌面版、npm 命令行、源码检出都一样；见仓库 README。
 

@@ -2,7 +2,7 @@
 
 [中文](README.zh.md)
 
-This source package prepares an exact DeepSeek Harness `dsh-v0.2.0-rc.2` checkout for **building** the OpenBKN Business Context plugin package and the OpenBKN Runtime archive from this repository. It is a temporary compatibility bridge, not a replacement for DSH's plugin manager.
+This source package prepares an exact DeepSeek Harness `dsh-v0.2.0-rc.2` checkout for **building** the OpenBKN Business Context plugin package from this repository (OpenBKN Runtime archives are discontinued). It is a temporary compatibility bridge, not a replacement for DSH's plugin manager.
 
 **Using the plugin needs no patch.** From plugin `0.2.0-rc.2-openbkn.0.2.0-1` on, the plugin installs on an unpatched DSH `0.2.0-rc.2` — the official desktop app, the npm CLI, or a source checkout — through DSH's own plugin manager; see the repository README.
 

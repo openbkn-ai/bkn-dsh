@@ -95,13 +95,13 @@ Windows 上用 `dsh.cmd` 代替 `dsh`。
 
 那个版本会往会话日志里写插件事件。用它在未打补丁的 DSH（桌面版、npm 命令行、未打补丁的源码构建）上绑定的会话会被拒绝重载，升级或卸载插件都修复不了；升级后请新建会话。写在打过补丁的 DSH 或 Runtime 归档里的会话仍然可读。
 
-### 另一种方式：自包含的 OpenBKN Runtime 归档
+### Runtime 归档（已停止发布）
 
-[`openbkn-dsh-runtime-v0.2.0-rc.2-openbkn.0.2.0`](https://github.com/openbkn-ai/bkn-dsh/releases/tag/openbkn-dsh-runtime-v0.2.0-rc.2-openbkn.0.2.0) 归档打包了已打补丁的 DSH `0.2.0-rc.2` Web 运行时和插件 `0.2.0-rc.2-openbkn.0.2.0`，提供 darwin-arm64 与 win32-x64 两个平台（Node.js ^22.19.0 或 >=24.0.0）。它把 profile 放在隔离的 Home（`OPENBKN_DSH_HOME`）下，不会改动 `~/.dsh`。先用同目录的 `.sha256` 文件校验（`shasum -a 256 -c`，Windows 用 `Get-FileHash`），解压后运行 `bin/dsh web`（Windows 为 `bin\dsh.cmd web`），再按第 3 步操作。`…-1` 不发布新的 Runtime 归档；归档里打过补丁的 DSH 本来就能正常重载会话。
+OpenBKN Runtime 归档不再发布：把插件装进 DSH 是唯一受支持的使用方式。最后一个归档 [`openbkn-dsh-runtime-v0.2.0-rc.2-openbkn.0.2.0`](https://github.com/openbkn-ai/bkn-dsh/releases/tag/openbkn-dsh-runtime-v0.2.0-rc.2-openbkn.0.2.0)（已打补丁的 DSH `0.2.0-rc.2` 加插件 `0.2.0-rc.2-openbkn.0.2.0`）仍可下载，但不再更新。
 
 ### 从源码构建
 
-[兼容补丁系列](compat/dsh-0.2.0-rc.2/README.zh.md)只在从本仓库构建插件包和 Runtime 归档时需要，使用插件不需要：补丁 0001 让 DSH 的 Typert 生成器识别插件发布的协议，补丁 0003 让运行时依赖闭包可以部署。补丁 0002 已退役：从 `…-1` 起的插件构建都不再用到它。见[源码构建指南](docs/guides/install-with-patch.md)。
+[兼容补丁系列](compat/dsh-0.2.0-rc.2/README.zh.md)只在从本仓库构建插件包时需要，使用插件不需要：补丁 0001 让 DSH 的 Typert 生成器识别插件发布的协议。补丁 0002 已退役（从 `…-1` 起的插件构建都不再用到它），补丁 0003 只服务于已停止发布的 Runtime 归档。见[源码构建指南](docs/guides/install-with-patch.md)。
 
 已知插件限制：若某一轮在 `bkn_start_interaction` 与 `bkn_finish_interaction` 之间被取消或失败，该 Interaction 会留在平台侧不闭合。插件刻意不自动补 finish（平台对注入式收尾的语义尚未验证），只记录一条无载荷告警；观测项应跟踪「未闭合 Interaction 计数」。自动收尾属后续工作。
 
@@ -122,10 +122,10 @@ Windows 上用 `dsh.cmd` 代替 `dsh`。
 
 | 你的 DSH 版本 | 兼容补丁系列 | 应安装的插件 | 预构建 Runtime 归档 |
 | --- | --- | --- | --- |
-| `dsh-v0.2.0-rc.2`（当前锁定）：桌面版、npm 命令行或源码构建 | 使用插件不需要；[`compat/dsh-0.2.0-rc.2/`](compat/dsh-0.2.0-rc.2/) 用于从源码构建 | npm 上的 `@openbkn/dsh-business-context@0.2.0-rc.2-openbkn.0.2.0-1`（标准模式） | [openbkn-dsh-runtime-v0.2.0-rc.2-openbkn.0.2.0](https://github.com/openbkn-ai/bkn-dsh/releases/tag/openbkn-dsh-runtime-v0.2.0-rc.2-openbkn.0.2.0)（插件 `0.2.0-rc.2-openbkn.0.2.0`，已打补丁的 DSH） |
+| `dsh-v0.2.0-rc.2`（当前锁定）：桌面版、npm 命令行或源码构建 | 使用插件不需要；[`compat/dsh-0.2.0-rc.2/`](compat/dsh-0.2.0-rc.2/) 用于从源码构建 | npm 上的 `@openbkn/dsh-business-context@0.2.0-rc.2-openbkn.0.2.0-1`（标准模式） | 已停止发布；最后一个：[openbkn-dsh-runtime-v0.2.0-rc.2-openbkn.0.2.0](https://github.com/openbkn-ai/bkn-dsh/releases/tag/openbkn-dsh-runtime-v0.2.0-rc.2-openbkn.0.2.0) |
 | `dsh-v0.1.7-rc.2`（上一代系列） | [`compat/dsh-0.1.7-rc.2/`](compat/dsh-0.1.7-rc.2/)（存档） | npm 上的 `@openbkn/dsh-business-context@0.1.7-rc.2-openbkn.0.2.0`，或从 git tag [`v0.1.7-rc.2-openbkn.0.2.0`](https://github.com/openbkn-ai/bkn-dsh/tree/v0.1.7-rc.2-openbkn.0.2.0) 源码构建 | [openbkn-dsh-runtime-v0.1.7-rc.2-openbkn.0.2.0](https://github.com/openbkn-ai/bkn-dsh/releases/tag/openbkn-dsh-runtime-v0.1.7-rc.2-openbkn.0.2.0) |
 | `dsh-v0.1.6-alpha.2`（上一代系列） | [`compat/dsh-0.1.6-alpha.2/`](compat/dsh-0.1.6-alpha.2/)（存档） | npm 上的 `@openbkn/dsh-business-context@0.1.5-rc.2`，或从 git tag [`v0.1.5-rc.2`](https://github.com/openbkn-ai/bkn-dsh/tree/v0.1.5-rc.2) 源码构建 | [openbkn-dsh-runtime-v0.1.6-alpha.2-openbkn.1](https://github.com/openbkn-ai/bkn-dsh/releases/tag/openbkn-dsh-runtime-v0.1.6-alpha.2-openbkn.1) |
 
 自 `0.2.0-rc.2` 这一轮起，插件与 Runtime 归档共用一套版本命名——`<DSH版本>-openbkn.<OpenBKN平台版本>`——版本号一眼可见两个兼容维度：`0.2.0-rc.2-openbkn.0.2.0` 即"配 DSH `0.2.0-rc.2`、面向 OpenBKN 平台 `0.2.0`"；同一组合重新发布时追加 `-<n>`（`0.2.0-rc.2-openbkn.0.2.0-1`）。runtime manifest 校验器会拒绝插件版本与其锁定的 DSH 版本不一致的清单。本轮之前的发布保留其历史版本号。
 
-插件声明的 DSH peers 必须与你的 runtime 匹配——DSH 的版本围栏会拒绝不匹配的安装。**不要为 `0.1.6-alpha.2` runtime 从当前 `main` 构建插件**：`0.2.0-rc.2` retarget 之后 main 的 peers 已声明为 `0.2.0-rc.2`，安装会被拒绝。Runtime 归档是自包含的（已打补丁的 DSH runtime 加配对插件），完全绕开配对问题。[`compat/dsh-0.1.2-rc.1/`](compat/dsh-0.1.2-rc.1/) 是历史存档，无 npm 配对版本。
+插件声明的 DSH peers 必须与你的 runtime 匹配——DSH 的版本围栏会拒绝不匹配的安装。**不要为 `0.1.6-alpha.2` runtime 从当前 `main` 构建插件**：`0.2.0-rc.2` retarget 之后 main 的 peers 已声明为 `0.2.0-rc.2`，安装会被拒绝。[`compat/dsh-0.1.2-rc.1/`](compat/dsh-0.1.2-rc.1/) 是历史存档，无 npm 配对版本。
