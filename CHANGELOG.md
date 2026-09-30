@@ -2,9 +2,11 @@
 
 All notable changes to this project are documented here.
 
-## Unreleased
+## 0.2.0-rc.2-openbkn.0.2.0-1 (2026-09-30)
 
-Official DeepSeek Harness desktop support: the plugin no longer writes anything to the DSH session log, so hosts without a write path for ignorable plugin events — the official desktop app `0.2.0-rc.2` and unpatched source builds — reload bound sessions ([#48](https://github.com/openbkn-ai/bkn-dsh/pull/48); analysis `docs/plans/2026-09-29-official-desktop-support.md`, review `docs/reviews/2026-09-29-desktop-support-plan-review.md`, evidence `docs/evidence/2026-09-29-desktop-direct-install.md`). Not part of the published `0.2.0-rc.2-openbkn.0.2.0`.
+No patch needed to use the plugin: on an unpatched DeepSeek Harness `0.2.0-rc.2` — the official desktop app, the npm CLI (`dsh web`), or a built source checkout — installing the plugin package is enough. Same DSH pin and OpenBKN platform pairing as `0.2.0-rc.2-openbkn.0.2.0`, hence the `-1` republish suffix. Verified on macOS arm64 in all three forms (release checklist `docs/handoff/2026-09-30-release-0.2.0-rc.2-1-plan.md`); Windows not yet verified. No new Runtime archive: `openbkn-dsh-runtime-v0.2.0-rc.2-openbkn.0.2.0` stays the current one; the manifest versions are bumped so a future archive build names this plugin.
+
+The plugin no longer writes anything to the DSH session log, so hosts without a write path for ignorable plugin events reload bound sessions ([#48](https://github.com/openbkn-ai/bkn-dsh/pull/48); analysis `docs/plans/2026-09-29-official-desktop-support.md`, review `docs/reviews/2026-09-29-desktop-support-plan-review.md`, evidence `docs/evidence/2026-09-29-desktop-direct-install.md`).
 
 - **Behavior change — binding storage**: the network binding is a per-session file under `$DSH_HOME/openbkn/session-bindings/<sessionId>.json`, written atomically; the business capability mounts only after the write succeeds, and a failed write leaves the session unbound. A fork inherits the parent binding only when its inherited log prefix reaches the bind point; a freshly spawned sub-agent inherits nothing. DSH's per-session cross-process write lease keeps each file single-writer.
 - **Behavior change — derived state**: answer provenance is re-derived on read from the logged `bkn_finish_interaction` result, and managed-conversation continuity is restored by replaying the logged start/finish results. `openbkn/*` events written by earlier releases stay readable and must agree with the plugin's record or the re-derived state; a disagreement is reported, not silently resolved.
@@ -14,7 +16,10 @@ Official DeepSeek Harness desktop support: the plugin no longer writes anything 
 - Fix: platform URLs are stripped of trailing slashes in linear time across the plugin (CodeQL `js/polynomial-redos`, seven call sites share one helper).
 - Compatibility: patch 0002 (ignorable session-event write side) is no longer needed at run time for plugin builds that include this change; builds released before it, including `0.2.0-rc.2-openbkn.0.2.0`, still need it. Patch 0001 remains required to build the plugin and the Runtime from source.
 - New peer dependency `@deepseek-ai/dsh-home-paths` (already in DSH's own dependency closure). Tests use real session-log fixtures (the official desktop v4 log and three Runtime 0.1.7 v3 logs converted by DSH's restore path, reduced to structure and ids): all 27 historically recorded provenances re-derive identically, and replayed conversation state matches the recorded state.
-- Known limitation: binding records are not removed when a DSH session is deleted.
+- Binding records of sessions DSH no longer stores are removed at startup, once `sessionPersistence` is available, when the record is older than seven days. DSH has no session delete verb and materializes sessions lazily (an unmaterialized session is visible only to its creating process), so younger, malformed, or unverifiable records are kept.
+- PTC mode is refused in bound sessions: DSH's `run_code` gets an explicit "switch to Standard mode" denial, and a per-turn prompt notice makes the model tell the user instead of retrying. Previously the model retried a generic denial and returned no OpenBKN data. PTC support (reading `tool/ptc-dispatch` records) is future work.
+- Fix: the workspace folder chooser's failures are attributed to their real cause — the browse backend's refusal keeps the connection-mode message, a failing native chooser shows its own error, and a cancelled choice returns to the network list without an error.
+- Docs: README (en/zh) and the package README describe the patch-free install for all three forms (npm package spec, `cordis.patch.yml` replacing `[]`, `NODE_EXTRA_CA_CERTS` from the login shell for Dock launches, Standard mode); `docs/guides/install-with-patch.md` becomes the source-build guide; the compatibility README marks patch 0002 retired.
 
 ## 0.2.0-rc.2-openbkn.0.2.0 (2026-09-29)
 
