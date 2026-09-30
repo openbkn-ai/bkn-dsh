@@ -23,6 +23,8 @@ interface ScopedSystemPrompt {
 
 interface ScopedTools {
   guard(guard: (execution: Readonly<ToolExecution>) => string | undefined): () => void
+  /** The definition visible to `scope` (the Agent), if any. */
+  get(name: string, scope?: object): unknown
 }
 
 interface ScopedAgentEvents {
@@ -55,6 +57,21 @@ export const MANAGED_IN_INTERACTION_TOOLS = [
 ] as const
 
 const MANAGED_OPENBKN_TOOLS = [...LIFECYCLE_TOOLS, ...MANAGED_IN_INTERACTION_TOOLS] as const
+
+/**
+ * DSH's PTC-mode tool. PTC runs model-written programs in a Node process
+ * with direct Node APIs, and logs nested calls as `tool/ptc-dispatch`, which
+ * the lifecycle replay, provenance, and timeline readers do not read yet, so a
+ * bound session refuses it and asks for Standard mode instead.
+ */
+const PTC_RUN_CODE_TOOL = 'run_code'
+const PTC_UNSUPPORTED_DENIAL = 'OpenBKN business sessions do not support PTC mode, so run_code is disabled here. '
+  + 'Do not retry or work around it; tell the user that OpenBKN queries need a new session in Standard mode (标准模式).'
+const PTC_UNSUPPORTED_SECTION = [
+  'This session runs in PTC mode, which OpenBKN business sessions do not support: run_code is disabled, so no OpenBKN tool can be reached.',
+  'Do not call any tool. Reply to the user, in their language, that querying the bound OpenBKN network requires a new session in Standard mode (标准模式),',
+  'chosen in the mode menu before the first message is sent.',
+].join(' ')
 
 const CONVERSATION_SECTION_NAME = 'openbkn:managed-conversation'
 const CONVERSATION_SECTION_ORDER = 522
@@ -97,6 +114,7 @@ const scopedPolicyPlugin = (
     // timing; it also covers tools contributed by the agent preset itself.
     let lifecycle: InteractionLifecycleState = restoreFrom(agent.session.snapshotEvents())
     tools.guard(execution => {
+      if (execution.name === PTC_RUN_CODE_TOOL) return PTC_UNSUPPORTED_DENIAL
       if (!MANAGED_OPENBKN_TOOLS.includes(execution.name as typeof MANAGED_OPENBKN_TOOLS[number])) {
         return 'This OpenBKN business session only permits managed OpenBKN tools.'
       }
@@ -131,6 +149,13 @@ const scopedPolicyPlugin = (
           lifecycle.interactionId ?? 'unknown',
         )
       }
+    })
+    // Evaluated per assembly: PTC is a per-session preset whose tool may be
+    // composed after this mount. An empty text renders no section.
+    systemPrompt.section({
+      name: 'openbkn:ptc-unsupported',
+      order: 519,
+      text: () => tools.get(PTC_RUN_CODE_TOOL, agent) === undefined ? '' : PTC_UNSUPPORTED_SECTION,
     })
     systemPrompt.section({ name: 'openbkn:managed-session', order: 520, text: policy.governance })
     if (policy.capabilities.length > 0) {

@@ -41,14 +41,17 @@ function mount(fake: FakeAgent): boolean {
 }
 
 /** A minimal Agent scope whose guard, sections, events, and session log are captured. */
-function fakeAgent(events: Array<{ type: string; data: unknown }> = [BOUND_EVENT]): FakeAgent {
+function fakeAgent(events: Array<{ type: string; data: unknown }> = [BOUND_EVENT], visibleTools: readonly string[] = []): FakeAgent {
   const guards: FakeAgent['guards'] = []
   const sections: FakeAgent['sections'] = []
   const listeners: FakeAgent['listeners'] = {}
   const logs: FakeAgent['logs'] = []
   const appended: FakeAgent['appended'] = []
   const ctx = {
-    tools: { guard: (guard: FakeAgent['guards'][number]) => { guards.push(guard); return () => {} } },
+    tools: {
+      guard: (guard: FakeAgent['guards'][number]) => { guards.push(guard); return () => {} },
+      get: (name: string) => visibleTools.includes(name) ? { name } : undefined,
+    },
     systemPrompt: { section: (section: FakeAgent['sections'][number]) => { sections.push(section); return () => {} } },
     on: (event: string, listener: (...args: unknown[]) => unknown) => {
       ;(listeners[event] ??= []).push(listener)
@@ -92,8 +95,25 @@ test('mounts the managed policy, guard, and lifecycle listeners in one Agent sco
   assert.ok(fake.listeners['agent/pre-step'])
   assert.ok(fake.listeners['agent/turn-stopping'])
   assert.deepEqual(fake.sections.map(section => section.name), [
-    'openbkn:managed-session', 'openbkn:managed-conversation',
+    'openbkn:ptc-unsupported', 'openbkn:managed-session', 'openbkn:managed-conversation',
   ])
+})
+
+test('PTC mode: run_code is refused with a switch-to-Standard instruction, and the prompt says so up front', () => {
+  const standard = fakeAgent()
+  mount(standard)
+  const standardNotice = standard.sections.find(entry => entry.name === 'openbkn:ptc-unsupported')!
+  assert.equal((standardNotice.text as () => string)(), '', 'no PTC notice outside PTC mode')
+
+  const ptc = fakeAgent([BOUND_EVENT], ['run_code'])
+  mount(ptc)
+  const notice = ptc.sections.find(entry => entry.name === 'openbkn:ptc-unsupported')!
+  assert.match((notice.text as () => string)(), /PTC mode.*Standard mode \(标准模式\)/s)
+  // Refused before the lifecycle rules, even inside an open interaction.
+  startSucceeded(ptc)
+  assert.match(ptc.guards[0]!({ name: 'run_code', arguments: { code: 'return 1' } }) ?? '', /do not support PTC mode.*Do not retry/s)
+  // The platform's own managed run_code stays governed by the lifecycle rules.
+  assert.equal(ptc.guards[0]!({ name: 'mcp__openbkn__run_code', arguments: {} }), undefined)
 })
 
 test('guards a non-managed tool out regardless of interaction state', () => {
