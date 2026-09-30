@@ -137,3 +137,39 @@ test('the file store fails closed on malformed, foreign, or unsafe records', asy
     rmSync(root, { recursive: true, force: true })
   }
 })
+
+test('orphan cleanup removes only old records whose session DSH no longer stores', async () => {
+  const root = mkdtempSync(join(tmpdir(), 'openbkn-bindings-'))
+  try {
+    const store = new SessionBindingStore(root)
+    const old = '2026-09-01T00:00:00.000Z'
+    await store.write({ ...record('gone-old'), recordedAt: old })
+    await store.write({ ...record('kept-live'), recordedAt: old })
+    await store.write({ ...record('gone-recent'), recordedAt: '2026-09-29T00:00:00.000Z' })
+    await store.write({ ...record('unverifiable'), recordedAt: old })
+    writeFileSync(join(root, 'malformed.json'), '{not json')
+    writeFileSync(join(root, 'notes.txt'), 'not a record')
+    const asked: string[] = []
+    const removed = await store.pruneOrphans(async sessionId => {
+      asked.push(sessionId)
+      if (sessionId === 'unverifiable') throw new Error('storage fault')
+      return sessionId === 'kept-live'
+    }, new Date('2026-09-23T00:00:00.000Z'))
+
+    assert.deepEqual(removed, ['gone-old'])
+    // Recent and malformed records are never even checked against DSH.
+    assert.deepEqual(asked.sort(), ['gone-old', 'kept-live', 'unverifiable'])
+    assert.deepEqual(readdirSync(root).sort(), ['gone-recent.json', 'kept-live.json', 'malformed.json', 'notes.txt', 'unverifiable.json'])
+  } finally {
+    rmSync(root, { recursive: true, force: true })
+  }
+})
+
+test('orphan cleanup of a store that was never written is a no-op', async () => {
+  const root = mkdtempSync(join(tmpdir(), 'openbkn-bindings-'))
+  try {
+    assert.deepEqual(await new SessionBindingStore(join(root, 'absent')).pruneOrphans(async () => false, new Date()), [])
+  } finally {
+    rmSync(root, { recursive: true, force: true })
+  }
+})

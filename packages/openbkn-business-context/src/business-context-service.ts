@@ -49,6 +49,17 @@ declare module '@deepseek-ai/dsh-typert-protocol' {
   }
 }
 
+/** The one `sessionPersistence` read the orphan cleanup needs. */
+interface SessionPersistenceStat {
+  stat(sessionId: string): Promise<unknown>
+}
+
+/**
+ * A record younger than this is never treated as orphaned: another process
+ * may hold its session unmaterialized (invisible to this process's `stat`).
+ */
+const ORPHAN_BINDING_GRACE_MS = 7 * 24 * 60 * 60 * 1000
+
 /**
  * Owns the only selection transition: durably record the immutable binding in
  * the plugin's own per-session store (never the DSH session log, which hosts
@@ -76,6 +87,10 @@ export class OpenBknBusinessContextService extends TypertRemoteService {
     // DSH can restore Agents before this service is constructed. Treat those
     // resumed sessions exactly like newly created native sessions.
     for (const agent of ctx.agents.list()) void this.restoreBinding(agent)
+    // Hosts without session persistence have no stored sessions to compare.
+    ctx.inject(['sessionPersistence'], (persistenceCtx: Context) => {
+      void this.pruneOrphanBindings(persistenceCtx.get('sessionPersistence') as SessionPersistenceStat)
+    })
   }
 
   /**
@@ -410,6 +425,25 @@ export class OpenBknBusinessContextService extends TypertRemoteService {
     } catch (error: unknown) {
       this.warnBindingUnavailable(error)
       return undefined
+    }
+  }
+
+  /** Remove binding records of sessions DSH no longer stores; see `SessionBindingStore.pruneOrphans`. */
+  private async pruneOrphanBindings(persistence: SessionPersistenceStat): Promise<void> {
+    if (!(this.bindingRecords instanceof SessionBindingStore)) return
+    try {
+      const removed = await this.bindingRecords.pruneOrphans(
+        async sessionId => await persistence.stat(sessionId) !== undefined,
+        new Date(Date.now() - ORPHAN_BINDING_GRACE_MS),
+      )
+      if (removed.length > 0) {
+        this.ctx.logger.info('openbkn-business-context: removed %d binding record(s) of sessions DSH no longer stores', removed.length)
+      }
+    } catch (error: unknown) {
+      this.ctx.logger.warn(
+        'openbkn-business-context: binding record cleanup skipped (code=%s)',
+        error instanceof Error ? error.name : 'unknown',
+      )
     }
   }
 
