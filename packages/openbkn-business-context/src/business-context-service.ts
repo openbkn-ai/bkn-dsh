@@ -363,18 +363,21 @@ export class OpenBknBusinessContextService extends TypertRemoteService {
     }
     // Profile retrieval is host-only and advisory. The verified binding owns
     // network identity, so a profile failure keeps the fixed scoped policy.
+    // The candidate stays local until `bind` settles: a concurrent request for
+    // another network must not replace the profile the winner mounts.
+    let profile: NetworkCapabilityProfile | undefined
     try {
-      this.capabilityProfiles.set(agent, buildNetworkCapabilityProfile(
+      profile = buildNetworkCapabilityProfile(
         binding,
         await this.platformReader().getKnowledgeNetworkDetail(binding, signal, agent.session.header.cwd ?? '.'),
-      ))
+      )
     } catch (error: unknown) {
       this.ctx.logger.warn(
         'openbkn-business-context: capability profile unavailable; continuing with the verified network binding and fixed managed-session policy (code=%s)',
         safeCapabilityProfileFailureCode(error),
       )
     }
-    const result = await this.bind(agent, binding)
+    const result = await this.bind(agent, binding, profile)
     return result.binding
   }
 
@@ -383,7 +386,7 @@ export class OpenBknBusinessContextService extends TypertRemoteService {
    * to this Agent. The capability is enabled only after the binding record is
    * durable; a failed write rejects and leaves the session unbound.
    */
-  async bind(agent: Agent, requested: BusinessNetworkBinding): Promise<BindBusinessNetworkResult> {
+  async bind(agent: Agent, requested: BusinessNetworkBinding, profile?: NetworkCapabilityProfile): Promise<BindBusinessNetworkResult> {
     if (this.ctx.agents.get(agent.id) !== agent) {
       throw new Error('OpenBKN business-network selection target is not a live DSH agent.')
     }
@@ -391,6 +394,11 @@ export class OpenBknBusinessContextService extends TypertRemoteService {
       throw new Error('OpenBKN business-network selection must use the configured OpenBKN platform.')
     }
     const result = await bindDshSessionBusinessNetwork(agent.session, this.bindingRecords, requested)
+    // Only the settled binding's own profile is published, and only before the
+    // policy mounts (a mounted policy keeps the profile it was built with).
+    if (profile !== undefined && profile.knowledgeNetworkId === result.binding.knowledgeNetworkId && !this.mounted.has(agent)) {
+      this.capabilityProfiles.set(agent, profile)
+    }
     this.mountIfBound(agent)
     return result
   }
@@ -402,8 +410,10 @@ export class OpenBknBusinessContextService extends TypertRemoteService {
   /**
    * Global guard: an OpenBKN tool runs only for an Agent carrying the scoped
    * business policy (lifecycle, network scope, PTC refusal). Unbound sessions,
-   * sessions whose binding is unreadable or conflicting, sessions bound to
-   * another platform, and fresh sub-agents are refused.
+   * sessions whose binding could not be read or conflicted when restored,
+   * sessions bound to another platform, and fresh sub-agents are refused. The
+   * check is the mounted policy, not a re-read of the record, so a record that
+   * breaks after mounting takes effect when the session is reopened.
    */
   private openBknToolDenial(execution: { readonly name: string; readonly agent?: Agent }): string | undefined {
     if (!execution.name.startsWith(OPENBKN_TOOL_PREFIX)) return undefined
@@ -413,7 +423,10 @@ export class OpenBknBusinessContextService extends TypertRemoteService {
 
   private mountIfBound(agent: Agent): void {
     if (this.mounted.has(agent)) return
-    if (!mountBoundBusinessNetworkTool(agent, this.config, this.bindingOf(agent), this.capabilityProfiles.get(agent))) return
+    const binding = this.bindingOf(agent)
+    const profile = this.capabilityProfiles.get(agent)
+    const matchingProfile = profile !== undefined && profile.knowledgeNetworkId === binding?.knowledgeNetworkId ? profile : undefined
+    if (!mountBoundBusinessNetworkTool(agent, this.config, binding, matchingProfile)) return
     this.mounted.add(agent)
   }
 

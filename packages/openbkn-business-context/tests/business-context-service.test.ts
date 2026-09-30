@@ -1,6 +1,10 @@
 import assert from 'node:assert/strict'
 import test from 'node:test'
+import { mkdtempSync, rmSync } from 'node:fs'
+import { tmpdir } from 'node:os'
+import { join } from 'node:path'
 import { OpenBknBusinessContextService } from '../src/business-context-service.ts'
+import { SessionBindingStore } from '../src/session-binding-store.ts'
 
 const config = {
   baseUrl: 'https://poc.openbkn.ai', requestTimeoutMs: 30_000,
@@ -738,4 +742,65 @@ test('global guard: OpenBKN tools run only for an Agent carrying the mounted bus
   // Native tools and other MCP servers are untouched.
   assert.equal(service.openBknToolDenial({ name: 'bash', agent: unbound }), undefined)
   assert.equal(service.openBknToolDenial({ name: 'mcp__github__search', agent: unbound }), undefined)
+})
+
+test('concurrent binds of one session to different networks mount the winner with its own capability profile', async () => {
+  const root = mkdtempSync(join(tmpdir(), 'openbkn-service-bind-'))
+  try {
+    const sections: Array<{ name: string; text: string | (() => string) }> = []
+    const agentCtx = {
+      tools: { guard: () => () => {}, get: () => undefined },
+      systemPrompt: { section: (section: { name: string; text: string | (() => string) }) => { sections.push(section); return () => {} } },
+      on: () => () => {},
+      logger: { warn: () => {} },
+    }
+    const agent = {
+      id: 'session-race',
+      session: { id: 'session-race', header: { cwd: '/workspace' }, snapshotEvents: () => [] },
+      ctx: agentCtx,
+    }
+    const service = Object.create(OpenBknBusinessContextService.prototype) as {
+      config: typeof config
+      ctx: { agents: { get(id: string): object | undefined }; logger: { warn(): void } }
+      bindingRecords: SessionBindingStore
+      mounted: WeakSet<object>
+      capabilityProfiles: WeakMap<object, unknown>
+      remoteStatus(): Promise<{ kind: 'authenticated'; baseUrl: string }>
+      platformReader(): unknown
+      remoteBindNetwork(sessionId: string, networkId: string, signal: AbortSignal): Promise<{ knowledgeNetworkId: string }>
+    }
+    service.config = config
+    service.ctx = { agents: { get: id => id === agent.id ? agent : undefined }, logger: { warn: () => {} } }
+    service.bindingRecords = new SessionBindingStore(root)
+    service.mounted = new WeakSet()
+    service.capabilityProfiles = new WeakMap()
+    service.remoteStatus = async () => ({ kind: 'authenticated', baseUrl: config.baseUrl })
+    service.platformReader = () => ({
+      listKnowledgeNetworks: async () => ({ entries: [{ id: 'kn-a', name: 'Network A' }, { id: 'kn-b', name: 'Network B' }] }),
+      getKnowledgeNetworkDetail: async (binding: { knowledgeNetworkId: string }) => ({
+        id: binding.knowledgeNetworkId,
+        concept_groups: [],
+        relation_types: [],
+        object_types: [{ id: `ot-${binding.knowledgeNetworkId}`, name: `Orders of ${binding.knowledgeNetworkId}` }],
+      }),
+    })
+
+    const results = await Promise.allSettled([
+      service.remoteBindNetwork(agent.id, 'kn-a', AbortSignal.timeout(5_000)),
+      service.remoteBindNetwork(agent.id, 'kn-b', AbortSignal.timeout(5_000)),
+    ])
+    const won = results.filter(result => result.status === 'fulfilled') as PromiseFulfilledResult<{ knowledgeNetworkId: string }>[]
+    assert.equal(won.length, 1)
+    assert.equal(results.filter(result => result.status === 'rejected').length, 1)
+    const winner = won[0]!.value.knowledgeNetworkId
+    const loser = winner === 'kn-a' ? 'kn-b' : 'kn-a'
+    assert.equal(service.bindingRecords.read(agent.id)?.binding.knowledgeNetworkId, winner)
+    const capabilities = sections.filter(section => section.name === 'openbkn:network-capabilities')
+    assert.equal(capabilities.length, 1, 'the policy mounts exactly once')
+    const text = typeof capabilities[0]!.text === 'function' ? capabilities[0]!.text() : capabilities[0]!.text
+    assert.match(text, new RegExp(`capability index for ${winner}`))
+    assert.doesNotMatch(text, new RegExp(loser))
+  } finally {
+    rmSync(root, { recursive: true, force: true })
+  }
 })
