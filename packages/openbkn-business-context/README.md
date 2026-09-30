@@ -37,6 +37,16 @@ The integration is designed as an additive DSH plugin. It preserves the native D
 - **Lower interaction cost** — users ask business questions naturally instead of navigating multiple systems or writing technical queries.
 - **Reusable organizational knowledge** — governed knowledge networks become a shared decision layer across conversations and teams.
 
+## Install
+
+Works on an unpatched DeepSeek Harness `0.2.0-rc.2`: the official desktop app, the npm CLI (`@deepseek-ai/dsh@0.2.0-rc.2`), or a built source checkout. Install it with DSH's own plugin manager while DSH is stopped:
+
+```bash
+dsh plugin --profile <desktop|web> add @openbkn/dsh-business-context@0.2.0-rc.2-openbkn.0.2.0-1
+```
+
+Then set the platform address, sign in with the `openbkn` CLI, and bind a network from the **OpenBKN** sidebar entry. Bound sessions must use DSH's Standard mode (PTC mode is not supported yet). Step-by-step setup, certificates, and uninstall: [repository README](https://github.com/openbkn-ai/bkn-dsh#install-and-start).
+
 ## License
 
 [Apache License 2.0](LICENSE)

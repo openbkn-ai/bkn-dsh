@@ -97,3 +97,20 @@
   - 绑定记录目录 `~/.dsh/openbkn/`。
 - 空目录 `~/Documents/openbkn-desktop-probe` 已删除。
 - 桌面版已用 `open -a` 重开，侧栏无 OpenBKN 入口。应用启动时又按自身行为在「默认工作区」落盘了一个草稿会话（`session-e8bc7389…`）。这是你的正常使用数据，未改动。
+
+## 第三轮：三种形态免补丁验收（2026-09-30）
+
+逐项记录见 `docs/handoff/2026-09-30-release-0.2.0-rc.2-1-plan.md` 阶段一和 2.3。都在 macOS arm64 上，DSH 全部未打补丁。
+
+| 形态 | 插件包 | 结果 |
+|---|---|---|
+| 源码检出，构建后运行（`dsh-020-stock`，`639ed01`，`node apps/cli/lib/bin.js web`） | main `0fe6c17` 构建 | ✅ 绑定、问答 40 张、溯源 11 个节点（失败调用标 `error`）、重启重载、`continue` 续接；日志 116 条事件、插件事件 0 条。dev 形态（`pnpm dsh web`）问答和工具调用也正常 |
+| npm 命令行（`@deepseek-ai/dsh@0.2.0-rc.2`，`dsh web`） | 同上 | ✅ 绑定、问答 40 张、重启重载、`continue` 续接 `conv_a5f83bc3…`；日志 84 条事件、插件事件 0 条 |
+| 官方桌面版，标准模式（`open -a` 启动，CA 来自 `~/.zprofile`） | 分支 `fix/picker-copy-orphan-bindings` 构建 | ✅ 绑定、问答 40 张、溯源 8 个节点、重启重载、`continue` 续接 `conv_dd5624dd…`；日志 100 条事件、插件事件 0 条（截图 06、07）。从 Dock 启动时读取登录 shell 里的 `NODE_EXTRA_CA_CERTS`，已实测 |
+| 官方桌面版，PTC 模式 | 同上（含 `6c56b78`） | ✅ 按预期拒绝：1 轮 1 步，直接提示新建标准模式会话，`tool/call` 0 条（截图 08）。PTC 支持留待后续版本 |
+
+另外：
+- 孤儿绑定记录清理：在桌面版上实测，7 天前的孤儿记录在启动时被删除，昨天的对照记录保留。
+- 目录选择器取消后回到网络列表，不再报错。
+
+每轮都已按备份逐字节还原用户环境。
