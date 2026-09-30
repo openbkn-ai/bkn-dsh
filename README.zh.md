@@ -91,6 +91,13 @@ Windows 上用 `dsh.cmd` 代替 `dsh`。
 
 在 DSH 停止时执行 `dsh plugin --profile <profile> remove @openbkn/dsh-business-context`，并删除该 profile 目录下残留的 `node_modules/@openbkn`。会话仍然可读：插件不往 DSH 会话日志写任何东西。`$DSH_HOME/openbkn/session-bindings/` 下的绑定记录会留下；插件在装着的时候，会清理那些对应会话已不存在、且写入超过七天的记录。
 
+### 备份与已知限制
+
+- **备份和迁移**：除了会话日志，还要一起复制 `$DSH_HOME/openbkn/session-bindings/`（每个会话的网络绑定）和 `$DSH_HOME/storages/openbkn_workspace_bindings.json`（工作区与网络的关联）。业务溯源和平台会话续接能从会话日志里重新算出来，绑定不能。
+- **网络范围**：在绑定会话里，插件会拒绝 `kn_id` 缺失或指向其他网络的直接查询。在平台上执行代码或已发布工具的调用（`run_code`、`execute_published_tool`）不带 `kn_id`，它们内部能访问到什么由平台约束，插件管不到。
+- **未绑定的会话**：凡是没有通过 OpenBKN 面板绑定的会话，调用 OpenBKN 工具都会被拒绝，包括绑定记录无法读取、或与会话日志冲突的会话。这类会话仍能打开，历史完整；插件会记一条不含业务内容的告警，但界面暂时不会显示"绑定异常"状态。
+- **工作区关联同一时间只在一个宿主里改**：共用同一个 `$DSH_HOME` 的桌面版和 `dsh web`，不要同时新建或修改工作区关联，否则一方的修改可能被另一方覆盖。
+
 ### 从 `0.2.0-rc.2-openbkn.0.2.0` 升级
 
 那个版本会往会话日志里写插件事件。用它在未打补丁的 DSH（桌面版、npm 命令行、未打补丁的源码构建）上绑定的会话会被拒绝重载，升级或卸载插件都修复不了；升级后请新建会话。写在打过补丁的 DSH 或 Runtime 归档里的会话仍然可读。

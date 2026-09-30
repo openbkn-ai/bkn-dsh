@@ -91,6 +91,13 @@ With `dsh web` on macOS, the folder chooser opens on the machine that runs `dsh 
 
 With DSH stopped, run `dsh plugin --profile <profile> remove @openbkn/dsh-business-context` and delete the leftover `node_modules/@openbkn` in that profile directory. Sessions stay readable: the plugin writes nothing to the DSH session log. Binding records under `$DSH_HOME/openbkn/session-bindings/` stay behind; while the plugin is installed, it removes the record of a session DSH no longer stores once the record is seven days old.
 
+### Backup and known limitations
+
+- **Backup and moving machines**: copy `$DSH_HOME/openbkn/session-bindings/` (per-session network bindings) and `$DSH_HOME/storages/openbkn_workspace_bindings.json` (workspace ↔ network associations) together with the session logs. Provenance and conversation continuity are re-derived from the session log, but the bindings are not.
+- **Network scope**: in a bound session the plugin refuses any direct query whose `kn_id` is missing or names another network. Tools that run code or published tools on the platform (`run_code`, `execute_published_tool`) take no `kn_id`; what they reach inside is scoped by the platform, not by this plugin.
+- **Unbound sessions**: OpenBKN tools are refused in any session that is not bound through the OpenBKN panel, including a session whose binding record is unreadable or conflicts with its log. Such a session still opens and keeps its history; the plugin logs a payload-free warning, but the UI does not show a binding-error state yet.
+- **One host at a time for associations**: the desktop app and `dsh web` sharing one `$DSH_HOME` should not both create or change workspace associations at the same time; one may overwrite the other's change.
+
 ### Upgrading from `0.2.0-rc.2-openbkn.0.2.0`
 
 That release wrote plugin events into the session log. Sessions it bound on an unpatched DSH (desktop app, npm CLI, unpatched source build) are refused on reload, and neither upgrading nor uninstalling the plugin repairs them. Start new sessions after upgrading. Sessions it wrote on a patched DSH or in a Runtime archive stay readable.
