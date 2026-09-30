@@ -60,6 +60,10 @@ interface SessionPersistenceStat {
  */
 const ORPHAN_BINDING_GRACE_MS = 7 * 24 * 60 * 60 * 1000
 
+const OPENBKN_TOOL_PREFIX = 'mcp__openbkn__'
+const UNBOUND_OPENBKN_TOOL_DENIAL = 'OpenBKN tools are available only in a session bound to an OpenBKN knowledge network. '
+  + 'Do not retry; tell the user to open a business session from the OpenBKN sidebar entry (in Standard mode, 标准模式).'
+
 /**
  * Owns the only selection transition: durably record the immutable binding in
  * the plugin's own per-session store (never the DSH session log, which hosts
@@ -84,6 +88,10 @@ export class OpenBknBusinessContextService extends TypertRemoteService {
     })
     ctx.on('agent/pre-step', async ({ agent, step, signal }, next) =>
       await this.refreshManagedMcpAtTurnStart(agent, step, signal, next))
+    // The Context Loader client registers its tools globally, so every
+    // session would see them; only a session whose scoped policy is mounted
+    // may call them.
+    ctx.tools.guard(execution => this.openBknToolDenial(execution))
     // DSH can restore Agents before this service is constructed. Treat those
     // resumed sessions exactly like newly created native sessions.
     for (const agent of ctx.agents.list()) void this.restoreBinding(agent)
@@ -389,6 +397,18 @@ export class OpenBknBusinessContextService extends TypertRemoteService {
 
   private bindingOf(agent: Agent): BusinessNetworkBinding | undefined {
     return readDshSessionBusinessNetwork(agent.session, this.bindingRecords)
+  }
+
+  /**
+   * Global guard: an OpenBKN tool runs only for an Agent carrying the scoped
+   * business policy (lifecycle, network scope, PTC refusal). Unbound sessions,
+   * sessions whose binding is unreadable or conflicting, sessions bound to
+   * another platform, and fresh sub-agents are refused.
+   */
+  private openBknToolDenial(execution: { readonly name: string; readonly agent?: Agent }): string | undefined {
+    if (!execution.name.startsWith(OPENBKN_TOOL_PREFIX)) return undefined
+    if (execution.agent !== undefined && this.mounted.has(execution.agent)) return undefined
+    return UNBOUND_OPENBKN_TOOL_DENIAL
   }
 
   private mountIfBound(agent: Agent): void {

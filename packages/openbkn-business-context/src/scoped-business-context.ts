@@ -59,6 +59,28 @@ export const MANAGED_IN_INTERACTION_TOOLS = [
 const MANAGED_OPENBKN_TOOLS = [...LIFECYCLE_TOOLS, ...MANAGED_IN_INTERACTION_TOOLS] as const
 
 /**
+ * Managed tools whose Context Loader schema takes `kn_id` (all required except
+ * `search_instance`, where the plugin requires it anyway so the scope is never
+ * left to a platform default). The bound network is enforced here, at the
+ * execution boundary, not only in the prompt. Tools without `kn_id` — the
+ * platform's `run_code`, skills, lifecycle — are not scoped by this check.
+ */
+export const KN_SCOPED_TOOLS: ReadonlySet<string> = new Set([
+  'mcp__openbkn__get_kn_detail', 'mcp__openbkn__search_schema',
+  'mcp__openbkn__get_object_types', 'mcp__openbkn__get_relation_types',
+  'mcp__openbkn__query_object_instance', 'mcp__openbkn__query_instance_subgraph',
+  'mcp__openbkn__explore_subgraph', 'mcp__openbkn__search_instance',
+  'mcp__openbkn__query_metric', 'mcp__openbkn__get_logic_properties_values',
+  'mcp__openbkn__find_skills',
+])
+
+/** Denial for a `kn_id` that is missing, not a string, or not the bound network. */
+export function knScopeDenial(name: string, args: Readonly<Record<string, unknown>>, boundNetworkId: string): string | undefined {
+  if (!KN_SCOPED_TOOLS.has(name) || args.kn_id === boundNetworkId) return undefined
+  return `This session is bound to OpenBKN knowledge network "${boundNetworkId}"; call ${name} with kn_id "${boundNetworkId}". Other networks cannot be queried from this session.`
+}
+
+/**
  * DSH's PTC-mode tool. PTC runs model-written programs in a Node process
  * with direct Node APIs, and logs nested calls as `tool/ptc-dispatch`, which
  * the lifecycle replay, provenance, and timeline readers do not read yet, so a
@@ -119,10 +141,11 @@ const scopedPolicyPlugin = (
         return 'This OpenBKN business session only permits managed OpenBKN tools.'
       }
       // Rules 2–5 of the interaction boundary (§6.3) all live in the pure
-      // `denialFor`; this whitelist (rule 1) is the only catalogue decision
-      // here, and the guard itself stays side-effect free — state moves only
-      // through settled results below.
-      return denialFor(lifecycle, execution.name, recordArgs(execution.arguments))
+      // `denialFor`; this whitelist (rule 1) and the network scope are the
+      // only other decisions here, and the guard itself stays side-effect
+      // free — state moves only through settled results below.
+      const args = recordArgs(execution.arguments)
+      return denialFor(lifecycle, execution.name, args) ?? knScopeDenial(execution.name, args, binding.knowledgeNetworkId)
     })
     // Constraint C2: this listener must stay synchronous so the state is
     // updated before the next guard judgment (V0-3, probe-verified).

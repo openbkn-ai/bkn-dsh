@@ -720,3 +720,22 @@ test('degrades each platform pane by failure class instead of throwing, and alwa
     assert.equal(licenseCalls, 0, entry.name)
   }
 })
+
+test('global guard: OpenBKN tools run only for an Agent carrying the mounted business policy', () => {
+  const service = Object.create(OpenBknBusinessContextService.prototype) as {
+    mounted: WeakSet<object>
+    openBknToolDenial(execution: { name: string; agent?: object }): string | undefined
+  }
+  service.mounted = new WeakSet()
+  const bound = { id: 'bound' }
+  const unbound = { id: 'unbound' }
+  service.mounted.add(bound)
+  const tool = 'mcp__openbkn__query_object_instance'
+  assert.equal(service.openBknToolDenial({ name: tool, agent: bound }), undefined)
+  // Unbound, unreadable, conflicting, other-platform bindings and fresh sub-agents all lack the mounted policy.
+  assert.match(service.openBknToolDenial({ name: tool, agent: unbound }) ?? '', /only in a session bound to an OpenBKN knowledge network/)
+  assert.match(service.openBknToolDenial({ name: 'mcp__openbkn__bkn_start_interaction' }) ?? '', /Do not retry/)
+  // Native tools and other MCP servers are untouched.
+  assert.equal(service.openBknToolDenial({ name: 'bash', agent: unbound }), undefined)
+  assert.equal(service.openBknToolDenial({ name: 'mcp__github__search', agent: unbound }), undefined)
+})

@@ -125,7 +125,7 @@ test('guards a non-managed tool out regardless of interaction state', () => {
 test('rule 2: schema access is denied before any start, allowed inside an open interaction', () => {
   const fake = fakeAgent()
   assert.equal(mount(fake), true)
-  const schema = { name: 'mcp__openbkn__search_schema', arguments: {} }
+  const schema = { name: 'mcp__openbkn__search_schema', arguments: { kn_id: 'kn-supply', query: 'orders' } }
   assert.match(fake.guards[0]!(schema) ?? '', /Start mcp__openbkn__bkn_start_interaction before any OpenBKN access/)
   startSucceeded(fake)
   assert.equal(fake.guards[0]!(schema), undefined)
@@ -290,4 +290,22 @@ test('the two managed tool groups exactly partition the managed OpenBKN catalogu
   ]
   assert.deepEqual([...new Set(union)].sort(), [...expected].sort())
   assert.equal(union.length, expected.length)
+})
+
+test('network scope: kn_id must be the bound network, as a string, and cannot be omitted', () => {
+  const fake = fakeAgent()
+  mount(fake)
+  startSucceeded(fake)
+  const bound = BOUND_EVENT.data.knowledgeNetworkId
+  const call = (name: string, args: Record<string, unknown>) => fake.guards[0]!({ name, arguments: args })
+  assert.equal(call('mcp__openbkn__query_metric', { kn_id: bound, metric_id: 'm' }), undefined)
+  for (const args of [{ kn_id: 'kn-other', metric_id: 'm' }, { metric_id: 'm' }, { kn_id: [bound] }, { kn_id: null }, { kn_id: bound.toUpperCase() }]) {
+    assert.match(call('mcp__openbkn__query_metric', args) ?? '', new RegExp(`bound to OpenBKN knowledge network "${bound}"`), JSON.stringify(args))
+  }
+  // search_instance takes an optional kn_id on the platform; the plugin still requires the bound one.
+  assert.match(call('mcp__openbkn__search_instance', {}) ?? '', /kn_id/)
+  assert.equal(call('mcp__openbkn__search_instance', { kn_id: bound }), undefined)
+  // Tools without kn_id keep their own contract.
+  assert.equal(call('mcp__openbkn__run_code', { code: 'x' }), undefined)
+  assert.equal(call('mcp__openbkn__get_skill_content', { skill_id: 's' }), undefined)
 })
