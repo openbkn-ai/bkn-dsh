@@ -14,7 +14,16 @@
 ## 1. 前置条件
 
 1. Node.js ≥ 22.19（或 ≥ 24），并确认 `node --version`。
-2. **能访问的 OpenBKN 平台**，并且证书能通过校验。注意：macOS 测试机上的平台地址 `https://192.168.50.28` 是本机回环别名，证书只签了这个 IP、`localhost` 和 `127.0.0.1`，Windows 机器一般连不上，也过不了证书校验。需要由用户提供一个 Windows 能访问的平台地址和对应的 CA。
+2. **OpenBKN 平台**：`https://192.168.50.28`。这是 macOS 测试机上的本地 kind 平台，2026-09-30 已核实：
+   - 局域网可以访问，443 绑定在 `0.0.0.0`，macOS 防火墙已关闭；
+   - 证书 SAN 包含 `IP:192.168.50.28`，有效期到 2028-12-25。
+
+   要求：
+   - Windows 机器必须和它在同一个 `192.168.50.x` 局域网里；
+   - 测试期间 Mac 要保持唤醒、留在这个网络，kind 集群不能停；
+   - 先在 Windows 上用 `curl.exe -I https://192.168.50.28 --cacert <CA 文件>` 确认能连通。
+
+   证书文件：把 Mac 上的 `~/.dsh/openbkn-dev-ca.pem` 复制到 Windows。它是平台的自签证书，只含公钥，可以复制。
 3. OpenBKN CLI：`npm install -g @openbkn/bkn-sdk`，然后 `openbkn auth login <平台地址>`，再用 `openbkn bkn list` 确认能列出 `supply_ontology_hand`。
 4. 自签证书的平台：把 CA 文件路径设为**用户环境变量** `NODE_EXTRA_CA_CERTS`（系统属性 → 环境变量），然后重新打开终端和应用。
 5. 插件包，二选一：
