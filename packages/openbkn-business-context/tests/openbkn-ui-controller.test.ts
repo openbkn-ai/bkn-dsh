@@ -1,6 +1,6 @@
 import assert from 'node:assert/strict'
 import test from 'node:test'
-import { OpenBknUiController } from '../src/client/openbkn-ui-controller.ts'
+import { OpenBknUiController, directoryPickerFailure, workspaceSelectionCancelled } from '../src/client/openbkn-ui-controller.ts'
 
 const authenticated = { kind: 'authenticated' as const, baseUrl: 'https://poc.openbkn.ai', username: 'leecky' }
 const authenticationRequired = { kind: 'authentication-required' as const, baseUrl: 'https://poc.openbkn.ai' }
@@ -186,26 +186,42 @@ test('refreshes native additive session contributions after binding a new sessio
   assert.deepEqual(refreshed, ['session-1'])
 })
 
-test('surfaces the targeted message when the directory picker backend cannot serve this connection mode', async () => {
+/** Open `kn-supply` in create-workspace mode with a chooser that throws `failure`. */
+async function createWorkspaceFailing(failure: Error) {
   const controller = new OpenBknUiController({
     status: async () => authenticated,
     configureToken: async () => [],
     listNetworks: async () => [{ id: 'kn-supply', displayName: 'Supply risk' }],
     bindNetworkWorkspace: async () => { throw new Error('must not bind') },
     bindNetwork: async () => { throw new Error('must not bind') },
-  }, async () => {
-    const failure = new Error('directory picker unavailable in this connection mode')
-    ;(failure as Error & { code?: string }).code = 'openbkn/directory-picker-unavailable'
-    throw failure
-  })
-
+  }, async () => { throw failure })
   controller.open()
   await controller.refresh()
   await controller.openNetwork('kn-supply', 'create-workspace')
+  return controller.snapshot()
+}
 
-  assert.equal(controller.snapshot().phase, 'error')
-  assert.match(controller.snapshot().message ?? '', /当前连接模式/)
-  assert.match(controller.snapshot().message ?? '', /关联一个已存在的本地工作区/)
+test('attributes a browse-only Host refusal to the connection mode', async () => {
+  // Exact text DSH 0.2.0-rc.2 uiWorkspace.pickDirectory() throws for the browse backend.
+  const refusal = new Error('directory picker failed: directoryPicker.pick needs the native capability; the composed picker serves "browse"')
+  const snapshot = await createWorkspaceFailing(directoryPickerFailure(refusal))
+  assert.equal(snapshot.phase, 'error')
+  assert.match(snapshot.message ?? '', /当前连接模式/)
+  assert.match(snapshot.message ?? '', /关联一个已存在的本地工作区/)
+})
+
+test('reports a failing native chooser with its own cause, not as a connection-mode limit', async () => {
+  const snapshot = await createWorkspaceFailing(directoryPickerFailure(new Error('directory picker failed: osascript exited with 1')))
+  assert.equal(snapshot.phase, 'error')
+  assert.match(snapshot.message ?? '', /无法打开本机目录选择器：directory picker failed: osascript exited with 1/)
+  assert.doesNotMatch(snapshot.message ?? '', /当前连接模式/)
+})
+
+test('returns to the network list without an error when the chooser is dismissed', async () => {
+  const snapshot = await createWorkspaceFailing(workspaceSelectionCancelled())
+  assert.equal(snapshot.phase, 'ready')
+  assert.equal(snapshot.message, undefined)
+  assert.deepEqual(snapshot.networks.map(network => network.id), ['kn-supply'])
 })
 
 test('includes the underlying cause in the generic bind-failure message', async () => {

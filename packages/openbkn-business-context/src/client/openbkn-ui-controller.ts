@@ -152,7 +152,9 @@ export class OpenBknUiController {
       this.refreshBoundSession?.(sessionId)
       this.close()
     } catch (error: unknown) {
-      this.publish({ ...this.state, phase: 'error', message: bindFailureMessage(error) })
+      // Dismissing the chooser is a choice, not a failure: back to the list.
+      if (errorCode(error) === WORKSPACE_SELECTION_CANCELLED) this.publish({ ...this.state, phase: 'ready' })
+      else this.publish({ ...this.state, phase: 'error', message: bindFailureMessage(error) })
     }
   }
 
@@ -194,11 +196,47 @@ function connectionFailureMessage(error: unknown): string {
   return '无法验证 OpenBKN 连接。请检查 Token 和平台地址后重试。'
 }
 
+const DIRECTORY_PICKER_UNAVAILABLE = 'openbkn/directory-picker-unavailable'
+const DIRECTORY_PICKER_FAILED = 'openbkn/directory-picker-failed'
+const WORKSPACE_SELECTION_CANCELLED = 'openbkn/workspace-selection-cancelled'
+
+/**
+ * Classify a failed `uiWorkspace.pickDirectory()`. DSH rewraps the Host's
+ * `directory-picker/unavailable` refusal into a plain message, so the browse
+ * backend (remote/SSH hosts) is recognised by that message; any other failure
+ * is the native chooser itself failing and keeps its own text.
+ */
+export function directoryPickerFailure(error: unknown): Error {
+  const detail = error instanceof Error ? error.message : String(error)
+  return /serves "browse"/.test(detail)
+    ? codedError(DIRECTORY_PICKER_UNAVAILABLE, 'directory picker unavailable in this connection mode', error)
+    : codedError(DIRECTORY_PICKER_FAILED, detail, error)
+}
+
+/** The operator dismissed the workspace directory chooser. */
+export function workspaceSelectionCancelled(): Error {
+  return codedError(WORKSPACE_SELECTION_CANCELLED, 'Workspace selection was cancelled.')
+}
+
+function codedError(code: string, message: string, cause?: unknown): Error {
+  const failure = new Error(message, cause === undefined ? undefined : { cause })
+  ;(failure as Error & { code?: string }).code = code
+  return failure
+}
+
+function errorCode(error: unknown): unknown {
+  return typeof error === 'object' && error !== null ? (error as { code?: unknown }).code : undefined
+}
+
 /** Build the overlay's bind-failure text; the cause is never swallowed silently. */
 function bindFailureMessage(error: unknown): string {
-  if (typeof error === 'object' && error !== null
-    && (error as { code?: unknown }).code === 'openbkn/directory-picker-unavailable') {
+  const code = errorCode(error)
+  if (code === DIRECTORY_PICKER_UNAVAILABLE) {
     return '当前连接模式（远程/浏览目录后端）不支持创建新工作区。请先为该知识网络关联一个已存在的本地工作区，或从本地桌面会话操作。'
+  }
+  if (code === DIRECTORY_PICKER_FAILED) {
+    const detail = error instanceof Error ? error.message.trim() : ''
+    return `无法打开本机目录选择器${detail === '' ? '' : `：${detail}`}。请处理后重试。`
   }
   const detail = error instanceof Error ? error.message.trim() : ''
   return detail === '' ? 'This network could not be bound to the current conversation. Try again.'

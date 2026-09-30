@@ -21,7 +21,9 @@ import { OpenBknEntry } from './OpenBknEntry.tsx'
 import { OpenBknOverlay } from './OpenBknOverlay.tsx'
 import { OpenBknContextToolView } from './OpenBknContextToolView.tsx'
 import { BoundNetworkBadge, BoundNetworkController } from './BoundNetworkBadge.tsx'
-import { OpenBknUiController, type NetworkSessionMode, type OpenBknUiPort } from './openbkn-ui-controller.ts'
+import {
+  OpenBknUiController, directoryPickerFailure, workspaceSelectionCancelled, type NetworkSessionMode, type OpenBknUiPort,
+} from './openbkn-ui-controller.ts'
 import { ProvenanceOverlay, ProvenanceOverlayController } from './ProvenanceOverlay.tsx'
 import type { ProvenanceView } from '../types.ts'
 import { SuggestionDock } from './SuggestionDock.tsx'
@@ -224,13 +226,9 @@ function createNetworkSessionOpener(ctx: Context, port: OpenBknUiPort) {
       try {
         path = await uiWorkspace.pickDirectory()
       } catch (error: unknown) {
-        // The browse directory backend (remote/SSH sessions) serves no native
-        // chooser; surface that exact cause instead of a generic bind failure.
-        const failure = new Error('directory picker unavailable in this connection mode', { cause: error })
-        ;(failure as Error & { code?: string }).code = 'openbkn/directory-picker-unavailable'
-        throw failure
+        throw directoryPickerFailure(error)
       }
-      if (path === null) throw new Error('Workspace selection was cancelled.')
+      if (path === null) throw workspaceSelectionCancelled()
       workspace = await workspaces.create({ path })
       await port.bindNetworkWorkspace(network.id, workspace.path)
     } else {
