@@ -24,8 +24,9 @@
    - 先在 Windows 上用 `curl.exe -I https://192.168.50.28 --cacert <CA 文件>` 确认能连通。
 
    证书文件：把 Mac 上的 `~/.dsh/openbkn-dev-ca.pem` 复制到 Windows。它是平台的自签证书，只含公钥，可以复制。
-3. OpenBKN CLI：`npm install -g @openbkn/bkn-sdk`，然后 `openbkn auth login <平台地址>`，再用 `openbkn bkn list` 确认能列出 `supply_ontology_hand`。
-4. 自签证书的平台：把 CA 文件路径设为**用户环境变量** `NODE_EXTRA_CA_CERTS`（系统属性 → 环境变量），然后重新打开终端和应用。
+3. OpenBKN CLI：要装与平台版本匹配的 CLI。测试平台是 EE 0.1.4，用 `npm install -g @openbkn/bkn-sdk@0.1.4`（`0.1.5-rc.1` 也可以）。CLI 从 `0.1.5-rc.2` 起，会在每次请求前检查平台的 `/api/bkn-backend/v1/health`，0.1.4 平台没有这个接口，会直接失败。安装后执行 `openbkn auth login <平台地址>`，再用 `openbkn bkn list` 确认能列出 `supply_ontology_hand`。
+   - npm 形态还需要 pnpm：`npm install -g pnpm@11.7.0`（与 DSH 的 `packageManager` 一致）。`dsh plugin add` 会调用 `PATH` 里的 pnpm。桌面版自带 pnpm。
+4. 自签证书的平台：把 CA 文件路径设为**用户环境变量** `NODE_EXTRA_CA_CERTS`（系统属性 → 环境变量）。设置之前就已经在运行的程序，包括 IDE、agent 宿主以及它们内置的终端，都要**完全退出后重开**，否则拿不到这个变量。
 5. 插件包，二选一：
    - **发布前**：用 CI 彩排产物。执行 `gh run download 36711975014 -R openbkn-ai/bkn-dsh -n plugin-tarball`，得到 `openbkn-dsh-business-context-0.2.0-rc.2-openbkn.0.2.0-1.tgz`。用 `Get-FileHash` 核对 sha256：`6c5a320df70b80482e9ab76f798284b29acce96c106d4bbb04453521ac7fa7eb`。安装时的包参数写成 `file:C:/完整/路径/openbkn-dsh-business-context-0.2.0-rc.2-openbkn.0.2.0-1.tgz`。
    - **发布后**：直接用 `@openbkn/dsh-business-context@0.2.0-rc.2-openbkn.0.2.0-1`。
@@ -41,7 +42,7 @@ dsh.cmd plugin --profile web add <插件包>
 dsh.cmd plugin --profile web list                  # 应列出 @openbkn/dsh-business-context@0.2.0-rc.2-openbkn.0.2.0-1
 ```
 
-编辑 `%USERPROFILE%\.dsh\profiles\web\cordis.patch.yml`，加入下面的条目。如果文件内容只有一行 `[]`，要用条目**替换**这一行：
+编辑 `%USERPROFILE%\.dsh\profiles\web\cordis.patch.yml`，加入下面的条目。如果文件内容只有一行 `[]`，要用条目**替换**这一行。第一次打开 `dsh web` 时，点了「预览版说明」的「继续」后，DSH 会自己往文件末尾追加 `ui-settings-general` 条目，所以以后修改时要按 `id` 找到插件的条目，不要直接往末尾加：
 
 ```yaml
 - id: openbkn-business-context
@@ -54,9 +55,11 @@ dsh.cmd plugin --profile web list                  # 应列出 @openbkn/dsh-busi
 ## 3. 官方桌面版形态
 
 1. 安装 DeepSeek Harness 桌面版 `0.2.0-rc.2`，启动一次后完全退出（包括托盘图标）。
-2. 用应用菜单「管理 dsh 命令…」把 `dsh` 加到 PATH（记录这个菜单在 Windows 上的实际名称和位置），然后执行 `dsh.cmd plugin --profile desktop add <插件包>`。
+2. 用窗口左上角菜单栏的「应用 → 管理 dsh 命令…」把 `dsh` 加到用户 PATH。如果已经装了 npm 版 `dsh`，它会提示另一个 `dsh` 优先级更高。也可以直接用桌面版自带的 `…\DeepSeek Harness\resources\runtime\cli\bin\dsh.cmd`。然后执行 `dsh.cmd plugin --profile desktop add <插件包>`。
 3. 在 `%USERPROFILE%\.dsh\profiles\desktop\cordis.patch.yml` 加入同样的 baseUrl 条目。
 4. 重新打开桌面版，按第 4 节验收。
+
+**先测桌面版，再测 npm 形态，或者在两种形态之间把 `%USERPROFILE%\.dsh\storages\openbkn_workspace_bindings.json` 移走。** 网络和工作区的关联存在全局存储里，不按 profile 区分。前一种形态关联过的网络，到后一种形态不会再出现「新建工作区」，第 2、3 项就没法照原样测了。
 
 ## 4. 每种形态的验收项
 

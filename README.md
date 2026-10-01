@@ -43,12 +43,13 @@ Verified on macOS arm64 for all three forms: install, binding, Q&A with tool cal
 
 ### Before you start
 
-1. **OpenBKN CLI sign-in.** Install the CLI (`npm install -g @openbkn/bkn-sdk`) and run `openbkn auth login <platform-url>` once. The plugin reads the token through the `openbkn` CLI, so the CLI must be on the `PATH` of the DSH process (the desktop app takes it from your login shell).
-2. **Self-signed platform certificate** (skip for a publicly trusted one). DSH must trust the platform CA through `NODE_EXTRA_CA_CERTS=<CA pem path>`:
+1. **OpenBKN CLI sign-in.** Install the CLI version that matches your platform and run `openbkn auth login <platform-url>` once. For an OpenBKN 0.1.4 platform use `npm install -g @openbkn/bkn-sdk@0.1.4` (`0.1.5-rc.1` also works): CLI `0.1.5-rc.2` and later check the platform version through `/api/bkn-backend/v1/health` before every request and refuse platforms that lack it, such as 0.1.4. The plugin reads the token through the `openbkn` CLI, so DSH must find it on the `PATH` of the DSH process (the desktop app takes `PATH` from your login shell on macOS); on Windows it finds the `openbkn.cmd` shim. Otherwise set `cliPath` (step 2) to the CLI's absolute path.
+2. **pnpm, for the npm CLI only.** The npm `dsh` hands `plugin add` to the `pnpm` on `PATH`; install it first (`npm install -g pnpm@11.7.0`, the version DSH itself uses). The desktop app bundles its own.
+3. **Self-signed platform certificate** (skip for a publicly trusted one). DSH must trust the platform CA through `NODE_EXTRA_CA_CERTS=<CA pem path>`:
    - `dsh web` from a terminal: prefix the command with the variable.
    - Desktop app on macOS: `export NODE_EXTRA_CA_CERTS=…` in `~/.zprofile` or `~/.zshrc`. The app reads the login-shell environment at startup, including Dock and Finder launches.
-   - Desktop app on Windows (not yet verified): set it as a user environment variable, then restart the app.
-3. **Use Standard mode.** A session bound to an OpenBKN network must run in DSH's **Standard mode** (标准模式). PTC mode is not supported yet: the plugin refuses `run_code` there and the model asks you to start a new session in Standard mode. The mode is chosen in the mode menu before the first message is sent and cannot be changed afterwards.
+   - Windows: set it as a user environment variable, then fully quit and restart every program that should see it, including terminals inside IDEs or agent hosts that were already running.
+4. **Use Standard mode.** A session bound to an OpenBKN network must run in DSH's **Standard mode** (标准模式). PTC mode is not supported yet: the plugin refuses `run_code` there and the model asks you to start a new session in Standard mode. The mode is chosen in the mode menu before the first message is sent and cannot be changed afterwards.
 
 ### 1. Install the plugin
 
@@ -69,12 +70,13 @@ On Windows, run `dsh.cmd` in place of `dsh`.
 
 ### 2. Set the platform address
 
-Add the entry below to the profile's patch layer, `~/.dsh/profiles/<profile>/cordis.patch.yml` (`desktop` or `web`; under `$DSH_HOME` if you set one). The file is a YAML list. A newly created profile may hold only `[]`: replace that line with the entry, because appending after `[]` makes the file invalid.
+Add the entry below to the profile's patch layer, `~/.dsh/profiles/<profile>/cordis.patch.yml` (`desktop` or `web`; under `$DSH_HOME` if you set one; `%USERPROFILE%\.dsh\…` on Windows). The file is a YAML list. A newly created profile may hold only `[]`: replace that line with the entry, because appending after `[]` makes the file invalid. DSH itself may append entries later (for example after the first-run notice), so find the plugin's entry by its `id` when you edit it again.
 
 ```yaml
 - id: openbkn-business-context
   config:
     baseUrl: https://<your-openbkn-platform>
+    # cliPath: /absolute/path/to/openbkn   # only if DSH cannot find the CLI on PATH
 ```
 
 The platform address is not sensitive. Never put the OpenBKN token in Cordis YAML; the plugin keeps it only in DSH credentials.
@@ -96,6 +98,7 @@ With DSH stopped, run `dsh plugin --profile <profile> remove @openbkn/dsh-busine
 - **Backup and moving machines**: copy `$DSH_HOME/openbkn/session-bindings/` (per-session network bindings) and `$DSH_HOME/storages/openbkn_workspace_bindings.json` (workspace ↔ network associations) together with the session logs. Provenance and conversation continuity are re-derived from the session log, but the bindings are not.
 - **Network scope**: in a bound session the plugin refuses any direct query whose `kn_id` is missing or names another network. Tools that run code or published tools on the platform (`run_code`, `execute_published_tool`) take no `kn_id`; what they reach inside is scoped by the platform, not by this plugin.
 - **Unbound sessions**: OpenBKN tools are refused in any session that is not bound through the OpenBKN panel, including a session whose binding record cannot be read, or conflicts with its log, when the session is opened. Such a session still opens and keeps its history; the plugin logs a payload-free warning, but the UI does not show a binding-error state yet. A record that becomes unreadable while its session is already running does not revoke the running session's access until the session is reopened.
+- **Associations are shared by every host and profile** in one `$DSH_HOME` (`storages/openbkn_workspace_bindings.json`): a network associated in `dsh web` offers *continue* / *new session* in the desktop app, not *New workspace*.
 - **One running host while changing associations**: each host keeps the workspace associations in memory and rewrites the whole store from that copy, so taking turns is not enough — a host that was already running overwrites the other's change on its next write. When the desktop app and `dsh web` share one `$DSH_HOME`, quit the other host before creating or changing a workspace association, and restart a host before using it to change associations after the other one did.
 
 ### Upgrading from `0.2.0-rc.2-openbkn.0.2.0`
