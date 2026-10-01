@@ -14,7 +14,7 @@
 ## 1. 前置条件
 
 1. Node.js ≥ 22.19（或 ≥ 24），并确认 `node --version`。
-2. **OpenBKN 平台**：`https://192.168.50.28`。这是 macOS 测试机上的本地 kind 平台，2026-09-30 已核实：
+2. **OpenBKN 平台**：`https://192.168.50.28`（0.1.5）。这是 macOS 测试机上的本地 kind 平台，2026-09-30 已核实：
    - 局域网可以访问，443 绑定在 `0.0.0.0`，macOS 防火墙已关闭；
    - 证书 SAN 包含 `IP:192.168.50.28`，有效期到 2028-12-25。
 
@@ -24,7 +24,7 @@
    - 先在 Windows 上用 `curl.exe -I https://192.168.50.28 --cacert <CA 文件>` 确认能连通。
 
    证书文件：把 Mac 上的 `~/.dsh/openbkn-dev-ca.pem` 复制到 Windows。它是平台的自签证书，只含公钥，可以复制。
-3. OpenBKN CLI：要装与平台版本匹配的 CLI。测试平台是 EE 0.1.4，用 `npm install -g @openbkn/bkn-sdk@0.1.4`（`0.1.5-rc.1` 也可以）。CLI 从 `0.1.5-rc.2` 起，会在每次请求前检查平台的 `/api/bkn-backend/v1/health`，0.1.4 平台没有这个接口，会直接失败。安装后执行 `openbkn auth login <平台地址>`，再用 `openbkn bkn list` 确认能列出 `supply_ontology_hand`。
+3. OpenBKN CLI：要装与平台版本匹配的 CLI。测试平台已于 2026-10-01 升级到 **0.1.5**，用 `npm install -g @openbkn/bkn-sdk@0.1.5`（Mac 上已验证 CLI 0.1.5 和 0.1.4 都能访问）。CLI 从 `0.1.5-rc.2` 起，会在每次请求前检查平台的 `/api/bkn-backend/v1/health`，0.1.4 平台没有这个接口，会直接失败。安装后执行 `openbkn auth login <平台地址>`，再用 `openbkn bkn list` 确认能列出 `supply_ontology_hand`。
    - npm 形态还需要 pnpm：`npm install -g pnpm@11.7.0`（与 DSH 的 `packageManager` 一致）。`dsh plugin add` 会调用 `PATH` 里的 pnpm。桌面版自带 pnpm。
 4. 自签证书的平台：把 CA 文件路径设为**用户环境变量** `NODE_EXTRA_CA_CERTS`（系统属性 → 环境变量）。设置之前就已经在运行的程序，包括 IDE、agent 宿主以及它们内置的终端，都要**完全退出后重开**，否则拿不到这个变量。
 5. 插件包，二选一：
