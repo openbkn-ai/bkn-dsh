@@ -188,7 +188,7 @@ function connectionFailureMessage(error: unknown): string {
   if (typeof error === 'object' && error !== null) {
     const candidate = error as { code?: unknown, details?: unknown }
     if (candidate.code === 'openbkn/cli-unavailable') {
-      return 'DSH 找不到 OpenBKN CLI（openbkn）。请先安装 `npm install -g @openbkn/bkn-sdk` 并执行 `openbkn auth login`，确认启动 DSH 的环境 PATH 里能找到它，然后重启 DSH；也可以在 cordis.patch.yml 的 openbkn-business-context 条目里把 cliPath 设为它的绝对路径。'
+      return 'DSH 找不到 OpenBKN CLI（openbkn）。请先安装 `npm install -g @openbkn/bkn-sdk` 并执行 `openbkn auth login`，确认启动 DSH 的环境 PATH 里能找到它，然后重启 DSH；也可以在 cordis.patch.yml 的 openbkn-business-context 条目里把 cliPath 设为它的绝对路径（Windows 上要写到 openbkn.cmd）。'
     }
     if (candidate.code === 'openbkn/connection-failed' && typeof candidate.details === 'object' && candidate.details !== null) {
       const layer = (candidate.details as { layer?: unknown }).layer

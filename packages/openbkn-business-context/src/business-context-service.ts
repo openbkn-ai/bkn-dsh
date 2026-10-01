@@ -61,6 +61,17 @@ interface SessionPersistenceStat {
  */
 const ORPHAN_BINDING_GRACE_MS = 7 * 24 * 60 * 60 * 1000
 
+/**
+ * A CLI the host cannot find or execute is reported with its own code, so the
+ * panel explains how to install or point to it instead of blaming the token.
+ * The lookup failure stays attached as the cause.
+ */
+function cliUnavailableAsRemote(error: unknown): unknown {
+  return error instanceof OpenBknCliUnavailableError
+    ? new RemoteError('openbkn/cli-unavailable', error.message, { cliPath: error.cliPath }, { cause: error })
+    : error
+}
+
 const OPENBKN_TOOL_PREFIX = 'mcp__openbkn__'
 const UNBOUND_OPENBKN_TOOL_DENIAL = 'OpenBKN tools are available only in a session bound to an OpenBKN knowledge network. '
   + 'Do not retry; tell the user to open a business session from the OpenBKN sidebar entry (in Standard mode, 标准模式).'
@@ -122,16 +133,11 @@ export class OpenBknBusinessContextService extends TypertRemoteService {
       // not permission to hide a failed CLI synchronization. Once the CLI has
       // established this platform identity, its token is authoritative.
       const credential = await this.ctx.credentials.describe(credentialRef(OPENBKN_MCP_TOKEN_REF))
-      if (!credential.configured) {
-        if (error instanceof OpenBknCliUnavailableError) {
-          throw new RemoteError('openbkn/cli-unavailable', error.message, { cliPath: error.cliPath })
-        }
-        throw error
-      }
+      if (!credential.configured) throw cliUnavailableAsRemote(error)
       if (error instanceof OpenBknCliError) {
         return { kind: 'authentication-required', baseUrl: this.config.baseUrl }
       }
-      throw error
+      throw cliUnavailableAsRemote(error)
     }
   }
 
@@ -139,8 +145,12 @@ export class OpenBknBusinessContextService extends TypertRemoteService {
   @Remote('beginLogin')
   async remoteBeginLogin(signal: AbortSignal): Promise<readonly BusinessNetworkSummary[]> {
     if (signal.aborted) throw signal.reason
-    await this.authCoordinator().beginLogin()
-    await this.synchronizeCliCredential(signal)
+    try {
+      await this.authCoordinator().beginLogin()
+      await this.synchronizeCliCredential(signal)
+    } catch (error: unknown) {
+      throw cliUnavailableAsRemote(error)
+    }
     return await this.listNetworksAfterAuthentication(signal)
   }
 

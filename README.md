@@ -43,7 +43,7 @@ Verified on macOS arm64 for all three forms: install, binding, Q&A with tool cal
 
 ### Before you start
 
-1. **OpenBKN CLI sign-in.** Install the CLI version that matches your platform and run `openbkn auth login <platform-url>` once. For an OpenBKN 0.1.4 platform use `npm install -g @openbkn/bkn-sdk@0.1.4` (`0.1.5-rc.1` also works): CLI `0.1.5-rc.2` and later check the platform version through `/api/bkn-backend/v1/health` before every request and refuse platforms that lack it, such as 0.1.4. The plugin reads the token through the `openbkn` CLI, so DSH must find it on the `PATH` of the DSH process (the desktop app takes `PATH` from your login shell on macOS); on Windows it finds the `openbkn.cmd` shim. Otherwise set `cliPath` (step 2) to the CLI's absolute path.
+1. **OpenBKN CLI sign-in.** Install the CLI version that matches your platform and run `openbkn auth login <platform-url>` once. For an OpenBKN 0.1.4 platform use `npm install -g @openbkn/bkn-sdk@0.1.4` (`0.1.5-rc.1` also works): CLI `0.1.5-rc.2` and later check the platform version through `/api/bkn-backend/v1/health` before every request and refuse platforms that lack it, such as 0.1.4. The plugin reads the token through the `openbkn` CLI, so DSH must find it on the `PATH` of the DSH process (the desktop app takes `PATH` from your login shell on macOS); on Windows it finds the `openbkn.cmd` shim. Otherwise set `cliPath` (step 2) to the CLI's absolute path. DSH adds the Windows extension only to a bare name, so on Windows the path must name the shim itself, e.g. `C:/Users/<you>/AppData/Roaming/npm/openbkn.cmd` (`where.exe openbkn` shows it).
 2. **pnpm, for the npm CLI only.** The npm `dsh` hands `plugin add` to the `pnpm` on `PATH`; install it first (`npm install -g pnpm@11.7.0`, the version DSH itself uses). The desktop app bundles its own.
 3. **Self-signed platform certificate** (skip for a publicly trusted one). DSH must trust the platform CA through `NODE_EXTRA_CA_CERTS=<CA pem path>`:
    - `dsh web` from a terminal: prefix the command with the variable.
@@ -76,7 +76,7 @@ Add the entry below to the profile's patch layer, `~/.dsh/profiles/<profile>/cor
 - id: openbkn-business-context
   config:
     baseUrl: https://<your-openbkn-platform>
-    # cliPath: /absolute/path/to/openbkn   # only if DSH cannot find the CLI on PATH
+    # cliPath: /absolute/path/to/openbkn   # only if DSH cannot find the CLI on PATH; on Windows end it with openbkn.cmd
 ```
 
 The platform address is not sensitive. Never put the OpenBKN token in Cordis YAML; the plugin keeps it only in DSH credentials.
