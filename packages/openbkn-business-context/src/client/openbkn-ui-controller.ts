@@ -145,7 +145,7 @@ export class OpenBknUiController {
       return
     }
 
-    this.publish({ ...this.state, phase: 'binding', message: undefined })
+    this.publish({ ...this.state, phase: 'binding', message: mode === 'create-workspace' ? WORKSPACE_PICKER_HINT : undefined })
     try {
       const sessionId = await this.openNetworkSession(network, mode)
       await this.port.bindNetwork(sessionId, networkId, signal)
@@ -153,7 +153,7 @@ export class OpenBknUiController {
       this.close()
     } catch (error: unknown) {
       // Dismissing the chooser is a choice, not a failure: back to the list.
-      if (errorCode(error) === WORKSPACE_SELECTION_CANCELLED) this.publish({ ...this.state, phase: 'ready' })
+      if (errorCode(error) === WORKSPACE_SELECTION_CANCELLED) this.publish({ ...this.state, phase: 'ready', message: undefined })
       else this.publish({ ...this.state, phase: 'error', message: bindFailureMessage(error) })
     }
   }
@@ -187,6 +187,9 @@ function isPlatformUnavailableError(error: unknown): error is {
 function connectionFailureMessage(error: unknown): string {
   if (typeof error === 'object' && error !== null) {
     const candidate = error as { code?: unknown, details?: unknown }
+    if (candidate.code === 'openbkn/cli-unavailable') {
+      return 'DSH 找不到 OpenBKN CLI（openbkn）。请先安装 `npm install -g @openbkn/bkn-sdk` 并执行 `openbkn auth login`，确认启动 DSH 的环境 PATH 里能找到它，然后重启 DSH；也可以在 cordis.patch.yml 的 openbkn-business-context 条目里把 cliPath 设为它的绝对路径。'
+    }
     if (candidate.code === 'openbkn/connection-failed' && typeof candidate.details === 'object' && candidate.details !== null) {
       const layer = (candidate.details as { layer?: unknown }).layer
       if (layer === 'context-loader-mcp') return '无法连接 OpenBKN Context Loader MCP。请检查平台地址、网络连接和 Token 的 MCP 访问权限。'
@@ -195,6 +198,9 @@ function connectionFailureMessage(error: unknown): string {
   }
   return '无法验证 OpenBKN 连接。请检查 Token 和平台地址后重试。'
 }
+
+/** Shown while the native chooser is open; on some hosts (Windows `dsh web`) it opens behind other windows. */
+const WORKSPACE_PICKER_HINT = '请在弹出的系统窗口中选择工作区目录（窗口可能被其他窗口挡住，可从任务栏或 Dock 切换过去）。选好后会自动创建工作区并绑定会话。'
 
 const DIRECTORY_PICKER_UNAVAILABLE = 'openbkn/directory-picker-unavailable'
 const DIRECTORY_PICKER_FAILED = 'openbkn/directory-picker-failed'

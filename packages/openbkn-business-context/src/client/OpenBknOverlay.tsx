@@ -70,7 +70,7 @@ function OverlayBody({ state, beginLogin, configureToken, refresh, openNetwork }
   )
 
   if (state.phase === 'loading' || state.phase === 'binding') {
-    return <p style={mutedStyle}>{state.phase === 'binding' ? '正在绑定当前会话…' : '正在连接 OpenBKN…'}</p>
+    return <p style={mutedStyle}>{state.phase === 'binding' ? state.message ?? '正在绑定当前会话…' : '正在连接 OpenBKN…'}</p>
   }
 
   if (state.phase === 'authentication-required') {

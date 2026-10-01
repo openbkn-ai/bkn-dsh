@@ -18,7 +18,7 @@ import { readDshSessionTurnProvenance } from './dsh-session-provenance.js'
 import { SessionBindingStore } from './session-binding-store.js'
 import { OpenBknPlatformReader, PlatformReaderError } from './platform-reader.js'
 import { AuthCoordinator, OpenBknCliError } from './auth.js'
-import { OpenBknCliSubprocess } from './openbkn-cli-subprocess.js'
+import { OpenBknCliSubprocess, OpenBknCliUnavailableError } from './openbkn-cli-subprocess.js'
 import { OPENBKN_MCP_TOKEN_REF, OpenBknMcpManager } from './openbkn-mcp-manager.js'
 import { buildProvenanceView } from './provenance-view.js'
 import { buildNetworkCapabilityProfile, type NetworkCapabilityProfile } from './network-capability-profile.js'
@@ -46,6 +46,7 @@ declare module '@deepseek-ai/dsh-typert-protocol' {
       readonly layer: 'context-loader-mcp' | 'platform-api'
     }
     'openbkn/platform-unavailable': { readonly baseUrl: string }
+    'openbkn/cli-unavailable': { readonly cliPath: string }
   }
 }
 
@@ -121,7 +122,12 @@ export class OpenBknBusinessContextService extends TypertRemoteService {
       // not permission to hide a failed CLI synchronization. Once the CLI has
       // established this platform identity, its token is authoritative.
       const credential = await this.ctx.credentials.describe(credentialRef(OPENBKN_MCP_TOKEN_REF))
-      if (!credential.configured) throw error
+      if (!credential.configured) {
+        if (error instanceof OpenBknCliUnavailableError) {
+          throw new RemoteError('openbkn/cli-unavailable', error.message, { cliPath: error.cliPath })
+        }
+        throw error
+      }
       if (error instanceof OpenBknCliError) {
         return { kind: 'authentication-required', baseUrl: this.config.baseUrl }
       }

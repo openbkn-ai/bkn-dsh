@@ -5,6 +5,7 @@ import { tmpdir } from 'node:os'
 import { join } from 'node:path'
 import { OpenBknBusinessContextService } from '../src/business-context-service.ts'
 import { SessionBindingStore } from '../src/session-binding-store.ts'
+import { OpenBknCliUnavailableError } from '../src/openbkn-cli-subprocess.ts'
 
 const config = {
   baseUrl: 'https://poc.openbkn.ai', requestTimeoutMs: 30_000,
@@ -803,4 +804,17 @@ test('concurrent binds of one session to different networks mount the winner wit
   } finally {
     rmSync(root, { recursive: true, force: true })
   }
+})
+
+test('a missing OpenBKN CLI surfaces as openbkn/cli-unavailable, not as a token or platform failure', async () => {
+  const service = Object.create(OpenBknBusinessContextService.prototype) as {
+    ctx: { credentials: { describe(): Promise<{ configured: boolean }> } }
+    authCoordinator(): { status(): Promise<never> }
+    remoteStatus(signal: AbortSignal): Promise<unknown>
+  }
+  service.ctx = { credentials: { describe: async () => ({ configured: false }) } }
+  service.authCoordinator = () => ({ status: async () => { throw new OpenBknCliUnavailableError('openbkn', { cause: new Error('ENOENT') }) } })
+  await assert.rejects(service.remoteStatus(AbortSignal.timeout(1_000)), (error: unknown) =>
+    (error as { code?: string }).code === 'openbkn/cli-unavailable'
+    && (error as { details?: { cliPath?: string } }).details?.cliPath === 'openbkn')
 })
