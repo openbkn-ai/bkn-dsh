@@ -5,6 +5,7 @@ import { tmpdir } from 'node:os'
 import { join } from 'node:path'
 import { OpenBknBusinessContextService } from '../src/business-context-service.ts'
 import { SessionBindingStore } from '../src/session-binding-store.ts'
+import { OpenBknCliUnavailableError } from '../src/openbkn-cli-subprocess.ts'
 
 const config = {
   baseUrl: 'https://poc.openbkn.ai', requestTimeoutMs: 30_000,
@@ -802,5 +803,26 @@ test('concurrent binds of one session to different networks mount the winner wit
     assert.doesNotMatch(text, new RegExp(loser))
   } finally {
     rmSync(root, { recursive: true, force: true })
+  }
+})
+
+test('a missing OpenBKN CLI surfaces as openbkn/cli-unavailable on every CLI entry, with or without a stored token', async () => {
+  const lookup = new Error('subprocess-local: command "openbkn" was not found on PATH')
+  const isCliUnavailable = (error: unknown) =>
+    (error as { code?: string }).code === 'openbkn/cli-unavailable'
+    && (error as { details?: { cliPath?: string } }).details?.cliPath === 'openbkn'
+    && ((error as { cause?: { cause?: unknown } }).cause?.cause === lookup)
+  for (const configured of [false, true]) {
+    const service = Object.create(OpenBknBusinessContextService.prototype) as {
+      ctx: { credentials: { describe(): Promise<{ configured: boolean }> } }
+      authCoordinator(): { status(): Promise<never>; beginLogin(): Promise<never> }
+      remoteStatus(signal: AbortSignal): Promise<unknown>
+      remoteBeginLogin(signal: AbortSignal): Promise<unknown>
+    }
+    service.ctx = { credentials: { describe: async () => ({ configured }) } }
+    const unavailable = async (): Promise<never> => { throw new OpenBknCliUnavailableError('openbkn', { cause: lookup }) }
+    service.authCoordinator = () => ({ status: unavailable, beginLogin: unavailable })
+    await assert.rejects(service.remoteStatus(AbortSignal.timeout(1_000)), isCliUnavailable, `status, stored token: ${configured}`)
+    await assert.rejects(service.remoteBeginLogin(AbortSignal.timeout(1_000)), isCliUnavailable, `beginLogin, stored token: ${configured}`)
   }
 })

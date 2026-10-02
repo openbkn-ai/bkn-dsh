@@ -6,6 +6,12 @@ const GRACE_MS = 3_000
 
 /** Structural subset of DSH subprocess used for the fixed OpenBKN CLI contract. */
 export interface CliSubprocess {
+  /**
+   * DSH's own executable lookup: absolute paths are checked; bare names are
+   * searched on the provider's PATH, with PATHEXT on Windows (`openbkn` →
+   * `openbkn.cmd`). `spawn` does neither, so a bare name fails there.
+   */
+  resolveExecutable(command: string, env?: Readonly<Record<string, string>>, signal?: AbortSignal): Promise<string>
   spawn(spec: {
     readonly argv: readonly string[]
     readonly cwd: string
@@ -25,6 +31,14 @@ export interface CliSubprocess {
   }
 }
 
+/** The configured OpenBKN CLI cannot be found or executed by the DSH host. */
+export class OpenBknCliUnavailableError extends Error {
+  constructor(readonly cliPath: string, options?: ErrorOptions) {
+    super(`OpenBKN CLI ${JSON.stringify(cliPath)} is not available to the DSH host.`, options)
+    this.name = 'OpenBknCliUnavailableError'
+  }
+}
+
 /** DSH-managed invocation of the OpenBKN CLI with a fixed authentication contract. */
 export class OpenBknCliSubprocess implements OpenBknCli {
   private readonly baseUrl: string
@@ -39,9 +53,16 @@ export class OpenBknCliSubprocess implements OpenBknCli {
   }
 
   async run(args: readonly string[], signal?: AbortSignal): Promise<CliResult> {
-    const argv = this.resolveArgv(args)
+    const [, ...rest] = this.resolveArgv(args)
+    let executable: string
+    try {
+      executable = await this.subprocess.resolveExecutable(this.cliPath, undefined, signal)
+    } catch (error: unknown) {
+      if (signal?.aborted === true) throw error
+      throw new OpenBknCliUnavailableError(this.cliPath, { cause: error })
+    }
     const child = this.subprocess.spawn({
-      argv,
+      argv: [executable, ...rest],
       cwd: this.cwd,
       stdio: {
         stdin: { data: '' },

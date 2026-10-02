@@ -240,3 +240,39 @@ test('includes the underlying cause in the generic bind-failure message', async 
   assert.equal(controller.snapshot().phase, 'error')
   assert.match(controller.snapshot().message ?? '', /bind rejected by host/)
 })
+
+test('tells the user how to make the OpenBKN CLI available instead of blaming the token', async () => {
+  const controller = new OpenBknUiController({
+    status: async () => { throw Object.assign(new Error('OpenBKN CLI "openbkn" is not available to the DSH host.'), { code: 'openbkn/cli-unavailable', details: { cliPath: 'openbkn' } }) },
+    configureToken: async () => [],
+    listNetworks: async () => [],
+    bindNetworkWorkspace: async () => { throw new Error('unused') },
+    bindNetwork: async () => { throw new Error('unused') },
+  }, async () => 'session-1')
+  controller.open()
+  await controller.refresh()
+  assert.equal(controller.snapshot().phase, 'error')
+  assert.match(controller.snapshot().message ?? '', /找不到 OpenBKN CLI/)
+  assert.match(controller.snapshot().message ?? '', /与平台版本一致/)
+  assert.match(controller.snapshot().message ?? '', /cliPath/)
+  assert.doesNotMatch(controller.snapshot().message ?? '', /检查 Token/)
+})
+
+test('while the workspace chooser is open, the panel says where to look instead of "binding"', async () => {
+  let release: (sessionId: string) => void = () => {}
+  const controller = new OpenBknUiController({
+    status: async () => authenticated,
+    configureToken: async () => [],
+    listNetworks: async () => [{ id: 'kn-supply', displayName: 'Supply risk' }],
+    bindNetworkWorkspace: async () => ({ id: 'kn-supply', displayName: 'Supply risk' }),
+    bindNetwork: async () => ({ platformBaseUrl: authenticated.baseUrl, knowledgeNetworkId: 'kn-supply', displayName: 'Supply risk' }),
+  }, () => new Promise<string>(resolve => { release = resolve }))
+  controller.open()
+  await controller.refresh()
+  const pending = controller.openNetwork('kn-supply', 'create-workspace')
+  assert.equal(controller.snapshot().phase, 'binding')
+  assert.match(controller.snapshot().message ?? '', /系统窗口中选择工作区目录/)
+  release('session-1')
+  await pending
+  assert.equal(controller.snapshot().open, false)
+})
