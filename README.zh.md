@@ -39,7 +39,7 @@ bkn-dsh 是一个增量式 DeepSeek Harness 插件。授权用户可为一个会
 | npm 命令行 | `npm install -g @deepseek-ai/dsh@0.2.0-rc.2`，然后 `dsh web` |
 | 源码检出（构建后运行） | 检出 `dsh-v0.2.0-rc.2`，执行 `pnpm install && pnpm run build`，然后 `node apps/cli/lib/bin.js web` |
 
-三种形态都已在 macOS arm64 上验证：安装、绑定、带工具调用的问答、业务溯源、重启后重新打开会话，以及续接平台会话（[证据](docs/evidence/2026-09-29-desktop-direct-install.md)）。Windows 尚未验证。
+三种形态都已在 macOS arm64 上验证：安装、绑定、带工具调用的问答、业务溯源、重启后重新打开会话，以及续接平台会话（[证据](docs/evidence/2026-09-29-desktop-direct-install.md)）。Windows 10 上也验证了桌面版和 npm 命令行：默认配置下的登录、绑定和问答已通过（第二轮，CLI 查找修复之后）；其余各项——溯源、重启续接、未绑定和 PTC 拒绝、卸载——是在第一轮设置了 `cliPath` 的情况下通过的，当时还没有这个修复（[结果](docs/handoff/2026-10-02-windows-verification-round2.md)）。源码检出形态没有在 Windows 上测。
 
 ### 开始之前
 

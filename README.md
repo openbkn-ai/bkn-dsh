@@ -39,7 +39,7 @@ From plugin `0.2.0-rc.2-openbkn.0.2.0-1` on, an unpatched DeepSeek Harness `0.2.
 | npm CLI | `npm install -g @deepseek-ai/dsh@0.2.0-rc.2`, then `dsh web` |
 | Source checkout, built | `dsh-v0.2.0-rc.2` checkout after `pnpm install && pnpm run build`, then `node apps/cli/lib/bin.js web` |
 
-Verified on macOS arm64 for all three forms: install, binding, Q&A with tool calls, business provenance, reopening a session after a restart, and continuing its platform conversation ([evidence](docs/evidence/2026-09-29-desktop-direct-install.md)). Windows is not verified yet.
+Verified on macOS arm64 for all three forms: install, binding, Q&A with tool calls, business provenance, reopening a session after a restart, and continuing its platform conversation ([evidence](docs/evidence/2026-09-29-desktop-direct-install.md)). On Windows 10, the desktop app and the npm CLI were verified too: with the default configuration, sign-in, binding, and Q&A pass (round 2, after the CLI-lookup fix); the remaining items — provenance, restart and continue, unbound and PTC refusals, uninstall — passed in round 1 with `cliPath` set, before that fix ([results](docs/handoff/2026-10-02-windows-verification-round2.md)). The source-checkout form was not run on Windows.
 
 ### Before you start
 
