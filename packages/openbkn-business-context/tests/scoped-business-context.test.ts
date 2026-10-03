@@ -378,6 +378,10 @@ test('official 0.1.4: find_skills and the skill readers run under that release\'
     assert.match(call(name, { kn_id: bound }) ?? '', /not registered in this session/, name)
   }
   assert.match(call('mcp__openbkn__search_tools', { query: 'bom' }) ?? '', /^mcp__openbkn__search_tools is not supported/)
+  // 0.1.4 execute_skill takes no kn_id: it would run a command with no network scope, so it stays refused and unadvertised.
+  assert.match(call('mcp__openbkn__execute_skill', { skill_id: 's', entry_shell: 'python main.py' }) ?? '', /not scoped to a knowledge network on this OpenBKN release/)
+  assert.match(governanceOf(fake), /Skill execution is not enabled on this deployment/)
+  assert.doesNotMatch(governanceOf(fake), /pass execute_skill only/)
 })
 
 test('default 0.1.5 deployment: execute_skill is not registered, so it is refused and the prompt says skills cannot be executed', () => {
@@ -421,6 +425,11 @@ test('a managed tool whose registered definition cannot be read is refused inste
   for (const args of [{}, { kn_id: BOUND_EVENT.data.knowledgeNetworkId }]) {
     assert.match(fake.guards[0]!({ name: 'mcp__openbkn__search_instance', arguments: args }) ?? '', /not registered in this session/)
   }
+  // A definition that does not carry the input schema where DSH's MCP client puts it is unreadable too.
+  const reshaped = fakeAgent([BOUND_EVENT], { ...V015_TOOLS, 'mcp__openbkn__query_metric': { inputSchema: { properties: { kn_id: {} } } } as never })
+  mount(reshaped)
+  startSucceeded(reshaped)
+  assert.match(reshaped.guards[0]!({ name: 'mcp__openbkn__query_metric', arguments: { metric_id: 'm' } }) ?? '', /not registered in this session/)
 })
 
 test('network scope: kn_id must be the bound network, as a string, and cannot be omitted', () => {

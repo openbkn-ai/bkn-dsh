@@ -91,11 +91,26 @@ function unmanagedDenial(name: string): string | undefined {
     : 'This OpenBKN business session only permits managed OpenBKN tools.'
 }
 
+/**
+ * The registered input schema of a tool: DSH's MCP client stores the
+ * server's `inputSchema` as the definition's `parameters`. `undefined` when
+ * the definition is missing or does not have that shape.
+ */
+function inputSchemaOf(definition: unknown): Readonly<Record<string, unknown>> | undefined {
+  return record(record(definition)?.parameters)
+}
+
 /** Whether the tool's published input schema declares a `kn_id` parameter. */
 function declaresKnId(definition: unknown): boolean {
-  const properties = record(record(definition)?.parameters)?.properties
-  return record(properties)?.kn_id !== undefined
+  return record(inputSchemaOf(definition)?.properties)?.kn_id !== undefined
 }
+
+/**
+ * Managed tools that run commands or code chosen per call and are admitted
+ * only where the platform scopes them to a network: `execute_skill` takes no
+ * `kn_id` on OpenBKN 0.1.4, so there it stays refused.
+ */
+const KN_SCOPE_REQUIRED_TOOLS: readonly string[] = ['mcp__openbkn__execute_skill']
 
 /**
  * Denial for a `kn_id` that is missing, not a string, or not the bound
@@ -104,7 +119,8 @@ function declaresKnId(definition: unknown): boolean {
  * to a platform default), not from a list kept here; a `kn_id` argument is
  * checked even when no schema declares it. Tools without `kn_id` — the
  * platform's `run_code`, lifecycle — are not scoped by this check. A call
- * whose definition cannot be read is refused: its scope would be unknown.
+ * whose definition or input schema cannot be read is refused: its scope
+ * would be unknown.
  */
 export function knScopeDenial(
   name: string,
@@ -112,7 +128,10 @@ export function knScopeDenial(
   boundNetworkId: string,
   definition: unknown,
 ): string | undefined {
-  if (definition === undefined) return `${name} is not registered in this session, so its network scope cannot be checked. Do not retry it.`
+  if (inputSchemaOf(definition) === undefined) return `${name} is not registered in this session, so its network scope cannot be checked. Do not retry it.`
+  if (KN_SCOPE_REQUIRED_TOOLS.includes(name) && !declaresKnId(definition)) {
+    return `${name} is not scoped to a knowledge network on this OpenBKN release, so it is not supported in a business session. Do not retry it.`
+  }
   if (!declaresKnId(definition) && !Object.hasOwn(args, 'kn_id')) return undefined
   if (args.kn_id === boundNetworkId) return undefined
   return `This session is bound to OpenBKN knowledge network "${boundNetworkId}"; call ${name} with kn_id "${boundNetworkId}". Other networks cannot be queried from this session.`
@@ -226,7 +245,8 @@ const scopedPolicyPlugin = (
       ? undefined
       : {
           searchCapabilities: offered('search_capabilities'), findSkills: offered('find_skills'),
-          executeTool: offered('execute_tool'), executeSkill: offered('execute_skill'),
+          executeTool: offered('execute_tool'),
+          executeSkill: declaresKnId(tools.get(`${OPENBKN_TOOL_PREFIX}execute_skill`, agent)),
         }
     systemPrompt.section({
       name: 'openbkn:managed-session',
