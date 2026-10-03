@@ -42,7 +42,7 @@ bkn-dsh 连接 DeepSeek Harness 与 OpenBKN，使经过授权的用户可以：
 适用于未打补丁的 DeepSeek Harness `0.2.0-rc.2`：官方桌面版、npm 命令行（`@deepseek-ai/dsh@0.2.0-rc.2`）或构建后的源码检出。在 DSH 停止时，用 DSH 自己的插件管理器安装：
 
 ```bash
-dsh plugin --profile <desktop|web> add @openbkn/dsh-business-context@0.2.0-rc.2-openbkn.0.2.0-1
+dsh plugin --profile <desktop|web> add @openbkn/dsh-business-context@0.2.0-rc.2-openbkn.0.2.0-2
 ```
 
 然后填写平台地址、用 `openbkn` CLI 登录，并从侧栏 **OpenBKN** 入口绑定网络。绑定的会话必须使用 DSH 的标准模式（暂不支持 PTC 模式）。分步配置、证书与卸载：[仓库 README](https://github.com/openbkn-ai/bkn-dsh/blob/main/README.zh.md#安装并开始使用)。

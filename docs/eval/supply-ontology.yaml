@@ -53,6 +53,23 @@ cases:
     expectTools: [query_object_instance, BOM/关联查询]
     forbidden:
       - 未注明来源的组件清单
+  # Added 2026-10-04 (OpenBKN 0.1.5): the question that exposed the plugin
+  # refusing search_capabilities. Facts are the published function "BOM清单"
+  # output on the 0.1.5 test platform (execute_tool via the openbkn CLI and the
+  # recorded session), not an independent MySQL check, so not baseline-verified.
+  - id: bom-usage-inventory
+    group: positive
+    baselineVerified: false
+    question: 查询 382-000005 的 BOM 清单，每个物料的使用量，以及每个物料的库存情况
+    expectFacts:
+      - 一级主料 9 个（仅主料口径，不含替代料）
+      - 全 BOM 共 5 层、313 条父子料行、272 个不同物料
+      - 给出各物料单耗与库存，并说明库存口径（仓范围、是否含在途/占用）
+      - 一级主料中 528-000036 生产可用库存 34；791-000007 与 791-000015 为 0
+    expectTools: [search_capabilities, execute_tool]
+    forbidden:
+      - 调用被插件拒绝后直接放弃，或编造 BOM 明细
+      - 未注明来源或口径的库存数字
   - id: purchase-flow
     group: positive
     baselineVerified: false

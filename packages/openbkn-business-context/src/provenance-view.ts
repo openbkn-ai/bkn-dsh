@@ -59,6 +59,7 @@ export function buildProvenanceView(
 function evidenceReasonFor(reason: ProvenanceDegradation['reason']): EvidenceUnavailableReason {
   if (reason === 'platform-unavailable') return 'platform-unavailable'
   if (reason === 'record-not-disclosed') return 'record-not-disclosed'
+  if (reason === 'result-too-large') return 'result-too-large'
   return 'not-authorized'
 }
 

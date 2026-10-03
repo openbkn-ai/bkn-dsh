@@ -148,6 +148,8 @@ export type EvidenceUnavailableReason =
   'not-authorized'
   | /** The record is not on the platform, or not disclosed to this caller. */
   'record-not-disclosed'
+  | /** The platform's answer exceeded the plugin's size limit. */
+  'result-too-large'
   | 'platform-unavailable'
 
 /** One durable receipt reference; verification stays a host-side CLI hint. */
@@ -173,6 +175,8 @@ export type ProvenanceDegradationReason =
   | 'domain-not-authorized'
   | 'authentication-required'
   | 'record-not-disclosed'
+  | /** The platform answered, but with more than `maxResultBytes`. */
+  'result-too-large'
   | 'platform-unavailable'
 
 /** One pane that could not be completed, with the platform's own next step. */

@@ -10,7 +10,7 @@
 
 仅支持提交 `639ed015397290b3745d163aafe02ffee4aa3f84`（tag `dsh-v0.2.0-rc.2`）上干净的 DSH Git 源码工作树。不要用于桌面应用包、其他 DSH 版本或存在本地修改的工作树。
 
-补丁仅提供插件所需的能力：外部插件的已发布 Typert 协议识别（`analyzer.ts` 的 `isTypeMetaSymbol`；缺失时插件 10 个公开 Remote 方法只能发现 0 个）。补丁②（可忽略插件非界面会话记录的写入侧，让 `Session.append` 接受非界面事件的 ignorable 标记）**已退役**：从 `0.2.0-rc.2-openbkn.0.2.0-1` 起插件不往会话日志写任何东西，不再用到它；它只为保证已发布的 `openbkn-dsh-runtime-v0.2.0-rc.2-openbkn.0.2.0` 归档可复现而留在系列里，下一个系列会去掉。
+补丁仅提供插件所需的能力：外部插件的已发布 Typert 协议识别（`analyzer.ts` 的 `isTypeMetaSymbol`；缺失时插件 10 个公开 Remote 方法只能发现 0 个）。补丁②（可忽略插件非界面会话记录的写入侧，让 `Session.append` 接受非界面事件的 ignorable 标记）**已退役**：从 `0.2.0-rc.2-openbkn.0.2.0-2` 起插件不往会话日志写任何东西，不再用到它；它只为保证已发布的 `openbkn-dsh-runtime-v0.2.0-rc.2-openbkn.0.2.0` 归档可复现而留在系列里，下一个系列会去掉。
 
 与 `dsh-v0.1.6-alpha.2` 不同：上游锁文件本身已与自身 `patchedDependencies` 一致（pristine 工作树上 `pnpm install --frozen-lockfile` 可直接通过），但 runtime 闭包的 deploy 在 `patchedDependencies` 声明了不属于部署闭包的补丁时会拒绝运行——在 `dsh-v0.2.0-rc.2` 上是 `@electron/osx-sign`、`@fortune-sheet/core`、`@fortune-sheet/react`、`exceljs` 四项。补丁③移除这四项注册，并以上游锁文件为基线、仅剥离这四项及其 `(patch_hash=…)` 后缀派生出新锁文件——其余解析与上游逐字节一致，冻结安装可重复，且全量 `pnpm run build` 可通过（早期的整棵重生成会把 micromark 工具链重解析出两份共存的 `micromark-util-types`，客户端 typecheck 直接失败）。这四个上游补丁携带的客户端侧修复因此不进入部署的 runtime 闭包（本来也不会进入：`pnpm deploy` 直接拒绝它们）。
 
@@ -33,7 +33,7 @@ node compat/dsh-0.2.0-rc.2/verify.mjs --dsh /path/to/deepseek-harness
 pnpm --filter @openbkn/dsh-business-context build
 pnpm --filter @openbkn/dsh-business-context pack --pack-destination /tmp/openbkn-plugin
 cd /path/to/deepseek-harness
-pnpm dsh plugin --profile web add file:/tmp/openbkn-plugin/openbkn-dsh-business-context-0.2.0-rc.2-openbkn.0.2.0-1.tgz
+pnpm dsh plugin --profile web add file:/tmp/openbkn-plugin/openbkn-dsh-business-context-0.2.0-rc.2-openbkn.0.2.0-2.tgz
 ```
 
 切换 DSH 版本前先移除整个补丁系列：
