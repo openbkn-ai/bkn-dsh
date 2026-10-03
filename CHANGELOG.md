@@ -2,6 +2,18 @@
 
 All notable changes to this project are documented here.
 
+## 0.2.0-rc.2-openbkn.0.2.0-2 (2026-10-04)
+
+Follows the OpenBKN 0.1.5 Context Loader contract. Same DSH pin (`0.2.0-rc.2`); no patch needed.
+
+- Fix: on OpenBKN 0.1.5 the plugin refused `search_capabilities` before it reached the platform ("This OpenBKN business session only permits managed OpenBKN tools."), because 0.1.5 replaced `search_tools` / `find_skills` with it and the plugin's managed set still named only the old tools. `search_capabilities` and `execute_skill` are now managed; `find_skills` stays managed for OpenBKN 0.1.4. `execute_skill` is admitted only where its schema takes `kn_id` (0.1.5 with Skill execution enabled); on 0.1.4, where it has none, it stays refused. `search_tools` is no longer managed: it existed only between two platform development commits and shipped in neither 0.1.4 nor 0.1.5.
+- **Behavior change — network scope follows the platform schema**: which tools must carry the bound `kn_id` is read from the input schema the Context Loader registers, not from a list in the plugin. On 0.1.5 this adds the check to `execute_tool`, `get_skill_content`, `read_skill_file`, `search_capabilities`, and `execute_skill`; a `kn_id` argument is checked even on a tool whose schema does not declare it.
+- A refused OpenBKN tool is now named in the refusal, with a note that this plugin version does not support it. Tools reviewed and kept out of business sessions (actions, `run_sql`, `run_cypher`, `run_shell`, `list_knowledge_networks`, resources) are listed in `EXCLUDED_OPENBKN_TOOLS`; a contract test fails when the supported platform release publishes a tool that is neither managed nor excluded.
+- The session prompt's capability routing follows the tools the deployment actually registered: `search_capabilities` then `execute_tool` on 0.1.5, `find_skills` on 0.1.4 (which has no published-function path), and `execute_skill` only where the platform enables Skill execution (`skill.executeEnabled`, off by default) — otherwise the model is told skills cannot be executed there.
+- A managed tool that is not registered in the session is refused rather than run without a scope check.
+- Fix: a provenance pane whose platform record exceeds `maxResultBytes` (a turn with many platform operations) said the platform was unreachable. It now says the record is too large to show, and points to `openbkn trace interactions operations` and the `maxResultBytes` setting.
+- Known limitation, unchanged: code run on the platform by `run_code` — and now by `execute_skill` — does not pass through the plugin's guard (see the README).
+
 ## 0.2.0-rc.2-openbkn.0.2.0-1 (2026-09-30)
 
 No patch needed to use the plugin: on an unpatched DeepSeek Harness `0.2.0-rc.2` — the official desktop app, the npm CLI (`dsh web`), or a built source checkout — installing the plugin package is enough. Same DSH pin and OpenBKN platform pairing as `0.2.0-rc.2-openbkn.0.2.0`, hence the `-1` republish suffix. Verified on macOS arm64 in all three forms (release checklist `docs/handoff/2026-09-30-release-0.2.0-rc.2-1-plan.md`); Windows not yet verified. **OpenBKN Runtime archives are discontinued**: installing the plugin is the only supported way to use it, and `openbkn-dsh-runtime-v0.2.0-rc.2-openbkn.0.2.0` is the last archive. The runtime manifest's versions are bumped only because the release workflow still checks its `plugin` block; the runtime build tooling will be removed separately.

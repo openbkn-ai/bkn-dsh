@@ -100,7 +100,7 @@ function Execution({ handle, view }: { handle: ProvenanceHandle; view: Provenanc
       {view.timeline.length === 0 ? <Empty text="本轮会话事件不足以重建时间链（旧版本记录的会话可能缺少事件时间戳）。" /> : <Timeline nodes={view.timeline} />}
     </section>
     <section style={{ display: 'grid', gap: 10 }}>
-      <PaneHeading badge={<SourceBadge label={operationsDegradation === undefined ? '平台' : '平台 · 不可用'} mark={operationsDegradation?.reason} />} title="平台执行事实" note={operationsDegradation === undefined ? '平台口径的操作状态、耗时与 Request / Trace / Receipt 引用。' : undefined} />
+      <PaneHeading badge={<SourceBadge label={operationsDegradation === undefined ? '平台' : operationsDegradation.reason === 'result-too-large' ? '平台 · 未显示' : '平台 · 不可用'} mark={operationsDegradation?.reason} />} title="平台执行事实" note={operationsDegradation === undefined ? '平台口径的操作状态、耗时与 Request / Trace / Receipt 引用。' : undefined} />
       {operationsDegradation !== undefined ? <DegradedPane degradation={operationsDegradation} /> : view.execution.operations.length === 0 ? <Empty text="当前交互未记录可展示的操作事实。" /> : <div style={timelineStyle}>{view.execution.operations.map((operation, index) => <article key={operation.id} style={operationStyle}><div style={timelineIndexStyle}>{String(index + 1).padStart(2, '0')}</div><div style={{ display: 'grid', gap: 7 }}><div style={{ display: 'flex', justifyContent: 'space-between', gap: 12 }}><strong>{operation.label}</strong><Status value={operation.status} /></div><span style={mutedStyle}>{[operation.protocol, operation.startedAt, operation.finishedAt].filter(Boolean).join(' · ')}</span><div style={referenceRowStyle}>{operation.requestId === undefined ? null : <Reference label="Request" value={operation.requestId} />}{operation.traceId === undefined ? null : <Reference label="Trace" value={operation.traceId} />}{operation.receiptId === undefined ? null : <Reference label="Receipt" value={operation.receiptId} />}</div></div></article>)}</div>}
     </section>
   </div>
@@ -219,6 +219,12 @@ function degradationCopy(degradation: ProvenanceDegradation): { title: string; d
         title: '平台未找到此记录',
         detail: '该 Interaction 在当前平台上不存在或未向当前账号披露（例如平台重建后历史记录已丢失）。重试不会改变结果。时间链不受影响。',
       }
+    case 'result-too-large':
+      return {
+        title: '平台记录过大，无法在此显示',
+        detail: '平台已返回这一轮的记录，但超过了插件的结果大小上限（maxResultBytes，默认 1 MB），通常是因为这一轮的平台操作很多。重试不会改变结果。时间链不受影响。',
+        action: '下一步：用 openbkn trace interactions operations <Interaction ID> 查看完整记录，或调大插件配置 maxResultBytes。',
+      }
     default:
       return {
         title: '平台数据暂时不可用',
@@ -248,6 +254,7 @@ function degradationMark(reason: string): string {
     case 'domain-not-authorized': return '域未授权'
     case 'authentication-required': return '需重新认证'
     case 'record-not-disclosed': return '记录未披露'
+    case 'result-too-large': return '记录过大'
     default: return '平台不可用'
   }
 }

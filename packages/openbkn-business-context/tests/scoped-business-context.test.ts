@@ -1,4 +1,5 @@
 import assert from 'node:assert/strict'
+import { readFileSync } from 'node:fs'
 import test from 'node:test'
 import { apply } from '../src/index.ts'
 import { managedConversationSectionText, mountBoundBusinessNetworkTool } from '../src/scoped-business-context.ts'
@@ -7,6 +8,35 @@ const config = {
   baseUrl: 'https://poc.openbkn.ai', requestTimeoutMs: 30_000,
   maxResultBytes: 1_024, allowInsecureTls: false,
 }
+
+interface Contract { readonly tools: Record<string, { readonly knId: 'required' | 'optional' | 'absent' | 'unknown' }> }
+
+/** A Context Loader catalogue captured from an upstream release tag (provenance in the file). */
+function contract(tag: string): Contract {
+  return JSON.parse(readFileSync(new URL(`./fixtures/context-loader-tools-${tag}.json`, import.meta.url), 'utf8')) as Contract
+}
+
+type ToolDefinitions = Record<string, { readonly parameters: { readonly properties: Record<string, unknown> } }>
+
+function definition(takesKnId: boolean): ToolDefinitions[string] {
+  return { parameters: { properties: takesKnId ? { kn_id: { type: 'string' } } : {} } }
+}
+
+/** Definitions as the MCP client registers them from that release's `tools/list`. */
+function definitionsOf(tag: string): ToolDefinitions {
+  return Object.fromEntries(Object.entries(contract(tag).tools)
+    .map(([name, tool]) => [`mcp__openbkn__${name}`, definition(tool.knId === 'required' || tool.knId === 'optional')]))
+}
+
+function without(tools: ToolDefinitions, name: string): ToolDefinitions {
+  return Object.fromEntries(Object.entries(tools).filter(([key]) => key !== name))
+}
+
+/** The whole v0.1.5 catalogue: a deployment with Skill execution switched on. */
+const V015_TOOLS = definitionsOf('v0.1.5')
+/** v0.1.5 as deployed by default: `skill.executeEnabled: false`, so execute_skill does not register. */
+const V015_DEFAULT_TOOLS = without(V015_TOOLS, 'mcp__openbkn__execute_skill')
+const V014_TOOLS = definitionsOf('v0.1.4')
 
 const BOUND_EVENT = {
   type: 'openbkn/business-network-bound',
@@ -41,7 +71,7 @@ function mount(fake: FakeAgent): boolean {
 }
 
 /** A minimal Agent scope whose guard, sections, events, and session log are captured. */
-function fakeAgent(events: Array<{ type: string; data: unknown }> = [BOUND_EVENT], visibleTools: readonly string[] = []): FakeAgent {
+function fakeAgent(events: Array<{ type: string; data: unknown }> = [BOUND_EVENT], visibleTools: ToolDefinitions = V015_TOOLS): FakeAgent {
   const guards: FakeAgent['guards'] = []
   const sections: FakeAgent['sections'] = []
   const listeners: FakeAgent['listeners'] = {}
@@ -50,7 +80,7 @@ function fakeAgent(events: Array<{ type: string; data: unknown }> = [BOUND_EVENT
   const ctx = {
     tools: {
       guard: (guard: FakeAgent['guards'][number]) => { guards.push(guard); return () => {} },
-      get: (name: string) => visibleTools.includes(name) ? { name } : undefined,
+      get: (name: string) => visibleTools[name],
     },
     systemPrompt: { section: (section: FakeAgent['sections'][number]) => { sections.push(section); return () => {} } },
     on: (event: string, listener: (...args: unknown[]) => unknown) => {
@@ -67,6 +97,11 @@ function fakeAgent(events: Array<{ type: string; data: unknown }> = [BOUND_EVENT
     ctx,
   }
   return { agent, guards, sections, listeners, logs, appended }
+}
+
+/** The managed-session section as the next prompt assembly would render it. */
+function governanceOf(fake: FakeAgent): string {
+  return (fake.sections.find(entry => entry.name === 'openbkn:managed-session')!.text as () => string)()
 }
 
 const START = 'mcp__openbkn__bkn_start_interaction'
@@ -105,7 +140,7 @@ test('PTC mode: run_code is refused with a switch-to-Standard instruction, and t
   const standardNotice = standard.sections.find(entry => entry.name === 'openbkn:ptc-unsupported')!
   assert.equal((standardNotice.text as () => string)(), '', 'no PTC notice outside PTC mode')
 
-  const ptc = fakeAgent([BOUND_EVENT], ['run_code'])
+  const ptc = fakeAgent([BOUND_EVENT], { ...V015_TOOLS, run_code: definition(false) })
   mount(ptc)
   const notice = ptc.sections.find(entry => entry.name === 'openbkn:ptc-unsupported')!
   assert.match((notice.text as () => string)(), /PTC mode.*Standard mode \(标准模式\)/s)
@@ -276,20 +311,125 @@ test('loads only the host selection service at the root instead of registering a
   assert.equal(installed.length, 2)
 })
 
-test('the two managed tool groups exactly partition the managed OpenBKN catalogue', async () => {
-  const { MANAGED_IN_INTERACTION_TOOLS, LIFECYCLE_TOOLS } = await import('../src/scoped-business-context.ts')
-  const union = [...LIFECYCLE_TOOLS, ...MANAGED_IN_INTERACTION_TOOLS]
-  const expected = [
-    'mcp__openbkn__bkn_start_interaction', 'mcp__openbkn__bkn_finish_interaction',
-    'mcp__openbkn__get_kn_detail', 'mcp__openbkn__search_schema', 'mcp__openbkn__get_object_types', 'mcp__openbkn__get_relation_types',
-    'mcp__openbkn__query_object_instance', 'mcp__openbkn__query_instance_subgraph', 'mcp__openbkn__explore_subgraph', 'mcp__openbkn__search_instance',
-    'mcp__openbkn__query_metric', 'mcp__openbkn__get_logic_properties_values',
-    'mcp__openbkn__run_code',
-    'mcp__openbkn__list_skills', 'mcp__openbkn__find_skills', 'mcp__openbkn__get_skill_content', 'mcp__openbkn__read_skill_file',
-    'mcp__openbkn__search_tools', 'mcp__openbkn__execute_tool',
+test('every Context Loader tool of the supported releases is classified: managed, or reviewed and excluded', async () => {
+  const { MANAGED_IN_INTERACTION_TOOLS, LIFECYCLE_TOOLS, EXCLUDED_OPENBKN_TOOLS, LEGACY_DISCOVERY_TOOLS } = await import('../src/scoped-business-context.ts')
+  const managed: readonly string[] = [...LIFECYCLE_TOOLS, ...MANAGED_IN_INTERACTION_TOOLS]
+  assert.equal(new Set(managed).size, managed.length, 'no duplicate managed tool')
+  assert.deepEqual(managed.filter(name => EXCLUDED_OPENBKN_TOOLS.includes(name)), [], 'managed and excluded are disjoint')
+  for (const [tag, tools] of [['v0.1.5', V015_TOOLS], ['v0.1.4', V014_TOOLS]] as const) {
+    assert.deepEqual(Object.keys(tools).filter(name => !managed.includes(name) && !EXCLUDED_OPENBKN_TOOLS.includes(name)), [], `unclassified ${tag} tool`)
+  }
+  const current = Object.keys(V015_TOOLS)
+  const supported = [...current, ...Object.keys(V014_TOOLS)]
+  // Only the documented 0.1.4 discovery tool may be absent from the current catalogue.
+  assert.deepEqual(managed.filter(name => !current.includes(name)), [...LEGACY_DISCOVERY_TOOLS])
+  assert.deepEqual(LEGACY_DISCOVERY_TOOLS.filter(name => V014_TOOLS[name] === undefined), [], 'a legacy tool the 0.1.4 release never published')
+  assert.deepEqual(EXCLUDED_OPENBKN_TOOLS.filter(name => !supported.includes(name)), [], 'stale excluded name')
+})
+
+test('discovery to execution on 0.1.5: search_capabilities, execute_tool, and execute_skill run inside an interaction, for the bound network only', () => {
+  const fake = fakeAgent()
+  mount(fake)
+  const bound = BOUND_EVENT.data.knowledgeNetworkId
+  const calls = [
+    { name: 'mcp__openbkn__search_capabilities', arguments: { kn_id: bound, query: 'BOM' } },
+    { name: 'mcp__openbkn__execute_tool', arguments: { kn_id: bound, toolbox_id: 'box', tool_id: 'tool', arguments: {} } },
+    { name: 'mcp__openbkn__get_skill_content', arguments: { kn_id: bound, skill_id: 'skill' } },
+    { name: 'mcp__openbkn__execute_skill', arguments: { kn_id: bound, skill_id: 'skill', entry_shell: 'python main.py' } },
   ]
-  assert.deepEqual([...new Set(union)].sort(), [...expected].sort())
-  assert.equal(union.length, expected.length)
+  for (const call of calls) assert.match(fake.guards[0]!(call) ?? '', /Start mcp__openbkn__bkn_start_interaction/, `${call.name} before start`)
+  startSucceeded(fake)
+  for (const call of calls) {
+    assert.equal(fake.guards[0]!(call), undefined, call.name)
+    const { kn_id: _bound, ...withoutNetwork } = call.arguments
+    for (const args of [{ ...call.arguments, kn_id: 'kn-other' }, withoutNetwork]) {
+      assert.match(fake.guards[0]!({ name: call.name, arguments: args }) ?? '', new RegExp(`bound to OpenBKN knowledge network "${bound}"`), `${call.name} ${JSON.stringify(args)}`)
+    }
+  }
+})
+
+test('every managed tool whose schema takes kn_id refuses another network; excluded tools stay denied and are named', async () => {
+  const { MANAGED_IN_INTERACTION_TOOLS, EXCLUDED_OPENBKN_TOOLS } = await import('../src/scoped-business-context.ts')
+  const fake = fakeAgent()
+  mount(fake)
+  startSucceeded(fake)
+  const scoped = MANAGED_IN_INTERACTION_TOOLS.filter(name => V015_TOOLS[name]?.parameters.properties.kn_id !== undefined)
+  assert.ok(scoped.length >= 15, `expected the kn_id-taking managed tools, got ${scoped.length}`)
+  for (const name of scoped) assert.match(fake.guards[0]!({ name, arguments: { kn_id: 'kn-other' } }) ?? '', /Other networks cannot be queried/, name)
+  for (const name of EXCLUDED_OPENBKN_TOOLS) {
+    assert.match(fake.guards[0]!({ name, arguments: { kn_id: BOUND_EVENT.data.knowledgeNetworkId } }) ?? '', new RegExp(`^${name} is not supported`), name)
+  }
+  assert.match(fake.guards[0]!({ name: 'mcp__openbkn__added_upstream_later', arguments: {} }) ?? '', /^mcp__openbkn__added_upstream_later is not supported/)
+})
+
+test('official 0.1.4: find_skills and the skill readers run under that release\'s own schemas; tools it never published stay refused', () => {
+  const fake = fakeAgent([BOUND_EVENT], V014_TOOLS)
+  mount(fake)
+  startSucceeded(fake)
+  const bound = BOUND_EVENT.data.knowledgeNetworkId
+  const call = (name: string, args: Record<string, unknown>) => fake.guards[0]!({ name, arguments: args })
+  assert.equal(call('mcp__openbkn__find_skills', { kn_id: bound }), undefined)
+  assert.match(call('mcp__openbkn__find_skills', {}) ?? '', /kn_id/)
+  // 0.1.4 skill readers take no kn_id; a kn_id argument is still checked when one is passed.
+  assert.equal(call('mcp__openbkn__get_skill_content', { skill_id: 's' }), undefined)
+  assert.match(call('mcp__openbkn__get_skill_content', { skill_id: 's', kn_id: 'kn-other' }) ?? '', /Other networks cannot be queried/)
+  // Not in the 0.1.4 catalogue: managed names are refused as unregistered, the never-released search_tools as unsupported.
+  for (const name of ['mcp__openbkn__search_capabilities', 'mcp__openbkn__execute_tool']) {
+    assert.match(call(name, { kn_id: bound }) ?? '', /not registered in this session/, name)
+  }
+  assert.match(call('mcp__openbkn__search_tools', { query: 'bom' }) ?? '', /^mcp__openbkn__search_tools is not supported/)
+  // 0.1.4 execute_skill takes no kn_id: it would run a command with no network scope, so it stays refused and unadvertised.
+  assert.match(call('mcp__openbkn__execute_skill', { skill_id: 's', entry_shell: 'python main.py' }) ?? '', /not scoped to a knowledge network on this OpenBKN release/)
+  assert.match(governanceOf(fake), /Skill execution is not enabled on this deployment/)
+  assert.doesNotMatch(governanceOf(fake), /pass execute_skill only/)
+})
+
+test('default 0.1.5 deployment: execute_skill is not registered, so it is refused and the prompt says skills cannot be executed', () => {
+  const fake = fakeAgent([BOUND_EVENT], V015_DEFAULT_TOOLS)
+  mount(fake)
+  startSucceeded(fake)
+  const bound = BOUND_EVENT.data.knowledgeNetworkId
+  assert.match(fake.guards[0]!({ name: 'mcp__openbkn__execute_skill', arguments: { kn_id: bound, skill_id: 's', entry_shell: 'python main.py' } }) ?? '', /not registered in this session/)
+  assert.equal(fake.guards[0]!({ name: 'mcp__openbkn__get_skill_content', arguments: { kn_id: bound, skill_id: 's' } }), undefined)
+  const prompt = governanceOf(fake)
+  assert.match(prompt, /find a published capability with search_capabilities\. Run a function or MCP tool hit with execute_tool/)
+  assert.match(prompt, /Skill execution is not enabled on this deployment \(execute_skill is not offered\)/)
+  assert.doesNotMatch(prompt, /pass execute_skill only/)
+  assert.doesNotMatch(prompt, /search_tools|find_skills/)
+})
+
+test('the routing rule names only tools the deployment registered, and re-renders once they register', () => {
+  const enabled = fakeAgent()
+  mount(enabled)
+  assert.match(governanceOf(enabled), /search_capabilities.*execute_tool.*pass execute_skill only an entry command the skill declares/s)
+  assert.doesNotMatch(governanceOf(enabled), /not enabled on this deployment/)
+
+  const legacy = fakeAgent([BOUND_EVENT], V014_TOOLS)
+  mount(legacy)
+  assert.match(governanceOf(legacy), /no search_capabilities\. Find skills with find_skills or list_skills.*Published function tools cannot be reached/s)
+  assert.doesNotMatch(governanceOf(legacy), /search_tools|with execute_tool/)
+
+  // Before the Context Loader connection registers anything, the rule stays conditional.
+  const registered: ToolDefinitions = {}
+  const late = fakeAgent([BOUND_EVENT], registered)
+  mount(late)
+  assert.match(governanceOf(late), /register with the OpenBKN connection.*only when they are offered/s)
+  Object.assign(registered, V015_DEFAULT_TOOLS)
+  assert.match(governanceOf(late), /find a published capability with search_capabilities/)
+})
+
+test('a managed tool whose registered definition cannot be read is refused instead of running unscoped', () => {
+  const fake = fakeAgent([BOUND_EVENT], { 'mcp__openbkn__bkn_start_interaction': definition(false) })
+  mount(fake)
+  startSucceeded(fake)
+  for (const args of [{}, { kn_id: BOUND_EVENT.data.knowledgeNetworkId }]) {
+    assert.match(fake.guards[0]!({ name: 'mcp__openbkn__search_instance', arguments: args }) ?? '', /not registered in this session/)
+  }
+  // A definition that does not carry the input schema where DSH's MCP client puts it is unreadable too.
+  const reshaped = fakeAgent([BOUND_EVENT], { ...V015_TOOLS, 'mcp__openbkn__query_metric': { inputSchema: { properties: { kn_id: {} } } } as never })
+  mount(reshaped)
+  startSucceeded(reshaped)
+  assert.match(reshaped.guards[0]!({ name: 'mcp__openbkn__query_metric', arguments: { metric_id: 'm' } }) ?? '', /not registered in this session/)
 })
 
 test('network scope: kn_id must be the bound network, as a string, and cannot be omitted', () => {
@@ -307,5 +447,5 @@ test('network scope: kn_id must be the bound network, as a string, and cannot be
   assert.equal(call('mcp__openbkn__search_instance', { kn_id: bound }), undefined)
   // Tools without kn_id keep their own contract.
   assert.equal(call('mcp__openbkn__run_code', { code: 'x' }), undefined)
-  assert.equal(call('mcp__openbkn__get_skill_content', { skill_id: 's' }), undefined)
+  assert.equal(call('mcp__openbkn__list_skills', {}), undefined)
 })

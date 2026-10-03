@@ -244,6 +244,8 @@ export class OpenBknBusinessContextService extends TypertRemoteService {
       const error = failure instanceof PlatformReaderError ? failure : undefined
       if (error?.code === 'AUTHENTICATION_REQUIRED') return { pane, reason: 'authentication-required' }
       if (error?.code === 'RECORD_NOT_DISCLOSED') return { pane, reason: 'record-not-disclosed' }
+      // The platform answered; retrying returns the same oversized record.
+      if (error?.code === 'OUTPUT_OVERFLOW') return { pane, reason: 'result-too-large' }
       if (error?.code === 'LICENSE_REQUIRED') {
         return { pane, reason: 'domain-not-authorized', ...(error.requiredAction === undefined ? {} : { requiredAction: error.requiredAction }) }
       }

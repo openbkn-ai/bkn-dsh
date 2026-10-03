@@ -11,7 +11,7 @@ import {
   restoreFrom,
   type InteractionLifecycleState,
 } from './interaction-lifecycle.js'
-import { buildManagedSessionPolicy } from './managed-session-policy.js'
+import { buildManagedSessionPolicy, capabilityRoutingText, type CapabilityToolAvailability } from './managed-session-policy.js'
 import type { NetworkCapabilityProfile } from './network-capability-profile.js'
 import type { PlatformReaderConfig } from './platform-reader.js'
 import type { BusinessNetworkBinding } from './types.js'
@@ -39,11 +39,12 @@ export const LIFECYCLE_TOOLS = [
 ] as const
 
 /**
- * Every other managed OpenBKN tool: schema, skills, tool discovery, queries,
- * metrics, execution, run_code. A turn reaches any of them only inside an open
- * Interaction — reading the network's schema is itself an OpenBKN access.
- * Newly added OpenBKN tools default to this group (managed by default, not
- * allowed by default).
+ * Every other managed OpenBKN tool: schema, skills, capability discovery,
+ * queries, metrics, execution, run_code. A turn reaches any of them only
+ * inside an open Interaction — reading the network's schema is itself an
+ * OpenBKN access. A tool the platform adds stays denied until it is reviewed
+ * and listed here or in `EXCLUDED_OPENBKN_TOOLS`; the contract test fails on
+ * any Context Loader tool that is in neither.
  */
 export const MANAGED_IN_INTERACTION_TOOLS = [
   'mcp__openbkn__get_kn_detail', 'mcp__openbkn__search_schema',
@@ -52,31 +53,87 @@ export const MANAGED_IN_INTERACTION_TOOLS = [
   'mcp__openbkn__explore_subgraph', 'mcp__openbkn__search_instance',
   'mcp__openbkn__query_metric', 'mcp__openbkn__get_logic_properties_values',
   'mcp__openbkn__run_code',
-  'mcp__openbkn__list_skills', 'mcp__openbkn__find_skills', 'mcp__openbkn__get_skill_content', 'mcp__openbkn__read_skill_file',
-  'mcp__openbkn__search_tools', 'mcp__openbkn__execute_tool',
+  'mcp__openbkn__list_skills', 'mcp__openbkn__get_skill_content', 'mcp__openbkn__read_skill_file',
+  'mcp__openbkn__search_capabilities', 'mcp__openbkn__execute_tool', 'mcp__openbkn__execute_skill',
+  // Skill discovery on OpenBKN 0.1.4; 0.1.5 replaced it with
+  // search_capabilities. Kept so a 0.1.4 platform keeps working.
+  'mcp__openbkn__find_skills',
 ] as const
 
-const MANAGED_OPENBKN_TOOLS = [...LIFECYCLE_TOOLS, ...MANAGED_IN_INTERACTION_TOOLS] as const
+/**
+ * Managed discovery that only the OpenBKN 0.1.4 Context Loader publishes.
+ * (`search_tools` existed only between two development commits, #1299 and
+ * #1403, and shipped in no release, so it is not managed.)
+ */
+export const LEGACY_DISCOVERY_TOOLS: readonly string[] = ['mcp__openbkn__find_skills']
 
 /**
- * Managed tools whose Context Loader schema takes `kn_id` (all required except
- * `search_instance`, where the plugin requires it anyway so the scope is never
- * left to a platform default). The bound network is enforced here, at the
- * execution boundary, not only in the prompt. Tools without `kn_id` — the
- * platform's `run_code`, skills, lifecycle — are not scoped by this check.
+ * Context Loader tools reviewed and kept out of a business session: writes
+ * (actions), raw query languages and shell, and anything that enumerates or
+ * reaches beyond the bound network.
  */
-export const KN_SCOPED_TOOLS: ReadonlySet<string> = new Set([
-  'mcp__openbkn__get_kn_detail', 'mcp__openbkn__search_schema',
-  'mcp__openbkn__get_object_types', 'mcp__openbkn__get_relation_types',
-  'mcp__openbkn__query_object_instance', 'mcp__openbkn__query_instance_subgraph',
-  'mcp__openbkn__explore_subgraph', 'mcp__openbkn__search_instance',
-  'mcp__openbkn__query_metric', 'mcp__openbkn__get_logic_properties_values',
-  'mcp__openbkn__find_skills',
-])
+export const EXCLUDED_OPENBKN_TOOLS: readonly string[] = [
+  'mcp__openbkn__execute_action', 'mcp__openbkn__get_action_info',
+  'mcp__openbkn__get_action_execution', 'mcp__openbkn__list_action_executions',
+  'mcp__openbkn__list_knowledge_networks',
+  'mcp__openbkn__list_resources', 'mcp__openbkn__describe_resource',
+  'mcp__openbkn__run_sql', 'mcp__openbkn__run_cypher', 'mcp__openbkn__run_shell',
+]
 
-/** Denial for a `kn_id` that is missing, not a string, or not the bound network. */
-export function knScopeDenial(name: string, args: Readonly<Record<string, unknown>>, boundNetworkId: string): string | undefined {
-  if (!KN_SCOPED_TOOLS.has(name) || args.kn_id === boundNetworkId) return undefined
+const MANAGED_OPENBKN_TOOLS: readonly string[] = [...LIFECYCLE_TOOLS, ...MANAGED_IN_INTERACTION_TOOLS]
+const OPENBKN_TOOL_PREFIX = 'mcp__openbkn__'
+
+/** Denial for a tool outside the managed set; an OpenBKN tool is named so the gap is diagnosable. */
+function unmanagedDenial(name: string): string | undefined {
+  if (MANAGED_OPENBKN_TOOLS.includes(name)) return undefined
+  return name.startsWith(OPENBKN_TOOL_PREFIX)
+    ? `${name} is not supported in an OpenBKN business session by this version of the bkn-dsh plugin. Do not retry it; continue with the managed OpenBKN tools.`
+    : 'This OpenBKN business session only permits managed OpenBKN tools.'
+}
+
+/**
+ * The registered input schema of a tool: DSH's MCP client stores the
+ * server's `inputSchema` as the definition's `parameters`. `undefined` when
+ * the definition is missing or does not have that shape.
+ */
+function inputSchemaOf(definition: unknown): Readonly<Record<string, unknown>> | undefined {
+  return record(record(definition)?.parameters)
+}
+
+/** Whether the tool's published input schema declares a `kn_id` parameter. */
+function declaresKnId(definition: unknown): boolean {
+  return record(inputSchemaOf(definition)?.properties)?.kn_id !== undefined
+}
+
+/**
+ * Managed tools that run commands or code chosen per call and are admitted
+ * only where the platform scopes them to a network: `execute_skill` takes no
+ * `kn_id` on OpenBKN 0.1.4, so there it stays refused.
+ */
+const KN_SCOPE_REQUIRED_TOOLS: readonly string[] = ['mcp__openbkn__execute_skill']
+
+/**
+ * Denial for a `kn_id` that is missing, not a string, or not the bound
+ * network. Which tools take `kn_id` is read from the schema the Context
+ * Loader registered (required or optional alike, so the scope is never left
+ * to a platform default), not from a list kept here; a `kn_id` argument is
+ * checked even when no schema declares it. Tools without `kn_id` — the
+ * platform's `run_code`, lifecycle — are not scoped by this check. A call
+ * whose definition or input schema cannot be read is refused: its scope
+ * would be unknown.
+ */
+export function knScopeDenial(
+  name: string,
+  args: Readonly<Record<string, unknown>>,
+  boundNetworkId: string,
+  definition: unknown,
+): string | undefined {
+  if (inputSchemaOf(definition) === undefined) return `${name} is not registered in this session, so its network scope cannot be checked. Do not retry it.`
+  if (KN_SCOPE_REQUIRED_TOOLS.includes(name) && !declaresKnId(definition)) {
+    return `${name} is not scoped to a knowledge network on this OpenBKN release, so it is not supported in a business session. Do not retry it.`
+  }
+  if (!declaresKnId(definition) && !Object.hasOwn(args, 'kn_id')) return undefined
+  if (args.kn_id === boundNetworkId) return undefined
   return `This session is bound to OpenBKN knowledge network "${boundNetworkId}"; call ${name} with kn_id "${boundNetworkId}". Other networks cannot be queried from this session.`
 }
 
@@ -137,15 +194,15 @@ const scopedPolicyPlugin = (
     let lifecycle: InteractionLifecycleState = restoreFrom(agent.session.snapshotEvents())
     tools.guard(execution => {
       if (execution.name === PTC_RUN_CODE_TOOL) return PTC_UNSUPPORTED_DENIAL
-      if (!MANAGED_OPENBKN_TOOLS.includes(execution.name as typeof MANAGED_OPENBKN_TOOLS[number])) {
-        return 'This OpenBKN business session only permits managed OpenBKN tools.'
-      }
+      const unmanaged = unmanagedDenial(execution.name)
+      if (unmanaged !== undefined) return unmanaged
       // Rules 2–5 of the interaction boundary (§6.3) all live in the pure
-      // `denialFor`; this whitelist (rule 1) and the network scope are the
+      // `denialFor`; the managed set (rule 1) and the network scope are the
       // only other decisions here, and the guard itself stays side-effect
       // free — state moves only through settled results below.
       const args = recordArgs(execution.arguments)
-      return denialFor(lifecycle, execution.name, args) ?? knScopeDenial(execution.name, args, binding.knowledgeNetworkId)
+      return denialFor(lifecycle, execution.name, args)
+        ?? knScopeDenial(execution.name, args, binding.knowledgeNetworkId, tools.get(execution.name, agent))
     })
     // Constraint C2: this listener must stay synchronous so the state is
     // updated before the next guard judgment (V0-3, probe-verified).
@@ -180,7 +237,22 @@ const scopedPolicyPlugin = (
       order: 519,
       text: () => tools.get(PTC_RUN_CODE_TOOL, agent) === undefined ? '' : PTC_UNSUPPORTED_SECTION,
     })
-    systemPrompt.section({ name: 'openbkn:managed-session', order: 520, text: policy.governance })
+    // The routing rule is evaluated per assembly: the Context Loader tools
+    // register after the mount, and which of them exist depends on the
+    // platform release and its deployment switches.
+    const offered = (shortName: string): boolean => tools.get(`${OPENBKN_TOOL_PREFIX}${shortName}`, agent) !== undefined
+    const availability = (): CapabilityToolAvailability | undefined => tools.get(START_INTERACTION_TOOL, agent) === undefined
+      ? undefined
+      : {
+          searchCapabilities: offered('search_capabilities'), findSkills: offered('find_skills'),
+          executeTool: offered('execute_tool'),
+          executeSkill: declaresKnId(tools.get(`${OPENBKN_TOOL_PREFIX}execute_skill`, agent)),
+        }
+    systemPrompt.section({
+      name: 'openbkn:managed-session',
+      order: 520,
+      text: () => `${policy.governance}\n${capabilityRoutingText(availability())}`,
+    })
     if (policy.capabilities.length > 0) {
       systemPrompt.section({ name: 'openbkn:network-capabilities', order: 521, text: policy.capabilities })
     }
@@ -223,8 +295,12 @@ export function mountBoundBusinessNetworkTool(
  * so both levels are read; anything unparsable classifies as "not
  * determinable" and never clears the held conversation.
  */
+function record(value: unknown): Readonly<Record<string, unknown>> | undefined {
+  return typeof value === 'object' && value !== null && !Array.isArray(value) ? value as Record<string, unknown> : undefined
+}
+
 function recordArgs(value: unknown): Readonly<Record<string, unknown>> {
-  return typeof value === 'object' && value !== null && !Array.isArray(value) ? value as Record<string, unknown> : {}
+  return record(value) ?? {}
 }
 
 function normalizeBaseUrl(value: string): string {

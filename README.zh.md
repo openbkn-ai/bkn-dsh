@@ -59,13 +59,13 @@ bkn-dsh 是一个增量式 DeepSeek Harness 插件。授权用户可为一个会
 
 ```bash
 # 桌面版（macOS）。应用菜单里的「管理 dsh 命令…」也可以把 `dsh` 加到 PATH。
-"/Applications/DeepSeek Harness.app/Contents/Resources/runtime/cli/bin/dsh" plugin --profile desktop add @openbkn/dsh-business-context@0.2.0-rc.2-openbkn.0.2.0-1
+"/Applications/DeepSeek Harness.app/Contents/Resources/runtime/cli/bin/dsh" plugin --profile desktop add @openbkn/dsh-business-context@0.2.0-rc.2-openbkn.0.2.0-2
 
 # npm 命令行
-dsh plugin --profile web add @openbkn/dsh-business-context@0.2.0-rc.2-openbkn.0.2.0-1
+dsh plugin --profile web add @openbkn/dsh-business-context@0.2.0-rc.2-openbkn.0.2.0-2
 
 # 源码检出，在 DSH 源码根目录执行
-node apps/cli/lib/bin.js plugin --profile web add @openbkn/dsh-business-context@0.2.0-rc.2-openbkn.0.2.0-1
+node apps/cli/lib/bin.js plugin --profile web add @openbkn/dsh-business-context@0.2.0-rc.2-openbkn.0.2.0-2
 ```
 
 Windows 上用 `dsh.cmd` 代替 `dsh`。
@@ -98,7 +98,7 @@ Windows 上用 `dsh.cmd` 代替 `dsh`。
 ### 备份与已知限制
 
 - **备份和迁移**：除了会话日志，还要一起复制 `$DSH_HOME/openbkn/session-bindings/`（每个会话的网络绑定）和 `$DSH_HOME/storages/openbkn_workspace_bindings.json`（工作区与网络的关联）。业务溯源和平台会话续接能从会话日志里重新算出来，绑定不能。
-- **网络范围——平台 `run_code` 的重要限制**：在绑定会话里，插件会拒绝 `kn_id` 缺失或指向其他网络的直接查询，也不开放动作执行。但平台的 `run_code`（以及 `execute_published_tool`）是在平台上执行的：从 OpenBKN 0.1.5 起，`run_code` 的脚本里可以把平台上其他所有工具当函数调用，包括查询其他网络和 `execute_action`，而且模型常常优先用它。脚本里发起的调用不经过插件，所以在这条路径上，"只查绑定网络"和"不执行动作"只靠会话提示词约束。每一次平台操作和回执仍会出现在业务溯源里。`run_code` 在平台侧的范围限制正在和 OpenBKN 团队对接。
+- **网络范围——平台 `run_code` 的重要限制**：在绑定会话里，插件会拒绝 `kn_id` 缺失或指向其他网络的直接查询，也不开放动作执行。但平台的 `run_code`、部署启用时的 `execute_skill`（以及 `execute_published_tool`）是在平台上执行的：从 OpenBKN 0.1.5 起，`run_code` 的脚本里可以把平台上其他所有工具当函数调用，包括查询其他网络和 `execute_action`，而且模型常常优先用它。脚本里发起的调用不经过插件，所以在这条路径上，"只查绑定网络"和"不执行动作"只靠会话提示词约束。每一次平台操作和回执仍会出现在业务溯源里。`run_code` 在平台侧的范围限制正在和 OpenBKN 团队对接。
 - **未绑定的会话**：凡是没有通过 OpenBKN 面板绑定的会话，调用 OpenBKN 工具都会被拒绝，包括打开会话时绑定记录无法读取、或与会话日志冲突的会话。这类会话仍能打开，历史完整；插件会记一条不含业务内容的告警，但界面暂时不会显示"绑定异常"状态。会话已经在运行时绑定记录才出问题的，要等会话重新打开后才会被拒绝。
 - **工作区关联在同一个 `$DSH_HOME` 下所有宿主和 profile 共用**（`storages/openbkn_workspace_bindings.json`）：在 `dsh web` 里关联过的网络，到了桌面版会显示「继续会话 / 新建会话」，不再提供「新建工作区」。
 - **修改工作区关联时只运行一个宿主**：每个宿主把工作区关联存在自己的内存里，写入时用这份副本整份重写文件，所以只错开时间没用——已经在运行的另一个宿主下次写入时会覆盖掉这边的修改。共用同一个 `$DSH_HOME` 的桌面版和 `dsh web`：新建或修改工作区关联前，先退出另一个宿主；另一个宿主改过关联之后，要先重启这个宿主再用它修改。
@@ -134,10 +134,10 @@ OpenBKN Runtime 归档不再发布：把插件装进 DSH 是唯一受支持的�
 
 | 你的 DSH 版本 | 兼容补丁系列 | 应安装的插件 | 预构建 Runtime 归档 |
 | --- | --- | --- | --- |
-| `dsh-v0.2.0-rc.2`（当前锁定）：桌面版、npm 命令行或源码构建 | 使用插件不需要；[`compat/dsh-0.2.0-rc.2/`](compat/dsh-0.2.0-rc.2/) 用于从源码构建 | npm 上的 `@openbkn/dsh-business-context@0.2.0-rc.2-openbkn.0.2.0-1`（标准模式） | 已停止发布；最后一个：[openbkn-dsh-runtime-v0.2.0-rc.2-openbkn.0.2.0](https://github.com/openbkn-ai/bkn-dsh/releases/tag/openbkn-dsh-runtime-v0.2.0-rc.2-openbkn.0.2.0) |
+| `dsh-v0.2.0-rc.2`（当前锁定）：桌面版、npm 命令行或源码构建 | 使用插件不需要；[`compat/dsh-0.2.0-rc.2/`](compat/dsh-0.2.0-rc.2/) 用于从源码构建 | npm 上的 `@openbkn/dsh-business-context@0.2.0-rc.2-openbkn.0.2.0-2`（标准模式） | 已停止发布；最后一个：[openbkn-dsh-runtime-v0.2.0-rc.2-openbkn.0.2.0](https://github.com/openbkn-ai/bkn-dsh/releases/tag/openbkn-dsh-runtime-v0.2.0-rc.2-openbkn.0.2.0) |
 | `dsh-v0.1.7-rc.2`（上一代系列） | [`compat/dsh-0.1.7-rc.2/`](compat/dsh-0.1.7-rc.2/)（存档） | npm 上的 `@openbkn/dsh-business-context@0.1.7-rc.2-openbkn.0.2.0`，或从 git tag [`v0.1.7-rc.2-openbkn.0.2.0`](https://github.com/openbkn-ai/bkn-dsh/tree/v0.1.7-rc.2-openbkn.0.2.0) 源码构建 | [openbkn-dsh-runtime-v0.1.7-rc.2-openbkn.0.2.0](https://github.com/openbkn-ai/bkn-dsh/releases/tag/openbkn-dsh-runtime-v0.1.7-rc.2-openbkn.0.2.0) |
 | `dsh-v0.1.6-alpha.2`（上一代系列） | [`compat/dsh-0.1.6-alpha.2/`](compat/dsh-0.1.6-alpha.2/)（存档） | npm 上的 `@openbkn/dsh-business-context@0.1.5-rc.2`，或从 git tag [`v0.1.5-rc.2`](https://github.com/openbkn-ai/bkn-dsh/tree/v0.1.5-rc.2) 源码构建 | [openbkn-dsh-runtime-v0.1.6-alpha.2-openbkn.1](https://github.com/openbkn-ai/bkn-dsh/releases/tag/openbkn-dsh-runtime-v0.1.6-alpha.2-openbkn.1) |
 
-自 `0.2.0-rc.2` 这一轮起，插件与 Runtime 归档共用一套版本命名——`<DSH版本>-openbkn.<OpenBKN平台版本>`——版本号一眼可见两个兼容维度：`0.2.0-rc.2-openbkn.0.2.0` 即"配 DSH `0.2.0-rc.2`、面向 OpenBKN 平台 `0.2.0`"；同一组合重新发布时追加 `-<n>`（`0.2.0-rc.2-openbkn.0.2.0-1`）。runtime manifest 校验器会拒绝插件版本与其锁定的 DSH 版本不一致的清单。本轮之前的发布保留其历史版本号。
+自 `0.2.0-rc.2` 这一轮起，插件与 Runtime 归档共用一套版本命名——`<DSH版本>-openbkn.<OpenBKN平台版本>`——版本号一眼可见两个兼容维度：`0.2.0-rc.2-openbkn.0.2.0` 即"配 DSH `0.2.0-rc.2`、面向 OpenBKN 平台 `0.2.0`"；同一组合重新发布时追加 `-<n>`（`0.2.0-rc.2-openbkn.0.2.0-2`）。runtime manifest 校验器会拒绝插件版本与其锁定的 DSH 版本不一致的清单。本轮之前的发布保留其历史版本号。
 
 插件声明的 DSH peers 必须与你的 runtime 匹配——DSH 的版本围栏会拒绝不匹配的安装。**不要为 `0.1.6-alpha.2` runtime 从当前 `main` 构建插件**：`0.2.0-rc.2` retarget 之后 main 的 peers 已声明为 `0.2.0-rc.2`，安装会被拒绝。[`compat/dsh-0.1.2-rc.1/`](compat/dsh-0.1.2-rc.1/) 是历史存档，无 npm 配对版本。

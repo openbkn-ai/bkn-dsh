@@ -46,7 +46,7 @@ test('renders compact managed-session guidance without exposing untrusted platfo
   assert.match(policy.governance, /Use run_code only as a read-only fallback/i)
   assert.match(policy.capabilities, /kn-supply/)
   assert.match(policy.capabilities, /product/)
-  assert.match(policy.capabilities, /execute_tool/)
+  assert.match(policy.capabilities, /follow the capability routing rule/)
   assert.doesNotMatch(policy.capabilities, /localhost|token|Ignore prior/i)
 })
 

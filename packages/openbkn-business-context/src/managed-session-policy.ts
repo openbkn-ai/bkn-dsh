@@ -12,6 +12,41 @@ export interface ManagedSessionPolicy {
  */
 export const OPENBKN_DSH_INTERACTION_AGENT_NAME = 'bkn-agent-dsh-business-context'
 
+/** Which capability tools the bound session can actually call; `undefined` while the OpenBKN tools have not registered yet. */
+export interface CapabilityToolAvailability {
+  readonly searchCapabilities: boolean
+  readonly findSkills: boolean
+  readonly executeTool: boolean
+  readonly executeSkill: boolean
+}
+
+const SKILL_EXECUTION_DISABLED = 'Skill execution is not enabled on this deployment (execute_skill is not offered): read the skill with get_skill_content, follow its guidance with the managed query tools where that applies, and state plainly that the skill itself cannot be executed here. Do not run its entry command through run_code or any other tool.'
+const SKILL_EXECUTION_ENABLED = 'To run a skill, read it with get_skill_content first and pass execute_skill only an entry command the skill declares.'
+
+/**
+ * The capability routing rule for the tools this deployment registered. The
+ * Context Loader catalogue differs by platform release (0.1.5 discovers with
+ * search_capabilities, 0.1.4 with find_skills and has no published-function
+ * path) and by deployment (execute_skill registers only when the platform
+ * enables Skill execution), so the rule names only tools that can be called.
+ */
+export function capabilityRoutingText(available: CapabilityToolAvailability | undefined): string {
+  if (available === undefined) {
+    return 'Capability routing: the capability tools register with the OpenBKN connection. Discover published capabilities with search_capabilities when it is offered, otherwise skills with find_skills; call execute_tool or execute_skill only when they are offered, and state the limit plainly when they are not.'
+  }
+  const skillExecution = available.executeSkill ? SKILL_EXECUTION_ENABLED : SKILL_EXECUTION_DISABLED
+  if (available.searchCapabilities) {
+    const functions = available.executeTool
+      ? 'Run a function or MCP tool hit with execute_tool (toolbox_id is the returned owner_id, tool_id the capability_id), obeying the returned use_rule and input schema.'
+      : 'execute_tool is not offered, so a function or MCP tool hit cannot be run here; say so.'
+    return `Capability routing: find a published capability with search_capabilities. ${functions} ${skillExecution}`
+  }
+  if (available.findSkills) {
+    return `Capability routing: this platform release has no search_capabilities. Find skills with find_skills or list_skills. ${skillExecution} Published function tools cannot be reached through a managed tool on this release; say so instead of guessing, and use run_code only under the fallback rule above.`
+  }
+  return 'Capability routing: this deployment offers no capability discovery tool. Answer from the schema and query tools, and state plainly when a published function or skill would be needed.'
+}
+
 /**
  * Produce the two scoped system-prompt sections for one bound network. The
  * fixed section renders the Host-verified identity as quoted data; the optional
@@ -40,7 +75,7 @@ export function buildManagedSessionPolicy(
       'The managed OpenBKN tools may be absent from the initial tool catalog because they register after the session starts. Do not probe Bash or a tool list to test availability; when this turn needs OpenBKN, call mcp__openbkn__bkn_start_interaction directly.',
       'If bkn_start_interaction returns a retryable error, retry at most once. If that retry fails, do not retry again or perform business retrieval; report the platform condition briefly.',
       'Use only mcp__openbkn__ tools for business data. Do not invent facts, identifiers, metrics, tool results, or provenance. State limits and missing data plainly.',
-      'Route a single fact to query_object_instance; a defined aggregate to query_metric; and BOM expansion, availability, substitution, common-material, reverse lookup, or delivery calculations to a matching published tool via search_tools then execute_tool. Pass only the documented business parameters.',
+      'Route a single fact to query_object_instance; a defined aggregate to query_metric; and BOM expansion, availability, substitution, common-material, reverse lookup, or delivery calculations to a matching published capability, following the capability routing rule in this prompt. Pass only the documented business parameters.',
       'Use search_schema then targeted get_object_types or get_relation_types when the needed schema is unknown. Schema fallback rule: if get_kn_detail returns a rendering, structured-output, or validation error, do not retry get_kn_detail with another format or detail_level. Preserve the bound kn_id. Use search_schema at most once, only when it can directly answer the requested schema question; do not use it to derive an exact exhaustive count or list. If it cannot directly answer, finish the Interaction as failed and state that the schema detail is unavailable.',
       'Use run_code only as a read-only fallback for a business calculation when no matching published tool is available or its result cannot be obtained. Keep the bound kn_id and managed interaction context in every OpenBKN call made by the script. Do not use run_shell, run_sql, resources, or action execution unless the deployment explicitly enables them.',
     ].join('\n'),
@@ -57,6 +92,6 @@ function capabilitySection(profile: NetworkCapabilityProfile): string {
     `Object types: ${named(profile.objectTypes)}.`,
     `Relations: ${relations}.`,
     `Action types: ${named(profile.actionTypes)}.`,
-    'For a business function, search_tools first and obey the returned use_rule and input schema before execute_tool.',
+    'For a business function, follow the capability routing rule and obey the returned use_rule and input schema before executing it.',
   ].join('\n')
 }

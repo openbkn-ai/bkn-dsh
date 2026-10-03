@@ -1,0 +1,93 @@
+{
+  "source": {
+    "repository": "openbkn-ai/bkn-foundry",
+    "tag": "v0.1.4",
+    "commit": "96c6d92822164616ea271618fbecbcab6702ca3c",
+    "path": "adp/context-loader/agent-retrieval/server/driveradapters/mcp/schemas/tools_meta.json",
+    "captured": "2026-10-04",
+    "note": "Tool names from tools_meta.json; knId from each <tool>.json input_schema (\"unknown\": no schema file in that directory)."
+  },
+  "tools": {
+    "bkn_finish_interaction": {
+      "knId": "unknown"
+    },
+    "bkn_start_interaction": {
+      "knId": "unknown"
+    },
+    "search_schema": {
+      "knId": "required"
+    },
+    "search_instance": {
+      "knId": "optional"
+    },
+    "query_object_instance": {
+      "knId": "required"
+    },
+    "query_instance_subgraph": {
+      "knId": "required"
+    },
+    "explore_subgraph": {
+      "knId": "required"
+    },
+    "get_logic_properties_values": {
+      "knId": "required"
+    },
+    "query_metric": {
+      "knId": "required"
+    },
+    "get_action_info": {
+      "knId": "required"
+    },
+    "execute_action": {
+      "knId": "required"
+    },
+    "get_action_execution": {
+      "knId": "required"
+    },
+    "list_action_executions": {
+      "knId": "required"
+    },
+    "find_skills": {
+      "knId": "required"
+    },
+    "list_knowledge_networks": {
+      "knId": "absent"
+    },
+    "get_kn_detail": {
+      "knId": "required"
+    },
+    "get_object_types": {
+      "knId": "required"
+    },
+    "get_relation_types": {
+      "knId": "required"
+    },
+    "run_sql": {
+      "knId": "absent"
+    },
+    "list_resources": {
+      "knId": "optional"
+    },
+    "describe_resource": {
+      "knId": "absent"
+    },
+    "list_skills": {
+      "knId": "absent"
+    },
+    "get_skill_content": {
+      "knId": "absent"
+    },
+    "read_skill_file": {
+      "knId": "absent"
+    },
+    "execute_skill": {
+      "knId": "absent"
+    },
+    "run_code": {
+      "knId": "unknown"
+    },
+    "run_shell": {
+      "knId": "unknown"
+    }
+  }
+}
