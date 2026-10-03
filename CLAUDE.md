@@ -47,6 +47,6 @@ node scripts/check-runtime-portability.mjs --output release/artifacts --platform
 - Commits use conventional prefixes (`feat:`, `fix:`, `chore:`, `docs:`, `test:`, `ci:`).
 - Pushes, tags and releases need explicit user approval. Two tag prefixes release different artifacts:
   `openbkn-dsh-runtime-v*` builds the runtime archives and cuts a GitHub Release (`compatible-runtime.yml`);
-  `v*` publishes `@openbkn/dsh-business-context` to npm (`release-plugin.yml`). A `v*` tag must match both
+  `v*` publishes `@openbkn/dsh-business-context` to npm and then cuts a GitHub Release whose notes are that version's CHANGELOG section and whose asset is the published tarball (`release-plugin.yml`; an existing release for the tag is left unchanged). A `v*` tag must match both
   `packages/openbkn-business-context/package.json` and the runtime manifest's `plugin` block — the workflow fails otherwise.
 - When a release artifact is produced, record its SHA-256, platform, build base commit, and the verification commands.

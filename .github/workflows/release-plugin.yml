@@ -54,6 +54,7 @@ concurrency:
 permissions:
   contents: read
   id-token: write # OIDC for npm Trusted Publishing + provenance
+# The github-release job below widens `contents` to write for itself only.
 
 jobs:
   publish:
@@ -290,3 +291,87 @@ jobs:
           name: plugin-tarball
           path: release/plugin/*.tgz
           if-no-files-found: warn
+
+  # A `v*` tag also gets a GitHub Release, so the repository's Releases page
+  # names the current plugin version instead of stopping at the last (now
+  # discontinued) runtime archive. Only this job may write to the repository;
+  # the publish job above keeps read-only contents.
+  github-release:
+    name: GitHub Release
+    needs: publish
+    if: ${{ github.ref_type == 'tag' }}
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+    env:
+      GH_TOKEN: ${{ github.token }}
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 24.19.0
+
+      - name: Resolve the released package
+        shell: bash
+        run: |
+          set -euo pipefail
+          node -e '
+          const fs = require("node:fs")
+          const pkg = JSON.parse(fs.readFileSync("packages/openbkn-business-context/package.json", "utf8"))
+          const manifest = JSON.parse(fs.readFileSync("runtime/openbkn-dsh-runtime.manifest.json", "utf8"))
+          fs.appendFileSync(process.env.GITHUB_ENV, [
+            `PKG_NAME=${pkg.name}`,
+            `PKG_VERSION=${pkg.version}`,
+            `DSH_TAG=${manifest.dsh.tag}`,
+          ].join("\n") + "\n")
+          '
+
+      # A release that already exists (created by hand, or by an earlier run
+      # of this tag) is left alone: its notes may have been edited since.
+      - name: Check whether the release already exists
+        id: existing
+        shell: bash
+        run: |
+          set -euo pipefail
+          if gh release view "${GITHUB_REF_NAME}" >/dev/null 2>&1; then
+            echo "exists=true" >> "$GITHUB_OUTPUT"
+            echo "::notice title=Release exists::${GITHUB_REF_NAME} already has a GitHub Release; leaving it unchanged."
+          else
+            echo "exists=false" >> "$GITHUB_OUTPUT"
+          fi
+
+      # The asset is the tarball the registry serves, not the build artifact:
+      # npm rewrites package.json on publish, and the release should carry the
+      # bytes users install. The registry needs a moment after a publish.
+      - name: Fetch the published tarball
+        if: ${{ steps.existing.outputs.exists != 'true' }}
+        shell: bash
+        run: |
+          set -euo pipefail
+          mkdir -p release/published && cd release/published
+          for attempt in $(seq 1 20); do
+            if npm pack "${PKG_NAME}@${PKG_VERSION}" --registry https://registry.npmjs.org >/dev/null 2>&1; then break; fi
+            echo "registry does not serve ${PKG_NAME}@${PKG_VERSION} yet (attempt ${attempt}/20)"
+            sleep 30
+          done
+          tarball="$(ls *.tgz)"
+          sha256sum "${tarball}" > "${tarball}.sha256"
+          cat "${tarball}.sha256"
+
+      - name: Write the release notes
+        if: ${{ steps.existing.outputs.exists != 'true' }}
+        shell: bash
+        run: |
+          set -euo pipefail
+          node scripts/plugin-release-notes.mjs --version "${PKG_VERSION}" --package "${PKG_NAME}" --dsh-tag "${DSH_TAG}" > release/notes.md
+
+      - name: Create the GitHub Release
+        if: ${{ steps.existing.outputs.exists != 'true' }}
+        shell: bash
+        run: |
+          set -euo pipefail
+          gh release create "${GITHUB_REF_NAME}" --verify-tag --latest \
+            --title "bkn-dsh plugin ${PKG_VERSION} (DSH ${DSH_TAG})" \
+            --notes-file release/notes.md \
+            release/published/*.tgz release/published/*.tgz.sha256
