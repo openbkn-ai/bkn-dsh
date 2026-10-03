@@ -350,11 +350,17 @@ jobs:
         run: |
           set -euo pipefail
           mkdir -p release/published && cd release/published
+          packed=no
           for attempt in $(seq 1 20); do
-            if npm pack "${PKG_NAME}@${PKG_VERSION}" --registry https://registry.npmjs.org >/dev/null 2>&1; then break; fi
-            echo "registry does not serve ${PKG_NAME}@${PKG_VERSION} yet (attempt ${attempt}/20)"
-            sleep 30
+            if npm pack "${PKG_NAME}@${PKG_VERSION}" --registry https://registry.npmjs.org > "${RUNNER_TEMP}/npm-pack.log" 2>&1; then packed=yes; break; fi
+            echo "npm pack failed for ${PKG_NAME}@${PKG_VERSION} (attempt ${attempt}/20)"
+            [[ "${attempt}" == "20" ]] || sleep 30
           done
+          if [[ "${packed}" != "yes" ]]; then
+            cat "${RUNNER_TEMP}/npm-pack.log"
+            echo "::error::could not fetch ${PKG_NAME}@${PKG_VERSION} from the npm registry after 20 attempts; the last npm output is above."
+            exit 1
+          fi
           tarball="$(ls *.tgz)"
           sha256sum "${tarball}" > "${tarball}.sha256"
           cat "${tarball}.sha256"
@@ -364,8 +370,13 @@ jobs:
         shell: bash
         run: |
           set -euo pipefail
-          node scripts/plugin-release-notes.mjs --version "${PKG_VERSION}" --package "${PKG_NAME}" --dsh-tag "${DSH_TAG}" > release/notes.md
+          node scripts/plugin-release-notes.mjs --version "${PKG_VERSION}" --package "${PKG_NAME}" --dsh-tag "${DSH_TAG}" --ref "${GITHUB_REF_NAME}" > release/notes.md
 
+      # Marked latest on purpose, not as a prerelease: every plugin version
+      # carries the DSH revision it pairs with (`0.2.0-rc.2-openbkn…`), so a
+      # "-" in the version does not mean an unstable plugin, and a Releases
+      # page with no latest release is what this job exists to fix. npm's
+      # dist-tag keeps its own rule above.
       - name: Create the GitHub Release
         if: ${{ steps.existing.outputs.exists != 'true' }}
         shell: bash

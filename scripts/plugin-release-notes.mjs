@@ -21,11 +21,26 @@ export function changelogSection(changelog, version) {
   return body
 }
 
+const REPOSITORY_URL = 'https://github.com/openbkn-ai/bkn-dsh'
+
 /**
- * @param {{ version: string, packageName: string, dshTag: string, changelog: string }} input
+ * Release notes render outside the repository tree, so a relative markdown
+ * link (`](docs/…)`) would resolve under `/releases/` and 404. Point each one
+ * at the file as of the released ref.
+ * @param {string} markdown
+ * @param {string} ref - tag or branch the links should resolve against.
+ * @returns {string}
+ */
+export function absolutizeRepositoryLinks(markdown, ref) {
+  return markdown.replace(/\]\((?![a-z][a-z0-9+.-]*:|#|\/)([^)\s]+)\)/gi,
+    (_match, path) => `](${REPOSITORY_URL}/blob/${ref}/${path.replace(/^\.\//, '')})`)
+}
+
+/**
+ * @param {{ version: string, packageName: string, dshTag: string, changelog: string, ref?: string }} input
  * @returns {string} markdown release notes.
  */
-export function renderPluginReleaseNotes({ version, packageName, dshTag, changelog }) {
+export function renderPluginReleaseNotes({ version, packageName, dshTag, changelog, ref = `v${version}` }) {
   return [
     `OpenBKN Business Context plugin for DeepSeek Harness \`${dshTag}\`. Installing the plugin is all you need:`,
     '',
@@ -34,20 +49,23 @@ export function renderPluginReleaseNotes({ version, packageName, dshTag, changel
     '```',
     '',
     'Setup: [README](https://github.com/openbkn-ai/bkn-dsh#install-and-start) · [中文](https://github.com/openbkn-ai/bkn-dsh/blob/main/README.zh.md). '
-      + `npm: https://www.npmjs.com/package/${packageName}/v/${version} (published with provenance from this tag). `
+      + `npm: https://www.npmjs.com/package/${packageName}/v/${version}. `
       + 'The attached `.tgz` is the published npm tarball.',
     '',
     '## Changes',
     '',
-    changelogSection(changelog, version),
+    absolutizeRepositoryLinks(changelogSection(changelog, version), ref),
     '',
   ].join('\n')
 }
 
-function argument(name) {
+function argument(name, required = true) {
   const index = process.argv.indexOf(`--${name}`)
   const value = index === -1 ? undefined : process.argv[index + 1]
-  if (value === undefined || value.startsWith('--')) throw new Error(`Usage: plugin-release-notes.mjs --version <v> --package <name> --dsh-tag <tag>`)
+  if (value === undefined || value.startsWith('--')) {
+    if (!required) return undefined
+    throw new Error('Usage: plugin-release-notes.mjs --version <v> --package <name> --dsh-tag <tag> [--ref <git-ref>]')
+  }
   return value
 }
 
@@ -58,5 +76,6 @@ if (process.argv[1] === fileURLToPath(import.meta.url)) {
     packageName: argument('package'),
     dshTag: argument('dsh-tag'),
     changelog,
+    ...(argument('ref', false) === undefined ? {} : { ref: argument('ref', false) }),
   }))
 }
