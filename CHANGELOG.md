@@ -2,7 +2,7 @@
 
 All notable changes to this project are documented here.
 
-## 0.2.0-rc.2-openbkn.0.2.0-2 (unreleased)
+## 0.2.0-rc.2-openbkn.0.2.0-2 (2026-10-04)
 
 Follows the OpenBKN 0.1.5 Context Loader contract. Same DSH pin (`0.2.0-rc.2`); no patch needed.
 
