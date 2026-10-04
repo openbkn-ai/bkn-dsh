@@ -28,7 +28,7 @@
 | 包校验 | `npm view @openbkn/dsh-business-context@0.2.0-rc.2-openbkn.0.2.0-3 dist.shasum --registry https://registry.npmjs.org/`，并记录安装后 `plugin list` 的输出 |
 | 平台 | `https://192.168.50.28`，三个服务镜像均为 0.1.5（`agent-retrieval`、`sandbox-control-plane`、`bkn-backend`）。Mac 需保持唤醒并在同一局域网 |
 | 平台工具目录 | 28 个；有 `search_capabilities`、`execute_tool`；没有 `find_skills`、`search_tools`、`execute_skill` |
-| CLI | `@openbkn/bkn-sdk` 0.1.4 或 0.1.5 都可以；先 `openbkn bkn list` 确认能列出 `supply_ontology_hand` |
+| CLI | **用 `@openbkn/bkn-sdk@0.1.5`**（README 对 0.1.5 平台的建议；macOS 上 `-2` / `-3` 的验收用的是 0.1.4，这是那边的缺口）。记录 `openbkn --version`。先 `openbkn bkn list` 确认能列出 `supply_ontology_hand` |
 | DSH | `0.2.0-rc.2`，不变 |
 | 默认配置 | `cordis.patch.yml` 只需要 `baseUrl`，不要加 `cliPath`（`-1` 之后已修） |
 
@@ -39,6 +39,18 @@ openbkn --json context tools supply_ontology_hand | findstr /C:"search_capabilit
 ```
 
 没有输出就停下来报告，不要继续：说明连到的平台不是 0.1.5 的 Context Loader。
+
+### CLI 0.1.5 的已知问题（2026-10-04 在 macOS 上发现，务必按下面的步骤记录）
+
+CLI 0.1.5 的 `openbkn auth status --json` 在无法确定 Token 过期时间时**不输出 `expired` 字段**（0.1.4 总是输出）。插件 `-3` 把缺少 `expired` 当成无效状态，面板显示「无法验证 OpenBKN 连接。请检查 Token 和平台地址后重试。」macOS 上的触发条件是：用 CLI 0.1.4 登录，之后换成 CLI 0.1.5。执行一次 `openbkn auth token`（会刷新 Token，不要把输出写进任何地方）或重新 `openbkn auth login` 后恢复。
+
+请在装好 CLI 0.1.5 之后、打开 DSH 之前记录：
+
+```powershell
+openbkn auth status --json | findstr /C:"expired"
+```
+
+有没有 `expired` 这一行都要写进结果。然后分两种情况各记一次面板第 1 项的表现：登录后直接打开面板；如果失败，按上面的办法恢复后再开。**用 CLI 0.1.5 全新登录是否会触发这个问题，macOS 上没有验证过，这是本轮要回答的问题之一。**
 
 ## 2. 每种形态的验收项
 
