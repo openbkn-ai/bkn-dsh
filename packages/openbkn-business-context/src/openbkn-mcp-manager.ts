@@ -81,7 +81,7 @@ export class OpenBknMcpManager {
       serverName: 'openbkn',
       url: resolveMcpUrl(this.config),
       headers: { Authorization: `Bearer ${token}` },
-      toolCallTimeoutMs: 20_000,
+      toolCallTimeoutMs: this.config.toolCallTimeoutMs,
       failOnStartupError: true,
       reconnect: { enabled: true, initialDelayMs: 500, maxDelayMs: 30_000, maxAttempts: 10 },
     }))

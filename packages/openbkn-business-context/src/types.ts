@@ -175,7 +175,7 @@ export type ProvenanceDegradationReason =
   | 'domain-not-authorized'
   | 'authentication-required'
   | 'record-not-disclosed'
-  | /** The platform answered, but with more than `maxResultBytes`. */
+  | /** The platform answered, but with more than the reader's size limits. */
   'result-too-large'
   | 'platform-unavailable'
 

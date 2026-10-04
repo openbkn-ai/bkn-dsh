@@ -222,8 +222,8 @@ function degradationCopy(degradation: ProvenanceDegradation): { title: string; d
     case 'result-too-large':
       return {
         title: '平台记录过大，无法在此显示',
-        detail: '平台已返回这一轮的记录，但超过了插件的结果大小上限（maxResultBytes，默认 1 MB），通常是因为这一轮的平台操作很多。重试不会改变结果。时间链不受影响。',
-        action: '下一步：用 openbkn trace interactions operations <Interaction ID> 查看完整记录，或调大插件配置 maxResultBytes。',
+        detail: '平台已返回这一轮的记录，但超过了插件可安全读取的大小上限，通常是因为这一轮的平台操作很多、返回内容很大。重试不会改变结果。时间链不受影响。',
+        action: '下一步：用 openbkn trace interactions operations <Interaction ID> 查看完整记录。',
       }
     default:
       return {
