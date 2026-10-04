@@ -18,8 +18,10 @@
  *       Needs an OpenBKN CLI login; the token stays in this process.
  *
  * `--plugin <dir>` is an unpacked plugin package (the directory that holds
- * `lib/index.js`), e.g. `tar -xzf <candidate>.tgz` → `<dir>/package`. Default:
- * this package's own built `lib/`.
+ * `lib/index.js`), e.g. `tar -xzf <candidate>.tgz` → `<dir>/package`. An
+ * unpacked tarball has no dependencies of its own: link this package's
+ * `node_modules` into it first (`ln -s "$PWD/node_modules" <dir>/node_modules`).
+ * Default: this package's own built `lib/`.
  *
  * Output: one JSON line per check. Observations carry tool short names,
  * booleans, counts and refusal texts only — never arguments' business values,
