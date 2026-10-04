@@ -69,7 +69,7 @@ repository does not provide one):
 pnpm --filter @openbkn/dsh-business-context build
 pnpm --filter @openbkn/dsh-business-context pack --pack-destination /tmp/openbkn-plugin
 cd /path/to/deepseek-harness
-pnpm dsh plugin --profile web add file:/tmp/openbkn-plugin/openbkn-dsh-business-context-0.2.0-rc.2-openbkn.0.2.0-3.tgz
+pnpm dsh plugin --profile web add file:/tmp/openbkn-plugin/openbkn-dsh-business-context-0.2.0-rc.2-openbkn.0.2.0-4.tgz
 ```
 
 To remove the complete series before changing DSH version:

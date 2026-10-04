@@ -2,10 +2,13 @@
 
 All notable changes to this project are documented here.
 
-## Unreleased
+## 0.2.0-rc.2-openbkn.0.2.0-4 (2026-10-04)
+
+Sign-in fixes for first-time users and OpenBKN CLI 0.1.5. Same DSH pin (`0.2.0-rc.2`); no patch needed.
 
 - Fix: the OpenBKN panel showed "无法验证 OpenBKN 连接" instead of the sign-in prompt when the OpenBKN CLI had never logged in. `openbkn auth status --json` then prints only `{ "hasToken": false }`, which the plugin refused as malformed. Present in every release so far; not seen earlier because each test logged in first.
 - Fix: the same message with OpenBKN CLI 0.1.5 when it cannot determine the token's expiry (seen with a token stored by a 0.1.4 login): CLI 0.1.5 then omits `expired`, which the plugin required. An unknown expiry now counts as signed in, and `openbkn auth token` settles it. Not covered: if that refresh fails, the panel still shows the generic message instead of the sign-in prompt.
+- Verification: `tests/probes/guard-runtime.probe.mjs` exercises the bound-session guard on the real DSH tool runtime without a model — cross-network, missing and non-string `kn_id`, excluded and unknown tools — and, with `--live`, checks that the platform recorded only the allowed call. Not shipped in the package.
 
 ## 0.2.0-rc.2-openbkn.0.2.0-3 (2026-10-04)
 
