@@ -39,4 +39,4 @@
 | D1 | 跨网络 `kn_id`、缺 `kn_id` 的拒绝无法通过模型触发 | `-4` 用不经过模型的实机测试覆盖（发版闸门第 7 条） |
 | D2 | 评测集 11 题里只跑了 5 题 | 提示词改动（A2、A3）时一并全量跑 |
 | D3 | 源码构建形态没有用 `-2` / `-3` 验证 | OpenBKN 0.2.0 整体回归时覆盖 |
-| D4 | CLI 0.1.5 全新登录后 `auth status` 是否含 `expired`；CLI 未登录时 Windows 上的面板表现 | Windows 补跑，见 `2026-10-04-windows-verification-v3-supplement.md` |
+| D4 | CLI 0.1.5 全新登录后 `auth status` 是否含 `expired`；CLI 未登录时 Windows 上的面板表现 | 并入 `-4` 候选包的 Windows 验证，见 `2026-10-04-windows-verification-v4.md` 第 2 节 |

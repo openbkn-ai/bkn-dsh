@@ -46,6 +46,7 @@ sha256 必须是 `c4a8effbe5f84ecb399ee45ddf705c9468ef311910dcf58f62e47a0c71687a
 | L1 | 现状（已登录）：`openbkn auth status --json`；打开 `dsh web` → 点 OpenBKN | 键的列表，是否有 `expired`。面板列出网络 |
 | L2 | 关掉 `dsh web`。**请用户执行** `openbkn auth logout`。然后 `openbkn auth status --json` | 键的列表。macOS 上「从未登录」是只有 `hasToken`；登出后的形状没有验证过，是什么记什么（可能还带 `baseUrl`） |
 | L3 | 未登录状态下打开 `dsh web` → 点 OpenBKN | **显示登录入口**（「使用 OpenBKN CLI 登录并同步」按钮、平台地址），不是「无法验证 OpenBKN 连接」 |
+| L3b | 如果 L2 的输出里还带 `baseUrl`，说明登出不等于「从未登录」。关掉 `dsh web`，**请用户执行** `openbkn auth delete https://192.168.50.28`，再 `openbkn auth status --json`，再打开面板 | 键的列表（macOS 上从未登录时只有 `hasToken`）。面板同样应显示登录入口。这是 `-3` 会报错、`-4` 修掉的那个状态 |
 | L4 | 在面板里点「使用 OpenBKN CLI 登录并同步」。**请用户在弹出的浏览器里完成授权** | 授权完成后面板列出网络，不需要重启 `dsh web`。记录：浏览器是否自动打开、面板等待期间显示什么、从点击到列出网络大约多久、中途有没有报错。**这一项在任何平台上都没测过** |
 | L5 | L4 成功后**立刻**执行 `openbkn auth status --json`，在此之前不要执行其他 `openbkn` 命令 | 键的列表，**是否有 `expired`**。这回答「CLI 0.1.5 全新登录后是否缺该字段」 |
 | L6 | 如果 L4 失败：记录现象，然后**请用户执行** `openbkn auth login https://192.168.50.28`，再做 L5，再重开面板 | 同上 |
