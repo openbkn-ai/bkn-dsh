@@ -28,13 +28,13 @@ test('mounts the compatible MCP client with an ephemeral bearer header and verif
       return { dispose: async () => { disposed += 1; tools.delete('mcp__openbkn__bkn_start_interaction') } }
     },
   }
-  const manager = new OpenBknMcpManager(ctx as never, { baseUrl: 'http://localhost:8081' } as never, async () => 'test-token')
+  const manager = new OpenBknMcpManager(ctx as never, { baseUrl: 'http://localhost:8081', toolCallTimeoutMs: 60_000 } as never, async () => 'test-token')
 
   await manager.ensure()
 
   assert.deepEqual(mounted, {
     transport: 'streamable-http', serverName: 'openbkn', url: 'http://localhost:8081/api/agent-retrieval/v1/mcp/',
-    headers: { Authorization: 'Bearer test-token' }, toolCallTimeoutMs: 20_000, failOnStartupError: true,
+    headers: { Authorization: 'Bearer test-token' }, toolCallTimeoutMs: 60_000, failOnStartupError: true,
     maxInstructionBytes: 32_768,
     reconnect: { enabled: true, initialDelayMs: 500, maxDelayMs: 30_000, maxAttempts: 10 },
   })

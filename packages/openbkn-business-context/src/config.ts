@@ -12,6 +12,11 @@ export interface Config {
   cliPath: string
   /** Upper bound for one OpenBKN request. */
   requestTimeoutMs: number
+  /**
+   * Upper bound for one OpenBKN MCP tool call. Published functions and
+   * `run_code` run on the platform and can take tens of seconds.
+   */
+  toolCallTimeoutMs: number
   /** Maximum result payload admitted into DSH context. */
   maxResultBytes: number
   /** Maximum business-context graph node count rendered for one turn. */
@@ -34,6 +39,7 @@ export const Config: Schema<Config> = Schema.object({
   businessDomain: Schema.string().pattern(/^[A-Za-z0-9_-]{1,64}$/),
   cliPath: Schema.string().default('openbkn'),
   requestTimeoutMs: Schema.natural().min(1).default(30_000),
+  toolCallTimeoutMs: Schema.natural().min(1).default(60_000),
   maxResultBytes: Schema.natural().min(1).default(1_000_000),
   maxGraphNodes: Schema.natural().min(1).default(200),
   maxGraphEdges: Schema.natural().min(1).default(400),

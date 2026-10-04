@@ -12,6 +12,12 @@ export type PlatformReaderErrorCode =
   | 'OUTPUT_OVERFLOW'
   | 'INVALID_RESPONSE'
 
+interface RequestOptions {
+  readonly licenseGated?: boolean
+  /** Host cap on the raw response body; defaults to `MAX_PLATFORM_RESPONSE_BYTES`. */
+  readonly maxResponseBytes?: number
+}
+
 /** A bounded Host-side error. It never includes platform response bodies. */
 export class PlatformReaderError extends Error {
   /** The platform's own required_action from a permission_denied envelope, truncated. */
@@ -38,6 +44,14 @@ export interface PlatformReaderConfig {
 export type PlatformFetch = (input: URL, init: RequestInit) => Promise<Response>
 
 const MAX_PLATFORM_RESPONSE_BYTES = 8 * 1024 * 1024
+/**
+ * The operations route returns every operation's raw input and output with
+ * no paging or field selection (OpenBKN 0.1.5): one turn that runs published
+ * functions measured ~31 MB for 84 operations. The projection keeps only
+ * identifiers, status and timings, so the raw body gets a larger Host cap
+ * than the other routes; `maxResultBytes` still bounds what is admitted.
+ */
+const MAX_OPERATIONS_RESPONSE_BYTES = 64 * 1024 * 1024
 
 /**
  * A fixed-route Host reader for plugin control-plane data. It is deliberately
@@ -63,7 +77,7 @@ export class OpenBknPlatformReader {
   }
 
   async getInteractionOperations(interactionId: string, signal: AbortSignal, _cwd?: string): Promise<JsonValue> {
-    const value = await this.get(`/api/agent-observability/v1/interactions/${encodeURIComponent(interactionId)}/operations`, signal, { licenseGated: true })
+    const value = await this.get(`/api/agent-observability/v1/interactions/${encodeURIComponent(interactionId)}/operations`, signal, { licenseGated: true, maxResponseBytes: MAX_OPERATIONS_RESPONSE_BYTES })
     return this.admit(projectOperations(value))
   }
 
@@ -80,7 +94,7 @@ export class OpenBknPlatformReader {
     return { ...(edition === undefined ? {} : { edition }), ...(typeof source?.licensed === 'boolean' ? { licensed: source.licensed } : {}) }
   }
 
-  private async get(path: string, signal: AbortSignal, options?: { readonly licenseGated?: boolean }): Promise<JsonValue> {
+  private async get(path: string, signal: AbortSignal, options?: RequestOptions): Promise<JsonValue> {
     return await this.request(path, { method: 'GET' }, signal, options)
   }
 
@@ -92,7 +106,7 @@ export class OpenBknPlatformReader {
     }, signal)
   }
 
-  private async request(path: string, init: RequestInit, signal: AbortSignal, options?: { readonly licenseGated?: boolean }): Promise<JsonValue> {
+  private async request(path: string, init: RequestInit, signal: AbortSignal, options?: RequestOptions): Promise<JsonValue> {
     if (signal.aborted) throw new PlatformReaderError('REQUEST_ABORTED', 'OpenBKN context request was cancelled.')
     const url = fixedUrl(this.config.baseUrl, path, this.config.allowInsecureTls)
     const token = await this.config.resolveToken?.()
@@ -154,15 +168,16 @@ export class OpenBknPlatformReader {
       throw new PlatformReaderError('PLATFORM_UNAVAILABLE', 'OpenBKN platform data is temporarily unavailable.')
     }
     if (!response.ok) throw new PlatformReaderError('PLATFORM_UNAVAILABLE', 'OpenBKN platform data is temporarily unavailable.')
+    const capBytes = options?.maxResponseBytes ?? MAX_PLATFORM_RESPONSE_BYTES
     const contentLength = response.headers.get('content-length')
-    if (contentLength !== null && Number(contentLength) > MAX_PLATFORM_RESPONSE_BYTES) {
+    if (contentLength !== null && Number(contentLength) > capBytes) {
       throw new PlatformReaderError('OUTPUT_OVERFLOW', 'OpenBKN platform response exceeded the safe Host limit.')
     }
     // Stream with a hard cap: buffering a header-less body first would let an
     // oversized or hostile response consume Host memory before the check runs.
     let text: string
     try {
-      text = await readCappedBody(response, MAX_PLATFORM_RESPONSE_BYTES)
+      text = await readCappedBody(response, capBytes)
     } catch (error: unknown) {
       if (error instanceof PlatformReaderError) throw error
       throw new PlatformReaderError('PLATFORM_UNAVAILABLE', 'OpenBKN platform data is temporarily unavailable.', { cause: error })
