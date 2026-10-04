@@ -57,13 +57,13 @@ Close the desktop app (or stop `dsh web`) first. The desktop app must have been 
 
 ```bash
 # Desktop app (macOS). The app menu "Manage dsh command…" can also put `dsh` on your PATH.
-"/Applications/DeepSeek Harness.app/Contents/Resources/runtime/cli/bin/dsh" plugin --profile desktop add @openbkn/dsh-business-context@0.2.0-rc.2-openbkn.0.2.0-2
+"/Applications/DeepSeek Harness.app/Contents/Resources/runtime/cli/bin/dsh" plugin --profile desktop add @openbkn/dsh-business-context@0.2.0-rc.2-openbkn.0.2.0-3
 
 # npm CLI
-dsh plugin --profile web add @openbkn/dsh-business-context@0.2.0-rc.2-openbkn.0.2.0-2
+dsh plugin --profile web add @openbkn/dsh-business-context@0.2.0-rc.2-openbkn.0.2.0-3
 
 # Source checkout, from the DSH checkout root
-node apps/cli/lib/bin.js plugin --profile web add @openbkn/dsh-business-context@0.2.0-rc.2-openbkn.0.2.0-2
+node apps/cli/lib/bin.js plugin --profile web add @openbkn/dsh-business-context@0.2.0-rc.2-openbkn.0.2.0-3
 ```
 
 On Windows, run `dsh.cmd` in place of `dsh`.
@@ -132,10 +132,10 @@ Check your version with `dsh --version`, then pair it like this:
 
 | Your DSH version | Compatibility series | Plugin to install | Prebuilt runtime archive |
 | --- | --- | --- | --- |
-| `dsh-v0.2.0-rc.2` (current pin): desktop app, npm CLI, or source build | not needed to use the plugin; [`compat/dsh-0.2.0-rc.2/`](compat/dsh-0.2.0-rc.2/) builds it from source | `@openbkn/dsh-business-context@0.2.0-rc.2-openbkn.0.2.0-2` from npm (Standard mode) | discontinued; last one: [openbkn-dsh-runtime-v0.2.0-rc.2-openbkn.0.2.0](https://github.com/openbkn-ai/bkn-dsh/releases/tag/openbkn-dsh-runtime-v0.2.0-rc.2-openbkn.0.2.0) |
+| `dsh-v0.2.0-rc.2` (current pin): desktop app, npm CLI, or source build | not needed to use the plugin; [`compat/dsh-0.2.0-rc.2/`](compat/dsh-0.2.0-rc.2/) builds it from source | `@openbkn/dsh-business-context@0.2.0-rc.2-openbkn.0.2.0-3` from npm (Standard mode) | discontinued; last one: [openbkn-dsh-runtime-v0.2.0-rc.2-openbkn.0.2.0](https://github.com/openbkn-ai/bkn-dsh/releases/tag/openbkn-dsh-runtime-v0.2.0-rc.2-openbkn.0.2.0) |
 | `dsh-v0.1.7-rc.2` (previous series) | [`compat/dsh-0.1.7-rc.2/`](compat/dsh-0.1.7-rc.2/) (archived) | `@openbkn/dsh-business-context@0.1.7-rc.2-openbkn.0.2.0` from npm, or build from git tag [`v0.1.7-rc.2-openbkn.0.2.0`](https://github.com/openbkn-ai/bkn-dsh/tree/v0.1.7-rc.2-openbkn.0.2.0) | [openbkn-dsh-runtime-v0.1.7-rc.2-openbkn.0.2.0](https://github.com/openbkn-ai/bkn-dsh/releases/tag/openbkn-dsh-runtime-v0.1.7-rc.2-openbkn.0.2.0) |
 | `dsh-v0.1.6-alpha.2` (previous series) | [`compat/dsh-0.1.6-alpha.2/`](compat/dsh-0.1.6-alpha.2/) (archived) | `@openbkn/dsh-business-context@0.1.5-rc.2` from npm, or a source build from git tag [`v0.1.5-rc.2`](https://github.com/openbkn-ai/bkn-dsh/tree/v0.1.5-rc.2) | [openbkn-dsh-runtime-v0.1.6-alpha.2-openbkn.1](https://github.com/openbkn-ai/bkn-dsh/releases/tag/openbkn-dsh-runtime-v0.1.6-alpha.2-openbkn.1) |
 
-Since the `0.2.0-rc.2` round, the plugin and the runtime bundle share one version scheme — `<dsh-version>-openbkn.<openbkn-platform-version>` — so the version number declares both compatibility dimensions at a glance: `0.2.0-rc.2-openbkn.0.2.0` pairs DSH `0.2.0-rc.2` with OpenBKN platform `0.2.0`, and a republish with the same pair appends `-<n>` (`0.2.0-rc.2-openbkn.0.2.0-2`). The runtime manifest validator rejects any manifest whose plugin version does not carry its pinned DSH revision. Releases before this round keep their historical version numbers.
+Since the `0.2.0-rc.2` round, the plugin and the runtime bundle share one version scheme — `<dsh-version>-openbkn.<openbkn-platform-version>` — so the version number declares both compatibility dimensions at a glance: `0.2.0-rc.2-openbkn.0.2.0` pairs DSH `0.2.0-rc.2` with OpenBKN platform `0.2.0`, and a republish with the same pair appends `-<n>` (`0.2.0-rc.2-openbkn.0.2.0-3`). The runtime manifest validator rejects any manifest whose plugin version does not carry its pinned DSH revision. Releases before this round keep their historical version numbers.
 
 The plugin's declared DSH peers must match your runtime — DSH's version fence refuses mismatched installs. **Do not build the plugin from current `main` for a `0.1.6-alpha.2` runtime**: since the `0.2.0-rc.2` retarget its peers declare `0.2.0-rc.2`, and the install will be rejected. [`compat/dsh-0.1.2-rc.1/`](compat/dsh-0.1.2-rc.1/) is a historical archive with no npm pairing.
