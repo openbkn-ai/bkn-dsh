@@ -45,7 +45,7 @@ bkn-dsh 是一个增量式 DeepSeek Harness 插件。授权用户可为一个会
 
 1. **登录 OpenBKN CLI。** 安装与平台版本匹配的 CLI，执行一次 `openbkn auth login <平台地址>`。
    - OpenBKN 0.1.5 平台用 `npm install -g @openbkn/bkn-sdk@0.1.5`；0.1.4 平台用 `@openbkn/bkn-sdk@0.1.4`（`0.1.5-rc.1` 也可以）。CLI 从 `0.1.5-rc.2` 起，每次请求前都会通过 `/api/bkn-backend/v1/health` 检查平台版本，平台没有这个接口（比如 0.1.4）就直接拒绝。
-   - **先登录再打开 OpenBKN 面板。** 插件 `0.2.0-rc.2-openbkn.0.2.0-3` 及之前的版本，在 CLI 从未登录时，面板显示「无法验证 OpenBKN 连接」而不是登录入口。用 CLI 0.1.5 读取 CLI 0.1.4 存下的登录状态时也可能出现同样的提示；实测执行一次 `openbkn auth token`（它会刷新会话，输出不要粘贴到任何地方）后恢复。
+   - **先登录再打开 OpenBKN 面板。** 插件 `0.2.0-rc.2-openbkn.0.2.0-3` 及之前的版本，在 CLI 从未登录时，面板显示「无法验证 OpenBKN 连接」而不是登录入口。用 CLI 0.1.5 读取 CLI 0.1.4 存下的登录状态时也可能出现同样的提示；实测刷新一次会话后恢复：`openbkn auth token > /dev/null`（PowerShell 用 `openbkn auth token > $null`）。这条命令会打印访问令牌，所以要像上面那样丢弃输出，不要让它显示在终端里。
    - 插件通过 `openbkn` CLI 读取 Token，所以 DSH 要能在自己进程的 `PATH` 里找到它。macOS 桌面版从登录 shell 取得 `PATH`；Windows 上会找到 `openbkn.cmd`。找不到时，在第 2 步的条目里把 `cliPath` 设为 CLI 的绝对路径。DSH 只会给命令名补 Windows 扩展名，给绝对路径时不会补，所以 Windows 上要写到 `.cmd` 文件本身，例如 `C:/Users/<你>/AppData/Roaming/npm/openbkn.cmd`（用 `where.exe openbkn` 可以查到）。
 2. **pnpm（只有 npm 命令行需要）。** npm 版的 `dsh` 会把 `plugin add` 交给 `PATH` 里的 `pnpm` 执行，要先安装它（`npm install -g pnpm@11.7.0`，与 DSH 自己用的版本一致）。桌面版自带 pnpm。
 3. **自签证书的平台**（公开受信任的证书可跳过）。DSH 要通过 `NODE_EXTRA_CA_CERTS=<CA pem 路径>` 信任平台 CA：
