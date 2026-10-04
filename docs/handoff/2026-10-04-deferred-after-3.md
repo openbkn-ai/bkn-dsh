@@ -30,6 +30,7 @@
 |---|---|---|
 | C1 | Windows 桌面版里一次 `search_capabilities` 被平台以 `resource_not_disclosed` 拒绝（37 ms），模型重试成功 | macOS 上用相同参数连调 6 次都成功。报告里「缺 `limit` / `response_format`」的线索不成立，原因未知。再出现时记录完整的请求参数、时间和平台日志 |
 | C2 | 同一会话两轮回答的 BOM 物料数不一致（272 与 333） | 两次都是模型在 `run_code` 里自行计算，未核实哪个正确。属于回答准确性，需要评测题覆盖 |
+| C3 | `dsh plugin add` 安装发布不到一天的包时，pnpm 往用户 profile 的 `pnpm-workspace.yaml` 写入一条 `minimumReleaseAgeExclude`（Windows 报告 A11） | 安装成功，但这是对用户 profile 的一次静默修改，来自 DSH 调用的 pnpm，不是插件的行为。用户把 `minimumReleaseAgeStrict` 设为 `true` 时的安装行为未测。只影响发布后 24 小时内安装的用户。处理：下次发版后在 `minimumReleaseAgeStrict: true` 下实测一次安装，再决定 README 是否需要说明 |
 
 ## D. 验证上的缺口
 
