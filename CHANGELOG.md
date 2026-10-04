@@ -5,7 +5,7 @@ All notable changes to this project are documented here.
 ## Unreleased
 
 - Fix: the OpenBKN panel showed "无法验证 OpenBKN 连接" instead of the sign-in prompt when the OpenBKN CLI had never logged in. `openbkn auth status --json` then prints only `{ "hasToken": false }`, which the plugin refused as malformed. Present in every release so far; not seen earlier because each test logged in first.
-- Fix: the same message with OpenBKN CLI 0.1.5 when it cannot determine the token's expiry (seen with a token stored by a 0.1.4 login): CLI 0.1.5 then omits `expired`, which the plugin required. An unknown expiry now counts as signed in, and `openbkn auth token` settles it.
+- Fix: the same message with OpenBKN CLI 0.1.5 when it cannot determine the token's expiry (seen with a token stored by a 0.1.4 login): CLI 0.1.5 then omits `expired`, which the plugin required. An unknown expiry now counts as signed in, and `openbkn auth token` settles it. Not covered: if that refresh fails, the panel still shows the generic message instead of the sign-in prompt.
 
 ## 0.2.0-rc.2-openbkn.0.2.0-3 (2026-10-04)
 
