@@ -2,6 +2,7 @@
 
 > 建立：2026-10-04。`-4` **还没有发布**。用户决定：Windows 把需要测的都测完，再最终发布。所以这一轮测的是 CI 候选包，不是 npm 上的包。
 > 本文取代 `2026-10-04-windows-verification-v3-supplement.md`（那份的内容已并入第 2 节）。
+> 执行结果已记录在 `2026-10-04-windows-verification-v4-results.md`（原始提交 `9d1c50f`）。以下 L3b、备份和 L5/L6 步骤按该轮发现更正；原结果报告保留原样。剩余补测见 `2026-10-04-windows-verification-v4-followup.md`，不必重跑本文件全部内容。
 > 结果写成 `docs/handoff/2026-10-04-windows-verification-v4-results.md`，提交到一个新分支并推送。**分支名不要以 `release/` 开头**（仓库规则保护这类分支，推不上去也删不掉），不要推 `main`。
 
 ## 背景
@@ -10,14 +11,14 @@
   - CLI 从未登录时输出只有 `{ "hasToken": false }`。`-3` 及之前的版本把它当成无效状态，面板显示「无法验证 OpenBKN 连接」，而不是登录入口。
   - CLI 0.1.5 算不出 Token 过期时间时不输出 `expired`。`-3` 同样报错。macOS 上的触发条件是「CLI 0.1.4 登录后换成 CLI 0.1.5」。
 - macOS 上已在同一个候选包上验收：面板三种登录状态、守卫探针 16 项（不经过模型，直接对 DSH 工具运行时发调用）。记录在 `docs/evidence/2026-10-04-openbkn-0.1.5-capability-contract.md` 的「`…-4` 候选包验收」。
-- **没有在任何平台上测过的**：从面板点「使用 OpenBKN CLI 登录并同步」，走完浏览器授权，回到面板列出网络。这是本轮最重要的一项。
+- Windows npm 形态已完成面板登录（12.6 秒，无需重启）；桌面版面板登录仍未测。原始执行前，这条完整路径在任何平台上都没有验收。
 - 上一轮（`-3`）的环境准备、平台确认方法、验收项措辞见 `2026-10-04-windows-verification-v3.md` 和你自己的结果报告；下面只列这一轮的内容。
 
 ## 0. 约束
 
-- Token、模型密钥不写进任何文件、命令行参数、截图或日志。`openbkn auth token` 的输出不要捕获、不要打印；必须执行时丢弃输出：`openbkn auth token > $null`。
+- Token、模型密钥只能留在 CLI / DSH 凭据库；不新增其他副本，不放进命令行参数、截图或日志。直接执行 `openbkn auth token` 时丢弃输出：`openbkn auth token > $null`。守卫探针可在内存中取 Token 连接 MCP，不能打印或保存它。
 - **登出、登录、在浏览器里授权，都由用户本人操作。** 到这些步骤时停下来请用户执行，不要代做。
-- 动 `%USERPROFILE%\.dsh` 和 CLI 登录状态之前先备份，结束后还原；实验产物移动，不删除。备份方式沿用你上一轮的做法（注意 junction）。
+- 优先用独立 `DSH_HOME` 和 `BKN_CONFIG_DIR`，保留用户原环境。确需改动 `.dsh` 时沿用上一轮还原流程（注意 junction 和凭据文件）；CLI 只备份不含密钥的 `state.json` 等状态，不复制 `token.json`，结束时由用户登录恢复并核对平台和用户。实验产物移动，不删除。
 - 每个场景新建会话；截图只截 DSH 窗口。
 - 不修改插件代码或 DSH 安装，不发布、不打 tag、不合并。
 - 证据分三类标注：实际运行、读屏、读文件。没做的写「未测」。**实机里的每个异常都单独列出**，即使结果是对的。
@@ -44,12 +45,12 @@ sha256 必须是 `c4a8effbe5f84ecb399ee45ddf705c9468ef311910dcf58f62e47a0c71687a
 | # | 操作 | 期望 / 要记录的 |
 |---|---|---|
 | L1 | 现状（已登录）：`openbkn auth status --json`；打开 `dsh web` → 点 OpenBKN | 键的列表，是否有 `expired`。面板列出网络 |
-| L2 | 关掉 `dsh web`。**请用户执行** `openbkn auth logout`。然后 `openbkn auth status --json` | 键的列表。macOS 上「从未登录」是只有 `hasToken`；登出后的形状没有验证过，是什么记什么（可能还带 `baseUrl`） |
+| L2 | 关掉 `dsh web`。**请用户执行** `openbkn auth logout`。然后 `openbkn auth status --json` | 键的列表。本轮 Windows 登出后实测为 `baseUrl, userId, hasToken`，不能当成「从未登录」 |
 | L3 | 未登录状态下打开 `dsh web` → 点 OpenBKN | **显示登录入口**（「使用 OpenBKN CLI 登录并同步」按钮、平台地址），不是「无法验证 OpenBKN 连接」 |
-| L3b | 如果 L2 的输出里还带 `baseUrl`，说明登出不等于「从未登录」。关掉 `dsh web`，**请用户执行** `openbkn auth delete https://192.168.50.28`，再 `openbkn auth status --json`，再打开面板 | 键的列表（macOS 上从未登录时只有 `hasToken`）。面板同样应显示登录入口。这是 `-3` 会报错、`-4` 修掉的那个状态 |
-| L4 | 在面板里点「使用 OpenBKN CLI 登录并同步」。**请用户在弹出的浏览器里完成授权** | 授权完成后面板列出网络，不需要重启 `dsh web`。记录：浏览器是否自动打开、面板等待期间显示什么、从点击到列出网络大约多久、中途有没有报错。**这一项在任何平台上都没测过** |
-| L5 | L4 成功后**立刻**执行 `openbkn auth status --json`，在此之前不要执行其他 `openbkn` 命令 | 键的列表，**是否有 `expired`**。这回答「CLI 0.1.5 全新登录后是否缺该字段」 |
-| L6 | 如果 L4 失败：记录现象，然后**请用户执行** `openbkn auth login https://192.168.50.28`，再做 L5，再重开面板 | 同上 |
+| L3b | 关掉 `dsh web`，把该测试进程的 `BKN_CONFIG_DIR` 指向新空目录；在同一环境读 `auth status --json`，再启动面板。不要用 `auth delete`：登出后它是空操作，不清当前平台指针 | 键只有 `hasToken`，值为 `false`；面板显示登录入口。该变量会传给 CLI 子进程，测试后恢复原进程环境 |
+| L4 | 在面板里点「使用 OpenBKN CLI 登录并同步」。**请用户在弹出的浏览器里完成授权** | 授权完成后面板列出网络，不需要重启 `dsh web`。记录浏览器、等待文案、耗时和报错。Windows npm 已完成；桌面版见补测文件 |
+| L5 | L4 成功后读 `openbkn auth status --json` | 只记录面板登录后的状态。插件自己会执行 `auth token` / `auth status`，可能刷新 Token，所以此读数不能独立回答全新登录是否含 `expired` |
+| L6 | 完全停止 DSH，**请用户在终端执行** `openbkn auth login https://192.168.50.28`；之后第一条 CLI 命令必须是 `auth status --json` | 这才是全新登录的干净读数；本轮实测有 `expired:false`。是否缺省取决于 JWT `exp` 或保存的 `expiresAt`，不能推广成所有认证响应都必含该键 |
 | L7 | 「手动输入 Token」入口 | **不测**（需要把 Token 交给界面，超出约束）。只确认入口在登录页上存在 |
 
 ## 3. 回归（两种形态：先桌面版，再 npm；或在两者之间移走 `storages\openbkn_workspace_bindings.json`）

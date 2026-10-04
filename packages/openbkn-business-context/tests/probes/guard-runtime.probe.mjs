@@ -27,37 +27,33 @@
  * booleans, counts and refusal texts only — never arguments' business values,
  * response bodies, or credentials.
  */
-import { execFile } from 'node:child_process'
 import { readFile } from 'node:fs/promises'
 import { createRequire } from 'node:module'
 import { dirname, resolve } from 'node:path'
 import { pathToFileURL } from 'node:url'
-import { promisify } from 'node:util'
-import { Context } from '@deepseek-ai/cordis'
-import { ToolRuntime } from '@deepseek-ai/dsh-tools'
-import { createMcpToolDefinition } from '@deepseek-ai/dsh-mcp-client'
-import { SystemPrompt } from '@deepseek-ai/dsh-system-prompt'
+import { parseProbeOptions, runProbeCli as runCli } from './guard-probe-cli.mjs'
 
-const runCli = promisify(execFile)
+let options
+try {
+  options = parseProbeOptions(process.argv.slice(2))
+} catch {
+  console.error('Invalid guard probe arguments. Use --live <platform URL> --kn <bound network> --other-kn <different network>; every option needs a value.')
+  process.exit(2)
+}
+const { live, cli, boundKn, otherKn } = options
+const pluginDir = resolve(options.plugin)
+
+// Validate arguments before loading DSH, the candidate, or CLI credentials.
+const { Context } = await import('@deepseek-ai/cordis')
+const { ToolRuntime } = await import('@deepseek-ai/dsh-tools')
+const { createMcpToolDefinition } = await import('@deepseek-ai/dsh-mcp-client')
+const { SystemPrompt } = await import('@deepseek-ai/dsh-system-prompt')
+
 const require = createRequire(import.meta.url)
 const scopeEntry = require.resolve('@deepseek-ai/dsh-scope', {
   paths: [dirname(require.resolve('@deepseek-ai/dsh-tools/package.json'))],
 })
 const { createScope } = await import(pathToFileURL(scopeEntry).href)
-
-const option = name => {
-  const index = process.argv.indexOf(`--${name}`)
-  return index === -1 ? undefined : process.argv[index + 1]
-}
-const live = option('live')
-const pluginDir = resolve(option('plugin') ?? '.')
-const cli = option('cli') ?? 'openbkn'
-const boundKn = option('kn') ?? 'kn-bound'
-const otherKn = option('other-kn') ?? 'kn-other'
-if (live !== undefined && (option('kn') === undefined || option('other-kn') === undefined)) {
-  console.error('--live needs --kn <bound network id> and --other-kn <another network id>')
-  process.exit(2)
-}
 
 const production = await import(pathToFileURL(resolve(pluginDir, 'lib/index.js')).href)
 const pluginVersion = JSON.parse(await readFile(resolve(pluginDir, 'package.json'), 'utf8')).version
@@ -214,5 +210,5 @@ if (live === undefined) {
 
 try { await ctx.destroy?.() } catch { /* teardown shape varies; the process exits anyway */ }
 const failed = evidence.filter(entry => entry.verdict === 'fail')
-console.log(JSON.stringify({ summary: `${evidence.length - failed.length}/${evidence.length} checks passed`, failed: failed.map(entry => entry.check) }))
+console.log(JSON.stringify({ mode: live === undefined ? 'stand-in' : 'live', plugin: pluginVersion, dshTools: dshVersion, summary: `${evidence.length - failed.length}/${evidence.length} checks passed`, failed: failed.map(entry => entry.check) }))
 process.exit(failed.length === 0 ? 0 : 1)
