@@ -15,12 +15,17 @@ import { trimTrailingSlashes } from './trailing-slashes.js'
 
 export type { AuthSnapshot } from './types.js'
 
+/**
+ * `openbkn auth status --json`. Two fields are not always printed: a CLI
+ * that has never logged in prints only `{ hasToken: false }`, and CLI 0.1.5
+ * omits `expired` when it cannot determine the token's expiry.
+ */
 interface CliAuthStatus {
-  readonly baseUrl: string
+  readonly baseUrl?: string
   readonly userId?: string
   readonly username?: string
   readonly hasToken: boolean
-  readonly expired: boolean
+  readonly expired?: boolean
 }
 
 /** Thrown when the CLI cannot provide a trustworthy authentication status. */
@@ -49,6 +54,8 @@ export class AuthCoordinator {
     if (result.code !== 0) throw cliFailure('read authentication status', result)
 
     const status = parseStatus(result.stdout)
+    // No active platform in the CLI: nobody has logged in yet.
+    if (status.baseUrl === undefined) return { kind: 'authentication-required', baseUrl: this.baseUrl }
     const actualBaseUrl = normalizeBaseUrl(status.baseUrl)
     if (actualBaseUrl !== this.baseUrl) {
       return {
@@ -57,7 +64,9 @@ export class AuthCoordinator {
         actualBaseUrl,
       }
     }
-    if (!status.hasToken || status.expired) {
+    // An unknown expiry is not a refusal: `auth token` is the CLI's refresh
+    // authority and fails by itself when the session cannot be renewed.
+    if (!status.hasToken || status.expired === true) {
       return { kind: 'authentication-required', baseUrl: this.baseUrl }
     }
     return {
@@ -110,10 +119,15 @@ function parseStatus(stdout: string): CliAuthStatus {
     throw new OpenBknCliError('OpenBKN CLI returned an invalid auth status payload')
   }
   const candidate = value as Record<string, unknown>
-  if (typeof candidate.baseUrl !== 'string'
-    || typeof candidate.hasToken !== 'boolean'
-    || typeof candidate.expired !== 'boolean') {
+  if (typeof candidate.hasToken !== 'boolean') {
     throw new OpenBknCliError('OpenBKN CLI auth status is missing required fields')
+  }
+  // A session with a token must name its platform; only a logged-out CLI may omit it.
+  if (candidate.baseUrl === undefined ? candidate.hasToken : typeof candidate.baseUrl !== 'string') {
+    throw new OpenBknCliError('OpenBKN CLI auth status has no valid platform address')
+  }
+  if (candidate.expired !== undefined && typeof candidate.expired !== 'boolean') {
+    throw new OpenBknCliError('OpenBKN CLI auth status contains an invalid expiry flag')
   }
   if (candidate.userId !== undefined && typeof candidate.userId !== 'string') {
     throw new OpenBknCliError('OpenBKN CLI auth status contains an invalid user id')
@@ -122,9 +136,9 @@ function parseStatus(stdout: string): CliAuthStatus {
     throw new OpenBknCliError('OpenBKN CLI auth status contains an invalid username')
   }
   return {
-    baseUrl: candidate.baseUrl,
     hasToken: candidate.hasToken,
-    expired: candidate.expired,
+    ...(candidate.baseUrl === undefined ? {} : { baseUrl: candidate.baseUrl as string }),
+    ...(candidate.expired === undefined ? {} : { expired: candidate.expired as boolean }),
     ...(candidate.userId === undefined ? {} : { userId: candidate.userId }),
     ...(candidate.username === undefined ? {} : { username: candidate.username }),
   }

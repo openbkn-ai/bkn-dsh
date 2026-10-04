@@ -94,3 +94,43 @@ test('refuses to request a CLI token for an unauthenticated or foreign platform'
   await assert.rejects(auth.readToken(), /configured platform/i)
   assert.deepEqual(cli.invocations, [['auth', 'status', '--json']])
 })
+
+// Real `openbkn auth status --json` shapes captured 2026-10-04 (CLI 0.1.4 and 0.1.5).
+
+test('CLI 0.1.5 omits `expired` when it cannot tell the token expiry: the session is still authenticated', async () => {
+  // Seen with a token stored by a 0.1.4 login and read by CLI 0.1.5.
+  const cli = new FakeCli([json({
+    baseUrl: 'https://poc.openbkn.ai', userId: 'user-1', hasToken: true, username: 'admin',
+  }), json({
+    baseUrl: 'https://poc.openbkn.ai', userId: 'user-1', hasToken: true, username: 'admin',
+  }), { code: 0, stdout: 'token-value\n', stderr: '' }])
+  const auth = new AuthCoordinator(cli, 'https://poc.openbkn.ai')
+
+  assert.deepEqual(await auth.status(), {
+    kind: 'authenticated', baseUrl: 'https://poc.openbkn.ai', userId: 'user-1', username: 'admin',
+  })
+  // `auth token` is the CLI's refresh authority, so an unknown expiry is settled there.
+  assert.equal(await auth.readToken(), 'token-value')
+})
+
+test('a CLI that has never logged in prints only { hasToken: false }: the user is asked to log in', async () => {
+  const cli = new FakeCli([json({ hasToken: false })])
+  const auth = new AuthCoordinator(cli, 'https://poc.openbkn.ai')
+
+  assert.deepEqual(await auth.status(), { kind: 'authentication-required', baseUrl: 'https://poc.openbkn.ai' })
+})
+
+test('an expired token still asks for login, and malformed fields are still refused', async () => {
+  const expired = new AuthCoordinator(new FakeCli([json({ baseUrl: 'https://poc.openbkn.ai', hasToken: true, expired: true })]), 'https://poc.openbkn.ai')
+  assert.deepEqual(await expired.status(), { kind: 'authentication-required', baseUrl: 'https://poc.openbkn.ai' })
+
+  for (const payload of [
+    { baseUrl: 'https://poc.openbkn.ai', hasToken: true, expired: 'no' },
+    { baseUrl: 42, hasToken: true },
+    { baseUrl: 'https://poc.openbkn.ai' },
+    { hasToken: true },
+  ]) {
+    const auth = new AuthCoordinator(new FakeCli([json(payload)]), 'https://poc.openbkn.ai')
+    await assert.rejects(auth.status(), /auth status/i, JSON.stringify(payload))
+  }
+})
