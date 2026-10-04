@@ -24,6 +24,7 @@
 - package:check：52 个发布文件通过；探针和测试未入包。
 - 新回归覆盖无 URL、选项占 URL 位置、缺网络、同网络、单独网络选项、缺插件路径；全部在依赖加载前拒绝。Windows 实际 .cmd 测试留给 W1。
 - 初次 pnpm run 因复用依赖链接触发自动重装检查，在非 TTY 下中止；没有重装依赖。后续通过 `pnpm_config_verify_deps_before_run=false` 运行现有依赖，未修改锁文件或共享 node_modules。
+- 修复提交 `0cb4639` 的 [自动评审 run 37212087850](https://github.com/openbkn-ai/bkn-dsh/actions/runs/37212087850) 已通过，确认原两条 inline 问题已修复；CodeQL 也通过。评审未执行探针及 Windows 测试，不代替 W1–W3 实测。评审提到的旧证据命令缺值已在原证据文件中补正并指向本轮完整记录；随后仅提交此文档补正。
 
 ## macOS 真实平台守卫（实际运行）
 
@@ -66,7 +67,7 @@ macOS npm DSH 0.2.0-rc.2 已在独立 DSH_HOME、空 BKN_CONFIG_DIR 中安装固
 | Windows 桌面面板登录 | W3 待用户配合 |
 | 授权异常三条 | W4 待测，或由用户明确接受为未测 |
 | 本轮异常取舍 | 待用户核对；不自动把已知或未测项关闭 |
-| PR #60 复评、合并 | 复评可先进行；Windows 补测和用户放行前保持 open |
+| PR #60 复评、合并 | 修复提交 `0cb4639` 复评通过；Windows 补测和用户放行前保持 open |
 | main CI 彩排与发布候选逐文件一致性 | 合并后执行，仍待完成 |
 | tag、npm rc、GitHub Release、取回比对、latest | 仍待用户放行和前置闸门完成 |
 
