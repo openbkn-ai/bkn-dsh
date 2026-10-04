@@ -8,7 +8,8 @@ Fixes found while verifying `…-2` on OpenBKN 0.1.5. Same DSH pin (`0.2.0-rc.2`
 
 - Fix: the provenance operations pane could not read a turn's platform record once the raw response passed 8 MB — OpenBKN 0.1.5 returns every operation's full output (about 31 MB for one 84-operation turn). The reader now accepts up to 64 MB on that route and keeps only identifiers, status and timings, so the pane shows such turns.
 - Correction to `…-2`: its "record too large" message named `maxResultBytes` as the limit and the remedy. The limit that applied was the reader's fixed raw-response cap, which that setting does not change; the message no longer mentions it.
-- OpenBKN MCP tool calls time out after 60 s instead of 20 s (new `toolCallTimeoutMs` setting). Published functions and `run_code` run on the platform, and deep BOM expansions were cut off at 20 s.
+- The OpenBKN MCP tool-call timeout is now a setting, `toolCallTimeoutMs`; the default stays 20 s. Measured on OpenBKN 0.1.5: a deep BOM expansion through `execute_tool` does not finish before the platform gateway answers 504 at 60 s, so a longer plugin timeout only makes each failed call slower. That is a platform limit, to be raised with the OpenBKN team.
+- Known limitations: an operations record beyond 64 MB still shows as too large (the platform route has no paging or summary form; one measured turn reached 50 MB). In a bound session the model cannot use DSH's `ask_user_question`, like every other non-OpenBKN tool.
 
 ## 0.2.0-rc.2-openbkn.0.2.0-2 (2026-10-04)
 
