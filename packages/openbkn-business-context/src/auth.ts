@@ -151,7 +151,6 @@ function normalizeBaseUrl(value: string): string {
 
 function cliFailure(action: string, result: CliResult): OpenBknCliError {
   const detail = result.stderr.trim() || 'no diagnostic output'
-  passiveDiagnostics.record({ subject: 'cli', stage: 'cli', code: 'cli-execution-failed', status: 'fail', evidence: { exitCode: result.code } })
   return new OpenBknCliError(`OpenBKN CLI could not ${action}: ${detail}`)
 }
 

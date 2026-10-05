@@ -1,6 +1,6 @@
 import type { Context } from '@deepseek-ai/cordis'
 import { assertHttpsEndpoint, isLoopbackHost } from './platform-reader.js'
-import { passiveDiagnostics } from './diagnostics-observer.js'
+import { passiveDiagnostics, transportMarkersOf } from './diagnostics-observer.js'
 import * as McpClient from '@deepseek-ai/dsh-mcp-client'
 import type { Config } from './config.js'
 
@@ -100,22 +100,7 @@ export class OpenBknMcpManager {
    * its original failure shape.
    */
   private explainStartupFailure(error: unknown): Error {
-    const brand = authenticationBrand(error, 0)
-    if (brand !== undefined) {
-      const denied = brand === 'CLIENT_HTTP_FORBIDDEN'
-      passiveDiagnostics.record({
-        subject: 'context-loader',
-        stage: 'context-loader',
-        code: denied ? 'auth-rejected' : 'not-logged-in',
-        status: 'fail',
-        evidence: { httpStatus: denied ? 403 : 401 },
-      })
-      return new Error(denied
-        ? 'OpenBKN rejected this account for the Context Loader MCP (HTTP 403). Ask the platform administrator to authorize this account, then retry.'
-        : 'OpenBKN rejected the Context Loader MCP credential (HTTP 401). Re-login with `openbkn auth login` (or update the stored token) and retry; no business data was read.')
-    }
-    passiveDiagnostics.record({ subject: 'context-loader', stage: 'context-loader', code: 'mcp-initialization-failed', status: 'fail' })
-    return error instanceof Error ? error : new Error(String(error))
+    return explainMcpStartupFailure(error)
   }
 }
 
@@ -161,4 +146,37 @@ export function resolveMcpUrl(config: Pick<Config, 'baseUrl' | 'mcpUrl' | 'allow
     url = new URL('/api/agent-retrieval/v1/mcp/', base)
   }
   return url.toString()
+}
+
+/**
+ * Explain one MCP mount failure and record its bounded classification:
+ * the stage stays `context-loader` while the transport cause (TLS, timeout)
+ * is projected from the cause chain so a certificate problem is not folded
+ * into a generic initialization failure.
+ * @param error - the rejection from the MCP mount.
+ * @returns the caller-facing error (credential hints keep their wording).
+ */
+export function explainMcpStartupFailure(error: unknown): Error {
+  const brand = authenticationBrand(error, 0)
+  if (brand !== undefined) {
+    const denied = brand === 'CLIENT_HTTP_FORBIDDEN'
+    passiveDiagnostics.record({
+      subject: 'context-loader',
+      stage: 'context-loader',
+      code: denied ? 'auth-rejected' : 'not-logged-in',
+      status: 'fail',
+      evidence: { httpStatus: denied ? 403 : 401 },
+    })
+    return new Error(denied
+      ? 'OpenBKN rejected this account for the Context Loader MCP (HTTP 403). Ask the platform administrator to authorize this account, then retry.'
+      : 'OpenBKN rejected the Context Loader MCP credential (HTTP 401). Re-login with `openbkn auth login` (or update the stored token) and retry; no business data was read.')
+  }
+  const markers = transportMarkersOf(error)
+  passiveDiagnostics.record({
+    subject: 'context-loader',
+    stage: 'context-loader',
+    code: markers.tls ? 'tls-failed' : markers.timeout ? 'timeout' : 'mcp-initialization-failed',
+    status: 'fail',
+  })
+  return error instanceof Error ? error : new Error(String(error))
 }

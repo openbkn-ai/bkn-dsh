@@ -152,3 +152,29 @@ export function exitCodeEvidence(code: unknown): Readonly<Record<string, number>
     ? { exitCode: code }
     : {}
 }
+
+/** Marker patterns for bounded transport classification of a cause chain. */
+const TLS_MARKER = /CERT|SSL|TLS|SIGNATURE/i
+const TIMEOUT_MARKER = /TimeoutError|TIMED?OUT|UND_ERR_HEADERS_TIMEOUT|UND_ERR_CONNECT_TIMEOUT|UND_ERR_BODY_TIMEOUT/
+
+/**
+ * Classify the transport layer of a bounded cause chain: certificate/TLS
+ * shapes and timeout brands are recognized without reading message text.
+ * Shared by every boundary that dials the platform (reader and MCP mount).
+ * @param cause - the error chain to classify (name/code fields only).
+ * @param depth - maximum cause-chain depth walked.
+ * @returns which transport markers the chain carries.
+ */
+export function transportMarkersOf(cause: unknown, depth = 4): { tls: boolean, timeout: boolean } {
+  let tls = false
+  let timeout = false
+  let current: unknown = cause
+  for (let level = 0; level < depth && current !== null && typeof current === 'object'; level += 1) {
+    const candidate = current as { name?: unknown, code?: unknown, cause?: unknown }
+    const parts = `${String(candidate.name ?? '')} ${String(candidate.code ?? '')}`
+    if (TLS_MARKER.test(parts)) tls = true
+    if (TIMEOUT_MARKER.test(parts)) timeout = true
+    current = candidate.cause
+  }
+  return { tls, timeout }
+}

@@ -1,6 +1,6 @@
 import type { JsonValue } from '@deepseek-ai/dsh-util-values'
 import type { BusinessNetworkBinding } from './session-binding.js'
-import { httpStatusEvidence, passiveDiagnostics } from './diagnostics-observer.js'
+import { httpStatusEvidence, passiveDiagnostics, transportMarkersOf } from './diagnostics-observer.js'
 import { trimTrailingSlashes } from './trailing-slashes.js'
 
 export type PlatformReaderErrorCode =
@@ -23,17 +23,40 @@ interface RequestOptions {
 export class PlatformReaderError extends Error {
   /** The platform's own required_action from a permission_denied envelope, truncated. */
   readonly requiredAction?: string
+  /** The bounded HTTP status the caller surfaced, kept for later observation. */
+  readonly httpStatus?: number
+  /** The check-point subject this failure was already observed under. */
+  observedSubject?: string
 
   constructor(readonly code: PlatformReaderErrorCode, message: string, options?: ErrorOptions & { readonly requiredAction?: string; readonly httpStatus?: number }) {
     super(message, options)
     this.name = 'PlatformReaderError'
     this.requiredAction = options?.requiredAction
-    observeReaderFailure(code, options?.cause, options?.httpStatus)
+    this.httpStatus = options?.httpStatus
+  }
+
+  /**
+   * Record this failure under the calling method's check-point subject.
+   * Idempotent: the first caller wins, so a catch-all never re-records a
+   * failure already attributed to a finer-grained subject.
+   * @param subject - check-point this failure belongs to.
+   * @returns this error, for `throw` chaining.
+   */
+  observeAs(subject: string): this {
+    if (this.observedSubject !== undefined) return this
+    this.observedSubject = subject
+    observeReaderFailure(subject, this.code, this.cause, this.httpStatus)
+    return this
   }
 }
 
 /** Project one reader failure into the passive diagnostics buffer. */
-function observeReaderFailure(code: PlatformReaderErrorCode, cause: unknown, httpStatus: unknown): void {
+/** Attribute a caught failure to one check-point subject; pass unknown shapes through. */
+function observedAt(error: unknown, subject: string): unknown {
+  return error instanceof PlatformReaderError ? error.observeAs(subject) : error
+}
+
+function observeReaderFailure(subject: string, code: PlatformReaderErrorCode, cause: unknown, httpStatus: unknown): void {
   if (code === 'REQUEST_ABORTED') return
   const status = httpStatusEvidence(httpStatus)
   if (code === 'AUTHENTICATION_REQUIRED') {
@@ -41,62 +64,43 @@ function observeReaderFailure(code: PlatformReaderErrorCode, cause: unknown, htt
     // only the no-credential path is genuinely "not logged in".
     const refusal = typeof status.httpStatus === 'number' && (status.httpStatus === 401 || status.httpStatus === 403)
     passiveDiagnostics.record({
-      subject: 'platform-request', stage: 'authentication',
+      subject, stage: 'authentication',
       code: refusal ? 'auth-rejected' : 'not-logged-in', status: 'fail', evidence: status,
     })
     return
   }
   if (code === 'PLATFORM_MISMATCH') {
     passiveDiagnostics.record({
-      subject: 'platform-request', stage: 'configuration', code: 'platform-mismatch',
+      subject, stage: 'configuration', code: 'platform-mismatch',
       status: 'fail', evidence: { platformMismatch: true, ...status },
     })
     return
   }
   if (code === 'OUTPUT_OVERFLOW') {
-    passiveDiagnostics.record({ subject: 'platform-request', stage: 'platform-directory', code: 'platform-response-overflow', status: 'fail', evidence: status })
+    passiveDiagnostics.record({ subject, stage: 'platform-directory', code: 'platform-response-overflow', status: 'fail', evidence: status })
     return
   }
   if (code === 'INVALID_RESPONSE') {
-    passiveDiagnostics.record({ subject: 'platform-request', stage: 'platform-directory', code: 'platform-response-invalid', status: 'fail', evidence: status })
+    passiveDiagnostics.record({ subject, stage: 'platform-directory', code: 'platform-response-invalid', status: 'fail', evidence: status })
     return
   }
   if (code === 'RECORD_NOT_DISCLOSED') {
-    passiveDiagnostics.record({ subject: 'platform-request', stage: 'platform-directory', code: 'record-not-disclosed', status: 'fail', evidence: status })
+    passiveDiagnostics.record({ subject, stage: 'platform-directory', code: 'record-not-disclosed', status: 'fail', evidence: status })
     return
   }
   if (code === 'LICENSE_REQUIRED') {
-    passiveDiagnostics.record({ subject: 'platform-request', stage: 'platform-directory', code: 'platform-directory-failed', status: 'fail', evidence: status })
+    passiveDiagnostics.record({ subject, stage: 'platform-directory', code: 'platform-directory-failed', status: 'fail', evidence: status })
     return
   }
   // PLATFORM_UNAVAILABLE: classify the transport layer from the bounded
   // cause chain (TLS certificate shapes, timeout brands) and keep the HTTP
   // status for anything that reached the platform.
-  const markers = causeMarkersOf(cause)
+  const markers = transportMarkersOf(cause)
   const diagCode = markers.tls ? 'tls-failed'
     : markers.timeout ? 'timeout'
     : typeof status.httpStatus === 'number' && status.httpStatus >= 500 ? 'platform-unavailable'
     : 'network-unreachable'
-  passiveDiagnostics.record({ subject: 'platform-request', stage: 'network', code: diagCode, status: 'fail', evidence: status })
-}
-
-/** Marker patterns for bounded transport classification of a cause chain. */
-const TLS_MARKER = /CERT|SSL|TLS|SIGNATURE/i
-const TIMEOUT_MARKER = /TimeoutError|TIMED?OUT|UND_ERR_HEADERS_TIMEOUT|UND_ERR_CONNECT_TIMEOUT|UND_ERR_BODY_TIMEOUT/
-
-/** Walk a bounded cause chain collecting name/code markers for classification. */
-function causeMarkersOf(cause: unknown, depth = 4): { tls: boolean, timeout: boolean } {
-  let tls = false
-  let timeout = false
-  let current: unknown = cause
-  for (let level = 0; level < depth && current !== null && typeof current === 'object'; level += 1) {
-    const candidate = current as { name?: unknown, code?: unknown, cause?: unknown }
-    const parts = `${String(candidate.name ?? '')} ${String(candidate.code ?? '')}`
-    if (TLS_MARKER.test(parts)) tls = true
-    if (TIMEOUT_MARKER.test(parts)) timeout = true
-    current = candidate.cause
-  }
-  return { tls, timeout }
+  passiveDiagnostics.record({ subject, stage: 'network', code: diagCode, status: 'fail', evidence: status })
 }
 
 export interface PlatformReaderConfig {
@@ -131,36 +135,56 @@ export class OpenBknPlatformReader {
   constructor(private readonly config: PlatformReaderConfig, private readonly fetcher: PlatformFetch = fetch) {}
 
   async listKnowledgeNetworks(signal: AbortSignal, _cwd?: string): Promise<JsonValue> {
-    return this.admit(await this.get('/api/bkn-backend/v1/knowledge-networks?limit=100', signal))
+    try {
+      return this.admit(await this.get('/api/bkn-backend/v1/knowledge-networks?limit=100', signal))
+    } catch (error) {
+      throw observedAt(error, 'platform-directory')
+    }
   }
 
   async getKnowledgeNetworkDetail(binding: BusinessNetworkBinding, signal: AbortSignal, _cwd?: string): Promise<JsonValue> {
-    if (normalizeBaseUrl(binding.platformBaseUrl) !== normalizeBaseUrl(this.config.baseUrl)) {
-      throw new PlatformReaderError('PLATFORM_MISMATCH', 'The selected business network belongs to another OpenBKN platform.')
+    try {
+      if (normalizeBaseUrl(binding.platformBaseUrl) !== normalizeBaseUrl(this.config.baseUrl)) {
+        throw new PlatformReaderError('PLATFORM_MISMATCH', 'The selected business network belongs to another OpenBKN platform.')
+      }
+      return this.admit(await this.post('/api/agent-retrieval/v1/kn/get_kn_detail', {
+        kn_id: binding.knowledgeNetworkId,
+        detail_level: 'summary',
+        response_format: 'json',
+      }, signal))
+    } catch (error) {
+      throw observedAt(error, 'platform-directory')
     }
-    return this.admit(await this.post('/api/agent-retrieval/v1/kn/get_kn_detail', {
-      kn_id: binding.knowledgeNetworkId,
-      detail_level: 'summary',
-      response_format: 'json',
-    }, signal))
   }
 
   async getInteractionOperations(interactionId: string, signal: AbortSignal, _cwd?: string): Promise<JsonValue> {
-    const value = await this.get(`/api/agent-observability/v1/interactions/${encodeURIComponent(interactionId)}/operations`, signal, { licenseGated: true, maxResponseBytes: MAX_OPERATIONS_RESPONSE_BYTES })
-    return this.admit(projectOperations(value))
+    try {
+      const value = await this.get(`/api/agent-observability/v1/interactions/${encodeURIComponent(interactionId)}/operations`, signal, { licenseGated: true, maxResponseBytes: MAX_OPERATIONS_RESPONSE_BYTES })
+      return this.admit(projectOperations(value))
+    } catch (error) {
+      throw observedAt(error, 'platform-provenance')
+    }
   }
 
   async getInteractionBusinessGraph(interactionId: string, signal: AbortSignal, _cwd?: string): Promise<JsonValue> {
-    const value = await this.get(`/api/agent-observability/v1/interactions/${encodeURIComponent(interactionId)}/business-graph`, signal, { licenseGated: true })
-    return this.admit(projectBusinessGraph(value))
+    try {
+      const value = await this.get(`/api/agent-observability/v1/interactions/${encodeURIComponent(interactionId)}/business-graph`, signal, { licenseGated: true })
+      return this.admit(projectBusinessGraph(value))
+    } catch (error) {
+      throw observedAt(error, 'platform-provenance')
+    }
   }
 
   /** Resolve the deployment's license edition so license-gated failures can explain themselves. */
   async getLicenseEdition(signal: AbortSignal): Promise<{ edition?: string; licensed?: boolean } | undefined> {
-    const value = await this.get('/api/safe/v1/capabilities', signal)
-    const source = record(value)
-    const edition = string(source?.edition)
-    return { ...(edition === undefined ? {} : { edition }), ...(typeof source?.licensed === 'boolean' ? { licensed: source.licensed } : {}) }
+    try {
+      const value = await this.get('/api/safe/v1/capabilities', signal)
+      const source = record(value)
+      const edition = string(source?.edition)
+      return { ...(edition === undefined ? {} : { edition }), ...(typeof source?.licensed === 'boolean' ? { licensed: source?.licensed } : {}) }
+    } catch (error) {
+      throw observedAt(error, 'platform-capabilities')
+    }
   }
 
   private async get(path: string, signal: AbortSignal, options?: RequestOptions): Promise<JsonValue> {
@@ -205,7 +229,7 @@ export class OpenBknPlatformReader {
     if (response.status === 401) {
       // 401 is a caller-identity problem (expired or rejected token class);
       // the deployment-license gate answers 403 below.
-      throw new PlatformReaderError('AUTHENTICATION_REQUIRED', 'OpenBKN authentication is required.')
+      throw new PlatformReaderError('AUTHENTICATION_REQUIRED', 'OpenBKN authentication is required.', { httpStatus: response.status })
     }
     if (response.status === 403) {
       // Only the observability lifecycle routes answer the deployment
@@ -217,11 +241,11 @@ export class OpenBknPlatformReader {
           throw new PlatformReaderError(
             'LICENSE_REQUIRED',
             'The requested OpenBKN capability requires an enterprise license for this business domain.',
-            { requiredAction: truncateRequiredAction(string(record(failure)?.required_action)) },
+            { requiredAction: truncateRequiredAction(string(record(failure)?.required_action)), httpStatus: response.status },
           )
         }
       }
-      throw new PlatformReaderError('AUTHENTICATION_REQUIRED', 'OpenBKN authentication is required.')
+      throw new PlatformReaderError('AUTHENTICATION_REQUIRED', 'OpenBKN authentication is required.', { httpStatus: response.status })
     }
     if (response.status === 404 && options?.licenseGated === true) {
       // Scoped to the observability routes like the 403 gate above, so the

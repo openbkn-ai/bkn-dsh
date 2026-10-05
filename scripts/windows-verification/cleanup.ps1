@@ -24,11 +24,13 @@ Get-ChildItem (Join-Path $TestRoot 'evidence') -Filter '*.pid' -ErrorAction Sile
     Remove-Item $_ -Force
 }
 
-# Reinstall the pristine candidate so the next case starts clean.
+# Reinstall the pristine candidate so the next case starts clean — into the
+# profile this form actually boots (desktop for the desktop app, web for npm).
 $profileDir = $prepared.profileDir
+$profileName = $prepared.profile
 Remove-Item -Recurse -Force (Join-Path $profileDir 'node_modules\@openbkn') -ErrorAction SilentlyContinue
-& $dsh plugin --profile web install $CandidateTgz
-if ($LASTEXITCODE -ne 0) { throw 'pristine reinstall failed' }
+& $dsh plugin --profile $profileName install $CandidateTgz
+if ($LASTEXITCODE -ne 0) { throw "pristine reinstall into profile $profileName failed" }
 
 # This test root's profile used its own CLI store only if the tester logged in
 # there; a real logout is out of scope for cleanup — the whole directory is

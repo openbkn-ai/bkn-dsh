@@ -1,7 +1,10 @@
 import assert from 'node:assert/strict'
 import test from 'node:test'
 import { PassiveDiagnosticsBuffer, PASSIVE_BUFFER_LIMIT, passiveDiagnostics } from '../src/diagnostics-observer.ts'
-import { PlatformReaderError } from '../src/platform-reader.ts'
+import { OpenBknPlatformReader, type PlatformFetch } from '../src/platform-reader.ts'
+import { OpenBknCliSubprocess } from '../src/openbkn-cli-subprocess.ts'
+import { AuthCoordinator } from '../src/auth.ts'
+import { explainMcpStartupFailure } from '../src/openbkn-mcp-manager.ts'
 
 /**
  * Canary strings are obviously fictional markers; no real credential is ever
@@ -32,56 +35,77 @@ test('the buffer never stores raw errors, messages, or causes', () => {
   }
 })
 
-test('reader failures record only whitelisted classification fields', () => {
+test('reader failures through the real request path keep status and subjects separate', async () => {
   passiveDiagnostics.clear()
-  // Exercise the real reader error path with canary-laden messages and cause.
-  new PlatformReaderError('AUTHENTICATION_REQUIRED', `platform said ${BODY_CANARY}`)
-  new PlatformReaderError('PLATFORM_UNAVAILABLE', `fetch failed ${URL_CANARY}`, {
-    cause: new Error(`getaddrinfo ENOTFOUND ${URL_CANARY}`),
-    httpStatus: 502,
-  })
-  const checks = passiveDiagnostics.snapshot()
-  const serialized = JSON.stringify(checks)
-  assert.ok(!serialized.includes(BODY_CANARY))
-  assert.ok(!serialized.includes(URL_CANARY))
-  const unavailable = checks.find(check => check.code === 'platform-unavailable')
-  assert.ok(unavailable !== undefined)
-  assert.equal(unavailable.evidence.httpStatus, 502)
-  assert.equal(unavailable.status, 'fail')
-  passiveDiagnostics.clear()
-})
-
-test('a TLS cause classifies as tls-failed, not network-unreachable', () => {
-  passiveDiagnostics.clear()
-  new PlatformReaderError('PLATFORM_UNAVAILABLE', 'request failed', {
-    cause: Object.assign(new Error('unable to verify the first certificate'), { code: 'UNABLE_TO_VERIFY_LEAF_SIGNATURE' }),
-  })
+  const reader = makeReader(async () => new Response('{"error":"unauthorized"}', { status: 401 }))
+  await assert.rejects(reader.listKnowledgeNetworks(new AbortController().signal), /authentication is required/i)
   const [check] = passiveDiagnostics.snapshot()
-  assert.equal(check.code, 'tls-failed')
-  assert.equal(check.stage, 'network')
-  passiveDiagnostics.clear()
-})
-
-test('a 401 refusal keeps its status and does not become not-logged-in', () => {
-  passiveDiagnostics.clear()
-  new PlatformReaderError('AUTHENTICATION_REQUIRED', 'refused', { httpStatus: 401 })
-  const [check] = passiveDiagnostics.snapshot()
+  assert.equal(check.id, 'observed:platform-directory')
   assert.equal(check.code, 'auth-rejected')
   assert.equal(check.evidence.httpStatus, 401)
   passiveDiagnostics.clear()
 })
 
-test('a successful directory read supersedes an earlier reader failure', () => {
+test('a TLS cause through the real request path classifies as tls-failed', async () => {
   passiveDiagnostics.clear()
-  new PlatformReaderError('PLATFORM_UNAVAILABLE', 'temporarily down', { httpStatus: 503 })
-  passiveDiagnostics.record({ subject: 'platform-request', stage: 'platform-directory', code: 'platform-request', status: 'pass', evidence: { networkCount: 2 } })
+  const tlsError = Object.assign(new Error('unable to verify the first certificate'), {
+    cause: Object.assign(new Error('deepest'), { code: 'UNABLE_TO_VERIFY_LEAF_SIGNATURE' }),
+  })
+  const reader = makeReader(async () => { throw tlsError })
+  await assert.rejects(reader.getInteractionBusinessGraph('i-1', new AbortController().signal))
   const [check] = passiveDiagnostics.snapshot()
-  assert.equal(check.status, 'pass')
-  assert.equal(check.evidence.recovered, true)
-  assert.equal(check.evidence.lastFailureCode, 'platform-unavailable')
-  assert.equal(check.evidence.networkCount, 2)
+  assert.equal(check.id, 'observed:platform-provenance')
+  assert.equal(check.code, 'tls-failed')
   passiveDiagnostics.clear()
 })
+
+test('a successful directory read does not clear a provenance failure', async () => {
+  passiveDiagnostics.clear()
+  // First call: the business-graph route refuses with 403.
+  let status = 403
+  const reader = makeReader(async () => new Response('{"error":"forbidden"}', { status }))
+  await assert.rejects(reader.getInteractionBusinessGraph('i-1', new AbortController().signal))
+  let [provenance] = passiveDiagnostics.snapshot()
+  assert.equal(provenance.id, 'observed:platform-provenance')
+  assert.equal(provenance.code, 'auth-rejected')
+  assert.equal(provenance.evidence.httpStatus, 403)
+  // Second call: the directory route succeeds (the service layer records the
+  // pass on the directory subject, exactly as remoteListNetworks does).
+  status = 200
+  await reader.listKnowledgeNetworks(new AbortController().signal)
+  passiveDiagnostics.record({ subject: 'platform-directory', stage: 'platform-directory', code: 'platform-directory', status: 'pass', evidence: { networkCount: 2 } })
+  const byId = new Map(passiveDiagnostics.snapshot().map(entry => [entry.id, entry]))
+  provenance = byId.get('observed:platform-provenance')
+  const directory = byId.get('observed:platform-directory')
+  assert.equal(provenance.status, 'fail', 'the provenance refusal must survive a directory success')
+  assert.equal(provenance.code, 'auth-rejected')
+  assert.equal(directory.status, 'pass')
+  assert.notEqual(directory.evidence.recovered, true)
+  passiveDiagnostics.clear()
+})
+
+test('canaries never survive the real request path', async () => {
+  passiveDiagnostics.clear()
+  const reader = makeReader(async () => {
+    throw new Error(`fetch failed for https://${URL_CANARY}/x with ${HEADER_CANARY}`)
+  })
+  await assert.rejects(reader.getInteractionOperations('i-2', new AbortController().signal))
+  const serialized = JSON.stringify(passiveDiagnostics.snapshot())
+  assert.ok(!serialized.includes(URL_CANARY))
+  assert.ok(!serialized.includes(HEADER_CANARY))
+  passiveDiagnostics.clear()
+})
+
+/** A reader wired to a controlled fetcher, exactly as the service constructs one. */
+function makeReader(fetcher: import('../src/platform-reader.ts').PlatformFetch): import('../src/platform-reader.ts').OpenBknPlatformReader {
+  return new OpenBknPlatformReader({
+    baseUrl: 'https://platform.example',
+    requestTimeoutMs: 5_000,
+    maxResultBytes: 1_000_000,
+    allowInsecureTls: false,
+    resolveToken: async () => 'test-token',
+  }, fetcher)
+}
 
 test('a corrected platform address supersedes the earlier mismatch', () => {
   passiveDiagnostics.clear()
@@ -142,3 +166,76 @@ test('outcome counts accumulate per subject and the newest outcome wins', () => 
   assert.equal(check.evidence.exitCode, 2)
   assert.equal(typeof check.evidence.lastOutcomeAgoMs, 'number')
 })
+
+test('a clean CLI exit reconciles an earlier CLI failure', async () => {
+  passiveDiagnostics.clear()
+  const failing = makeCliSubprocess(1, '')
+  const failingCli = new OpenBknCliSubprocess(failing, process.cwd(), 'https://platform.example', 'openbkn')
+  await failingCli.run(['auth', 'status', '--json'])
+  let [check] = passiveDiagnostics.snapshot()
+  assert.equal(check.id, 'observed:cli')
+  assert.equal(check.code, 'cli-execution-failed')
+  assert.equal(check.status, 'fail')
+  // Next invocation exits cleanly: the same subject must recover.
+  const healthy = makeCliSubprocess(0, '{"hasToken":false}')
+  const healthyCli = new OpenBknCliSubprocess(healthy, process.cwd(), 'https://platform.example', 'openbkn')
+  await healthyCli.run(['auth', 'status', '--json'])
+  ;[check] = passiveDiagnostics.snapshot()
+  assert.equal(check.status, 'pass')
+  assert.equal(check.evidence.recovered, true)
+  assert.equal(check.evidence.lastFailureCode, 'cli-execution-failed')
+  passiveDiagnostics.clear()
+})
+
+test('a parse refusal is reconciled by the next clean CLI exit', async () => {
+  passiveDiagnostics.clear()
+  const broken = makeCliSubprocess(0, 'not json at all')
+  const brokenCli = new OpenBknCliSubprocess(broken, process.cwd(), 'https://platform.example', 'openbkn')
+  await assert.rejects(new AuthCoordinator(brokenCli, 'https://platform.example').status(), /invalid JSON/)
+  let [check] = passiveDiagnostics.snapshot()
+  assert.equal(check.code, 'cli-output-invalid')
+  assert.equal(check.status, 'fail')
+  const healthy = makeCliSubprocess(0, '{"hasToken":false}')
+  const healthyCli = new OpenBknCliSubprocess(healthy, process.cwd(), 'https://platform.example', 'openbkn')
+  await healthyCli.run(['auth', 'status', '--json'])
+  ;[check] = passiveDiagnostics.snapshot()
+  assert.equal(check.status, 'pass')
+  assert.equal(check.evidence.recovered, true)
+  assert.equal(check.evidence.lastFailureCode, 'cli-output-invalid')
+  passiveDiagnostics.clear()
+})
+
+test('the MCP classifier projects transport causes onto the context-loader stage', () => {
+  passiveDiagnostics.clear()
+  explainMcpStartupFailure(Object.assign(new Error('request failed'), {
+    cause: Object.assign(new Error('cert'), { code: 'UNABLE_TO_VERIFY_LEAF_SIGNATURE' }),
+  }))
+  let [check] = passiveDiagnostics.snapshot()
+  assert.equal(check.stage, 'context-loader')
+  assert.equal(check.code, 'tls-failed')
+
+  passiveDiagnostics.clear()
+  explainMcpStartupFailure(Object.assign(new Error('connect timeout'), { name: 'TimeoutError' }))
+  ;[check] = passiveDiagnostics.snapshot()
+  assert.equal(check.code, 'timeout')
+
+  passiveDiagnostics.clear()
+  explainMcpStartupFailure(new Error('protocol error'))
+  ;[check] = passiveDiagnostics.snapshot()
+  assert.equal(check.code, 'mcp-initialization-failed')
+  passiveDiagnostics.clear()
+})
+
+/** A CLI subprocess fake answering one controlled exit code and stdout. */
+function makeCliSubprocess(exitCode: number, stdout: string): import('../src/openbkn-cli-subprocess.ts').CliSubprocess {
+  return {
+    resolveExecutable: async () => '/fake/openbkn',
+    spawn: () => ({
+      done: Promise.resolve({ exitCode }),
+      collected: {
+        stdout: { readFrom: () => ({ text: stdout, lossy: false }) },
+        stderr: { readFrom: () => ({ text: '', lossy: false }) },
+      },
+    }),
+  }
+}

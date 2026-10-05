@@ -296,10 +296,10 @@ export class OpenBknBusinessContextService extends TypertRemoteService {
     }
     await this.ensureMcpConnection()
     const networks = await this.listNetworksAfterAuthentication(signal)
-    // The directory success reconciles the platform-request subject so an
-    // earlier reader failure no longer presents as current.
+    // The directory success reconciles only the directory subject; failures
+    // of other platform routes (provenance, capabilities) keep their own.
     passiveDiagnostics.record({
-      subject: 'platform-request', stage: 'platform-directory', code: 'platform-request',
+      subject: 'platform-directory', stage: 'platform-directory', code: 'platform-directory',
       status: 'pass', evidence: { networkCount: networks.length },
     })
     return networks
