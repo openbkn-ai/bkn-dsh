@@ -1,6 +1,6 @@
 # Windows 补测核对与发布异常取舍
 
-日期：2026-10-05，Asia/Taipei。**结论：W1–W3 的验收缺口已关闭；W4 不能判为完整通过，继续 HOLD。建议先定位并修复 CLI 已退出而面板长时间连接中的问题，再发版。** 没有合并、打 tag、发布、移动 dist-tag 或改动候选包。
+日期：2026-10-05，Asia/Taipei。**结论：W1–W3 的验收缺口已关闭；用户已决定本轮暂不处理下列授权异常及未核实项，将其作为已知限制发布。W4 仍不能判为完整通过。** 限制已写入根 CHANGELOG；合并与发布继续等待用户明确放行。没有合并、打 tag、发布、移动 dist-tag 或改动候选包。其余步骤见 [发布前剩余事项](2026-10-05-rc4-release-readiness.md)。
 
 ## 来源与核对方法
 
@@ -33,7 +33,7 @@
 
 | 项 | 已知证据 | 未知／影响 | 建议 |
 |---|---|---|---|
-| W4-A1 CLI 退出与界面不同步 | 未授权 CLI 约 121.6 秒自然退出 code 2；约 277 秒后，面板采样仍 loading、只有 Close；后来才观察到通用错误与重试 | 不能宣称无限等待，也不能由浏览器关闭的先后关系判定因果。用户在此期间看不到结束、取消或重新登录入口 | 优先定位并修复；不按「W4 已通过」放行 |
+| W4-A1 CLI 退出与界面不同步 | 未授权 CLI 约 121.6 秒自然退出 code 2；约 277 秒后，面板采样仍 loading、只有 Close；后来才观察到通用错误与重试 | 不能宣称无限等待，也不能由浏览器关闭的先后关系判定因果。用户在此期间看不到结束、取消或重新登录入口 | 用户决定本轮暂不修复，写入已知限制；不改成「W4 已通过」 |
 | W4-A2 结束后的错误提示 | 自然结束后提示检查 Token／平台地址；没有明确未完成授权或超时说明 | 未取得 CLI 诊断，不能直接把 code 2 定义为设备码过期；可能误导用户检查无关配置 | 获取脱敏的真实错误类别，再决定提示映射；禁止直接展示 CLI 授权输出 |
 | W4-3 具体退出诊断 | 两轮约 121 秒、code 2 的自然退出及最终 UI 已实测 | 未区分 Device login timed out、Device code expired 或其他原因 | 部分完成；具体诊断未核实，不能判完整通过 |
 | W4-2 后续授权恢复 | 关闭／重开基础过程已测；本轮始终未授权 | 关闭后再授权是否恢复网络列表或重新打开面板未知 | 受影响修复验收时补；若放行 -4，明确接受为未测 |
@@ -44,18 +44,17 @@ Windows 首轮关闭授权浏览器后才观察到错误只是时序关联；重
 
 既有 [deferred 清单](../handoff/2026-10-04-deferred-after-3.md) 继续保留。本轮不会把历史 resource_not_disclosed 孤例、run_code 范围限制、BOM 超时、Token 刷新失败提示等自动标成已解决。原 Windows 报告中的 CLI 浏览器 URL 含 & 风险本轮未触发；探针的 .cmd 引号修复不等于修复 SDK 的浏览器启动。
 
-## 发布取舍（待用户决定）
+## 发布取舍（已确认本轮暂缓修复）
 
-**建议先修 W4-A1。** 理由是已观察到 CLI 结束数分钟后面板仍不可重试，而非仅缺一条诊断或截图。当前成功登录、最终能恢复和守卫通过不能消除这项影响。
+用户于 2026-10-05 明确回复：「这几个问题不严重，先不处理，看一下发版前还有其他什么要做的」。据此，本轮暂缓 W4-A1／A2、取消能力及上述诊断／恢复未测项，保留实际证据边界，不继续安排相关补测或更换候选。该决定确认了异常取舍；合并、tag 和发布仍待明确放行。
 
-1. **先修复：** 保留 -4 候选作为证据基线。先拿真实脱敏诊断，区分 CLI exit、DSH child.done、Remote 返回和 UI 状态的时间，再按真实失败写回归并修复。包内行为有变化时生成新候选，重新跑受影响的桌面／npm 登录及 W4；若守卫和提示词未变，不盲目重复 R1–R9。新候选不得沿用旧包的验收结论。
-2. **接受限制后放行 -4：** 需要用户明确接受 W4-A1／A2、无取消、具体退出诊断和后续授权恢复未核实，以及本次新观察的 W3-A1。将下方拟定文字写入根 CHANGELOG 的 -4 条目后再走合并／main 彩排。根 CHANGELOG 不在这 52 个发布文件中；若同时改包内 README 或代码，则仍需新候选和受影响验收。接受限制不等于 W4 完整通过。
+限制文字已加入根 CHANGELOG 的 -4 条目，会被发布脚本带入 GitHub Release notes。该文件不在已验收的 52 个发布文件中，候选包不变。后续若改包内 README 或代码，仍需新候选及受影响验收；若再次决定修复，则保留 -4 为证据基线，先取得真实失败诊断再修。
 
-拟加入 CHANGELOG 的文字（当前仅为草稿，尚未写入发布条目）：
+已写入 CHANGELOG 的文字：
 
-> Known limitations observed in Windows panel sign-in: the panel can remain connecting for minutes after the CLI has exited. The waiting view has no cancel action; closing the panel leaves the login CLI running. An unauthorised flow eventually offers retry with a generic connection error, but its exact timeout/expiry diagnostic has not been confirmed. Recovery after closing the panel and then authorising remains unverified. A successful desktop sign-in also showed a delayed UI observation; the exact recovery latency was not measured.
+> Known limitations accepted for this release: Windows panel sign-in can remain connecting for minutes after the CLI has exited. The waiting view has no cancel action; closing the panel leaves the login CLI running. An unauthorised flow eventually offers retry with a generic connection error, but its exact timeout/expiry diagnostic has not been confirmed. Recovery after closing the panel and then authorising remains unverified. A successful desktop sign-in also showed a delayed UI observation; the exact recovery latency was not measured.
 
-用户本次明确要求「保持不合并、不发布」。异常取舍确认前不执行合并、main 彩排、tag、npm 发布或 latest 变更；不把 W1–W3 通过等同于发布批准。受保护遗留 release/ 分支仍由有权限的维护者处理。
+此前用户明确要求「保持不合并、不发布」；本次暂缓修复决定没有撤销这一要求。发布放行前不执行合并、main 彩排、tag、npm 发布或 latest 变更。受保护遗留 release/ 分支仍由有权限的维护者处理，独立于候选包发布。
 
 ## 若选择先修，Windows 下一次只需补这些证据
 
@@ -64,7 +63,7 @@ Windows 首轮关闭授权浏览器后才观察到错误只是时序关联；重
 - 只保留已核实的错误类别、退出码、PID 与时间；不要输出或保存授权 URL、授权码、Token、模型密钥、CLI stdout/stderr 原文。若真实诊断只能在含授权信息的输出里取得，进程内提取固定类别、丢弃原文。
 - 用户执行所有登录与授权操作；确认测试宿主版本、CLI 0.1.5、候选哈希及安装内容。结束按现有独立 profile 清理流程还原。结果提交新报告分支，仍不合并、不发布。
 
-该段是后续诊断准备，不是已派发或已执行的 Windows 任务；用户决定先修后再安排。
+该段保留为以后修复时的诊断准备，不是本轮待执行的 Windows 任务；本轮不再安排 W4 补测。
 
 ## 上游与检查边界
 
