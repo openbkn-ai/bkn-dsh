@@ -1,0 +1,38 @@
+Window: "DeepSeek Harness", App: DeepSeek Harness.
+0 standard window DeepSeek Harness, Secondary Actions: Raise
+	1 container DeepSeek Harness
+		2 container
+			3 HTML content DeepSeek Harness, URL: dsh-app://app/
+				4 container OpenBKN 诊断
+					5 container
+						6 text OPENBKN
+						7 heading 诊断, Value: 2
+							8 text 诊断
+						9 button Close
+					10 container
+						11 text 报告编号  3e7cbb38  · 生成于  10/6/2026, 12:28:19 AM  · 模式  被动采集 Host 形态 desktop 平台 darwin DSH 版本 未知 插件（磁盘） 0.2.0-rc.2-openbkn.0.2.0-6 插件（已加载） 未知 ●  通过 bootstrap-entry installation  /  component-loaded
+						12 text entryPresent=true
+						13 text ●  通过 business-entry component  /  component-loaded
+						14 text entryPresent=true
+						15 text ●  通过 diagnostics-entry diagnostics  /  component-loaded
+						16 text schemaVersion=1
+						17 text ●  通过 observed:cli cli  /  cli
+						18 text failureCount=0 lastOutcomeAgoMs=38582 exitCode=0
+						19 text ●  通过 observed:login-state authentication  /  login-state
+						20 text failureCount=0 lastOutcomeAgoMs=38675 loggedIn=true
+						21 text ●  通过 observed:context-loader context-loader  /  context-loader
+						22 text failureCount=0 lastOutcomeAgoMs=38535 toolsPublished=true
+						23 text ●  通过 observed:platform-network-list platform-directory  /  platform-network-list
+						24 text failureCount=0 lastOutcomeAgoMs=38484 networkCount=2
+						25 button 导出诊断报告
+						26 button 重新采集
+	27 close button
+	28 full screen button Help: this button also has an action to zoom the window, Secondary Actions: zoom the window
+	29 minimize button
+30 menu bar
+	31 DeepSeek Harness
+	32 文件
+	33 Edit
+	34 Window
+
+The focused UI element is 25 button 导出诊断报告

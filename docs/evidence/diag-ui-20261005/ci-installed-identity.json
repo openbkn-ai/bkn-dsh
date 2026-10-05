@@ -1,0 +1,20 @@
+{
+  "ciRun": 37337765993,
+  "artifactSha256": "ffcd77722e83a003fe90e0dda296a3a49c3f2ba67bddda9095575dabd896ef43",
+  "profiles": [
+    {
+      "form": "npm",
+      "profile": "web",
+      "installedPackageDirectory": "/private/var/folders/9r/1zks6bqd7f3dtwybvxsksbc40000gn/T/openbkn-diag-ui-h76__jwb/ci-home/profiles/web/node_modules/@openbkn/dsh-business-context",
+      "matchedFiles": 65,
+      "differences": []
+    },
+    {
+      "form": "desktop",
+      "profile": "desktop",
+      "installedPackageDirectory": "/private/var/folders/9r/1zks6bqd7f3dtwybvxsksbc40000gn/T/openbkn-diag-ui-h76__jwb/desktop-home/profiles/desktop/node_modules/@openbkn/dsh-business-context",
+      "matchedFiles": 65,
+      "differences": []
+    }
+  ]
+}

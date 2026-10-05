@@ -1,0 +1,20 @@
+{
+  "baselines": [
+    {
+      "version": "0.2.0-rc.2-openbkn.0.2.0-4",
+      "path": "history/openbkn-dsh-business-context-0.2.0-rc.2-openbkn.0.2.0-4.tgz",
+      "sha256": "c4a8effbe5f84ecb399ee45ddf705c9468ef311910dcf58f62e47a0c71687a02",
+      "sourceCommit": "c4b5dce437a383e8196c830b2926d6e14858e20e",
+      "ciRun": 37202050194,
+      "purpose": "upgrade baseline only; not the accepted candidate"
+    },
+    {
+      "version": "0.2.0-rc.2-openbkn.0.2.0-5",
+      "path": "history/openbkn-dsh-business-context-0.2.0-rc.2-openbkn.0.2.0-5.tgz",
+      "sha256": "6d11f803fbf7e705e93970b9385c4f00beeb5ab04802cd3333e4ffabf5e77e13",
+      "sourceCommit": "7a1d5c456dad62e61017b03490129b9b7423b4e8",
+      "ciRun": null,
+      "purpose": "historical local -5 upgrade baseline only; contains the known S2 limitation"
+    }
+  ]
+}

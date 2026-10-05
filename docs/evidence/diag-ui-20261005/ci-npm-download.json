@@ -1,0 +1,47 @@
+{
+  "actualDownloadPath": "/Users/kalias/Downloads/OpenBKN-diagnostic-20261005T161727029Z-a0681622.json",
+  "sizeBytes": 2436,
+  "sha256": "2300c6e0c78044c0c12ac6b763c6592137456399c25768873af811a2c87b6cb1",
+  "schemaVersion": 1,
+  "reportId": "a0681622",
+  "createdAt": "2026-10-05T16:17:27.029Z",
+  "mode": "passive",
+  "checkCount": 7,
+  "checkOutcomes": [
+    {
+      "id": "bootstrap-entry",
+      "status": "pass",
+      "code": "component-loaded"
+    },
+    {
+      "id": "business-entry",
+      "status": "pass",
+      "code": "component-loaded"
+    },
+    {
+      "id": "diagnostics-entry",
+      "status": "pass",
+      "code": "component-loaded"
+    },
+    {
+      "id": "observed:cli",
+      "status": "pass",
+      "code": "cli"
+    },
+    {
+      "id": "observed:login-state",
+      "status": "pass",
+      "code": "login-state"
+    },
+    {
+      "id": "observed:context-loader",
+      "status": "pass",
+      "code": "context-loader"
+    },
+    {
+      "id": "observed:platform-network-list",
+      "status": "pass",
+      "code": "platform-network-list"
+    }
+  ]
+}
