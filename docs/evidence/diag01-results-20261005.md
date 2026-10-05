@@ -20,7 +20,7 @@
 
 | 项目 | 状态 | 证据类型 | 命令／退出码／报告 | 剩余限制 |
 |---|---|---|---|---|
-| D0 配置／模块／初始化失败时入口可用 | 通过（实机） | 真实 npm Host + 浏览器 UI | `docs/evidence/diagnostics-d0.md`：S0 双 row 激活；S1 缺 baseUrl → `configuration-invalid`+`configField=baseUrl`；S3 apply 抛错 → `initialization-failed`；S4 诊断自身坏 import → 面板降级不崩 | S2（主入口 import 失败）时浏览器不下发本包 client bundle（DSH 服务策略），包内 UI 不可用；Host 侧诊断服务仍活。宿主最小接口建议已记录，未改宿主 |
+| D0 配置／模块／初始化失败时入口可用 | **部分通过（S2 未过门槛）** | 真实 npm Host + 浏览器 UI | `docs/evidence/diagnostics-d0.md`：S0 双 row 激活；S1 缺 baseUrl → `configuration-invalid`+`configField=baseUrl`；S3 apply 抛错 → `initialization-failed`；S4 诊断自身坏 import → 面板降级不崩；审核轮补验 waiting 场景（依赖缺失 → `insufficient-evidence`/`component-waiting-services`，不再误报已加载） | **S2（主入口 import 失败）未通过 D0 门槛 2**：浏览器不下发本包 client bundle（DSH 服务策略），包内 UI 不可用；Host 侧诊断服务仍活。宿主最小接口建议已记录，未改宿主，完整功能对该场景为已声明的降级 |
 | D1 Host 分类、脱敏、passive/active | 通过（passive 部分） | 单测 + 实机观察 | canary 测试：嵌套 cause/URL/header/body/消息不进报告；有界 20 key；恢复语义；四边界（reader/auth/CLI/MCP）接线；实机观察到 `login-state pass`、`mcp-initialization-failed fail`、恢复后 `toolsPublished=true pass` | **active 主动复测未实现**（涉及真实平台凭据请求，须独立验收）；被动导出确认不发平台请求、不刷 Token |
 | D2 独立 UI、导出、并发/取消 | 通过（部分） | 单测 + 实机 | 面板随时可达（sidebar 按钮）；业务错误页"导出诊断"入口（实机验证）；导出文件名/序列化单测；stale-load epoch 单测；实机下载事件触发（沙箱浏览器留 `.crdownload`，桌面版实测待 Windows 轮） | 复测的取消/进度条未做（与 active 复测同批）；导出失败的 UI 兜底未实测 |
 | D3 类型、构建、测试、包、安装生命周期 | 通过 | 本地全套 | typecheck 0；插件测试 283（282 pass/0 fail/1 skip symlink）；repo node suites 57/57；package:check 0（62 文件含 diagnostics.js+observer chunk）；git diff --check 0；pack 0（SHA 稳定复现） | CI 彩排未跑（授权问题，非技术） |
@@ -52,7 +52,24 @@
 
 - 已验证问题：见"过程中抓到并修复的真实缺陷"5 项；全部有对应修复与测试/实机复核。
 - 仅推断／未测：active 复测、macOS 桌面版实机、CI build-only 彩排、live guard probe 重跑、G6、平台 `tools/list` 逐服务重核（发版 gate 项，与 -4 相比插件行为变化仅在旁路观察）。
-- 是否满足完整 DIAG-01：**部分满足**。被动诊断全链路（分类/脱敏/独立入口/导出/业务回归）在真实 npm Host 上验证通过；主动复测与 Windows 验收未完成，按计划列为限制而非默认关闭。
+- 是否满足完整 DIAG-01：**部分满足**。被动诊断全链路（分类/脱敏/独立入口/导出/业务回归）在真实 npm Host 上验证通过；**D0 门槛 2 未通过**（S2 场景包内 UI 随宿主策略消失，见上表）；主动复测、macOS 桌面版、Windows 验收、下载完成、CLI 0.1.5 配对、发布彩排未完成，按计划列为限制而非默认关闭。
 - 需要用户决定：① 是否授权推送分支与 build-only 彩排（release gate 第 1 条）；② Windows 验收排期（包已就绪）；③ active 复测是否单独立项；④ 宿主最小接口建议（业务入口 import 失败时仍下发 client bundle）是否走上游反馈。
 
 本报告不构成合并或发布授权。
+
+## 审核轮（2026-10-05 晚）
+
+外部审核对 `5602a49` 提出 3×P1 + 4×P2，全部确认成立并在后续 commit 修复：
+
+| 问题 | 修复 | 复验 |
+|---|---|---|
+| P1 已启动误报（pending/disposed fiber 也 resolve） | `observeEntry` settle 后必读 state；stuck lifecycle 报 unknown | 单测（never-started/disposed/stuck 三用例）+ 实机 waiting 场景：`insufficient-evidence`/`component-waiting-services` |
+| P1 恢复后残留旧失败 | observer 改按 subject 关联；listNetworks/MCP/登录补成功边界；`recovered`+`lastFailureCode` 证据 | 单测（platform-mismatch 纠正、目录读恢复）+ 实机恢复终态（5 项 pass，旧失败清除） |
+| P1 Windows desktop 实为 web | desktop 形态独立 desktop profile + Start-Process 真实桌面应用（继承隔离 DSH_HOME） | 脚本已改；原生 PowerShell 试跑未做（作者机器无 pwsh，README 已注明） |
+| P2 分类丢失原因 | reader 保留 httpStatus；TLS（CERT/SSL/TLS/SIGNATURE）/超时/5xx（platform-unavailable）细分；mismatch 归 configuration；401/403 → auth-rejected 不再推断登录态 | 单测（TLS、401、恢复）+ 实机 TLS 场景（context-loader fail 正确） |
+| P2 cli-output-invalid 未接线 | auth 解析失败全部经 `cliOutputInvalid` 记录 | 单测（stdout 非法 JSON → observed:cli/cli-output-invalid） |
+| P2 顶层 inject 依赖业务服务 | 顶层仅 `['slots','remote']`；sessions/conversation/workspaces/uiWorkspace 下沉业务段 | 构建+全套测试；实机 UI 注册正常 |
+| P2 脚本 $home/$_.Force 错误 | `$homeDir`、`Remove-Item $_ -Force` | 人工复核；原生试跑未做（同上） |
+| P2 manifest SHA 无效 | 身份改由 `git rev-parse` 生成写入 | `git cat-file -t` 验证通过 |
+
+附带修复：构建前清理 lib/ 陈旧 hash chunk（曾把旧 observer chunk 打进包，62→63 文件）。修复后重出候选：源码 `63b4f43d…`，tgz SHA `0fb74a68…`，62 文件；六命令验证序列全过（typecheck/插件 290 测试 289 pass/57 repo suites/package:check/diff-check/pack）。
