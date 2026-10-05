@@ -11,9 +11,9 @@
 - **W2 通过**：PATH 与绝对 .cmd 分别 16/16、退出 0，两次平台操作均只有 search_capabilities。
 - **W3 通过**：桌面面板授权后无需重启列出两个网络，关闭后重开刷新正常。精确 UI 恢复时间未连续采样，等待观察作为异常保留。
 - **W4-1 已实测；W4-3 部分核实**：未授权 CLI 自然退出约 121.6 秒，退出码 2；面板一段时间仍 loading，随后恢复通用连接错误，可重新发起登录。未取得真实 CLI 退出诊断，不能把 code 2 直接写成已确认的设备码过期。
-- **W4-2 未测**：computer-use 重置后仍不能可靠点击/控制窗口，未完成授权中途关闭面板。授权后的自动重开/恢复目录也未测。
+- **W4-2 基础过程已实测**：补测由用户关闭、重开面板，agent 连续读取界面并观察进程。关闭后 CLI 继续运行；重开时仍显示连接中；CLI 自然退出后回到登录入口。随后授权是否自动重开/恢复目录未测。
 - 两次 live、桌面登录、等待与重试均使用固定候选，未修改插件/宿主代码；报告中的异常与限制交主开发核对。当前仍不合并、不发布。
-- 测试 DSH 已退出、独立 profile 插件已卸载、独立 DSH vault 的测试 OpenBKN 引用已清除。W3 独立 CLI 登录仍待用户按清单登出。
+- 测试 DSH 已退出、独立 profile 插件已卸载、独立 DSH vault 的测试 OpenBKN 引用已清除。用户已执行 W3 独立 CLI 登出，复核 hasToken=false；原用户已选状态文件未改变。
 
 ## 基线与隔离
 
@@ -32,7 +32,7 @@
 | CA / TLS | 进程内 NODE_EXTRA_CA_CERTS 指向原 openbkn-dev-ca.pem；未关闭 TLS 校验 |
 | 原登录 | W2 使用已有 CLI 登录；只输出状态键与平台匹配，不输出 Token、用户名、用户 ID |
 | 本轮目录 | C:/Users/kalia/bkn-verify/v4-followup |
-| 桌面隔离 | DSH_HOME=…/desktop-home-w3，BKN_CONFIG_DIR=…/bkn-w3；不复制用户原凭据 |
+| 桌面隔离 | DSH_HOME=…/desktop-home-w3；W3 CLI 为 …/bkn-w3，W4 另用空配置目录，包括补测 …/bkn-w4-close-guided；不复制用户原凭据 |
 
 源码仅提供探针和测试，候选 lib 未替换。探针依赖通过两个新 junction 加载；node_modules 不计入 52 个发布文件。用户或系统的 PATH、CA 和代理持久设置未修改；测试进程清除代理环境变量并复用原 CA。
 
@@ -200,9 +200,31 @@ node C:/Users/kalia/bkn-verify/v4-followup/source/packages/openbkn-business-cont
 
 ### W4-2 授权中途关闭面板
 
-**未测。** 准备了独立空 bkn-w4-close，但未启动此环境。尝试将重试的新未授权流程用于关闭面板验证时，点击和键盘焦点操作没有成功；该流程先自然结束，不能充作“授权中途关闭面板”的证据。
+**基础过程已实测，后续授权恢复未测。** 原轮准备的空 bkn-w4-close 未启动；当时 computer-use 输入失败，未取得关闭中途的证据。2026-10-05 补测改由用户点击 Close 和入口，agent 用可访问性树连续采样并核对进程，不冒称 agent 点击成功。截图及点击工具仍不可用，Escape 也未关闭面板。
 
-computer-use 能读取可访问性树，但截图报 FrameArrived timed out，点击报 coordinate input geometry is unavailable；键盘 Shift+Tab 未改变焦点。重置 JS 会话、重新初始化、重新定位窗口、Raise 后仍报相同错误。未采用其他 UI 自动化通道模拟成功；未测关闭时 CLI 是否继续、重开界面、随后授权是否自动重开或恢复目录。
+补测重新安装相同 tgz 到独立 desktop-home-w3，配置仍只有 baseUrl，没有 cliPath。安装后与卸载前均为 52 文件、相同 tree-hash。使用全新 bkn-w4-close-guided，启动前仅 hasToken:false；整个场景未授权，结束仍只有 hasToken:false，目录无持久文件。DSH 根进程始终 PID 4356。
+
+首个补测登录 PID 16204 创建于 08:16:22.026，08:18:23.427 自然退出 code 2。08:19:02.694–08:19:03.058 才观察到面板关闭，08:23:41 重开为登录入口。无法限定用户关闭发生在 CLI 退出前，因此不把这一轮计为中途关闭成功。
+
+用户关闭旧授权页后，在同一未授权、无持久凭据的独立配置内重新发起登录。没有并发登录进程；下面这轮取得关闭、继续运行及登录期间重开的证据。
+
+| 时间（2026-10-05，Asia/Taipei） | 实测证据 |
+|---|---|
+| 08:25:02.670 | node CLI PID 7260 创建；launcher PID 7608 创建于 08:25:02.617 |
+| 08:25:03.233 | Chrome 授权进程 PID 24880 创建，距 CLI 创建约 0.563 秒；浏览器自动打开 |
+| 08:25:03.345–08:25:03.361 | 面板显示“正在连接 OpenBKN…” |
+| 08:25:07.439–08:25:07.456 | 已观察到面板关闭；距 CLI 创建约 4.8 秒。这是采样时刻，不是精确点击时间 |
+| 08:25:22.705 | 独立进程查询确认 CLI 7260 与 DSH 4356 仍在运行，证明关闭后登录继续 |
+| 08:26:30.807–08:26:30.827 | 用户重开后的面板显示“正在连接 OpenBKN…”，无第二次登录入口；进程观察器此时尚未记录 CLI 退出 |
+| 08:27:04.075 | 同一 CLI/launcher 自然退出，均 code 2；CLI 创建至退出观察约 121.4 秒，无授权、无外部终止 |
+| 08:27:24.938 | 进程查询确认 CLI 已退出，DSH 仍运行；这次查询在退出之后，不冒称查询当时 CLI 仍活着 |
+| 08:27:40.566–08:27:40.589 | 同一面板已恢复“使用 OpenBKN CLI 登录并同步”入口；无 loading、无通用错误或明确超时提示 |
+
+**观察结论：** 关闭面板未立即终止登录 CLI，重开时保留连接中的界面；未重启宿主。第二轮 CLI 自然结束后，最终采样为登录入口，与原 W4-timeout 的通用错误状态不同。未连续采样退出到入口恢复的整个区间，不能给出精确恢复延迟或解释根因。仍未取得 CLI 的 timed out/expired 具体诊断，不能以约 121 秒和 code 2 判定 W4-3 完整通过。
+
+用户本轮始终未授权，因此“随后授权是否自动重开或恢复目录”未测。未对过期页面继续授权，未重新跑 W1/W2、W3 成功授权或 R1–R9。
+
+脱敏本地证据：logs/w4-close-guided-process-events.jsonl、w4-close-guided-process-checks.jsonl、w4-close-guided-ui.jsonl；仅存 PID、角色、时间、退出码与 DSH 状态/文字，不含授权页正文、授权码、Token 或业务数据。
 
 ## 异常、未测与还原
 
@@ -213,9 +235,9 @@ computer-use 能读取可访问性树，但截图报 FrameArrived timed out，�
 | W3-A1 等待观察 | 授权 CLI code 0 后，首次读取仍 loading，随后两个网络自动出现。无同步连续 UI 计时，不能精确量延迟或断言根因 |
 | W4-A1 CLI 退出与 UI 结束不同步 | 首轮 CLI 自然退出后数分钟仍 loading；只在后续观察到错误与重试。重试轮稍后也恢复错误，根因未知 |
 | W4-A2 错误文案 | 未授权自然结束后是“无法验证 OpenBKN 连接。请检查 Token 和平台地址后重试。”；没有明确设备码过期/超时说明 |
-| W4-2 | 授权中途关闭面板未测；computer-use 输入与截图失败，工具重置后仍失败 |
+| W4-2 | 用户操作配合下已测关闭后 CLI 继续、重开连接中、自然退出后回登录入口；随后授权恢复未测。工具仍不能可靠点击/截图 |
 | W4-3 | 自然退出耗时、退出码、UI 和重新发起已测；具体 timed out/expired_token 诊断未取得，不能判完整通过 |
-| UI 证据限制 | 可访问性文字和进程记录；没有可用截图。用户完成所有登录/授权与 W3 重开操作，agent 核对界面与进程；未冒称人工全面验收 |
+| UI 证据限制 | 可访问性文字和进程记录；没有可用截图。用户完成所有登录/授权与 W3/W4 关闭重开操作，agent 核对界面与进程；未冒称人工全面验收 |
 
 ### 安装与发布文件核对【跑】
 
@@ -223,15 +245,16 @@ computer-use 能读取可访问性树，但截图报 FrameArrived timed out，�
 
 ### 状态与清理【跑】
 
-- 使用独立 DSH_HOME：…/desktop-home-w3；独立 CLI：…/bkn-w3 和 …/bkn-w4-timeout。bkn-w4-close 仅建空目录和读初始状态，未实际运行。未使用用户原 desktop profile 安装候选，未新增其凭据备份。
+- 使用独立 DSH_HOME：…/desktop-home-w3；独立 CLI：…/bkn-w3、…/bkn-w4-timeout、补测 …/bkn-w4-close-guided。bkn-w4-close 仅建空目录和读初始状态，未实际运行。未使用用户原 desktop profile 安装候选，未新增其凭据备份。
 - 完成验证后，退出本轮测试 DSH；进程数 0。关闭测试宿主属于清理，发生在两次 CLI 已自然退出后，不计作超时证据。
 - 独立 desktop profile 执行 plugin remove，退出 0；plugin list 没有安装包。卸载前发布文件 hash 仍一致。仅清除独立 vault 的 refs.OPENBKN_MCP_TOKEN，保留凭据文件；内存中验证其他凭据条目完全相同，未创建备份或输出凭据正文。
+- W4-2 补测结束后，再次核对安装内容、退出测试 DSH 并卸载插件。首次非强制关闭未终止所有子进程，卸载遇 EPERM 文件占用；确认根 PID/可执行文件属于测试宿主后，终止其进程树，再卸载成功。发生在 CLI 自然退出及最终 UI 采样之后，不计为设备码超时证据。独立 vault 未新增 OpenBKN 引用；其他凭据条目不变。观察器已停止，CLI 测试配置为空。补测前后五个已选原用户文件哈希也均一致。
 - 用户原状态以下五个已选文件的前后 SHA-256 均相同：原 desktop 的 cordis.patch.yml、package.json，原 .dsh/storages/workspace.json、.dsh/.credentials.yaml、.bkn/state.json。此结论仅覆盖已选文件，不冒称全目录逐字节比对。
 - 原 CLI 最终 status：hasToken=true、平台匹配=true，键 baseUrl/expired/hasToken/userId/username；expired=true。W2 初始也为 true，两次 live 后为 false；结束时再次为 true 是本轮观测，未再次读取 Token 或重新登录，未证明当前刷新必然成功。原 CLI 的登录状态文件哈希未变；Token 可被 W2 的正常 auth token 调用刷新，未备份或还原旧 Token。
 - 未修改用户/系统 PATH、CA 或代理持久设置。测试进程采用原 CA、清除代理环境变量，没有关闭 TLS 校验。
-- **待用户清理：** W3 独立 CLI 配置仍有 1 个 token.json。清单要求用户执行登出；已提供本地 cleanup-w3-login.ps1，只对该独立目录运行 auth logout，并还原当前终端 BKN_CONFIG_DIR。agent 没有直接删除 CLI 凭据文件。此项尚未核实完成。
+- **W3 临时 CLI 登出已完成【人】【跑】：** 用户执行 cleanup-w3-login.ps1，仅对独立 bkn-w3 运行 auth logout 并恢复终端 BKN_CONFIG_DIR。随后复核状态键 baseUrl/hasToken/userId，hasToken=false；保留 CLI 正常登出后的配置文件，没有直接删除凭据或创建备份。用户确认关闭补测授权页，进程查询也确认 Chrome PID 24880 已退出。
 - 本机保留候选、探针依赖、测试 profile、脚本和脱敏证据，目录 C:/Users/kalia/bkn-verify/v4-followup。报告不含 Token、授权码、模型密钥、工具输入输出或业务正文；仅提交本报告。没有合并、发布、打 tag、移动 dist-tag、推 main/主开发/release 分支或删除受保护 release/ 分支。
 
 ## 验证范围
 
-实际运行：W1 的四个测试和单独缺参数调用；W2 两次 live 16/16；桌面发布文件比对、登录状态、进程时间与退出码；W3 与 W4 的可访问性 UI 观察。用户回报：DSH/OpenBKN 授权、W3 重开刷新、未授权等待、浏览器关闭、重试登录。静态检查：源提交/宿主版本/配置、报告 git diff --check。未重跑原 R1–R9、完整插件测试、模型问题；没有声称已通过未执行的 UI/设备码诊断或人工全面验收。
+实际运行：W1 的四个测试和单独缺参数调用；W2 两次 live 16/16；桌面发布文件比对、登录状态、进程时间与退出码；W3 与 W4 的可访问性 UI 观察，W4-2 关闭/重开期间连续采样。用户回报：DSH/OpenBKN 授权、W3 重开刷新、未授权等待、浏览器关闭、重试登录及 W4-2 关闭重开。静态检查：源提交/宿主版本/配置、报告 git diff --check。未重跑原 R1–R9、完整插件测试、模型问题；没有声称已通过后续授权恢复、具体设备码诊断或人工全面验收。
