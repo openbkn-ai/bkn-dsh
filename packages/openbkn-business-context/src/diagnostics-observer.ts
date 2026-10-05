@@ -186,7 +186,17 @@ export function transportMarkersOf(cause: unknown, depth = 8): { tls: boolean, t
     if (TLS_MARKER.test(parts)) tls = true
     if (TIMEOUT_MARKER.test(parts)) timeout = true
     if (TRANSPORT_MARKER.test(parts)) transport = true
-    current = candidate.cause
+    // The MCP SDK's SdkError stores its third argument in `data`; the real
+    // transport error chain hangs off data.cause (captured live: undici's
+    // certificate code survives at data.cause.cause.code).
+    if (candidate.cause !== undefined) {
+      current = candidate.cause
+    } else {
+      const data = (candidate as { data?: unknown }).data
+      current = data !== null && typeof data === 'object' && 'cause' in (data as object)
+        ? (data as { cause?: unknown }).cause
+        : undefined
+    }
   }
   return { tls, timeout, transport }
 }

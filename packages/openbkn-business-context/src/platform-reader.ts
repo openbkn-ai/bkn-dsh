@@ -1,6 +1,7 @@
 import type { JsonValue } from '@deepseek-ai/dsh-util-values'
 import type { BusinessNetworkBinding } from './session-binding.js'
 import { httpStatusEvidence, passiveDiagnostics, transportMarkersOf } from './diagnostics-observer.js'
+import type { DiagnosticsStage } from './diagnostics-contract.js'
 import { trimTrailingSlashes } from './trailing-slashes.js'
 
 export type PlatformReaderErrorCode =
@@ -51,6 +52,11 @@ export class PlatformReaderError extends Error {
 }
 
 /** Project one reader failure into the passive diagnostics buffer. */
+/** Record the success boundary of one reader interface on its own subject. */
+function readerSucceeded(subject: string, stage: DiagnosticsStage): void {
+  passiveDiagnostics.record({ subject, stage, code: subject, status: 'pass' })
+}
+
 /** Attribute a caught failure to one check-point subject; pass unknown shapes through. */
 function observedAt(error: unknown, subject: string): unknown {
   return error instanceof PlatformReaderError ? error.observeAs(subject) : error
@@ -136,9 +142,11 @@ export class OpenBknPlatformReader {
 
   async listKnowledgeNetworks(signal: AbortSignal, _cwd?: string): Promise<JsonValue> {
     try {
-      return this.admit(await this.get('/api/bkn-backend/v1/knowledge-networks?limit=100', signal))
+      const value = this.admit(await this.get('/api/bkn-backend/v1/knowledge-networks?limit=100', signal))
+      readerSucceeded('platform-network-list', 'platform-directory')
+      return value
     } catch (error) {
-      throw observedAt(error, 'platform-directory')
+      throw observedAt(error, 'platform-network-list')
     }
   }
 
@@ -147,31 +155,37 @@ export class OpenBknPlatformReader {
       if (normalizeBaseUrl(binding.platformBaseUrl) !== normalizeBaseUrl(this.config.baseUrl)) {
         throw new PlatformReaderError('PLATFORM_MISMATCH', 'The selected business network belongs to another OpenBKN platform.')
       }
-      return this.admit(await this.post('/api/agent-retrieval/v1/kn/get_kn_detail', {
+      const value = this.admit(await this.post('/api/agent-retrieval/v1/kn/get_kn_detail', {
         kn_id: binding.knowledgeNetworkId,
         detail_level: 'summary',
         response_format: 'json',
       }, signal))
+      readerSucceeded('platform-network-detail', 'platform-directory')
+      return value
     } catch (error) {
-      throw observedAt(error, 'platform-directory')
+      throw observedAt(error, 'platform-network-detail')
     }
   }
 
   async getInteractionOperations(interactionId: string, signal: AbortSignal, _cwd?: string): Promise<JsonValue> {
     try {
       const value = await this.get(`/api/agent-observability/v1/interactions/${encodeURIComponent(interactionId)}/operations`, signal, { licenseGated: true, maxResponseBytes: MAX_OPERATIONS_RESPONSE_BYTES })
-      return this.admit(projectOperations(value))
+      const projected = this.admit(projectOperations(value))
+      readerSucceeded('platform-operations', 'platform-directory')
+      return projected
     } catch (error) {
-      throw observedAt(error, 'platform-provenance')
+      throw observedAt(error, 'platform-operations')
     }
   }
 
   async getInteractionBusinessGraph(interactionId: string, signal: AbortSignal, _cwd?: string): Promise<JsonValue> {
     try {
       const value = await this.get(`/api/agent-observability/v1/interactions/${encodeURIComponent(interactionId)}/business-graph`, signal, { licenseGated: true })
-      return this.admit(projectBusinessGraph(value))
+      const projected = this.admit(projectBusinessGraph(value))
+      readerSucceeded('platform-business-graph', 'platform-directory')
+      return projected
     } catch (error) {
-      throw observedAt(error, 'platform-provenance')
+      throw observedAt(error, 'platform-business-graph')
     }
   }
 
@@ -181,7 +195,9 @@ export class OpenBknPlatformReader {
       const value = await this.get('/api/safe/v1/capabilities', signal)
       const source = record(value)
       const edition = string(source?.edition)
-      return { ...(edition === undefined ? {} : { edition }), ...(typeof source?.licensed === 'boolean' ? { licensed: source?.licensed } : {}) }
+      const detail = { ...(edition === undefined ? {} : { edition }), ...(typeof source?.licensed === 'boolean' ? { licensed: source?.licensed } : {}) }
+      readerSucceeded('platform-capabilities', 'platform-directory')
+      return detail
     } catch (error) {
       throw observedAt(error, 'platform-capabilities')
     }

@@ -83,7 +83,21 @@
 | P1 目录成功清除溯源失败 | reader 失败归属调用方法的检查点 subject（platform-directory / platform-provenance / platform-capabilities），目录成功只恢复目录 subject | 请求路径测试（受控 403 + 目录 200 → provenance 仍 fail、directory pass 互不干扰） |
 | P2 401/403 分类未接入实际请求 | 401/403/LICENSE 抛点补 `httpStatus`；测试改走真实 reader 方法（mock fetcher） | 单测断言 `auth-rejected` + `httpStatus=401/403` |
 | P2 CLI 恢复残留 | CLI 检查点边界移到 subprocess.run 出口（每次调用一条成败记录）；解析失败由下一次干净退出恢复 | 调用链测试（exit 1→0、非法 JSON→有效输出均 recovered） |
-| P2 MCP 路径丢 TLS 原因 | 分类器抽取 + 共享传输标记（depth 8，含 message 词根白名单）；实机探针捕获真实链：**SDK SdkError 截断 undici 链只剩 'fetch failed'**——TLS 码在 SDK 层已丢失 | 该输入诚实归 `network-unreachable`（实机验证）；tls-failed 在证书码存活的 reader 直连路径保留（单测）；限制已写入 manifest |
+| P2 MCP 路径丢 TLS 原因 | 分类器抽取 + 共享传输标记；二轮探针只走到 SdkError 的 message（'fetch failed'）而误判链被截断——**三轮审核用真实 SDK 2.0.0 + 本地自签 HTTPS 证实原始链保存在 `SdkError.data.cause`**（证书码在 data.cause.cause.code） | 三轮修复：遍历 data.cause 路径后 MCP TLS 正确投影 `tls-failed`（SDK 形状单测锁定） |
 | P2 cleanup 硬编码 web | 改用 `prepared.profile` | 人工复核；原生 PowerShell 试跑仍未做 |
 
 复验环境同前（官方 npm dsh 0.2.0-rc.2、隔离 DSH_HOME、无 inspector）：正常路径 6 项 pass（cli/login-state/context-loader/platform-directory 四检查点）；TLS 场景 context-loader=network-unreachable；六命令验证全过，插件测试 294（293 pass）。D0 S2 门槛与发布验收项保持开放。
+
+## 三审轮（2026-10-05 晚三）
+
+第三轮审核对 `d2b2153` 提出 2×P1 + 3×P2，全部确认并修复：
+
+| 问题 | 修复 | 复验 |
+|---|---|---|
+| P1 溯源/capabilities 成功无边界 | reader 各接口成功后记录自身 subject 的 pass | 请求链测试：business-graph 403→200 恢复（recovered=true），operations 不受影响 |
+| P1 列表成功掩盖详情失败 | subject 细化到接口级（platform-network-list / -network-detail / -operations / -business-graph / -capabilities）；service 的目录成功记录移除，边界统一在 reader | 请求链测试：详情持续 403 + 列表 200 → list pass、detail fail 并存 |
+| P2 SDK 保留 TLS 原因（data.cause） | transportMarkersOf 有界遍历 `data.cause` 路径；修正二轮"TLS 已丢失"的错误结论 | SDK 形状单测（DEPTH_ZERO_SELF_SIGNED_CERT 位于 data.cause.cause.code → tls-failed）+ 实机 TLS 场景复核 |
+| P2 CLI 输出超限沿用旧 pass | lossy 抛点先记录 `cli-output-invalid`（evidence lossy=true）再抛 | 调用链测试（lossy stdout → fail 观察） |
+| P2 MCP 401 误归未登录 | 凭据在场被拒统一 `auth-rejected` + httpStatus；仅缺凭据才 not-logged-in | 单测（401 brand → auth-rejected + httpStatus=401） |
+
+修复后：299 插件测试（298 pass）、六命令全过；实机 TLS 场景 context-loader 从 network-unreachable 修正为 tls-failed；正常路径全 pass。

@@ -77,7 +77,12 @@ export class OpenBknCliSubprocess implements OpenBknCli {
     const outcome = await child.done
     const stdout = child.collected.stdout?.readFrom(0)
     const stderr = child.collected.stderr?.readFrom(0)
-    if (stdout?.lossy || stderr?.lossy) throw new Error('OpenBKN CLI output exceeded the safe size limit.')
+    if (stdout?.lossy || stderr?.lossy) {
+      // The refusal must land as an outcome: an untrustworthy output is a
+      // bounded CLI failure, not silence.
+      passiveDiagnostics.record({ subject: 'cli', stage: 'cli', code: 'cli-output-invalid', status: 'fail', evidence: { lossy: true } })
+      throw new Error('OpenBKN CLI output exceeded the safe size limit.')
+    }
     const result = { code: outcome.exitCode ?? 1, stdout: stdout?.text ?? '', stderr: stderr?.text ?? '' }
     // One outcome boundary per invocation: a clean exit reconciles earlier
     // CLI failures (missing binary, parse refusals) on the same subject.

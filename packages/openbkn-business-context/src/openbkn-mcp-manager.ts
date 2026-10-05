@@ -160,10 +160,12 @@ export function explainMcpStartupFailure(error: unknown): Error {
   const brand = authenticationBrand(error, 0)
   if (brand !== undefined) {
     const denied = brand === 'CLIENT_HTTP_FORBIDDEN'
+    // The token was present and was refused: that is a rejection, not an
+    // absence of login; only a missing credential could claim that.
     passiveDiagnostics.record({
       subject: 'context-loader',
       stage: 'context-loader',
-      code: denied ? 'auth-rejected' : 'not-logged-in',
+      code: 'auth-rejected',
       status: 'fail',
       evidence: { httpStatus: denied ? 403 : 401 },
     })

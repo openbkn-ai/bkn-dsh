@@ -40,7 +40,7 @@ test('reader failures through the real request path keep status and subjects sep
   const reader = makeReader(async () => new Response('{"error":"unauthorized"}', { status: 401 }))
   await assert.rejects(reader.listKnowledgeNetworks(new AbortController().signal), /authentication is required/i)
   const [check] = passiveDiagnostics.snapshot()
-  assert.equal(check.id, 'observed:platform-directory')
+  assert.equal(check.id, 'observed:platform-network-list')
   assert.equal(check.code, 'auth-rejected')
   assert.equal(check.evidence.httpStatus, 401)
   passiveDiagnostics.clear()
@@ -54,7 +54,7 @@ test('a TLS cause through the real request path classifies as tls-failed', async
   const reader = makeReader(async () => { throw tlsError })
   await assert.rejects(reader.getInteractionBusinessGraph('i-1', new AbortController().signal))
   const [check] = passiveDiagnostics.snapshot()
-  assert.equal(check.id, 'observed:platform-provenance')
+  assert.equal(check.id, 'observed:platform-business-graph')
   assert.equal(check.code, 'tls-failed')
   passiveDiagnostics.clear()
 })
@@ -66,7 +66,7 @@ test('a successful directory read does not clear a provenance failure', async ()
   const reader = makeReader(async () => new Response('{"error":"forbidden"}', { status }))
   await assert.rejects(reader.getInteractionBusinessGraph('i-1', new AbortController().signal))
   let [provenance] = passiveDiagnostics.snapshot()
-  assert.equal(provenance.id, 'observed:platform-provenance')
+  assert.equal(provenance.id, 'observed:platform-business-graph')
   assert.equal(provenance.code, 'auth-rejected')
   assert.equal(provenance.evidence.httpStatus, 403)
   // Second call: the directory route succeeds (the service layer records the
@@ -75,8 +75,8 @@ test('a successful directory read does not clear a provenance failure', async ()
   await reader.listKnowledgeNetworks(new AbortController().signal)
   passiveDiagnostics.record({ subject: 'platform-directory', stage: 'platform-directory', code: 'platform-directory', status: 'pass', evidence: { networkCount: 2 } })
   const byId = new Map(passiveDiagnostics.snapshot().map(entry => [entry.id, entry]))
-  provenance = byId.get('observed:platform-provenance')
-  const directory = byId.get('observed:platform-directory')
+  provenance = byId.get('observed:platform-business-graph')
+  const directory = byId.get('observed:platform-network-list')
   assert.equal(provenance.status, 'fail', 'the provenance refusal must survive a directory success')
   assert.equal(provenance.code, 'auth-rejected')
   assert.equal(directory.status, 'pass')
@@ -252,5 +252,94 @@ test('an MCP SDK negotiation failure classifies as the network layer, not TLS', 
   const [check] = passiveDiagnostics.snapshot()
   assert.equal(check.stage, 'context-loader')
   assert.equal(check.code, 'network-unreachable')
+  passiveDiagnostics.clear()
+})
+
+test('an interface failure is reconciled only by the same interface succeeding', async () => {
+  passiveDiagnostics.clear()
+  let status = 403
+  const reader = makeReader(async () => new Response('{"error":"forbidden"}', { status }))
+  // The business-graph route refuses, then recovers on its own route.
+  await assert.rejects(reader.getInteractionBusinessGraph('i-1', new AbortController().signal))
+  status = 200
+  await reader.getInteractionBusinessGraph('i-1', new AbortController().signal)
+  let graph = passiveDiagnostics.snapshot().find(entry => entry.id === 'observed:platform-business-graph')
+  assert.equal(graph.status, 'pass')
+  assert.equal(graph.evidence.recovered, true)
+  assert.equal(graph.evidence.lastFailureCode, 'auth-rejected')
+  // Operations stays untouched by the graph's lifecycle.
+  const operations = passiveDiagnostics.snapshot().find(entry => entry.id === 'observed:platform-operations')
+  assert.equal(operations, undefined)
+  passiveDiagnostics.clear()
+})
+
+test('a list success does not mask a detail failure', async () => {
+  passiveDiagnostics.clear()
+  const urls = new Map<string, number>([
+    ['/api/bkn-backend/v1/knowledge-networks?limit=100', 200],
+    ['/api/agent-retrieval/v1/kn/get_kn_detail', 403],
+  ])
+  const reader = makeReader(async input => new Response('{"error":"forbidden"}', {
+    status: urls.get(new URL(String(input)).pathname + new URL(String(input)).search) ?? 500,
+  }))
+  await reader.listKnowledgeNetworks(new AbortController().signal)
+  await assert.rejects(reader.getKnowledgeNetworkDetail(
+    { platformBaseUrl: 'https://platform.example', knowledgeNetworkId: 'kn-1' } as never,
+    new AbortController().signal,
+  ))
+  const byId = new Map(passiveDiagnostics.snapshot().map(entry => [entry.id, entry]))
+  assert.equal(byId.get('observed:platform-network-list')?.status, 'pass')
+  assert.equal(byId.get('observed:platform-network-detail')?.status, 'fail')
+  assert.equal(byId.get('observed:platform-network-detail')?.code, 'auth-rejected')
+  passiveDiagnostics.clear()
+})
+
+test('an MCP SdkError keeps the certificate code in data.cause', () => {
+  passiveDiagnostics.clear()
+  // Shape captured against the real SDK 2.0.0 over a local self-signed HTTPS
+  // endpoint: SdkError stores the original error as `data`, whose cause
+  // chain carries undici's certificate code.
+  const certError = Object.assign(new Error('self-signed certificate in chain'), { code: 'DEPTH_ZERO_SELF_SIGNED_CERT' })
+  const fetchFailed = new TypeError('fetch failed', { cause: certError })
+  const sdkError = Object.assign(
+    new Error('Version negotiation probe failed: fetch failed'),
+    { name: 'SdkError', code: 'ERA_NEGOTIATION_FAILED', data: { cause: fetchFailed } },
+  )
+  explainMcpStartupFailure(new Error('mcp-client(openbkn): initial connection failed', { cause: sdkError }))
+  const [check] = passiveDiagnostics.snapshot()
+  assert.equal(check.stage, 'context-loader')
+  assert.equal(check.code, 'tls-failed')
+  passiveDiagnostics.clear()
+})
+
+test('a refused MCP credential is auth-rejected, not not-logged-in', () => {
+  passiveDiagnostics.clear()
+  const unauthorized = Object.assign(new Error('server requires authorization (HTTP 401)'), { name: 'SdkError' })
+  explainMcpStartupFailure(new Error('mcp-client(openbkn): initial connection failed', { cause: unauthorized }))
+  const [check] = passiveDiagnostics.snapshot()
+  assert.equal(check.code, 'auth-rejected')
+  assert.equal(check.evidence.httpStatus, 401)
+  passiveDiagnostics.clear()
+})
+
+test('a lossy CLI output refusal lands as a failure observation', async () => {
+  passiveDiagnostics.clear()
+  const subprocess: import('../src/openbkn-cli-subprocess.ts').CliSubprocess = {
+    resolveExecutable: async () => '/fake/openbkn',
+    spawn: () => ({
+      done: Promise.resolve({ exitCode: 0 }),
+      collected: {
+        stdout: { readFrom: () => ({ text: 'x'.repeat(10), lossy: true }) },
+        stderr: { readFrom: () => ({ text: '', lossy: false }) },
+      },
+    }),
+  }
+  const cli = new OpenBknCliSubprocess(subprocess, process.cwd(), 'https://platform.example', 'openbkn')
+  await assert.rejects(cli.run(['auth', 'status', '--json']), /exceeded the safe size limit/)
+  const [check] = passiveDiagnostics.snapshot()
+  assert.equal(check.id, 'observed:cli')
+  assert.equal(check.code, 'cli-output-invalid')
+  assert.equal(check.status, 'fail')
+  assert.equal(check.evidence.lossy, true)
   passiveDiagnostics.clear()
 })

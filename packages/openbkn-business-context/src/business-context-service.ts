@@ -5,7 +5,6 @@ import { credentialRef } from '@deepseek-ai/dsh-credentials'
 import type { Agent } from '@deepseek-ai/dsh-agent'
 import type { SessionId } from '@deepseek-ai/dsh-session/types'
 import { Remote, RemoteError, TypertRemoteService } from '@deepseek-ai/dsh-typert-protocol'
-import { passiveDiagnostics } from './diagnostics-observer.js'
 import { parseVisibleBusinessNetworks } from './business-network-catalog.js'
 import { Config, type Config as PluginConfig } from './config.js'
 import { dshHomePath } from '@deepseek-ai/dsh-home-paths'
@@ -295,14 +294,9 @@ export class OpenBknBusinessContextService extends TypertRemoteService {
       throw new Error('OpenBKN authentication is required before listing business networks.')
     }
     await this.ensureMcpConnection()
-    const networks = await this.listNetworksAfterAuthentication(signal)
-    // The directory success reconciles only the directory subject; failures
-    // of other platform routes (provenance, capabilities) keep their own.
-    passiveDiagnostics.record({
-      subject: 'platform-directory', stage: 'platform-directory', code: 'platform-directory',
-      status: 'pass', evidence: { networkCount: networks.length },
-    })
-    return networks
+    // The reader records the interface-level success boundary itself; list
+    // and detail each own their subject, so one cannot mask the other.
+    return await this.listNetworksAfterAuthentication(signal)
   }
 
   /** A successful MCP initial handshake plus OSDK catalogue read is the connection test. */
