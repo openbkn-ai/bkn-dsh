@@ -2,6 +2,8 @@
 
 日期：2026-10-04（用户时区 Asia/Taipei）。本轮由 Codex 接手主开发；不合并、不打 tag、不发布，Windows 补测由用户安排外部 agent。
 
+2026-10-05 更新：Windows 补测和清理结果已回传（原提交 `de03eeb`）；W1–W3 已通过，主开发独立核对两次平台操作记录。W4 存在实测异常及未核实项，当前决策依据见 [Windows 核对与异常清单](2026-10-05-rc4-windows-release-triage.md)。下文 macOS 执行记录保留为历史，状态表已更新；仍保持 HOLD。
+
 ## 基线与候选
 
 - 开始时 PR #60 head `4ee70bb12f830e53a8fad368d61b363a4a81ecbe`；main `927364c665e7a4ed9a5d2237272cca1d683d4d95`；正式最新插件为 `…-3`。
@@ -57,17 +59,17 @@ NODE_EXTRA_CA_CERTS=/Users/kalias/.dsh/openbkn-dev-ca.pem \
 
 macOS npm DSH 0.2.0-rc.2 已在独立 DSH_HOME、空 BKN_CONFIG_DIR 中安装固定候选并启动；没有改用户原 profile。浏览器控制通道对本地页面返回 `ERR_BLOCKED_BY_CLIENT`，随后 UI surface 查询超时，所以本轮没有声称完成面板授权异常实测。没有发起浏览器授权或更改证书验证。
 
-源码确认：beginLogin 没把取消 signal 传给 CLI；等待阶段只有「正在连接 OpenBKN…」。一直不授权、面板关闭、设备码过期的 UI 最终行为仍未验证，见 Windows 补测 W4；不能用 kill 进程或模拟 timeout 代替设备码过期验收。
+源码确认：beginLogin 没把取消 signal 传给 CLI；等待阶段只有「正在连接 OpenBKN…」。2026-10-05 Windows 补测已覆盖不授权与关闭／重开；CLI 自然退出后的界面有长期 loading 和最终通用错误等异常。具体退出诊断及后续授权恢复仍未核实，不能把约 121 秒、code 2 写成设备码过期已验证；见新的异常清单。
 
 | 项目 | 状态／下一步 |
 |---|---|
 | Windows 原 v4 R1–R9、npm 登录、干净 expired 读数 | 已有原始报告；已整合，不重跑 |
 | 探针错误参数、macOS live 守卫 | 已修复并验证 |
-| Windows .cmd / 含空格路径 / live 守卫 | W1、W2 待 Windows agent 回传 |
-| Windows 桌面面板登录 | W3 待用户配合 |
-| 授权异常三条 | W4 待测，或由用户明确接受为未测 |
-| 本轮异常取舍 | 待用户核对；不自动把已知或未测项关闭 |
-| PR #60 复评、合并 | 修复提交 `0cb4639` 复评通过；Windows 补测和用户放行前保持 open |
+| Windows .cmd / 含空格路径 / live 守卫 | W1 4/4，W2 两次 live 16/16；主开发平台记录核对一致 |
+| Windows 桌面面板登录 | W3 通过；成功后等待观察 W3-A1 保留为异常，不能据不连续采样量化延迟 |
+| 授权异常三条 | 不授权及关闭／重开基础过程已测；W4 异常、退出诊断、后续授权恢复仍未关闭 |
+| 本轮异常取舍 | 已整理具体清单与建议，待用户决定先修或接受限制；不自动放行 |
+| PR #60 复评、合并 | `05565f4` 复评／CodeQL 已通过；本轮随后只整合报告与更新文档，用户放行前保持 open |
 | main CI 彩排与发布候选逐文件一致性 | 合并后执行，仍待完成 |
 | tag、npm rc、GitHub Release、取回比对、latest | 仍待用户放行和前置闸门完成 |
 

@@ -2,6 +2,8 @@
 
 本文件交给 Windows agent 执行。主开发分支是 `chore/release-0.2.0-rc.2-openbkn.0.2.0-4`；以用户转发的提交 SHA 为准，先核对 `git rev-parse HEAD`。不要合并、发布、打 tag、移动 npm dist-tag 或改动 `main` / `release/` 分支。
 
+2026-10-05 更新：本清单已执行，原始结果见 [补测报告](2026-10-04-windows-verification-v4-followup-results.md)。W1–W3 已通过；W4-2 的关闭／重开基础过程已验证，W4 的退出诊断及后续授权恢复仍未核实。不要因本清单的历史措辞再跑整套；当前取舍见 [主开发核对与异常清单](../evidence/2026-10-05-rc4-windows-release-triage.md)。仍保持不合并、不发布。
+
 原 Windows v4 的 R1–R9、npm 面板登录、全新 CLI 登录读数和安装内容比对已经完成，不需要重复整套回归。本轮只补 Windows 探针启动和桌面面板登录；授权异常三项可一起补，逐项标明是否实际执行。
 
 ## 固定输入与准备

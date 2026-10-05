@@ -36,7 +36,7 @@
 
 | # | 缺口 | 计划 |
 |---|---|---|
-| D1 | 跨网络 `kn_id`、缺 `kn_id` 的拒绝无法通过模型触发 | `-4` 候选包已用修正后的探针在 macOS 真实平台通过 16/16；完整命令、运行模式和平台记录见 `../evidence/2026-10-04-rc4-release-followup.md`。Windows 探针启动兼容仍待补测 |
+| D1 | 跨网络 `kn_id`、缺 `kn_id` 的拒绝无法通过模型触发 | 已完成：固定 `-4` 候选在 macOS live 通过 16/16，Windows PATH／绝对 .cmd 两次均 16/16；主开发独立读取两次平台记录，均只有 search_capabilities。见 `../evidence/2026-10-05-rc4-windows-release-triage.md`。不涵盖 run_code 内嵌调用或账号授权隔离 |
 | D2 | 评测集 11 题里只跑了 5 题 | 提示词改动（A2、A3）时一并全量跑 |
 | D3 | 源码构建形态没有用 `-2` / `-3` 验证 | OpenBKN 0.2.0 整体回归时覆盖 |
-| D4 | CLI 0.1.5 全新登录后 `auth status` 是否含 `expired`；CLI 未登录时 Windows 上的面板表现 | 已完成：干净终端登录读数有 `expired:false`；登出及从未登录都显示登录入口。见 `2026-10-04-windows-verification-v4-results.md`。桌面面板登录和授权异常仍待补测 |
+| D4 | CLI 0.1.5 全新登录后 `auth status` 是否含 `expired`；CLI 未登录时 Windows 上的面板表现 | 已完成：干净终端登录有 expired:false；登出及从未登录显示登录入口；Windows 桌面面板登录 W3 已通过。见两份 v4 结果报告。W4 自然退出后长期 loading、通用错误文案、具体退出诊断及后续授权恢复仍未关闭，见主开发异常清单 |
