@@ -101,3 +101,13 @@
 | P2 MCP 401 误归未登录 | 凭据在场被拒统一 `auth-rejected` + httpStatus；仅缺凭据才 not-logged-in | 单测（401 brand → auth-rejected + httpStatus=401） |
 
 修复后：299 插件测试（298 pass）、六命令全过；实机 TLS 场景 context-loader 从 network-unreachable 修正为 tls-failed；正常路径全 pass。
+
+## 四审轮（2026-10-05 晚四）
+
+第四轮审核确认三审 5 项全过，提出 1×P1（成功记录早于结构校验），已修复（commit `7a1d5c4`，候选 tgz SHA `6d11f803`，62 文件）：
+
+| 问题 | 修复 | 复验 |
+|---|---|---|
+| P1 目录/详情 pass 记录在解析校验之前 | 列表 pass 移到 `observedNetworkList`（catalogue 解析通过后；listing 与两个 bind 流程共用）；详情 pass 移到 `buildNetworkCapabilityProfile` 校验之后；解析/校验拒绝在原接口 subject 记 `platform-response-invalid`，reader 层失败保持自身归类 | 调用链测试：403 → 200+非法结构（仍 fail，code=platform-response-invalid）→ 200+合法结构（recovered=true）；列表/详情隔离测试同步更新 |
+
+修复后 300 插件测试（299 pass）、六命令全过。
