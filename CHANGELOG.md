@@ -2,6 +2,15 @@
 
 All notable changes to this project are documented here.
 
+## 0.2.0-rc.2-openbkn.0.2.0-6 (2026-10-05)
+
+Entry isolation so diagnostics survive business import failures. Same DSH pin (`0.2.0-rc.2`); no patch needed.
+
+- Breaking (package layout): the package root is now a minimal bootstrap plugin (`openbkn-business-context-bootstrap`) that only keeps the host serving this package's browser bundle. The business implementation moved to the `./business` subpath row (id, config schema, and behavior unchanged); diagnostics stays on `./diagnostics`. Import business API values from `@openbkn/dsh-business-context/business`; the five Remote boundary types (`AuthSnapshot`, `BusinessNetworkBinding`, `BusinessNetworkSummary`, `ProvenanceHandle`, `ProvenanceView`) are exported from `@openbkn/dsh-business-context/types` only.
+- Fix (D0 gate 2): when the business entry fails to import, the diagnostics panel now stays available and reports `module-resolution-failed` for the business row — verified on the official npm dsh host (S2), alongside S4 (diagnostics import failure keeps the business panel working with an explicit degraded diagnostics view) and S0 (three rows, no duplicates).
+- The report gains a `bootstrap-entry` check (the package-root row's own health, never impersonating the business row). The internal guard probe and the Windows verification kit resolve `./business`/`./diagnostics` from the package manifest instead of hardcoding `lib/index.js`.
+- Known limitations: same open items as -5 (Windows W0–W12, macOS desktop form, real download completion, CLI 0.1.5 pairing, CI rehearsal, G6/live guard, active retest); breaking the shared observer chunk or the bootstrap root itself is a whole-package fault and is out of the single-component fault model.
+
 ## 0.2.0-rc.2-openbkn.0.2.0-5 (2026-10-05)
 
 Diagnostics for support workflows. Same DSH pin (`0.2.0-rc.2`); no patch needed.

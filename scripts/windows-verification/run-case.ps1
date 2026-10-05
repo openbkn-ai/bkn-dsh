@@ -34,21 +34,28 @@ if ($CaseId -in @('W3', 'W4', 'W10')) {
     New-Item -ItemType Directory -Force -Path $variantDir | Out-Null
     tar -xzf $CandidateTgz -C $variantDir
     $pkg = Join-Path $variantDir 'package'
+    # Resolve each row's runtime file from the manifest exports so an entry
+    # rename cannot silently turn a fault case into a healthy install.
+    $manifest = Get-Content (Join-Path $pkg 'package.json') | ConvertFrom-Json
+    $businessEntry = $manifest.exports.'./business'.default
+    $diagnosticsEntry = $manifest.exports.'./diagnostics'.default
+    $businessLib = Join-Path $pkg ($businessEntry -replace '/', '\')
+    $diagnosticsLib = Join-Path $pkg ($diagnosticsEntry -replace '/', '\')
     if ($CaseId -eq 'W4') {
-        $lib = Join-Path $pkg 'lib\index.js'
-        $text = [IO.File]::ReadAllText($lib)
+        $text = [IO.File]::ReadAllText($businessLib)
         $marker = 'await ctx.plugin(OpenBknWorkspaceBindingRegistry);'
         if (-not $text.Contains($marker)) { throw 'apply marker not found for W4' }
         $text = $text.Replace($marker, $marker + "`nthrow new Error('W4 controlled initialization failure');")
-        [IO.File]::WriteAllText($lib, $text)
-        $hashes = "index.js SHA256: $((Get-FileHash $lib -Algorithm SHA256).Hash)"
+        [IO.File]::WriteAllText($businessLib, $text)
+        $hashes = "business entry SHA256: $((Get-FileHash $businessLib -Algorithm SHA256).Hash)"
     } else {
-        # W3 and W10 prepend a missing top-level import to the respective file.
-        $relative = if ($CaseId -eq 'W3') { 'lib\index.js' } else { 'lib\diagnostics.js' }
-        $lib = Join-Path $pkg $relative
-        $prefix = "import './w-broken.js';`n"
-        [IO.File]::WriteAllText($lib, $prefix + [IO.File]::ReadAllText($lib))
-        $hashes = "$relative SHA256: $((Get-FileHash $lib -Algorithm SHA256).Hash)"
+        # W3 breaks the business entry's imports; W10 breaks the diagnostics
+        # implementation. Breaking the bootstrap root is a whole-package fault
+        # and must not stand in for either case.
+        $target = if ($CaseId -eq 'W3') { $businessLib } else { $diagnosticsLib }
+        $prefix = "import './D0_S2_CANARY_20261005.js';`n"
+        [IO.File]::WriteAllText($target, $prefix + [IO.File]::ReadAllText($target))
+        $hashes = "$([IO.Path]::GetFileName($target)) SHA256: $((Get-FileHash $target -Algorithm SHA256).Hash)"
     }
     $installTgz = Join-Path $TestRoot "variant-$CaseId.tgz"
     tar -czf $installTgz -C $variantDir package

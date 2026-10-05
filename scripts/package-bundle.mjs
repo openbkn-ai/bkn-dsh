@@ -9,6 +9,7 @@ const required = new Set([
   'cordis.patch.yml',
   'lib/client.js',
   'lib/index.js',
+  'lib/business.js',
   'lib/diagnostics.js',
   'lib/typert.host.js',
   'lib/typert.remote-client.js',
