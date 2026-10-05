@@ -5,6 +5,7 @@ import { credentialRef } from '@deepseek-ai/dsh-credentials'
 import type { Agent } from '@deepseek-ai/dsh-agent'
 import type { SessionId } from '@deepseek-ai/dsh-session/types'
 import { Remote, RemoteError, TypertRemoteService } from '@deepseek-ai/dsh-typert-protocol'
+import { passiveDiagnostics } from './diagnostics-observer.js'
 import { parseVisibleBusinessNetworks } from './business-network-catalog.js'
 import { Config, type Config as PluginConfig } from './config.js'
 import { dshHomePath } from '@deepseek-ai/dsh-home-paths'
@@ -327,7 +328,7 @@ export class OpenBknBusinessContextService extends TypertRemoteService {
         { cause: error },
       )
     }
-    return parseVisibleBusinessNetworks(payload).map(network => {
+    return observedNetworkList(payload, network => {
       const workspacePath = this.ctx.openbknWorkspaceBindingRegistry.get(this.config.baseUrl, network.id)?.workspacePath
       return workspacePath === undefined ? network : { ...network, workspacePath }
     })
@@ -338,7 +339,7 @@ export class OpenBknBusinessContextService extends TypertRemoteService {
   async remoteBindNetworkWorkspace(networkId: string, workspacePath: string, signal: AbortSignal): Promise<BusinessNetworkSummary> {
     const status = await this.remoteStatus(signal)
     if (status.kind !== 'authenticated') throw new Error('OpenBKN authentication is required before selecting a workspace.')
-    const network = parseVisibleBusinessNetworks(await this.platformReader().listKnowledgeNetworks(signal, '.'))
+    const network = observedNetworkList(await this.platformReader().listKnowledgeNetworks(signal, '.'))
       .find(candidate => candidate.id === networkId.trim())
     if (network === undefined) throw new Error('The requested OpenBKN business network is not visible to the current identity.')
     const canonicalPath = await canonicalDirectory(workspacePath)
@@ -366,7 +367,7 @@ export class OpenBknBusinessContextService extends TypertRemoteService {
     if (status.kind !== 'authenticated') {
       throw new Error('OpenBKN authentication is required before binding a business network.')
     }
-    const network = parseVisibleBusinessNetworks(
+    const network = observedNetworkList(
       await this.platformReader().listKnowledgeNetworks(signal, '.'),
     ).find(candidate => candidate.id === networkId.trim())
     if (network === undefined) {
@@ -391,7 +392,19 @@ export class OpenBknBusinessContextService extends TypertRemoteService {
         binding,
         await this.platformReader().getKnowledgeNetworkDetail(binding, signal, agent.session.header.cwd ?? '.'),
       )
+      passiveDiagnostics.record({
+        subject: 'platform-network-detail', stage: 'platform-directory', code: 'platform-network-detail',
+        status: 'pass',
+      })
     } catch (error: unknown) {
+      if (!(error instanceof PlatformReaderError)) {
+        // The read succeeded but the payload or network identity failed
+        // validation: that is a response-shape failure on this interface.
+        passiveDiagnostics.record({
+          subject: 'platform-network-detail', stage: 'platform-directory', code: 'platform-response-invalid',
+          status: 'fail',
+        })
+      }
       this.ctx.logger.warn(
         'openbkn-business-context: capability profile unavailable; continuing with the verified network binding and fixed managed-session policy (code=%s)',
         safeCapabilityProfileFailureCode(error),
@@ -600,4 +613,36 @@ async function canonicalDirectory(path: string): Promise<string> {
   const canonicalPath = await realpath(path)
   if (!(await stat(canonicalPath)).isDirectory()) throw new Error('OpenBKN workspace must be an existing local directory.')
   return canonicalPath
+}
+
+
+/**
+ * Parse the visible-network catalogue and record the list check-point's
+ * outcome at the only moment success is knowable: after the parse accepted
+ * the payload. A refusal records the response-shape failure on the same
+ * subject; reader failures were already attributed by the reader itself.
+ * @param payload - raw reader value from the network-list interface.
+ * @param decorate - workspace enrichment applied per parsed network.
+ * @returns the parsed, decorated network summaries.
+ */
+export function observedNetworkList(
+  payload: unknown,
+  decorate: (network: BusinessNetworkSummary) => BusinessNetworkSummary = network => network,
+): readonly BusinessNetworkSummary[] {
+  try {
+    const parsed = parseVisibleBusinessNetworks(payload).map(decorate)
+    passiveDiagnostics.record({
+      subject: 'platform-network-list', stage: 'platform-directory', code: 'platform-network-list',
+      status: 'pass', evidence: { networkCount: parsed.length },
+    })
+    return parsed
+  } catch (error) {
+    if (!(error instanceof PlatformReaderError)) {
+      passiveDiagnostics.record({
+        subject: 'platform-network-list', stage: 'platform-directory', code: 'platform-response-invalid',
+        status: 'fail',
+      })
+    }
+    throw error
+  }
 }

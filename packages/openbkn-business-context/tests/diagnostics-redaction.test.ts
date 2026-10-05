@@ -5,6 +5,7 @@ import { OpenBknPlatformReader, type PlatformFetch } from '../src/platform-reade
 import { OpenBknCliSubprocess } from '../src/openbkn-cli-subprocess.ts'
 import { AuthCoordinator } from '../src/auth.ts'
 import { explainMcpStartupFailure } from '../src/openbkn-mcp-manager.ts'
+import { observedNetworkList } from '../src/business-context-service.ts'
 
 /**
  * Canary strings are obviously fictional markers; no real credential is ever
@@ -69,11 +70,11 @@ test('a successful directory read does not clear a provenance failure', async ()
   assert.equal(provenance.id, 'observed:platform-business-graph')
   assert.equal(provenance.code, 'auth-rejected')
   assert.equal(provenance.evidence.httpStatus, 403)
-  // Second call: the directory route succeeds (the service layer records the
-  // pass on the directory subject, exactly as remoteListNetworks does).
+  // Second call: the directory route succeeds with a parseable catalogue;
+  // the service records the pass only after the parse accepts it.
   status = 200
-  await reader.listKnowledgeNetworks(new AbortController().signal)
-  passiveDiagnostics.record({ subject: 'platform-directory', stage: 'platform-directory', code: 'platform-directory', status: 'pass', evidence: { networkCount: 2 } })
+  const reader2 = makeReader(async () => new Response('{"entries":[]}', { status }))
+  observedNetworkList(await reader2.listKnowledgeNetworks(new AbortController().signal) as never)
   const byId = new Map(passiveDiagnostics.snapshot().map(entry => [entry.id, entry]))
   provenance = byId.get('observed:platform-business-graph')
   const directory = byId.get('observed:platform-network-list')
@@ -279,10 +280,11 @@ test('a list success does not mask a detail failure', async () => {
     ['/api/bkn-backend/v1/knowledge-networks?limit=100', 200],
     ['/api/agent-retrieval/v1/kn/get_kn_detail', 403],
   ])
-  const reader = makeReader(async input => new Response('{"error":"forbidden"}', {
-    status: urls.get(new URL(String(input)).pathname + new URL(String(input)).search) ?? 500,
-  }))
-  await reader.listKnowledgeNetworks(new AbortController().signal)
+  const reader = makeReader(async input => {
+    const status = urls.get(new URL(String(input)).pathname + new URL(String(input)).search) ?? 500
+    return new Response(status === 200 ? '{"entries":[]}' : '{"error":"forbidden"}', { status })
+  })
+  observedNetworkList(await reader.listKnowledgeNetworks(new AbortController().signal) as never)
   await assert.rejects(reader.getKnowledgeNetworkDetail(
     { platformBaseUrl: 'https://platform.example', knowledgeNetworkId: 'kn-1' } as never,
     new AbortController().signal,
@@ -341,5 +343,30 @@ test('a lossy CLI output refusal lands as a failure observation', async () => {
   assert.equal(check.code, 'cli-output-invalid')
   assert.equal(check.status, 'fail')
   assert.equal(check.evidence.lossy, true)
+  passiveDiagnostics.clear()
+})
+
+test('a 200 with an invalid catalogue is a failure, not a recovery', async () => {
+  passiveDiagnostics.clear()
+  let status = 403
+  const reader = makeReader(async () => new Response('{"error":"forbidden"}', { status }))
+  // Refusal first.
+  await assert.rejects(reader.listKnowledgeNetworks(new AbortController().signal))
+  // Then an HTTP 200 whose body is not a valid catalogue: the reader hands it
+  // through, and only the service-level parse can reject it.
+  status = 200
+  const payload = await reader.listKnowledgeNetworks(new AbortController().signal)
+  assert.throws(() => { observedNetworkList(payload as never) }, /network/i)
+  let [check] = passiveDiagnostics.snapshot()
+  assert.equal(check.id, 'observed:platform-network-list')
+  assert.equal(check.status, 'fail')
+  assert.equal(check.code, 'platform-response-invalid', 'the invalid body is the current failure')
+  // Only a parseable catalogue reconciles the subject.
+  const valid = observedNetworkList({ entries: [] } as never)
+  ;[check] = passiveDiagnostics.snapshot()
+  assert.equal(check.status, 'pass')
+  assert.equal(check.evidence.recovered, true)
+  assert.equal(check.evidence.lastFailureCode, 'platform-response-invalid')
+  assert.equal(valid.length, 0)
   passiveDiagnostics.clear()
 })

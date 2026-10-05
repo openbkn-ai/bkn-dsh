@@ -142,9 +142,9 @@ export class OpenBknPlatformReader {
 
   async listKnowledgeNetworks(signal: AbortSignal, _cwd?: string): Promise<JsonValue> {
     try {
-      const value = this.admit(await this.get('/api/bkn-backend/v1/knowledge-networks?limit=100', signal))
-      readerSucceeded('platform-network-list', 'platform-directory')
-      return value
+      // Success is recorded by the caller after the catalog parse validates
+      // the payload; an HTTP 200 with an invalid body is not a success.
+      return this.admit(await this.get('/api/bkn-backend/v1/knowledge-networks?limit=100', signal))
     } catch (error) {
       throw observedAt(error, 'platform-network-list')
     }
@@ -155,13 +155,13 @@ export class OpenBknPlatformReader {
       if (normalizeBaseUrl(binding.platformBaseUrl) !== normalizeBaseUrl(this.config.baseUrl)) {
         throw new PlatformReaderError('PLATFORM_MISMATCH', 'The selected business network belongs to another OpenBKN platform.')
       }
-      const value = this.admit(await this.post('/api/agent-retrieval/v1/kn/get_kn_detail', {
+      // Success is recorded by the caller after buildNetworkCapabilityProfile
+      // validates the detail and the network identity.
+      return this.admit(await this.post('/api/agent-retrieval/v1/kn/get_kn_detail', {
         kn_id: binding.knowledgeNetworkId,
         detail_level: 'summary',
         response_format: 'json',
       }, signal))
-      readerSucceeded('platform-network-detail', 'platform-directory')
-      return value
     } catch (error) {
       throw observedAt(error, 'platform-network-detail')
     }
