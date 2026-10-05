@@ -8,9 +8,10 @@
  * without importing `FiberState`: the published cordis bundle erases the
  * const enum, so a named import of it breaks module resolution on every real
  * Host (verified on dsh 0.2.0-rc.2 during D0). State numbers are pinned to
- * cordis 4.0.4's declaration order (`PENDING=0 … UNLOADING=5`) and every
- * failure conclusion is cross-checked against `fiber.await()`, so a single
- * misread number cannot fabricate a category.
+ * cordis 4.0.4's declaration order (`PENDING=0 … UNLOADING=5`); rejections
+ * are classified from the rethrow, and every non-throwing settle is followed
+ * by an explicit state read, because `await()` alone also resolves for
+ * fibers that never started or were disposed.
  *
  * All types here are structural: this package does not depend on
  * `@deepseek-ai/cordis-plugin-loader`, and any shape drift degrades to
@@ -27,11 +28,14 @@ import {
 } from './diagnostics-contract.js'
 
 /**
- * Fiber state numbers in the pinned cordis 4.0.4 declaration order. Only
- * FAILED is load-bearing (it implies `fiber.await()` rejects); the others
- * merely annotate the waiting case.
+ * Fiber state numbers in the pinned cordis 4.0.4 declaration order.
+ * `await()` only settles in-flight lifecycle work — a fiber that is still
+ * PENDING (never started or still waiting for services) resolves immediately,
+ * so the post-await state must be read before calling anything loaded.
  */
-const PINNED_FIBER_FAILED = 3
+const PINNED_FIBER_PENDING = 0
+const PINNED_FIBER_ACTIVE = 2
+const PINNED_FIBER_DISPOSED = 4
 
 /** Upper bound for awaiting one fiber's lifecycle before calling it waiting. */
 export const FIBER_OBSERVE_TIMEOUT_MS = 1_500
@@ -57,7 +61,7 @@ export type EntryObservation =
   | { readonly kind: 'configuration-invalid'; readonly field: string | null }
   | { readonly kind: 'initialization-failed' }
   | { readonly kind: 'waiting-services' }
-  | { readonly kind: 'unknown-state' }
+  | { readonly kind: 'unknown-state'; readonly state: number | undefined }
 
 /**
  * Read the loader service from a plugin context without hard-injecting it.
@@ -93,13 +97,13 @@ export function configurationFieldOf(error: unknown): string | null {
 }
 
 /**
- * Observe one entry through the public fiber lifecycle: `await()` resolves
- * for a loaded (or recovered) plugin and rethrows the recorded startup
- * failure otherwise, so the decision never rests on a state number alone.
- * A bounded timeout reports still-loading fibers as waiting rather than
- * blocking the report.
+ * Observe one entry through the public fiber lifecycle. `fiber.await()`
+ * rethrows the recorded startup rejection of a failed fiber, but resolving
+ * alone proves nothing: a fiber that never started (deps missing) or was
+ * disposed also resolves, so the settled state is classified explicitly.
+ * A bounded timeout reports lifecycle work that never settles as waiting.
  * @param entry - the loader entry to observe.
- * @param timeoutMs - how long to wait for an unsettled fiber.
+ * @param timeoutMs - how long to wait for an unsettled lifecycle transition.
  * @returns the classified observation.
  */
 export async function observeEntry(
@@ -110,18 +114,10 @@ export async function observeEntry(
   if (fiber === undefined) return { kind: 'module-resolution-failed' }
   try {
     await withTimeout(fiber.await(), timeoutMs)
-    // `await()` only settles after lifecycle work; a settled, non-throwing
-    // fiber is loaded (or was disposed after unloading, which for our rows
-    // only happens on shutdown).
-    return { kind: 'active' }
   } catch (error) {
     if (error instanceof TimeoutMarker) {
-      // A fiber that neither loads nor fails within the budget is still
-      // waiting for injected services; the public surface does not expose
-      // which, so the observation stays non-specific.
-      return fiber.state === PINNED_FIBER_FAILED
-        ? { kind: 'unknown-state' }
-        : { kind: 'waiting-services' }
+      // A load/unload transition is stuck; nothing conclusive can be said.
+      return { kind: 'unknown-state', state: fiber.state }
     }
     const name = (error as { name?: unknown } | null)?.name
     if (name === 'ValidationError' || configurationFieldOf(error) !== null) {
@@ -129,6 +125,12 @@ export async function observeEntry(
     }
     return { kind: 'initialization-failed' }
   }
+  // Settled without throwing: a FAILED fiber would have rethrown, so the
+  // remaining states are exactly loaded, still waiting, or gone.
+  const state = fiber.state
+  if (state === PINNED_FIBER_ACTIVE) return { kind: 'active' }
+  if (state === PINNED_FIBER_PENDING) return { kind: 'waiting-services' }
+  return { kind: 'unknown-state', state }
 }
 
 /** Internal marker distinguishing the observation timeout from fiber errors. */

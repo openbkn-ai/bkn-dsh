@@ -1,5 +1,6 @@
-# Apply one controlled fault or the healthy baseline, then start dsh web and
-# record evidence. Only mutates this test root's profile and package copies.
+# Apply one controlled fault or the healthy baseline, then start the real
+# host for the chosen form and record evidence. Only mutates this test
+# root's profile and package copies.
 # Cases (aligned with the W0–W12 matrix in the Windows verification task):
 #   W1  baseline (full config, no fault) — normal startup + panel export
 #   W2  configuration fault (baseUrl removed from the user patch layer)
@@ -7,6 +8,8 @@
 #       import; the base tarball sha256 and modified hashes are recorded)
 #   W4  initialization fault (copy whose apply() throws after the registry)
 #   W10 diagnostics-service fault (copy with a broken diagnostics import)
+# Forms: 'desktop' starts the real DeepSeek Harness application against the
+# desktop profile (DSH_HOME of this test root); 'npm' starts `dsh web`.
 param(
     [Parameter(Mandatory = $true)][string]$TestRoot,
     [Parameter(Mandatory = $true)][ValidateSet('W1', 'W2', 'W3', 'W4', 'W10')][string]$CaseId,
@@ -20,9 +23,7 @@ param(
 $ErrorActionPreference = 'Stop'
 $prepared = Get-Content (Join-Path $TestRoot 'evidence\prepared.json') | ConvertFrom-Json
 $dsh = $prepared.dshCli
-$env:DSH_HOME = $prepared.dshHome
 $profileDir = $prepared.profileDir
-$installed = Join-Path $profileDir 'node_modules\@openbkn\dsh-business-context'
 $evidence = Join-Path $TestRoot "evidence\$CaseId-$Form.md"
 
 # Reinstall the pristine candidate unless the case needs a modified copy.
@@ -43,10 +44,11 @@ if ($CaseId -in @('W3', 'W4', 'W10')) {
         $hashes = "index.js SHA256: $((Get-FileHash $lib -Algorithm SHA256).Hash)"
     } else {
         # W3 and W10 prepend a missing top-level import to the respective file.
-        $lib = Join-Path $pkg ($(if ($CaseId -eq 'W3') { 'lib\index.js' } else { 'lib\diagnostics.js' }))
+        $relative = if ($CaseId -eq 'W3') { 'lib\index.js' } else { 'lib\diagnostics.js' }
+        $lib = Join-Path $pkg $relative
         $prefix = "import './w-broken.js';`n"
         [IO.File]::WriteAllText($lib, $prefix + [IO.File]::ReadAllText($lib))
-        $hashes = "$lib SHA256: $((Get-FileHash $lib -Algorithm SHA256).Hash)"
+        $hashes = "$relative SHA256: $((Get-FileHash $lib -Algorithm SHA256).Hash)"
     }
     $installTgz = Join-Path $TestRoot "variant-$CaseId.tgz"
     tar -czf $installTgz -C $variantDir package
@@ -56,8 +58,12 @@ if ($CaseId -in @('W3', 'W4', 'W10')) {
     "note: variant is intentionally not byte-identical to the candidate" | Add-Content -Encoding utf8 $evidence
 }
 
+# Install under the profile this form actually boots; the running host and
+# the profile under test must be the same one.
+$env:DSH_HOME = $prepared.dshHome
+$profileName = $prepared.profile
 Remove-Item -Recurse -Force (Join-Path $profileDir 'node_modules\@openbkn') -ErrorAction SilentlyContinue
-& $dsh plugin --profile web install $installTgz
+& $dsh plugin --profile $profileName install $installTgz
 if ($LASTEXITCODE -ne 0) { throw "install of $installTgz failed" }
 
 # User patch layer: the healthy config or the W2 fault (baseUrl omitted).
@@ -69,16 +75,26 @@ if ($CaseId -eq 'W2') {
     "- id: openbkn-business-context`n  config:`n    baseUrl: $base`n    cliPath: $CliPath" | Set-Content -Encoding utf8 $patch
 }
 
-# Start dsh web detached from this script's console; do not kill any other dsh.
-$log = Join-Path $TestRoot "evidence\$CaseId-$Form-web.log"
-$proc = Start-Process -FilePath $dsh -ArgumentList @('web', '--port', $Port, '--no-open') `
-    -RedirectStandardOutput $log -RedirectStandardError (Join-Path $TestRoot "evidence\$CaseId-$Form-web.err.log") `
-    -PassThru -WindowStyle Hidden
-Start-Sleep -Seconds 10
-"started pid $($proc.Id) on port $Port" | Add-Content -Encoding utf8 $evidence
-Get-Content $log | Add-Content -Encoding utf8 $evidence
+if ($Form -eq 'desktop') {
+    # The ordinary desktop application is the host under test. It inherits
+    # this shell's DSH_HOME, so it boots the isolated profile we installed.
+    $app = $prepared.desktopAppPath
+    $proc = Start-Process -FilePath $app -PassThru
+    Start-Sleep -Seconds 20
+    "started desktop app pid $($proc.Id) (DSH_HOME=$($prepared.dshHome), profile $profileName)" | Add-Content -Encoding utf8 $evidence
+    Write-Host "Case $CaseId (desktop): the DeepSeek Harness application started (pid $($proc.Id))."
+    Write-Host "Open the OpenBKN diagnostics entry inside the application, exercise the case, and export the report."
+    $proc.Id | Set-Content -Encoding utf8 (Join-Path $TestRoot "evidence\$CaseId-$Form.pid")
+} else {
+    $log = Join-Path $TestRoot "evidence\$CaseId-$Form-web.log"
+    $proc = Start-Process -FilePath $dsh -ArgumentList @('web', '--port', $Port, '--no-open') `
+        -RedirectStandardOutput $log -RedirectStandardError (Join-Path $TestRoot "evidence\$CaseId-$Form-web.err.log") `
+        -PassThru -WindowStyle Hidden
+    Start-Sleep -Seconds 10
+    "started dsh web pid $($proc.Id) on port $Port" | Add-Content -Encoding utf8 $evidence
+    Get-Content $log -ErrorAction SilentlyContinue | Add-Content -Encoding utf8 $evidence
+    Write-Host "Case $CaseId (npm): dsh web on http://127.0.0.1:$Port (pid $($proc.Id)). Exercise the diagnostics panel in a browser."
+    $proc.Id | Set-Content -Encoding utf8 (Join-Path $TestRoot "evidence\$CaseId-$Form.pid")
+}
 
-Write-Host "Case $CaseId ($Form) running on http://127.0.0.1:$Port (pid $($proc.Id))."
-Write-Host "Open the UI in a browser, exercise the OpenBKN diagnostics panel, then record results."
-Write-Host "Stop with: cleanup.ps1 -TestRoot $TestRoot (it only stops pids it started; check evidence\*.json)."
-$proc.Id | Set-Content -Encoding utf8 (Join-Path $TestRoot "evidence\$CaseId-$Form.pid")
+Write-Host "Stop with: cleanup.ps1 -TestRoot $TestRoot -CandidateTgz <path> (it only stops pids recorded here)."

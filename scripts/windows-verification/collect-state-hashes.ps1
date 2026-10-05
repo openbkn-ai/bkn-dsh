@@ -6,16 +6,19 @@ param(
 )
 
 $ErrorActionPreference = 'Stop'
-$home = Join-Path $TestRoot 'dsh-home'
+$homeDir = Join-Path $TestRoot 'dsh-home'
 $targets = @(
     'profiles\web\package.json',
     'profiles\web\cordis.patch.yml',
-    'profiles\web\pnpm-lock.yaml'
+    'profiles\web\pnpm-lock.yaml',
+    'profiles\desktop\package.json',
+    'profiles\desktop\cordis.patch.yml',
+    'profiles\desktop\pnpm-lock.yaml'
 )
 
 $result = [ordered]@{}
 foreach ($relative in $targets) {
-    $path = Join-Path $home $relative
+    $path = Join-Path $homeDir $relative
     if (Test-Path $path) {
         $result[$relative] = (Get-FileHash $path -Algorithm SHA256).Hash
     } else {

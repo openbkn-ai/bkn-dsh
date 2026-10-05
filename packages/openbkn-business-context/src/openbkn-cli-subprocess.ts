@@ -37,7 +37,7 @@ export class OpenBknCliUnavailableError extends Error {
   constructor(readonly cliPath: string, options?: ErrorOptions) {
     super(`OpenBKN CLI ${JSON.stringify(cliPath)} is not available to the DSH host.`, options)
     this.name = 'OpenBknCliUnavailableError'
-    passiveDiagnostics.record({ stage: 'cli', code: 'cli-missing', status: 'fail' })
+    passiveDiagnostics.record({ subject: 'cli', stage: 'cli', code: 'cli-missing', status: 'fail' })
   }
 }
 

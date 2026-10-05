@@ -38,9 +38,12 @@ export const name = 'openbkn-business-context-client'
 
 /**
  * Reserves an additive browser entry without taking ownership of any DSH
- * shell, conversation, composer, or scrolling surface.
+ * shell, conversation, composer, or scrolling surface. Only the base slot and
+ * remote services are top-level dependencies: the diagnostics segment must
+ * register even while session/workspace services are still starting (or
+ * never start), and the business segment waits for its own services below.
  */
-export const inject = ['slots', 'remote', 'sessions', 'conversation', 'workspaces', 'uiWorkspace']
+export const inject = ['slots', 'remote']
 
 /**
  * Mount the generated Remote boundary, then register two independent
@@ -68,6 +71,8 @@ export async function apply(ctx: Context): Promise<() => Promise<void>> {
     'remote.openbknBusinessContext',
     'sessions',
     'conversation',
+    'workspaces',
+    'uiWorkspace',
   ], scopedCtx => registerSlots(scopedCtx, diagnosticsHandle))
   try {
     await ui

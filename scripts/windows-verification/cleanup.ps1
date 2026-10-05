@@ -21,7 +21,7 @@ Get-ChildItem (Join-Path $TestRoot 'evidence') -Filter '*.pid' -ErrorAction Sile
             Write-Host "stopped pid $($target.Id) ($($_.BaseName))"
         }
     }
-    Remove-Item $_.Force
+    Remove-Item $_ -Force
 }
 
 # Reinstall the pristine candidate so the next case starts clean.

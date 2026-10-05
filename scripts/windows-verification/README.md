@@ -5,6 +5,17 @@ verification matrix. They are test-tooling only and are **not** part of the
 npm package. They never touch the user's real `$DSH_HOME`, credentials, or
 running dsh processes; every mutation stays under `-TestRoot`.
 
+The two forms are kept strictly apart: `desktop` installs into the
+**desktop** profile and starts the real DeepSeek Harness application
+(inheriting the isolated `DSH_HOME`), while `npm` installs into the **web**
+profile and starts `dsh web`. Choosing the desktop CLI binary alone is not
+desktop-form evidence — the application itself must be the host under test.
+
+> Note: the scripts were authored and hand-checked off-Windows; they have
+> not been executed in a native PowerShell yet. If a syntax or environment
+> assumption fails, fix it in the kit and record the adjustment — do not
+> silently skip the case it was driving.
+
 ## Order
 
 ```powershell

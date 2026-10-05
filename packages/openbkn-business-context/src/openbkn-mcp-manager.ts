@@ -72,10 +72,10 @@ export class OpenBknMcpManager {
     if (this.ctx.tools.get(REQUIRED_TOOL) === undefined) {
       this.fiber = undefined
       await fiber.dispose()
-      passiveDiagnostics.record({ stage: 'context-loader', code: 'mcp-initialization-failed', status: 'fail', evidence: { toolsPublished: false } })
+      passiveDiagnostics.record({ subject: 'context-loader', stage: 'context-loader', code: 'mcp-initialization-failed', status: 'fail', evidence: { toolsPublished: false } })
       throw new Error('OpenBKN Context Loader MCP did not publish its managed interaction tools.')
     }
-    passiveDiagnostics.record({ stage: 'context-loader', code: 'mcp-initialization-failed', status: 'pass', evidence: { toolsPublished: true } })
+    passiveDiagnostics.record({ subject: 'context-loader', stage: 'context-loader', code: 'context-loader', status: 'pass', evidence: { toolsPublished: true } })
   }
 
   private async mountFiber(token: string): Promise<{ dispose(): Promise<void> }> {
@@ -104,6 +104,7 @@ export class OpenBknMcpManager {
     if (brand !== undefined) {
       const denied = brand === 'CLIENT_HTTP_FORBIDDEN'
       passiveDiagnostics.record({
+        subject: 'context-loader',
         stage: 'context-loader',
         code: denied ? 'auth-rejected' : 'not-logged-in',
         status: 'fail',
@@ -113,7 +114,7 @@ export class OpenBknMcpManager {
         ? 'OpenBKN rejected this account for the Context Loader MCP (HTTP 403). Ask the platform administrator to authorize this account, then retry.'
         : 'OpenBKN rejected the Context Loader MCP credential (HTTP 401). Re-login with `openbkn auth login` (or update the stored token) and retry; no business data was read.')
     }
-    passiveDiagnostics.record({ stage: 'context-loader', code: 'mcp-initialization-failed', status: 'fail' })
+    passiveDiagnostics.record({ subject: 'context-loader', stage: 'context-loader', code: 'mcp-initialization-failed', status: 'fail' })
     return error instanceof Error ? error : new Error(String(error))
   }
 }

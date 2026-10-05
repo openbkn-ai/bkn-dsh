@@ -78,6 +78,9 @@ export const DIAGNOSTICS_CODES = {
   platformResponseOverflow: 'platform-response-overflow',
   platformResponseInvalid: 'platform-response-invalid',
   networkUnreachable: 'network-unreachable',
+  platformUnavailable: 'platform-unavailable',
+  platformRequest: 'platform-request',
+  recordNotDisclosed: 'record-not-disclosed',
   tlsFailed: 'tls-failed',
   timeout: 'timeout',
   mcpInitializationFailed: 'mcp-initialization-failed',
@@ -195,8 +198,10 @@ export const DIAGNOSTICS_EVIDENCE_TEXT_LIMIT = 64
  * Evidence fields that may carry a string. Every other string value is
  * dropped at sanitization time: free-form text is exactly how raw messages
  * leak, and all other whitelisted evidence is numeric or boolean by design.
+ * The two admitted fields carry closed vocabulary from this module's code
+ * tables, never caller text.
  */
-export const DIAGNOSTICS_EVIDENCE_STRING_FIELDS: readonly string[] = ['configField']
+export const DIAGNOSTICS_EVIDENCE_STRING_FIELDS: readonly string[] = ['configField', 'lastFailureCode']
 
 /**
  * Keep only whitelisted scalar evidence values. Nested objects, arrays,

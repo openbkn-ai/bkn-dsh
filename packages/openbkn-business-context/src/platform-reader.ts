@@ -35,32 +35,68 @@ export class PlatformReaderError extends Error {
 /** Project one reader failure into the passive diagnostics buffer. */
 function observeReaderFailure(code: PlatformReaderErrorCode, cause: unknown, httpStatus: unknown): void {
   if (code === 'REQUEST_ABORTED') return
+  const status = httpStatusEvidence(httpStatus)
   if (code === 'AUTHENTICATION_REQUIRED') {
-    passiveDiagnostics.record({ stage: 'authentication', code: 'not-logged-in', status: 'fail' })
+    // 401/403 are refusals: record the status and refuse to infer a cause;
+    // only the no-credential path is genuinely "not logged in".
+    const refusal = typeof status.httpStatus === 'number' && (status.httpStatus === 401 || status.httpStatus === 403)
+    passiveDiagnostics.record({
+      subject: 'platform-request', stage: 'authentication',
+      code: refusal ? 'auth-rejected' : 'not-logged-in', status: 'fail', evidence: status,
+    })
     return
   }
   if (code === 'PLATFORM_MISMATCH') {
-    passiveDiagnostics.record({ stage: 'authentication', code: 'auth-rejected', status: 'fail' })
+    passiveDiagnostics.record({
+      subject: 'platform-request', stage: 'configuration', code: 'platform-mismatch',
+      status: 'fail', evidence: { platformMismatch: true, ...status },
+    })
     return
   }
   if (code === 'OUTPUT_OVERFLOW') {
-    passiveDiagnostics.record({ stage: 'platform-directory', code: 'platform-response-overflow', status: 'fail' })
+    passiveDiagnostics.record({ subject: 'platform-request', stage: 'platform-directory', code: 'platform-response-overflow', status: 'fail', evidence: status })
     return
   }
   if (code === 'INVALID_RESPONSE') {
-    passiveDiagnostics.record({ stage: 'platform-directory', code: 'platform-response-invalid', status: 'fail' })
+    passiveDiagnostics.record({ subject: 'platform-request', stage: 'platform-directory', code: 'platform-response-invalid', status: 'fail', evidence: status })
     return
   }
-  // PLATFORM_UNAVAILABLE / LICENSE_REQUIRED / RECORD_NOT_DISCLOSED: the
-  // network attempt itself failed or was refused; keep the bounded HTTP
-  // status when the caller surfaced one and classify the timeout shape.
-  const name = (cause as { name?: unknown } | null)?.name
-  const stage = code === 'LICENSE_REQUIRED' ? 'platform-directory' : 'network'
-  const diagCode = code === 'LICENSE_REQUIRED' ? 'platform-directory-failed'
-    : name === 'TimeoutError' || (cause as { code?: unknown } | null)?.code === 'UND_ERR_HEADERS_TIMEOUT'
-      ? 'timeout'
-      : 'network-unreachable'
-  passiveDiagnostics.record({ stage, code: diagCode, status: 'fail', evidence: httpStatusEvidence(httpStatus) })
+  if (code === 'RECORD_NOT_DISCLOSED') {
+    passiveDiagnostics.record({ subject: 'platform-request', stage: 'platform-directory', code: 'record-not-disclosed', status: 'fail', evidence: status })
+    return
+  }
+  if (code === 'LICENSE_REQUIRED') {
+    passiveDiagnostics.record({ subject: 'platform-request', stage: 'platform-directory', code: 'platform-directory-failed', status: 'fail', evidence: status })
+    return
+  }
+  // PLATFORM_UNAVAILABLE: classify the transport layer from the bounded
+  // cause chain (TLS certificate shapes, timeout brands) and keep the HTTP
+  // status for anything that reached the platform.
+  const markers = causeMarkersOf(cause)
+  const diagCode = markers.tls ? 'tls-failed'
+    : markers.timeout ? 'timeout'
+    : typeof status.httpStatus === 'number' && status.httpStatus >= 500 ? 'platform-unavailable'
+    : 'network-unreachable'
+  passiveDiagnostics.record({ subject: 'platform-request', stage: 'network', code: diagCode, status: 'fail', evidence: status })
+}
+
+/** Marker patterns for bounded transport classification of a cause chain. */
+const TLS_MARKER = /CERT|SSL|TLS|SIGNATURE/i
+const TIMEOUT_MARKER = /TimeoutError|TIMED?OUT|UND_ERR_HEADERS_TIMEOUT|UND_ERR_CONNECT_TIMEOUT|UND_ERR_BODY_TIMEOUT/
+
+/** Walk a bounded cause chain collecting name/code markers for classification. */
+function causeMarkersOf(cause: unknown, depth = 4): { tls: boolean, timeout: boolean } {
+  let tls = false
+  let timeout = false
+  let current: unknown = cause
+  for (let level = 0; level < depth && current !== null && typeof current === 'object'; level += 1) {
+    const candidate = current as { name?: unknown, code?: unknown, cause?: unknown }
+    const parts = `${String(candidate.name ?? '')} ${String(candidate.code ?? '')}`
+    if (TLS_MARKER.test(parts)) tls = true
+    if (TIMEOUT_MARKER.test(parts)) timeout = true
+    current = candidate.cause
+  }
+  return { tls, timeout }
 }
 
 export interface PlatformReaderConfig {

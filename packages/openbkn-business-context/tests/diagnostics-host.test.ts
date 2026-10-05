@@ -39,12 +39,30 @@ test('a failed fiber with an unknown error classifies as initialization failure'
   assert.deepEqual(observation, { kind: 'initialization-failed' })
 })
 
-test('a fiber that never settles within the budget reports waiting', async () => {
+test('a fiber that never started resolves await() but still reports waiting', async () => {
+  // cordis `await()` only settles in-flight work: a PENDING fiber with no
+  // inertia resolves immediately. The state read afterwards must catch it.
   const observation = await observeEntry(entryWith({
     state: STATES.PENDING,
+    async await() { return undefined },
+  }))
+  assert.deepEqual(observation, { kind: 'waiting-services' })
+})
+
+test('a stuck lifecycle transition is inconclusive, not healthy', async () => {
+  const observation = await observeEntry(entryWith({
+    state: STATES.LOADING,
     await() { return new Promise(() => undefined) },
   }), 20)
-  assert.deepEqual(observation, { kind: 'waiting-services' })
+  assert.deepEqual(observation, { kind: 'unknown-state', state: STATES.LOADING })
+})
+
+test('a disposed fiber is never reported as loaded', async () => {
+  const observation = await observeEntry(entryWith({
+    state: STATES.DISPOSED,
+    async await() { return undefined },
+  }))
+  assert.deepEqual(observation, { kind: 'unknown-state', state: STATES.DISPOSED })
 })
 
 test('a recovered fiber reports active rather than a stale failure', async () => {
