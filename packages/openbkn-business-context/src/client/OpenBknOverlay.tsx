@@ -11,12 +11,13 @@ export interface OpenBknOverlayInjected {
   beginLogin(): Promise<void>
   configureToken(token: string): Promise<void>
   openNetwork(networkId: string, mode: 'continue' | 'new' | 'create-workspace'): Promise<void>
+  openDiagnostics(): void
 }
 
 export type OpenBknOverlayProps = PropsRuntime<'shell.overlay'> & InjectFace<OpenBknOverlayInjected>
 
 /** Frame-wide, additive OpenBKN control plane. It is intentionally outside DSH chat scroll containers. */
-export function OpenBknOverlay({ useUi, close, refresh, beginLogin, configureToken, openNetwork }: OpenBknOverlayProps) {
+export function OpenBknOverlay({ useUi, close, refresh, beginLogin, configureToken, openNetwork, openDiagnostics }: OpenBknOverlayProps) {
   const state = useUi((value: OpenBknOverlayState) => value)
 
   useEffect(() => {
@@ -42,19 +43,20 @@ export function OpenBknOverlay({ useUi, close, refresh, beginLogin, configureTok
           <button type="button" onClick={close} aria-label="Close" style={closeStyle}>×</button>
         </header>
         <div style={{ padding: 20 }}>
-          <OverlayBody state={state} beginLogin={beginLogin} configureToken={configureToken} refresh={refresh} openNetwork={openNetwork} />
+          <OverlayBody state={state} beginLogin={beginLogin} configureToken={configureToken} refresh={refresh} openNetwork={openNetwork} openDiagnostics={openDiagnostics} />
         </div>
       </section>
     </div>
   )
 }
 
-function OverlayBody({ state, beginLogin, configureToken, refresh, openNetwork }: {
+function OverlayBody({ state, beginLogin, configureToken, refresh, openNetwork, openDiagnostics }: {
   state: OpenBknOverlayState
   beginLogin(): Promise<void>
   configureToken(token: string): Promise<void>
   refresh(): Promise<void>
   openNetwork(networkId: string, mode: 'continue' | 'new' | 'create-workspace'): Promise<void>
+  openDiagnostics(): void
 }) {
   const [query, setQuery] = useState('')
   const [limit, setLimit] = useState(INITIAL_NETWORK_DIRECTORY_LIMIT)
@@ -87,7 +89,15 @@ function OverlayBody({ state, beginLogin, configureToken, refresh, openNetwork }
   }
 
   if (state.phase === 'error') {
-    return <div><p style={{ marginTop: 0, lineHeight: 1.6 }}>{state.message}</p><button type="button" style={primaryStyle} onClick={() => void refresh()}>重试</button></div>
+    return (
+      <div>
+        <p style={{ marginTop: 0, lineHeight: 1.6 }}>{state.message}</p>
+        <div style={{ display: 'flex', gap: 8 }}>
+          <button type="button" style={primaryStyle} onClick={() => void refresh()}>重试</button>
+          <button type="button" style={secondaryStyle} onClick={openDiagnostics}>导出诊断</button>
+        </div>
+      </div>
+    )
   }
 
   return (
