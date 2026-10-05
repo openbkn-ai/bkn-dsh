@@ -207,3 +207,9 @@ export interface ProvenanceView {
   readonly business: ProvenanceBusinessView
   readonly evidence: ProvenanceEvidenceView
 }
+
+/** Frozen diagnostics report wire types; runtime helpers stay in the diagnostics entry face. */
+export type {
+  DiagnosticsCheck, DiagnosticsCoverage, DiagnosticsEvidenceValue,
+  DiagnosticsReport, DiagnosticsSource, DiagnosticsStage, DiagnosticsStatus, DiagnosticsTarget,
+} from './diagnostics-contract.js'

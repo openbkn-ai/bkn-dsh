@@ -28,6 +28,10 @@
       "types": "./lib/types/index.d.ts",
       "default": "./lib/index.js"
     },
+    "./diagnostics": {
+      "types": "./lib/types/diagnostics.d.ts",
+      "default": "./lib/diagnostics.js"
+    },
     "./types": {
       "types": "./lib/types/types.d.ts"
     },
@@ -47,6 +51,7 @@
   },
   "files": [
     "lib/index.js",
+    "lib/diagnostics.js",
     "lib/client.js",
     "lib/types/**/*.d.ts",
     "lib/typert.host.js",

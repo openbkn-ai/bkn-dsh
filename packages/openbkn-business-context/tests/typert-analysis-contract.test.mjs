@@ -17,5 +17,6 @@ test('discovers every public OpenBKN Remote method from the host aggregate', () 
   )
 
   assert.ok(bundle)
-  assert.equal(bundle.invocations.length, 10)
+  // Ten business methods plus the diagnostics getReport.
+  assert.equal(bundle.invocations.length, 11)
 })

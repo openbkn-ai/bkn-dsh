@@ -19,6 +19,8 @@ import type { UiWorkspace } from '@deepseek-ai/dsh-client-ui-workspace/client'
 import openbknBusinessContextRemote from '@openbkn/dsh-business-context/remote'
 import { OpenBknEntry } from './OpenBknEntry.tsx'
 import { OpenBknOverlay } from './OpenBknOverlay.tsx'
+import { DiagnosticsEntry, OpenBknDiagnostics } from './OpenBknDiagnostics.tsx'
+import { DiagnosticsPanelController } from './diagnostics-controller.ts'
 import { OpenBknContextToolView } from './OpenBknContextToolView.tsx'
 import { BoundNetworkBadge, BoundNetworkController } from './BoundNetworkBadge.tsx'
 import {
@@ -40,9 +42,19 @@ export const name = 'openbkn-business-context-client'
  */
 export const inject = ['slots', 'remote', 'sessions', 'conversation', 'workspaces', 'uiWorkspace']
 
-/** Mount the generated Remote boundary before registering additive DSH UI slots. */
+/**
+ * Mount the generated Remote boundary, then register two independent
+ * segments: the diagnostics entry first (it must never wait for the business
+ * Remote or its Host implementation), and the business slots after.
+ */
 export async function apply(ctx: Context): Promise<() => Promise<void>> {
   const disposeRemote = await ctx.remote.$mount(openbknBusinessContextRemote)
+  // The diagnostics namespace is installed by the same $mount above, so this
+  // inject never waits on the Host; only the business segment below does.
+  const diagnostics = ctx.inject(['slots', 'remote', 'remote.openbknDiagnostics'], registerDiagnostics)
+  // A diagnostics failure degrades the panel only; it never blocks or breaks
+  // the business registration below.
+  const diagnosticsSettled = diagnostics.then(() => undefined, () => undefined)
   const ui = ctx.inject([
     'slots',
     'remote',
@@ -54,13 +66,41 @@ export async function apply(ctx: Context): Promise<() => Promise<void>> {
     await ui
   } catch (error) {
     await ui.dispose()
+    await diagnosticsSettled
+    await diagnostics.dispose()
     await disposeRemote()
     throw error
   }
   return async () => {
     await ui.dispose()
+    await diagnosticsSettled
+    await diagnostics.dispose()
     await disposeRemote()
   }
+}
+
+/**
+ * Register the diagnostics surfaces. The namespace is mounted locally by
+ * this face's own `$mount` call, so listing it here waits for nothing on the
+ * Host; the business Remote namespace is deliberately absent.
+ */
+function registerDiagnostics(ctx: Context): void {
+  const controller = new DiagnosticsPanelController({
+    getReport: async signal => unwrap(await ctx.remote.openbknDiagnostics.getReport(signal)),
+  })
+  ctx.slots.inject('sidebar.footer.action', () => ctx.slots.register({
+    name: 'sidebar.footer.action', id: 'openbkn-business-context-diagnostics', order: 101,
+    inject: () => ({ open: () => controller.open() }),
+  }, DiagnosticsEntry))
+  ctx.slots.inject('shell.overlay', () => ctx.slots.register({
+    name: 'shell.overlay', id: 'openbkn-business-context-diagnostics', order: 120,
+    inject: () => ({
+      hooks: { diagnostics: controller },
+      open: () => controller.open(),
+      close: () => controller.close(),
+      refresh: () => controller.refresh(),
+    }),
+  }, OpenBknDiagnostics))
 }
 
 /** Register only additive DSH slots; native navigation and conversation surfaces remain untouched. */
