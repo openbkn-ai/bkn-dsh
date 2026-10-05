@@ -38,6 +38,8 @@ export default defineConfig(({ env }) => {
     fixedExtension: false,
     dts: false,
     clean: false,
+    // Both rows share the observer module; rolldown emits it as a hashed
+    // sibling chunk, so package.json `files` must ship the whole lib/*.js set.
     plugins: [typertPlugin({ mode: 'package', faces: ['host'] })],
   }
 })

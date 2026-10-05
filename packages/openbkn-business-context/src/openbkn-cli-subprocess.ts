@@ -1,4 +1,5 @@
 import type { CliResult, OpenBknCli } from './auth.js'
+import { passiveDiagnostics } from './diagnostics-observer.js'
 import { trimTrailingSlashes } from './trailing-slashes.js'
 
 const OUTPUT_LIMIT = 64 * 1024
@@ -36,6 +37,7 @@ export class OpenBknCliUnavailableError extends Error {
   constructor(readonly cliPath: string, options?: ErrorOptions) {
     super(`OpenBKN CLI ${JSON.stringify(cliPath)} is not available to the DSH host.`, options)
     this.name = 'OpenBknCliUnavailableError'
+    passiveDiagnostics.record({ stage: 'cli', code: 'cli-missing', status: 'fail' })
   }
 }
 

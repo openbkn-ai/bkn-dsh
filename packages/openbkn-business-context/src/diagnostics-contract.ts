@@ -73,6 +73,10 @@ export const DIAGNOSTICS_CODES = {
   cliOutputInvalid: 'cli-output-invalid',
   notLoggedIn: 'not-logged-in',
   authRejected: 'auth-rejected',
+  loginState: 'login-state',
+  platformMismatch: 'platform-mismatch',
+  platformResponseOverflow: 'platform-response-overflow',
+  platformResponseInvalid: 'platform-response-invalid',
   networkUnreachable: 'network-unreachable',
   tlsFailed: 'tls-failed',
   timeout: 'timeout',
@@ -188,9 +192,17 @@ export function diagnosticsCoverageOf(
 export const DIAGNOSTICS_EVIDENCE_TEXT_LIMIT = 64
 
 /**
+ * Evidence fields that may carry a string. Every other string value is
+ * dropped at sanitization time: free-form text is exactly how raw messages
+ * leak, and all other whitelisted evidence is numeric or boolean by design.
+ */
+export const DIAGNOSTICS_EVIDENCE_STRING_FIELDS: readonly string[] = ['configField']
+
+/**
  * Keep only whitelisted scalar evidence values. Nested objects, arrays,
- * symbols, and long strings are dropped rather than stringified, so a bug in
- * a collector cannot smuggle a raw payload into the report.
+ * symbols, long strings, and strings outside the designated string fields
+ * are dropped rather than stringified, so a bug in a collector cannot smuggle
+ * a raw payload into the report.
  * @param evidence - candidate evidence fields.
  * @returns the filtered evidence record.
  */
@@ -199,10 +211,12 @@ export function sanitizeDiagnosticsEvidence(
 ): Record<string, DiagnosticsEvidenceValue> {
   const clean: Record<string, DiagnosticsEvidenceValue> = {}
   for (const [key, value] of Object.entries(evidence)) {
-    if (typeof value === 'boolean' || typeof value === 'number' || value === null) {
-      if (Number.isFinite(value)) clean[key] = value
-    } else if (typeof value === 'string' && value.length <= DIAGNOSTICS_EVIDENCE_TEXT_LIMIT) {
+    if (typeof value === 'boolean' || value === null) {
       clean[key] = value
+    } else if (typeof value === 'number' && Number.isFinite(value)) {
+      clean[key] = value
+    } else if (typeof value === 'string' && value.length <= DIAGNOSTICS_EVIDENCE_TEXT_LIMIT) {
+      if (DIAGNOSTICS_EVIDENCE_STRING_FIELDS.includes(key)) clean[key] = value
     }
   }
   return clean

@@ -31,6 +31,7 @@ import {
   loaderOf,
   observeEntry,
 } from './diagnostics-host-adapter.js'
+import { passiveDiagnostics } from './diagnostics-observer.js'
 
 declare module '@deepseek-ai/cordis' {
   interface Context {
@@ -141,7 +142,9 @@ export class OpenBknDiagnosticsService extends TypertRemoteService {
   }
 
   /**
-   * Assemble one passive diagnostics report.
+   * Assemble one passive diagnostics report: entry/fiber state plus the
+   * bounded observations recorded by the business boundaries (empty when the
+   * business entry never loaded — the fiber checks carry that case).
    * @param signal - cancellation signal from the Remote transport; optional
    * because the client may invoke without one.
    * @returns the whitelisted report DTO.
@@ -150,10 +153,14 @@ export class OpenBknDiagnosticsService extends TypertRemoteService {
   async getReport(signal?: AbortSignal): Promise<DiagnosticsReport> {
     if (signal?.aborted) throw signal.reason
     const drafts = [await businessEntryCheck(this.ctx), selfCheck()]
-    const checks: readonly DiagnosticsCheck[] = drafts.map(draft => ({
-      id: draft.id, stage: draft.stage, status: draft.status, source: 'host-runtime',
+    const observed = passiveDiagnostics.snapshot()
+    const notes = passiveDiagnostics.droppedObservationCount > 0
+      ? [`observation buffer dropped ${String(passiveDiagnostics.droppedObservationCount)} novel keys after the bound`]
+      : []
+    const checks: readonly DiagnosticsCheck[] = [...drafts.map(draft => ({
+      id: draft.id, stage: draft.stage, status: draft.status, source: 'host-runtime' as const,
       code: draft.code, evidence: draft.evidence, nextAction: draft.nextAction,
-    }))
+    })), ...observed]
     return {
       schemaVersion: DIAGNOSTICS_SCHEMA_VERSION,
       reportId: newDiagnosticsReportId(),
@@ -167,7 +174,7 @@ export class OpenBknDiagnosticsService extends TypertRemoteService {
       },
       mode: 'passive',
       checks,
-      coverage: diagnosticsCoverageOf(checks),
+      coverage: diagnosticsCoverageOf(checks, notes),
     }
   }
 }

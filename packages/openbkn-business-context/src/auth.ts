@@ -11,6 +11,7 @@ export interface CliResult {
 }
 
 import type { AuthSnapshot } from './types.js'
+import { passiveDiagnostics } from './diagnostics-observer.js'
 import { trimTrailingSlashes } from './trailing-slashes.js'
 
 export type { AuthSnapshot } from './types.js'
@@ -55,26 +56,26 @@ export class AuthCoordinator {
 
     const status = parseStatus(result.stdout)
     // No active platform in the CLI: nobody has logged in yet.
-    if (status.baseUrl === undefined) return { kind: 'authentication-required', baseUrl: this.baseUrl }
+    if (status.baseUrl === undefined) return observed({ kind: 'authentication-required', baseUrl: this.baseUrl })
     const actualBaseUrl = normalizeBaseUrl(status.baseUrl)
     if (actualBaseUrl !== this.baseUrl) {
-      return {
+      return observed({
         kind: 'platform-mismatch',
         expectedBaseUrl: this.baseUrl,
         actualBaseUrl,
-      }
+      })
     }
     // An unknown expiry is not a refusal: `auth token` is the CLI's refresh
     // authority and fails by itself when the session cannot be renewed.
     if (!status.hasToken || status.expired === true) {
-      return { kind: 'authentication-required', baseUrl: this.baseUrl }
+      return observed({ kind: 'authentication-required', baseUrl: this.baseUrl })
     }
-    return {
+    return observed({
       kind: 'authenticated',
       baseUrl: this.baseUrl,
       ...(status.userId === undefined ? {} : { userId: status.userId }),
       ...(status.username === undefined ? {} : { username: status.username }),
-    }
+    })
   }
 
   /**
@@ -150,5 +151,18 @@ function normalizeBaseUrl(value: string): string {
 
 function cliFailure(action: string, result: CliResult): OpenBknCliError {
   const detail = result.stderr.trim() || 'no diagnostic output'
+  passiveDiagnostics.record({ stage: 'cli', code: 'cli-execution-failed', status: 'fail', evidence: { exitCode: result.code } })
   return new OpenBknCliError(`OpenBKN CLI could not ${action}: ${detail}`)
+}
+
+/** Record one observed authentication outcome, then hand the snapshot through. */
+function observed(snapshot: AuthSnapshot): AuthSnapshot {
+  if (snapshot.kind === 'authenticated') {
+    passiveDiagnostics.record({ stage: 'authentication', code: 'login-state', status: 'pass', evidence: { loggedIn: true } })
+  } else if (snapshot.kind === 'platform-mismatch') {
+    passiveDiagnostics.record({ stage: 'authentication', code: 'platform-mismatch', status: 'fail', evidence: { platformMismatch: true } })
+  } else {
+    passiveDiagnostics.record({ stage: 'authentication', code: 'login-state', status: 'fail', evidence: { loggedIn: false } })
+  }
+  return snapshot
 }

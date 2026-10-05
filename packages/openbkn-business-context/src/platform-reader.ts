@@ -1,5 +1,6 @@
 import type { JsonValue } from '@deepseek-ai/dsh-util-values'
 import type { BusinessNetworkBinding } from './session-binding.js'
+import { httpStatusEvidence, passiveDiagnostics } from './diagnostics-observer.js'
 import { trimTrailingSlashes } from './trailing-slashes.js'
 
 export type PlatformReaderErrorCode =
@@ -23,11 +24,43 @@ export class PlatformReaderError extends Error {
   /** The platform's own required_action from a permission_denied envelope, truncated. */
   readonly requiredAction?: string
 
-  constructor(readonly code: PlatformReaderErrorCode, message: string, options?: ErrorOptions & { readonly requiredAction?: string }) {
+  constructor(readonly code: PlatformReaderErrorCode, message: string, options?: ErrorOptions & { readonly requiredAction?: string; readonly httpStatus?: number }) {
     super(message, options)
     this.name = 'PlatformReaderError'
     this.requiredAction = options?.requiredAction
+    observeReaderFailure(code, options?.cause, options?.httpStatus)
   }
+}
+
+/** Project one reader failure into the passive diagnostics buffer. */
+function observeReaderFailure(code: PlatformReaderErrorCode, cause: unknown, httpStatus: unknown): void {
+  if (code === 'REQUEST_ABORTED') return
+  if (code === 'AUTHENTICATION_REQUIRED') {
+    passiveDiagnostics.record({ stage: 'authentication', code: 'not-logged-in', status: 'fail' })
+    return
+  }
+  if (code === 'PLATFORM_MISMATCH') {
+    passiveDiagnostics.record({ stage: 'authentication', code: 'auth-rejected', status: 'fail' })
+    return
+  }
+  if (code === 'OUTPUT_OVERFLOW') {
+    passiveDiagnostics.record({ stage: 'platform-directory', code: 'platform-response-overflow', status: 'fail' })
+    return
+  }
+  if (code === 'INVALID_RESPONSE') {
+    passiveDiagnostics.record({ stage: 'platform-directory', code: 'platform-response-invalid', status: 'fail' })
+    return
+  }
+  // PLATFORM_UNAVAILABLE / LICENSE_REQUIRED / RECORD_NOT_DISCLOSED: the
+  // network attempt itself failed or was refused; keep the bounded HTTP
+  // status when the caller surfaced one and classify the timeout shape.
+  const name = (cause as { name?: unknown } | null)?.name
+  const stage = code === 'LICENSE_REQUIRED' ? 'platform-directory' : 'network'
+  const diagCode = code === 'LICENSE_REQUIRED' ? 'platform-directory-failed'
+    : name === 'TimeoutError' || (cause as { code?: unknown } | null)?.code === 'UND_ERR_HEADERS_TIMEOUT'
+      ? 'timeout'
+      : 'network-unreachable'
+  passiveDiagnostics.record({ stage, code: diagCode, status: 'fail', evidence: httpStatusEvidence(httpStatus) })
 }
 
 export interface PlatformReaderConfig {
@@ -163,11 +196,11 @@ export class OpenBknPlatformReader {
       // gets its own code; every other 404 stays a generic unavailable.
       const failure = await errorEnvelope(response)
       if (string(record(failure)?.code) === 'resource_not_disclosed') {
-        throw new PlatformReaderError('RECORD_NOT_DISCLOSED', 'The requested OpenBKN record is not disclosed.')
+        throw new PlatformReaderError('RECORD_NOT_DISCLOSED', 'The requested OpenBKN record is not disclosed.', { httpStatus: response.status })
       }
-      throw new PlatformReaderError('PLATFORM_UNAVAILABLE', 'OpenBKN platform data is temporarily unavailable.')
+      throw new PlatformReaderError('PLATFORM_UNAVAILABLE', 'OpenBKN platform data is temporarily unavailable.', { httpStatus: response.status })
     }
-    if (!response.ok) throw new PlatformReaderError('PLATFORM_UNAVAILABLE', 'OpenBKN platform data is temporarily unavailable.')
+    if (!response.ok) throw new PlatformReaderError('PLATFORM_UNAVAILABLE', 'OpenBKN platform data is temporarily unavailable.', { httpStatus: response.status })
     const capBytes = options?.maxResponseBytes ?? MAX_PLATFORM_RESPONSE_BYTES
     const contentLength = response.headers.get('content-length')
     if (contentLength !== null && Number(contentLength) > capBytes) {

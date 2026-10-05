@@ -27,7 +27,7 @@ const browserDownload: DownloadPort = {
  * @returns a file-system-safe JSON file name.
  */
 export function diagnosticsExportFileName(report: Pick<DiagnosticsReport, 'createdAt' | 'reportId'>): string {
-  const stamp = report.createdAt.replace(/[^0-9TZ-Za-z-]/g, '').replace(/(\d{8})T/, '$1T')
+  const stamp = report.createdAt.replace(/[^0-9TZ]/g, '')
   const safeId = report.reportId.replace(/[^0-9A-Za-z-]/g, '') || 'report'
   return `OpenBKN-diagnostic-${stamp}-${safeId}.json`
 }
