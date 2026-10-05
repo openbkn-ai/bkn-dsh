@@ -2,6 +2,15 @@
 
 All notable changes to this project are documented here.
 
+## 0.2.0-rc.2-openbkn.0.2.0-5 (2026-10-05)
+
+Diagnostics for support workflows. Same DSH pin (`0.2.0-rc.2`); no patch needed.
+
+- Add: a standalone diagnostics entry (`openbkn-business-context-diagnostics`) in the same package. When the business entry fails config validation or startup, the diagnostics row keeps running and the panel classifies the failure (`configuration-invalid` with the whitelisted field, `initialization-failed`, `module-resolution-failed`) through the public fiber surface only. Verified on the unpatched npm-form dsh host (see `docs/evidence/diagnostics-d0.md`).
+- Add: a diagnostics panel reachable from the sidebar at all times, plus an "导出诊断" hand-off on the business error page. It exports a whitelisted JSON report (`OpenBKN-diagnostic-<UTC>-<id>.json`): schema version, checks with stage/status/source/code and scalar-only evidence, target facts, and coverage. Raw messages, stacks, URLs, causes, and credentials never enter the report (canary-tested).
+- Add: passive observations. Platform-reader, auth, CLI, and MCP failures record bounded, capture-time-sanitized outcomes; a later success marks the earlier failure as recovered instead of leaving it current.
+- Known limitations: when the business entry itself cannot be imported, dsh serves no client bundle for the package, so the in-package diagnostics UI is unavailable in that one case (the Host-side diagnostics service stays up; dsh's own startup warning names the module error). Active retesting (read-only reconnection probes) is not included; the panel's "重新采集" re-reads passive state only. Desktop/npm verification on Windows is pending (see the Windows verification pack).
+
 ## 0.2.0-rc.2-openbkn.0.2.0-4 (2026-10-04)
 
 Sign-in fixes for first-time users and OpenBKN CLI 0.1.5. Same DSH pin (`0.2.0-rc.2`); no patch needed.
