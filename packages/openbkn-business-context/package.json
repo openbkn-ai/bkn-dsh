@@ -78,7 +78,7 @@
   },
   "scripts": {
     "build": "pnpm run build:host && pnpm run build:client",
-    "build:host": "tsc -p tsconfig.package.host.json && tsdown --env.DSH_BUILD_FACE host",
+    "build:host": "node scripts/clean-host-bundles.mjs && tsc -p tsconfig.package.host.json && tsdown --env.DSH_BUILD_FACE host",
     "build:client": "tsc -p tsconfig.package.client.json && tsdown --env.DSH_BUILD_FACE client",
     "test": "pnpm run build && node --import tsx --test tests/*.test.mjs tests/*.test.ts",
     "typecheck": "tsc -b ../.."
