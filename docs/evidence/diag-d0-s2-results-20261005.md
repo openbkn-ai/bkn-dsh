@@ -69,3 +69,15 @@
 - 未完成实机：macOS 桌面版形态、Windows（W0–W12；脚本已按新入口迁移但未原生试跑）、真实下载完成、CLI 0.1.5 配对、真实平台下的业务/目录成功路径（本轮 S 系列用 .invalid 地址，认证/网络项按 ACCEPTANCE 属未测而非失败）、CI build-only 彩排、G6/live guard、主动复测。
 - 需要用户决定：推送分支与 CI 彩排授权；Windows 验收排期；根 API breaking 变更的对外公告口径；宿主侧"client bundle 供给绑定单 row"的接口建议是否上游（本方案已在插件侧绕开，不再阻塞）。
 - 远端写入/发布：无（未推送、未 CI、未 tag、未发布）。
+
+## 交接审核轮（2026-10-05 深夜）
+
+复核对首版 -6 候选（`2abdb3e6…`）提出 2×P1 + 1×P2，全部确认并修复，重出候选：
+
+| 问题 | 修复 | 复验 |
+|---|---|---|
+| P1 顶层 `types` 指向不存在的 `lib/types/bootstrap.d.ts`（CI 产物检查 exit 1） | 对齐为 `lib/types/index.d.ts`；`package-bundle.mjs` 新增 `declaredTargets` 审计（exports 全部条件 + main + types 逐项必须在打包清单内）；bundle-contract 增契约测试 | 坏指针 oracle（临时指回 bootstrap.d.ts → 审计 exit 1 抛"declares … not contain"）；301 测试全绿（300 pass） |
+| P1 旧 name-qualified override 升级后失效（宿主 name 断言语义） | 双语 README 迁移说明（删 name 行或改 `'@openbkn/dsh-business-context/business'`）；根 README 指引 | 实测 U1c 三段：-5 下生效 → -6 下旧断言被跳过（复现失效）→ 迁移后（两种写法）配置恢复、canary baseUrl 在业务面板可见 |
+| P2 manifest faultVariants 仍写 W3 破坏 lib/index.js | 更新为按 exports 解析 `./business`/`./diagnostics`，并注明 lib/index.js 现为 bootstrap（破坏它=整包故障） | 人工核对与脚本一致 |
+
+重出候选：源码 `69dbd18`（本轮提交前），tgz SHA `14f6772b…`（64 文件；与首版差异仅 package.json types 字段与文档/测试/审计，三入口运行时产物不变）。受影响项复验：types 由审计+契约测试锁定；U1c 迁移实机通过；新候选 S0（三 row + 迁移配置生效）与 S2（业务坏导入 → 面板在 + `module-resolution-failed`，变体 `d04de56d…`）实机通过。其余 S1/S3–S6/U1/U2 的行为面未变（首版矩阵继续有效，其变体基于 `2abdb3e6`，行为面与 `14f6772b` 一致）。

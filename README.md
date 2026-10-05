@@ -29,7 +29,9 @@ bkn-dsh is an additive DeepSeek Harness plugin that lets authorized users select
 
 The published package README contains the same product overview for package consumers.
 
-## Install and start
+## Install
+
+Upgrading from <= -5 with a `name`-qualified override? See the migration note in the [package README](packages/openbkn-business-context/README.md#upgrading-name-qualified-overrides-required-for--6). and start
 
 From plugin `0.2.0-rc.2-openbkn.0.2.0-1` on, an unpatched DeepSeek Harness `0.2.0-rc.2` is all you need: install the plugin package with DSH's own plugin manager. The same package works on all three forms of DSH:
 

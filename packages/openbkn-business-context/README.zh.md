@@ -51,6 +51,23 @@ dsh plugin --profile <desktop|web> add @openbkn/dsh-business-context@0.2.0-rc.2-
 
 包根是最小引导插件，仅保证宿主持续下发本包的浏览器端。业务 API 请从 `@openbkn/dsh-business-context/business` 导入；Remote 边界类型在 `@openbkn/dsh-business-context/types`。诊断入口仍为 `@openbkn/dsh-business-context/diagnostics`。
 
+### 升级 -6：name 断言配置需迁移
+
+宿主把 profile override 里的 `name` 字段当作对目标 row 的断言。`-6` 起
+业务 row 的加载路径变为 `@openbkn/dsh-business-context/business`，保留旧
+裸包名的 override 会被整条跳过，其 `config`（如 `baseUrl`、`cliPath`）
+不会生效：
+
+```yaml
+# -6 后不再匹配 —— baseUrl/cliPath 会丢失：
+- id: openbkn-business-context
+  name: '@openbkn/dsh-business-context'
+  config: { baseUrl: ..., cliPath: ... }
+```
+
+修复方式：删除 `name` 行（仅用 `id` 定位 row），或把断言改为新子路径名
+`'@openbkn/dsh-business-context/business'`。仅用 `id` 的配置不受影响。
+
 ## 诊断
 
 遇到问题时，从侧边栏底部打开 **OpenBKN 诊断** 并导出报告。即使 OpenBKN 业务面板无法启动，诊断入口依然可用：它作为独立插件行运行，从不依赖业务服务。导出的 JSON 只包含白名单事实——阶段、分类代码、受限证据（HTTP 状态、退出码等）与覆盖说明，绝不包含令牌、原始错误文本、URL 或文件内容。把导出的文件发给支持人员即可。

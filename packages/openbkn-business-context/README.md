@@ -51,6 +51,25 @@ Then set the platform address, sign in with the `openbkn` CLI, and bind a networ
 
 The package root is a minimal bootstrap plugin that keeps the host serving the browser bundle. Import the business API from `@openbkn/dsh-business-context/business`; the Remote boundary types live on `@openbkn/dsh-business-context/types`. Diagnostics remains on `@openbkn/dsh-business-context/diagnostics`.
 
+### Upgrading name-qualified overrides (required for -6)
+
+The host treats a `name` field in a profile override as an assertion about
+the row it patches. In `-6` the business row loads from
+`@openbkn/dsh-business-context/business`, so an override that keeps the old
+bare package name is skipped and its `config` is silently lost:
+
+```yaml
+# Stops matching after -6 — baseUrl/cliPath are dropped:
+- id: openbkn-business-context
+  name: '@openbkn/dsh-business-context'
+  config: { baseUrl: ..., cliPath: ... }
+```
+
+Fix it by deleting the `name` line (the `id` alone addresses the row), or
+by asserting the new subpath name
+`'@openbkn/dsh-business-context/business'`. ID-only overrides keep working
+unchanged.
+
 ## Diagnostics
 
 When something does not work, open **OpenBKN 诊断** from the sidebar footer and export the report. The panel stays reachable even when the OpenBKN business panel cannot start: it runs as a separate plugin row that never waits on the business service. The exported JSON contains only whitelisted facts — stages, classification codes, bounded evidence such as HTTP statuses and exit codes, and coverage notes. It never contains tokens, raw error text, URLs, or file contents. Send the exported file to support; nothing else is needed.

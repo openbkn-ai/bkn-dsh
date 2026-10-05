@@ -29,7 +29,9 @@ bkn-dsh 是一个增量式 DeepSeek Harness 插件。授权用户可为一个会
 
 发布包内的 README 也提供面向包使用者的同等产品介绍。
 
-## 安装并开始使用
+## 安装
+
+从 <= -5 升级且配置里带 `name` 断言？请按[包 README 的迁移说明](packages/openbkn-business-context/README.zh.md#升级--6name-断言配置需迁移)调整。并开始使用
 
 从插件 `0.2.0-rc.2-openbkn.0.2.0-1` 起，原版 DeepSeek Harness `0.2.0-rc.2` 就够用了，不需要打补丁：用 DSH 自己的插件管理器装上插件包即可。同一个插件包适用于 DSH 的三种形态：
 

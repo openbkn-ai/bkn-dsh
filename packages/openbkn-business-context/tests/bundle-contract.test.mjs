@@ -68,3 +68,20 @@ test('does not retain an overly broad runner directory glob', () => {
 
   assert.equal(manifest.files.includes('runner/**'), false)
 })
+
+test('every declared exports/main/types target exists in the packed tarball', async () => {
+  const { execFileSync } = await import('node:child_process')
+  const { declaredTargets } = await import('../../../scripts/package-bundle.mjs')
+  const manifest = JSON.parse(readFileSync(new URL('../package.json', import.meta.url), 'utf8'))
+  const output = execFileSync('pnpm', ['pack', '--dry-run', '--json'], {
+    cwd: new URL('../', import.meta.url).pathname,
+    encoding: 'utf8',
+    shell: process.platform === 'win32',
+  })
+  const packed = JSON.parse(output)
+  const paths = new Set(packed.files.map(file => file.path))
+  for (const target of declaredTargets(manifest)) {
+    const normalized = target.replace(/^\.\//, '')
+    assert.ok(paths.has(normalized), `declared target missing from the tarball: ${target}`)
+  }
+})
