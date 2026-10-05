@@ -130,6 +130,47 @@ function selfCheck(): CheckDraft {
 }
 
 /**
+ * The package-root row's health. The bootstrap keeps the client bundle
+ * served; its absence or failure is the whole-package-root degradation, not
+ * a business finding — it is reported as its own check and never merged
+ * into the business entry.
+ * @param ctx - the diagnostics service context.
+ * @returns the bootstrap check draft.
+ */
+async function bootstrapEntryCheck(ctx: Context): Promise<CheckDraft> {
+  const loader = loaderOf(ctx)
+  if (loader === undefined) {
+    return {
+      id: 'bootstrap-entry', stage: 'installation', status: 'insufficient-evidence',
+      code: DIAGNOSTICS_CODES.diagnosticsServiceDegraded,
+      evidence: { loaderAvailable: false }, nextAction: null,
+    }
+  }
+  const { bootstrap } = findOwnEntries(loader)
+  if (bootstrap === undefined) {
+    return {
+      id: 'bootstrap-entry', stage: 'installation', status: 'fail',
+      code: DIAGNOSTICS_CODES.moduleResolutionFailed,
+      evidence: { entryPresent: false },
+      nextAction: 'The package-root bootstrap row is missing from this profile; reinstall the plugin.',
+    }
+  }
+  const observation = await observeEntry(bootstrap)
+  const failed = observation.kind === 'module-resolution-failed' || observation.kind === 'initialization-failed'
+  return {
+    id: 'bootstrap-entry',
+    stage: observation.kind === 'configuration-invalid' ? 'configuration' : 'installation',
+    status: observation.kind === 'active' ? 'pass' : failed ? 'fail' : 'insufficient-evidence',
+    code: observation.kind === 'active' ? DIAGNOSTICS_CODES.componentLoaded : codeOfObservation(observation),
+    evidence: {
+      entryPresent: true,
+      ...(observation.kind === 'configuration-invalid' ? { configField: observation.field } : {}),
+    },
+    nextAction: failed ? 'The package root itself failed to load; reinstall the plugin and export a fresh report.' : null,
+  }
+}
+
+/**
  * Diagnostics service: passive report assembly over the public loader
  * surface. D1 adds the observed-operation collectors and the bounded active
  * retest; nothing here may assume the business entry is loaded.
@@ -152,7 +193,7 @@ export class OpenBknDiagnosticsService extends TypertRemoteService {
   @Remote('getReport')
   async getReport(signal?: AbortSignal): Promise<DiagnosticsReport> {
     if (signal?.aborted) throw signal.reason
-    const drafts = [await businessEntryCheck(this.ctx), selfCheck()]
+    const drafts = [await bootstrapEntryCheck(this.ctx), await businessEntryCheck(this.ctx), selfCheck()]
     const observed = passiveDiagnostics.snapshot()
     const notes = passiveDiagnostics.droppedObservationCount > 0
       ? [`observation buffer dropped ${String(passiveDiagnostics.droppedObservationCount)} novel keys after the bound`]

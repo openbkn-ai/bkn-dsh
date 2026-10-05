@@ -21,6 +21,7 @@
 
 import type { Context } from '@deepseek-ai/cordis'
 import {
+  BOOTSTRAP_ENTRY_ID,
   BUSINESS_CONFIG_FIELDS,
   BUSINESS_ENTRY_ID,
   DIAGNOSTICS_ENTRY_ID,
@@ -153,17 +154,20 @@ function withTimeout(promise: Promise<unknown>, timeoutMs: number): Promise<unkn
  * @returns the business and diagnostics entries when present, else undefined.
  */
 export function findOwnEntries(loader: LoaderLike): {
+  readonly bootstrap: LoaderEntryLike | undefined
   readonly business: LoaderEntryLike | undefined
   readonly diagnostics: LoaderEntryLike | undefined
 } {
+  let bootstrap: LoaderEntryLike | undefined
   let business: LoaderEntryLike | undefined
   let diagnostics: LoaderEntryLike | undefined
   for (const entry of loader.entries()) {
     const id = entry?.options?.id
-    if (id === BUSINESS_ENTRY_ID) business = entry
+    if (id === BOOTSTRAP_ENTRY_ID) bootstrap = entry
+    else if (id === BUSINESS_ENTRY_ID) business = entry
     else if (id === DIAGNOSTICS_ENTRY_ID) diagnostics = entry
   }
-  return { business, diagnostics }
+  return { bootstrap, business, diagnostics }
 }
 
 /** Map an observation to the contract's code table (no message text involved). */

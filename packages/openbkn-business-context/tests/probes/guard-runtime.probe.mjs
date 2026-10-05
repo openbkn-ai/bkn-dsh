@@ -30,6 +30,7 @@
 import { readFile } from 'node:fs/promises'
 import { createRequire } from 'node:module'
 import { dirname, resolve } from 'node:path'
+import { readFileSync } from 'node:fs'
 import { pathToFileURL } from 'node:url'
 import { parseProbeOptions, runProbeCli as runCli } from './guard-probe-cli.mjs'
 
@@ -55,7 +56,9 @@ const scopeEntry = require.resolve('@deepseek-ai/dsh-scope', {
 })
 const { createScope } = await import(pathToFileURL(scopeEntry).href)
 
-const production = await import(pathToFileURL(resolve(pluginDir, 'lib/index.js')).href)
+const manifest = JSON.parse(readFileSync(resolve(pluginDir, 'package.json'), 'utf8'))
+const businessEntry = manifest.exports?.['./business']?.default ?? 'lib/index.js'
+const production = await import(pathToFileURL(resolve(pluginDir, businessEntry)).href)
 const pluginVersion = JSON.parse(await readFile(resolve(pluginDir, 'package.json'), 'utf8')).version
 const dshVersion = JSON.parse(await readFile(require.resolve('@deepseek-ai/dsh-tools/package.json'), 'utf8')).version
 const PREFIX = 'mcp__openbkn__'

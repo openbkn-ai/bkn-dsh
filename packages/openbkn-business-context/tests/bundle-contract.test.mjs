@@ -13,6 +13,7 @@ test('ships a DSH bundle with separate host and browser entry points', () => {
   assert.equal(manifest.type, 'module')
   assert.equal(manifest.dsh.bundle.patch, './cordis.patch.yml')
   assert.equal(manifest.exports['.'].default, './lib/index.js')
+  assert.equal(manifest.exports['./business'].default, './lib/business.js')
   assert.equal(manifest.exports['./client'].default, './lib/client.js')
   assert.equal(manifest.dsh.client.platform, 'web')
   assert.equal(manifest.dsh.client.inject.includes('@deepseek-ai/dsh-client-ui-slots'), true)

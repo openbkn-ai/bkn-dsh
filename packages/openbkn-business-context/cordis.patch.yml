@@ -1,5 +1,7 @@
 - insert:
-    - id: openbkn-business-context
+    - id: openbkn-business-context-bootstrap
       name: '@openbkn/dsh-business-context'
+    - id: openbkn-business-context
+      name: '@openbkn/dsh-business-context/business'
     - id: openbkn-business-context-diagnostics
       name: '@openbkn/dsh-business-context/diagnostics'

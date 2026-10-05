@@ -1,7 +1,7 @@
 import assert from 'node:assert/strict'
 import { readFileSync } from 'node:fs'
 import test from 'node:test'
-import { apply } from '../src/index.ts'
+import { apply } from '../src/business.ts'
 import { managedConversationSectionText, mountBoundBusinessNetworkTool } from '../src/scoped-business-context.ts'
 
 const config = {

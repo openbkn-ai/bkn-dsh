@@ -1,76 +1,29 @@
-import type { Context } from '@deepseek-ai/cordis'
-import { Config as ConfigSchema, type Config as PluginConfig } from './config.js'
-import { OpenBknBusinessContextService } from './business-context-service.js'
-import { OpenBknWorkspaceBindingRegistry } from './workspace-binding-registry.js'
+/**
+ * Minimal package-root entry: it exists only so the host keeps serving this
+ * package's client bundle while the business and diagnostics implementations
+ * live on their own subpath rows.
+ *
+ * dsh-client-modules attributes a package's browser half to a loader row
+ * whose module specifier is the exact package name, and it skips rows whose
+ * fiber never materialized. Making this root the smallest possible plugin —
+ * no config requirements, no injected services, no imports of either
+ * implementation — keeps that attribution alive exactly when `./business` or
+ * `./diagnostics` fails to import, which is the S2/S4 availability boundary.
+ * The typert analyzer also maps subpath exports to same-named sources, so
+ * the package layout is root `index.ts` (this bootstrap), `business.ts`, and
+ * `diagnostics.ts`; adding any import edge from here would reintroduce the
+ * coupling this entry exists to remove. See docs/evidence/diagnostics-d0.md.
+ * @module index
+ */
 
-export { ConfigSchema as Config }
-export type { PluginConfig }
-export { AuthCoordinator, OpenBknCliError } from './auth.js'
-export type { AuthSnapshot, CliResult, OpenBknCli } from './auth.js'
-export {
-  BUSINESS_NETWORK_BOUND_EVENT,
-  MIGRATED_BUSINESS_NETWORK_BOUND_EVENT,
-  bindBusinessNetwork,
-  BusinessNetworkBindingConflictError,
-  readBusinessNetworkBinding,
-} from './session-binding.js'
-export type {
-  BindBusinessNetworkResult,
-  BusinessNetworkBinding,
-  SessionEventLike,
-} from './session-binding.js'
-export { SessionBindingStore } from './session-binding-store.js'
-export type { SessionBindingRecord } from './session-binding-store.js'
-export { bindDshSessionBusinessNetwork, inheritForkedBusinessNetwork, readDshSessionBusinessNetwork } from './dsh-session-binding.js'
-export type { DshForkableSessionLog, DshSessionLog, SessionBindingRecords } from './dsh-session-binding.js'
-export { readDshSessionTurnProvenance } from './dsh-session-provenance.js'
-export type { DshSessionProvenanceLog } from './dsh-session-provenance.js'
-export { MIGRATED_TURN_PROVENANCE_EVENT, TURN_PROVENANCE_EVENT, TurnProvenanceConflictError, readTurnProvenance } from './turn-provenance.js'
-export type { TurnProvenanceEvent } from './turn-provenance.js'
-export { normalizeProvenanceHandle, sameProvenanceHandle } from './provenance-handle.js'
-export { buildTurnTimeline } from './turn-timeline.js'
-export type { TurnTimelineLocator } from './turn-timeline.js'
-export type { ProvenanceHandle } from './types.js'
-export {
-  CONVERSATION_INVALID_ERROR_CODES,
-  FINISH_INTERACTION_TOOL,
-  MANAGED_CONVERSATION_EVENT,
-  MIGRATED_MANAGED_CONVERSATION_EVENT,
-  START_INTERACTION_TOOL,
-  classifyFailure,
-  denialFor,
-  initialState,
-  lastConversationEvent,
-  onToolResult,
-  onTurnStart,
-  projectLifecycleOutcome,
-  restoreFrom,
-} from './interaction-lifecycle.js'
-export type {
-  InteractionLifecycleState,
-  LifecycleOutcomeLike,
-  LifecycleToolResultProjection,
-  ManagedConversationEventData,
-} from './interaction-lifecycle.js'
-export { emptyBusinessSessionPrompt } from './suggested-prompts.js'
-export { buildManagedSessionPolicy, OPENBKN_DSH_INTERACTION_AGENT_NAME } from './managed-session-policy.js'
-export type { ManagedSessionPolicy } from './managed-session-policy.js'
-export { buildNetworkCapabilityProfile } from './network-capability-profile.js'
-export type { NetworkCapabilityProfile } from './network-capability-profile.js'
-export { OpenBknPlatformReader, PlatformReaderError } from './platform-reader.js'
-export type { PlatformFetch, PlatformReaderConfig, PlatformReaderErrorCode } from './platform-reader.js'
-export { OpenBknBusinessContextService } from './business-context-service.js'
-export { OpenBknWorkspaceBindingRegistry, workspaceBindingKey, workspaceBindingRecord } from './workspace-binding-registry.js'
-export type { WorkspaceBindingRecord } from './workspace-binding-registry.js'
-export { mountBoundBusinessNetworkTool } from './scoped-business-context.js'
+/** Cordis identity used by the bundle's package-root row. */
+export const name = 'openbkn-business-context-bootstrap'
 
-/** Cordis identity used by the bundle's Host row. */
-export const name = 'openbkn-business-context'
+/** Nothing: the bootstrap must activate on every host that can load the package. */
+export const inject: readonly string[] = []
 
-export const inject = ['agents', 'subprocess', 'storageDomain']
-
-/** Register the host service; it contributes no model-visible tool globally. */
-export async function apply(ctx: Context, config: PluginConfig): Promise<void> {
-  await ctx.plugin(OpenBknWorkspaceBindingRegistry)
-  await ctx.plugin(OpenBknBusinessContextService, config)
-}
+/**
+ * Register nothing. The row's purpose is the package-root lifecycle itself;
+ * both implementations are started by their own loader rows.
+ */
+export async function apply(): Promise<void> {}

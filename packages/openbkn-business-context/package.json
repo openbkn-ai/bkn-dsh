@@ -22,11 +22,15 @@
     "node": "^22.19.0 || >=24.0.0"
   },
   "main": "./lib/index.js",
-  "types": "./lib/types/index.d.ts",
+  "types": "./lib/types/bootstrap.d.ts",
   "exports": {
     ".": {
       "types": "./lib/types/index.d.ts",
       "default": "./lib/index.js"
+    },
+    "./business": {
+      "types": "./lib/types/business.d.ts",
+      "default": "./lib/business.js"
     },
     "./diagnostics": {
       "types": "./lib/types/diagnostics.d.ts",
@@ -51,6 +55,7 @@
   },
   "files": [
     "lib/index.js",
+    "lib/business.js",
     "lib/diagnostics.js",
     "lib/client.js",
     "lib/typert.host.js",

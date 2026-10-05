@@ -21,6 +21,7 @@
 export const DIAGNOSTICS_SCHEMA_VERSION = 1
 
 /** Loader/Cordis entry ids this package contributes. */
+export const BOOTSTRAP_ENTRY_ID = 'openbkn-business-context-bootstrap'
 export const BUSINESS_ENTRY_ID = 'openbkn-business-context'
 export const DIAGNOSTICS_ENTRY_ID = 'openbkn-business-context-diagnostics'
 
