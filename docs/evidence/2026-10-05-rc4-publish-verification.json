@@ -1,0 +1,146 @@
+{
+  "releaseCommit": "a134f5d573e11846bb6665d1c170510149d09d4d",
+  "mainRun": 37249521277,
+  "publishRun": 37249979001,
+  "comparisons": {
+    "main": {
+      "candidate": {
+        "file": "openbkn-dsh-business-context-0.2.0-rc.2-openbkn.0.2.0-4.tgz",
+        "bytes": 133806,
+        "sha256": "c4a8effbe5f84ecb399ee45ddf705c9468ef311910dcf58f62e47a0c71687a02",
+        "sha512": "69f1355578e27261145eff96b74cab00a96c280310521cb8183ed91c8c81cdccc0e9214bdf1bb0be69191d227b8ff088f73ed78718eb155e5429f1a5db65cc11",
+        "files": 52,
+        "treeHash": "f4e90f96d5c82e8b8c8cc505847995c6d3624f9870c58a71d7a3d010f3a5c5ad"
+      },
+      "compared": {
+        "file": "openbkn-dsh-business-context-0.2.0-rc.2-openbkn.0.2.0-4.tgz",
+        "bytes": 133806,
+        "sha256": "c4a8effbe5f84ecb399ee45ddf705c9468ef311910dcf58f62e47a0c71687a02",
+        "sha512": "69f1355578e27261145eff96b74cab00a96c280310521cb8183ed91c8c81cdccc0e9214bdf1bb0be69191d227b8ff088f73ed78718eb155e5429f1a5db65cc11",
+        "files": 52,
+        "treeHash": "f4e90f96d5c82e8b8c8cc505847995c6d3624f9870c58a71d7a3d010f3a5c5ad"
+      },
+      "added": [],
+      "removed": [],
+      "changed": [],
+      "allowed": [],
+      "pass": true
+    },
+    "tag": {
+      "candidate": {
+        "file": "openbkn-dsh-business-context-0.2.0-rc.2-openbkn.0.2.0-4.tgz",
+        "bytes": 133806,
+        "sha256": "c4a8effbe5f84ecb399ee45ddf705c9468ef311910dcf58f62e47a0c71687a02",
+        "sha512": "69f1355578e27261145eff96b74cab00a96c280310521cb8183ed91c8c81cdccc0e9214bdf1bb0be69191d227b8ff088f73ed78718eb155e5429f1a5db65cc11",
+        "files": 52,
+        "treeHash": "f4e90f96d5c82e8b8c8cc505847995c6d3624f9870c58a71d7a3d010f3a5c5ad"
+      },
+      "compared": {
+        "file": "openbkn-dsh-business-context-0.2.0-rc.2-openbkn.0.2.0-4.tgz",
+        "bytes": 133806,
+        "sha256": "c4a8effbe5f84ecb399ee45ddf705c9468ef311910dcf58f62e47a0c71687a02",
+        "sha512": "69f1355578e27261145eff96b74cab00a96c280310521cb8183ed91c8c81cdccc0e9214bdf1bb0be69191d227b8ff088f73ed78718eb155e5429f1a5db65cc11",
+        "files": 52,
+        "treeHash": "f4e90f96d5c82e8b8c8cc505847995c6d3624f9870c58a71d7a3d010f3a5c5ad"
+      },
+      "added": [],
+      "removed": [],
+      "changed": [],
+      "allowed": [],
+      "pass": true
+    },
+    "published": {
+      "candidate": {
+        "file": "openbkn-dsh-business-context-0.2.0-rc.2-openbkn.0.2.0-4.tgz",
+        "bytes": 133806,
+        "sha256": "c4a8effbe5f84ecb399ee45ddf705c9468ef311910dcf58f62e47a0c71687a02",
+        "sha512": "69f1355578e27261145eff96b74cab00a96c280310521cb8183ed91c8c81cdccc0e9214bdf1bb0be69191d227b8ff088f73ed78718eb155e5429f1a5db65cc11",
+        "files": 52,
+        "treeHash": "f4e90f96d5c82e8b8c8cc505847995c6d3624f9870c58a71d7a3d010f3a5c5ad"
+      },
+      "compared": {
+        "file": "openbkn-dsh-business-context-0.2.0-rc.2-openbkn.0.2.0-4.tgz",
+        "bytes": 133341,
+        "sha256": "53ce847b8d884ba7f1cb43048b5e60380c0c297142671a2b9d0abbea9692a013",
+        "sha512": "0a96d8b7690f4d865f7299d741f4923afe0eed0889f132418931cc774ffceaf23e12f6104e5af6cbb1dc21efe68acc183fc824fb3660c2366595fde04a1ef73b",
+        "files": 52,
+        "treeHash": "cea1c64149ca947503be79db24b0929edd823466bbe35fa4960aa36dc00e79ff"
+      },
+      "added": [],
+      "removed": [],
+      "changed": [],
+      "allowed": [
+        "package.json: key order/format only; parsed contents identical"
+      ],
+      "pass": true
+    },
+    "github": {
+      "candidate": {
+        "file": "openbkn-dsh-business-context-0.2.0-rc.2-openbkn.0.2.0-4.tgz",
+        "bytes": 133341,
+        "sha256": "53ce847b8d884ba7f1cb43048b5e60380c0c297142671a2b9d0abbea9692a013",
+        "sha512": "0a96d8b7690f4d865f7299d741f4923afe0eed0889f132418931cc774ffceaf23e12f6104e5af6cbb1dc21efe68acc183fc824fb3660c2366595fde04a1ef73b",
+        "files": 52,
+        "treeHash": "cea1c64149ca947503be79db24b0929edd823466bbe35fa4960aa36dc00e79ff"
+      },
+      "compared": {
+        "file": "openbkn-dsh-business-context-0.2.0-rc.2-openbkn.0.2.0-4.tgz",
+        "bytes": 133341,
+        "sha256": "53ce847b8d884ba7f1cb43048b5e60380c0c297142671a2b9d0abbea9692a013",
+        "sha512": "0a96d8b7690f4d865f7299d741f4923afe0eed0889f132418931cc774ffceaf23e12f6104e5af6cbb1dc21efe68acc183fc824fb3660c2366595fde04a1ef73b",
+        "files": 52,
+        "treeHash": "cea1c64149ca947503be79db24b0929edd823466bbe35fa4960aa36dc00e79ff"
+      },
+      "added": [],
+      "removed": [],
+      "changed": [],
+      "allowed": [],
+      "pass": true
+    }
+  },
+  "npm": {
+    "version": "0.2.0-rc.2-openbkn.0.2.0-4",
+    "publishedAt": "2026-10-05T01:13:12.627Z",
+    "distTags": {
+      "rc": "0.2.0-rc.2-openbkn.0.2.0-4",
+      "latest": "0.2.0-rc.2-openbkn.0.2.0-3"
+    },
+    "bytes": 133341,
+    "sha256": "53ce847b8d884ba7f1cb43048b5e60380c0c297142671a2b9d0abbea9692a013",
+    "sha512": "0a96d8b7690f4d865f7299d741f4923afe0eed0889f132418931cc774ffceaf23e12f6104e5af6cbb1dc21efe68acc183fc824fb3660c2366595fde04a1ef73b",
+    "integrity": "sha512-CpbYt2kPTYZfcpnXQfSSOv4O7QiJ8TJBiTHMd0/86vI+EvYQTlr2y7HcIe/miswYP8gk+zZgwjZllf3gSh73Ow==",
+    "registryDigestMatch": true,
+    "registryFileCount": 52,
+    "tarball": "https://registry.npmjs.org/@openbkn/dsh-business-context/-/dsh-business-context-0.2.0-rc.2-openbkn.0.2.0-4.tgz",
+    "attestationUrl": "https://registry.npmjs.org/-/npm/v1/attestations/@openbkn%2fdsh-business-context@0.2.0-rc.2-openbkn.0.2.0-4",
+    "provenanceStatementMatch": true,
+    "workflow": {
+      "ref": "refs/tags/v0.2.0-rc.2-openbkn.0.2.0-4",
+      "repository": "https://github.com/openbkn-ai/bkn-dsh",
+      "path": ".github/workflows/release-plugin.yml"
+    },
+    "commit": "a134f5d573e11846bb6665d1c170510149d09d4d",
+    "invocationId": "https://github.com/openbkn-ai/bkn-dsh/actions/runs/37249979001/attempts/1"
+  },
+  "github": {
+    "tag": "v0.2.0-rc.2-openbkn.0.2.0-4",
+    "url": "https://github.com/openbkn-ai/bkn-dsh/releases/tag/v0.2.0-rc.2-openbkn.0.2.0-4",
+    "publishedAt": "2026-10-05T01:13:23Z",
+    "assets": [
+      {
+        "name": "openbkn-dsh-business-context-0.2.0-rc.2-openbkn.0.2.0-4.tgz",
+        "bytes": 133341
+      },
+      {
+        "name": "openbkn-dsh-business-context-0.2.0-rc.2-openbkn.0.2.0-4.tgz.sha256",
+        "bytes": 126
+      }
+    ],
+    "sha256": "53ce847b8d884ba7f1cb43048b5e60380c0c297142671a2b9d0abbea9692a013",
+    "githubBytesEqualNpm": true,
+    "shaFileMatch": true,
+    "releaseNotesMatch": true,
+    "mainCandidateMatch": true,
+    "tagCandidateMatch": true
+  }
+}
