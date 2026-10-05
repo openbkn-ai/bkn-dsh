@@ -175,7 +175,10 @@ export function explainMcpStartupFailure(error: unknown): Error {
   passiveDiagnostics.record({
     subject: 'context-loader',
     stage: 'context-loader',
-    code: markers.tls ? 'tls-failed' : markers.timeout ? 'timeout' : 'mcp-initialization-failed',
+    code: markers.tls ? 'tls-failed'
+      : markers.timeout ? 'timeout'
+      : markers.transport ? 'network-unreachable'
+      : 'mcp-initialization-failed',
     status: 'fail',
   })
   return error instanceof Error ? error : new Error(String(error))

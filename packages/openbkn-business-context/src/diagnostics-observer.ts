@@ -156,25 +156,37 @@ export function exitCodeEvidence(code: unknown): Readonly<Record<string, number>
 /** Marker patterns for bounded transport classification of a cause chain. */
 const TLS_MARKER = /CERT|SSL|TLS|SIGNATURE/i
 const TIMEOUT_MARKER = /TimeoutError|TIMED?OUT|UND_ERR_HEADERS_TIMEOUT|UND_ERR_CONNECT_TIMEOUT|UND_ERR_BODY_TIMEOUT/
+/** undici's generic connection wrapper (DNS, refused, TLS): network layer, cause not distinguishable. */
+const TRANSPORT_MARKER = /fetch failed|ECONNREFUSED|ENOTFOUND|EAI_AGAIN|ECONNRESET|EPIPE/
 
 /**
  * Classify the transport layer of a bounded cause chain: certificate/TLS
  * shapes and timeout brands are recognized without reading message text.
  * Shared by every boundary that dials the platform (reader and MCP mount).
- * @param cause - the error chain to classify (name/code fields only).
+ * The default depth crosses the MCP SDK's wrapper layers (client error →
+ * transport error → undici TypeError → socket code).
+ * The generic `transport` marker names the network layer without guessing a
+ * cause: the MCP SDK's SdkError truncates the undici chain to a plain
+ * "fetch failed", so a certificate problem on that route is not
+ * distinguishable from DNS or a refused connection (a recorded limitation).
+ * @param cause - the error chain to classify (marker fields only).
  * @param depth - maximum cause-chain depth walked.
  * @returns which transport markers the chain carries.
  */
-export function transportMarkersOf(cause: unknown, depth = 4): { tls: boolean, timeout: boolean } {
+export function transportMarkersOf(cause: unknown, depth = 8): { tls: boolean, timeout: boolean, transport: boolean } {
   let tls = false
   let timeout = false
+  let transport = false
   let current: unknown = cause
   for (let level = 0; level < depth && current !== null && typeof current === 'object'; level += 1) {
-    const candidate = current as { name?: unknown, code?: unknown, cause?: unknown }
-    const parts = `${String(candidate.name ?? '')} ${String(candidate.code ?? '')}`
+    const candidate = current as { name?: unknown, code?: unknown, message?: unknown, cause?: unknown }
+    // Name and code carry undici's socket codes directly; the message is
+    // matched only against the same fixed marker vocabulary (never exported).
+    const parts = `${String(candidate.name ?? '')} ${String(candidate.code ?? '')} ${String(candidate.message ?? '')}`
     if (TLS_MARKER.test(parts)) tls = true
     if (TIMEOUT_MARKER.test(parts)) timeout = true
+    if (TRANSPORT_MARKER.test(parts)) transport = true
     current = candidate.cause
   }
-  return { tls, timeout }
+  return { tls, timeout, transport }
 }

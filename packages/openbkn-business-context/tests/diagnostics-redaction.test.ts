@@ -239,3 +239,18 @@ function makeCliSubprocess(exitCode: number, stdout: string): import('../src/ope
     }),
   }
 }
+
+test('an MCP SDK negotiation failure classifies as the network layer, not TLS', () => {
+  passiveDiagnostics.clear()
+  // Shape captured from the live host: the SDK's SdkError truncates the
+  // undici chain, leaving only "fetch failed" (no certificate code).
+  const sdkError = Object.assign(new Error('Version negotiation probe failed: fetch failed'), {
+    name: 'SdkError', code: 'ERA_NEGOTIATION_FAILED',
+  })
+  const wrapped = new Error('mcp-client(openbkn): initial connection or tool synchronization failed', { cause: sdkError })
+  explainMcpStartupFailure(wrapped)
+  const [check] = passiveDiagnostics.snapshot()
+  assert.equal(check.stage, 'context-loader')
+  assert.equal(check.code, 'network-unreachable')
+  passiveDiagnostics.clear()
+})
