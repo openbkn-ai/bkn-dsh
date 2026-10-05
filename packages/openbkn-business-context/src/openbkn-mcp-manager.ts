@@ -75,6 +75,7 @@ export class OpenBknMcpManager {
       passiveDiagnostics.record({ stage: 'context-loader', code: 'mcp-initialization-failed', status: 'fail', evidence: { toolsPublished: false } })
       throw new Error('OpenBKN Context Loader MCP did not publish its managed interaction tools.')
     }
+    passiveDiagnostics.record({ stage: 'context-loader', code: 'mcp-initialization-failed', status: 'pass', evidence: { toolsPublished: true } })
   }
 
   private async mountFiber(token: string): Promise<{ dispose(): Promise<void> }> {

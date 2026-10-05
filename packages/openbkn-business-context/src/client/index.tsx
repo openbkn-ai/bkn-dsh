@@ -51,11 +51,14 @@ export async function apply(ctx: Context): Promise<() => Promise<void>> {
   const disposeRemote = await ctx.remote.$mount(openbknBusinessContextRemote)
   // The diagnostics namespace is installed by the same $mount above, so this
   // inject never waits on the Host; only the business segment below does.
-  const diagnosticsController = new DiagnosticsPanelController({
-    getReport: async signal => unwrap(await ctx.remote.openbknDiagnostics.getReport(signal)),
-  })
+  // The controller is created inside the injected scope (where
+  // `remote.openbknDiagnostics` is declared and therefore readable); the
+  // business segment reaches it through the handle once that scope ran.
+  const diagnosticsHandle: { open(): void } = { open: () => undefined }
   const diagnostics = ctx.inject(['slots', 'remote', 'remote.openbknDiagnostics'], scopedCtx =>
-    registerDiagnostics(scopedCtx, diagnosticsController))
+    registerDiagnostics(scopedCtx, controller => {
+      diagnosticsHandle.open = () => controller.open()
+    }))
   // A diagnostics failure degrades the panel only; it never blocks or breaks
   // the business registration below.
   const diagnosticsSettled = diagnostics.then(() => undefined, () => undefined)
@@ -65,7 +68,7 @@ export async function apply(ctx: Context): Promise<() => Promise<void>> {
     'remote.openbknBusinessContext',
     'sessions',
     'conversation',
-  ], scopedCtx => registerSlots(scopedCtx, diagnosticsController))
+  ], scopedCtx => registerSlots(scopedCtx, diagnosticsHandle))
   try {
     await ui
   } catch (error) {
@@ -86,9 +89,14 @@ export async function apply(ctx: Context): Promise<() => Promise<void>> {
 /**
  * Register the diagnostics surfaces. The namespace is mounted locally by
  * this face's own `$mount` call, so listing it here waits for nothing on the
- * Host; the business Remote namespace is deliberately absent.
+ * Host; the business Remote namespace is deliberately absent. The created
+ * controller is reported through `handoff` for later segments.
  */
-function registerDiagnostics(ctx: Context, controller: DiagnosticsPanelController): void {
+function registerDiagnostics(ctx: Context, handoff: (controller: DiagnosticsPanelController) => void): void {
+  const controller = new DiagnosticsPanelController({
+    getReport: async signal => unwrap(await ctx.remote.openbknDiagnostics.getReport(signal)),
+  })
+  handoff(controller)
   ctx.slots.inject('sidebar.footer.action', () => ctx.slots.register({
     name: 'sidebar.footer.action', id: 'openbkn-business-context-diagnostics', order: 101,
     inject: () => ({ open: () => controller.open() }),
@@ -105,7 +113,7 @@ function registerDiagnostics(ctx: Context, controller: DiagnosticsPanelControlle
 }
 
 /** Register only additive DSH slots; native navigation and conversation surfaces remain untouched. */
-function registerSlots(ctx: Context, diagnosticsController: DiagnosticsPanelController): void {
+function registerSlots(ctx: Context, diagnostics: { open(): void }): void {
   const provenanceOverlay = new ProvenanceOverlayController()
   const provenanceControllers = new Map<SessionId, TurnProvenanceController>()
   const suggestionControllers = new Map<SessionId, SuggestionDockController>()
@@ -152,7 +160,7 @@ function registerSlots(ctx: Context, diagnosticsController: DiagnosticsPanelCont
     openNetwork: (networkId: string, mode: NetworkSessionMode) => controller.openNetwork(networkId, mode),
     openDiagnostics: () => {
       controller.close()
-      diagnosticsController.open()
+      diagnostics.open()
     },
   })
 
