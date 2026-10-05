@@ -63,7 +63,7 @@ browser session (sidebar button → dialog text).
 |---|---|---|---|
 | S0 baseline | full config in user patch layer | no warnings | both checks `pass` (`component-loaded`); target shows hostForm npm, platform darwin, disk version `-4` |
 | S1 configuration failure | user patch omits `baseUrl` | `openbkn-business-context: ValidationError: $.baseUrl missing required value` (warning only; web keeps serving) | `business-entry` = `fail`, stage `configuration`, code `configuration-invalid`, evidence `configField=baseUrl`; `diagnostics-entry` = `pass` |
-| S2 business import failure | controlled variant tarball: `import "./nonexistent-broken-module.js"` prepended to `lib/index.js` (base tarball sha256 `fe24e819…`, variant `2c07df3b…`) | `openbkn-business-context: failed to import` (warning only) | **D0 gate 2 NOT met for the UI**: dsh-client-modules skips entries with `fiber === undefined`, so the package's client bundle is not served and no in-package UI reaches the browser. The diagnostics *entry* itself stays up (only the business row is reported) — see "Known boundary" |
+| S2 business import failure | controlled variant tarball: `import "./nonexistent-broken-module.js"` prepended to the business entry (base tarball sha256 `fe24e819…`, variant `2c07df3b…`) | `openbkn-business-context: failed to import` (warning only) | **Two-entry round (superseded): D0 gate 2 NOT met** — dsh-client-modules skipped the `fiber === undefined` row and served no client bundle, so no in-package UI reached the browser. **Three-entry round (-6, current): gate 2 PASSES** — the package root is now a minimal bootstrap row that keeps the bundle served; with the business entry broken the panel opens and reports `module-resolution-failed` (see diag-d0-s2-results-20261005.md) |
 | S3 initialization failure | variant: `apply()` throws `S3 controlled initialization failure` after the registry plugin (variant sha256 `fcade75e…`) | `openbkn-business-context: Error: S3 controlled initialization failure …` (warning only) | panel opens; `business-entry` = `fail`, stage `component`, code `initialization-failed` |
 | S4 diagnostics-service failure | variant: broken import prepended to `lib/diagnostics.js` (variant sha256 `bc47be71…`) | `openbkn-business-context-diagnostics: failed to import` (warning only; business unaffected) | panel still opens (client segment never waits on the Host service) and degrades explicitly: “诊断服务不可用…” with retry; underlying transport error was `RemoteError: active Service "openbknDiagnostics" is unavailable` |
 
@@ -106,18 +106,25 @@ plus dsh's own startup warning and `$DSH_HOME/logs/startup-*.log`.
 The "hardest boundary" holds on the unpatched npm host for configuration,
 initialization, and diagnostics-service failures: the diagnostics entry,
 its Remote namespace, and the panel stay available and return classified,
-whitelisted evidence. **D0 gate 2 is not fully met**: a business-entry
-import failure also removes the in-package UI (host serving policy,
-documented above and out of scope to patch silently), so the complete
-feature set for that one scenario is delivered only as a documented
-degradation plus the host-interface proposal. Review round (2026-10-05,
-later commits): `observeEntry` now reads the settled fiber state instead
-of trusting `await()` resolution — a never-started (deps missing) or
-disposed fiber previously reported `pass/component-loaded`; observations
-are keyed by check-point subject with success boundaries reconciling
-earlier failures (recovered + lastFailureCode); reader failures keep the
-HTTP status and classify TLS/timeout/5xx separately; CLI stdout parse
-refusals record `cli-output-invalid`; the client entry's top-level inject
-no longer waits on session/workspace services. All re-verified live on
-the npm-form host (waiting-services scenario, TLS scenario, recovery
-end-state, and S1/S3 rechecks).
+whitelisted evidence.
+
+**D0 gate 2 history**: the two-entry layout did NOT meet it (a business
+import failure removed the in-package UI — host serving policy, kept above
+as the documented boundary and the superseded round's record). The
+three-entry layout in `0.2.0-rc.2-openbkn.0.2.0-6` (bootstrap package root
++ `./business` + `./diagnostics`) PASSES it on the official npm dsh host:
+S2 (business import failure → panel up, `module-resolution-failed`) and S4
+(diagnostics import failure → business panel up, explicit degraded
+diagnostics view) were both verified live, alongside S0/S1/S3/S5/S6 and the
+U1/U2 upgrade-and-removal regressions. Whole-package-root faults (breaking
+the bootstrap entry itself or the shared observer chunk) remain outside the
+single-component fault model by design. Full matrix and identities:
+`docs/evidence/diag-d0-s2-results-20261005.md`.
+
+Review round (2026-10-05, later commits): `observeEntry` reads the settled
+fiber state instead of trusting `await()` resolution; observations are
+keyed by check-point subject with success boundaries reconciling earlier
+failures; reader failures keep the HTTP status and classify TLS/timeout/5xx
+separately (the MCP SDK's `data.cause` path included); CLI stdout parse
+refusals and lossy outputs record bounded failures; the client entry's
+top-level inject no longer waits on session/workspace services.
