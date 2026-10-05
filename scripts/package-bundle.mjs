@@ -25,14 +25,17 @@ export function declaredTargets(manifest) {
   const targets = []
   if (typeof manifest.main === 'string') targets.push(manifest.main)
   if (typeof manifest.types === 'string') targets.push(manifest.types)
-  for (const conditions of Object.values(manifest.exports ?? {})) {
-    if (typeof conditions === 'string') { targets.push(conditions); continue }
-    if (conditions === null || typeof conditions !== 'object') continue
-    for (const value of Object.values(conditions)) {
-      if (typeof value === 'string') targets.push(value)
-    }
+  // Export conditions nest (e.g. import -> default); walk the whole tree so
+  // a dangling pointer cannot hide on an inner level.
+  const walk = node => {
+    if (typeof node === 'string') { targets.push(node); return }
+    if (node === null || typeof node !== 'object') return
+    for (const value of Object.values(node)) walk(value)
   }
-  return targets.filter(target => !target.startsWith('./package.json'))
+  walk(manifest.exports)
+  // Only the self-referential ./package.json escape hatch is guaranteed by
+  // npm itself; a target that merely starts with it must be audited.
+  return targets.filter(target => target !== './package.json')
 }
 
 export function parsePackManifest(raw, cwd) {

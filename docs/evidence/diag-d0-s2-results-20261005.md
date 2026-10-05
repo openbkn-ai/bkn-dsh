@@ -16,7 +16,7 @@
 | Git root / 分支 / 开工 HEAD / dirty | `bkn-dsh-diag-s2`（新 worktree）/ `fix/diagnostics-d0-s2` / 开工 `dcd4064` / clean |
 | 原仓库及既有 DSH 构建目录修改是否保留 | `bkn-dsh`（cc97d88，用户修改）与 `bkn-dsh-diag-work/release/deepseek-harness`（dirty）均未触碰 |
 | 当前 DSH/OpenBKN 上游核对 | DSH pin 不变（dsh-v0.2.0-rc.2 @ 639ed015，clone 后校验 PIN-OK）；bkn-dsh origin/main 仍为 a134f5d（本轮未 fetch 到新提交） |
-| 最终源码 commit / 最终文档 HEAD | `3c4fa66`（源码+工具+文档）/ 本文件提交后 HEAD 见提交记录 |
+| 最终源码 commit / 最终文档 HEAD | **终版：`c193e0a`（types 修复+迁移文档；tgz `14f6772b` 由它构建）**；其后仅审计/测试加固与文档提交（不改变包内容，重 pack SHA 不变）。首版历史：`3c4fa66`（tgz `2abdb3e6`）→ `69dbd18`（文档） |
 | 新 package version | `0.2.0-rc.2-openbkn.0.2.0-6`（npm 上 -5/-6 均未占用） |
 | 最终 tgz 路径 / SHA-256 / bytes / 文件数 | `release/diag-s2-candidate/openbkn-dsh-business-context-0.2.0-rc.2-openbkn.0.2.0-6.tgz` / `2abdb3e611fe02635130e7a58b93224e5f88a332e591be4225f626cecc26a7bf` / 161682 bytes / 64 文件 |
 | 全部 exports/main/types 校验 / hash chunk 可达性 | exports：`.`→bootstrap、`./business`、`./diagnostics`、`./types`、`./client`、`./typert`、`./remote`、`./package.json` 全部在 tgz 内；lib/*.js 全集入 files；导入图脚本验证 bootstrap 可达={index.js}、business/diagnostics 互不可达、共享 observer chunk 双向可达 |
@@ -81,3 +81,13 @@
 | P2 manifest faultVariants 仍写 W3 破坏 lib/index.js | 更新为按 exports 解析 `./business`/`./diagnostics`，并注明 lib/index.js 现为 bootstrap（破坏它=整包故障） | 人工核对与脚本一致 |
 
 重出候选：源码 `69dbd18`（本轮提交前），tgz SHA `14f6772b…`（64 文件；与首版差异仅 package.json types 字段与文档/测试/审计，三入口运行时产物不变）。受影响项复验：types 由审计+契约测试锁定；U1c 迁移实机通过；新候选 S0（三 row + 迁移配置生效）与 S2（业务坏导入 → 面板在 + `module-resolution-failed`，变体 `d04de56d…`）实机通过。其余 S1/S3–S6/U1/U2 的行为面未变（首版矩阵继续有效，其变体基于 `2abdb3e6`，行为面与 `14f6772b` 一致）。
+
+## 交接审核收尾轮（2026-10-05 深夜二）
+
+复核确认前三项修复有效，对新增验证代码提出 2×P2，已修复（tgz 内容不变，重 pack SHA 仍 `14f6772b`）：
+
+| 问题 | 修复 | 复验 |
+|---|---|---|
+| P2 契约测试 cwd 用 URL pathname（空格路径 ENOENT、Windows 盘符错误） | 改 `fileURLToPath(new URL('../', ...))` | 全套 302 测试（301 pass）含该用例通过 |
+| P2 declaredTargets 只走一层条件且排除 `./package.json` 前缀（嵌套坏指针/lookalike 均漏检 exit 0） | 递归遍历整棵 exports 条件树；仅精确排除 `./package.json` 本身 | 双 oracle：嵌套缺失类型 → exit 1；`./package.json-does-not-exist` → exit 1；恢复 → exit 0；新增拒绝用例锁定 16 个声明目标全存在 |
+| 文档身份 | 首版/终版 commit 明确分列（见上表） | 人工核对 manifest（c193e0a / 14f6772b） |

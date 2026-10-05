@@ -71,10 +71,13 @@ test('does not retain an overly broad runner directory glob', () => {
 
 test('every declared exports/main/types target exists in the packed tarball', async () => {
   const { execFileSync } = await import('node:child_process')
+  const { fileURLToPath } = await import('node:url')
   const { declaredTargets } = await import('../../../scripts/package-bundle.mjs')
   const manifest = JSON.parse(readFileSync(new URL('../package.json', import.meta.url), 'utf8'))
   const output = execFileSync('pnpm', ['pack', '--dry-run', '--json'], {
-    cwd: new URL('../', import.meta.url).pathname,
+    // fileURLToPath handles percent-encoded (space-containing) paths and
+    // Windows drive letters; a raw URL pathname does neither.
+    cwd: fileURLToPath(new URL('../', import.meta.url)),
     encoding: 'utf8',
     shell: process.platform === 'win32',
   })
@@ -84,4 +87,27 @@ test('every declared exports/main/types target exists in the packed tarball', as
     const normalized = target.replace(/^\.\//, '')
     assert.ok(paths.has(normalized), `declared target missing from the tarball: ${target}`)
   }
+})
+
+test('declaredTargets walks nested conditions and refuses lookalike pointers', async () => {
+  const { declaredTargets } = await import('../../../scripts/package-bundle.mjs')
+  const targets = declaredTargets({
+    main: './lib/main.js',
+    types: './lib/main.d.ts',
+    exports: {
+      '.': { import: { node: { default: './lib/node.js' } }, default: './lib/index.js' },
+      './x': './lib/x.js',
+      './package.json': './package.json',
+      './sneaky': './package.json-does-not-exist',
+    },
+  })
+  const sorted = [...targets].sort()
+  assert.deepEqual(sorted, [
+    './lib/index.js',
+    './lib/main.d.ts',
+    './lib/main.js',
+    './lib/node.js',
+    './lib/x.js',
+    './package.json-does-not-exist',
+  ])
 })
