@@ -18,7 +18,7 @@
 | 当前 DSH/OpenBKN 上游核对 | DSH pin 不变（dsh-v0.2.0-rc.2 @ 639ed015，clone 后校验 PIN-OK）；bkn-dsh origin/main 仍为 a134f5d（本轮未 fetch 到新提交） |
 | 最终源码 commit / 最终文档 HEAD | **终版：`c193e0a`（types 修复+迁移文档；tgz `14f6772b` 由它构建）**；其后仅审计/测试加固与文档提交（不改变包内容，重 pack SHA 不变）。首版历史：`3c4fa66`（tgz `2abdb3e6`）→ `69dbd18`（文档） |
 | 新 package version | `0.2.0-rc.2-openbkn.0.2.0-6`（npm 上 -5/-6 均未占用） |
-| 最终 tgz 路径 / SHA-256 / bytes / 文件数 | `release/diag-s2-candidate/openbkn-dsh-business-context-0.2.0-rc.2-openbkn.0.2.0-6.tgz` / `2abdb3e611fe02635130e7a58b93224e5f88a332e591be4225f626cecc26a7bf` / 161682 bytes / 64 文件 |
+| 本报告审核终版 tgz 路径 / SHA-256 / bytes / 文件数 | `release/diag-s2-candidate/openbkn-dsh-business-context-0.2.0-rc.2-openbkn.0.2.0-6.tgz` / `14f6772b97b0a15d0e9162dc993680e42db62d2e868f28f129f43c3aa4085e10` / 162282 bytes / 64 文件；首版 `2abdb3e6…` / 161682 bytes 为下方首轮矩阵历史基包 |
 | 全部 exports/main/types 校验 / hash chunk 可达性 | exports：`.`→bootstrap、`./business`、`./diagnostics`、`./types`、`./client`、`./typert`、`./remote`、`./package.json` 全部在 tgz 内；lib/*.js 全集入 files；导入图脚本验证 bootstrap 可达={index.js}、business/diagnostics 互不可达、共享 observer chunk 双向可达 |
 | 三 Loader row 及两 Remote namespace | `--dump-config` 显示三 row 各一条（bootstrap/business/diagnostics）；typert 重新生成，`openbknBusinessContext` 与 `openbknDiagnostics` 两 namespace 均在 lib/typert.host.js 与 remote-client.js |
 | 实际 Host 版本/形态/Node / profile / 未开 inspector | 官方 npm `@deepseek-ai/dsh@0.2.0-rc.2`（mktemp 独立安装）/ web profile / Node v24.19.0 / 全程无 `--inspect` |
@@ -80,7 +80,7 @@
 | P1 旧 name-qualified override 升级后失效（宿主 name 断言语义） | 双语 README 迁移说明（删 name 行或改 `'@openbkn/dsh-business-context/business'`）；根 README 指引 | 实测 U1c 三段：-5 下生效 → -6 下旧断言被跳过（复现失效）→ 迁移后（两种写法）配置恢复、canary baseUrl 在业务面板可见 |
 | P2 manifest faultVariants 仍写 W3 破坏 lib/index.js | 更新为按 exports 解析 `./business`/`./diagnostics`，并注明 lib/index.js 现为 bootstrap（破坏它=整包故障） | 人工核对与脚本一致 |
 
-重出候选：源码 `69dbd18`（本轮提交前），tgz SHA `14f6772b…`（64 文件；与首版差异仅 package.json types 字段与文档/测试/审计，三入口运行时产物不变）。受影响项复验：types 由审计+契约测试锁定；U1c 迁移实机通过；新候选 S0（三 row + 迁移配置生效）与 S2（业务坏导入 → 面板在 + `module-resolution-failed`，变体 `d04de56d…`）实机通过。其余 S1/S3–S6/U1/U2 的行为面未变（首版矩阵继续有效，其变体基于 `2abdb3e6`，行为面与 `14f6772b` 一致）。
+重出候选：源码 `c193e0a`（本轮修复提交），tgz SHA `14f6772b…`（64 文件；与首版差异仅 package.json types 字段与文档/测试/审计，三入口运行时产物不变）。受影响项复验：types 由审计+契约测试锁定；U1c 迁移实机通过；新候选 S0（三 row + 迁移配置生效）与 S2（业务坏导入 → 面板在 + `module-resolution-failed`，变体 `d04de56d…`）实机通过。其余 S1/S3–S6/U1/U2 的行为面未变（首版矩阵继续有效，其变体基于 `2abdb3e6`，行为面与 `14f6772b` 一致）。
 
 ## 交接审核收尾轮（2026-10-05 深夜二）
 

@@ -13,42 +13,6 @@ export interface OpenBknDiagnosticsInjected {
 
 export type OpenBknDiagnosticsProps = PropsRuntime<'shell.overlay'> & InjectFace<OpenBknDiagnosticsInjected>
 
-export interface DiagnosticsEntryInjected {
-  open(): void
-}
-
-export type DiagnosticsEntryProps = PropsRuntime<'sidebar.footer.action'> & InjectFace<DiagnosticsEntryInjected>
-
-/** Additive sidebar entry opening the diagnostics panel. */
-export function DiagnosticsEntry({ wide, open }: DiagnosticsEntryProps) {
-  return (
-    <button
-      type="button"
-      aria-label="OpenBKN diagnostics"
-      title="OpenBKN 诊断"
-      onClick={open}
-      style={{
-        width: wide ? '100%' : 36,
-        minHeight: 36,
-        border: '1px solid #e5e7eb',
-        borderRadius: 10,
-        background: '#f9fafb',
-        color: '#6b7280',
-        fontWeight: 650,
-        cursor: 'pointer',
-        display: 'flex',
-        alignItems: 'center',
-        justifyContent: wide ? 'flex-start' : 'center',
-        gap: 8,
-        padding: wide ? '0 10px' : 0,
-      }}
-    >
-      <span aria-hidden="true" style={{ width: 20, height: 20, display: 'grid', placeItems: 'center', borderRadius: 6, background: '#6b7280', color: '#fff', fontSize: 11 }}>ⓘ</span>
-      {wide ? <span>OpenBKN 诊断</span> : null}
-    </button>
-  )
-}
-
 /**
  * Standalone diagnostics surface. Registered by the diagnostics injection
  * segment, never by the business one, so it stays reachable exactly when the

@@ -40,23 +40,25 @@ export function OpenBknOverlay({ useUi, close, refresh, beginLogin, configureTok
             <div style={eyebrowStyle}>OPENBKN</div>
             <h2 style={{ margin: '4px 0 0', fontSize: 20 }}>业务知识网络</h2>
           </div>
-          <button type="button" onClick={close} aria-label="Close" style={closeStyle}>×</button>
+          <div style={{ display: 'flex', alignItems: 'center', gap: 12 }}>
+            <button type="button" onClick={openDiagnostics} style={{ ...secondaryStyle, fontSize: 13 }}>诊断</button>
+            <button type="button" onClick={close} aria-label="Close" style={closeStyle}>×</button>
+          </div>
         </header>
         <div style={{ padding: 20 }}>
-          <OverlayBody state={state} beginLogin={beginLogin} configureToken={configureToken} refresh={refresh} openNetwork={openNetwork} openDiagnostics={openDiagnostics} />
+          <OverlayBody state={state} beginLogin={beginLogin} configureToken={configureToken} refresh={refresh} openNetwork={openNetwork} />
         </div>
       </section>
     </div>
   )
 }
 
-function OverlayBody({ state, beginLogin, configureToken, refresh, openNetwork, openDiagnostics }: {
+function OverlayBody({ state, beginLogin, configureToken, refresh, openNetwork }: {
   state: OpenBknOverlayState
   beginLogin(): Promise<void>
   configureToken(token: string): Promise<void>
   refresh(): Promise<void>
   openNetwork(networkId: string, mode: 'continue' | 'new' | 'create-workspace'): Promise<void>
-  openDiagnostics(): void
 }) {
   const [query, setQuery] = useState('')
   const [limit, setLimit] = useState(INITIAL_NETWORK_DIRECTORY_LIMIT)
@@ -94,7 +96,6 @@ function OverlayBody({ state, beginLogin, configureToken, refresh, openNetwork, 
         <p style={{ marginTop: 0, lineHeight: 1.6 }}>{state.message}</p>
         <div style={{ display: 'flex', gap: 8 }}>
           <button type="button" style={primaryStyle} onClick={() => void refresh()}>重试</button>
-          <button type="button" style={secondaryStyle} onClick={openDiagnostics}>导出诊断</button>
         </div>
       </div>
     )

@@ -72,7 +72,7 @@ unchanged.
 
 ## Diagnostics
 
-When something does not work, open **OpenBKN 诊断** from the sidebar footer and export the report. The panel stays reachable even when the OpenBKN business panel cannot start: it runs as a separate plugin row that never waits on the business service. The exported JSON contains only whitelisted facts — stages, classification codes, bounded evidence such as HTTP statuses and exit codes, and coverage notes. It never contains tokens, raw error text, URLs, or file contents. Send the exported file to support; nothing else is needed.
+When something does not work, click **OpenBKN** in the sidebar footer, then **诊断** at the top right of the panel and export the report. There is only one OpenBKN sidebar entry. The panel frame and diagnostics action remain available when the business component cannot import or its services are not ready. The diagnostics service runs as an independent plugin row; if its implementation cannot start, the panel explicitly reports that diagnostics is unavailable. The exported JSON contains only whitelisted facts — stages, classification codes, bounded evidence such as HTTP statuses and exit codes, and coverage notes. It never contains tokens, raw error text, URLs, or file contents. Send the exported file to support.
 
 ## License
 
