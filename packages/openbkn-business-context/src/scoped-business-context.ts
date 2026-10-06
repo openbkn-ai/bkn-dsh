@@ -232,7 +232,7 @@ const scopedPolicyPlugin = (
       if (repair === undefined || handoffRepairTurn === repair.turn) return
       handoffRepairTurn = repair.turn
       agent.steer(createUserMessage({
-        source: { kind: 'openbkn-answer-fidelity', form: 'notice', summary: '工具明细需补齐列头，正在核对。', phase: 'tool-handoff' },
+        source: { kind: 'openbkn-answer-fidelity', form: 'notice', summary: '工具明细需要核对，正在处理。', phase: 'tool-handoff' },
         content: [{ type: 'text', text: `${repair.issue.reason}\n${repair.issue.correction}` }],
       }))
     })

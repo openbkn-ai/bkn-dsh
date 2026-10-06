@@ -75,6 +75,65 @@ test('producer check ignores pages, headed malformed values, other questions, er
   assert.equal(inspectToolDetailHandoff([...log, { type: 'turn/end', data: { turn: 1 } }], envelope(detail().replace(HEADER + '\n', ''))), undefined)
 })
 
+test('scoped fallback distinguishes no eligible row from measured zero and rejects unknown counts', () => {
+  const audited = (rows: string) => `INVENTORY_FALLBACK: scoped-stock-rows\n${detail(rows).replace(HEADER, HEADER + '|scoped_stock_rows')}`
+  const valid = audited('1|p|outside-only|part|1|0*|?|0\n1|p|zero-with-rows|part|1|0|个|2\n1|p|negative|part|1|-3|包|1')
+  const rows = detailRowsOf(valid)
+  assert.equal(inspectToolDetailHandoff(events(valid, '').slice(0, -1), JSON.stringify({ exit_code: 0, stdout: valid })), undefined)
+  assert.equal(inspectAnswerFidelity(events(valid, renderDetail(rows)), 1), undefined)
+  const conflictingCount = audited('1|p|same|part|1|2|个|1\n2|other-parent|same|part|1|2|个|2')
+  assert.equal(inspectAnswerFidelity(events(conflictingCount, renderDetail(detailRowsOf(conflictingCount))), 1)?.code, 'inventory-scope-mismatch')
+  for (const bad of [valid.replace('0*|?|0', '0|?|0'), valid.replace('0|个|2', '0*|?|2'), valid.replace('0*|?|0', '0*|个|0'), valid.replace('|包|1', '|包|unknown'), valid.replace('|scoped_stock_rows', '')]) {
+    assert.equal(inspectAnswerFidelity(events(bad, renderDetail(detailRowsOf(bad))), 1)?.code, 'inventory-scope-mismatch')
+    assert.equal(inspectToolDetailHandoff(events(bad, '').slice(0, -1), JSON.stringify({ exit_code: 0, stdout: bad }))?.issue.code, 'inventory-scope-mismatch')
+  }
+  const bad = valid.replace('0*|?|0', '0|?|0')
+  const log = events(bad, renderDetail(rows))
+  log.splice(-1, 0,
+    { type: 'tool/call', data: { turn: 1, callId: 'scope-repair', name: 'mcp__openbkn__run_code' } },
+    { type: 'tool/result', data: { turn: 1, message: { toolCallId: 'scope-repair', content: [{ type: 'text', text: JSON.stringify({ exit_code: 0, stdout: valid }) }] } } },
+  )
+  assert.equal(inspectAnswerFidelity(log, 1), undefined, 'a separate valid cached audit repairs only the invalid candidate')
+  log[log.length - 2] = { type: 'tool/result', data: { turn: 1, message: { toolCallId: 'scope-repair', content: [{ type: 'text', text: JSON.stringify({ exit_code: 0, stdout: detail(ROWS) }) }] } } }
+  assert.equal(inspectAnswerFidelity(log, 1)?.code, 'inventory-scope-mismatch', 'an unaudited reprint cannot erase a scope failure')
+})
+
+test('captured 313-row global-presence answer fails an independently supplied scope audit without rewriting the capture', () => {
+  const run = captured('ci-3ac73cc-bom-failed', 'answer-fidelity-20261006', -1)
+  const original = structuredClone(run.events)
+  const baseline = JSON.parse(readFileSync(new URL('../../../docs/evidence/answer-fidelity-20261006/ci-3ac73cc-independent-stock-row-audit.json', import.meta.url), 'utf8'))
+  const stockCounts = new Map<string, number>(baseline.records.map((row: { child: string; stock_rows: number }) => [row.child, row.stock_rows]))
+  const delivered = detailRowsOf(run.answer)
+  assert.equal(delivered.length, 313)
+  // This is a test audit built from independent CLI evidence, NOT metadata
+  // present in the original turn or a claimed correction of that native log.
+  const audited = `INVENTORY_FALLBACK: scoped-stock-rows\nDETAIL_ROWS: 313\n${HEADER}|scoped_stock_rows\n${delivered.map(row => [row.level, row.parent, row.child, row.name, row.usage, row.stock, row.unit, stockCounts.get(row.child)].join('|')).join('\n')}\nEMITTED: 313`
+  assert.equal(inspectAnswerFidelity(events(audited, run.answer), 1)?.code, 'inventory-scope-mismatch')
+  assert.equal(delivered.filter(row => stockCounts.get(row.child) === 0 && row.stock !== '0*').length, 43)
+  const corrected = delivered.map(row => stockCounts.get(row.child) === 0 ? { ...row, stock: '0*', unit: '?' } : row)
+  const repaired = `INVENTORY_FALLBACK: scoped-stock-rows\nDETAIL_ROWS: 313\n${HEADER}|scoped_stock_rows\n${corrected.map(row => [row.level, row.parent, row.child, row.name, row.usage, row.stock, row.unit, stockCounts.get(row.child)].join('|')).join('\n')}\nEMITTED: 313`
+  assert.equal(inspectAnswerFidelity(events(repaired, renderDetail(corrected)), 1), undefined)
+  assert.deepEqual(run.events, original)
+})
+
+test('reservation explanation uses disclosed property formula rather than capability display-only semantics', () => {
+  const schema = JSON.parse(readFileSync(new URL('../../../docs/evidence/answer-fidelity-20261006/inventory-schema-20261006.json', import.meta.url), 'utf8'))
+  const run = captured('ci-3ac73cc-bom-failed', 'answer-fidelity-20261006', -1)
+  const addSchema = (answer: string, result = schema, isError = false) => {
+    const log = [...run.events.slice(0, -1),
+      { type: 'tool/call', data: { turn: 1, callId: 'inventory-schema', name: 'mcp__openbkn__get_object_types' } },
+      { type: 'tool/result', data: { turn: 1, message: { toolCallId: 'inventory-schema', isError, content: [{ type: 'text', text: JSON.stringify(result) }] } } },
+      { type: 'assistant/message', data: { turn: 1, message: { content: [{ type: 'text', text: answer }] } } },
+    ]
+    return inspectAnswerFidelity(log, 1)
+  }
+  assert.equal(addSchema(run.answer)?.code, 'inventory-semantics-mismatch')
+  const corrected = run.answer.replace('预留未从可用量中扣除', '预留已在可用量字段中扣除，不再二次扣减')
+  assert.equal(addSchema(corrected), undefined)
+  assert.equal(addSchema(run.answer, {}, false), undefined, 'an undisclosed formula is not inferred')
+  assert.equal(addSchema(run.answer, schema, true), undefined, 'an errored schema is not authoritative')
+})
+
 test('live empty-stock handoff rejects the excerpt but accepts all 313 faithfully copied rows', () => {
   const excerpt = captured('ci-2abd71d-bom-failed', 'answer-fidelity-20261006', 0)
   const issue = inspectAnswerFidelity(excerpt.events, 1)

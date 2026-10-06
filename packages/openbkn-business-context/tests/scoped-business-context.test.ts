@@ -368,6 +368,21 @@ test('producer repair does not steer on canceled or failed executions or a close
   }
 })
 
+test('scoped inventory audit steers a cached repair before finish without dispatch or event mutation', () => {
+  const events = fidelityEvents().slice(0, -1)
+  const original = structuredClone(events)
+  const fake = fakeAgent(events)
+  mount(fake)
+  startSucceeded(fake)
+  const result = { content: [{ type: 'text', text: JSON.stringify({ exit_code: 0, stdout: 'INVENTORY_FALLBACK: scoped-stock-rows\nDETAIL_ROWS:1\nlevel|parent|child_code|child_name|std_usage|available_qty|uom|scoped_stock_rows\n1|p|c|part|2|0|?|0\nEMITTED:1' }) }] }
+  fake.listeners['tools/result']![0]!({ name: 'mcp__openbkn__run_code' }, result)
+  assert.equal(fake.steering.length, 1)
+  assert.match(fake.steering[0]!.content[0]!.text!, /count 0 requires 0\* and \?/)
+  assert.match(fake.steering[0]!.content[0]!.text!, /Reuse cached records only/)
+  assert.deepEqual(events, original)
+  assert.deepEqual(fake.appended, [])
+})
+
 test('a second invalid final answer fails the turn instead of steering indefinitely', () => {
   const fake = fakeAgent(fidelityEvents())
   mount(fake)

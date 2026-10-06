@@ -19,7 +19,7 @@ export interface DetailRow {
 }
 
 export interface AnswerFidelityIssue {
-  readonly code: 'detail-mismatch' | 'source-name-mismatch' | 'detail-count-mismatch' | 'tool-detail-incomplete' | 'detail-handoff-conflict'
+  readonly code: 'detail-mismatch' | 'source-name-mismatch' | 'detail-count-mismatch' | 'tool-detail-incomplete' | 'detail-handoff-conflict' | 'inventory-scope-mismatch' | 'inventory-semantics-mismatch'
   readonly reason: string
   readonly correction: string
 }
@@ -225,6 +225,49 @@ function fullDetailRequested(question: string): boolean {
   return /(?:完整|全部|每个|逐项|清单|\b(?:full|complete|every|all)\b).{0,40}(?:BOM|明细|物料|material|detail)|(?:BOM|物料|material).{0,80}(?:清单|每个|全部|完整|\b(?:every|all)\b)/i.test(question)
 }
 
+/** Audit disclosed fallback metadata; never infer absence from a zero sum. */
+function inventoryScopeIssue(detail: string): AnswerFidelityIssue | undefined {
+  if (!/^INVENTORY_FALLBACK:\s*scoped-stock-rows\s*$/m.test(detail)) return undefined
+  const header = /^level\|parent\|child_code\|child_name\|std_usage\|available_qty\|uom\|scoped_stock_rows\s*$/m.exec(detail)
+  const rows = parseDetail(detail).rows
+  const total = /^DETAIL_ROWS:\s*(\d+)\s*$/m.exec(detail)?.[1]
+  const emitted = /^EMITTED:\s*(\d+)\s*$/m.exec(detail)?.[1]
+  let valid = header !== null && rows.length > 0 && Number(total) === rows.length && Number(emitted) === rows.length
+  if (header !== null) {
+    const lines = detail.slice(header.index + header[0].length).trimStart().split('\n')
+    const counts = new Map<string, string>()
+    for (let i = 0; i < rows.length; i++) {
+      const parts = lines[i]?.trim().split(/(?<!\\)\|/) ?? []
+      const count = parts[7]?.trim() ?? ''
+      const row = rows[i]!
+      if (parts.length !== 8 || !/^\d+$/.test(count) || !Number.isSafeInteger(Number(count))
+        || (counts.has(row.child) && counts.get(row.child) !== String(Number(count)))
+        || (Number(count) === 0 ? row.stock !== '0*' || row.unit !== '?' : row.stock.endsWith('*'))) valid = false
+      counts.set(row.child, String(Number(count)))
+    }
+  }
+  return valid ? undefined : {
+    code: 'inventory-scope-mismatch',
+    reason: 'The complete inventory fallback has missing or inconsistent scoped_stock_rows evidence. Global record existence does not establish eligible stock rows.',
+    correction: 'Before bkn_finish_interaction, rebuild only the handoff from the already retrieved cached inventory records in this same Interaction. Filter by the verified warehouse and stock_status rules before grouping. For each material, count those eligible rows separately from their available-stock sum: count 0 requires 0* and ?, while a positive count requires the measured quantity, including plain 0. Print INVENTORY_FALLBACK: scoped-stock-rows, DETAIL_ROWS, the literal header level|parent|child_code|child_name|std_usage|available_qty|uom|scoped_stock_rows, every row, and EMITTED. Reuse cached records only; do not repeat business queries, change scope or start another Interaction. Do not invent counts. If the cached records or scope cannot be recovered, finish as failed. Preserve the original failed output; a separately audited repair can supply the authoritative handoff.',
+  }
+}
+
+function reservationAlreadyDeducted(text: string): boolean {
+  let found = false
+  const visit = (value: unknown, depth: number): void => {
+    if (depth > 8) return
+    if (Array.isArray(value)) { for (const child of value) visit(child, depth + 1); return }
+    const object = record(value)
+    if (object === undefined) return
+    if (object.name === 'available_inventory_qty' && typeof object.comment === 'string'
+      && /可用库存数量\s*=\s*库存数量\s*[-−]\s*预留库存数量/.test(object.comment)) found = true
+    for (const child of Object.values(object)) visit(child, depth + 1)
+  }
+  try { visit(JSON.parse(text), 0) } catch { /* Undisclosed formulas are not inferred. */ }
+  return found
+}
+
 /** A narrow producer check, while the original Interaction is still open.
  * Never infer the meaning of headerless positional values. One notice may
  * request a labelled reprint of cached rows, without new business retrieval.
@@ -242,6 +285,8 @@ export function inspectToolDetailHandoff(events: readonly FidelityEvent[], toolT
   const detail = stdoutOf(toolText)
   const total = /^(?:DETAIL_ROWS|TOTAL_ROWS|BOM_ROWS):\s*(\d+)/m.exec(detail)?.[1]
   const emitted = /^EMITTED:\s*(\d+)/m.exec(detail)?.[1]
+  const scopeIssue = inventoryScopeIssue(detail)
+  if (scopeIssue !== undefined && total !== undefined && emitted !== undefined && Number(total) > 0 && Number(total) === Number(emitted)) return { turn, issue: scopeIssue }
   // Partial pages, unknown quantities and conflicting headed batches remain
   // governed by the final checker. This check only repairs missing metadata.
   if (total === undefined || emitted === undefined || Number(total) <= 0 || Number(total) !== Number(emitted) || parseDetail(detail).hasColumns) return undefined
@@ -266,6 +311,8 @@ export function inspectAnswerFidelity(events: readonly FidelityEvent[], turn: nu
   let activeTurn: number | undefined
   let incomplete = false
   let handoffConflict = false
+  let invalidScope: AnswerFidelityIssue | undefined
+  let reservationDeducted = false
   for (const event of events) {
     const data = record(event.data)
     if (event.type === 'turn/start' && typeof data?.turn === 'number') activeTurn = data.turn
@@ -289,6 +336,7 @@ export function inspectAnswerFidelity(events: readonly FidelityEvent[], turn: nu
     if (text.length > MAX_TEXT_CHARS) continue
     if (['mcp__openbkn__get_kn_detail', 'mcp__openbkn__get_object_types'].includes(name)) {
       for (const source of sourceNames(text)) sources.add(source)
+      reservationDeducted ||= reservationAlreadyDeducted(text)
     }
     // Lifecycle results can echo model-written answers. They must never
     // replace the successful data handoff with the model's own transcription.
@@ -300,7 +348,12 @@ export function inspectAnswerFidelity(events: readonly FidelityEvent[], turn: nu
     // explicit handoff contract, not a guess based on the largest table.
     const total = /^(?:DETAIL_ROWS|TOTAL_ROWS|BOM_ROWS):\s*(\d+)/m.exec(detail)?.[1]
     const emitted = /^EMITTED:\s*(\d+)/m.exec(detail)?.[1]
+    const scopeIssue = inventoryScopeIssue(detail)
+    if (scopeIssue !== undefined) { invalidScope = scopeIssue; continue }
     if (rows.length > 0 && !parsed.malformed && Number(total) === rows.length && Number(emitted) === rows.length) {
+      // An invalid audited candidate is never promoted to authoritative rows.
+      // Only a separately valid audited repair can clear its scope failure.
+      if (/^INVENTORY_FALLBACK:\s*scoped-stock-rows\s*$/m.test(detail)) invalidScope = undefined
       if (expected.length === 0) { expected = rows; sourceCall = message.toolCallId }
       else if (!sameRows(expected, rows, true)) handoffConflict = true
     } else if (total !== undefined && emitted !== undefined) {
@@ -308,6 +361,11 @@ export function inspectAnswerFidelity(events: readonly FidelityEvent[], turn: nu
     }
   }
   if (answer.length === 0) return undefined
+  if (invalidScope !== undefined) return { ...invalidScope, correction: 'The tool inventory scope audit failed. Do not claim a verified complete result or invent a repair after the Interaction has closed. State the unresolved scoped row evidence; a new business query requires a new user turn.' }
+  const reservationIssue: AnswerFidelityIssue | undefined = reservationDeducted && /预留未从可用(?:量|库存)中扣除|预留(?:库存)?(?:数量)?未从可用(?:量|库存)(?:数量)?中扣(?:减|除)/.test(answer) ? {
+    code: 'inventory-semantics-mismatch', reason: 'The reservation explanation contradicts the explicitly returned available_inventory_qty property comment.',
+    correction: 'Correct only the reservation explanation: the disclosed available_inventory_qty field is inventory minus reserved, so reservation is already deducted in that field and must not be deducted again. A capability display-only/P0 rule does not undo the field formula. Preserve every checked detail row and the established scope; do not perform new business retrieval.',
+  } : undefined
   if (handoffConflict) return {
     code: 'detail-handoff-conflict', reason: 'Successful tool results claim conflicting complete details in this turn.',
     correction: 'A single complete detail handoff cannot be established: two successful outputs both claim completeness but contain different rows or values. Do not silently select a smaller batch, infer that the largest is correct, or claim completeness. State that complete-detail validation failed. A new, explicitly scoped query is required; do not start another Interaction in this turn.',
@@ -321,26 +379,26 @@ export function inspectAnswerFidelity(events: readonly FidelityEvent[], turn: nu
       code: 'source-name-mismatch', reason: 'The final physical source name contradicts this turn\'s schema tool result.',
       correction: `Use only the physical source names explicitly returned by schema tools: ${JSON.stringify([...sources])}. The final answer contains an unsupported name: ${JSON.stringify([...new Set(wrongSources)])}. Do not turn kn_id into a database schema. Restate the answer concisely with the disclosed source or only the known object type; do not invent a physical name.`,
   }
-  if (expected.length === 0) return sourceIssue ?? (incomplete && fullDetailRequested(question) ? {
+  if (expected.length === 0) return sourceIssue ?? reservationIssue ?? (incomplete && fullDetailRequested(question) ? {
     code: 'tool-detail-incomplete', reason: 'The tool\'s declared complete and emitted counts do not match a parseable complete detail.',
     correction: 'The complete detail handoff cannot be verified. State that this answer failed completeness validation; do not claim a preview or malformed table is a complete result.',
   } : undefined)
   const parsedAnswer = parseDetail(answer)
   const actual = parsedAnswer.rows
   const complete = fullDetailRequested(question)
-  if (actual.length === 0 && !complete) return sourceIssue
+  if (actual.length === 0 && !complete) return sourceIssue ?? reservationIssue
   const rendered = renderDetail(expected)
   const correction = `The final detail must match successful tool call ${JSON.stringify(sourceCall)}. Retain the established scope, inventory caveats and source facts. Copy the tool-data transcription without adding, dropping, regrouping or changing rows. Preserve units and '*' absent-row markers; do not replace them with an assertion of zero stock everywhere.${rendered.length <= 64_000 ? `\n\n${rendered}` : '\nThe complete transcription exceeds the correction-context limit. Refer to that original tool result; do not claim an incomplete answer is complete.'}`
   if (parsedAnswer.malformed || !sameRows(expected, actual, complete)) return {
-    code: 'detail-mismatch', reason: `The final detail has ${actual.length} rows; the tool supplied ${expected.length}. Rows, repetitions, levels, quantities and units must all match.`, correction,
-    ...(sourceIssue === undefined ? {} : { correction: `${sourceIssue.correction}\n\n${correction}` }),
+    code: 'detail-mismatch', reason: `The final detail has ${actual.length} rows; the tool supplied ${expected.length}. Rows, repetitions, levels, quantities and units must all match.`,
+    correction: [sourceIssue?.correction, reservationIssue?.correction, correction].filter(Boolean).join('\n\n'),
   }
   const counts = new Map<string, number>()
   for (const row of expected) counts.set(row.level, (counts.get(row.level) ?? 0) + 1)
   for (const match of answer.matchAll(/\bL(\d+)\s*[:：=]\s*(\d+)\b/g)) {
     if (complete && counts.get(match[1]!) !== Number(match[2])) return { code: 'detail-count-mismatch', reason: 'The final level count contradicts its complete tool detail.', correction: `${sourceIssue?.correction ?? ''}\n${correction}` }
   }
-  return sourceIssue
+  return sourceIssue ?? reservationIssue
 }
 
 export class AnswerFidelityError extends Error {

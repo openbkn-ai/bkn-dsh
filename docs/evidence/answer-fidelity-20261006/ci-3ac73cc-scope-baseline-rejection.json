@@ -1,0 +1,7 @@
+{
+  "baselineSource": "3ac73cc",
+  "case": "explicit scoped row count zero but unmarked stock zero",
+  "baselineRejects": false,
+  "expectedRejects": true,
+  "regressionReproduced": true
+}
