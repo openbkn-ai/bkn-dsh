@@ -1,44 +1,65 @@
-# Windows -6 诊断候选验收结果（本机独立实测）
+# Windows -6 诊断候选验收结果（本机独立实测 · 按 2026-10-06 主 agent 复核意见修订）
+
+> 修订说明（对应复核意见逐条落实）：
+> 1. W2 npm 报告编号已在表格与证据文件间对齐（b10fcb42/2f59d3c7/0214f597 三份 JSON 同分类）；
+> 2. W7 补齐两份导出 JSON（W7a-npm-abde94b0 network-unreachable、W7b-npm-d4e7522f tls-failed）；
+> 3. npm 侧 W2/W3/W4 证据由"UI 快照"升级为真实导出 JSON（复核指出下载需点击保存目的地对话框——已处理，三份 JSON 入档）；
+> 4. 收窄判定：W1 副作用表述、W4 存储初始化子项、W9 嵌套错误/日志子项、W10 未测子项、U1/W12 范围（见各行）；
+> 5. 新增披露：本轮一次隔离偏差（详见"隔离偏差与纠正"）；
+> 6. helper cleanup 收紧为"PID+端口+命令行"三重核验（不再按路径扫停）并实测验证；
+> 7. 首次提交实为 44 个文件（此前反馈误写 30）。
 
 - 日期/Windows/PowerShell：2026-10-06；Windows 10 19045（win32）；原生 Windows PowerShell 5.1.19041.5848（无 WSL、无 inspector）
 - CLI 0.1.5 / npm DSH/Node/pnpm / Desktop/随附 Node：
   - OpenBKN CLI 0.1.5（隔离 @openbkn/bkn-sdk 安装，实测 `--version` 输出 0.1.5）
   - npm DSH 0.2.0-rc.2（隔离 @deepseek-ai/dsh 安装，实测 `--version` 输出 0.2.0-rc.2）；npm 形态 Node v24.21.0 / pnpm 11.7.0
-  - Desktop 0.2.0-rc.2（官方安装 %LOCALAPPDATA%\Programs\DeepSeek Harness，exe FileVersion 0.2.0-rc.2；随附 runtime node 24.18.1 / pnpm 11.7.0；桌面 dsh.cmd --version=0.2.0-rc.2）
-  - npm 11.19.0（install-scripts 隔离告警涉及 koffi/node-pty；`dsh web` 实测可正常启动，未重建）
-- CI run/source/tgz SHA/实际安装文件一致性：CI 37337765993（publish=false）、源码 commit 144afa503c7d…、候选 tgz SHA-256 ffcd77722e83…ef43（162,967B/65 文件）；获取 HEAD=37fc23b4d356…5f1；ZIP SHA eac27ecf…72fd 核验通过；verify-kit.ps1 通过；两形态安装后逐文件 SHA 与清单 65/65 一致（missing=0 differs=0 extra=0）
-- 两形态 profile、实际 Host PID/启动路径、不开 inspector 证据：desktop=隔离 DSH_HOME C:\bkn-verify\diag6-desktop（profile desktop，Desktop exe 原生启动）；npm=隔离 web profile C:\bkn-verify\diag6-npm（隔离 dsh.cmd web 启动，8231-8251 端口）；应用自身设置记录 developerTools:false；全程未开启 DevTools/inspect
-- 平台各服务镜像、tools/list 来源和检查时间：测试平台 192.168.50.28:443 可达（2026-10-06 ~10:20 探测）；真实 tools/list 与各服务身份需登录态，本轮无真实凭据 → not-run（隔离 store 从未登录；原用户 store 依隔离规则未触碰）
+  - Desktop 0.2.0-rc.2（官方安装；exe FileVersion 0.2.0-rc.2；随附 runtime node 24.18.1 / pnpm 11.7.0；桌面 dsh.cmd --version=0.2.0-rc.2）
+  - npm 11.19.0（install-scripts 隔离告警涉及 koffi/node-pty；`dsh web` 实测正常，未重建）
+- CI run/source/tgz SHA/实际安装文件一致性：CI 37337765993（publish=false）、源码 commit 144afa503c7d…、候选 tgz SHA-256 ffcd77722e83…ef43（162,967B/65 文件）；获取 HEAD=37fc23b4d356…5f1；ZIP SHA eac27ecf…72fd 核验通过；verify-kit.ps1 通过；两形态安装后逐文件 SHA 与清单 65/65 一致
+- 两形态 profile、实际 Host PID/启动路径、不开 inspector 证据：desktop=隔离 DSH_HOME C:\bkn-verify\diag6-desktop（profile desktop，Desktop exe 原生启动）；npm=隔离 web profile C:\bkn-verify\diag6-npm（隔离 dsh.cmd web，端口 8231-8280）；应用设置记录 developerTools:false；全程未开启 DevTools/inspect
+- 平台各服务镜像、tools/list 来源和检查时间：测试平台 192.168.50.28:443 可达（2026-10-06 ~10:20 与 ~11:45 两轮）；真实 tools/list 与各服务身份需登录态 → not-run（隔离 store 从未登录；原用户 store 未触碰）
 
-| Case/子项 | Desktop | npm | 证据级别 | JSON 路径/报告编号/SHA | 操作/结果/异常 |
+| Case/子项 | Desktop | npm | 证据级别 | JSON 路径/报告编号 | 操作/结果/异常 |
 |---|---|---|---|---|---|
-| W0 | pass | pass | 实机安装+逐文件哈希 | tgz ffcd7772…；安装件 65/65 一致 | 两形态 prepare 成功；桌面首启初始化为 Windows 特有前置（见 helper diff prepare.ps1） |
-| W1 | pass | pass | 产品入口一次导出 | desktop: evidence/W1-desktop-20e57aba.json (SHA 1B5BDEF6…C3DB)；npm: evidence/W1-npm-e5c1a19c.json (SHA F8E5ED6D…79F2) | 侧栏单一 OpenBKN→面板右上角仅"诊断"→导出；报告编号与面板一致；passive 模式；checks: bootstrap/business/diagnostics-entry=pass、cli=pass(exitCode 0)、login-state=fail/not-logged-in（未登录为真实状态，如实报告）。getReport 本身无平台请求的证据=passive+无凭据可刷新；父面板业务读取以 observed:login-state 单列 ✓ |
-| W2 缺 baseUrl | pass | pass | 真实 Host 受控故障 | desktop: evidence/W2-desktop-e35583f2.json (8CAA0D91…)；npm: 172d20a3*（见 W2-npm-dialog.md） | business-entry=fail/configuration-invalid/configField=baseUrl；外框+诊断可用；分类为真实校验而非静态检查 ✓ |
-| W2 非法格式子项 | fail(候选行为) | fail(候选行为) | 真实 Host 受控故障 | desktop: W2b-desktop-addbb3eb.json；npm: 172d20a3 轮 W2b-npm-dialog.md | 非法格式 baseUrl（含空格/坏 scheme）未被 configuration 阶段拦截：business-entry=pass，仅 not-logged-in 失败。两形态一致 → 交主开发判定 |
-| W3 | pass | pass | 故障变体（真实 import 错误） | desktop: W3-desktop-b8062c24.json；npm: aa8e40a3（W3-npm-dialog.md） | business-entry=fail/**module-resolution-failed**；侧栏单一 OpenBKN+外框不随失败；诊断独立可开；配置缺失与 import 错误未混同；变体 base/variant SHA 记录于 evidence/W3-*.md |
-| W4 | pass | pass | 故障变体（apply() 受控抛错） | desktop: W4-desktop-73033c09.json；npm: 32c3ff70（W4-npm-dialog.md） | business-entry=fail/**initialization-failed**；诊断仍可用、阶段对应；平台地址/Token 未被误指 |
-| W5 | 部分 pass | 部分 pass | 实机 | W9 轮报告 163170fb | CLI 不可用→observed:cli=fail/**cli-missing**（与登录状态区分）✓；首次未登录（空 BKN_CONFIG_DIR，从未 logout 伪装）→面板登录入口+诊断可开 ✓；平台不匹配→需真实平台权限账号 not-run |
-| W6 | not-run(真实) | not-run(真实) | — | — | 无真实受限账号；受控拒绝归入 W7 轮（network-unreachable/tls-failed）；不以本机 permissive stub 证明权限 |
-| W7 连接失败 | not-run(desktop) | pass(npm) | 受控端点+虚构凭据，有界等待 | 8250 轮 e37d8d02 前后、8251 轮报告 | 连接失败=observed:context-loader/**network-unreachable**（闭合端点）；TLS 失败=/**tls-failed**（真实平台自签证书、本轮不加载 CA，未禁用证书检查）；两类分别分类、等待有界、重试入口存在；后续恢复由 W1/W9 轮健康态证明 |
-| W8 | 部分(npm) | 部分(npm) | 受控 | 8250/8251 轮 | MCP 连接失败=network-unreachable ✓；目录请求失败（MCP 通、目录挂）需真实平台+登录 → not-run |
-| W9 | pass(desktop) | —（同代码路径，desktop 实测） | 故意植入 canary | W9-desktop-163170fb.json | canary baseUrl/cliPath/伪造 token 文件内容在导出报告与 UI 中零出现（grep CANARY=0）；不可脱敏段未虚构；被动/主动记录区分（observed:* 单列） |
-| W10 | pass | pass | 故障变体（诊断 import 破坏） | 产品 UI 快照（transcript+无独立 JSON：诊断服务不可用时不提供导出） | 降级文案"诊断服务不可用（诊断入口未随插件启动或连接中断）"如实显示；业务入口保留（登录 UI+平台地址正常）；不虚构健康；关闭重开同样降级 ✓；主动复测/取消=optional/not-run；多 Host 并发=not-run；导出失败路径=not-run（该变体下无导出入口，未见 raw Error） |
-| W11 | 部分 | 部分 | 实机 | W1/W9 轮 | 无真实浏览器登录（无凭据）→ R3-R8、真实列目录 not-run；CLI 0.1.5 兼容=observed:cli pass（exitCode 0，多轮）；hasToken-only/expired 解析覆盖未测（fixture 分列缺） |
-| W12 | pass(desktop+npm) | pass(npm) | 实机升级/重装/卸载 | U1-upgrade.md、R9-npm.md | -4/-5→-6 升级、ID-only 保留、两种 name-qualified 迁移、重复安装三 row 各一（共 3 个·3 运行中）、R9 整包卸载（两形态：row/UI 消失、deps 清空、用户 patch 保留）；撤销故障恢复=W9 轮重装后 business-entry=pass |
+| W0 | pass | pass | 实机安装+逐文件哈希 | tgz ffcd7772…；两形态 65/65 | 桌面首启初始化为 Windows 特有前置（helper diff prepare.ps1） |
+| W1 | pass | pass | 产品入口一次导出 JSON | desktop 20e57aba / npm e5c1a19c | 侧栏单一 OpenBKN→面板右上角仅"诊断"→导出；编号与面板一致；passive；checks 见 JSON。**收窄**：无登录凭据+passive 只能证明"导出时无可刷新 token 且无登录态检查记录"，不能证明 getReport 全路径零平台请求——该强结论未验证 |
+| W2 缺 baseUrl | pass | pass | JSON 导出（两形态） | desktop e35583f2；npm b10fcb42/2f59d3c7/0214f597（三轮一致） | business-entry=fail/configuration-invalid/configField=baseUrl |
+| W2 非法格式 | fail(候选行为) | fail(候选行为) | JSON 导出（desktop）/JSON+UI（npm） | desktop addbb3eb；npm 172d20a3 | 非法格式未被 configuration 拦截：business-entry=pass，仅 not-logged-in。两形态一致 → 主开发判定 |
+| W3 | pass | pass | JSON 导出（两形态） | desktop b8062c24；npm 5349bb3a（另 aa8e40a3/33db54bf 两轮 UI 记录一致） | business-entry=fail/module-resolution-failed；变体 SHA 见 evidence/W3-*.md |
+| W4 apply() 抛错 | pass | pass | JSON 导出（两形态） | desktop 73033c09；npm b53dcd31（另 32c3ff70/6f94a7b9 一致） | business-entry=fail/initialization-failed |
+| W4 存储初始化失败子项 | not-run | not-run | — | — | 未能从包外构造该受控故障（HANDOFF 允许"未能构造的子项留未测"） |
+| W5 CLI 不可用 | pass(desktop 轮) | — | JSON | desktop W9 轮 163170fb | observed:cli=fail/cli-missing，与登录状态区分 |
+| W5 首次未登录 | pass | pass | 多轮 UI+JSON | 各轮 login-state=not-logged-in | 空 BKN_CONFIG_DIR 从未登录；面板登录入口+诊断可开 |
+| W5 平台不匹配 | not-run | not-run | — | — | 需真实平台权限账号 |
+| W6 | not-run(真实) | not-run(真实) | — | — | 无真实受限账号；受控拒绝见 W7 轮（受控≠真实平台权限语义，分别标注） |
+| W7 连接失败 | not-run(desktop) | pass | JSON 导出（npm） | W7a-npm-abde94b0（闭合端点+虚构凭据，有界 ~12s） | observed:context-loader=fail/network-unreachable；面板文案"无法连接 OpenBKN Context Loader MCP"；重试入口在；后续健康态由 W1/W9 轮证明 |
+| W7 TLS 失败 | not-run(desktop) | pass | JSON 导出（npm） | W7b-npm-d4e7522f（真实平台自签证书、本轮进程不加载 CA；未禁用证书校验） | observed:context-loader=fail/tls-failed；与 network-unreachable 分立 |
+| W7 有限超时恢复 | 部分 | 部分 | — | — | 等待有界✓、重试入口✓；"超时后重试恢复连接"完整链路需可连端点+登录 → 未单测 |
+| W8 MCP 连接失败 | — | 部分(npm) | 同 W7a | abde94b0 | 连接失败=network-unreachable；**目录请求失败（MCP 通、目录挂）需真实平台 → not-run**；两类未混同 |
+| W9 canary 值不泄漏 | pass(desktop) | — | JSON | 163170fb | canary baseUrl/cliPath/伪造 token 文件内容在导出 JSON 零出现（grep=0） |
+| W9 嵌套 cause/headers/新增日志 | not-run | not-run | — | — | 未构造嵌套错误与日志捕获子项；仅验证了配置值与凭据文件不入导出 |
+| W10 降级+业务保留+关闭重开 | pass | pass | 产品 UI 记录（降级态无导出按钮） | W10-*-dialog.md（两形态各两轮） | "诊断服务不可用（诊断入口未随插件启动或连接中断）"如实显示；业务登录入口+平台地址正常；关闭重开同样降级；无 raw error |
+| W10 多 Host/并发覆盖/导出失败路径/主动复测 | not-run | not-run | — | — | 按 HANDOFF optional/not-run；未构造并发与导出故障注入 |
+| W11 真实登录/列目录 | not-run | not-run | — | — | 无凭据；CLI 0.1.5 兼容=observed:cli pass（exitCode 0，多轮）；fixture 解析覆盖未测 |
+| W12 重装/卸载/撤销恢复 | pass(desktop+npm) | pass | 实机 | R9-npm.md、transcript | 整包卸载两形态：row/UI 消失、deps 清空、用户 patch 保留；故障撤销后重装正常（W9 轮 business-entry=pass）；重复安装"共 3 个·3 运行中" |
+| W12 就地升级 -4→-6 / 迁移 | 仅作观察留档 | 仅作观察留档 | 实机观察 | U1-upgrade.md | **按项目决策（2026-10-06）：不做就地升级路径，发布采用旧版本完全卸载后重装；下列观察仅留档非门禁**：-4 ID-only/name-qualified canary 均生效；升 -6 后旧 name 断言跳过 override；删 name/改 ./business 两写法恢复；ID-only 保留 |
+| W12 就地升级 -5→-6 | not-run | not-run | — | — | 按项目决策取消（重装路径） |
 
-- R1–R9 / U1 逐项结果：R1 pass（desktop 插件管理器三 row 各一运行中；npm 重复安装轮"共 3 个·3 运行中"）；R2 pass（未登录→登录入口+诊断可开，多轮）；R3-R8 not-run（需真实登录/绑定/模型/两个真实网络）；R9 pass（desktop+npm）；U1 pass（全子项，见 U1-upgrade.md）
-- G6：评分器自测 3/3 通过（run-eval.test.mjs：not-run 单列、无权限账号排除、全未测不得计成功）；真实模型 G6 **not-run**（无真实登录/模型凭据；Windows 不继承 macOS 7/10 结果）；g6-marks.json 未生成（不得预填）
-- live guard：guard-probe-cli.test.mjs 4/4 通过（含 Windows .cmd/PATH/带空格&路径用例）；--live 真实 ToolRuntime 探针 **not-run**（需有效登录+两个真实网络 ID）
-- 每个变体 base/variant SHA：见各 root evidence/W3|W4|W10-*.md（run-case 记录 base ffcd7772… 与 variant SHA、修改文件前后 SHA）
-- 报告下载完成绝对路径：desktop 全部经原生另存为对话框直存 C:\bkn-verify\diag6-desktop\evidence\*.json；npm W1 经浏览器下载落 D:\mydocs\downloads\ 后移入 evidence 并删除原件（其余 npm 轮因 IAB 下载通道回放缓存不可靠，改以产品 UI 快照为证，已在 dialog.md 注明）
-- 原生 helper 修正 diff/语法与实际运行结果：四个 helper 原生解析全过；修正 3 处（prepare.ps1 首启例外、run-case.ps1 无 BOM patch、cleanup.ps1 LiteralPath+npm 子进程停止），diff 见 C:\bkn-verify\helper-diffs.diff；verify-kit.ps1 曾试改 tar 解析后因自哈希锁定回退，改用子进程 PATH 前置 System32（环境级 workaround，未改 kit 字节）
-- 已选原状态哈希、父面板操作与被动导出的状态/请求分别记录：各 root evidence/before-*.json、after-*.json（collect-state-hashes 输出）；observed:* 与 entry 检查单列
-- 本轮 PID/临时登录与清理、保留证据、未触碰原 profile 的范围：本轮零登录（无从登出）；结束态本轮进程 0 残留（app×多子进程、web 子进程全部核验身份后停止）；两 profile 候选均已卸载；canary 伪造凭据已删；patch 复位为健康配置；应用首启自动创建的空默认工作区目录（D:\mydocs\documents\deepseek-harness\，0 文件）已删除；%APPDATA% 无 DeepSeek Harness 目录（原用户环境未动）；C:\bkn-verify\ 保留全部脱敏证据（含 private/ 下含 token 的 web 日志——不回传）
-- 所有异常/未测/客户根因仍未知项：
-  1) 非法格式 baseUrl 未被 configuration 校验拦截（W2 子项 fail，交主开发）
-  2) Desktop 每次启动重现设置向导（跳过充值完成态似乎不持久；DSH 应用层行为，与候选插件无关，未定位根因）
-  3) npm 11.19 install-scripts 隔离告警（koffi/node-pty 脚本未跑；dsh web 实测正常）
-  4) IAB 浏览器下载通道不稳定（首次成功、后续回放旧下载）；已改用 UI 快照取证
-  5) 诊断报告 dshVersion/pluginLoadedVersion=null（与 manifest knownLimitations 一致）
-  6) W1 首测时 BOM patch 曾致 Host "未能保存设置"启动故障——helper 已修（无 BOM 写入），候选本身在正确 patch 下无此问题
+- R1 pass（desktop 插件管理器三 row 各一运行中；npm 重复安装轮同）；R2 pass（多轮）；R3–R8 not-run（需真实登录/绑定/模型/两个真实网络）；R9 pass（两形态）；U1 见 W12 升级行（决策后仅留档）
+- G6：评分器自测 3/3（not-run 单列、无权限排除、全未测不得计成功）；真实模型 G6 not-run（无凭据；不继承 macOS 7/10；g6-marks.json 未生成）；评分依赖 js-yaml 4.3.2 隔离安装
+- live guard：guard-probe-cli.test.mjs 4/4（含 Windows .cmd/PATH/空格&用例）；--live 真实 ToolRuntime not-run（需登录+两个真实网络）
+- 变体 base/variant SHA、修改文件前后 SHA：evidence/W3|W4|W10-*.md（run-case 记录，base 均为 ffcd7772…）
+- 报告下载完成绝对路径：desktop 全部经原生另存为直存 evidence；npm 经浏览器下载+保存对话框确认（复核提醒后补全），早期两份静默下载件已从 Downloads 回收入档；Downloads/Recent 残留已清
+- 原生 helper 修正（helper-diffs.diff，共 4 处）：prepare.ps1 桌面首启例外；run-case.ps1 无 BOM patch 写入（PS5.1 BOM 曾致 Host"未能保存设置"启动故障）+ 记录 web 子进程（端口监听者→evidence\*.children.pid）；cleanup.ps1 FileInfo -LiteralPath + 仅停记录在案子进程（PID+端口+命令行三重核验，`*.pid` 排除 `*.children.pid`）——已实测：`stopping recorded npm web child pid 15104 (port 8280)` 后端口释放
+- 已选原状态哈希：各 root evidence/before-*.json、after-*.json（仅隔离测试根内 profile 文件——**不构成原用户状态证明，见下**）
+- **npm cordis.patch.yml 前后哈希变化解释（复核指出）**：patch 是本轮受控变量——每轮 run-case/W7/U1 脚本按 case 写入对应内容（健康/缺 baseUrl/非法 URL/canary），before-*.json 在写前快照、after 反映复位值；全部变化均来自本轮受控写入，非 Host 自行改写
+- **原用户状态核验（收窄后的事实）**：验收开始时原用户无 DSH 进程、无 %APPDATA%\DeepSeek Harness；用户默认 home ~/.dsh（9 月起在用）除下述偏差外未触碰（profiles/desktop、profiles/work、sessions、storages 的 mtime 均早于本轮或未变）
+- **隔离偏差与纠正（本轮自纠，2026-10-06 复核追查时发现）**：10:30 的 `dsh web` 冒烟测试未设 DSH_HOME，初始化了用户默认 home 的 ~/.dsh/profiles/web（仅 4 个样板文件：package.json 空 deps + 空 cordis 骨架；无插件/会话/凭据写入）；已确认内容后删除该目录，~/.dsh 其余状态经 mtime 扫描确认未变。教训已写入 helper（run-case 固定设置 DSH_HOME）
+- 本轮 PID/临时登录与清理：零登录；结束态本轮进程 0 残留（多次全量核验）；两 profile 候选已卸载；canary 伪造凭据已删；patch 复位；首启自动创建的空默认工作区目录已删；IAB 遗留保存对话框已逐一关闭
+- 所有异常/未测/根因未知项：
+  1) 非法格式 baseUrl 未被 configuration 校验拦截（候选缺陷，两形态一致；源码层面仅要求字符串必填——复核确认）
+  2) Desktop 每次启动重现设置向导（跳过充值完成态似不持久；DSH 应用层，根因未定位）
+  3) npm 11.19 install-scripts 隔离告警（不影响 dsh web）
+  4) 诊断报告 dshVersion/pluginLoadedVersion=null（与 manifest knownLimitations 一致）
+  5) BOM patch 曾致 Host 启动故障（helper 已修，非候选问题）
+  6) macOS G6 三项失败未被本轮消除；发布门禁不因本轮放行

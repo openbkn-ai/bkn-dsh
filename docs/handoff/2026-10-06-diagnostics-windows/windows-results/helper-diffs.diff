@@ -21,7 +21,7 @@
  $desktopCli = Join-Path $env:LOCALAPPDATA 'Programs\DeepSeek Harness\resources\runtime\cli\bin\dsh.cmd'
 === diff windows/run-case.ps1 ===
 --- orig/run-case.ps1	2026-10-06 10:38:57.389032100 +0800
-+++ diag6-kit/windows/run-case.ps1	2026-10-06 10:39:02.305866900 +0800
++++ diag6-kit/windows/run-case.ps1	2026-10-06 12:14:33.611998500 +0800
 @@ -79,12 +79,16 @@
  if ($LASTEXITCODE -ne 0) { throw "install of $installTgz failed" }
  
@@ -41,10 +41,41 @@
  }
  
  if ($Form -eq 'desktop') {
+@@ -107,6 +111,17 @@
+         -RedirectStandardOutput $log -RedirectStandardError (Join-Path $privateDir "$CaseId-$Form-web.err.log") `
+         -PassThru -WindowStyle Hidden
+     Start-Sleep -Seconds 10
++    # Record the real web child pid by resolving the listener on our chosen
++    # port, so cleanup stops exactly this process instead of sweeping by path.
++    $listener = Get-NetTCPConnection -LocalPort $Port -State Listen -ErrorAction SilentlyContinue | Select-Object -First 1
++    if ($listener) {
++        $childPid = $listener.OwningProcess
++        $childProc = Get-CimInstance Win32_Process -Filter "ProcessId=$childPid" -ErrorAction SilentlyContinue
++        if ($null -ne $childProc -and $childProc.CommandLine -match ' web ') {
++            "$childPid`:$Port" | Set-Content -Encoding ascii (Join-Path $TestRoot "evidence\$CaseId-$Form.children.pid")
++            "recorded web child pid $childPid on port $Port" | Add-Content -Encoding utf8 $evidence
++        }
++    }
+     "started dsh web pid $($proc.Id) on port $Port" | Add-Content -Encoding utf8 $evidence
+     Write-Host "Case $CaseId (npm): dsh web on http://127.0.0.1:$Port (pid $($proc.Id)). Exercise the diagnostics panel in a browser."
+     $proc.Id | Set-Content -Encoding utf8 (Join-Path $TestRoot "evidence\$CaseId-$Form.pid")
 === diff windows/cleanup.ps1 ===
 --- orig/cleanup.ps1	2026-10-06 10:44:51.035545500 +0800
-+++ diag6-kit/windows/cleanup.ps1	2026-10-06 10:49:17.414159800 +0800
-@@ -23,7 +23,21 @@
++++ diag6-kit/windows/cleanup.ps1	2026-10-06 12:34:22.603653700 +0800
+@@ -13,8 +13,10 @@
+ $env:BKN_CONFIG_DIR = $prepared.bknConfigDir
+ if ((Get-FileHash -LiteralPath $CandidateTgz -Algorithm SHA256).Hash -ne $prepared.candidate) { throw 'Candidate differs from preparation' }
+ 
+-# Stop only processes this test root started.
+-Get-ChildItem (Join-Path $TestRoot 'evidence') -Filter '*.pid' -ErrorAction SilentlyContinue | ForEach-Object {
++# Stop only processes this test root started. ('*.pid' must not swallow the
++# '*.children.pid' records handled below.)
++Get-ChildItem (Join-Path $TestRoot 'evidence') -Filter '*.pid' -ErrorAction SilentlyContinue |
++  Where-Object { $_.Name -notlike '*.children.pid' } | ForEach-Object {
+     $pidText = (Get-Content $_.FullName -ErrorAction SilentlyContinue | Select-Object -First 1)
+     if ($pidText -match '^\d+$') {
+         $target = Get-Process -Id ([int]$pidText) -ErrorAction SilentlyContinue
+@@ -23,7 +25,28 @@
              Write-Host "stopped pid $($target.Id) ($($_.BaseName))"
          }
      }
@@ -54,18 +85,24 @@
 +    Remove-Item -LiteralPath $_.FullName -Force
 +}
 +
-+# The npm `.cmd` launcher exits while its node web child keeps serving; verify
-+# and stop only node children launched from this round's isolated CLI tree.
-+if ($prepared.form -eq 'npm') {
-+    $cliRoot = Split-Path (Split-Path $prepared.dshCli)
-+    Get-CimInstance Win32_Process -Filter "Name='node.exe'" | Where-Object {
-+        $_.CommandLine -like ("*" + $cliRoot + "*") -and $_.CommandLine -match ' web( |$)'
-+    } | ForEach-Object {
-+        Write-Host ("stopping npm web child pid $($_.ProcessId)")
-+        Stop-Process -Id $_.ProcessId -Force
++# The npm `.cmd` launcher exits while its node web child keeps serving. Stop
++# only child pids run-case recorded, after re-verifying each is still this
++# round's web child (CLI tree path + ' web ' + the recorded port in its
++# command line); never sweep by path alone.
++Get-ChildItem (Join-Path $TestRoot 'evidence') -Filter '*.children.pid' -ErrorAction SilentlyContinue | ForEach-Object {
++    $childPidText = (Get-Content $_.FullName -ErrorAction SilentlyContinue | Select-Object -First 1)
++    if ($childPidText -match '^(\d+):(\d+)$') {
++        $childPid = [int]$Matches[1]; $childPort = $Matches[2]
++        $target = Get-CimInstance Win32_Process -Filter "ProcessId=$childPid" -ErrorAction SilentlyContinue
++        if ($null -ne $target -and $target.CommandLine -match ' web ' -and $target.CommandLine -match ('--port ' + $childPort)) {
++            Write-Host ("stopping recorded npm web child pid $childPid (port $childPort)")
++            Stop-Process -Id $childPid -Force
++        } elseif ($null -ne $target) {
++            Write-Host ("skipping pid $childPid : command line no longer matches this round's web child")
++        }
++        Remove-Item -LiteralPath $_.FullName -Force
 +    }
  }
  
  # Reinstall the pristine candidate so the next case starts clean — into the
-=== verify-kit.ps1 (reverted; PATH workaround used instead) ===
-(identical — reverted)
+=== verify-kit.ps1: unchanged (self-hashed; System32-first PATH used as environment workaround) ===
