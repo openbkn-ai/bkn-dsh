@@ -31,7 +31,7 @@ Date / operator / report commit: 2026-10-06 晚 / Windows agent（ZCode，kalia 
 | W10 | pass | pass | 产品 UI 观察（降级态无导出按钮，如实不造 JSON） | 业务入口保留（登录 UI+平台地址）；"诊断服务不可用（诊断入口未随插件启动或连接中断）"如实降级；无 raw error |
 | W9 | pass | pass | JSON：desktop `bc6e7538`；npm `c2fe2ef7` | canary baseUrl/cliPath/伪造 token（含短凭据别名 CANARY-SHORT-AB）在导出 JSON **grep=0**；UI 亦无 canary；observed:cli=fail/cli-missing（canary cliPath 不存在，如实） |
 | H01 | pass | pass | desktop W1 JSON：hostForm=`desktop`；npm W1 JSON：hostForm=`unknown` | npm 形态真实身份另证：隔离 dsh.cmd CLI + web profile + 端口监听者命令行；不以 Node 存在推断 npm（-7 修正后行为） |
-| R9 | pass | pass | UI+磁盘核验+CLI 重装（操作记录） | 卸载后：三 row/UI 消失（desktop+npm 插件管理器实测）、deps 清空、@openbkn 空壳、用户 patch 保留；CLI 重装 exit 0；新 Host 三 row 恢复"共 3 个 · 3 运行中"、版本 -7。未做旧版升级（按通知） |
+| R9 | pass | pass | UI+磁盘核验+CLI 重装（R9-operation-record.md；patch 保留哈希口径见 r9-patch-preservation.md） | 卸载后：三 row/UI 消失、deps 清空、@openbkn 空壳、测试 patch 层保留（哈希级证明=insufficient-evidence，见专项记录）；CLI 重装 exit 0；新 Host 三 row 恢复、版本 -7。未做旧版升级 |
 | F02 controlled runtime | n/a | **pass（6/6）** | `fidelity-runtime.jsonl` + prepare 输出（包件 66 文件核验、官方 npm DSH 0.2.0-rc.2 peers） | 六场景显式 pass：corrected-same-turn / second-mismatch-errors / unbound-unaffected / full-question-summary-rejected / headerless-cached-reprint / scoped-inventory-cached-repair；受控 fixture，不替代真实问答/权限验收 |
 | F01 | not-run | not-run | — | 需真实登录授权业务图；无凭据，未用模拟 fixture 冒充 |
 | G6 | not-run | not-run | — | 需真实模型/平台凭据；未被要求不产生费用；不继承 macOS 三题结果 |
@@ -47,9 +47,13 @@ Date / operator / report commit: 2026-10-06 晚 / Windows agent（ZCode，kalia 
 ## User state and cleanup
 
 - 状态哈希：两 root 各 case before-*.json + after-matrix.json（仅隔离 root 内 profile 文件，collect-state-hashes 输出）
-- 用户状态：验收开始与结束时用户 ~/.dsh/profiles 均仅 desktop、work（mtime 扫描未发现变化；不以 mtime 证明内容未变）；本轮所有进程经身份核验停止（children 记录 pid:port:creationTicks，cleanup 输出 "listener verified"）；结束态本轮 node/DSH 进程 0、端口 18271-18282 全释放
+- 用户日常 profile（~/.dsh）**内容哈希 before/after 未采集 → 内容未验证**（不可事后补造）；仅有 mtime 扫描：验收开始与结束时 ~/.dsh/profiles 均仅 desktop、work，未发现 mtime 变化（不以 mtime 证明内容未变）；本轮所有进程经身份核验停止（children 记录 pid:port:creationTicks，cleanup 输出 "listener verified"）；结束态本轮 node/DSH 进程 0、端口 18271-18282 全释放
 - canary 伪造凭据与 canary patch 已清除，两 root patch 复位健康配置；根目录保留（R9 终态=已重装 -7 候选）
 - 未回传 private/ 下 web 启动日志（含访问 token）
+
+## 导出件与 Git 一致性
+
+18 份产品 JSON 的真实绝对路径、报告 ID、本地 SHA-256 及与 Git 回传字节的对照见 evidence/exports-git-consistency.json：**18/18 内容一致**（本地 CRLF/Git blob LF 按换行归一比较；除换行外字节相同）。本轮所有导出经保存对话框直存 evidence 路径，无 Downloads 中转。
 
 ## Acceptance boundary
 

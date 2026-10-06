@@ -9,7 +9,7 @@
 
 ## 读法
 - **RESULTS.md** — 按模板的完整矩阵、身份、异常、清理与边界
-- **desktop-evidence/ 、npm-evidence/** — 产品导出诊断 JSON（desktop 9 份 + npm 10 份含 W9；W10 降级态无导出按 UI 记录）、fidelity-runtime.jsonl（F02 六场景）、before/after 状态哈希
+- **desktop-evidence/ 、npm-evidence/** — 产品导出诊断 JSON 共 **18 份（desktop 9 + npm 9，含 W9）**；W10 降级态无导出按 UI 记录；另含 fidelity-runtime.jsonl（F02 六场景）、verify-kit-output.json（verifier 原生输出）、exports-git-consistency.json（18 份本地↔Git 内容一致性=全部一致）、owned-pids-record.md、r9-patch-preservation.md、rounds-inputs.md、变体 SHA 原始记录、before/after 状态哈希
 
 ## 复核重点
 - W2b 两形态 JSON：desktop `W2b-desktop-c391a9d0.json`、npm `W2b-npm-380f2566.json`
