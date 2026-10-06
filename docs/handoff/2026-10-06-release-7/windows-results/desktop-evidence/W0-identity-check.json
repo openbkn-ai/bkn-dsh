@@ -1,0 +1,47 @@
+﻿{
+    "generatedAt":  "2026-10-06T16:48:05.7370649Z",
+    "kit":  {
+                "zipSha256":  "df0016c6d2b511c009f932402dd80155248c4ac61260cbd3cad70ecb483cef54",
+                "zipBytes":  248434,
+                "tgzSha256":  "6bbab27876e743032572ddce107fcce09e0d681f87bee19fba8d78180e5a63a8",
+                "tgzBytes":  177442,
+                "manifestFileCount":  66,
+                "verifyKit":  "pass (run during intake; see RESULTS Fixed identity)"
+            },
+    "forms":  [
+                  {
+                      "form":  "desktop",
+                      "profile":  "desktop",
+                      "installedVersion":  "0.2.0-rc.2-openbkn.0.2.0-7",
+                      "manifestFiles":  66,
+                      "matched":  66,
+                      "missing":  [
+
+                                  ],
+                      "differs":  [
+
+                                  ],
+                      "extra":  [
+
+                                ],
+                      "installedPath":  "C:\\bkn-verify\\unified7-fidelity-desktop\\dsh-home\\profiles\\desktop\\node_modules\\@openbkn\\dsh-business-context"
+                  },
+                  {
+                      "form":  "npm",
+                      "profile":  "web",
+                      "installedVersion":  "0.2.0-rc.2-openbkn.0.2.0-7",
+                      "manifestFiles":  66,
+                      "matched":  66,
+                      "missing":  [
+
+                                  ],
+                      "differs":  [
+
+                                  ],
+                      "extra":  [
+
+                                ],
+                      "installedPath":  "C:\\bkn-verify\\unified7-fidelity-npm\\dsh-home\\profiles\\web\\node_modules\\@openbkn\\dsh-business-context"
+                  }
+              ]
+}

@@ -1,5 +1,7 @@
 # Unified -7 Windows retest results
 
+> **补证提交说明（第 2 个 commit）**：按主 agent 复核意见补交——W0-identity-check.json（66/66 复算存档）、各轮变体 SHA 原始记录（W3/W4/W10-*.md）、rounds-inputs.md（场景输入+时序）、fidelity-prepare-record.json 与 f02-execution-command.ps1（F02 实际执行记录）、W10-ui-observation.md / R9-operation-record.md（操作原记录）、cleanup-process-record.md（进程身份核验/停止/端口释放）、exports-sha-record.json（全部导出件 SHA；本轮经保存对话框直存 evidence 路径，无 Downloads 中转）、W9-canary-record.md（注入位置与扫描范围）。并纠正两点：W2c 恢复不作为 W4 后续恢复证明；深层库存超时与平台 #2029 分列。
+
 Date / operator / report commit: 2026-10-06 晚 / Windows agent（ZCode，kalia 机器）/ 本次回传分支 docs/unified7-fidelity-windows-results
 
 ## Fixed identity
@@ -25,7 +27,7 @@ Date / operator / report commit: 2026-10-06 晚 / Windows agent（ZCode，kalia 
 | W2c relative | pass | pass | JSON：desktop `9808646a`；npm `1f8e01d4` | 相对路径同样拒绝 |
 | W2c recovery | pass | pass | JSON：desktop `26bc3445`；npm `67e954e6` | 恢复合法 URL 后 business 加载成功、报告中无旧 configuration-invalid 残留；为重启配置恢复，不冒充同进程在线恢复 |
 | W3 | pass | pass | JSON：desktop `e6455961`；npm `0f3240ad` | 基包不变（变体 SHA 由 run-case 记录于各 root evidence）；外框保留、诊断独立、`fail/module-resolution-failed` |
-| W4 | pass | pass | JSON：desktop `e10ad569`；npm `d1c48003` | `fail/initialization-failed`；诊断独立保留；后续 W2c-recover 轮证明撤销故障后恢复 |
+| W4 | pass | pass | JSON：desktop `e10ad569`；npm `d1c48003` | `fail/initialization-failed`；诊断独立保留；变体 SHA 见各 root evidence/W4-*.md；**W4 撤销后专项恢复未单独复测**（W2c-recovered 轮时序在 W3/W4 之前，属配置故障恢复证据，不作为 W4 后续恢复证明——见 rounds-inputs.md 时序注） |
 | W10 | pass | pass | 产品 UI 观察（降级态无导出按钮，如实不造 JSON） | 业务入口保留（登录 UI+平台地址）；"诊断服务不可用（诊断入口未随插件启动或连接中断）"如实降级；无 raw error |
 | W9 | pass | pass | JSON：desktop `bc6e7538`；npm `c2fe2ef7` | canary baseUrl/cliPath/伪造 token（含短凭据别名 CANARY-SHORT-AB）在导出 JSON **grep=0**；UI 亦无 canary；observed:cli=fail/cli-missing（canary cliPath 不存在，如实） |
 | H01 | pass | pass | desktop W1 JSON：hostForm=`desktop`；npm W1 JSON：hostForm=`unknown` | npm 形态真实身份另证：隔离 dsh.cmd CLI + web profile + 端口监听者命令行；不以 Node 存在推断 npm（-7 修正后行为） |
@@ -54,5 +56,5 @@ Date / operator / report commit: 2026-10-06 晚 / Windows agent（ZCode，kalia 
 - 未做旧版升级（按通知：完全移除后重装）；未合并/未 tag/未 publish/未动 dist-tag/未改 main；仅新增本证据分支
 - 已验证：W0/W1/W2a/W2b/W2c×3/W3/W4/W9/H01（两形态产品 JSON）、W10（两形态 UI）、R9（两形态操作记录）、F02（npm 受控 6/6）
 - 未测（无凭据，如实）：F01、真实 G6、live guard、真实登录链路；受限账号项保持 not-run
-- 平台 #2029（深层库存超时）、历史故障机器根因、设置向导重现根因各自保持开放
+- 两个平台侧问题**分别**保持开放：(a) 深层库存能力超时（BOM 题依赖一致口径 fallback 交付，超时未修复）；(b) 平台 #2029 大结果落库问题（平台维护方处理）。另：历史故障机器根因、设置向导重现根因保持开放
 - 发布门禁由主 agent 复核后决定；本报告不宣称发布

@@ -1,0 +1,6 @@
+﻿started desktop app pid 18744 (DSH_HOME=C:\bkn-verify\unified7-fidelity-desktop\dsh-home, profile desktop)
+started desktop app pid 29412 (DSH_HOME=C:\bkn-verify\unified7-fidelity-desktop\dsh-home, profile desktop)
+started desktop app pid 27832 (DSH_HOME=C:\bkn-verify\unified7-fidelity-desktop\dsh-home, profile desktop)
+started desktop app pid 28364 (DSH_HOME=C:\bkn-verify\unified7-fidelity-desktop\dsh-home, profile desktop)
+started desktop app pid 4276 (DSH_HOME=C:\bkn-verify\unified7-fidelity-desktop\dsh-home, profile desktop)
+started desktop app pid 28120 (DSH_HOME=C:\bkn-verify\unified7-fidelity-desktop\dsh-home, profile desktop)
