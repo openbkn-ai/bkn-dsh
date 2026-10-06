@@ -1,0 +1,17 @@
+{
+  "runId": 37458538284,
+  "sourceCommit": "2abd71d0ac4d1bc62575e6e2d58c9821aa637add",
+  "publish": false,
+  "summaryLines": [
+    "build, test and publish\tTest plugin and compatibility tooling\t2026-10-06T11:51:14.5726955Z # tests 332",
+    "build, test and publish\tTest plugin and compatibility tooling\t2026-10-06T11:51:14.5727456Z # pass 331",
+    "build, test and publish\tTest plugin and compatibility tooling\t2026-10-06T11:51:14.5727711Z # fail 0",
+    "build, test and publish\tTest plugin and compatibility tooling\t2026-10-06T11:51:14.5728234Z # skipped 1",
+    "build, test and publish\tTest plugin and compatibility tooling\t2026-10-06T11:51:15.2280968Z # tests 60",
+    "build, test and publish\tTest plugin and compatibility tooling\t2026-10-06T11:51:15.2281524Z # pass 60",
+    "build, test and publish\tTest plugin and compatibility tooling\t2026-10-06T11:51:15.2281791Z # fail 0",
+    "build, test and publish\tTest plugin and compatibility tooling\t2026-10-06T11:51:15.2282349Z # skipped 0",
+    "build, test and publish\tPack and inspect the tarball\t2026-10-06T11:51:22.3718941Z all 16 export/main/types targets are packed",
+    "build, test and publish\tSummarize\t2026-10-06T11:51:22.3994253Z \u001b[36;1m  echo \"- publish requested: false\"\u001b[0m"
+  ]
+}

@@ -67,9 +67,18 @@ function quantity(value: string): string | undefined {
   return `${negative}${integer}${fraction.length === 0 ? '' : `.${fraction}`}${match[4] ?? ''}`
 }
 
+function stockQuantity(value: string): string | undefined {
+  // A successful live handoff can explicitly state that the scoped query
+  // returned no stock row. Keep that absence distinct from measured zero;
+  // unknown/missing quantities and nonnumeric usage are never inferred.
+  const cleaned = cell(value)
+  if (['无合格库存行', '无库存行', '无库存记录', '无记录', 'NO_ROW'].includes(cleaned)) return '0*'
+  return quantity(cleaned)
+}
+
 function unit(value: string): string {
   const cleaned = cell(value)
-  return ['?', '—', '-', '未知'].includes(cleaned) ? '?' : cleaned
+  return ['?', '—', '-', '未知', '未提供'].includes(cleaned) ? '?' : cleaned
 }
 
 /** Read explicit columns/level headings only; never infer levels from IDs. */
@@ -118,7 +127,7 @@ function parseDetail(text: string): { readonly rows: readonly DetailRow[]; reado
     }
     const level = columns.level === undefined ? heading : values[columns.level]?.replace(/^L/i, '')
     const usage = quantity(values[columns.usage!] ?? '')
-    const stock = quantity(values[columns.stock!] ?? '')
+    const stock = stockQuantity(values[columns.stock!] ?? '')
     if (level === undefined || !/^\d+$/.test(level) || usage === undefined || stock === undefined) {
       if (line.startsWith('|')) malformed = true
       continue

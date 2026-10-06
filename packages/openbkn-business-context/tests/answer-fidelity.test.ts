@@ -20,9 +20,9 @@ function events(stdout: string, answer: string, question = '完整 BOM 清单，
   ]
 }
 
-function captured(name: string): { readonly events: FidelityEvent[]; readonly answer: string } {
-  const raw = JSON.parse(readFileSync(new URL(`../../../docs/evidence/unified-7-acceptance-20261006/${name}.json`, import.meta.url), 'utf8'))
-  const answer = raw.assistantText.join('\n')
+function captured(name: string, folder = 'unified-7-acceptance-20261006', answerIndex?: number): { readonly events: FidelityEvent[]; readonly answer: string } {
+  const raw = JSON.parse(readFileSync(new URL(`../../../docs/evidence/${folder}/${name}.json`, import.meta.url), 'utf8'))
+  const answer = answerIndex === undefined ? raw.assistantText.join('\n') : raw.assistantText[answerIndex]
   return { answer, events: [
     { type: 'turn/start', data: { turn: 1 } },
     { type: 'user/message', data: { source: { kind: 'user' }, content: [{ type: 'text', text: Array.isArray(raw.question) ? raw.question.join('\n') : raw.question }] } },
@@ -32,6 +32,30 @@ function captured(name: string): { readonly events: FidelityEvent[]; readonly an
     { type: 'assistant/message', data: { turn: 1, message: { content: [{ type: 'text', text: answer }] } } },
   ] }
 }
+
+test('live empty-stock handoff rejects the excerpt but accepts all 313 faithfully copied rows', () => {
+  const excerpt = captured('ci-2abd71d-bom-failed', 'answer-fidelity-20261006', 0)
+  const issue = inspectAnswerFidelity(excerpt.events, 1)
+  assert.equal(issue?.code, 'detail-mismatch')
+  const rows = detailRowsOf(issue!.correction)
+  assert.equal(rows.length, 313)
+  assert.equal(rows.filter(row => row.stock === '0*' && row.unit === '?').length, 48)
+  const replacement = captured('ci-2abd71d-bom-failed', 'answer-fidelity-20261006', 1)
+  assert.equal(inspectAnswerFidelity(replacement.events, 1), undefined)
+})
+
+test('explicit missing-stock words retain absence, while unknown stock and nonnumeric usage fail closed', () => {
+  for (const absent of ['无合格库存行', '无库存行', '无库存记录', '无记录', 'NO_ROW']) {
+    const handoff = detail(`1|parent-a|child|widget|1|${absent}|未提供`)
+    const rows = detailRowsOf(handoff)
+    assert.deepEqual(rows.map(row => [row.stock, row.unit]), [['0*', '?']])
+    assert.equal(inspectAnswerFidelity(events(handoff, renderDetail(rows)), 1), undefined)
+    assert.equal(inspectAnswerFidelity(events(handoff, renderDetail(rows).replace('0*', '0')), 1)?.code, 'detail-mismatch')
+  }
+  for (const row of ['1|parent-a|child|widget|1|未提供|?', '1|parent-a|child|widget|无合格库存行|0*|?']) {
+    assert.equal(inspectAnswerFidelity(events(detail(row), '完整明细已交付'), 1)?.code, 'tool-detail-incomplete')
+  }
+})
 
 test('real 313-row tool result rejects the captured 314-row final answer', () => {
   const run = captured('bom-usage-inventory')

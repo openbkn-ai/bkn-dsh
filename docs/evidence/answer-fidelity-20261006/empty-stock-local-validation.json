@@ -1,0 +1,39 @@
+{
+  "verification": "source/local; exact-CI real-model acceptance is pending",
+  "capturedCandidateSource": "2abd71d0ac4d1bc62575e6e2d58c9821aa637add",
+  "capturedTgzSha256": "5aee755974ca3551d0414511806c9b8ad7535fe82c96edea70252c7a595b41ee",
+  "reproducedFocusedTests": {
+    "tests": 18,
+    "pass": 16,
+    "fail": 2
+  },
+  "fixedFocusedTests": {
+    "tests": 18,
+    "pass": 18,
+    "fail": 0
+  },
+  "pluginTests": {
+    "tests": 334,
+    "pass": 333,
+    "fail": 0,
+    "skip": 1
+  },
+  "repositoryTests": {
+    "tests": 60,
+    "pass": 60,
+    "fail": 0
+  },
+  "typecheck": "pass",
+  "packageAudit": {
+    "fileCount": 66,
+    "pass": true
+  },
+  "diffCheck": "pass",
+  "nativeFailedAttemptRetained": true,
+  "windowsHeld": true,
+  "localPack": {
+    "sha256": "ac8dbb87413339bd9d05d282a9719fc36ff8b39cac44ef1137ecccb70e002080",
+    "sizeBytes": 173223,
+    "scope": "local build only; not delivered as the fixed candidate"
+  }
+}
