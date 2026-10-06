@@ -1,0 +1,97 @@
+Window: "查询销售订单数量与状态 — DeepSeek Harness", App: DeepSeek Harness.
+0 standard window 查询销售订单数量与状态 — DeepSeek Harness, Secondary Actions: Raise
+	1 container 查询销售订单数量与状态 — DeepSeek Harness
+		2 container
+			3 HTML content 查询销售订单数量与状态 — DeepSeek Harness, URL: dsh-app://app/
+				4 container
+					5 button 收起侧边栏
+					6 button 新建会话
+					7 container 全局面板
+						8 button 插件
+					9 text 工作区
+					10 button 搜索会话
+					11 text field (settable) 搜索会话名称
+					12 button 视图选项
+					13 button 添加工作区
+					14 outline 会话
+						15 container
+							16 row workspace-supply
+								17 text workspace-supply
+							18 row (selected) 查询销售订单数量与状态 3分钟
+								19 text 查询销售订单数量与状态 3分钟
+							20 row 销售订单382-000005状态查询 7分钟
+								21 text 销售订单382-000005状态查询 7分钟
+							22 row 销售订单明细查询 12分钟
+								23 text 销售订单明细查询 12分钟
+							24 row 已结采购申请和订单查询 15分钟
+								25 text 已结采购申请和订单查询 15分钟
+							26 row 382-000005 BOM 构成查询 21分钟
+								27 text 382-000005 BOM 构成查询 21分钟
+							28 button 展开其余 47 个会话
+						29 row 默认工作区
+							30 text 默认工作区
+					31 button OpenBKN business knowledge networks
+					32 pop up button 账号菜单
+					33 container
+						34 container 会话层级
+							35 text 查询销售订单数量与状态
+						36 text 标准模式
+						37 text 供应链本体知识网络-手工版
+						38 button 用 访达 打开
+						39 pop up button 更多打开方式
+						40 pop up button 更多操作
+						41 button 打开右侧边栏
+						42 tab group
+							43 tab (selected) 对话, Value: 1
+							44 tab (settable, integer) 轨迹, Value: 0
+					45 container
+						46 container 轮次导航
+							47 container
+								48 button 跳转到第 1 轮
+								49 button 跳转到第 2 轮
+						50 container
+							51 text 382-000005 有多少张销售订单？什么状态？ 05:00
+							52 button 复制
+							53 text 已完成
+							54 button 已完成，用时 10秒
+								55 text 已完成，用时 
+								56 text 10
+								57 text 秒
+							58 text 无法完成查询：本会话未注册 OpenBKN 托管工具（
+							59 text bkn_start_interaction
+							60 text  报“is not registered in this session”），因此无法在绑定的知识网络 
+							61 text supply_ontology_hand
+							62 text  中检索 382-000005 的销售订单数量与状态。工具错误明确提示不要重试，我没有进行任何业务数据查询，也不会凭空给出数量或状态。请在 OpenBKN 连接恢复后重新发起该问题。
+							63 button 复制
+							64 toggle button Description: 好的回答, Value: 0
+							65 toggle button Description: 有问题的回答, Value: 0
+							66 button 在新对话中分支
+							67 pop up button 用量 129K tok
+							68 text 05:00 处理失败
+							69 button (disabled) 处理失败
+							70 container
+								71 text 本轮运行失败 mcp-client(openbkn): initial connection or tool synchronization failed: Version negotiation probe failed: fetch failed
+							72 text UNKNOWN
+						73 container
+							74 text entry area (settable) 发消息或创建任务, / 调用指令, @ 文件或对话
+							75 pop up button 添加文件或调用指令
+							76 button 访问模式，当前：工作区内修改
+							77 pop up button Description: 选择模型，当前 DeepSeek-V41-Flash，推理等级 High, Help: DeepSeek-V41-Flash · High
+							78 button (disabled) 发送消息
+						79 pop up button 1 轮 8 步 · 251 tok/s
+							80 text 1 轮 8 步
+							81 text 251 tok/s
+						82 pop up button 129K tok · 缓存命中 99%
+							83 text 129K tok
+							84 text 缓存命中 99%
+						85 pop up button 上下文已用 2%
+	86 close button
+	87 full screen button Help: this button also has an action to zoom the window, Secondary Actions: zoom the window
+	88 minimize button
+89 menu bar
+	90 DeepSeek Harness
+	91 文件
+	92 Edit
+	93 Window
+
+The focused UI element is 74 text entry area (settable) 发消息或创建任务, / 调用指令, @ 文件或对话

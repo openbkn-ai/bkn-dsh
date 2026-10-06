@@ -1,0 +1,13 @@
+{
+  "pid": 92336,
+  "processStart": "Wed Oct  7 05:00:01 2026",
+  "startedAt": "2026-10-06T21:00:01.651324+00:00",
+  "endpoint": "https://127.0.0.1:64391",
+  "portCheckedUnused": true,
+  "realCredentialSentToFixture": false,
+  "sessionId": "session-097e6975-b5df-4bf1-894f-04943811e31c",
+  "fixture": "blank native-UI-created session, offline nonsecret binding+profile override; matched fictional CLI cache; controlled closed endpoint, not real platform outage",
+  "hostRuntimeModified": false,
+  "baselineProfileSha256": "ee08d266e84ed62d9e83b6c2350255db7615916a1990fd023e388098221f245c",
+  "baselineBindingSha256": "4b14f58d868fbadaf02f2c9ab83279afbea62a5f75399a6c79dab4110ba177ab"
+}

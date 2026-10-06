@@ -1,0 +1,38 @@
+[
+  {
+    "at": "2026-10-06T21:19:46.632437+00:00",
+    "command": [
+      "npm",
+      "view",
+      "@openbkn/dsh-business-context",
+      "dist-tags",
+      "--json"
+    ],
+    "exitCode": 0,
+    "nativeJson": {
+      "latest": "0.2.0-rc.2-openbkn.0.2.0-3",
+      "rc": "0.2.0-rc.2-openbkn.0.2.0-4"
+    }
+  },
+  {
+    "at": "2026-10-06T21:19:47.508774+00:00",
+    "command": [
+      "gh",
+      "issue",
+      "view",
+      "2029",
+      "--repo",
+      "openbkn-ai/bkn-foundry",
+      "--json",
+      "number,title,state,updatedAt,url"
+    ],
+    "exitCode": 0,
+    "nativeJson": {
+      "number": 2029,
+      "state": "OPEN",
+      "title": "[Bug] 沙箱执行结果超过 TEXT 字段容量时落库失败，工具调用最终超时",
+      "updatedAt": "2026-10-06T05:52:46Z",
+      "url": "https://github.com/openbkn-ai/bkn-foundry/issues/2029"
+    }
+  }
+]

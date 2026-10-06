@@ -1,0 +1,78 @@
+{
+  "at": "2026-10-06T21:09:57.464971+00:00",
+  "stoppedProcesses": [
+    {
+      "input": "desktop-restored-process.json",
+      "identityMatched": true,
+      "ownedTree": [
+        {
+          "pid": 96714,
+          "ppid": 1,
+          "creationTime": "Wed Oct 7 05:05:18 2026",
+          "executable": "/Applications/DeepSeek Harness.app/Contents/MacOS/DeepSeek Harness"
+        },
+        {
+          "pid": 96756,
+          "ppid": 96714,
+          "creationTime": "Wed Oct 7 05:05:19 2026",
+          "executable": "/Applications/DeepSeek Harness.app/Contents/Frameworks/DeepSeek Harness Helper.app/Contents/MacOS/DeepSeek Harness Helper"
+        },
+        {
+          "pid": 96757,
+          "ppid": 96714,
+          "creationTime": "Wed Oct 7 05:05:19 2026",
+          "executable": "/Applications/DeepSeek Harness.app/Contents/Frameworks/DeepSeek Harness Helper.app/Contents/MacOS/DeepSeek Harness Helper"
+        },
+        {
+          "pid": 96761,
+          "ppid": 96714,
+          "creationTime": "Wed Oct 7 05:05:19 2026",
+          "executable": "/Applications/DeepSeek Harness.app/Contents/Frameworks/DeepSeek Harness Helper (Renderer).app/Contents/MacOS/DeepSeek Harness Helper (Renderer)"
+        },
+        {
+          "pid": 97138,
+          "ppid": 96714,
+          "creationTime": "Wed Oct 7 05:05:20 2026",
+          "executable": "/Applications/DeepSeek Harness.app/Contents/MacOS/DeepSeek Harness"
+        },
+        {
+          "pid": 99117,
+          "ppid": 97138,
+          "creationTime": "Wed Oct 7 05:07:39 2026",
+          "executable": "osascript"
+        }
+      ],
+      "verifiedListenerPids": [],
+      "remainingChildrenTerminated": [],
+      "rootStopped": true
+    },
+    {
+      "input": "npm-authenticated-process.json",
+      "identityMatched": true,
+      "ownedTree": [
+        {
+          "pid": 83842,
+          "ppid": 1,
+          "creationTime": "Wed Oct 7 04:45:57 2026",
+          "executable": "/Users/kalias/.nvm/versions/node/v24.19.0/bin/node"
+        }
+      ],
+      "verifiedListenerPids": [
+        83842
+      ],
+      "remainingChildrenTerminated": [],
+      "rootStopped": true
+    }
+  ],
+  "ports": {
+    "18798": {
+      "listenerPresent": false
+    },
+    "64391": {
+      "listenerPresent": false
+    }
+  },
+  "dailySelectedAllUnchanged": true,
+  "selectedFileCount": 18,
+  "wholeHomeClaimedUnchanged": false
+}

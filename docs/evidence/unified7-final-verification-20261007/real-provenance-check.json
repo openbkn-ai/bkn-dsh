@@ -1,0 +1,40 @@
+{
+  "interactionId": "int_5dff6cd2a2f60ee441d37da15c860b69",
+  "evidence": "independent direct operations/business-graph GET compared to actual per-element UI selection",
+  "businessReferenceCount": 36,
+  "mixedNetworkGraphClaimed": false,
+  "checks": [
+    {
+      "elementName": "销售订单",
+      "selectedUiOperationId": "op_57c4415465e573798ef3f8f6bacdad5b",
+      "toolName": "search_schema",
+      "operationNetwork": "supply_ontology_hand",
+      "technicalRef": {
+        "ref_type": "object_type",
+        "ref_id": "object:supply_ontology_hand:supply_ontology_hand_salesorder",
+        "version": "unversioned"
+      },
+      "uiRecord": "real-graph-sales-source-ui.txt",
+      "platformRefMatched": true
+    },
+    {
+      "elementName": "签约数量",
+      "selectedUiOperationId": "op_dc47dbc7d609ca4fede4cfb0768198e8",
+      "toolName": "query_object_instance",
+      "operationNetwork": "supply_ontology_hand",
+      "technicalRef": {
+        "ref_type": "property",
+        "ref_id": "property:supply_ontology_hand:supply_ontology_hand_salesorder:signing_quantity",
+        "version": "unversioned"
+      },
+      "uiRecord": "real-graph-property-source-ui.txt",
+      "platformRefMatched": true
+    }
+  ],
+  "assemblyCompleteness": "partial",
+  "partialReasons": [
+    "evidence_durability_failed",
+    "receipt_not_durable:rcpt_103e56fba67cdd8f38680aee672924a0"
+  ],
+  "causalLinkToIssue2029Established": false
+}

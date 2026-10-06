@@ -1,0 +1,21 @@
+{
+  "sessionId": "session-ffa2083e-05e2-4b28-96f5-a2109819cdf4",
+  "question": [],
+  "assistantText": [],
+  "finalAnswer": null,
+  "fidelityNotices": [],
+  "toolEvents": [],
+  "turnEnds": [
+    {
+      "time": 1791320126049,
+      "turn": 1,
+      "reason": {
+        "kind": "error",
+        "error": {
+          "message": "OpenBKN rejected the Context Loader MCP credential (HTTP 401). Re-login with `openbkn auth login` (or update the stored token) and retry; no business data was read.",
+          "code": "UNKNOWN"
+        }
+      }
+    }
+  ]
+}

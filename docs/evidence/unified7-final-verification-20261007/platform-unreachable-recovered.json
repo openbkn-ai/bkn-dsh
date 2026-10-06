@@ -1,0 +1,394 @@
+{
+  "sessionId": "session-097e6975-b5df-4bf1-894f-04943811e31c",
+  "question": [
+    "382-000005 有多少张销售订单？什么状态？",
+    "382-000005 有多少张销售订单？什么状态？"
+  ],
+  "assistantText": [
+    "无法完成查询：本会话未注册 OpenBKN 托管工具（`bkn_start_interaction` 报“is not registered in this session”），因此无法在绑定的知识网络 `supply_ontology_hand` 中检索 382-000005 的销售订单数量与状态。工具错误明确提示不要重试，我没有进行任何业务数据查询，也不会凭空给出数量或状态。请在 OpenBKN 连接恢复后重新发起该问题。",
+    "产品编码 **382-000005** 的销售订单情况：\n\n- **订单数量：40 张**\n- **订单状态：全部为「已确认」**（按状态拆维后只有这一组，数量 40，与总数一致）\n\n口径说明：使用知识网络 `supply_ontology_hand` 中已建模的指标「销售订单数」（`count(sales_order_id)`，快照 800），过滤条件 `product_code = 382-000005`，并按对象类「销售订单」的分析维度 `order_status`（订单状态）分组取数。也就是说，这 40 张订单没有处于其他状态（如已发货、已取消等）的记录。"
+  ],
+  "finalAnswer": {
+    "turn": 3,
+    "step": 7,
+    "text": "产品编码 **382-000005** 的销售订单情况：\n\n- **订单数量：40 张**\n- **订单状态：全部为「已确认」**（按状态拆维后只有这一组，数量 40，与总数一致）\n\n口径说明：使用知识网络 `supply_ontology_hand` 中已建模的指标「销售订单数」（`count(sales_order_id)`，快照 800），过滤条件 `product_code = 382-000005`，并按对象类「销售订单」的分析维度 `order_status`（订单状态）分组取数。也就是说，这 40 张订单没有处于其他状态（如已发货、已取消等）的记录。",
+    "turnEndReason": {
+      "kind": "completed"
+    }
+  },
+  "fidelityNotices": [],
+  "toolEvents": [
+    {
+      "type": "tool/call",
+      "time": 1791320415613,
+      "turn": 1,
+      "step": 1,
+      "callId": "call_00_idqOE87DsDwQfQIbNzB09425",
+      "name": "bash",
+      "arguments": "{\"command\": \"echo ok\", \"description\": \"Check tool availability\"}"
+    },
+    {
+      "type": "tool/result",
+      "time": 1791320415617,
+      "turn": 1,
+      "step": 1,
+      "callId": "call_00_idqOE87DsDwQfQIbNzB09425",
+      "hostErrorFlag": true,
+      "content": [
+        {
+          "type": "text",
+          "text": "Error: This OpenBKN business session only permits managed OpenBKN tools."
+        }
+      ]
+    },
+    {
+      "type": "tool/call",
+      "time": 1791320417441,
+      "turn": 1,
+      "step": 2,
+      "callId": "call_00_MyjtczzPBmg9xv2dX4fA3371",
+      "name": "bash",
+      "arguments": "{\"command\": \"pwd\", \"description\": \"Print working directory\"}"
+    },
+    {
+      "type": "tool/result",
+      "time": 1791320417442,
+      "turn": 1,
+      "step": 2,
+      "callId": "call_00_MyjtczzPBmg9xv2dX4fA3371",
+      "hostErrorFlag": true,
+      "content": [
+        {
+          "type": "text",
+          "text": "Error: This OpenBKN business session only permits managed OpenBKN tools."
+        }
+      ]
+    },
+    {
+      "type": "tool/call",
+      "time": 1791320418411,
+      "turn": 1,
+      "step": 3,
+      "callId": "call_00_Ur1wR1QmsnASfksheNVO8451",
+      "name": "bash",
+      "arguments": "{\"command\": \"ls\", \"description\": \"Test if managed tools available\"}"
+    },
+    {
+      "type": "tool/result",
+      "time": 1791320418412,
+      "turn": 1,
+      "step": 3,
+      "callId": "call_00_Ur1wR1QmsnASfksheNVO8451",
+      "hostErrorFlag": true,
+      "content": [
+        {
+          "type": "text",
+          "text": "Error: This OpenBKN business session only permits managed OpenBKN tools."
+        }
+      ]
+    },
+    {
+      "type": "tool/call",
+      "time": 1791320419368,
+      "turn": 1,
+      "step": 4,
+      "callId": "call_00_hvQ1TjJlBtRDSf92al3s0552",
+      "name": "bash",
+      "arguments": "{\"command\": \"true\", \"description\": \"noop\"}"
+    },
+    {
+      "type": "tool/result",
+      "time": 1791320419368,
+      "turn": 1,
+      "step": 4,
+      "callId": "call_00_hvQ1TjJlBtRDSf92al3s0552",
+      "hostErrorFlag": true,
+      "content": [
+        {
+          "type": "text",
+          "text": "Error: This OpenBKN business session only permits managed OpenBKN tools."
+        }
+      ]
+    },
+    {
+      "type": "tool/call",
+      "time": 1791320420618,
+      "turn": 1,
+      "step": 5,
+      "callId": "call_00_QseCRPtwM7I3lyu1V42Y0251",
+      "name": "bash",
+      "arguments": "{\"command\": \"echo test\", \"description\": \"Probe managed tool registration\"}"
+    },
+    {
+      "type": "tool/result",
+      "time": 1791320420619,
+      "turn": 1,
+      "step": 5,
+      "callId": "call_00_QseCRPtwM7I3lyu1V42Y0251",
+      "hostErrorFlag": true,
+      "content": [
+        {
+          "type": "text",
+          "text": "Error: This OpenBKN business session only permits managed OpenBKN tools."
+        }
+      ]
+    },
+    {
+      "type": "tool/call",
+      "time": 1791320421816,
+      "turn": 1,
+      "step": 6,
+      "callId": "call_00_MCf3VIvX3iGXxyfJbMjF7360",
+      "name": "bash",
+      "arguments": "{\"command\": \"echo hi\", \"description\": \"Check\"}"
+    },
+    {
+      "type": "tool/result",
+      "time": 1791320421817,
+      "turn": 1,
+      "step": 6,
+      "callId": "call_00_MCf3VIvX3iGXxyfJbMjF7360",
+      "hostErrorFlag": true,
+      "content": [
+        {
+          "type": "text",
+          "text": "Error: This OpenBKN business session only permits managed OpenBKN tools."
+        }
+      ]
+    },
+    {
+      "type": "tool/call",
+      "time": 1791320423097,
+      "turn": 1,
+      "step": 7,
+      "callId": "call_00_OzL4SLQtXF1zd8x1QXkP6884",
+      "name": "mcp__openbkn__bkn_start_interaction",
+      "arguments": "{\"conversation_mode\": \"new\", \"question\": \"382-000005 有多少张销售订单？什么状态？\", \"agent_name\": \"bkn-agent-dsh-business-context\"}"
+    },
+    {
+      "type": "tool/result",
+      "time": 1791320423098,
+      "turn": 1,
+      "step": 7,
+      "callId": "call_00_OzL4SLQtXF1zd8x1QXkP6884",
+      "hostErrorFlag": true,
+      "content": [
+        {
+          "type": "text",
+          "text": "Error: mcp__openbkn__bkn_start_interaction is not registered in this session, so its network scope cannot be checked. Do not retry it."
+        }
+      ]
+    },
+    {
+      "type": "tool/call",
+      "time": 1791320742577,
+      "turn": 3,
+      "step": 1,
+      "callId": "call_00_3VusRy94VZeu4DmuBXLn4670",
+      "name": "mcp__openbkn__bkn_start_interaction",
+      "arguments": "{\"agent_name\": \"bkn-agent-dsh-business-context\", \"conversation_mode\": \"new\", \"question\": \"382-000005 有多少张销售订单？什么状态？\"}"
+    },
+    {
+      "type": "tool/result",
+      "time": 1791320742713,
+      "turn": 3,
+      "step": 1,
+      "callId": "call_00_3VusRy94VZeu4DmuBXLn4670",
+      "hostErrorFlag": false,
+      "content": [
+        {
+          "type": "text",
+          "text": "{\"interaction_id\":\"int_fc9fbb1ee8f981b1e07e7cae46a3b311\",\"conversation_id\":\"conv_deb29a0466d6bb64bf345da165908697\",\"execution_status\":\"active\"}"
+        }
+      ]
+    },
+    {
+      "type": "tool/call",
+      "time": 1791320745722,
+      "turn": 3,
+      "step": 2,
+      "callId": "call_00_lhdDTynfoGt35wR8Xm0o0280",
+      "name": "mcp__openbkn__get_kn_detail",
+      "arguments": "{\"kn_id\": \"supply_ontology_hand\", \"detail_level\": \"summary\", \"bkn_context\": {\"conversation_id\": \"conv_deb29a0466d6bb64bf345da165908697\", \"interaction_id\": \"int_fc9fbb1ee8f981b1e07e7cae46a3b311\"}}"
+    },
+    {
+      "type": "tool/result",
+      "time": 1791320746459,
+      "turn": 3,
+      "step": 2,
+      "callId": "call_00_lhdDTynfoGt35wR8Xm0o0280",
+      "hostErrorFlag": false,
+      "content": [
+        {
+          "type": "text",
+          "text": "action_types[#3]:\n  - _score: 0\n    comment: Close a monitoring task after explicit human approval.\n    id: supply_ontology_hand_act_mon_close\n    module_type: action_type\n    name: Close Monitoring Task\n    object_type_id: supply_ontology_hand_mon_task\n    tags[#2]: monitoring,requires_confirmation\n  - _score: 0\n    comment: 用户或者智能体发起计划协同的监控任务。\n    id: supply_ontology_hand_act_mon\n    module_type: action_type\n    name: 创建计划协同监控任务\n    object_type_id: supply_ontology_hand_mon_task\n    tags[#0]:\n  - _score: 0\n    comment: 根据计划倒排，物料交期周期，在交期周期前2天要完成PO，以便供应商将物料在交期范围准时到货。\n    id: supply_ontology_hand_act_po\n    module_type: action_type\n    name: 发起PO\n    object_type_id: supply_ontology_hand_mrp\n    tags[#0]:\ncomment: 面向生态伙伴与客户的供应链本体体验网络。覆盖从需求预测到采购执行、库存齐套与生产安排的完整业务链路：产品需求预测 → 产品BOM → 物料需求计划 → 采购申请 → 采购订单 → 库存齐套 → 工厂生产计划；并支持销售订单与产品的关联分析。组织与仓库名称已按体验场景统一配置，便于直接联查与演示。\nconcept_groups[#1]{id,name}:\n  supply_ontology_hand_cg_prod,产品\nid: supply_ontology_hand\nmounted_capabilities:\n  function: 14\n  mcp_tool: 0\n  skill: 3\n  total: 17\nname: 供应链本体知识网络-手工版\nobject_types[#15]:\n  - _score: 0\n    comment: \"\"\n    data_source: null\n    id: skills\n    module_type: object_type\n    name: Skills\n    primary_keys[#0]:\n    tags[#0]:\n  - _score: 0\n    comment: 存储企业生产的成品基本信息，包括产品编码、名称。\n    data_properties[#2]{name,type}:\n      material_name,string\n      material_number,string\n    data_source:\n      id: \"01a0f6e5-fda2-780e-b5bc-a3f2332649d1\"\n      name: supply_demo_hand.hd_product_view\n      type: resource\n    effective_permissions:\n      material_name: full\n      material_number: full\n    id: supply_ontology_hand_product\n    logic_properties[#1]{name,type}:\n      product_total_count,metric\n    module_type: object_type\n    name: 产品\n    primary_keys[#1]: material_number\n    related_metric_count: 1\n    tags[#1]: 已审核\n  - _score: 0\n    comment: \"定义产品的物料清单结构，\\n1. BOM结构：多层树形结构：产品 → L1子件 → L2子件 → ... → 最底层原材料；物料类型含自制、委外、外购。 \\n2. BOM 分析默认使用 alt_priority == 0 的主料；\\n3. BOM 替代料模型：\\n1） BOM 中同一父件下的子件满足以下条件时，判定为同一替代组：\\n  - alt_method = '替代'\\n  - parent_material_code 相同（为空时使用 bom_material_code）\\n  - alt_group_no 相同且非空\\n2） 组内角色定义：\\n  - alt_priority = 0 → 主料\\n  - alt_priority > 0 → 替代料（priority 越小越优先）\"\n    data_properties[#16]{name,type}:\n      bom_version,text\n      demand_quantity,decimal\n      usage_denominator,decimal\n      usage_numerator,decimal\n      alt_group_no,string\n      alt_method,string\n      alt_part,string\n      alt_priority,integer\n      bom_level,integer\n      bom_material_code,string\n      material_code,string\n      material_name,string\n      parent_material_code,string\n      seq_no,integer\n      standard_usage,decimal\n      variable_loss_rate,decimal\n    data_source:\n      id: \"01a0f6e5-fd6a-74a6-985c-4f43242036b0\"\n      name: \"\"\n      type: resource\n    effective_permissions:\n      alt_group_no: full\n      alt_method: full\n      alt_part: full\n      alt_priority: full\n      bom_level: full\n      bom_material_code: full\n      bom_version: full\n      demand_quantity: full\n      material_code: full\n      material_name: full\n      parent_material_code: full\n      seq_no: full\n      standard_usage: full\n      usage_denominator: full\n      usage_numerator: full\n      variable_loss_rate: full\n    id: supply_ontology_hand_bom\n    module_type: object_type\n    name: 产品BOM\n    primary_keys[#3]: bom_version,bom_material_code,seq_no\n    tags[#1]: 已审核\n  - _score: 0\n    comment: 业务端（产品经理）基于销售需求、市场预判制定的基础需求数据源，是偏 “预判性” 的原始单据，核心记录产品、预测数量、对应月份 / 时间节点等基础信息，是“最上游单据”。每个月预测未来3个月的需求数据，每个产品都是滚动预测，滚动排产。从产品需求预测到物料需求计划（MRP），正式投放后，发起采购申请，通过后形成采购订单，当成品物料齐套后，安排生产工单，生产完成，则产品需求计划（产品需求预测单）完成。所以，当前产品需求预测单等同于产品需求计划。\n    data_properties[#12]{name,type}:\n      id,string\n      auditdate,timestamp\n      auditor_name,string\n      billno,string\n      bizdate,date\n      creator_name,string\n      enddate,date\n      material_name,string\n      material_number,string\n      qty,decimal\n      startdate,date\n      closestatus_title,text\n    data_source:\n      id: \"01a0f6e5-fd70-761a-ae98-f2deb903fa68\"\n      name: supply_demo_hand.erp_mds_forecast\n      type: resource\n    effective_permissions:\n      auditdate: full\n      auditor_name: full\n      billno: full\n      bizdate: full\n      closestatus_title: full\n      creator_name: full\n      enddate: full\n      id: full\n      material_name: full\n      material_number: full\n      qty: full\n      startdate: full\n    id: supply_ontology_hand_forecast\n    logic_properties[#2]{name,type}:\n      forecast_qty_sum,metric\n      open_forecast_count,metric\n    module_type: object_type\n    name: 产品需求预测单\n    primary_keys[#1]: id\n    related_metric_count: 2\n    tags[#1]: 已审核\n  - _score: 0\n    comment: 记录供应商的基础信息，包括编码、名称、信用代码、付款条件及对应采购员。\n    data_properties[#5]{name,type}:\n      supplier_code,string\n      supplier_name,string\n      societycreditcode,string\n      purchaserid_name,string\n      paycond_name,string\n    data_source:\n      id: \"01a0f6e5-fd9b-7b84-ac22-283307123d8c\"\n      name: supply_demo_hand.erp_supplier\n      type: resource\n    effective_permissions:\n      paycond_name: full\n      purchaserid_name: full\n      societycreditcode: full\n      supplier_code: full\n      supplier_name: full\n    id: supply_ontology_hand_supplier\n    logic_properties[#1]{name,type}:\n      supplier_total_count,metric\n    module_type: object_type\n    name: 供应商\n    primary_keys[#1]: supplier_code\n    related_metric_count: 1\n    tags[#1]: 已审核\n  - _score: 0\n    comment: \"也叫做生产工单，生产计划基于产品需求计划制定（当前需求计划与需求预测等同），以需求计划的产品、数量、时间为核心依据，默认将产品需求直接作为生产需求。\\n生产计划与物料需求计划联动，物料齐套后再下达生产工单，即先完成外购料的采购和到料，再向生产部门推送生产工单，领料生产。\"\n    data_properties[#18]{name,type}:\n      auditdate,timestamp\n      billdate,date\n      billno,string\n      billstatus,text\n      entry_id,string\n      huid_scxmh_number,string\n      id,string\n      material_name,string\n      material_number,string\n      pickstatus_title,string\n      planbegintime,timestamp\n      planendtime,timestamp\n      qty,decimal\n      sourcebillnumber,string\n      sourcebilltype,string\n      srcbillentity,string\n      taskstatus_title,string\n      xkquainwaqty,decimal\n    data_source:\n      id: \"01a0f6e5-fd7b-7351-904e-19a6b58826ab\"\n      name: \"\"\n      type: resource\n    effective_permissions:\n      auditdate: full\n      billdate: full\n      billno: full\n      billstatus: full\n      entry_id: full\n      huid_scxmh_number: full\n      id: full\n      material_name: full\n      material_number: full\n      pickstatus_title: full\n      planbegintime: full\n      planendtime: full\n      qty: full\n      sourcebillnumber: full\n      sourcebilltype: full\n      srcbillentity: full\n      taskstatus_title: full\n      xkquainwaqty: full\n    id: supply_ontology_hand_mps\n    module_type: object_type\n    name: 工厂生产计划\n    primary_keys[#1]: entry_id\n    tags[#1]: 已审核\n  - _score: 0\n    comment: \"实时记录物料在各仓库及仓位的库存数量、状态与批次信息。\\n1. 生产可用库存\\n定义：仅统计「有效仓库」内、状态为「可用」的库存数量。\\n有效仓库范围：苏州半成品仓、苏州成品仓、苏州电子原料仓、苏州无人机原料仓、苏州装配原料仓、乌鲁木齐成品仓、哈尔滨成品仓。\\n2. 全仓可用库存\\n定义：统计全部仓库内、状态为「可用」的库存数量。\\n仓库范围：系统内全部仓库。\"\n    data_properties[#20]{name,type}:\n      id,string\n      seq_no,integer\n      available_inventory_qty,decimal\n      batch_master,string\n      batch_no,string\n      bin_location,string\n      expiry_date,date\n      inbound_date,date\n      inventory_org,string\n      inventory_qty,decimal\n      inventory_uom,string\n      manufacture_date,date\n      material_code,string\n      material_name,string\n      purchase_qty,decimal\n      reserved_inventory_qty,decimal\n      spec_model,string\n      stock_status,string\n      stock_type,string\n      warehouse,string\n    data_source:\n      id: \"01a0f6e5-fd95-723f-ad5f-86413091ebf5\"\n      name: supply_demo_hand.erp_real_time_inventory\n      type: resource\n    effective_permissions:\n      available_inventory_qty: full\n      batch_master: full\n      batch_no: full\n      bin_location: full\n      expiry_date: full\n      id: full\n      inbound_date: full\n      inventory_org: full\n      inventory_qty: full\n      inventory_uom: full\n      manufacture_date: full\n      material_code: full\n      material_name: full\n      purchase_qty: full\n      reserved_inventory_qty: full\n      seq_no: full\n      spec_model: full\n      stock_status: full\n      stock_type: full\n      warehouse: full\n    id: supply_ontology_hand_inventory\n    logic_properties[#2]{name,type}:\n      warehouse_count,metric\n      available_qty_sum,metric\n    module_type: object_type\n    name: 库存\n    primary_keys[#1]: id\n    related_metric_count: 2\n    tags[#1]: 已审核\n  - _score: 0\n    comment: 记录物料的基础信息，包括编码、名称、规格型号、属性（自制/外购）及单位等及相关参数。\n    data_properties[#13]{name,type}:\n      material_code,string\n      material_name,string\n      modelnum,string\n      huid_productline_name,string\n      baseunit_number,string\n      baseunit_name,string\n      group_name,string\n      group_type,string\n      materialattr,string\n      purchase_fixedleadtime,decimal\n      product_fixedleadtime,decimal\n      material_standard_price,decimal\n      product_status,string\n    data_source:\n      id: \"01a0f6e5-fd61-7280-ae39-73fd4c0877d0\"\n      name: supply_demo_hand.erp_material\n      type: resource\n    effective_permissions:\n      baseunit_name: full\n      baseunit_number: full\n      group_name: full\n      group_type: full\n      huid_productline_name: full\n      material_code: full\n      material_name: full\n      material_standard_price: full\n      materialattr: full\n      modelnum: full\n      product_fixedleadtime: full\n      product_status: full\n      purchase_fixedleadtime: full\n    id: supply_ontology_hand_material\n    logic_properties[#1]{name,type}:\n      material_total_count,metric\n    module_type: object_type\n    name: 物料\n    primary_keys[#1]: material_code\n    related_metric_count: 1\n    tags[#1]: 已审核\n  - _score: 0\n    comment: 通过ERP系统的MRP运算产生的物料需求计划。\n    data_properties[#22]{name,type}:\n      advisedroptime,date\n      adviseenddate,date\n      adviseorderqty,decimal\n      advisestartdate,date\n      availabledate,date\n      billno,string\n      bizdropqty,decimal\n      bizorderqty,decimal\n      closestatus_title,string\n      createtime,timestamp\n      creator_name,string\n      dropbilltype_name,string\n      dropstatus_title,string\n      droptime,timestamp\n      enddate,date\n      materialattr_title,string\n      materialplanid_name,string\n      materialplanid_number,string\n      orderdate,date\n      planoperatenum,string\n      rootdemandbillno,string\n      startdate,date\n    data_source:\n      id: \"01a0f6e5-fd76-73e4-b0ce-18c88736ea2c\"\n      name: \"\"\n      type: resource\n    effective_permissions:\n      advisedroptime: full\n      adviseenddate: full\n      adviseorderqty: full\n      advisestartdate: full\n      availabledate: full\n      billno: full\n      bizdropqty: full\n      bizorderqty: full\n      closestatus_title: full\n      createtime: full\n      creator_name: full\n      dropbilltype_name: full\n      dropstatus_title: full\n      droptime: full\n      enddate: full\n      materialattr_title: full\n      materialplanid_name: full\n      materialplanid_number: full\n      orderdate: full\n      planoperatenum: full\n      rootdemandbillno: full\n      startdate: full\n    id: supply_ontology_hand_mrp\n    module_type: object_type\n    name: 物料需求计划\n    primary_keys[#1]: billno\n    tags[#1]: 已审核\n  - _score: 0\n    comment: 生产计划倒排监控任务：一个任务只对应一个产品与一张需求预测单，物料是履约证据。\n    data_source: null\n    id: supply_ontology_hand_mon_task\n    module_type: object_type\n    name: 监控任务\n    primary_keys[#0]:\n    tags[#0]:\n  - _score: 0\n    comment: 监控任务对应的 BOM 供应证据，不是监控目标。\n    data_source: null\n    id: supply_ontology_hand_mon_item\n    module_type: object_type\n    name: 监控证据明细\n    primary_keys[#0]:\n    tags[#0]:\n  - _score: 0\n    comment: 人工批准后的采购建议决策记录。不是 ERP 采购申请，本期不调用 ERP。\n    data_source: null\n    id: supply_ontology_hand_pr_decision\n    module_type: object_type\n    name: 采购申请决策\n    primary_keys[#0]:\n    tags[#0]:\n  - _score: 0\n    comment: 根据MRP生成的内部采购申请PR。\n    data_properties[#18]{name,type}:\n      huid_xmh_name,string\n      srcbillentryid,string\n      srcbillid,string\n      srcbillnumber,string\n      id,string\n      billno,string\n      biztime,timestamp\n      billtype_name,string\n      org_name,string\n      auditdate,timestamp\n      entry_id,string\n      material_number,string\n      material_name,string\n      qty,decimal\n      unit_name,string\n      joinqty,decimal\n      rowclosestatus_title,string\n      rowterminatestatus_title,string\n    data_source:\n      id: \"01a0f6e5-fd8b-7e0d-bc68-536ab2ca1cbf\"\n      name: \"\"\n      type: resource\n    effective_permissions:\n      auditdate: full\n      billno: full\n      billtype_name: full\n      biztime: full\n      entry_id: full\n      huid_xmh_name: full\n      id: full\n      joinqty: full\n      material_name: full\n      material_number: full\n      org_name: full\n      qty: full\n      rowclosestatus_title: full\n      rowterminatestatus_title: full\n      srcbillentryid: full\n      srcbillid: full\n      srcbillnumber: full\n      unit_name: full\n    id: supply_ontology_hand_pr\n    module_type: object_type\n    name: 采购申请单\n    primary_keys[#1]: entry_id\n    tags[#1]: 已审核\n  - _score: 0\n    comment: 发给供应商的正式采购订单。\n    data_properties[#24]{name,type}:\n      srcbillentryid,string\n      srcbillid,string\n      billno,string\n      biztime,date\n      org_name,string\n      billtype_name,string\n      supplier_number,string\n      supplier_name,string\n      operatorname,string\n      huid_xycg_operatorname,string\n      createtime,timestamp\n      auditdate,timestamp\n      material_number,string\n      material_name,string\n      qty,decimal\n      deliverdate,date\n      srcbillnumber,string\n      invqty,decimal\n      returnqty,decimal\n      actqty,decimal\n      entry_id,string\n      id,string\n      rowclosestatus_title,string\n      rowterminatestatus_title,string\n    data_source:\n      id: \"01a0f6e5-fd83-7472-a9cb-8e0bb5a2bfd5\"\n      name: \"\"\n      type: resource\n    effective_permissions:\n      actqty: full\n      auditdate: full\n      billno: full\n      billtype_name: full\n      biztime: full\n      createtime: full\n      deliverdate: full\n      entry_id: full\n      huid_xycg_operatorname: full\n      id: full\n      invqty: full\n      material_name: full\n      material_number: full\n      operatorname: full\n      org_name: full\n      qty: full\n      returnqty: full\n      rowclosestatus_title: full\n      rowterminatestatus_title: full\n      srcbillentryid: full\n      srcbillid: full\n      srcbillnumber: full\n      supplier_name: full\n      supplier_number: full\n    id: supply_ontology_hand_po\n    module_type: object_type\n    name: 采购订单\n    primary_keys[#1]: entry_id\n    tags[#1]: 已审核\n  - _score: 0\n    comment: 记录销售签约与交付信息。产品编码与「产品」对象一致，可直接关联查询；并包含客户、签约数量、承诺交期与交付情况等业务字段，便于体验订单履约分析。\n    data_properties[#13]{name,type}:\n      sales_order_id,string\n      contract_number,string\n      customer_id,string\n      customer_name,string\n      product_code,string\n      product_name,string\n      signing_quantity,integer\n      signing_date,date\n      promised_delivery_date,date\n      shipping_quantity,float\n      shipping_date,date\n      order_status,string\n      salesperson,string\n    data_source:\n      id: \"01a0f6e5-fda9-717a-aa25-f5573d2b246c\"\n      name: supply_demo_hand.sales_order\n      type: resource\n    effective_permissions:\n      contract_number: full\n      customer_id: full\n      customer_name: full\n      order_status: full\n      product_code: full\n      product_name: full\n      promised_delivery_date: full\n      sales_order_id: full\n      salesperson: full\n      shipping_date: full\n      shipping_quantity: full\n      signing_date: full\n      signing_quantity: full\n    id: supply_ontology_hand_salesorder\n    logic_properties[#1]{name,type}:\n      sales_order_count,metric\n    module_type: object_type\n    name: 销售订单\n    primary_keys[#1]: sales_order_id\n    related_metric_count: 1\n    tags[#2]: 已审核,老数据\nrelation_types[#19]:\n  - _score: 0\n    comment: \"\"\n    id: supply_ontology_hand_bom2mat\n    module_type: relation_type\n    name: 产品bom关联物料\n    source_object_type_id: supply_ontology_hand_bom\n    tags[#1]: 已审核\n    target_object_type_id: supply_ontology_hand_material\n    type: direct\n  - _score: 0\n    comment: \"\"\n    id: supply_ontology_hand_prod2bom\n    module_type: relation_type\n    name: 产品关联产品bom\n    source_object_type_id: supply_ontology_hand_product\n    tags[#1]: 已审核\n    target_object_type_id: supply_ontology_hand_bom\n    type: direct\n  - _score: 0\n    comment: \"\"\n    id: supply_ontology_hand_prod2inv\n    module_type: relation_type\n    name: 产品关联库存\n    source_object_type_id: supply_ontology_hand_product\n    tags[#1]: 已审核\n    target_object_type_id: supply_ontology_hand_inventory\n    type: direct\n  - _score: 0\n    comment: 产品关联需求预测单（产品的需求计划）\n    id: supply_ontology_hand_prod2fcst\n    module_type: relation_type\n    name: 产品关联需求预测单\n    source_object_type_id: supply_ontology_hand_product\n    tags[#0]:\n    target_object_type_id: supply_ontology_hand_forecast\n    type: direct\n  - _score: 0\n    comment: \"\"\n    id: supply_ontology_hand_mat2inv\n    module_type: relation_type\n    name: 物料关联库存\n    source_object_type_id: supply_ontology_hand_material\n    tags[#1]: 已审核\n    target_object_type_id: supply_ontology_hand_inventory\n    type: direct\n  - _score: 0\n    comment: 物料需求计划关联产品预测单\n    id: supply_ontology_hand_mrp2fcst\n    module_type: relation_type\n    name: 物料需求计划关联产品预测需求\n    source_object_type_id: supply_ontology_hand_mrp\n    tags[#0]:\n    target_object_type_id: supply_ontology_hand_forecast\n    type: direct\n  - _score: 0\n    comment: 物料需求计划关联的物料。\n    id: supply_ontology_hand_mrp2mat\n    module_type: relation_type\n    name: 物料需求计划关联物料\n    source_object_type_id: supply_ontology_hand_mrp\n    tags[#0]:\n    target_object_type_id: supply_ontology_hand_material\n    type: direct\n  - _score: 0\n    comment: 生产计划按照需求预测单来生产。\n    id: supply_ontology_hand_mps2fcst\n    module_type: relation_type\n    name: 生产计划关联需求预测单\n    source_object_type_id: supply_ontology_hand_mps\n    tags[#1]: 已审核\n    target_object_type_id: supply_ontology_hand_forecast\n    type: direct\n  - _score: 0\n    comment: 监控任务依据一张需求预测单。映射为 forecast_id → id，不再误用产品编码。\n    id: supply_ontology_hand_mon2fcst\n    module_type: relation_type\n    name: 监控任务依据需求预测\n    source_object_type_id: supply_ontology_hand_mon_task\n    tags[#0]:\n    target_object_type_id: supply_ontology_hand_forecast\n    type: direct\n  - _score: 0\n    comment: 监控任务包含 BOM 供应证据明细。\n    id: supply_ontology_hand_mon2item\n    module_type: relation_type\n    name: 监控任务包含证据明细\n    source_object_type_id: supply_ontology_hand_mon_task\n    tags[#0]:\n    target_object_type_id: supply_ontology_hand_mon_item\n    type: direct\n  - _score: 0\n    comment: 监控任务监控一个产品。产品主键是 material_number。\n    id: supply_ontology_hand_mon2prod\n    module_type: relation_type\n    name: 监控任务监控产品\n    source_object_type_id: supply_ontology_hand_mon_task\n    tags[#0]:\n    target_object_type_id: supply_ontology_hand_product\n    type: direct\n  - _score: 0\n    comment: 证据明细引用物料，物料是履约证据而不是监控目标。\n    id: supply_ontology_hand_monitem2mat\n    module_type: relation_type\n    name: 监控证据引用物料\n    source_object_type_id: supply_ontology_hand_mon_item\n    tags[#0]:\n    target_object_type_id: supply_ontology_hand_material\n    type: direct\n  - _score: 0\n    comment: 采购申请决策建议采购的物料。本期只写决策记录，不调用 ERP。\n    id: supply_ontology_hand_prdec2mat\n    module_type: relation_type\n    name: 采购申请决策建议采购物料\n    source_object_type_id: supply_ontology_hand_pr_decision\n    tags[#0]:\n    target_object_type_id: supply_ontology_hand_material\n    type: direct\n  - _score: 0\n    comment: 采购申请决策来源于一张需求预测单。\n    id: supply_ontology_hand_prdec2fcst\n    module_type: relation_type\n    name: 采购申请决策来源于需求预测\n    source_object_type_id: supply_ontology_hand_pr_decision\n    tags[#0]:\n    target_object_type_id: supply_ontology_hand_forecast\n    type: direct\n  - _score: 0\n    comment: 采购申请决策针对来源产品。\n    id: supply_ontology_hand_prdec2prod\n    module_type: relation_type\n    name: 采购申请决策针对产品\n    source_object_type_id: supply_ontology_hand_pr_decision\n    tags[#0]:\n    target_object_type_id: supply_ontology_hand_product\n    type: direct\n  - _score: 0\n    comment: 采购订单来自于物料需求计划的投放。\n    id: supply_ontology_hand_pr2mrp\n    module_type: relation_type\n    name: 采购申请单关联物料需求计划\n    source_object_type_id: supply_ontology_hand_pr\n    tags[#0]:\n    target_object_type_id: supply_ontology_hand_mrp\n    type: direct\n  - _score: 0\n    comment: \"\"\n    id: supply_ontology_hand_po2sup\n    module_type: relation_type\n    name: 采购订单关联供应商\n    source_object_type_id: supply_ontology_hand_po\n    tags[#1]: 已审核\n    target_object_type_id: supply_ontology_hand_supplier\n    type: direct\n  - _score: 0\n    comment: 采购订单由采购申请转化而来，二者按申请行关联，可追溯「申请 → 订单」的执行过程。\n    id: supply_ontology_hand_pr2po\n    module_type: relation_type\n    name: 采购订单关联物料请购单\n    source_object_type_id: supply_ontology_hand_po\n    tags[#1]: 已审核\n    target_object_type_id: supply_ontology_hand_pr\n    type: direct\n  - _score: 0\n    comment: \"\"\n    id: supply_ontology_hand_so2prod\n    module_type: relation_type\n    name: 销售订单关联产品\n    source_object_type_id: supply_ontology_hand_salesorder\n    tags[#1]: 已审核\n    target_object_type_id: supply_ontology_hand_product\n    type: direct"
+        }
+      ]
+    },
+    {
+      "type": "tool/call",
+      "time": 1791320750224,
+      "turn": 3,
+      "step": 3,
+      "callId": "call_00_K4U7DWYO2uQdSOo6ssA52850",
+      "name": "mcp__openbkn__run_cypher",
+      "arguments": "{\"kn_id\": \"supply_ontology_hand\", \"query\": \"MATCH (s:supply_ontology_hand_salesorder) WHERE s.product_code = $pc RETURN s.order_status AS status, count(*) AS cnt ORDER BY cnt DESC LIMIT 50\", \"parameters\": {\"pc\": \"382-000005\"}, \"bkn_context\": {\"conversation_id\": \"conv_deb29a0466d6bb64bf345da165908697\", \"interaction_id\": \"int_fc9fbb1ee8f981b1e07e7cae46a3b311\"}}"
+    },
+    {
+      "type": "tool/result",
+      "time": 1791320750224,
+      "turn": 3,
+      "step": 3,
+      "callId": "call_00_K4U7DWYO2uQdSOo6ssA52850",
+      "hostErrorFlag": true,
+      "content": [
+        {
+          "type": "text",
+          "text": "Error: mcp__openbkn__run_cypher is not supported in an OpenBKN business session by this version of the bkn-dsh plugin. Do not retry it; continue with the managed OpenBKN tools."
+        }
+      ]
+    },
+    {
+      "type": "tool/call",
+      "time": 1791320750225,
+      "turn": 3,
+      "step": 3,
+      "callId": "call_01_NQ7RJxMBjSqTKEFzdzEb5305",
+      "name": "mcp__openbkn__run_cypher",
+      "arguments": "{\"kn_id\": \"supply_ontology_hand\", \"query\": \"MATCH (s:supply_ontology_hand_salesorder) WHERE s.product_code = $pc RETURN count(*) AS total\", \"parameters\": {\"pc\": \"382-000005\"}, \"bkn_context\": {\"conversation_id\": \"conv_deb29a0466d6bb64bf345da165908697\", \"interaction_id\": \"int_fc9fbb1ee8f981b1e07e7cae46a3b311\"}}"
+    },
+    {
+      "type": "tool/result",
+      "time": 1791320750225,
+      "turn": 3,
+      "step": 3,
+      "callId": "call_01_NQ7RJxMBjSqTKEFzdzEb5305",
+      "hostErrorFlag": true,
+      "content": [
+        {
+          "type": "text",
+          "text": "Error: mcp__openbkn__run_cypher is not supported in an OpenBKN business session by this version of the bkn-dsh plugin. Do not retry it; continue with the managed OpenBKN tools."
+        }
+      ]
+    },
+    {
+      "type": "tool/call",
+      "time": 1791320752913,
+      "turn": 3,
+      "step": 4,
+      "callId": "call_00_A2ui6W3pEs9ZHYRN8IEs5621",
+      "name": "mcp__openbkn__get_object_types",
+      "arguments": "{\"bkn_context\": {\"conversation_id\": \"conv_deb29a0466d6bb64bf345da165908697\", \"interaction_id\": \"int_fc9fbb1ee8f981b1e07e7cae46a3b311\"}, \"ids\": [\"supply_ontology_hand_salesorder\"], \"kn_id\": \"supply_ontology_hand\", \"response_format\": \"json\"}"
+    },
+    {
+      "type": "tool/result",
+      "time": 1791320753217,
+      "turn": 3,
+      "step": 4,
+      "callId": "call_00_A2ui6W3pEs9ZHYRN8IEs5621",
+      "hostErrorFlag": false,
+      "content": [
+        {
+          "type": "text",
+          "text": "{\"kn_id\":\"supply_ontology_hand\",\"object_types\":[{\"module_type\":\"object_type\",\"id\":\"supply_ontology_hand_salesorder\",\"name\":\"销售订单\",\"tags\":[\"已审核\",\"老数据\"],\"comment\":\"记录销售签约与交付信息。产品编码与「产品」对象一致，可直接关联查询；并包含客户、签约数量、承诺交期与交付情况等业务字段，便于体验订单履约分析。\",\"_score\":0,\"data_source\":{\"type\":\"resource\",\"id\":\"01a0f6e5-fda9-717a-aa25-f5573d2b246c\",\"name\":\"supply_demo_hand.sales_order\"},\"data_properties\":[{\"name\":\"sales_order_id\",\"display_name\":\"销售订单号\",\"type\":\"string\",\"comment\":\"重建主键\",\"mapped_field\":{\"name\":\"sales_order_id\",\"type\":\"text\",\"display_name\":\"sales_order_id\"}},{\"name\":\"contract_number\",\"display_name\":\"合同编号\",\"type\":\"string\",\"mapped_field\":{\"display_name\":\"contract_number\",\"name\":\"contract_number\",\"type\":\"text\"}},{\"name\":\"customer_id\",\"display_name\":\"客户ID\",\"type\":\"string\",\"mapped_field\":{\"name\":\"customer_id\",\"type\":\"integer\",\"display_name\":\"customer_id\"}},{\"name\":\"customer_name\",\"display_name\":\"客户名称\",\"type\":\"string\",\"mapped_field\":{\"name\":\"customer_name\",\"type\":\"text\",\"display_name\":\"customer_name\"}},{\"name\":\"product_code\",\"display_name\":\"产品编码\",\"type\":\"string\",\"comment\":\"对齐产品 material_number\",\"mapped_field\":{\"type\":\"text\",\"display_name\":\"product_code\",\"name\":\"product_code\"}},{\"name\":\"product_name\",\"display_name\":\"产品名称\",\"type\":\"string\",\"mapped_field\":{\"display_name\":\"product_name\",\"name\":\"product_name\",\"type\":\"text\"}},{\"name\":\"signing_quantity\",\"display_name\":\"签约数量\",\"type\":\"integer\",\"mapped_field\":{\"name\":\"signing_quantity\",\"type\":\"integer\",\"display_name\":\"signing_quantity\"}},{\"name\":\"signing_date\",\"display_name\":\"签约时间\",\"type\":\"date\",\"mapped_field\":{\"name\":\"signing_date\",\"type\":\"datetime\",\"display_name\":\"signing_date\"}},{\"name\":\"promised_delivery_date\",\"display_name\":\"承诺交期时间\",\"type\":\"date\",\"mapped_field\":{\"name\":\"promised_delivery_date\",\"type\":\"datetime\",\"display_name\":\"promised_delivery_date\"}},{\"name\":\"shipping_quantity\",\"display_name\":\"交付数量\",\"type\":\"float\",\"mapped_field\":{\"name\":\"shipping_quantity\",\"type\":\"integer\",\"display_name\":\"shipping_quantity\"}},{\"name\":\"shipping_date\",\"display_name\":\"交付时间\",\"type\":\"date\",\"mapped_field\":{\"name\":\"shipping_date\",\"type\":\"datetime\",\"display_name\":\"shipping_date\"}},{\"name\":\"order_status\",\"display_name\":\"订单状态\",\"type\":\"string\",\"mapped_field\":{\"display_name\":\"order_status\",\"name\":\"order_status\",\"type\":\"text\"}},{\"name\":\"salesperson\",\"display_name\":\"业务员\",\"type\":\"string\",\"mapped_field\":{\"type\":\"text\",\"display_name\":\"salesperson\",\"name\":\"salesperson\"}}],\"logic_properties\":[{\"name\":\"sales_order_count\",\"display_name\":\"销售订单数\",\"type\":\"metric\",\"comment\":\"订单张数。实例上用本单 product_code 过滤；也可按订单状态过滤。\",\"data_source\":{\"type\":\"metric\",\"id\":\"01a0f6e6-5e9e-72c1-b69b-64e663b5e45d\",\"name\":\"销售订单数\"},\"parameters\":[{\"name\":\"product_code\",\"type\":\"string\",\"value_from\":\"property\",\"value\":\"product_code\",\"comment\":\"产品编码\"},{\"name\":\"order_status\",\"type\":\"string\",\"value_from\":\"input\",\"comment\":\"订单状态\"},{\"name\":\"instant\",\"type\":\"boolean\",\"value_from\":\"input\",\"if_system_generate\":true,\"comment\":\"是否进行即时查询。可选，默认为 false。instant=true 表示即时查询；否则表示范围查询。\"},{\"name\":\"start\",\"type\":\"integer\",\"value_from\":\"input\",\"if_system_generate\":true,\"comment\":\"指标查询的开始时间，格式为 start=\\u003cunix_timestamp\\u003e，单位为毫秒，例如 1646360670123。\"},{\"name\":\"end\",\"type\":\"integer\",\"value_from\":\"input\",\"if_system_generate\":true,\"comment\":\"指标查询的结束时间，格式为 end=\\u003cunix_timestamp\\u003e，单位为毫秒，例如 1646471470123。\"},{\"name\":\"step\",\"type\":\"string\",\"value_from\":\"input\",\"if_system_generate\":true,\"comment\":\"范围查询的步长。instant=false 时必填，格式为 step=\\u003ctime_duration\\u003e，由数字和时间单位组成。\"}]}],\"primary_keys\":[\"sales_order_id\"],\"effective_permissions\":{\"product_name\":\"full\",\"customer_name\":\"full\",\"signing_quantity\":\"full\",\"promised_delivery_date\":\"full\",\"sales_order_id\":\"full\",\"customer_id\":\"full\",\"product_code\":\"full\",\"salesperson\":\"full\",\"shipping_quantity\":\"full\",\"order_status\":\"full\",\"signing_date\":\"full\",\"contract_number\":\"full\",\"shipping_date\":\"full\"},\"related_metrics\":[{\"id\":\"01a0f6e6-5e9e-72c1-b69b-64e663b5e45d\",\"name\":\"销售订单数\",\"comment\":\"count(sales_order_id)。可按 product_code / order_status 过滤或分组。快照 800。\",\"metric_type\":\"atomic\",\"unit\":\"transaction\",\"unit_type\":\"countUnit\",\"scope_ref\":\"supply_ontology_hand_salesorder\",\"analysis_dimensions\":[\"product_code\",\"order_status\"]}],\"related_metric_count\":1}]}"
+        }
+      ]
+    },
+    {
+      "type": "tool/call",
+      "time": 1791320755558,
+      "turn": 3,
+      "step": 5,
+      "callId": "call_00_3q6jQFXaOIRJiFhdIoCS5062",
+      "name": "mcp__openbkn__query_metric",
+      "arguments": "{\"bkn_context\": {\"conversation_id\": \"conv_deb29a0466d6bb64bf345da165908697\", \"interaction_id\": \"int_fc9fbb1ee8f981b1e07e7cae46a3b311\"}, \"kn_id\": \"supply_ontology_hand\", \"metric_id\": \"01a0f6e6-5e9e-72c1-b69b-64e663b5e45d\", \"condition\": {\"field\": \"product_code\", \"operation\": \"==\", \"value\": \"382-000005\", \"value_from\": \"const\"}, \"analysis_dimensions\": [\"order_status\"]}"
+    },
+    {
+      "type": "tool/result",
+      "time": 1791320755868,
+      "turn": 3,
+      "step": 5,
+      "callId": "call_00_3q6jQFXaOIRJiFhdIoCS5062",
+      "hostErrorFlag": false,
+      "content": [
+        {
+          "type": "text",
+          "text": "datas[#1]:\n  -\n    labels:\n      order_status: 已确认\n    times[#1]: 0\n    values[#1]: 40\nkn_id: supply_ontology_hand\nmetric_id: \"01a0f6e6-5e9e-72c1-b69b-64e663b5e45d\""
+        }
+      ]
+    },
+    {
+      "type": "tool/call",
+      "time": 1791320755868,
+      "turn": 3,
+      "step": 5,
+      "callId": "call_01_n7ji80Vx7ys7TUIqgsrQ3976",
+      "name": "mcp__openbkn__query_metric",
+      "arguments": "{\"bkn_context\": {\"conversation_id\": \"conv_deb29a0466d6bb64bf345da165908697\", \"interaction_id\": \"int_fc9fbb1ee8f981b1e07e7cae46a3b311\"}, \"kn_id\": \"supply_ontology_hand\", \"metric_id\": \"01a0f6e6-5e9e-72c1-b69b-64e663b5e45d\", \"condition\": {\"field\": \"product_code\", \"operation\": \"==\", \"value\": \"382-000005\", \"value_from\": \"const\"}}"
+    },
+    {
+      "type": "tool/result",
+      "time": 1791320755993,
+      "turn": 3,
+      "step": 5,
+      "callId": "call_01_n7ji80Vx7ys7TUIqgsrQ3976",
+      "hostErrorFlag": false,
+      "content": [
+        {
+          "type": "text",
+          "text": "datas[#1]:\n  - times[#1]: 0\n    values[#1]: 40\nkn_id: supply_ontology_hand\nmetric_id: \"01a0f6e6-5e9e-72c1-b69b-64e663b5e45d\""
+        }
+      ]
+    },
+    {
+      "type": "tool/call",
+      "time": 1791320758482,
+      "turn": 3,
+      "step": 6,
+      "callId": "call_00_Atk7GGe5l9QVIZeZNOmj9532",
+      "name": "mcp__openbkn__bkn_finish_interaction",
+      "arguments": "{\"interaction_id\": \"int_fc9fbb1ee8f981b1e07e7cae46a3b311\", \"outcome\": \"completed\", \"answer\": \"产品编码 382-000005 共 40 张销售订单，订单状态全部为「已确认」。口径：知识网络 supply_ontology_hand 的已建模指标「销售订单数」（count(sales_order_id)，快照 800），按 product_code = 382-000005 过滤；按 order_status 拆维后仅返回一组（已确认=40），与总数一致。\"}"
+    },
+    {
+      "type": "tool/result",
+      "time": 1791320758555,
+      "turn": 3,
+      "step": 6,
+      "callId": "call_00_Atk7GGe5l9QVIZeZNOmj9532",
+      "hostErrorFlag": false,
+      "content": [
+        {
+          "type": "text",
+          "text": "{\"evidence_status\":\"partial\",\"interaction_id\":\"int_fc9fbb1ee8f981b1e07e7cae46a3b311\",\"conversation_id\":\"conv_deb29a0466d6bb64bf345da165908697\",\"execution_status\":\"completed\"}"
+        }
+      ]
+    }
+  ],
+  "turnEnds": [
+    {
+      "time": 1791320424615,
+      "turn": 1,
+      "reason": {
+        "kind": "completed"
+      }
+    },
+    {
+      "time": 1791320640155,
+      "turn": 2,
+      "reason": {
+        "kind": "error",
+        "error": {
+          "message": "mcp-client(openbkn): initial connection or tool synchronization failed: Version negotiation probe failed: fetch failed",
+          "code": "UNKNOWN"
+        }
+      }
+    },
+    {
+      "time": 1791320759619,
+      "turn": 3,
+      "reason": {
+        "kind": "completed"
+      }
+    }
+  ]
+}

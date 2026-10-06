@@ -1,0 +1,37 @@
+{
+  "checkedAt": "2026-10-06T21:19:18.546918+00:00",
+  "sourceCommit": "3414bdec3c956cc0d580aebd959ac6f3439bb352",
+  "ciRunId": 37478119730,
+  "candidate": {
+    "path": "/Users/kalias/Documents/project/app/openBKN/bkn-dsh-unified-7/release/unified-7-candidate/3414bde/openbkn-dsh-business-context-0.2.0-rc.2-openbkn.0.2.0-7.tgz",
+    "version": "0.2.0-rc.2-openbkn.0.2.0-7",
+    "sha256": "6bbab27876e743032572ddce107fcce09e0d681f87bee19fba8d78180e5a63a8",
+    "bytes": 177442,
+    "fileCount": 66,
+    "declarationReferencesIncludingPackageSelfReference": 16,
+    "uniqueDeclaredFilesIncludingPackageSelfReference": 14,
+    "nonSelfReferenceDeclarations": 15,
+    "missingDeclaredTargets": []
+  },
+  "actualInstalled": [
+    {
+      "hostFormActual": "desktop",
+      "path": "/private/var/folders/9r/1zks6bqd7f3dtwybvxsksbc40000gn/T/openbkn-diag-ui-h76__jwb/desktop-home/profiles/desktop/node_modules/@openbkn/dsh-business-context",
+      "version": "0.2.0-rc.2-openbkn.0.2.0-7",
+      "matched": 66,
+      "missing": [],
+      "different": [],
+      "extra": []
+    },
+    {
+      "hostFormActual": "npm",
+      "path": "/private/var/folders/9r/1zks6bqd7f3dtwybvxsksbc40000gn/T/openbkn-diag-ui-h76__jwb/final-npm-home/profiles/web/node_modules/@openbkn/dsh-business-context",
+      "version": "0.2.0-rc.2-openbkn.0.2.0-7",
+      "matched": 66,
+      "missing": [],
+      "different": [],
+      "extra": []
+    }
+  ],
+  "repackedOrModified": false
+}

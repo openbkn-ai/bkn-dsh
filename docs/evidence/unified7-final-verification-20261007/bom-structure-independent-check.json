@@ -1,0 +1,15 @@
+{
+  "evidenceScope": "Each disclosed final BOM structure tuple is checked against independent physical ERP REST rows, not an assertion that physical ERP and published main_only counts are equal. Inventory fields excluded.",
+  "rowsCompared": 313,
+  "uniqueChildren": 272,
+  "levelCounts": {
+    "1": 9,
+    "2": 16,
+    "3": 38,
+    "4": 212,
+    "5": 38
+  },
+  "unmatchedStructureTuples": [],
+  "allDisclosedStructureFieldsMatchPhysicalRows": true,
+  "nativeTurnOutcome": "error; fact consistency cannot override failed delivery"
+}

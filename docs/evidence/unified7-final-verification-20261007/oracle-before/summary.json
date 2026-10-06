@@ -1,0 +1,78 @@
+{
+  "orderRows": 40,
+  "orderStatuses": {
+    "已确认": 40
+  },
+  "signedQuantity": "1081",
+  "shippedQuantity": "1066",
+  "orderIds": [
+    "SO0000001",
+    "SO0000002",
+    "SO0000003",
+    "SO0000004",
+    "SO0000005",
+    "SO0000006",
+    "SO0000007",
+    "SO0000008",
+    "SO0000009",
+    "SO0000010",
+    "SO0000011",
+    "SO0000012",
+    "SO0000013",
+    "SO0000014",
+    "SO0000015",
+    "SO0000016",
+    "SO0000017",
+    "SO0000018",
+    "SO0000019",
+    "SO0000020",
+    "SO0000501",
+    "SO0000502",
+    "SO0000503",
+    "SO0000504",
+    "SO0000505",
+    "SO0000506",
+    "SO0000507",
+    "SO0000508",
+    "SO0000509",
+    "SO0000510",
+    "SO0000511",
+    "SO0000512",
+    "SO0000513",
+    "SO0000514",
+    "SO0000515",
+    "SO0000516",
+    "SO0000517",
+    "SO0000518",
+    "SO0000519",
+    "SO0000520"
+  ],
+  "finishedGoods": {
+    "乌鲁木齐成品仓": {
+      "availableQty": "127",
+      "stockRows": 2
+    },
+    "哈尔滨成品仓": {
+      "availableQty": "82",
+      "stockRows": 2
+    },
+    "苏州成品仓": {
+      "availableQty": "325",
+      "stockRows": 5
+    }
+  },
+  "finishedGoodsTotal": "534",
+  "inventoryUnits": [
+    "个"
+  ],
+  "purchaseRequests": 0,
+  "purchaseOrders": 0,
+  "physicalBomRows": 507,
+  "bomAlternativePartValues": {
+    "None": 400,
+    "√": 107
+  },
+  "bomVersionValues": {
+    "2026-08-05T00:00:00+08:00": 507
+  }
+}

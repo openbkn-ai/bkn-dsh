@@ -1,0 +1,80 @@
+{
+  "schemaVersion": 1,
+  "reportId": "082f39cf",
+  "createdAt": "2026-10-06T20:34:28.714Z",
+  "target": {
+    "hostForm": "desktop",
+    "platform": "darwin",
+    "dshVersion": null,
+    "pluginDiskVersion": "0.2.0-rc.2-openbkn.0.2.0-7",
+    "pluginLoadedVersion": null
+  },
+  "mode": "passive",
+  "checks": [
+    {
+      "id": "bootstrap-entry",
+      "stage": "installation",
+      "status": "pass",
+      "source": "host-runtime",
+      "code": "component-loaded",
+      "evidence": {
+        "entryPresent": true
+      },
+      "nextAction": null
+    },
+    {
+      "id": "business-entry",
+      "stage": "component",
+      "status": "pass",
+      "source": "host-runtime",
+      "code": "component-loaded",
+      "evidence": {
+        "entryPresent": true
+      },
+      "nextAction": null
+    },
+    {
+      "id": "diagnostics-entry",
+      "stage": "diagnostics",
+      "status": "pass",
+      "source": "host-runtime",
+      "code": "component-loaded",
+      "evidence": {
+        "schemaVersion": 1
+      },
+      "nextAction": null
+    },
+    {
+      "id": "observed:cli",
+      "stage": "cli",
+      "status": "fail",
+      "source": "observed-operation",
+      "code": "cli-execution-failed",
+      "evidence": {
+        "failureCount": 1,
+        "lastOutcomeAgoMs": 19223,
+        "exitCode": 2
+      },
+      "nextAction": "Export this report and send it to support; the failing stage is listed above."
+    },
+    {
+      "id": "observed:login-state",
+      "stage": "authentication",
+      "status": "fail",
+      "source": "observed-operation",
+      "code": "not-logged-in",
+      "evidence": {
+        "failureCount": 1,
+        "lastOutcomeAgoMs": 144628,
+        "loggedIn": false
+      },
+      "nextAction": "Export this report and send it to support; the failing stage is listed above."
+    }
+  ],
+  "coverage": {
+    "executedChecks": 5,
+    "notRunChecks": 0,
+    "insufficientEvidenceChecks": 0,
+    "notes": []
+  }
+}

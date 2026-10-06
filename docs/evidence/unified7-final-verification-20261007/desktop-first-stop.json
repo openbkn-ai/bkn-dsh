@@ -1,0 +1,38 @@
+{
+  "scope": "exact owned Desktop root and descendant tree for controlled restart",
+  "at": "2026-10-06T20:59:17.700113+00:00",
+  "ownedTree": [
+    {
+      "pid": 70773,
+      "ppid": 1,
+      "creationTime": "Wed Oct 7 04:30:09 2026",
+      "executable": "/Applications/DeepSeek Harness.app/Contents/MacOS/DeepSeek Harness"
+    },
+    {
+      "pid": 70787,
+      "ppid": 70773,
+      "creationTime": "Wed Oct 7 04:30:09 2026",
+      "executable": "/Applications/DeepSeek Harness.app/Contents/Frameworks/DeepSeek Harness Helper.app/Contents/MacOS/DeepSeek Harness Helper"
+    },
+    {
+      "pid": 70788,
+      "ppid": 70773,
+      "creationTime": "Wed Oct 7 04:30:09 2026",
+      "executable": "/Applications/DeepSeek Harness.app/Contents/Frameworks/DeepSeek Harness Helper.app/Contents/MacOS/DeepSeek Harness Helper"
+    },
+    {
+      "pid": 70812,
+      "ppid": 70773,
+      "creationTime": "Wed Oct 7 04:30:09 2026",
+      "executable": "/Applications/DeepSeek Harness.app/Contents/Frameworks/DeepSeek Harness Helper (Renderer).app/Contents/MacOS/DeepSeek Harness Helper (Renderer)"
+    },
+    {
+      "pid": 71184,
+      "ppid": 70773,
+      "creationTime": "Wed Oct 7 04:30:10 2026",
+      "executable": "/Applications/DeepSeek Harness.app/Contents/MacOS/DeepSeek Harness"
+    }
+  ],
+  "remainingChildrenSignalled": [],
+  "rootStopped": true
+}

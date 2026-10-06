@@ -1,0 +1,10 @@
+{
+  "scope": "controlled local expiresAt for an actually valid opaque token; real refreshToken retained; no token value logged",
+  "startedAt": "2026-10-06T20:55:54.439520+00:00",
+  "baselineExpiresAt": "2026-10-06T21:37:59.348Z",
+  "baselineStoreSha256": "6ca04605baebf9f3b364b9b024ea0e9a6b1b5bcef676094474536ac943e21d3f",
+  "baselineAccessTokenSha256": "6391b1d0b43519270b63c7356c25d9d3b4744bfe12a11706d9a946ccf391b445",
+  "baselineRefreshTokenSha256": "e5d65c98665c4be84bf9c177d22a4cf89bdb79062ac6b73010b27c3bac94a440",
+  "controlledExpiresAt": "2026-10-06T20:56:34.439680Z",
+  "controlledStoreSha256": "e30580d2f0932992053ea05f4b4541523e2b4f291174fd0690e5eead012c3bc7"
+}

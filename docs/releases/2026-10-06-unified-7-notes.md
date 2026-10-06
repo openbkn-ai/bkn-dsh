@@ -48,8 +48,10 @@ Windows 测试 helper 现吸收实际 Windows 复验的修正：配置写入 BOM
 
 ## 验收与已知限制
 
-准确的固定候选身份和逐项状态见 [Windows 固定包交接](../handoff/2026-10-06-release-7/fidelity-windows/README.md) 与 [本轮结果](../evidence/answer-fidelity-20261006/RESULTS.md)。历史 Windows `-6` 两形态诊断隔离通过；非法 URL 缺陷已经在 `-7` 源码修复，需 Windows 对本轮固定包复测。Windows 无凭据的真实登录、问答和 live guard 均保留未测；用户没有真实受限账号，该授权场景同样未测。
+截至2026-10-07，固定候选仍为源码 `3414bde`、tgz `6bbab278…`、66文件。主线build-only CI `37500800409` 与原候选整包逐字节一致，两次CI均未发布。Windows两形态固定包复测证据已复核至 `9fb3896`，非法URL、诊断隔离、脱敏、卸载重装与六项受控场景通过；新补证任务见 [Windows最终handoff](../handoff/2026-10-07-unified7-final-verification/WINDOWS-HANDOFF.md)，真实登录、问答和live guard仍需该侧正常配置后执行。
 
 “重新采集”读取被动观察，主动网络探测未实现。旧启动异常的根因未知；未复现不等于修复。平台 [#2029](https://github.com/openbkn-ai/bkn-foundry/issues/2029) 的大结果落库问题仍开放，`run_code` 内部调用也不经过插件 guard。报告中的 Host/插件版本可能未知，另用安装清单与进程来源确认身份。发布、tag 和 dist-tag 迁移须待验收结论及用户发版决定。
 
-历史统一 CI 包曾出现 BOM 多一行及物理源表名转述错误；后续固定 CI 包又暴露空库存标记、缺列头及库存范围/预留说明问题。这些失败均保留。回答交付修复已通过 PR #69–#72 独立评审并合入 main；本账户主线累计 71 项提交归属已核对至 `3414bde`。其 build-only CI 37478119730 产物 `6bbab278…` 已在 macOS 官方 Desktop 完成三道原题（均原生 completed）；BOM 的 313 行、八个业务字段、48 行范围内无记录标记和 313 个披露记录数均通过独立核对。真实诊断导出九项通过、同网络图的三个元素来源、npm 配置/导入隔离、16 项 live guard 与两种官方核心的六项受控场景也通过。八项其他 G6、跨网络真实图和原生 Windows 复测仍未测；深层库存能力本轮仍超时，已披露并核验只读回退。这一候选可交 Windows 复测，尚未放行发布。
+历史统一 CI 包曾出现 BOM 多一行及物理源表名转述错误；后续固定 CI 包又暴露空库存标记、缺列头及库存范围/预留说明问题。这些失败均保留。回答交付修复已通过 PR #69–#72 独立评审并合入 main；本账户主线累计 71 项提交归属已核对至 `3414bde`。同一CI产物前轮在macOS官方Desktop完成三道原题，均native completed：标准交期、完整BOM/库存、缺失物料。BOM的313行、八字段、48范围内无记录标记及313个披露记录数均独立核对，原证据见 [三题验收](../evidence/answer-fidelity-20261006/RESULTS.md)。这些是特定原题通过，不保证其他问题正确。
+
+2026-10-07 Mac新增七个G6场景中五个通过、两个失败：订单数量/状态、成品仓库存、未结采购、受控Token拒绝与恢复、受控断网恢复通过；BOM构成题追加库存交付后native error，销售订单明细题把物料号当订单/合同号而错误答无记录。综合原生交付与事实为8/10，另有真实受限账号1项not-run；事实评分9/10不覆盖原生失败。临近到期自动Token续期调用链已实测，自然过期恢复未测。npm真实界面与实际报告下载、同网两个元素Trace来源、live guard16/16、安装66/66和选定用户文件保护已补验；混合网络真实图及第二工作区UI仍未完成。详见 [最终Mac结果](../evidence/unified7-final-verification-20261007/RESULTS.md) 与 [剩余事项及理由](../handoff/2026-10-07-unified7-final-verification/REMAINING-DECISIONS.md)。**当前暂不建议发布，需先决定新增两项回答问题的修复与复测。** 本说明仍是一份未发布累计草稿，未另发 -5/-6 公告。

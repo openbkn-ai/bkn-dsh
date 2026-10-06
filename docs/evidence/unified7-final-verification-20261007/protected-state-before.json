@@ -1,0 +1,114 @@
+{
+  "at": "2026-10-06T20:27:23.648075+00:00",
+  "selectedFiles": [
+    {
+      "scope": "daily",
+      "relativePath": ".credentials.yaml",
+      "exists": true,
+      "sha256": "f582357fa04d46daf252508c83123c6975aa102c484b03a20a488a3d05753242"
+    },
+    {
+      "scope": "daily",
+      "relativePath": "profiles/desktop/package.json",
+      "exists": true,
+      "sha256": "eafc5b4ebc3e702e8aaee00f6012ae1d76ef8ea24b8bbe03a003f369c5d2934f"
+    },
+    {
+      "scope": "daily",
+      "relativePath": "profiles/desktop/cordis.yml",
+      "exists": true,
+      "sha256": "c300dcf2ebc5f02062d6591268d29d3db6fe45e0cb138f5467276fe2ba06076e"
+    },
+    {
+      "scope": "daily",
+      "relativePath": "profiles/desktop/cordis.patch.yml",
+      "exists": true,
+      "sha256": "de9bc7623edaa12efac39cf438ffcdee906ac8f55a9832d5b5ded64aa71ef8a3"
+    },
+    {
+      "scope": "daily",
+      "relativePath": "profiles/desktop/pnpm-lock.yaml",
+      "exists": false,
+      "sha256": null
+    },
+    {
+      "scope": "daily",
+      "relativePath": "profiles/work/package.json",
+      "exists": false,
+      "sha256": null
+    },
+    {
+      "scope": "daily",
+      "relativePath": "profiles/work/cordis.yml",
+      "exists": false,
+      "sha256": null
+    },
+    {
+      "scope": "daily",
+      "relativePath": "profiles/work/cordis.patch.yml",
+      "exists": false,
+      "sha256": null
+    },
+    {
+      "scope": "daily",
+      "relativePath": "profiles/work/pnpm-lock.yaml",
+      "exists": false,
+      "sha256": null
+    },
+    {
+      "scope": "isolated",
+      "relativePath": ".credentials.yaml",
+      "exists": true,
+      "sha256": "fe95ab87d1ab1f3b8b071ac8b35b1cb6ec25e0bc0b6aa88e4a213d97f20d5926"
+    },
+    {
+      "scope": "isolated",
+      "relativePath": "profiles/desktop/package.json",
+      "exists": true,
+      "sha256": "b0affa211d8aa82b8a80a74527d024a304d7d107c78790c73f169450385e320c"
+    },
+    {
+      "scope": "isolated",
+      "relativePath": "profiles/desktop/cordis.yml",
+      "exists": true,
+      "sha256": "c300dcf2ebc5f02062d6591268d29d3db6fe45e0cb138f5467276fe2ba06076e"
+    },
+    {
+      "scope": "isolated",
+      "relativePath": "profiles/desktop/cordis.patch.yml",
+      "exists": true,
+      "sha256": "ee08d266e84ed62d9e83b6c2350255db7615916a1990fd023e388098221f245c"
+    },
+    {
+      "scope": "isolated",
+      "relativePath": "profiles/desktop/pnpm-lock.yaml",
+      "exists": true,
+      "sha256": "c271e8c1d88de776120a8b71784cc02a6414cb791384027b996d785170be55f7"
+    },
+    {
+      "scope": "isolated",
+      "relativePath": "profiles/work/package.json",
+      "exists": false,
+      "sha256": null
+    },
+    {
+      "scope": "isolated",
+      "relativePath": "profiles/work/cordis.yml",
+      "exists": false,
+      "sha256": null
+    },
+    {
+      "scope": "isolated",
+      "relativePath": "profiles/work/cordis.patch.yml",
+      "exists": false,
+      "sha256": null
+    },
+    {
+      "scope": "isolated",
+      "relativePath": "profiles/work/pnpm-lock.yaml",
+      "exists": false,
+      "sha256": null
+    }
+  ],
+  "scope": "Selected file content hashes, no configuration or credential body exported."
+}

@@ -1,0 +1,27 @@
+{
+  "run": 37500800409,
+  "lines": [
+    "build, test and publish\tResolve release constants from the manifests\t2026-10-06T17:06:00.0727935Z \u001b[36;1m  `PKG_VERSION=${pkg.version}`,\u001b[0m",
+    "build, test and publish\tResolve release constants from the manifests\t2026-10-06T17:06:00.0728127Z \u001b[36;1m  `MANIFEST_PLUGIN_VERSION=${manifest.plugin.version}`,\u001b[0m",
+    "build, test and publish\tResolve release constants from the manifests\t2026-10-06T17:06:00.3003417Z PKG_VERSION=0.2.0-rc.2-openbkn.0.2.0-7",
+    "build, test and publish\tResolve release constants from the manifests\t2026-10-06T17:06:00.3003725Z MANIFEST_PLUGIN_VERSION=0.2.0-rc.2-openbkn.0.2.0-7",
+    "build, test and publish\tDecide publish\t2026-10-06T17:06:00.3093346Z \u001b[36;1m  echo \"publish=true\" >> \"$GITHUB_OUTPUT\"\u001b[0m",
+    "build, test and publish\tDecide publish\t2026-10-06T17:06:00.3093636Z \u001b[36;1m  echo \"publish=false\" >> \"$GITHUB_OUTPUT\"\u001b[0m",
+    "build, test and publish\tTest plugin and compatibility tooling\t2026-10-06T17:09:48.5562709Z # tests 344",
+    "build, test and publish\tTest plugin and compatibility tooling\t2026-10-06T17:09:48.5562817Z # suites 0",
+    "build, test and publish\tTest plugin and compatibility tooling\t2026-10-06T17:09:48.5562923Z # pass 343",
+    "build, test and publish\tTest plugin and compatibility tooling\t2026-10-06T17:09:48.5563028Z # fail 0",
+    "build, test and publish\tTest plugin and compatibility tooling\t2026-10-06T17:09:48.5563131Z # cancelled 0",
+    "build, test and publish\tTest plugin and compatibility tooling\t2026-10-06T17:09:48.5563243Z # skipped 1",
+    "build, test and publish\tTest plugin and compatibility tooling\t2026-10-06T17:09:48.5563347Z # todo 0",
+    "build, test and publish\tTest plugin and compatibility tooling\t2026-10-06T17:09:49.1042773Z # tests 60",
+    "build, test and publish\tTest plugin and compatibility tooling\t2026-10-06T17:09:49.1042876Z # suites 0",
+    "build, test and publish\tTest plugin and compatibility tooling\t2026-10-06T17:09:49.1042981Z # pass 60",
+    "build, test and publish\tTest plugin and compatibility tooling\t2026-10-06T17:09:49.1043087Z # fail 0",
+    "build, test and publish\tTest plugin and compatibility tooling\t2026-10-06T17:09:49.1043194Z # cancelled 0",
+    "build, test and publish\tTest plugin and compatibility tooling\t2026-10-06T17:09:49.1043373Z # skipped 0",
+    "build, test and publish\tTest plugin and compatibility tooling\t2026-10-06T17:09:49.1043538Z # todo 0",
+    "build, test and publish\tPack and inspect the tarball\t2026-10-06T17:09:54.0070515Z all 16 export/main/types targets are packed",
+    "build, test and publish\tSummarize\t2026-10-06T17:09:54.0284201Z \u001b[36;1m  echo \"- publish requested: false\"\u001b[0m"
+  ]
+}

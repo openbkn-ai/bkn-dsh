@@ -1,0 +1,16 @@
+{
+  "startedAt": "2026-10-06T20:55:14.954232+00:00",
+  "scope": "own isolated CLI cache only; real account not revoked",
+  "storePath": "/private/var/folders/9r/1zks6bqd7f3dtwybvxsksbc40000gn/T/openbkn-diag-ui-h76__jwb/bkn-config/platforms/aHR0cHM6Ly8xOTIuMTY4LjUwLjI4/users/266c6a42-6131-4d62-8f39-853e7093701c/token.json",
+  "baselineSha256": "6ca04605baebf9f3b364b9b024ea0e9a6b1b5bcef676094474536ac943e21d3f",
+  "controlledSha256": "da1f0cd2b602a43bf47bb1af5e84f32528c95ab1399f6d2a4d3dd3b28d18e914",
+  "baseline": {
+    "expiresAt": "2026-10-06T21:37:59.348Z",
+    "refreshPresent": true
+  },
+  "controlled": {
+    "expiresAt": "2026-10-06T21:55:14.953867Z",
+    "refreshPresent": false
+  },
+  "backupOutsideRepository": true
+}

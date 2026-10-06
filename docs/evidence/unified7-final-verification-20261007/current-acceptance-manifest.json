@@ -1,0 +1,76 @@
+{
+  "schemaVersion": 1,
+  "recordedAt": "2026-10-06T21:22:35.681049+00:00",
+  "role": "Current acceptance overlay; immutable original Windows kit and candidate manifests are not edited.",
+  "candidate": {
+    "package": "@openbkn/dsh-business-context",
+    "version": "0.2.0-rc.2-openbkn.0.2.0-7",
+    "sourceCommit": "3414bdec3c956cc0d580aebd959ac6f3439bb352",
+    "ciRunId": 37478119730,
+    "sha256": "6bbab27876e743032572ddce107fcce09e0d681f87bee19fba8d78180e5a63a8",
+    "bytes": 177442,
+    "files": 66,
+    "finalInstalledIdentity": "final-package-identity.json"
+  },
+  "mainRehearsal": {
+    "commit": "870e26958bde734f64c5af046f9bab134e3512e1",
+    "runId": 37500800409,
+    "conclusion": "success",
+    "tarballByteEqual": true,
+    "publishAndReleaseNotPerformed": true,
+    "evidence": "preflight-review/ci-main-run.json",
+    "packageComparison": "preflight-review/main-package-comparison.json",
+    "nativeNpmPublishStep": {
+      "name": "Publish to npm",
+      "status": "completed",
+      "conclusion": "skipped"
+    }
+  },
+  "windows": {
+    "reviewedCommit": "9fb3896b979eff8fdebc1283ecb6316e0a888953",
+    "existingProductReports": 18,
+    "newSupplementBatchStatus": "pending Windows execution",
+    "handoff": "../../handoff/2026-10-07-unified7-final-verification/WINDOWS-HANDOFF.md",
+    "review": "preflight-review/windows-review.json"
+  },
+  "mac": {
+    "currentG6Verdict": "acceptance-verdict.json",
+    "accepted": 8,
+    "failed": 2,
+    "notRun": 1,
+    "threeCasesCarriedFromSameArtifactPreviousRun": true,
+    "liveGuard": {
+      "passed": 16,
+      "total": 16,
+      "output": "live-guard.jsonl"
+    },
+    "productDownloads": {
+      "nativeFiles": 5,
+      "comparison": "product-originals-consistency.json"
+    },
+    "selectedProtectedPaths": {
+      "total": 18,
+      "dailyCount": 9,
+      "dailyExisting": 4,
+      "dailyAbsent": 5,
+      "dailyAllExistenceAndContentHashesEqual": true,
+      "isolatedChanged": [
+        ".credentials.yaml"
+      ],
+      "wholeHomeUnchangedClaimed": false
+    },
+    "cleanup": "owned-pids-summary.json",
+    "nearExpiryAutomaticRenewalAccepted": true,
+    "naturalExpiredCredentialRecoveryAccepted": false,
+    "mixedNetworkGraphAccepted": false
+  },
+  "release": {
+    "publishReady": false,
+    "published": false,
+    "tagged": false,
+    "distTagChanged": false,
+    "reason": "BOM structure native delivery failed and sales-order-detail answer is wrong; pending Windows supplement, account and real mixed-network evidence remain.",
+    "remainingDecisions": "../../handoff/2026-10-07-unified7-final-verification/REMAINING-DECISIONS.md"
+  },
+  "packageOrHostSourceChangedThisRound": false
+}

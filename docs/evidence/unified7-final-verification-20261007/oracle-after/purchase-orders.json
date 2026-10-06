@@ -1,0 +1,35 @@
+{
+  "datas": [],
+  "paging": {
+    "next_cursor": null,
+    "expires_at_sec": null
+  },
+  "overall_ms": 53,
+  "search_from_index": false,
+  "effective_permissions": {
+    "material_number": "full",
+    "supplier_number": "full",
+    "huid_xycg_operatorname": "full",
+    "org_name": "full",
+    "returnqty": "full",
+    "entry_id": "full",
+    "createtime": "full",
+    "biztime": "full",
+    "rowclosestatus_title": "full",
+    "operatorname": "full",
+    "qty": "full",
+    "srcbillnumber": "full",
+    "actqty": "full",
+    "auditdate": "full",
+    "material_name": "full",
+    "rowterminatestatus_title": "full",
+    "srcbillid": "full",
+    "billtype_name": "full",
+    "billno": "full",
+    "supplier_name": "full",
+    "invqty": "full",
+    "id": "full",
+    "deliverdate": "full",
+    "srcbillentryid": "full"
+  }
+}

@@ -1,0 +1,37 @@
+{
+  "at": "2026-10-06T21:03:46.335125+00:00",
+  "ownedTree": [
+    {
+      "pid": 92336,
+      "ppid": 1,
+      "creationTime": "Wed Oct 7 05:00:01 2026",
+      "executable": "/Applications/DeepSeek Harness.app/Contents/MacOS/DeepSeek Harness"
+    },
+    {
+      "pid": 92344,
+      "ppid": 92336,
+      "creationTime": "Wed Oct 7 05:00:02 2026",
+      "executable": "/Applications/DeepSeek Harness.app/Contents/Frameworks/DeepSeek Harness Helper.app/Contents/MacOS/DeepSeek Harness Helper"
+    },
+    {
+      "pid": 92345,
+      "ppid": 92336,
+      "creationTime": "Wed Oct 7 05:00:02 2026",
+      "executable": "/Applications/DeepSeek Harness.app/Contents/Frameworks/DeepSeek Harness Helper.app/Contents/MacOS/DeepSeek Harness Helper"
+    },
+    {
+      "pid": 92359,
+      "ppid": 92336,
+      "creationTime": "Wed Oct 7 05:00:02 2026",
+      "executable": "/Applications/DeepSeek Harness.app/Contents/Frameworks/DeepSeek Harness Helper (Renderer).app/Contents/MacOS/DeepSeek Harness Helper (Renderer)"
+    },
+    {
+      "pid": 92780,
+      "ppid": 92336,
+      "creationTime": "Wed Oct 7 05:00:04 2026",
+      "executable": "/Applications/DeepSeek Harness.app/Contents/MacOS/DeepSeek Harness"
+    }
+  ],
+  "rootStopped": true,
+  "reason": "Native AX and rendered screenshot diverged after save sheet; restart official Host, no classification as plugin defect"
+}

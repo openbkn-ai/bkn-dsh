@@ -1,0 +1,5 @@
+# Preserve emitted whitespace in these captured evidence files. This applies
+# only to raw evidence, not source, documentation or product exports.
+platform-unreachable-ui.txt -whitespace
+second-network-workspace-picker-ui.txt -whitespace
+preflight-review/ci-main-run.json -whitespace

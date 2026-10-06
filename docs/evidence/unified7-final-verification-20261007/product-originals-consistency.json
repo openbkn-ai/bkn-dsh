@@ -1,0 +1,50 @@
+{
+  "comparison": "exact original bytes; no newline normalization",
+  "checks": [
+    {
+      "reportId": "e357b710",
+      "originalPath": "/Users/kalias/Downloads/OpenBKN-diagnostic-20261006T204120416Z-e357b710.json",
+      "evidencePath": "npm-product-e357b710.json",
+      "bytes": 1853,
+      "originalSha256": "58e5936eb1c20b5cbe8ffbacc88e03f7d2e6ae1b22963fe743a67ee14173eb5c",
+      "evidenceSha256": "58e5936eb1c20b5cbe8ffbacc88e03f7d2e6ae1b22963fe743a67ee14173eb5c",
+      "byteIdentical": true
+    },
+    {
+      "reportId": "4d141b89",
+      "originalPath": "/Users/kalias/Downloads/OpenBKN-diagnostic-20261006T204302443Z-4d141b89.json",
+      "evidencePath": "npm-product-4d141b89.json",
+      "bytes": 1853,
+      "originalSha256": "58baac4c9ee3d160d636cd11993ecbcf557baeecca578847bd1bb51a7e79a260",
+      "evidenceSha256": "58baac4c9ee3d160d636cd11993ecbcf557baeecca578847bd1bb51a7e79a260",
+      "byteIdentical": true
+    },
+    {
+      "reportId": "965afa11",
+      "originalPath": "/Users/kalias/Downloads/OpenBKN-diagnostic-20261006T210621043Z-965afa11.json",
+      "evidencePath": "npm-product-965afa11.json",
+      "bytes": 2440,
+      "originalSha256": "1ce39c8204046dfe11413c527fa855878ef8dfbedadb22d162ca7af2980d93f3",
+      "evidenceSha256": "1ce39c8204046dfe11413c527fa855878ef8dfbedadb22d162ca7af2980d93f3",
+      "byteIdentical": true
+    },
+    {
+      "reportId": "fac42410",
+      "originalPath": "/Users/kalias/Downloads/OpenBKN-diagnostic-20261006T210106309Z-fac42410.json",
+      "evidencePath": "desktop-network-unreachable-fac42410.json",
+      "bytes": 2217,
+      "originalSha256": "b19de292a76295a3749252c1426787bbdb27a0d31d34f61a89f57b328e2fb179",
+      "evidenceSha256": "b19de292a76295a3749252c1426787bbdb27a0d31d34f61a89f57b328e2fb179",
+      "byteIdentical": true
+    },
+    {
+      "reportId": "082f39cf",
+      "originalPath": "/Users/kalias/Downloads/OpenBKN-diagnostic-20261006T203428714Z-082f39cf.json",
+      "evidencePath": "desktop-managed-login-failed-082f39cf.json",
+      "bytes": 1946,
+      "originalSha256": "d8c76bc9c6d682ba70b177cda3e1ef66062fc7e559690912b3985cfa20acc241",
+      "evidenceSha256": "d8c76bc9c6d682ba70b177cda3e1ef66062fc7e559690912b3985cfa20acc241",
+      "byteIdentical": true
+    }
+  ]
+}

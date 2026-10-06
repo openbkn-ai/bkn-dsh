@@ -1,0 +1,357 @@
+{
+  "reviewedCommit": "9fb3896b979eff8fdebc1283ecb6316e0a888953",
+  "evidenceFiles": 71,
+  "changedFilesFromInitial": 36,
+  "changesConfinedToWindowsEvidence": true,
+  "productReports": [
+    {
+      "form": "desktop",
+      "file": "W1-desktop-89815bc6.json",
+      "sha256": "00e1061a5c91c408297da2486e93f930138b944649e5499f179105b747084939",
+      "bytes": 1850,
+      "declaredLocalShaEqualsGitBlob": true,
+      "unchangedSinceInitialSubmission": true,
+      "containsCRLF": false
+    },
+    {
+      "form": "desktop",
+      "file": "W2a-desktop-21d979e6.json",
+      "sha256": "a086d3f542bcafb02723abfd701f5c59cedf5e0fb60ac87be1b6fefa22b0ab07",
+      "bytes": 1323,
+      "declaredLocalShaEqualsGitBlob": true,
+      "unchangedSinceInitialSubmission": true,
+      "containsCRLF": false
+    },
+    {
+      "form": "desktop",
+      "file": "W2b-desktop-c391a9d0.json",
+      "sha256": "5e0a22ec4396e1493d622c2168eb876474ec6374d9ceec4fcd023e841ec3abf8",
+      "bytes": 1323,
+      "declaredLocalShaEqualsGitBlob": true,
+      "unchangedSinceInitialSubmission": true,
+      "containsCRLF": false
+    },
+    {
+      "form": "desktop",
+      "file": "W2c-file-desktop-471f926a.json",
+      "sha256": "5386a78a6244c707fc63a00ca0346aa6648b107ed2c898babdc73c32a2b8b89e",
+      "bytes": 1323,
+      "declaredLocalShaEqualsGitBlob": true,
+      "unchangedSinceInitialSubmission": true,
+      "containsCRLF": false
+    },
+    {
+      "form": "desktop",
+      "file": "W2c-relative-desktop-9808646a.json",
+      "sha256": "4ceb03837b55c262e8adbd3fb4dddcf13d1060cbab1e019a6974d2255be0f5be",
+      "bytes": 1323,
+      "declaredLocalShaEqualsGitBlob": true,
+      "unchangedSinceInitialSubmission": true,
+      "containsCRLF": false
+    },
+    {
+      "form": "desktop",
+      "file": "W2c-recovered-desktop-26bc3445.json",
+      "sha256": "ebdd0f7e24ee6c6fd73f8f766e250d6845f09ff0bfabf281fad8770ca8965907",
+      "bytes": 1850,
+      "declaredLocalShaEqualsGitBlob": true,
+      "unchangedSinceInitialSubmission": true,
+      "containsCRLF": false
+    },
+    {
+      "form": "desktop",
+      "file": "W3-desktop-e6455961.json",
+      "sha256": "60bb0f6e5471ee3d3164b649d83a9c09ed5b639065e7c12966a92d99a7d668ec",
+      "bytes": 1288,
+      "declaredLocalShaEqualsGitBlob": true,
+      "unchangedSinceInitialSubmission": true,
+      "containsCRLF": false
+    },
+    {
+      "form": "desktop",
+      "file": "W4-desktop-e10ad569.json",
+      "sha256": "ab9b142ee0b3cc6b27ff64aaa6cecd4e67a8a83de0c169e0ad07eea12c9b43df",
+      "bytes": 1285,
+      "declaredLocalShaEqualsGitBlob": true,
+      "unchangedSinceInitialSubmission": true,
+      "containsCRLF": false
+    },
+    {
+      "form": "desktop",
+      "file": "W9-desktop-bc6e7538.json",
+      "sha256": "a8504e9cbdde365e9d95a4afde243cd06c7161512f3b2c4d88120d594f5d81cc",
+      "bytes": 1519,
+      "declaredLocalShaEqualsGitBlob": true,
+      "unchangedSinceInitialSubmission": true,
+      "containsCRLF": false
+    },
+    {
+      "form": "npm",
+      "file": "W1-npm-4484d6cf.json",
+      "sha256": "16e504702b82874178be32150d31aad379292ce4876bc5b8dae0f9eea150ba76",
+      "bytes": 1850,
+      "declaredLocalShaEqualsGitBlob": true,
+      "unchangedSinceInitialSubmission": true,
+      "containsCRLF": false
+    },
+    {
+      "form": "npm",
+      "file": "W2a-npm-785aa906.json",
+      "sha256": "4924a7ebdb030309276f427cbaa9811cf0112fbf656c773edadbd6bd62ff566d",
+      "bytes": 1323,
+      "declaredLocalShaEqualsGitBlob": true,
+      "unchangedSinceInitialSubmission": true,
+      "containsCRLF": false
+    },
+    {
+      "form": "npm",
+      "file": "W2b-npm-380f2566.json",
+      "sha256": "b8ca5df64a43b3ad19c67c64b1d068f86eeed86f618e0687299866e7a628cfcb",
+      "bytes": 1323,
+      "declaredLocalShaEqualsGitBlob": true,
+      "unchangedSinceInitialSubmission": true,
+      "containsCRLF": false
+    },
+    {
+      "form": "npm",
+      "file": "W2c-file-npm-d46c681b.json",
+      "sha256": "71d186b183e0c2ac170707725115b0e2ec6837595af60d4a692162939fd4f53d",
+      "bytes": 1323,
+      "declaredLocalShaEqualsGitBlob": true,
+      "unchangedSinceInitialSubmission": true,
+      "containsCRLF": false
+    },
+    {
+      "form": "npm",
+      "file": "W2c-relative-npm-1f8e01d4.json",
+      "sha256": "63cdd6a9aeb546f6c3dc28a7549a71521fc0cad96c7c3a15588793977d180200",
+      "bytes": 1323,
+      "declaredLocalShaEqualsGitBlob": true,
+      "unchangedSinceInitialSubmission": true,
+      "containsCRLF": false
+    },
+    {
+      "form": "npm",
+      "file": "W2c-recovered-npm-67e954e6.json",
+      "sha256": "123a829229a19badd7ea783ff94f62eae9efdfc8688678ee36545257d8fb2e01",
+      "bytes": 1850,
+      "declaredLocalShaEqualsGitBlob": true,
+      "unchangedSinceInitialSubmission": true,
+      "containsCRLF": false
+    },
+    {
+      "form": "npm",
+      "file": "W3-npm-0f3240ad.json",
+      "sha256": "818b2f880e8ddf6da18d02cb15ecb38b97b0c690a3bf9850d6e933606fce1a59",
+      "bytes": 1288,
+      "declaredLocalShaEqualsGitBlob": true,
+      "unchangedSinceInitialSubmission": true,
+      "containsCRLF": false
+    },
+    {
+      "form": "npm",
+      "file": "W4-npm-d1c48003.json",
+      "sha256": "51feb4a1718cd9f81fafd69072c452ff54c8a3e5f9a6749d757eff11d194063c",
+      "bytes": 1285,
+      "declaredLocalShaEqualsGitBlob": true,
+      "unchangedSinceInitialSubmission": true,
+      "containsCRLF": false
+    },
+    {
+      "form": "npm",
+      "file": "W9-npm-c2fe2ef7.json",
+      "sha256": "539a30d4dbb18ab3138f28ad6daabb4952c1861cc760115c24ab959349abbe3b",
+      "bytes": 1519,
+      "declaredLocalShaEqualsGitBlob": true,
+      "unchangedSinceInitialSubmission": true,
+      "containsCRLF": false
+    }
+  ],
+  "all18DeclaredLocalHashesEqualRawGitBlob": true,
+  "productReportsUnchanged": true,
+  "candidateIdentity": {
+    "generatedAt": "2026-10-06T16:48:05.7370649Z",
+    "kit": {
+      "zipSha256": "df0016c6d2b511c009f932402dd80155248c4ac61260cbd3cad70ecb483cef54",
+      "zipBytes": 248434,
+      "tgzSha256": "6bbab27876e743032572ddce107fcce09e0d681f87bee19fba8d78180e5a63a8",
+      "tgzBytes": 177442,
+      "manifestFileCount": 66,
+      "verifyKit": "pass (run during intake; see RESULTS Fixed identity)"
+    },
+    "forms": [
+      {
+        "form": "desktop",
+        "profile": "desktop",
+        "installedVersion": "0.2.0-rc.2-openbkn.0.2.0-7",
+        "manifestFiles": 66,
+        "matched": 66,
+        "missing": [],
+        "differs": [],
+        "extra": [],
+        "installedPath": "C:\\bkn-verify\\unified7-fidelity-desktop\\dsh-home\\profiles\\desktop\\node_modules\\@openbkn\\dsh-business-context"
+      },
+      {
+        "form": "npm",
+        "profile": "web",
+        "installedVersion": "0.2.0-rc.2-openbkn.0.2.0-7",
+        "manifestFiles": 66,
+        "matched": 66,
+        "missing": [],
+        "differs": [],
+        "extra": [],
+        "installedPath": "C:\\bkn-verify\\unified7-fidelity-npm\\dsh-home\\profiles\\web\\node_modules\\@openbkn\\dsh-business-context"
+      }
+    ]
+  },
+  "variants": [
+    {
+      "form": "desktop",
+      "case": "W3",
+      "entry": "business",
+      "beforeMatchesAcceptedPackage": true,
+      "variantSha256": "1e0fca164504c88b2ee16ca86a474542d589173d58c6fd75cd4c79088ed53728",
+      "pids": []
+    },
+    {
+      "form": "desktop",
+      "case": "W4",
+      "entry": "business",
+      "beforeMatchesAcceptedPackage": true,
+      "variantSha256": "343deaa5e2b8ef67d06b787e9fea8cc5dceaf742d8bd2db271bf2751edbb0f8b",
+      "pids": []
+    },
+    {
+      "form": "desktop",
+      "case": "W10",
+      "entry": "diagnostics",
+      "beforeMatchesAcceptedPackage": true,
+      "variantSha256": "8b3514fbde580a2d2ce4fd67af07309a7e5da7760e34893206953bc42a1b3310",
+      "pids": []
+    },
+    {
+      "form": "npm",
+      "case": "W3",
+      "entry": "business",
+      "beforeMatchesAcceptedPackage": true,
+      "variantSha256": "00f8f345b4bf1b427e37adc4c5a5ec1191dc82f1373def421ec317e819ebda1e",
+      "pids": [
+        "27868",
+        "12440"
+      ]
+    },
+    {
+      "form": "npm",
+      "case": "W4",
+      "entry": "business",
+      "beforeMatchesAcceptedPackage": true,
+      "variantSha256": "90d360a26ba7c0cdfbe31eb8747a45ae81cb8d04bdccc2a22c492397667e5f49",
+      "pids": [
+        "4860",
+        "22068"
+      ]
+    },
+    {
+      "form": "npm",
+      "case": "W10",
+      "entry": "diagnostics",
+      "beforeMatchesAcceptedPackage": true,
+      "variantSha256": "99d778ff00fe2010c1200c3db0d5a74b683b849adfc68bc5ee356baad69540d1",
+      "pids": [
+        "3656",
+        "29508"
+      ]
+    }
+  ],
+  "f02Scenarios": [
+    {
+      "scenario": "corrected-same-turn",
+      "passed": true,
+      "turnReason": "completed",
+      "turns": 1,
+      "correctionNotices": 1,
+      "answerAttempts": 2,
+      "dataCalls": 1,
+      "reprintCalls": 0,
+      "modelCalls": 5,
+      "humanAfterTurnStart": true,
+      "humanHasTurnField": false
+    },
+    {
+      "scenario": "second-mismatch-errors",
+      "passed": true,
+      "turnReason": "error",
+      "turns": 1,
+      "correctionNotices": 1,
+      "answerAttempts": 2,
+      "dataCalls": 1,
+      "reprintCalls": 0,
+      "modelCalls": 5,
+      "humanAfterTurnStart": true,
+      "humanHasTurnField": false
+    },
+    {
+      "scenario": "unbound-unaffected",
+      "passed": true,
+      "turnReason": "completed",
+      "turns": 1,
+      "correctionNotices": 0,
+      "answerAttempts": 1,
+      "dataCalls": 1,
+      "reprintCalls": 0,
+      "modelCalls": 4,
+      "humanAfterTurnStart": true,
+      "humanHasTurnField": false
+    },
+    {
+      "scenario": "full-question-summary-rejected",
+      "passed": true,
+      "turnReason": "completed",
+      "turns": 1,
+      "correctionNotices": 1,
+      "answerAttempts": 2,
+      "dataCalls": 1,
+      "reprintCalls": 0,
+      "modelCalls": 5,
+      "humanAfterTurnStart": true,
+      "humanHasTurnField": false
+    },
+    {
+      "scenario": "headerless-cached-reprint",
+      "passed": true,
+      "turnReason": "completed",
+      "turns": 1,
+      "correctionNotices": 1,
+      "answerAttempts": 1,
+      "dataCalls": 1,
+      "reprintCalls": 1,
+      "modelCalls": 5,
+      "humanAfterTurnStart": true,
+      "humanHasTurnField": false
+    },
+    {
+      "scenario": "scoped-inventory-cached-repair",
+      "passed": true,
+      "turnReason": "completed",
+      "turns": 1,
+      "correctionNotices": 1,
+      "answerAttempts": 1,
+      "dataCalls": 1,
+      "reprintCalls": 1,
+      "modelCalls": 5,
+      "humanAfterTurnStart": true,
+      "humanHasTurnField": false
+    }
+  ],
+  "limitations": [
+    "No direct access to original Windows files; source hashes are operator records.",
+    "Hash records imply raw byte equality; narrative claims newline normalization. No normalized comparison needed for these Git blobs.",
+    "F02 preparation output is for fidelity-standalone-probe-record, while command is for fidelity-standalone-probe; supplemental preparation is not contemporaneous provenance for the original run.",
+    "W4 post-fault recovery was not separately tested.",
+    "No adjacent R9 uninstall patch hash pair.",
+    "No before/after content hashes for daily profiles.",
+    "Some per-round PID creation/stop outputs were not archived; terminal residual snapshot is present.",
+    "Windows live login/F01/G6/live guard were not run."
+  ],
+  "verdict": "Accept tested Windows no-login diagnostics and controlled F02 scope; no new candidate defect found. Do not claim full Windows business/model acceptance or release authorization."
+}

@@ -1,0 +1,42 @@
+[
+  {
+    "dataset": "orders",
+    "beforeRows": 40,
+    "afterRows": 40,
+    "allRowFieldsEqual": true,
+    "pagingCompleteBefore": true,
+    "pagingCompleteAfter": true
+  },
+  {
+    "dataset": "inventory",
+    "beforeRows": 36,
+    "afterRows": 36,
+    "allRowFieldsEqual": true,
+    "pagingCompleteBefore": true,
+    "pagingCompleteAfter": true
+  },
+  {
+    "dataset": "purchase-orders",
+    "beforeRows": 0,
+    "afterRows": 0,
+    "allRowFieldsEqual": true,
+    "pagingCompleteBefore": true,
+    "pagingCompleteAfter": true
+  },
+  {
+    "dataset": "purchase-requests",
+    "beforeRows": 0,
+    "afterRows": 0,
+    "allRowFieldsEqual": true,
+    "pagingCompleteBefore": true,
+    "pagingCompleteAfter": true
+  },
+  {
+    "dataset": "bom",
+    "beforeRows": 507,
+    "afterRows": 507,
+    "allRowFieldsEqual": true,
+    "pagingCompleteBefore": true,
+    "pagingCompleteAfter": true
+  }
+]

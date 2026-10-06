@@ -1,0 +1,30 @@
+[
+  {
+    "downloadPath": "/Users/kalias/Downloads/OpenBKN-diagnostic-20261006T204120416Z-e357b710.json",
+    "reportId": "e357b710",
+    "sizeBytes": 1853,
+    "sha256": "58e5936eb1c20b5cbe8ffbacc88e03f7d2e6ae1b22963fe743a67ee14173eb5c",
+    "evidenceFile": "npm-product-e357b710.json",
+    "hostForm": "unknown",
+    "downloadEventObservedByTool": false,
+    "actualFileVerified": true
+  },
+  {
+    "downloadPath": "/Users/kalias/Downloads/OpenBKN-diagnostic-20261006T204302443Z-4d141b89.json",
+    "reportId": "4d141b89",
+    "sizeBytes": 1853,
+    "sha256": "58baac4c9ee3d160d636cd11993ecbcf557baeecca578847bd1bb51a7e79a260",
+    "evidenceFile": "npm-product-4d141b89.json",
+    "hostForm": "unknown",
+    "downloadEventObservedByTool": false,
+    "actualFileVerified": true
+  },
+  {
+    "originalPath": "/Users/kalias/Downloads/OpenBKN-diagnostic-20261006T210621043Z-965afa11.json",
+    "reportId": "965afa11",
+    "sha256": "1ce39c8204046dfe11413c527fa855878ef8dfbedadb22d162ca7af2980d93f3",
+    "bytes": 2440,
+    "browser": "Codex in-app browser",
+    "scope": "real official npm Host authenticated UI export, seven pass checks"
+  }
+]

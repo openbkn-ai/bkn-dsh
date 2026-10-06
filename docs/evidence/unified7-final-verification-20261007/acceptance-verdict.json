@@ -1,0 +1,159 @@
+{
+  "scope": "Manual criterion grading and separate native delivery acceptance of one fixed artifact; negative-case expected errors are successes. Frozen YAML unchanged.",
+  "artifactSha256": "6bbab27876e743032572ddce107fcce09e0d681f87bee19fba8d78180e5a63a8",
+  "model": "DeepSeek-V41-Flash / High",
+  "factsOnly": {
+    "passed": 9,
+    "tested": 10,
+    "notRun": 1
+  },
+  "combinedAcceptance": {
+    "passed": 8,
+    "failed": 2,
+    "tested": 10,
+    "notRun": 1,
+    "positivePassed": 5,
+    "positiveTested": 7,
+    "negativePassed": 3,
+    "negativeTested": 3
+  },
+  "newThisRound": {
+    "passed": 5,
+    "failed": 2,
+    "tested": 7
+  },
+  "carriedSameArtifact": {
+    "passed": 3,
+    "tested": 3,
+    "rerunThisRound": false
+  },
+  "publishReady": false,
+  "cases": [
+    {
+      "id": "orders-count-status",
+      "group": "positive",
+      "runDate": "2026-10-07",
+      "factCriteriaPass": true,
+      "nativeTerminalOutcome": "completed",
+      "accepted": true,
+      "evidence": "orders-count-status.json",
+      "sessionId": "session-08b8a3dd-05c8-4372-a651-8a65cb516f17",
+      "result": "pass"
+    },
+    {
+      "id": "finished-goods-inventory",
+      "group": "positive",
+      "runDate": "2026-10-07",
+      "factCriteriaPass": true,
+      "nativeTerminalOutcome": "completed",
+      "accepted": true,
+      "evidence": "finished-goods-inventory.json",
+      "sessionId": "session-bb7a8229-e241-45d2-8797-358e7c81f223",
+      "result": "pass"
+    },
+    {
+      "id": "standard-lead-time",
+      "group": "positive",
+      "runDate": "2026-10-06",
+      "factCriteriaPass": true,
+      "nativeTerminalOutcome": "completed",
+      "accepted": true,
+      "result": "pass",
+      "evidence": "../answer-fidelity-20261006/standard-lead-time.json",
+      "scope": "Carried from previous real-host run of the identical fixed CI artifact, not rerun today."
+    },
+    {
+      "id": "bom-structure",
+      "group": "positive",
+      "runDate": "2026-10-07",
+      "factCriteriaPass": true,
+      "nativeTerminalOutcome": "error",
+      "accepted": false,
+      "evidence": "bom-structure.json",
+      "sessionId": "session-3c2b7afd-4144-4b78-9da2-77c94b0b2f70",
+      "result": "fail",
+      "reason": "Structure tuples match independent ERP data, but inventory delivery failed after one correction; native error remains."
+    },
+    {
+      "id": "bom-usage-inventory",
+      "group": "positive",
+      "runDate": "2026-10-06",
+      "factCriteriaPass": true,
+      "nativeTerminalOutcome": "completed",
+      "accepted": true,
+      "result": "pass",
+      "evidence": "../answer-fidelity-20261006/bom-usage-inventory.json",
+      "scope": "Carried from previous real-host run of the identical fixed CI artifact, not rerun today."
+    },
+    {
+      "id": "purchase-flow",
+      "group": "positive",
+      "runDate": "2026-10-07",
+      "factCriteriaPass": true,
+      "nativeTerminalOutcome": "completed",
+      "accepted": true,
+      "evidence": "purchase-flow.json",
+      "sessionId": "session-1f2057e3-37c4-413a-94cd-62bc7a6cae4c",
+      "result": "pass"
+    },
+    {
+      "id": "sales-order-detail",
+      "group": "positive",
+      "runDate": "2026-10-07",
+      "factCriteriaPass": false,
+      "nativeTerminalOutcome": "completed",
+      "accepted": false,
+      "evidence": "sales-order-detail.json",
+      "sessionId": "session-40898fe2-325c-4227-b7d8-d919fa822bb1",
+      "result": "fail",
+      "reason": "Completed answer says no orders after querying order/contract IDs; independent product_code query returns 40 orders."
+    },
+    {
+      "id": "missing-object",
+      "group": "negative",
+      "runDate": "2026-10-06",
+      "factCriteriaPass": true,
+      "nativeTerminalOutcome": "completed",
+      "accepted": true,
+      "result": "pass",
+      "evidence": "../answer-fidelity-20261006/missing-object.json",
+      "scope": "Carried from previous real-host run of the identical fixed CI artifact, not rerun today."
+    },
+    {
+      "id": "invalid-token",
+      "group": "negative",
+      "runDate": "2026-10-07",
+      "factCriteriaPass": true,
+      "nativeTerminalOutcome": "error",
+      "accepted": true,
+      "evidence": "invalid-token.json",
+      "sessionId": "session-ffa2083e-05e2-4b28-96f5-a2109819cdf4",
+      "result": "pass",
+      "expectedNegativeTerminal": "error",
+      "scope": "Controlled invalid credential or closed loopback; real platform/account outage not claimed."
+    },
+    {
+      "id": "platform-unreachable",
+      "group": "negative",
+      "runDate": "2026-10-07",
+      "factCriteriaPass": true,
+      "nativeTerminalOutcome": "error",
+      "accepted": true,
+      "evidence": "platform-unreachable.json",
+      "sessionId": "session-097e6975-b5df-4bf1-894f-04943811e31c",
+      "result": "pass",
+      "expectedNegativeTerminal": "error",
+      "scope": "Controlled invalid credential or closed loopback; real platform/account outage not claimed."
+    },
+    {
+      "id": "unauthorized-network",
+      "group": "negative",
+      "runDate": "2026-10-07",
+      "factCriteriaPass": null,
+      "nativeTerminalOutcome": null,
+      "accepted": null,
+      "result": "not-run",
+      "reason": "User has no independent account without supply_ontology_hand access."
+    }
+  ]
+}

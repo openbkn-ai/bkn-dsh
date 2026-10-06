@@ -1,0 +1,150 @@
+[
+  {
+    "name": "orders",
+    "startedAt": "2026-10-06T20:54:44.205122+00:00",
+    "seconds": 0.765,
+    "command": [
+      "bkn",
+      "object-type",
+      "query",
+      "supply_ontology_hand",
+      "supply_ontology_hand_salesorder",
+      "--body",
+      "{\"limit\": 1000, \"need_total\": true, \"condition\": {\"operation\": \"==\", \"field\": \"product_code\", \"value\": \"382-000005\", \"value_from\": \"const\"}}",
+      "--json"
+    ],
+    "exitCode": 0,
+    "stderrBytes": 0,
+    "rawBytesRetained": true,
+    "sha256": "b51cd1b9d07b19181eaef5e880f3940b6298c15e4ce246bf1dfe1300939a856f",
+    "bytes": 30064,
+    "totalCount": 40,
+    "topLevel": [
+      "datas",
+      "total_count",
+      "paging",
+      "overall_ms",
+      "search_from_index",
+      "effective_permissions"
+    ],
+    "rowCount": 40
+  },
+  {
+    "name": "inventory",
+    "startedAt": "2026-10-06T20:54:44.973375+00:00",
+    "seconds": 0.209,
+    "command": [
+      "bkn",
+      "object-type",
+      "query",
+      "supply_ontology_hand",
+      "supply_ontology_hand_inventory",
+      "--body",
+      "{\"limit\": 1000, \"need_total\": true, \"condition\": {\"operation\": \"==\", \"field\": \"material_code\", \"value\": \"382-000005\", \"value_from\": \"const\"}}",
+      "--json"
+    ],
+    "exitCode": 0,
+    "stderrBytes": 0,
+    "rawBytesRetained": true,
+    "sha256": "360bcd5aa0b524781c228706f3b5264100a676a2eb900c59c5613c2358e0c3c0",
+    "bytes": 32855,
+    "totalCount": 36,
+    "topLevel": [
+      "datas",
+      "total_count",
+      "paging",
+      "overall_ms",
+      "search_from_index",
+      "effective_permissions"
+    ],
+    "rowCount": 36
+  },
+  {
+    "name": "purchase-orders",
+    "startedAt": "2026-10-06T20:54:45.184058+00:00",
+    "seconds": 0.203,
+    "command": [
+      "bkn",
+      "object-type",
+      "query",
+      "supply_ontology_hand",
+      "supply_ontology_hand_po",
+      "--body",
+      "{\"limit\": 1000, \"need_total\": true, \"condition\": {\"operation\": \"==\", \"field\": \"material_number\", \"value\": \"382-000005\", \"value_from\": \"const\"}}",
+      "--json"
+    ],
+    "exitCode": 0,
+    "stderrBytes": 0,
+    "rawBytesRetained": true,
+    "sha256": "f1f8b88a8b48ea78550f82240e5d53257d27da2d668e691e0526d0f27237a7e4",
+    "bytes": 824,
+    "totalCount": null,
+    "topLevel": [
+      "datas",
+      "paging",
+      "overall_ms",
+      "search_from_index",
+      "effective_permissions"
+    ],
+    "rowCount": 0
+  },
+  {
+    "name": "purchase-requests",
+    "startedAt": "2026-10-06T20:54:45.387752+00:00",
+    "seconds": 0.191,
+    "command": [
+      "bkn",
+      "object-type",
+      "query",
+      "supply_ontology_hand",
+      "supply_ontology_hand_pr",
+      "--body",
+      "{\"limit\": 1000, \"need_total\": true, \"condition\": {\"operation\": \"==\", \"field\": \"material_number\", \"value\": \"382-000005\", \"value_from\": \"const\"}}",
+      "--json"
+    ],
+    "exitCode": 0,
+    "stderrBytes": 0,
+    "rawBytesRetained": true,
+    "sha256": "9d441f1798da8426857761ad9f5775e89df42ef4235df16f74fe9b9126c3613d",
+    "bytes": 653,
+    "totalCount": null,
+    "topLevel": [
+      "datas",
+      "paging",
+      "overall_ms",
+      "search_from_index",
+      "effective_permissions"
+    ],
+    "rowCount": 0
+  },
+  {
+    "name": "bom",
+    "startedAt": "2026-10-06T20:54:45.579592+00:00",
+    "seconds": 0.247,
+    "command": [
+      "bkn",
+      "object-type",
+      "query",
+      "supply_ontology_hand",
+      "supply_ontology_hand_bom",
+      "--body",
+      "{\"limit\": 1000, \"need_total\": true, \"condition\": {\"operation\": \"==\", \"field\": \"bom_material_code\", \"value\": \"382-000005\", \"value_from\": \"const\"}}",
+      "--json"
+    ],
+    "exitCode": 0,
+    "stderrBytes": 0,
+    "rawBytesRetained": true,
+    "sha256": "e30ec1ba761470b2f84be0f4fd2e4825a3be6a4429db5a1a94a470f092f7397e",
+    "bytes": 404693,
+    "totalCount": 507,
+    "topLevel": [
+      "datas",
+      "total_count",
+      "paging",
+      "overall_ms",
+      "search_from_index",
+      "effective_permissions"
+    ],
+    "rowCount": 507
+  }
+]

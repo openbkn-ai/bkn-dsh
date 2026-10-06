@@ -1,0 +1,36 @@
+{
+  "at": "2026-10-06T21:05:18.928596+00:00",
+  "ownedTree": [
+    {
+      "pid": 95378,
+      "ppid": 1,
+      "creationTime": "Wed Oct 7 05:03:46 2026",
+      "executable": "/Applications/DeepSeek Harness.app/Contents/MacOS/DeepSeek Harness"
+    },
+    {
+      "pid": 95384,
+      "ppid": 95378,
+      "creationTime": "Wed Oct 7 05:03:46 2026",
+      "executable": "/Applications/DeepSeek Harness.app/Contents/Frameworks/DeepSeek Harness Helper.app/Contents/MacOS/DeepSeek Harness Helper"
+    },
+    {
+      "pid": 95385,
+      "ppid": 95378,
+      "creationTime": "Wed Oct 7 05:03:46 2026",
+      "executable": "/Applications/DeepSeek Harness.app/Contents/Frameworks/DeepSeek Harness Helper.app/Contents/MacOS/DeepSeek Harness Helper"
+    },
+    {
+      "pid": 95392,
+      "ppid": 95378,
+      "creationTime": "Wed Oct 7 05:03:46 2026",
+      "executable": "/Applications/DeepSeek Harness.app/Contents/Frameworks/DeepSeek Harness Helper (Renderer).app/Contents/MacOS/DeepSeek Harness Helper (Renderer)"
+    },
+    {
+      "pid": 95739,
+      "ppid": 95378,
+      "creationTime": "Wed Oct 7 05:03:47 2026",
+      "executable": "/Applications/DeepSeek Harness.app/Contents/MacOS/DeepSeek Harness"
+    }
+  ],
+  "rootStopped": true
+}

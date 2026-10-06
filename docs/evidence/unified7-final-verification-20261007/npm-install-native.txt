@@ -1,0 +1,11 @@
+Progress: resolved 0, reused 1, downloaded 0, added 0
+[WARN] Issues with peer dependencies found. Run "pnpm peers check" to list them.
+
+dependencies:
++ @openbkn/dsh-business-context file:/Users/kalias/Documents/project/app/openBKN/bkn-dsh-unified-7/release/unified-7-candidate/3414bde/openbkn-dsh-business-context-0.2.0-rc.2-openbkn.0.2.0-7.tgz
+
+Packages: +5
++++++
+Progress: resolved 5, reused 5, downloaded 0, added 5, done
+Done in 664ms using pnpm v11.7.0
+dsh: initialized profile web at /private/var/folders/9r/1zks6bqd7f3dtwybvxsksbc40000gn/T/openbkn-diag-ui-h76__jwb/final-npm-home/profiles/web

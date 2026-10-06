@@ -1,0 +1,997 @@
+{
+  "checkedAt": "2026-10-06T21:26:07.651567+00:00",
+  "comparison": "Raw bytes of local files vs Git index blobs; no newline normalization. SHA-256 is of blob content, not Git object ID.",
+  "selfExcluded": "git-evidence-consistency.json",
+  "comparedFiles": 141,
+  "allRawBytesEqual": true,
+  "productDownloadOriginalsEqualGitBlobCount": 5,
+  "files": [
+    {
+      "path": "docs/evidence/unified7-final-verification-20261007/.gitattributes",
+      "bytes": 284,
+      "localSha256": "dd7e17924ba240ffaa19185d51fd0d4805b2cc587567564b966fe245786e30d7",
+      "gitBlobContentSha256": "dd7e17924ba240ffaa19185d51fd0d4805b2cc587567564b966fe245786e30d7",
+      "rawByteEqual": true
+    },
+    {
+      "path": "docs/evidence/unified7-final-verification-20261007/RESULTS.md",
+      "bytes": 13387,
+      "localSha256": "d52197aacaabec6a67d33432ae3b179f8aae143e5f446bd11166dcce6f26c6eb",
+      "gitBlobContentSha256": "d52197aacaabec6a67d33432ae3b179f8aae143e5f446bd11166dcce6f26c6eb",
+      "rawByteEqual": true
+    },
+    {
+      "path": "docs/evidence/unified7-final-verification-20261007/acceptance-verdict.json",
+      "bytes": 5255,
+      "localSha256": "ac08d512c69e74a7c0ec04284daef60098f904fd48b4aaca7112dec246c3c639",
+      "gitBlobContentSha256": "ac08d512c69e74a7c0ec04284daef60098f904fd48b4aaca7112dec246c3c639",
+      "rawByteEqual": true
+    },
+    {
+      "path": "docs/evidence/unified7-final-verification-20261007/automatic-refresh-after.json",
+      "bytes": 587,
+      "localSha256": "668662fff9ff251959574d11c77b3811f0e89988e3c4d6fdcd85f206226222a9",
+      "gitBlobContentSha256": "668662fff9ff251959574d11c77b3811f0e89988e3c4d6fdcd85f206226222a9",
+      "rawByteEqual": true
+    },
+    {
+      "path": "docs/evidence/unified7-final-verification-20261007/automatic-refresh-before.json",
+      "bytes": 675,
+      "localSha256": "388ff7e6c2d647a4b8208463d96058aa71e7c7c1195ee4178de81aea46125b8d",
+      "gitBlobContentSha256": "388ff7e6c2d647a4b8208463d96058aa71e7c7c1195ee4178de81aea46125b8d",
+      "rawByteEqual": true
+    },
+    {
+      "path": "docs/evidence/unified7-final-verification-20261007/bom-failure-triage.json",
+      "bytes": 817,
+      "localSha256": "df81aceb1cc1fdb953323fb99acfad62818dd8a64aa0d4fd1f25ac3e321a4e4d",
+      "gitBlobContentSha256": "df81aceb1cc1fdb953323fb99acfad62818dd8a64aa0d4fd1f25ac3e321a4e4d",
+      "rawByteEqual": true
+    },
+    {
+      "path": "docs/evidence/unified7-final-verification-20261007/bom-structure-independent-check.json",
+      "bytes": 533,
+      "localSha256": "fd6029099d3b45b95b639751613ece646003be3fa623aa6946fe7242a468e25d",
+      "gitBlobContentSha256": "fd6029099d3b45b95b639751613ece646003be3fa623aa6946fe7242a468e25d",
+      "rawByteEqual": true
+    },
+    {
+      "path": "docs/evidence/unified7-final-verification-20261007/bom-structure.json",
+      "bytes": 240383,
+      "localSha256": "29a7392609391f89bf0ca49469c8140c1b5c18a2baadcfea17e7d9c213c28ac5",
+      "gitBlobContentSha256": "29a7392609391f89bf0ca49469c8140c1b5c18a2baadcfea17e7d9c213c28ac5",
+      "rawByteEqual": true
+    },
+    {
+      "path": "docs/evidence/unified7-final-verification-20261007/bom-structure.md",
+      "bytes": 20469,
+      "localSha256": "3f791d326bb9b5f4e46c53fbdc5d045595584941f0820901a3e4662140b8fef6",
+      "gitBlobContentSha256": "3f791d326bb9b5f4e46c53fbdc5d045595584941f0820901a3e4662140b8fef6",
+      "rawByteEqual": true
+    },
+    {
+      "path": "docs/evidence/unified7-final-verification-20261007/cli-authenticated-preflight.json",
+      "bytes": 256,
+      "localSha256": "f0af06d867eb532c7f2757c58399626b21c2450ec7a92cb0e9315d638cd5e868",
+      "gitBlobContentSha256": "f0af06d867eb532c7f2757c58399626b21c2450ec7a92cb0e9315d638cd5e868",
+      "rawByteEqual": true
+    },
+    {
+      "path": "docs/evidence/unified7-final-verification-20261007/cli-preflight.json",
+      "bytes": 187,
+      "localSha256": "bcd2ba6bf4a952016ee59db8641a74317a055016f357e806084abd3015023bae",
+      "gitBlobContentSha256": "bcd2ba6bf4a952016ee59db8641a74317a055016f357e806084abd3015023bae",
+      "rawByteEqual": true
+    },
+    {
+      "path": "docs/evidence/unified7-final-verification-20261007/collect-oracles.py",
+      "bytes": 6453,
+      "localSha256": "82e04abb8b15f69e41974b18724857f12c60c6e51808eeb78b4c917c62b91eb2",
+      "gitBlobContentSha256": "82e04abb8b15f69e41974b18724857f12c60c6e51808eeb78b4c917c62b91eb2",
+      "rawByteEqual": true
+    },
+    {
+      "path": "docs/evidence/unified7-final-verification-20261007/current-acceptance-manifest.json",
+      "bytes": 2675,
+      "localSha256": "6eea6c4f98c7f32650649d061c59221354432993e8bd3545385e56610186e62d",
+      "gitBlobContentSha256": "6eea6c4f98c7f32650649d061c59221354432993e8bd3545385e56610186e62d",
+      "rawByteEqual": true
+    },
+    {
+      "path": "docs/evidence/unified7-final-verification-20261007/desktop-first-stop.json",
+      "bytes": 1352,
+      "localSha256": "bc24608e41c3bd1ec74b05f9e6be38c5144ede3399c21170b7f63326cc655aab",
+      "gitBlobContentSha256": "bc24608e41c3bd1ec74b05f9e6be38c5144ede3399c21170b7f63326cc655aab",
+      "rawByteEqual": true
+    },
+    {
+      "path": "docs/evidence/unified7-final-verification-20261007/desktop-install-native.txt",
+      "bytes": 521,
+      "localSha256": "4cb67df9b0d50d7d475d4d09418bddc2ea010e89db01c2df36a5bd9bad15e337",
+      "gitBlobContentSha256": "4cb67df9b0d50d7d475d4d09418bddc2ea010e89db01c2df36a5bd9bad15e337",
+      "rawByteEqual": true
+    },
+    {
+      "path": "docs/evidence/unified7-final-verification-20261007/desktop-installed-identity.json",
+      "bytes": 428,
+      "localSha256": "1174e8f809cc7831c8f774640e3efa894007108434eb159facf7f659e2e979e4",
+      "gitBlobContentSha256": "1174e8f809cc7831c8f774640e3efa894007108434eb159facf7f659e2e979e4",
+      "rawByteEqual": true
+    },
+    {
+      "path": "docs/evidence/unified7-final-verification-20261007/desktop-managed-login-failed-082f39cf.json",
+      "bytes": 1946,
+      "localSha256": "d8c76bc9c6d682ba70b177cda3e1ef66062fc7e559690912b3985cfa20acc241",
+      "gitBlobContentSha256": "d8c76bc9c6d682ba70b177cda3e1ef66062fc7e559690912b3985cfa20acc241",
+      "rawByteEqual": true
+    },
+    {
+      "path": "docs/evidence/unified7-final-verification-20261007/desktop-network-unreachable-download.json",
+      "bytes": 295,
+      "localSha256": "0b4fe62ff2a296fdb997f16e9a30a8aec4c94c06df6813b6e1c02accaa061ed9",
+      "gitBlobContentSha256": "0b4fe62ff2a296fdb997f16e9a30a8aec4c94c06df6813b6e1c02accaa061ed9",
+      "rawByteEqual": true
+    },
+    {
+      "path": "docs/evidence/unified7-final-verification-20261007/desktop-network-unreachable-fac42410.json",
+      "bytes": 2217,
+      "localSha256": "b19de292a76295a3749252c1426787bbdb27a0d31d34f61a89f57b328e2fb179",
+      "gitBlobContentSha256": "b19de292a76295a3749252c1426787bbdb27a0d31d34f61a89f57b328e2fb179",
+      "rawByteEqual": true
+    },
+    {
+      "path": "docs/evidence/unified7-final-verification-20261007/desktop-process.json",
+      "bytes": 367,
+      "localSha256": "ac82db8d600dd3e70dbd5181e419ef64fdc80c74b443183221c784d0493b8f32",
+      "gitBlobContentSha256": "ac82db8d600dd3e70dbd5181e419ef64fdc80c74b443183221c784d0493b8f32",
+      "rawByteEqual": true
+    },
+    {
+      "path": "docs/evidence/unified7-final-verification-20261007/desktop-remove-native.txt",
+      "bytes": 323,
+      "localSha256": "119cdaa023ffbe57377aeef4b82e5941a0bf8e4deae6d5d0e9d262517dde5819",
+      "gitBlobContentSha256": "119cdaa023ffbe57377aeef4b82e5941a0bf8e4deae6d5d0e9d262517dde5819",
+      "rawByteEqual": true
+    },
+    {
+      "path": "docs/evidence/unified7-final-verification-20261007/desktop-restored-process.json",
+      "bytes": 483,
+      "localSha256": "bca089adbf1a8ada868a16aa1f4ae469716ad56872737e6675d4e210de4bcb14",
+      "gitBlobContentSha256": "bca089adbf1a8ada868a16aa1f4ae469716ad56872737e6675d4e210de4bcb14",
+      "rawByteEqual": true
+    },
+    {
+      "path": "docs/evidence/unified7-final-verification-20261007/desktop-uninstall-adjacent-hashes.json",
+      "bytes": 517,
+      "localSha256": "588efc459621bc6b24666e80359123b8a153f3e16d24a10e1fe0f6fe998dc476",
+      "gitBlobContentSha256": "588efc459621bc6b24666e80359123b8a153f3e16d24a10e1fe0f6fe998dc476",
+      "rawByteEqual": true
+    },
+    {
+      "path": "docs/evidence/unified7-final-verification-20261007/desktop-version-native.txt",
+      "bytes": 11,
+      "localSha256": "3476ecca09e2c1bd770bdf01b429b610441a28405dd9e4ecbd812d89dcf359ee",
+      "gitBlobContentSha256": "3476ecca09e2c1bd770bdf01b429b610441a28405dd9e4ecbd812d89dcf359ee",
+      "rawByteEqual": true
+    },
+    {
+      "path": "docs/evidence/unified7-final-verification-20261007/direct-login-process.json",
+      "bytes": 287,
+      "localSha256": "9fc2bd7ffba3b6e5cd2974dab7df04094e0c78a318fa1f3edaf2676f6ccc26fa",
+      "gitBlobContentSha256": "9fc2bd7ffba3b6e5cd2974dab7df04094e0c78a318fa1f3edaf2676f6ccc26fa",
+      "rawByteEqual": true
+    },
+    {
+      "path": "docs/evidence/unified7-final-verification-20261007/direct-login-reopened-process.json",
+      "bytes": 261,
+      "localSha256": "ae359d486a0c6bc639316a712d675925a13fc47f198de5158a2b04d4fc93f20a",
+      "gitBlobContentSha256": "ae359d486a0c6bc639316a712d675925a13fc47f198de5158a2b04d4fc93f20a",
+      "rawByteEqual": true
+    },
+    {
+      "path": "docs/evidence/unified7-final-verification-20261007/evidence-index.json",
+      "bytes": 38656,
+      "localSha256": "0dbecbe6268f606976f87a24fbda2397f12fbcd988bf9cde2f00b5b623d1cdd3",
+      "gitBlobContentSha256": "0dbecbe6268f606976f87a24fbda2397f12fbcd988bf9cde2f00b5b623d1cdd3",
+      "rawByteEqual": true
+    },
+    {
+      "path": "docs/evidence/unified7-final-verification-20261007/existing-install-preparation-drift.json",
+      "bytes": 1938,
+      "localSha256": "013a31db1b0c1165cee6ef295309285f65c06d036881e2355bfb136553822b8d",
+      "gitBlobContentSha256": "013a31db1b0c1165cee6ef295309285f65c06d036881e2355bfb136553822b8d",
+      "rawByteEqual": true
+    },
+    {
+      "path": "docs/evidence/unified7-final-verification-20261007/final-cleanup.json",
+      "bytes": 2384,
+      "localSha256": "7c98328969d1900a38522fb80503257163c6d0242e2c919414ae0245c1563479",
+      "gitBlobContentSha256": "7c98328969d1900a38522fb80503257163c6d0242e2c919414ae0245c1563479",
+      "rawByteEqual": true
+    },
+    {
+      "path": "docs/evidence/unified7-final-verification-20261007/final-package-identity.json",
+      "bytes": 1453,
+      "localSha256": "5ff42ae5b5b176188a3c21aabcfedde25f774cec0098fa48cee254fb1c1e439e",
+      "gitBlobContentSha256": "5ff42ae5b5b176188a3c21aabcfedde25f774cec0098fa48cee254fb1c1e439e",
+      "rawByteEqual": true
+    },
+    {
+      "path": "docs/evidence/unified7-final-verification-20261007/finished-goods-inventory.json",
+      "bytes": 105415,
+      "localSha256": "22908515fbad4d074ae230b6084a8153534861cf22595e386b420c1eb0486849",
+      "gitBlobContentSha256": "22908515fbad4d074ae230b6084a8153534861cf22595e386b420c1eb0486849",
+      "rawByteEqual": true
+    },
+    {
+      "path": "docs/evidence/unified7-final-verification-20261007/finished-goods-inventory.md",
+      "bytes": 1697,
+      "localSha256": "029f76a1dc3ca860ea66b31f83185cf165466c97acba6733fe3dd6302323fa06",
+      "gitBlobContentSha256": "029f76a1dc3ca860ea66b31f83185cf165466c97acba6733fe3dd6302323fa06",
+      "rawByteEqual": true
+    },
+    {
+      "path": "docs/evidence/unified7-final-verification-20261007/g6-fact-marks.json",
+      "bytes": 533,
+      "localSha256": "fc744c18d9c8356522eff598b81f40e812bc6ddcd1db6b7cb64654b9194d10c1",
+      "gitBlobContentSha256": "fc744c18d9c8356522eff598b81f40e812bc6ddcd1db6b7cb64654b9194d10c1",
+      "rawByteEqual": true
+    },
+    {
+      "path": "docs/evidence/unified7-final-verification-20261007/g6-fact-results.md",
+      "bytes": 3781,
+      "localSha256": "1a45ce1dd974d7fe424e756102cbc8701f6d6eadae3893831889571ed7547184",
+      "gitBlobContentSha256": "1a45ce1dd974d7fe424e756102cbc8701f6d6eadae3893831889571ed7547184",
+      "rawByteEqual": true
+    },
+    {
+      "path": "docs/evidence/unified7-final-verification-20261007/invalid-token-recovered.json",
+      "bytes": 73138,
+      "localSha256": "8aa644f01486f504272fdce5c7c0df8f01b58efddeb6eac225198f516d1eb1bc",
+      "gitBlobContentSha256": "8aa644f01486f504272fdce5c7c0df8f01b58efddeb6eac225198f516d1eb1bc",
+      "rawByteEqual": true
+    },
+    {
+      "path": "docs/evidence/unified7-final-verification-20261007/invalid-token-recovered.md",
+      "bytes": 1042,
+      "localSha256": "6d92ad269015218fc345493374c591b2f9f28612106aba265c69f71747bcd167",
+      "gitBlobContentSha256": "6d92ad269015218fc345493374c591b2f9f28612106aba265c69f71747bcd167",
+      "rawByteEqual": true
+    },
+    {
+      "path": "docs/evidence/unified7-final-verification-20261007/invalid-token-restore.json",
+      "bytes": 175,
+      "localSha256": "4dd90d2ff97798c240fbf37044238a38db75595a1eeaa2389a472f500f993507",
+      "gitBlobContentSha256": "4dd90d2ff97798c240fbf37044238a38db75595a1eeaa2389a472f500f993507",
+      "rawByteEqual": true
+    },
+    {
+      "path": "docs/evidence/unified7-final-verification-20261007/invalid-token-setup.json",
+      "bytes": 731,
+      "localSha256": "39bb4fdbe02842e93db37a983b1093edcf77668b08a00900e313d75deaf28768",
+      "gitBlobContentSha256": "39bb4fdbe02842e93db37a983b1093edcf77668b08a00900e313d75deaf28768",
+      "rawByteEqual": true
+    },
+    {
+      "path": "docs/evidence/unified7-final-verification-20261007/invalid-token-ui.png",
+      "bytes": 232414,
+      "localSha256": "a59d54d80f721420f4fd787adac8034b674b301dc880c89970a7d8145c1270e4",
+      "gitBlobContentSha256": "a59d54d80f721420f4fd787adac8034b674b301dc880c89970a7d8145c1270e4",
+      "rawByteEqual": true
+    },
+    {
+      "path": "docs/evidence/unified7-final-verification-20261007/invalid-token-ui.txt",
+      "bytes": 2777,
+      "localSha256": "81e055741dfbdcf56d1d0eef333351c6a62ee3458bbfb1cee4542b9a2e3167f6",
+      "gitBlobContentSha256": "81e055741dfbdcf56d1d0eef333351c6a62ee3458bbfb1cee4542b9a2e3167f6",
+      "rawByteEqual": true
+    },
+    {
+      "path": "docs/evidence/unified7-final-verification-20261007/invalid-token.json",
+      "bytes": 551,
+      "localSha256": "1f7cec362ec08c52fe188ba171aa322d00196c50834603d58f2e09aa1c8d9d31",
+      "gitBlobContentSha256": "1f7cec362ec08c52fe188ba171aa322d00196c50834603d58f2e09aa1c8d9d31",
+      "rawByteEqual": true
+    },
+    {
+      "path": "docs/evidence/unified7-final-verification-20261007/invalid-token.md",
+      "bytes": 21,
+      "localSha256": "d2447cf8e3144ebf30225aa29c1fe2bb0e6075864b61cee192fb9e6547994331",
+      "gitBlobContentSha256": "d2447cf8e3144ebf30225aa29c1fe2bb0e6075864b61cee192fb9e6547994331",
+      "rawByteEqual": true
+    },
+    {
+      "path": "docs/evidence/unified7-final-verification-20261007/live-guard-execution.json",
+      "bytes": 1134,
+      "localSha256": "d9c8ffe04edd43c3d494953aaa655b2b0cc62fb4a489d9d7c5933ab42cef1e85",
+      "gitBlobContentSha256": "d9c8ffe04edd43c3d494953aaa655b2b0cc62fb4a489d9d7c5933ab42cef1e85",
+      "rawByteEqual": true
+    },
+    {
+      "path": "docs/evidence/unified7-final-verification-20261007/live-guard-preparation-empty.jsonl",
+      "bytes": 0,
+      "localSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "gitBlobContentSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "rawByteEqual": true
+    },
+    {
+      "path": "docs/evidence/unified7-final-verification-20261007/live-guard-preparation-failure.json",
+      "bytes": 984,
+      "localSha256": "9f0f054d2d13c916e61eefd0c7dc1112c82d76d385f093e9be12de1dee2f9cf6",
+      "gitBlobContentSha256": "9f0f054d2d13c916e61eefd0c7dc1112c82d76d385f093e9be12de1dee2f9cf6",
+      "rawByteEqual": true
+    },
+    {
+      "path": "docs/evidence/unified7-final-verification-20261007/live-guard.jsonl",
+      "bytes": 5626,
+      "localSha256": "5279ae4e4d7cd34a94806a6ed25e14c252957c4ba2dfcb1e0de65459243fe792",
+      "gitBlobContentSha256": "5279ae4e4d7cd34a94806a6ed25e14c252957c4ba2dfcb1e0de65459243fe792",
+      "rawByteEqual": true
+    },
+    {
+      "path": "docs/evidence/unified7-final-verification-20261007/managed-login-attempt.json",
+      "bytes": 586,
+      "localSha256": "a89287a89bdd1f70f9a17466b6d9107aed454c4ee5425a24fbb3f2c9ddaa0035",
+      "gitBlobContentSha256": "a89287a89bdd1f70f9a17466b6d9107aed454c4ee5425a24fbb3f2c9ddaa0035",
+      "rawByteEqual": true
+    },
+    {
+      "path": "docs/evidence/unified7-final-verification-20261007/npm-authenticated-diagnostics-ui.png",
+      "bytes": 75127,
+      "localSha256": "aa3f9f6b005a4364a87e393799b92a47b03c1b3b87e0040298d2e712aa30f761",
+      "gitBlobContentSha256": "aa3f9f6b005a4364a87e393799b92a47b03c1b3b87e0040298d2e712aa30f761",
+      "rawByteEqual": true
+    },
+    {
+      "path": "docs/evidence/unified7-final-verification-20261007/npm-authenticated-process.json",
+      "bytes": 364,
+      "localSha256": "9299ba627eec5dbb0d64181e9f8a1fbe4238415b44a7330fd883a834a75108fc",
+      "gitBlobContentSha256": "9299ba627eec5dbb0d64181e9f8a1fbe4238415b44a7330fd883a834a75108fc",
+      "rawByteEqual": true
+    },
+    {
+      "path": "docs/evidence/unified7-final-verification-20261007/npm-authenticated-product-ui.png",
+      "bytes": 60168,
+      "localSha256": "a7bc4160d041bf8b1d3cd4d11f44c3104583f8c0de0021bfa8e6b1cbbe506fa0",
+      "gitBlobContentSha256": "a7bc4160d041bf8b1d3cd4d11f44c3104583f8c0de0021bfa8e6b1cbbe506fa0",
+      "rawByteEqual": true
+    },
+    {
+      "path": "docs/evidence/unified7-final-verification-20261007/npm-diagnostics-ui.png",
+      "bytes": 33941,
+      "localSha256": "060db14fa551172a8a3cf6d3b2ed5c17843b688c4d5d1a6561bf5ae25b7acc66",
+      "gitBlobContentSha256": "060db14fa551172a8a3cf6d3b2ed5c17843b688c4d5d1a6561bf5ae25b7acc66",
+      "rawByteEqual": true
+    },
+    {
+      "path": "docs/evidence/unified7-final-verification-20261007/npm-install-native.txt",
+      "bytes": 600,
+      "localSha256": "2d45dfc2c19e6d9fd61f01a479b559df950ed092b0e2bfef0350362abdb97a03",
+      "gitBlobContentSha256": "2d45dfc2c19e6d9fd61f01a479b559df950ed092b0e2bfef0350362abdb97a03",
+      "rawByteEqual": true
+    },
+    {
+      "path": "docs/evidence/unified7-final-verification-20261007/npm-installed-identity.json",
+      "bytes": 280,
+      "localSha256": "5934488148206943b79fb345e89a57941243c119db6118b262b1ee168a8ea293",
+      "gitBlobContentSha256": "5934488148206943b79fb345e89a57941243c119db6118b262b1ee168a8ea293",
+      "rawByteEqual": true
+    },
+    {
+      "path": "docs/evidence/unified7-final-verification-20261007/npm-process.json",
+      "bytes": 821,
+      "localSha256": "8ad81a3199da59290deb7c7a293da8ae386ce4040aa8a294b78d5a7097f0ee2f",
+      "gitBlobContentSha256": "8ad81a3199da59290deb7c7a293da8ae386ce4040aa8a294b78d5a7097f0ee2f",
+      "rawByteEqual": true
+    },
+    {
+      "path": "docs/evidence/unified7-final-verification-20261007/npm-product-4d141b89.json",
+      "bytes": 1853,
+      "localSha256": "58baac4c9ee3d160d636cd11993ecbcf557baeecca578847bd1bb51a7e79a260",
+      "gitBlobContentSha256": "58baac4c9ee3d160d636cd11993ecbcf557baeecca578847bd1bb51a7e79a260",
+      "rawByteEqual": true
+    },
+    {
+      "path": "docs/evidence/unified7-final-verification-20261007/npm-product-965afa11.json",
+      "bytes": 2440,
+      "localSha256": "1ce39c8204046dfe11413c527fa855878ef8dfbedadb22d162ca7af2980d93f3",
+      "gitBlobContentSha256": "1ce39c8204046dfe11413c527fa855878ef8dfbedadb22d162ca7af2980d93f3",
+      "rawByteEqual": true
+    },
+    {
+      "path": "docs/evidence/unified7-final-verification-20261007/npm-product-downloads.json",
+      "bytes": 1143,
+      "localSha256": "82756398d784cbda348714bb912ba29907b71a8c77e3ff65291d6d8ed8420ec4",
+      "gitBlobContentSha256": "82756398d784cbda348714bb912ba29907b71a8c77e3ff65291d6d8ed8420ec4",
+      "rawByteEqual": true
+    },
+    {
+      "path": "docs/evidence/unified7-final-verification-20261007/npm-product-e357b710.json",
+      "bytes": 1853,
+      "localSha256": "58e5936eb1c20b5cbe8ffbacc88e03f7d2e6ae1b22963fe743a67ee14173eb5c",
+      "gitBlobContentSha256": "58e5936eb1c20b5cbe8ffbacc88e03f7d2e6ae1b22963fe743a67ee14173eb5c",
+      "rawByteEqual": true
+    },
+    {
+      "path": "docs/evidence/unified7-final-verification-20261007/oracle-after/bom.json",
+      "bytes": 404693,
+      "localSha256": "e30ec1ba761470b2f84be0f4fd2e4825a3be6a4429db5a1a94a470f092f7397e",
+      "gitBlobContentSha256": "e30ec1ba761470b2f84be0f4fd2e4825a3be6a4429db5a1a94a470f092f7397e",
+      "rawByteEqual": true
+    },
+    {
+      "path": "docs/evidence/unified7-final-verification-20261007/oracle-after/calls.json",
+      "bytes": 4075,
+      "localSha256": "0442e7c3b1bc249f5d88f44c108e8468aaa70419854ccc8f4dc1a425dc1752df",
+      "gitBlobContentSha256": "0442e7c3b1bc249f5d88f44c108e8468aaa70419854ccc8f4dc1a425dc1752df",
+      "rawByteEqual": true
+    },
+    {
+      "path": "docs/evidence/unified7-final-verification-20261007/oracle-after/inventory.json",
+      "bytes": 32855,
+      "localSha256": "360bcd5aa0b524781c228706f3b5264100a676a2eb900c59c5613c2358e0c3c0",
+      "gitBlobContentSha256": "360bcd5aa0b524781c228706f3b5264100a676a2eb900c59c5613c2358e0c3c0",
+      "rawByteEqual": true
+    },
+    {
+      "path": "docs/evidence/unified7-final-verification-20261007/oracle-after/orders.json",
+      "bytes": 30064,
+      "localSha256": "b51cd1b9d07b19181eaef5e880f3940b6298c15e4ce246bf1dfe1300939a856f",
+      "gitBlobContentSha256": "b51cd1b9d07b19181eaef5e880f3940b6298c15e4ce246bf1dfe1300939a856f",
+      "rawByteEqual": true
+    },
+    {
+      "path": "docs/evidence/unified7-final-verification-20261007/oracle-after/purchase-orders.json",
+      "bytes": 824,
+      "localSha256": "f1f8b88a8b48ea78550f82240e5d53257d27da2d668e691e0526d0f27237a7e4",
+      "gitBlobContentSha256": "f1f8b88a8b48ea78550f82240e5d53257d27da2d668e691e0526d0f27237a7e4",
+      "rawByteEqual": true
+    },
+    {
+      "path": "docs/evidence/unified7-final-verification-20261007/oracle-after/purchase-requests.json",
+      "bytes": 653,
+      "localSha256": "9d441f1798da8426857761ad9f5775e89df42ef4235df16f74fe9b9126c3613d",
+      "gitBlobContentSha256": "9d441f1798da8426857761ad9f5775e89df42ef4235df16f74fe9b9126c3613d",
+      "rawByteEqual": true
+    },
+    {
+      "path": "docs/evidence/unified7-final-verification-20261007/oracle-before-after-comparison.json",
+      "bytes": 891,
+      "localSha256": "3c3e071ffaede969b6c24a45bf4fdf4f42a1e7ed387453c1a611f7fa6d4ded5f",
+      "gitBlobContentSha256": "3c3e071ffaede969b6c24a45bf4fdf4f42a1e7ed387453c1a611f7fa6d4ded5f",
+      "rawByteEqual": true
+    },
+    {
+      "path": "docs/evidence/unified7-final-verification-20261007/oracle-before-full/bom.json",
+      "bytes": 404694,
+      "localSha256": "a9287f3b4f7dd8d4ac8a1778ed651e9d591bbc6d988b52c11fb5014b9fc0a7a4",
+      "gitBlobContentSha256": "a9287f3b4f7dd8d4ac8a1778ed651e9d591bbc6d988b52c11fb5014b9fc0a7a4",
+      "rawByteEqual": true
+    },
+    {
+      "path": "docs/evidence/unified7-final-verification-20261007/oracle-before-full/calls.json",
+      "bytes": 15249,
+      "localSha256": "eba553e66d2ab361cf5ba20c3b498291d83c863aae98173311409efb5603e3aa",
+      "gitBlobContentSha256": "eba553e66d2ab361cf5ba20c3b498291d83c863aae98173311409efb5603e3aa",
+      "rawByteEqual": true
+    },
+    {
+      "path": "docs/evidence/unified7-final-verification-20261007/oracle-before-full/component-inventory-0.json",
+      "bytes": 173664,
+      "localSha256": "84ed702be30d0bb069b06f48031fb840018905f7d271b5432f565177e8a22844",
+      "gitBlobContentSha256": "84ed702be30d0bb069b06f48031fb840018905f7d271b5432f565177e8a22844",
+      "rawByteEqual": true
+    },
+    {
+      "path": "docs/evidence/unified7-final-verification-20261007/oracle-before-full/component-inventory-128.json",
+      "bytes": 299194,
+      "localSha256": "d0904e656f98da9ec8f0292ba7c102e59fc446a29af800d2297ef8eaab20deef",
+      "gitBlobContentSha256": "d0904e656f98da9ec8f0292ba7c102e59fc446a29af800d2297ef8eaab20deef",
+      "rawByteEqual": true
+    },
+    {
+      "path": "docs/evidence/unified7-final-verification-20261007/oracle-before-full/component-inventory-160.json",
+      "bytes": 301162,
+      "localSha256": "9ec235f05d4705e3a17f24ac9b7f12f3430ee38315043befd9049c7d57c27e0b",
+      "gitBlobContentSha256": "9ec235f05d4705e3a17f24ac9b7f12f3430ee38315043befd9049c7d57c27e0b",
+      "rawByteEqual": true
+    },
+    {
+      "path": "docs/evidence/unified7-final-verification-20261007/oracle-before-full/component-inventory-192.json",
+      "bytes": 368184,
+      "localSha256": "70d2ec7b717b57128c28f39dac16d8b40c67e72cf0fbd220db7376b19f3e4fd5",
+      "gitBlobContentSha256": "70d2ec7b717b57128c28f39dac16d8b40c67e72cf0fbd220db7376b19f3e4fd5",
+      "rawByteEqual": true
+    },
+    {
+      "path": "docs/evidence/unified7-final-verification-20261007/oracle-before-full/component-inventory-224.json",
+      "bytes": 247724,
+      "localSha256": "831acf70fe93dbe092ef65ae18ee554b614b61e2206cce70a1018227d0de6239",
+      "gitBlobContentSha256": "831acf70fe93dbe092ef65ae18ee554b614b61e2206cce70a1018227d0de6239",
+      "rawByteEqual": true
+    },
+    {
+      "path": "docs/evidence/unified7-final-verification-20261007/oracle-before-full/component-inventory-256.json",
+      "bytes": 178319,
+      "localSha256": "3119d62052ec20d190b63583b2d16d2e147eca45722d881a11815d8c7164ec77",
+      "gitBlobContentSha256": "3119d62052ec20d190b63583b2d16d2e147eca45722d881a11815d8c7164ec77",
+      "rawByteEqual": true
+    },
+    {
+      "path": "docs/evidence/unified7-final-verification-20261007/oracle-before-full/component-inventory-288.json",
+      "bytes": 211118,
+      "localSha256": "93e35a34af8eeefd2a0315c1639f21c57d40e2d6a2e9e01bf3d4892be3df11d1",
+      "gitBlobContentSha256": "93e35a34af8eeefd2a0315c1639f21c57d40e2d6a2e9e01bf3d4892be3df11d1",
+      "rawByteEqual": true
+    },
+    {
+      "path": "docs/evidence/unified7-final-verification-20261007/oracle-before-full/component-inventory-32.json",
+      "bytes": 209157,
+      "localSha256": "213ed95382d5bd531ca257b84c313cbcfa145faee53153b0d5d7aa653222fef2",
+      "gitBlobContentSha256": "213ed95382d5bd531ca257b84c313cbcfa145faee53153b0d5d7aa653222fef2",
+      "rawByteEqual": true
+    },
+    {
+      "path": "docs/evidence/unified7-final-verification-20261007/oracle-before-full/component-inventory-320.json",
+      "bytes": 57602,
+      "localSha256": "10e7308dd0ae85a2836b30ff6db4b863070dbd96ffdb70e90bf37555ea06f964",
+      "gitBlobContentSha256": "10e7308dd0ae85a2836b30ff6db4b863070dbd96ffdb70e90bf37555ea06f964",
+      "rawByteEqual": true
+    },
+    {
+      "path": "docs/evidence/unified7-final-verification-20261007/oracle-before-full/component-inventory-64.json",
+      "bytes": 416084,
+      "localSha256": "8da9888c887c82600fef2e3726a4e8d4e1b0132b09ca9414d767923ccf475745",
+      "gitBlobContentSha256": "8da9888c887c82600fef2e3726a4e8d4e1b0132b09ca9414d767923ccf475745",
+      "rawByteEqual": true
+    },
+    {
+      "path": "docs/evidence/unified7-final-verification-20261007/oracle-before-full/component-inventory-96.json",
+      "bytes": 422732,
+      "localSha256": "98a7494c084f95c199cbfe82c5c52b609fc011b2459050a76e70ba53b391f488",
+      "gitBlobContentSha256": "98a7494c084f95c199cbfe82c5c52b609fc011b2459050a76e70ba53b391f488",
+      "rawByteEqual": true
+    },
+    {
+      "path": "docs/evidence/unified7-final-verification-20261007/oracle-before-full/component-inventory-rows.json",
+      "bytes": 2702348,
+      "localSha256": "b66503dc6d2869339c0cb9fc2b8c0bd2ffb47a320d001d1f51a69e1f93239af3",
+      "gitBlobContentSha256": "b66503dc6d2869339c0cb9fc2b8c0bd2ffb47a320d001d1f51a69e1f93239af3",
+      "rawByteEqual": true
+    },
+    {
+      "path": "docs/evidence/unified7-final-verification-20261007/oracle-before-full/exploratory-main-bom-rows.json",
+      "bytes": 69275,
+      "localSha256": "460580dca7838c9e3e66eb4bb5f66fcec36f7013938b1c9af14b8d1a6958accf",
+      "gitBlobContentSha256": "460580dca7838c9e3e66eb4bb5f66fcec36f7013938b1c9af14b8d1a6958accf",
+      "rawByteEqual": true
+    },
+    {
+      "path": "docs/evidence/unified7-final-verification-20261007/oracle-before-full/inventory.json",
+      "bytes": 32855,
+      "localSha256": "63662210c9bf52b0492d08f69fea284a642bc04e46f10e60e43bda36ac204430",
+      "gitBlobContentSha256": "63662210c9bf52b0492d08f69fea284a642bc04e46f10e60e43bda36ac204430",
+      "rawByteEqual": true
+    },
+    {
+      "path": "docs/evidence/unified7-final-verification-20261007/oracle-before-full/orders.json",
+      "bytes": 30064,
+      "localSha256": "ad6fbdcaef99c364f6533b9d27bc625b2417fb7414f9bf89a7d362cad5b2586a",
+      "gitBlobContentSha256": "ad6fbdcaef99c364f6533b9d27bc625b2417fb7414f9bf89a7d362cad5b2586a",
+      "rawByteEqual": true
+    },
+    {
+      "path": "docs/evidence/unified7-final-verification-20261007/oracle-before-full/purchase-orders.json",
+      "bytes": 824,
+      "localSha256": "33b190422641ba3bd4e42bcf05b3e08f6ffee894c16b3aa05c76cc3fac2586c3",
+      "gitBlobContentSha256": "33b190422641ba3bd4e42bcf05b3e08f6ffee894c16b3aa05c76cc3fac2586c3",
+      "rawByteEqual": true
+    },
+    {
+      "path": "docs/evidence/unified7-final-verification-20261007/oracle-before-full/purchase-requests.json",
+      "bytes": 654,
+      "localSha256": "c325cc3b134f16807d32a0dd223adc16cadfbea0f67d3158c0e51a091d7175f7",
+      "gitBlobContentSha256": "c325cc3b134f16807d32a0dd223adc16cadfbea0f67d3158c0e51a091d7175f7",
+      "rawByteEqual": true
+    },
+    {
+      "path": "docs/evidence/unified7-final-verification-20261007/oracle-before/bom.json",
+      "bytes": 404693,
+      "localSha256": "7661705dd904b9ec71752a1c0401cfa506db230799961a30daf17c13bd8c26e2",
+      "gitBlobContentSha256": "7661705dd904b9ec71752a1c0401cfa506db230799961a30daf17c13bd8c26e2",
+      "rawByteEqual": true
+    },
+    {
+      "path": "docs/evidence/unified7-final-verification-20261007/oracle-before/calls.json",
+      "bytes": 4075,
+      "localSha256": "b7fd11ecdadbf888aed3eb6fdc8a04253002b3cee21a51193378b809f6c752e5",
+      "gitBlobContentSha256": "b7fd11ecdadbf888aed3eb6fdc8a04253002b3cee21a51193378b809f6c752e5",
+      "rawByteEqual": true
+    },
+    {
+      "path": "docs/evidence/unified7-final-verification-20261007/oracle-before/exploratory-main-bom-rows.json",
+      "bytes": 69449,
+      "localSha256": "70862911d558de853480dca1b9e9459270f962669414c960b6ab06ccf48b21d5",
+      "gitBlobContentSha256": "70862911d558de853480dca1b9e9459270f962669414c960b6ab06ccf48b21d5",
+      "rawByteEqual": true
+    },
+    {
+      "path": "docs/evidence/unified7-final-verification-20261007/oracle-before/exploratory-main-bom-summary.json",
+      "bytes": 180,
+      "localSha256": "51ced1236010df968508f655a9baa156629cb6e6e186cb282be1cbb0543dc537",
+      "gitBlobContentSha256": "51ced1236010df968508f655a9baa156629cb6e6e186cb282be1cbb0543dc537",
+      "rawByteEqual": true
+    },
+    {
+      "path": "docs/evidence/unified7-final-verification-20261007/oracle-before/inventory.json",
+      "bytes": 32856,
+      "localSha256": "27e748cc7a5b2c8b304c264cb9747cc21bf25b670ff660f683a73008e64282f9",
+      "gitBlobContentSha256": "27e748cc7a5b2c8b304c264cb9747cc21bf25b670ff660f683a73008e64282f9",
+      "rawByteEqual": true
+    },
+    {
+      "path": "docs/evidence/unified7-final-verification-20261007/oracle-before/live-tools.json",
+      "bytes": 251045,
+      "localSha256": "6c7e68b7a7c79d0aef005d6ec7466afd4d028badaa6cb0e09ea737ce52e73c9f",
+      "gitBlobContentSha256": "6c7e68b7a7c79d0aef005d6ec7466afd4d028badaa6cb0e09ea737ce52e73c9f",
+      "rawByteEqual": true
+    },
+    {
+      "path": "docs/evidence/unified7-final-verification-20261007/oracle-before/object-types.json",
+      "bytes": 125901,
+      "localSha256": "c9086ebd7523c77fcfa280fee6682f1baf0d6e256630dad9f9dabf4e915dfdcf",
+      "gitBlobContentSha256": "c9086ebd7523c77fcfa280fee6682f1baf0d6e256630dad9f9dabf4e915dfdcf",
+      "rawByteEqual": true
+    },
+    {
+      "path": "docs/evidence/unified7-final-verification-20261007/oracle-before/orders.json",
+      "bytes": 30064,
+      "localSha256": "fa1f2e4d8157576eefcd65d5c3a3b7c9c40b048c570d45986deabcdcb15e8628",
+      "gitBlobContentSha256": "fa1f2e4d8157576eefcd65d5c3a3b7c9c40b048c570d45986deabcdcb15e8628",
+      "rawByteEqual": true
+    },
+    {
+      "path": "docs/evidence/unified7-final-verification-20261007/oracle-before/purchase-orders.json",
+      "bytes": 824,
+      "localSha256": "d5f79e9a512c84d6f9d62b41850c95746cb388872dd0772a51829feefd0f7e3d",
+      "gitBlobContentSha256": "d5f79e9a512c84d6f9d62b41850c95746cb388872dd0772a51829feefd0f7e3d",
+      "rawByteEqual": true
+    },
+    {
+      "path": "docs/evidence/unified7-final-verification-20261007/oracle-before/purchase-requests.json",
+      "bytes": 653,
+      "localSha256": "4166b36bdf5cf531a8fb2cbd3da07be167f37c0e4e5ed19ff424a1a27076087b",
+      "gitBlobContentSha256": "4166b36bdf5cf531a8fb2cbd3da07be167f37c0e4e5ed19ff424a1a27076087b",
+      "rawByteEqual": true
+    },
+    {
+      "path": "docs/evidence/unified7-final-verification-20261007/oracle-before/summary.json",
+      "bytes": 1381,
+      "localSha256": "15fe23f62ce263a46a12525b47bb20e5f4ea38fcd84d5c8ec2df136bab7dce17",
+      "gitBlobContentSha256": "15fe23f62ce263a46a12525b47bb20e5f4ea38fcd84d5c8ec2df136bab7dce17",
+      "rawByteEqual": true
+    },
+    {
+      "path": "docs/evidence/unified7-final-verification-20261007/orders-count-status.json",
+      "bytes": 57006,
+      "localSha256": "c7d717ff9222890106f8d3d8c9aad9fe9e13d0bf446fe6182958beb2831bfcc8",
+      "gitBlobContentSha256": "c7d717ff9222890106f8d3d8c9aad9fe9e13d0bf446fe6182958beb2831bfcc8",
+      "rawByteEqual": true
+    },
+    {
+      "path": "docs/evidence/unified7-final-verification-20261007/orders-count-status.md",
+      "bytes": 618,
+      "localSha256": "6fe031ec0953ddb852a04d6fafd4edc4de9d3eb25c98ea8002cef306557f9798",
+      "gitBlobContentSha256": "6fe031ec0953ddb852a04d6fafd4edc4de9d3eb25c98ea8002cef306557f9798",
+      "rawByteEqual": true
+    },
+    {
+      "path": "docs/evidence/unified7-final-verification-20261007/owned-pids-summary.json",
+      "bytes": 13483,
+      "localSha256": "14c7091f5e13e73f84900a37d7f360d244d7222bfedd6c1ae0638a0fdddc9097",
+      "gitBlobContentSha256": "14c7091f5e13e73f84900a37d7f360d244d7222bfedd6c1ae0638a0fdddc9097",
+      "rawByteEqual": true
+    },
+    {
+      "path": "docs/evidence/unified7-final-verification-20261007/owned-pids-summary.md",
+      "bytes": 1270,
+      "localSha256": "c13b88f94635a4e7b42bd76b511dddcac91fd70c5336d13af982807291ee0bd7",
+      "gitBlobContentSha256": "c13b88f94635a4e7b42bd76b511dddcac91fd70c5336d13af982807291ee0bd7",
+      "rawByteEqual": true
+    },
+    {
+      "path": "docs/evidence/unified7-final-verification-20261007/platform-unreachable-first-stop.json",
+      "bytes": 1368,
+      "localSha256": "962ebfbb23b3ac33ce5780cf50e180da5d80a3ccbb45864a120d90f68968b63e",
+      "gitBlobContentSha256": "962ebfbb23b3ac33ce5780cf50e180da5d80a3ccbb45864a120d90f68968b63e",
+      "rawByteEqual": true
+    },
+    {
+      "path": "docs/evidence/unified7-final-verification-20261007/platform-unreachable-preparation-control.json",
+      "bytes": 5839,
+      "localSha256": "7d8759c3d4388b717d30501c1c6619918c32ca78bc2962d60f7ca39a7af5474f",
+      "gitBlobContentSha256": "7d8759c3d4388b717d30501c1c6619918c32ca78bc2962d60f7ca39a7af5474f",
+      "rawByteEqual": true
+    },
+    {
+      "path": "docs/evidence/unified7-final-verification-20261007/platform-unreachable-preparation-control.md",
+      "bytes": 424,
+      "localSha256": "17073b9f6c572bdd867b2410b5a70e804af33e9e74d194fdda4bfa7f7985fc2d",
+      "gitBlobContentSha256": "17073b9f6c572bdd867b2410b5a70e804af33e9e74d194fdda4bfa7f7985fc2d",
+      "rawByteEqual": true
+    },
+    {
+      "path": "docs/evidence/unified7-final-verification-20261007/platform-unreachable-preparation-correction.json",
+      "bytes": 271,
+      "localSha256": "676833beed85ea83027cf4549a35b59cf785e0da99f1c8b410221738972e9177",
+      "gitBlobContentSha256": "676833beed85ea83027cf4549a35b59cf785e0da99f1c8b410221738972e9177",
+      "rawByteEqual": true
+    },
+    {
+      "path": "docs/evidence/unified7-final-verification-20261007/platform-unreachable-process.json",
+      "bytes": 686,
+      "localSha256": "f7d87c3d9ffbeacc969d6df159a097bd517d36bf50153ab59d17919053ea8926",
+      "gitBlobContentSha256": "f7d87c3d9ffbeacc969d6df159a097bd517d36bf50153ab59d17919053ea8926",
+      "rawByteEqual": true
+    },
+    {
+      "path": "docs/evidence/unified7-final-verification-20261007/platform-unreachable-recovered.json",
+      "bytes": 45403,
+      "localSha256": "9fdd28ea1ab8c1654c67518abd185eff41538086a056e993d9c3b7a61a2313cc",
+      "gitBlobContentSha256": "9fdd28ea1ab8c1654c67518abd185eff41538086a056e993d9c3b7a61a2313cc",
+      "rawByteEqual": true
+    },
+    {
+      "path": "docs/evidence/unified7-final-verification-20261007/platform-unreachable-recovered.md",
+      "bytes": 582,
+      "localSha256": "2e4451fdaff4a1434c08e3e196e73eb3eda2a1acdc064d6257d511d1757cd09e",
+      "gitBlobContentSha256": "2e4451fdaff4a1434c08e3e196e73eb3eda2a1acdc064d6257d511d1757cd09e",
+      "rawByteEqual": true
+    },
+    {
+      "path": "docs/evidence/unified7-final-verification-20261007/platform-unreachable-restart-process.json",
+      "bytes": 239,
+      "localSha256": "123d6ef9df9c1e1504925a9cac682475dc89f3662d5e4721bcfe7e8fbc7312af",
+      "gitBlobContentSha256": "123d6ef9df9c1e1504925a9cac682475dc89f3662d5e4721bcfe7e8fbc7312af",
+      "rawByteEqual": true
+    },
+    {
+      "path": "docs/evidence/unified7-final-verification-20261007/platform-unreachable-restart-stop.json",
+      "bytes": 1234,
+      "localSha256": "cb6768ef321acbb75c617b0b56b242d190484c972cb9b753435cf7c885b40b2b",
+      "gitBlobContentSha256": "cb6768ef321acbb75c617b0b56b242d190484c972cb9b753435cf7c885b40b2b",
+      "rawByteEqual": true
+    },
+    {
+      "path": "docs/evidence/unified7-final-verification-20261007/platform-unreachable-ui.png",
+      "bytes": 350316,
+      "localSha256": "966e91a1115261ab4c2d982b0477fffdafbc7e6b8402b375615ea2b99f2c314c",
+      "gitBlobContentSha256": "966e91a1115261ab4c2d982b0477fffdafbc7e6b8402b375615ea2b99f2c314c",
+      "rawByteEqual": true
+    },
+    {
+      "path": "docs/evidence/unified7-final-verification-20261007/platform-unreachable-ui.txt",
+      "bytes": 4325,
+      "localSha256": "9140c62b4dbf1a5d76de162b6799e2b7748fd0b6c506e60c43e8f0eb0b2340e3",
+      "gitBlobContentSha256": "9140c62b4dbf1a5d76de162b6799e2b7748fd0b6c506e60c43e8f0eb0b2340e3",
+      "rawByteEqual": true
+    },
+    {
+      "path": "docs/evidence/unified7-final-verification-20261007/platform-unreachable.json",
+      "bytes": 5624,
+      "localSha256": "e01978ad3273cc2323d7e8e127e82def6a337d55e37eb93d1b448a801c58a7f7",
+      "gitBlobContentSha256": "e01978ad3273cc2323d7e8e127e82def6a337d55e37eb93d1b448a801c58a7f7",
+      "rawByteEqual": true
+    },
+    {
+      "path": "docs/evidence/unified7-final-verification-20261007/platform-unreachable.md",
+      "bytes": 21,
+      "localSha256": "d2447cf8e3144ebf30225aa29c1fe2bb0e6075864b61cee192fb9e6547994331",
+      "gitBlobContentSha256": "d2447cf8e3144ebf30225aa29c1fe2bb0e6075864b61cee192fb9e6547994331",
+      "rawByteEqual": true
+    },
+    {
+      "path": "docs/evidence/unified7-final-verification-20261007/preflight-review/ci-check-summary.json",
+      "bytes": 2799,
+      "localSha256": "affc50795d70233f620404c1a02c76182e551bec3b8a0ebd268fc5c85c8890e2",
+      "gitBlobContentSha256": "affc50795d70233f620404c1a02c76182e551bec3b8a0ebd268fc5c85c8890e2",
+      "rawByteEqual": true
+    },
+    {
+      "path": "docs/evidence/unified7-final-verification-20261007/preflight-review/ci-main-run.json",
+      "bytes": 5137,
+      "localSha256": "ab30b45b016774c7da745928ba1b154b87706a36dc30fb9dabec33f5e0377279",
+      "gitBlobContentSha256": "ab30b45b016774c7da745928ba1b154b87706a36dc30fb9dabec33f5e0377279",
+      "rawByteEqual": true
+    },
+    {
+      "path": "docs/evidence/unified7-final-verification-20261007/preflight-review/main-package-comparison.json",
+      "bytes": 21569,
+      "localSha256": "5e66d4e5f8f1d76c58bbbbebf1faba857c77aa4ff9b2ea1a9d573e457e6a09ce",
+      "gitBlobContentSha256": "5e66d4e5f8f1d76c58bbbbebf1faba857c77aa4ff9b2ea1a9d573e457e6a09ce",
+      "rawByteEqual": true
+    },
+    {
+      "path": "docs/evidence/unified7-final-verification-20261007/preflight-review/windows-review.json",
+      "bytes": 11489,
+      "localSha256": "db37096715690c8a109bbab01ceaa03ceebc09897674adf1e7a8cc34e4c6b172",
+      "gitBlobContentSha256": "db37096715690c8a109bbab01ceaa03ceebc09897674adf1e7a8cc34e4c6b172",
+      "rawByteEqual": true
+    },
+    {
+      "path": "docs/evidence/unified7-final-verification-20261007/product-originals-consistency.json",
+      "bytes": 2265,
+      "localSha256": "ffd563efc0a0345356fdfc2972b29cd9c8dab1511ea4a58716ae2c4841cd032b",
+      "gitBlobContentSha256": "ffd563efc0a0345356fdfc2972b29cd9c8dab1511ea4a58716ae2c4841cd032b",
+      "rawByteEqual": true
+    },
+    {
+      "path": "docs/evidence/unified7-final-verification-20261007/protected-state-after.json",
+      "bytes": 3447,
+      "localSha256": "4db73b875c100b6fb6aa7cb22195ff31cf27e5fb9e25f7a3fc93692d7401f5c6",
+      "gitBlobContentSha256": "4db73b875c100b6fb6aa7cb22195ff31cf27e5fb9e25f7a3fc93692d7401f5c6",
+      "rawByteEqual": true
+    },
+    {
+      "path": "docs/evidence/unified7-final-verification-20261007/protected-state-before.json",
+      "bytes": 3154,
+      "localSha256": "d6f3a338e458995ac3fbe90db1d31a46a10cef60dfcde10db462e05336d71e6f",
+      "gitBlobContentSha256": "d6f3a338e458995ac3fbe90db1d31a46a10cef60dfcde10db462e05336d71e6f",
+      "rawByteEqual": true
+    },
+    {
+      "path": "docs/evidence/unified7-final-verification-20261007/provenance-direct-calls.json",
+      "bytes": 674,
+      "localSha256": "6d6d18f0e3ac85128953f2be01018ee5178f918938f16c2e32ef8ea370f84bc7",
+      "gitBlobContentSha256": "6d6d18f0e3ac85128953f2be01018ee5178f918938f16c2e32ef8ea370f84bc7",
+      "rawByteEqual": true
+    },
+    {
+      "path": "docs/evidence/unified7-final-verification-20261007/purchase-flow.json",
+      "bytes": 124204,
+      "localSha256": "abd817da2f04a590068fa5d9b86f55b3a1f6c4b3d33f526f533ce59d5f07d923",
+      "gitBlobContentSha256": "abd817da2f04a590068fa5d9b86f55b3a1f6c4b3d33f526f533ce59d5f07d923",
+      "rawByteEqual": true
+    },
+    {
+      "path": "docs/evidence/unified7-final-verification-20261007/purchase-flow.md",
+      "bytes": 1900,
+      "localSha256": "c7d15e6301678808d3bea8f8da71ddf2727040892da54450ebdb268cc19770b4",
+      "gitBlobContentSha256": "c7d15e6301678808d3bea8f8da71ddf2727040892da54450ebdb268cc19770b4",
+      "rawByteEqual": true
+    },
+    {
+      "path": "docs/evidence/unified7-final-verification-20261007/real-business-graph.json",
+      "bytes": 30054,
+      "localSha256": "409b91bb7555b65b38bb3c4eac30d02e850c6f365db2924b89f34ee226eba5f4",
+      "gitBlobContentSha256": "409b91bb7555b65b38bb3c4eac30d02e850c6f365db2924b89f34ee226eba5f4",
+      "rawByteEqual": true
+    },
+    {
+      "path": "docs/evidence/unified7-final-verification-20261007/real-graph-property-source-ui.png",
+      "bytes": 399816,
+      "localSha256": "a2548ec19ea1579fb827298d4e2467212f792e049428ba3cdafd288d2c7bdb53",
+      "gitBlobContentSha256": "a2548ec19ea1579fb827298d4e2467212f792e049428ba3cdafd288d2c7bdb53",
+      "rawByteEqual": true
+    },
+    {
+      "path": "docs/evidence/unified7-final-verification-20261007/real-graph-property-source-ui.txt",
+      "bytes": 7773,
+      "localSha256": "5cc10e4413e6c0bfbf292c9548d033ba0fdcdb2ed0978ce377b516919646e748",
+      "gitBlobContentSha256": "5cc10e4413e6c0bfbf292c9548d033ba0fdcdb2ed0978ce377b516919646e748",
+      "rawByteEqual": true
+    },
+    {
+      "path": "docs/evidence/unified7-final-verification-20261007/real-graph-sales-source-ui.txt",
+      "bytes": 7752,
+      "localSha256": "0731efea44b254a329630b177f7a4eb74a265c4bc9b0977dce2c0f588d15d6e5",
+      "gitBlobContentSha256": "0731efea44b254a329630b177f7a4eb74a265c4bc9b0977dce2c0f588d15d6e5",
+      "rawByteEqual": true
+    },
+    {
+      "path": "docs/evidence/unified7-final-verification-20261007/real-operations.json",
+      "bytes": 122632,
+      "localSha256": "8cf2ab500158feaeaf24384980dbce9dfd69213c6f5235116f0bbe7d3a892b5e",
+      "gitBlobContentSha256": "8cf2ab500158feaeaf24384980dbce9dfd69213c6f5235116f0bbe7d3a892b5e",
+      "rawByteEqual": true
+    },
+    {
+      "path": "docs/evidence/unified7-final-verification-20261007/real-provenance-check.json",
+      "bytes": 1437,
+      "localSha256": "692de8fb33d1efea65545571ab62968e9225b8b78e567356195f949c1d197070",
+      "gitBlobContentSha256": "692de8fb33d1efea65545571ab62968e9225b8b78e567356195f949c1d197070",
+      "rawByteEqual": true
+    },
+    {
+      "path": "docs/evidence/unified7-final-verification-20261007/registry-and-platform-issue-status.json",
+      "bytes": 864,
+      "localSha256": "38ca02116ac8c7c1d7f5eea32b0a03cf7e7738057b9ffa83856dc6d62da15385",
+      "gitBlobContentSha256": "38ca02116ac8c7c1d7f5eea32b0a03cf7e7738057b9ffa83856dc6d62da15385",
+      "rawByteEqual": true
+    },
+    {
+      "path": "docs/evidence/unified7-final-verification-20261007/sales-order-detail.json",
+      "bytes": 43158,
+      "localSha256": "9ec570734c1cca3f540f9518a5e1f571f5308a7dce848710f97f4c8b4918b1b8",
+      "gitBlobContentSha256": "9ec570734c1cca3f540f9518a5e1f571f5308a7dce848710f97f4c8b4918b1b8",
+      "rawByteEqual": true
+    },
+    {
+      "path": "docs/evidence/unified7-final-verification-20261007/sales-order-detail.md",
+      "bytes": 278,
+      "localSha256": "fd3108ffeddb7af6c290e58474187ca4bda968dbb562a45eb3fa84a62deafb35",
+      "gitBlobContentSha256": "fd3108ffeddb7af6c290e58474187ca4bda968dbb562a45eb3fa84a62deafb35",
+      "rawByteEqual": true
+    },
+    {
+      "path": "docs/evidence/unified7-final-verification-20261007/second-network-detail.json",
+      "bytes": 8324,
+      "localSha256": "76c9216167d73a111eca6b788f6b1abc53be7f690963c1bcc70902250aecd476",
+      "gitBlobContentSha256": "76c9216167d73a111eca6b788f6b1abc53be7f690963c1bcc70902250aecd476",
+      "rawByteEqual": true
+    },
+    {
+      "path": "docs/evidence/unified7-final-verification-20261007/second-network-workspace-picker-ui.txt",
+      "bytes": 6188,
+      "localSha256": "88d039b7816ea5b52bad192ed7c9c6af5162ed66f7d1967c7efc14d1802e4629",
+      "gitBlobContentSha256": "88d039b7816ea5b52bad192ed7c9c6af5162ed66f7d1967c7efc14d1802e4629",
+      "rawByteEqual": true
+    },
+    {
+      "path": "docs/evidence/unified7-final-verification-20261007/upstream-and-environment.json",
+      "bytes": 6939,
+      "localSha256": "f78982e4b0287b42a5ce200beed46efabb04b2162ae305f39e260fbea30d38eb",
+      "gitBlobContentSha256": "f78982e4b0287b42a5ce200beed46efabb04b2162ae305f39e260fbea30d38eb",
+      "rawByteEqual": true
+    },
+    {
+      "path": "docs/evidence/unified7-final-verification-20261007/validation-record.json",
+      "bytes": 2026,
+      "localSha256": "84af16c8bb97f65c3a45c56f2295ed771ac2dbe159527f39229a301f09742bd8",
+      "gitBlobContentSha256": "84af16c8bb97f65c3a45c56f2295ed771ac2dbe159527f39229a301f09742bd8",
+      "rawByteEqual": true
+    },
+    {
+      "path": "docs/handoff/2026-10-06-release-7/README.md",
+      "bytes": 5851,
+      "localSha256": "91daef59136bb04e8d9024c77fba5fb2a6476afd2b75ae6d8a29646e3773b2d5",
+      "gitBlobContentSha256": "91daef59136bb04e8d9024c77fba5fb2a6476afd2b75ae6d8a29646e3773b2d5",
+      "rawByteEqual": true
+    },
+    {
+      "path": "docs/handoff/2026-10-07-unified7-final-verification/MAC-TODO.md",
+      "bytes": 3461,
+      "localSha256": "9181606f336f59e00d33522bfb4c74ee42f02fc6ec95d594a1b1f7cb4c233329",
+      "gitBlobContentSha256": "9181606f336f59e00d33522bfb4c74ee42f02fc6ec95d594a1b1f7cb4c233329",
+      "rawByteEqual": true
+    },
+    {
+      "path": "docs/handoff/2026-10-07-unified7-final-verification/README.md",
+      "bytes": 1863,
+      "localSha256": "07bf8d07b3156c2afb8b7eaae382f415ef2d368841a064ba48454697082aa8a0",
+      "gitBlobContentSha256": "07bf8d07b3156c2afb8b7eaae382f415ef2d368841a064ba48454697082aa8a0",
+      "rawByteEqual": true
+    },
+    {
+      "path": "docs/handoff/2026-10-07-unified7-final-verification/REMAINING-DECISIONS.md",
+      "bytes": 5193,
+      "localSha256": "df8cdbdf0ef851c0c3951c01a7c9a2bf1e6dfb8f7d812475d6822c86ba1297af",
+      "gitBlobContentSha256": "df8cdbdf0ef851c0c3951c01a7c9a2bf1e6dfb8f7d812475d6822c86ba1297af",
+      "rawByteEqual": true
+    },
+    {
+      "path": "docs/handoff/2026-10-07-unified7-final-verification/WINDOWS-HANDOFF.md",
+      "bytes": 10953,
+      "localSha256": "a7bfc6ae2333ea454ae9dd6da148db83a2844fd09ac86539e260264229ce2da7",
+      "gitBlobContentSha256": "a7bfc6ae2333ea454ae9dd6da148db83a2844fd09ac86539e260264229ce2da7",
+      "rawByteEqual": true
+    },
+    {
+      "path": "docs/releases/2026-10-06-unified-7-notes.md",
+      "bytes": 9615,
+      "localSha256": "2ad65cc1fc25dae33e78babd1ce3aa55fdbaa6044d843279372a7b005cd8032c",
+      "gitBlobContentSha256": "2ad65cc1fc25dae33e78babd1ce3aa55fdbaa6044d843279372a7b005cd8032c",
+      "rawByteEqual": true
+    }
+  ]
+}

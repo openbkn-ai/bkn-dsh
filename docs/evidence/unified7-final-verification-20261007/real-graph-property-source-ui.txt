@@ -1,0 +1,184 @@
+Window: "销售订单382-000005状态查询 — DeepSeek Harness", App: DeepSeek Harness.
+0 standard window 销售订单382-000005状态查询 — DeepSeek Harness, Secondary Actions: Raise
+	1 container 销售订单382-000005状态查询 — DeepSeek Harness
+		2 container
+			3 HTML content 销售订单382-000005状态查询 — DeepSeek Harness, URL: dsh-app://app/
+				4 container OpenBKN business provenance
+					5 container
+						6 text TRACE-BACKED PROVENANCE
+						7 heading 业务溯源, Value: 2
+							8 text 业务溯源
+						9 button Close
+					10 container Provenance views
+						11 button 执行溯源
+						12 button 业务上下文图
+						13 button 证据链
+					14 container
+						15 text 业务对象 逻辑 / 指标 本轮正式引用
+						16 container
+							17 image OpenBKN formal business relations
+							18 toggle button action 创建计划协同监控任务 search_schema, Value: 0
+								19 text action
+								20 text 创建计划协同监控任务
+								21 text search_schema
+							22 toggle button object 供应链本体知识网络-手工版 search_schema, Value: 0
+								23 text object
+								24 text 供应链本体知识网络-手工版
+								25 text search_schema
+							26 toggle button metric 销售订单数 search_schema, Value: 0
+								27 text metric
+								28 text 销售订单数
+								29 text search_schema
+							30 toggle button metric 未关闭预测单数 search_schema, Value: 0
+								31 text metric
+								32 text 未关闭预测单数
+								33 text search_schema
+							34 toggle button object 产品需求预测单 search_schema, Value: 0
+								35 text object
+								36 text 产品需求预测单
+								37 text search_schema
+							38 toggle button object 库存 search_schema, Value: 0
+								39 text object
+								40 text 库存
+								41 text search_schema
+							42 toggle button object 物料 search_schema, Value: 0
+								43 text object
+								44 text 物料
+								45 text search_schema
+							46 toggle button object 监控任务 search_schema, Value: 0
+								47 text object
+								48 text 监控任务
+								49 text search_schema
+							50 toggle button object 工厂生产计划 search_schema, Value: 0
+								51 text object
+								52 text 工厂生产计划
+								53 text search_schema
+							54 toggle button object 物料需求计划 search_schema, Value: 0
+								55 text object
+								56 text 物料需求计划
+								57 text search_schema
+							58 toggle button object 采购订单 search_schema, Value: 0
+								59 text object
+								60 text 采购订单
+								61 text search_schema
+							62 toggle button object 采购申请单 search_schema, Value: 0
+								63 text object
+								64 text 采购申请单
+								65 text search_schema
+							66 toggle button object 采购申请决策 search_schema, Value: 0
+								67 text object
+								68 text 采购申请决策
+								69 text search_schema
+							70 toggle button object 产品 search_schema, Value: 0
+								71 text object
+								72 text 产品
+								73 text search_schema
+							74 toggle button object 销售订单 search_schema, Value: 0
+								75 text object
+								76 text 销售订单
+								77 text search_schema
+							78 toggle button object 供应商 search_schema, Value: 0
+								79 text object
+								80 text 供应商
+								81 text search_schema
+							82 toggle button relation 监控任务依据需求预测 search_schema, Value: 0
+								83 text relation
+								84 text 监控任务依据需求预测
+								85 text search_schema
+							86 toggle button relation 生产计划关联需求预测单 search_schema, Value: 0
+								87 text relation
+								88 text 生产计划关联需求预测单
+								89 text search_schema
+							90 toggle button relation 物料需求计划关联产品预测需求 search_schema, Value: 0
+								91 text relation
+								92 text 物料需求计划关联产品预测需求
+								93 text search_schema
+							94 toggle button relation 采购订单关联供应商 search_schema, Value: 0
+								95 text relation
+								96 text 采购订单关联供应商
+								97 text search_schema
+							98 toggle button relation 采购申请单关联物料需求计划 search_schema, Value: 0
+								99 text relation
+								100 text 采购申请单关联物料需求计划
+								101 text search_schema
+							102 toggle button relation 采购订单关联物料请购单 search_schema, Value: 0
+								103 text relation
+								104 text 采购订单关联物料请购单
+								105 text search_schema
+							106 toggle button relation 采购申请决策来源于需求预测 search_schema, Value: 0
+								107 text relation
+								108 text 采购申请决策来源于需求预测
+								109 text search_schema
+							110 toggle button relation 产品关联需求预测单 search_schema, Value: 0
+								111 text relation
+								112 text 产品关联需求预测单
+								113 text search_schema
+							114 toggle button relation 销售订单关联产品 search_schema, Value: 0
+								115 text relation
+								116 text 销售订单关联产品
+								117 text search_schema
+							118 toggle button property 合同编号 query_object_instance, Value: 0
+								119 text property
+								120 text 合同编号
+								121 text query_object_instance
+							122 toggle button property 客户ID query_object_instance, Value: 0
+								123 text property
+								124 text 客户ID
+								125 text query_object_instance
+							126 toggle button property 客户名称 query_object_instance, Value: 0
+								127 text property
+								128 text 客户名称
+								129 text query_object_instance
+							130 toggle button property 订单状态 query_object_instance, Value: 0
+								131 text property
+								132 text 订单状态
+								133 text query_object_instance
+							134 toggle button property 产品编码 query_object_instance, Value: 0
+								135 text property
+								136 text 产品编码
+								137 text query_object_instance
+							138 toggle button property 产品名称 query_object_instance, Value: 0
+								139 text property
+								140 text 产品名称
+								141 text query_object_instance
+							142 toggle button property 承诺交期时间 query_object_instance, Value: 0
+								143 text property
+								144 text 承诺交期时间
+								145 text query_object_instance
+							146 toggle button property 销售订单号 query_object_instance, Value: 0
+								147 text property
+								148 text 销售订单号
+								149 text query_object_instance
+							150 toggle button property 业务员 query_object_instance, Value: 0
+								151 text property
+								152 text 业务员
+								153 text query_object_instance
+							154 toggle button property 签约时间 query_object_instance, Value: 0
+								155 text property
+								156 text 签约时间
+								157 text query_object_instance
+							158 toggle button property 签约数量 query_object_instance, Value: 1
+								159 text property
+								160 text 签约数量
+								161 text query_object_instance
+						162 text BUSINESS REF
+						163 text 签约数量
+						164 text property · resolved
+						165 text 来源知识网络
+						166 text supply_ontology_hand
+						167 text 来源 Operation
+						168 text op_dc47dbc7d609ca4fede4cfb0768198e8
+						169 text 解析工具 query_object_instance
+						170 text 本轮正式投影
+						171 container
+							172 text 36  个元素 ·  0  条可视关系
+	173 close button
+	174 full screen button Help: this button also has an action to zoom the window, Secondary Actions: zoom the window
+	175 minimize button
+176 menu bar
+	177 DeepSeek Harness
+	178 文件
+	179 Edit
+	180 Window
+
+The focused UI element is 158 toggle button property 签约数量 query_object_instance, Value: 1

@@ -1,0 +1,12 @@
+{
+  "observedAt": "2026-10-06T20:56:12.045536+00:00",
+  "expiresAt": "2026-10-06T21:56:01.936Z",
+  "storeSha256": "d821899df5f23bb49f1fa032b85fc04747ce6732ae6c23f23126db5fd0a207af",
+  "accessTokenSha256": "e88c05918a83fe5b1e1a82fbcb749d7cd41138264c4ef09649f81fb6393211fb",
+  "refreshTokenSha256": "cec33efc4beaf617478feb1b8d31e3434c5dcd104c48390124af36930cccbda3",
+  "manualAuthTokenCommandIssued": false,
+  "trigger": "real Desktop bound turn start -> AuthCoordinator.readToken -> CLI auth token",
+  "accessTokenChanged": true,
+  "refreshTokenChanged": true,
+  "expiryAdvanced": true
+}

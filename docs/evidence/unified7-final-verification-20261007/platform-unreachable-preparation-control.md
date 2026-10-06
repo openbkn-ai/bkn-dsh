@@ -1,0 +1,1 @@
+无法完成查询：本会话未注册 OpenBKN 托管工具（`bkn_start_interaction` 报“is not registered in this session”），因此无法在绑定的知识网络 `supply_ontology_hand` 中检索 382-000005 的销售订单数量与状态。工具错误明确提示不要重试，我没有进行任何业务数据查询，也不会凭空给出数量或状态。请在 OpenBKN 连接恢复后重新发起该问题。

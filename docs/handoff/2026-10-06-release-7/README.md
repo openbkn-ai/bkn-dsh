@@ -1,4 +1,4 @@
-> 现行统一 -7 交接：请使用 [Windows 固定包复测说明](fidelity-windows/README.md) 和 [固定 commit 下载通知](WINDOWS-FIDELITY-NOTICE.md)。其包源码为 `3414bde`，tgz SHA 为 `6bbab278…`。下文及旧 `windows/`、旧 ZIP 保留为 `7553cc1` 失败候选的历史交接，不能作为本轮开测输入。
+> 最新补测及决定：使用 [2026-10-07 Windows补证handoff](../2026-10-07-unified7-final-verification/WINDOWS-HANDOFF.md)、[Mac结果](../../evidence/unified7-final-verification-20261007/RESULTS.md) 和 [剩余清单](../2026-10-07-unified7-final-verification/REMAINING-DECISIONS.md)。Windows既有证据复核到 `9fb3896`；Mac新增M3/M5失败，暂不建议发布。固定包仍为source `3414bde` / tgz `6bbab278…`，获取见 [固定包说明](fidelity-windows/README.md) 与 [下载通知](WINDOWS-FIDELITY-NOTICE.md)。下文及旧 `windows/`、旧 ZIP 是 `7553cc1` 失败候选的历史，不是当前开测输入或状态。
 
 # -7 统一候选交接
 

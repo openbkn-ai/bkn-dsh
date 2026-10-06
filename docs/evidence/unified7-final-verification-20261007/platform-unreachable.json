@@ -1,0 +1,194 @@
+{
+  "sessionId": "session-097e6975-b5df-4bf1-894f-04943811e31c",
+  "question": [
+    "382-000005 有多少张销售订单？什么状态？"
+  ],
+  "assistantText": [
+    "无法完成查询：本会话未注册 OpenBKN 托管工具（`bkn_start_interaction` 报“is not registered in this session”），因此无法在绑定的知识网络 `supply_ontology_hand` 中检索 382-000005 的销售订单数量与状态。工具错误明确提示不要重试，我没有进行任何业务数据查询，也不会凭空给出数量或状态。请在 OpenBKN 连接恢复后重新发起该问题。"
+  ],
+  "finalAnswer": null,
+  "fidelityNotices": [],
+  "toolEvents": [
+    {
+      "type": "tool/call",
+      "time": 1791320415613,
+      "turn": 1,
+      "step": 1,
+      "callId": "call_00_idqOE87DsDwQfQIbNzB09425",
+      "name": "bash",
+      "arguments": "{\"command\": \"echo ok\", \"description\": \"Check tool availability\"}"
+    },
+    {
+      "type": "tool/result",
+      "time": 1791320415617,
+      "turn": 1,
+      "step": 1,
+      "callId": "call_00_idqOE87DsDwQfQIbNzB09425",
+      "hostErrorFlag": true,
+      "content": [
+        {
+          "type": "text",
+          "text": "Error: This OpenBKN business session only permits managed OpenBKN tools."
+        }
+      ]
+    },
+    {
+      "type": "tool/call",
+      "time": 1791320417441,
+      "turn": 1,
+      "step": 2,
+      "callId": "call_00_MyjtczzPBmg9xv2dX4fA3371",
+      "name": "bash",
+      "arguments": "{\"command\": \"pwd\", \"description\": \"Print working directory\"}"
+    },
+    {
+      "type": "tool/result",
+      "time": 1791320417442,
+      "turn": 1,
+      "step": 2,
+      "callId": "call_00_MyjtczzPBmg9xv2dX4fA3371",
+      "hostErrorFlag": true,
+      "content": [
+        {
+          "type": "text",
+          "text": "Error: This OpenBKN business session only permits managed OpenBKN tools."
+        }
+      ]
+    },
+    {
+      "type": "tool/call",
+      "time": 1791320418411,
+      "turn": 1,
+      "step": 3,
+      "callId": "call_00_Ur1wR1QmsnASfksheNVO8451",
+      "name": "bash",
+      "arguments": "{\"command\": \"ls\", \"description\": \"Test if managed tools available\"}"
+    },
+    {
+      "type": "tool/result",
+      "time": 1791320418412,
+      "turn": 1,
+      "step": 3,
+      "callId": "call_00_Ur1wR1QmsnASfksheNVO8451",
+      "hostErrorFlag": true,
+      "content": [
+        {
+          "type": "text",
+          "text": "Error: This OpenBKN business session only permits managed OpenBKN tools."
+        }
+      ]
+    },
+    {
+      "type": "tool/call",
+      "time": 1791320419368,
+      "turn": 1,
+      "step": 4,
+      "callId": "call_00_hvQ1TjJlBtRDSf92al3s0552",
+      "name": "bash",
+      "arguments": "{\"command\": \"true\", \"description\": \"noop\"}"
+    },
+    {
+      "type": "tool/result",
+      "time": 1791320419368,
+      "turn": 1,
+      "step": 4,
+      "callId": "call_00_hvQ1TjJlBtRDSf92al3s0552",
+      "hostErrorFlag": true,
+      "content": [
+        {
+          "type": "text",
+          "text": "Error: This OpenBKN business session only permits managed OpenBKN tools."
+        }
+      ]
+    },
+    {
+      "type": "tool/call",
+      "time": 1791320420618,
+      "turn": 1,
+      "step": 5,
+      "callId": "call_00_QseCRPtwM7I3lyu1V42Y0251",
+      "name": "bash",
+      "arguments": "{\"command\": \"echo test\", \"description\": \"Probe managed tool registration\"}"
+    },
+    {
+      "type": "tool/result",
+      "time": 1791320420619,
+      "turn": 1,
+      "step": 5,
+      "callId": "call_00_QseCRPtwM7I3lyu1V42Y0251",
+      "hostErrorFlag": true,
+      "content": [
+        {
+          "type": "text",
+          "text": "Error: This OpenBKN business session only permits managed OpenBKN tools."
+        }
+      ]
+    },
+    {
+      "type": "tool/call",
+      "time": 1791320421816,
+      "turn": 1,
+      "step": 6,
+      "callId": "call_00_MCf3VIvX3iGXxyfJbMjF7360",
+      "name": "bash",
+      "arguments": "{\"command\": \"echo hi\", \"description\": \"Check\"}"
+    },
+    {
+      "type": "tool/result",
+      "time": 1791320421817,
+      "turn": 1,
+      "step": 6,
+      "callId": "call_00_MCf3VIvX3iGXxyfJbMjF7360",
+      "hostErrorFlag": true,
+      "content": [
+        {
+          "type": "text",
+          "text": "Error: This OpenBKN business session only permits managed OpenBKN tools."
+        }
+      ]
+    },
+    {
+      "type": "tool/call",
+      "time": 1791320423097,
+      "turn": 1,
+      "step": 7,
+      "callId": "call_00_OzL4SLQtXF1zd8x1QXkP6884",
+      "name": "mcp__openbkn__bkn_start_interaction",
+      "arguments": "{\"conversation_mode\": \"new\", \"question\": \"382-000005 有多少张销售订单？什么状态？\", \"agent_name\": \"bkn-agent-dsh-business-context\"}"
+    },
+    {
+      "type": "tool/result",
+      "time": 1791320423098,
+      "turn": 1,
+      "step": 7,
+      "callId": "call_00_OzL4SLQtXF1zd8x1QXkP6884",
+      "hostErrorFlag": true,
+      "content": [
+        {
+          "type": "text",
+          "text": "Error: mcp__openbkn__bkn_start_interaction is not registered in this session, so its network scope cannot be checked. Do not retry it."
+        }
+      ]
+    }
+  ],
+  "turnEnds": [
+    {
+      "time": 1791320424615,
+      "turn": 1,
+      "reason": {
+        "kind": "completed"
+      }
+    },
+    {
+      "time": 1791320640155,
+      "turn": 2,
+      "reason": {
+        "kind": "error",
+        "error": {
+          "message": "mcp-client(openbkn): initial connection or tool synchronization failed: Version negotiation probe failed: fetch failed",
+          "code": "UNKNOWN"
+        }
+      }
+    }
+  ]
+}

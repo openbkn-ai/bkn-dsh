@@ -1,0 +1,15 @@
+{
+  "case": "bom-structure",
+  "nativeOutcome": "error",
+  "code": "inventory-scope-mismatch",
+  "authoritativeHandoffCallId": "call_00_XuSecU6evdQYVzrzDuVi4353",
+  "handoffDeclaredRows": 313,
+  "unsupportedScientificRows": [
+    "4|588-000712|725-000226|贴片陶瓷电容|24|1.51603e+06|个|12",
+    "4|588-000712|725-000086|贴片陶瓷电容|1|1.28051e+06|个|5"
+  ],
+  "fileRepairCallId": "call_00_ngJ8Yf6gLV3oRWBjnv7F4184",
+  "repairOnlyPreviewCallId": "call_00_HFSWpt2Hhp0AEAvCa7At8804",
+  "fullRepairReemitted": false,
+  "evidenceScope": "Real tool stdout contains scientific notation that the decimal parser does not accept; later cached file repair was not fully reprinted as a tool handoff. Guard refusal is consistent with its documented contract. Model answer was not accepted; no source fix applied."
+}

@@ -1,0 +1,18 @@
+[
+  {
+    "url": "https://192.168.50.28/api/agent-observability/v1/interactions/int_5dff6cd2a2f60ee441d37da15c860b69/operations",
+    "httpStatus": 200,
+    "sha256": "8cf2ab500158feaeaf24384980dbce9dfd69213c6f5235116f0bbe7d3a892b5e",
+    "rawBytesRetained": true,
+    "bytes": 122632,
+    "at": "2026-10-06T20:57:15.132485+00:00"
+  },
+  {
+    "url": "https://192.168.50.28/api/agent-observability/v1/interactions/int_5dff6cd2a2f60ee441d37da15c860b69/business-graph",
+    "httpStatus": 200,
+    "sha256": "409b91bb7555b65b38bb3c4eac30d02e850c6f365db2924b89f34ee226eba5f4",
+    "rawBytesRetained": true,
+    "bytes": 30054,
+    "at": "2026-10-06T20:57:15.299375+00:00"
+  }
+]

@@ -1,5 +1,7 @@
 # Windows：统一 -7 发布前补测交接
 
+2026-10-07 Mac结果更新：固定包补测新增两项失败——`bom-structure` native error、`sales-order-detail`错误答无订单；详见 [Mac RESULTS](../../evidence/unified7-final-verification-20261007/RESULTS.md)。本交接仍用于补齐固定包证据，**不是发布放行**。A批可继续；B批记录实际结果，不绕过错误。后续若修复换包，将另给新身份及受影响复测通知，不提前用未知包替换本表。
+
 ## 可直接交给 Windows agent 的任务
 
 请在 Windows 原生官方 Desktop 0.2.0-rc.2 和官方 npm DSH 0.2.0-rc.2 两形态补测以下 A 批项目。继续使用已核验 `C:\bkn-verify` 工具树和固定 `-7` 包，保留既有结果及会话。B 批需要真实账号/模型：已有授权的隔离配置可以复用，否则由用户在隔离应用中正常配置；不要借用或复制日常凭据、在聊天回传密钥、创建权限来凑通过。有任何前提缺失，准确记录 not-run 并先完成其余项目。

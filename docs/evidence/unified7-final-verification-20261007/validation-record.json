@@ -1,0 +1,59 @@
+{
+  "at": "2026-10-06T21:24:31.525820+00:00",
+  "scope": "Documentation/evidence-only follow-up. Source build/test not rerun after unchanged accepted CI artifact; real-host failures retained.",
+  "commands": [
+    {
+      "command": [
+        "python3",
+        "docs/eval/test-supply-tools.py"
+      ],
+      "exitCode": 0,
+      "nativeOutput": "Ran 11 tests in 0.006s; OK",
+      "passed": 11
+    },
+    {
+      "command": [
+        "/Users/kalias/.nvm/versions/node/v24.19.0/bin/node",
+        "--test",
+        "docs/eval/run-eval.test.mjs"
+      ],
+      "exitCode": 0,
+      "passed": 3,
+      "failed": 0
+    },
+    {
+      "command": [
+        "/Users/kalias/.nvm/versions/node/v24.19.0/bin/node",
+        "docs/eval/run-eval.mjs",
+        "--answers",
+        "docs/evidence/unified7-final-verification-20261007/g6-fact-marks.json",
+        "--out",
+        "docs/evidence/unified7-final-verification-20261007/g6-fact-results.md"
+      ],
+      "exitCode": 0,
+      "factOnlyScore": "9/10; unauthorized-network not-run; sales-order-detail fail",
+      "nativeDeliveryScoreSeparate": "8/10; BOM structure and sales-order-detail fail"
+    }
+  ],
+  "checks": {
+    "allCurrentJsonAndJsonlParse": true,
+    "collectorSyntaxCompile": true,
+    "structuredDocRelativeLinksChecked": 36,
+    "structuredDocMissingLinks": [],
+    "exactCurrentAndBackupIsolatedTokenScan": "no matches",
+    "knownCredentialSourceCount": 2,
+    "textScannedAtPreviousStep": 133,
+    "providerKeyJwtBearerQuotedSecretScan": "no matches; redacted values excluded",
+    "sixScreenshotsVisuallyCheckedForCredentials": true,
+    "productOriginalsByteEqual": 5,
+    "artifactAndBothInstalls": "66/66; no missing, differences or extras",
+    "mainTarballByteEqual": true,
+    "sourceAndHostModified": false,
+    "testsDoNotAuthorizePublishing": true,
+    "rawEvidenceWhitespacePreservedWithScopedAttributes": [
+      "platform-unreachable-ui.txt",
+      "second-network-workspace-picker-ui.txt",
+      "preflight-review/ci-main-run.json"
+    ]
+  }
+}

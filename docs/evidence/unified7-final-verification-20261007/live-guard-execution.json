@@ -1,0 +1,23 @@
+{
+  "startedAt": "2026-10-06T20:58:57.814668+00:00",
+  "command": [
+    "/Users/kalias/.nvm/versions/node/v24.19.0/bin/node",
+    "/private/var/folders/9r/1zks6bqd7f3dtwybvxsksbc40000gn/T/openbkn-diag-ui-h76__jwb/final-live-guard/tests/probes/guard-runtime.probe.mjs",
+    "--plugin",
+    "/private/var/folders/9r/1zks6bqd7f3dtwybvxsksbc40000gn/T/openbkn-diag-ui-h76__jwb/final-live-guard/package",
+    "--live",
+    "https://192.168.50.28",
+    "--kn",
+    "supply_ontology_hand",
+    "--other-kn",
+    "worldcup_vega_catalog_bkn",
+    "--cli",
+    "/private/var/folders/9r/1zks6bqd7f3dtwybvxsksbc40000gn/T/openbkn-diag-ui-h76__jwb/cli-0.1.5/node_modules/.bin/openbkn"
+  ],
+  "cwd": "/private/var/folders/9r/1zks6bqd7f3dtwybvxsksbc40000gn/T/openbkn-diag-ui-h76__jwb/final-live-guard",
+  "exitCode": 0,
+  "stderrBytes": 0,
+  "outputSha256": "5279ae4e4d7cd34a94806a6ed25e14c252957c4ba2dfcb1e0de65459243fe792",
+  "candidateSha256": "6bbab27876e743032572ddce107fcce09e0d681f87bee19fba8d78180e5a63a8",
+  "dependencies": "official npm DSH 0.2.0-rc.2; private original installed package lacked peer import resolution outside Host loader"
+}

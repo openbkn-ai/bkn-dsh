@@ -1,0 +1,130 @@
+Window: "查询销售订单数量与状态 — DeepSeek Harness", App: DeepSeek Harness.
+0 standard window 查询销售订单数量与状态 — DeepSeek Harness, Secondary Actions: Raise
+	1 container 查询销售订单数量与状态 — DeepSeek Harness
+		2 container
+			3 HTML content 查询销售订单数量与状态 — DeepSeek Harness, URL: dsh-app://app/
+				4 container
+					5 button 收起侧边栏
+					6 button 新建会话
+					7 container 全局面板
+						8 button 插件
+					9 text 工作区
+					10 button 搜索会话
+					11 text field (settable) 搜索会话名称
+					12 button 视图选项
+					13 button 添加工作区
+					14 outline 会话
+						15 container
+							16 row workspace-supply
+								17 text workspace-supply
+							18 row (selected) 查询销售订单数量与状态 刚刚
+								19 text 查询销售订单数量与状态 刚刚
+							20 row 销售订单382-000005状态查询 9分钟
+								21 text 销售订单382-000005状态查询 9分钟
+							22 row 销售订单明细查询 14分钟
+								23 text 销售订单明细查询 14分钟
+							24 row 已结采购申请和订单查询 17分钟
+								25 text 已结采购申请和订单查询 17分钟
+							26 row 382-000005 BOM 构成查询 23分钟
+								27 text 382-000005 BOM 构成查询 23分钟
+							28 button 展开其余 47 个会话
+						29 row 默认工作区
+							30 text 默认工作区
+					31 button OpenBKN business knowledge networks
+					32 pop up button 账号菜单
+					33 container
+						34 container 会话层级
+							35 text 查询销售订单数量与状态
+						36 text 标准模式
+						37 text 供应链本体知识网络-手工版
+						38 button 用 访达 打开
+						39 pop up button 更多打开方式
+						40 pop up button 更多操作
+						41 button 打开右侧边栏
+						42 tab group
+							43 tab (selected) 对话, Value: 1
+							44 tab (settable, integer) 轨迹, Value: 0
+					45 container
+						46 container
+							47 container 轮次导航
+								48 container
+									49 button 跳转到第 1 轮
+									50 button 跳转到第 2 轮
+									51 button 跳转到第 3 轮
+							52 text 382-000005 有多少张销售订单？什么状态？
+							53 text 05:00
+							54 button 复制
+							55 text 已完成
+							56 button 已完成，用时 10秒
+								57 text 已完成，用时 
+								58 text 10
+								59 text 秒
+							60 container
+								61 text 无法完成查询：本会话未注册 OpenBKN 托管工具（ bkn_start_interaction  报“is not registered in this session”），因此无法在绑定的知识网络  supply_ontology_hand  中检索 382-000005 的销售订单数量与状态。工具错误明确提示不要重试，我没有进行任何业务数据查询，也不会凭空给出数量或状态。请在 OpenBKN 连接恢复后重新发起该问题。
+							62 button 复制
+							63 toggle button Description: 好的回答, Value: 0
+							64 toggle button Description: 有问题的回答, Value: 0
+							65 button 在新对话中分支
+							66 pop up button 用量 129K tok
+							67 text 05:00
+							68 text 处理失败
+							69 button (disabled) 处理失败
+							70 container
+								71 text 本轮运行失败 mcp-client(openbkn): initial connection or tool synchronization failed: Version negotiation probe failed: fetch failed UNKNOWN
+							72 text 382-000005 有多少张销售订单？什么状态？
+							73 text 05:05
+							74 button 复制
+							75 text 已完成
+							76 button 已完成，用时 18秒
+								77 text 已完成，用时 
+								78 text 18
+								79 text 秒
+							80 container
+								81 text 产品编码  382-000005  的销售订单情况：
+							82 content list
+								83 container
+									84 AXListMarker • 
+									85 text 订单数量：40 张
+								86 container
+									87 AXListMarker • 
+									88 text 订单状态：全部为「已确认」 （按状态拆维后只有这一组，数量 40，与总数一致）
+							89 container
+								90 text 口径说明：使用知识网络  supply_ontology_hand  中已建模的指标「销售订单数」（ count(sales_order_id) ，快照 800），过滤条件  product_code = 382-000005 ，并按对象类「销售订单」的分析维度  order_status （订单状态）分组取数。也就是说，这 40 张订单没有处于其他状态（如已发货、已取消等）的记录。
+							91 button 复制
+							92 toggle button Description: 好的回答, Value: 0
+							93 toggle button Description: 有问题的回答, Value: 0
+							94 button 查看业务溯源, Help: View OpenBKN provenance for this answer
+							95 button 在新对话中分支
+							96 pop up button 用量 409K tok
+							97 text 05:05
+						98 container
+							99 text entry area (settable) 发消息或创建任务, / 调用指令, @ 文件或对话
+							100 pop up button 添加文件或调用指令
+							101 button 访问模式，当前：工作区内修改
+							102 pop up button Description: 选择模型，当前 DeepSeek-V41-Flash，推理等级 High, Help: DeepSeek-V41-Flash · High
+							103 button (disabled) 发送消息
+							104 pop up button 2 轮 15 步 · 275 tok/s
+								105 text 2 轮 15 步
+								106 text 275 tok/s
+							107 pop up button 538K tok · 缓存命中 91%
+								108 text 538K tok
+								109 text 缓存命中 91%
+							110 pop up button 上下文已用 7%
+					111 container OpenBKN business knowledge networks
+						112 container
+							113 text OPENBKN
+							114 heading 业务知识网络, Value: 2
+								115 text 业务知识网络
+							116 button 诊断
+							117 button Close
+						118 text 请在弹出的系统窗口中选择工作区目录（窗口可能被其他窗口挡住，可从任务栏或 Dock 切换过去）。选好后会自动创建工作区并绑定会话。
+	119 close button
+	120 full screen button Help: this button also has an action to zoom the window, Secondary Actions: zoom the window
+	121 minimize button
+122 menu bar
+	123 DeepSeek Harness
+	124 文件
+	125 Edit
+	126 Window
+
+The focused UI element is 3 HTML content 查询销售订单数量与状态 — DeepSeek Harness, URL: dsh-app://app/

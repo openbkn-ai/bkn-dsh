@@ -1,0 +1,401 @@
+{
+  "checkedAt": "2026-10-06T21:21:18.886308+00:00",
+  "hosts": [
+    {
+      "startRecord": "desktop-process.json",
+      "stopRecord": "desktop-first-stop.json",
+      "rootPid": 70773,
+      "recordedCreationTime": "Wed Oct  7 04:30:09 2026",
+      "ownedTree": [
+        {
+          "pid": 70773,
+          "ppid": 1,
+          "creationTime": "Wed Oct 7 04:30:09 2026",
+          "executable": "/Applications/DeepSeek Harness.app/Contents/MacOS/DeepSeek Harness"
+        },
+        {
+          "pid": 70787,
+          "ppid": 70773,
+          "creationTime": "Wed Oct 7 04:30:09 2026",
+          "executable": "/Applications/DeepSeek Harness.app/Contents/Frameworks/DeepSeek Harness Helper.app/Contents/MacOS/DeepSeek Harness Helper"
+        },
+        {
+          "pid": 70788,
+          "ppid": 70773,
+          "creationTime": "Wed Oct 7 04:30:09 2026",
+          "executable": "/Applications/DeepSeek Harness.app/Contents/Frameworks/DeepSeek Harness Helper.app/Contents/MacOS/DeepSeek Harness Helper"
+        },
+        {
+          "pid": 70812,
+          "ppid": 70773,
+          "creationTime": "Wed Oct 7 04:30:09 2026",
+          "executable": "/Applications/DeepSeek Harness.app/Contents/Frameworks/DeepSeek Harness Helper (Renderer).app/Contents/MacOS/DeepSeek Harness Helper (Renderer)"
+        },
+        {
+          "pid": 71184,
+          "ppid": 70773,
+          "creationTime": "Wed Oct 7 04:30:10 2026",
+          "executable": "/Applications/DeepSeek Harness.app/Contents/MacOS/DeepSeek Harness"
+        }
+      ],
+      "listenerPids": [],
+      "currentIdentityChecks": [
+        {
+          "pid": 70773,
+          "pidExistsNow": false,
+          "currentIdentityWithoutArguments": null,
+          "originalOwnedIdentityStillRunning": false
+        },
+        {
+          "pid": 70787,
+          "pidExistsNow": false,
+          "currentIdentityWithoutArguments": null,
+          "originalOwnedIdentityStillRunning": false
+        },
+        {
+          "pid": 70788,
+          "pidExistsNow": false,
+          "currentIdentityWithoutArguments": null,
+          "originalOwnedIdentityStillRunning": false
+        },
+        {
+          "pid": 70812,
+          "pidExistsNow": false,
+          "currentIdentityWithoutArguments": null,
+          "originalOwnedIdentityStillRunning": false
+        },
+        {
+          "pid": 71184,
+          "pidExistsNow": false,
+          "currentIdentityWithoutArguments": null,
+          "originalOwnedIdentityStillRunning": false
+        }
+      ],
+      "stopObservation": true
+    },
+    {
+      "startRecord": "npm-process.json",
+      "stopRecord": "npm-process.json",
+      "rootPid": 76640,
+      "recordedCreationTime": "Wed Oct  7 04:37:30 2026",
+      "ownedTree": [
+        {
+          "pid": 76640,
+          "ppid": 1,
+          "executable": "/Users/kalias/.nvm/versions/node/v24.19.0/bin/node",
+          "processStart": "Wed Oct  7 04:37:30 2026"
+        }
+      ],
+      "listenerPids": [
+        76640
+      ],
+      "currentIdentityChecks": [
+        {
+          "pid": 76640,
+          "pidExistsNow": false,
+          "currentIdentityWithoutArguments": null,
+          "originalOwnedIdentityStillRunning": false
+        }
+      ],
+      "stopObservation": true
+    },
+    {
+      "startRecord": "platform-unreachable-process.json",
+      "stopRecord": "platform-unreachable-first-stop.json",
+      "rootPid": 92336,
+      "recordedCreationTime": "Wed Oct  7 05:00:01 2026",
+      "ownedTree": [
+        {
+          "pid": 92336,
+          "ppid": 1,
+          "creationTime": "Wed Oct 7 05:00:01 2026",
+          "executable": "/Applications/DeepSeek Harness.app/Contents/MacOS/DeepSeek Harness"
+        },
+        {
+          "pid": 92344,
+          "ppid": 92336,
+          "creationTime": "Wed Oct 7 05:00:02 2026",
+          "executable": "/Applications/DeepSeek Harness.app/Contents/Frameworks/DeepSeek Harness Helper.app/Contents/MacOS/DeepSeek Harness Helper"
+        },
+        {
+          "pid": 92345,
+          "ppid": 92336,
+          "creationTime": "Wed Oct 7 05:00:02 2026",
+          "executable": "/Applications/DeepSeek Harness.app/Contents/Frameworks/DeepSeek Harness Helper.app/Contents/MacOS/DeepSeek Harness Helper"
+        },
+        {
+          "pid": 92359,
+          "ppid": 92336,
+          "creationTime": "Wed Oct 7 05:00:02 2026",
+          "executable": "/Applications/DeepSeek Harness.app/Contents/Frameworks/DeepSeek Harness Helper (Renderer).app/Contents/MacOS/DeepSeek Harness Helper (Renderer)"
+        },
+        {
+          "pid": 92780,
+          "ppid": 92336,
+          "creationTime": "Wed Oct 7 05:00:04 2026",
+          "executable": "/Applications/DeepSeek Harness.app/Contents/MacOS/DeepSeek Harness"
+        }
+      ],
+      "listenerPids": [],
+      "currentIdentityChecks": [
+        {
+          "pid": 92336,
+          "pidExistsNow": false,
+          "currentIdentityWithoutArguments": null,
+          "originalOwnedIdentityStillRunning": false
+        },
+        {
+          "pid": 92344,
+          "pidExistsNow": false,
+          "currentIdentityWithoutArguments": null,
+          "originalOwnedIdentityStillRunning": false
+        },
+        {
+          "pid": 92345,
+          "pidExistsNow": false,
+          "currentIdentityWithoutArguments": null,
+          "originalOwnedIdentityStillRunning": false
+        },
+        {
+          "pid": 92359,
+          "pidExistsNow": false,
+          "currentIdentityWithoutArguments": null,
+          "originalOwnedIdentityStillRunning": false
+        },
+        {
+          "pid": 92780,
+          "pidExistsNow": false,
+          "currentIdentityWithoutArguments": null,
+          "originalOwnedIdentityStillRunning": false
+        }
+      ],
+      "stopObservation": true
+    },
+    {
+      "startRecord": "platform-unreachable-restart-process.json",
+      "stopRecord": "platform-unreachable-restart-stop.json",
+      "rootPid": 95378,
+      "recordedCreationTime": "Wed Oct  7 05:03:46 2026",
+      "ownedTree": [
+        {
+          "pid": 95378,
+          "ppid": 1,
+          "creationTime": "Wed Oct 7 05:03:46 2026",
+          "executable": "/Applications/DeepSeek Harness.app/Contents/MacOS/DeepSeek Harness"
+        },
+        {
+          "pid": 95384,
+          "ppid": 95378,
+          "creationTime": "Wed Oct 7 05:03:46 2026",
+          "executable": "/Applications/DeepSeek Harness.app/Contents/Frameworks/DeepSeek Harness Helper.app/Contents/MacOS/DeepSeek Harness Helper"
+        },
+        {
+          "pid": 95385,
+          "ppid": 95378,
+          "creationTime": "Wed Oct 7 05:03:46 2026",
+          "executable": "/Applications/DeepSeek Harness.app/Contents/Frameworks/DeepSeek Harness Helper.app/Contents/MacOS/DeepSeek Harness Helper"
+        },
+        {
+          "pid": 95392,
+          "ppid": 95378,
+          "creationTime": "Wed Oct 7 05:03:46 2026",
+          "executable": "/Applications/DeepSeek Harness.app/Contents/Frameworks/DeepSeek Harness Helper (Renderer).app/Contents/MacOS/DeepSeek Harness Helper (Renderer)"
+        },
+        {
+          "pid": 95739,
+          "ppid": 95378,
+          "creationTime": "Wed Oct 7 05:03:47 2026",
+          "executable": "/Applications/DeepSeek Harness.app/Contents/MacOS/DeepSeek Harness"
+        }
+      ],
+      "listenerPids": [],
+      "currentIdentityChecks": [
+        {
+          "pid": 95378,
+          "pidExistsNow": false,
+          "currentIdentityWithoutArguments": null,
+          "originalOwnedIdentityStillRunning": false
+        },
+        {
+          "pid": 95384,
+          "pidExistsNow": false,
+          "currentIdentityWithoutArguments": null,
+          "originalOwnedIdentityStillRunning": false
+        },
+        {
+          "pid": 95385,
+          "pidExistsNow": false,
+          "currentIdentityWithoutArguments": null,
+          "originalOwnedIdentityStillRunning": false
+        },
+        {
+          "pid": 95392,
+          "pidExistsNow": false,
+          "currentIdentityWithoutArguments": null,
+          "originalOwnedIdentityStillRunning": false
+        },
+        {
+          "pid": 95739,
+          "pidExistsNow": false,
+          "currentIdentityWithoutArguments": null,
+          "originalOwnedIdentityStillRunning": false
+        }
+      ],
+      "stopObservation": true
+    },
+    {
+      "startRecord": "desktop-restored-process.json",
+      "stopRecord": "final-cleanup.json",
+      "rootPid": 96714,
+      "recordedCreationTime": "Wed Oct  7 05:05:18 2026",
+      "ownedTree": [
+        {
+          "pid": 96714,
+          "ppid": 1,
+          "creationTime": "Wed Oct 7 05:05:18 2026",
+          "executable": "/Applications/DeepSeek Harness.app/Contents/MacOS/DeepSeek Harness"
+        },
+        {
+          "pid": 96756,
+          "ppid": 96714,
+          "creationTime": "Wed Oct 7 05:05:19 2026",
+          "executable": "/Applications/DeepSeek Harness.app/Contents/Frameworks/DeepSeek Harness Helper.app/Contents/MacOS/DeepSeek Harness Helper"
+        },
+        {
+          "pid": 96757,
+          "ppid": 96714,
+          "creationTime": "Wed Oct 7 05:05:19 2026",
+          "executable": "/Applications/DeepSeek Harness.app/Contents/Frameworks/DeepSeek Harness Helper.app/Contents/MacOS/DeepSeek Harness Helper"
+        },
+        {
+          "pid": 96761,
+          "ppid": 96714,
+          "creationTime": "Wed Oct 7 05:05:19 2026",
+          "executable": "/Applications/DeepSeek Harness.app/Contents/Frameworks/DeepSeek Harness Helper (Renderer).app/Contents/MacOS/DeepSeek Harness Helper (Renderer)"
+        },
+        {
+          "pid": 97138,
+          "ppid": 96714,
+          "creationTime": "Wed Oct 7 05:05:20 2026",
+          "executable": "/Applications/DeepSeek Harness.app/Contents/MacOS/DeepSeek Harness"
+        },
+        {
+          "pid": 99117,
+          "ppid": 97138,
+          "creationTime": "Wed Oct 7 05:07:39 2026",
+          "executable": "osascript"
+        }
+      ],
+      "listenerPids": [],
+      "currentIdentityChecks": [
+        {
+          "pid": 96714,
+          "pidExistsNow": false,
+          "currentIdentityWithoutArguments": null,
+          "originalOwnedIdentityStillRunning": false
+        },
+        {
+          "pid": 96756,
+          "pidExistsNow": false,
+          "currentIdentityWithoutArguments": null,
+          "originalOwnedIdentityStillRunning": false
+        },
+        {
+          "pid": 96757,
+          "pidExistsNow": false,
+          "currentIdentityWithoutArguments": null,
+          "originalOwnedIdentityStillRunning": false
+        },
+        {
+          "pid": 96761,
+          "pidExistsNow": false,
+          "currentIdentityWithoutArguments": null,
+          "originalOwnedIdentityStillRunning": false
+        },
+        {
+          "pid": 97138,
+          "pidExistsNow": false,
+          "currentIdentityWithoutArguments": null,
+          "originalOwnedIdentityStillRunning": false
+        },
+        {
+          "pid": 99117,
+          "pidExistsNow": false,
+          "currentIdentityWithoutArguments": null,
+          "originalOwnedIdentityStillRunning": false
+        }
+      ],
+      "stopObservation": true
+    },
+    {
+      "startRecord": "npm-authenticated-process.json",
+      "stopRecord": "final-cleanup.json",
+      "rootPid": 83842,
+      "recordedCreationTime": "Wed Oct  7 04:45:57 2026",
+      "ownedTree": [
+        {
+          "pid": 83842,
+          "ppid": 1,
+          "creationTime": "Wed Oct 7 04:45:57 2026",
+          "executable": "/Users/kalias/.nvm/versions/node/v24.19.0/bin/node"
+        }
+      ],
+      "listenerPids": [
+        83842
+      ],
+      "currentIdentityChecks": [
+        {
+          "pid": 83842,
+          "pidExistsNow": false,
+          "currentIdentityWithoutArguments": null,
+          "originalOwnedIdentityStillRunning": false
+        }
+      ],
+      "stopObservation": true
+    }
+  ],
+  "loginProcesses": [
+    {
+      "record": "managed-login-attempt.json",
+      "pid": 72313,
+      "recordedCreationTime": null,
+      "pidExistsNow": false,
+      "currentIdentityWithoutArguments": null,
+      "originalKnownIdentityStillRunning": false,
+      "historicalExitEvidence": "Native login completion is recorded in CLI/UI preflight; exact historical process exit status not added here.",
+      "creationTimeCaptured": false
+    },
+    {
+      "record": "direct-login-process.json",
+      "pid": 74736,
+      "recordedCreationTime": "Wed Oct  7 04:35:03 2026",
+      "pidExistsNow": false,
+      "currentIdentityWithoutArguments": null,
+      "originalKnownIdentityStillRunning": false,
+      "historicalExitEvidence": "already exited before relaunch",
+      "creationTimeCaptured": true
+    },
+    {
+      "record": "direct-login-reopened-process.json",
+      "pid": 76719,
+      "recordedCreationTime": "Wed Oct  7 04:37:44 2026",
+      "pidExistsNow": false,
+      "currentIdentityWithoutArguments": null,
+      "originalKnownIdentityStillRunning": false,
+      "historicalExitEvidence": "Native login completion is recorded in CLI/UI preflight; exact historical process exit status not added here.",
+      "creationTimeCaptured": true
+    }
+  ],
+  "ports": {
+    "18798": {
+      "listenerPresent": false,
+      "exitCode": 1
+    },
+    "64391": {
+      "listenerPresent": false,
+      "exitCode": 1
+    }
+  },
+  "dailyProfilesOrOtherUserProcessesStopped": false,
+  "limit": "Managed CLI login creation time was not captured; observed native exit is recorded, not upgraded to PID-creation proof. Reused PIDs are not killed."
+}

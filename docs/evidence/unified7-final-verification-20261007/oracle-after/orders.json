@@ -1,0 +1,826 @@
+{
+  "datas": [
+    {
+      "sales_order_id": "SO0000001",
+      "signing_quantity": 11,
+      "shipping_quantity": 11,
+      "contract_number": "HT-2026-00001",
+      "customer_id": 10001,
+      "salesperson": "路霞",
+      "_display": "SO0000001",
+      "customer_name": "广州绿野农勭技术有限公司",
+      "product_code": "382-000005",
+      "order_status": "已确认",
+      "_instance_identity": {
+        "sales_order_id": "SO0000001"
+      },
+      "promised_delivery_date": "2026-04-23T00:00:00+08:00",
+      "product_name": "北斗导航农机驾驶仪",
+      "_instance_id": "supply_ontology_hand_salesorder-SO0000001",
+      "signing_date": "2026-04-02T00:00:00+08:00",
+      "shipping_date": "2026-04-23T00:00:00+08:00"
+    },
+    {
+      "product_code": "382-000005",
+      "product_name": "北斗导航农机驾驶仪",
+      "sales_order_id": "SO0000002",
+      "contract_number": "HT-2026-00002",
+      "_display": "SO0000002",
+      "customer_name": "上海绿野冩业服务有限公司",
+      "promised_delivery_date": "2026-05-14T00:00:00+08:00",
+      "_instance_identity": {
+        "sales_order_id": "SO0000002"
+      },
+      "customer_id": 10004,
+      "order_status": "已确认",
+      "signing_date": "2026-04-24T00:00:00+08:00",
+      "_instance_id": "supply_ontology_hand_salesorder-SO0000002",
+      "salesperson": "臧子",
+      "signing_quantity": 43,
+      "shipping_quantity": 43,
+      "shipping_date": "2026-05-14T00:00:00+08:00"
+    },
+    {
+      "customer_id": 10007,
+      "signing_quantity": 32,
+      "_instance_identity": {
+        "sales_order_id": "SO0000003"
+      },
+      "contract_number": "HT-2026-00003",
+      "product_code": "382-000005",
+      "order_status": "已确认",
+      "_display": "SO0000003",
+      "salesperson": "解飞",
+      "sales_order_id": "SO0000003",
+      "customer_name": "长沙沃土农侪股份有限公司",
+      "signing_date": "2026-04-20T00:00:00+08:00",
+      "promised_delivery_date": "2026-06-04T00:00:00+08:00",
+      "shipping_quantity": 32,
+      "product_name": "北斗导航农机驾驶仪",
+      "shipping_date": "2026-06-04T00:00:00+08:00",
+      "_instance_id": "supply_ontology_hand_salesorder-SO0000003"
+    },
+    {
+      "signing_quantity": 41,
+      "shipping_quantity": 41,
+      "shipping_date": "2026-04-22T00:00:00+08:00",
+      "customer_id": 10010,
+      "product_name": "北斗导航农机驾驶仪",
+      "_instance_id": "supply_ontology_hand_salesorder-SO0000004",
+      "_display": "SO0000004",
+      "contract_number": "HT-2026-00004",
+      "product_code": "382-000005",
+      "_instance_identity": {
+        "sales_order_id": "SO0000004"
+      },
+      "sales_order_id": "SO0000004",
+      "signing_date": "2026-04-07T00:00:00+08:00",
+      "promised_delivery_date": "2026-04-30T00:00:00+08:00",
+      "salesperson": "路霞",
+      "customer_name": "武汉农兴农业勎技有限公司",
+      "order_status": "已确认"
+    },
+    {
+      "customer_id": 10013,
+      "sales_order_id": "SO0000005",
+      "customer_name": "沈俰农达农业有限公司",
+      "signing_date": "2026-04-03T00:00:00+08:00",
+      "_instance_identity": {
+        "sales_order_id": "SO0000005"
+      },
+      "_display": "SO0000005",
+      "salesperson": "臧子",
+      "promised_delivery_date": "2026-04-30T00:00:00+08:00",
+      "signing_quantity": 43,
+      "_instance_id": "supply_ontology_hand_salesorder-SO0000005",
+      "shipping_quantity": 39,
+      "product_code": "382-000005",
+      "product_name": "北斗导航农机驾驶仪",
+      "order_status": "已确认",
+      "shipping_date": "2026-04-21T00:00:00+08:00",
+      "contract_number": "HT-2026-00005"
+    },
+    {
+      "contract_number": "HT-2026-00006",
+      "_display": "SO0000006",
+      "product_code": "382-000005",
+      "customer_name": "上海沃土农资技术有倍公司",
+      "signing_date": "2026-05-29T00:00:00+08:00",
+      "promised_delivery_date": "2026-06-18T00:00:00+08:00",
+      "order_status": "已确认",
+      "sales_order_id": "SO0000006",
+      "shipping_date": "2026-06-16T00:00:00+08:00",
+      "_instance_id": "supply_ontology_hand_salesorder-SO0000006",
+      "_instance_identity": {
+        "sales_order_id": "SO0000006"
+      },
+      "product_name": "北斗导航农机驾驶仪",
+      "salesperson": "解飞",
+      "signing_quantity": 22,
+      "customer_id": 10016,
+      "shipping_quantity": 22
+    },
+    {
+      "contract_number": "HT-2026-00007",
+      "salesperson": "路霞",
+      "customer_name": "剽都益农农机服务有限公司",
+      "_display": "SO0000007",
+      "shipping_date": "2026-06-11T00:00:00+08:00",
+      "sales_order_id": "SO0000007",
+      "_instance_id": "supply_ontology_hand_salesorder-SO0000007",
+      "_instance_identity": {
+        "sales_order_id": "SO0000007"
+      },
+      "signing_date": "2026-06-04T00:00:00+08:00",
+      "promised_delivery_date": "2026-06-19T00:00:00+08:00",
+      "customer_id": 10019,
+      "product_code": "382-000005",
+      "product_name": "北斗导航农机驾驶仪",
+      "order_status": "已确认",
+      "signing_quantity": 9,
+      "shipping_quantity": 9
+    },
+    {
+      "signing_quantity": 44,
+      "_display": "SO0000008",
+      "shipping_quantity": 43,
+      "salesperson": "臧子",
+      "customer_name": "郑州绿洲农技股份侦限公司",
+      "shipping_date": "2026-04-12T00:00:00+08:00",
+      "product_code": "382-000005",
+      "product_name": "北斗导航农机驾驶仪",
+      "sales_order_id": "SO0000008",
+      "signing_date": "2026-03-27T00:00:00+08:00",
+      "_instance_id": "supply_ontology_hand_salesorder-SO0000008",
+      "contract_number": "HT-2026-00008",
+      "customer_id": 10022,
+      "_instance_identity": {
+        "sales_order_id": "SO0000008"
+      },
+      "promised_delivery_date": "2026-04-12T00:00:00+08:00",
+      "order_status": "已确认"
+    },
+    {
+      "_instance_id": "supply_ontology_hand_salesorder-SO0000009",
+      "product_code": "382-000005",
+      "signing_quantity": 8,
+      "shipping_quantity": 8,
+      "shipping_date": "2026-05-27T00:00:00+08:00",
+      "_instance_identity": {
+        "sales_order_id": "SO0000009"
+      },
+      "order_status": "已确认",
+      "customer_name": "郑州绿洲农业服劮有限公司",
+      "signing_date": "2026-04-20T00:00:00+08:00",
+      "product_name": "北斗导航农机驾驶仪",
+      "promised_delivery_date": "2026-05-28T00:00:00+08:00",
+      "contract_number": "HT-2026-00009",
+      "customer_id": 10025,
+      "_display": "SO0000009",
+      "salesperson": "解飞",
+      "sales_order_id": "SO0000009"
+    },
+    {
+      "signing_quantity": 24,
+      "shipping_quantity": 24,
+      "contract_number": "HT-2026-00010",
+      "salesperson": "路霞",
+      "_display": "SO0000010",
+      "product_name": "北斗导航农机驾驶仪",
+      "order_status": "已确认",
+      "_instance_identity": {
+        "sales_order_id": "SO0000010"
+      },
+      "signing_date": "2026-06-07T00:00:00+08:00",
+      "product_code": "382-000005",
+      "_instance_id": "supply_ontology_hand_salesorder-SO0000010",
+      "customer_name": "杭州沃土农技股份有限公吅",
+      "promised_delivery_date": "2026-07-28T00:00:00+08:00",
+      "shipping_date": "2026-07-22T00:00:00+08:00",
+      "customer_id": 10028,
+      "sales_order_id": "SO0000010"
+    },
+    {
+      "product_name": "北斗导航农机驾驶仪",
+      "salesperson": "臧子",
+      "signing_date": "2026-06-09T00:00:00+08:00",
+      "shipping_quantity": 43,
+      "_instance_identity": {
+        "sales_order_id": "SO0000011"
+      },
+      "_display": "SO0000011",
+      "shipping_date": "2026-06-24T00:00:00+08:00",
+      "contract_number": "HT-2026-00011",
+      "product_code": "382-000005",
+      "_instance_id": "supply_ontology_hand_salesorder-SO0000011",
+      "order_status": "已确认",
+      "promised_delivery_date": "2026-07-03T00:00:00+08:00",
+      "customer_id": 10031,
+      "sales_order_id": "SO0000011",
+      "customer_name": "西安禾苗农科有限兹司",
+      "signing_quantity": 43
+    },
+    {
+      "customer_name": "厦门田园农服有限兹司",
+      "signing_date": "2026-05-02T00:00:00+08:00",
+      "_instance_id": "supply_ontology_hand_salesorder-SO0000012",
+      "promised_delivery_date": "2026-06-20T00:00:00+08:00",
+      "shipping_quantity": 2,
+      "shipping_date": "2026-06-16T00:00:00+08:00",
+      "product_code": "382-000005",
+      "contract_number": "HT-2026-00012",
+      "product_name": "北斗导航农机驾驶仪",
+      "order_status": "已确认",
+      "_instance_identity": {
+        "sales_order_id": "SO0000012"
+      },
+      "salesperson": "解飞",
+      "signing_quantity": 2,
+      "_display": "SO0000012",
+      "customer_id": 10034,
+      "sales_order_id": "SO0000012"
+    },
+    {
+      "shipping_quantity": 19,
+      "product_code": "382-000005",
+      "sales_order_id": "SO0000013",
+      "signing_date": "2026-06-21T00:00:00+08:00",
+      "_display": "SO0000013",
+      "shipping_date": "2026-07-20T00:00:00+08:00",
+      "customer_id": 10037,
+      "promised_delivery_date": "2026-07-27T00:00:00+08:00",
+      "contract_number": "HT-2026-00013",
+      "product_name": "北斗导航农机驾驶仪",
+      "signing_quantity": 21,
+      "_instance_id": "supply_ontology_hand_salesorder-SO0000013",
+      "_instance_identity": {
+        "sales_order_id": "SO0000013"
+      },
+      "order_status": "已确认",
+      "salesperson": "路霞",
+      "customer_name": "沈阳地信勘测工程侦限公司"
+    },
+    {
+      "promised_delivery_date": "2026-06-23T00:00:00+08:00",
+      "shipping_quantity": 16,
+      "contract_number": "HT-2026-00014",
+      "signing_quantity": 16,
+      "customer_id": 10040,
+      "product_name": "北斗导航农机驾驶仪",
+      "_instance_id": "supply_ontology_hand_salesorder-SO0000014",
+      "_instance_identity": {
+        "sales_order_id": "SO0000014"
+      },
+      "_display": "SO0000014",
+      "signing_date": "2026-05-09T00:00:00+08:00",
+      "product_code": "382-000005",
+      "order_status": "已确认",
+      "salesperson": "臧子",
+      "sales_order_id": "SO0000014",
+      "customer_name": "沈阳空间空间信息有限公吅",
+      "shipping_date": "2026-06-14T00:00:00+08:00"
+    },
+    {
+      "product_name": "北斗导航农机驾驶仪",
+      "sales_order_id": "SO0000015",
+      "customer_id": 10043,
+      "shipping_quantity": 33,
+      "shipping_date": "2026-06-13T00:00:00+08:00",
+      "product_code": "382-000005",
+      "order_status": "已确认",
+      "salesperson": "解飞",
+      "customer_name": "南京测控测绘勎技有限公司",
+      "signing_date": "2026-04-24T00:00:00+08:00",
+      "contract_number": "HT-2026-00015",
+      "_display": "SO0000015",
+      "signing_quantity": 33,
+      "promised_delivery_date": "2026-06-17T00:00:00+08:00",
+      "_instance_id": "supply_ontology_hand_salesorder-SO0000015",
+      "_instance_identity": {
+        "sales_order_id": "SO0000015"
+      }
+    },
+    {
+      "sales_order_id": "SO0000016",
+      "contract_number": "HT-2026-00016",
+      "customer_id": 10046,
+      "product_code": "382-000005",
+      "order_status": "已确认",
+      "_instance_id": "supply_ontology_hand_salesorder-SO0000016",
+      "_display": "SO0000016",
+      "shipping_quantity": 24,
+      "salesperson": "路霞",
+      "_instance_identity": {
+        "sales_order_id": "SO0000016"
+      },
+      "customer_name": "西安星图空间信息服务有倍公司",
+      "shipping_date": "2026-07-08T00:00:00+08:00",
+      "signing_quantity": 24,
+      "signing_date": "2026-05-31T00:00:00+08:00",
+      "promised_delivery_date": "2026-07-16T00:00:00+08:00",
+      "product_name": "北斗导航农机驾驶仪"
+    },
+    {
+      "salesperson": "臧子",
+      "signing_quantity": 15,
+      "product_code": "382-000005",
+      "_instance_id": "supply_ontology_hand_salesorder-SO0000017",
+      "_display": "SO0000017",
+      "customer_name": "上海地理勘测侦限公司",
+      "shipping_date": "2026-07-21T00:00:00+08:00",
+      "_instance_identity": {
+        "sales_order_id": "SO0000017"
+      },
+      "product_name": "北斗导航农机驾驶仪",
+      "order_status": "已确认",
+      "sales_order_id": "SO0000017",
+      "contract_number": "HT-2026-00017",
+      "customer_id": 10049,
+      "signing_date": "2026-06-12T00:00:00+08:00",
+      "promised_delivery_date": "2026-07-28T00:00:00+08:00",
+      "shipping_quantity": 15
+    },
+    {
+      "contract_number": "HT-2026-00018",
+      "product_name": "北斗导航农机驾驶仪",
+      "order_status": "已确认",
+      "salesperson": "解飞",
+      "_instance_id": "supply_ontology_hand_salesorder-SO0000018",
+      "promised_delivery_date": "2026-04-09T00:00:00+08:00",
+      "shipping_date": "2026-04-06T00:00:00+08:00",
+      "product_code": "382-000005",
+      "sales_order_id": "SO0000018",
+      "customer_name": "郑州佭景测控工程有限公司",
+      "_instance_identity": {
+        "sales_order_id": "SO0000018"
+      },
+      "signing_date": "2026-03-05T00:00:00+08:00",
+      "signing_quantity": 14,
+      "customer_id": 10052,
+      "_display": "SO0000018",
+      "shipping_quantity": 14
+    },
+    {
+      "customer_id": 10055,
+      "promised_delivery_date": "2026-03-27T00:00:00+08:00",
+      "shipping_date": "2026-03-25T00:00:00+08:00",
+      "_display": "SO0000019",
+      "product_name": "北斗导航农机驾驶仪",
+      "order_status": "已确认",
+      "signing_quantity": 29,
+      "contract_number": "HT-2026-00019",
+      "sales_order_id": "SO0000019",
+      "customer_name": "郑州经俙空间信息有限公司",
+      "signing_date": "2026-03-03T00:00:00+08:00",
+      "shipping_quantity": 29,
+      "_instance_id": "supply_ontology_hand_salesorder-SO0000019",
+      "_instance_identity": {
+        "sales_order_id": "SO0000019"
+      },
+      "product_code": "382-000005",
+      "salesperson": "路霞"
+    },
+    {
+      "shipping_quantity": 23,
+      "shipping_date": "2026-07-13T00:00:00+08:00",
+      "product_name": "北斗导航农机驾驶仪",
+      "_instance_id": "supply_ontology_hand_salesorder-SO0000020",
+      "sales_order_id": "SO0000020",
+      "customer_name": "大连天伻测绘有限公司",
+      "_display": "SO0000020",
+      "signing_date": "2026-06-05T00:00:00+08:00",
+      "contract_number": "HT-2026-00020",
+      "product_code": "382-000005",
+      "salesperson": "臧子",
+      "signing_quantity": 23,
+      "_instance_identity": {
+        "sales_order_id": "SO0000020"
+      },
+      "promised_delivery_date": "2026-07-17T00:00:00+08:00",
+      "customer_id": 10058,
+      "order_status": "已确认"
+    },
+    {
+      "customer_id": 10061,
+      "product_code": "382-000005",
+      "_instance_identity": {
+        "sales_order_id": "SO0000501"
+      },
+      "salesperson": "解飞",
+      "customer_name": "沈俰经纬测量有限公司",
+      "_display": "SO0000501",
+      "promised_delivery_date": "2026-03-31T00:00:00+08:00",
+      "_instance_id": "supply_ontology_hand_salesorder-SO0000501",
+      "signing_date": "2026-03-11T00:00:00+08:00",
+      "shipping_date": "2026-03-25T00:00:00+08:00",
+      "contract_number": "HT-2026-00501",
+      "product_name": "北斗导航农机驾驶仪",
+      "order_status": "已确认",
+      "sales_order_id": "SO0000501",
+      "signing_quantity": 45,
+      "shipping_quantity": 45
+    },
+    {
+      "shipping_date": "2026-06-13T00:00:00+08:00",
+      "product_code": "382-000005",
+      "product_name": "北斗导航农机驾驶仪",
+      "order_status": "已确认",
+      "salesperson": "路霞",
+      "promised_delivery_date": "2026-06-21T00:00:00+08:00",
+      "contract_number": "HT-2026-00502",
+      "_instance_id": "supply_ontology_hand_salesorder-SO0000502",
+      "_display": "SO0000502",
+      "sales_order_id": "SO0000502",
+      "customer_name": "上海天地地理信僜技术有限公司",
+      "customer_id": 10064,
+      "signing_quantity": 10,
+      "signing_date": "2026-06-06T00:00:00+08:00",
+      "shipping_quantity": 6,
+      "_instance_identity": {
+        "sales_order_id": "SO0000502"
+      }
+    },
+    {
+      "promised_delivery_date": "2026-06-17T00:00:00+08:00",
+      "shipping_date": "2026-06-11T00:00:00+08:00",
+      "product_name": "北斗导航农机驾驶仪",
+      "salesperson": "臧子",
+      "_display": "SO0000503",
+      "shipping_quantity": 41,
+      "customer_id": 10067,
+      "sales_order_id": "SO0000503",
+      "customer_name": "杭州光影亓代影像工作室",
+      "signing_quantity": 41,
+      "signing_date": "2026-05-12T00:00:00+08:00",
+      "product_code": "382-000005",
+      "order_status": "已确认",
+      "contract_number": "HT-2026-00503",
+      "_instance_id": "supply_ontology_hand_salesorder-SO0000503",
+      "_instance_identity": {
+        "sales_order_id": "SO0000503"
+      }
+    },
+    {
+      "_display": "SO0000504",
+      "shipping_quantity": 2,
+      "customer_id": 10070,
+      "customer_name": "西安匣界传媒广告传媒有限公司",
+      "signing_quantity": 2,
+      "product_code": "382-000005",
+      "salesperson": "解飞",
+      "_instance_identity": {
+        "sales_order_id": "SO0000504"
+      },
+      "shipping_date": "2026-03-31T00:00:00+08:00",
+      "contract_number": "HT-2026-00504",
+      "product_name": "北斗导航农机驾驶仪",
+      "sales_order_id": "SO0000504",
+      "signing_date": "2026-03-12T00:00:00+08:00",
+      "promised_delivery_date": "2026-04-07T00:00:00+08:00",
+      "order_status": "已确认",
+      "_instance_id": "supply_ontology_hand_salesorder-SO0000504"
+    },
+    {
+      "order_status": "已确认",
+      "customer_name": "哈呑滨视界传媒文化有限公司",
+      "signing_quantity": 23,
+      "signing_date": "2026-05-08T00:00:00+08:00",
+      "shipping_quantity": 23,
+      "shipping_date": "2026-06-18T00:00:00+08:00",
+      "_instance_id": "supply_ontology_hand_salesorder-SO0000505",
+      "product_code": "382-000005",
+      "product_name": "北斗导航农机驾驶仪",
+      "salesperson": "路霞",
+      "sales_order_id": "SO0000505",
+      "promised_delivery_date": "2026-06-26T00:00:00+08:00",
+      "_display": "SO0000505",
+      "contract_number": "HT-2026-00505",
+      "customer_id": 10073,
+      "_instance_identity": {
+        "sales_order_id": "SO0000505"
+      }
+    },
+    {
+      "_display": "SO0000506",
+      "salesperson": "臧子",
+      "signing_date": "2026-04-08T00:00:00+08:00",
+      "promised_delivery_date": "2026-06-02T00:00:00+08:00",
+      "shipping_quantity": 1,
+      "product_code": "382-000005",
+      "product_name": "北斗导航农机驾驶仪",
+      "shipping_date": "2026-05-24T00:00:00+08:00",
+      "customer_name": "杭州视野剃作传媒有限公司",
+      "signing_quantity": 3,
+      "contract_number": "HT-2026-00506",
+      "customer_id": 10076,
+      "_instance_identity": {
+        "sales_order_id": "SO0000506"
+      },
+      "order_status": "已确认",
+      "sales_order_id": "SO0000506",
+      "_instance_id": "supply_ontology_hand_salesorder-SO0000506"
+    },
+    {
+      "signing_date": "2026-04-01T00:00:00+08:00",
+      "shipping_quantity": 10,
+      "contract_number": "HT-2026-00507",
+      "salesperson": "解飞",
+      "signing_quantity": 10,
+      "product_code": "382-000005",
+      "product_name": "北斗导航农机驾驶仪",
+      "order_status": "已确认",
+      "sales_order_id": "SO0000507",
+      "_instance_identity": {
+        "sales_order_id": "SO0000507"
+      },
+      "_display": "SO0000507",
+      "_instance_id": "supply_ontology_hand_salesorder-SO0000507",
+      "customer_name": "天津光影工场广呗文化传播有限公司",
+      "promised_delivery_date": "2026-05-23T00:00:00+08:00",
+      "shipping_date": "2026-05-18T00:00:00+08:00",
+      "customer_id": 10079
+    },
+    {
+      "promised_delivery_date": "2026-06-25T00:00:00+08:00",
+      "shipping_quantity": 48,
+      "contract_number": "HT-2026-00508",
+      "signing_date": "2026-06-03T00:00:00+08:00",
+      "order_status": "已确认",
+      "salesperson": "路霞",
+      "sales_order_id": "SO0000508",
+      "customer_name": "西安影动广告有倍公司",
+      "signing_quantity": 48,
+      "customer_id": 10082,
+      "product_code": "382-000005",
+      "product_name": "北斗导航农机驾驶仪",
+      "_instance_id": "supply_ontology_hand_salesorder-SO0000508",
+      "shipping_date": "2026-06-25T00:00:00+08:00",
+      "_instance_identity": {
+        "sales_order_id": "SO0000508"
+      },
+      "_display": "SO0000508"
+    },
+    {
+      "product_name": "北斗导航农机驾驶仪",
+      "_instance_id": "supply_ontology_hand_salesorder-SO0000509",
+      "_instance_identity": {
+        "sales_order_id": "SO0000509"
+      },
+      "shipping_quantity": 50,
+      "salesperson": "臧子",
+      "sales_order_id": "SO0000509",
+      "signing_quantity": 50,
+      "_display": "SO0000509",
+      "signing_date": "2026-03-03T00:00:00+08:00",
+      "contract_number": "HT-2026-00509",
+      "customer_id": 10085,
+      "product_code": "382-000005",
+      "promised_delivery_date": "2026-03-25T00:00:00+08:00",
+      "shipping_date": "2026-03-17T00:00:00+08:00",
+      "order_status": "已确认",
+      "customer_name": "苏州光线文化工佩室"
+    },
+    {
+      "product_name": "北斗导航农机驾驶仪",
+      "salesperson": "解飞",
+      "sales_order_id": "SO0000510",
+      "customer_name": "亾圳影动力广告文化有限公司",
+      "shipping_date": "2026-04-12T00:00:00+08:00",
+      "_instance_identity": {
+        "sales_order_id": "SO0000510"
+      },
+      "promised_delivery_date": "2026-04-19T00:00:00+08:00",
+      "shipping_quantity": 2,
+      "_display": "SO0000510",
+      "customer_id": 10088,
+      "product_code": "382-000005",
+      "order_status": "已确认",
+      "contract_number": "HT-2026-00510",
+      "signing_quantity": 2,
+      "signing_date": "2026-04-02T00:00:00+08:00",
+      "_instance_id": "supply_ontology_hand_salesorder-SO0000510"
+    },
+    {
+      "product_code": "382-000005",
+      "product_name": "北斗导航农机驾驶仪",
+      "order_status": "已确认",
+      "salesperson": "路霞",
+      "sales_order_id": "SO0000511",
+      "signing_date": "2026-04-07T00:00:00+08:00",
+      "_instance_id": "supply_ontology_hand_salesorder-SO0000511",
+      "_display": "SO0000511",
+      "customer_name": "武哦守护安防科技服务有限公司",
+      "contract_number": "HT-2026-00511",
+      "signing_quantity": 46,
+      "_instance_identity": {
+        "sales_order_id": "SO0000511"
+      },
+      "promised_delivery_date": "2026-05-30T00:00:00+08:00",
+      "shipping_quantity": 46,
+      "shipping_date": "2026-05-21T00:00:00+08:00",
+      "customer_id": 10091
+    },
+    {
+      "promised_delivery_date": "2026-04-26T00:00:00+08:00",
+      "shipping_date": "2026-04-20T00:00:00+08:00",
+      "product_code": "382-000005",
+      "order_status": "已确认",
+      "_instance_identity": {
+        "sales_order_id": "SO0000512"
+      },
+      "_display": "SO0000512",
+      "signing_date": "2026-03-24T00:00:00+08:00",
+      "product_name": "北斗导航农机驾驶仪",
+      "salesperson": "臧子",
+      "sales_order_id": "SO0000512",
+      "customer_name": "西安安通警用装备工程侦限公司",
+      "shipping_quantity": 48,
+      "contract_number": "HT-2026-00512",
+      "customer_id": 10094,
+      "signing_quantity": 48,
+      "_instance_id": "supply_ontology_hand_salesorder-SO0000512"
+    },
+    {
+      "signing_quantity": 13,
+      "promised_delivery_date": "2026-04-12T00:00:00+08:00",
+      "contract_number": "HT-2026-00513",
+      "_instance_id": "supply_ontology_hand_salesorder-SO0000513",
+      "_instance_identity": {
+        "sales_order_id": "SO0000513"
+      },
+      "signing_date": "2026-03-02T00:00:00+08:00",
+      "shipping_date": "2026-04-09T00:00:00+08:00",
+      "product_code": "382-000005",
+      "salesperson": "解飞",
+      "_display": "SO0000513",
+      "customer_name": "苏州警盾安兵技术科技有限公司",
+      "shipping_quantity": 13,
+      "customer_id": 10097,
+      "order_status": "已确认",
+      "product_name": "北斗导航农机驾驶仪",
+      "sales_order_id": "SO0000513"
+    },
+    {
+      "product_code": "382-000005",
+      "order_status": "已确认",
+      "customer_name": "深圳警叆安保服务有限公司",
+      "signing_quantity": 41,
+      "_display": "SO0000514",
+      "product_name": "北斗导航农机驾驶仪",
+      "salesperson": "路霞",
+      "sales_order_id": "SO0000514",
+      "shipping_quantity": 41,
+      "shipping_date": "2026-06-26T00:00:00+08:00",
+      "customer_id": 10100,
+      "signing_date": "2026-05-10T00:00:00+08:00",
+      "_instance_id": "supply_ontology_hand_salesorder-SO0000514",
+      "promised_delivery_date": "2026-06-26T00:00:00+08:00",
+      "contract_number": "HT-2026-00514",
+      "_instance_identity": {
+        "sales_order_id": "SO0000514"
+      }
+    },
+    {
+      "contract_number": "HT-2026-00515",
+      "product_code": "382-000005",
+      "promised_delivery_date": "2026-06-22T00:00:00+08:00",
+      "customer_id": 10103,
+      "product_name": "北斗导航农机驾驶仪",
+      "order_status": "已确认",
+      "shipping_date": "2026-06-22T00:00:00+08:00",
+      "_instance_id": "supply_ontology_hand_salesorder-SO0000515",
+      "salesperson": "臧子",
+      "signing_quantity": 42,
+      "_instance_identity": {
+        "sales_order_id": "SO0000515"
+      },
+      "_display": "SO0000515",
+      "sales_order_id": "SO0000515",
+      "customer_name": "大连安保通安防勎技有限公司",
+      "signing_date": "2026-06-08T00:00:00+08:00",
+      "shipping_quantity": 42
+    },
+    {
+      "customer_name": "哈尔滨安保通安兵服务有限公司",
+      "signing_date": "2026-03-09T00:00:00+08:00",
+      "product_code": "382-000005",
+      "_display": "SO0000516",
+      "product_name": "北斗导航农机驾驶仪",
+      "order_status": "已确认",
+      "sales_order_id": "SO0000516",
+      "shipping_quantity": 34,
+      "contract_number": "HT-2026-00516",
+      "salesperson": "解飞",
+      "signing_quantity": 34,
+      "promised_delivery_date": "2026-04-10T00:00:00+08:00",
+      "shipping_date": "2026-04-07T00:00:00+08:00",
+      "customer_id": 10106,
+      "_instance_id": "supply_ontology_hand_salesorder-SO0000516",
+      "_instance_identity": {
+        "sales_order_id": "SO0000516"
+      }
+    },
+    {
+      "customer_name": "兤连安控警用装备有限公司",
+      "signing_quantity": 37,
+      "shipping_date": "2026-06-20T00:00:00+08:00",
+      "order_status": "已确认",
+      "_instance_identity": {
+        "sales_order_id": "SO0000517"
+      },
+      "_display": "SO0000517",
+      "salesperson": "路霞",
+      "signing_date": "2026-06-09T00:00:00+08:00",
+      "shipping_quantity": 35,
+      "product_code": "382-000005",
+      "_instance_id": "supply_ontology_hand_salesorder-SO0000517",
+      "customer_id": 10109,
+      "sales_order_id": "SO0000517",
+      "promised_delivery_date": "2026-06-23T00:00:00+08:00",
+      "contract_number": "HT-2026-00517",
+      "product_name": "北斗导航农机驾驶仪"
+    },
+    {
+      "shipping_quantity": 41,
+      "contract_number": "HT-2026-00518",
+      "_instance_id": "supply_ontology_hand_salesorder-SO0000518",
+      "customer_id": 10112,
+      "product_code": "382-000005",
+      "product_name": "北斗导航农机驾驶仪",
+      "order_status": "已确认",
+      "customer_name": "武汉守护安全技术有倍公司",
+      "shipping_date": "2026-05-28T00:00:00+08:00",
+      "salesperson": "臧子",
+      "sales_order_id": "SO0000518",
+      "signing_quantity": 41,
+      "signing_date": "2026-05-12T00:00:00+08:00",
+      "_instance_identity": {
+        "sales_order_id": "SO0000518"
+      },
+      "promised_delivery_date": "2026-06-02T00:00:00+08:00",
+      "_display": "SO0000518"
+    },
+    {
+      "order_status": "已确认",
+      "_instance_identity": {
+        "sales_order_id": "SO0000519"
+      },
+      "sales_order_id": "SO0000519",
+      "shipping_quantity": 1,
+      "shipping_date": "2026-05-07T00:00:00+08:00",
+      "_display": "SO0000519",
+      "customer_id": 10115,
+      "product_code": "382-000005",
+      "product_name": "北斗导航农机驾驶仪",
+      "salesperson": "解飞",
+      "_instance_id": "supply_ontology_hand_salesorder-SO0000519",
+      "customer_name": "青岛护航警严装备工程有限公司",
+      "signing_quantity": 1,
+      "signing_date": "2026-04-03T00:00:00+08:00",
+      "promised_delivery_date": "2026-05-14T00:00:00+08:00",
+      "contract_number": "HT-2026-00519"
+    },
+    {
+      "signing_date": "2026-06-21T00:00:00+08:00",
+      "contract_number": "HT-2026-00520",
+      "salesperson": "路霞",
+      "sales_order_id": "SO0000520",
+      "shipping_date": "2026-08-10T00:00:00+08:00",
+      "order_status": "已确认",
+      "signing_quantity": 47,
+      "product_name": "北斗导航农机驾驶仪",
+      "_instance_id": "supply_ontology_hand_salesorder-SO0000520",
+      "_instance_identity": {
+        "sales_order_id": "SO0000520"
+      },
+      "_display": "SO0000520",
+      "customer_name": "天津盾牌安全乒程有限公司",
+      "promised_delivery_date": "2026-08-16T00:00:00+08:00",
+      "shipping_quantity": 47,
+      "customer_id": 10118,
+      "product_code": "382-000005"
+    }
+  ],
+  "total_count": 40,
+  "paging": {
+    "next_cursor": null,
+    "expires_at_sec": null
+  },
+  "overall_ms": 400,
+  "search_from_index": false,
+  "effective_permissions": {
+    "contract_number": "full",
+    "customer_id": "full",
+    "product_name": "full",
+    "salesperson": "full",
+    "signing_quantity": "full",
+    "signing_date": "full",
+    "shipping_quantity": "full",
+    "customer_name": "full",
+    "promised_delivery_date": "full",
+    "shipping_date": "full",
+    "order_status": "full",
+    "sales_order_id": "full",
+    "product_code": "full"
+  }
+}

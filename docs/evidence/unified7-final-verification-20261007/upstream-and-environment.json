@@ -1,0 +1,239 @@
+{
+  "checkedAt": "2026-10-06T20:29:46.428938+00:00",
+  "supportedDsh": "0.2.0-rc.2",
+  "upstreamDshMaster": "5badb15009ae1756c3afe0ae0cef1faafc290ccc",
+  "upstreamFoundryMain": "a71984c69883947c04b645b8d736426461b2f2d5",
+  "pinsUnchanged": true,
+  "platformHttpStatus": 200,
+  "serviceImageQueryExit": 0,
+  "pods": [
+    {
+      "namespace": "openbkn",
+      "name": "agent-observability-58898697f6-xmlxq",
+      "phase": "Running",
+      "images": [
+        "swr.cn-east-3.myhuaweicloud.com/openbkn-ai-ee/agent-observability-ee:0.1.5"
+      ]
+    },
+    {
+      "namespace": "openbkn",
+      "name": "agent-operator-integration-574779c69f-nhbnw",
+      "phase": "Running",
+      "images": [
+        "swr.cn-east-3.myhuaweicloud.com/openbkn-ai/agent-operator-integration:0.1.5"
+      ]
+    },
+    {
+      "namespace": "openbkn",
+      "name": "agent-retrieval-c45b455bf-s62fb",
+      "phase": "Running",
+      "images": [
+        "swr.cn-east-3.myhuaweicloud.com/openbkn-ai-ee/agent-retrieval-ee:0.1.5"
+      ]
+    },
+    {
+      "namespace": "openbkn",
+      "name": "bkn-agent-6c88c5d8bb-gkwpd",
+      "phase": "Running",
+      "images": [
+        "swr.cn-east-3.myhuaweicloud.com/openbkn-ai/bkn-agent:0.1.5"
+      ]
+    },
+    {
+      "namespace": "openbkn",
+      "name": "bkn-backend-7877cdc679-r6vct",
+      "phase": "Running",
+      "images": [
+        "swr.cn-east-3.myhuaweicloud.com/openbkn-ai/bkn-backend:0.1.5"
+      ]
+    },
+    {
+      "namespace": "openbkn",
+      "name": "bkn-backend-trace-outbox-cleanup-29854260-mv6cd",
+      "phase": "Succeeded",
+      "images": [
+        "swr.cn-east-3.myhuaweicloud.com/openbkn-ai/bkn-backend:0.1.5"
+      ]
+    },
+    {
+      "namespace": "openbkn",
+      "name": "bkn-safe-bb5cd864f-k9k9r",
+      "phase": "Running",
+      "images": [
+        "swr.cn-east-3.myhuaweicloud.com/openbkn-ai-ee/bkn-safe-ee:0.1.5"
+      ]
+    },
+    {
+      "namespace": "openbkn",
+      "name": "bkn-safe-hydra-cdcf49cfd-tgvhh",
+      "phase": "Running",
+      "images": [
+        "swr.cn-east-3.myhuaweicloud.com/openbkn-ai-ee/oryd/hydra:v26.2.0"
+      ]
+    },
+    {
+      "namespace": "openbkn",
+      "name": "bkn-safe-postgres-89c775cbd-69cfp",
+      "phase": "Running",
+      "images": [
+        "swr.cn-east-3.myhuaweicloud.com/openbkn-ai-ee/postgres:16"
+      ]
+    },
+    {
+      "namespace": "openbkn",
+      "name": "bkn-studio-5f8ffd877c-824d8",
+      "phase": "Running",
+      "images": [
+        "swr.cn-east-3.myhuaweicloud.com/openbkn-ai/bkn-studio:0.1.5"
+      ]
+    },
+    {
+      "namespace": "openbkn",
+      "name": "core-data-migrator-job-8lgng",
+      "phase": "Succeeded",
+      "images": [
+        "swr.cn-east-3.myhuaweicloud.com/openbkn-ai/core-data-migrator:0.1.5"
+      ]
+    },
+    {
+      "namespace": "openbkn",
+      "name": "fake-embedding-5989f8db87-bxhxh",
+      "phase": "Running",
+      "images": [
+        "swr.cn-east-3.myhuaweicloud.com/openbkn-ai/sandbox-template-python-basic:0.1.5"
+      ]
+    },
+    {
+      "namespace": "openbkn",
+      "name": "install-status-6b88b4c957-fln2k",
+      "phase": "Running",
+      "images": [
+        "swr.cn-east-3.myhuaweicloud.com/openbkn-ai/portainer/kubectl-shell:latest",
+        "swr.cn-east-3.myhuaweicloud.com/openbkn-ai/library/nginx:1.27-alpine"
+      ]
+    },
+    {
+      "namespace": "openbkn",
+      "name": "mf-model-api-ccb794b56-htcnn",
+      "phase": "Running",
+      "images": [
+        "swr.cn-east-3.myhuaweicloud.com/openbkn-ai/mf-model-api:0.1.5"
+      ]
+    },
+    {
+      "namespace": "openbkn",
+      "name": "mf-model-manager-6f8f479996-x85fl",
+      "phase": "Running",
+      "images": [
+        "swr.cn-east-3.myhuaweicloud.com/openbkn-ai/mf-model-manager:0.1.5"
+      ]
+    },
+    {
+      "namespace": "openbkn",
+      "name": "minio-6686d85998-8zfd4",
+      "phase": "Running",
+      "images": [
+        "swr.cn-east-3.myhuaweicloud.com/openbkn-ai/minio:RELEASE.2025-09-07T16-13-09Z"
+      ]
+    },
+    {
+      "namespace": "openbkn",
+      "name": "ontology-query-6bb9bf4c7f-mbhk7",
+      "phase": "Running",
+      "images": [
+        "swr.cn-east-3.myhuaweicloud.com/openbkn-ai/ontology-query:0.1.5"
+      ]
+    },
+    {
+      "namespace": "openbkn",
+      "name": "ontology-query-trace-outbox-cleanup-29854260-22k5t",
+      "phase": "Succeeded",
+      "images": [
+        "swr.cn-east-3.myhuaweicloud.com/openbkn-ai/ontology-query:0.1.5"
+      ]
+    },
+    {
+      "namespace": "openbkn",
+      "name": "oss-gateway-backend-59bbdc8fc6-nc2db",
+      "phase": "Running",
+      "images": [
+        "swr.cn-east-3.myhuaweicloud.com/openbkn-ai/oss-gateway-backend:0.1.5"
+      ]
+    },
+    {
+      "namespace": "openbkn",
+      "name": "otelcol-contrib-5cff9c4666-wc5mv",
+      "phase": "Running",
+      "images": [
+        "swr.cn-east-3.myhuaweicloud.com/openbkn-ai/otel/opentelemetry-collector-contrib:0.148.0"
+      ]
+    },
+    {
+      "namespace": "openbkn",
+      "name": "sandbox-control-plane-97dc8b444-bxvwq",
+      "phase": "Running",
+      "images": [
+        "swr.cn-east-3.myhuaweicloud.com/openbkn-ai/sandbox-control-plane:0.1.5"
+      ]
+    },
+    {
+      "namespace": "openbkn",
+      "name": "sandbox-sandbox-sess-aoi-0",
+      "phase": "Running",
+      "images": [
+        "swr.cn-east-3.myhuaweicloud.com/openbkn-ai/sandbox-template-python-basic:0.1.5"
+      ]
+    },
+    {
+      "namespace": "openbkn",
+      "name": "vega-backend-8875d989d-s8tcx",
+      "phase": "Running",
+      "images": [
+        "swr.cn-east-3.myhuaweicloud.com/openbkn-ai-ee/vega-backend-ee:0.1.5"
+      ]
+    },
+    {
+      "namespace": "resource",
+      "name": "kafka-broker-0",
+      "phase": "Running",
+      "images": [
+        "swr.cn-east-3.myhuaweicloud.com/openbkn-ai/bitnami/kafka:3.9.0-debian-12-r10"
+      ]
+    },
+    {
+      "namespace": "resource",
+      "name": "kafka-controller-0",
+      "phase": "Running",
+      "images": [
+        "swr.cn-east-3.myhuaweicloud.com/openbkn-ai/bitnami/kafka:3.9.0-debian-12-r10"
+      ]
+    },
+    {
+      "namespace": "resource",
+      "name": "mariadb-0",
+      "phase": "Running",
+      "images": [
+        "swr.cn-east-3.myhuaweicloud.com/openbkn-ai/mariadb:11.4.7"
+      ]
+    },
+    {
+      "namespace": "resource",
+      "name": "opensearch-cluster-master-0",
+      "phase": "Running",
+      "images": [
+        "swr.cn-east-3.myhuaweicloud.com/openbkn-ai/opensearch:2.19.4-main.20260818163046.shaaeb5d56"
+      ]
+    },
+    {
+      "namespace": "resource",
+      "name": "redis-redis-0",
+      "phase": "Running",
+      "images": [
+        "swr.cn-east-3.myhuaweicloud.com/openbkn-ai/redis:1.11.2-main.20260718025853.shaf24e971",
+        "swr.cn-east-3.myhuaweicloud.com/openbkn-ai/redis:1.11.2-main.20260718025853.shaf24e971",
+        "swr.cn-east-3.myhuaweicloud.com/openbkn-ai/public/oliver006/redis_exporter:v1.77.0"
+      ]
+    }
+  ],
+  "serviceImageQueryScope": "All namespaces; relevant OpenBKN/sandbox/agent-retrieval images only"
+}

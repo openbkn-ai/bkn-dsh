@@ -1,0 +1,4619 @@
+{
+  "total_count": 15,
+  "entries": [
+    {
+      "id": "supply_ontology_hand_forecast",
+      "name": "产品需求预测单",
+      "data_source": {
+        "type": "resource",
+        "id": "01a0f6e5-fd70-761a-ae98-f2deb903fa68",
+        "name": "supply_demo_hand.erp_mds_forecast"
+      },
+      "data_properties": [
+        {
+          "name": "id",
+          "display_name": "id",
+          "type": "string",
+          "comment": "",
+          "mapped_field": {
+            "name": "id",
+            "type": "text",
+            "display_name": "id"
+          },
+          "condition_operations": [
+            "==",
+            "!=",
+            "in",
+            "not_in",
+            ">",
+            ">=",
+            "<",
+            "<=",
+            "range",
+            "out_range",
+            "regex",
+            "like",
+            "not_like"
+          ]
+        },
+        {
+          "name": "auditdate",
+          "display_name": "审核日期",
+          "type": "timestamp",
+          "comment": "",
+          "mapped_field": {
+            "name": "auditdate",
+            "type": "datetime",
+            "display_name": "auditdate"
+          }
+        },
+        {
+          "name": "auditor_name",
+          "display_name": "审核人",
+          "type": "string",
+          "comment": "",
+          "mapped_field": {
+            "name": "auditor_name",
+            "type": "text",
+            "display_name": "auditor_name"
+          },
+          "condition_operations": [
+            "==",
+            "!=",
+            "in",
+            "not_in",
+            ">",
+            ">=",
+            "<",
+            "<=",
+            "range",
+            "out_range",
+            "regex",
+            "like",
+            "not_like"
+          ]
+        },
+        {
+          "name": "billno",
+          "display_name": "预测单号",
+          "type": "string",
+          "comment": "",
+          "mapped_field": {
+            "name": "billno",
+            "type": "text",
+            "display_name": "billno"
+          },
+          "condition_operations": [
+            "==",
+            "!=",
+            "in",
+            "not_in",
+            ">",
+            ">=",
+            "<",
+            "<=",
+            "range",
+            "out_range",
+            "regex",
+            "like",
+            "not_like"
+          ]
+        },
+        {
+          "name": "bizdate",
+          "display_name": "单据创建时间",
+          "type": "date",
+          "comment": "该预测的创建时间",
+          "mapped_field": {
+            "name": "bizdate",
+            "type": "datetime",
+            "display_name": "bizdate"
+          }
+        },
+        {
+          "name": "creator_name",
+          "display_name": "创建人",
+          "type": "string",
+          "comment": "产品需求预测的创建者",
+          "mapped_field": {
+            "name": "creator_name",
+            "type": "text",
+            "display_name": "creator_name"
+          },
+          "condition_operations": [
+            "==",
+            "!=",
+            "in",
+            "not_in",
+            ">",
+            ">=",
+            "<",
+            "<=",
+            "range",
+            "out_range",
+            "regex",
+            "like",
+            "not_like"
+          ]
+        },
+        {
+          "name": "enddate",
+          "display_name": "预测终止日期",
+          "type": "date",
+          "comment": "该物料预测交付的终止日期",
+          "mapped_field": {
+            "name": "enddate",
+            "type": "datetime",
+            "display_name": "enddate"
+          }
+        },
+        {
+          "name": "material_name",
+          "display_name": "物料名称",
+          "type": "string",
+          "comment": "也就是产成品的名称。",
+          "mapped_field": {
+            "name": "material_name",
+            "type": "text",
+            "display_name": "material_name"
+          },
+          "condition_operations": [
+            "==",
+            "!=",
+            "in",
+            "not_in",
+            ">",
+            ">=",
+            "<",
+            "<=",
+            "range",
+            "out_range",
+            "regex",
+            "like",
+            "not_like"
+          ]
+        },
+        {
+          "name": "material_number",
+          "display_name": "物料编码",
+          "type": "string",
+          "comment": "预测以产品为单位，也就是产成品的物料编码",
+          "mapped_field": {
+            "name": "material_number",
+            "type": "text",
+            "display_name": "material_number"
+          },
+          "condition_operations": [
+            "==",
+            "!=",
+            "in",
+            "not_in",
+            ">",
+            ">=",
+            "<",
+            "<=",
+            "range",
+            "out_range",
+            "regex",
+            "like",
+            "not_like"
+          ]
+        },
+        {
+          "name": "qty",
+          "display_name": "预测数量",
+          "type": "decimal",
+          "comment": "",
+          "mapped_field": {
+            "name": "qty",
+            "type": "float",
+            "display_name": "qty"
+          }
+        },
+        {
+          "name": "startdate",
+          "display_name": "预测交货日期",
+          "type": "date",
+          "comment": "该产品预测需要交货的日期",
+          "mapped_field": {
+            "name": "startdate",
+            "type": "datetime",
+            "display_name": "startdate"
+          }
+        },
+        {
+          "name": "closestatus_title",
+          "display_name": "关闭状态",
+          "type": "text",
+          "comment": "",
+          "mapped_field": {
+            "name": "closestatus_title",
+            "type": "text",
+            "display_name": "closestatus_title"
+          },
+          "condition_operations": [
+            "match",
+            "multi_match",
+            "==",
+            "!=",
+            "in",
+            "not_in",
+            ">",
+            ">=",
+            "<",
+            "<=",
+            "range",
+            "out_range",
+            "regex",
+            "like",
+            "not_like"
+          ]
+        }
+      ],
+      "logic_properties": [
+        {
+          "name": "forecast_qty_sum",
+          "display_name": "预测需求量合计",
+          "type": "metric",
+          "comment": "sum(qty)。未关闭请再滤 closestatus_title。",
+          "data_source": {
+            "type": "metric",
+            "id": "01a0f6e6-5e9e-72c5-96f0-5d21afbe81b0",
+            "name": ""
+          },
+          "parameters": [
+            {
+              "name": "material_number",
+              "type": "string",
+              "operation": "==",
+              "value_from": "property",
+              "value": "material_number"
+            },
+            {
+              "name": "closestatus_title",
+              "type": "string",
+              "operation": "==",
+              "value_from": "input",
+              "comment": "关闭状态。未关闭用 正常 或 != 已关闭"
+            },
+            {
+              "name": "instant",
+              "type": "boolean",
+              "operation": "==",
+              "value_from": "input",
+              "if_system_generate": true
+            },
+            {
+              "name": "start",
+              "type": "integer",
+              "operation": "==",
+              "value_from": "input",
+              "if_system_generate": true
+            },
+            {
+              "name": "end",
+              "type": "integer",
+              "operation": "==",
+              "value_from": "input",
+              "if_system_generate": true
+            },
+            {
+              "name": "step",
+              "type": "string",
+              "operation": "==",
+              "value_from": "input",
+              "if_system_generate": true
+            }
+          ]
+        },
+        {
+          "name": "open_forecast_count",
+          "display_name": "未关闭预测单数",
+          "type": "metric",
+          "comment": "定义态 condition 会被平台丢弃。查询时必须带 closestatus_title != 已关闭 或 == 正常。",
+          "data_source": {
+            "type": "metric",
+            "id": "01a0f6e6-5e9e-72c6-950b-cea1ef7900ad",
+            "name": ""
+          },
+          "parameters": [
+            {
+              "name": "material_number",
+              "type": "string",
+              "operation": "==",
+              "value_from": "property",
+              "value": "material_number"
+            },
+            {
+              "name": "closestatus_title",
+              "type": "string",
+              "operation": "!=",
+              "value_from": "input",
+              "comment": "关闭状态；未关闭请传 已关闭 + operation !="
+            },
+            {
+              "name": "instant",
+              "type": "boolean",
+              "operation": "==",
+              "value_from": "input",
+              "if_system_generate": true
+            },
+            {
+              "name": "start",
+              "type": "integer",
+              "operation": "==",
+              "value_from": "input",
+              "if_system_generate": true
+            },
+            {
+              "name": "end",
+              "type": "integer",
+              "operation": "==",
+              "value_from": "input",
+              "if_system_generate": true
+            },
+            {
+              "name": "step",
+              "type": "string",
+              "operation": "==",
+              "value_from": "input",
+              "if_system_generate": true
+            }
+          ]
+        }
+      ],
+      "primary_keys": [
+        "id"
+      ],
+      "display_key": "material_name",
+      "incremental_key": "",
+      "tags": [
+        "已审核"
+      ],
+      "comment": "业务端（产品经理）基于销售需求、市场预判制定的基础需求数据源，是偏 “预判性” 的原始单据，核心记录产品、预测数量、对应月份 / 时间节点等基础信息，是“最上游单据”。每个月预测未来3个月的需求数据，每个产品都是滚动预测，滚动排产。从产品需求预测到物料需求计划（MRP），正式投放后，发起采购申请，通过后形成采购订单，当成品物料齐套后，安排生产工单，生产完成，则产品需求计划（产品需求预测单）完成。所以，当前产品需求预测单等同于产品需求计划。",
+      "icon": "icon-jingquezhunque",
+      "color": "#52C41A",
+      "kn_id": "supply_ontology_hand",
+      "branch": "main",
+      "status": {
+        "incremental_key": "",
+        "incremental_value": "",
+        "index": "",
+        "index_available": false,
+        "doc_count": 0,
+        "storage_size": 0,
+        "update_time": 1790848657755
+      },
+      "creator": {
+        "id": "266c6a42-6131-4d62-8f39-853e7093701c",
+        "type": "user",
+        "name": "Administrator"
+      },
+      "create_time": 1790848657755,
+      "updater": {
+        "id": "266c6a42-6131-4d62-8f39-853e7093701c",
+        "type": "user",
+        "name": "Administrator"
+      },
+      "update_time": 1790848689834,
+      "module_type": "object_type",
+      "operations": [
+        "delete",
+        "modify",
+        "query_data",
+        "view_detail"
+      ]
+    },
+    {
+      "id": "supply_ontology_hand_inventory",
+      "name": "库存",
+      "data_source": {
+        "type": "resource",
+        "id": "01a0f6e5-fd95-723f-ad5f-86413091ebf5",
+        "name": "supply_demo_hand.erp_real_time_inventory"
+      },
+      "data_properties": [
+        {
+          "name": "id",
+          "display_name": "id",
+          "type": "string",
+          "comment": "",
+          "mapped_field": {
+            "name": "id",
+            "type": "integer",
+            "display_name": "id"
+          },
+          "condition_operations": [
+            "==",
+            "!=",
+            "in",
+            "not_in",
+            ">",
+            ">=",
+            "<",
+            "<=",
+            "range",
+            "out_range",
+            "regex",
+            "like",
+            "not_like"
+          ]
+        },
+        {
+          "name": "seq_no",
+          "display_name": "库存编号",
+          "type": "integer",
+          "comment": "",
+          "mapped_field": {
+            "name": "seq_no",
+            "type": "integer",
+            "display_name": "seq_no"
+          }
+        },
+        {
+          "name": "available_inventory_qty",
+          "display_name": "可用库存数量",
+          "type": "decimal",
+          "comment": "可用库存数量 = 库存数量-预留库存数量",
+          "mapped_field": {
+            "name": "available_inventory_qty",
+            "type": "float",
+            "display_name": "available_inventory_qty"
+          }
+        },
+        {
+          "name": "batch_master",
+          "display_name": "批号主档",
+          "type": "string",
+          "comment": "一批物料的主档批号",
+          "mapped_field": {
+            "name": "batch_master",
+            "type": "text",
+            "display_name": "batch_master"
+          },
+          "condition_operations": [
+            "==",
+            "!=",
+            "in",
+            "not_in",
+            ">",
+            ">=",
+            "<",
+            "<=",
+            "range",
+            "out_range",
+            "regex",
+            "like",
+            "not_like"
+          ]
+        },
+        {
+          "name": "batch_no",
+          "display_name": "批号",
+          "type": "string",
+          "comment": "一批物料的编号",
+          "mapped_field": {
+            "name": "batch_no",
+            "type": "text",
+            "display_name": "batch_no"
+          },
+          "condition_operations": [
+            "==",
+            "!=",
+            "in",
+            "not_in",
+            ">",
+            ">=",
+            "<",
+            "<=",
+            "range",
+            "out_range",
+            "regex",
+            "like",
+            "not_like"
+          ]
+        },
+        {
+          "name": "bin_location",
+          "display_name": "仓位",
+          "type": "string",
+          "comment": "物料所在仓位",
+          "mapped_field": {
+            "name": "bin_location",
+            "type": "text",
+            "display_name": "bin_location"
+          },
+          "condition_operations": [
+            "==",
+            "!=",
+            "in",
+            "not_in",
+            ">",
+            ">=",
+            "<",
+            "<=",
+            "range",
+            "out_range",
+            "regex",
+            "like",
+            "not_like"
+          ]
+        },
+        {
+          "name": "expiry_date",
+          "display_name": "有效日期",
+          "type": "date",
+          "comment": "是否呆滞物料的关键字段，超过有效日期的可以视为呆滞物料。",
+          "mapped_field": {
+            "name": "expiry_date",
+            "type": "text",
+            "display_name": "expiry_date"
+          }
+        },
+        {
+          "name": "inbound_date",
+          "display_name": "入库时间",
+          "type": "date",
+          "comment": "",
+          "mapped_field": {
+            "name": "inbound_date",
+            "type": "datetime",
+            "display_name": "inbound_date"
+          }
+        },
+        {
+          "name": "inventory_org",
+          "display_name": "库存所属组织",
+          "type": "string",
+          "comment": "库存所属组织",
+          "mapped_field": {
+            "name": "inventory_org",
+            "type": "text",
+            "display_name": "inventory_org"
+          },
+          "condition_operations": [
+            "==",
+            "!=",
+            "in",
+            "not_in",
+            ">",
+            ">=",
+            "<",
+            "<=",
+            "range",
+            "out_range",
+            "regex",
+            "like",
+            "not_like"
+          ]
+        },
+        {
+          "name": "inventory_qty",
+          "display_name": "库存数量",
+          "type": "decimal",
+          "comment": "",
+          "mapped_field": {
+            "name": "inventory_qty",
+            "type": "float",
+            "display_name": "inventory_qty"
+          }
+        },
+        {
+          "name": "inventory_uom",
+          "display_name": "库存单位",
+          "type": "string",
+          "comment": "个，套等单位。",
+          "mapped_field": {
+            "name": "inventory_uom",
+            "type": "text",
+            "display_name": "inventory_uom"
+          },
+          "condition_operations": [
+            "==",
+            "!=",
+            "in",
+            "not_in",
+            ">",
+            ">=",
+            "<",
+            "<=",
+            "range",
+            "out_range",
+            "regex",
+            "like",
+            "not_like"
+          ]
+        },
+        {
+          "name": "manufacture_date",
+          "display_name": "生产日期",
+          "type": "date",
+          "comment": "",
+          "mapped_field": {
+            "name": "manufacture_date",
+            "type": "text",
+            "display_name": "manufacture_date"
+          }
+        },
+        {
+          "name": "material_code",
+          "display_name": "物料编码",
+          "type": "string",
+          "comment": "",
+          "mapped_field": {
+            "name": "material_code",
+            "type": "text",
+            "display_name": "material_code"
+          },
+          "condition_operations": [
+            "==",
+            "!=",
+            "in",
+            "not_in",
+            ">",
+            ">=",
+            "<",
+            "<=",
+            "range",
+            "out_range",
+            "regex",
+            "like",
+            "not_like"
+          ]
+        },
+        {
+          "name": "material_name",
+          "display_name": "物料名称",
+          "type": "string",
+          "comment": "",
+          "mapped_field": {
+            "name": "material_name",
+            "type": "text",
+            "display_name": "material_name"
+          },
+          "condition_operations": [
+            "==",
+            "!=",
+            "in",
+            "not_in",
+            ">",
+            ">=",
+            "<",
+            "<=",
+            "range",
+            "out_range",
+            "regex",
+            "like",
+            "not_like"
+          ]
+        },
+        {
+          "name": "purchase_qty",
+          "display_name": "采购数量",
+          "type": "decimal",
+          "comment": "",
+          "mapped_field": {
+            "name": "purchase_qty",
+            "type": "text",
+            "display_name": "purchase_qty"
+          }
+        },
+        {
+          "name": "reserved_inventory_qty",
+          "display_name": "预留库存数量",
+          "type": "decimal",
+          "comment": "",
+          "mapped_field": {
+            "name": "reserved_inventory_qty",
+            "type": "float",
+            "display_name": "reserved_inventory_qty"
+          }
+        },
+        {
+          "name": "spec_model",
+          "display_name": "规格型号",
+          "type": "string",
+          "comment": "",
+          "mapped_field": {
+            "name": "spec_model",
+            "type": "text",
+            "display_name": "spec_model"
+          },
+          "condition_operations": [
+            "==",
+            "!=",
+            "in",
+            "not_in",
+            ">",
+            ">=",
+            "<",
+            "<=",
+            "range",
+            "out_range",
+            "regex",
+            "like",
+            "not_like"
+          ]
+        },
+        {
+          "name": "stock_status",
+          "display_name": "库存状态",
+          "type": "string",
+          "comment": "可用或者其他状态",
+          "mapped_field": {
+            "name": "stock_status",
+            "type": "text",
+            "display_name": "stock_status"
+          },
+          "condition_operations": [
+            "==",
+            "!=",
+            "in",
+            "not_in",
+            ">",
+            ">=",
+            "<",
+            "<=",
+            "range",
+            "out_range",
+            "regex",
+            "like",
+            "not_like"
+          ]
+        },
+        {
+          "name": "stock_type",
+          "display_name": "库存类型",
+          "type": "string",
+          "comment": "普通或者特殊用途库存等等",
+          "mapped_field": {
+            "name": "stock_type",
+            "type": "text",
+            "display_name": "stock_type"
+          },
+          "condition_operations": [
+            "==",
+            "!=",
+            "in",
+            "not_in",
+            ">",
+            ">=",
+            "<",
+            "<=",
+            "range",
+            "out_range",
+            "regex",
+            "like",
+            "not_like"
+          ]
+        },
+        {
+          "name": "warehouse",
+          "display_name": "仓库",
+          "type": "string",
+          "comment": "仓库名称",
+          "mapped_field": {
+            "name": "warehouse",
+            "type": "text",
+            "display_name": "warehouse"
+          },
+          "condition_operations": [
+            "==",
+            "!=",
+            "in",
+            "not_in",
+            ">",
+            ">=",
+            "<",
+            "<=",
+            "range",
+            "out_range",
+            "regex",
+            "like",
+            "not_like"
+          ]
+        }
+      ],
+      "logic_properties": [
+        {
+          "name": "warehouse_count",
+          "display_name": "仓库数",
+          "type": "metric",
+          "comment": "库存记录中仓库去重。不是「生产可用仓个数」。",
+          "data_source": {
+            "type": "metric",
+            "id": "01a0f6e6-5e9e-72c3-8694-7851b3e5186f",
+            "name": ""
+          },
+          "parameters": [
+            {
+              "name": "stock_status",
+              "type": "string",
+              "operation": "==",
+              "value_from": "input",
+              "comment": "库存状态，如 可用"
+            },
+            {
+              "name": "instant",
+              "type": "boolean",
+              "operation": "==",
+              "value_from": "input",
+              "if_system_generate": true
+            },
+            {
+              "name": "start",
+              "type": "integer",
+              "operation": "==",
+              "value_from": "input",
+              "if_system_generate": true
+            },
+            {
+              "name": "end",
+              "type": "integer",
+              "operation": "==",
+              "value_from": "input",
+              "if_system_generate": true
+            },
+            {
+              "name": "step",
+              "type": "string",
+              "operation": "==",
+              "value_from": "input",
+              "if_system_generate": true
+            }
+          ]
+        },
+        {
+          "name": "available_qty_sum",
+          "display_name": "库存可用量",
+          "type": "metric",
+          "comment": "sum(available_inventory_qty)。仓范围在查询时用 warehouse in 展开预设，不要写进指标定义。",
+          "data_source": {
+            "type": "metric",
+            "id": "01a0f6e6-5e9e-72c4-8d14-76e2a96ce966",
+            "name": ""
+          },
+          "parameters": [
+            {
+              "name": "material_code",
+              "type": "string",
+              "operation": "==",
+              "value_from": "property",
+              "value": "material_code"
+            },
+            {
+              "name": "warehouse",
+              "type": "string",
+              "operation": "in",
+              "value_from": "input",
+              "comment": "仓库列表；成品仓或生产可用仓预设在此展开"
+            },
+            {
+              "name": "stock_status",
+              "type": "string",
+              "operation": "==",
+              "value_from": "input",
+              "comment": "库存状态，缺省常为 可用"
+            },
+            {
+              "name": "instant",
+              "type": "boolean",
+              "operation": "==",
+              "value_from": "input",
+              "if_system_generate": true
+            },
+            {
+              "name": "start",
+              "type": "integer",
+              "operation": "==",
+              "value_from": "input",
+              "if_system_generate": true
+            },
+            {
+              "name": "end",
+              "type": "integer",
+              "operation": "==",
+              "value_from": "input",
+              "if_system_generate": true
+            },
+            {
+              "name": "step",
+              "type": "string",
+              "operation": "==",
+              "value_from": "input",
+              "if_system_generate": true
+            }
+          ]
+        }
+      ],
+      "primary_keys": [
+        "id"
+      ],
+      "display_key": "material_name",
+      "incremental_key": "",
+      "tags": [
+        "已审核"
+      ],
+      "comment": "实时记录物料在各仓库及仓位的库存数量、状态与批次信息。\n1. 生产可用库存\n定义：仅统计「有效仓库」内、状态为「可用」的库存数量。\n有效仓库范围：苏州半成品仓、苏州成品仓、苏州电子原料仓、苏州无人机原料仓、苏州装配原料仓、乌鲁木齐成品仓、哈尔滨成品仓。\n2. 全仓可用库存\n定义：统计全部仓库内、状态为「可用」的库存数量。\n仓库范围：系统内全部仓库。",
+      "icon": "icon-dip-suanziguanli",
+      "color": "#0e5fc5",
+      "kn_id": "supply_ontology_hand",
+      "branch": "main",
+      "status": {
+        "incremental_key": "",
+        "incremental_value": "",
+        "index": "",
+        "index_available": false,
+        "doc_count": 0,
+        "storage_size": 0,
+        "update_time": 1790848657755
+      },
+      "creator": {
+        "id": "266c6a42-6131-4d62-8f39-853e7093701c",
+        "type": "user",
+        "name": "Administrator"
+      },
+      "create_time": 1790848657755,
+      "updater": {
+        "id": "266c6a42-6131-4d62-8f39-853e7093701c",
+        "type": "user",
+        "name": "Administrator"
+      },
+      "update_time": 1790848689549,
+      "module_type": "object_type",
+      "operations": [
+        "delete",
+        "modify",
+        "query_data",
+        "view_detail"
+      ]
+    },
+    {
+      "id": "supply_ontology_hand_salesorder",
+      "name": "销售订单",
+      "data_source": {
+        "type": "resource",
+        "id": "01a0f6e5-fda9-717a-aa25-f5573d2b246c",
+        "name": "supply_demo_hand.sales_order"
+      },
+      "data_properties": [
+        {
+          "name": "sales_order_id",
+          "display_name": "销售订单号",
+          "type": "string",
+          "comment": "重建主键",
+          "mapped_field": {
+            "name": "sales_order_id",
+            "type": "text",
+            "display_name": "sales_order_id"
+          },
+          "condition_operations": [
+            "==",
+            "!=",
+            "in",
+            "not_in",
+            ">",
+            ">=",
+            "<",
+            "<=",
+            "range",
+            "out_range",
+            "regex",
+            "like",
+            "not_like"
+          ]
+        },
+        {
+          "name": "contract_number",
+          "display_name": "合同编号",
+          "type": "string",
+          "comment": "",
+          "mapped_field": {
+            "name": "contract_number",
+            "type": "text",
+            "display_name": "contract_number"
+          },
+          "condition_operations": [
+            "==",
+            "!=",
+            "in",
+            "not_in",
+            ">",
+            ">=",
+            "<",
+            "<=",
+            "range",
+            "out_range",
+            "regex",
+            "like",
+            "not_like"
+          ]
+        },
+        {
+          "name": "customer_id",
+          "display_name": "客户ID",
+          "type": "string",
+          "comment": "",
+          "mapped_field": {
+            "name": "customer_id",
+            "type": "integer",
+            "display_name": "customer_id"
+          },
+          "condition_operations": [
+            "==",
+            "!=",
+            "in",
+            "not_in",
+            ">",
+            ">=",
+            "<",
+            "<=",
+            "range",
+            "out_range",
+            "regex",
+            "like",
+            "not_like"
+          ]
+        },
+        {
+          "name": "customer_name",
+          "display_name": "客户名称",
+          "type": "string",
+          "comment": "",
+          "mapped_field": {
+            "name": "customer_name",
+            "type": "text",
+            "display_name": "customer_name"
+          },
+          "condition_operations": [
+            "==",
+            "!=",
+            "in",
+            "not_in",
+            ">",
+            ">=",
+            "<",
+            "<=",
+            "range",
+            "out_range",
+            "regex",
+            "like",
+            "not_like"
+          ]
+        },
+        {
+          "name": "product_code",
+          "display_name": "产品编码",
+          "type": "string",
+          "comment": "对齐产品 material_number",
+          "mapped_field": {
+            "name": "product_code",
+            "type": "text",
+            "display_name": "product_code"
+          },
+          "condition_operations": [
+            "==",
+            "!=",
+            "in",
+            "not_in",
+            ">",
+            ">=",
+            "<",
+            "<=",
+            "range",
+            "out_range",
+            "regex",
+            "like",
+            "not_like"
+          ]
+        },
+        {
+          "name": "product_name",
+          "display_name": "产品名称",
+          "type": "string",
+          "comment": "",
+          "mapped_field": {
+            "name": "product_name",
+            "type": "text",
+            "display_name": "product_name"
+          },
+          "condition_operations": [
+            "==",
+            "!=",
+            "in",
+            "not_in",
+            ">",
+            ">=",
+            "<",
+            "<=",
+            "range",
+            "out_range",
+            "regex",
+            "like",
+            "not_like"
+          ]
+        },
+        {
+          "name": "signing_quantity",
+          "display_name": "签约数量",
+          "type": "integer",
+          "comment": "",
+          "mapped_field": {
+            "name": "signing_quantity",
+            "type": "integer",
+            "display_name": "signing_quantity"
+          }
+        },
+        {
+          "name": "signing_date",
+          "display_name": "签约时间",
+          "type": "date",
+          "comment": "",
+          "mapped_field": {
+            "name": "signing_date",
+            "type": "datetime",
+            "display_name": "signing_date"
+          }
+        },
+        {
+          "name": "promised_delivery_date",
+          "display_name": "承诺交期时间",
+          "type": "date",
+          "comment": "",
+          "mapped_field": {
+            "name": "promised_delivery_date",
+            "type": "datetime",
+            "display_name": "promised_delivery_date"
+          }
+        },
+        {
+          "name": "shipping_quantity",
+          "display_name": "交付数量",
+          "type": "float",
+          "comment": "",
+          "mapped_field": {
+            "name": "shipping_quantity",
+            "type": "integer",
+            "display_name": "shipping_quantity"
+          }
+        },
+        {
+          "name": "shipping_date",
+          "display_name": "交付时间",
+          "type": "date",
+          "comment": "",
+          "mapped_field": {
+            "name": "shipping_date",
+            "type": "datetime",
+            "display_name": "shipping_date"
+          }
+        },
+        {
+          "name": "order_status",
+          "display_name": "订单状态",
+          "type": "string",
+          "comment": "",
+          "mapped_field": {
+            "name": "order_status",
+            "type": "text",
+            "display_name": "order_status"
+          },
+          "condition_operations": [
+            "==",
+            "!=",
+            "in",
+            "not_in",
+            ">",
+            ">=",
+            "<",
+            "<=",
+            "range",
+            "out_range",
+            "regex",
+            "like",
+            "not_like"
+          ]
+        },
+        {
+          "name": "salesperson",
+          "display_name": "业务员",
+          "type": "string",
+          "comment": "",
+          "mapped_field": {
+            "name": "salesperson",
+            "type": "text",
+            "display_name": "salesperson"
+          },
+          "condition_operations": [
+            "==",
+            "!=",
+            "in",
+            "not_in",
+            ">",
+            ">=",
+            "<",
+            "<=",
+            "range",
+            "out_range",
+            "regex",
+            "like",
+            "not_like"
+          ]
+        }
+      ],
+      "logic_properties": [
+        {
+          "name": "sales_order_count",
+          "display_name": "销售订单数",
+          "type": "metric",
+          "comment": "订单张数。实例上用本单 product_code 过滤；也可按订单状态过滤。",
+          "data_source": {
+            "type": "metric",
+            "id": "01a0f6e6-5e9e-72c1-b69b-64e663b5e45d",
+            "name": ""
+          },
+          "parameters": [
+            {
+              "name": "product_code",
+              "type": "string",
+              "operation": "==",
+              "value_from": "property",
+              "value": "product_code"
+            },
+            {
+              "name": "order_status",
+              "type": "string",
+              "operation": "==",
+              "value_from": "input",
+              "comment": "订单状态"
+            },
+            {
+              "name": "instant",
+              "type": "boolean",
+              "operation": "==",
+              "value_from": "input",
+              "if_system_generate": true
+            },
+            {
+              "name": "start",
+              "type": "integer",
+              "operation": "==",
+              "value_from": "input",
+              "if_system_generate": true
+            },
+            {
+              "name": "end",
+              "type": "integer",
+              "operation": "==",
+              "value_from": "input",
+              "if_system_generate": true
+            },
+            {
+              "name": "step",
+              "type": "string",
+              "operation": "==",
+              "value_from": "input",
+              "if_system_generate": true
+            }
+          ]
+        }
+      ],
+      "primary_keys": [
+        "sales_order_id"
+      ],
+      "display_key": "sales_order_id",
+      "incremental_key": "",
+      "tags": [
+        "已审核",
+        "老数据"
+      ],
+      "comment": "记录销售签约与交付信息。产品编码与「产品」对象一致，可直接关联查询；并包含客户、签约数量、承诺交期与交付情况等业务字段，便于体验订单履约分析。",
+      "icon": "icon-dip-suanziguanli",
+      "color": "#0e5fc5",
+      "kn_id": "supply_ontology_hand",
+      "branch": "main",
+      "status": {
+        "incremental_key": "",
+        "incremental_value": "",
+        "index": "",
+        "index_available": false,
+        "doc_count": 0,
+        "storage_size": 0,
+        "update_time": 1790848657755
+      },
+      "creator": {
+        "id": "266c6a42-6131-4d62-8f39-853e7093701c",
+        "type": "user",
+        "name": "Administrator"
+      },
+      "create_time": 1790848657755,
+      "updater": {
+        "id": "266c6a42-6131-4d62-8f39-853e7093701c",
+        "type": "user",
+        "name": "Administrator"
+      },
+      "update_time": 1790848689277,
+      "module_type": "object_type",
+      "operations": [
+        "delete",
+        "modify",
+        "query_data",
+        "view_detail"
+      ]
+    },
+    {
+      "id": "supply_ontology_hand_supplier",
+      "name": "供应商",
+      "data_source": {
+        "type": "resource",
+        "id": "01a0f6e5-fd9b-7b84-ac22-283307123d8c",
+        "name": "supply_demo_hand.erp_supplier"
+      },
+      "data_properties": [
+        {
+          "name": "supplier_code",
+          "display_name": "供应商编码",
+          "type": "string",
+          "comment": "供应商的唯一标识编码",
+          "mapped_field": {
+            "name": "supplier_code",
+            "type": "text",
+            "display_name": "supplier_code"
+          },
+          "condition_operations": [
+            "==",
+            "!=",
+            "in",
+            "not_in",
+            ">",
+            ">=",
+            "<",
+            "<=",
+            "range",
+            "out_range",
+            "regex",
+            "like",
+            "not_like"
+          ]
+        },
+        {
+          "name": "supplier_name",
+          "display_name": "供应商名称",
+          "type": "string",
+          "comment": "供应商的公司全称",
+          "mapped_field": {
+            "name": "supplier_name",
+            "type": "text",
+            "display_name": "supplier_name"
+          },
+          "condition_operations": [
+            "==",
+            "!=",
+            "in",
+            "not_in",
+            ">",
+            ">=",
+            "<",
+            "<=",
+            "range",
+            "out_range",
+            "regex",
+            "like",
+            "not_like"
+          ]
+        },
+        {
+          "name": "societycreditcode",
+          "display_name": "统一社会信用代码",
+          "type": "string",
+          "comment": "企业统一社会信用代码",
+          "mapped_field": {
+            "name": "societycreditcode",
+            "type": "text",
+            "display_name": "societycreditcode"
+          },
+          "condition_operations": [
+            "==",
+            "!=",
+            "in",
+            "not_in",
+            ">",
+            ">=",
+            "<",
+            "<=",
+            "range",
+            "out_range",
+            "regex",
+            "like",
+            "not_like"
+          ]
+        },
+        {
+          "name": "purchaserid_name",
+          "display_name": "采购员",
+          "type": "string",
+          "comment": "负责该供应商的采购员姓名",
+          "mapped_field": {
+            "name": "purchaserid_name",
+            "type": "text",
+            "display_name": "purchaserid_name"
+          },
+          "condition_operations": [
+            "==",
+            "!=",
+            "in",
+            "not_in",
+            ">",
+            ">=",
+            "<",
+            "<=",
+            "range",
+            "out_range",
+            "regex",
+            "like",
+            "not_like"
+          ]
+        },
+        {
+          "name": "paycond_name",
+          "display_name": "付款条件",
+          "type": "string",
+          "comment": "供应商的付款结算条款",
+          "mapped_field": {
+            "name": "paycond_name",
+            "type": "text",
+            "display_name": "paycond_name"
+          },
+          "condition_operations": [
+            "==",
+            "!=",
+            "in",
+            "not_in",
+            ">",
+            ">=",
+            "<",
+            "<=",
+            "range",
+            "out_range",
+            "regex",
+            "like",
+            "not_like"
+          ]
+        }
+      ],
+      "logic_properties": [
+        {
+          "name": "supplier_total_count",
+          "display_name": "供应商总数",
+          "type": "metric",
+          "comment": "类级：供应商家数。可按采购员过滤。",
+          "data_source": {
+            "type": "metric",
+            "id": "01a0f6e6-5e9e-72c0-a36a-36849f8cd18f",
+            "name": ""
+          },
+          "parameters": [
+            {
+              "name": "purchaserid_name",
+              "type": "string",
+              "operation": "==",
+              "value_from": "input",
+              "comment": "采购员姓名"
+            },
+            {
+              "name": "instant",
+              "type": "boolean",
+              "operation": "==",
+              "value_from": "input",
+              "if_system_generate": true
+            },
+            {
+              "name": "start",
+              "type": "integer",
+              "operation": "==",
+              "value_from": "input",
+              "if_system_generate": true
+            },
+            {
+              "name": "end",
+              "type": "integer",
+              "operation": "==",
+              "value_from": "input",
+              "if_system_generate": true
+            },
+            {
+              "name": "step",
+              "type": "string",
+              "operation": "==",
+              "value_from": "input",
+              "if_system_generate": true
+            }
+          ]
+        }
+      ],
+      "primary_keys": [
+        "supplier_code"
+      ],
+      "display_key": "supplier_name",
+      "incremental_key": "",
+      "tags": [
+        "已审核"
+      ],
+      "comment": "记录供应商的基础信息，包括编码、名称、信用代码、付款条件及对应采购员。",
+      "icon": "icon-dip-suanziguanli",
+      "color": "#0e5fc5",
+      "kn_id": "supply_ontology_hand",
+      "branch": "main",
+      "status": {
+        "incremental_key": "",
+        "incremental_value": "",
+        "index": "",
+        "index_available": false,
+        "doc_count": 0,
+        "storage_size": 0,
+        "update_time": 1790848657755
+      },
+      "creator": {
+        "id": "266c6a42-6131-4d62-8f39-853e7093701c",
+        "type": "user",
+        "name": "Administrator"
+      },
+      "create_time": 1790848657755,
+      "updater": {
+        "id": "266c6a42-6131-4d62-8f39-853e7093701c",
+        "type": "user",
+        "name": "Administrator"
+      },
+      "update_time": 1790848689013,
+      "module_type": "object_type",
+      "operations": [
+        "delete",
+        "modify",
+        "query_data",
+        "view_detail"
+      ]
+    },
+    {
+      "id": "supply_ontology_hand_material",
+      "name": "物料",
+      "data_source": {
+        "type": "resource",
+        "id": "01a0f6e5-fd61-7280-ae39-73fd4c0877d0",
+        "name": "supply_demo_hand.erp_material"
+      },
+      "data_properties": [
+        {
+          "name": "material_code",
+          "display_name": "物料编码",
+          "type": "string",
+          "comment": "物料的唯一标识编码",
+          "mapped_field": {
+            "name": "material_code",
+            "type": "text",
+            "display_name": "material_code"
+          },
+          "condition_operations": [
+            "==",
+            "!=",
+            "in",
+            "not_in",
+            ">",
+            ">=",
+            "<",
+            "<=",
+            "range",
+            "out_range",
+            "regex",
+            "like",
+            "not_like"
+          ]
+        },
+        {
+          "name": "material_name",
+          "display_name": "物料名称",
+          "type": "string",
+          "comment": "物料的正式名称",
+          "mapped_field": {
+            "name": "material_name",
+            "type": "text",
+            "display_name": "material_name"
+          },
+          "condition_operations": [
+            "==",
+            "!=",
+            "in",
+            "not_in",
+            ">",
+            ">=",
+            "<",
+            "<=",
+            "range",
+            "out_range",
+            "regex",
+            "like",
+            "not_like"
+          ]
+        },
+        {
+          "name": "modelnum",
+          "display_name": "规格型号",
+          "type": "string",
+          "comment": "物料的规格与其型号",
+          "mapped_field": {
+            "name": "modelnum",
+            "type": "text",
+            "display_name": "modelnum"
+          },
+          "condition_operations": [
+            "==",
+            "!=",
+            "in",
+            "not_in",
+            ">",
+            ">=",
+            "<",
+            "<=",
+            "range",
+            "out_range",
+            "regex",
+            "like",
+            "not_like"
+          ]
+        },
+        {
+          "name": "huid_productline_name",
+          "display_name": "产品线名称",
+          "type": "string",
+          "comment": "所属产品线",
+          "mapped_field": {
+            "name": "huid_productline_name",
+            "type": "text",
+            "display_name": "huid_productline_name"
+          },
+          "condition_operations": [
+            "==",
+            "!=",
+            "in",
+            "not_in",
+            ">",
+            ">=",
+            "<",
+            "<=",
+            "range",
+            "out_range",
+            "regex",
+            "like",
+            "not_like"
+          ]
+        },
+        {
+          "name": "baseunit_number",
+          "display_name": "物料规格编码",
+          "type": "string",
+          "comment": "计量单位的编码，pcs",
+          "mapped_field": {
+            "name": "baseunit_number",
+            "type": "text",
+            "display_name": "baseunit_number"
+          },
+          "condition_operations": [
+            "==",
+            "!=",
+            "in",
+            "not_in",
+            ">",
+            ">=",
+            "<",
+            "<=",
+            "range",
+            "out_range",
+            "regex",
+            "like",
+            "not_like"
+          ]
+        },
+        {
+          "name": "baseunit_name",
+          "display_name": "物料规格",
+          "type": "string",
+          "comment": "计量单位名称 (如:  个，套)",
+          "mapped_field": {
+            "name": "baseunit_name",
+            "type": "text",
+            "display_name": "baseunit_name"
+          },
+          "condition_operations": [
+            "==",
+            "!=",
+            "in",
+            "not_in",
+            ">",
+            ">=",
+            "<",
+            "<=",
+            "range",
+            "out_range",
+            "regex",
+            "like",
+            "not_like"
+          ]
+        },
+        {
+          "name": "group_name",
+          "display_name": "存货类别",
+          "type": "string",
+          "comment": "原材料-半成品",
+          "mapped_field": {
+            "name": "group_name",
+            "type": "text",
+            "display_name": "group_name"
+          },
+          "condition_operations": [
+            "==",
+            "!=",
+            "in",
+            "not_in",
+            ">",
+            ">=",
+            "<",
+            "<=",
+            "range",
+            "out_range",
+            "regex",
+            "like",
+            "not_like"
+          ]
+        },
+        {
+          "name": "group_type",
+          "display_name": "物料分类",
+          "type": "string",
+          "comment": "物料的类别描述",
+          "mapped_field": {
+            "name": "group_type",
+            "type": "text",
+            "display_name": "group_type"
+          },
+          "condition_operations": [
+            "==",
+            "!=",
+            "in",
+            "not_in",
+            ">",
+            ">=",
+            "<",
+            "<=",
+            "range",
+            "out_range",
+            "regex",
+            "like",
+            "not_like"
+          ]
+        },
+        {
+          "name": "materialattr",
+          "display_name": "物料属性",
+          "type": "string",
+          "comment": "物料属性 (如: 外购)",
+          "mapped_field": {
+            "name": "materialattr",
+            "type": "text",
+            "display_name": "materialattr"
+          },
+          "condition_operations": [
+            "==",
+            "!=",
+            "in",
+            "not_in",
+            ">",
+            ">=",
+            "<",
+            "<=",
+            "range",
+            "out_range",
+            "regex",
+            "like",
+            "not_like"
+          ]
+        },
+        {
+          "name": "purchase_fixedleadtime",
+          "display_name": "采购固定提前期",
+          "type": "decimal",
+          "comment": "采购交货提前期 (天)",
+          "mapped_field": {
+            "name": "purchase_fixedleadtime",
+            "type": "float",
+            "display_name": "purchase_fixedleadtime"
+          }
+        },
+        {
+          "name": "product_fixedleadtime",
+          "display_name": "生产固定提前期",
+          "type": "decimal",
+          "comment": "自制件包括产成品、半成品的生产提前期 (天)",
+          "mapped_field": {
+            "name": "product_fixedleadtime",
+            "type": "float",
+            "display_name": "product_fixedleadtime"
+          }
+        },
+        {
+          "name": "material_standard_price",
+          "display_name": "物料标准价格（含税单价）",
+          "type": "decimal",
+          "comment": "",
+          "mapped_field": {
+            "name": "material_standard_price",
+            "type": "float",
+            "display_name": "material_standard_price"
+          }
+        },
+        {
+          "name": "product_status",
+          "display_name": "产品状态",
+          "type": "string",
+          "comment": "",
+          "mapped_field": {
+            "name": "product_status",
+            "type": "text",
+            "display_name": "product_status"
+          },
+          "condition_operations": [
+            "==",
+            "!=",
+            "in",
+            "not_in",
+            ">",
+            ">=",
+            "<",
+            "<=",
+            "range",
+            "out_range",
+            "regex",
+            "like",
+            "not_like"
+          ]
+        }
+      ],
+      "logic_properties": [
+        {
+          "name": "material_total_count",
+          "display_name": "物料总数",
+          "type": "metric",
+          "comment": "类级：物料种数。可按物料属性 / 存货类别过滤。",
+          "data_source": {
+            "type": "metric",
+            "id": "01a0f6e6-5e9e-72bf-a34a-afcc0ca532d9",
+            "name": ""
+          },
+          "parameters": [
+            {
+              "name": "materialattr",
+              "type": "string",
+              "operation": "==",
+              "value_from": "input",
+              "comment": "物料属性，如 外购 / 自制 / 委外 / 虚拟"
+            },
+            {
+              "name": "group_name",
+              "type": "string",
+              "operation": "==",
+              "value_from": "input",
+              "comment": "存货类别"
+            },
+            {
+              "name": "instant",
+              "type": "boolean",
+              "operation": "==",
+              "value_from": "input",
+              "if_system_generate": true
+            },
+            {
+              "name": "start",
+              "type": "integer",
+              "operation": "==",
+              "value_from": "input",
+              "if_system_generate": true
+            },
+            {
+              "name": "end",
+              "type": "integer",
+              "operation": "==",
+              "value_from": "input",
+              "if_system_generate": true
+            },
+            {
+              "name": "step",
+              "type": "string",
+              "operation": "==",
+              "value_from": "input",
+              "if_system_generate": true
+            }
+          ]
+        }
+      ],
+      "primary_keys": [
+        "material_code"
+      ],
+      "display_key": "material_name",
+      "incremental_key": "",
+      "tags": [
+        "已审核"
+      ],
+      "comment": "记录物料的基础信息，包括编码、名称、规格型号、属性（自制/外购）及单位等及相关参数。",
+      "icon": "icon-dip-suanziguanli",
+      "color": "#0e5fc5",
+      "kn_id": "supply_ontology_hand",
+      "branch": "main",
+      "status": {
+        "incremental_key": "",
+        "incremental_value": "",
+        "index": "",
+        "index_available": false,
+        "doc_count": 0,
+        "storage_size": 0,
+        "update_time": 1790848657755
+      },
+      "creator": {
+        "id": "266c6a42-6131-4d62-8f39-853e7093701c",
+        "type": "user",
+        "name": "Administrator"
+      },
+      "create_time": 1790848657755,
+      "updater": {
+        "id": "266c6a42-6131-4d62-8f39-853e7093701c",
+        "type": "user",
+        "name": "Administrator"
+      },
+      "update_time": 1790848688764,
+      "module_type": "object_type",
+      "operations": [
+        "delete",
+        "modify",
+        "query_data",
+        "view_detail"
+      ]
+    },
+    {
+      "id": "supply_ontology_hand_product",
+      "name": "产品",
+      "data_source": {
+        "type": "resource",
+        "id": "01a0f6e5-fda2-780e-b5bc-a3f2332649d1",
+        "name": "supply_demo_hand.hd_product_view"
+      },
+      "data_properties": [
+        {
+          "name": "material_name",
+          "display_name": "产品名称",
+          "type": "string",
+          "comment": "",
+          "mapped_field": {
+            "name": "material_name",
+            "type": "text",
+            "display_name": "material_name"
+          },
+          "condition_operations": [
+            "==",
+            "!=",
+            "in",
+            "not_in",
+            ">",
+            ">=",
+            "<",
+            "<=",
+            "range",
+            "out_range",
+            "regex",
+            "like",
+            "not_like"
+          ]
+        },
+        {
+          "name": "material_number",
+          "display_name": "产品编码",
+          "type": "string",
+          "comment": "产品编码，产品物料也是成品物料，所以产品编码也是物料编码，但是物料不一定是产品。",
+          "mapped_field": {
+            "name": "material_code",
+            "type": "text",
+            "display_name": "material_code"
+          },
+          "condition_operations": [
+            "==",
+            "!=",
+            "in",
+            "not_in",
+            ">",
+            ">=",
+            "<",
+            "<=",
+            "range",
+            "out_range",
+            "regex",
+            "like",
+            "not_like"
+          ]
+        }
+      ],
+      "logic_properties": [
+        {
+          "name": "product_total_count",
+          "display_name": "产品总数",
+          "type": "metric",
+          "comment": "类级：成品种数。数值请用 metric query；逻辑属性用于从产品对象发现该指标。",
+          "data_source": {
+            "type": "metric",
+            "id": "01a0f6e6-5e9e-72b5-a295-1b36b7539502",
+            "name": ""
+          },
+          "parameters": [
+            {
+              "name": "instant",
+              "type": "boolean",
+              "operation": "==",
+              "value_from": "input",
+              "if_system_generate": true
+            },
+            {
+              "name": "start",
+              "type": "integer",
+              "operation": "==",
+              "value_from": "input",
+              "if_system_generate": true
+            },
+            {
+              "name": "end",
+              "type": "integer",
+              "operation": "==",
+              "value_from": "input",
+              "if_system_generate": true
+            },
+            {
+              "name": "step",
+              "type": "string",
+              "operation": "==",
+              "value_from": "input",
+              "if_system_generate": true
+            }
+          ]
+        }
+      ],
+      "primary_keys": [
+        "material_number"
+      ],
+      "display_key": "material_number",
+      "incremental_key": "",
+      "tags": [
+        "已审核"
+      ],
+      "comment": "存储企业生产的成品基本信息，包括产品编码、名称。",
+      "icon": "icon-dip-suanziguanli",
+      "color": "#0e5fc5",
+      "kn_id": "supply_ontology_hand",
+      "branch": "main",
+      "status": {
+        "incremental_key": "",
+        "incremental_value": "",
+        "index": "",
+        "index_available": false,
+        "doc_count": 0,
+        "storage_size": 0,
+        "update_time": 1790848657755
+      },
+      "creator": {
+        "id": "266c6a42-6131-4d62-8f39-853e7093701c",
+        "type": "user",
+        "name": "Administrator"
+      },
+      "create_time": 1790848657755,
+      "updater": {
+        "id": "266c6a42-6131-4d62-8f39-853e7093701c",
+        "type": "user",
+        "name": "Administrator"
+      },
+      "update_time": 1790848688477,
+      "module_type": "object_type",
+      "operations": [
+        "delete",
+        "modify",
+        "query_data",
+        "view_detail"
+      ]
+    },
+    {
+      "id": "supply_ontology_hand_mps",
+      "name": "工厂生产计划",
+      "data_source": {
+        "type": "resource",
+        "id": "01a0f6e5-fd7b-7351-904e-19a6b58826ab",
+        "name": ""
+      },
+      "data_properties": [
+        {
+          "name": "auditdate",
+          "display_name": "审核日期",
+          "type": "timestamp",
+          "comment": "",
+          "mapped_field": {
+            "name": "auditdate",
+            "type": "timestamp",
+            "display_name": "auditdate"
+          }
+        },
+        {
+          "name": "billdate",
+          "display_name": "单据日期",
+          "type": "date",
+          "comment": "",
+          "mapped_field": {
+            "name": "billdate",
+            "type": "date",
+            "display_name": "billdate"
+          }
+        },
+        {
+          "name": "billno",
+          "display_name": "生产工单单号",
+          "type": "string",
+          "comment": "",
+          "mapped_field": {
+            "name": "billno",
+            "type": "string",
+            "display_name": "billno"
+          }
+        },
+        {
+          "name": "billstatus",
+          "display_name": "单据状态",
+          "type": "text",
+          "comment": "A:暂存, B:已提交, C:已审核, D:作废",
+          "mapped_field": {
+            "name": "billstatus",
+            "type": "text",
+            "display_name": "billstatus"
+          }
+        },
+        {
+          "name": "entry_id",
+          "display_name": "生产工单明细主键",
+          "type": "string",
+          "comment": "",
+          "mapped_field": {
+            "name": "entry_id",
+            "type": "string",
+            "display_name": "entry_id"
+          }
+        },
+        {
+          "name": "huid_scxmh_number",
+          "display_name": "生产项目号",
+          "type": "string",
+          "comment": "生产项目号=scxmh",
+          "mapped_field": {
+            "name": "huid_scxmh_number",
+            "type": "string",
+            "display_name": "huid_scxmh_number"
+          }
+        },
+        {
+          "name": "id",
+          "display_name": "生产工单id",
+          "type": "string",
+          "comment": "",
+          "mapped_field": {
+            "name": "id",
+            "type": "string",
+            "display_name": "id"
+          }
+        },
+        {
+          "name": "material_name",
+          "display_name": "物料名称",
+          "type": "string",
+          "comment": "",
+          "mapped_field": {
+            "name": "material_name",
+            "type": "string",
+            "display_name": "material_name"
+          }
+        },
+        {
+          "name": "material_number",
+          "display_name": "物料编码",
+          "type": "string",
+          "comment": "",
+          "mapped_field": {
+            "name": "material_number",
+            "type": "string",
+            "display_name": "material_number"
+          }
+        },
+        {
+          "name": "pickstatus_title",
+          "display_name": "领料状态",
+          "type": "string",
+          "comment": "A:未领料, B:部分领料, C:全部领料, D:超额领料",
+          "mapped_field": {
+            "name": "pickstatus_title",
+            "type": "string",
+            "display_name": "pickstatus_title"
+          }
+        },
+        {
+          "name": "planbegintime",
+          "display_name": "计划开工时间",
+          "type": "timestamp",
+          "comment": "",
+          "mapped_field": {
+            "name": "planbegintime",
+            "type": "timestamp",
+            "display_name": "planbegintime"
+          }
+        },
+        {
+          "name": "planendtime",
+          "display_name": "计划完工时间",
+          "type": "timestamp",
+          "comment": "",
+          "mapped_field": {
+            "name": "planendtime",
+            "type": "timestamp",
+            "display_name": "planendtime"
+          }
+        },
+        {
+          "name": "qty",
+          "display_name": "生产数量",
+          "type": "decimal",
+          "comment": "",
+          "mapped_field": {
+            "name": "qty",
+            "type": "decimal",
+            "display_name": "qty"
+          }
+        },
+        {
+          "name": "sourcebillnumber",
+          "display_name": "来源单据编号",
+          "type": "string",
+          "comment": "生产工单关联的产品需求预测单号",
+          "mapped_field": {
+            "name": "sourcebillnumber",
+            "type": "string",
+            "display_name": "sourcebillnumber"
+          }
+        },
+        {
+          "name": "sourcebilltype",
+          "display_name": "来源单据类型",
+          "type": "string",
+          "comment": "",
+          "mapped_field": {
+            "name": "sourcebilltype",
+            "type": "string",
+            "display_name": "sourcebilltype"
+          }
+        },
+        {
+          "name": "srcbillentity",
+          "display_name": "来源单据分录号",
+          "type": "string",
+          "comment": "",
+          "mapped_field": {
+            "name": "srcbillentity",
+            "type": "string",
+            "display_name": "srcbillentity"
+          }
+        },
+        {
+          "name": "taskstatus_title",
+          "display_name": "任务状态",
+          "type": "string",
+          "comment": " [A:未开工, B:开工, C:完工, D:部分完工]",
+          "mapped_field": {
+            "name": "taskstatus_title",
+            "type": "string",
+            "display_name": "taskstatus_title"
+          }
+        },
+        {
+          "name": "xkquainwaqty",
+          "display_name": "合格品入库数量",
+          "type": "decimal",
+          "comment": "",
+          "mapped_field": {
+            "name": "xkquainwaqty",
+            "type": "decimal",
+            "display_name": "xkquainwaqty"
+          }
+        }
+      ],
+      "primary_keys": [
+        "entry_id"
+      ],
+      "display_key": "material_name",
+      "incremental_key": "",
+      "tags": [
+        "已审核"
+      ],
+      "comment": "也叫做生产工单，生产计划基于产品需求计划制定（当前需求计划与需求预测等同），以需求计划的产品、数量、时间为核心依据，默认将产品需求直接作为生产需求。\n生产计划与物料需求计划联动，物料齐套后再下达生产工单，即先完成外购料的采购和到料，再向生产部门推送生产工单，领料生产。",
+      "icon": "icon-dip-suanziguanli",
+      "color": "#52C41A",
+      "kn_id": "supply_ontology_hand",
+      "branch": "main",
+      "status": {
+        "incremental_key": "",
+        "incremental_value": "",
+        "index": "",
+        "index_available": false,
+        "doc_count": 0,
+        "storage_size": 0,
+        "update_time": 1790848657755
+      },
+      "creator": {
+        "id": "266c6a42-6131-4d62-8f39-853e7093701c",
+        "type": "user",
+        "name": "Administrator"
+      },
+      "create_time": 1790848657755,
+      "updater": {
+        "id": "266c6a42-6131-4d62-8f39-853e7093701c",
+        "type": "user",
+        "name": "Administrator"
+      },
+      "update_time": 1790848677457,
+      "module_type": "object_type",
+      "operations": [
+        "delete",
+        "modify",
+        "query_data",
+        "view_detail"
+      ]
+    },
+    {
+      "id": "supply_ontology_hand_po",
+      "name": "采购订单",
+      "data_source": {
+        "type": "resource",
+        "id": "01a0f6e5-fd83-7472-a9cb-8e0bb5a2bfd5",
+        "name": ""
+      },
+      "data_properties": [
+        {
+          "name": "srcbillentryid",
+          "display_name": "来源单据号-采购申请单明细主键",
+          "type": "string",
+          "comment": "来源单据号（对应采购申请单明细主键ID）",
+          "mapped_field": {
+            "name": "srcbillentryid",
+            "type": "string",
+            "display_name": "srcbillentryid"
+          },
+          "condition_operations": [
+            "regex",
+            "not_like",
+            "==",
+            ">=",
+            "range",
+            "out_range",
+            "<",
+            "<=",
+            "!=",
+            "in",
+            "like",
+            "not_in",
+            ">"
+          ]
+        },
+        {
+          "name": "srcbillid",
+          "display_name": "来源单据号-采购申请单主键",
+          "type": "string",
+          "comment": "来源单据号（对应采购申请单主键ID）",
+          "mapped_field": {
+            "name": "srcbillid",
+            "type": "string",
+            "display_name": "srcbillid"
+          },
+          "condition_operations": [
+            "like",
+            "not_in",
+            ">",
+            "<=",
+            "not_like",
+            "==",
+            "in",
+            "out_range",
+            "<",
+            "regex",
+            "!=",
+            ">=",
+            "range"
+          ]
+        },
+        {
+          "name": "billno",
+          "display_name": "采购订单单号",
+          "type": "string",
+          "comment": "采购订单单号",
+          "mapped_field": {
+            "name": "billno",
+            "type": "string",
+            "display_name": "billno"
+          },
+          "condition_operations": [
+            "<=",
+            "regex",
+            "not_like",
+            "==",
+            "in",
+            "range",
+            "out_range",
+            "like",
+            "!=",
+            ">=",
+            "not_in",
+            ">",
+            "<"
+          ]
+        },
+        {
+          "name": "biztime",
+          "display_name": "采购日期",
+          "type": "date",
+          "comment": "业务日期",
+          "mapped_field": {
+            "name": "biztime",
+            "type": "date",
+            "display_name": "biztime"
+          },
+          "condition_operations": [
+            "!=",
+            "in",
+            ">=",
+            "range",
+            ">",
+            "regex",
+            "not_like",
+            "==",
+            "out_range",
+            "like",
+            "not_in",
+            "<",
+            "<="
+          ]
+        },
+        {
+          "name": "org_name",
+          "display_name": "购买组织",
+          "type": "string",
+          "comment": "购买签订的主体",
+          "mapped_field": {
+            "name": "org_name",
+            "type": "string",
+            "display_name": "org_name"
+          },
+          "condition_operations": [
+            "not_in",
+            ">",
+            "<",
+            "not_like",
+            "knn",
+            "range",
+            "like",
+            "match",
+            "multi_match",
+            "!=",
+            "in",
+            ">=",
+            "out_range",
+            "<=",
+            "regex",
+            "=="
+          ]
+        },
+        {
+          "name": "billtype_name",
+          "display_name": "订单类型",
+          "type": "string",
+          "comment": "生产项目采购订单、研发项目采购订单等等。",
+          "mapped_field": {
+            "name": "billtype_name",
+            "type": "string",
+            "display_name": "billtype_name"
+          },
+          "condition_operations": [
+            ">",
+            "not_like",
+            "!=",
+            ">=",
+            "like",
+            "match",
+            "not_in",
+            "<",
+            "<=",
+            "regex",
+            "==",
+            "range",
+            "in",
+            "out_range",
+            "multi_match"
+          ]
+        },
+        {
+          "name": "supplier_number",
+          "display_name": "供应商编码",
+          "type": "string",
+          "comment": "供应商编码",
+          "mapped_field": {
+            "name": "supplier_number",
+            "type": "string",
+            "display_name": "supplier_number"
+          },
+          "condition_operations": [
+            "not_in",
+            ">",
+            "<",
+            "regex",
+            "not_like",
+            "!=",
+            "in",
+            "range",
+            "out_range",
+            "like",
+            "<=",
+            "==",
+            ">="
+          ]
+        },
+        {
+          "name": "supplier_name",
+          "display_name": "供应商名称",
+          "type": "string",
+          "comment": "供应商名称",
+          "mapped_field": {
+            "name": "supplier_name",
+            "type": "string",
+            "display_name": "supplier_name"
+          },
+          "condition_operations": [
+            "regex",
+            "out_range",
+            ">",
+            "not_like",
+            "==",
+            "!=",
+            "not_in",
+            "<",
+            "<=",
+            "match",
+            "multi_match",
+            "range",
+            "like",
+            "knn",
+            "in",
+            ">="
+          ]
+        },
+        {
+          "name": "operatorname",
+          "display_name": "执行采购人",
+          "type": "string",
+          "comment": " 执行采购的采购人员",
+          "mapped_field": {
+            "name": "operatorname",
+            "type": "string",
+            "display_name": "operatorname"
+          },
+          "condition_operations": [
+            "==",
+            "like",
+            ">",
+            "<=",
+            "range",
+            "not_in",
+            "<",
+            "regex",
+            "multi_match",
+            "!=",
+            ">=",
+            "out_range",
+            "match",
+            "not_like",
+            "in"
+          ]
+        },
+        {
+          "name": "huid_xycg_operatorname",
+          "display_name": "寻源采购人",
+          "type": "string",
+          "comment": "采购寻源的人员",
+          "mapped_field": {
+            "name": "huid_xycg_operatorname",
+            "type": "string",
+            "display_name": "huid_xycg_operatorname"
+          },
+          "condition_operations": [
+            "multi_match",
+            "==",
+            "!=",
+            "in",
+            "not_in",
+            "<=",
+            "match",
+            "out_range",
+            "like",
+            ">",
+            "<",
+            "not_like",
+            ">=",
+            "range",
+            "regex"
+          ]
+        },
+        {
+          "name": "createtime",
+          "display_name": "创建时间",
+          "type": "timestamp",
+          "comment": "创建时间",
+          "mapped_field": {
+            "name": "createtime",
+            "type": "timestamp",
+            "display_name": "createtime"
+          },
+          "condition_operations": [
+            "<",
+            "<=",
+            "not_like",
+            "==",
+            "!=",
+            ">=",
+            "range",
+            "out_range",
+            "regex",
+            "in",
+            "like",
+            "not_in",
+            ">"
+          ]
+        },
+        {
+          "name": "auditdate",
+          "display_name": "审核时间",
+          "type": "timestamp",
+          "comment": "审核时间",
+          "mapped_field": {
+            "name": "auditdate",
+            "type": "timestamp",
+            "display_name": "auditdate"
+          },
+          "condition_operations": [
+            "<",
+            "<=",
+            "regex",
+            "not_like",
+            "==",
+            "!=",
+            "in",
+            ">=",
+            "out_range",
+            "not_in",
+            ">",
+            "range",
+            "like"
+          ]
+        },
+        {
+          "name": "material_number",
+          "display_name": "物料编码",
+          "type": "string",
+          "comment": "物料编码",
+          "mapped_field": {
+            "name": "material_number",
+            "type": "string",
+            "display_name": "material_number"
+          },
+          "condition_operations": [
+            "regex",
+            "not_like",
+            "out_range",
+            ">",
+            "==",
+            "!=",
+            "in",
+            ">=",
+            "range",
+            "like",
+            "not_in",
+            "<",
+            "<="
+          ]
+        },
+        {
+          "name": "material_name",
+          "display_name": "物料名称",
+          "type": "string",
+          "comment": "物料名称",
+          "mapped_field": {
+            "name": "material_name",
+            "type": "string",
+            "display_name": "material_name"
+          },
+          "condition_operations": [
+            "==",
+            "!=",
+            ">=",
+            "<=",
+            "multi_match",
+            ">",
+            "<",
+            "match",
+            "in",
+            "out_range",
+            "like",
+            "range",
+            "not_in",
+            "regex",
+            "not_like",
+            "knn"
+          ]
+        },
+        {
+          "name": "qty",
+          "display_name": "采购数量",
+          "type": "decimal",
+          "comment": "数量",
+          "mapped_field": {
+            "name": "qty",
+            "type": "decimal",
+            "display_name": "qty"
+          }
+        },
+        {
+          "name": "deliverdate",
+          "display_name": "预计交货日期",
+          "type": "date",
+          "comment": "预计交货日期，取用的标准交货时间。采购员可在ERP更新供应商反馈的交货时间。",
+          "mapped_field": {
+            "name": "deliverdate",
+            "type": "date",
+            "display_name": "deliverdate"
+          },
+          "condition_operations": [
+            "like",
+            ">",
+            "<",
+            "<=",
+            "==",
+            ">=",
+            "not_in",
+            "regex",
+            "not_like",
+            "!=",
+            "in",
+            "range",
+            "out_range"
+          ]
+        },
+        {
+          "name": "srcbillnumber",
+          "display_name": "来源单据号-采购申请单号",
+          "type": "string",
+          "comment": "来源单据号（对应采购申请单号）",
+          "mapped_field": {
+            "name": "srcbillnumber",
+            "type": "string",
+            "display_name": "srcbillnumber"
+          },
+          "condition_operations": [
+            "<",
+            "<=",
+            "regex",
+            "not_like",
+            "==",
+            ">=",
+            "like",
+            "not_in",
+            "!=",
+            "in",
+            "range",
+            "out_range",
+            ">"
+          ]
+        },
+        {
+          "name": "invqty",
+          "display_name": "入库数量",
+          "type": "decimal",
+          "comment": "入库数量",
+          "mapped_field": {
+            "name": "invqty",
+            "type": "decimal",
+            "display_name": "invqty"
+          }
+        },
+        {
+          "name": "returnqty",
+          "display_name": "退库数量",
+          "type": "decimal",
+          "comment": "退库数量",
+          "mapped_field": {
+            "name": "returnqty",
+            "type": "decimal",
+            "display_name": "returnqty"
+          }
+        },
+        {
+          "name": "actqty",
+          "display_name": "实际入库数量",
+          "type": "decimal",
+          "comment": "实际入库数量（入库数量 - 退库数量）",
+          "mapped_field": {
+            "name": "actqty",
+            "type": "decimal",
+            "display_name": "actqty"
+          }
+        },
+        {
+          "name": "entry_id",
+          "display_name": "entry_id",
+          "type": "string",
+          "comment": "",
+          "mapped_field": {
+            "name": "entry_id",
+            "type": "string",
+            "display_name": "entry_id"
+          },
+          "condition_operations": [
+            "!=",
+            ">=",
+            "out_range",
+            ">",
+            "<",
+            "in",
+            "range",
+            "like",
+            "not_in",
+            "<=",
+            "regex",
+            "not_like",
+            "=="
+          ]
+        },
+        {
+          "name": "id",
+          "display_name": "id",
+          "type": "string",
+          "comment": "",
+          "mapped_field": {
+            "name": "id",
+            "type": "string",
+            "display_name": "id"
+          },
+          "condition_operations": [
+            "out_range",
+            "like",
+            "not_like",
+            "==",
+            "!=",
+            ">=",
+            "not_in",
+            ">",
+            "<",
+            "<=",
+            "regex",
+            "in",
+            "range"
+          ]
+        },
+        {
+          "name": "rowclosestatus_title",
+          "display_name": "关闭状态",
+          "type": "string",
+          "comment": "",
+          "mapped_field": {
+            "name": "rowclosestatus_title",
+            "type": "string",
+            "display_name": "rowclosestatus_title"
+          },
+          "condition_operations": [
+            "not_in",
+            ">",
+            "<",
+            "<=",
+            "regex",
+            "not_like",
+            "in",
+            ">=",
+            "==",
+            "!=",
+            "range",
+            "out_range",
+            "like"
+          ]
+        },
+        {
+          "name": "rowterminatestatus_title",
+          "display_name": "终止状态",
+          "type": "string",
+          "comment": "",
+          "mapped_field": {
+            "name": "rowterminatestatus_title",
+            "type": "string",
+            "display_name": "rowterminatestatus_title"
+          },
+          "condition_operations": [
+            "<",
+            "<=",
+            "==",
+            "!=",
+            "in",
+            "range",
+            "out_range",
+            "regex",
+            "not_like",
+            ">=",
+            "like",
+            "not_in",
+            ">"
+          ]
+        }
+      ],
+      "primary_keys": [
+        "entry_id"
+      ],
+      "display_key": "material_name",
+      "incremental_key": "",
+      "tags": [
+        "已审核"
+      ],
+      "comment": "发给供应商的正式采购订单。",
+      "icon": "icon-dip-suanziguanli",
+      "color": "#52C41A",
+      "kn_id": "supply_ontology_hand",
+      "branch": "main",
+      "status": {
+        "incremental_key": "",
+        "incremental_value": "",
+        "index": "",
+        "index_available": false,
+        "doc_count": 0,
+        "storage_size": 0,
+        "update_time": 1790848657755
+      },
+      "creator": {
+        "id": "266c6a42-6131-4d62-8f39-853e7093701c",
+        "type": "user",
+        "name": "Administrator"
+      },
+      "create_time": 1790848657755,
+      "updater": {
+        "id": "266c6a42-6131-4d62-8f39-853e7093701c",
+        "type": "user",
+        "name": "Administrator"
+      },
+      "update_time": 1790848676857,
+      "module_type": "object_type",
+      "operations": [
+        "delete",
+        "modify",
+        "query_data",
+        "view_detail"
+      ]
+    },
+    {
+      "id": "supply_ontology_hand_pr",
+      "name": "采购申请单",
+      "data_source": {
+        "type": "resource",
+        "id": "01a0f6e5-fd8b-7e0d-bc68-536ab2ca1cbf",
+        "name": ""
+      },
+      "data_properties": [
+        {
+          "name": "huid_xmh_name",
+          "display_name": "生产项目号",
+          "type": "string",
+          "comment": "",
+          "mapped_field": {
+            "name": "huid_xmh_name",
+            "type": "string",
+            "display_name": "huid_xmh_name"
+          }
+        },
+        {
+          "name": "srcbillentryid",
+          "display_name": "来源单据明细ID",
+          "type": "string",
+          "comment": "",
+          "mapped_field": {
+            "name": "srcbillentryid",
+            "type": "string",
+            "display_name": "srcbillentryid"
+          }
+        },
+        {
+          "name": "srcbillid",
+          "display_name": "来源单据ID",
+          "type": "string",
+          "comment": "计划订单下推生成的采购申请，关联需求计划ID。",
+          "mapped_field": {
+            "name": "srcbillid",
+            "type": "string",
+            "display_name": "srcbillid"
+          }
+        },
+        {
+          "name": "srcbillnumber",
+          "display_name": "来源单据号",
+          "type": "string",
+          "comment": "",
+          "mapped_field": {
+            "name": "srcbillnumber",
+            "type": "string",
+            "display_name": "srcbillnumber"
+          }
+        },
+        {
+          "name": "id",
+          "display_name": "采购申请主键",
+          "type": "string",
+          "comment": "采购申请主键",
+          "mapped_field": {
+            "name": "id",
+            "type": "string",
+            "display_name": "id"
+          }
+        },
+        {
+          "name": "billno",
+          "display_name": "采购申请单号",
+          "type": "string",
+          "comment": "采购申请单号",
+          "mapped_field": {
+            "name": "billno",
+            "type": "string",
+            "display_name": "billno"
+          }
+        },
+        {
+          "name": "biztime",
+          "display_name": "业务时间",
+          "type": "timestamp",
+          "comment": "业务时间",
+          "mapped_field": {
+            "name": "biztime",
+            "type": "timestamp",
+            "display_name": "biztime"
+          }
+        },
+        {
+          "name": "billtype_name",
+          "display_name": "单据类型",
+          "type": "string",
+          "comment": "单据类型（包含研发/生产等，目前仅考虑生产）",
+          "mapped_field": {
+            "name": "billtype_name",
+            "type": "string",
+            "display_name": "billtype_name"
+          }
+        },
+        {
+          "name": "org_name",
+          "display_name": "组织名称",
+          "type": "string",
+          "comment": "组织名称",
+          "mapped_field": {
+            "name": "org_name",
+            "type": "string",
+            "display_name": "org_name"
+          }
+        },
+        {
+          "name": "auditdate",
+          "display_name": "审核日期",
+          "type": "timestamp",
+          "comment": "审核日期",
+          "mapped_field": {
+            "name": "auditdate",
+            "type": "timestamp",
+            "display_name": "auditdate"
+          }
+        },
+        {
+          "name": "entry_id",
+          "display_name": "采购申请明细主键",
+          "type": "string",
+          "comment": "采购申请明细主键",
+          "mapped_field": {
+            "name": "entry_id",
+            "type": "string",
+            "display_name": "entry_id"
+          }
+        },
+        {
+          "name": "material_number",
+          "display_name": "物料编码",
+          "type": "string",
+          "comment": "物料编码",
+          "mapped_field": {
+            "name": "material_number",
+            "type": "string",
+            "display_name": "material_number"
+          }
+        },
+        {
+          "name": "material_name",
+          "display_name": "物料名称",
+          "type": "string",
+          "comment": "物料名称",
+          "mapped_field": {
+            "name": "material_name",
+            "type": "string",
+            "display_name": "material_name"
+          }
+        },
+        {
+          "name": "qty",
+          "display_name": "数量",
+          "type": "decimal",
+          "comment": "数量",
+          "mapped_field": {
+            "name": "qty",
+            "type": "decimal",
+            "display_name": "qty"
+          }
+        },
+        {
+          "name": "unit_name",
+          "display_name": "单位",
+          "type": "string",
+          "comment": "单位",
+          "mapped_field": {
+            "name": "unit_name",
+            "type": "string",
+            "display_name": "unit_name"
+          }
+        },
+        {
+          "name": "joinqty",
+          "display_name": "已下推采购订单数量",
+          "type": "decimal",
+          "comment": "已下推采购订单数量",
+          "mapped_field": {
+            "name": "joinqty",
+            "type": "decimal",
+            "display_name": "joinqty"
+          }
+        },
+        {
+          "name": "rowclosestatus_title",
+          "display_name": "关闭状态",
+          "type": "string",
+          "comment": "",
+          "mapped_field": {
+            "name": "rowclosestatus_title",
+            "type": "string",
+            "display_name": "rowclosestatus_title"
+          },
+          "condition_operations": [
+            "==",
+            "!=",
+            "like",
+            "not_like",
+            "in",
+            "not_in",
+            ">",
+            ">=",
+            "<",
+            "<=",
+            "range",
+            "out_range"
+          ]
+        },
+        {
+          "name": "rowterminatestatus_title",
+          "display_name": "终止状态",
+          "type": "string",
+          "comment": "",
+          "mapped_field": {
+            "name": "rowterminatestatus_title",
+            "type": "string",
+            "display_name": "rowterminatestatus_title"
+          },
+          "condition_operations": [
+            "==",
+            "!=",
+            "like",
+            "not_like",
+            "in",
+            "not_in",
+            ">",
+            ">=",
+            "<",
+            "<=",
+            "range",
+            "out_range"
+          ]
+        }
+      ],
+      "primary_keys": [
+        "entry_id"
+      ],
+      "display_key": "billno",
+      "incremental_key": "",
+      "tags": [
+        "已审核"
+      ],
+      "comment": "根据MRP生成的内部采购申请PR。",
+      "icon": "icon-dip-suanziguanli",
+      "color": "#52C41A",
+      "kn_id": "supply_ontology_hand",
+      "branch": "main",
+      "status": {
+        "incremental_key": "",
+        "incremental_value": "",
+        "index": "",
+        "index_available": false,
+        "doc_count": 0,
+        "storage_size": 0,
+        "update_time": 1790848657755
+      },
+      "creator": {
+        "id": "266c6a42-6131-4d62-8f39-853e7093701c",
+        "type": "user",
+        "name": "Administrator"
+      },
+      "create_time": 1790848657755,
+      "updater": {
+        "id": "266c6a42-6131-4d62-8f39-853e7093701c",
+        "type": "user",
+        "name": "Administrator"
+      },
+      "update_time": 1790848676256,
+      "module_type": "object_type",
+      "operations": [
+        "delete",
+        "modify",
+        "query_data",
+        "view_detail"
+      ]
+    },
+    {
+      "id": "supply_ontology_hand_mrp",
+      "name": "物料需求计划",
+      "data_source": {
+        "type": "resource",
+        "id": "01a0f6e5-fd76-73e4-b0ce-18c88736ea2c",
+        "name": ""
+      },
+      "data_properties": [
+        {
+          "name": "advisedroptime",
+          "display_name": "建议投放时间",
+          "type": "date",
+          "comment": "建议物料投放时间",
+          "mapped_field": {
+            "name": "advisedroptime",
+            "type": "date",
+            "display_name": "advisedroptime"
+          }
+        },
+        {
+          "name": "adviseenddate",
+          "display_name": "建议结束时间",
+          "type": "date",
+          "comment": "",
+          "mapped_field": {
+            "name": "adviseenddate",
+            "type": "date",
+            "display_name": "adviseenddate"
+          }
+        },
+        {
+          "name": "adviseorderqty",
+          "display_name": "建议订单数量",
+          "type": "decimal",
+          "comment": "MRP跑出来的需要的物料数量，理论值",
+          "mapped_field": {
+            "name": "adviseorderqty",
+            "type": "decimal",
+            "display_name": "adviseorderqty"
+          }
+        },
+        {
+          "name": "advisestartdate",
+          "display_name": "建议开始时间",
+          "type": "date",
+          "comment": "",
+          "mapped_field": {
+            "name": "advisestartdate",
+            "type": "date",
+            "display_name": "advisestartdate"
+          }
+        },
+        {
+          "name": "availabledate",
+          "display_name": "可用日期",
+          "type": "date",
+          "comment": "",
+          "mapped_field": {
+            "name": "availabledate",
+            "type": "date",
+            "display_name": "availabledate"
+          }
+        },
+        {
+          "name": "billno",
+          "display_name": "需求计划订单单据编号",
+          "type": "string",
+          "comment": "MRP的单据编号",
+          "mapped_field": {
+            "name": "billno",
+            "type": "string",
+            "display_name": "billno"
+          }
+        },
+        {
+          "name": "bizdropqty",
+          "display_name": "投放数量",
+          "type": "decimal",
+          "comment": "PMC经理确认的投放物料数量，是采购申请和订单的数量。",
+          "mapped_field": {
+            "name": "bizdropqty",
+            "type": "decimal",
+            "display_name": "bizdropqty"
+          }
+        },
+        {
+          "name": "bizorderqty",
+          "display_name": "订单数量 ",
+          "type": "decimal",
+          "comment": "PMC修订后的实际物料需求数量",
+          "mapped_field": {
+            "name": "bizorderqty",
+            "type": "decimal",
+            "display_name": "bizorderqty"
+          }
+        },
+        {
+          "name": "closestatus_title",
+          "display_name": "关闭状态",
+          "type": "string",
+          "comment": "A:正常，尚未关闭, B:关闭, C:拆分关闭, D:合并关闭, E:投放关闭",
+          "mapped_field": {
+            "name": "closestatus_title",
+            "type": "string",
+            "display_name": "closestatus_title"
+          }
+        },
+        {
+          "name": "createtime",
+          "display_name": "创建时间",
+          "type": "timestamp",
+          "comment": "MRP计算时间",
+          "mapped_field": {
+            "name": "createtime",
+            "type": "timestamp",
+            "display_name": "createtime"
+          }
+        },
+        {
+          "name": "creator_name",
+          "display_name": "创建人",
+          "type": "string",
+          "comment": "",
+          "mapped_field": {
+            "name": "creator_name",
+            "type": "string",
+            "display_name": "creator_name"
+          }
+        },
+        {
+          "name": "dropbilltype_name",
+          "display_name": "投放单据类型",
+          "type": "string",
+          "comment": "与物料属性对应 （自制-汇报生产）（委外-普通委外）（外购-生产项目采购申请单）",
+          "mapped_field": {
+            "name": "dropbilltype_name",
+            "type": "string",
+            "display_name": "dropbilltype_name"
+          }
+        },
+        {
+          "name": "dropstatus_title",
+          "display_name": "投放状态",
+          "type": "string",
+          "comment": "物料需求是否投放生产，也就是发起采购申请PR，最终形成采购订单PO。",
+          "mapped_field": {
+            "name": "dropstatus_title",
+            "type": "string",
+            "display_name": "dropstatus_title"
+          }
+        },
+        {
+          "name": "droptime",
+          "display_name": "投放时间",
+          "type": "timestamp",
+          "comment": "物料的投放时间，投放是指投放采购，这是确定性的采购依据。",
+          "mapped_field": {
+            "name": "droptime",
+            "type": "timestamp",
+            "display_name": "droptime"
+          }
+        },
+        {
+          "name": "enddate",
+          "display_name": "计划完成日期",
+          "type": "date",
+          "comment": "",
+          "mapped_field": {
+            "name": "enddate",
+            "type": "date",
+            "display_name": "enddate"
+          }
+        },
+        {
+          "name": "materialattr_title",
+          "display_name": "物料属性 ",
+          "type": "string",
+          "comment": "自制/委外/外购",
+          "mapped_field": {
+            "name": "materialattr_title",
+            "type": "string",
+            "display_name": "materialattr_title"
+          }
+        },
+        {
+          "name": "materialplanid_name",
+          "display_name": "物料名称",
+          "type": "string",
+          "comment": "",
+          "mapped_field": {
+            "name": "materialplanid_name",
+            "type": "string",
+            "display_name": "materialplanid_name"
+          }
+        },
+        {
+          "name": "materialplanid_number",
+          "display_name": "物料编码",
+          "type": "string",
+          "comment": "",
+          "mapped_field": {
+            "name": "materialplanid_number",
+            "type": "string",
+            "display_name": "materialplanid_number"
+          }
+        },
+        {
+          "name": "orderdate",
+          "display_name": "计划准备日期",
+          "type": "date",
+          "comment": "",
+          "mapped_field": {
+            "name": "orderdate",
+            "type": "date",
+            "display_name": "orderdate"
+          }
+        },
+        {
+          "name": "planoperatenum",
+          "display_name": "计划运算单号",
+          "type": "string",
+          "comment": "MRP计算单号",
+          "mapped_field": {
+            "name": "planoperatenum",
+            "type": "string",
+            "display_name": "planoperatenum"
+          }
+        },
+        {
+          "name": "rootdemandbillno",
+          "display_name": "根需求单号",
+          "type": "string",
+          "comment": "与预测单单号（产品需求预测计划）关联；",
+          "mapped_field": {
+            "name": "rootdemandbillno",
+            "type": "string",
+            "display_name": "rootdemandbillno"
+          }
+        },
+        {
+          "name": "startdate",
+          "display_name": "计划开始日期",
+          "type": "date",
+          "comment": "",
+          "mapped_field": {
+            "name": "startdate",
+            "type": "date",
+            "display_name": "startdate"
+          }
+        }
+      ],
+      "primary_keys": [
+        "billno"
+      ],
+      "display_key": "materialplanid_name",
+      "incremental_key": "",
+      "tags": [
+        "已审核"
+      ],
+      "comment": "通过ERP系统的MRP运算产生的物料需求计划。",
+      "icon": "icon-dip-suanziguanli",
+      "color": "#52C41A",
+      "kn_id": "supply_ontology_hand",
+      "branch": "main",
+      "status": {
+        "incremental_key": "",
+        "incremental_value": "",
+        "index": "",
+        "index_available": false,
+        "doc_count": 0,
+        "storage_size": 0,
+        "update_time": 1790848657755
+      },
+      "creator": {
+        "id": "266c6a42-6131-4d62-8f39-853e7093701c",
+        "type": "user",
+        "name": "Administrator"
+      },
+      "create_time": 1790848657755,
+      "updater": {
+        "id": "266c6a42-6131-4d62-8f39-853e7093701c",
+        "type": "user",
+        "name": "Administrator"
+      },
+      "update_time": 1790848675677,
+      "module_type": "object_type",
+      "operations": [
+        "delete",
+        "modify",
+        "query_data",
+        "view_detail"
+      ]
+    },
+    {
+      "id": "supply_ontology_hand_bom",
+      "name": "产品BOM",
+      "data_source": {
+        "type": "resource",
+        "id": "01a0f6e5-fd6a-74a6-985c-4f43242036b0",
+        "name": ""
+      },
+      "data_properties": [
+        {
+          "name": "bom_version",
+          "display_name": "BOM版本",
+          "type": "text",
+          "comment": "",
+          "mapped_field": {
+            "name": "bom_version",
+            "type": "text",
+            "display_name": "bom_version"
+          }
+        },
+        {
+          "name": "demand_quantity",
+          "display_name": "需求数量",
+          "type": "decimal",
+          "comment": "",
+          "mapped_field": {
+            "name": "demand_quantity",
+            "type": "decimal",
+            "display_name": "demand_quantity"
+          }
+        },
+        {
+          "name": "usage_denominator",
+          "display_name": "用量：分母",
+          "type": "decimal",
+          "comment": "",
+          "mapped_field": {
+            "name": "usage_denominator",
+            "type": "decimal",
+            "display_name": "usage_denominator"
+          }
+        },
+        {
+          "name": "usage_numerator",
+          "display_name": "用量：分子",
+          "type": "decimal",
+          "comment": "",
+          "mapped_field": {
+            "name": "usage_numerator",
+            "type": "decimal",
+            "display_name": "usage_numerator"
+          }
+        },
+        {
+          "name": "alt_group_no",
+          "display_name": "替代组号",
+          "type": "string",
+          "comment": "可相互替代的物料组号，在同一父级物料下，同一组号的物料可相互替代。",
+          "mapped_field": {
+            "name": "alt_group_no",
+            "type": "string",
+            "display_name": "alt_group_no"
+          }
+        },
+        {
+          "name": "alt_method",
+          "display_name": "替代方式",
+          "type": "string",
+          "comment": "直接替代或者需要改造改制后替代",
+          "mapped_field": {
+            "name": "alt_method",
+            "type": "string",
+            "display_name": "alt_method"
+          }
+        },
+        {
+          "name": "alt_part",
+          "display_name": "替代件",
+          "type": "string",
+          "comment": "主料为空，其他为√；",
+          "mapped_field": {
+            "name": "alt_part",
+            "type": "string",
+            "display_name": "alt_part"
+          }
+        },
+        {
+          "name": "alt_priority",
+          "display_name": "优先级",
+          "type": "integer",
+          "comment": "优先级为0的是主料；",
+          "mapped_field": {
+            "name": "alt_priority",
+            "type": "integer",
+            "display_name": "alt_priority"
+          }
+        },
+        {
+          "name": "bom_level",
+          "display_name": "物料层级",
+          "type": "integer",
+          "comment": "以一个产品为单位来组织的，1、2、3，最多8级；可以通过产品物料编码直接过滤获得产品的物料分层数量；",
+          "mapped_field": {
+            "name": "bom_level",
+            "type": "integer",
+            "display_name": "bom_level"
+          }
+        },
+        {
+          "name": "bom_material_code",
+          "display_name": "BOM所属产品物料编码",
+          "type": "string",
+          "comment": "产品的BOM物料号，可以以产品编码=BOM物料号来找到该产品的所有物料；",
+          "mapped_field": {
+            "name": "bom_material_code",
+            "type": "string",
+            "display_name": "bom_material_code"
+          }
+        },
+        {
+          "name": "material_code",
+          "display_name": "物料编码",
+          "type": "string",
+          "comment": "",
+          "mapped_field": {
+            "name": "material_code",
+            "type": "string",
+            "display_name": "material_code"
+          }
+        },
+        {
+          "name": "material_name",
+          "display_name": "物料名称",
+          "type": "string",
+          "comment": "",
+          "mapped_field": {
+            "name": "material_name",
+            "type": "string",
+            "display_name": "material_name"
+          }
+        },
+        {
+          "name": "parent_material_code",
+          "display_name": "父级物料编码",
+          "type": "string",
+          "comment": "注意：最终产品/产成品是没有父级物料编码的；",
+          "mapped_field": {
+            "name": "parent_material_code",
+            "type": "string",
+            "display_name": "parent_material_code"
+          }
+        },
+        {
+          "name": "seq_no",
+          "display_name": "BOM序号",
+          "type": "integer",
+          "comment": "BOM序号用来跟踪一个产品中，每个物料的序号。比如产品A，有10个物料构成，每个物料在\nA产品的BOM中都有一个序号。",
+          "mapped_field": {
+            "name": "seq_no",
+            "type": "integer",
+            "display_name": "seq_no"
+          }
+        },
+        {
+          "name": "standard_usage",
+          "display_name": "标准用量",
+          "type": "decimal",
+          "comment": "在组装成上级物料时，需要的标准用量。",
+          "mapped_field": {
+            "name": "standard_usage",
+            "type": "decimal",
+            "display_name": "standard_usage"
+          }
+        },
+        {
+          "name": "variable_loss_rate",
+          "display_name": "变动损耗率",
+          "type": "decimal",
+          "comment": "0就是没有损耗，百分比计数方式。",
+          "mapped_field": {
+            "name": "variable_loss_rate",
+            "type": "decimal",
+            "display_name": "variable_loss_rate"
+          }
+        }
+      ],
+      "primary_keys": [
+        "bom_version",
+        "bom_material_code",
+        "seq_no"
+      ],
+      "display_key": "bom_material_code",
+      "incremental_key": "",
+      "tags": [
+        "已审核"
+      ],
+      "comment": "定义产品的物料清单结构，\n1. BOM结构：多层树形结构：产品 → L1子件 → L2子件 → ... → 最底层原材料；物料类型含自制、委外、外购。 \n2. BOM 分析默认使用 alt_priority == 0 的主料；\n3. BOM 替代料模型：\n1） BOM 中同一父件下的子件满足以下条件时，判定为同一替代组：\n  - alt_method = '替代'\n  - parent_material_code 相同（为空时使用 bom_material_code）\n  - alt_group_no 相同且非空\n2） 组内角色定义：\n  - alt_priority = 0 → 主料\n  - alt_priority > 0 → 替代料（priority 越小越优先）",
+      "icon": "icon-dip-suanziguanli",
+      "color": "#0e5fc5",
+      "kn_id": "supply_ontology_hand",
+      "branch": "main",
+      "status": {
+        "incremental_key": "",
+        "incremental_value": "",
+        "index": "",
+        "index_available": false,
+        "doc_count": 0,
+        "storage_size": 0,
+        "update_time": 1790848657755
+      },
+      "creator": {
+        "id": "266c6a42-6131-4d62-8f39-853e7093701c",
+        "type": "user",
+        "name": "Administrator"
+      },
+      "create_time": 1790848657755,
+      "updater": {
+        "id": "266c6a42-6131-4d62-8f39-853e7093701c",
+        "type": "user",
+        "name": "Administrator"
+      },
+      "update_time": 1790848673350,
+      "module_type": "object_type",
+      "operations": [
+        "delete",
+        "modify",
+        "query_data",
+        "view_detail"
+      ]
+    },
+    {
+      "id": "skills",
+      "name": "Skills",
+      "data_source": null,
+      "data_properties": [
+        {
+          "name": "skill_id",
+          "display_name": "Skill ID",
+          "type": "text",
+          "comment": ""
+        },
+        {
+          "name": "name",
+          "display_name": "Name",
+          "type": "text",
+          "comment": ""
+        },
+        {
+          "name": "description",
+          "display_name": "Description",
+          "type": "text",
+          "comment": ""
+        },
+        {
+          "name": "status",
+          "display_name": "Status",
+          "type": "text",
+          "comment": ""
+        },
+        {
+          "name": "version",
+          "display_name": "Version",
+          "type": "text",
+          "comment": ""
+        },
+        {
+          "name": "business_domain_id",
+          "display_name": "Business Domain ID",
+          "type": "text",
+          "comment": ""
+        },
+        {
+          "name": "kn_id",
+          "display_name": "Knowledge Network ID",
+          "type": "text",
+          "comment": ""
+        },
+        {
+          "name": "object_type_ids",
+          "display_name": "Skill Object Scope",
+          "type": "json",
+          "comment": ""
+        },
+        {
+          "name": "skill_query",
+          "display_name": "Skill Query",
+          "type": "text",
+          "comment": ""
+        }
+      ],
+      "primary_keys": [
+        "skill_id"
+      ],
+      "display_key": "skill_id",
+      "incremental_key": "",
+      "tags": [],
+      "comment": "",
+      "icon": "",
+      "color": "",
+      "kn_id": "supply_ontology_hand",
+      "branch": "main",
+      "status": {
+        "incremental_key": "",
+        "incremental_value": "",
+        "index": "",
+        "index_available": false,
+        "doc_count": 0,
+        "storage_size": 0,
+        "update_time": 1790848657755
+      },
+      "creator": {
+        "id": "266c6a42-6131-4d62-8f39-853e7093701c",
+        "type": "user",
+        "name": "Administrator"
+      },
+      "create_time": 1790848657755,
+      "updater": {
+        "id": "266c6a42-6131-4d62-8f39-853e7093701c",
+        "type": "user",
+        "name": "Administrator"
+      },
+      "update_time": 1790848657755,
+      "module_type": "object_type",
+      "operations": [
+        "delete",
+        "modify",
+        "query_data",
+        "view_detail"
+      ]
+    },
+    {
+      "id": "supply_ontology_hand_mon_item",
+      "name": "监控证据明细",
+      "data_source": null,
+      "data_properties": [
+        {
+          "name": "item_id",
+          "display_name": "明细主键",
+          "type": "string",
+          "comment": "",
+          "mapped_field": {
+            "name": "item_id",
+            "type": "string",
+            "display_name": "item_id"
+          }
+        },
+        {
+          "name": "task_id",
+          "display_name": "监控任务",
+          "type": "string",
+          "comment": "",
+          "mapped_field": {
+            "name": "task_id",
+            "type": "string",
+            "display_name": "task_id"
+          }
+        },
+        {
+          "name": "material_code",
+          "display_name": "BOM 物料",
+          "type": "string",
+          "comment": "",
+          "mapped_field": {
+            "name": "material_code",
+            "type": "string",
+            "display_name": "material_code"
+          }
+        },
+        {
+          "name": "bom_level",
+          "display_name": "BOM 层级",
+          "type": "integer",
+          "comment": "",
+          "mapped_field": {
+            "name": "bom_level",
+            "type": "integer",
+            "display_name": "bom_level"
+          }
+        },
+        {
+          "name": "l1_parent",
+          "display_name": "一层父件",
+          "type": "string",
+          "comment": "",
+          "mapped_field": {
+            "name": "l1_parent",
+            "type": "string",
+            "display_name": "l1_parent"
+          }
+        },
+        {
+          "name": "gross_requirement",
+          "display_name": "毛需求",
+          "type": "decimal",
+          "comment": "",
+          "mapped_field": {
+            "name": "gross_requirement",
+            "type": "decimal",
+            "display_name": "gross_requirement"
+          }
+        },
+        {
+          "name": "required_date",
+          "display_name": "要求到位日",
+          "type": "date",
+          "comment": "",
+          "mapped_field": {
+            "name": "required_date",
+            "type": "date",
+            "display_name": "required_date"
+          }
+        },
+        {
+          "name": "available_qty",
+          "display_name": "当前可用",
+          "type": "decimal",
+          "comment": "",
+          "mapped_field": {
+            "name": "available_qty",
+            "type": "decimal",
+            "display_name": "available_qty"
+          }
+        },
+        {
+          "name": "in_transit_qty",
+          "display_name": "当前在途",
+          "type": "decimal",
+          "comment": "",
+          "mapped_field": {
+            "name": "in_transit_qty",
+            "type": "decimal",
+            "display_name": "in_transit_qty"
+          }
+        },
+        {
+          "name": "expected_arrival",
+          "display_name": "预计到货日",
+          "type": "date",
+          "comment": "",
+          "mapped_field": {
+            "name": "expected_arrival",
+            "type": "date",
+            "display_name": "expected_arrival"
+          }
+        },
+        {
+          "name": "net_shortage",
+          "display_name": "当前净缺口",
+          "type": "decimal",
+          "comment": "",
+          "mapped_field": {
+            "name": "net_shortage",
+            "type": "decimal",
+            "display_name": "net_shortage"
+          }
+        },
+        {
+          "name": "delay_class",
+          "display_name": "延迟分级",
+          "type": "string",
+          "comment": "A / B / none",
+          "mapped_field": {
+            "name": "delay_class",
+            "type": "string",
+            "display_name": "delay_class"
+          }
+        },
+        {
+          "name": "supply_status",
+          "display_name": "供应状态",
+          "type": "string",
+          "comment": "",
+          "mapped_field": {
+            "name": "supply_status",
+            "type": "string",
+            "display_name": "supply_status"
+          }
+        },
+        {
+          "name": "snapshot_id",
+          "display_name": "最近快照",
+          "type": "string",
+          "comment": "",
+          "mapped_field": {
+            "name": "snapshot_id",
+            "type": "string",
+            "display_name": "snapshot_id"
+          }
+        },
+        {
+          "name": "updated_at",
+          "display_name": "更新时间",
+          "type": "datetime",
+          "comment": "",
+          "mapped_field": {
+            "name": "updated_at",
+            "type": "datetime",
+            "display_name": "updated_at"
+          }
+        }
+      ],
+      "primary_keys": [
+        "item_id"
+      ],
+      "display_key": "item_id",
+      "incremental_key": "",
+      "tags": [],
+      "comment": "监控任务对应的 BOM 供应证据，不是监控目标。",
+      "icon": "icon-zhengju",
+      "color": "#13C2C2",
+      "kn_id": "supply_ontology_hand",
+      "branch": "main",
+      "status": {
+        "incremental_key": "",
+        "incremental_value": "",
+        "index": "",
+        "index_available": false,
+        "doc_count": 0,
+        "storage_size": 0,
+        "update_time": 1790848657755
+      },
+      "creator": {
+        "id": "266c6a42-6131-4d62-8f39-853e7093701c",
+        "type": "user",
+        "name": "Administrator"
+      },
+      "create_time": 1790848657755,
+      "updater": {
+        "id": "266c6a42-6131-4d62-8f39-853e7093701c",
+        "type": "user",
+        "name": "Administrator"
+      },
+      "update_time": 1790848657755,
+      "module_type": "object_type",
+      "operations": [
+        "delete",
+        "modify",
+        "query_data",
+        "view_detail"
+      ]
+    },
+    {
+      "id": "supply_ontology_hand_mon_task",
+      "name": "监控任务",
+      "data_source": null,
+      "data_properties": [
+        {
+          "name": "task_id",
+          "display_name": "任务主键",
+          "type": "string",
+          "comment": "",
+          "mapped_field": {
+            "name": "task_id",
+            "type": "string",
+            "display_name": "task_id"
+          }
+        },
+        {
+          "name": "product_code",
+          "display_name": "被监控产品",
+          "type": "string",
+          "comment": "",
+          "mapped_field": {
+            "name": "product_code",
+            "type": "string",
+            "display_name": "product_code"
+          }
+        },
+        {
+          "name": "forecast_id",
+          "display_name": "被监控需求预测",
+          "type": "string",
+          "comment": "一个任务只对应一张需求预测单",
+          "mapped_field": {
+            "name": "forecast_id",
+            "type": "string",
+            "display_name": "forecast_id"
+          }
+        },
+        {
+          "name": "forecast_qty",
+          "display_name": "预测数量基线",
+          "type": "decimal",
+          "comment": "",
+          "mapped_field": {
+            "name": "forecast_qty",
+            "type": "decimal",
+            "display_name": "forecast_qty"
+          }
+        },
+        {
+          "name": "demand_end",
+          "display_name": "需求截止日基线",
+          "type": "date",
+          "comment": "",
+          "mapped_field": {
+            "name": "demand_end",
+            "type": "date",
+            "display_name": "demand_end"
+          }
+        },
+        {
+          "name": "warehouse_scope",
+          "display_name": "仓范围",
+          "type": "string",
+          "comment": "",
+          "mapped_field": {
+            "name": "warehouse_scope",
+            "type": "string",
+            "display_name": "warehouse_scope"
+          }
+        },
+        {
+          "name": "substitute_enabled",
+          "display_name": "替代策略",
+          "type": "integer",
+          "comment": "1 启用替代，0 不启用",
+          "mapped_field": {
+            "name": "substitute_enabled",
+            "type": "integer",
+            "display_name": "substitute_enabled"
+          }
+        },
+        {
+          "name": "kitting_status",
+          "display_name": "当前齐套状态",
+          "type": "string",
+          "comment": "",
+          "mapped_field": {
+            "name": "kitting_status",
+            "type": "string",
+            "display_name": "kitting_status"
+          }
+        },
+        {
+          "name": "can_deliver_on_time",
+          "display_name": "当前是否可按期",
+          "type": "integer",
+          "comment": "1 可按期，0 不可按期",
+          "mapped_field": {
+            "name": "can_deliver_on_time",
+            "type": "integer",
+            "display_name": "can_deliver_on_time"
+          }
+        },
+        {
+          "name": "max_delay_days",
+          "display_name": "当前最大延迟",
+          "type": "integer",
+          "comment": "",
+          "mapped_field": {
+            "name": "max_delay_days",
+            "type": "integer",
+            "display_name": "max_delay_days"
+          }
+        },
+        {
+          "name": "planned_start",
+          "display_name": "倒排生产开始日",
+          "type": "date",
+          "comment": "",
+          "mapped_field": {
+            "name": "planned_start",
+            "type": "date",
+            "display_name": "planned_start"
+          }
+        },
+        {
+          "name": "planned_end",
+          "display_name": "需求截止日",
+          "type": "date",
+          "comment": "",
+          "mapped_field": {
+            "name": "planned_end",
+            "type": "date",
+            "display_name": "planned_end"
+          }
+        },
+        {
+          "name": "snapshot_id",
+          "display_name": "最近快照",
+          "type": "string",
+          "comment": "",
+          "mapped_field": {
+            "name": "snapshot_id",
+            "type": "string",
+            "display_name": "snapshot_id"
+          }
+        },
+        {
+          "name": "task_status",
+          "display_name": "任务状态",
+          "type": "string",
+          "comment": "watching / risk / ready / completed / closed",
+          "mapped_field": {
+            "name": "task_status",
+            "type": "string",
+            "display_name": "task_status"
+          }
+        },
+        {
+          "name": "check_interval",
+          "display_name": "检查频率分钟",
+          "type": "integer",
+          "comment": "",
+          "mapped_field": {
+            "name": "check_interval",
+            "type": "integer",
+            "display_name": "check_interval"
+          }
+        },
+        {
+          "name": "next_check_at",
+          "display_name": "下次检查时间",
+          "type": "datetime",
+          "comment": "",
+          "mapped_field": {
+            "name": "next_check_at",
+            "type": "datetime",
+            "display_name": "next_check_at"
+          }
+        },
+        {
+          "name": "last_checked_at",
+          "display_name": "最近检查时间",
+          "type": "datetime",
+          "comment": "",
+          "mapped_field": {
+            "name": "last_checked_at",
+            "type": "datetime",
+            "display_name": "last_checked_at"
+          }
+        },
+        {
+          "name": "created_by",
+          "display_name": "创建人",
+          "type": "string",
+          "comment": "",
+          "mapped_field": {
+            "name": "created_by",
+            "type": "string",
+            "display_name": "created_by"
+          }
+        },
+        {
+          "name": "created_at",
+          "display_name": "创建时间",
+          "type": "datetime",
+          "comment": "",
+          "mapped_field": {
+            "name": "created_at",
+            "type": "datetime",
+            "display_name": "created_at"
+          }
+        },
+        {
+          "name": "closed_at",
+          "display_name": "关闭时间",
+          "type": "datetime",
+          "comment": "",
+          "mapped_field": {
+            "name": "closed_at",
+            "type": "datetime",
+            "display_name": "closed_at"
+          }
+        }
+      ],
+      "primary_keys": [
+        "task_id"
+      ],
+      "display_key": "task_id",
+      "incremental_key": "",
+      "tags": [],
+      "comment": "生产计划倒排监控任务：一个任务只对应一个产品与一张需求预测单，物料是履约证据。",
+      "icon": "icon-daibanshixiang",
+      "color": "#FF4D4F",
+      "kn_id": "supply_ontology_hand",
+      "branch": "main",
+      "status": {
+        "incremental_key": "",
+        "incremental_value": "",
+        "index": "",
+        "index_available": false,
+        "doc_count": 0,
+        "storage_size": 0,
+        "update_time": 1790848657755
+      },
+      "creator": {
+        "id": "266c6a42-6131-4d62-8f39-853e7093701c",
+        "type": "user",
+        "name": "Administrator"
+      },
+      "create_time": 1790848657755,
+      "updater": {
+        "id": "266c6a42-6131-4d62-8f39-853e7093701c",
+        "type": "user",
+        "name": "Administrator"
+      },
+      "update_time": 1790848657755,
+      "module_type": "object_type",
+      "operations": [
+        "delete",
+        "modify",
+        "query_data",
+        "view_detail"
+      ]
+    },
+    {
+      "id": "supply_ontology_hand_pr_decision",
+      "name": "采购申请决策",
+      "data_source": null,
+      "data_properties": [
+        {
+          "name": "decision_id",
+          "display_name": "决策行主键",
+          "type": "string",
+          "comment": "采购申请决策记录主键，不是 ERP 采购申请单号",
+          "mapped_field": {
+            "name": "decision_id",
+            "type": "string",
+            "display_name": "decision_id"
+          }
+        },
+        {
+          "name": "decision_batch_id",
+          "display_name": "同批建议分组",
+          "type": "string",
+          "comment": "",
+          "mapped_field": {
+            "name": "decision_batch_id",
+            "type": "string",
+            "display_name": "decision_batch_id"
+          }
+        },
+        {
+          "name": "forecast_id",
+          "display_name": "来源需求预测",
+          "type": "string",
+          "comment": "",
+          "mapped_field": {
+            "name": "forecast_id",
+            "type": "string",
+            "display_name": "forecast_id"
+          }
+        },
+        {
+          "name": "product_code",
+          "display_name": "来源产品",
+          "type": "string",
+          "comment": "",
+          "mapped_field": {
+            "name": "product_code",
+            "type": "string",
+            "display_name": "product_code"
+          }
+        },
+        {
+          "name": "material_code",
+          "display_name": "建议采购物料",
+          "type": "string",
+          "comment": "",
+          "mapped_field": {
+            "name": "material_code",
+            "type": "string",
+            "display_name": "material_code"
+          }
+        },
+        {
+          "name": "recommended_qty",
+          "display_name": "建议数量",
+          "type": "decimal",
+          "comment": "",
+          "mapped_field": {
+            "name": "recommended_qty",
+            "type": "decimal",
+            "display_name": "recommended_qty"
+          }
+        },
+        {
+          "name": "required_date",
+          "display_name": "要求到位日",
+          "type": "date",
+          "comment": "",
+          "mapped_field": {
+            "name": "required_date",
+            "type": "date",
+            "display_name": "required_date"
+          }
+        },
+        {
+          "name": "warehouse_scope",
+          "display_name": "仓范围",
+          "type": "string",
+          "comment": "",
+          "mapped_field": {
+            "name": "warehouse_scope",
+            "type": "string",
+            "display_name": "warehouse_scope"
+          }
+        },
+        {
+          "name": "substitute_enabled",
+          "display_name": "替代策略",
+          "type": "integer",
+          "comment": "1 启用替代，0 不启用",
+          "mapped_field": {
+            "name": "substitute_enabled",
+            "type": "integer",
+            "display_name": "substitute_enabled"
+          }
+        },
+        {
+          "name": "reason_code",
+          "display_name": "缺口原因",
+          "type": "string",
+          "comment": "",
+          "mapped_field": {
+            "name": "reason_code",
+            "type": "string",
+            "display_name": "reason_code"
+          }
+        },
+        {
+          "name": "snapshot_id",
+          "display_name": "计算快照",
+          "type": "string",
+          "comment": "",
+          "mapped_field": {
+            "name": "snapshot_id",
+            "type": "string",
+            "display_name": "snapshot_id"
+          }
+        },
+        {
+          "name": "interaction_id",
+          "display_name": "OpenBKN Interaction",
+          "type": "string",
+          "comment": "",
+          "mapped_field": {
+            "name": "interaction_id",
+            "type": "string",
+            "display_name": "interaction_id"
+          }
+        },
+        {
+          "name": "status",
+          "display_name": "状态",
+          "type": "string",
+          "comment": "approved / rejected / cancelled",
+          "mapped_field": {
+            "name": "status",
+            "type": "string",
+            "display_name": "status"
+          }
+        },
+        {
+          "name": "approved_by",
+          "display_name": "批准人",
+          "type": "string",
+          "comment": "",
+          "mapped_field": {
+            "name": "approved_by",
+            "type": "string",
+            "display_name": "approved_by"
+          }
+        },
+        {
+          "name": "approved_at",
+          "display_name": "批准时间",
+          "type": "datetime",
+          "comment": "",
+          "mapped_field": {
+            "name": "approved_at",
+            "type": "datetime",
+            "display_name": "approved_at"
+          }
+        },
+        {
+          "name": "created_at",
+          "display_name": "创建时间",
+          "type": "datetime",
+          "comment": "",
+          "mapped_field": {
+            "name": "created_at",
+            "type": "datetime",
+            "display_name": "created_at"
+          }
+        },
+        {
+          "name": "idempotency_key",
+          "display_name": "幂等键",
+          "type": "string",
+          "comment": "",
+          "mapped_field": {
+            "name": "idempotency_key",
+            "type": "string",
+            "display_name": "idempotency_key"
+          }
+        }
+      ],
+      "primary_keys": [
+        "decision_id"
+      ],
+      "display_key": "decision_id",
+      "incremental_key": "",
+      "tags": [],
+      "comment": "人工批准后的采购建议决策记录。不是 ERP 采购申请，本期不调用 ERP。",
+      "icon": "icon-caigou",
+      "color": "#2F54EB",
+      "kn_id": "supply_ontology_hand",
+      "branch": "main",
+      "status": {
+        "incremental_key": "",
+        "incremental_value": "",
+        "index": "",
+        "index_available": false,
+        "doc_count": 0,
+        "storage_size": 0,
+        "update_time": 1790848657755
+      },
+      "creator": {
+        "id": "266c6a42-6131-4d62-8f39-853e7093701c",
+        "type": "user",
+        "name": "Administrator"
+      },
+      "create_time": 1790848657755,
+      "updater": {
+        "id": "266c6a42-6131-4d62-8f39-853e7093701c",
+        "type": "user",
+        "name": "Administrator"
+      },
+      "update_time": 1790848657755,
+      "module_type": "object_type",
+      "operations": [
+        "delete",
+        "modify",
+        "query_data",
+        "view_detail"
+      ]
+    }
+  ]
+}
