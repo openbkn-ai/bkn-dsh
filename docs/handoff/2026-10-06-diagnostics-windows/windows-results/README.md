@@ -13,10 +13,12 @@
 4. **desktop-evidence/ 、npm-evidence/** — 诊断报告导出 JSON 共 **15 份（desktop 6 + npm 9）**；状态哈希与 prepared 共 **20 份（desktop 8 + npm 12，npm 补测轮为 before-W-*-r2.json、原始 before-W*.json 保留 b2c0eca 原值）**；另有 UI 快照记录与变体 base/variant SHA
 
 ## 一句话结论（按证据强度如实表述）
-- **通过且为 JSON 级证据**：W0（逐文件哈希）、W1（两形态导出）、W2 缺-baseUrl（两形态）、W3/W4 故障分类（两形态）、W7 连接/TLS 分类（npm）、W9 canary 值零泄漏（desktop）、W12 重装/卸载/撤销恢复（两形态）。
+- **通过且为 JSON 级证据**：W1（两形态导出）、W2 缺-baseUrl（两形态）、W3/W4 故障分类（两形态）、W7 连接/TLS 分类（npm）、W9 canary 值零泄漏（desktop）。
+- **通过，证据为逐文件哈希比对（非诊断 JSON）**：W0（两形态 65/65 一致）。
+- **通过，证据为实机操作记录（UI 观察/插件管理器状态/磁盘核验，非诊断 JSON）**：W12 重装/卸载/撤销恢复（两形态）、R1 三 row、R2 未登录入口；U1 升级观察按项目决策仅留档。
 - **候选缺陷（fail，两形态 JSON：desktop addbb3eb + npm 073b491e）**：非法格式 baseUrl 不被 configuration 阶段拦截。
 - **通过但仅产品 UI 记录（无导出 JSON，降级态无导出按钮）**：W10 诊断故障降级与业务入口保留（两形态）；其多 Host/并发/导出失败子项 not-run。
-- **not-run**：真实登录依赖项全部（真实 G6、live guard、W6 真实权限、R3–R8、平台 tools/list）；就地升级按项目决策取消（发布走"旧版本完全卸载后重装"，-4→-6 观察仅留档）。
+- **not-run**：真实登录依赖项全部（真实 G6、live guard、W6 真实权限、R3–R8、平台 tools/list）；就地升级按项目决策取消（发布走"旧版本完全卸载后重装"）。
 - **发布门禁不因本轮放行**（候选缺陷 + 登录依赖未测 + macOS G6 三失败均未消除）。
 
 ## 复核重点
