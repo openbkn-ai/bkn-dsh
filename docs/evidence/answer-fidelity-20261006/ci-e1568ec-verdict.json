@@ -1,0 +1,12 @@
+{
+  "candidateSha256": "bd9ef90d755d499c663316278a17342d8724cc720bcc823f80a8653164371299",
+  "sourceCommit": "e1568ece07abdf4452cfb02513d75a45964e2796",
+  "ciRunId": 37462485682,
+  "candidateAccepted": false,
+  "standardLeadTime": "pass: native completed, 1 day, correct physical source",
+  "bomUsageInventory": "fail: native error after one correction; complete raw rows omitted the explicit header",
+  "missingObject": "not-run: fixed artifact already failed",
+  "independentDeliveredFields": "313 rows and all 8 fields match; does not override native error or absent tool column metadata",
+  "windowsDelivery": "held",
+  "next": "one bounded tool-handoff repair before Interaction finish; new review/CI/original-question replay required"
+}

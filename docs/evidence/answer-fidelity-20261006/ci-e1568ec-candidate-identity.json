@@ -1,0 +1,83 @@
+{
+  "packageName": "@openbkn/dsh-business-context",
+  "version": "0.2.0-rc.2-openbkn.0.2.0-7",
+  "sourceCommit": "e1568ece07abdf4452cfb02513d75a45964e2796",
+  "sourceBranch": "docs/unified7-fidelity-acceptance",
+  "ciRunId": 37462485682,
+  "publish": false,
+  "artifactName": "plugin-tarball",
+  "tgzSha256": "bd9ef90d755d499c663316278a17342d8724cc720bcc823f80a8653164371299",
+  "tgzSizeBytes": 173487,
+  "tgzPath": "release/unified-7-candidate/e1568ec/openbkn-dsh-business-context-0.2.0-rc.2-openbkn.0.2.0-7.tgz",
+  "fileCount": 66,
+  "declaredTargets": [
+    {
+      "condition": "exports/./types",
+      "path": "./lib/types/index.d.ts"
+    },
+    {
+      "condition": "exports/./default",
+      "path": "./lib/index.js"
+    },
+    {
+      "condition": "exports/./business/types",
+      "path": "./lib/types/business.d.ts"
+    },
+    {
+      "condition": "exports/./business/default",
+      "path": "./lib/business.js"
+    },
+    {
+      "condition": "exports/./diagnostics/types",
+      "path": "./lib/types/diagnostics.d.ts"
+    },
+    {
+      "condition": "exports/./diagnostics/default",
+      "path": "./lib/diagnostics.js"
+    },
+    {
+      "condition": "exports/./types/types",
+      "path": "./lib/types/types.d.ts"
+    },
+    {
+      "condition": "exports/./client/types",
+      "path": "./lib/types/client/index.d.ts"
+    },
+    {
+      "condition": "exports/./client/default",
+      "path": "./lib/client.js"
+    },
+    {
+      "condition": "exports/./typert/types",
+      "path": "./lib/typert.host.d.ts"
+    },
+    {
+      "condition": "exports/./typert/default",
+      "path": "./lib/typert.host.js"
+    },
+    {
+      "condition": "exports/./remote/types",
+      "path": "./lib/typert.remote-client.d.ts"
+    },
+    {
+      "condition": "exports/./remote/default",
+      "path": "./lib/typert.remote-client.js"
+    },
+    {
+      "condition": "exports/./package.json",
+      "path": "./package.json"
+    },
+    {
+      "condition": "main",
+      "path": "./lib/index.js"
+    },
+    {
+      "condition": "types",
+      "path": "./lib/types/index.d.ts"
+    }
+  ],
+  "dshLlmPeerVersion": "0.2.0-rc.2",
+  "artifactId": 11413276033,
+  "artifactZipDigest": "sha256:67e8c08c9ae4efb6797375ebdb93c60724db4c1d4bc41644000af03aa44c1650",
+  "artifactZipBytesVerified": true
+}
