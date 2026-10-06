@@ -1,0 +1,311 @@
+Window: "统计销售订单数量及状态 — DeepSeek Harness", App: DeepSeek Harness.
+0 standard window 统计销售订单数量及状态 — DeepSeek Harness, Secondary Actions: Raise
+	1 container 统计销售订单数量及状态 — DeepSeek Harness
+		2 container
+			3 HTML content 统计销售订单数量及状态 — DeepSeek Harness, URL: dsh-app://app/
+				4 container
+					5 button 收起侧边栏
+					6 button 新建会话
+					7 container 全局面板
+						8 button 插件
+					9 text 工作区
+					10 button 搜索会话
+					11 text field (settable) 搜索会话名称
+					12 button 视图选项
+					13 button 添加工作区
+					14 outline 会话
+						15 container
+							16 row workspace-supply
+								17 text workspace-supply
+							18 row (selected) 统计销售订单数量及状态 刚刚
+								19 text 统计销售订单数量及状态 刚刚
+							20 row 物料999-999999库存与订单查询 2分钟
+								21 text 物料999-999999库存与订单查询 2分钟
+							22 row 物料库存及订单查询 3分钟
+								23 text 物料库存及订单查询 3分钟
+							24 row 物料库存与订单情况查询 5分钟
+								25 text 物料库存与订单情况查询 5分钟
+							26 row 查询物料382-000005的名称与标准交期 1小时
+								27 text 查询物料382-000005的名称与标准交期 1小时
+							28 button 展开其余 10 个会话
+						29 row 默认工作区
+							30 text 默认工作区
+					31 button OpenBKN business knowledge networks
+					32 pop up button 账号菜单
+					33 container
+						34 container 会话层级
+							35 text 统计销售订单数量及状态
+						36 text 标准模式
+						37 text 供应链本体知识网络-手工版
+						38 button 用 访达 打开
+						39 pop up button 更多打开方式
+						40 pop up button 更多操作
+						41 button 打开右侧边栏
+						42 tab group
+							43 tab (selected) 对话, Value: 1
+							44 tab (settable, integer) 轨迹, Value: 0
+					45 container
+						46 container
+							47 container 轮次导航
+								48 container
+									49 button 跳转到第 1 轮
+									50 button 跳转到第 2 轮
+									51 button 跳转到第 3 轮
+									52 button 跳转到第 4 轮
+							53 text 处理失败
+							54 button (disabled) 处理失败
+							55 container
+								56 text 本轮运行失败 mcp-client(openbkn): initial connection or tool synchronization failed: Version negotiation probe failed: fetch failed UNKNOWN
+							57 text 382-000005 有多少张销售订单？什么状态？
+							58 text 09:40
+							59 button 复制
+							60 text 已完成
+							61 button 已完成，用时 9秒
+								62 text 已完成，用时
+								63 text 9
+								64 text 秒
+							65 text 我无法完成这个查询：本会话的 OpenBKN 托管工具没有注册成功。
+							66 text 具体情况：
+							67 content list
+								68 container
+									69 AXListMarker •
+									70 text 我按流程直接调用了  mcp__openbkn__bkn_start_interaction （agent_name =  bkn-agent-dsh-business-context ，conversation_mode =  new ），平台返回： 该工具未在本会话注册，网络作用域无法校验，且要求不要重试 。
+								71 container
+									72 AXListMarker •
+									73 text 由于 Interaction 无法开启，我不能读取绑定的知识网络  supply_ontology_hand （供应链本体知识网络-手工版）的 schema、对象/关系、指标或已发布能力，因此也无法查询  382-000005  对应的销售订单数量与状态。
+								74 container
+									75 AXListMarker •
+									76 text 本次没有产生任何业务数据访问，我也不会凭猜测给出订单数量或状态。
+							77 text 建议：请在 DSH 侧确认 OpenBKN MCP 连接/工具注册是否正常（该会话似乎只允许托管 OpenBKN 工具，而它们当前不可用），恢复后我可以立即重试同样的查询。
+							78 button 复制
+							79 toggle button Description: 好的回答, Value: 0
+							80 toggle button Description: 有问题的回答, Value: 0
+							81 button 在新对话中分支
+							82 pop up button 用量 85.1K tok
+							83 text 09:40
+							84 text 382-000005 有多少张销售订单？什么状态？
+							85 text 09:42
+							86 button 复制
+							87 text 已完成
+							88 button 已完成，用时 20秒
+								89 text 已完成，用时
+								90 text 20
+								91 text 秒
+							92 container
+								93 text 382-000005 （产品：北斗导航农机驾驶仪）共有  40 张销售订单 ，状态全部是  「已确认」 。
+							94 table
+								95 row
+									96 column header
+										97 text 项目
+									98 column header
+										99 text 结果
+								100 row
+									101 cell
+										102 text 产品编码
+									103 cell
+										104 text 382-000005（北斗导航农机驾驶仪）
+								105 row
+									106 cell
+										107 text 销售订单张数
+									108 cell
+										109 text 40
+								110 row
+									111 cell
+										112 text 状态分布
+									113 cell
+										114 text 已确认 40（无其他状态）
+							115 text 依据与口径：
+							116 content list
+								117 container
+									118 AXListMarker •
+									119 text 使用知识网络  supply_ontology_hand  的指标「销售订单数」（ count(sales_order_id) ，scope=销售订单），按  product_code = 382-000005  过滤，结果  40 ；按  order_status  拆维后只有一个分组「已确认」= 40，与总数自洽。
+								120 container
+									121 AXListMarker •
+									122 text 对象校验： 产品  中存在 material_number=382-000005 → 北斗导航农机驾驶仪； 销售订单  过滤同一 product_code 返回 total_count=40。样例订单 SO0000001（11 件）、SO0000002（43 件）、SO0000003（32 件）状态均为已确认。
+							123 text 说明：以上是「张数」口径（订单行条数），不是签约数量合计；如需签约/交付数量汇总或按承诺交期拆解，可以继续查。
+							124 button 复制
+							125 toggle button Description: 好的回答, Value: 0
+							126 toggle button Description: 有问题的回答, Value: 0
+							127 button 查看业务溯源, Help: View OpenBKN provenance for this answer
+							128 button 在新对话中分支
+							129 pop up button 用量 439K tok
+							130 text 09:42
+							131 text 物料 999-999999 的库存和订单情况？
+							132 text 11:17
+							133 button 复制
+							134 text 已完成
+							135 button 已完成，用时 21秒
+								136 text 已完成，用时
+								137 text 21
+								138 text 秒
+							139 container
+								140 text 999-999999 在知识网络里不存在 ，所以它既没有库存，也没有任何订单记录。
+							141 text 逐项核查结果（均返回 0 条）：
+							142 table
+								143 row
+									144 column header
+										145 text 对象
+									146 column header
+										147 text 匹配字段
+									148 column header
+										149 text 结果
+								150 row
+									151 cell
+										152 text 物料
+									153 cell
+										154 text material_code
+									155 cell
+										156 text 0
+								157 row
+									158 cell
+										159 text 产品
+									160 cell
+										161 text material_number
+									162 cell
+										163 text 0
+								164 row
+									165 cell
+										166 text 库存
+									167 cell
+										168 text material_code
+									169 cell
+										170 text 0
+								171 row
+									172 cell
+										173 text 销售订单
+									174 cell
+										175 text product_code
+									176 cell
+										177 text 0
+								178 row
+									179 cell
+										180 text 采购订单
+									181 cell
+										182 text material_number
+									183 cell
+										184 text 0
+								185 row
+									186 cell
+										187 text 采购申请单
+									188 cell
+										189 text material_number
+									190 cell
+										191 text 0
+								192 row
+									193 cell
+										194 text 物料需求计划
+									195 cell
+										196 text materialplanid_number
+									197 cell
+										198 text 0
+								199 row
+									200 cell
+										201 text 产品BOM
+									202 cell
+										203 text material_code
+									204 cell
+										205 text 0
+							206 container
+								207 text 为排除「只是写法不同/编号相近」的可能，我还做了模糊核查： 物料 material_code like "999" 、 产品 material_number like "999"  都是 0 条；同一个算子对  销售订单 product_code like "382"  能返回 80 条，说明子串检索本身有效，因此「无此编码」的结论可靠。
+							208 text 结论：没有可汇总的库存量、占用/可用数量或订单张数与状态——不是「库存为 0、订单为 0」，而是该编码在物料主数据中就不存在。若这是笔误，可以告诉我正确的编码（例如 382-000005 ……），我直接按同样口径查库存与订单。
+							209 button 复制
+							210 toggle button Description: 好的回答, Value: 0
+							211 toggle button Description: 有问题的回答, Value: 0
+							212 button 查看业务溯源, Help: View OpenBKN provenance for this answer
+							213 button 在新对话中分支
+							214 pop up button 用量 438K tok
+							215 text 11:17
+						216 container
+							217 text entry area (settable) 发消息或创建任务, / 调用指令, @ 文件或对话
+							218 pop up button 添加文件或调用指令
+							219 button 访问模式，当前：工作区内修改
+							220 pop up button Description: 选择模型，当前 DeepSeek-V41-Flash，推理等级 High, Help: DeepSeek-V41-Flash · High
+							221 button (disabled) 发送消息
+							222 pop up button 3 轮 19 步 · 286 tok/s
+								223 text 3 轮 19 步
+								224 text 286 tok/s
+							225 pop up button 962K tok · 缓存命中 94%
+								226 text 962K tok
+								227 text 缓存命中 94%
+							228 pop up button 上下文已用 8%
+					229 container OpenBKN business provenance
+						230 container
+							231 text TRACE-BACKED PROVENANCE
+							232 heading 业务溯源, Value: 2
+								233 text 业务溯源
+							234 button Close
+						235 container Provenance views
+							236 button 执行溯源
+							237 button 业务上下文图
+							238 button 证据链
+						239 container
+							240 text Interaction ID
+							241 text int_99b7068980bddfd48ae92fb474e034dd
+							242 text 执行状态
+							243 text completed
+							244 text 时间链节点
+							245 text 14
+							246 container
+								247 text 执行时间链 由本机会话事件重建，不依赖平台授权；耗时为本机口径。 本地会话 部分标识符
+							248 container
+								249 text 生命周期 bkn_start_interaction bkn_start_interaction · continue · conversation: yes 89 ms
+							250 container
+								251 text 受管访问 query_object_instance Op op_b12d196a82c2fa577796b67fe6f1d38a Receipt rcpt_9e21b9178e2834f6cffc762c1df89796 Status completed query_object_instance 163 ms
+							252 container
+								253 text 受管访问 query_object_instance Op op_8e4db10877e5dcfe2762cb01651a3315 Receipt rcpt_b43ec33e89aa902b24dcffcecaf84596 Status completed query_object_instance 59 ms
+							254 container
+								255 text 受管访问 query_object_instance Op op_4223f07983c6c4f4a922d8a56f61ad3c Receipt rcpt_e282eff8a466a2338e965b9152c5270f Status completed query_object_instance 82 ms
+							256 container
+								257 text 受管访问 query_object_instance Op op_18de629959a0a674b0f8298fc7e23742 Receipt rcpt_eafa5e40ed7fdea3ec3cb6ba18b9aebd Status completed query_object_instance 134 ms
+							258 container
+								259 text 受管访问 query_object_instance Op op_766781e65f33a1bc742a64c979e7d5af Receipt rcpt_14c6a022fec73ae37d50be0ec5d58eb4 Status completed query_object_instance 67 ms
+							260 container
+								261 text 受管访问 query_object_instance Op op_0aa73cbcd302214a49d80c7bae93bec5 Receipt rcpt_27a5e59834655f10456dcdaab784dd0d Status completed query_object_instance 111 ms
+							262 container
+								263 text 受管访问 query_object_instance Op op_582c38ff3526781fd73678a51f53e7da Receipt rcpt_a9d51ed9bbbefb82a13f23f2f2b775d7 Status completed query_object_instance 78 ms
+							264 container
+								265 text 受管访问 query_object_instance Op op_eb143693bb979c41672bc1a914840b14 Receipt rcpt_05aa81fc7c882c70019c135441b47d20 Status completed query_object_instance 95 ms
+							266 container
+								267 text 受管访问 query_object_instance Op op_f91d629604a29f7efe929f5f446d029d Receipt rcpt_db3e8d71c199d7d27e7f0158603dece8 Status completed query_object_instance 181 ms
+							268 container
+								269 text 受管访问 query_object_instance Op op_ff2d6187aa8853b7c502d716373cfaf1 Receipt rcpt_df8d8d1c91b5bd556bc1f7218a4d7da8 Status completed query_object_instance 218 ms
+							270 container
+								271 text 受管访问 query_object_instance Op op_e782053737c7b1f397e6449f82d771eb Receipt rcpt_e5775103aaaddbd2e976ce17e48ef605 Status completed query_object_instance 221 ms
+							272 container
+								273 text 生命周期 bkn_finish_interaction bkn_finish_interaction · completed 106 ms
+							274 container
+								275 text 回答 本轮回答 11:17:56 AM
+							276 container
+								277 text 平台执行事实 平台口径的操作状态、耗时与 Request / Trace / Receipt 引用。 平台
+							278 container
+								279 text 01 query_object_instance completed mcp · 2026-10-06T03:17:42.252913Z · 2026-10-06T03:17:42.370921Z Request req_41688274-a8e8-4814-a744-1c5fff5fa09d Trace a1ba5c3088a30dd425dea87169aa6bf1 Receipt rcpt_9e21b9178e2834f6cffc762c1df89796
+							280 container
+								281 text 02 query_object_instance completed mcp · 2026-10-06T03:17:42.397719Z · 2026-10-06T03:17:42.43749Z Request req_9c27b330-f1e6-431c-b6ca-a3d137cacebb Trace 65c70dd1100a113a158d5d36ce50da3f Receipt rcpt_b43ec33e89aa902b24dcffcecaf84596
+							282 container
+								283 text 03 query_object_instance completed mcp · 2026-10-06T03:17:42.455254Z · 2026-10-06T03:17:42.514754Z Request req_f8800350-1645-43fe-b58c-a65b7690f43a Trace 3551319142931c7e28823b2d82768b89 Receipt rcpt_e282eff8a466a2338e965b9152c5270f
+							284 container
+								285 text 04 query_object_instance completed mcp · 2026-10-06T03:17:42.539312Z · 2026-10-06T03:17:42.651892Z Request req_cdbba4ca-93cd-4673-b87c-e1713c317105 Trace 368d9adf9a92994245e88ae160cc372e Receipt rcpt_eafa5e40ed7fdea3ec3cb6ba18b9aebd
+							286 container
+								287 text 05 query_object_instance completed mcp · 2026-10-06T03:17:42.675104Z · 2026-10-06T03:17:42.72061Z Request req_9e2363f2-352b-444a-b69a-9a94cedab348 Trace 5f13b183ad0324bfcc002a66b296f845 Receipt rcpt_14c6a022fec73ae37d50be0ec5d58eb4
+							288 container
+								289 text 06 query_object_instance completed mcp · 2026-10-06T03:17:47.13768Z · 2026-10-06T03:17:47.215424Z Request req_782aa8b1-3308-41c5-a7c5-c008a77410ca Trace 01b2109437b533235e6d949bdb5a7d6c Receipt rcpt_27a5e59834655f10456dcdaab784dd0d
+							290 container
+								291 text 07 query_object_instance completed mcp · 2026-10-06T03:17:47.242206Z · 2026-10-06T03:17:47.294797Z Request req_ac89d097-b0cf-46ea-8a9f-2e6c87195f73 Trace 6a8247f59f4b3b8a1c3c15dacc1ae6eb Receipt rcpt_a9d51ed9bbbefb82a13f23f2f2b775d7
+							292 container
+								293 text 08 query_object_instance completed mcp · 2026-10-06T03:17:47.324538Z · 2026-10-06T03:17:47.383247Z Request req_4af457b5-25ef-4d7f-8444-ca90acfcd99a Trace 868634f72aeb842da0564dd0901c52c5 Receipt rcpt_05aa81fc7c882c70019c135441b47d20
+							294 container
+								295 text 09 query_object_instance completed mcp · 2026-10-06T03:17:47.418571Z · 2026-10-06T03:17:47.56803Z Request req_76b8fc24-5130-4d87-891e-8d64a718ee18 Trace 5c2ce8027ef33db4ffbbe97a8aa0c312 Receipt rcpt_db3e8d71c199d7d27e7f0158603dece8
+							296 container
+								297 text 10 query_object_instance completed mcp · 2026-10-06T03:17:51.024548Z · 2026-10-06T03:17:51.185772Z Request req_42d56e7e-e3cd-4b16-b2ac-8919c84b1d35 Trace 9c28d6883c0800d668e96295f879fb2b Receipt rcpt_df8d8d1c91b5bd556bc1f7218a4d7da8
+							298 container
+								299 text 11 query_object_instance completed mcp · 2026-10-06T03:17:51.266805Z · 2026-10-06T03:17:51.413368Z Request req_80e2cbbf-27c7-430d-861b-39dbfba6b09a Trace deaf817eed69d7a65c86cf210d771017 Receipt rcpt_e5775103aaaddbd2e976ce17e48ef605
+	300 close button
+	301 full screen button Help: this button also has an action to zoom the window, Secondary Actions: zoom the window
+	302 minimize button
+303 menu bar
+	304 DeepSeek Harness
+	305 文件
+	306 Edit
+	307 Window
+
+The focused UI element is 229 container OpenBKN business provenance

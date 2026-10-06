@@ -1,5 +1,7 @@
 # Windows 独立验收交接：远端取代码与完整测试包
 
+**当前最新候选为 -7**，两项插件修复与 -6→-7 升级请从 [最新 Windows 交接](../2026-10-06-plugin-fixes-windows/WINDOWS-START.md) 开始。本目录的 -6 包/身份保持为历史，不替代本轮候选。
+
 Windows agent 从本文件开始。仓库源文件和完整离线 ZIP 一起交付；ZIP 内已经包含固定 CI 候选、`-4/-5` 升级基包、逐文件清单、PowerShell 脚本和回报模板，无须向 macOS 开发机索取文件。
 
 ## 可直接交给 Windows agent 的任务

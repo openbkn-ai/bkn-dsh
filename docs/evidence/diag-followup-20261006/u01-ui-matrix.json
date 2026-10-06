@@ -1,0 +1,82 @@
+[
+  {
+    "phase": "u01-empty-2",
+    "pid": 22802,
+    "mainVisible": true,
+    "pluginEntryVisible": false,
+    "startupRpcWarning": false,
+    "observedUtc": "2026-10-06T03:20:31.511Z"
+  },
+  {
+    "phase": "u01-empty-3",
+    "pid": 23574,
+    "mainVisible": true,
+    "pluginEntryVisible": false,
+    "startupRpcWarning": false,
+    "observedUtc": "2026-10-06T03:21:12.883Z"
+  },
+  {
+    "phase": "u01-first-install-2",
+    "pid": 24931,
+    "mainVisible": true,
+    "pluginEntryVisible": true,
+    "startupRpcWarning": false,
+    "observedUtc": "2026-10-06T03:22:16.933Z"
+  },
+  {
+    "phase": "u01-first-install-3",
+    "pid": 25674,
+    "mainVisible": true,
+    "pluginEntryVisible": true,
+    "startupRpcWarning": false,
+    "observedUtc": "2026-10-06T03:22:56.076Z"
+  },
+  {
+    "phase": "u01-restart-1",
+    "pid": 26338,
+    "mainVisible": true,
+    "pluginEntryVisible": true,
+    "startupRpcWarning": false,
+    "observedUtc": "2026-10-06T03:24:27.726Z"
+  },
+  {
+    "phase": "u01-restart-2",
+    "pid": 27615,
+    "mainVisible": true,
+    "pluginEntryVisible": true,
+    "startupRpcWarning": false,
+    "observedUtc": "2026-10-06T03:25:12.126Z"
+  },
+  {
+    "phase": "u01-restart-3",
+    "pid": 28560,
+    "mainVisible": true,
+    "pluginEntryVisible": true,
+    "startupRpcWarning": false,
+    "observedUtc": "2026-10-06T03:25:52.993Z"
+  },
+  {
+    "phase": "u01-reinstall-1",
+    "pid": 29345,
+    "mainVisible": true,
+    "pluginEntryVisible": true,
+    "startupRpcWarning": false,
+    "observedUtc": "2026-10-06T03:26:38.940Z"
+  },
+  {
+    "phase": "u01-reinstall-2",
+    "pid": 30261,
+    "mainVisible": true,
+    "pluginEntryVisible": true,
+    "startupRpcWarning": false,
+    "observedUtc": "2026-10-06T03:27:19.727Z"
+  },
+  {
+    "phase": "u01-reinstall-3",
+    "pid": 30966,
+    "mainVisible": true,
+    "pluginEntryVisible": true,
+    "startupRpcWarning": false,
+    "observedUtc": "2026-10-06T03:27:50.992Z"
+  }
+]

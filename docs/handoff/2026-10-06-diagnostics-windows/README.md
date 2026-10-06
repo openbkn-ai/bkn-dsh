@@ -1,5 +1,7 @@
 # Windows 诊断验收包
 
+**当前最新候选为 -7**，两项插件修复与 -6→-7 升级请从 [最新 Windows 交接](../2026-10-06-plugin-fixes-windows/WINDOWS-START.md) 开始。本目录的 -6 包/身份保持为历史，不替代本轮候选。
+
 目标：验证当前 -6 UI 修订后的 CI 候选。入口为 **OpenBKN → 面板右上角“诊断”**，侧栏没有第二个诊断入口。
 
 **Windows agent 从 [WINDOWS-START.md](WINDOWS-START.md) 开始**：包含可复制任务、远端获取命令、固定 ZIP/tgz 哈希及测试顺序。完整验收 ZIP 已纳入本分支的 [assets/windows-diag6-144afa5-g6.zip](assets/windows-diag6-144afa5-g6.zip)，代码和包可以一起从远端取得；获取信息见 [REMOTE-KIT.json](REMOTE-KIT.json)。

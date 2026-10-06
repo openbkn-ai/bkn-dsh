@@ -1,0 +1,80 @@
+Window: "DeepSeek Harness", App: DeepSeek Harness.
+0 standard window DeepSeek Harness, Secondary Actions: Raise
+	1 container DeepSeek Harness
+		2 container
+			3 HTML content DeepSeek Harness, URL: dsh-app://app/
+				4 container
+					5 button 收起侧边栏
+					6 button 新建会话
+					7 container 全局面板
+						8 button 插件
+					9 text 工作区
+					10 button 搜索会话
+					11 text field (settable) 搜索会话名称
+					12 button 视图选项
+					13 button 添加工作区
+					14 outline 会话
+						15 container
+							16 row workspace-supply
+								17 text workspace-supply
+							18 row (selected) 新会话
+								19 text 新会话
+							20 row 查询物料382-000005的名称与标准交期 1小时
+								21 text 查询物料382-000005的名称与标准交期 1小时
+							22 row 统计销售订单数量及状态 1小时
+								23 text 统计销售订单数量及状态 1小时
+							24 row 查询销售订单数量及状态 1小时
+								25 text 查询销售订单数量及状态 1小时
+							26 row 查询物料名称 382-000005 1小时
+								27 text 查询物料名称 382-000005 1小时
+							28 row 物料库存与订单情况查询 1小时
+								29 text 物料库存与订单情况查询 1小时
+							30 button 展开其余 7 个会话
+						31 row 默认工作区
+							32 text 默认工作区
+					33 button OpenBKN business knowledge networks
+					34 pop up button 账号菜单
+					35 button 打开右侧边栏
+					36 container
+						37 text 探索未至之境 预览版
+						38 pop up button 选择工作区
+						39 pop up button 标准模式, Help: 选择新任务使用的 Agent 预设
+						40 container OpenBKN business session entry
+							41 button 了解「供应链本体知识网络-手工版」知识网络。
+						42 text entry area (settable) 描述你想要构建的内容, / 调用指令, @ 文件或对话
+						43 pop up button 添加文件或调用指令
+						44 button 访问模式，当前：工作区内修改
+						45 pop up button Description: 选择模型，当前 DeepSeek-V41-Flash，推理等级 High, Help: DeepSeek-V41-Flash · High
+						46 button (disabled) 发送消息
+					47 container OpenBKN business knowledge networks
+						48 container
+							49 text OPENBKN
+							50 heading 业务知识网络, Value: 2
+								51 text 业务知识网络
+							52 button 诊断
+							53 button Close
+						54 container
+							55 text 选择业务知识网络后，在其专属 DSH 工作区中继续或创建会话。 业务会话需使用 标准模式 ：请在发送第一条消息前，在模式菜单中选定（暂不支持 PTC 模式，已有的 PTC 会话无法切换）。
+						56 container
+							57 text 搜索业务知识网络
+							58 search text field (settable) Description: 搜索业务知识网络, Placeholder: 名称、ID 或说明
+						59 container
+							60 text 找到  2  个网络；已关联本地工作区的网络优先显示。
+						61 container
+							62 text 供应链本体知识网络-手工版 supply_ontology_hand
+							63 button 查看
+							64 text 已关联工作区 · /private/var/folders/9r/1zks6bqd7f3dtwybvxsksbc40000gn/T/openbkn-diag-ui-h76__jwb/workspace-supply
+						65 container
+							66 text Fjelstul 世界杯 · Vega Catalog 绑定（占位符） worldcup_vega_catalog_bkn
+							67 button 查看
+							68 text 尚未关联本地工作区
+	69 close button
+	70 full screen button Help: this button also has an action to zoom the window, Secondary Actions: zoom the window
+	71 minimize button
+72 menu bar
+	73 DeepSeek Harness
+	74 文件
+	75 Edit
+	76 Window
+
+The focused UI element is 33 button OpenBKN business knowledge networks

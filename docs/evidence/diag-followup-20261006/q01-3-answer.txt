@@ -1,0 +1,146 @@
+Window: "物料999-999999库存与订单查询 — DeepSeek Harness", App: DeepSeek Harness.
+0 standard window 物料999-999999库存与订单查询 — DeepSeek Harness, Secondary Actions: Raise
+	1 container 物料999-999999库存与订单查询 — DeepSeek Harness
+		2 container
+			3 HTML content 物料999-999999库存与订单查询 — DeepSeek Harness, URL: dsh-app://app/
+				4 container
+					5 button 收起侧边栏
+					6 button 新建会话
+					7 container 全局面板
+						8 button 插件
+					9 text 工作区
+					10 button 搜索会话
+					11 text field (settable) 搜索会话名称
+					12 button 视图选项
+					13 button 添加工作区
+					14 outline 会话
+						15 container
+							16 row workspace-supply
+								17 text workspace-supply
+							18 row (selected) 物料999-999999库存与订单查询 刚刚
+								19 text 物料999-999999库存与订单查询 刚刚
+							20 row 物料库存及订单查询 1分钟
+								21 text 物料库存及订单查询 1分钟
+							22 row 物料库存与订单情况查询 3分钟
+								23 text 物料库存与订单情况查询 3分钟
+							24 row 查询物料382-000005的名称与标准交期 1小时
+								25 text 查询物料382-000005的名称与标准交期 1小时
+							26 row 统计销售订单数量及状态 1小时
+								27 text 统计销售订单数量及状态 1小时
+							28 button 展开其余 10 个会话
+						29 row 默认工作区
+							30 text 默认工作区
+					31 button OpenBKN business knowledge networks
+					32 pop up button 账号菜单
+					33 container
+						34 container 会话层级
+							35 text 物料999-999999库存与订单查询
+						36 text 标准模式
+						37 text 供应链本体知识网络-手工版
+						38 button 用 访达 打开
+						39 pop up button 更多打开方式
+						40 pop up button 更多操作
+						41 button 打开右侧边栏
+						42 tab group
+							43 tab (selected) 对话, Value: 1
+							44 tab (settable, integer) 轨迹, Value: 0
+					45 container
+						46 container
+							47 text 物料 999-999999 的库存和订单情况？ 11:15
+							48 button 复制
+							49 text 已完成
+							50 button 已完成，用时 25秒
+								51 text 已完成，用时
+								52 text 25
+								53 text 秒
+							54 text 结论：物料 999-999999 在「供应链本体知识网络-手工版」中不存在，因此没有可查的库存和订单数据。
+							55 text 核查明细（全部按编码精确匹配该网络内对象）：
+							56 table
+								57 row
+									58 column header
+										59 text 对象类
+									60 column header
+										61 text 查询字段
+									62 column header
+										63 text 结果
+								64 row
+									65 cell
+										66 text 物料
+									67 cell
+										68 text material_code
+									69 cell
+										70 text 0 条
+								71 row
+									72 cell
+										73 text 库存
+									74 cell
+										75 text material_code
+									76 cell
+										77 text 0 条（模糊含「999」也是 0）
+								78 row
+									79 cell
+										80 text 采购订单
+									81 cell
+										82 text material_number
+									83 cell
+										84 text 0 条
+								85 row
+									86 cell
+										87 text 采购申请单
+									88 cell
+										89 text material_number
+									90 cell
+										91 text 0 条
+								92 row
+									93 cell
+										94 text 物料需求计划
+									95 cell
+										96 text materialplanid_number
+									97 cell
+										98 text 0 条
+								99 row
+									100 cell
+										101 text 产品 / 需求预测单 / 工厂生产计划 / 销售订单
+									102 cell
+										103 text 编码字段
+									104 cell
+										105 text 均 0 条
+							106 text 补充：我全量扫描了该网络全部
+							107 text 3497
+							108 text  个物料编码，没有任何一个编码包含「999」。编码前缀实际分布为 165、849、539、972、994、725 等，
+							109 text 不存在 999 前缀
+							110 text （最接近的是 994）。 所以这个编码不是本网络里的有效物料编号，无法给出库存数量、可用/占用库存，或采购订单、到货、需求计划等订单信息。如果你有正确的物料编码（格式形如
+							111 text 165-000005
+							112 text 、
+							113 text 101-000002
+							114 text ），我可以立刻查该物料在各仓库的实时库存与可用量、以及采购订单的执行情况。
+							115 button 复制
+							116 toggle button Description: 好的回答, Value: 0
+							117 toggle button Description: 有问题的回答, Value: 0
+							118 button 查看业务溯源, Help: View OpenBKN provenance for this answer
+							119 button 在新对话中分支
+							120 pop up button 用量 452K tok
+							121 text 11:16
+						122 container
+							123 text entry area (settable) 发消息或创建任务, / 调用指令, @ 文件或对话
+							124 pop up button 添加文件或调用指令
+							125 button 访问模式，当前：工作区内修改
+							126 pop up button Description: 选择模型，当前 DeepSeek-V41-Flash，推理等级 High, Help: DeepSeek-V41-Flash · High
+							127 button (disabled) 发送消息
+						128 pop up button 1 轮 8 步 · 281 tok/s
+							129 text 1 轮 8 步
+							130 text 281 tok/s
+						131 pop up button 452K tok · 缓存命中 97%
+							132 text 452K tok
+							133 text 缓存命中 97%
+						134 pop up button 上下文已用 6%
+	135 close button
+	136 full screen button Help: this button also has an action to zoom the window, Secondary Actions: zoom the window
+	137 minimize button
+138 menu bar
+	139 DeepSeek Harness
+	140 文件
+	141 Edit
+	142 Window
+
+The focused UI element is 123 text entry area (settable) 发消息或创建任务, / 调用指令, @ 文件或对话

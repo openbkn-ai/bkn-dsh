@@ -1,0 +1,174 @@
+Window: "物料库存及订单查询 — DeepSeek Harness", App: DeepSeek Harness.
+0 standard window 物料库存及订单查询 — DeepSeek Harness, Secondary Actions: Raise
+	1 container 物料库存及订单查询 — DeepSeek Harness
+		2 container
+			3 HTML content 物料库存及订单查询 — DeepSeek Harness, URL: dsh-app://app/
+				4 container
+					5 button 收起侧边栏
+					6 button 新建会话
+					7 container 全局面板
+						8 button 插件
+					9 text 工作区
+					10 button 搜索会话
+					11 text field (settable) 搜索会话名称
+					12 button 视图选项
+					13 button 添加工作区
+					14 outline 会话
+						15 container
+							16 row workspace-supply
+								17 text workspace-supply
+							18 row (selected) 物料库存及订单查询 刚刚
+								19 text 物料库存及订单查询 刚刚
+							20 row 物料库存与订单情况查询 2分钟
+								21 text 物料库存与订单情况查询 2分钟
+							22 row 查询物料382-000005的名称与标准交期 1小时
+								23 text 查询物料382-000005的名称与标准交期 1小时
+							24 row 统计销售订单数量及状态 1小时
+								25 text 统计销售订单数量及状态 1小时
+							26 row 查询销售订单数量及状态 1小时
+								27 text 查询销售订单数量及状态 1小时
+							28 button 展开其余 9 个会话
+						29 row 默认工作区
+							30 text 默认工作区
+					31 button OpenBKN business knowledge networks
+					32 pop up button 账号菜单
+					33 container
+						34 container 会话层级
+							35 text 物料库存及订单查询
+						36 text 标准模式
+						37 text 供应链本体知识网络-手工版
+						38 button 用 访达 打开
+						39 pop up button 更多打开方式
+						40 pop up button 更多操作
+						41 button 打开右侧边栏
+						42 tab group
+							43 tab (selected) 对话, Value: 1
+							44 tab (settable, integer) 轨迹, Value: 0
+					45 container
+						46 container
+							47 text 物料 999-999999 的库存和订单情况？ 11:14
+							48 button 复制
+							49 text 已完成
+							50 button 已完成，用时 35秒
+								51 text 已完成，用时
+								52 text 35
+								53 text 秒
+							54 container
+								55 text 结论：物料  999-999999  在「供应链本体知识网络-手工版」中查不到，所以既没有库存，也没有订单记录。
+							56 text 查询范围与结果（均按
+							57 text material_code
+							58 text  /
+							59 text material_number
+							60 text  /
+							61 text product_code
+							62 text  匹配）：
+							63 table
+								64 row
+									65 column header
+										66 text 检查对象
+									67 column header
+										68 text 匹配方式
+									69 column header
+										70 text 命中
+								71 row
+									72 cell
+										73 text 物料（erp_material）
+									74 cell
+										75 text = 999-999999
+									76 cell
+										77 text 0
+								78 row
+									79 cell
+										80 text 库存（erp_real_time_inventory）
+									81 cell
+										82 text = 999-999999
+									83 cell
+										84 text 0
+								85 row
+									86 cell
+										87 text 采购订单（PO）
+									88 cell
+										89 text = 999-999999
+									90 cell
+										91 text 0
+								92 row
+									93 cell
+										94 text 采购申请单（PR）
+									95 cell
+										96 text = 999-999999
+									97 cell
+										98 text 0
+								99 row
+									100 cell
+										101 text 物料需求计划（MRP）
+									102 cell
+										103 text = 999-999999
+									104 cell
+										105 text 0
+								106 row
+									107 cell
+										108 text 产品主数据
+									109 cell
+										110 text = 999-999999
+									111 cell
+										112 text 0
+								113 row
+									114 cell
+										115 text 销售订单
+									116 cell
+										117 text 模糊
+										118 text 999-9
+									119 cell
+										120 text 0
+								121 row
+									122 cell
+										123 text 物料 / 库存 / PO
+									124 cell
+										125 text 模糊
+										126 text 999
+										127 text 、
+										128 text 999-9
+										129 text  变体
+									130 cell
+										131 text 0
+							132 text 方法可信度说明：
+							133 content list
+								134 container
+									135 AXListMarker •
+									136 text 过滤条件本身有效，不是"查询失灵"——对照物料  101-000002 （BW5005DNRZ）能正常查到 1 条物料 + 2 条库存（苏州电子原料仓 170、苏州委外加工仓 937，状态均为可用）；用  like ZZZZZ  探空返回 0，说明模糊匹配确实生效。
+								137 container
+									138 AXListMarker •
+									139 text 网内物料编码格式为「3 位-6 位」，例如  101-000002 、 165-000005 、 P61-000351 ； 999-999999  的格式虽合规，但整体物料共 3497 条， 没有任何
+									140 text 999
+									141 text  开头的号段 ，推测这是一个不存在的测试/占位编码。
+							142 text 如果你手上的编码有笔误，或想查的是某个产品（销售订单只关联"产品"，不直接关联"物料"），把正确的编码给我，我可以立刻给出：分仓库存明细 + 可用量/占用量汇总，以及采购订单的计划量、已入库量、交期和供应商。
+							143 button 复制
+							144 toggle button Description: 好的回答, Value: 0
+							145 toggle button Description: 有问题的回答, Value: 0
+							146 button 查看业务溯源, Help: View OpenBKN provenance for this answer
+							147 button 在新对话中分支
+							148 pop up button 用量 566K tok
+							149 text 11:15
+						150 container
+							151 text entry area (settable) 发消息或创建任务, / 调用指令, @ 文件或对话
+							152 pop up button 添加文件或调用指令
+							153 button 访问模式，当前：工作区内修改
+							154 pop up button Description: 选择模型，当前 DeepSeek-V41-Flash，推理等级 High, Help: DeepSeek-V41-Flash · High
+							155 button (disabled) 发送消息
+						156 pop up button 1 轮 9 步 · 299 tok/s
+							157 text 1 轮 9 步
+							158 text 299 tok/s
+						159 pop up button 566K tok · 缓存命中 97%
+							160 text 566K tok
+							161 text 缓存命中 97%
+						162 pop up button 上下文已用 7%
+	163 close button
+	164 full screen button Help: this button also has an action to zoom the window, Secondary Actions: zoom the window
+	165 minimize button
+166 menu bar
+	167 DeepSeek Harness
+	168 文件
+	169 Edit
+	170 Window
+
+The focused UI element is 151 text entry area (settable) 发消息或创建任务, / 调用指令, @ 文件或对话

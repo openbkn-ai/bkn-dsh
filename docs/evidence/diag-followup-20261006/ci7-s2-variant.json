@@ -1,0 +1,14 @@
+{
+  "baseSha256": "44ca22708d243c5825774b7385de3f8699a51cad04d36477d8755201cf9af424",
+  "variantSha256": "912688db2e27d24504a72705b00fb119f2533caeb0c931b98f6150c079f4bf0d",
+  "fileCount": 65,
+  "changed": [
+    {
+      "path": "package/lib/business.js",
+      "beforeSha256": "6145fc08797258cc04bfe1d78f7b1ebda4233045bbf7f518022ae8818f48b46a",
+      "afterSha256": "b179bc686ec211fbe2fc33da44048892267356d621ec9fdbc09f026bb0f148a3"
+    }
+  ],
+  "target": "./business",
+  "purpose": "controlled S2 fault; never an accepted or published package"
+}

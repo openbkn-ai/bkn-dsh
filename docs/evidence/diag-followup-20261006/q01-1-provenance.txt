@@ -1,0 +1,318 @@
+Window: "物料库存与订单情况查询 — DeepSeek Harness", App: DeepSeek Harness.
+0 standard window 物料库存与订单情况查询 — DeepSeek Harness, Secondary Actions: Raise
+	1 container 物料库存与订单情况查询 — DeepSeek Harness
+		2 container
+			3 HTML content 物料库存与订单情况查询 — DeepSeek Harness, URL: dsh-app://app/
+				4 container
+					5 button 收起侧边栏
+					6 button 新建会话
+					7 container 全局面板
+						8 button 插件
+					9 text 工作区
+					10 button 搜索会话
+					11 text field (settable) 搜索会话名称
+					12 button 视图选项
+					13 button 添加工作区
+					14 outline 会话
+						15 container
+							16 row workspace-supply
+								17 text workspace-supply
+							18 row (selected) 物料库存与订单情况查询 刚刚
+								19 text 物料库存与订单情况查询 刚刚
+							20 row 查询物料382-000005的名称与标准交期 1小时
+								21 text 查询物料382-000005的名称与标准交期 1小时
+							22 row 统计销售订单数量及状态 1小时
+								23 text 统计销售订单数量及状态 1小时
+							24 row 查询销售订单数量及状态 1小时
+								25 text 查询销售订单数量及状态 1小时
+							26 row 查询物料名称 382-000005 1小时
+								27 text 查询物料名称 382-000005 1小时
+							28 button 展开其余 8 个会话
+						29 row 默认工作区
+							30 text 默认工作区
+					31 button OpenBKN business knowledge networks
+					32 pop up button 账号菜单
+					33 container
+						34 container 会话层级
+							35 text 物料库存与订单情况查询
+						36 text 标准模式
+						37 text 供应链本体知识网络-手工版
+						38 button 用 访达 打开
+						39 pop up button 更多打开方式
+						40 pop up button 更多操作
+						41 button 打开右侧边栏
+						42 tab group
+							43 tab (selected) 对话, Value: 1
+							44 tab (settable, integer) 轨迹, Value: 0
+					45 container
+						46 container
+							47 text 物料 999-999999 的库存和订单情况？ 11:12
+							48 button 复制
+							49 text 已完成
+							50 button 已完成，用时 41秒
+								51 text 已完成，用时
+								52 text 41
+								53 text 秒
+							54 heading 结论：知识网络中不存在物料 999-999999, Value: 2
+								55 text 结论：知识网络中不存在物料 999-999999
+							56 text 该编码在
+							57 text 所有相关对象类上均为 0 条记录
+							58 text ，因此没有库存、也没有任何形式的订单数据。
+							59 heading 精确匹配结果（编码 = 999-999999）, Value: 3
+								60 text 精确匹配结果（编码 = 999-999999）
+							61 table
+								62 row
+									63 column header
+										64 text 对象类
+									65 column header
+										66 text 匹配字段
+									67 column header
+										68 text 命中
+								69 row
+									70 cell
+										71 text 物料
+									72 cell
+										73 text material_code
+									74 cell
+										75 text 0
+								76 row
+									77 cell
+										78 text 库存
+									79 cell
+										80 text material_code
+									81 cell
+										82 text 0
+								83 row
+									84 cell
+										85 text 采购订单 PO
+									86 cell
+										87 text material_number
+									88 cell
+										89 text 0
+								90 row
+									91 cell
+										92 text 采购申请 PR
+									93 cell
+										94 text material_number
+									95 cell
+										96 text 0
+								97 row
+									98 cell
+										99 text 物料需求计划 MRP
+									100 cell
+										101 text materialplanid_number
+									102 cell
+										103 text 0
+								104 row
+									105 cell
+										106 text 生产工单 MPS
+									107 cell
+										108 text material_number
+									109 cell
+										110 text 0
+								111 row
+									112 cell
+										113 text 产品需求预测单
+									114 cell
+										115 text material_number
+									116 cell
+										117 text 0
+							118 heading 排除了"编码格式不一致"的可能, Value: 3
+								119 text 排除了"编码格式不一致"的可能
+							120 content list
+								121 container
+									122 AXListMarker •
+									123 text 物料  material_code  /  material_name  /  modelnum  模糊包含  999-999999  → 0
+								124 container
+									125 AXListMarker •
+									126 text 库存与采购订单的编码字段模糊包含  999-  → 0
+								127 container
+									128 AXListMarker •
+									129 text 六个对象类的物料编号字段全表模糊包含子串  999  → 全部 0
+							130 heading 查询通道已对照验证（并非查询失败）, Value: 3
+								131 text 查询通道已对照验证（并非查询失败）
+							132 text 同一知识网络中：物料
+							133 text 3497
+							134 text  条、库存
+							135 text 19724
+							136 text  条、采购订单
+							137 text 1972
+							138 text  条，抽样与聚合查询均正常返回。所以空结果来自"该编码不存在"，而不是取数问题。
+							139 heading 建议, Value: 3
+								140 text 建议
+							141 text 请核对物料编码。网络中实际存在的编码形如
+							142 text 101-000002
+							143 text 、
+							144 text 382-000005
+							145 text 、
+							146 text P61-000351
+							147 text （三段式，前段为 3 位数字或字母数字组合）。如果 999-999999 是某个外部/测试编码，它尚未进入本知识网络的数据范围——此时无法给出库存与订单情况，我可改用正确编码或按物料名称关键词帮你重新定位。
+							148 button 复制
+							149 toggle button Description: 好的回答, Value: 0
+							150 toggle button Description: 有问题的回答, Value: 0
+							151 button 查看业务溯源, Help: View OpenBKN provenance for this answer
+							152 button 在新对话中分支
+							153 pop up button 用量 626K tok
+							154 text 11:13
+						155 container
+							156 text entry area (settable) 发消息或创建任务, / 调用指令, @ 文件或对话
+							157 pop up button 添加文件或调用指令
+							158 button 访问模式，当前：工作区内修改
+							159 pop up button Description: 选择模型，当前 DeepSeek-V41-Flash，推理等级 High, Help: DeepSeek-V41-Flash · High
+							160 button (disabled) 发送消息
+						161 pop up button 1 轮 10 步 · 292 tok/s
+							162 text 1 轮 10 步
+							163 text 292 tok/s
+						164 pop up button 626K tok · 缓存命中 97%
+							165 text 626K tok
+							166 text 缓存命中 97%
+						167 pop up button 上下文已用 7%
+					168 container OpenBKN business provenance
+						169 container
+							170 text TRACE-BACKED PROVENANCE
+							171 heading 业务溯源, Value: 2
+								172 text 业务溯源
+							173 button Close
+						174 container Provenance views
+							175 button 执行溯源
+							176 button 业务上下文图
+							177 button 证据链
+						178 container
+							179 text Interaction ID
+							180 text int_a431e50d2e7b4f82c04ac2d64b14da6e
+							181 text 执行状态
+							182 text completed
+							183 text 时间链节点
+							184 text 11
+							185 container
+								186 text 执行时间链 由本机会话事件重建，不依赖平台授权；耗时为本机口径。 本地会话 部分标识符
+							187 container
+								188 text 生命周期 bkn_start_interaction bkn_start_interaction · new · conversation: yes 93 ms
+							189 container
+								190 text 受管访问 search_schema Op op_bbf6096d38ea75918cb332df9caf2bb7 Receipt rcpt_126584467670b66e6150767069077ca3 Status completed search_schema 674 ms
+							191 container
+								192 text 受管访问 search_capabilities Op op_8cb95802c2dd721986c254afb615d3e8 Receipt rcpt_ff8abf6f7723db57e56b008595a33a73 Status completed search_capabilities 458 ms
+							193 container
+								194 text 受管访问 run_code Op op_74e648c0bc3d7e2886040fce3bfc9d89 Receipt rcpt_711971983a732eeacea2f647fe0193fc Status completed run_code 1.3 s
+							195 container
+								196 text 受管访问 run_code Op op_645c0b5f3586b2f3240df9a2bbc2e2e7 Receipt rcpt_9d42a895804bd08d05d95b70c62090c6 Status completed run_code 1.2 s
+							197 container
+								198 text 受管访问 run_code Op op_729497b68bc3d9c1b52a5397c7950a03 Receipt rcpt_3abb5b952bd71fa83ff04bed65e6555b Status completed run_code 1.7 s
+							199 container
+								200 text 受管访问 run_code Op op_a5bc8d7cfc9012e7ddb544000d063974 Receipt rcpt_eaecd37a0266cabeb0a29f5333c1eb82 Status completed run_code 1.1 s
+							201 container
+								202 text 受管访问 run_code Op op_f40f5e31b3c2de271c5c59c9ea59cb50 Receipt rcpt_585a96f07b7dbc1ec4e67a0563ccbe9f Status completed run_code 1.2 s
+							203 container
+								204 text 受管访问 run_code Op op_6c7cb45e828b6b86a7d3e961f450142f Receipt rcpt_fcd0df1dd9c96c3bd0a2c3875f761ac4 Status completed run_code 1.4 s
+							205 container
+								206 text 生命周期 bkn_finish_interaction bkn_finish_interaction · completed 75 ms
+							207 container
+								208 text 回答 本轮回答 11:13:25 AM
+							209 container
+								210 text 平台执行事实 平台口径的操作状态、耗时与 Request / Trace / Receipt 引用。 平台
+							211 container
+								212 text 01 search_schema completed mcp · 2026-10-06T03:12:49.807334Z · 2026-10-06T03:12:50.421734Z Request req_57726f33-6a61-449f-88cf-923e6737bac5 Trace b89ef976f6b7b1ec123e186d765c0d9a Receipt rcpt_126584467670b66e6150767069077ca3
+							213 container
+								214 text 02 search_capabilities completed mcp · 2026-10-06T03:12:50.45711Z · 2026-10-06T03:12:50.883254Z Request req_2a6d00da-705e-4443-8df4-b0481f7b276f Trace 867065cb358966f4d665a5bff20f08a0 Receipt rcpt_ff8abf6f7723db57e56b008595a33a73
+							215 container
+								216 text 03 run_code completed mcp · 2026-10-06T03:12:55.781891Z · 2026-10-06T03:12:57.001228Z Request req_508ce9d0-97da-4096-b713-d97c1f6834b8 Trace f7c9a0ef1cbdb92b540cf4ad12859637 Receipt rcpt_711971983a732eeacea2f647fe0193fc
+							217 container
+								218 text 04 query_object_instance completed mcp · 2026-10-06T03:12:56.257966Z · 2026-10-06T03:12:56.532Z Request req_c75094d7-071a-4ac2-8270-244b53ed977f Trace 35a0a0d91053a941c479fa12640df1b0 Receipt rcpt_e0a7b955610d447788a2206d5b30cc0d
+							219 container
+								220 text 05 query_object_instance completed mcp · 2026-10-06T03:12:56.550701Z · 2026-10-06T03:12:56.631335Z Request req_c9da6e6b-8193-43c3-b1b0-fda383f2dfb8 Trace ba67e2e86c1b1ff398aed4e590629c5b Receipt rcpt_2508efe247bdad89a9bb23c5bb74ed52
+							221 container
+								222 text 06 query_object_instance completed mcp · 2026-10-06T03:12:56.646906Z · 2026-10-06T03:12:56.686934Z Request req_97563f51-3233-4e9e-a2f1-323dce76611b Trace 35bf47ad4dbf3f42210549fedeee99bc Receipt rcpt_7032015e65146c61e79e3d62d3ba5954
+							223 container
+								224 text 07 query_object_instance completed mcp · 2026-10-06T03:12:56.704676Z · 2026-10-06T03:12:56.760319Z Request req_8bc7c4fb-b597-487d-9c07-e32daf05ed01 Trace cae93c4babf2bfd401d42d227fbf0741 Receipt rcpt_fa1c76ad191a1cdb56a50d3e031ffc0c
+							225 container
+								226 text 08 query_object_instance completed mcp · 2026-10-06T03:12:56.7739Z · 2026-10-06T03:12:56.818287Z Request req_4257fab7-ddd7-4f1b-b1f7-b5d2c5e9a3ae Trace cc389097a36f873b8dc0419126b4a8de Receipt rcpt_a074a8c386e74a4715c2ce71a7dca691
+							227 container
+								228 text 09 query_object_instance completed mcp · 2026-10-06T03:12:56.83474Z · 2026-10-06T03:12:56.878212Z Request req_aaf01626-beeb-47eb-84e4-179e9a0af7d3 Trace 5c9faffdc980fe23188e540f24239346 Receipt rcpt_dabc52de3b1ab9a3b49613708a527a19
+							229 container
+								230 text 10 query_object_instance completed mcp · 2026-10-06T03:12:56.889417Z · 2026-10-06T03:12:56.931346Z Request req_3b58c194-e521-4f13-a684-f183afb6e91d Trace 408d6b2c10637e9492def8f2a842b764 Receipt rcpt_2f1d06607fe91c3164d148d372ee77d4
+							231 container
+								232 text 11 run_code completed mcp · 2026-10-06T03:13:00.889931Z · 2026-10-06T03:13:01.986387Z Request req_cb99544d-43c6-4217-8f64-376c178810a4 Trace 2ba23c28e95f34cba4d73a6a6005caa6 Receipt rcpt_9d42a895804bd08d05d95b70c62090c6
+							233 container
+								234 text 12 query_object_instance completed mcp · 2026-10-06T03:13:01.201035Z · 2026-10-06T03:13:01.263097Z Request req_efcc240e-39d8-417d-aa2a-ffc82c3eed05 Trace ba43dc68ac29eb106d54874a48db6b29 Receipt rcpt_039c4f801dba928e2de2f10867469b13
+							235 container
+								236 text 13 query_object_instance completed mcp · 2026-10-06T03:13:01.2807Z · 2026-10-06T03:13:01.33356Z Request req_7a6ed244-e2cc-456d-9d48-a79b6e2efe61 Trace d33480e85ae200f6911c5a4f14ac5c6b Receipt rcpt_5e27f882676156134e0fdc5a6fec763b
+							237 container
+								238 text 14 query_object_instance completed mcp · 2026-10-06T03:13:01.346122Z · 2026-10-06T03:13:01.383701Z Request req_408229ea-ec97-4148-924b-7010ad3878b9 Trace 01e700e3a2cb5048e8005b701036f655 Receipt rcpt_027994bcaaf97507c134c299c055f364
+							239 container
+								240 text 15 query_object_instance completed mcp · 2026-10-06T03:13:01.40079Z · 2026-10-06T03:13:01.434392Z Request req_06d68973-a441-4a4a-bfa8-a928f6bc35f9 Trace 1a80063a0b33f79a4bcede034316c59e Receipt rcpt_ffc6564bbbab7b8eba125087b8a4ca89
+							241 container
+								242 text 16 query_object_instance completed mcp · 2026-10-06T03:13:01.448182Z · 2026-10-06T03:13:01.481594Z Request req_c1f7ea48-b344-4d53-beda-bd737965506c Trace 0d06417f6152ae04cf011508236b017a Receipt rcpt_f90e12d7f121782b233084018a0faccb
+							243 container
+								244 text 17 query_object_instance completed mcp · 2026-10-06T03:13:01.491522Z · 2026-10-06T03:13:01.523Z Request req_f47b7b42-911d-49da-8f55-f76613c4ad9d Trace d93467b59dd6ab699f726d59419cd248 Receipt rcpt_f71bedb73716c15576c41a680c3cb3ca
+							245 container
+								246 text 18 query_object_instance completed mcp · 2026-10-06T03:13:01.537045Z · 2026-10-06T03:13:01.571541Z Request req_15ecb0f8-f0bb-49a3-8400-96d13eba9ef9 Trace c7fdcb64e9d541f542bd3e9fe3d13d86 Receipt rcpt_3cdcfe77bdc7a52ad5bb239c679634bb
+							247 container
+								248 text 19 query_object_instance completed mcp · 2026-10-06T03:13:01.581329Z · 2026-10-06T03:13:01.62056Z Request req_2daec1a3-21ba-4e9f-a107-1da078780ab6 Trace 21fa33f4d6c17520d64e17d5ea5ef0fe Receipt rcpt_e02986620b86a4472c6fabbe3288f48e
+							249 container
+								250 text 20 run_code completed mcp · 2026-10-06T03:13:05.224598Z · 2026-10-06T03:13:06.854534Z Request req_9b25e144-7381-423c-916e-e067c44c40d1 Trace 48ce3457a6d6e94c05b6052294b50d80 Receipt rcpt_3abb5b952bd71fa83ff04bed65e6555b
+							251 container
+								252 text 21 query_object_instance completed mcp · 2026-10-06T03:13:05.493064Z · 2026-10-06T03:13:05.5569Z Request req_1db9e27a-acbe-421d-8cd1-c0c76e817c13 Trace 6c74a54d20861615b22613076c783d5d Receipt rcpt_52d17bf8676ef776f7e8c6ff86866176
+							253 container
+								254 text 22 run_cypher completed mcp · 2026-10-06T03:13:05.576584Z · 2026-10-06T03:13:06.080722Z Request req_cddd7bd6-9373-496c-875b-66ad052513c7 Trace a35db1210844f6f46ccfec576b998431 Receipt rcpt_63f40d851336c7d991519dbd9f0975f2
+							255 container
+								256 text 23 run_cypher completed mcp · 2026-10-06T03:13:06.107797Z · 2026-10-06T03:13:06.423662Z Request req_10cf8986-129a-4c13-b46b-4b6f6162474c Trace adddfaf3037c9a78438d6a354484952f Receipt rcpt_b4c4553cb98e494b9e29a0a106fbd78f
+							257 container
+								258 text 24 run_code completed mcp · 2026-10-06T03:13:09.295834Z · 2026-10-06T03:13:10.375874Z Request req_216d443b-fa4b-41ef-a884-8c69b1741413 Trace 5e513b3767dcaf015d9c4ec296ab9522 Receipt rcpt_eaecd37a0266cabeb0a29f5333c1eb82
+							259 container
+								260 text 25 query_object_instance completed mcp · 2026-10-06T03:13:09.50943Z · 2026-10-06T03:13:09.554367Z Request req_e9a8640a-c459-49b8-a3fc-c2ef1e70d157 Trace 5ed882ee43fa8f3402e7adea07614d60 Receipt rcpt_9997cd25ae3eb6a252a01a0ac1651192
+							261 container
+								262 text 26 query_object_instance completed mcp · 2026-10-06T03:13:09.569315Z · 2026-10-06T03:13:09.625758Z Request req_14698f4e-b5e6-4d89-a5d1-6d2f7c5244ce Trace 068f3c12de3a38300e82a9d593353324 Receipt rcpt_8b54cdd9466bc5d868f39f09d7be5352
+							263 container
+								264 text 27 query_object_instance completed mcp · 2026-10-06T03:13:09.652242Z · 2026-10-06T03:13:09.697872Z Request req_ee366e9a-6ecf-4dec-a0cd-a0a4490f5190 Trace efaf53bf4ccba756891127565c78a891 Receipt rcpt_b3a81922dab0b35f27b119796d3fd8b6
+							265 container
+								266 text 28 query_object_instance completed mcp · 2026-10-06T03:13:09.717109Z · 2026-10-06T03:13:09.775366Z Request req_7f003553-bd8a-4614-988f-fee666be7200 Trace 831cd8a6c1b788061c621de037389188 Receipt rcpt_f0ce0c61f8b559e5f9a11fb5206c3193
+							267 container
+								268 text 29 query_object_instance completed mcp · 2026-10-06T03:13:09.788573Z · 2026-10-06T03:13:09.825187Z Request req_dd03e799-ff21-4a1b-850a-6c6ef1a4947d Trace 286b84a0dfa13ef0913538fcfd73b3f2 Receipt rcpt_daa6650f869b13cec6493d71db8667b3
+							269 container
+								270 text 30 query_object_instance completed mcp · 2026-10-06T03:13:09.838202Z · 2026-10-06T03:13:09.871239Z Request req_8250e8f6-e63c-469b-b996-ec50847e7f6e Trace c82fbc96d6abcb3aa0cbde0fb544d936 Receipt rcpt_33b5df7473c91911c1f34dcaf14a7090
+							271 container
+								272 text 31 query_object_instance completed mcp · 2026-10-06T03:13:09.881066Z · 2026-10-06T03:13:09.922264Z Request req_957773dc-15f7-4bc7-b276-0578f543f0a5 Trace 04273d65cb418ce45f39f4c90f786ea6 Receipt rcpt_d9de7eefb2a4a32bed4f1b8aeae38c11
+							273 container
+								274 text 32 run_code completed mcp · 2026-10-06T03:13:14.305969Z · 2026-10-06T03:13:15.51065Z Request req_22466b38-bd67-4630-b0cd-22fbe0110b42 Trace 629b4162df22f5b206a29b9da4086217 Receipt rcpt_585a96f07b7dbc1ec4e67a0563ccbe9f
+							275 container
+								276 text 33 query_object_instance completed mcp · 2026-10-06T03:13:14.757909Z · 2026-10-06T03:13:14.831758Z Request req_8faeb5a5-4caf-415d-8caf-3a1ed5b5d468 Trace 6a2d661b3afcb7674f647acaef76e0dd Receipt rcpt_b7aeaea3179094094890c4121a382d37
+							277 container
+								278 text 34 query_object_instance completed mcp · 2026-10-06T03:13:14.853941Z · 2026-10-06T03:13:14.905545Z Request req_cdc3c476-8a5f-45dd-8007-fea5ef2054a4 Trace 14bc8d46239dda225ed9dd46a44245a3 Receipt rcpt_ff5144566ab0a6527b39e2e33a87021d
+							279 container
+								280 text 35 query_object_instance completed mcp · 2026-10-06T03:13:14.923481Z · 2026-10-06T03:13:14.985063Z Request req_a38e64b5-ffb7-4a90-bcb5-59af4c9c8dbf Trace a613951b8da9e82a29cc0f44311e43de Receipt rcpt_a82aa910d47339f20ea0d2992bc4c2bb
+							281 container
+								282 text 36 query_object_instance completed mcp · 2026-10-06T03:13:15.007614Z · 2026-10-06T03:13:15.056485Z Request req_258286f9-d6b8-4949-860e-17c33747a19d Trace c52feda917fc20bab52cba18c58b6fca Receipt rcpt_73dc8f8aa25ca6c5b74ad99c6c7e4ca3
+							283 container
+								284 text 37 query_object_instance completed mcp · 2026-10-06T03:13:15.07173Z · 2026-10-06T03:13:15.111761Z Request req_4d345277-01c0-4dd7-89ba-cdef26a5b14e Trace 4e0b78e4f94c0fd6974e944a36751c4c Receipt rcpt_022ad5d8da37e23b4b11cea0386a6c07
+							285 container
+								286 text 38 query_object_instance completed mcp · 2026-10-06T03:13:15.123847Z · 2026-10-06T03:13:15.170238Z Request req_132292db-07c3-4018-967e-f483f0dc295d Trace 77843913affdbe3b332e56b54f25d657 Receipt rcpt_0dfc60614888f1c8bb369b4fc23cd0ac
+							287 container
+								288 text 39 query_object_instance completed mcp · 2026-10-06T03:13:15.181576Z · 2026-10-06T03:13:15.22023Z Request req_de75d3c7-c92d-4e5c-ad2a-5d37ad1804e4 Trace 32a91eb1707d4c543ef6809b86f19836 Receipt rcpt_aeae65e1fb9733834665ad88465cecc8
+							289 container
+								290 text 40 query_object_instance completed mcp · 2026-10-06T03:13:15.231374Z · 2026-10-06T03:13:15.27834Z Request req_eb2c379d-adf6-4823-a387-a538a69549b4 Trace 14fe8181f890a4ccebbbecbd5ef69d03 Receipt rcpt_353af42457ba585388d5d539f11063d2
+							291 container
+								292 text 41 query_object_instance completed mcp · 2026-10-06T03:13:15.293769Z · 2026-10-06T03:13:15.373715Z Request req_f3c5f171-f9fa-455d-b5da-7fab9a1d283f Trace e7480e69cc64b31ed741f84f66918e47 Receipt rcpt_a274f397c973e70e6a6c3e388e022857
+							293 container
+								294 text 42 run_code completed mcp · 2026-10-06T03:13:19.269261Z · 2026-10-06T03:13:20.560284Z Request req_a6db8b6b-d89f-4295-81ef-eaf9ffaaa96c Trace 249a9923557f3fab82420b643403f1f7 Receipt rcpt_fcd0df1dd9c96c3bd0a2c3875f761ac4
+							295 container
+								296 text 43 query_object_instance completed mcp · 2026-10-06T03:13:19.746433Z · 2026-10-06T03:13:19.856291Z Request req_608a30f1-ff99-4cd5-be68-cb491ac1563a Trace 242bee42ee841e6d6b2e371d20627d2f Receipt rcpt_57d21beccbf8efdccf3ad8f77869d53b
+							297 container
+								298 text 44 query_object_instance completed mcp · 2026-10-06T03:13:19.873812Z · 2026-10-06T03:13:19.913607Z Request req_b64f8105-c554-4ee5-9fea-b23909b64f04 Trace fd6325be2fb7d69bac8b900238cfc0f4 Receipt rcpt_f34f25c5c73397689a76884a14a3d8c1
+							299 container
+								300 text 45 query_object_instance completed mcp · 2026-10-06T03:13:19.932473Z · 2026-10-06T03:13:19.996818Z Request req_b692292b-d6f9-4aa2-8910-98659fb4acfa Trace dbc1a6c54014d82b264a132fdb8b7dc8 Receipt rcpt_3190f6ac90cc1e14a284f8c1b238860f
+							301 container
+								302 text 46 query_object_instance completed mcp · 2026-10-06T03:13:20.010707Z · 2026-10-06T03:13:20.049381Z Request req_fd83d1de-04ed-4e6c-8d69-1197489a23e4 Trace f60f8bcbbae9403b3b3cd3d893513844 Receipt rcpt_db544b1fee40830a05af95cf5dab4ebd
+							303 container
+								304 text 47 query_object_instance completed mcp · 2026-10-06T03:13:20.06324Z · 2026-10-06T03:13:20.096942Z Request req_0e531844-e46b-40e3-95ab-6f819a379e68 Trace 8469bfabae8b8319412d1ffd50f3e21c Receipt rcpt_94b3095e42192e8aaa9d005feb30bc52
+							305 container
+								306 text 48 query_object_instance completed mcp · 2026-10-06T03:13:20.107631Z · 2026-10-06T03:13:20.141506Z Request req_67c15e17-210c-46d8-b621-0aa4559c01ed Trace 372ef9192c64c244727fb7ace7de5ab6 Receipt rcpt_ebc8f4f96e7fa1c17434d88870f17a9a
+	307 close button
+	308 full screen button Help: this button also has an action to zoom the window, Secondary Actions: zoom the window
+	309 minimize button
+310 menu bar
+	311 DeepSeek Harness
+	312 文件
+	313 Edit
+	314 Window
+
+The focused UI element is 168 container OpenBKN business provenance

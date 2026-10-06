@@ -1,0 +1,23 @@
+{
+  "sourceCommit": "e972d319f19e2094740ac12da45684e3ba890e37",
+  "version": "0.2.0-rc.2-openbkn.0.2.0-7",
+  "build": {
+    "workflow": "release-plugin.yml",
+    "publish": false,
+    "runId": 37407894581,
+    "runUrl": "https://github.com/openbkn-ai/bkn-dsh/actions/runs/37407894581",
+    "artifactId": 11388470337,
+    "artifactName": "plugin-tarball",
+    "artifactZipDigest": "sha256:92a0580c68fa5089886faaf584a05003606b30170731241c6cfcbf23f81757b7"
+  },
+  "artifact": {
+    "path": "openbkn-dsh-business-context-0.2.0-rc.2-openbkn.0.2.0-7.tgz",
+    "sha256": "44ca22708d243c5825774b7385de3f8699a51cad04d36477d8755201cf9af424",
+    "sizeBytes": 163496,
+    "fileCount": 65
+  },
+  "localPackUsedForAcceptance": false,
+  "localPackSha256": "5751cc4b325e5e4f6912484d6151b42be6693fb360685c2bb3eedbb2903144c4",
+  "localPackMatchesDownloadedCI": false,
+  "localPackContentDifferences": []
+}

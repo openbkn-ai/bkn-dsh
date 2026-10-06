@@ -1,0 +1,29 @@
+{
+  "repository": "https://github.com/openbkn-ai/bkn-dsh.git",
+  "branch": "fix/diagnostics-d0-s2",
+  "packageSourceCommit": "e972d319f19e2094740ac12da45684e3ba890e37",
+  "entryGuide": "docs/handoff/2026-10-06-plugin-fixes-windows/WINDOWS-START.md",
+  "archive": {
+    "repositoryPath": "docs/handoff/2026-10-06-plugin-fixes-windows/assets/windows-diag7-e972d31.zip",
+    "sha256": "edfb2296d613a04b042332a1b844ae22d97df07a5d99e931ae089552df48d633",
+    "sizeBytes": 6818162,
+    "fileCount": 172
+  },
+  "candidate": {
+    "version": "0.2.0-rc.2-openbkn.0.2.0-7",
+    "archivePath": "candidate/openbkn-dsh-business-context-0.2.0-rc.2-openbkn.0.2.0-7.tgz",
+    "sha256": "44ca22708d243c5825774b7385de3f8699a51cad04d36477d8755201cf9af424",
+    "sizeBytes": 163496,
+    "fileCount": 65,
+    "buildRunId": 37407894581,
+    "publish": false
+  },
+  "includedUpgradeBaselines": [
+    "0.2.0-rc.2-openbkn.0.2.0-4",
+    "0.2.0-rc.2-openbkn.0.2.0-5",
+    "0.2.0-rc.2-openbkn.0.2.0-6"
+  ],
+  "note": "Fixed downloaded CI -7 package; -4/-5/-6 are historical upgrade inputs. Fetch delivery Git HEAD independently from package source. Mac current affected acceptance passed; historical G6 failures remain.",
+  "nativeWindowsExecuted": false,
+  "releaseAccepted": false
+}

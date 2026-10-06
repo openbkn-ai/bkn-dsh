@@ -1,0 +1,30 @@
+{
+  "ownedAppPidsChecked": [
+    5857,
+    8532,
+    10056,
+    13112,
+    21358,
+    22802,
+    23574,
+    24931,
+    25674,
+    26338,
+    27615,
+    28560,
+    29345,
+    30261,
+    30966,
+    31820,
+    34062,
+    35603
+  ],
+  "ownedAppPidsStillRunning": [],
+  "remainingOfficialAppProcesses": [],
+  "nativeAppsExitedNormally": true,
+  "privateIsolatedModelProfileRetained": true,
+  "rawLogsExported": false,
+  "tokenOrModelKeyExported": false,
+  "temporaryRootCleanup": "removed after candidate, evidence and Windows staging were preserved; retained private model profile untouched",
+  "removedTaskRoot": "/var/folders/9r/1zks6bqd7f3dtwybvxsksbc40000gn/T/openbkn-followup-20261006-253pnzsb"
+}

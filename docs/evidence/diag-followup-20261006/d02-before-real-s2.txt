@@ -1,0 +1,52 @@
+Window: "DeepSeek Harness", App: DeepSeek Harness.
+0 standard window DeepSeek Harness, Secondary Actions: Raise
+	1 container DeepSeek Harness
+		2 container
+			3 HTML content DeepSeek Harness, URL: dsh-app://app/
+				4 container
+					5 button 收起侧边栏
+					6 button 新建会话
+					7 container 全局面板
+						8 button 插件
+					9 text 工作区
+					10 button 搜索会话
+					11 text field (settable) 搜索会话名称
+					12 button 视图选项
+					13 button 添加工作区
+					14 outline 会话
+						15 container
+							16 row 默认工作区
+								17 text 默认工作区
+							18 row (selected) 新会话
+								19 text 新会话
+					20 button OpenBKN business knowledge networks
+					21 pop up button 账号菜单
+					22 button 打开右侧边栏
+					23 container
+						24 text 探索未至之境 预览版
+						25 pop up button 选择工作区
+						26 pop up button 标准模式, Help: 选择新任务使用的 Agent 预设
+						27 text entry area (settable) 描述你想要构建的内容, / 调用指令, @ 文件或对话
+						28 pop up button 添加文件或调用指令
+						29 button 访问模式，当前：工作区内修改
+						30 pop up button Description: 选择模型，当前 DeepSeek-V41-Flash，推理等级 High, Help: DeepSeek-V41-Flash · High
+						31 button (disabled) 发送消息
+					32 container OpenBKN business knowledge networks
+						33 container
+							34 text OPENBKN
+							35 heading 业务知识网络, Value: 2
+								36 text 业务知识网络
+							37 button 诊断
+							38 button Close
+						39 text 无法验证 OpenBKN 连接。请检查 Token 和平台地址后重试。
+						40 button 重试
+	41 close button
+	42 full screen button Help: this button also has an action to zoom the window, Secondary Actions: zoom the window
+	43 minimize button
+44 menu bar
+	45 DeepSeek Harness
+	46 文件
+	47 Edit
+	48 Window
+
+The focused UI element is 3 HTML content DeepSeek Harness, URL: dsh-app://app/

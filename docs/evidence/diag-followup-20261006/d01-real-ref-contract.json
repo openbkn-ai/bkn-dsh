@@ -1,0 +1,339 @@
+{
+  "interactionId": "int_a431e50d2e7b4f82c04ac2d64b14da6e",
+  "exitCode": 0,
+  "authorizedRefCount": 33,
+  "businessRefs": [
+    {
+      "technical_ref": {
+        "ref_type": "action_type",
+        "ref_id": "action_type:supply_ontology_hand:supply_ontology_hand_act_po",
+        "version": "unversioned"
+      },
+      "display": {
+        "name": "发起PO"
+      }
+    },
+    {
+      "technical_ref": {
+        "ref_type": "knowledge_network",
+        "ref_id": "kn:supply_ontology_hand",
+        "version": "unversioned"
+      },
+      "display": {
+        "name": "供应链本体知识网络-手工版"
+      }
+    },
+    {
+      "technical_ref": {
+        "ref_type": "metric",
+        "ref_id": "metric:supply_ontology_hand:01a0f6e6-5e9e-72bf-a34a-afcc0ca532d9",
+        "version": "unversioned"
+      },
+      "display": {
+        "name": "物料总数"
+      }
+    },
+    {
+      "technical_ref": {
+        "ref_type": "metric",
+        "ref_id": "metric:supply_ontology_hand:01a0f6e6-5e9e-72c1-b69b-64e663b5e45d",
+        "version": "unversioned"
+      },
+      "display": {
+        "name": "销售订单数"
+      }
+    },
+    {
+      "technical_ref": {
+        "ref_type": "metric",
+        "ref_id": "metric:supply_ontology_hand:01a0f6e6-5e9e-72c3-8694-7851b3e5186f",
+        "version": "unversioned"
+      },
+      "display": {
+        "name": "仓库数"
+      }
+    },
+    {
+      "technical_ref": {
+        "ref_type": "metric",
+        "ref_id": "metric:supply_ontology_hand:01a0f6e6-5e9e-72c4-8d14-76e2a96ce966",
+        "version": "unversioned"
+      },
+      "display": {
+        "name": "库存可用量"
+      }
+    },
+    {
+      "technical_ref": {
+        "ref_type": "metric",
+        "ref_id": "metric:supply_ontology_hand:01a0f6e6-5e9e-72c6-950b-cea1ef7900ad",
+        "version": "unversioned"
+      },
+      "display": {
+        "name": "未关闭预测单数"
+      }
+    },
+    {
+      "technical_ref": {
+        "ref_type": "object_type",
+        "ref_id": "object:supply_ontology_hand:supply_ontology_hand_bom",
+        "version": "unversioned"
+      },
+      "display": {
+        "name": "产品BOM"
+      }
+    },
+    {
+      "technical_ref": {
+        "ref_type": "object_type",
+        "ref_id": "object:supply_ontology_hand:supply_ontology_hand_forecast",
+        "version": "unversioned"
+      },
+      "display": {
+        "name": "产品需求预测单"
+      }
+    },
+    {
+      "technical_ref": {
+        "ref_type": "object_type",
+        "ref_id": "object:supply_ontology_hand:supply_ontology_hand_inventory",
+        "version": "0.1.5"
+      },
+      "display": {
+        "name": "库存"
+      }
+    },
+    {
+      "technical_ref": {
+        "ref_type": "object_type",
+        "ref_id": "object:supply_ontology_hand:supply_ontology_hand_inventory",
+        "version": "unversioned"
+      },
+      "display": {
+        "name": "库存"
+      }
+    },
+    {
+      "technical_ref": {
+        "ref_type": "object_type",
+        "ref_id": "object:supply_ontology_hand:supply_ontology_hand_material",
+        "version": "0.1.5"
+      },
+      "display": {
+        "name": "物料"
+      }
+    },
+    {
+      "technical_ref": {
+        "ref_type": "object_type",
+        "ref_id": "object:supply_ontology_hand:supply_ontology_hand_material",
+        "version": "unversioned"
+      },
+      "display": {
+        "name": "物料"
+      }
+    },
+    {
+      "technical_ref": {
+        "ref_type": "object_type",
+        "ref_id": "object:supply_ontology_hand:supply_ontology_hand_mon_item",
+        "version": "unversioned"
+      },
+      "display": {
+        "name": "监控证据明细"
+      }
+    },
+    {
+      "technical_ref": {
+        "ref_type": "object_type",
+        "ref_id": "object:supply_ontology_hand:supply_ontology_hand_mps",
+        "version": "unversioned"
+      },
+      "display": {
+        "name": "工厂生产计划"
+      }
+    },
+    {
+      "technical_ref": {
+        "ref_type": "object_type",
+        "ref_id": "object:supply_ontology_hand:supply_ontology_hand_mrp",
+        "version": "unversioned"
+      },
+      "display": {
+        "name": "物料需求计划"
+      }
+    },
+    {
+      "technical_ref": {
+        "ref_type": "object_type",
+        "ref_id": "object:supply_ontology_hand:supply_ontology_hand_po",
+        "version": "unversioned"
+      },
+      "display": {
+        "name": "采购订单"
+      }
+    },
+    {
+      "technical_ref": {
+        "ref_type": "object_type",
+        "ref_id": "object:supply_ontology_hand:supply_ontology_hand_pr",
+        "version": "unversioned"
+      },
+      "display": {
+        "name": "采购申请单"
+      }
+    },
+    {
+      "technical_ref": {
+        "ref_type": "object_type",
+        "ref_id": "object:supply_ontology_hand:supply_ontology_hand_pr_decision",
+        "version": "unversioned"
+      },
+      "display": {
+        "name": "采购申请决策"
+      }
+    },
+    {
+      "technical_ref": {
+        "ref_type": "object_type",
+        "ref_id": "object:supply_ontology_hand:supply_ontology_hand_product",
+        "version": "unversioned"
+      },
+      "display": {
+        "name": "产品"
+      }
+    },
+    {
+      "technical_ref": {
+        "ref_type": "object_type",
+        "ref_id": "object:supply_ontology_hand:supply_ontology_hand_salesorder",
+        "version": "unversioned"
+      },
+      "display": {
+        "name": "销售订单"
+      }
+    },
+    {
+      "technical_ref": {
+        "ref_type": "property",
+        "ref_id": "property:supply_ontology_hand:supply_ontology_hand_material:material_code",
+        "version": "0.1.5"
+      },
+      "display": {
+        "name": "物料编码"
+      }
+    },
+    {
+      "technical_ref": {
+        "ref_type": "property",
+        "ref_id": "property:supply_ontology_hand:supply_ontology_hand_material:material_name",
+        "version": "0.1.5"
+      },
+      "display": {
+        "name": "物料名称"
+      }
+    },
+    {
+      "technical_ref": {
+        "ref_type": "relation_type",
+        "ref_id": "relation:supply_ontology_hand:supply_ontology_hand_bom2mat",
+        "version": "unversioned"
+      },
+      "display": {
+        "name": "产品bom关联物料"
+      }
+    },
+    {
+      "technical_ref": {
+        "ref_type": "relation_type",
+        "ref_id": "relation:supply_ontology_hand:supply_ontology_hand_mat2inv",
+        "version": "unversioned"
+      },
+      "display": {
+        "name": "物料关联库存"
+      }
+    },
+    {
+      "technical_ref": {
+        "ref_type": "relation_type",
+        "ref_id": "relation:supply_ontology_hand:supply_ontology_hand_monitem2mat",
+        "version": "unversioned"
+      },
+      "display": {
+        "name": "监控证据引用物料"
+      }
+    },
+    {
+      "technical_ref": {
+        "ref_type": "relation_type",
+        "ref_id": "relation:supply_ontology_hand:supply_ontology_hand_mrp2fcst",
+        "version": "unversioned"
+      },
+      "display": {
+        "name": "物料需求计划关联产品预测需求"
+      }
+    },
+    {
+      "technical_ref": {
+        "ref_type": "relation_type",
+        "ref_id": "relation:supply_ontology_hand:supply_ontology_hand_mrp2mat",
+        "version": "unversioned"
+      },
+      "display": {
+        "name": "物料需求计划关联物料"
+      }
+    },
+    {
+      "technical_ref": {
+        "ref_type": "relation_type",
+        "ref_id": "relation:supply_ontology_hand:supply_ontology_hand_pr2mrp",
+        "version": "unversioned"
+      },
+      "display": {
+        "name": "采购申请单关联物料需求计划"
+      }
+    },
+    {
+      "technical_ref": {
+        "ref_type": "relation_type",
+        "ref_id": "relation:supply_ontology_hand:supply_ontology_hand_pr2po",
+        "version": "unversioned"
+      },
+      "display": {
+        "name": "采购订单关联物料请购单"
+      }
+    },
+    {
+      "technical_ref": {
+        "ref_type": "relation_type",
+        "ref_id": "relation:supply_ontology_hand:supply_ontology_hand_prdec2mat",
+        "version": "unversioned"
+      },
+      "display": {
+        "name": "采购申请决策建议采购物料"
+      }
+    },
+    {
+      "technical_ref": {
+        "ref_type": "relation_type",
+        "ref_id": "relation:supply_ontology_hand:supply_ontology_hand_prod2inv",
+        "version": "unversioned"
+      },
+      "display": {
+        "name": "产品关联库存"
+      }
+    },
+    {
+      "technical_ref": {
+        "ref_type": "relation_type",
+        "ref_id": "relation:supply_ontology_hand:supply_ontology_hand_so2prod",
+        "version": "unversioned"
+      },
+      "display": {
+        "name": "销售订单关联产品"
+      }
+    }
+  ],
+  "operationBusinessEdgeCount": 73,
+  "rawBusinessGraphExported": false
+}

@@ -1,0 +1,245 @@
+{
+  "operation": "Strip line-ending whitespace and final extra blank lines only from captured AX/test text; no word/value changes. Product JSON, screenshots and CI package unchanged.",
+  "files": [
+    {
+      "path": "u01-reinstall-1-settings.txt",
+      "beforeSha256": "88aee44c5ece170e70c2100d68afd96cf165d717308f64ea3aeb12155617aecd",
+      "afterSha256": "27b1ce8645aea061b90ad2bff21b452470c63cf342ce39341d0cc2dc9eedab1b"
+    },
+    {
+      "path": "u01-s2-diagnostics.txt",
+      "beforeSha256": "3a4c14bfa01d0c27d5e5db7805cbec2dc9d4ea55fed96a6f8eb08f597a8afb50",
+      "afterSha256": "a34a0d449b4d1c0113e2bca7617ff617febcabd8f84813561379a8efc46e9be6"
+    },
+    {
+      "path": "u01-first-install-3-main.txt",
+      "beforeSha256": "ba60ccd186f39c7f157da9f761fc5a2b580c383a2c139f59bb9234d17c3bd7a8",
+      "afterSha256": "a3d6b3cbbf1cd55ce710d1ebad2b8b0a1144778d8cfbec68a282ccd00b9c8f1f"
+    },
+    {
+      "path": "u01-first-install-2-main.txt",
+      "beforeSha256": "ba60ccd186f39c7f157da9f761fc5a2b580c383a2c139f59bb9234d17c3bd7a8",
+      "afterSha256": "a3d6b3cbbf1cd55ce710d1ebad2b8b0a1144778d8cfbec68a282ccd00b9c8f1f"
+    },
+    {
+      "path": "q01-2-answer.txt",
+      "beforeSha256": "abc4b167a794bf48d34f54f94d7e36f7f4012540e231e197d9f120d1717ccdb4",
+      "afterSha256": "05828997bdd93303862590a1e9e4646ed0aa2906199c1a5983aab3f5542013a6"
+    },
+    {
+      "path": "u01-reinstall-3-main.txt",
+      "beforeSha256": "7e9d9f709137f65c7918f37465a3795056503b7495f8d03be0de3034d5634ff7",
+      "afterSha256": "a052b7af21e8efacd3d20b9663129c9dcb850e0159a1cfec8dacd218c34df372"
+    },
+    {
+      "path": "u01-reinstall-2-main.txt",
+      "beforeSha256": "7e9d9f709137f65c7918f37465a3795056503b7495f8d03be0de3034d5634ff7",
+      "afterSha256": "a052b7af21e8efacd3d20b9663129c9dcb850e0159a1cfec8dacd218c34df372"
+    },
+    {
+      "path": "u01-restart-3-settings.txt",
+      "beforeSha256": "88aee44c5ece170e70c2100d68afd96cf165d717308f64ea3aeb12155617aecd",
+      "afterSha256": "27b1ce8645aea061b90ad2bff21b452470c63cf342ce39341d0cc2dc9eedab1b"
+    },
+    {
+      "path": "ci7-restored-panel.txt",
+      "beforeSha256": "282cf2424aa81ed87bbbd58d880d48f7ff3d9ecc6402aa105bd2aebe6e2ad50a",
+      "afterSha256": "cbc1bd6a78ec68f9d20cf03e0dc52411ca3fdf8f93d58322dec4d3d92ff2cd48"
+    },
+    {
+      "path": "u01-restart-2-settings.txt",
+      "beforeSha256": "88aee44c5ece170e70c2100d68afd96cf165d717308f64ea3aeb12155617aecd",
+      "afterSha256": "27b1ce8645aea061b90ad2bff21b452470c63cf342ce39341d0cc2dc9eedab1b"
+    },
+    {
+      "path": "regression-before.txt",
+      "beforeSha256": "450988c224c62805f7d51ed3058b0d1f69d3d06aef07be5c6ef50521413114d7",
+      "afterSha256": "6ca0e6a7ef969bbeb90b3b05e4f76165632adbab1c308c2c4ce3d0ef12cff443"
+    },
+    {
+      "path": "u01-restart-1-main.txt",
+      "beforeSha256": "7e9d9f709137f65c7918f37465a3795056503b7495f8d03be0de3034d5634ff7",
+      "afterSha256": "a052b7af21e8efacd3d20b9663129c9dcb850e0159a1cfec8dacd218c34df372"
+    },
+    {
+      "path": "q01-5-answer.txt",
+      "beforeSha256": "410158c9a802c98133526703dbe011433bdd3b75384f93d12a16409397c13197",
+      "afterSha256": "09caeac730ea7f3f89fdc447d33d80e9090f76188c9de8b92cc43bbdfd4845e4"
+    },
+    {
+      "path": "ci7-s2-diagnostics.txt",
+      "beforeSha256": "e40b4dbb3774e19f493f30e7ab396dc58f6e69d192a1961ecdc359977a445c0e",
+      "afterSha256": "cc1235630f9384d1ad8c29dba8ca8d3d7849888984521eb7aade9f8c6b4fb6d4"
+    },
+    {
+      "path": "u01-empty-2-main.txt",
+      "beforeSha256": "df3219678d2e68318919e3e1501279986266ca3fd032c6fe00321fcf65d7fecb",
+      "afterSha256": "87ca0f14a80aca4c562113043e111cbcd6dd737d18f2f7f4d40a406892de934f"
+    },
+    {
+      "path": "u01-empty-3-main.txt",
+      "beforeSha256": "df3219678d2e68318919e3e1501279986266ca3fd032c6fe00321fcf65d7fecb",
+      "afterSha256": "87ca0f14a80aca4c562113043e111cbcd6dd737d18f2f7f4d40a406892de934f"
+    },
+    {
+      "path": "ci7-normal-diagnostics.txt",
+      "beforeSha256": "ee99726372cd3ead8e6674c35750e969bb7e9d3ffec2a68ceea6f41ec47d0880",
+      "afterSha256": "e31cedcd301a8e610a5cce635fa76a3aa9e140385f446ecb8cce8c2dc695551c"
+    },
+    {
+      "path": "ci7-existing-provenance.txt",
+      "beforeSha256": "7af2c24f58dea77bb1ac847aa110a07dc502f20fbee171850411406b97e15bc5",
+      "afterSha256": "289a93f04bf2019d364a04fea85b3f20582ad2bc1ddacf92dba40adde3e67c72"
+    },
+    {
+      "path": "u01-empty-main.txt",
+      "beforeSha256": "df3219678d2e68318919e3e1501279986266ca3fd032c6fe00321fcf65d7fecb",
+      "afterSha256": "87ca0f14a80aca4c562113043e111cbcd6dd737d18f2f7f4d40a406892de934f"
+    },
+    {
+      "path": "u01-plugin-login-required.txt",
+      "beforeSha256": "282cf2424aa81ed87bbbd58d880d48f7ff3d9ecc6402aa105bd2aebe6e2ad50a",
+      "afterSha256": "cbc1bd6a78ec68f9d20cf03e0dc52411ca3fdf8f93d58322dec4d3d92ff2cd48"
+    },
+    {
+      "path": "q01-4-prior-context.txt",
+      "beforeSha256": "2a19e9e17b6b6f84a4d6d809369d850fe068b89ae78a5dc700e2fb05b36c70df",
+      "afterSha256": "fa91267f55426914ce7ec44e403c7e6a0ed3f3ab26322b9f22068cea7f2ed785"
+    },
+    {
+      "path": "u02-expired-panel.txt",
+      "beforeSha256": "95249a0b2e14a542c6abc70c6ba2e4f30ab11ca91bc535ce85d0ce97a0fce3b1",
+      "afterSha256": "712ef1eaf81c9220901f5b7f1ad2ac60d4421c03cd4db0e3d006794cf802cfc9"
+    },
+    {
+      "path": "d02-after-real-s2.txt",
+      "beforeSha256": "e6a41ae86d65ea50f68c87bfb6ce5fccae16be4c970a8bf9af573d11c82aa1cc",
+      "afterSha256": "c4362fa596f16482d47bc8f76b036ee249b1faa6f213bda5bfe34c043d99f86d"
+    },
+    {
+      "path": "ci7-normal-panel.txt",
+      "beforeSha256": "98b1bd16677900a0eb80702288d7a56ae57b7fa68202ad3de73d2a3d90c3e5ff",
+      "afterSha256": "62ac8d602b33ea993ff68905168d1659eb0b8e129c0a9bb7148e30990eb3b115"
+    },
+    {
+      "path": "u01-plugin-diagnostics.txt",
+      "beforeSha256": "892bf0442ff6192090f62b6739dad4eccc745e9500ec3dd1e54c420b21d30a9e",
+      "afterSha256": "7519049cb9037776a1127609de01eeaea9b92014c915caf475b3819c8c296e53"
+    },
+    {
+      "path": "q01-1-provenance.txt",
+      "beforeSha256": "3d04b942465a1eabeed50363f2717927393de8336ab7491bdf3df44a29061555",
+      "afterSha256": "a4f8082fa5d646b1fb154be25fa3973daeae7d89699932f0d89c41124dc568c6"
+    },
+    {
+      "path": "u01-reinstall-1-main.txt",
+      "beforeSha256": "7e9d9f709137f65c7918f37465a3795056503b7495f8d03be0de3034d5634ff7",
+      "afterSha256": "a052b7af21e8efacd3d20b9663129c9dcb850e0159a1cfec8dacd218c34df372"
+    },
+    {
+      "path": "q01-3-answer.txt",
+      "beforeSha256": "166800f79a5e78e0c68a7661c5147f384a4c194718bbbdeb5b417623ada594eb",
+      "afterSha256": "dac481244149855af01e5b66c1c0b896bd8dac0b1faa5a720a26642b4c4cb7d6"
+    },
+    {
+      "path": "d01-after-real-graph-material.txt",
+      "beforeSha256": "e3a78db73b2907f7902773ea0476ae5d0a224ba9fa77d14a64043afacd98ce84",
+      "afterSha256": "e3964cb7493ebdd618ca9417a5dbdb278925b280802eab87b71c86ad156530b1"
+    },
+    {
+      "path": "u02-expired-diagnostics.txt",
+      "beforeSha256": "3e10f1378ac7f16883ab8ecfbaaadaf1ff4464958cc8e842cfd56b91be8056b8",
+      "afterSha256": "56201c74d461c4357f0a10f43aa15c7057cfb174dee87f32dc7407a510824a0d"
+    },
+    {
+      "path": "d01-after-real-graph-inventory.txt",
+      "beforeSha256": "4e0fd9527c7e1198a29f1acee3bb902ce0489ea261d25e5f077e09458ebbe2c1",
+      "afterSha256": "009552ad3274d9b0f74ed168e2be24b100b03c747ae422e64082213ad9ae03f9"
+    },
+    {
+      "path": "u01-reinstall-2-settings.txt",
+      "beforeSha256": "88aee44c5ece170e70c2100d68afd96cf165d717308f64ea3aeb12155617aecd",
+      "afterSha256": "27b1ce8645aea061b90ad2bff21b452470c63cf342ce39341d0cc2dc9eedab1b"
+    },
+    {
+      "path": "q01-4-provenance.txt",
+      "beforeSha256": "312d0dfb6c2262076c191f35487279c48752d542e4ba602079dfa7241b87b679",
+      "afterSha256": "fedcf43781da91166892ecd283132557fd0662d155a5da38b81ee4dad53ac0db"
+    },
+    {
+      "path": "q01-4-answer.txt",
+      "beforeSha256": "9182d93f95661278ac77163124347a40ae5fceec0dfe5c0408a485aa9e2d1227",
+      "afterSha256": "96b7e4dcceec30c02772d1160fba76260e727932415f2cddb67e29758f464a3d"
+    },
+    {
+      "path": "q01-5-restored-context.txt",
+      "beforeSha256": "705bd86d096783735da0642ceb7042e046d4d68c1db8cf41c2a1ff03b9c84fff",
+      "afterSha256": "c36cfd44da09ce64a5e2f6bf1dcd8818419dae917d424d9952e58f6fdda896ea"
+    },
+    {
+      "path": "ci7-restored-diagnostics.txt",
+      "beforeSha256": "f8b16f1bb2686439b065e4bb2aaf5037fecc535062726de250210f9cf981b73d",
+      "afterSha256": "a7c9562b873d8ec4980b17ef218e9461eda4042f41ae2e21993cc7e0d9911248"
+    },
+    {
+      "path": "u02-recovered-panel.txt",
+      "beforeSha256": "316fbd5faf2cca1bce5faf381b147d5ddc8dd047b1c7f4e61d99129ff1a6a6b9",
+      "afterSha256": "1000a1100604a18ededf3947e2c038fbc2b815b850c492bbb1ce9ae2f39894ba"
+    },
+    {
+      "path": "q01-3-provenance.txt",
+      "beforeSha256": "5becf6cb3ae033524cdad0e8a5be242f9c5530a5cbbf61c492c77837fd722c87",
+      "afterSha256": "e5218eb3de60e3c828fa04df25eb98acd23977e2d914f7a7789bf686db04331c"
+    },
+    {
+      "path": "d02-before-real-s2.txt",
+      "beforeSha256": "924ee135ecf3185384dc3d7962f71229e4c6b36fd83193d0adcbec7899cd73a9",
+      "afterSha256": "98239c9198f3112a88b147cf0953a2cb641ac02a90315b5ce6b896c3ad6d3131"
+    },
+    {
+      "path": "q01-2-provenance.txt",
+      "beforeSha256": "b99a856a71e8da17b94990db66bb72b0d47b1de2f53752dd3c0fc3e2bebda085",
+      "afterSha256": "fc0c70922631d8f4ef60468acb6222a97823fd1c845484e440c416995b2343ca"
+    },
+    {
+      "path": "u01-reinstall-3-settings.txt",
+      "beforeSha256": "88aee44c5ece170e70c2100d68afd96cf165d717308f64ea3aeb12155617aecd",
+      "afterSha256": "27b1ce8645aea061b90ad2bff21b452470c63cf342ce39341d0cc2dc9eedab1b"
+    },
+    {
+      "path": "d01-before-real-graph.txt",
+      "beforeSha256": "0332e585ae60c7ee73ab449e5dfdf7cb57bc48c3003fd3dd5066b6a033fe5962",
+      "afterSha256": "050952a2f69fa16fcc2b9fa6f4e1f6d11d05444b09bd432d2480168bcd87e9e1"
+    },
+    {
+      "path": "q01-5-provenance.txt",
+      "beforeSha256": "dcf59a6719b235e24e4de15e1609270ef6ab972e8f0f781cba9117d15ef84c19",
+      "afterSha256": "c650d8f1b0d87d5ccdc7e404f3f63b547319479531f3e559f8bdb397b6dc54a5"
+    },
+    {
+      "path": "u01-restart-1-settings.txt",
+      "beforeSha256": "88aee44c5ece170e70c2100d68afd96cf165d717308f64ea3aeb12155617aecd",
+      "afterSha256": "27b1ce8645aea061b90ad2bff21b452470c63cf342ce39341d0cc2dc9eedab1b"
+    },
+    {
+      "path": "q01-1-answer.txt",
+      "beforeSha256": "f7e940c11dc3b29fc45354b409f251d9cd3a50aa76ec3da1673834e8ecb7cbf6",
+      "afterSha256": "4f9c302a376ff73806b6dd2badf246c31b4b66cb03d8c79ecb97c2eedf415680"
+    },
+    {
+      "path": "u02-recovered-diagnostics.txt",
+      "beforeSha256": "852534001a2c05aae04e6e343361048ef50077c4a9530d9fb2f7e9b0806ff178",
+      "afterSha256": "6416e26a2fe9f42a30aaceefd2415374ab7798bbc25433fcc6434976b8b7706b"
+    },
+    {
+      "path": "u01-restart-3-main.txt",
+      "beforeSha256": "7e9d9f709137f65c7918f37465a3795056503b7495f8d03be0de3034d5634ff7",
+      "afterSha256": "a052b7af21e8efacd3d20b9663129c9dcb850e0159a1cfec8dacd218c34df372"
+    },
+    {
+      "path": "u01-restart-2-main.txt",
+      "beforeSha256": "7e9d9f709137f65c7918f37465a3795056503b7495f8d03be0de3034d5634ff7",
+      "afterSha256": "a052b7af21e8efacd3d20b9663129c9dcb850e0159a1cfec8dacd218c34df372"
+    }
+  ]
+}
