@@ -68,7 +68,7 @@ test('producer check ignores pages, headed malformed values, other questions, er
   const envelope = (stdout: string, exit_code = 0) => JSON.stringify({ stdout, exit_code })
   assert.equal(inspectToolDetailHandoff(log, envelope(detail())), undefined)
   assert.equal(inspectToolDetailHandoff(log, envelope(detail().replace(HEADER + '\n', '').replace('DETAIL_ROWS: 2', 'DETAIL_ROWS: 002')))?.turn, 1)
-  assert.equal(inspectToolDetailHandoff(log, envelope(detail(ROWS.split('\n')[0]!, 2))), undefined)
+  assert.equal(inspectToolDetailHandoff(log, envelope(detail(ROWS.split('\n')[0]!, 2).replace(HEADER + '\n', ''))), undefined)
   assert.equal(inspectToolDetailHandoff(log, envelope(detail().replace('|12|', '|unknown|'))), undefined)
   assert.equal(inspectToolDetailHandoff(log, envelope(detail().replace(HEADER + '\n', ''), 1)), undefined)
   assert.equal(inspectToolDetailHandoff(events(detail(), 'answer', '只需汇总库存'), envelope(detail().replace(HEADER + '\n', ''))), undefined)
