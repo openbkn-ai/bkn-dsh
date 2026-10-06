@@ -34,7 +34,7 @@ test('rejects a plugin version that does not carry the pinned DSH version', () =
   assert.throws(() => loadRuntimeManifest(base), /plugin\.version must carry/)
   assert.doesNotThrow(() => loadRuntimeManifest({
     ...base,
-    plugin: { ...base.plugin, version: '0.2.0-rc.2-openbkn.0.2.0' },
+    plugin: { ...base.plugin, version: '0.2.0-rc.2-openbkn.0.2.0', artifact: 'openbkn-dsh-business-context-0.2.0-rc.2-openbkn.0.2.0.tgz' },
   }))
 })
 
@@ -75,4 +75,17 @@ test('rejects a release manifest without a pinned upstream commit', () => {
     }),
     /baseCommit/,
   )
+})
+
+
+test('rejects a plugin artifact from a different release', () => {
+  const manifest = JSON.parse(readFileSync(new URL('../openbkn-dsh-runtime.manifest.json', import.meta.url), 'utf8'))
+  assert.throws(() => loadRuntimeManifest({
+    ...manifest,
+    plugin: { ...manifest.plugin, artifact: 'openbkn-dsh-business-context-0.2.0-rc.2-openbkn.0.2.0-4.tgz' },
+  }), /plugin\.artifact must match/)
+  assert.doesNotThrow(() => loadRuntimeManifest({
+    ...manifest,
+    plugin: { ...manifest.plugin, artifact: `openbkn-dsh-business-context-${manifest.plugin.version}.tgz` },
+  }))
 })

@@ -1,0 +1,59 @@
+{
+  "template": true,
+  "status": "not-ready-for-verification",
+  "plan": "DIAG-01",
+  "candidate": {
+    "packageName": "@openbkn/dsh-business-context",
+    "version": null,
+    "sourceCommit": null,
+    "branch": null,
+    "build": {
+      "workflow": "release-plugin.yml",
+      "publish": false,
+      "runId": null,
+      "runUrl": null,
+      "artifactId": null
+    },
+    "artifact": {
+      "path": null,
+      "sha256": null,
+      "fileManifestPath": null,
+      "fileCount": null
+    }
+  },
+  "supportedBaseline": {
+    "dshVersion": "0.2.0-rc.2",
+    "dshTag": "dsh-v0.2.0-rc.2",
+    "dshCommit": "639ed015397290b3745d163aafe02ffee4aa3f84",
+    "pnpmVersion": "11.7.0",
+    "nodeRange": "^22.19.0 || >=24.0.0"
+  },
+  "verificationEnvironment": {
+    "desktopVersion": null,
+    "desktopCliVersion": null,
+    "desktopHostNodeVersion": null,
+    "npmDshVersion": null,
+    "npmNodeVersion": null,
+    "openbknCliVersion": null,
+    "platformServices": [],
+    "platformContractEvidencePath": null
+  },
+  "diagnostics": {
+    "reportSchemaVersion": null,
+    "reportSchemaPath": null,
+    "hostEntry": null,
+    "remoteExport": null,
+    "d0EvidencePath": null
+  },
+  "testKit": {
+    "prepareScript": "windows/prepare.ps1",
+    "caseScript": "windows/run-case.ps1",
+    "stateHashScript": "windows/collect-state-hashes.ps1",
+    "cleanupScript": "windows/cleanup.ps1",
+    "caseGuidePath": null,
+    "regressionGuidePath": null,
+    "faultVariants": []
+  },
+  "knownLimitations": [],
+  "releaseAuthorization": "not-granted-by-this-plan"
+}

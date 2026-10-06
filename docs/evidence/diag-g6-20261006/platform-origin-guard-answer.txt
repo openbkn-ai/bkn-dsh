@@ -1,0 +1,81 @@
+Window: "DeepSeek Harness", App: DeepSeek Harness.
+0 standard window DeepSeek Harness, Secondary Actions: Raise
+	1 container DeepSeek Harness
+		2 container
+			3 HTML content DeepSeek Harness, URL: dsh-app://app/
+				4 container
+					5 button 收起侧边栏
+					6 button 新建会话
+					7 container 全局面板
+						8 button 插件
+					9 text 工作区
+					10 button 搜索会话
+					11 text field (settable) 搜索会话名称
+					12 button 视图选项
+					13 button 添加工作区
+					14 outline 会话
+						15 container
+							16 row workspace-supply
+								17 text workspace-supply
+							18 row (selected) 未命名 5分钟
+								19 text 未命名 5分钟
+							20 row 查询物料名称 382-000005 10分钟
+								21 text 查询物料名称 382-000005 10分钟
+							22 row 查询物料382-000005的名称与标准交期 12分钟
+								23 text 查询物料382-000005的名称与标准交期 12分钟
+							24 row 物料库存与订单情况查询 14分钟
+								25 text 物料库存与订单情况查询 14分钟
+							26 row 查询销售订单382-000005明细 17分钟
+								27 text 查询销售订单382-000005明细 17分钟
+							28 button 展开其余 6 个会话
+						29 container
+							30 row 默认工作区
+								31 text 默认工作区
+							32 row 本会话是否绑定 OpenBKN 6分钟
+								33 text 本会话是否绑定 OpenBKN 6分钟
+					34 button OpenBKN business knowledge networks
+					35 pop up button 账号菜单
+					36 container
+						37 container 会话层级
+							38 text workspace-supply
+						39 text 标准模式
+						40 text 供应链本体知识网络-手工版
+						41 button 用 访达 打开
+						42 pop up button 更多打开方式
+						43 pop up button 更多操作
+						44 button 打开右侧边栏
+						45 tab group
+							46 tab (selected) 对话, Value: 1
+							47 tab (settable, integer) 轨迹, Value: 0
+					48 container
+						49 container 轮次导航
+							50 container
+								51 button 跳转到第 1 轮
+								52 button 跳转到第 2 轮
+						53 container
+							54 text 处理失败
+							55 button (disabled) 处理失败
+							56 container
+								57 text 本轮运行失败 OpenBKN rejected the Context Loader MCP credential (HTTP 401). Re-login with `openbkn auth login` (or update the stored token) and retry; no business data was read.
+							58 text UNKNOWN
+							59 text 处理失败
+							60 button (disabled) 处理失败
+							61 container
+								62 text 本轮运行失败 OpenBKN mcpUrl must stay on the configured platform (https://192.168.50.28); refusing to send credentials to https://127.0.0.1:63162.
+							63 text UNKNOWN
+						64 container
+							65 text entry area (settable) 发消息或创建任务, / 调用指令, @ 文件或对话
+							66 pop up button 添加文件或调用指令
+							67 button 访问模式，当前：工作区内修改
+							68 pop up button Description: 选择模型，当前 DeepSeek-V41-Flash，推理等级 High, Help: DeepSeek-V41-Flash · High
+							69 button (disabled) 发送消息
+	70 close button
+	71 full screen button Help: this button also has an action to zoom the window, Secondary Actions: zoom the window
+	72 minimize button
+73 menu bar
+	74 DeepSeek Harness
+	75 文件
+	76 Edit
+	77 Window
+
+The focused UI element is 65 text entry area (settable) 发消息或创建任务, / 调用指令, @ 文件或对话

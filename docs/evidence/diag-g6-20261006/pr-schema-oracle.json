@@ -1,0 +1,295 @@
+{
+  "verification": "independent actual CLI0.1.5 query",
+  "response": {
+    "object_types": [
+      {
+        "effective_permissions": {
+          "srcbillentryid": "full",
+          "joinqty": "full",
+          "rowclosestatus_title": "full",
+          "billtype_name": "full",
+          "srcbillnumber": "full",
+          "entry_id": "full",
+          "material_name": "full",
+          "biztime": "full",
+          "auditdate": "full",
+          "srcbillid": "full",
+          "material_number": "full",
+          "rowterminatestatus_title": "full",
+          "huid_xmh_name": "full",
+          "unit_name": "full",
+          "id": "full",
+          "org_name": "full",
+          "qty": "full",
+          "billno": "full"
+        },
+        "concept_type": "object_type",
+        "data_properties": [
+          {
+            "name": "huid_xmh_name",
+            "type": "string"
+          },
+          {
+            "name": "srcbillentryid",
+            "type": "string"
+          },
+          {
+            "name": "srcbillid",
+            "comment": "计划订单下推生成的采购申请，关联需求计划ID。",
+            "type": "string"
+          },
+          {
+            "name": "srcbillnumber",
+            "type": "string"
+          },
+          {
+            "name": "id",
+            "comment": "采购申请主键",
+            "type": "string"
+          },
+          {
+            "name": "billno",
+            "comment": "采购申请单号",
+            "type": "string"
+          },
+          {
+            "name": "biztime",
+            "comment": "业务时间",
+            "type": "timestamp"
+          },
+          {
+            "type": "string",
+            "name": "billtype_name",
+            "comment": "单据类型（包含研发/生产等，目前仅考虑生产）"
+          },
+          {
+            "type": "string",
+            "name": "org_name",
+            "comment": "组织名称"
+          },
+          {
+            "comment": "审核日期",
+            "type": "timestamp",
+            "name": "auditdate"
+          },
+          {
+            "name": "entry_id",
+            "comment": "采购申请明细主键",
+            "type": "string"
+          },
+          {
+            "name": "material_number",
+            "comment": "物料编码",
+            "type": "string"
+          },
+          {
+            "type": "string",
+            "name": "material_name",
+            "comment": "物料名称"
+          },
+          {
+            "comment": "数量",
+            "type": "decimal",
+            "name": "qty"
+          },
+          {
+            "name": "unit_name",
+            "comment": "单位",
+            "type": "string"
+          },
+          {
+            "name": "joinqty",
+            "comment": "已下推采购订单数量",
+            "type": "decimal"
+          },
+          {
+            "name": "rowclosestatus_title",
+            "type": "string"
+          },
+          {
+            "type": "string",
+            "name": "rowterminatestatus_title"
+          }
+        ],
+        "concept_id": "supply_ontology_hand_pr",
+        "concept_name": "采购申请单",
+        "comment": "根据MRP生成的内部采购申请PR。",
+        "tags": [
+          "已审核"
+        ],
+        "data_source": {
+          "type": "resource",
+          "id": "01a0f6e5-fd8b-7e0d-bc68-536ab2ca1cbf",
+          "name": "supply_demo_hand.erp_purchase_request"
+        },
+        "primary_keys": [
+          "entry_id"
+        ]
+      },
+      {
+        "concept_id": "supply_ontology_hand_po",
+        "tags": [
+          "已审核"
+        ],
+        "data_properties": [
+          {
+            "name": "srcbillentryid",
+            "comment": "来源单据号（对应采购申请单明细主键ID）",
+            "type": "string"
+          },
+          {
+            "type": "string",
+            "name": "srcbillid",
+            "comment": "来源单据号（对应采购申请单主键ID）"
+          },
+          {
+            "name": "billno",
+            "comment": "采购订单单号",
+            "type": "string"
+          },
+          {
+            "name": "biztime",
+            "comment": "业务日期",
+            "type": "date"
+          },
+          {
+            "name": "org_name",
+            "comment": "购买签订的主体",
+            "type": "string"
+          },
+          {
+            "name": "billtype_name",
+            "comment": "生产项目采购订单、研发项目采购订单等等。",
+            "type": "string"
+          },
+          {
+            "name": "supplier_number",
+            "comment": "供应商编码",
+            "type": "string"
+          },
+          {
+            "name": "supplier_name",
+            "comment": "供应商名称",
+            "type": "string"
+          },
+          {
+            "name": "operatorname",
+            "comment": " 执行采购的采购人员",
+            "type": "string"
+          },
+          {
+            "type": "string",
+            "name": "huid_xycg_operatorname",
+            "comment": "采购寻源的人员"
+          },
+          {
+            "comment": "创建时间",
+            "type": "timestamp",
+            "name": "createtime"
+          },
+          {
+            "name": "auditdate",
+            "comment": "审核时间",
+            "type": "timestamp"
+          },
+          {
+            "name": "material_number",
+            "comment": "物料编码",
+            "type": "string"
+          },
+          {
+            "name": "material_name",
+            "comment": "物料名称",
+            "type": "string"
+          },
+          {
+            "name": "qty",
+            "comment": "数量",
+            "type": "decimal"
+          },
+          {
+            "name": "deliverdate",
+            "comment": "预计交货日期，取用的标准交货时间。采购员可在ERP更新供应商反馈的交货时间。",
+            "type": "date"
+          },
+          {
+            "name": "srcbillnumber",
+            "comment": "来源单据号（对应采购申请单号）",
+            "type": "string"
+          },
+          {
+            "name": "invqty",
+            "comment": "入库数量",
+            "type": "decimal"
+          },
+          {
+            "name": "returnqty",
+            "comment": "退库数量",
+            "type": "decimal"
+          },
+          {
+            "name": "actqty",
+            "comment": "实际入库数量（入库数量 - 退库数量）",
+            "type": "decimal"
+          },
+          {
+            "name": "entry_id",
+            "type": "string"
+          },
+          {
+            "name": "id",
+            "type": "string"
+          },
+          {
+            "name": "rowclosestatus_title",
+            "type": "string"
+          },
+          {
+            "name": "rowterminatestatus_title",
+            "type": "string"
+          }
+        ],
+        "concept_type": "object_type",
+        "concept_name": "采购订单",
+        "comment": "发给供应商的正式采购订单。",
+        "data_source": {
+          "type": "resource",
+          "id": "01a0f6e5-fd83-7472-a9cb-8e0bb5a2bfd5",
+          "name": "supply_demo_hand.erp_purchase_order"
+        },
+        "primary_keys": [
+          "entry_id"
+        ],
+        "effective_permissions": {
+          "material_number": "full",
+          "rowterminatestatus_title": "full",
+          "org_name": "full",
+          "createtime": "full",
+          "supplier_number": "full",
+          "srcbillnumber": "full",
+          "operatorname": "full",
+          "rowclosestatus_title": "full",
+          "billno": "full",
+          "huid_xycg_operatorname": "full",
+          "deliverdate": "full",
+          "material_name": "full",
+          "id": "full",
+          "entry_id": "full",
+          "srcbillentryid": "full",
+          "auditdate": "full",
+          "returnqty": "full",
+          "qty": "full",
+          "invqty": "full",
+          "supplier_name": "full",
+          "actqty": "full",
+          "billtype_name": "full",
+          "srcbillid": "full",
+          "biztime": "full"
+        }
+      }
+    ],
+    "relation_types": [],
+    "action_types": [],
+    "metric_types": []
+  }
+}

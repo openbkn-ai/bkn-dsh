@@ -1,0 +1,17 @@
+Window: "", App: DeepSeek Harness.
+0 dialog Description: alert, Secondary Actions: Raise
+	1 image DeepSeek Harness critical alert
+	2 text 应用无法启动或已意外停止。 fetch failed
+诊断报告：/Users/kalias/Library/Logs/DeepSeek Harness/crash-2026-10-06T01-33-17-113Z-host.log
+
+如果应用文件缺失或损坏，请关闭应用并重新安装。任务数据存储在独立位置。
+	3 button 重启, ID: action-button--998
+	4 button 禁用第三方插件、备份 profile patch 并重启, ID: action-button--997
+	5 button 退出, ID: action-button--999
+6 menu bar
+	7 DeepSeek Harness
+	8 文件
+	9 Edit
+	10 Window
+
+The focused UI element is 0 dialog Description: alert, Secondary Actions: Raise

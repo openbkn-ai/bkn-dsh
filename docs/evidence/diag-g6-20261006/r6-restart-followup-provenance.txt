@@ -1,0 +1,53 @@
+container OpenBKN business provenance
+						216 container
+							217 text TRACE-BACKED PROVENANCE
+							218 heading 业务溯源, Value: 2
+								219 text 业务溯源
+							220 button Close
+						221 container Provenance views
+							222 button 执行溯源
+							223 button 业务上下文图
+							224 button 证据链
+						225 container
+							226 text Interaction ID
+							227 text int_334efc26dcaceef02fe5175366a59d8c
+							228 text 执行状态
+							229 text completed
+							230 text 时间链节点
+							231 text 6
+							232 container
+								233 text 执行时间链 由本机会话事件重建，不依赖平台授权；耗时为本机口径。 本地会话 部分标识符
+							234 container
+								235 text 生命周期 bkn_start_interaction bkn_start_interaction · continue · conversation: yes 82 ms
+							236 container
+								237 text 受管访问 search_capabilities Op op_7c1cd8f6311e60a9481b080e11991d5d Receipt rcpt_91f5212969b8b62c6a1754b4d21a93f2 Status completed search_capabilities 201 ms
+							238 container
+								239 text 受管访问 execute_tool Op op_ab175f345fafe4ee8eb93a23729c7f69 Receipt rcpt_6978e7891196b0d8072b19a03834c587 Status completed execute_tool 1.2 s
+							240 container
+								241 text 受管访问 get_object_types Op op_0a14a3ca927f680c317f824fa7051732 Receipt rcpt_b671da110dbf14a5de6f73fb4bc83075 Status completed get_object_types 214 ms
+							242 container
+								243 text 生命周期 bkn_finish_interaction bkn_finish_interaction · completed 57 ms
+							244 container
+								245 text 回答 本轮回答 09:43:59 AM
+							246 container
+								247 text 平台执行事实 平台口径的操作状态、耗时与 Request / Trace / Receipt 引用。 平台
+							248 container
+								249 text 01 search_capabilities completed mcp · 2026-10-06T01:43:46.893101Z · 2026-10-06T01:43:47.063582Z Request req_11888f8e-5d18-479c-a883-807ac3f86fdd Trace 8d69eb66d7c869aba27aec9692b65a49 Receipt rcpt_91f5212969b8b62c6a1754b4d21a93f2
+							250 container
+								251 text 02 execute_tool completed mcp · 2026-10-06T01:43:48.590357Z · 2026-10-06T01:43:49.797925Z Request req_331a0b6d-9859-4d8b-ab31-72231ce18c28 Trace 1de6e2ac9811b05e49144f4139a6d0ae Receipt rcpt_6978e7891196b0d8072b19a03834c587
+							252 container
+								253 text 03 5ce8e842-a2bf-46b3-a89d-6a7f16ea6630 pending internal · 2026-10-06T01:43:48.64498Z Receipt rcpt_1e252277631db9244bcd338d5e0e3c0a
+							254 container
+								255 text 04 query_object_instance completed mcp · 2026-10-06T01:43:49.473033Z · 2026-10-06T01:43:49.535277Z Request req_d57d3436-8c56-4e1e-8597-d3a83565bbaf Trace 2c2913b8545e9485aa093ec937a3406e Receipt rcpt_2f7943181462dc6bc3f6b695a29677f3
+							256 container
+								257 text 05 get_object_types completed mcp · 2026-10-06T01:43:51.874625Z · 2026-10-06T01:43:52.032556Z Request req_5856ec6f-19fa-4c1d-b884-502641f11ef1 Trace 0d8d629f7d002ce93791d899d121f950 Receipt rcpt_b671da110dbf14a5de6f73fb4bc83075
+	258 close button
+	259 full screen button Help: this button also has an action to zoom the window, Secondary Actions: zoom the window
+	260 minimize button
+261 menu bar
+	262 DeepSeek Harness
+	263 文件
+	264 Edit
+	265 Window
+
+The focused UI element is 215 container OpenBKN business provenance

@@ -1,6 +1,6 @@
 {
   "name": "@openbkn/dsh-business-context",
-  "version": "0.2.0-rc.2-openbkn.0.2.0-4",
+  "version": "0.2.0-rc.2-openbkn.0.2.0-7",
   "description": "OpenBKN business knowledge-network context for DeepSeek Harness",
   "license": "Apache-2.0",
   "type": "module",
@@ -28,6 +28,14 @@
       "types": "./lib/types/index.d.ts",
       "default": "./lib/index.js"
     },
+    "./business": {
+      "types": "./lib/types/business.d.ts",
+      "default": "./lib/business.js"
+    },
+    "./diagnostics": {
+      "types": "./lib/types/diagnostics.d.ts",
+      "default": "./lib/diagnostics.js"
+    },
     "./types": {
       "types": "./lib/types/types.d.ts"
     },
@@ -47,12 +55,15 @@
   },
   "files": [
     "lib/index.js",
+    "lib/business.js",
+    "lib/diagnostics.js",
     "lib/client.js",
-    "lib/types/**/*.d.ts",
     "lib/typert.host.js",
     "lib/typert.host.d.ts",
     "lib/typert.remote-client.js",
     "lib/typert.remote-client.d.ts",
+    "lib/*.js",
+    "lib/types/**/*.d.ts",
     "cordis.patch.yml",
     "README.md",
     "README.zh.md",
@@ -72,7 +83,7 @@
   },
   "scripts": {
     "build": "pnpm run build:host && pnpm run build:client",
-    "build:host": "tsc -p tsconfig.package.host.json && tsdown --env.DSH_BUILD_FACE host",
+    "build:host": "node scripts/clean-host-bundles.mjs && tsc -p tsconfig.package.host.json && tsdown --env.DSH_BUILD_FACE host",
     "build:client": "tsc -p tsconfig.package.client.json && tsdown --env.DSH_BUILD_FACE client",
     "test": "pnpm run build && node --import tsx --test tests/*.test.mjs tests/*.test.ts",
     "typecheck": "tsc -b ../.."

@@ -1,0 +1,144 @@
+Window: "查询销售订单数量及状态 — DeepSeek Harness", App: DeepSeek Harness.
+0 standard window 查询销售订单数量及状态 — DeepSeek Harness, Secondary Actions: Raise
+	1 container 查询销售订单数量及状态 — DeepSeek Harness
+		2 container
+			3 HTML content 查询销售订单数量及状态 — DeepSeek Harness, URL: dsh-app://app/
+				4 container
+					5 button 收起侧边栏
+					6 button 新建会话
+					7 container 全局面板
+						8 button 插件
+					9 text 工作区
+					10 button 搜索会话
+					11 text field (settable) 搜索会话名称
+					12 button 视图选项
+					13 button 添加工作区
+					14 outline 会话
+						15 container
+							16 row workspace-supply
+								17 text workspace-supply
+							18 row (selected) 查询销售订单数量及状态 1分钟
+								19 text 查询销售订单数量及状态 1分钟
+							20 row 查询物料名称 382-000005 15分钟
+								21 text 查询物料名称 382-000005 15分钟
+							22 row 查询物料382-000005的名称与标准交期 17分钟
+								23 text 查询物料382-000005的名称与标准交期 17分钟
+							24 row 物料库存与订单情况查询 20分钟
+								25 text 物料库存与订单情况查询 20分钟
+							26 row 查询销售订单382-000005明细 22分钟
+								27 text 查询销售订单382-000005明细 22分钟
+							28 button 展开其余 6 个会话
+						29 row 默认工作区
+							30 text 默认工作区
+					31 button OpenBKN business knowledge networks
+					32 pop up button 账号菜单
+					33 container
+						34 container 会话层级
+							35 text 查询销售订单数量及状态
+						36 text 标准模式
+						37 text 供应链本体知识网络-手工版
+						38 button 用 访达 打开
+						39 pop up button 更多打开方式
+						40 pop up button 更多操作
+						41 button 打开右侧边栏
+						42 tab group
+							43 tab (selected) 对话, Value: 1
+							44 tab (settable, integer) 轨迹, Value: 0
+					45 container
+						46 container
+							47 container 轮次导航
+								48 container
+									49 button 跳转到第 1 轮
+									50 button 跳转到第 2 轮
+									51 button 跳转到第 3 轮
+							52 text 处理失败
+							53 button (disabled) 处理失败
+							54 container
+								55 text 本轮运行失败 OpenBKN rejected the Context Loader MCP credential (HTTP 401). Re-login with `openbkn auth login` (or update the stored token) and retry; no business data was read. UNKNOWN
+							56 text 处理失败
+							57 button (disabled) 处理失败
+							58 container
+								59 text 本轮运行失败 OpenBKN mcpUrl must stay on the configured platform (https://192.168.50.28); refusing to send credentials to https://127.0.0.1:63162. UNKNOWN
+							60 text 382-000005 有多少张销售订单？什么状态？
+							61 text 09:35
+							62 button 复制
+							63 text 已完成
+							64 button 已完成，用时 31秒
+								65 text 已完成，用时
+								66 text 31
+								67 text 秒
+							68 container
+								69 text 382-000005 → 北斗导航农机驾驶仪 （产品的 material_number 与物料的 material_code 都是这个编号）
+							70 text 40 张销售订单，状态全部是「已确认」
+							71 table
+								72 row
+									73 column header
+										74 text 项目
+									75 column header
+										76 text 结果
+								77 row
+									78 cell
+										79 text 销售订单数
+									80 cell
+										81 text 40 张
+								82 row
+									83 cell
+										84 text 订单状态
+									85 cell
+										86 text 已确认 40 张；执行中 0 张
+								87 row
+									88 cell
+										89 text 订单编号示例
+									90 cell
+										91 text SO0000001–SO0000020、SO0000501–SO0000520
+								92 row
+									93 cell
+										94 text 客户示例
+									95 cell
+										96 text 上海绿野农业服务有限公司、西安禾苗农科有限公司 等
+								97 row
+									98 cell
+										99 text 签约数量示例
+									100 cell
+										101 text 1 ~ 50 件/张
+							102 text 验证口径（两条独立路径结果一致）：
+							103 content list
+								104 container
+									105 AXListMarker 1.
+									106 text 销售订单对象类  supply_ontology_hand_salesorder ，过滤  product_code = '382-000005'  → 40 张，状态全部「已确认」；
+								107 container
+									108 AXListMarker 2.
+									109 text 沿模型关系「销售订单关联产品」( so2prod ) 从产品  material_number = '382-000005'  反查 → 同样 40 张，状态全部「已确认」。
+							110 text 参考背景：全表共 800 张销售订单，状态分布为已确认 784 张、执行中 16 张——执行中的 16 张都不属于该产品。
+							111 container
+								112 text 说明：跨表计数由  run_cypher  在模型层下推完成，未在本地对明细做筛选统计；本部署未提供指标/函数类取数工具，故计数以对象类聚合查询为准。
+							113 button 复制
+							114 toggle button Description: 好的回答, Value: 0
+							115 toggle button Description: 有问题的回答, Value: 0
+							116 button 查看业务溯源, Help: View OpenBKN provenance for this answer
+							117 button 在新对话中分支
+							118 pop up button 用量 443K tok
+							119 text 09:35
+						120 container
+							121 text entry area (settable) 发消息或创建任务, / 调用指令, @ 文件或对话
+							122 pop up button 添加文件或调用指令
+							123 button 访问模式，当前：工作区内修改
+							124 pop up button Description: 选择模型，当前 DeepSeek-V41-Flash，推理等级 High, Help: DeepSeek-V41-Flash · High
+							125 button (disabled) 发送消息
+							126 pop up button 1 轮 8 步 · 267 tok/s
+								127 text 1 轮 8 步
+								128 text 267 tok/s
+							129 pop up button 443K tok · 缓存命中 86%
+								130 text 443K tok
+								131 text 缓存命中 86%
+							132 pop up button 上下文已用 7%
+	133 close button
+	134 full screen button Help: this button also has an action to zoom the window, Secondary Actions: zoom the window
+	135 minimize button
+136 menu bar
+	137 DeepSeek Harness
+	138 文件
+	139 Edit
+	140 Window
+
+The focused UI element is 3 HTML content 查询销售订单数量及状态 — DeepSeek Harness, URL: dsh-app://app/

@@ -13,6 +13,7 @@ test('ships a DSH bundle with separate host and browser entry points', () => {
   assert.equal(manifest.type, 'module')
   assert.equal(manifest.dsh.bundle.patch, './cordis.patch.yml')
   assert.equal(manifest.exports['.'].default, './lib/index.js')
+  assert.equal(manifest.exports['./business'].default, './lib/business.js')
   assert.equal(manifest.exports['./client'].default, './lib/client.js')
   assert.equal(manifest.dsh.client.platform, 'web')
   assert.equal(manifest.dsh.client.inject.includes('@deepseek-ai/dsh-client-ui-slots'), true)
@@ -66,4 +67,47 @@ test('does not retain an overly broad runner directory glob', () => {
   const manifest = readJson('../package.json')
 
   assert.equal(manifest.files.includes('runner/**'), false)
+})
+
+test('every declared exports/main/types target exists in the packed tarball', async () => {
+  const { execFileSync } = await import('node:child_process')
+  const { fileURLToPath } = await import('node:url')
+  const { declaredTargets } = await import('../../../scripts/package-bundle.mjs')
+  const manifest = JSON.parse(readFileSync(new URL('../package.json', import.meta.url), 'utf8'))
+  const output = execFileSync('pnpm', ['pack', '--dry-run', '--json'], {
+    // fileURLToPath handles percent-encoded (space-containing) paths and
+    // Windows drive letters; a raw URL pathname does neither.
+    cwd: fileURLToPath(new URL('../', import.meta.url)),
+    encoding: 'utf8',
+    shell: process.platform === 'win32',
+  })
+  const packed = JSON.parse(output)
+  const paths = new Set(packed.files.map(file => file.path))
+  for (const target of declaredTargets(manifest)) {
+    const normalized = target.replace(/^\.\//, '')
+    assert.ok(paths.has(normalized), `declared target missing from the tarball: ${target}`)
+  }
+})
+
+test('declaredTargets walks nested conditions and refuses lookalike pointers', async () => {
+  const { declaredTargets } = await import('../../../scripts/package-bundle.mjs')
+  const targets = declaredTargets({
+    main: './lib/main.js',
+    types: './lib/main.d.ts',
+    exports: {
+      '.': { import: { node: { default: './lib/node.js' } }, default: './lib/index.js' },
+      './x': './lib/x.js',
+      './package.json': './package.json',
+      './sneaky': './package.json-does-not-exist',
+    },
+  })
+  const sorted = [...targets].sort()
+  assert.deepEqual(sorted, [
+    './lib/index.js',
+    './lib/main.d.ts',
+    './lib/main.js',
+    './lib/node.js',
+    './lib/x.js',
+    './package.json-does-not-exist',
+  ])
 })

@@ -1,0 +1,27 @@
+Browser tab: 4, Title: "DeepSeek Harness", URL: "http://127.0.0.1:63013/".
+1 AXWebArea DeepSeek Harness, URL: 127.0.0.1:63013/
+	2 container OpenBKN 诊断
+		3 container
+			4 text OPENBKN
+			5 heading 诊断, Value: 2
+				6 text 诊断
+			7 button Close
+		8 container
+			9 text 报告编号  a0681622  · 生成于  2026/10/6 00:17:27  · 模式  被动采集 Host 形态 npm 平台 darwin DSH 版本 未知 插件（磁盘） 0.2.0-rc.2-openbkn.0.2.0-6 插件（已加载） 未知 ●  通过 bootstrap-entry installation  /  component-loaded
+			10 text entryPresent=true
+			11 text ●  通过 business-entry component  /  component-loaded
+			12 text entryPresent=true
+			13 text ●  通过 diagnostics-entry diagnostics  /  component-loaded
+			14 text schemaVersion=1
+			15 text ●  通过 observed:cli cli  /  cli
+			16 text failureCount=0 lastOutcomeAgoMs=36220 exitCode=0
+			17 text ●  通过 observed:login-state authentication  /  login-state
+			18 text failureCount=0 lastOutcomeAgoMs=36420 loggedIn=true
+			19 text ●  通过 observed:context-loader context-loader  /  context-loader
+			20 text failureCount=0 lastOutcomeAgoMs=36159 toolsPublished=true
+			21 text ●  通过 observed:platform-network-list platform-directory  /  platform-network-list
+			22 text failureCount=0 lastOutcomeAgoMs=36071 networkCount=2
+			23 button 导出诊断报告
+			24 button 重新采集
+
+The focused UI element is 23 button 导出诊断报告

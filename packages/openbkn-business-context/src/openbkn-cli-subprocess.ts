@@ -1,4 +1,5 @@
 import type { CliResult, OpenBknCli } from './auth.js'
+import { exitCodeEvidence, passiveDiagnostics } from './diagnostics-observer.js'
 import { trimTrailingSlashes } from './trailing-slashes.js'
 
 const OUTPUT_LIMIT = 64 * 1024
@@ -36,6 +37,7 @@ export class OpenBknCliUnavailableError extends Error {
   constructor(readonly cliPath: string, options?: ErrorOptions) {
     super(`OpenBKN CLI ${JSON.stringify(cliPath)} is not available to the DSH host.`, options)
     this.name = 'OpenBknCliUnavailableError'
+    passiveDiagnostics.record({ subject: 'cli', stage: 'cli', code: 'cli-missing', status: 'fail' })
   }
 }
 
@@ -75,8 +77,19 @@ export class OpenBknCliSubprocess implements OpenBknCli {
     const outcome = await child.done
     const stdout = child.collected.stdout?.readFrom(0)
     const stderr = child.collected.stderr?.readFrom(0)
-    if (stdout?.lossy || stderr?.lossy) throw new Error('OpenBKN CLI output exceeded the safe size limit.')
-    return { code: outcome.exitCode ?? 1, stdout: stdout?.text ?? '', stderr: stderr?.text ?? '' }
+    if (stdout?.lossy || stderr?.lossy) {
+      // The refusal must land as an outcome: an untrustworthy output is a
+      // bounded CLI failure, not silence.
+      passiveDiagnostics.record({ subject: 'cli', stage: 'cli', code: 'cli-output-invalid', status: 'fail', evidence: { lossy: true } })
+      throw new Error('OpenBKN CLI output exceeded the safe size limit.')
+    }
+    const result = { code: outcome.exitCode ?? 1, stdout: stdout?.text ?? '', stderr: stderr?.text ?? '' }
+    // One outcome boundary per invocation: a clean exit reconciles earlier
+    // CLI failures (missing binary, parse refusals) on the same subject.
+    passiveDiagnostics.record(result.code === 0
+      ? { subject: 'cli', stage: 'cli', code: 'cli', status: 'pass', evidence: exitCodeEvidence(result.code) }
+      : { subject: 'cli', stage: 'cli', code: 'cli-execution-failed', status: 'fail', evidence: exitCodeEvidence(result.code) })
+    return result
   }
 
   private resolveArgv(args: readonly string[]): readonly string[] {

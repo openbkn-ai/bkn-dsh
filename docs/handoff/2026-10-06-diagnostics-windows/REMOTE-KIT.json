@@ -1,0 +1,29 @@
+{
+  "repository": "https://github.com/openbkn-ai/bkn-dsh.git",
+  "branch": "fix/diagnostics-d0-s2",
+  "packageSourceCommit": "144afa503c7d4746cbef01f74eaceff293b88cb5",
+  "acceptanceAndGraderCommit": "bbb67daea8b30e8dcb6315f678e4f8645daff0cc",
+  "entryGuide": "docs/handoff/2026-10-06-diagnostics-windows/WINDOWS-START.md",
+  "archive": {
+    "repositoryPath": "docs/handoff/2026-10-06-diagnostics-windows/assets/windows-diag6-144afa5-g6.zip",
+    "sha256": "eac27ecf4cea5b9aba7337d0a864f86fac080a5a41e6e5f4c0c6f345251c72fd",
+    "sizeBytes": 1361937,
+    "fileCount": 65
+  },
+  "candidate": {
+    "version": "0.2.0-rc.2-openbkn.0.2.0-6",
+    "archivePath": "candidate/openbkn-dsh-business-context-0.2.0-rc.2-openbkn.0.2.0-6.tgz",
+    "sha256": "ffcd77722e83a003fe90e0dda296a3a49c3f2ba67bddda9095575dabd896ef43",
+    "sizeBytes": 162967,
+    "fileCount": 65,
+    "buildRunId": 37337765993,
+    "publish": false
+  },
+  "includedUpgradeBaselines": [
+    "0.2.0-rc.2-openbkn.0.2.0-4",
+    "0.2.0-rc.2-openbkn.0.2.0-5"
+  ],
+  "note": "The ZIP is checked into the feature branch for Windows test delivery. It is the unchanged validated kit, not a new package build or npm release. Record the fetched Git HEAD independently of the package source commit.",
+  "nativeWindowsExecuted": false,
+  "releaseAccepted": false
+}

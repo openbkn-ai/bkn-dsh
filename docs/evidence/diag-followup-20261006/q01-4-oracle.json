@@ -1,0 +1,53 @@
+[
+  {
+    "request": {
+      "ot_id": "supply_ontology_hand_material",
+      "condition": {
+        "operation": "==",
+        "field": "material_code",
+        "value": "999-999999",
+        "value_from": "const"
+      },
+      "limit": 10
+    },
+    "exitCode": 0,
+    "elapsedMs": 490,
+    "parsed": true,
+    "totalCount": 0,
+    "rowCount": 0
+  },
+  {
+    "request": {
+      "ot_id": "supply_ontology_hand_inventory",
+      "condition": {
+        "operation": "==",
+        "field": "material_code",
+        "value": "999-999999",
+        "value_from": "const"
+      },
+      "limit": 10
+    },
+    "exitCode": 0,
+    "elapsedMs": 418,
+    "parsed": true,
+    "totalCount": 0,
+    "rowCount": 0
+  },
+  {
+    "request": {
+      "ot_id": "supply_ontology_hand_salesorder",
+      "condition": {
+        "operation": "==",
+        "field": "product_code",
+        "value": "999-999999",
+        "value_from": "const"
+      },
+      "limit": 10
+    },
+    "exitCode": 0,
+    "elapsedMs": 302,
+    "parsed": true,
+    "totalCount": 0,
+    "rowCount": 0
+  }
+]

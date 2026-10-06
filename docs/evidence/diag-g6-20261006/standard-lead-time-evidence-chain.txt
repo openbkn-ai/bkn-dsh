@@ -1,0 +1,25 @@
+The following is a diff from the previous accessibility tree for Window: "382-000005 标准交期查询 — DeepSeek Harness" with ~ and + representing changed and added elements, respectively. Removed elements are summarized by ID range.
+Removed element IDs: 15-32
++						41 text 业务回执清单
++						42 text 回执是业务操作落库的耐久凭据；下方指引可在本机 CLI 中核验，面板自身不执行任何命令。 平台
++						43 text 01
++						44 text rcpt_d7d2bba1109de72a2e9d1b85b333a78a
++						45 text completed search_capabilities · operation op_d35a81f96ebb7aab7872af9759f2d9f5 · 来源：平台
++						46 text openbkn trace receipts get rcpt_d7d2bba1109de72a2e9d1b85b333a78a
++						47 text 02
++						48 text rcpt_c667cf9241497be4009ecbdaffc50c98
++						49 text completed execute_tool · operation op_92abb3de28896c57896fa098b1262b1a · 来源：平台
++						50 text openbkn trace receipts get rcpt_c667cf9241497be4009ecbdaffc50c98
++						51 text 03
++						52 text rcpt_48f0747830073961a0083274fadde0bc
++						53 text pending 5ce8e842-a2bf-46b3-a89d-6a7f16ea6630 · operation op_7d92d173be962535d6e72cc3e15e857c · 来源：平台
++						54 text openbkn trace receipts get rcpt_48f0747830073961a0083274fadde0bc
++						55 text 04
++						56 text rcpt_fe7aeb5481246df9077e00444d1e0901
++						57 text completed query_object_instance · operation op_a12a714879aa96198c4101c879198288 · 来源：平台
++						58 text openbkn trace receipts get rcpt_fe7aeb5481246df9077e00444d1e0901
++						59 text 05
++						60 text rcpt_3e0f307977122894e9c825ebb129ca1c
++						61 text failed query_object_instance · operation op_ce6f96c4c57a9eb0ca5c0865ba903e6e · 来源：平台
++						62 text openbkn trace receipts get rcpt_3e0f307977122894e9c825ebb129ca1c
+The focused UI element is 13 button 证据链

@@ -1,0 +1,168 @@
+Window: "未结采购申请和采购订单查询 — DeepSeek Harness", App: DeepSeek Harness.
+0 standard window 未结采购申请和采购订单查询 — DeepSeek Harness, Secondary Actions: Raise
+	1 container 未结采购申请和采购订单查询 — DeepSeek Harness
+		2 container
+			3 HTML content 未结采购申请和采购订单查询 — DeepSeek Harness, URL: dsh-app://app/
+				4 container
+					5 button 收起侧边栏
+					6 button 新建会话
+					7 container 全局面板
+						8 button 插件
+					9 text 工作区
+					10 button 搜索会话
+					11 text field (settable) 搜索会话名称
+					12 button 视图选项
+					13 button 添加工作区
+					14 outline 会话
+						15 container
+							16 row workspace-supply
+								17 text workspace-supply
+							18 row (selected) 未结采购申请和采购订单查询 3分钟
+								19 text 未结采购申请和采购订单查询 3分钟
+							20 row 查询BOM清单及物料库存情况 7分钟
+								21 text 查询BOM清单及物料库存情况 7分钟
+							22 row 382-000005 BOM 构成查询 8分钟
+								23 text 382-000005 BOM 构成查询 8分钟
+							24 row 各成品仓382-000005可用库存 9分钟
+								25 text 各成品仓382-000005可用库存 9分钟
+							26 row 销售订单382-000005状态查询 11分钟
+								27 text 销售订单382-000005状态查询 11分钟
+							28 button 展开其余 1 个会话
+						29 row 默认工作区
+							30 text 默认工作区
+					31 button OpenBKN business knowledge networks
+					32 pop up button 账号菜单
+					33 container
+						34 container 会话层级
+							35 text 未结采购申请和采购订单查询
+						36 text 标准模式
+						37 text 供应链本体知识网络-手工版
+						38 button 用 访达 打开
+						39 pop up button 更多打开方式
+						40 pop up button 更多操作
+						41 button 打开右侧边栏
+						42 tab group
+							43 tab (selected) 对话, Value: 1
+							44 tab (settable, integer) 轨迹, Value: 0
+					45 container
+						46 container
+							47 text 382-000005 当前有哪些未结的采购申请和采购订单？ 09:08
+							48 button 复制
+							49 text 已完成
+							50 button 已完成，用时 3分19秒
+								51 text 已完成，用时
+								52 text 3
+								53 text 分
+								54 text 19
+								55 text 秒
+							56 heading 结论, Value: 2
+								57 text 结论
+							58 text 按本知识网络的建模口径，
+							59 text 382-000005（产品「北斗导航农机驾驶仪」）当前没有任何未结的采购申请和采购订单
+							60 text  —— 未结采购申请 0 行，未结采购订单 0 行。
+							61 heading 依据, Value: 2
+								62 text 依据
+							63 text 1. 对象识别
+							64 text ：全网络逐对象类、逐字符串字段扫描
+							65 text 382-000005
+							66 text ，只命中「产品 / 物料」= 北斗导航农机驾驶仪（YN406BDS-2.5GD，物料属性=自制）。采购申请单、采购订单中
+							67 text 没有任何字段引用该编码
+							68 text （0 命中），所以不存在按编码直接匹配的采购单据。
+							69 text 2. 沿建模链路 预测单 → MRP → 采购申请 → 采购订单 追溯
+							70 table
+								71 row
+									72 column header
+										73 text 环节
+									74 column header
+										75 text 数量
+									76 column header
+										77 text 状态
+								78 row
+									79 cell
+										80 text 产品需求预测单
+									81 cell
+										82 text 15 张
+									83 cell
+										84 text 6 张仍"正常"，9 张已关闭
+								85 row
+									86 cell
+										87 text 物料需求计划
+									88 cell
+										89 text 424 行
+									90 cell
+										91 text 369 行已投放，55 行未投放
+								92 row
+									93 cell
+										94 text 采购申请
+									95 cell
+										96 text 69 行（5 张单）
+									97 cell
+										98 text 全部已关闭
+										99 text ，未结 0 行
+								100 row
+									101 cell
+										102 text 采购订单
+									103 cell
+										104 text 0 行
+									105 cell
+										106 text —
+							107 text 那 5 张申请单是 CGSQ-251218-000028、CGSQ-251219-000047/000050/000051/000052；无论按申请行
+							108 text entry_id
+							109 text  还是按申请单号
+							110 text srcbillnumber
+							111 text  反查，都没有订单引用。
+							112 heading 需要注意的口径与数据限制, Value: 2
+								113 text 需要注意的口径与数据限制
+							114 content list
+								115 container
+									116 AXListMarker •
+									117 text 未结 =
+									118 text rowclosestatus_title = 正常
+									119 text 。全网络当前共有 563 行未结采购申请、536 行未结采购订单，但 没有一行能与本产品关联 ：全部 563 行未结采购申请的来源字段为空（ srcbillid=0 、 srcbillnumber  为空），无法回溯到 MRP，也就无法回溯到任何产品的需求链。
+								120 container
+									121 AXListMarker •
+									122 text 建模关系有缺陷 ：「采购申请单关联物料需求计划」的映射是  pr.srcbillid (整数) →  mrp.billno (文本)，类型不匹配会退化成笛卡尔积（实测该连接算出约 780 万行全重复行）， 不能直接用 ；数据里可用的连接是  pr.srcbillnumber = mrp.billno 。
+								123 container
+									124 AXListMarker •
+									125 text PR↔MRP 数据不完整 ：全网 562 行 MRP 已投放，但只有 144 行采购申请带 JHJY 来源单号，本产品链路上仅 69 行。
+								126 container
+									127 AXListMarker •
+									128 text 3 张仍"正常"的预测单（YCD2026040900000071、YCD2026060300000090、YCD2026071700000091）在 MRP 中尚无任何行，即还未产生采购需求。
+								129 container
+									130 AXListMarker •
+									131 text 「采购订单关联物料请购单」关系本身可用：536 行未结订单中 522 行能定位到申请行，其中 464 行对应申请已关闭（转单后关闭属正常），11 行对应申请仍为正常。
+							132 heading 若您其实想问"该产品 BOM 上物料的未结采购申请/订单", Value: 2
+								133 text 若您其实想问"该产品 BOM 上物料的未结采购申请/订单"
+							134 text BOM（版本 2026-08-05）共 507 行、333 个主用子件；这些子件对应未结采购申请 89 行（33 张单）、未结采购订单 81 行（59 张单）。但本网络没有采购单据 ↔ 产品/BOM 的关系，这些物料为多产品共用，
+							135 text 无法归因给 382-000005
+							136 text 。需要的话我可以把这份明细清单导出来。
+							137 button 复制
+							138 toggle button Description: 好的回答, Value: 0
+							139 toggle button Description: 有问题的回答, Value: 0
+							140 button 查看业务溯源, Help: View OpenBKN provenance for this answer
+							141 button 在新对话中分支
+							142 pop up button 用量 1.9M tok
+							143 text 09:11
+						144 container
+							145 text entry area (settable) 发消息或创建任务, / 调用指令, @ 文件或对话
+							146 pop up button 添加文件或调用指令
+							147 button 访问模式，当前：工作区内修改
+							148 pop up button Description: 选择模型，当前 DeepSeek-V41-Flash，推理等级 High, Help: DeepSeek-V41-Flash · High
+							149 button (disabled) 发送消息
+						150 pop up button 1 轮 23 步 · 232 tok/s
+							151 text 1 轮 23 步
+							152 text 232 tok/s
+						153 pop up button 1.9M tok · 缓存命中 98%
+							154 text 1.9M tok
+							155 text 缓存命中 98%
+						156 pop up button 上下文已用 11%
+	157 close button
+	158 full screen button Help: this button also has an action to zoom the window, Secondary Actions: zoom the window
+	159 minimize button
+160 menu bar
+	161 DeepSeek Harness
+	162 文件
+	163 Edit
+	164 Window
+
+The focused UI element is 43 tab (selected) 对话, Value: 1

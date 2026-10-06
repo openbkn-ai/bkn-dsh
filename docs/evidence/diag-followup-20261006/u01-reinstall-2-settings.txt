@@ -1,0 +1,51 @@
+Window: "DeepSeek Harness", App: DeepSeek Harness.
+0 standard window DeepSeek Harness, Secondary Actions: Raise
+	1 container DeepSeek Harness
+		2 container
+			3 HTML content DeepSeek Harness, URL: dsh-app://app/
+				4 container 设置
+					5 container
+						6 text 设置
+						7 button 通用设置
+						8 button 模型
+						9 button 内置插件
+						10 button Agent 预设
+					11 button 打开配置文件
+					12 button 关闭
+					13 container
+						14 text 权限 选择新会话的默认权限模式
+						15 pop up button 工作区内修改
+						16 text 语言
+						17 pop up button 中文
+						18 text 外观
+						19 toggle button 浅色, Value: 0
+						20 toggle button 深色, Value: 0
+						21 toggle button 跟随系统, Value: 1
+						22 text 字号大小 仅影响会话内容的字号 14
+						23 button 增大字号
+						24 button 减小字号
+						25 text px 工作步骤展示 选择希望看到多少工具调用细节
+						26 pop up button 标准
+						27 text 显示代码工作视图 开启后，显示轨迹、本轮代码差异，可选择完整的 Agent 预设切换
+						28 switch Description: 显示代码工作视图, Value: on
+						29 text 快捷键 查看和编辑当前可用的快捷键和输入操作
+						30 button 编辑快捷键
+						31 text 网页链接默认打开方式 对话中网页链接的打开位置
+						32 pop up button 应用内侧边栏
+						33 text 繁忙时的发送行为 智能体运行时 Enter 键和发送按钮的行为；Cmd/Ctrl+Enter 使用另一行为
+						34 pop up button 排队发送
+						35 text 性能与用量 选择性能与用量信息展示的详细程度
+						36 pop up button 详细
+						37 text 在使用官方模型 API 时上传 Session Log 帮助改进 DeepSeek 模型与产品
+						38 switch Description: 在使用官方模型 API 时上传 Session Log, Value: on
+						39 text 当前版本：0.2.0-rc.2
+	40 close button
+	41 full screen button Help: this button also has an action to zoom the window, Secondary Actions: zoom the window
+	42 minimize button
+43 menu bar
+	44 DeepSeek Harness
+	45 文件
+	46 Edit
+	47 Window
+
+The focused UI element is 7 button 通用设置

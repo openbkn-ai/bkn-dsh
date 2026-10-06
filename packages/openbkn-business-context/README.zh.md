@@ -1,5 +1,7 @@
 # bkn-dsh
 
+-7 候选统一此前未发布的诊断工作与供应链回答指导。普通 Node Host 的形态显示为未知，因为 Desktop 也使用 Node。合并候选的 CI 包实机及 Windows 验收仍待完成；详见仓库 -7 交接文档。
+
 [English](README.md)
 
 把经过治理的企业业务知识带入 DeepSeek Harness 会话。
@@ -39,13 +41,40 @@ bkn-dsh 连接 DeepSeek Harness 与 OpenBKN，使经过授权的用户可以：
 
 ## 安装
 
+本 -7 候选尚未发布到 npm。发布前请用固定 CI 候选 `.tgz` 的绝对路径，下面的指令在发布后使用。当前已发布的 -4 使用[独立安装说明](https://github.com/openbkn-ai/bkn-dsh/blob/v0.2.0-rc.2-openbkn.0.2.0-4/README.zh.md)。
+
 适用于未打补丁的 DeepSeek Harness `0.2.0-rc.2`：官方桌面版、npm 命令行（`@deepseek-ai/dsh@0.2.0-rc.2`）或构建后的源码检出。在 DSH 停止时，用 DSH 自己的插件管理器安装：
 
 ```bash
-dsh plugin --profile <desktop|web> add @openbkn/dsh-business-context@0.2.0-rc.2-openbkn.0.2.0-4
+dsh plugin --profile <desktop|web> add @openbkn/dsh-business-context@0.2.0-rc.2-openbkn.0.2.0-7
 ```
 
 然后填写平台地址、用 `openbkn` CLI 登录，并从侧栏 **OpenBKN** 入口绑定网络。绑定的会话必须使用 DSH 的标准模式（暂不支持 PTC 模式）。分步配置、证书与卸载：[仓库 README](https://github.com/openbkn-ai/bkn-dsh/blob/main/README.zh.md#安装并开始使用)。
+
+## 包入口结构（-7 起调整）
+
+包根是最小引导插件，仅保证宿主持续下发本包的浏览器端。业务 API 请从 `@openbkn/dsh-business-context/business` 导入；Remote 边界类型在 `@openbkn/dsh-business-context/types`。诊断入口仍为 `@openbkn/dsh-business-context/diagnostics`。
+
+### 升级 -7：name 断言配置需迁移
+
+宿主把 profile override 里的 `name` 字段当作对目标 row 的断言。从已发布的 <= -4 版本升级到 `-7` 时
+业务 row 的加载路径变为 `@openbkn/dsh-business-context/business`，保留旧
+裸包名的 override 会被整条跳过，其 `config`（如 `baseUrl`、`cliPath`）
+不会生效：
+
+```yaml
+# 升级到 -7 后不再匹配 —— baseUrl/cliPath 会丢失：
+- id: openbkn-business-context
+  name: '@openbkn/dsh-business-context'
+  config: { baseUrl: ..., cliPath: ... }
+```
+
+修复方式：删除 `name` 行（仅用 `id` 定位 row），或把断言改为新子路径名
+`'@openbkn/dsh-business-context/business'`。仅用 `id` 的配置不受影响。
+
+## 诊断
+
+遇到问题时，点击侧边栏底部的 **OpenBKN**，再点击弹出面板右上角的 **诊断** 并导出报告。侧边栏只有一个 OpenBKN 入口。即使业务组件导入失败或服务尚未就绪，面板外框和诊断按钮仍可用；诊断服务作为独立插件行运行，不依赖业务服务。诊断实现无法启动时，面板会明确提示诊断服务不可用。导出的 JSON 只包含白名单事实——阶段、分类代码、受限证据（HTTP 状态、退出码等）与覆盖说明，绝不包含令牌、原始错误文本、URL 或文件内容。把导出的文件发给支持人员即可。
 
 ## License
 

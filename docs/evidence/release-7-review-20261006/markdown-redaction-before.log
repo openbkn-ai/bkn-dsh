@@ -1,0 +1,14 @@
+...F..
+======================================================================
+FAIL: test_markdown_and_json_exports_use_the_same_redacted_answer (__main__.EvidenceRedactionTests.test_markdown_and_json_exports_use_the_same_redacted_answer)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/Users/kalias/Documents/project/app/openBKN/bkn-dsh-release-7/docs/eval/test-supply-tools.py", line 61, in test_markdown_and_json_exports_use_the_same_redacted_answer
+    self.assertNotIn("pw1", answer)
+    ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^
+AssertionError: 'pw1' unexpectedly found in '{"password": "pw1", "available_qty": 34}\n'
+
+----------------------------------------------------------------------
+Ran 6 tests in 0.002s
+
+FAILED (failures=1)

@@ -1,0 +1,72 @@
+Window: "DeepSeek Harness", App: DeepSeek Harness.
+0 standard window DeepSeek Harness, Secondary Actions: Raise
+	1 container DeepSeek Harness
+		2 container
+			3 HTML content DeepSeek Harness, URL: dsh-app://app/
+				4 container
+					5 button 收起侧边栏
+					6 button 新建会话
+					7 container 全局面板
+						8 button 插件
+					9 text 工作区
+					10 button 搜索会话
+					11 text field (settable) 搜索会话名称
+					12 button 视图选项
+					13 button 添加工作区
+					14 outline 会话
+						15 container
+							16 row 默认工作区
+								17 text 默认工作区
+							18 row (selected) 新会话
+								19 text 新会话
+					20 button OpenBKN business knowledge networks
+					21 pop up button 账号菜单
+					22 container
+						23 text 探索未至之境 预览版
+						24 pop up button 选择工作区
+						25 pop up button 标准模式, Help: 选择新任务使用的 Agent 预设
+						26 text entry area (settable) 描述你想要构建的内容, / 调用指令, @ 文件或对话
+						27 pop up button 添加文件或调用指令
+						28 button 访问模式，当前：工作区内修改
+						29 pop up button Description: 选择模型，当前 DeepSeek-V41-Flash，推理等级 High, Help: DeepSeek-V41-Flash · High
+						30 button (disabled) 发送消息
+					31 container
+						32 tab group
+							33 tab (selected) 开始, Value: 1
+							34 button 分栏
+							35 container
+								36 button 全屏
+								37 button 收起右侧边栏
+						38 button 工作区文件 浏览会话工作区的文件 ⌘ P
+							39 text 工作区文件
+							40 text 浏览会话工作区的文件
+							41 text ⌘
+							42 text P
+						43 container
+							44 button 新建终端 在会话工作区运行命令
+							45 pop up button 选择 Shell
+							46 text ⌃ `
+						47 button 浏览器 浏览网页 ⌘ T
+							48 text 浏览器
+							49 text 浏览网页
+							50 text ⌘
+							51 text T
+					52 container OpenBKN 诊断
+						53 container
+							54 text OPENBKN
+							55 heading 诊断, Value: 2
+								56 text 诊断
+							57 button Close
+						58 text 诊断服务不可用（诊断入口未随插件启动或连接中断）。请截图或复制此提示发给支持人员。
+						59 text 诊断入口未随插件启动或连接已中断。请截图或复制此提示发给支持人员。
+						60 button 重试
+	61 close button
+	62 full screen button Help: this button also has an action to zoom the window, Secondary Actions: zoom the window
+	63 minimize button
+64 menu bar
+	65 DeepSeek Harness
+	66 文件
+	67 Edit
+	68 Window
+
+The focused UI element is 3 HTML content DeepSeek Harness, URL: dsh-app://app/

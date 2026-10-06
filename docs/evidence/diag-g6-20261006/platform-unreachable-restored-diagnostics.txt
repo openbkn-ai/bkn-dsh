@@ -1,0 +1,33 @@
+container OpenBKN 诊断
+						291 container
+							292 text OPENBKN
+							293 heading 诊断, Value: 2
+								294 text 诊断
+							295 button Close
+						296 container
+							297 text 报告编号  812d13bd  · 生成于  10/6/2026, 9:43:13 AM  · 模式  被动采集 Host 形态 desktop 平台 darwin DSH 版本 未知 插件（磁盘） 0.2.0-rc.2-openbkn.0.2.0-6 插件（已加载） 未知 ●  通过 bootstrap-entry installation  /  component-loaded
+							298 text entryPresent=true
+							299 text ●  通过 business-entry component  /  component-loaded
+							300 text entryPresent=true
+							301 text ●  通过 diagnostics-entry diagnostics  /  component-loaded
+							302 text schemaVersion=1
+							303 text ●  通过 observed:cli cli  /  cli
+							304 text failureCount=0 lastOutcomeAgoMs=14946 exitCode=0
+							305 text ●  通过 observed:login-state authentication  /  login-state
+							306 text failureCount=2 lastOutcomeAgoMs=15045 recovered=true lastFailureCode=not-logged-in loggedIn=true
+							307 text ●  通过 observed:context-loader context-loader  /  context-loader
+							308 text failureCount=0 lastOutcomeAgoMs=14905 toolsPublished=true
+							309 text ●  通过 observed:platform-network-list platform-directory  /  platform-network-list
+							310 text failureCount=0 lastOutcomeAgoMs=14891 networkCount=2
+							311 button 导出诊断报告
+							312 button 重新采集
+	313 close button
+	314 full screen button Help: this button also has an action to zoom the window, Secondary Actions: zoom the window
+	315 minimize button
+316 menu bar
+	317 DeepSeek Harness
+	318 文件
+	319 Edit
+	320 Window
+
+The focused UI element is 3 HTML content 统计销售订单数量及状态 — DeepSeek Harness, URL: dsh-app://app/

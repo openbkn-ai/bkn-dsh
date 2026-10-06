@@ -1,0 +1,164 @@
+Window: "物料库存与订单情况查询 — DeepSeek Harness", App: DeepSeek Harness.
+0 standard window 物料库存与订单情况查询 — DeepSeek Harness, Secondary Actions: Raise
+	1 container 物料库存与订单情况查询 — DeepSeek Harness
+		2 container
+			3 HTML content 物料库存与订单情况查询 — DeepSeek Harness, URL: dsh-app://app/
+				4 container OpenBKN business provenance
+					5 container
+						6 text TRACE-BACKED PROVENANCE
+						7 heading 业务溯源, Value: 2
+							8 text 业务溯源
+						9 button Close
+					10 container Provenance views
+						11 button 执行溯源
+						12 button 业务上下文图
+						13 button 证据链
+					14 container
+						15 text 业务对象 逻辑 / 指标 本轮正式引用
+						16 container
+							17 image OpenBKN formal business relations
+							18 toggle button object 库存 query_object_instance, Value: 0
+								19 text object
+								20 text 库存
+								21 text query_object_instance
+							22 toggle button object 物料 query_object_instance, Value: 1
+								23 text object
+								24 text 物料
+								25 text query_object_instance
+							26 toggle button object 物料需求计划 query_object_instance, Value: 0
+								27 text object
+								28 text 物料需求计划
+								29 text query_object_instance
+							30 toggle button object 产品需求预测单 query_object_instance, Value: 0
+								31 text object
+								32 text 产品需求预测单
+								33 text query_object_instance
+							34 toggle button object 采购订单 query_object_instance, Value: 0
+								35 text object
+								36 text 采购订单
+								37 text query_object_instance
+							38 toggle button object 采购申请单 query_object_instance, Value: 0
+								39 text object
+								40 text 采购申请单
+								41 text query_object_instance
+							42 toggle button object 工厂生产计划 query_object_instance, Value: 0
+								43 text object
+								44 text 工厂生产计划
+								45 text query_object_instance
+							46 toggle button object 供应链本体知识网络-手工版 run_cypher, Value: 0
+								47 text object
+								48 text 供应链本体知识网络-手工版
+								49 text run_cypher
+							50 toggle button property 物料编码 run_cypher, Value: 0
+								51 text property
+								52 text 物料编码
+								53 text run_cypher
+							54 toggle button property 物料名称 run_cypher, Value: 0
+								55 text property
+								56 text 物料名称
+								57 text run_cypher
+							58 toggle button action 发起PO search_schema, Value: 0
+								59 text action
+								60 text 发起PO
+								61 text search_schema
+							62 toggle button metric 物料总数 search_schema, Value: 0
+								63 text metric
+								64 text 物料总数
+								65 text search_schema
+							66 toggle button metric 销售订单数 search_schema, Value: 0
+								67 text metric
+								68 text 销售订单数
+								69 text search_schema
+							70 toggle button metric 仓库数 search_schema, Value: 0
+								71 text metric
+								72 text 仓库数
+								73 text search_schema
+							74 toggle button metric 库存可用量 search_schema, Value: 0
+								75 text metric
+								76 text 库存可用量
+								77 text search_schema
+							78 toggle button metric 未关闭预测单数 search_schema, Value: 0
+								79 text metric
+								80 text 未关闭预测单数
+								81 text search_schema
+							82 toggle button object 产品BOM search_schema, Value: 0
+								83 text object
+								84 text 产品BOM
+								85 text search_schema
+							86 toggle button object 监控证据明细 search_schema, Value: 0
+								87 text object
+								88 text 监控证据明细
+								89 text search_schema
+							90 toggle button object 采购申请决策 search_schema, Value: 0
+								91 text object
+								92 text 采购申请决策
+								93 text search_schema
+							94 toggle button object 产品 search_schema, Value: 0
+								95 text object
+								96 text 产品
+								97 text search_schema
+							98 toggle button object 销售订单 search_schema, Value: 0
+								99 text object
+								100 text 销售订单
+								101 text search_schema
+							102 toggle button relation 产品bom关联物料 search_schema, Value: 0
+								103 text relation
+								104 text 产品bom关联物料
+								105 text search_schema
+							106 toggle button relation 物料关联库存 search_schema, Value: 0
+								107 text relation
+								108 text 物料关联库存
+								109 text search_schema
+							110 toggle button relation 监控证据引用物料 search_schema, Value: 0
+								111 text relation
+								112 text 监控证据引用物料
+								113 text search_schema
+							114 toggle button relation 物料需求计划关联产品预测需求 search_schema, Value: 0
+								115 text relation
+								116 text 物料需求计划关联产品预测需求
+								117 text search_schema
+							118 toggle button relation 物料需求计划关联物料 search_schema, Value: 0
+								119 text relation
+								120 text 物料需求计划关联物料
+								121 text search_schema
+							122 toggle button relation 采购申请单关联物料需求计划 search_schema, Value: 0
+								123 text relation
+								124 text 采购申请单关联物料需求计划
+								125 text search_schema
+							126 toggle button relation 采购订单关联物料请购单 search_schema, Value: 0
+								127 text relation
+								128 text 采购订单关联物料请购单
+								129 text search_schema
+							130 toggle button relation 采购申请决策建议采购物料 search_schema, Value: 0
+								131 text relation
+								132 text 采购申请决策建议采购物料
+								133 text search_schema
+							134 toggle button relation 产品关联库存 search_schema, Value: 0
+								135 text relation
+								136 text 产品关联库存
+								137 text search_schema
+							138 toggle button relation 销售订单关联产品 search_schema, Value: 0
+								139 text relation
+								140 text 销售订单关联产品
+								141 text search_schema
+						142 text BUSINESS REF
+						143 text 物料
+						144 text object · resolved
+						145 text 来源知识网络
+						146 text supply_ontology_hand
+						147 text 来源 Operation
+						148 text op_111ee208de78f4bf0127b4179a6e1fdf
+						149 text 解析工具 query_object_instance
+						150 text 本轮正式投影
+						151 container
+							152 text 31  个元素 ·  0  条可视关系
+	153 close button
+	154 full screen button Help: this button also has an action to zoom the window, Secondary Actions: zoom the window
+	155 minimize button
+156 menu bar
+	157 DeepSeek Harness
+	158 文件
+	159 Edit
+	160 Window
+
+The focused UI element is 22 toggle button object 物料 query_object_instance, Value: 1

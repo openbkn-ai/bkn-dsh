@@ -1,0 +1,240 @@
+Window: "统计销售订单数量及状态 — DeepSeek Harness", App: DeepSeek Harness.
+0 standard window 统计销售订单数量及状态 — DeepSeek Harness, Secondary Actions: Raise
+	1 container 统计销售订单数量及状态 — DeepSeek Harness
+		2 container
+			3 HTML content 统计销售订单数量及状态 — DeepSeek Harness, URL: dsh-app://app/
+				4 container
+					5 button 收起侧边栏
+					6 button 新建会话
+					7 container 全局面板
+						8 button 插件
+					9 text 工作区
+					10 button 搜索会话
+					11 text field (settable) 搜索会话名称
+					12 button 视图选项
+					13 button 添加工作区
+					14 outline 会话
+						15 container
+							16 row workspace-supply
+								17 text workspace-supply
+							18 row (selected) 统计销售订单数量及状态 刚刚
+								19 text 统计销售订单数量及状态 刚刚
+							20 row 物料999-999999库存与订单查询 2分钟
+								21 text 物料999-999999库存与订单查询 2分钟
+							22 row 物料库存及订单查询 3分钟
+								23 text 物料库存及订单查询 3分钟
+							24 row 物料库存与订单情况查询 5分钟
+								25 text 物料库存与订单情况查询 5分钟
+							26 row 查询物料382-000005的名称与标准交期 1小时
+								27 text 查询物料382-000005的名称与标准交期 1小时
+							28 button 展开其余 10 个会话
+						29 row 默认工作区
+							30 text 默认工作区
+					31 button OpenBKN business knowledge networks
+					32 pop up button 账号菜单
+					33 container
+						34 container 会话层级
+							35 text 统计销售订单数量及状态
+						36 text 标准模式
+						37 text 供应链本体知识网络-手工版
+						38 button 用 访达 打开
+						39 pop up button 更多打开方式
+						40 pop up button 更多操作
+						41 button 打开右侧边栏
+						42 tab group
+							43 tab (selected) 对话, Value: 1
+							44 tab (settable, integer) 轨迹, Value: 0
+					45 container
+						46 container
+							47 container 轮次导航
+								48 container
+									49 button 跳转到第 1 轮
+									50 button 跳转到第 2 轮
+									51 button 跳转到第 3 轮
+									52 button 跳转到第 4 轮
+							53 text 处理失败
+							54 button (disabled) 处理失败
+							55 container
+								56 text 本轮运行失败 mcp-client(openbkn): initial connection or tool synchronization failed: Version negotiation probe failed: fetch failed UNKNOWN
+							57 text 382-000005 有多少张销售订单？什么状态？
+							58 text 09:40
+							59 button 复制
+							60 text 已完成
+							61 button 已完成，用时 9秒
+								62 text 已完成，用时
+								63 text 9
+								64 text 秒
+							65 text 我无法完成这个查询：本会话的 OpenBKN 托管工具没有注册成功。
+							66 text 具体情况：
+							67 content list
+								68 container
+									69 AXListMarker •
+									70 text 我按流程直接调用了  mcp__openbkn__bkn_start_interaction （agent_name =  bkn-agent-dsh-business-context ，conversation_mode =  new ），平台返回： 该工具未在本会话注册，网络作用域无法校验，且要求不要重试 。
+								71 container
+									72 AXListMarker •
+									73 text 由于 Interaction 无法开启，我不能读取绑定的知识网络  supply_ontology_hand （供应链本体知识网络-手工版）的 schema、对象/关系、指标或已发布能力，因此也无法查询  382-000005  对应的销售订单数量与状态。
+								74 container
+									75 AXListMarker •
+									76 text 本次没有产生任何业务数据访问，我也不会凭猜测给出订单数量或状态。
+							77 text 建议：请在 DSH 侧确认 OpenBKN MCP 连接/工具注册是否正常（该会话似乎只允许托管 OpenBKN 工具，而它们当前不可用），恢复后我可以立即重试同样的查询。
+							78 button 复制
+							79 toggle button Description: 好的回答, Value: 0
+							80 toggle button Description: 有问题的回答, Value: 0
+							81 button 在新对话中分支
+							82 pop up button 用量 85.1K tok
+							83 text 09:40
+							84 text 382-000005 有多少张销售订单？什么状态？
+							85 text 09:42
+							86 button 复制
+							87 text 已完成
+							88 button 已完成，用时 20秒
+								89 text 已完成，用时
+								90 text 20
+								91 text 秒
+							92 container
+								93 text 382-000005 （产品：北斗导航农机驾驶仪）共有  40 张销售订单 ，状态全部是  「已确认」 。
+							94 table
+								95 row
+									96 column header
+										97 text 项目
+									98 column header
+										99 text 结果
+								100 row
+									101 cell
+										102 text 产品编码
+									103 cell
+										104 text 382-000005（北斗导航农机驾驶仪）
+								105 row
+									106 cell
+										107 text 销售订单张数
+									108 cell
+										109 text 40
+								110 row
+									111 cell
+										112 text 状态分布
+									113 cell
+										114 text 已确认 40（无其他状态）
+							115 text 依据与口径：
+							116 content list
+								117 container
+									118 AXListMarker •
+									119 text 使用知识网络  supply_ontology_hand  的指标「销售订单数」（ count(sales_order_id) ，scope=销售订单），按  product_code = 382-000005  过滤，结果  40 ；按  order_status  拆维后只有一个分组「已确认」= 40，与总数自洽。
+								120 container
+									121 AXListMarker •
+									122 text 对象校验： 产品  中存在 material_number=382-000005 → 北斗导航农机驾驶仪； 销售订单  过滤同一 product_code 返回 total_count=40。样例订单 SO0000001（11 件）、SO0000002（43 件）、SO0000003（32 件）状态均为已确认。
+							123 text 说明：以上是「张数」口径（订单行条数），不是签约数量合计；如需签约/交付数量汇总或按承诺交期拆解，可以继续查。
+							124 button 复制
+							125 toggle button Description: 好的回答, Value: 0
+							126 toggle button Description: 有问题的回答, Value: 0
+							127 button 查看业务溯源, Help: View OpenBKN provenance for this answer
+							128 button 在新对话中分支
+							129 pop up button 用量 439K tok
+							130 text 09:42
+							131 text 物料 999-999999 的库存和订单情况？
+							132 text 11:17
+							133 button 复制
+							134 text 已完成
+							135 button 已完成，用时 21秒
+								136 text 已完成，用时
+								137 text 21
+								138 text 秒
+							139 container
+								140 text 999-999999 在知识网络里不存在 ，所以它既没有库存，也没有任何订单记录。
+							141 text 逐项核查结果（均返回 0 条）：
+							142 table
+								143 row
+									144 column header
+										145 text 对象
+									146 column header
+										147 text 匹配字段
+									148 column header
+										149 text 结果
+								150 row
+									151 cell
+										152 text 物料
+									153 cell
+										154 text material_code
+									155 cell
+										156 text 0
+								157 row
+									158 cell
+										159 text 产品
+									160 cell
+										161 text material_number
+									162 cell
+										163 text 0
+								164 row
+									165 cell
+										166 text 库存
+									167 cell
+										168 text material_code
+									169 cell
+										170 text 0
+								171 row
+									172 cell
+										173 text 销售订单
+									174 cell
+										175 text product_code
+									176 cell
+										177 text 0
+								178 row
+									179 cell
+										180 text 采购订单
+									181 cell
+										182 text material_number
+									183 cell
+										184 text 0
+								185 row
+									186 cell
+										187 text 采购申请单
+									188 cell
+										189 text material_number
+									190 cell
+										191 text 0
+								192 row
+									193 cell
+										194 text 物料需求计划
+									195 cell
+										196 text materialplanid_number
+									197 cell
+										198 text 0
+								199 row
+									200 cell
+										201 text 产品BOM
+									202 cell
+										203 text material_code
+									204 cell
+										205 text 0
+							206 container
+								207 text 为排除「只是写法不同/编号相近」的可能，我还做了模糊核查： 物料 material_code like "999" 、 产品 material_number like "999"  都是 0 条；同一个算子对  销售订单 product_code like "382"  能返回 80 条，说明子串检索本身有效，因此「无此编码」的结论可靠。
+							208 text 结论：没有可汇总的库存量、占用/可用数量或订单张数与状态——不是「库存为 0、订单为 0」，而是该编码在物料主数据中就不存在。若这是笔误，可以告诉我正确的编码（例如 382-000005 ……），我直接按同样口径查库存与订单。
+							209 button 复制
+							210 toggle button Description: 好的回答, Value: 0
+							211 toggle button Description: 有问题的回答, Value: 0
+							212 button 查看业务溯源, Help: View OpenBKN provenance for this answer
+							213 button 在新对话中分支
+							214 pop up button 用量 438K tok
+							215 text 11:17
+						216 container
+							217 text entry area (settable) 发消息或创建任务, / 调用指令, @ 文件或对话
+							218 pop up button 添加文件或调用指令
+							219 button 访问模式，当前：工作区内修改
+							220 pop up button Description: 选择模型，当前 DeepSeek-V41-Flash，推理等级 High, Help: DeepSeek-V41-Flash · High
+							221 button (disabled) 发送消息
+							222 pop up button 3 轮 19 步 · 286 tok/s
+								223 text 3 轮 19 步
+								224 text 286 tok/s
+							225 pop up button 962K tok · 缓存命中 94%
+								226 text 962K tok
+								227 text 缓存命中 94%
+							228 pop up button 上下文已用 8%
+	229 close button
+	230 full screen button Help: this button also has an action to zoom the window, Secondary Actions: zoom the window
+	231 minimize button
+232 menu bar
+	233 DeepSeek Harness
+	234 文件
+	235 Edit
+	236 Window
+
+The focused UI element is 43 tab (selected) 对话, Value: 1

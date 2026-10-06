@@ -1,0 +1,281 @@
+{
+  "source": "CLI 0.1.5 context tools -> real MCP tools/list",
+  "network": "supply_ontology_hand",
+  "toolCount": 28,
+  "catalogCanonicalSha256": "f8a2d619bfb1728e6591c10161691d75b2582028d6dcb4ae54d12101f82792a1",
+  "tools": [
+    {
+      "name": "bkn_finish_interaction",
+      "knIdPresent": false,
+      "knIdRequired": false,
+      "required": [
+        "interaction_id",
+        "outcome"
+      ]
+    },
+    {
+      "name": "bkn_start_interaction",
+      "knIdPresent": false,
+      "knIdRequired": false,
+      "required": [
+        "conversation_mode",
+        "question",
+        "agent_name"
+      ]
+    },
+    {
+      "name": "describe_resource",
+      "knIdPresent": false,
+      "knIdRequired": false,
+      "required": [
+        "resource_id",
+        "bkn_context"
+      ]
+    },
+    {
+      "name": "execute_action",
+      "knIdPresent": true,
+      "knIdRequired": true,
+      "required": [
+        "kn_id",
+        "at_id",
+        "bkn_context"
+      ]
+    },
+    {
+      "name": "execute_tool",
+      "knIdPresent": true,
+      "knIdRequired": true,
+      "required": [
+        "kn_id",
+        "toolbox_id",
+        "tool_id",
+        "arguments",
+        "bkn_context"
+      ]
+    },
+    {
+      "name": "explore_subgraph",
+      "knIdPresent": true,
+      "knIdRequired": true,
+      "required": [
+        "kn_id",
+        "source_object_type_id",
+        "direction",
+        "path_length",
+        "bkn_context"
+      ]
+    },
+    {
+      "name": "get_action_execution",
+      "knIdPresent": true,
+      "knIdRequired": true,
+      "required": [
+        "kn_id",
+        "execution_id",
+        "bkn_context"
+      ]
+    },
+    {
+      "name": "get_action_info",
+      "knIdPresent": true,
+      "knIdRequired": true,
+      "required": [
+        "kn_id",
+        "at_id",
+        "bkn_context"
+      ]
+    },
+    {
+      "name": "get_kn_detail",
+      "knIdPresent": true,
+      "knIdRequired": true,
+      "required": [
+        "kn_id",
+        "bkn_context"
+      ]
+    },
+    {
+      "name": "get_logic_properties_values",
+      "knIdPresent": true,
+      "knIdRequired": true,
+      "required": [
+        "kn_id",
+        "ot_id",
+        "query",
+        "_instance_identities",
+        "properties",
+        "bkn_context"
+      ]
+    },
+    {
+      "name": "get_object_types",
+      "knIdPresent": true,
+      "knIdRequired": true,
+      "required": [
+        "kn_id",
+        "ids",
+        "bkn_context"
+      ]
+    },
+    {
+      "name": "get_relation_types",
+      "knIdPresent": true,
+      "knIdRequired": true,
+      "required": [
+        "kn_id",
+        "ids",
+        "bkn_context"
+      ]
+    },
+    {
+      "name": "get_skill_content",
+      "knIdPresent": true,
+      "knIdRequired": true,
+      "required": [
+        "kn_id",
+        "skill_id",
+        "bkn_context"
+      ]
+    },
+    {
+      "name": "list_action_executions",
+      "knIdPresent": true,
+      "knIdRequired": true,
+      "required": [
+        "kn_id",
+        "bkn_context"
+      ]
+    },
+    {
+      "name": "list_knowledge_networks",
+      "knIdPresent": false,
+      "knIdRequired": false,
+      "required": [
+        "bkn_context"
+      ]
+    },
+    {
+      "name": "list_resources",
+      "knIdPresent": true,
+      "knIdRequired": false,
+      "required": [
+        "bkn_context"
+      ]
+    },
+    {
+      "name": "list_skills",
+      "knIdPresent": false,
+      "knIdRequired": false,
+      "required": [
+        "bkn_context"
+      ]
+    },
+    {
+      "name": "query_instance_subgraph",
+      "knIdPresent": true,
+      "knIdRequired": true,
+      "required": [
+        "kn_id",
+        "relation_type_paths",
+        "bkn_context"
+      ]
+    },
+    {
+      "name": "query_metric",
+      "knIdPresent": true,
+      "knIdRequired": true,
+      "required": [
+        "kn_id",
+        "metric_id",
+        "bkn_context"
+      ]
+    },
+    {
+      "name": "query_object_instance",
+      "knIdPresent": true,
+      "knIdRequired": true,
+      "required": [
+        "kn_id",
+        "ot_id",
+        "bkn_context"
+      ]
+    },
+    {
+      "name": "read_skill_file",
+      "knIdPresent": true,
+      "knIdRequired": true,
+      "required": [
+        "kn_id",
+        "skill_id",
+        "rel_path",
+        "bkn_context"
+      ]
+    },
+    {
+      "name": "run_code",
+      "knIdPresent": false,
+      "knIdRequired": false,
+      "required": [
+        "code",
+        "bkn_context"
+      ]
+    },
+    {
+      "name": "run_cypher",
+      "knIdPresent": true,
+      "knIdRequired": true,
+      "required": [
+        "kn_id",
+        "query",
+        "bkn_context"
+      ]
+    },
+    {
+      "name": "run_shell",
+      "knIdPresent": false,
+      "knIdRequired": false,
+      "required": [
+        "command",
+        "bkn_context"
+      ]
+    },
+    {
+      "name": "run_sql",
+      "knIdPresent": false,
+      "knIdRequired": false,
+      "required": [
+        "sql",
+        "bkn_context"
+      ]
+    },
+    {
+      "name": "search_capabilities",
+      "knIdPresent": true,
+      "knIdRequired": true,
+      "required": [
+        "kn_id",
+        "bkn_context"
+      ]
+    },
+    {
+      "name": "search_instance",
+      "knIdPresent": true,
+      "knIdRequired": false,
+      "required": [
+        "query",
+        "bkn_context"
+      ]
+    },
+    {
+      "name": "search_schema",
+      "knIdPresent": true,
+      "knIdRequired": true,
+      "required": [
+        "kn_id",
+        "query",
+        "bkn_context"
+      ]
+    }
+  ]
+}

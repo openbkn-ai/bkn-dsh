@@ -187,6 +187,9 @@ function isPlatformUnavailableError(error: unknown): error is {
 function connectionFailureMessage(error: unknown): string {
   if (typeof error === 'object' && error !== null) {
     const candidate = error as { code?: unknown, details?: unknown }
+    if (candidate.code === 'openbkn/business-unavailable') {
+      return 'OpenBKN 业务组件尚未就绪或启动失败。请点击右上角“诊断”查看原因并导出报告。'
+    }
     if (candidate.code === 'openbkn/cli-unavailable') {
       return 'DSH 找不到 OpenBKN CLI（openbkn）。请先安装与平台版本一致的 CLI（`npm install -g @openbkn/bkn-sdk@<平台版本>`）并执行 `openbkn auth login`，确认启动 DSH 的环境 PATH 里能找到它，然后重启 DSH；也可以在 cordis.patch.yml 的 openbkn-business-context 条目里把 cliPath 设为它的绝对路径（Windows 上要写到 openbkn.cmd）。'
     }
@@ -196,7 +199,7 @@ function connectionFailureMessage(error: unknown): string {
       if (layer === 'platform-api') return 'Context Loader MCP 已连接，但无法读取业务知识网络目录。请确认 Token 具有 OpenBKN 平台访问权限。'
     }
   }
-  return '无法验证 OpenBKN 连接。请检查 Token 和平台地址后重试。'
+  return '暂时无法验证 OpenBKN 连接，当前原因尚未确定。请点击右上角“诊断”查看检查结果；若问题持续，请导出报告交给支持人员。'
 }
 
 /** Shown while the native chooser is open; on some hosts (Windows `dsh web`) it opens behind other windows. */

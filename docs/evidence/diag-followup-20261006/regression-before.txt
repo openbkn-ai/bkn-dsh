@@ -1,0 +1,79 @@
+✖ directs unavailable RPC and unknown connection failures to diagnostics without guessing credentials (1.931167ms)
+✖ projects the disclosed network from canonical Trace references, including opaque instance tails (1.950083ms)
+✖ keeps each disclosed reference network and leaves mixed-operation origin unlocated (0.756541ms)
+✔ does not guess a network from malformed or undocumented references (0.25625ms)
+ℹ tests 4
+ℹ suites 0
+ℹ pass 1
+ℹ fail 3
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 177.748334
+
+✖ failing tests:
+
+test at tests/openbkn-ui-controller.test.ts:1:494
+✖ directs unavailable RPC and unknown connection failures to diagnostics without guessing credentials (1.931167ms)
+  AssertionError [ERR_ASSERTION]: The input did not match the regular expression /诊断/. Input:
+
+  '无法验证 OpenBKN 连接。请检查 Token 和平台地址后重试。'
+
+      at TestContext.<anonymous> (/Users/kalias/Documents/project/app/openBKN/bkn-dsh-diag-s2/packages/openbkn-business-context/tests/openbkn-ui-controller.test.ts:24:12)
+      at async Test.run (node:internal/test_runner/test:1389:7)
+      at async startSubtestAfterBootstrap (node:internal/test_runner/harness:387:3) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: '无法验证 OpenBKN 连接。请检查 Token 和平台地址后重试。',
+    expected: /诊断/,
+    operator: 'match',
+    diff: 'simple'
+  }
+
+test at tests/provenance-view.test.ts:1:1252
+✖ projects the disclosed network from canonical Trace references, including opaque instance tails (1.950083ms)
+  AssertionError [ERR_ASSERTION]: kn:kn-supply
+  + actual - expected
+
+  + undefined
+  - 'kn-supply'
+
+      at TestContext.<anonymous> (/Users/kalias/Documents/project/app/openBKN/bkn-dsh-diag-s2/packages/openbkn-business-context/tests/provenance-view.test.ts:55:12)
+      at Test.runInAsyncScope (node:async_hooks:227:14)
+      at Test.run (node:internal/test_runner/test:1382:25)
+      at Test.start (node:internal/test_runner/test:1242:17)
+      at startSubtestAfterBootstrap (node:internal/test_runner/harness:387:17) {
+    generatedMessage: false,
+    code: 'ERR_ASSERTION',
+    actual: undefined,
+    expected: 'kn-supply',
+    operator: 'strictEqual',
+    diff: 'simple'
+  }
+
+test at tests/provenance-view.test.ts:1:2262
+✖ keeps each disclosed reference network and leaves mixed-operation origin unlocated (0.756541ms)
+  AssertionError [ERR_ASSERTION]: Expected values to be strictly deep-equal:
+  + actual - expected
+
+    [
+  +   undefined,
+  +   undefined
+  -   'kn-a',
+  -   'kn-b'
+    ]
+
+      at TestContext.<anonymous> (/Users/kalias/Documents/project/app/openBKN/bkn-dsh-diag-s2/packages/openbkn-business-context/tests/provenance-view.test.ts:67:10)
+      at Test.runInAsyncScope (node:async_hooks:227:14)
+      at Test.run (node:internal/test_runner/test:1382:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:960:18)
+      at Test.postRun (node:internal/test_runner/test:1522:19)
+      at Test.run (node:internal/test_runner/test:1447:12)
+      at async startSubtestAfterBootstrap (node:internal/test_runner/harness:387:3) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: [ undefined, undefined ],
+    expected: [ 'kn-a', 'kn-b' ],
+    operator: 'deepStrictEqual',
+    diff: 'simple'
+  }

@@ -1,0 +1,27 @@
+{
+  "sourceCommit": "e972d319f19e2094740ac12da45684e3ba890e37",
+  "evidenceDeliveryCommit": "f3cc137e153c6be3cb28335967f87f72d702fa1c",
+  "updates": [
+    {
+      "issue": 62,
+      "issueUrl": "https://github.com/openbkn-ai/bkn-dsh/issues/62",
+      "commentUrl": "https://github.com/openbkn-ai/bkn-dsh/issues/62#issuecomment-6008876637",
+      "commentId": 6008876637,
+      "createdAt": "2026-10-06T03:42:31Z",
+      "bodySha256": "4b254e56fb8d9226c770c34ed0c74643620f9c82e2eb4267c5ea1fc66e9908c1",
+      "publishedBodyVerified": true,
+      "status": "fixed CI candidate and macOS affected acceptance; pending merge, Windows and release"
+    },
+    {
+      "issue": 63,
+      "issueUrl": "https://github.com/openbkn-ai/bkn-dsh/issues/63",
+      "commentUrl": "https://github.com/openbkn-ai/bkn-dsh/issues/63#issuecomment-6008877862",
+      "commentId": 6008877862,
+      "createdAt": "2026-10-06T03:42:39Z",
+      "bodySha256": "1953cd617e8203176538d5f7f6f92b8318f9770b10379ddb7a0c20edc83ea678",
+      "publishedBodyVerified": true,
+      "status": "fixed CI candidate and macOS affected acceptance; pending merge, Windows and release"
+    }
+  ],
+  "existingPlatformIssues": "foundry #2004/#2011 and samples #63 already submitted/supplemented; not duplicated by this plugin update"
+}

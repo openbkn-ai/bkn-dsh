@@ -1,0 +1,100 @@
+{
+  "candidate": "-6 fixed CI baseline",
+  "sourceCommit": "144afa503c7d4746cbef01f74eaceff293b88cb5",
+  "ciRun": 37337765993,
+  "tgzSha256": "ffcd77722e83a003fe90e0dda296a3a49c3f2ba67bddda9095575dabd896ef43",
+  "model": "DeepSeek-V41-Flash",
+  "reasoning": "High",
+  "mode": "standard",
+  "network": "supply_ontology_hand",
+  "testSetPath": "docs/eval/supply-ontology.yaml",
+  "testSetSha256": "dfed0e81646aa28d4e4c68f83607462c428ed1423fc2c58b30c4f4b3644fcf23",
+  "question": "物料 999-999999 的库存和订单情况？",
+  "frozenCriterion": "No nonzero business values, apart from zero-row absence proof. Evaluate only the newly submitted turn, not previous answers.",
+  "cases": [
+    {
+      "id": "Q01-1",
+      "context": "fresh-session",
+      "interactionId": "int_a431e50d2e7b4f82c04ac2d64b14da6e",
+      "targetOracle": "material/inventory/salesorder: 0 total and 0 rows",
+      "observedNonzeroUnrelatedBusinessValuesInFinalAnswer": [
+        "3497",
+        "19724",
+        "1972"
+      ],
+      "queryObjectInstanceRecordedInPlatformOperations": true,
+      "result": "FAIL",
+      "reason": "Final answer confirms missing target but includes unrelated nonzero business values, forbidden by the frozen original criterion.",
+      "answerPath": "q01-1-answer.txt",
+      "provenancePath": "q01-1-provenance.txt",
+      "oraclePath": "q01-1-oracle.json"
+    },
+    {
+      "id": "Q01-2",
+      "context": "fresh-session",
+      "interactionId": "int_8b6516ad89e745f8b3c1961d7f55c2da",
+      "targetOracle": "material/inventory/salesorder: 0 total and 0 rows",
+      "observedNonzeroUnrelatedBusinessValuesInFinalAnswer": [
+        "170",
+        "937",
+        "3497"
+      ],
+      "queryObjectInstanceRecordedInPlatformOperations": true,
+      "result": "FAIL",
+      "reason": "Final answer confirms missing target but includes unrelated nonzero business values, forbidden by the frozen original criterion.",
+      "answerPath": "q01-2-answer.txt",
+      "provenancePath": "q01-2-provenance.txt",
+      "oraclePath": "q01-2-oracle.json"
+    },
+    {
+      "id": "Q01-3",
+      "context": "fresh-session",
+      "interactionId": "int_02137fc257ab948fdec4890c8a270109",
+      "targetOracle": "material/inventory/salesorder: 0 total and 0 rows",
+      "observedNonzeroUnrelatedBusinessValuesInFinalAnswer": [
+        "3497"
+      ],
+      "queryObjectInstanceRecordedInPlatformOperations": true,
+      "result": "FAIL",
+      "reason": "Final answer confirms missing target but includes unrelated nonzero business values, forbidden by the frozen original criterion.",
+      "answerPath": "q01-3-answer.txt",
+      "provenancePath": "q01-3-provenance.txt",
+      "oraclePath": "q01-3-oracle.json"
+    },
+    {
+      "id": "Q01-4",
+      "context": "existing-orders-conversation",
+      "interactionId": "int_99b7068980bddfd48ae92fb474e034dd",
+      "targetOracle": "material/inventory/salesorder: 0 total and 0 rows",
+      "observedNonzeroUnrelatedBusinessValuesInFinalAnswer": [
+        "80"
+      ],
+      "queryObjectInstanceRecordedInPlatformOperations": true,
+      "result": "FAIL",
+      "reason": "Final answer confirms missing target but includes unrelated nonzero business values, forbidden by the frozen original criterion.",
+      "answerPath": "q01-4-answer.txt",
+      "provenancePath": "q01-4-provenance.txt",
+      "oraclePath": "q01-4-oracle.json"
+    },
+    {
+      "id": "Q01-5",
+      "context": "restart-continued-third-session",
+      "interactionId": "int_1afdebb92d782319b4e9ae552e82f301",
+      "targetOracle": "material/inventory/salesorder: 0 total and 0 rows",
+      "observedNonzeroUnrelatedBusinessValuesInFinalAnswer": [
+        "3497"
+      ],
+      "queryObjectInstanceRecordedInPlatformOperations": true,
+      "result": "FAIL",
+      "reason": "Final answer confirms missing target but includes unrelated nonzero business values, forbidden by the frozen original criterion.",
+      "answerPath": "q01-5-answer.txt",
+      "provenancePath": "q01-5-provenance.txt",
+      "oraclePath": "q01-5-oracle.json"
+    }
+  ],
+  "pass": 0,
+  "fail": 5,
+  "previousG6Result": "7/10 remains historical, not overwritten",
+  "limitedScope": "Five question runs; provider HTTP requests not aggregated; not a statistical reliability proof.",
+  "attribution": "Answer-quality behavior, not evidence that platform target queries returned wrong counts."
+}

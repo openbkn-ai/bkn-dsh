@@ -1,0 +1,43 @@
+{
+  "date": "2026-10-06",
+  "timezone": "Asia/Taipei",
+  "candidateSource": "144afa503c7d4746cbef01f74eaceff293b88cb5",
+  "ciRun": 37337765993,
+  "candidateSha256": "ffcd77722e83a003fe90e0dda296a3a49c3f2ba67bddda9095575dabd896ef43",
+  "appBundleVersion": "0.2.0-rc.2",
+  "officialModelProvider": "deepseek-official",
+  "model": "deepseek-flash (UI: DeepSeek-V41-Flash)",
+  "reasoningEffort": "high",
+  "network": "supply_ontology_hand",
+  "workspaceSetup": "official Host workspace/create and openbknBusinessContext/bindNetworkWorkspace APIs; native directory picker not accepted",
+  "testSet": "docs/eval/supply-ontology.yaml",
+  "testSetSha256": "dfed0e81646aa28d4e4c68f83607462c428ed1423fc2c58b30c4f4b3644fcf23",
+  "startupAnomaly": {
+    "observed": true,
+    "errorCode": "gateway/definition-unavailable",
+    "endpoint": "settings/describe",
+    "sameProfileWithoutOpenBknStartup": "pass",
+    "sameCiCandidateReinstallStartup": "pass",
+    "rootCause": "not established; same candidate restored without source or official-runtime edits"
+  },
+  "secretsExported": false,
+  "firstRequestObservedAt": "2026-10-06 08:53 Asia/Taipei",
+  "completedAt": "2026-10-06T01:45:00.596848+00:00",
+  "uiQuestionSubmissions": 19,
+  "questionRunsReachingProvider": 16,
+  "providerApiRequestCount": "Not aggregated; question runs are not individual model API calls",
+  "strictG6": {
+    "positive": "5/7",
+    "negative": "2/3",
+    "tested": "7/10",
+    "notRun": [
+      "unauthorized-network"
+    ],
+    "failed": [
+      "standard-lead-time",
+      "bom-usage-inventory",
+      "missing-object"
+    ]
+  },
+  "regression": "R4/R6/R7/R8 pass; R5 passes opening/data presentation with recorded provenance limitations"
+}

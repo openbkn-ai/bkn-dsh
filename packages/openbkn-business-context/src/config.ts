@@ -36,7 +36,32 @@ export interface Config {
 
 /** Runtime schema and conservative defaults for the host plugin row. */
 export const Config: Schema<Config> = Schema.object({
-  baseUrl: Schema.string().required(),
+  baseUrl: Schema.transform(Schema.string().required(), (value) => {
+    // WHATWG URL parsing repairs missing slashes, whitespace and backslashes.
+    // Reject those inputs before parsing so typos fail at configuration time,
+    // before business initialization or platform authentication.
+    let valid = /^https?:\/\/[^/]/i.test(value) && !/[\s\\]/u.test(value)
+    if (valid) {
+      try {
+        const url = new URL(value)
+        valid = (url.protocol === 'https:' || url.protocol === 'http:') && url.hostname !== ''
+      } catch {
+        valid = false
+      }
+    }
+    if (!valid) {
+      // DSH serializes/reconstructs schema callbacks for settings validation:
+      // keep this callback free of module references. The pinned Schemastery
+      // ValidationError contract uses this global symbol and options.path;
+      // its transform resolver does not pass callback options. Do not echo
+      // the configured value (it may contain accidental secrets).
+      throw Object.assign(new TypeError('$.baseUrl expected an absolute HTTP(S) URL without whitespace or backslashes'), {
+        name: 'ValidationError', options: { path: ['baseUrl'] },
+        [Symbol.for('ValidationError')]: true,
+      })
+    }
+    return value
+  }).required(),
   mcpUrl: Schema.string(),
   businessDomain: Schema.string().pattern(/^[A-Za-z0-9_-]{1,64}$/),
   cliPath: Schema.string().default('openbkn'),

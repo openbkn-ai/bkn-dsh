@@ -1,0 +1,39 @@
+{
+  "ciRun": 37407894581,
+  "candidateSha256": "44ca22708d243c5825774b7385de3f8699a51cad04d36477d8755201cf9af424",
+  "officialDesktop": "0.2.0-rc.2, unpatched, no inspector",
+  "F01": {
+    "result": "PASS",
+    "interactionId": "int_a431e50d2e7b4f82c04ac2d64b14da6e",
+    "selectedElements": [
+      "库存",
+      "物料"
+    ],
+    "displayedNetwork": "supply_ontology_hand",
+    "source": "same authorized real business graph as -6 baseline",
+    "graphElements": 31,
+    "mixedNetworkRealCase": "not-run; developer tests cover it"
+  },
+  "F02": {
+    "result": "PASS",
+    "variant": "ci7-s2-variant.json",
+    "neutralDiagnosticGuidance": true,
+    "businessEntry": "fail/module-resolution-failed",
+    "bootstrapAndDiagnostics": "pass",
+    "actualExport": "ci7-s2-download.json"
+  },
+  "normal": {
+    "result": "PASS",
+    "networkCount": 2,
+    "diagnosticPassCount": 7,
+    "actualExport": "ci7-normal-download.json"
+  },
+  "restore": {
+    "result": "PASS",
+    "installedByteExactFileCount": 65,
+    "businessEntry": "pass/component-loaded",
+    "oldModuleFailureAbsent": true,
+    "isolatedCliLoginState": "not-logged-in (expected; no credential in this test store)"
+  },
+  "scope": "Affected macOS acceptance only, not a fresh full G6/Windows release acceptance"
+}

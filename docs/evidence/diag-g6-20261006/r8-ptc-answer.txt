@@ -1,0 +1,90 @@
+Window: "查询物料名称 382-000005 — DeepSeek Harness", App: DeepSeek Harness.
+0 standard window 查询物料名称 382-000005 — DeepSeek Harness, Secondary Actions: Raise
+	1 container 查询物料名称 382-000005 — DeepSeek Harness
+		2 container
+			3 HTML content 查询物料名称 382-000005 — DeepSeek Harness, URL: dsh-app://app/
+				4 container
+					5 button 收起侧边栏
+					6 button 新建会话
+					7 container 全局面板
+						8 button 插件
+					9 text 工作区
+					10 button 搜索会话
+					11 text field (settable) 搜索会话名称
+					12 button 视图选项
+					13 button 添加工作区
+					14 outline 会话
+						15 container
+							16 row workspace-supply
+								17 text workspace-supply
+							18 row (selected) 查询物料名称 382-000005 刚刚
+								19 text 查询物料名称 382-000005 刚刚
+							20 row 查询物料382-000005的名称与标准交期 1分钟
+								21 text 查询物料382-000005的名称与标准交期 1分钟
+							22 row 物料库存与订单情况查询 4分钟
+								23 text 物料库存与订单情况查询 4分钟
+							24 row 查询销售订单382-000005明细 6分钟
+								25 text 查询销售订单382-000005明细 6分钟
+							26 row 未结采购申请和采购订单查询 12分钟
+								27 text 未结采购申请和采购订单查询 12分钟
+							28 button 展开其余 5 个会话
+						29 row 默认工作区
+							30 text 默认工作区
+					31 button OpenBKN business knowledge networks
+					32 pop up button 账号菜单
+					33 container
+						34 container 会话层级
+							35 text 查询物料名称 382-000005
+						36 text PTC 模式
+						37 text 供应链本体知识网络-手工版
+						38 button 用 访达 打开
+						39 pop up button 更多打开方式
+						40 pop up button 更多操作
+						41 button 打开右侧边栏
+						42 tab group
+							43 tab (selected) 对话, Value: 1
+							44 tab (settable, integer) 轨迹, Value: 0
+					45 container
+						46 container
+							47 text 查询 382-000005 的物料名称 09:20
+							48 button 复制
+							49 text 已完成
+							50 button 已完成，用时 2秒
+								51 text 已完成，用时
+								52 text 2
+								53 text 秒
+							54 text 当前会话运行在 PTC 模式下，OpenBKN 业务会话不支持该模式：
+							55 text run_code
+							56 text  已被禁用，因此无法访问任何 OpenBKN 工具，也就无法查询绑定知识网络（供应链本体知识网络-手工版）中的数据。 要查询「382-000005」的物料名称，请在
+							57 text 发送第一条消息之前
+							58 text ，在模式菜单中选择
+							59 text 标准模式（Standard mode）
+							60 text 并开启一个新会话，然后重新提出该问题。
+							61 button 复制
+							62 toggle button Description: 好的回答, Value: 0
+							63 toggle button Description: 有问题的回答, Value: 0
+							64 button 在新对话中分支
+							65 pop up button 用量 24K tok
+							66 text 09:20
+						67 text entry area (settable) 发消息或创建任务, / 调用指令, @ 文件或对话
+						68 pop up button 添加文件或调用指令
+						69 button 访问模式，当前：工作区内修改
+						70 pop up button Description: 选择模型，当前 DeepSeek-V41-Flash，推理等级 High, Help: DeepSeek-V41-Flash · High
+						71 button (disabled) 发送消息
+						72 pop up button 1 轮 1 步 · 242 tok/s
+							73 text 1 轮 1 步
+							74 text 242 tok/s
+						75 pop up button 24K tok · 缓存命中 6%
+							76 text 24K tok
+							77 text 缓存命中 6%
+						78 pop up button 上下文已用 2%
+	79 close button
+	80 full screen button Help: this button also has an action to zoom the window, Secondary Actions: zoom the window
+	81 minimize button
+82 menu bar
+	83 DeepSeek Harness
+	84 文件
+	85 Edit
+	86 Window
+
+The focused UI element is 67 text entry area (settable) 发消息或创建任务, / 调用指令, @ 文件或对话

@@ -11,6 +11,7 @@ export interface CliResult {
 }
 
 import type { AuthSnapshot } from './types.js'
+import { passiveDiagnostics } from './diagnostics-observer.js'
 import { trimTrailingSlashes } from './trailing-slashes.js'
 
 export type { AuthSnapshot } from './types.js'
@@ -55,26 +56,26 @@ export class AuthCoordinator {
 
     const status = parseStatus(result.stdout)
     // No active platform in the CLI: nobody has logged in yet.
-    if (status.baseUrl === undefined) return { kind: 'authentication-required', baseUrl: this.baseUrl }
+    if (status.baseUrl === undefined) return observed({ kind: 'authentication-required', baseUrl: this.baseUrl })
     const actualBaseUrl = normalizeBaseUrl(status.baseUrl)
     if (actualBaseUrl !== this.baseUrl) {
-      return {
+      return observed({
         kind: 'platform-mismatch',
         expectedBaseUrl: this.baseUrl,
         actualBaseUrl,
-      }
+      })
     }
     // An unknown expiry is not a refusal: `auth token` is the CLI's refresh
     // authority and fails by itself when the session cannot be renewed.
     if (!status.hasToken || status.expired === true) {
-      return { kind: 'authentication-required', baseUrl: this.baseUrl }
+      return observed({ kind: 'authentication-required', baseUrl: this.baseUrl })
     }
-    return {
+    return observed({
       kind: 'authenticated',
       baseUrl: this.baseUrl,
       ...(status.userId === undefined ? {} : { userId: status.userId }),
       ...(status.username === undefined ? {} : { username: status.username }),
-    }
+    })
   }
 
   /**
@@ -102,7 +103,7 @@ export class AuthCoordinator {
     if (result.code !== 0) throw cliFailure('read authentication token', result)
     const token = result.stdout.trim()
     if (token.length === 0 || token.length > 16_384 || /[\r\n]/.test(token)) {
-      throw new OpenBknCliError('OpenBKN CLI returned an invalid authentication token')
+      throw cliOutputInvalid('OpenBKN CLI returned an invalid authentication token')
     }
     return token
   }
@@ -113,27 +114,27 @@ function parseStatus(stdout: string): CliAuthStatus {
   try {
     value = JSON.parse(stdout)
   } catch {
-    throw new OpenBknCliError('OpenBKN CLI returned invalid JSON for auth status')
+    throw cliOutputInvalid('OpenBKN CLI returned invalid JSON for auth status')
   }
   if (typeof value !== 'object' || value === null) {
-    throw new OpenBknCliError('OpenBKN CLI returned an invalid auth status payload')
+    throw cliOutputInvalid('OpenBKN CLI returned an invalid auth status payload')
   }
   const candidate = value as Record<string, unknown>
   if (typeof candidate.hasToken !== 'boolean') {
-    throw new OpenBknCliError('OpenBKN CLI auth status is missing required fields')
+    throw cliOutputInvalid('OpenBKN CLI auth status is missing required fields')
   }
   // A session with a token must name its platform; only a logged-out CLI may omit it.
   if (candidate.baseUrl === undefined ? candidate.hasToken : typeof candidate.baseUrl !== 'string') {
-    throw new OpenBknCliError('OpenBKN CLI auth status has no valid platform address')
+    throw cliOutputInvalid('OpenBKN CLI auth status has no valid platform address')
   }
   if (candidate.expired !== undefined && typeof candidate.expired !== 'boolean') {
-    throw new OpenBknCliError('OpenBKN CLI auth status contains an invalid expiry flag')
+    throw cliOutputInvalid('OpenBKN CLI auth status contains an invalid expiry flag')
   }
   if (candidate.userId !== undefined && typeof candidate.userId !== 'string') {
-    throw new OpenBknCliError('OpenBKN CLI auth status contains an invalid user id')
+    throw cliOutputInvalid('OpenBKN CLI auth status contains an invalid user id')
   }
   if (candidate.username !== undefined && typeof candidate.username !== 'string') {
-    throw new OpenBknCliError('OpenBKN CLI auth status contains an invalid username')
+    throw cliOutputInvalid('OpenBKN CLI auth status contains an invalid username')
   }
   return {
     hasToken: candidate.hasToken,
@@ -151,4 +152,22 @@ function normalizeBaseUrl(value: string): string {
 function cliFailure(action: string, result: CliResult): OpenBknCliError {
   const detail = result.stderr.trim() || 'no diagnostic output'
   return new OpenBknCliError(`OpenBKN CLI could not ${action}: ${detail}`)
+}
+
+/** Record one observed authentication outcome, then hand the snapshot through. */
+function observed(snapshot: AuthSnapshot): AuthSnapshot {
+  if (snapshot.kind === 'authenticated') {
+    passiveDiagnostics.record({ subject: 'login-state', stage: 'authentication', code: 'login-state', status: 'pass', evidence: { loggedIn: true } })
+  } else if (snapshot.kind === 'platform-mismatch') {
+    passiveDiagnostics.record({ subject: 'login-state', stage: 'authentication', code: 'platform-mismatch', status: 'fail', evidence: { platformMismatch: true } })
+  } else {
+    passiveDiagnostics.record({ subject: 'login-state', stage: 'authentication', code: 'not-logged-in', status: 'fail', evidence: { loggedIn: false } })
+  }
+  return snapshot
+}
+
+/** Record one CLI-output parse refusal as its own bounded category. */
+function cliOutputInvalid(reason: string): OpenBknCliError {
+  passiveDiagnostics.record({ subject: 'cli', stage: 'cli', code: 'cli-output-invalid', status: 'fail' })
+  return new OpenBknCliError(reason)
 }

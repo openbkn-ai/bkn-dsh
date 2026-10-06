@@ -1,0 +1,41 @@
+{
+  "method": "Controlled closed HTTPS loopback endpoint in the isolated profile, matching fictional CLI credential store and one blank session binding fixture; no real credential sent to the fixture",
+  "configuredEndpoint": "https://127.0.0.1:64391",
+  "sessionId": "session-13ea3e34-68d9-4478-8351-74f7f2bf9b7b",
+  "portCheckedUnused": true,
+  "noPriorUserQuestions": true,
+  "bindingSetup": "Blank session first created through native official UI against real platform. Its plugin-owned nonsecret persisted binding URL temporarily changed offline to match controlled endpoint, with backup and later restoration. This is a test fixture, not UI-only configuration evidence.",
+  "scope": "Connection-unavailable endpoint fixture, not actual cluster outage",
+  "hostRuntimePatched": false,
+  "tlsValidationDisabled": false,
+  "originalProfileMutated": false,
+  "realPlatformShutdown": false,
+  "precedingControls": {
+    "method": "Own isolated Host process uses NODE_USE_ENV_PROXY=1 with HTTPS_PROXY checked-unused loopback port; configured platform origin remains unchanged",
+    "proxy": "http://127.0.0.1:63366",
+    "portCheckedUnused": true,
+    "scope": "Controlled process transport unavailable; not real cluster outage",
+    "realPlatformShutdown": false,
+    "originalProfileMutated": false,
+    "precedingControl": "Foreign mcpUrl refused before credentials sent; not counted as platform-unreachable",
+    "transportControl": {
+      "officialBundledNodeFetch": "ECONNREFUSED (same platform, no credentials request)",
+      "lowercaseProxyVariables": "unset to avoid inherited overrides",
+      "tlsValidationDisabled": false,
+      "initialNoProxyEmpty": "Blocked Host loopback RPC too; startup alert fetch failed. Excluded from case scoring.",
+      "noProxy": "127.0.0.1,localhost,::1,.deepseek.com",
+      "nativeEffect": "Ineffective for the native MCP transport: normal40-order answer was returned. Excluded from platform-unreachable scoring; independent Node fetch refusal does not prove Host MCP refusal."
+    }
+  },
+  "isolatedProfileAndBindingRestored": true,
+  "recoveryFirstAttempt": {
+    "result": "No data: model reported managed tool not registered; CLI access token independently found expired",
+    "cliEvidence": "recovery-cli-refresh.json",
+    "modelBashAttempts": 5,
+    "modelBashResults": "all error/refused; not counted as business access",
+    "evidence": [
+      "platform-unreachable-restored-first-attempt-answer.txt",
+      "platform-unreachable-restored-first-attempt-tool-trace.txt"
+    ]
+  }
+}

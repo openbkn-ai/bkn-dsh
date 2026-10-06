@@ -1,0 +1,43 @@
+Browser tab: 3, Title: "DeepSeek Harness", URL: "http://127.0.0.1:60215/".
+0 AXWebArea DeepSeek Harness, URL: 127.0.0.1:60215/
+	1 container
+		2 button 新建会话
+		3 button 收起侧边栏
+		4 button 新建会话
+		5 container 全局面板
+			6 button 插件
+		7 text 工作区
+		8 container
+			9 button (collapsed) Description: 搜索会话, Secondary Actions: Expand
+			10 text field (settable)
+		11 button 视图选项
+		12 button 添加工作区
+		13 outline 会话
+			14 container
+				15 row (selectable, expanded) 默认工作区, Secondary Actions: Collapse
+					16 text 默认工作区
+				17 row (selected) 新会话
+					18 text 新会话
+		19 button OpenBKN business knowledge networks
+		20 pop up button (collapsed) Description: 设置, Secondary Actions: Expand
+		21 button 打开右侧边栏
+		22 container
+			23 text 探索未至之境 预览版
+			24 pop up button (collapsed) Description: 选择工作区, Secondary Actions: Expand
+			25 pop up button (collapsed) 标准模式, Help: 选择新任务使用的 Agent 预设, Secondary Actions: Expand
+			26 text entry area (settable) 描述你想要构建的内容, / 调用指令, @ 文件或对话
+			27 pop up button (collapsed) Description: 添加文件或调用指令, Secondary Actions: Expand
+			28 button 访问模式，当前：工作区内修改
+			29 pop up button (collapsed) Description: 选择模型，当前 DeepSeek-V41-Flash，推理等级 High, Help: DeepSeek-V41-Flash · High, Secondary Actions: Expand
+			30 button (disabled) 发送消息
+		31 container OpenBKN 诊断
+			32 container
+				33 text OPENBKN
+				34 heading 诊断, Value: 2
+					35 text 诊断
+				36 button Close
+			37 text 诊断服务不可用（诊断入口未随插件启动或连接中断）。请截图或复制此提示发给支持人员。
+			38 text 诊断入口未随插件启动或连接已中断。请截图或复制此提示发给支持人员。
+			39 button 重试
+
+The focused UI element is 0 AXWebArea DeepSeek Harness, URL: 127.0.0.1:60215/

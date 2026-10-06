@@ -1,0 +1,65 @@
+{
+  "candidateSha256": "ffcd77722e83a003fe90e0dda296a3a49c3f2ba67bddda9095575dabd896ef43",
+  "surface": "official macOS desktop",
+  "cases": [
+    {
+      "id": "R4",
+      "status": "pass",
+      "note": "Native new standard session, start->schema->instance->finish. Name and both leadtime values1 match independent CLI; production/self-made scope stated, unit left unspecified due brief schema. No action calls.",
+      "conversationId": "conv_21f64ffd5ba1c19f035caaa04ae60578",
+      "interactionId": "int_bac3f217545a1d2444a7a4525868258d",
+      "evidence": [
+        "r4-name-leadtime-answer.txt",
+        "r4-name-leadtime-tool-trace.txt",
+        "material-oracle.json"
+      ]
+    },
+    {
+      "id": "R5",
+      "status": "pass-with-limitations",
+      "evidence": [
+        "standard-lead-time-provenance.txt",
+        "standard-lead-time-graph.txt",
+        "standard-lead-time-evidence-chain.txt",
+        "r4-provenance.txt",
+        "r4-graph.txt",
+        "r4-evidence-chain.txt"
+      ],
+      "note": "Timeline, formal graph and receipt inventory open; failed query and internal pending receipt are shown honestly. Formal graph has one material reference and origin network is shown as unresolved; no complete provenance claim. R4:5 timeline nodes,2 completed platform operations/receipts,33 formal elements,0 visual edges; origin network remains unresolved. Action node is recalled metadata, not an executed action."
+    },
+    {
+      "id": "R6",
+      "status": "pass",
+      "conversationId": "conv_21f64ffd5ba1c19f035caaa04ae60578",
+      "previousInteractionId": "int_bac3f217545a1d2444a7a4525868258d",
+      "interactionId": "int_334efc26dcaceef02fe5175366a59d8c",
+      "evidence": [
+        "r6-restored-history.txt",
+        "r6-restart-followup-answer.txt",
+        "r6-restart-followup-tool-trace.txt",
+        "r6-restart-followup-provenance.txt"
+      ],
+      "note": "Official native app restarted after R4. Original history/network binding retained. Actual start_interaction uses continue with the same conversation_id and a new interaction; answer16s and provenance6 nodes open. Platform internal pending receipt remains visible; not asserted fully completed graph."
+    },
+    {
+      "id": "R7",
+      "status": "pass",
+      "evidence": [
+        "r7-unbound-answer.txt",
+        "r7-unbound-denial-answer.txt",
+        "r7-unbound-denial-tool-trace.txt",
+        "../diag-ui-20261005/ci-live-guard.jsonl"
+      ],
+      "note": "Ordinary default-workspace standard session has no network context; actual model query_object_instance attempt is rejected with bound-session requirement; no data or lifecycle execution. Tool definitions remain globally visible, execution is guarded. Cross-network boundary separately uses existing live guard16/16, not model self-report."
+    },
+    {
+      "id": "R8",
+      "status": "pass",
+      "evidence": [
+        "r8-ptc-answer.txt",
+        "r8-ptc-tool-trace.txt"
+      ],
+      "note": "Actual bound PTC question completed2s, explicitly requires new standard-mode session; no managed OpenBKN tool calls and no business result."
+    }
+  ]
+}

@@ -1,0 +1,87 @@
+{
+  "template": false,
+  "status": "ci-build-only-macos-affected-acceptance-passed-windows-and-release-not-accepted",
+  "plan": "DIAG-01",
+  "candidate": {
+    "packageName": "@openbkn/dsh-business-context",
+    "version": "0.2.0-rc.2-openbkn.0.2.0-7",
+    "sourceCommit": "e972d319f19e2094740ac12da45684e3ba890e37",
+    "branch": "fix/diagnostics-d0-s2",
+    "build": {
+      "workflow": "release-plugin.yml",
+      "publish": false,
+      "runId": 37407894581,
+      "runUrl": "https://github.com/openbkn-ai/bkn-dsh/actions/runs/37407894581",
+      "artifactId": 11388470337,
+      "artifactName": "plugin-tarball",
+      "artifactZipDigest": "sha256:92a0580c68fa5089886faaf584a05003606b30170731241c6cfcbf23f81757b7",
+      "note": "Downloaded exact successful publish=false CI artifact; original -6 remains a separate historical baseline."
+    },
+    "artifact": {
+      "path": "candidate/openbkn-dsh-business-context-0.2.0-rc.2-openbkn.0.2.0-7.tgz",
+      "sha256": "44ca22708d243c5825774b7385de3f8699a51cad04d36477d8755201cf9af424",
+      "sizeBytes": 163496,
+      "fileCount": 65,
+      "fileManifestPath": "candidate/candidate-files.txt",
+      "fileManifestJsonPath": "candidate/candidate-files.json"
+    }
+  },
+  "supportedBaseline": {
+    "dshVersion": "0.2.0-rc.2",
+    "dshTag": "dsh-v0.2.0-rc.2",
+    "dshCommit": "639ed015397290b3745d163aafe02ffee4aa3f84",
+    "pnpmVersion": "11.7.0",
+    "nodeRange": "^22.19.0 || >=24.0.0"
+  },
+  "verificationEnvironment": {
+    "desktopVersion": "0.2.0-rc.2 (official macOS app, unpatched, no inspector)",
+    "desktopCliVersion": "0.2.0-rc.2 (app-bundled CLI managing the isolated desktop profile)",
+    "desktopHostNodeVersion": "24.18.1 (app-bundled runtime versions.json)",
+    "npmDshVersion": "0.2.0-rc.2 (official npm package, unpatched, no inspector)",
+    "npmNodeVersion": "v24.19.0 (darwin arm64)",
+    "openbknCliVersion": "0.1.5 (isolated official @openbkn/bkn-sdk install; auth status/token refresh, real platform directory and stock DSH live guard verified)",
+    "platformServices": [
+      "kind cluster bkn-dev (192.168.50.28, platform 0.1.5 image set; pods Running during the live run)"
+    ],
+    "platformContractEvidencePath": "evidence/legacy-diag6/cli-015-mcp-catalogue.json",
+    "g6EvidencePath": "evidence/legacy-diag6/mac-g6/g6-results.md",
+    "acceptanceScope": "-7: official macOS Desktop affected acceptance only. npm/Desktop full older matrix and G6 remain historical -6 evidence.",
+    "currentAcceptanceEvidencePath": "evidence/diag-followup/ci7-acceptance.json"
+  },
+  "diagnostics": {
+    "reportSchemaVersion": 1,
+    "reportSchemaPath": "schema/diagnostics-contract.ts",
+    "hostEntry": "three rows: openbkn-business-context-bootstrap (package root -> lib/index.js), openbkn-business-context (./business -> lib/business.js), openbkn-business-context-diagnostics (./diagnostics -> lib/diagnostics.js)",
+    "remoteExport": "openbknDiagnostics/getReport (aggregated into lib/typert.host.js + lib/typert.remote-client.js)",
+    "d0EvidencePath": "evidence/legacy-diag6/diagnostics-d0.md"
+  },
+  "testKit": {
+    "prepareScript": "windows/prepare.ps1",
+    "caseScript": "windows/run-case.ps1",
+    "stateHashScript": "windows/collect-state-hashes.ps1",
+    "cleanupScript": "windows/cleanup.ps1",
+    "caseGuidePath": "HANDOFF.md",
+    "regressionGuidePath": "REGRESSION.md",
+    "faultVariants": [
+      "W3: prepend a missing top-level import to the business entry, resolved from exports['./business'] (lib/business.js)",
+      "W4: throw inside the business apply() after the registry plugin, in lib/business.js",
+      "W10: prepend a missing top-level import to the diagnostics implementation, resolved from exports['./diagnostics'] (lib/diagnostics.js)",
+      "note: lib/index.js is the package-root bootstrap since -6; breaking it is a whole-package fault and must not stand in for W3/W10"
+    ],
+    "note": "The PowerShell kit was authored and hand-checked off-Windows (no native pwsh on the authoring machine); run it once in native PowerShell before relying on it and record any adjustment."
+  },
+  "knownLimitations": [
+    "No active retest: re-collect reads passive observations only. Opening the parent OpenBKN panel performs normal business status/auth/network reads; passive export evidence is measured after those reads settle.",
+    "Windows desktop/npm native PowerShell and W0-W12 remain untested; the complete fixed-artifact handoff must first be parsed and smoked on Windows.",
+    "Real-model G6 on official macOS Desktop / DeepSeek-V41-Flash High: positive5/7, negative2/3, tested7/10. standard-lead-time, bom-usage-inventory and missing-object fail strict criteria; release G6 gate not passed.",
+    "unauthorized-network not-run: user has no real restricted account; unbound-session denial and simulated failures do not replace platform authorization acceptance.",
+    "Historical native startup gateway/definition-unavailable root cause remains unknown. U01 fixed -6 empty/first-install/restart/reinstall:12/12 main windows;6/6 later settings readable; anomaly not reproduced.",
+    "Connection-unavailable uses a closed HTTPS endpoint with fictional credential and an isolated persisted-binding URL fixture, later restored. Recovery first met expired real CLI access token; normal CLI refresh and panel state refresh were needed before the same session resumed. No actual cluster outage claimed.",
+    "Diagnostic report DSH/loaded-plugin versions may remain unknown; installation hashes and newly started isolated Host supply separate identity evidence.",
+    "Whole-package bootstrap/shared-chunk failures are outside the single business/diagnostics-row isolation fault model.",
+    "-7 source fixes provenance origin (#62) and unknown connection error guidance (#63); Windows affected acceptance remains untested.",
+    "Q01 investigation baseline on original -6: 0/5 under frozen missing-object rule; target queries all returned zero, replies added unrelated nonzero data. Original G6 7/10 remains historical.",
+    "U02 manually renewed genuinely expired CLI credential and recovered same native process/session; automatic renewal is unchanged and not accepted."
+  ],
+  "releaseAuthorization": "not-granted-by-this-plan"
+}

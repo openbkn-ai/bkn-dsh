@@ -1,0 +1,84 @@
+{
+  "template": false,
+  "status": "ci-candidate-macos-ui-verified-g6-7-of-10-tested-with-3-failures-1-not-run-release-not-accepted",
+  "plan": "DIAG-01",
+  "candidate": {
+    "packageName": "@openbkn/dsh-business-context",
+    "version": "0.2.0-rc.2-openbkn.0.2.0-6",
+    "sourceCommit": "144afa503c7d4746cbef01f74eaceff293b88cb5",
+    "branch": "fix/diagnostics-d0-s2",
+    "build": {
+      "workflow": "release-plugin.yml",
+      "publish": false,
+      "runId": 37337765993,
+      "runUrl": "https://github.com/openbkn-ai/bkn-dsh/actions/runs/37337765993",
+      "artifactId": 11358105199,
+      "artifactName": "plugin-tarball",
+      "artifactZipDigest": "sha256:c6b377c3f370fdb0e24f78524f5eeee829bb2d5f2ce8f676b28ed6b54db70d2b",
+      "note": "Successful build-only CI; no package publication. Runtime files match the locally tested source bytes. Acceptance uses this exact downloaded artifact; older local -6 packages remain historical."
+    },
+    "artifact": {
+      "path": "release/diag-ui-candidate/openbkn-dsh-business-context-0.2.0-rc.2-openbkn.0.2.0-6.tgz",
+      "sha256": "ffcd77722e83a003fe90e0dda296a3a49c3f2ba67bddda9095575dabd896ef43",
+      "sizeBytes": 162967,
+      "fileManifestPath": "release/diag-ui-candidate/candidate-files.txt",
+      "fileManifestJsonPath": "release/diag-ui-candidate/candidate-files.json",
+      "fileCount": 65
+    }
+  },
+  "supportedBaseline": {
+    "dshVersion": "0.2.0-rc.2",
+    "dshTag": "dsh-v0.2.0-rc.2",
+    "dshCommit": "639ed015397290b3745d163aafe02ffee4aa3f84",
+    "pnpmVersion": "11.7.0",
+    "nodeRange": "^22.19.0 || >=24.0.0"
+  },
+  "verificationEnvironment": {
+    "desktopVersion": "0.2.0-rc.2 (official macOS app, unpatched, no inspector)",
+    "desktopCliVersion": "0.2.0-rc.2 (app-bundled CLI managing the isolated desktop profile)",
+    "desktopHostNodeVersion": "24.18.1 (app-bundled runtime versions.json)",
+    "npmDshVersion": "0.2.0-rc.2 (official npm package, unpatched, no inspector)",
+    "npmNodeVersion": "v24.19.0 (darwin arm64)",
+    "openbknCliVersion": "0.1.5 (isolated official @openbkn/bkn-sdk install; auth status/token refresh, real platform directory and stock DSH live guard verified)",
+    "platformServices": [
+      "kind cluster bkn-dev (192.168.50.28, platform 0.1.5 image set; pods Running during the live run)"
+    ],
+    "platformContractEvidencePath": "docs/evidence/diag-ui-20261005/cli-015-mcp-catalogue.json",
+    "g6EvidencePath": "docs/evidence/diag-g6-20261006/RESULTS.md"
+  },
+  "diagnostics": {
+    "reportSchemaVersion": 1,
+    "reportSchemaPath": "packages/openbkn-business-context/src/diagnostics-contract.ts",
+    "hostEntry": "three rows: openbkn-business-context-bootstrap (package root -> lib/index.js), openbkn-business-context (./business -> lib/business.js), openbkn-business-context-diagnostics (./diagnostics -> lib/diagnostics.js)",
+    "remoteExport": "openbknDiagnostics/getReport (aggregated into lib/typert.host.js + lib/typert.remote-client.js)",
+    "d0EvidencePath": "docs/evidence/diagnostics-d0.md"
+  },
+  "testKit": {
+    "prepareScript": "scripts/windows-verification/prepare.ps1",
+    "caseScript": "scripts/windows-verification/run-case.ps1",
+    "stateHashScript": "scripts/windows-verification/collect-state-hashes.ps1",
+    "cleanupScript": "scripts/windows-verification/cleanup.ps1",
+    "caseGuidePath": "docs/handoff/2026-10-06-diagnostics-windows/HANDOFF.md",
+    "regressionGuidePath": "docs/handoff/2026-10-06-diagnostics-windows/REGRESSION.md",
+    "faultVariants": [
+      "W3: prepend a missing top-level import to the business entry, resolved from exports['./business'] (lib/business.js)",
+      "W4: throw inside the business apply() after the registry plugin, in lib/business.js",
+      "W10: prepend a missing top-level import to the diagnostics implementation, resolved from exports['./diagnostics'] (lib/diagnostics.js)",
+      "note: lib/index.js is the package-root bootstrap since -6; breaking it is a whole-package fault and must not stand in for W3/W10"
+    ],
+    "note": "The PowerShell kit was authored and hand-checked off-Windows (no native pwsh on the authoring machine); run it once in native PowerShell before relying on it and record any adjustment."
+  },
+  "knownLimitations": [
+    "No active retest: re-collect reads passive observations only. Opening the parent OpenBKN panel performs normal business status/auth/network reads; passive export evidence is measured after those reads settle.",
+    "Windows desktop/npm native PowerShell and W0-W12 remain untested; the complete fixed-artifact handoff must first be parsed and smoked on Windows.",
+    "Real-model G6 on official macOS Desktop / DeepSeek-V41-Flash High: positive5/7, negative2/3, tested7/10. standard-lead-time, bom-usage-inventory and missing-object fail strict criteria; release G6 gate not passed.",
+    "unauthorized-network not-run: user has no real restricted account; unbound-session denial and simulated failures do not replace platform authorization acceptance.",
+    "Native R4/R6/R7/R8 pass. Provenance views open but origin network remains unresolved and internal pending receipts/graph completeness remain limited.",
+    "One native startup gateway/definition-unavailable anomaly recovered after remove/reinstall of the exact CI package;65 installed files match. Root cause not established.",
+    "Connection-unavailable uses a closed HTTPS endpoint with fictional credential and an isolated persisted-binding URL fixture, later restored. Recovery first met expired real CLI access token; normal CLI refresh and panel state refresh were needed before the same session resumed. No actual cluster outage claimed.",
+    "S2 business UI can still display the pre-existing generic Token/address message; the independent diagnostic report correctly says module-resolution-failed. Do not infer an authentication root cause from the generic message.",
+    "Diagnostic report DSH/loaded-plugin versions may remain unknown; installation hashes and newly started isolated Host supply separate identity evidence.",
+    "Whole-package bootstrap/shared-chunk failures are outside the single business/diagnostics-row isolation fault model."
+  ],
+  "releaseAuthorization": "not-granted-by-this-plan"
+}

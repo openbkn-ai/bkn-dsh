@@ -2,6 +2,21 @@
 
 All notable changes to this project are documented here.
 
+## 0.2.0-rc.2-openbkn.0.2.0-7 (2026-10-06)
+
+Unified release candidate for the previously unpublished -5/-6 diagnostics work and subsequent fixes. The official DSH pin stays `0.2.0-rc.2`; historical evidence keeps its original candidate labels and hashes.
+
+- Add: an independent diagnostics entry, passive bounded observations, stage-specific failure classification, and a whitelisted JSON export. The single OpenBKN sidebar entry opens a panel with a **诊断** action. Business import/configuration failures leave diagnostics accessible; diagnostics import failures show an explicit unavailable view while the business panel remains usable. A broken bootstrap/shared chunk remains a whole-package fault.
+- Breaking (package layout): the package root is a minimal bootstrap (`openbkn-business-context-bootstrap`); business values move to `@openbkn/dsh-business-context/business`, diagnostics to `./diagnostics`, and the five Remote boundary types to `./types`. The business row's id remains unchanged. Installation uses all three rows from `cordis.patch.yml`.
+- Fix: reject malformed/non-HTTP(S) `baseUrl` values before business initialization and authentication, including whitespace/backslashes silently repaired by URL parsing; diagnostics identifies the invalid configuration field without exporting its value.
+- Fix #62: identify each authorized business element's source network using canonical Trace `ref_type`/`ref_id`. Mixed-network operations retain each element's origin; malformed or undisclosed references remain unlocated.
+- Fix #63: unknown connection/RPC failures point to the diagnostic report; known CLI, authentication and platform failures keep their specific guidance.
+- Fix: a plain Node Host now reports its form as `unknown`; official Desktop also spawns Node, so that signal cannot prove npm usage.
+- Improve managed-session guidance for exact material identifiers, lead-time field semantics/units/source, complete paginated BOM usage and inventory, warehouse/reservation/in-transit scope, and stopping unrelated exploration after a missing-object lookup. These are model instructions, not a deterministic query implementation or a guarantee that every answer succeeds.
+- Add reproducible supply-session exports and completeness checks; short credentials, credential-field aliases and Markdown answers use the same redaction path.
+- Evidence: the three original supply questions passed on the policy-only local round-6 pack on macOS official Desktop with DeepSeek-V41-Flash High; the complete BOM contains five levels, 313 parent-child rows and 272 materials, checked against independent platform queries. This does not accept the subsequently combined -7 artifact. No missing credentials or macOS-specific root cause is inferred from the original failures.
+- Known limitations: deep inventory capability queries still time out; sandbox callback persistence was reported to the platform as [bkn-foundry #2029](https://github.com/openbkn-ai/bkn-foundry/issues/2029). The successful answer used a disclosed read-only fallback. Active reconnection probes are not included: **重新采集** reads passive state. Guard enforcement inside platform `run_code` remains outside the plugin boundary. Windows, download completion, the remaining G6/guard cases, and CI-artifact real-host acceptance remain open. See `docs/handoff/2026-10-06-release-7/README.md`; this candidate is not yet published or release-accepted.
+
 ## 0.2.0-rc.2-openbkn.0.2.0-4 (2026-10-04)
 
 Sign-in fixes for first-time users and OpenBKN CLI 0.1.5. Same DSH pin (`0.2.0-rc.2`); no patch needed.

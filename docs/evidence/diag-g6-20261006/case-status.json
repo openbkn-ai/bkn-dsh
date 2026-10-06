@@ -1,0 +1,207 @@
+{
+  "recordedAt": "2026-10-06T01:43:08.552219+00:00",
+  "cases": [
+    {
+      "id": "standard-lead-time",
+      "question": "382-000005 的标准交期？",
+      "status": "fail",
+      "surface": "official macOS desktop bound standard-mode session",
+      "criteria": [
+        false,
+        false,
+        false
+      ],
+      "reason": "1 day returned, but self-made/product_fixedleadtime/erp_material scope not established in the answer; model used non-existent ot_id material after published capability.",
+      "interactionId": "int_0de48a195fadbf3354aee1807b39d9ec",
+      "conversationId": "conv_f0ba2f3dd092d92f3a45f0a296c17ff7",
+      "sessionId": "session-7e2b904b-ca0f-4337-81ee-74112cb858a4",
+      "evidence": [
+        "standard-lead-time-answer.txt",
+        "standard-lead-time-tool-trace.txt",
+        "material-oracle.json"
+      ]
+    },
+    {
+      "id": "unauthorized-network",
+      "status": "not-run",
+      "reason": "User explicitly stated no real restricted account on 2026-10-06; no authz simulation substituted."
+    },
+    {
+      "id": "orders-count-status",
+      "status": "pass",
+      "criteria": [
+        true,
+        true,
+        true,
+        true,
+        true
+      ],
+      "evidence": [
+        "orders-count-status-answer.txt",
+        "orders-count-status-tool-trace.txt",
+        "orders-oracle.json"
+      ],
+      "sessionId": "session-99d9dd19-2451-4f4b-853f-a6822f688a40",
+      "conversationId": "conv_d95f01e21fb4fa016c6825cfcbf5a5cd",
+      "interactionId": "int_fb25938c48d9543572fa19bf8bac6aed",
+      "note": "run_cypher unsupported on platform; model recovered via query_metric; all strict criteria met."
+    },
+    {
+      "id": "finished-goods-inventory",
+      "status": "pass",
+      "criteria": [
+        true,
+        true,
+        true,
+        true,
+        true
+      ],
+      "conversationId": "conv_fc358198c71e44ef75dd6a8e23d0000d",
+      "interactionId": "int_ead33eea437de1a224776c3303cbc91e",
+      "evidence": [
+        "finished-goods-inventory-answer.txt",
+        "finished-goods-inventory-tool-trace.txt",
+        "stock-oracle.json"
+      ],
+      "reason": "534 across Suzhou325/Urumqi127/Harbin82, finished warehouses only; scope and source stated; independent CLI matches."
+    },
+    {
+      "id": "bom-structure",
+      "status": "pass",
+      "criteria": [
+        true,
+        true,
+        true
+      ],
+      "conversationId": "conv_0a49ac8977efab66c1bdf1b677019dfd",
+      "interactionId": "int_a8a142b9ba0f77bbb1f079c0f496c649",
+      "evidence": [
+        "bom-structure-answer.txt",
+        "bom-structure-tool-trace.txt"
+      ],
+      "qualification": "Reported first and second level, named parts and usage from actual published capability; full 5-level stats reported with explicit main_only scope, full-tree display was not asserted."
+    },
+    {
+      "id": "bom-usage-inventory",
+      "status": "fail",
+      "criteria": [
+        true,
+        true,
+        false,
+        true,
+        true,
+        true
+      ],
+      "conversationId": "conv_9628870e148701af19d60eee1fe9346e",
+      "interactionId": "int_21fba86a67b39c8542fd15ca4e1d0fe5",
+      "evidence": [
+        "bom-usage-inventory-answer.txt",
+        "bom-usage-inventory-tool-trace.txt",
+        "bom-summary-oracle.json",
+        "bom-depth3-oracle.json",
+        "bom-stock-depth3-oracle.json"
+      ],
+      "reason": "Full depth4/5 tool calls timed out; model explicitly returned only depth1-3 partial detail. Complete each-material usage/inventory not delivered; in-transit scope not explicit. Top-level9, full-tree5/313/272, 34/0/0 values match actual platform. No guessed missing rows were treated as success."
+    },
+    {
+      "id": "purchase-flow",
+      "status": "pass",
+      "conversationId": "conv_e83893a91264db25bb66cc03e024a3e4",
+      "interactionId": "int_bae8b385a424181ebf04829cfd910fe5",
+      "evidence": [
+        "purchase-flow-answer.txt",
+        "purchase-flow-tool-trace.txt",
+        "pr-oracle.json",
+        "po-oracle.json"
+      ],
+      "criteria": [
+        true,
+        true,
+        true
+      ],
+      "qualification": "Pass applies to PR/PO distinction, reported no attributable open items with explicit modeled/source-field scope. Direct material-code query independently returned0 for both. Model reported15 forecasts/424 MRP/69 closed PR from its real run_code; those linked counts were not separately database-verified. Extra333 raw priority0 children differs from published main_only272; raw independent CLI counted334 including root,333 excluding root. Do not treat the two BOM scopes as equivalent."
+    },
+    {
+      "id": "sales-order-detail",
+      "status": "pass",
+      "criteria": [
+        true,
+        true,
+        true
+      ],
+      "conversationId": "conv_104088bdf56a6a93c523668c64bdbda4",
+      "interactionId": "int_0fcadffb97a224457e62a33dd0a34a27",
+      "evidence": [
+        "sales-order-detail-answer.txt",
+        "sales-order-detail-tool-trace.txt",
+        "sales-order-detail-validation.json",
+        "orders-oracle.json"
+      ],
+      "reason": "All40 rows and9 displayed fields compared to independent actual CLI; signing1081/shipping1066, no mismatches."
+    },
+    {
+      "id": "missing-object",
+      "status": "fail",
+      "criteria": [
+        true,
+        false,
+        true,
+        true
+      ],
+      "conversationId": "conv_6146ba9d9534e05d7079ab63abd0d317",
+      "interactionId": "int_9dd66291409901781ed34968913dc578",
+      "evidence": [
+        "missing-object-answer.txt",
+        "missing-object-tool-trace.txt",
+        "missing-object-oracle.json"
+      ],
+      "reason": "Correctly says no target material/no stock/no orders and does not invent target data. Strict criterion forbids any nonzero business values; answer additionally reports unrelated global material3497/MRP824 counts, so no strict pass."
+    },
+    {
+      "id": "invalid-token",
+      "status": "pass",
+      "criteria": [
+        true,
+        true,
+        true,
+        true
+      ],
+      "sessionId": "session-25fc9e37-09a5-4db4-97f9-289cbe131031",
+      "evidence": [
+        "invalid-token-setup.json",
+        "invalid-token-answer.txt",
+        "invalid-token-tool-trace.txt",
+        "invalid-token-diagnostics.txt"
+      ],
+      "qualification": "Fresh isolated fictional invalid-signature credential, not expiry/revocation of the real account. Actual platform returns401. Native pre-model failure banner explicitly asks re-login; diagnostics auth-rejected/httpStatus401. No cached answer or managed business tool execution.",
+      "recoveryEvidence": [
+        "invalid-token-restored-answer.txt",
+        "invalid-token-restored-answer.png"
+      ],
+      "recovery": "Same previously failed session answers real40 confirmed orders after normal CLI store restored/restart. Does not imply in-process observer recovery."
+    },
+    {
+      "id": "platform-unreachable",
+      "status": "pass",
+      "criteria": [
+        true,
+        true,
+        true,
+        true
+      ],
+      "sessionId": "session-13ea3e34-68d9-4478-8351-74f7f2bf9b7b",
+      "conversationId": "conv_0f2d5910cf6f1f4321f277769bf2cbd0",
+      "interactionId": "int_401c3744cc36530b5d516f9d24257087",
+      "evidence": [
+        "platform-unreachable-setup.json",
+        "platform-unreachable-answer.txt",
+        "platform-unreachable-tool-trace.txt",
+        "platform-unreachable-diagnostics.txt",
+        "platform-unreachable-restored-answer.txt",
+        "platform-unreachable-restored-tool-trace.txt",
+        "recovery-cli-refresh.json"
+      ],
+      "qualification": "Actual official Host connection attempt to a checked-unused HTTPS endpoint with fictional credential and matching isolated binding fixture; not an actual platform-cluster outage. Connection failure before provider/business access, diagnostics network-unreachable. After restoring the real endpoint/binding and normal CLI store, first retry encountered expired access token/managed-tool refusal. Normal CLI refresh plus panel state refresh then the same session returned actual40 confirmed orders in20s. No claim of recovery without valid authentication or in-process observer clearing across Host restart."
+    }
+  ]
+}

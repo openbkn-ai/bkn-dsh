@@ -1,0 +1,21 @@
+[
+  {
+    "kind": "synthetic platform output-size diagnostic; not business acceptance",
+    "requestedCharacters": 5000,
+    "seconds": 0.882,
+    "exitCode": 0,
+    "stdoutLength": 5001,
+    "keys": [
+      "exit_code",
+      "stdout",
+      "stderr"
+    ]
+  },
+  {
+    "kind": "synthetic platform output-size diagnostic; not business acceptance",
+    "requestedCharacters": 100000,
+    "seconds": 60.332,
+    "exitCode": 1,
+    "http504": true
+  }
+]

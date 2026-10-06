@@ -1,0 +1,180 @@
+Window: "382-000005 BOM 构成查询 — DeepSeek Harness", App: DeepSeek Harness.
+0 standard window 382-000005 BOM 构成查询 — DeepSeek Harness, Secondary Actions: Raise
+	1 container 382-000005 BOM 构成查询 — DeepSeek Harness
+		2 container
+			3 HTML content 382-000005 BOM 构成查询 — DeepSeek Harness, URL: dsh-app://app/
+				4 container
+					5 button 收起侧边栏
+					6 button 新建会话
+					7 container 全局面板
+						8 button 插件
+					9 text 工作区
+					10 button 搜索会话
+					11 text field (settable) 搜索会话名称
+					12 button 视图选项
+					13 button 添加工作区
+					14 outline 会话
+						15 container
+							16 row workspace-supply
+								17 text workspace-supply
+							18 row (selected) 382-000005 BOM 构成查询 刚刚
+								19 text 382-000005 BOM 构成查询 刚刚
+							20 row 各成品仓382-000005可用库存 1分钟
+								21 text 各成品仓382-000005可用库存 1分钟
+							22 row 销售订单382-000005状态查询 3分钟
+								23 text 销售订单382-000005状态查询 3分钟
+							24 row 382-000005 标准交期查询 9分钟
+								25 text 382-000005 标准交期查询 9分钟
+						26 row 默认工作区
+							27 text 默认工作区
+					28 button OpenBKN business knowledge networks
+					29 pop up button 账号菜单
+					30 container
+						31 container 会话层级
+							32 text 382-000005 BOM 构成查询
+						33 text 标准模式
+						34 text 供应链本体知识网络-手工版
+						35 button 用 访达 打开
+						36 pop up button 更多打开方式
+						37 pop up button 更多操作
+						38 button 打开右侧边栏
+						39 tab group
+							40 tab (selected) 对话, Value: 1
+							41 tab (settable, integer) 轨迹, Value: 0
+					42 container
+						43 container
+							44 text 382-000005 的 BOM 构成是什么？ 09:03
+							45 button 复制
+							46 text 已完成
+							47 button 已完成，用时 22秒
+								48 text 已完成，用时
+								49 text 22
+								50 text 秒
+							51 text 382-000005 的 BOM 构成
+							52 text （能力「BOM清单」，BOM 版本 2026-08-05，口径
+							53 text main_only
+							54 text  主料、不含替代料）
+							55 text 结构统计
+							56 text ：唯一子件 272 项 · 含根节点 507 行 · 最大层级 5 层 · 一级主料 9 项
+							57 text 一级主料（9 项，单耗均为 1）
+							58 table
+								59 row
+									60 column header
+										61 text 物料编码
+									62 column header
+										63 text 名称
+									64 column header
+										65 text 单耗
+								66 row
+									67 cell
+										68 text 791-000013
+									69 cell
+										70 text YN406预组装包(拖拉机)
+									71 cell
+										72 text 1
+								73 row
+									74 cell
+										75 text 791-000007
+									76 cell
+										77 text YN406B方向盘组件（拖拉机）
+									78 cell
+										79 text 1
+								80 row
+									81 cell
+										82 text 791-000015
+									83 cell
+										84 text YN403显示终端整机_预装组件_拖拉机
+									85 cell
+										86 text 1
+								87 row
+									88 cell
+										89 text 528-000036
+									90 cell
+										91 text YS221A接收机组件_国内
+									92 cell
+										93 text 1
+								94 row
+									95 cell
+										96 text 994-000550
+									97 cell
+										98 text 406电源+电机+接收机连接线
+									99 cell
+										100 text 1
+								101 row
+									102 cell
+										103 text 606-000989
+									104 cell
+										105 text YN406 包装外箱_V2
+									106 cell
+										107 text 1
+								108 row
+									109 cell
+										110 text 606-000990
+									111 cell
+										112 text YN406 珍珠棉内托_V2
+									113 cell
+										114 text 1
+								115 row
+									116 cell
+										117 text 468-000493
+									118 cell
+										119 text YN406说明书（中文）
+									120 cell
+										121 text 1
+								122 row
+									123 cell
+										124 text 468-000530
+									125 cell
+										126 text 导航车贴(60*15cm)
+									127 cell
+										128 text 1
+							129 text 二级子件
+							130 text （depth=2 共 25 行 = 一级 9 + 二级 16）
+							131 content list
+								132 container
+									133 AXListMarker •
+									134 text 791-000013 预组装包下 ：795-000993 IMU、蘑菇头、显示终端安装附件包 1｜606-000852 I406 预组装外箱 1｜606-000853 I406 预组装珍珠棉内托 1｜795-000130 显示终端安装附件包 1｜795-000728 终端RAM支架U型底座安装附件包 1｜795-000302 电机安装附件包 1｜165-000257 1号电机支架底板圆柱(L=100mm) 1｜795-000865 电机1号安装支架附件包 1｜ 795-000133 线束安装附件包 10 ｜606-000012 4号自封袋 1
+								135 container
+									136 AXListMarker •
+									137 text 528-000036 接收机组件下 ：528-000031 YS221A接收机整机_国内版_整机 1｜849-001021 M6X16不锈钢外六角三组合螺丝_半耐落 4
+								138 container
+									139 AXListMarker •
+									140 text 791-000007 方向盘组件下 ：849-000288 M4*22_不锈钢杯头内六角滚花机牙螺丝_整圈耐落 6
+								141 container
+									142 AXListMarker •
+									143 text 791-000015 显示终端整机下 ：791-000003 YN403（406）整机 1｜165-000120 308终端RAM支架 1｜849-000987 M5*22_不锈钢内六角机牙螺丝_整圈耐落 4
+							144 text 说明：本次未计入替代料分支（
+							145 text include_substitute=false
+							146 text ）；完整 5 层明细可用同一能力以
+							147 text report_grain=full
+							148 text  分页获取（page_size 1–500）。
+							149 button 复制
+							150 toggle button Description: 好的回答, Value: 0
+							151 toggle button Description: 有问题的回答, Value: 0
+							152 button 查看业务溯源, Help: View OpenBKN provenance for this answer
+							153 button 在新对话中分支
+							154 pop up button 用量 325K tok
+							155 text 09:03
+						156 container
+							157 text entry area (settable) 发消息或创建任务, / 调用指令, @ 文件或对话
+							158 pop up button 添加文件或调用指令
+							159 button 访问模式，当前：工作区内修改
+							160 pop up button Description: 选择模型，当前 DeepSeek-V41-Flash，推理等级 High, Help: DeepSeek-V41-Flash · High
+							161 button (disabled) 发送消息
+						162 pop up button 1 轮 6 步 · 282 tok/s
+							163 text 1 轮 6 步
+							164 text 282 tok/s
+						165 pop up button 325K tok · 缓存命中 95%
+							166 text 325K tok
+							167 text 缓存命中 95%
+						168 pop up button 上下文已用 6%
+	169 close button
+	170 full screen button Help: this button also has an action to zoom the window, Secondary Actions: zoom the window
+	171 minimize button
+172 menu bar
+	173 DeepSeek Harness
+	174 文件
+	175 Edit
+	176 Window
+
+The focused UI element is 157 text entry area (settable) 发消息或创建任务, / 调用指令, @ 文件或对话

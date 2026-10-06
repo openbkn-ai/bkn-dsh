@@ -1,0 +1,58 @@
+Window: "DeepSeek Harness", App: DeepSeek Harness.
+0 standard window DeepSeek Harness, Secondary Actions: Raise
+	1 container DeepSeek Harness
+		2 container
+			3 HTML content DeepSeek Harness, URL: dsh-app://app/
+				4 container
+					5 button 收起侧边栏
+					6 button 新建会话
+					7 container 全局面板
+						8 button 插件
+					9 text 工作区
+					10 button 搜索会话
+					11 text field (settable) 搜索会话名称
+					12 button 视图选项
+					13 button 添加工作区
+					14 outline 会话
+						15 container
+							16 row workspace-supply
+								17 text workspace-supply
+							18 row (selected) 新会话
+								19 text 新会话
+							20 row 查询销售订单数量及状态 1分钟
+								21 text 查询销售订单数量及状态 1分钟
+							22 row 查询物料名称 382-000005 16分钟
+								23 text 查询物料名称 382-000005 16分钟
+							24 row 查询物料382-000005的名称与标准交期 18分钟
+								25 text 查询物料382-000005的名称与标准交期 18分钟
+							26 row 物料库存与订单情况查询 20分钟
+								27 text 物料库存与订单情况查询 20分钟
+							28 row 查询销售订单382-000005明细 22分钟
+								29 text 查询销售订单382-000005明细 22分钟
+							30 button 展开其余 6 个会话
+						31 row 默认工作区
+							32 text 默认工作区
+					33 button OpenBKN business knowledge networks
+					34 pop up button 账号菜单
+					35 button 打开右侧边栏
+					36 container
+						37 text 探索未至之境 预览版
+						38 pop up button 选择工作区
+						39 pop up button 标准模式, Help: 选择新任务使用的 Agent 预设
+						40 container OpenBKN business session entry
+							41 button 了解「供应链本体知识网络-手工版」知识网络。
+						42 text entry area (settable) 描述你想要构建的内容, / 调用指令, @ 文件或对话
+						43 pop up button 添加文件或调用指令
+						44 button 访问模式，当前：工作区内修改
+						45 pop up button Description: 选择模型，当前 DeepSeek-V41-Flash，推理等级 High, Help: DeepSeek-V41-Flash · High
+						46 button (disabled) 发送消息
+	47 close button
+	48 full screen button Help: this button also has an action to zoom the window, Secondary Actions: zoom the window
+	49 minimize button
+50 menu bar
+	51 DeepSeek Harness
+	52 文件
+	53 Edit
+	54 Window
+
+The focused UI element is 42 text entry area (settable) 描述你想要构建的内容, / 调用指令, @ 文件或对话

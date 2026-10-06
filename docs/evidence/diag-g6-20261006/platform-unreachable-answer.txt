@@ -1,0 +1,68 @@
+Window: "DeepSeek Harness", App: DeepSeek Harness.
+0 standard window DeepSeek Harness, Secondary Actions: Raise
+	1 container DeepSeek Harness
+		2 container
+			3 HTML content DeepSeek Harness, URL: dsh-app://app/
+				4 container
+					5 button 收起侧边栏
+					6 button 新建会话
+					7 container 全局面板
+						8 button 插件
+					9 text 工作区
+					10 button 搜索会话
+					11 text field (settable) 搜索会话名称
+					12 button 视图选项
+					13 button 添加工作区
+					14 outline 会话
+						15 container
+							16 row workspace-supply
+								17 text workspace-supply
+							18 row (selected) 未命名 2分钟
+								19 text 未命名 2分钟
+							20 row 查询销售订单数量及状态 3分钟
+								21 text 查询销售订单数量及状态 3分钟
+							22 row 查询物料名称 382-000005 18分钟
+								23 text 查询物料名称 382-000005 18分钟
+							24 row 查询物料382-000005的名称与标准交期 20分钟
+								25 text 查询物料382-000005的名称与标准交期 20分钟
+							26 row 物料库存与订单情况查询 22分钟
+								27 text 物料库存与订单情况查询 22分钟
+							28 button 展开其余 7 个会话
+						29 row 默认工作区
+							30 text 默认工作区
+					31 button OpenBKN business knowledge networks
+					32 pop up button 账号菜单
+					33 container
+						34 container 会话层级
+							35 text workspace-supply
+						36 text 标准模式
+						37 text 供应链本体知识网络-手工版
+						38 button 用 访达 打开
+						39 pop up button 更多打开方式
+						40 pop up button 更多操作
+						41 button 打开右侧边栏
+						42 tab group
+							43 tab (selected) 对话, Value: 1
+							44 tab (settable, integer) 轨迹, Value: 0
+					45 container
+						46 container
+							47 text 处理失败
+							48 button (disabled) 处理失败
+							49 container
+								50 text 本轮运行失败 mcp-client(openbkn): initial connection or tool synchronization failed: Version negotiation probe failed: fetch failed
+							51 text UNKNOWN
+						52 text entry area (settable) 发消息或创建任务, / 调用指令, @ 文件或对话
+						53 pop up button 添加文件或调用指令
+						54 button 访问模式，当前：工作区内修改
+						55 pop up button Description: 选择模型，当前 DeepSeek-V41-Flash，推理等级 High, Help: DeepSeek-V41-Flash · High
+						56 button (disabled) 发送消息
+	57 close button
+	58 full screen button Help: this button also has an action to zoom the window, Secondary Actions: zoom the window
+	59 minimize button
+60 menu bar
+	61 DeepSeek Harness
+	62 文件
+	63 Edit
+	64 Window
+
+The focused UI element is 52 text entry area (settable) 发消息或创建任务, / 调用指令, @ 文件或对话

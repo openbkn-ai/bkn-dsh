@@ -1,0 +1,24 @@
+{
+  "method": "every delivered parent-child row compared to independent live CLI snapshot",
+  "oracleRows": 313,
+  "answerRows": 313,
+  "distinctMaterials": 272,
+  "levels": [
+    1,
+    2,
+    3,
+    4,
+    5
+  ],
+  "missingOrChanged": [],
+  "extraOrChanged": [],
+  "passed": true,
+  "fields": [
+    "level",
+    "parent",
+    "child",
+    "name",
+    "standard_usage",
+    "available_inventory"
+  ]
+}

@@ -1,0 +1,6 @@
+									86 container bash {"command": "pwd; ls -la", "description": "Show working directory contents"} → error
+									92 container bash {"command": "env | grep -i -E "dsh|openbkn" | sort", "description": "List DSH environment variables"} → error
+									105 container bash {"command": "echo probe", "description": "Probe shell availability"} → error
+									118 container bash {"command": "true", "description": "No-op probe"} → error
+									131 container bash {"command": "echo hi", "description": "Probe"} → error
+									144 container mcp__openbkn__bkn_start_interaction {"conversation_mode": "new", "question": "382-000005 有多少张销售订单？什么状态？", "agent_name": "bkn-agent-dsh-business-context"} → error

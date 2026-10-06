@@ -30,7 +30,7 @@ export default defineConfig(({ env }) => {
       intro: 'var module = { exports: {} }; var exports = module.exports;',
     },
   } : {
-    entry: ['src/index.ts'],
+    entry: { index: 'src/index.ts', business: 'src/business.ts', diagnostics: 'src/diagnostics.ts' },
     outDir: 'lib',
     format: ['esm'],
     platform: 'node',
@@ -38,6 +38,8 @@ export default defineConfig(({ env }) => {
     fixedExtension: false,
     dts: false,
     clean: false,
+    // The three rows share modules; rolldown emits shared code as hashed
+    // sibling chunks, so package.json `files` must ship the whole lib/*.js set.
     plugins: [typertPlugin({ mode: 'package', faces: ['host'] })],
   }
 })

@@ -1,0 +1,112 @@
+{
+  "sessionId": "session-d7933fa5-d2ad-4325-94ee-ab55ed1cd7ec",
+  "question": [
+    "382-000005 的标准交期是多少？"
+  ],
+  "assistantText": [
+    "**382-000005 的标准交期是 1 天。**\n\n| 项 | 值 |\n|---|---|\n| 物料编码 | 382-000005 |\n| 物料名称 | 北斗导航农机驾驶仪 |\n| 规格型号 | YN406BDS-2.5GD(YN406拖拉机V2) |\n| 物料属性 | 自制 |\n| **生产提前期**（product_fixedleadtime） | **1 天** |\n| 采购交货提前期（purchase_fixedleadtime） | 1 天 |\n\n**口径说明**\n\n- 来源：知识网络「供应链本体知识网络-手工版」的「物料」对象类（`supply_ontology_hand_material`），底层数据源为 `supply_demo_hand.erp_material`，按 `material_code = \"382-000005\"` 精确命中 1 条。\n- 单位取自字段定义本身（两个字段的注释均标注「天」）：\n  - `product_fixedleadtime`——「自制件包括产成品、半成品的生产提前期 (天)」\n  - `purchase_fixedleadtime`——「采购交货提前期 (天)」\n- 该物料 `materialattr` 为**自制**，所以其标准交期取**生产提前期 = 1 天**；采购提前期同样为 1 天，但不适用于这个自制件。两者数值恰好一致，若后续需要按供应商实际承诺日期，应改用采购订单上的 `deliverdate`。"
+  ],
+  "toolEvents": [
+    {
+      "type": "tool/call",
+      "time": 1791265590954,
+      "turn": 1,
+      "step": 1,
+      "callId": "call_00_jIO26uGehTohDCqQDrMc5380",
+      "name": "mcp__openbkn__bkn_start_interaction",
+      "arguments": "{\"conversation_mode\": \"new\", \"question\": \"382-000005 的标准交期是多少？\", \"agent_name\": \"bkn-agent-dsh-business-context\"}"
+    },
+    {
+      "type": "tool/result",
+      "time": 1791265591051,
+      "turn": 1,
+      "step": 1,
+      "callId": "call_00_jIO26uGehTohDCqQDrMc5380",
+      "hostErrorFlag": null,
+      "content": [
+        {
+          "type": "text",
+          "text": "{\"interaction_id\":\"int_f87a65f1e12ac53243baf44a4c72f239\",\"conversation_id\":\"conv_f705042a0f40cda97e12e3a1a62d818b\",\"execution_status\":\"active\"}"
+        }
+      ]
+    },
+    {
+      "type": "tool/call",
+      "time": 1791265593422,
+      "turn": 1,
+      "step": 2,
+      "callId": "call_00_lK6Xb8ScOIFYzMsfCKmL1791",
+      "name": "mcp__openbkn__run_code",
+      "arguments": "{\"bkn_context\": {\"conversation_id\": \"conv_f705042a0f40cda97e12e3a1a62d818b\", \"interaction_id\": \"int_f87a65f1e12ac53243baf44a4c72f239\"}, \"code\": \"\\nimport json\\nkn = \\\"supply_ontology_hand\\\"\\ntry:\\n    detail = get_kn_detail(kn_id=kn)\\n    print(\\\"GROUPS:\\\", json.dumps(detail.get(\\\"concept_groups\\\", []) or detail.get(\\\"concept_groups_summary\\\"), ensure_ascii=False, default=str)[:3000])\\n    ots = detail.get(\\\"object_types\\\") or []\\n    print(\\\"OT_NAMES:\\\", [(o.get(\\\"id\\\"), o.get(\\\"name\\\")) for o in ots])\\nexcept Exception as e:\\n    print(\\\"detail_err:\\\", e)\\n\\ntry:\\n    s = search_schema(kn_id=kn, query=\\\"物料 标准交期 采购交期 生产交期 物料主数据\\\", schema_brief=False)\\n    print(\\\"SEARCH_KEYS:\\\", list(s.keys()))\\n    print(\\\"SEARCH:\\\", json.dumps(s, ensure_ascii=False, default=str)[:6000])\\nexcept Exception as e:\\n    print(\\\"search_err:\\\", e)\\n\"}"
+    },
+    {
+      "type": "tool/result",
+      "time": 1791265596741,
+      "turn": 1,
+      "step": 2,
+      "callId": "call_00_lK6Xb8ScOIFYzMsfCKmL1791",
+      "hostErrorFlag": null,
+      "content": [
+        {
+          "type": "text",
+          "text": "{\"stderr\":\"\",\"exit_code\":0,\"stdout\":\"GROUPS: [{\\\"id\\\": \\\"supply_ontology_hand_cg_prod\\\", \\\"name\\\": \\\"产品\\\"}]\\nOT_NAMES: [('skills', 'Skills'), ('supply_ontology_hand_product', '产品'), ('supply_ontology_hand_bom', '产品BOM'), ('supply_ontology_hand_forecast', '产品需求预测单'), ('supply_ontology_hand_supplier', '供应商'), ('supply_ontology_hand_mps', '工厂生产计划'), ('supply_ontology_hand_inventory', '库存'), ('supply_ontology_hand_material', '物料'), ('supply_ontology_hand_mrp', '物料需求计划'), ('supply_ontology_hand_mon_task', '监控任务'), ('supply_ontology_hand_mon_item', '监控证据明细'), ('supply_ontology_hand_pr_decision', '采购申请决策'), ('supply_ontology_hand_pr', '采购申请单'), ('supply_ontology_hand_po', '采购订单'), ('supply_ontology_hand_salesorder', '销售订单')]\\nSEARCH_KEYS: ['object_types', 'relation_types', 'action_types', 'metric_types']\\nSEARCH: {\\\"object_types\\\": [{\\\"logic_properties\\\": [{\\\"name\\\": \\\"material_total_count\\\", \\\"comment\\\": \\\"类级：物料种数。可按物料属性 / 存货类别过滤。\\\", \\\"type\\\": \\\"metric\\\", \\\"data_source\\\": {\\\"type\\\": \\\"metric\\\", \\\"id\\\": \\\"01a0f6e6-5e9e-72bf-a34a-afcc0ca532d9\\\", \\\"name\\\": \\\"物料总数\\\"}, \\\"parameters\\\": [{\\\"name\\\": \\\"materialattr\\\", \\\"type\\\": \\\"string\\\", \\\"value_from\\\": \\\"input\\\", \\\"comment\\\": \\\"物料属性\\\"}, {\\\"comment\\\": \\\"存货类别\\\", \\\"name\\\": \\\"group_name\\\", \\\"type\\\": \\\"string\\\", \\\"value_from\\\": \\\"input\\\"}, {\\\"if_system_generate\\\": true, \\\"comment\\\": \\\"是否进行即时查询。可选，默认为 false。instant=true 表示即时查询；否则表示范围查询。\\\", \\\"name\\\": \\\"instant\\\", \\\"type\\\": \\\"boolean\\\", \\\"value_from\\\": \\\"input\\\"}, {\\\"name\\\": \\\"start\\\", \\\"type\\\": \\\"integer\\\", \\\"value_from\\\": \\\"input\\\", \\\"if_system_generate\\\": true, \\\"comment\\\": \\\"指标查询的开始时间，格式为 start=\\u003cunix_timestamp\\u003e，单位为毫秒，例如 1646360670123。\\\"}, {\\\"if_system_generate\\\": true, \\\"comment\\\": \\\"指标查询的结束时间，格式为 end=\\u003cunix_timestamp\\u003e，单位为毫秒，例如 1646471470123。\\\", \\\"name\\\": \\\"end\\\", \\\"type\\\": \\\"integer\\\", \\\"value_from\\\": \\\"input\\\"}, {\\\"comment\\\": \\\"范围查询的步长。instant=false 时必填，格式为 step=\\u003ctime_duration\\u003e，由数字和时间单位组成。\\\", \\\"name\\\": \\\"step\\\", \\\"type\\\": \\\"string\\\", \\\"value_from\\\": \\\"input\\\", \\\"if_system_generate\\\": true}]}], \\\"effective_permissions\\\": {\\\"group_type\\\": \\\"full\\\", \\\"purchase_fixedleadtime\\\": \\\"full\\\", \\\"material_name\\\": \\\"full\\\", \\\"materialattr\\\": \\\"full\\\", \\\"material_standard_price\\\": \\\"full\\\", \\\"product_fixedleadtime\\\": \\\"full\\\", \\\"baseunit_name\\\": \\\"full\\\", \\\"product_status\\\": \\\"full\\\", \\\"huid_productline_name\\\": \\\"full\\\", \\\"material_code\\\": \\\"full\\\", \\\"modelnum\\\": \\\"full\\\", \\\"baseunit_number\\\": \\\"full\\\", \\\"group_name\\\": \\\"full\\\"}, \\\"concept_id\\\": \\\"supply_ontology_hand_material\\\", \\\"comment\\\": \\\"记录物料的基础信息，包括编码、名称、规格型号、属性（自制/外购）及单位等及相关参数。\\\", \\\"tags\\\": [\\\"已审核\\\"], \\\"primary_keys\\\": [\\\"material_code\\\"], \\\"concept_type\\\": \\\"object_type\\\", \\\"concept_name\\\": \\\"物料\\\", \\\"data_source\\\": {\\\"type\\\": \\\"resource\\\", \\\"id\\\": \\\"01a0f6e5-fd61-7280-ae39-73fd4c0877d0\\\", \\\"name\\\": \\\"supply_demo_hand.erp_material\\\"}, \\\"data_properties\\\": [{\\\"name\\\": \\\"material_code\\\", \\\"comment\\\": \\\"物料的唯一标识编码\\\", \\\"type\\\": \\\"string\\\"}, {\\\"name\\\": \\\"material_name\\\", \\\"comment\\\": \\\"物料的正式名称\\\", \\\"type\\\": \\\"string\\\"}, {\\\"name\\\": \\\"modelnum\\\", \\\"comment\\\": \\\"物料的规格与其型号\\\", \\\"type\\\": \\\"string\\\"}, {\\\"name\\\": \\\"huid_productline_name\\\", \\\"comment\\\": \\\"所属产品线\\\", \\\"type\\\": \\\"string\\\"}, {\\\"name\\\": \\\"baseunit_number\\\", \\\"comment\\\": \\\"计量单位的编码，pcs\\\", \\\"type\\\": \\\"string\\\"}, {\\\"name\\\": \\\"baseunit_name\\\", \\\"comment\\\": \\\"计量单位名称 (如:  个，套)\\\", \\\"type\\\": \\\"string\\\"}, {\\\"name\\\": \\\"group_name\\\", \\\"comment\\\": \\\"原材料-半成品\\\", \\\"type\\\": \\\"string\\\"}, {\\\"name\\\": \\\"group_type\\\", \\\"comment\\\": \\\"物料的类别描述\\\", \\\"type\\\": \\\"string\\\"}, {\\\"type\\\": \\\"string\\\", \\\"name\\\": \\\"materialattr\\\", \\\"comment\\\": \\\"物料属性 (如: 外购)\\\"}, {\\\"name\\\": \\\"purchase_fixedleadtime\\\", \\\"comment\\\": \\\"采购交货提前期 (天)\\\", \\\"type\\\": \\\"decimal\\\"}, {\\\"type\\\": \\\"decimal\\\", \\\"name\\\": \\\"product_fixedleadtime\\\", \\\"comment\\\": \\\"自制件包括产成品、半成品的生产提前期 (天)\\\"}, {\\\"name\\\": \\\"material_standard_price\\\", \\\"type\\\": \\\"decimal\\\"}, {\\\"name\\\": \\\"product_status\\\", \\\"type\\\": \\\"string\\\"}]}, {\\\"concept_type\\\": \\\"object_type\\\", \\\"concept_id\\\": \\\"supply_ontology_hand_po\\\", \\\"concept_name\\\": \\\"采购订单\\\", \\\"comment\\\": \\\"发给供应商的正式采购订单。\\\", \\\"tags\\\": [\\\"已审核\\\"], \\\"data_source\\\": {\\\"id\\\": \\\"01a0f6e5-fd83-7472-a9cb-8e0bb5a2bfd5\\\", \\\"name\\\": \\\"supply_demo_hand.erp_purchase_order\\\", \\\"type\\\": \\\"resource\\\"}, \\\"data_properties\\\": [{\\\"name\\\": \\\"srcbillentryid\\\", \\\"comment\\\": \\\"来源单据号（对应采购申请单明细主键ID）\\\", \\\"type\\\": \\\"string\\\"}, {\\\"name\\\": \\\"srcbillid\\\", \\\"comment\\\": \\\"来源单据号（对应采购申请单主键ID）\\\", \\\"type\\\": \\\"string\\\"}, {\\\"name\\\": \\\"billno\\\", \\\"comment\\\": \\\"采购订单单号\\\", \\\"type\\\": \\\"string\\\"}, {\\\"name\\\": \\\"biztime\\\", \\\"comment\\\": \\\"业务日期\\\", \\\"type\\\": \\\"date\\\"}, {\\\"name\\\": \\\"org_name\\\", \\\"comment\\\": \\\"购买签订的主体\\\", \\\"type\\\": \\\"string\\\"}, {\\\"name\\\": \\\"billtype_name\\\", \\\"comment\\\": \\\"生产项目采购订单、研发项目采购订单等等。\\\", \\\"type\\\": \\\"string\\\"}, {\\\"name\\\": \\\"supplier_number\\\", \\\"comment\\\": \\\"供应商编码\\\", \\\"type\\\": \\\"string\\\"}, {\\\"type\\\": \\\"string\\\", \\\"name\\\": \\\"supplier_name\\\", \\\"comment\\\": \\\"供应商名称\\\"}, {\\\"comment\\\": \\\" 执行采购的采购人员\\\", \\\"type\\\": \\\"string\\\", \\\"name\\\": \\\"operatorname\\\"}, {\\\"name\\\": \\\"huid_xycg_operatorname\\\", \\\"comment\\\": \\\"采购寻源的人员\\\", \\\"type\\\": \\\"string\\\"}, {\\\"comment\\\": \\\"创建时间\\\", \\\"type\\\": \\\"timestamp\\\", \\\"name\\\": \\\"createtime\\\"}, {\\\"name\\\": \\\"auditdate\\\", \\\"comment\\\": \\\"审核时间\\\", \\\"type\\\": \\\"timestamp\\\"}, {\\\"comment\\\": \\\"物料编码\\\", \\\"type\\\": \\\"string\\\", \\\"name\\\": \\\"material_number\\\"}, {\\\"comment\\\": \\\"物料名称\\\", \\\"type\\\": \\\"string\\\", \\\"name\\\": \\\"material_name\\\"}, {\\\"name\\\": \\\"qty\\\", \\\"comment\\\": \\\"数量\\\", \\\"type\\\": \\\"decimal\\\"}, {\\\"comment\\\": \\\"预计交货日期，取用的标准交货时间。采购员可在ERP更新供应商反馈的交货时间。\\\", \\\"type\\\": \\\"date\\\", \\\"name\\\": \\\"deliverdate\\\"}, {\\\"name\\\": \\\"srcbillnumber\\\", \\\"comment\\\": \\\"来源单据号（对应采购申请单号）\\\", \\\"type\\\": \\\"string\\\"}, {\\\"name\\\": \\\"invqty\\\", \\\"comment\\\": \\\"入库数量\\\", \\\"type\\\": \\\"decimal\\\"}, {\\\"name\\\": \\\"returnqty\\\", \\\"comment\\\": \\\"退库数量\\\", \\\"type\\\": \\\"decimal\\\"}, {\\\"name\\\": \\\"actqty\\\", \\\"comment\\\": \\\"实际入库数量（入库数量 - 退库数量）\\\", \\\"type\\\": \\\"decimal\\\"}, {\\\"name\\\": \\\"entry_id\\\", \\\"type\\\": \\\"string\\\"}, {\\\"name\\\": \\\"id\\\", \\\"type\\\": \\\"string\\\"}, {\\\"type\\\": \\\"string\\\", \\\"name\\\": \\\"rowclosestatus_title\\\"}, {\\\"name\\\": \\\"rowterminatestatus_title\\\", \\\"type\\\": \\\"string\\\"}], \\\"effective_permissions\\\": {\\\"id\\\": \\\"full\\\", \\\"material_name\\\": \\\"full\\\", \\\"deliverdate\\\": \\\"full\\\", \\\"auditdate\\\": \\\"full\\\", \\\"srcbillid\\\": \\\"full\\\", \\\"billtype_name\\\": \\\"full\\\", \\\"org_name\\\": \\\"full\\\", \\\"entry_id\\\": \\\"full\\\", \\\"srcbillnumber\\\": \\\"full\\\", \\\"rowterminatestatus_title\\\": \\\"full\\\", \\\"material_number\\\": \\\"full\\\", \\\"biztime\\\": \\\"full\\\", \\\"rowclosestatus_title\\\": \\\"full\\\", \\\"billno\\\": \\\"full\\\", \\\"operatorname\\\": \\\"full\\\", \\\"actqty\\\": \\\"full\\\", \\\"createtime\\\": \\\"full\\\", \\\"invqty\\\": \\\"full\\\", \\\"huid_xycg_operatorname\\\": \\\"full\\\", \\\"srcbillentryid\\\": \\\"full\\\", \\\"qty\\\": \\\"full\\\", \\\"supplier_name\\\": \\\"full\\\", \\\"supplier_number\\\": \\\"full\\\", \\\"returnqty\\\": \\\"full\\\"}, \\\"primary_keys\\\": [\\\"entry_id\\\"]}, {\\\"concept_id\\\": \\\"supply_ontology_hand_pr\\\", \\\"concept_name\\\": \\\"采购申请单\\\", \\\"comment\\\": \\\"根据MRP生成的内部采购申请PR。\\\", \\\"data_properties\\\": [{\\\"name\\\": \\\"huid_xmh_name\\\", \\\"type\\\": \\\"string\\\"}, {\\\"name\\\": \\\"srcbillentryid\\\", \\\"type\\\": \\\"string\\\"}, {\\\"type\\\": \\\"string\\\", \\\"name\\\": \\\"srcbillid\\\", \\\"comment\\\": \\\"计划订单下推生成的采购申请，关联需求计划ID。\\\"}, {\\\"name\\\": \\\"srcbillnumber\\\", \\\"type\\\": \\\"string\\\"}, {\\\"comment\\\": \\\"采购申请主键\\\", \\\"type\\\": \\\"string\\\", \\\"name\\\": \\\"id\\\"}, {\\\"name\\\": \\\"billno\\\", \\\"comment\\\": \\\"采购申请单号\\\", \\\"type\\\": \\\"string\\\"}, {\\\"name\\\": \\\"biztime\\\", \\\"comment\\\": \\\"业务时间\\\", \\\"type\\\": \\\"timestamp\\\"}, {\\\"type\\\": \\\"string\\\", \\\"name\\\": \\\"billtype_name\\\", \\\"comment\\\": \\\"单据类型（包含研发/生产等，目前仅考虑生产）\\\"}, {\\\"name\\\": \\\"org_name\\\", \\\"comment\\\": \\\"组织名称\\\", \\\"type\\\": \\\"string\\\"}, {\\\"name\\\": \\\"auditdate\\\", \\\"comment\\\": \\\"审核日期\\\", \\\"type\\\": \\\"timestamp\\\"}, {\\\"type\\\": \\\"string\\\", \\\"name\\\": \\\"entry_id\\\", \\\"comment\\\": \\\"采购申请明细主键\\\"}, {\\\"name\\\": \\\"material_number\\\", \\\"comment\\\": \\\"物料编码\\\", \\\"type\\\": \\\"string\\\"}, {\\\"name\\\": \\\"material_na\\n\"}"
+        }
+      ]
+    },
+    {
+      "type": "tool/call",
+      "time": 1791265598839,
+      "turn": 1,
+      "step": 3,
+      "callId": "call_00_bajRGQ9zOdpIurlOJ7YZ2898",
+      "name": "mcp__openbkn__run_code",
+      "arguments": "{\"bkn_context\": {\"conversation_id\": \"conv_f705042a0f40cda97e12e3a1a62d818b\", \"interaction_id\": \"int_f87a65f1e12ac53243baf44a4c72f239\"}, \"code\": \"\\nimport json\\nkn = \\\"supply_ontology_hand\\\"\\ntry:\\n    r = query_object_instance(\\n        kn_id=kn,\\n        ot_id=\\\"supply_ontology_hand_material\\\",\\n        condition={\\\"operation\\\":\\\"==\\\", \\\"field\\\":\\\"material_code\\\", \\\"value\\\":\\\"382-000005\\\", \\\"value_from\\\":\\\"const\\\"},\\n        limit=10,\\n    )\\n    print(json.dumps(r, ensure_ascii=False, default=str)[:4000])\\nexcept Exception as e:\\n    print(\\\"err:\\\", e)\\n\\n# 检查物料属性取值口径\\ntry:\\n    a = query_object_instance(kn_id=kn, ot_id=\\\"supply_ontology_hand_material\\\", properties=[\\\"materialattr\\\"], limit=50)\\n    vals = set()\\n    for row in (a.get(\\\"entries\\\") or a.get(\\\"data\\\") or []):\\n        vals.add(row.get(\\\"materialattr\\\"))\\n    print(\\\"materialattr values:\\\", vals)\\nexcept Exception as e:\\n    print(\\\"attr_err:\\\", e)\\n\"}"
+    },
+    {
+      "type": "tool/result",
+      "time": 1791265599423,
+      "turn": 1,
+      "step": 3,
+      "callId": "call_00_bajRGQ9zOdpIurlOJ7YZ2898",
+      "hostErrorFlag": null,
+      "content": [
+        {
+          "type": "text",
+          "text": "{\"stdout\":\"{\\\"datas\\\": [{\\\"material_code\\\": \\\"382-000005\\\", \\\"purchase_fixedleadtime\\\": 1, \\\"_instance_id\\\": \\\"supply_ontology_hand_material-382-000005\\\", \\\"group_name\\\": \\\"库存商品-产成品\\\", \\\"materialattr\\\": \\\"自制\\\", \\\"material_standard_price\\\": null, \\\"group_type\\\": \\\"406包装成品\\\", \\\"huid_productline_name\\\": \\\"自动驾驶\\\", \\\"baseunit_number\\\": \\\"pcs\\\", \\\"baseunit_name\\\": \\\"个\\\", \\\"modelnum\\\": \\\"YN406BDS-2.5GD(YN406拖拉机V2)\\\", \\\"_display\\\": \\\"北斗导航农机驾驶仪\\\", \\\"material_name\\\": \\\"北斗导航农机驾驶仪\\\", \\\"product_status\\\": \\\"已上架\\\", \\\"_instance_identity\\\": {\\\"material_code\\\": \\\"382-000005\\\"}, \\\"product_fixedleadtime\\\": 1}], \\\"effective_permissions\\\": {\\\"group_name\\\": \\\"full\\\", \\\"purchase_fixedleadtime\\\": \\\"full\\\", \\\"product_status\\\": \\\"full\\\", \\\"group_type\\\": \\\"full\\\", \\\"modelnum\\\": \\\"full\\\", \\\"baseunit_number\\\": \\\"full\\\", \\\"huid_productline_name\\\": \\\"full\\\", \\\"materialattr\\\": \\\"full\\\", \\\"product_fixedleadtime\\\": \\\"full\\\", \\\"material_standard_price\\\": \\\"full\\\", \\\"material_name\\\": \\\"full\\\", \\\"baseunit_name\\\": \\\"full\\\", \\\"material_code\\\": \\\"full\\\"}, \\\"total_count\\\": 1}\\nmaterialattr values: set()\\n\",\"stderr\":\"\",\"exit_code\":0}"
+        }
+      ]
+    },
+    {
+      "type": "tool/call",
+      "time": 1791265601829,
+      "turn": 1,
+      "step": 4,
+      "callId": "call_00_XGqfbrveQodaCGHcbjne4996",
+      "name": "mcp__openbkn__bkn_finish_interaction",
+      "arguments": "{\"interaction_id\": \"int_f87a65f1e12ac53243baf44a4c72f239\", \"outcome\": \"completed\", \"answer\": \"物料 382-000005（北斗导航农机驾驶仪，规格 YN406BDS-2.5GD(YN406拖拉机V2)）的标准交期为 1 天。\\n\\n命中的是「物料」对象类（supply_ontology_hand_material，数据源 supply_demo_hand.erp_material）中该物料的两个交期属性：\\n- product_fixedleadtime = 1，字段含义「自制件包括产成品、半成品的生产提前期」，单位：天\\n- purchase_fixedleadtime = 1，字段含义「采购交货提前期」，单位：天\\n\\n该物料的 materialattr（物料属性）为「自制」，因此适用的标准交期是生产提前期 product_fixedleadtime = 1 天（采购提前期同为 1 天，但不适用于该自制件）。\"}"
+    },
+    {
+      "type": "tool/result",
+      "time": 1791265601939,
+      "turn": 1,
+      "step": 4,
+      "callId": "call_00_XGqfbrveQodaCGHcbjne4996",
+      "hostErrorFlag": null,
+      "content": [
+        {
+          "type": "text",
+          "text": "{\"interaction_id\":\"int_f87a65f1e12ac53243baf44a4c72f239\",\"conversation_id\":\"conv_f705042a0f40cda97e12e3a1a62d818b\",\"execution_status\":\"completed\",\"evidence_status\":\"partial\"}"
+        }
+      ]
+    }
+  ],
+  "turnEnds": [
+    {
+      "time": 1791265604059,
+      "turn": 1,
+      "reason": {
+        "kind": "completed"
+      }
+    }
+  ]
+}

@@ -1,5 +1,7 @@
 # bkn-dsh
 
+Release candidate -7 consolidates the unpublished diagnostics work and supply-answer guidance. A plain Node Host reports its form as unknown because Desktop also uses Node. CI-artifact real-host and Windows acceptance remain pending; see the repository release-7 handoff.
+
 [中文](README.zh.md)
 
 Bring governed enterprise business knowledge into DeepSeek Harness conversations.
@@ -39,13 +41,42 @@ The integration is designed as an additive DSH plugin. It preserves the native D
 
 ## Install
 
+This -7 candidate is not on npm yet. Use the absolute path to the fixed CI candidate `.tgz` before publication; the command below applies after publication. The currently published -4 has [separate installation instructions](https://github.com/openbkn-ai/bkn-dsh/blob/v0.2.0-rc.2-openbkn.0.2.0-4/README.md).
+
 Works on an unpatched DeepSeek Harness `0.2.0-rc.2`: the official desktop app, the npm CLI (`@deepseek-ai/dsh@0.2.0-rc.2`), or a built source checkout. Install it with DSH's own plugin manager while DSH is stopped:
 
 ```bash
-dsh plugin --profile <desktop|web> add @openbkn/dsh-business-context@0.2.0-rc.2-openbkn.0.2.0-4
+dsh plugin --profile <desktop|web> add @openbkn/dsh-business-context@0.2.0-rc.2-openbkn.0.2.0-7
 ```
 
 Then set the platform address, sign in with the `openbkn` CLI, and bind a network from the **OpenBKN** sidebar entry. Bound sessions must use DSH's Standard mode (PTC mode is not supported yet). Step-by-step setup, certificates, and uninstall: [repository README](https://github.com/openbkn-ai/bkn-dsh#install-and-start).
+
+## Package layout (changed in -7)
+
+The package root is a minimal bootstrap plugin that keeps the host serving the browser bundle. Import the business API from `@openbkn/dsh-business-context/business`; the Remote boundary types live on `@openbkn/dsh-business-context/types`. Diagnostics remains on `@openbkn/dsh-business-context/diagnostics`.
+
+### Upgrading name-qualified overrides (required for -7)
+
+The host treats a `name` field in a profile override as an assertion about
+the row it patches. When upgrading from published versions <= -4 to `-7` the business row loads from
+`@openbkn/dsh-business-context/business`, so an override that keeps the old
+bare package name is skipped and its `config` is silently lost:
+
+```yaml
+# Stops matching after upgrading to -7 — baseUrl/cliPath are dropped:
+- id: openbkn-business-context
+  name: '@openbkn/dsh-business-context'
+  config: { baseUrl: ..., cliPath: ... }
+```
+
+Fix it by deleting the `name` line (the `id` alone addresses the row), or
+by asserting the new subpath name
+`'@openbkn/dsh-business-context/business'`. ID-only overrides keep working
+unchanged.
+
+## Diagnostics
+
+When something does not work, click **OpenBKN** in the sidebar footer, then **诊断** at the top right of the panel and export the report. There is only one OpenBKN sidebar entry. The panel frame and diagnostics action remain available when the business component cannot import or its services are not ready. The diagnostics service runs as an independent plugin row; if its implementation cannot start, the panel explicitly reports that diagnostics is unavailable. The exported JSON contains only whitelisted facts — stages, classification codes, bounded evidence such as HTTP statuses and exit codes, and coverage notes. It never contains tokens, raw error text, URLs, or file contents. Send the exported file to support.
 
 ## License
 

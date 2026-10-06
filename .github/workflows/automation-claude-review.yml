@@ -187,16 +187,21 @@ jobs:
           import json, os, pathlib, subprocess
 
           pr = os.environ["PR_NUMBER"]
+          metadata = subprocess.run(
+              ["gh", "pr", "view", pr, "--json", "changedFiles"],
+              capture_output=True, text=True, check=True,
+          ).stdout
+          total = json.loads(metadata)["changedFiles"]
+          # GraphQL `gh pr view --json files` only returns the first 100.
+          # Enumerate all REST pages and reconcile with the independent count.
           out = subprocess.run(
-              ["gh", "pr", "view", pr, "--json", "files,changedFiles",
-               "--jq", '.changedFiles, (.files[].path)'],
+              ["gh", "api", "repos/%s/pulls/%s/files?per_page=100" % (os.environ["GH_REPO"], pr),
+               "--paginate", "--jq", ".[].filename"],
               capture_output=True, text=True, check=True,
           ).stdout.splitlines()
-          # `gh pr view --json files` 一次最多返回 100 个文件。超出部分会被静默丢掉，
-          # 那些文件就永远不进评审范围、也永远不被评审——比漏审更糟的是没人知道漏了。
-          # 这里把总数单独取出来对账，差额由 verdict 在结论里点明。
-          total = int(out[0].strip())
-          paths = [p for p in out[1:] if p.strip()]
+          paths = [p for p in out if p.strip()]
+          if len(paths) != total or len(set(paths)) != total:
+              raise RuntimeError("PR file list is incomplete or inconsistent: expected %s, got %s; retry against a stable PR head" % (total, len(paths)))
 
           # 按类分流，省的是真活：文档与测试与代码同规格评审时，文档也在被追引用点、
           # 被做触发式深挖，纯属浪费轮次。
@@ -637,6 +642,9 @@ jobs:
             - 已经提过的问题，作者改了、或给出对得上疑点的解释，就算过。不必追求措辞
               完美，更不要凭「可能」把同一条追问第二遍。
             - 上面的触发式深挖只在首轮做；复评的范围限定在上一轮之后新增的提交与文件。
+            - Exception: if a prior verdict reported a truncated file list, review the previously omitted
+              files from the complete list above even if their contents did not change in the new commit.
+              Those files have not had a first review. Record any remaining coverage gaps in not_covered.
             - 第二轮起，除非发现你能说清失效场景的确定阻断项，否则不要再报阻塞项。
             - **写 findings 之前，最后再拉一次顶层评论**，逐字发这一条：
               `gh pr view ${{ env.PR_NUMBER }} --json comments --jq '[.comments[-30:][] | {author: .author.login, body}]'`

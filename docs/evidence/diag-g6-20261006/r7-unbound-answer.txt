@@ -1,0 +1,124 @@
+Window: "本会话是否绑定 OpenBKN — DeepSeek Harness", App: DeepSeek Harness.
+0 standard window 本会话是否绑定 OpenBKN — DeepSeek Harness, Secondary Actions: Raise
+	1 container 本会话是否绑定 OpenBKN — DeepSeek Harness
+		2 container
+			3 HTML content 本会话是否绑定 OpenBKN — DeepSeek Harness, URL: dsh-app://app/
+				4 container
+					5 button 收起侧边栏
+					6 button 新建会话
+					7 container 全局面板
+						8 button 插件
+					9 text 工作区
+					10 button 搜索会话
+					11 text field (settable) 搜索会话名称
+					12 button 视图选项
+					13 button 添加工作区
+					14 outline 会话
+						15 container
+							16 row workspace-supply
+								17 text workspace-supply
+							18 row 查询物料名称 382-000005 1分钟
+								19 text 查询物料名称 382-000005 1分钟
+							20 row 查询物料382-000005的名称与标准交期 2分钟
+								21 text 查询物料382-000005的名称与标准交期 2分钟
+							22 row 物料库存与订单情况查询 5分钟
+								23 text 物料库存与订单情况查询 5分钟
+							24 row 查询销售订单382-000005明细 7分钟
+								25 text 查询销售订单382-000005明细 7分钟
+							26 row 未结采购申请和采购订单查询 13分钟
+								27 text 未结采购申请和采购订单查询 13分钟
+							28 button 展开其余 5 个会话
+						29 container
+							30 row 默认工作区
+								31 text 默认工作区
+							32 row (selected) 本会话是否绑定 OpenBKN 刚刚
+								33 text 本会话是否绑定 OpenBKN 刚刚
+					34 button OpenBKN business knowledge networks
+					35 pop up button 账号菜单
+					36 container
+						37 container 会话层级
+							38 text 本会话是否绑定 OpenBKN
+						39 text 标准模式
+						40 button 用 访达 打开
+						41 pop up button 更多打开方式
+						42 pop up button 更多操作
+						43 tab group
+							44 tab (selected) 对话, Value: 1
+							45 tab (settable, integer) 轨迹, Value: 0
+					46 container
+						47 container
+							48 text 本会话是否绑定了 OpenBKN 知识网络？只说明当前绑定状态，不查询业务数据，也不要调用任何工具。 09:21
+							49 button 复制
+							50 text 已完成
+							51 button 已完成，用时 3秒
+								52 text 已完成，用时
+								53 text 3
+								54 text 秒
+							55 text 当前绑定状态：未见绑定。
+							56 text 判断依据仅限本次会话已呈现的上下文，未做任何查询：
+							57 content list
+								58 container
+									59 AXListMarker •
+									60 text 会话运行时快照里没有出现任何 OpenBKN 知识网络标识（ kn_id ）、也没有宿主提供的会话映射（ conversation_id  /  interaction_id ）。
+								61 container
+									62 AXListMarker •
+									63 text 系统提示中的技能目录里没有 OpenBKN 相关技能。
+								64 container
+									65 AXListMarker •
+									66 text OpenBKN 系列工具（知识网络列表、Schema、实例、SQL 等）在工具面上 存在 ，但“工具可用”不等于“本会话已绑定某个知识网络”——绑定信息应当以显式的  kn_id  或宿主映射出现，而当前上下文里没有。
+							67 text 因此准确的说法是：
+							68 text 就本会话可见上下文而言，尚未绑定 OpenBKN 知识网络。
+							69 text  这是一个“看不到绑定证据”的结论，而不是通过列举知识网络得出的否定结论——若实际存在绑定但未注入到本会话上下文中，我无法仅凭当前信息判断。 如需确认，可在你允许调用工具时让我列出可用知识网络，或由宿主把
+							70 text kn_id
+							71 text  传入本会话。
+							72 button 复制
+							73 toggle button Description: 好的回答, Value: 0
+							74 toggle button Description: 有问题的回答, Value: 0
+							75 button 在新对话中分支
+							76 pop up button 用量 45.6K tok
+							77 text 09:21
+						78 container
+							79 text entry area (settable) 发消息或创建任务, / 调用指令, @ 文件或对话
+							80 pop up button 添加文件或调用指令
+							81 button 访问模式，当前：工作区内修改
+							82 pop up button Description: 选择模型，当前 DeepSeek-V41-Flash，推理等级 High, Help: DeepSeek-V41-Flash · High
+							83 button (disabled) 发送消息
+						84 pop up button 1 轮 1 步 · 206 tok/s
+							85 text 1 轮 1 步
+							86 text 206 tok/s
+						87 pop up button 45.6K tok · 缓存命中 4%
+							88 text 45.6K tok
+							89 text 缓存命中 4%
+						90 pop up button 上下文已用 5%
+					91 container
+						92 tab group
+							93 tab (selected) 开始, Value: 1
+							94 container 栏宽不足，拖宽侧边栏后再分栏
+								95 button (disabled) 分栏
+							96 container
+								97 button 全屏
+								98 button 收起右侧边栏
+						99 button 工作区文件 浏览会话工作区的文件 ⌘ P
+							100 text 工作区文件
+							101 text 浏览会话工作区的文件
+							102 text ⌘
+							103 text P
+						104 container
+							105 button 新建终端 在会话工作区运行命令
+							106 pop up button 选择 Shell
+							107 text ⌃ `
+						108 button 浏览器 浏览网页 ⌘ T
+							109 text 浏览器
+							110 text 浏览网页
+							111 text ⌘
+							112 text T
+	113 close button
+	114 full screen button Help: this button also has an action to zoom the window, Secondary Actions: zoom the window
+	115 minimize button
+116 menu bar
+	117 DeepSeek Harness
+	118 文件
+	119 Edit
+	120 Window
+
+The focused UI element is 3 HTML content 本会话是否绑定 OpenBKN — DeepSeek Harness, URL: dsh-app://app/

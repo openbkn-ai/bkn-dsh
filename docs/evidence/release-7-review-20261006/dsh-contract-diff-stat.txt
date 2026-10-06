@@ -1,0 +1,18 @@
+ packages/boot/app-boot/src/index.ts                |   1 +
+ packages/boot/app-boot/src/package-meta.ts         |  81 ++++---
+ .../app-boot/src/profile-resolution/resolver.ts    |  21 +-
+ .../app-boot/src/profile-resolution/service.ts     |  22 +-
+ packages/boot/app-boot/src/profile.ts              | 107 +++++++--
+ packages/boot/plugin-manager/src/index.ts          |  50 +++-
+ packages/boot/plugin-manager/src/install-spec.ts   |  34 ++-
+ packages/boot/plugin-manager/src/types.ts          |   7 +
+ packages/core/session/src/index.ts                 |   8 +-
+ packages/core/session/src/invariant.ts             | 258 ---------------------
+ packages/core/session/src/surface.ts               |  10 +-
+ packages/core/session/src/types.ts                 |   4 +-
+ packages/core/system-prompt/src/invariant.ts       |  60 -----
+ packages/core/tools/src/invariant.ts               | 129 -----------
+ packages/core/tools/src/ptc.ts                     |  23 +-
+ packages/core/tools/src/py-types.ts                |   2 +-
+ packages/core/tools/src/ts-types.ts                |   6 +-
+ 17 files changed, 278 insertions(+), 545 deletions(-)

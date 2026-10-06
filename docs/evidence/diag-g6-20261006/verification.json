@@ -1,0 +1,36 @@
+{
+  "checkedAt": "2026-10-06T01:49:58.587725+00:00",
+  "scope": "Docs/eval grading and handoff only; runtime candidate unchanged",
+  "graderRegression": {
+    "tests": 3,
+    "pass": 3,
+    "fail": 0,
+    "command": "node --test docs/eval/run-eval.test.mjs"
+  },
+  "realG6Grading": {
+    "command": "node docs/eval/run-eval.mjs --answers docs/evidence/diag-g6-20261006/g6-marks.json --out docs/evidence/diag-g6-20261006/g6-results.md",
+    "exitCode": 0,
+    "positive": "5/7",
+    "negative": "2/3",
+    "tested": "7/10",
+    "notRun": [
+      "unauthorized-network"
+    ]
+  },
+  "toolTraceExport": "Whitelisted tool request/result captions only; provider reasoning/system context excluded",
+  "traceSanitizationFiles": [
+    "platform-unreachable-restored-first-attempt-tool-trace.txt",
+    "platform-unreachable-restored-tool-trace.txt"
+  ],
+  "secretTextPatterns": {
+    "textFilesChecked": 78,
+    "hits": 0,
+    "rules": [
+      "JWT value",
+      "private key",
+      "signed startup URL",
+      "literal API key"
+    ]
+  },
+  "runtimeCandidateSha256": "ffcd77722e83a003fe90e0dda296a3a49c3f2ba67bddda9095575dabd896ef43"
+}

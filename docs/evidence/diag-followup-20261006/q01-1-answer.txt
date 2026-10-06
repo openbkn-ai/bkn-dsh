@@ -1,0 +1,179 @@
+Window: "物料库存与订单情况查询 — DeepSeek Harness", App: DeepSeek Harness.
+0 standard window 物料库存与订单情况查询 — DeepSeek Harness, Secondary Actions: Raise
+	1 container 物料库存与订单情况查询 — DeepSeek Harness
+		2 container
+			3 HTML content 物料库存与订单情况查询 — DeepSeek Harness, URL: dsh-app://app/
+				4 container
+					5 button 收起侧边栏
+					6 button 新建会话
+					7 container 全局面板
+						8 button 插件
+					9 text 工作区
+					10 button 搜索会话
+					11 text field (settable) 搜索会话名称
+					12 button 视图选项
+					13 button 添加工作区
+					14 outline 会话
+						15 container
+							16 row workspace-supply
+								17 text workspace-supply
+							18 row (selected) 物料库存与订单情况查询 刚刚
+								19 text 物料库存与订单情况查询 刚刚
+							20 row 查询物料382-000005的名称与标准交期 1小时
+								21 text 查询物料382-000005的名称与标准交期 1小时
+							22 row 统计销售订单数量及状态 1小时
+								23 text 统计销售订单数量及状态 1小时
+							24 row 查询销售订单数量及状态 1小时
+								25 text 查询销售订单数量及状态 1小时
+							26 row 查询物料名称 382-000005 1小时
+								27 text 查询物料名称 382-000005 1小时
+							28 button 展开其余 8 个会话
+						29 row 默认工作区
+							30 text 默认工作区
+					31 button OpenBKN business knowledge networks
+					32 pop up button 账号菜单
+					33 container
+						34 container 会话层级
+							35 text 物料库存与订单情况查询
+						36 text 标准模式
+						37 text 供应链本体知识网络-手工版
+						38 button 用 访达 打开
+						39 pop up button 更多打开方式
+						40 pop up button 更多操作
+						41 button 打开右侧边栏
+						42 tab group
+							43 tab (selected) 对话, Value: 1
+							44 tab (settable, integer) 轨迹, Value: 0
+					45 container
+						46 container
+							47 text 物料 999-999999 的库存和订单情况？ 11:12
+							48 button 复制
+							49 text 已完成
+							50 button 已完成，用时 41秒
+								51 text 已完成，用时
+								52 text 41
+								53 text 秒
+							54 heading 结论：知识网络中不存在物料 999-999999, Value: 2
+								55 text 结论：知识网络中不存在物料 999-999999
+							56 text 该编码在
+							57 text 所有相关对象类上均为 0 条记录
+							58 text ，因此没有库存、也没有任何形式的订单数据。
+							59 heading 精确匹配结果（编码 = 999-999999）, Value: 3
+								60 text 精确匹配结果（编码 = 999-999999）
+							61 table
+								62 row
+									63 column header
+										64 text 对象类
+									65 column header
+										66 text 匹配字段
+									67 column header
+										68 text 命中
+								69 row
+									70 cell
+										71 text 物料
+									72 cell
+										73 text material_code
+									74 cell
+										75 text 0
+								76 row
+									77 cell
+										78 text 库存
+									79 cell
+										80 text material_code
+									81 cell
+										82 text 0
+								83 row
+									84 cell
+										85 text 采购订单 PO
+									86 cell
+										87 text material_number
+									88 cell
+										89 text 0
+								90 row
+									91 cell
+										92 text 采购申请 PR
+									93 cell
+										94 text material_number
+									95 cell
+										96 text 0
+								97 row
+									98 cell
+										99 text 物料需求计划 MRP
+									100 cell
+										101 text materialplanid_number
+									102 cell
+										103 text 0
+								104 row
+									105 cell
+										106 text 生产工单 MPS
+									107 cell
+										108 text material_number
+									109 cell
+										110 text 0
+								111 row
+									112 cell
+										113 text 产品需求预测单
+									114 cell
+										115 text material_number
+									116 cell
+										117 text 0
+							118 heading 排除了"编码格式不一致"的可能, Value: 3
+								119 text 排除了"编码格式不一致"的可能
+							120 content list
+								121 container
+									122 AXListMarker •
+									123 text 物料  material_code  /  material_name  /  modelnum  模糊包含  999-999999  → 0
+								124 container
+									125 AXListMarker •
+									126 text 库存与采购订单的编码字段模糊包含  999-  → 0
+								127 container
+									128 AXListMarker •
+									129 text 六个对象类的物料编号字段全表模糊包含子串  999  → 全部 0
+							130 heading 查询通道已对照验证（并非查询失败）, Value: 3
+								131 text 查询通道已对照验证（并非查询失败）
+							132 text 同一知识网络中：物料
+							133 text 3497
+							134 text  条、库存
+							135 text 19724
+							136 text  条、采购订单
+							137 text 1972
+							138 text  条，抽样与聚合查询均正常返回。所以空结果来自"该编码不存在"，而不是取数问题。
+							139 heading 建议, Value: 3
+								140 text 建议
+							141 text 请核对物料编码。网络中实际存在的编码形如
+							142 text 101-000002
+							143 text 、
+							144 text 382-000005
+							145 text 、
+							146 text P61-000351
+							147 text （三段式，前段为 3 位数字或字母数字组合）。如果 999-999999 是某个外部/测试编码，它尚未进入本知识网络的数据范围——此时无法给出库存与订单情况，我可改用正确编码或按物料名称关键词帮你重新定位。
+							148 button 复制
+							149 toggle button Description: 好的回答, Value: 0
+							150 toggle button Description: 有问题的回答, Value: 0
+							151 button 查看业务溯源, Help: View OpenBKN provenance for this answer
+							152 button 在新对话中分支
+							153 pop up button 用量 626K tok
+							154 text 11:13
+						155 container
+							156 text entry area (settable) 发消息或创建任务, / 调用指令, @ 文件或对话
+							157 pop up button 添加文件或调用指令
+							158 button 访问模式，当前：工作区内修改
+							159 pop up button Description: 选择模型，当前 DeepSeek-V41-Flash，推理等级 High, Help: DeepSeek-V41-Flash · High
+							160 button (disabled) 发送消息
+						161 pop up button 1 轮 10 步 · 292 tok/s
+							162 text 1 轮 10 步
+							163 text 292 tok/s
+						164 pop up button 626K tok · 缓存命中 97%
+							165 text 626K tok
+							166 text 缓存命中 97%
+						167 pop up button 上下文已用 7%
+	168 close button
+	169 full screen button Help: this button also has an action to zoom the window, Secondary Actions: zoom the window
+	170 minimize button
+171 menu bar
+	172 DeepSeek Harness
+	173 文件
+	174 Edit
+	175 Window
+
+The focused UI element is 156 text entry area (settable) 发消息或创建任务, / 调用指令, @ 文件或对话

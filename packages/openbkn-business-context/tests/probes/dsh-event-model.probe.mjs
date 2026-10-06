@@ -354,7 +354,7 @@ async function checkV0_7(envelopeText) {
   }
   let production
   try {
-    production = await import('../../lib/index.js')
+    production = await import('../../lib/business.js')
   } catch {
     record('V0-7 production-chain extraction of the platform envelope through a DSH ToolExecutionResult', {
       skipped: true,

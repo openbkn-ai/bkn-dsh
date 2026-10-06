@@ -1,0 +1,209 @@
+{
+  "candidate": "fixed original -6",
+  "sourceCommit": "144afa503c7d4746cbef01f74eaceff293b88cb5",
+  "ciRun": 37337765993,
+  "sha256": "ffcd77722e83a003fe90e0dda296a3a49c3f2ba67bddda9095575dabd896ef43",
+  "states": {
+    "emptyNoPlugin": 3,
+    "firstInstall": 3,
+    "samePackageRestart": 3,
+    "removeReinstall": 3
+  },
+  "starts": [
+    {
+      "phase": "u01-empty-1",
+      "pid": 5857,
+      "mainVisible": true,
+      "pluginEntryVisible": false,
+      "startupRpcWarning": false,
+      "source": "u01-empty-main.txt; original owned app-exit.json"
+    },
+    {
+      "phase": "u01-first-install-1",
+      "pid": 8532,
+      "mainVisible": true,
+      "pluginEntryVisible": true,
+      "startupRpcWarning": false,
+      "source": "u01-plugin-login-required.txt; u01-plugin-exit.json"
+    },
+    {
+      "phase": "u01-empty-2",
+      "pid": 22802,
+      "mainVisible": true,
+      "pluginEntryVisible": false,
+      "startupRpcWarning": false,
+      "observedUtc": "2026-10-06T03:20:31.511Z"
+    },
+    {
+      "phase": "u01-empty-3",
+      "pid": 23574,
+      "mainVisible": true,
+      "pluginEntryVisible": false,
+      "startupRpcWarning": false,
+      "observedUtc": "2026-10-06T03:21:12.883Z"
+    },
+    {
+      "phase": "u01-first-install-2",
+      "pid": 24931,
+      "mainVisible": true,
+      "pluginEntryVisible": true,
+      "startupRpcWarning": false,
+      "observedUtc": "2026-10-06T03:22:16.933Z"
+    },
+    {
+      "phase": "u01-first-install-3",
+      "pid": 25674,
+      "mainVisible": true,
+      "pluginEntryVisible": true,
+      "startupRpcWarning": false,
+      "observedUtc": "2026-10-06T03:22:56.076Z"
+    },
+    {
+      "phase": "u01-restart-1",
+      "pid": 26338,
+      "mainVisible": true,
+      "pluginEntryVisible": true,
+      "startupRpcWarning": false,
+      "observedUtc": "2026-10-06T03:24:27.726Z"
+    },
+    {
+      "phase": "u01-restart-2",
+      "pid": 27615,
+      "mainVisible": true,
+      "pluginEntryVisible": true,
+      "startupRpcWarning": false,
+      "observedUtc": "2026-10-06T03:25:12.126Z"
+    },
+    {
+      "phase": "u01-restart-3",
+      "pid": 28560,
+      "mainVisible": true,
+      "pluginEntryVisible": true,
+      "startupRpcWarning": false,
+      "observedUtc": "2026-10-06T03:25:52.993Z"
+    },
+    {
+      "phase": "u01-reinstall-1",
+      "pid": 29345,
+      "mainVisible": true,
+      "pluginEntryVisible": true,
+      "startupRpcWarning": false,
+      "observedUtc": "2026-10-06T03:26:38.940Z"
+    },
+    {
+      "phase": "u01-reinstall-2",
+      "pid": 30261,
+      "mainVisible": true,
+      "pluginEntryVisible": true,
+      "startupRpcWarning": false,
+      "observedUtc": "2026-10-06T03:27:19.727Z"
+    },
+    {
+      "phase": "u01-reinstall-3",
+      "pid": 30966,
+      "mainVisible": true,
+      "pluginEntryVisible": true,
+      "startupRpcWarning": false,
+      "observedUtc": "2026-10-06T03:27:50.992Z"
+    }
+  ],
+  "settingsChecks": [
+    {
+      "phase": "u01-restart-1",
+      "settingsRendered": true,
+      "rpcWarningObserved": false
+    },
+    {
+      "phase": "u01-restart-2",
+      "settingsRendered": true,
+      "rpcWarningObserved": false
+    },
+    {
+      "phase": "u01-restart-3",
+      "settingsRendered": true,
+      "rpcWarningObserved": false
+    },
+    {
+      "phase": "u01-reinstall-1",
+      "settingsRendered": true,
+      "rpcWarningObserved": false
+    },
+    {
+      "phase": "u01-reinstall-2",
+      "settingsRendered": true,
+      "rpcWarningObserved": false
+    },
+    {
+      "phase": "u01-reinstall-3",
+      "settingsRendered": true,
+      "rpcWarningObserved": false
+    }
+  ],
+  "allMainVisible": true,
+  "rpcAnomalyObserved": false,
+  "historicalRootCause": "not reproduced; still unknown",
+  "startupTiming": "Start and observation timestamps include agent/UI scheduling; not a startup performance measurement.",
+  "setupDeviation": "Fresh official CLI install before the desktop profile was initialized refused (exit 1). Continued with the profiles initialized by the preceding official empty-app starts; this harness setup failure is not counted as a Host startup failure.",
+  "processExits": [
+    {
+      "phase": "u01-empty-2",
+      "pid": 22802,
+      "exitCode": 0,
+      "markers": []
+    },
+    {
+      "phase": "u01-empty-3",
+      "pid": 23574,
+      "exitCode": 0,
+      "markers": []
+    },
+    {
+      "phase": "u01-first-install-2",
+      "pid": 24931,
+      "exitCode": 0,
+      "markers": []
+    },
+    {
+      "phase": "u01-first-install-3",
+      "pid": 25674,
+      "exitCode": 0,
+      "markers": []
+    },
+    {
+      "phase": "u01-restart-1",
+      "pid": 26338,
+      "exitCode": 0,
+      "markers": []
+    },
+    {
+      "phase": "u01-restart-2",
+      "pid": 27615,
+      "exitCode": 0,
+      "markers": []
+    },
+    {
+      "phase": "u01-restart-3",
+      "pid": 28560,
+      "exitCode": 0,
+      "markers": []
+    },
+    {
+      "phase": "u01-reinstall-1",
+      "pid": 29345,
+      "exitCode": 0,
+      "markers": []
+    },
+    {
+      "phase": "u01-reinstall-2",
+      "pid": 30261,
+      "exitCode": 0,
+      "markers": []
+    },
+    {
+      "phase": "u01-reinstall-3",
+      "pid": 30966,
+      "exitCode": 0,
+      "markers": []
+    }
+  ]
+}

@@ -1,0 +1,39 @@
+✔ a missing fiber classifies as module resolution failure (0.570875ms)
+✔ a settled active fiber classifies as loaded (0.099541ms)
+✔ a failed fiber rethrows through await() and classifies validation errors (0.084458ms)
+✔ a failed fiber with an unknown error classifies as initialization failure (0.06025ms)
+✔ a fiber that never started resolves await() but still reports waiting (0.047417ms)
+✔ a stuck lifecycle transition is inconclusive, not healthy (21.677167ms)
+✔ a disposed fiber is never reported as loaded (0.122833ms)
+✔ a recovered fiber reports active rather than a stale failure (0.048083ms)
+✔ field extraction only whitelists known config field names (0.058792ms)
+✔ findOwnEntries picks this package’s two rows out of a loader tree (0.093084ms)
+✔ observations map onto the frozen code table (0.0425ms)
+✖ plain Node does not establish npm host form: official Desktop also spawns a Node host (3.060959ms)
+ℹ tests 12
+ℹ suites 0
+ℹ pass 11
+ℹ fail 1
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 192.11575
+
+✖ failing tests:
+
+test at tests/diagnostics-host.test.ts:1:4111
+✖ plain Node does not establish npm host form: official Desktop also spawns a Node host (3.060959ms)
+  AssertionError [ERR_ASSERTION]: Expected values to be strictly equal:
+
+  'npm' !== 'unknown'
+
+      at TestContext.<anonymous> (/Users/kalias/Documents/project/app/openBKN/bkn-dsh-release-7/packages/openbkn-business-context/tests/diagnostics-host.test.ts:109:10)
+      at async Test.run (node:internal/test_runner/test:1389:7)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:960:7) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: 'npm',
+    expected: 'unknown',
+    operator: 'strictEqual',
+    diff: 'simple'
+  }

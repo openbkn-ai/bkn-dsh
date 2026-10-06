@@ -1,0 +1,38 @@
+{
+  "validatedAt": "2026-10-06T01:54:33.749161+00:00",
+  "kitRoot": "/Users/kalias/Documents/project/app/openBKN/handoff/2026-10-06-diag6-windows-144afa5-g6",
+  "archive": "/Users/kalias/Documents/project/app/openBKN/handoff/2026-10-06-diag6-windows-144afa5-g6.zip",
+  "archiveSha256": "eac27ecf4cea5b9aba7337d0a864f86fac080a5a41e6e5f4c0c6f345251c72fd",
+  "archiveSizeBytes": 1361937,
+  "archiveFileCount": 65,
+  "candidateFileCount": 65,
+  "candidateDeclaredTargetCount": 15,
+  "candidateSha256": "ffcd77722e83a003fe90e0dda296a3a49c3f2ba67bddda9095575dabd896ef43",
+  "checks": [
+    "ZIP CRC and every archived byte vs kit",
+    "all kit asset hashes/sizes and exact enumeration",
+    "candidate tar paths/65 file hashes and recursive exports/main/types targets",
+    "both upgrade baseline hashes",
+    "public certificate PEM/DER identity; no private key",
+    "no credential/profile/private-log files; text secret-pattern check"
+  ],
+  "textFilesSecretChecked": 53,
+  "nativePowerShellExecuted": false,
+  "windowsW0W12Executed": false,
+  "G6Status": {
+    "positive": "5/7",
+    "negative": "2/3",
+    "tested": "7/10",
+    "failed": [
+      "standard-lead-time",
+      "bom-usage-inventory",
+      "missing-object"
+    ],
+    "notRun": [
+      "unauthorized-network"
+    ]
+  },
+  "oldArchivePreserved": true,
+  "candidateDeclaredTargetCountExcludesPackageJsonSelfReference": true,
+  "packageJsonSelfReferenceChecked": true
+}

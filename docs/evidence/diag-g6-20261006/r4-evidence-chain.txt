@@ -1,0 +1,36 @@
+Window: "查询物料382-000005的名称与标准交期 — DeepSeek Harness", App: DeepSeek Harness.
+0 standard window 查询物料382-000005的名称与标准交期 — DeepSeek Harness, Secondary Actions: Raise
+	1 container 查询物料382-000005的名称与标准交期 — DeepSeek Harness
+		2 container
+			3 HTML content 查询物料382-000005的名称与标准交期 — DeepSeek Harness, URL: dsh-app://app/
+				4 container OpenBKN business provenance
+					5 container
+						6 text TRACE-BACKED PROVENANCE
+						7 heading 业务溯源, Value: 2
+							8 text 业务溯源
+						9 button Close
+					10 container Provenance views
+						11 button 执行溯源
+						12 button 业务上下文图
+						13 button 证据链
+					14 container
+						15 text 业务回执清单
+						16 text 回执是业务操作落库的耐久凭据；下方指引可在本机 CLI 中核验，面板自身不执行任何命令。 平台
+						17 text 01
+						18 text rcpt_53372e231212fa2f57b8dd58048aa222
+						19 text completed search_schema · operation op_4a5cc85cf1281d85ad3ccf84630ddee5 · 来源：平台
+						20 text openbkn trace receipts get rcpt_53372e231212fa2f57b8dd58048aa222
+						21 text 02
+						22 text rcpt_2fb1d888e3def5fc23d669d9204f7cbc
+						23 text completed query_object_instance · operation op_21e9bdb8008a86e5d7a3db634a3ef75d · 来源：平台
+						24 text openbkn trace receipts get rcpt_2fb1d888e3def5fc23d669d9204f7cbc
+	25 close button
+	26 full screen button Help: this button also has an action to zoom the window, Secondary Actions: zoom the window
+	27 minimize button
+28 menu bar
+	29 DeepSeek Harness
+	30 文件
+	31 Edit
+	32 Window
+
+The focused UI element is 13 button 证据链

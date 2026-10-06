@@ -62,6 +62,8 @@ export interface ProvenanceBusinessElement {
   readonly kind: 'object' | 'relation' | 'action' | 'property' | 'logic' | 'metric'
   readonly id: string
   readonly name: string
+  /** Network disclosed by this authorized element's canonical Trace reference. */
+  readonly knowledgeNetworkId?: string
   readonly parentId?: string
   readonly field?: string
 }
@@ -207,3 +209,9 @@ export interface ProvenanceView {
   readonly business: ProvenanceBusinessView
   readonly evidence: ProvenanceEvidenceView
 }
+
+/** Frozen diagnostics report wire types; runtime helpers stay in the diagnostics entry face. */
+export type {
+  DiagnosticsCheck, DiagnosticsCoverage, DiagnosticsEvidenceValue,
+  DiagnosticsReport, DiagnosticsSource, DiagnosticsStage, DiagnosticsStatus, DiagnosticsTarget,
+} from './diagnostics-contract.js'

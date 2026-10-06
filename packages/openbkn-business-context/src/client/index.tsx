@@ -19,10 +19,13 @@ import type { UiWorkspace } from '@deepseek-ai/dsh-client-ui-workspace/client'
 import openbknBusinessContextRemote from '@openbkn/dsh-business-context/remote'
 import { OpenBknEntry } from './OpenBknEntry.tsx'
 import { OpenBknOverlay } from './OpenBknOverlay.tsx'
+import { OpenBknDiagnostics } from './OpenBknDiagnostics.tsx'
+import { DiagnosticsPanelController } from './diagnostics-controller.ts'
+import { OpenBknPanelBridge } from './openbkn-panel-bridge.ts'
 import { OpenBknContextToolView } from './OpenBknContextToolView.tsx'
 import { BoundNetworkBadge, BoundNetworkController } from './BoundNetworkBadge.tsx'
 import {
-  OpenBknUiController, directoryPickerFailure, workspaceSelectionCancelled, type NetworkSessionMode, type OpenBknUiPort,
+  type OpenBknUiController, directoryPickerFailure, workspaceSelectionCancelled, type NetworkSessionMode, type OpenBknUiPort,
 } from './openbkn-ui-controller.ts'
 import { ProvenanceOverlay, ProvenanceOverlayController } from './ProvenanceOverlay.tsx'
 import type { ProvenanceView } from '../types.ts'
@@ -36,35 +39,98 @@ export const name = 'openbkn-business-context-client'
 
 /**
  * Reserves an additive browser entry without taking ownership of any DSH
- * shell, conversation, composer, or scrolling surface.
+ * shell, conversation, composer, or scrolling surface. Only the base slot and
+ * remote services are top-level dependencies: the diagnostics segment must
+ * register even while session/workspace services are still starting (or
+ * never start), and the business segment waits for its own services below.
  */
-export const inject = ['slots', 'remote', 'sessions', 'conversation', 'workspaces', 'uiWorkspace']
+export const inject = ['slots', 'remote']
 
-/** Mount the generated Remote boundary before registering additive DSH UI slots. */
+/**
+ * Mount the generated Remote boundary, then register two independent
+ * segments: the panel shell and diagnostics first (they must never wait for
+ * business services), and the business slots after.
+ */
 export async function apply(ctx: Context): Promise<() => Promise<void>> {
   const disposeRemote = await ctx.remote.$mount(openbknBusinessContextRemote)
+  // The diagnostics namespace is installed by the same $mount above, so this
+  // inject never waits on the Host; only the business segment below does.
+  // The diagnostics controller is created inside that injected scope; the
+  // business segment connects to the independent panel bridge when ready.
+  const panel = new OpenBknPanelBridge()
+  const diagnostics = ctx.inject(['slots', 'remote', 'remote.openbknDiagnostics'], scopedCtx =>
+    registerPanels(scopedCtx, panel.controller))
+  // A diagnostics failure degrades the panel only; it never blocks or breaks
+  // the business registration below.
+  const diagnosticsSettled = diagnostics.then(() => undefined, () => undefined)
   const ui = ctx.inject([
     'slots',
     'remote',
     'remote.openbknBusinessContext',
     'sessions',
     'conversation',
-  ], registerSlots)
+    'workspaces',
+    'uiWorkspace',
+  ], scopedCtx => registerSlots(scopedCtx, panel))
   try {
     await ui
   } catch (error) {
     await ui.dispose()
+    await diagnosticsSettled
+    await diagnostics.dispose()
     await disposeRemote()
     throw error
   }
   return async () => {
     await ui.dispose()
+    await diagnosticsSettled
+    await diagnostics.dispose()
     await disposeRemote()
   }
 }
 
+/**
+ * Register the diagnostics surfaces. The namespace is mounted locally by
+ * this face's own `$mount` call, so listing it here waits for nothing on the
+ * Host; the business Remote namespace is deliberately absent. The created
+ * panel shell shares a controller with the later business segment.
+ */
+function registerPanels(ctx: Context, panel: OpenBknUiController): void {
+  const controller = new DiagnosticsPanelController({
+    getReport: async signal => unwrap(await ctx.remote.openbknDiagnostics.getReport(signal)),
+  })
+  const inject = () => ({
+    hooks: { ui: panel as HostObservable<ReturnType<typeof panel.getSnapshot>> },
+    open: () => panel.open(),
+    close: () => panel.close(),
+    refresh: () => panel.refresh(),
+    beginLogin: () => panel.beginLogin(),
+    configureToken: (token: string) => panel.configureToken(token),
+    openNetwork: (networkId: string, mode: NetworkSessionMode) => panel.openNetwork(networkId, mode),
+    openDiagnostics: () => {
+      panel.close()
+      controller.open()
+    },
+  })
+  ctx.slots.inject('sidebar.footer.action', () => ctx.slots.register({
+    name: 'sidebar.footer.action', id: 'openbkn-business-context', order: 100, inject,
+  }, OpenBknEntry))
+  ctx.slots.inject('shell.overlay', () => ctx.slots.register({
+    name: 'shell.overlay', id: 'openbkn-business-context', order: 100, inject,
+  }, OpenBknOverlay))
+  ctx.slots.inject('shell.overlay', () => ctx.slots.register({
+    name: 'shell.overlay', id: 'openbkn-business-context-diagnostics', order: 120,
+    inject: () => ({
+      hooks: { diagnostics: controller },
+      open: () => controller.open(),
+      close: () => controller.close(),
+      refresh: () => controller.refresh(),
+    }),
+  }, OpenBknDiagnostics))
+}
+
 /** Register only additive DSH slots; native navigation and conversation surfaces remain untouched. */
-function registerSlots(ctx: Context): void {
+function registerSlots(ctx: Context, panel: OpenBknPanelBridge): void {
   const provenanceOverlay = new ProvenanceOverlayController()
   const provenanceControllers = new Map<SessionId, TurnProvenanceController>()
   const suggestionControllers = new Map<SessionId, SuggestionDockController>()
@@ -93,30 +159,16 @@ function registerSlots(ctx: Context): void {
   const suggestionsControllersLoad = (sessionId: SessionId): void => {
     suggestionControllers.get(sessionId)?.load()
   }
-  const controller = new OpenBknUiController(
-    remotePort(ctx),
-    createNetworkSessionOpener(ctx, remotePort(ctx)),
+  const port = remotePort(ctx)
+  const disconnect = panel.connect(
+    port,
+    createNetworkSessionOpener(ctx, port),
     sessionId => {
       bindingControllers.get(sessionId as SessionId)?.load()
       suggestionsControllersLoad(sessionId as SessionId)
     },
   )
-  const inject = () => ({
-    hooks: { ui: controller as HostObservable<ReturnType<typeof controller.getSnapshot>> },
-    open: () => controller.open(),
-    close: () => controller.close(),
-    refresh: () => controller.refresh(),
-    beginLogin: () => controller.beginLogin(),
-    configureToken: (token: string) => controller.configureToken(token),
-    openNetwork: (networkId: string, mode: NetworkSessionMode) => controller.openNetwork(networkId, mode),
-  })
-
-  ctx.slots.inject('sidebar.footer.action', () => ctx.slots.register({
-    name: 'sidebar.footer.action', id: 'openbkn-business-context', order: 100, inject,
-  }, OpenBknEntry))
-  ctx.slots.inject('shell.overlay', () => ctx.slots.register({
-    name: 'shell.overlay', id: 'openbkn-business-context', order: 100, inject,
-  }, OpenBknOverlay))
+  ctx.effect(() => disconnect, 'openbkn panel business connection')
   ctx.slots.inject('shell.overlay', () => ctx.slots.register({
     name: 'shell.overlay', id: 'openbkn-business-provenance', order: 110,
     inject: () => ({

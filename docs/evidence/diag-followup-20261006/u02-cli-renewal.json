@@ -1,0 +1,14 @@
+{
+  "operation": "normal-cli-renewal",
+  "exitCode": 0,
+  "elapsedMs": 391,
+  "tokenReturned": true,
+  "tokenPersistedInEvidence": false,
+  "storeAuthority": "existing CLI; no grant copied or revoked",
+  "after": {
+    "exitCode": 0,
+    "hasToken": true,
+    "expired": false,
+    "baseUrl": "https://192.168.50.28"
+  }
+}

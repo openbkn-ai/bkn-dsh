@@ -1,0 +1,81 @@
+Window: "DeepSeek Harness", App: DeepSeek Harness.
+0 standard window DeepSeek Harness, Secondary Actions: Raise
+	1 container DeepSeek Harness
+		2 container
+			3 HTML content DeepSeek Harness, URL: dsh-app://app/
+				4 container
+					5 button 收起侧边栏
+					6 button 新建会话
+					7 container 全局面板
+						8 button 插件
+					9 text 工作区
+					10 button 搜索会话
+					11 text field (settable) 搜索会话名称
+					12 button 视图选项
+					13 button 添加工作区
+					14 outline 会话
+						15 container
+							16 row workspace-supply
+								17 text workspace-supply
+							18 row (selected) 新会话
+								19 text 新会话
+							20 row 查询物料382-000005的名称与标准交期 1小时
+								21 text 查询物料382-000005的名称与标准交期 1小时
+							22 row 统计销售订单数量及状态 1小时
+								23 text 统计销售订单数量及状态 1小时
+							24 row 查询销售订单数量及状态 1小时
+								25 text 查询销售订单数量及状态 1小时
+							26 row 查询物料名称 382-000005 1小时
+								27 text 查询物料名称 382-000005 1小时
+							28 row 物料库存与订单情况查询 1小时
+								29 text 物料库存与订单情况查询 1小时
+							30 button 展开其余 7 个会话
+						31 row 默认工作区
+							32 text 默认工作区
+					33 button OpenBKN business knowledge networks
+					34 pop up button 账号菜单
+					35 button 打开右侧边栏
+					36 container
+						37 text 探索未至之境 预览版
+						38 pop up button 选择工作区
+						39 pop up button 标准模式, Help: 选择新任务使用的 Agent 预设
+						40 container OpenBKN business session entry
+							41 button 了解「供应链本体知识网络-手工版」知识网络。
+						42 text entry area (settable) 描述你想要构建的内容, / 调用指令, @ 文件或对话
+						43 pop up button 添加文件或调用指令
+						44 button 访问模式，当前：工作区内修改
+						45 pop up button Description: 选择模型，当前 DeepSeek-V41-Flash，推理等级 High, Help: DeepSeek-V41-Flash · High
+						46 button (disabled) 发送消息
+					47 container OpenBKN 诊断
+						48 container
+							49 text OPENBKN
+							50 heading 诊断, Value: 2
+								51 text 诊断
+							52 button Close
+						53 container
+							54 text 报告编号  0be64400  · 生成于  10/6/2026, 11:12:24 AM  · 模式  被动采集 Host 形态 desktop 平台 darwin DSH 版本 未知 插件（磁盘） 0.2.0-rc.2-openbkn.0.2.0-6 插件（已加载） 未知 ●  通过 bootstrap-entry installation  /  component-loaded
+							55 text entryPresent=true
+							56 text ●  通过 business-entry component  /  component-loaded
+							57 text entryPresent=true
+							58 text ●  通过 diagnostics-entry diagnostics  /  component-loaded
+							59 text schemaVersion=1
+							60 text ●  通过 observed:cli cli  /  cli
+							61 text failureCount=0 lastOutcomeAgoMs=35799 exitCode=0
+							62 text ●  通过 observed:login-state authentication  /  login-state
+							63 text failureCount=1 lastOutcomeAgoMs=35931 recovered=true lastFailureCode=not-logged-in loggedIn=true
+							64 text ●  通过 observed:context-loader context-loader  /  context-loader
+							65 text failureCount=0 lastOutcomeAgoMs=35761 toolsPublished=true
+							66 text ●  通过 observed:platform-network-list platform-directory  /  platform-network-list
+							67 text failureCount=0 lastOutcomeAgoMs=35596 networkCount=2
+							68 button 导出诊断报告
+							69 button 重新采集
+	70 close button
+	71 full screen button Help: this button also has an action to zoom the window, Secondary Actions: zoom the window
+	72 minimize button
+73 menu bar
+	74 DeepSeek Harness
+	75 文件
+	76 Edit
+	77 Window
+
+The focused UI element is 3 HTML content DeepSeek Harness, URL: dsh-app://app/

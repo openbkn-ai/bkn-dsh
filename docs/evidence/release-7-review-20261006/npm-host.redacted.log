@@ -1,0 +1,7 @@
+dsh: warning: 1 entry did not activate
+openbkn-business-context (@openbkn/dsh-business-context/business): ValidationError: invalid config:
+  - $.baseUrl expected an absolute HTTP(S) URL without whitespace or backslashes (at baseUrl)
+    at resolveConfig (file:///Users/kalias/Documents/project/app/openBKN/dsh-npm-020/node_modules/@deepseek-ai/cordis/lib/index.js:960:27)
+    at Fiber._resolveConfig (file:///Users/kalias/Documents/project/app/openBKN/dsh-npm-020/node_modules/@deepseek-ai/cordis/lib/index.js:1347:25)
+    at Fiber._reload (file:///Users/kalias/Documents/project/app/openBKN/dsh-npm-020/node_modules/@deepseek-ai/cordis/lib/index.js:1355:24)
+dsh web: http://127.0.0.1:18797/?token=[REDACTED]
