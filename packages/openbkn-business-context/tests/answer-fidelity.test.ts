@@ -81,6 +81,7 @@ test('scoped fallback distinguishes no eligible row from measured zero and rejec
   const rows = detailRowsOf(valid)
   assert.equal(inspectToolDetailHandoff(events(valid, '').slice(0, -1), JSON.stringify({ exit_code: 0, stdout: valid })), undefined)
   assert.equal(inspectAnswerFidelity(events(valid, renderDetail(rows)), 1), undefined)
+  assert.equal(inspectAnswerFidelity(events(valid.replace('1|p|zero-with-rows', '\n\n1|p|zero-with-rows'), renderDetail(rows)), 1), undefined, 'blank lines do not shift the audit-row alignment')
   const conflictingCount = audited('1|p|same|part|1|2|个|1\n2|other-parent|same|part|1|2|个|2')
   assert.equal(inspectAnswerFidelity(events(conflictingCount, renderDetail(detailRowsOf(conflictingCount))), 1)?.code, 'inventory-scope-mismatch')
   for (const bad of [valid.replace('0*|?|0', '0|?|0'), valid.replace('0|个|2', '0*|?|2'), valid.replace('0*|?|0', '0*|个|0'), valid.replace('|包|1', '|包|unknown'), valid.replace('|scoped_stock_rows', '')]) {
@@ -132,6 +133,8 @@ test('reservation explanation uses disclosed property formula rather than capabi
   assert.equal(addSchema(corrected), undefined)
   assert.equal(addSchema(run.answer, {}, false), undefined, 'an undisclosed formula is not inferred')
   assert.equal(addSchema(run.answer, schema, true), undefined, 'an errored schema is not authoritative')
+  const nestedName = { data_properties: [{ name: 'different_field', mapped_field: { name: 'available_inventory_qty', comment: '可用库存数量 = 库存数量-预留库存数量' } }] }
+  assert.equal(addSchema(run.answer, nestedName), undefined, 'a nested mapped-field name is not the property definition')
 })
 
 test('one level-count correction also carries the simultaneous reservation correction', () => {
@@ -148,6 +151,21 @@ test('one level-count correction also carries the simultaneous reservation corre
   assert.match(issue.correction, /L1: 1/)
   log.push({ type: 'assistant/message', data: { turn: 1, message: { content: [{ type: 'text', text: `${renderDetail(rows)}\n预留已扣除，不再二次扣减。` }] } } })
   assert.equal(inspectAnswerFidelity(log, 1), undefined)
+})
+
+test('default TOON inventory schema retains the disclosed formula without leaking sibling or mapped-field comments', () => {
+  const actualSchema = readFileSync(new URL('../../../docs/evidence/answer-fidelity-20261006/inventory-schema-derived-20261006.toon', import.meta.url), 'utf8')
+  const run = captured('ci-3ac73cc-bom-failed', 'answer-fidelity-20261006', -1)
+  const check = (schema: string) => inspectAnswerFidelity([
+    ...run.events.slice(0, -1),
+    { type: 'tool/call', data: { turn: 1, callId: 'default-schema', name: 'mcp__openbkn__get_object_types' } },
+    { type: 'tool/result', data: { turn: 1, message: { toolCallId: 'default-schema', content: [{ type: 'text', text: schema }] } } },
+    run.events.at(-1)!,
+  ], 1)
+  assert.equal(check(actualSchema)?.code, 'inventory-semantics-mismatch')
+  assert.equal(check('data_properties[#1]{comment,name}:\n  "可用库存数量 = 库存数量-预留库存数量, already deducted",available_inventory_qty')?.code, 'inventory-semantics-mismatch')
+  assert.equal(check('data_properties[#1]:\n  - comment: not the available-stock definition\n    name: another_field\n    mapped_field:\n      name: available_inventory_qty\n      comment: 可用库存数量 = 库存数量-预留库存数量\ncomment: 可用库存数量 = 库存数量-预留库存数量'), undefined)
+  assert.equal(check('data_properties[#2]:\n  - name: another_field\n    comment: 可用库存数量 = 库存数量-预留库存数量\n  - name: available_inventory_qty\n    type: decimal\ncomment: 可用库存数量 = 库存数量-预留库存数量'), undefined)
 })
 
 test('live empty-stock handoff rejects the excerpt but accepts all 313 faithfully copied rows', () => {

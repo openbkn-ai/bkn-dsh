@@ -234,7 +234,7 @@ function inventoryScopeIssue(detail: string): AnswerFidelityIssue | undefined {
   const emitted = /^EMITTED:\s*(\d+)\s*$/m.exec(detail)?.[1]
   let valid = header !== null && rows.length > 0 && Number(total) === rows.length && Number(emitted) === rows.length
   if (header !== null) {
-    const lines = detail.slice(header.index + header[0].length).trimStart().split('\n')
+    const lines = detail.slice(header.index + header[0].length).trimStart().split('\n').filter(line => line.trim().length > 0)
     const counts = new Map<string, string>()
     for (let i = 0; i < rows.length; i++) {
       const parts = lines[i]?.trim().split(/(?<!\\)\|/) ?? []
@@ -255,16 +255,71 @@ function inventoryScopeIssue(detail: string): AnswerFidelityIssue | undefined {
 
 function reservationAlreadyDeducted(text: string): boolean {
   let found = false
+  const propertyDefinesDeduction = (value: unknown): boolean => {
+    const property = record(value)
+    return property?.name === 'available_inventory_qty' && typeof property.comment === 'string'
+      && /可用库存数量\s*=\s*库存数量\s*[-−]\s*预留库存数量/.test(property.comment)
+  }
   const visit = (value: unknown, depth: number): void => {
     if (depth > 8) return
     if (Array.isArray(value)) { for (const child of value) visit(child, depth + 1); return }
     const object = record(value)
     if (object === undefined) return
-    if (object.name === 'available_inventory_qty' && typeof object.comment === 'string'
-      && /可用库存数量\s*=\s*库存数量\s*[-−]\s*预留库存数量/.test(object.comment)) found = true
+    if (Array.isArray(object.data_properties) && object.data_properties.some(propertyDefinesDeduction)) found = true
     for (const child of Object.values(object)) visit(child, depth + 1)
   }
-  try { visit(JSON.parse(text), 0) } catch { /* Undisclosed formulas are not inferred. */ }
+  try { visit(JSON.parse(text), 0) } catch {
+    // Default get_object_types uses TOON. Inspect only direct property fields
+    // in data_properties arrays; nested mapped_field names cannot stand in
+    // for the property's name, and sibling/object comments cannot leak in.
+    const lines = text.split('\n')
+    const scalar = (value: string): string | undefined => {
+      const trimmed = value.trim()
+      if (!trimmed.startsWith('"')) return trimmed
+      try { const parsed: unknown = JSON.parse(trimmed); return typeof parsed === 'string' ? parsed : undefined } catch { return undefined }
+    }
+    const fields = (line: string): readonly string[] => {
+      const values: string[] = []
+      let start = 0, quoted = false, escaped = false
+      for (let i = 0; i < line.length; i++) {
+        const ch = line[i]
+        if (escaped) { escaped = false; continue }
+        if (ch === '\\' && quoted) { escaped = true; continue }
+        if (ch === '"') quoted = !quoted
+        if (ch === ',' && !quoted) { values.push(line.slice(start, i)); start = i + 1 }
+      }
+      if (quoted || escaped) return []
+      values.push(line.slice(start))
+      return values
+    }
+    for (let i = 0; i < lines.length; i++) {
+      const header = /^(\s*)data_properties\[#?\d+\](?:\{([^}]+)\})?:\s*$/.exec(lines[i]!)
+      if (header === null) continue
+      const indent = header[1]!.length
+      const keys = header[2]?.split(',').map(key => key.trim())
+      let property: Record<string, unknown> = {}, itemIndent: number | undefined
+      for (let j = i + 1; j < lines.length; j++) {
+        const raw = lines[j]!, width = raw.length - raw.trimStart().length
+        if (raw.trim().length === 0) continue
+        if (width <= indent) break
+        if (keys !== undefined) {
+          const values = fields(raw.trim()).map(scalar)
+          if (values.length === keys.length && values.every(value => value !== undefined)) found ||= propertyDefinesDeduction(Object.fromEntries(keys.map((key, k) => [key, values[k]])))
+          continue
+        }
+        const item = /^(\s*)-\s+(.+)$/.exec(raw)
+        if (item !== null && (itemIndent === undefined || item[1]!.length === itemIndent)) {
+          found ||= propertyDefinesDeduction(property)
+          property = {}
+          itemIndent = item[1]!.length
+        }
+        const direct = item !== null && item[1]!.length === itemIndent ? item[2] : width === (itemIndent ?? -2) + 2 ? raw.trim() : undefined
+        const field = direct === undefined ? null : /^(name|comment):\s*(.*)$/.exec(direct!)
+        if (field !== null) property[field[1]!] = scalar(field[2]!)
+      }
+      found ||= propertyDefinesDeduction(property)
+    }
+  }
   return found
 }
 
