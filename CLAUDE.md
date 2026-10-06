@@ -54,7 +54,9 @@ Historical regression to preserve: on 2026-10-03, main `948e359` and the release
 
 ## Repo etiquette
 
-- Agent-authored PR titles, descriptions, and follow-up comments must be written in English.
+- Communicate with the user in Chinese, including progress updates, questions, explanations and final replies.
+- All PR content must be in English: titles, descriptions, reviews, inline comments, follow-up comments and generated bot notices. Automated review prompts and output templates follow the same rule; bots have no language exception.
+- All Git commit messages must be in English, including both subject and body, and merge or squash commit messages. Check the language before submitting a PR, review or commit. Preserve identifiers, commands, paths and quoted source text when needed; write the surrounding explanation in English.
 
 - Pre-release accuracy check: run the G6 eval batch (`node docs/eval/run-eval.mjs --list` for the questions; grade a recorded run with `--answers`) against a live platform + model, and file the results markdown under `docs/evidence/`. Not in CI — it needs credentials.
 
