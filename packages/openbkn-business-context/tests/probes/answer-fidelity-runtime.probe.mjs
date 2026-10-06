@@ -54,14 +54,17 @@ class ScriptedAdapter extends llm.LlmAdapter {
   }
 }
 
-async function scenario(secondAnswer, bound = true, firstAnswer = BAD) {
+async function scenario(secondAnswer, bound = true, firstAnswer = BAD, repairHandoff = false) {
   const ctx = new cordis.Context()
   const adapter = new ScriptedAdapter([
     callResponse('bkn_start_interaction', { conversation_mode: 'new' }, 'start'),
     callResponse('run_code', { kn_id: 'kn-probe' }, 'detail'),
-    callResponse('bkn_finish_interaction', {}, 'finish'), textResponse(firstAnswer), textResponse(secondAnswer),
+    ...(repairHandoff ? [callResponse('run_code', { kn_id: 'kn-probe' }, 'cached-reprint')] : []),
+    callResponse('bkn_finish_interaction', {}, 'finish'), textResponse(firstAnswer),
+    ...(repairHandoff ? [] : [textResponse(secondAnswer)]),
   ])
   let dataCalls = 0
+  let reprintCalls = 0
   const fibers = []
   try {
     for (const plugin of [llm.default, session.default, projection.default, prompt.default, tools.default, registry.default]) fibers.push(await ctx.plugin(plugin))
@@ -69,7 +72,11 @@ async function scenario(secondAnswer, bound = true, firstAnswer = BAD) {
     ctx.llm.registerAdapter(['fixture'], adapter)
     const fixtures = [
       ['bkn_start_interaction', { conversation_mode: { type: 'string', required: true } }, () => JSON.stringify({ interaction_id: 'int-fixture', conversation_id: 'conv-fixture', execution_status: 'active' })],
-      ['run_code', { kn_id: { type: 'string', required: true } }, () => { dataCalls++; return JSON.stringify({ stdout: STDOUT, exit_code: 0, stderr: '' }) }],
+      ['run_code', { kn_id: { type: 'string', required: true } }, () => {
+        if (repairHandoff && dataCalls > 0) { reprintCalls++; return JSON.stringify({ stdout: STDOUT, exit_code: 0, stderr: '' }) }
+        dataCalls++
+        return JSON.stringify({ stdout: repairHandoff ? STDOUT.replace('level|parent|child_code|child_name|std_usage|available_qty|uom\n', '') : STDOUT, exit_code: 0, stderr: '' })
+      }],
       ['bkn_finish_interaction', {}, () => JSON.stringify({ interaction_id: 'int-fixture', conversation_id: 'conv-fixture', execution_status: 'completed' })],
     ]
     for (const [name, parameters, execute] of fixtures) {
@@ -94,15 +101,24 @@ async function scenario(secondAnswer, bound = true, firstAnswer = BAD) {
     assert.equal(ends.length, 1, 'correction stays in one turn')
     assert.equal(ends[0].data.reason.kind, expectedReason)
     assert.equal(notices.length, bound ? 1 : 0)
-    assert.deepEqual(answers, bound ? [firstAnswer, secondAnswer] : [firstAnswer], 'all attempted answers remain in the native log')
+    assert.deepEqual(answers, bound && !repairHandoff ? [firstAnswer, secondAnswer] : [firstAnswer], 'all attempted answers remain in the native log')
     assert.equal(dataCalls, 1, 'no additional retrieval during correction')
     assert.equal(adapter.requests.length, bound ? 5 : 4, 'one correction budget only')
     if (expectedReason === 'error') assert.match(ends[0].data.reason.error.message, /OpenBKN answer validation failed after one correction/)
-    return { scenario: !bound ? 'unbound-unaffected' : firstAnswer !== BAD ? 'full-question-summary-rejected' : secondAnswer === GOOD ? 'corrected-same-turn' : 'second-mismatch-errors', passed: true,
-      turnReason: expectedReason, turns: ends.length, correctionNotices: notices.length, answerAttempts: answers.length, dataCalls, modelCalls: adapter.requests.length,
+    if (repairHandoff) {
+      assert.equal(reprintCalls, 1)
+      assert.equal(notices[0].data.source.phase, 'tool-handoff')
+      const noticeIndex = events.indexOf(notices[0])
+      const finishIndex = events.findIndex(event => event.type === 'tool/call' && event.data.name === PREFIX + 'bkn_finish_interaction')
+      assert.ok(noticeIndex < finishIndex, 'producer repair precedes closing the original Interaction')
+      const raw = events.find(event => event.type === 'tool/result' && event.data.message.toolCallId === 'detail')
+      assert.ok(!raw.data.message.content[0].text.includes('level|parent|child_code'), 'original headerless result remains unchanged')
+    }
+    return { scenario: repairHandoff ? 'headerless-cached-reprint' : !bound ? 'unbound-unaffected' : firstAnswer !== BAD ? 'full-question-summary-rejected' : secondAnswer === GOOD ? 'corrected-same-turn' : 'second-mismatch-errors', passed: true,
+      turnReason: expectedReason, turns: ends.length, correctionNotices: notices.length, answerAttempts: answers.length, dataCalls, reprintCalls, modelCalls: adapter.requests.length,
       humanAfterTurnStart: human > turnStart, humanHasTurnField: false }
   } finally { for (const fiber of fibers.reverse()) await fiber.dispose() }
 }
 
 console.log(JSON.stringify({ evidence: 'official DSH runtime with scripted model and tool fixtures; no live platform/model', runtimeVersion: runtimeRequire('@deepseek-ai/dsh-agent-loop/package.json').version }))
-for (const [answer, bound, first] of [[GOOD, true, BAD], [BAD, true, BAD], [BAD, false, BAD], [GOOD, true, 'Complete detail exists; summary only.']]) console.log(JSON.stringify(await scenario(answer, bound, first)))
+for (const [answer, bound, first, repair] of [[GOOD, true, BAD], [BAD, true, BAD], [BAD, false, BAD], [GOOD, true, 'Complete detail exists; summary only.'], [GOOD, true, GOOD, true]]) console.log(JSON.stringify(await scenario(answer, bound, first, repair)))

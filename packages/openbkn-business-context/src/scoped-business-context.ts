@@ -17,7 +17,7 @@ import type { NetworkCapabilityProfile } from './network-capability-profile.js'
 import type { PlatformReaderConfig } from './platform-reader.js'
 import type { BusinessNetworkBinding } from './types.js'
 import { trimTrailingSlashes } from './trailing-slashes.js'
-import { AnswerFidelityError, inspectAnswerFidelity } from './answer-fidelity.js'
+import { AnswerFidelityError, inspectAnswerFidelity, inspectToolDetailHandoff } from './answer-fidelity.js'
 
 declare module '@deepseek-ai/dsh-llm' {
   interface MessageSourceMap {
@@ -25,6 +25,7 @@ declare module '@deepseek-ai/dsh-llm' {
       readonly kind: 'openbkn-answer-fidelity'
       readonly form: 'notice'
       readonly summary: string
+      readonly phase?: 'tool-handoff' | 'final-answer'
     }
   }
 }
@@ -205,6 +206,7 @@ const scopedPolicyPlugin = (
     // timing; it also covers tools contributed by the agent preset itself.
     let lifecycle: InteractionLifecycleState = restoreFrom(agent.session.snapshotEvents())
     let correctedTurn: number | undefined
+    let handoffRepairTurn: number | undefined
     tools.guard(execution => {
       if (execution.name === PTC_RUN_CODE_TOOL) return PTC_UNSUPPORTED_DENIAL
       const unmanaged = unmanagedDenial(execution.name)
@@ -220,9 +222,19 @@ const scopedPolicyPlugin = (
     // Constraint C2: this listener must stay synchronous so the state is
     // updated before the next guard judgment (V0-3, probe-verified).
     events.on('tools/result', (exec, result) => {
-      if (exec.name !== START_INTERACTION_TOOL && exec.name !== FINISH_INTERACTION_TOOL) return
-      // No write: the logged tool result itself is what `restoreFrom` replays.
-      lifecycle = onToolResult(lifecycle, exec.name, result.isError !== true, projectLifecycleOutcome(result))
+      if (exec.name === START_INTERACTION_TOOL || exec.name === FINISH_INTERACTION_TOOL) {
+        // No write: the logged tool result itself is what `restoreFrom` replays.
+        lifecycle = onToolResult(lifecycle, exec.name, result.isError !== true, projectLifecycleOutcome(result))
+      }
+      if (exec.name !== 'mcp__openbkn__run_code' || result.isError === true || exec.signal?.aborted || !lifecycle.open) return
+      const text = result.content.filter(block => block.type === 'text').map(block => block.text).join('\n')
+      const repair = inspectToolDetailHandoff(agent.session.snapshotEvents(), text)
+      if (repair === undefined || handoffRepairTurn === repair.turn) return
+      handoffRepairTurn = repair.turn
+      agent.steer(createUserMessage({
+        source: { kind: 'openbkn-answer-fidelity', form: 'notice', summary: '工具明细需补齐列头，正在核对。', phase: 'tool-handoff' },
+        content: [{ type: 'text', text: `${repair.issue.reason}\n${repair.issue.correction}` }],
+      }))
     })
     // Turn boundary (§6.4): reset the per-turn flags; the conversation id
     // survives inside `lifecycle` and the section below renders from it.
@@ -230,6 +242,7 @@ const scopedPolicyPlugin = (
       if (payload.step === 1) {
         lifecycle = onTurnStart(lifecycle)
         correctedTurn = undefined
+        handoffRepairTurn = undefined
       }
       return await next()
     })
@@ -254,7 +267,7 @@ const scopedPolicyPlugin = (
       // DSH persists this producer-labelled notice and the corrected model
       // answer; no assistant event or platform result is rewritten.
       agent.steer(createUserMessage({
-        source: { kind: 'openbkn-answer-fidelity', form: 'notice', summary: '回答与工具结果不一致，正在核对。' },
+        source: { kind: 'openbkn-answer-fidelity', form: 'notice', summary: '回答与工具结果不一致，正在核对。', phase: 'final-answer' },
         content: [{ type: 'text', text: [
           'OpenBKN final-answer validation failed. This is a plugin consistency notice, not a new user request.',
           issue.reason,

@@ -86,11 +86,12 @@ export function detailRowsOf(text: string): readonly DetailRow[] {
   return parseDetail(text).rows
 }
 
-function parseDetail(text: string): { readonly rows: readonly DetailRow[]; readonly malformed: boolean } {
-  if (text.length > MAX_TEXT_CHARS) return { rows: [], malformed: true }
+function parseDetail(text: string): { readonly rows: readonly DetailRow[]; readonly malformed: boolean; readonly hasColumns: boolean } {
+  if (text.length > MAX_TEXT_CHARS) return { rows: [], malformed: true, hasColumns: false }
   let columns: Columns | undefined
   let heading: string | undefined
   let malformed = false
+  let hasColumns = false
   const result: DetailRow[] = []
   const lines = text.split('\n')
   for (let lineIndex = 0; lineIndex < lines.length; lineIndex++) {
@@ -112,6 +113,7 @@ function parseDetail(text: string): { readonly rows: readonly DetailRow[]; reado
     }
     if (candidate.parent !== undefined && candidate.child !== undefined) {
       columns = DETAIL_KEYS.every(key => key === 'level' && heading !== undefined || candidate[key] !== undefined) ? candidate : undefined
+      if (columns !== undefined) hasColumns = true
       continue
     }
     // A separate summary table must not inherit detail columns. Its Markdown
@@ -136,9 +138,9 @@ function parseDetail(text: string): { readonly rows: readonly DetailRow[]; reado
       level: String(Number(level)), parent: values[columns.parent!]!, child: values[columns.child!]!,
       name: values[columns.name!]!, usage, stock, unit: unit(values[columns.unit!]!),
     })
-    if (result.length > MAX_DETAIL_ROWS) return { rows: [], malformed: true }
+    if (result.length > MAX_DETAIL_ROWS) return { rows: [], malformed: true, hasColumns }
   }
-  return { rows: result, malformed }
+  return { rows: result, malformed, hasColumns }
 }
 
 function markdownCell(value: string): string {
@@ -221,6 +223,33 @@ function stdoutOf(text: string): string {
 
 function fullDetailRequested(question: string): boolean {
   return /(?:完整|全部|每个|逐项|清单|\b(?:full|complete|every|all)\b).{0,40}(?:BOM|明细|物料|material|detail)|(?:BOM|物料|material).{0,80}(?:清单|每个|全部|完整|\b(?:every|all)\b)/i.test(question)
+}
+
+/** A narrow producer check, while the original Interaction is still open.
+ * Never infer the meaning of headerless positional values. One notice may
+ * request a labelled reprint of cached rows, without new business retrieval.
+ */
+export function inspectToolDetailHandoff(events: readonly FidelityEvent[], toolText: string): { readonly turn: number; readonly issue: AnswerFidelityIssue } | undefined {
+  let turn: number | undefined
+  let question = ''
+  for (const event of events) {
+    const data = record(event.data)
+    if (event.type === 'turn/start' && typeof data?.turn === 'number') { turn = data.turn; question = '' }
+    if (event.type === 'turn/end') { turn = undefined; question = '' }
+    if (event.type === 'user/message' && turn !== undefined && record(data?.source)?.kind === 'user') question = textOf(data?.content)
+  }
+  if (turn === undefined || !fullDetailRequested(question) || toolText.length > MAX_TEXT_CHARS) return undefined
+  const detail = stdoutOf(toolText)
+  const total = /^(?:DETAIL_ROWS|TOTAL_ROWS|BOM_ROWS):\s*(\d+)/m.exec(detail)?.[1]
+  const emitted = /^EMITTED:\s*(\d+)/m.exec(detail)?.[1]
+  // Partial pages, unknown quantities and conflicting headed batches remain
+  // governed by the final checker. This check only repairs missing metadata.
+  if (total === undefined || emitted === undefined || Number(total) <= 0 || Number(total) !== Number(emitted) || parseDetail(detail).hasColumns) return undefined
+  return { turn, issue: {
+    code: 'tool-detail-incomplete',
+    reason: 'The declared complete tool handoff has no explicit column header; positional values are not authoritative.',
+    correction: 'Before bkn_finish_interaction, reprint the previously computed complete rows in this same Interaction with their verified column meanings. Use the literal header level|parent|child_code|child_name|std_usage|available_qty|uom after DETAIL_ROWS and before the rows, then EMITTED. Reuse the saved handoff or existing sandbox data only; do not repeat business queries, capabilities, metrics or start another Interaction. Preserve every original row, quantity, unit and absent-row marker. Never guess a column order. If the original data or column meanings cannot be recovered, finish as failed and disclose the missing handoff.',
+  } }
 }
 
 /**

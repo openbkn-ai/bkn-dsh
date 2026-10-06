@@ -332,6 +332,42 @@ test('stop boundary steers one producer-labelled correction and keeps all origin
   assert.equal(fake.steering.length, 1)
 })
 
+test('settled headerless handoff steers once before finish, without changing guard or results', async () => {
+  const events = fidelityEvents().slice(0, -1)
+  const original = structuredClone(events)
+  const fake = fakeAgent(events)
+  mount(fake)
+  startSucceeded(fake)
+  const settle = fake.listeners['tools/result']![0]!
+  const result = { isError: false, content: [{ type: 'text', text: JSON.stringify({ exit_code: 0, stdout: 'DETAIL_ROWS:1\n1|p|c|part|2|0*|?\nEMITTED:1' }) }] }
+  settle({ name: 'mcp__openbkn__run_code' }, result)
+  settle({ name: 'mcp__openbkn__run_code' }, result)
+  assert.equal(fake.steering.length, 1)
+  assert.match(fake.steering[0]!.content[0]!.text!, /literal header level\|parent\|child_code/)
+  assert.equal(fake.guards[0]!({ name: 'mcp__openbkn__run_code', arguments: { kn_id: 'kn-supply' } }), undefined)
+  assert.deepEqual(events, original)
+  assert.deepEqual(fake.appended, [])
+  fake.appended.push({ type: 'turn/end', data: { turn: 1 } }, { type: 'turn/start', data: { turn: 2 } },
+    { type: 'user/message', data: { source: { kind: 'user' }, content: [{ type: 'text', text: '完整 BOM 清单，每个物料的用量和库存' }] } })
+  await fake.listeners['agent/pre-step']![0]!({ step: 1 }, async () => {})
+  startSucceeded(fake)
+  settle({ name: 'mcp__openbkn__run_code' }, result)
+  assert.equal(fake.steering.length, 2, 'a new turn resets the one-producer-repair budget')
+})
+
+test('producer repair does not steer on canceled or failed executions or a closed Interaction', () => {
+  for (const mode of ['aborted', 'failed', 'closed']) {
+    const fake = fakeAgent(fidelityEvents().slice(0, -1))
+    mount(fake)
+    startSucceeded(fake)
+    const settle = fake.listeners['tools/result']![0]!
+    if (mode === 'closed') settle({ name: FINISH }, { isError: false, content: [{ type: 'text', text: '{"interaction_id":"int-1","execution_status":"completed"}' }] })
+    settle({ name: 'mcp__openbkn__run_code', signal: mode === 'aborted' ? AbortSignal.abort() : new AbortController().signal },
+      { isError: mode === 'failed', content: [{ type: 'text', text: JSON.stringify({ exit_code: 0, stdout: 'DETAIL_ROWS:1\n1|p|c|part|2|0*|?\nEMITTED:1' }) }] })
+    assert.deepEqual(fake.steering, [], mode)
+  }
+})
+
 test('a second invalid final answer fails the turn instead of steering indefinitely', () => {
   const fake = fakeAgent(fidelityEvents())
   mount(fake)

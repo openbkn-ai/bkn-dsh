@@ -1,0 +1,31 @@
+{
+  "baseCommit": "e1568ece07abdf4452cfb02513d75a45964e2796",
+  "scope": "local source validation and controlled official-core fixtures, not CI or real-model acceptance",
+  "pluginTests": {
+    "total": 338,
+    "pass": 337,
+    "fail": 0,
+    "skip": 1
+  },
+  "repositoryTests": {
+    "total": 60,
+    "pass": 60,
+    "fail": 0
+  },
+  "typecheckExitCode": 0,
+  "packageCheckExitCode": 0,
+  "packedFileCount": 66,
+  "declaredTargets": 16,
+  "localTgzSha256": "1e7469a29983ee785f5037b8876e6a1fedbf495ccfd70ab509bd866b5328c5e0",
+  "runtimeFixtures": {
+    "officialNpmCore": "5/5",
+    "officialDesktopAsarCore": "5/5",
+    "newScenario": "headerless-cached-reprint",
+    "nativeTurnReason": "completed",
+    "dataRetrievalCalls": 1,
+    "cachedReprints": 1,
+    "producerNotices": 1,
+    "beforeInteractionFinish": true
+  },
+  "nextCiAndRealModelReplay": "pending"
+}

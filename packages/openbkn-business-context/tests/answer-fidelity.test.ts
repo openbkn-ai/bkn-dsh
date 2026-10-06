@@ -1,7 +1,7 @@
 import assert from 'node:assert/strict'
 import { readFileSync } from 'node:fs'
 import test from 'node:test'
-import { AnswerFidelityError, detailRowsOf, inspectAnswerFidelity, renderDetail, type FidelityEvent } from '../src/answer-fidelity.ts'
+import { AnswerFidelityError, detailRowsOf, inspectAnswerFidelity, inspectToolDetailHandoff, renderDetail, type FidelityEvent } from '../src/answer-fidelity.ts'
 
 const HEADER = 'level|parent|child_code|child_name|std_usage|available_qty|uom'
 const ROWS = '1|parent-a|shared-child|widget|1.00|12|个\n2|parent-b|shared-child|widget|2|0*|?'
@@ -22,7 +22,7 @@ function events(stdout: string, answer: string, question = '完整 BOM 清单，
 
 function captured(name: string, folder = 'unified-7-acceptance-20261006', answerIndex?: number): { readonly events: FidelityEvent[]; readonly answer: string } {
   const raw = JSON.parse(readFileSync(new URL(`../../../docs/evidence/${folder}/${name}.json`, import.meta.url), 'utf8'))
-  const answer = answerIndex === undefined ? raw.assistantText.join('\n') : raw.assistantText[answerIndex]
+  const answer = answerIndex === undefined ? raw.assistantText.join('\n') : raw.assistantText.at(answerIndex)
   return { answer, events: [
     { type: 'turn/start', data: { turn: 1 } },
     { type: 'user/message', data: { source: { kind: 'user' }, content: [{ type: 'text', text: Array.isArray(raw.question) ? raw.question.join('\n') : raw.question }] } },
@@ -32,6 +32,48 @@ function captured(name: string, folder = 'unified-7-acceptance-20261006', answer
     { type: 'assistant/message', data: { turn: 1, message: { content: [{ type: 'text', text: answer }] } } },
   ] }
 }
+
+test('real headerless handoff stays unverified until a separate labelled cached reprint', () => {
+  const run = captured('ci-e1568ec-bom-failed', 'answer-fidelity-20261006', -1)
+  const original = structuredClone(run.events)
+  const handoff = run.events.find(event => {
+    const data = event.data as { message?: { content?: Array<{ text: string }> } }
+    return event.type === 'tool/result' && data.message?.content?.some(block => block.text.includes('DETAIL_ROWS'))
+  })!
+  const text = (handoff.data as { message: { content: Array<{ text: string }> } }).message.content[0]!.text
+  const result = JSON.parse(text)
+  assert.equal(detailRowsOf(result.stdout).length, 0, 'never infer headerless positions')
+  assert.equal(inspectAnswerFidelity(run.events, 1)?.code, 'tool-detail-incomplete')
+  const repair = inspectToolDetailHandoff(run.events.slice(0, -1), text)
+  assert.equal(repair?.turn, 1)
+  assert.match(repair!.issue.correction, /Before bkn_finish_interaction/)
+  assert.match(repair!.issue.correction, /do not repeat business queries/)
+  // The captured print program explicitly uses these seven meanings. This
+  // models a new sandbox result; it does not alter the failed original log.
+  const labelled = { ...result, stdout: result.stdout.replace('DETAIL_ROWS: 313\n', `DETAIL_ROWS: 313\n${HEADER}\n`) }
+  assert.equal(detailRowsOf(labelled.stdout).length, 313)
+  const finish = run.events.findIndex(event => event.type === 'tool/call' && (event.data as { name: string }).name === 'mcp__openbkn__bkn_finish_interaction')
+  assert.ok(finish > 0)
+  const repaired = [...run.events.slice(0, finish),
+    { type: 'tool/call', data: { turn: 1, callId: 'cached-reprint', name: 'mcp__openbkn__run_code' } },
+    { type: 'tool/result', data: { turn: 1, message: { toolCallId: 'cached-reprint', content: [{ type: 'text', text: JSON.stringify(labelled) }] } } },
+    ...run.events.slice(finish),
+  ]
+  assert.equal(inspectAnswerFidelity(repaired, 1), undefined)
+  assert.deepEqual(run.events, original, 'the actual native-error capture is preserved')
+})
+
+test('producer check ignores pages, headed malformed values, other questions, errors and ended turns', () => {
+  const log = events(detail(), 'answer')
+  const envelope = (stdout: string, exit_code = 0) => JSON.stringify({ stdout, exit_code })
+  assert.equal(inspectToolDetailHandoff(log, envelope(detail())), undefined)
+  assert.equal(inspectToolDetailHandoff(log, envelope(detail().replace(HEADER + '\n', '').replace('DETAIL_ROWS: 2', 'DETAIL_ROWS: 002')))?.turn, 1)
+  assert.equal(inspectToolDetailHandoff(log, envelope(detail(ROWS.split('\n')[0]!, 2))), undefined)
+  assert.equal(inspectToolDetailHandoff(log, envelope(detail().replace('|12|', '|unknown|'))), undefined)
+  assert.equal(inspectToolDetailHandoff(log, envelope(detail().replace(HEADER + '\n', ''), 1)), undefined)
+  assert.equal(inspectToolDetailHandoff(events(detail(), 'answer', '只需汇总库存'), envelope(detail().replace(HEADER + '\n', ''))), undefined)
+  assert.equal(inspectToolDetailHandoff([...log, { type: 'turn/end', data: { turn: 1 } }], envelope(detail().replace(HEADER + '\n', ''))), undefined)
+})
 
 test('live empty-stock handoff rejects the excerpt but accepts all 313 faithfully copied rows', () => {
   const excerpt = captured('ci-2abd71d-bom-failed', 'answer-fidelity-20261006', 0)

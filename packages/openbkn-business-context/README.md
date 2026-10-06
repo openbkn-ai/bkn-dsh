@@ -26,6 +26,8 @@ The integration is designed as an additive DSH plugin. It preserves the native D
 
 For complete BOM detail with explicit row counts, the plugin checks that the final answer preserves the tool's rows, levels, quantities and units, and checks disclosed physical source names. A mismatch preserves the original answer and requests one correction; a persistent mismatch ends in an explicit error. This checks supported detail handoffs, not the correctness of business rules or platform data.
 
+A declared complete handoff without column names receives at most one earlier producer notice, while the original Interaction remains open. It requests a labelled reprint of already cached rows, never new retrieval or guessed positions. This metadata repair is separate from the one final-answer correction; all original attempts remain in the log.
+
 ## Who it is for
 
 - **Business users** who need reliable analysis without learning query languages or platform APIs.
