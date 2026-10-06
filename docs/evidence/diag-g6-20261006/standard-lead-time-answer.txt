@@ -1,0 +1,86 @@
+Window: "382-000005 标准交期查询 — DeepSeek Harness", App: DeepSeek Harness.
+0 standard window 382-000005 标准交期查询 — DeepSeek Harness, Secondary Actions: Raise
+	1 container 382-000005 标准交期查询 — DeepSeek Harness
+		2 container
+			3 HTML content 382-000005 标准交期查询 — DeepSeek Harness, URL: dsh-app://app/
+				4 container
+					5 button 收起侧边栏
+					6 button 新建会话
+					7 container 全局面板
+						8 button 插件
+					9 text 工作区
+					10 button 搜索会话
+					11 text field (settable) 搜索会话名称
+					12 button 视图选项
+					13 button 添加工作区
+					14 outline 会话
+						15 container
+							16 row workspace-supply
+								17 text workspace-supply
+							18 row (selected) 382-000005 标准交期查询 刚刚
+								19 text 382-000005 标准交期查询 刚刚
+						20 row 默认工作区
+							21 text 默认工作区
+					22 button OpenBKN business knowledge networks
+					23 pop up button 账号菜单
+					24 container
+						25 container 会话层级
+							26 text 382-000005 标准交期查询
+						27 text 标准模式
+						28 text 供应链本体知识网络-手工版
+						29 button 用 访达 打开
+						30 pop up button 更多打开方式
+						31 pop up button 更多操作
+						32 button 打开右侧边栏
+						33 tab group
+							34 tab (selected) 对话, Value: 1
+							35 tab (settable, integer) 轨迹, Value: 0
+					36 container
+						37 container
+							38 text 382-000005 的标准交期？ 08:53
+							39 button 复制
+							40 text 已完成
+							41 button 已完成，用时 14秒
+								42 text 已完成，用时
+								43 text 14
+								44 text 秒
+							45 text 382-000005 的标准交期为 1 天。
+							46 content list
+								47 container
+									48 AXListMarker •
+									49 text 取数方式：知识网络  supply_ontology_hand  上已发布的能力「标准交期」（输入物料编码）
+								50 container
+									51 AXListMarker •
+									52 text 返回结果： leadtime_days = 1 ，口径数据源为  material  数据集
+								53 container
+									54 AXListMarker •
+									55 text 说明：该能力的描述提到会同时给出「采购或生产」口径，但本次返回里没有口径字段，所以具体按采购还是生产口径未确认；如需口径明细，需在数据建模侧补充。
+							56 button 复制
+							57 toggle button Description: 好的回答, Value: 0
+							58 toggle button Description: 有问题的回答, Value: 0
+							59 button 查看业务溯源, Help: View OpenBKN provenance for this answer
+							60 button 在新对话中分支
+							61 pop up button 用量 313K tok
+							62 text 08:53
+						63 text entry area (settable) 发消息或创建任务, / 调用指令, @ 文件或对话
+						64 pop up button 添加文件或调用指令
+						65 button 访问模式，当前：工作区内修改
+						66 pop up button Description: 选择模型，当前 DeepSeek-V41-Flash，推理等级 High, Help: DeepSeek-V41-Flash · High
+						67 button (disabled) 发送消息
+						68 pop up button 1 轮 6 步 · 279 tok/s
+							69 text 1 轮 6 步
+							70 text 279 tok/s
+						71 pop up button 313K tok · 缓存命中 83%
+							72 text 313K tok
+							73 text 缓存命中 83%
+						74 pop up button 上下文已用 5%
+	75 close button
+	76 full screen button Help: this button also has an action to zoom the window, Secondary Actions: zoom the window
+	77 minimize button
+78 menu bar
+	79 DeepSeek Harness
+	80 文件
+	81 Edit
+	82 Window
+
+The focused UI element is 3 HTML content 382-000005 标准交期查询 — DeepSeek Harness, URL: dsh-app://app/

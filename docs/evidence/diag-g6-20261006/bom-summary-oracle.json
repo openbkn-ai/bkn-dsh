@@ -1,0 +1,164 @@
+{
+  "verification": "independent actual CLI0.1.5 published-function call, not MySQL",
+  "request": {
+    "kn_id": "supply_ontology_hand",
+    "toolbox_id": "203d444b-1f20-47e7-a1af-bce6dfaeebb3",
+    "tool_id": "afd1823b-0234-4f35-ba03-3c0b91409445",
+    "arguments": {
+      "product": "382-000005"
+    }
+  },
+  "response": {
+    "error": "",
+    "duration_ms": 1040,
+    "status_code": 200,
+    "headers": {
+      "Cache-Control": "private, no-cache",
+      "Content-Type": "application/json",
+      "Date": "Tue, 06 Oct 2026 01:04:28 GMT"
+    },
+    "body": {
+      "result": {
+        "max_level": 5,
+        "caliber": "main_only",
+        "product_code": "382-000005",
+        "l1_main_count": 9,
+        "line_count": 313,
+        "report_grain": "summary",
+        "include_substitute": false,
+        "depth": 1,
+        "rows_incl_root": 507,
+        "l1_lines": [
+          {
+            "alt_method": "",
+            "is_substitute": false,
+            "bom_version": "2026-08-05T00:00:00+08:00",
+            "material_name": "YN406预组装包(拖拉机)",
+            "alt_group_no": "",
+            "alt_priority": 0,
+            "standard_usage": 1,
+            "material_code": "791-000013",
+            "parent_material_code": "382-000005",
+            "bom_level": 1
+          },
+          {
+            "is_substitute": false,
+            "alt_group_no": "",
+            "alt_priority": 0,
+            "standard_usage": 1,
+            "bom_level": 1,
+            "alt_method": "",
+            "bom_version": "2026-08-05T00:00:00+08:00",
+            "material_name": "YN406 包装外箱_V2",
+            "parent_material_code": "382-000005",
+            "material_code": "606-000989"
+          },
+          {
+            "bom_version": "2026-08-05T00:00:00+08:00",
+            "material_code": "606-000990",
+            "standard_usage": 1,
+            "alt_group_no": "",
+            "alt_priority": 0,
+            "bom_level": 1,
+            "alt_method": "",
+            "material_name": "YN406 珍珠棉内托_V2",
+            "parent_material_code": "382-000005",
+            "is_substitute": false
+          },
+          {
+            "material_code": "528-000036",
+            "material_name": "YS221A接收机组件_国内",
+            "standard_usage": 1,
+            "bom_version": "2026-08-05T00:00:00+08:00",
+            "bom_level": 1,
+            "alt_priority": 0,
+            "parent_material_code": "382-000005",
+            "is_substitute": false,
+            "alt_method": "",
+            "alt_group_no": ""
+          },
+          {
+            "material_code": "791-000007",
+            "alt_priority": 0,
+            "material_name": "YN406B方向盘组件（拖拉机）",
+            "bom_level": 1,
+            "bom_version": "2026-08-05T00:00:00+08:00",
+            "parent_material_code": "382-000005",
+            "standard_usage": 1,
+            "alt_method": "",
+            "alt_group_no": "",
+            "is_substitute": false
+          },
+          {
+            "alt_group_no": "",
+            "alt_priority": 0,
+            "parent_material_code": "382-000005",
+            "material_name": "406电源+电机+接收机连接线",
+            "bom_level": 1,
+            "bom_version": "2026-08-05T00:00:00+08:00",
+            "material_code": "994-000550",
+            "standard_usage": 1,
+            "alt_method": "",
+            "is_substitute": false
+          },
+          {
+            "parent_material_code": "382-000005",
+            "alt_priority": 0,
+            "alt_method": "",
+            "material_name": "YN406说明书（中文）",
+            "bom_version": "2026-08-05T00:00:00+08:00",
+            "is_substitute": false,
+            "alt_group_no": "",
+            "material_code": "468-000493",
+            "bom_level": 1,
+            "standard_usage": 1
+          },
+          {
+            "alt_method": "",
+            "alt_group_no": "",
+            "is_substitute": false,
+            "material_name": "导航车贴(60*15cm)",
+            "standard_usage": 1,
+            "bom_level": 1,
+            "alt_priority": 0,
+            "material_code": "468-000530",
+            "bom_version": "2026-08-05T00:00:00+08:00",
+            "parent_material_code": "382-000005"
+          },
+          {
+            "bom_version": "2026-08-05T00:00:00+08:00",
+            "material_name": "YN403显示终端整机_预装组件_拖拉机",
+            "bom_level": 1,
+            "alt_priority": 0,
+            "material_code": "791-000015",
+            "standard_usage": 1,
+            "alt_method": "",
+            "alt_group_no": "",
+            "is_substitute": false,
+            "parent_material_code": "382-000005"
+          }
+        ],
+        "unique_child_count": 272,
+        "data_source": {
+          "loaded_datasets": [
+            "bom"
+          ],
+          "knowledge_network_id": "supply_ontology_hand"
+        }
+      },
+      "metrics": {
+        "cpu_time_ms": 6.884123000020281,
+        "peak_memory_mb": null,
+        "io_read_bytes": null,
+        "io_write_bytes": null,
+        "duration_ms": 455.4976779036224
+      },
+      "exit_code": 0,
+      "execution_time_ms": 0,
+      "artifacts": [],
+      "session_id": "sess_aoi_0",
+      "stdout": "",
+      "stderr": ""
+    }
+  }
+}

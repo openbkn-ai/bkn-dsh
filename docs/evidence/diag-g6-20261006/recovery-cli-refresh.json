@@ -1,0 +1,17 @@
+{
+  "before": {
+    "exitCode": 0,
+    "hasToken": true,
+    "expired": true,
+    "configuredPlatformMatches": true
+  },
+  "normalCliRefreshExit": 0,
+  "tokenReturnedNonempty": true,
+  "after": {
+    "exitCode": 0,
+    "hasToken": true,
+    "expired": false,
+    "configuredPlatformMatches": true
+  },
+  "note": "Normal CLI-owned credential refresh; token stdout used only in memory and not exported. Startup control and time spent testing allowed the existing default CLI access token to expire."
+}

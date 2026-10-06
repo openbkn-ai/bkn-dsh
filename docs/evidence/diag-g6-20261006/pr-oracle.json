@@ -1,0 +1,37 @@
+{
+  "verification": "independent CLI0.1.5 query",
+  "request": {
+    "ot_id": "supply_ontology_hand_pr",
+    "condition": {
+      "operation": "==",
+      "field": "material_number",
+      "value": "382-000005",
+      "value_from": "const"
+    },
+    "limit": 1000
+  },
+  "response": {
+    "datas": [],
+    "effective_permissions": {
+      "unit_name": "full",
+      "rowterminatestatus_title": "full",
+      "rowclosestatus_title": "full",
+      "srcbillentryid": "full",
+      "billtype_name": "full",
+      "auditdate": "full",
+      "org_name": "full",
+      "qty": "full",
+      "srcbillnumber": "full",
+      "biztime": "full",
+      "material_number": "full",
+      "srcbillid": "full",
+      "entry_id": "full",
+      "material_name": "full",
+      "billno": "full",
+      "huid_xmh_name": "full",
+      "id": "full",
+      "joinqty": "full"
+    },
+    "total_count": 0
+  }
+}

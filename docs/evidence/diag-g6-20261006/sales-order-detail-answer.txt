@@ -1,0 +1,889 @@
+Window: "查询销售订单382-000005明细 — DeepSeek Harness", App: DeepSeek Harness.
+0 standard window 查询销售订单382-000005明细 — DeepSeek Harness, Secondary Actions: Raise
+	1 container 查询销售订单382-000005明细 — DeepSeek Harness
+		2 container
+			3 HTML content 查询销售订单382-000005明细 — DeepSeek Harness, URL: dsh-app://app/
+				4 container
+					5 button 收起侧边栏
+					6 button 新建会话
+					7 container 全局面板
+						8 button 插件
+					9 text 工作区
+					10 button 搜索会话
+					11 text field (settable) 搜索会话名称
+					12 button 视图选项
+					13 button 添加工作区
+					14 outline 会话
+						15 container
+							16 row workspace-supply
+								17 text workspace-supply
+							18 row (selected) 查询销售订单382-000005明细 刚刚
+								19 text 查询销售订单382-000005明细 刚刚
+							20 row 未结采购申请和采购订单查询 6分钟
+								21 text 未结采购申请和采购订单查询 6分钟
+							22 row 查询BOM清单及物料库存情况 10分钟
+								23 text 查询BOM清单及物料库存情况 10分钟
+							24 row 382-000005 BOM 构成查询 11分钟
+								25 text 382-000005 BOM 构成查询 11分钟
+							26 row 各成品仓382-000005可用库存 12分钟
+								27 text 各成品仓382-000005可用库存 12分钟
+							28 button 展开其余 2 个会话
+						29 row 默认工作区
+							30 text 默认工作区
+					31 button OpenBKN business knowledge networks
+					32 pop up button 账号菜单
+					33 container
+						34 container 会话层级
+							35 text 查询销售订单382-000005明细
+						36 text 标准模式
+						37 text 供应链本体知识网络-手工版
+						38 button 用 访达 打开
+						39 pop up button 更多打开方式
+						40 pop up button 更多操作
+						41 button 打开右侧边栏
+						42 tab group
+							43 tab (selected) 对话, Value: 1
+							44 tab (settable, integer) 轨迹, Value: 0
+					45 container
+						46 container
+							47 text 列出 382-000005 的销售订单明细。 09:13
+							48 button 复制
+							49 text 已完成
+							50 button 已完成，用时 38秒
+								51 text 已完成，用时
+								52 text 38
+								53 text 秒
+							54 text 382-000005 不是销售订单号，而是产品编码
+							55 text ——产品名称「北斗导航农机驾驶仪」。我先按销售订单号/合同号精确匹配过，命中 0 条，改按产品编码查询后命中
+							56 text 40 条
+							57 text 销售订单明细（该对象类全网共 800 条销售订单）。
+							58 text 汇总
+							59 text ：40 张订单，状态全部为「已确认」；签约数量合计
+							60 text 1081
+							61 text ，已发货数量合计
+							62 text 1066
+							63 text ，尚有 15 台未发。客户集中在农机/测绘/传媒/安防等行业。
+							64 table
+								65 row
+									66 column header
+										67 text 销售订单号
+									68 column header
+										69 text 合同号
+									70 column header
+										71 text 客户
+									72 column header
+										73 text 签约数量
+									74 column header
+										75 text 签约日期
+									76 column header
+										77 text 承诺交期
+									78 column header
+										79 text 已发货量
+									80 column header
+										81 text 状态
+									82 column header
+										83 text 销售员
+								84 row
+									85 cell
+										86 text SO0000001
+									87 cell
+										88 text HT-2026-00001
+									89 cell
+										90 text 广州绿野农勭技术有限公司
+									91 cell
+										92 text 11
+									93 cell
+										94 text 2026-04-02
+									95 cell
+										96 text 2026-04-23
+									97 cell
+										98 text 11
+									99 cell
+										100 text 已确认
+									101 cell
+										102 text 路霞
+								103 row
+									104 cell
+										105 text SO0000002
+									106 cell
+										107 text HT-2026-00002
+									108 cell
+										109 text 上海绿野冩业服务有限公司
+									110 cell
+										111 text 43
+									112 cell
+										113 text 2026-04-24
+									114 cell
+										115 text 2026-05-14
+									116 cell
+										117 text 43
+									118 cell
+										119 text 已确认
+									120 cell
+										121 text 臧子
+								122 row
+									123 cell
+										124 text SO0000003
+									125 cell
+										126 text HT-2026-00003
+									127 cell
+										128 text 长沙沃土农侪股份有限公司
+									129 cell
+										130 text 32
+									131 cell
+										132 text 2026-04-20
+									133 cell
+										134 text 2026-06-04
+									135 cell
+										136 text 32
+									137 cell
+										138 text 已确认
+									139 cell
+										140 text 解飞
+								141 row
+									142 cell
+										143 text SO0000004
+									144 cell
+										145 text HT-2026-00004
+									146 cell
+										147 text 武汉农兴农业勎技有限公司
+									148 cell
+										149 text 41
+									150 cell
+										151 text 2026-04-07
+									152 cell
+										153 text 2026-04-30
+									154 cell
+										155 text 41
+									156 cell
+										157 text 已确认
+									158 cell
+										159 text 路霞
+								160 row
+									161 cell
+										162 text SO0000005
+									163 cell
+										164 text HT-2026-00005
+									165 cell
+										166 text 沈俰农达农业有限公司
+									167 cell
+										168 text 43
+									169 cell
+										170 text 2026-04-03
+									171 cell
+										172 text 2026-04-30
+									173 cell
+										174 text 39
+									175 cell
+										176 text 已确认
+									177 cell
+										178 text 臧子
+								179 row
+									180 cell
+										181 text SO0000006
+									182 cell
+										183 text HT-2026-00006
+									184 cell
+										185 text 上海沃土农资技术有倍公司
+									186 cell
+										187 text 22
+									188 cell
+										189 text 2026-05-29
+									190 cell
+										191 text 2026-06-18
+									192 cell
+										193 text 22
+									194 cell
+										195 text 已确认
+									196 cell
+										197 text 解飞
+								198 row
+									199 cell
+										200 text SO0000007
+									201 cell
+										202 text HT-2026-00007
+									203 cell
+										204 text 剽都益农农机服务有限公司
+									205 cell
+										206 text 9
+									207 cell
+										208 text 2026-06-04
+									209 cell
+										210 text 2026-06-19
+									211 cell
+										212 text 9
+									213 cell
+										214 text 已确认
+									215 cell
+										216 text 路霞
+								217 row
+									218 cell
+										219 text SO0000008
+									220 cell
+										221 text HT-2026-00008
+									222 cell
+										223 text 郑州绿洲农技股份侦限公司
+									224 cell
+										225 text 44
+									226 cell
+										227 text 2026-03-27
+									228 cell
+										229 text 2026-04-12
+									230 cell
+										231 text 43
+									232 cell
+										233 text 已确认
+									234 cell
+										235 text 臧子
+								236 row
+									237 cell
+										238 text SO0000009
+									239 cell
+										240 text HT-2026-00009
+									241 cell
+										242 text 郑州绿洲农业服劮有限公司
+									243 cell
+										244 text 8
+									245 cell
+										246 text 2026-04-20
+									247 cell
+										248 text 2026-05-28
+									249 cell
+										250 text 8
+									251 cell
+										252 text 已确认
+									253 cell
+										254 text 解飞
+								255 row
+									256 cell
+										257 text SO0000010
+									258 cell
+										259 text HT-2026-00010
+									260 cell
+										261 text 杭州沃土农技股份有限公吅
+									262 cell
+										263 text 24
+									264 cell
+										265 text 2026-06-07
+									266 cell
+										267 text 2026-07-28
+									268 cell
+										269 text 24
+									270 cell
+										271 text 已确认
+									272 cell
+										273 text 路霞
+								274 row
+									275 cell
+										276 text SO0000011
+									277 cell
+										278 text HT-2026-00011
+									279 cell
+										280 text 西安禾苗农科有限兹司
+									281 cell
+										282 text 43
+									283 cell
+										284 text 2026-06-09
+									285 cell
+										286 text 2026-07-03
+									287 cell
+										288 text 43
+									289 cell
+										290 text 已确认
+									291 cell
+										292 text 臧子
+								293 row
+									294 cell
+										295 text SO0000012
+									296 cell
+										297 text HT-2026-00012
+									298 cell
+										299 text 厦门田园农服有限兹司
+									300 cell
+										301 text 2
+									302 cell
+										303 text 2026-05-02
+									304 cell
+										305 text 2026-06-20
+									306 cell
+										307 text 2
+									308 cell
+										309 text 已确认
+									310 cell
+										311 text 解飞
+								312 row
+									313 cell
+										314 text SO0000013
+									315 cell
+										316 text HT-2026-00013
+									317 cell
+										318 text 沈阳地信勘测工程侦限公司
+									319 cell
+										320 text 21
+									321 cell
+										322 text 2026-06-21
+									323 cell
+										324 text 2026-07-27
+									325 cell
+										326 text 19
+									327 cell
+										328 text 已确认
+									329 cell
+										330 text 路霞
+								331 row
+									332 cell
+										333 text SO0000014
+									334 cell
+										335 text HT-2026-00014
+									336 cell
+										337 text 沈阳空间空间信息有限公吅
+									338 cell
+										339 text 16
+									340 cell
+										341 text 2026-05-09
+									342 cell
+										343 text 2026-06-23
+									344 cell
+										345 text 16
+									346 cell
+										347 text 已确认
+									348 cell
+										349 text 臧子
+								350 row
+									351 cell
+										352 text SO0000015
+									353 cell
+										354 text HT-2026-00015
+									355 cell
+										356 text 南京测控测绘勎技有限公司
+									357 cell
+										358 text 33
+									359 cell
+										360 text 2026-04-24
+									361 cell
+										362 text 2026-06-17
+									363 cell
+										364 text 33
+									365 cell
+										366 text 已确认
+									367 cell
+										368 text 解飞
+								369 row
+									370 cell
+										371 text SO0000016
+									372 cell
+										373 text HT-2026-00016
+									374 cell
+										375 text 西安星图空间信息服务有倍公司
+									376 cell
+										377 text 24
+									378 cell
+										379 text 2026-05-31
+									380 cell
+										381 text 2026-07-16
+									382 cell
+										383 text 24
+									384 cell
+										385 text 已确认
+									386 cell
+										387 text 路霞
+								388 row
+									389 cell
+										390 text SO0000017
+									391 cell
+										392 text HT-2026-00017
+									393 cell
+										394 text 上海地理勘测侦限公司
+									395 cell
+										396 text 15
+									397 cell
+										398 text 2026-06-12
+									399 cell
+										400 text 2026-07-28
+									401 cell
+										402 text 15
+									403 cell
+										404 text 已确认
+									405 cell
+										406 text 臧子
+								407 row
+									408 cell
+										409 text SO0000018
+									410 cell
+										411 text HT-2026-00018
+									412 cell
+										413 text 郑州佭景测控工程有限公司
+									414 cell
+										415 text 14
+									416 cell
+										417 text 2026-03-05
+									418 cell
+										419 text 2026-04-09
+									420 cell
+										421 text 14
+									422 cell
+										423 text 已确认
+									424 cell
+										425 text 解飞
+								426 row
+									427 cell
+										428 text SO0000019
+									429 cell
+										430 text HT-2026-00019
+									431 cell
+										432 text 郑州经俙空间信息有限公司
+									433 cell
+										434 text 29
+									435 cell
+										436 text 2026-03-03
+									437 cell
+										438 text 2026-03-27
+									439 cell
+										440 text 29
+									441 cell
+										442 text 已确认
+									443 cell
+										444 text 路霞
+								445 row
+									446 cell
+										447 text SO0000020
+									448 cell
+										449 text HT-2026-00020
+									450 cell
+										451 text 大连天伻测绘有限公司
+									452 cell
+										453 text 23
+									454 cell
+										455 text 2026-06-05
+									456 cell
+										457 text 2026-07-17
+									458 cell
+										459 text 23
+									460 cell
+										461 text 已确认
+									462 cell
+										463 text 臧子
+								464 row
+									465 cell
+										466 text SO0000501
+									467 cell
+										468 text HT-2026-00501
+									469 cell
+										470 text 沈俰经纬测量有限公司
+									471 cell
+										472 text 45
+									473 cell
+										474 text 2026-03-11
+									475 cell
+										476 text 2026-03-31
+									477 cell
+										478 text 45
+									479 cell
+										480 text 已确认
+									481 cell
+										482 text 解飞
+								483 row
+									484 cell
+										485 text SO0000502
+									486 cell
+										487 text HT-2026-00502
+									488 cell
+										489 text 上海天地地理信僜技术有限公司
+									490 cell
+										491 text 10
+									492 cell
+										493 text 2026-06-06
+									494 cell
+										495 text 2026-06-21
+									496 cell
+										497 text 6
+									498 cell
+										499 text 已确认
+									500 cell
+										501 text 路霞
+								502 row
+									503 cell
+										504 text SO0000503
+									505 cell
+										506 text HT-2026-00503
+									507 cell
+										508 text 杭州光影亓代影像工作室
+									509 cell
+										510 text 41
+									511 cell
+										512 text 2026-05-12
+									513 cell
+										514 text 2026-06-17
+									515 cell
+										516 text 41
+									517 cell
+										518 text 已确认
+									519 cell
+										520 text 臧子
+								521 row
+									522 cell
+										523 text SO0000504
+									524 cell
+										525 text HT-2026-00504
+									526 cell
+										527 text 西安匣界传媒广告传媒有限公司
+									528 cell
+										529 text 2
+									530 cell
+										531 text 2026-03-12
+									532 cell
+										533 text 2026-04-07
+									534 cell
+										535 text 2
+									536 cell
+										537 text 已确认
+									538 cell
+										539 text 解飞
+								540 row
+									541 cell
+										542 text SO0000505
+									543 cell
+										544 text HT-2026-00505
+									545 cell
+										546 text 哈呑滨视界传媒文化有限公司
+									547 cell
+										548 text 23
+									549 cell
+										550 text 2026-05-08
+									551 cell
+										552 text 2026-06-26
+									553 cell
+										554 text 23
+									555 cell
+										556 text 已确认
+									557 cell
+										558 text 路霞
+								559 row
+									560 cell
+										561 text SO0000506
+									562 cell
+										563 text HT-2026-00506
+									564 cell
+										565 text 杭州视野剃作传媒有限公司
+									566 cell
+										567 text 3
+									568 cell
+										569 text 2026-04-08
+									570 cell
+										571 text 2026-06-02
+									572 cell
+										573 text 1
+									574 cell
+										575 text 已确认
+									576 cell
+										577 text 臧子
+								578 row
+									579 cell
+										580 text SO0000507
+									581 cell
+										582 text HT-2026-00507
+									583 cell
+										584 text 天津光影工场广呗文化传播有限公司
+									585 cell
+										586 text 10
+									587 cell
+										588 text 2026-04-01
+									589 cell
+										590 text 2026-05-23
+									591 cell
+										592 text 10
+									593 cell
+										594 text 已确认
+									595 cell
+										596 text 解飞
+								597 row
+									598 cell
+										599 text SO0000508
+									600 cell
+										601 text HT-2026-00508
+									602 cell
+										603 text 西安影动广告有倍公司
+									604 cell
+										605 text 48
+									606 cell
+										607 text 2026-06-03
+									608 cell
+										609 text 2026-06-25
+									610 cell
+										611 text 48
+									612 cell
+										613 text 已确认
+									614 cell
+										615 text 路霞
+								616 row
+									617 cell
+										618 text SO0000509
+									619 cell
+										620 text HT-2026-00509
+									621 cell
+										622 text 苏州光线文化工佩室
+									623 cell
+										624 text 50
+									625 cell
+										626 text 2026-03-03
+									627 cell
+										628 text 2026-03-25
+									629 cell
+										630 text 50
+									631 cell
+										632 text 已确认
+									633 cell
+										634 text 臧子
+								635 row
+									636 cell
+										637 text SO0000510
+									638 cell
+										639 text HT-2026-00510
+									640 cell
+										641 text 亾圳影动力广告文化有限公司
+									642 cell
+										643 text 2
+									644 cell
+										645 text 2026-04-02
+									646 cell
+										647 text 2026-04-19
+									648 cell
+										649 text 2
+									650 cell
+										651 text 已确认
+									652 cell
+										653 text 解飞
+								654 row
+									655 cell
+										656 text SO0000511
+									657 cell
+										658 text HT-2026-00511
+									659 cell
+										660 text 武哦守护安防科技服务有限公司
+									661 cell
+										662 text 46
+									663 cell
+										664 text 2026-04-07
+									665 cell
+										666 text 2026-05-30
+									667 cell
+										668 text 46
+									669 cell
+										670 text 已确认
+									671 cell
+										672 text 路霞
+								673 row
+									674 cell
+										675 text SO0000512
+									676 cell
+										677 text HT-2026-00512
+									678 cell
+										679 text 西安安通警用装备工程侦限公司
+									680 cell
+										681 text 48
+									682 cell
+										683 text 2026-03-24
+									684 cell
+										685 text 2026-04-26
+									686 cell
+										687 text 48
+									688 cell
+										689 text 已确认
+									690 cell
+										691 text 臧子
+								692 row
+									693 cell
+										694 text SO0000513
+									695 cell
+										696 text HT-2026-00513
+									697 cell
+										698 text 苏州警盾安兵技术科技有限公司
+									699 cell
+										700 text 13
+									701 cell
+										702 text 2026-03-02
+									703 cell
+										704 text 2026-04-12
+									705 cell
+										706 text 13
+									707 cell
+										708 text 已确认
+									709 cell
+										710 text 解飞
+								711 row
+									712 cell
+										713 text SO0000514
+									714 cell
+										715 text HT-2026-00514
+									716 cell
+										717 text 深圳警叆安保服务有限公司
+									718 cell
+										719 text 41
+									720 cell
+										721 text 2026-05-10
+									722 cell
+										723 text 2026-06-26
+									724 cell
+										725 text 41
+									726 cell
+										727 text 已确认
+									728 cell
+										729 text 路霞
+								730 row
+									731 cell
+										732 text SO0000515
+									733 cell
+										734 text HT-2026-00515
+									735 cell
+										736 text 大连安保通安防勎技有限公司
+									737 cell
+										738 text 42
+									739 cell
+										740 text 2026-06-08
+									741 cell
+										742 text 2026-06-22
+									743 cell
+										744 text 42
+									745 cell
+										746 text 已确认
+									747 cell
+										748 text 臧子
+								749 row
+									750 cell
+										751 text SO0000516
+									752 cell
+										753 text HT-2026-00516
+									754 cell
+										755 text 哈尔滨安保通安兵服务有限公司
+									756 cell
+										757 text 34
+									758 cell
+										759 text 2026-03-09
+									760 cell
+										761 text 2026-04-10
+									762 cell
+										763 text 34
+									764 cell
+										765 text 已确认
+									766 cell
+										767 text 解飞
+								768 row
+									769 cell
+										770 text SO0000517
+									771 cell
+										772 text HT-2026-00517
+									773 cell
+										774 text 兤连安控警用装备有限公司
+									775 cell
+										776 text 37
+									777 cell
+										778 text 2026-06-09
+									779 cell
+										780 text 2026-06-23
+									781 cell
+										782 text 35
+									783 cell
+										784 text 已确认
+									785 cell
+										786 text 路霞
+								787 row
+									788 cell
+										789 text SO0000518
+									790 cell
+										791 text HT-2026-00518
+									792 cell
+										793 text 武汉守护安全技术有倍公司
+									794 cell
+										795 text 41
+									796 cell
+										797 text 2026-05-12
+									798 cell
+										799 text 2026-06-02
+									800 cell
+										801 text 41
+									802 cell
+										803 text 已确认
+									804 cell
+										805 text 臧子
+								806 row
+									807 cell
+										808 text SO0000519
+									809 cell
+										810 text HT-2026-00519
+									811 cell
+										812 text 青岛护航警严装备工程有限公司
+									813 cell
+										814 text 1
+									815 cell
+										816 text 2026-04-03
+									817 cell
+										818 text 2026-05-14
+									819 cell
+										820 text 1
+									821 cell
+										822 text 已确认
+									823 cell
+										824 text 解飞
+								825 row
+									826 cell
+										827 text SO0000520
+									828 cell
+										829 text HT-2026-00520
+									830 cell
+										831 text 天津盾牌安全乒程有限公司
+									832 cell
+										833 text 47
+									834 cell
+										835 text 2026-06-21
+									836 cell
+										837 text 2026-08-16
+									838 cell
+										839 text 47
+									840 cell
+										841 text 已确认
+									842 cell
+										843 text 路霞
+							844 text 口径说明
+							845 content list
+								846 container
+									847 AXListMarker •
+									848 text 数据源：知识网络  supply_ontology_hand  的「销售订单」对象类（ supply_demo_hand.sales_order ），过滤条件  product_code = "382-000005" ；明细行按销售订单号升序。
+								849 container
+									850 AXListMarker •
+									851 text 该对象类每行即一条产品明细（含产品编码、签约量、发货量、交期），40 行已全部列出，无截断。
+								852 container
+									853 AXListMarker •
+									854 text 源数据中部分客户名称本身带异体字/非规范字（如「农勭」「侦限公司」），此处按原样呈现，未做修正。
+								855 container
+									856 AXListMarker •
+									857 text 证据状态为 partial：明细字段均可读，但客户名称的文字质量受源数据本身限制。
+							858 button 复制
+							859 toggle button Description: 好的回答, Value: 0
+							860 toggle button Description: 有问题的回答, Value: 0
+							861 button 查看业务溯源, Help: View OpenBKN provenance for this answer
+							862 button 在新对话中分支
+							863 pop up button 用量 584K tok
+							864 text 09:14
+						865 container
+							866 text entry area (settable) 发消息或创建任务, / 调用指令, @ 文件或对话
+							867 pop up button 添加文件或调用指令
+							868 button 访问模式，当前：工作区内修改
+							869 pop up button Description: 选择模型，当前 DeepSeek-V41-Flash，推理等级 High, Help: DeepSeek-V41-Flash · High
+							870 button (disabled) 发送消息
+						871 pop up button 1 轮 9 步 · 344 tok/s
+							872 text 1 轮 9 步
+							873 text 344 tok/s
+						874 pop up button 584K tok · 缓存命中 94%
+							875 text 584K tok
+							876 text 缓存命中 94%
+						877 pop up button 上下文已用 8%
+	878 close button
+	879 full screen button Help: this button also has an action to zoom the window, Secondary Actions: zoom the window
+	880 minimize button
+881 menu bar
+	882 DeepSeek Harness
+	883 文件
+	884 Edit
+	885 Window
+
+The focused UI element is 866 text entry area (settable) 发消息或创建任务, / 调用指令, @ 文件或对话

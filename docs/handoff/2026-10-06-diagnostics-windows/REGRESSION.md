@@ -10,12 +10,26 @@
 | R4 | supply_ontology_hand 关联隔离工作区，标准模式新会话，问“查询 382-000005 的物料名称与标准交期” | 生命周期、绑定网络、受管工具与真实数据一致，不执行动作 |
 | R5 | 打开该回答的业务溯源 | 时间链/操作/业务图分别正常或如实降级，不把 pending/大记录隐藏为全绿 |
 | R6 | 退出并重启、追问“这个物料的交期依据是什么？” | 历史与绑定保留，conversation_id 连续，溯源可打开 |
-| R7 | 普通未绑定会话、其他网络 ID | 不给未绑定会话 OpenBKN 能力；跨网拒绝以 live guard 证明，模型自觉不能替代 |
+| R7 | 普通未绑定会话、其他网络 ID | 未绑定会话实际工具执行须被拒绝（定义可能全局可见）；跨网拒绝以 live guard 证明，模型自觉不能替代 |
 | R8 | 绑定会话选择 PTC | 明确要求标准模式，无受管业务工具调用 |
 | R9 | 整包 remove 后重开 | 三 row 和本包 UI 全部消失；原会话历史可读，无关用户 patch 保留 |
 | U1 | -4/-5 → 当前候选、重复安装 | 三 row 不重复；ID-only canary 配置保留；旧 name-qualified 两种迁移写法均验证 |
 
 模型尚未配置、数据集不可用或平台权限不足时对应项 not-run，并说明所缺输入，不构造假答案。
+
+G6 逐项按 `eval/supply-ontology.yaml` 的事实与禁止项记录。评分器只计算已经执行的问答，不会发送模型请求；答案正确一部分不等于通过。批量评分文件的每个 case 值可用逐项布尔数组、`"pass"` / `"fail"` / `"not-run"`；未测须在结果报告写明原因，评分器会将它单列并排除出已测分母。不要把真实无权限账号缺失改记成 fail，也不要用模拟 403 代替该账号。
+
+将 eval 放进本轮 ProbeRoot 并安装评分器的固定解析依赖（macOS 作者本轮实际版本 4.3.2），避免从 ZIP/eval 直接运行时找不到 js-yaml：
+
+```powershell
+npm install --prefix $DiagProbeRoot js-yaml@4.3.2 --no-audit --no-fund
+Copy-Item -Recurse (Join-Path $DiagKitRoot 'eval') (Join-Path $DiagProbeRoot 'eval')
+node --test (Join-Path $DiagProbeRoot 'eval/run-eval.test.mjs')
+# 先完成真实问答并人工生成 g6-marks.json，再评分；不能预填通过。
+node (Join-Path $DiagProbeRoot 'eval/run-eval.mjs') --answers (Join-Path $DiagResultRoot 'g6-marks.json') --out (Join-Path $DiagResultRoot 'g6-results.md')
+```
+
+`$DiagKitRoot` 是已通过 verify-kit 的解压目录，`$DiagResultRoot` 是本轮证据目录，两个变量由执行者设置为实际绝对路径。上述 Node 回归仅验证评分，不能替代 G6。
 
 升级基包已随完整 ZIP 放在 history/，身份见 upgrade-baselines.json。-4 为 CI run 37202050194 的固定候选，-5 为最后一轮已核验的历史本地候选；两者仅用于升级测试，不能代替当前 CI 候选安装给故障用户。分别在新的隔离 profile 安装旧包，写入 ID-only canary，以及带旧 name 的 canary，确认原行为；升级到当前包后，验证 ID-only 保留，并分别用删除 name、改为 ./business 两种迁移恢复旧 name-qualified 配置。重复安装后检查三 row 各一；整包 remove 后本包 row 消失，用户 patch 保留。
 

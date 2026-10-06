@@ -16,7 +16,7 @@
 
 源码提交后的证据和交接工具修改不进 tgz；不能把其后文档 HEAD 当作上述包的构建源码身份。
 
-源码轮本地构建、typecheck、插件测试（304 项：303 pass、0 fail、1 Windows-only skip）、repo suites（57/57）、package 审计、diff-check 与 pack 均通过。随后 CI build-only 成功；本轮实机采用下载的 CI 包。后续修改只涉及证据、交接文档和不进入 tgz 的 Windows 辅助脚本。
+源码轮本地构建、typecheck、插件测试（304 项：303 pass、0 fail、1 Windows-only skip）、repo suites（57/57）、package 审计、diff-check 与 pack 均通过。随后 CI build-only 成功；本轮实机采用下载的 CI 包。后续修改只涉及证据、评测/交接工具和文档，均不进入 tgz。
 
 ## 界面与故障隔离
 
@@ -65,10 +65,14 @@ S2 的业务页仍可能出现旧的通用 Token/地址提示；根因判断以�
 
 ## G6 与剩余门禁
 
-用户已在本轮隔离 Desktop 的正常设置页保存模型配置，模型密钥没有进入聊天／报告／交接包。当前选择 DeepSeek 官方 API 的 `DeepSeek-V41-Flash / High`。G6 尚未开始：官方 Host 的独立系统目录选择器已打开，自动化无法定位该进程窗口，已交用户选择本轮工作区；随后 macOS 锁屏阻止进一步 UI 操作（2026-10-06 00:52 台北时间）。需要用户手动解锁并选好工作区后继续真实模型问答。评分不能由空答案文件或既往结果代填。
+真实模型 G6 已在官方 macOS Desktop / DeepSeek-V41-Flash High 执行：正向 5/7、反向 2/3、已测合计 **7/10**，真实受限账号缺失的 unauthorized-network 经用户决定单列未测。三个 FAIL 是交期口径缺失、BOM 全量明细因超时未交付，以及不存在物料回答夹带无关非零数值。详细布尔评分、调用链、CLI 对照与原生截图见 [G6 完整报告](../diag-g6-20261006/RESULTS.md)。
+
+R4 名称/交期、R6 重启连续会话、R7 普通未绑定调用拒绝及 R8 PTC 拒绝通过；R5 的三视图可打开，但来源网络未定位、图与平台 internal pending receipt 的完整性仍有限制。HTTP 401 的 auth-rejected 分类、受控关闭 HTTPS 端点的 network-unreachable 分类及恢复已复验；连接测试的隔离绑定 fixture 与恢复时 CLI 过期/正常 refresh 均单独记录，不扩大为真实集群停机或无前提自动恢复。
+
+同一 profile 本轮曾出现一次 gateway/definition-unavailable 启动异常，暂时卸载并重装相同 CI 包后恢复，65 文件身份一致；根因仍未知。发布验收尚未通过。模型配置由用户输入；密钥、完整 profile 与 private 日志没有进入报告或 ZIP。系统目录选择器未判通过，工作区注册/关联经官方 Host API 完成，模型会话操作经原生 UI。
 
 Windows 原生 pwsh/W0–W12 仍由 Windows agent 执行；脚本仅在 macOS 编写及人工复核。完整交接包包含固定候选、-4/-5 升级基包、逐文件哈希、离线 verify-kit、脚本、评测集、结果模板及迁移/原故障用户采集说明。
 
-完整交接目录：`/Users/kalias/Documents/project/app/openBKN/handoff/2026-10-06-diag6-windows-144afa5`；同名 `.zip` 是可发送给 Windows agent 的包。ZIP CRC、交接资产哈希、CI 候选 65 文件及两份升级基包哈希已在 macOS 核验，摘要位于同级 `2026-10-06-diag6-windows-144afa5-validation.json`。公开测试证书随包交付，不包含私钥或模型配置。这些静态核验不替代 Windows 原生脚本执行。辅助 cleanup 当前需 Windows agent 确认父 PID 归属和子进程退出，不能仅凭脚本返回认定清理完成。
+完整交接目录：`/Users/kalias/Documents/project/app/openBKN/handoff/2026-10-06-diag6-windows-144afa5-g6`；同名 `.zip` 是可发送给 Windows agent 的包。ZIP CRC、交接资产哈希、CI 候选 65 文件及两份升级基包哈希已在 macOS 核验，摘要位于同级 `2026-10-06-diag6-windows-144afa5-g6-validation.json`。公开测试证书随包交付，不包含私钥或模型配置。这些静态核验不替代 Windows 原生脚本执行。辅助 cleanup 当前需 Windows agent 确认父 PID 归属和子进程退出，不能仅凭脚本返回认定清理完成。
 
-没有 merge、tag、npm publish 或 dist-tag 修改。实际 Windows 结果、G6/业务异常取舍和最终发布验收仍需完成；主动复测属于已明确暂缓的可选能力。
+没有 merge、tag、npm publish 或 dist-tag 修改。实际 Windows 结果、G6 三个失败的修复/取舍、启动/溯源异常调查和最终发布验收仍需完成；主动复测属于已明确暂缓的可选能力。

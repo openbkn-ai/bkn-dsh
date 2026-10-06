@@ -1,0 +1,33 @@
+{
+  "verification": "independent actual CLI0.1.5 query",
+  "response": {
+    "datas": [],
+    "effective_permissions": {
+      "supplier_number": "full",
+      "material_name": "full",
+      "id": "full",
+      "material_number": "full",
+      "invqty": "full",
+      "org_name": "full",
+      "billno": "full",
+      "srcbillid": "full",
+      "huid_xycg_operatorname": "full",
+      "qty": "full",
+      "operatorname": "full",
+      "auditdate": "full",
+      "billtype_name": "full",
+      "returnqty": "full",
+      "createtime": "full",
+      "supplier_name": "full",
+      "deliverdate": "full",
+      "biztime": "full",
+      "actqty": "full",
+      "entry_id": "full",
+      "srcbillentryid": "full",
+      "rowclosestatus_title": "full",
+      "rowterminatestatus_title": "full",
+      "srcbillnumber": "full"
+    },
+    "total_count": 0
+  }
+}

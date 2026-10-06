@@ -1,0 +1,135 @@
+Window: "各成品仓382-000005可用库存 — DeepSeek Harness", App: DeepSeek Harness.
+0 standard window 各成品仓382-000005可用库存 — DeepSeek Harness, Secondary Actions: Raise
+	1 container 各成品仓382-000005可用库存 — DeepSeek Harness
+		2 container
+			3 HTML content 各成品仓382-000005可用库存 — DeepSeek Harness, URL: dsh-app://app/
+				4 container
+					5 button 收起侧边栏
+					6 button 新建会话
+					7 container 全局面板
+						8 button 插件
+					9 text 工作区
+					10 button 搜索会话
+					11 text field (settable) 搜索会话名称
+					12 button 视图选项
+					13 button 添加工作区
+					14 outline 会话
+						15 container
+							16 row workspace-supply
+								17 text workspace-supply
+							18 row (selected) 各成品仓382-000005可用库存 刚刚
+								19 text 各成品仓382-000005可用库存 刚刚
+							20 row 销售订单382-000005状态查询 2分钟
+								21 text 销售订单382-000005状态查询 2分钟
+							22 row 382-000005 标准交期查询 8分钟
+								23 text 382-000005 标准交期查询 8分钟
+						24 row 默认工作区
+							25 text 默认工作区
+					26 button OpenBKN business knowledge networks
+					27 pop up button 账号菜单
+					28 container
+						29 container 会话层级
+							30 text 各成品仓382-000005可用库存
+						31 text 标准模式
+						32 text 供应链本体知识网络-手工版
+						33 button 用 访达 打开
+						34 pop up button 更多打开方式
+						35 pop up button 更多操作
+						36 button 打开右侧边栏
+						37 tab group
+							38 tab (selected) 对话, Value: 1
+							39 tab (settable, integer) 轨迹, Value: 0
+					40 container
+						41 container
+							42 text 382-000005 在各成品仓的可用库存？ 09:01
+							43 button 复制
+							44 text 已完成
+							45 button 已完成，用时 41秒
+								46 text 已完成，用时
+								47 text 41
+								48 text 秒
+							49 heading 382-000005（北斗导航农机驾驶仪）成品仓可用库存, Value: 2
+								50 text 382-000005（北斗导航农机驾驶仪）成品仓可用库存
+							51 table
+								52 row
+									53 column header
+										54 text 成品仓
+									55 column header
+										56 text 可用库存
+								57 row
+									58 cell
+										59 text 苏州成品仓
+									60 cell
+										61 text 325
+								62 row
+									63 cell
+										64 text 乌鲁木齐成品仓
+									65 cell
+										66 text 127
+								67 row
+									68 cell
+										69 text 哈尔滨成品仓
+									70 cell
+										71 text 82
+								72 row
+									73 cell
+										74 text 合计
+									75 cell
+										76 text 534
+							77 heading 口径与来源, Value: 3
+								78 text 口径与来源
+							79 content list
+								80 container
+									81 AXListMarker •
+									82 text 成品仓范围 ：由已发布函数「合计可售」确认 ——  finished_goods_filter = ["苏州成品仓","乌鲁木齐成品仓","哈尔滨成品仓"] ，该函数同时给出  fg_qty = 534 ，与上面的分仓合计一致。
+								83 container
+									84 AXListMarker •
+									85 text 各仓数值 ：「库存可用量」指标（ sum(available_inventory_qty) ，按  warehouse  维度拆分，快照口径，作用对象类「库存」）。
+								86 container
+									87 AXListMarker •
+									88 text 交叉核对 ：用库存对象类的实例明细（36 条记录）逐仓求和，结果逐仓与指标完全吻合。
+							89 heading 需要留意, Value: 3
+								90 text 需要留意
+							91 content list
+								92 container
+									93 AXListMarker •
+									94 text 该物料所有库存行的  stock_status  均为「可用」， reserved_inventory_qty = 0 ，没有冻结/占用行被排除。
+								95 container
+									96 AXListMarker •
+									97 text 数值 不含在途 ，为快照口径。
+								98 container
+									99 AXListMarker •
+									100 text 非成品仓 另有可用库存，未计入上表：借用仓 232、苏州客退仓 44、苏州待发物料仓 6；全仓合计 816。
+								101 container
+									102 AXListMarker •
+									103 text 若关注的是「现在最多能卖多少」，函数「合计可售」给出的结果是 534（成品可用 534 + 理论可产 0，瓶颈料 725-000105）。
+							104 button 复制
+							105 toggle button Description: 好的回答, Value: 0
+							106 toggle button Description: 有问题的回答, Value: 0
+							107 button 查看业务溯源, Help: View OpenBKN provenance for this answer
+							108 button 在新对话中分支
+							109 pop up button 用量 499K tok
+							110 text 09:02
+						111 container
+							112 text entry area (settable) 发消息或创建任务, / 调用指令, @ 文件或对话
+							113 pop up button 添加文件或调用指令
+							114 button 访问模式，当前：工作区内修改
+							115 pop up button Description: 选择模型，当前 DeepSeek-V41-Flash，推理等级 High, Help: DeepSeek-V41-Flash · High
+							116 button (disabled) 发送消息
+						117 pop up button 1 轮 8 步 · 243 tok/s
+							118 text 1 轮 8 步
+							119 text 243 tok/s
+						120 pop up button 499K tok · 缓存命中 95%
+							121 text 499K tok
+							122 text 缓存命中 95%
+						123 pop up button 上下文已用 7%
+	124 close button
+	125 full screen button Help: this button also has an action to zoom the window, Secondary Actions: zoom the window
+	126 minimize button
+127 menu bar
+	128 DeepSeek Harness
+	129 文件
+	130 Edit
+	131 Window
+
+The focused UI element is 112 text entry area (settable) 发消息或创建任务, / 调用指令, @ 文件或对话

@@ -1,0 +1,30 @@
+{
+  "verification": "actual CLI0.1.5 query of modeled BOM object, distinct from published main_only function",
+  "request": {
+    "ot_id": "supply_ontology_hand_bom",
+    "condition": {
+      "operation": "==",
+      "field": "bom_material_code",
+      "value": "382-000005",
+      "value_from": "const"
+    },
+    "limit": 1000
+  },
+  "summary": {
+    "totalCount": 507,
+    "rowCount": 507,
+    "allUniqueCodes": 408,
+    "altParts": {
+      "None": 400,
+      "√": 107
+    },
+    "altPriorities": {
+      "0": 400,
+      "1": 86,
+      "2": 21
+    },
+    "priority0Rows": 400,
+    "priority0UniqueCodes": 334,
+    "priority0UniqueChildrenExcludingRoot": 333
+  }
+}

@@ -1,0 +1,11 @@
+{
+  "method": "fresh isolated BKN_CONFIG_DIR fixture with fictional unsigned/invalid-signature unexpired token; no real credentials copied or revoked",
+  "cliVersion": "0.1.5",
+  "authStatus": {
+    "hasToken": true,
+    "expired": false
+  },
+  "realPlatformRequestExit": 3,
+  "http401Observed": true,
+  "originalCredentialStoreMutated": false
+}

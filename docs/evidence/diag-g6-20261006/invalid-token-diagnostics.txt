@@ -1,0 +1,95 @@
+Window: "DeepSeek Harness", App: DeepSeek Harness.
+0 standard window DeepSeek Harness, Secondary Actions: Raise
+	1 container DeepSeek Harness
+		2 container
+			3 HTML content DeepSeek Harness, URL: dsh-app://app/
+				4 container
+					5 button 收起侧边栏
+					6 button 新建会话
+					7 container 全局面板
+						8 button 插件
+					9 text 工作区
+					10 button 搜索会话
+					11 text field (settable) 搜索会话名称
+					12 button 视图选项
+					13 button 添加工作区
+					14 outline 会话
+						15 container
+							16 row workspace-supply
+								17 text workspace-supply
+							18 row (selected) 未命名 1分钟
+								19 text 未命名 1分钟
+							20 row 查询物料名称 382-000005 6分钟
+								21 text 查询物料名称 382-000005 6分钟
+							22 row 查询物料382-000005的名称与标准交期 8分钟
+								23 text 查询物料382-000005的名称与标准交期 8分钟
+							24 row 物料库存与订单情况查询 10分钟
+								25 text 物料库存与订单情况查询 10分钟
+							26 row 查询销售订单382-000005明细 12分钟
+								27 text 查询销售订单382-000005明细 12分钟
+							28 button 展开其余 6 个会话
+						29 container
+							30 row 默认工作区
+								31 text 默认工作区
+							32 row 本会话是否绑定 OpenBKN 2分钟
+								33 text 本会话是否绑定 OpenBKN 2分钟
+					34 button OpenBKN business knowledge networks
+					35 pop up button 账号菜单
+					36 container
+						37 container 会话层级
+							38 text workspace-supply
+						39 text 标准模式
+						40 text 供应链本体知识网络-手工版
+						41 button 用 访达 打开
+						42 pop up button 更多打开方式
+						43 pop up button 更多操作
+						44 button 打开右侧边栏
+						45 tab group
+							46 tab (settable, integer) 对话, Value: 0
+							47 tab (selected) 轨迹, Value: 1
+					48 container
+						49 toolbar 轨迹工具栏
+							50 toggle button Description: 使用实际时长, Value: 0
+							51 toggle button Description: 收起所有轮次, Value: 0
+							52 toggle button Description: 收起所有调用, Value: 0
+							53 search text field (settable) Description: 搜索轨迹, Placeholder: 搜索
+						54 container 轨迹时间线
+							55 text 无计时数据
+						56 container
+							57 text entry area (settable) 发消息或创建任务, / 调用指令, @ 文件或对话
+							58 pop up button 添加文件或调用指令
+							59 button 访问模式，当前：工作区内修改
+							60 pop up button Description: 选择模型，当前 DeepSeek-V41-Flash，推理等级 High, Help: DeepSeek-V41-Flash · High
+							61 button (disabled) 发送消息
+					62 container OpenBKN 诊断
+						63 container
+							64 text OPENBKN
+							65 heading 诊断, Value: 2
+								66 text 诊断
+							67 button Close
+						68 container
+							69 text 报告编号  dc237051  · 生成于  10/6/2026, 9:27:32 AM  · 模式  被动采集 Host 形态 desktop 平台 darwin DSH 版本 未知 插件（磁盘） 0.2.0-rc.2-openbkn.0.2.0-6 插件（已加载） 未知 ●  通过 bootstrap-entry installation  /  component-loaded
+							70 text entryPresent=true
+							71 text ●  通过 business-entry component  /  component-loaded
+							72 text entryPresent=true
+							73 text ●  通过 diagnostics-entry diagnostics  /  component-loaded
+							74 text schemaVersion=1
+							75 text ●  通过 observed:cli cli  /  cli
+							76 text failureCount=0 lastOutcomeAgoMs=5735 exitCode=0
+							77 text ●  通过 observed:login-state authentication  /  login-state
+							78 text failureCount=0 lastOutcomeAgoMs=5853 loggedIn=true
+							79 text ●  失败 observed:context-loader context-loader  /  auth-rejected
+							80 text failureCount=2 lastOutcomeAgoMs=5680 httpStatus=401
+							81 text Export this report and send it to support; the failing stage is listed above.
+							82 button 导出诊断报告
+							83 button 重新采集
+	84 close button
+	85 full screen button Help: this button also has an action to zoom the window, Secondary Actions: zoom the window
+	86 minimize button
+87 menu bar
+	88 DeepSeek Harness
+	89 文件
+	90 Edit
+	91 Window
+
+The focused UI element is 3 HTML content DeepSeek Harness, URL: dsh-app://app/

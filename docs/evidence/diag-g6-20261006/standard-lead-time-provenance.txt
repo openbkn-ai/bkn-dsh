@@ -1,0 +1,129 @@
+Window: "382-000005 标准交期查询 — DeepSeek Harness", App: DeepSeek Harness.
+0 standard window 382-000005 标准交期查询 — DeepSeek Harness, Secondary Actions: Raise
+	1 container 382-000005 标准交期查询 — DeepSeek Harness
+		2 container
+			3 HTML content 382-000005 标准交期查询 — DeepSeek Harness, URL: dsh-app://app/
+				4 container
+					5 button 收起侧边栏
+					6 button 新建会话
+					7 container 全局面板
+						8 button 插件
+					9 text 工作区
+					10 button 搜索会话
+					11 text field (settable) 搜索会话名称
+					12 button 视图选项
+					13 button 添加工作区
+					14 outline 会话
+						15 container
+							16 row workspace-supply
+								17 text workspace-supply
+							18 row (selected) 382-000005 标准交期查询 刚刚
+								19 text 382-000005 标准交期查询 刚刚
+						20 row 默认工作区
+							21 text 默认工作区
+					22 button OpenBKN business knowledge networks
+					23 pop up button 账号菜单
+					24 container
+						25 container 会话层级
+							26 text 382-000005 标准交期查询
+						27 text 标准模式
+						28 text 供应链本体知识网络-手工版
+						29 button 用 访达 打开
+						30 pop up button 更多打开方式
+						31 pop up button 更多操作
+						32 button 打开右侧边栏
+						33 tab group
+							34 tab (selected) 对话, Value: 1
+							35 tab (settable, integer) 轨迹, Value: 0
+					36 container
+						37 container
+							38 text 382-000005 的标准交期？ 08:53
+							39 button 复制
+							40 text 已完成
+							41 button 已完成，用时 14秒
+								42 text 已完成，用时
+								43 text 14
+								44 text 秒
+							45 text 382-000005 的标准交期为 1 天。
+							46 content list
+								47 container
+									48 AXListMarker •
+									49 text 取数方式：知识网络  supply_ontology_hand  上已发布的能力「标准交期」（输入物料编码）
+								50 container
+									51 AXListMarker •
+									52 text 返回结果： leadtime_days = 1 ，口径数据源为  material  数据集
+								53 container
+									54 AXListMarker •
+									55 text 说明：该能力的描述提到会同时给出「采购或生产」口径，但本次返回里没有口径字段，所以具体按采购还是生产口径未确认；如需口径明细，需在数据建模侧补充。
+							56 button 复制
+							57 toggle button Description: 好的回答, Value: 0
+							58 toggle button Description: 有问题的回答, Value: 0
+							59 button 查看业务溯源, Help: View OpenBKN provenance for this answer
+							60 button 在新对话中分支
+							61 pop up button 用量 313K tok
+							62 text 08:53
+						63 text entry area (settable) 发消息或创建任务, / 调用指令, @ 文件或对话
+						64 pop up button 添加文件或调用指令
+						65 button 访问模式，当前：工作区内修改
+						66 pop up button Description: 选择模型，当前 DeepSeek-V41-Flash，推理等级 High, Help: DeepSeek-V41-Flash · High
+						67 button (disabled) 发送消息
+						68 pop up button 1 轮 6 步 · 279 tok/s
+							69 text 1 轮 6 步
+							70 text 279 tok/s
+						71 pop up button 313K tok · 缓存命中 83%
+							72 text 313K tok
+							73 text 缓存命中 83%
+						74 pop up button 上下文已用 5%
+					75 container OpenBKN business provenance
+						76 container
+							77 text TRACE-BACKED PROVENANCE
+							78 heading 业务溯源, Value: 2
+								79 text 业务溯源
+							80 button Close
+						81 container Provenance views
+							82 button 执行溯源
+							83 button 业务上下文图
+							84 button 证据链
+						85 container
+							86 text Interaction ID
+							87 text int_0de48a195fadbf3354aee1807b39d9ec
+							88 text 执行状态
+							89 text completed
+							90 text 时间链节点
+							91 text 6
+							92 container
+								93 text 执行时间链 由本机会话事件重建，不依赖平台授权；耗时为本机口径。 本地会话 部分标识符
+							94 container
+								95 text 生命周期 bkn_start_interaction bkn_start_interaction · new · conversation: yes 127 ms
+							96 container
+								97 text 受管访问 search_capabilities Op op_d35a81f96ebb7aab7872af9759f2d9f5 Receipt rcpt_d7d2bba1109de72a2e9d1b85b333a78a Status completed search_capabilities 281 ms
+							98 container
+								99 text 受管访问 execute_tool Op op_92abb3de28896c57896fa098b1262b1a Receipt rcpt_c667cf9241497be4009ecbdaffc50c98 Status completed execute_tool 2.0 s
+							100 container
+								101 text 受管访问 query_object_instance error query_object_instance 63 ms
+							102 container
+								103 text 生命周期 bkn_finish_interaction bkn_finish_interaction · completed 47 ms
+							104 container
+								105 text 回答 本轮回答 08:53:58 AM
+							106 container
+								107 text 平台执行事实 平台口径的操作状态、耗时与 Request / Trace / Receipt 引用。 平台
+							108 container
+								109 text 01 search_capabilities completed mcp · 2026-10-06T00:53:47.857314Z · 2026-10-06T00:53:48.090146Z Request req_ff051025-eed5-477e-9a46-895ea273f74f Trace a4e64d1668411b7b45156de3cb023145 Receipt rcpt_d7d2bba1109de72a2e9d1b85b333a78a
+							110 container
+								111 text 02 execute_tool completed mcp · 2026-10-06T00:53:49.905721Z · 2026-10-06T00:53:51.826008Z Request req_26b7f9c5-584b-4cce-8812-de96dce2a744 Trace 4f04b732ad688ab651b0eb1ed5f090b5 Receipt rcpt_c667cf9241497be4009ecbdaffc50c98
+							112 container
+								113 text 03 5ce8e842-a2bf-46b3-a89d-6a7f16ea6630 pending internal · 2026-10-06T00:53:49.95455Z Receipt rcpt_48f0747830073961a0083274fadde0bc
+							114 container
+								115 text 04 query_object_instance completed mcp · 2026-10-06T00:53:51.010419Z · 2026-10-06T00:53:51.238237Z Request req_ca560930-376f-4f39-b30e-187abbdec2b0 Trace b24b7a8f56fced5f0b83898bf445d2e7 Receipt rcpt_fe7aeb5481246df9077e00444d1e0901
+							116 container
+								117 text 05 query_object_instance failed mcp · 2026-10-06T00:53:54.893058Z · 2026-10-06T00:53:54.91248Z Request req_8f7c5400-e947-495e-9688-b3e855ccf124 Trace 72f8a4ad637bfed772362c7e8ede4131 Receipt rcpt_3e0f307977122894e9c825ebb129ca1c
+	118 close button
+	119 full screen button Help: this button also has an action to zoom the window, Secondary Actions: zoom the window
+	120 minimize button
+121 menu bar
+	122 DeepSeek Harness
+	123 文件
+	124 Edit
+	125 Window
+
+The focused UI element is 75 container OpenBKN business provenance

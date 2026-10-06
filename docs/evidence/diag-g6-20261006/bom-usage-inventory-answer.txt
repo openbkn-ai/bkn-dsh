@@ -1,0 +1,866 @@
+Window: "查询BOM清单及物料库存情况 — DeepSeek Harness", App: DeepSeek Harness.
+0 standard window 查询BOM清单及物料库存情况 — DeepSeek Harness, Secondary Actions: Raise
+	1 container 查询BOM清单及物料库存情况 — DeepSeek Harness
+		2 container
+			3 HTML content 查询BOM清单及物料库存情况 — DeepSeek Harness, URL: dsh-app://app/
+				4 container
+					5 button 收起侧边栏
+					6 button 新建会话
+					7 container 全局面板
+						8 button 插件
+					9 text 工作区
+					10 button 搜索会话
+					11 text field (settable) 搜索会话名称
+					12 button 视图选项
+					13 button 添加工作区
+					14 outline 会话
+						15 container
+							16 row workspace-supply
+								17 text workspace-supply
+							18 row (selected) 查询BOM清单及物料库存情况 2分钟
+								19 text 查询BOM清单及物料库存情况 2分钟
+							20 row 382-000005 BOM 构成查询 3分钟
+								21 text 382-000005 BOM 构成查询 3分钟
+							22 row 各成品仓382-000005可用库存 5分钟
+								23 text 各成品仓382-000005可用库存 5分钟
+							24 row 销售订单382-000005状态查询 6分钟
+								25 text 销售订单382-000005状态查询 6分钟
+							26 row 382-000005 标准交期查询 13分钟
+								27 text 382-000005 标准交期查询 13分钟
+						28 row 默认工作区
+							29 text 默认工作区
+					30 button OpenBKN business knowledge networks
+					31 pop up button 账号菜单
+					32 container
+						33 container 会话层级
+							34 text 查询BOM清单及物料库存情况
+						35 text 标准模式
+						36 text 供应链本体知识网络-手工版
+						37 button 用 访达 打开
+						38 pop up button 更多打开方式
+						39 pop up button 更多操作
+						40 button 打开右侧边栏
+						41 tab group
+							42 tab (selected) 对话, Value: 1
+							43 tab (settable, integer) 轨迹, Value: 0
+					44 container
+						45 container
+							46 text 查询 382-000005 的 BOM 清单，每个物料的使用量，以及每个物料的库存情况 09:04
+							47 button 复制
+							48 text 已完成
+							49 button 已完成，用时 2分29秒
+								50 text 已完成，用时
+								51 text 2
+								52 text 分
+								53 text 29
+								54 text 秒
+							55 heading 382-000005 BOM 清单 + 单耗 + 库存, Value: 1
+								56 text 382-000005 BOM 清单 + 单耗 + 库存
+							57 text 取数方式
+							58 text ：知识网络
+							59 text supply_ontology_hand
+							60 text  的两个已发布能力 ——
+							61 text BOM清单
+							62 text （
+							63 text afd1823b…
+							64 text ，口径 main_only，不含替代料）与
+							65 text 子料分层库存
+							66 text （
+							67 text 956d717e…
+							68 text ）。两者按
+							69 text product=382-000005, depth=3
+							70 text  各返回同一套
+							71 text 63 行明细
+							72 text （第 1–3 层），下表按级合并展示，
+							73 text 单耗
+							74 text  为
+							75 text standard_usage
+							76 text ，
+							77 text 可用量
+							78 text  为
+							79 text available_qty
+							80 text （
+							81 text reserved_qty
+							82 text  全部为 0）。
+							83 text 结构口径
+							84 text ：一级主料
+							85 text 9
+							86 text  个；整棵 BOM 共
+							87 text 507 行含根、313 行明细、272 个唯一子料、最深 5 层
+							88 text 。
+							89 text 库存仓范围
+							90 text ：预设
+							91 text production_available
+							92 text  = 苏州半成品仓、苏州成品仓、苏州电子原料仓、苏州无人机原料仓、苏州装配原料仓、乌鲁木齐成品仓、哈尔滨成品仓（能力说明：
+							93 text reserved
+							94 text  仅展示，P0 不扣减）。
+							95 heading 第 1 层（父件 = 382-000005）, Value: 2
+								96 text 第 1 层（父件 = 382-000005）
+							97 table
+								98 row
+									99 column header
+										100 text 物料编码
+									101 column header
+										102 text 物料名称
+									103 column header
+										104 text 单耗
+									105 column header
+										106 text 可用量
+								107 row
+									108 cell
+										109 text 791-000013
+									110 cell
+										111 text YN406预组装包(拖拉机)
+									112 cell
+										113 text 1
+									114 cell
+										115 text 1000
+								116 row
+									117 cell
+										118 text 606-000989
+									119 cell
+										120 text YN406 包装外箱_V2
+									121 cell
+										122 text 1
+									123 cell
+										124 text 344
+								125 row
+									126 cell
+										127 text 606-000990
+									128 cell
+										129 text YN406 珍珠棉内托_V2
+									130 cell
+										131 text 1
+									132 cell
+										133 text 400
+								134 row
+									135 cell
+										136 text 528-000036
+									137 cell
+										138 text YS221A接收机组件_国内
+									139 cell
+										140 text 1
+									141 cell
+										142 text 34
+								143 row
+									144 cell
+										145 text 791-000007
+									146 cell
+										147 text YN406B方向盘组件（拖拉机）
+									148 cell
+										149 text 1
+									150 cell
+										151 text 0
+								152 row
+									153 cell
+										154 text 994-000550
+									155 cell
+										156 text 406电源+电机+接收机连接线
+									157 cell
+										158 text 1
+									159 cell
+										160 text 1875
+								161 row
+									162 cell
+										163 text 468-000493
+									164 cell
+										165 text YN406说明书（中文）
+									166 cell
+										167 text 1
+									168 cell
+										169 text 1867
+								170 row
+									171 cell
+										172 text 468-000530
+									173 cell
+										174 text 导航车贴(60*15cm)
+									175 cell
+										176 text 1
+									177 cell
+										178 text 1500
+								179 row
+									180 cell
+										181 text 791-000015
+									182 cell
+										183 text YN403显示终端整机_预装组件_拖拉机
+									184 cell
+										185 text 1
+									186 cell
+										187 text 0
+							188 heading 第 2 层（16 行）, Value: 2
+								189 text 第 2 层（16 行）
+							190 table
+								191 row
+									192 column header
+										193 text 父件
+									194 column header
+										195 text 物料编码
+									196 column header
+										197 text 物料名称
+									198 column header
+										199 text 单耗
+									200 column header
+										201 text 可用量
+								202 row
+									203 cell
+										204 text 791-000013
+									205 cell
+										206 text 795-000993
+									207 cell
+										208 text IMU、蘑菇头、显示终端安装附件包(30长)
+									209 cell
+										210 text 1
+									211 cell
+										212 text 2000
+								213 row
+									214 cell
+										215 text 791-000013
+									216 cell
+										217 text 606-000852
+									218 cell
+										219 text I406 预组装外箱
+									220 cell
+										221 text 1
+									222 cell
+										223 text 600
+								224 row
+									225 cell
+										226 text 791-000013
+									227 cell
+										228 text 606-000853
+									229 cell
+										230 text I406 预组装珍珠棉内托
+									231 cell
+										232 text 1
+									233 cell
+										234 text 590
+								235 row
+									236 cell
+										237 text 791-000013
+									238 cell
+										239 text 795-000130
+									240 cell
+										241 text 显示终端安装附件包
+									242 cell
+										243 text 1
+									244 cell
+										245 text 1124
+								246 row
+									247 cell
+										248 text 791-000013
+									249 cell
+										250 text 795-000728
+									251 cell
+										252 text 终端RAM支架U型底座安装附件包
+									253 cell
+										254 text 1
+									255 cell
+										256 text 2950
+								257 row
+									258 cell
+										259 text 791-000013
+									260 cell
+										261 text 795-000302
+									262 cell
+										263 text 电机安装附件包
+									264 cell
+										265 text 1
+									266 cell
+										267 text 2374
+								268 row
+									269 cell
+										270 text 791-000013
+									271 cell
+										272 text 165-000257
+									273 cell
+										274 text 1号电机支架底板圆柱（L=100mm）
+									275 cell
+										276 text 1
+									277 cell
+										278 text 1409
+								279 row
+									280 cell
+										281 text 791-000013
+									282 cell
+										283 text 795-000865
+									284 cell
+										285 text 电机1号安装支架附件包
+									286 cell
+										287 text 1
+									288 cell
+										289 text 2867
+								290 row
+									291 cell
+										292 text 791-000013
+									293 cell
+										294 text 795-000133
+									295 cell
+										296 text 线束安装附件包
+									297 cell
+										298 text 10
+									299 cell
+										300 text 26297
+								301 row
+									302 cell
+										303 text 791-000013
+									304 cell
+										305 text 606-000012
+									306 cell
+										307 text 4号自封袋
+									308 cell
+										309 text 1
+									310 cell
+										311 text 19500
+								312 row
+									313 cell
+										314 text 528-000036
+									315 cell
+										316 text 528-000031
+									317 cell
+										318 text YS221A接收机整机_国内版_整机
+									319 cell
+										320 text 1
+									321 cell
+										322 text 391
+								323 row
+									324 cell
+										325 text 528-000036
+									326 cell
+										327 text 849-001021
+									328 cell
+										329 text M6X16不锈钢外六角三组合螺丝_半耐落
+									330 cell
+										331 text 4
+									332 cell
+										333 text 8843
+								334 row
+									335 cell
+										336 text 791-000007
+									337 cell
+										338 text 849-000288
+									339 cell
+										340 text M4*22_不锈钢杯头内六角滚花机牙螺丝_整圈耐落
+									341 cell
+										342 text 6
+									343 cell
+										344 text 161549
+								345 row
+									346 cell
+										347 text 791-000015
+									348 cell
+										349 text 791-000003
+									350 cell
+										351 text YN403（406）整机
+									352 cell
+										353 text 1
+									354 cell
+										355 text 445
+								356 row
+									357 cell
+										358 text 791-000015
+									359 cell
+										360 text 165-000120
+									361 cell
+										362 text 308终端RAM支架
+									363 cell
+										364 text 1
+									365 cell
+										366 text 1712
+								367 row
+									368 cell
+										369 text 791-000015
+									370 cell
+										371 text 849-000987
+									372 cell
+										373 text M5*22_不锈钢内六角机牙螺丝_整圈耐落
+									374 cell
+										375 text 4
+									376 cell
+										377 text 19826
+							378 heading 第 3 层（38 行）, Value: 2
+								379 text 第 3 层（38 行）
+							380 table
+								381 row
+									382 column header
+										383 text 父件
+									384 column header
+										385 text 物料编码
+									386 column header
+										387 text 物料名称
+									388 column header
+										389 text 单耗
+									390 column header
+										391 text 可用量
+								392 row
+									393 cell
+										394 text 528-000031
+									395 cell
+										396 text 588-000712
+									397 cell
+										398 text YS221_P0_(四信+M2-BD)S01_PCBA
+									399 cell
+										400 text 1
+									401 cell
+										402 text 894
+								403 row
+									404 cell
+										405 text 528-000031
+									406 cell
+										407 text 838-000403
+									408 cell
+										409 text YS221-TNC转IPEX连接线
+									410 cell
+										411 text 1
+									412 cell
+										413 text 740
+								414 row
+									415 cell
+										416 text 528-000031
+									417 cell
+										418 text 165-002644
+									419 cell
+										420 text YS221接收机上壳
+									421 cell
+										422 text 1
+									423 cell
+										424 text 857
+								425 row
+									426 cell
+										427 text 528-000031
+									428 cell
+										429 text 165-002702
+									430 cell
+										431 text YS221接收机下壳(P+R)
+									432 cell
+										433 text 1
+									434 cell
+										435 text 870
+								436 row
+									437 cell
+										438 text 528-000031
+									439 cell
+										440 text 165-002646
+									441 cell
+										442 text YS221接收机防水硅胶件
+									443 cell
+										444 text 1
+									445 cell
+										446 text 859
+								447 row
+									448 cell
+										449 text 528-000031
+									450 cell
+										451 text 994-000606
+									452 cell
+										453 text YS221_M16-12P信号转接线
+									454 cell
+										455 text 1
+									456 cell
+										457 text 650
+								458 row
+									459 cell
+										460 text 528-000031
+									461 cell
+										462 text 165-002708
+									463 cell
+										464 text TNC防尘堵头
+									465 cell
+										466 text 1
+									467 cell
+										468 text 2359
+								469 row
+									470 cell
+										471 text 528-000031
+									472 cell
+										473 text 165-000722
+									474 cell
+										475 text YN501_M16连接器防水胶套
+									476 cell
+										477 text 1
+									478 cell
+										479 text 5404
+								480 row
+									481 cell
+										482 text 528-000031
+									483 cell
+										484 text 165-002647
+									485 cell
+										486 text GPS散热硅胶垫
+									487 cell
+										488 text 1
+									489 cell
+										490 text 1660
+								491 row
+									492 cell
+										493 text 528-000031
+									494 cell
+										495 text 849-000382
+									496 cell
+										497 text M16
+										498 text E19
+										499 text L2.8六角螺母
+									500 cell
+										501 text 1
+									502 cell
+										503 text 14703
+								504 row
+									505 cell
+										506 text 528-000031
+									507 cell
+										508 text 849-000717
+									509 cell
+										510 text 812 M5防水透气阀
+									511 cell
+										512 text 1
+									513 cell
+										514 text 3087
+								515 row
+									516 cell
+										517 text 528-000031
+									518 cell
+										519 text 849-000204
+									520 cell
+										521 text M3*10不锈钢耐落机制螺丝
+									522 cell
+										523 text 9
+									524 cell
+										525 text 53184
+								526 row
+									527 cell
+										528 text 528-000031
+									529 cell
+										530 text 849-000700
+									531 cell
+										532 text M3*6-不锈钢十字圆头机牙螺丝_半耐落
+									533 cell
+										534 text 12
+									535 cell
+										536 text 116123
+								537 row
+									538 cell
+										539 text 528-000031
+									540 cell
+										541 text 468-000565
+									542 cell
+										543 text YS221固定标签(国内)
+									544 cell
+										545 text 1
+									546 cell
+										547 text 1312
+								548 row
+									549 cell
+										550 text 791-000003
+									551 cell
+										552 text 588-000726
+									553 cell
+										554 text YN403_MAINBOARD_P2_PCBA
+									555 cell
+										556 text 1
+									557 cell
+										558 text 1034
+								559 row
+									560 cell
+										561 text 791-000003
+									562 cell
+										563 text 588-000654
+									564 cell
+										565 text YN403_KEYBOARD_P0_PCBA
+									566 cell
+										567 text 1
+									568 cell
+										569 text 1044
+								570 row
+									571 cell
+										572 text 791-000003
+									573 cell
+										574 text 588-000655
+									575 cell
+										576 text YN403_4GBOARD_P0_PCBA
+									577 cell
+										578 text 1
+									579 cell
+										580 text 1034
+								581 row
+									582 cell
+										583 text 791-000003
+									584 cell
+										585 text 165-002372
+									586 cell
+										587 text YN403_后壳
+									588 cell
+										589 text 1
+									590 cell
+										591 text 1046
+								592 row
+									593 cell
+										594 text 791-000003
+									595 cell
+										596 text 165-002375
+									597 cell
+										598 text YN403_SIM卡盖板
+									599 cell
+										600 text 1
+									601 cell
+										602 text 1246
+								603 row
+									604 cell
+										605 text 791-000003
+									606 cell
+										607 text 165-002376
+									608 cell
+										609 text YN403_防水硅胶圈
+									610 cell
+										611 text 1
+									612 cell
+										613 text 1566
+								614 row
+									615 cell
+										616 text 791-000003
+									617 cell
+										618 text 165-002377
+									619 cell
+										620 text YN403_USB防水密封圈
+									621 cell
+										622 text 1
+									623 cell
+										624 text 1246
+								625 row
+									626 cell
+										627 text 791-000003
+									628 cell
+										629 text 165-002378
+									630 cell
+										631 text YN403_SIM卡防水密封圈
+									632 cell
+										633 text 1
+									634 cell
+										635 text 3946
+								636 row
+									637 cell
+										638 text 791-000003
+									639 cell
+										640 text 849-000846
+									641 cell
+										642 text M2.5*6-不锈钢十字圆头机牙螺丝_半耐落
+									643 cell
+										644 text 3
+									645 cell
+										646 text 138907
+								647 row
+									648 cell
+										649 text 791-000003
+									650 cell
+										651 text 182-000055
+									652 cell
+										653 text 一卡三通NaNo物联卡（腾讯薄款）
+									654 cell
+										655 text 1
+									656 cell
+										657 text 6393
+								658 row
+									659 cell
+										660 text 791-000003
+									661 cell
+										662 text 838-000375
+									663 cell
+										664 text YN406-4G天线
+									665 cell
+										666 text 1
+									667 cell
+										668 text 1037
+								669 row
+									670 cell
+										671 text 791-000003
+									672 cell
+										673 text 838-000376
+									674 cell
+										675 text YN406-WIFI天线
+									676 cell
+										677 text 1
+									678 cell
+										679 text 1039
+								680 row
+									681 cell
+										682 text 791-000003
+									683 cell
+										684 text 165-002405
+									685 cell
+										686 text YN403_导电泡棉3
+									687 cell
+										688 text 1
+									689 cell
+										690 text 12791
+								691 row
+									692 cell
+										693 text 791-000003
+									694 cell
+										695 text 165-002408
+									696 cell
+										697 text YN403_导电泡棉6
+									698 cell
+										699 text 2
+									700 cell
+										701 text 3292
+								702 row
+									703 cell
+										704 text 791-000003
+									705 cell
+										706 text 791-000012
+									707 cell
+										708 text YN403_前壳预装组件_不带终端互联
+									709 cell
+										710 text 1
+									711 cell
+										712 text 144
+								713 row
+									714 cell
+										715 text 791-000003
+									716 cell
+										717 text 165-000229
+									718 cell
+										719 text 701pro密封圈（摄像头）
+									720 cell
+										721 text 3
+									722 cell
+										723 text 12420
+								724 row
+									725 cell
+										726 text 791-000003
+									727 cell
+										728 text 795-000176
+									729 cell
+										730 text 308终端防水透气膜
+									731 cell
+										732 text 1
+									733 cell
+										734 text 16708
+								735 row
+									736 cell
+										737 text 791-000003
+									738 cell
+										739 text 849-000943
+									740 cell
+										741 text M3*6十字薄头螺丝
+									742 cell
+										743 text 9
+									744 cell
+										745 text 17514
+								746 row
+									747 cell
+										748 text 791-000003
+									749 cell
+										750 text 849-000700
+									751 cell
+										752 text M3*6-不锈钢十字圆头机牙螺丝_半耐落
+									753 cell
+										754 text 10
+									755 cell
+										756 text 116123
+								757 row
+									758 cell
+										759 text 791-000003
+									760 cell
+										761 text 849-000204
+									762 cell
+										763 text M3*10不锈钢耐落机制螺丝
+									764 cell
+										765 text 14
+									766 cell
+										767 text 53184
+								768 row
+									769 cell
+										770 text 791-000003
+									771 cell
+										772 text 849-000392
+									773 cell
+										774 text ST2.6*6-镀锌铁十字圆头尖尾自攻螺丝
+									775 cell
+										776 text 4
+									777 cell
+										778 text 65052
+								779 row
+									780 cell
+										781 text 791-000003
+									782 cell
+										783 text 849-000208
+									784 cell
+										785 text M12
+										786 text E19
+										787 text L2.5六角螺帽
+									788 cell
+										789 text 3
+									790 cell
+										791 text 17644
+								792 row
+									793 cell
+										794 text 791-000003
+									795 cell
+										796 text 849-000717
+									797 cell
+										798 text 812 M5防水透气阀
+									799 cell
+										800 text 1
+									801 cell
+										802 text 3087
+								803 row
+									804 cell
+										805 text 791-000003
+									806 cell
+										807 text 165-000266
+									808 cell
+										809 text 701pro摄像头连接器防水胶套
+									810 cell
+										811 text 3
+									812 cell
+										813 text 8667
+							814 heading 两点提示, Value: 2
+								815 text 两点提示
+							816 content list
+								817 container
+									818 AXListMarker •
+									819 text 零库存卡点 ： 791-000007 （方向盘组件）与  791-000015 （显示终端整机预装组件）可用量为  0 ，是第 1 层最直接的瓶颈； 528-000036 （接收机组件）仅  34 ；第 3 层  791-000012 （前壳预装组件）仅  144 。
+								820 container
+									821 AXListMarker •
+									822 text 重复出现 ： 849-000700 、 849-000204 、 849-000717  同时挂在  528-000031  与  791-000003  两个父件下（单耗需按路径分别计），行未做合并。
+							823 heading 数据限制（请留意）, Value: 2
+								824 text 数据限制（请留意）
+							825 content list
+								826 container
+									827 AXListMarker 1.
+									828 text 只展开到第 3 层 ：该 BOM 最深 5 层，但  depth=4 、 depth=5  均触发服务端  Request timed out （各重试 2 次仍超时），第 4–5 层明细（约 313 行明细中的后段）未能取得。
+								829 container
+									830 AXListMarker 2.
+									831 text standard_usage  是 相对直接父件的单层单耗 ，不是相对成品 382-000005 的累计用量；若需要「每台成品累计用量」或按需求套数做齐套/缺料分析，可再走  要X套净需求与齐套 、 理论可产 、 合计可售  等能力。
+								832 container
+									833 AXListMarker 3.
+									834 text 本次明细  include_substitute=false ， 不含替代料行 ；库存为  production_available  仓范围， reserved  未扣减。
+							835 button 复制
+							836 toggle button Description: 好的回答, Value: 0
+							837 toggle button Description: 有问题的回答, Value: 0
+							838 button 查看业务溯源, Help: View OpenBKN provenance for this answer
+							839 button 在新对话中分支
+							840 pop up button 用量 509K tok
+							841 text 09:06
+						842 container
+							843 text entry area (settable) 发消息或创建任务, / 调用指令, @ 文件或对话
+							844 pop up button 添加文件或调用指令
+							845 button 访问模式，当前：工作区内修改
+							846 pop up button Description: 选择模型，当前 DeepSeek-V41-Flash，推理等级 High, Help: DeepSeek-V41-Flash · High
+							847 button (disabled) 发送消息
+						848 pop up button 1 轮 8 步 · 294 tok/s
+							849 text 1 轮 8 步
+							850 text 294 tok/s
+						851 pop up button 509K tok · 缓存命中 95%
+							852 text 509K tok
+							853 text 缓存命中 95%
+						854 pop up button 上下文已用 8%
+	855 close button
+	856 full screen button Help: this button also has an action to zoom the window, Secondary Actions: zoom the window
+	857 minimize button
+858 menu bar
+	859 DeepSeek Harness
+	860 文件
+	861 Edit
+	862 Window
+
+The focused UI element is 42 tab (selected) 对话, Value: 1

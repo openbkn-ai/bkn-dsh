@@ -1,0 +1,226 @@
+Window: "查询物料382-000005的名称与标准交期 — DeepSeek Harness", App: DeepSeek Harness.
+0 standard window 查询物料382-000005的名称与标准交期 — DeepSeek Harness, Secondary Actions: Raise
+	1 container 查询物料382-000005的名称与标准交期 — DeepSeek Harness
+		2 container
+			3 HTML content 查询物料382-000005的名称与标准交期 — DeepSeek Harness, URL: dsh-app://app/
+				4 container
+					5 button 收起侧边栏
+					6 button 新建会话
+					7 container 全局面板
+						8 button 插件
+					9 text 工作区
+					10 button 搜索会话
+					11 text field (settable) 搜索会话名称
+					12 button 视图选项
+					13 button 添加工作区
+					14 outline 会话
+						15 container
+							16 row workspace-supply
+								17 text workspace-supply
+							18 row (selected) 查询物料382-000005的名称与标准交期 刚刚
+								19 text 查询物料382-000005的名称与标准交期 刚刚
+							20 row 统计销售订单数量及状态 1分钟
+								21 text 统计销售订单数量及状态 1分钟
+							22 row 查询销售订单数量及状态 8分钟
+								23 text 查询销售订单数量及状态 8分钟
+							24 row 查询物料名称 382-000005 23分钟
+								25 text 查询物料名称 382-000005 23分钟
+							26 row 物料库存与订单情况查询 27分钟
+								27 text 物料库存与订单情况查询 27分钟
+							28 button 展开其余 7 个会话
+						29 row 默认工作区
+							30 text 默认工作区
+					31 button OpenBKN business knowledge networks
+					32 pop up button 账号菜单
+					33 container
+						34 container 会话层级
+							35 text 查询物料382-000005的名称与标准交期
+						36 text 标准模式
+						37 text 供应链本体知识网络-手工版
+						38 button 用 访达 打开
+						39 pop up button 更多打开方式
+						40 pop up button 更多操作
+						41 button 打开右侧边栏
+						42 tab group
+							43 tab (selected) 对话, Value: 1
+							44 tab (settable, integer) 轨迹, Value: 0
+					45 container
+						46 container
+							47 container 轮次导航
+								48 container
+									49 button 跳转到第 1 轮
+									50 button 跳转到第 2 轮
+							51 text 查询 382-000005 的物料名称与标准交期
+							52 text 09:18
+							53 button 复制
+							54 text 已完成
+							55 button 已完成，用时 9秒
+								56 text 已完成，用时
+								57 text 9
+								58 text 秒
+							59 heading 物料 382-000005 查询结果, Value: 2
+								60 text 物料 382-000005 查询结果
+							61 table
+								62 row
+									63 column header
+										64 text 字段
+									65 column header
+										66 text 值
+								67 row
+									68 cell
+										69 text 物料编码
+									70 cell
+										71 text 382-000005
+								72 row
+									73 cell
+										74 text 物料名称
+									75 cell
+										76 text 北斗导航农机驾驶仪
+								77 row
+									78 cell
+										79 text 标准交期（采购固定交期）
+									80 cell
+										81 text 1
+										82 text （purchase_fixedleadtime）
+								83 row
+									84 cell
+										85 text 标准交期（生产固定交期）
+									86 cell
+										87 text 1（product_fixedleadtime）
+							88 text 补充信息（同一条物料记录）：
+							89 content list
+								90 container
+									91 AXListMarker •
+									92 text 规格型号：YN406BDS-2.5GD(YN406拖拉机V2)
+								93 container
+									94 AXListMarker •
+									95 text 物料属性：自制（因此生产固定交期 product_fixedleadtime 也适用）
+								96 container
+									97 AXListMarker •
+									98 text 基本单位：个
+								99 container
+									100 AXListMarker •
+									101 text 存货类别：库存商品-产成品
+								102 container
+									103 AXListMarker •
+									104 text 产品状态：已上架
+							105 text 说明与限制：
+							106 content list
+								107 container
+									108 AXListMarker •
+									109 text 数据来自知识网络中「物料」对象类（底层资源  supply_demo_hand.erp_material ），精确匹配  material_code = 382-000005 ，命中 1 条。
+								110 container
+									111 AXListMarker •
+									112 text 该对象类有 两个 交期字段： purchase_fixedleadtime （采购固定交期）与  product_fixedleadtime （生产固定交期），两者均为 1。由于该物料属性为「自制」，生产固定交期是更贴近的口径。
+								113 container
+									114 AXListMarker •
+									115 text schema 未给出交期字段的单位（业务上通常为「天」），此处仅按数值呈现，未做单位推断。
+							116 button 复制
+							117 toggle button Description: 好的回答, Value: 0
+							118 toggle button Description: 有问题的回答, Value: 0
+							119 button 查看业务溯源, Help: View OpenBKN provenance for this answer
+							120 button 在新对话中分支
+							121 pop up button 用量 265K tok
+							122 text 09:18
+							123 text 这个物料的交期依据是什么？
+							124 text 09:43
+							125 button 复制
+							126 text 已完成
+							127 button 已完成，用时 16秒
+								128 text 已完成，用时
+								129 text 16
+								130 text 秒
+							131 heading 382-000005 交期的依据, Value: 2
+								132 text 382-000005 交期的依据
+							133 text 结论：交期取自该物料的 ERP 物料主数据中「固定提前期」字段本身，是按物料属性二选一的口径，而不是由采购历史、供应商表现或工单实际履约回算出来的。
+							134 text 具体口径如下：
+							135 table
+								136 row
+									137 column header
+										138 text 依据项
+									139 column header
+										140 text 说明
+								141 row
+									142 cell
+										143 text 数据来源
+									144 cell
+										145 text 物料对象类（底层资源
+										146 text supply_demo_hand.erp_material
+										147 text ）的物料记录，字段即固定提前期
+								148 row
+									149 cell
+										150 text 取哪一个字段
+									151 cell
+										152 text 按
+										153 text materialattr
+										154 text （物料属性）选：外购 → 采购固定提前期；自制 → 生产固定提前期
+								155 row
+									156 cell
+										157 text 本物料适用字段
+									158 cell
+										159 text 物料属性 =
+										160 text 自制
+										161 text ，故取
+										162 container
+											163 text 生产固定提前期  product_fixedleadtime  = 1
+								164 row
+									165 cell
+										166 text 字段业务定义
+									167 cell
+										168 text 生产固定提前期：「自制件包括产成品、半成品的
+										169 text 生产提前期（天）
+										170 text 」；采购固定提前期：「
+										171 text 采购交货提前期（天）
+										172 text 」（该物料此值也为 1）
+								173 row
+									174 cell
+										175 text 已发布能力佐证
+									176 cell
+										177 text 知识网络中已发布函数「标准交期」，输入物料编码，结果描述为「提前期天数及
+										178 text 按物料属性采用的采购或生产口径
+										179 text 」；对其调用返回
+										180 text leadtime_days = 1
+							181 text 需要注意的边界：
+							182 content list
+								183 container
+									184 AXListMarker •
+									185 text 我核对了字段的 display_name / comment（来自对象类完整定义），确认单位是 天 ——上一轮我未在 schema 中看到单位，现在已确认，可以放心说「1 天」。
+								186 container
+									187 AXListMarker •
+									188 text 我没有看到「标准交期」函数的内部实现代码，只看到它的结果描述与返回值；因此「按物料属性二选一分流」这一措辞来自该能力的官方描述，而非我读到的源码。
+								189 container
+									190 AXListMarker •
+									191 text 知识网络中 不存在 按供应商、采购订单或生产工单历史履约数据回算交期的规则或指标；该物料两项固定提前期数值都是 1，无法从数据上区分「自制口径生效」还是两者恰好相同——口径判定依据是  materialattr = 自制  这一属性。
+								192 container
+									193 AXListMarker •
+									194 text 网络里另有一条 MRP 行动注释（「在交期周期前 2 天要完成 PO」），那是 MRP 倒排的作业提示， 不是 本物料标准交期的来源，请勿混用。
+							195 button 复制
+							196 toggle button Description: 好的回答, Value: 0
+							197 toggle button Description: 有问题的回答, Value: 0
+							198 button 查看业务溯源, Help: View OpenBKN provenance for this answer
+							199 button 在新对话中分支
+							200 pop up button 用量 371K tok
+							201 text 09:43
+						202 container
+							203 text entry area (settable) 发消息或创建任务, / 调用指令, @ 文件或对话
+							204 pop up button 添加文件或调用指令
+							205 button 访问模式，当前：工作区内修改
+							206 pop up button Description: 选择模型，当前 DeepSeek-V41-Flash，推理等级 High, Help: DeepSeek-V41-Flash · High
+							207 button (disabled) 发送消息
+							208 pop up button 2 轮 11 步 · 253 tok/s
+								209 text 2 轮 11 步
+								210 text 253 tok/s
+							211 pop up button 636K tok · 缓存命中 96%
+								212 text 636K tok
+								213 text 缓存命中 96%
+							214 pop up button 上下文已用 7%
+	215 close button
+	216 full screen button Help: this button also has an action to zoom the window, Secondary Actions: zoom the window
+	217 minimize button
+218 menu bar
+	219 DeepSeek Harness
+	220 文件
+	221 Edit
+	222 Window
+
+The focused UI element is 203 text entry area (settable) 发消息或创建任务, / 调用指令, @ 文件或对话

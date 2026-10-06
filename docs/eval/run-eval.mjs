@@ -9,7 +9,7 @@
  *                              summary
  *   --answers <file>           batch mode: JSON mapping case id -> array of
  *                              booleans (one per expectFacts+forbidden line,
- *                              in order) or "pass"/"fail"
+ *                              in order) or "pass"/"fail"/"not-run"
  *   --out <file>               also write a markdown results file
  *
  * Judgement is intentionally manual for now: the questions need a live
@@ -88,6 +88,10 @@ function batch(doc, answersPath) {
   return doc.cases.map(c => {
     const value = raw[c.id]
     if (value === undefined) throw new Error(`answers file is missing case ${c.id}`)
+    // A missing live account/model is not an observed failure. Keep these
+    // cases explicit and outside the tested denominator; record why in the
+    // accompanying runtime evidence.
+    if (value === 'not-run') return { id: c.id, group: c.group, marks: [], pass: null }
     const checks = criteriaOf(c)
     let marks
     if (typeof value === 'string') marks = checks.map(() => value === 'pass')
@@ -104,10 +108,15 @@ function batch(doc, answersPath) {
 function summarize(doc, results, outPath) {
   const positives = results.filter(r => r.group === 'positive')
   const negatives = results.filter(r => r.group === 'negative')
-  const fmt = rs => `${rs.filter(r => r.pass).length}/${rs.length}`
+  const fmt = rs => {
+    const tested = rs.filter(r => r.pass !== null)
+    return `${tested.filter(r => r.pass).length}/${tested.length}`
+  }
   console.log(`\n== ${doc.network} summary ==`)
   console.log(`positive: ${fmt(positives)}   negative: ${fmt(negatives)}   total: ${fmt(results)}`)
-  const failed = results.filter(r => !r.pass)
+  const untested = results.filter(r => r.pass === null)
+  if (untested.length > 0) console.log(`not-run: ${untested.map(r => r.id).join(', ')}`)
+  const failed = results.filter(r => r.pass === false)
   if (failed.length > 0) console.log(`failed: ${failed.map(r => r.id).join(', ')}`)
   if (outPath !== undefined) {
     const target = resolve(process.cwd(), outPath)
@@ -117,8 +126,10 @@ function summarize(doc, results, outPath) {
       `date: ${new Date().toISOString()}`, '',
       `positive: ${fmt(positives)} · negative: ${fmt(negatives)} · total: ${fmt(results)}`, '',
       ...results.flatMap(r => [
-        `## ${r.id} — ${r.pass ? 'PASS' : 'FAIL'}`,
-        ...criteriaOf(doc.cases.find(c => c.id === r.id)).map((check, i) => `- [${r.marks[i] ? 'x' : ' '}] ${check}`),
+        `## ${r.id} — ${r.pass === null ? 'NOT-RUN' : r.pass ? 'PASS' : 'FAIL'}`,
+        ...(r.pass === null
+          ? ['- 未执行；前提缺失的原因见本次运行证据，不纳入通过率分母。']
+          : criteriaOf(doc.cases.find(c => c.id === r.id)).map((check, i) => `- [${r.marks[i] ? 'x' : ' '}] ${check}`)),
         '',
       ]),
     ]

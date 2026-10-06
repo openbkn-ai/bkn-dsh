@@ -1,0 +1,115 @@
+Window: "销售订单382-000005状态查询 — DeepSeek Harness", App: DeepSeek Harness.
+0 standard window 销售订单382-000005状态查询 — DeepSeek Harness, Secondary Actions: Raise
+	1 container 销售订单382-000005状态查询 — DeepSeek Harness
+		2 container
+			3 HTML content 销售订单382-000005状态查询 — DeepSeek Harness, URL: dsh-app://app/
+				4 container
+					5 button 收起侧边栏
+					6 button 新建会话
+					7 container 全局面板
+						8 button 插件
+					9 text 工作区
+					10 button 搜索会话
+					11 text field (settable) 搜索会话名称
+					12 button 视图选项
+					13 button 添加工作区
+					14 outline 会话
+						15 container
+							16 row workspace-supply
+								17 text workspace-supply
+							18 row (selected) 销售订单382-000005状态查询 刚刚
+								19 text 销售订单382-000005状态查询 刚刚
+							20 row 382-000005 标准交期查询 6分钟
+								21 text 382-000005 标准交期查询 6分钟
+						22 row 默认工作区
+							23 text 默认工作区
+					24 button OpenBKN business knowledge networks
+					25 pop up button 账号菜单
+					26 container
+						27 container 会话层级
+							28 text 销售订单382-000005状态查询
+						29 text 标准模式
+						30 text 供应链本体知识网络-手工版
+						31 button 用 访达 打开
+						32 pop up button 更多打开方式
+						33 pop up button 更多操作
+						34 button 打开右侧边栏
+						35 tab group
+							36 tab (selected) 对话, Value: 1
+							37 tab (settable, integer) 轨迹, Value: 0
+					38 container
+						39 container
+							40 text 382-000005 有多少张销售订单？什么状态？ 09:00
+							41 button 复制
+							42 text 已完成
+							43 button 已完成，用时 26秒
+								44 text 已完成，用时
+								45 text 26
+								46 text 秒
+							47 text 382-000005（北斗导航农机驾驶仪）共 40 张销售订单，状态全部是「已确认」
+							48 text ——这是唯一状态，没有其他状态。
+							49 table
+								50 row
+									51 column header
+										52 text 项
+									53 column header
+										54 text 结果
+								55 row
+									56 cell
+										57 text 产品
+									58 cell
+										59 text 382-000005 北斗导航农机驾驶仪
+								60 row
+									61 cell
+										62 text 销售订单张数
+									63 cell
+										64 text 40
+								65 row
+									66 cell
+										67 text 订单状态
+									68 cell
+										69 text 已确认：40 张（100%）
+								70 row
+									71 cell
+										72 text 订单号
+									73 cell
+										74 text SO0000001–SO0000020、SO0000501–SO0000520
+							75 text 口径说明：
+							76 content list
+								77 container
+									78 AXListMarker •
+									79 text 数据来自知识网络的「销售订单」对象类，按  product_code = 382-000005  过滤，命中 40 行、40 个不重复订单号（查询自身返回 total_count = 40，即已取全）。
+								80 container
+									81 AXListMarker •
+									82 text 用已建模指标「销售订单数」按订单状态分组复核，结果同为  已确认 = 40 ，与明细一致。
+							83 text 补充（同一批数据里可见，供参考）：这些订单签约日期集中在 2026-03 至 2026-06，承诺交期在 2026-03 至 2026-08；签约数量与交付数量存在少量差异（如 SO0000005 签约 43/交付 39）。如需按客户、业务员或交期维度拆解，或统计签约/交付总量，我可以继续查。
+							84 button 复制
+							85 toggle button Description: 好的回答, Value: 0
+							86 toggle button Description: 有问题的回答, Value: 0
+							87 button 查看业务溯源, Help: View OpenBKN provenance for this answer
+							88 button 在新对话中分支
+							89 pop up button 用量 451K tok
+							90 text 09:00
+						91 container
+							92 text entry area (settable) 发消息或创建任务, / 调用指令, @ 文件或对话
+							93 pop up button 添加文件或调用指令
+							94 button 访问模式，当前：工作区内修改
+							95 pop up button Description: 选择模型，当前 DeepSeek-V41-Flash，推理等级 High, Help: DeepSeek-V41-Flash · High
+							96 button (disabled) 发送消息
+						97 pop up button 1 轮 7 步 · 260 tok/s
+							98 text 1 轮 7 步
+							99 text 260 tok/s
+						100 pop up button 451K tok · 缓存命中 93%
+							101 text 451K tok
+							102 text 缓存命中 93%
+						103 pop up button 上下文已用 7%
+	104 close button
+	105 full screen button Help: this button also has an action to zoom the window, Secondary Actions: zoom the window
+	106 minimize button
+107 menu bar
+	108 DeepSeek Harness
+	109 文件
+	110 Edit
+	111 Window
+
+The focused UI element is 92 text entry area (settable) 发消息或创建任务, / 调用指令, @ 文件或对话

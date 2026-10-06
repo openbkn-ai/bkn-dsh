@@ -1,0 +1,172 @@
+Window: "查询物料382-000005的名称与标准交期 — DeepSeek Harness", App: DeepSeek Harness.
+0 standard window 查询物料382-000005的名称与标准交期 — DeepSeek Harness, Secondary Actions: Raise
+	1 container 查询物料382-000005的名称与标准交期 — DeepSeek Harness
+		2 container
+			3 HTML content 查询物料382-000005的名称与标准交期 — DeepSeek Harness, URL: dsh-app://app/
+				4 container OpenBKN business provenance
+					5 container
+						6 text TRACE-BACKED PROVENANCE
+						7 heading 业务溯源, Value: 2
+							8 text 业务溯源
+						9 button Close
+					10 container Provenance views
+						11 button 执行溯源
+						12 button 业务上下文图
+						13 button 证据链
+					14 container
+						15 text 业务对象 逻辑 / 指标 本轮正式引用
+						16 container
+							17 image OpenBKN formal business relations
+							18 toggle button object 物料 query_object_instance, Value: 1
+								19 text object
+								20 text 物料
+								21 text query_object_instance
+							22 toggle button property 物料规格 query_object_instance, Value: 0
+								23 text property
+								24 text 物料规格
+								25 text query_object_instance
+							26 toggle button property 存货类别 query_object_instance, Value: 0
+								27 text property
+								28 text 存货类别
+								29 text query_object_instance
+							30 toggle button property 物料编码 query_object_instance, Value: 0
+								31 text property
+								32 text 物料编码
+								33 text query_object_instance
+							34 toggle button property 物料名称 query_object_instance, Value: 0
+								35 text property
+								36 text 物料名称
+								37 text query_object_instance
+							38 toggle button property 物料属性 query_object_instance, Value: 0
+								39 text property
+								40 text 物料属性
+								41 text query_object_instance
+							42 toggle button property 规格型号 query_object_instance, Value: 0
+								43 text property
+								44 text 规格型号
+								45 text query_object_instance
+							46 toggle button property 生产固定提前期 query_object_instance, Value: 0
+								47 text property
+								48 text 生产固定提前期
+								49 text query_object_instance
+							50 toggle button property 产品状态 query_object_instance, Value: 0
+								51 text property
+								52 text 产品状态
+								53 text query_object_instance
+							54 toggle button property 采购固定提前期 query_object_instance, Value: 0
+								55 text property
+								56 text 采购固定提前期
+								57 text query_object_instance
+							58 toggle button action 发起PO search_schema, Value: 0
+								59 text action
+								60 text 发起PO
+								61 text search_schema
+							62 toggle button object 供应链本体知识网络-手工版 search_schema, Value: 0
+								63 text object
+								64 text 供应链本体知识网络-手工版
+								65 text search_schema
+							66 toggle button metric 物料总数 search_schema, Value: 0
+								67 text metric
+								68 text 物料总数
+								69 text search_schema
+							70 toggle button metric 仓库数 search_schema, Value: 0
+								71 text metric
+								72 text 仓库数
+								73 text search_schema
+							74 toggle button object 产品BOM search_schema, Value: 0
+								75 text object
+								76 text 产品BOM
+								77 text search_schema
+							78 toggle button object 产品需求预测单 search_schema, Value: 0
+								79 text object
+								80 text 产品需求预测单
+								81 text search_schema
+							82 toggle button object 库存 search_schema, Value: 0
+								83 text object
+								84 text 库存
+								85 text search_schema
+							86 toggle button object 监控证据明细 search_schema, Value: 0
+								87 text object
+								88 text 监控证据明细
+								89 text search_schema
+							90 toggle button object 工厂生产计划 search_schema, Value: 0
+								91 text object
+								92 text 工厂生产计划
+								93 text search_schema
+							94 toggle button object 物料需求计划 search_schema, Value: 0
+								95 text object
+								96 text 物料需求计划
+								97 text search_schema
+							98 toggle button object 采购订单 search_schema, Value: 0
+								99 text object
+								100 text 采购订单
+								101 text search_schema
+							102 toggle button object 采购申请单 search_schema, Value: 0
+								103 text object
+								104 text 采购申请单
+								105 text search_schema
+							106 toggle button object 采购申请决策 search_schema, Value: 0
+								107 text object
+								108 text 采购申请决策
+								109 text search_schema
+							110 toggle button object 产品 search_schema, Value: 0
+								111 text object
+								112 text 产品
+								113 text search_schema
+							114 toggle button object 销售订单 search_schema, Value: 0
+								115 text object
+								116 text 销售订单
+								117 text search_schema
+							118 toggle button relation 产品bom关联物料 search_schema, Value: 0
+								119 text relation
+								120 text 产品bom关联物料
+								121 text search_schema
+							122 toggle button relation 物料关联库存 search_schema, Value: 0
+								123 text relation
+								124 text 物料关联库存
+								125 text search_schema
+							126 toggle button relation 监控证据引用物料 search_schema, Value: 0
+								127 text relation
+								128 text 监控证据引用物料
+								129 text search_schema
+							130 toggle button relation 物料需求计划关联产品预测需求 search_schema, Value: 0
+								131 text relation
+								132 text 物料需求计划关联产品预测需求
+								133 text search_schema
+							134 toggle button relation 物料需求计划关联物料 search_schema, Value: 0
+								135 text relation
+								136 text 物料需求计划关联物料
+								137 text search_schema
+							138 toggle button relation 采购申请单关联物料需求计划 search_schema, Value: 0
+								139 text relation
+								140 text 采购申请单关联物料需求计划
+								141 text search_schema
+							142 toggle button relation 采购订单关联物料请购单 search_schema, Value: 0
+								143 text relation
+								144 text 采购订单关联物料请购单
+								145 text search_schema
+							146 toggle button relation 采购申请决策建议采购物料 search_schema, Value: 0
+								147 text relation
+								148 text 采购申请决策建议采购物料
+								149 text search_schema
+						150 text BUSINESS REF
+						151 text 物料
+						152 text object · resolved
+						153 text 来源知识网络
+						154 text 未定位
+						155 text 来源 Operation
+						156 text op_21e9bdb8008a86e5d7a3db634a3ef75d
+						157 text 解析工具 query_object_instance
+						158 text 本轮正式投影
+						159 container
+							160 text 33  个元素 ·  0  条可视关系
+	161 close button
+	162 full screen button Help: this button also has an action to zoom the window, Secondary Actions: zoom the window
+	163 minimize button
+164 menu bar
+	165 DeepSeek Harness
+	166 文件
+	167 Edit
+	168 Window
+
+The focused UI element is 12 button 业务上下文图

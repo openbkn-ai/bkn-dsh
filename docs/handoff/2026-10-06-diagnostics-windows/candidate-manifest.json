@@ -1,6 +1,6 @@
 {
   "template": false,
-  "status": "ci-candidate-ui-s0-s2-s4-verified-on-macos-desktop-and-npm-with-real-export-and-live-guard",
+  "status": "ci-candidate-macos-ui-verified-g6-7-of-10-tested-with-3-failures-1-not-run-release-not-accepted",
   "plan": "DIAG-01",
   "candidate": {
     "packageName": "@openbkn/dsh-business-context",
@@ -43,7 +43,8 @@
     "platformServices": [
       "kind cluster bkn-dev (192.168.50.28, platform 0.1.5 image set; pods Running during the live run)"
     ],
-    "platformContractEvidencePath": "evidence/cli-015-mcp-catalogue.json"
+    "platformContractEvidencePath": "evidence/cli-015-mcp-catalogue.json",
+    "g6EvidencePath": "MAC-ACCEPTANCE.md"
   },
   "diagnostics": {
     "reportSchemaVersion": 1,
@@ -70,7 +71,11 @@
   "knownLimitations": [
     "No active retest: re-collect reads passive observations only. Opening the parent OpenBKN panel performs normal business status/auth/network reads; passive export evidence is measured after those reads settle.",
     "Windows desktop/npm native PowerShell and W0-W12 remain untested; the complete fixed-artifact handoff must first be parsed and smoked on Windows.",
-    "Full real-model G6 has not started: model configuration was saved and the official API model selected, but the independent native directory picker awaits workspace selection and macOS is now locked; manual unlock and selection are required.",
+    "Real-model G6 on official macOS Desktop / DeepSeek-V41-Flash High: positive5/7, negative2/3, tested7/10. standard-lead-time, bom-usage-inventory and missing-object fail strict criteria; release G6 gate not passed.",
+    "unauthorized-network not-run: user has no real restricted account; unbound-session denial and simulated failures do not replace platform authorization acceptance.",
+    "Native R4/R6/R7/R8 pass. Provenance views open but origin network remains unresolved and internal pending receipts/graph completeness remain limited.",
+    "One native startup gateway/definition-unavailable anomaly recovered after remove/reinstall of the exact CI package;65 installed files match. Root cause not established.",
+    "Connection-unavailable uses a closed HTTPS endpoint with fictional credential and an isolated persisted-binding URL fixture, later restored. Recovery first met expired real CLI access token; normal CLI refresh and panel state refresh were needed before the same session resumed. No actual cluster outage claimed.",
     "S2 business UI can still display the pre-existing generic Token/address message; the independent diagnostic report correctly says module-resolution-failed. Do not infer an authentication root cause from the generic message.",
     "Diagnostic report DSH/loaded-plugin versions may remain unknown; installation hashes and newly started isolated Host supply separate identity evidence.",
     "Whole-package bootstrap/shared-chunk failures are outside the single business/diagnostics-row isolation fault model."
