@@ -6,7 +6,7 @@
 
 | 项目 | 固定身份 / 本轮结果 |
 |---|---|
-| Worktree | `bkn-dsh-unified-7`，分支 `release/unified-7-acceptance`；从 main `7553cc13a17e80b87e4d8b2b22381ab8f05bc22d` 建立，保留其他工作区已有修改 |
+| Worktree | `bkn-dsh-unified-7`，初建分支 `release/unified-7-acceptance`，最终文档分支 `docs/unified7-acceptance`；从 main `7553cc13a17e80b87e4d8b2b22381ab8f05bc22d` 建立，保留其他工作区已有修改 |
 | 包 | `@openbkn/dsh-business-context@0.2.0-rc.2-openbkn.0.2.0-7` |
 | CI | [37447961098](https://github.com/openbkn-ai/bkn-dsh/actions/runs/37447961098)，main，`release-plugin.yml`，`publish=false`；build/test/pack 成功，npm publish 和 GitHub Release 跳过 |
 | CI tgz | SHA-256 `4e4f7c3d44453038b4f2a723ec5334c443565ef0628e1e295bd339eda8f14d86`，166727 bytes，65 文件，16 个 exports/main/types 声明目标全部存在 |
@@ -79,6 +79,6 @@ Windows没有测试凭据、设置向导反复出现和历史故障用户的启�
 
 ## 收尾与发布边界
 
-本轮只提交/推送交接、候选及证据。未 tag、未发布npm、未移动dist-tag、未部署平台修改。模型私有 profile 和原始日志不进入交付；仅清理本轮进程、端口与自建临时目录/原始日志；已核验 PID/启动时间/exe 后停止本轮 Desktop（原生退出快捷键未退出，随后 SIGTERM），npm probe 端口18797无监听。用户已配置的隔离模型 profile 和三个复测会话保留，65个安装文件仍匹配本CI包；见 `cleanup.json`。
+本轮只提交/推送交接、候选及证据。固定包交付 commit `92f6977` 已推送；后续元数据直推被 `release/*` 的PR规则拒绝，改用docs分支与草稿PR，不强推、不改变保护规则。未 tag、未发布npm、未移动dist-tag、未部署平台修改。模型私有 profile 和原始日志不进入交付；仅清理本轮进程、端口与自建临时目录/原始日志；已核验 PID/启动时间/exe 后停止本轮 Desktop（原生退出快捷键未退出，随后 SIGTERM），npm probe 端口18797无监听。用户已配置的隔离模型 profile 和三个复测会话保留，65个安装文件仍匹配本CI包；见 `cleanup.json`。
 
 后续顺序：Windows可先跑本固定包的无需登录受影响矩阵；回答质量缺陷修复后，如任何包文件变化，重新生成同一计划版本的新CI身份，并重跑三题和受影响Windows项。所有异常处理及用户发版决定完成后才进入tag/publish。不能以本报告声明完整 DIAG-01或完整发布验收完成。
