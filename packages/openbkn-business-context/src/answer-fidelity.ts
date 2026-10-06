@@ -72,7 +72,7 @@ function stockQuantity(value: string): string | undefined {
   // returned no stock row. Keep that absence distinct from measured zero;
   // unknown/missing quantities and nonnumeric usage are never inferred.
   const cleaned = cell(value)
-  if (['无合格库存行', '无库存行', '无库存记录', '无记录', 'NO_ROW'].includes(cleaned)) return '0*'
+  if (['无合格库存行', '无库存行', '无库存记录', '无记录', 'no_row'].includes(cleaned.toLowerCase())) return '0*'
   return quantity(cleaned)
 }
 
@@ -154,6 +154,8 @@ export function renderDetail(rows: readonly DetailRow[]): string {
     '| 层级 | 父件 | 子件编码 | 子件名称 | 单耗 | 可用库存 | 库存单位 |',
     '|---|---|---|---|---|---|---|',
     ...rows.map(row => `| ${DETAIL_KEYS.map(key => markdownCell(row[key])).join(' | ')} |`),
+    ...(rows.some(row => row.stock.endsWith('*')) ? ['* 表示本次查询范围内未查到该物料的库存行，不能据此断言范围外实际库存为零。'] : []),
+    ...(rows.some(row => row.unit === '?') ? ['? 表示库存单位未提供。'] : []),
   ].join('\n')
 }
 

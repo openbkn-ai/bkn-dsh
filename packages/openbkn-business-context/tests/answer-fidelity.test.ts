@@ -45,10 +45,12 @@ test('live empty-stock handoff rejects the excerpt but accepts all 313 faithfull
 })
 
 test('explicit missing-stock words retain absence, while unknown stock and nonnumeric usage fail closed', () => {
-  for (const absent of ['无合格库存行', '无库存行', '无库存记录', '无记录', 'NO_ROW']) {
+  for (const absent of ['无合格库存行', '无库存行', '无库存记录', '无记录', 'NO_ROW', 'no_row', 'No_Row']) {
     const handoff = detail(`1|parent-a|child|widget|1|${absent}|未提供`)
     const rows = detailRowsOf(handoff)
     assert.deepEqual(rows.map(row => [row.stock, row.unit]), [['0*', '?']])
+    assert.match(renderDetail(rows), /\* 表示本次查询范围内未查到该物料的库存行/)
+    assert.match(renderDetail(rows), /\? 表示库存单位未提供/)
     assert.equal(inspectAnswerFidelity(events(handoff, renderDetail(rows)), 1), undefined)
     assert.equal(inspectAnswerFidelity(events(handoff, renderDetail(rows).replace('0*', '0')), 1)?.code, 'detail-mismatch')
   }

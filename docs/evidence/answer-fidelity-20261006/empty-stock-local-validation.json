@@ -32,8 +32,13 @@
   "nativeFailedAttemptRetained": true,
   "windowsHeld": true,
   "localPack": {
-    "sha256": "ac8dbb87413339bd9d05d282a9719fc36ff8b39cac44ef1137ecccb70e002080",
-    "sizeBytes": 173223,
+    "sha256": "19ce1eb4c00e7cb787559410051772940a0d5151fdc04e2d63591e7298b6b3d1",
+    "sizeBytes": 173487,
     "scope": "local build only; not delivered as the fixed candidate"
+  },
+  "reviewFollowup": {
+    "canonicalHandoffMarkers": "0* for proven scoped absent row, ? for undisclosed inventory unit; unknown quantity is never inferred",
+    "correctionLegend": "includes scoped absence and unknown-unit meaning",
+    "noRowCasing": "NO_ROW/no_row/No_Row covered"
   }
 }
