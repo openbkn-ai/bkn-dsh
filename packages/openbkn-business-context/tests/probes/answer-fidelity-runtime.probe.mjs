@@ -25,6 +25,7 @@ const HEADER = '| 层级 | 父件 | 子件编码 | 子件名称 | 单耗 | 可�
 const GOOD = `${HEADER}\n| 1 | p | c | widget | 2 | 0* | ? |`
 const BAD = GOOD.replace('0*', '99').replace(' ? |', ' 个 |')
 const STDOUT = 'DETAIL_ROWS:1\nlevel|parent|child_code|child_name|std_usage|available_qty|uom\n1|p|c|widget|2|0*|?\nEMITTED:1'
+const SCOPE_STDOUT = 'INVENTORY_FALLBACK: scoped-stock-rows\nDETAIL_ROWS:1\nlevel|parent|child_code|child_name|std_usage|available_qty|uom|scoped_stock_rows\n1|p|c|widget|2|0*|?|0\nEMITTED:1'
 
 function textResponse(text) {
   return [
@@ -73,9 +74,9 @@ async function scenario(secondAnswer, bound = true, firstAnswer = BAD, repairHan
     const fixtures = [
       ['bkn_start_interaction', { conversation_mode: { type: 'string', required: true } }, () => JSON.stringify({ interaction_id: 'int-fixture', conversation_id: 'conv-fixture', execution_status: 'active' })],
       ['run_code', { kn_id: { type: 'string', required: true } }, () => {
-        if (repairHandoff && dataCalls > 0) { reprintCalls++; return JSON.stringify({ stdout: STDOUT, exit_code: 0, stderr: '' }) }
+        if (repairHandoff && dataCalls > 0) { reprintCalls++; return JSON.stringify({ stdout: repairHandoff === 'scope' ? SCOPE_STDOUT : STDOUT, exit_code: 0, stderr: '' }) }
         dataCalls++
-        return JSON.stringify({ stdout: repairHandoff ? STDOUT.replace('level|parent|child_code|child_name|std_usage|available_qty|uom\n', '') : STDOUT, exit_code: 0, stderr: '' })
+        return JSON.stringify({ stdout: repairHandoff === 'scope' ? SCOPE_STDOUT.replace('0*|?|0', '0|?|0') : repairHandoff ? STDOUT.replace('level|parent|child_code|child_name|std_usage|available_qty|uom\n', '') : STDOUT, exit_code: 0, stderr: '' })
       }],
       ['bkn_finish_interaction', {}, () => JSON.stringify({ interaction_id: 'int-fixture', conversation_id: 'conv-fixture', execution_status: 'completed' })],
     ]
@@ -112,13 +113,14 @@ async function scenario(secondAnswer, bound = true, firstAnswer = BAD, repairHan
       const finishIndex = events.findIndex(event => event.type === 'tool/call' && event.data.name === PREFIX + 'bkn_finish_interaction')
       assert.ok(noticeIndex < finishIndex, 'producer repair precedes closing the original Interaction')
       const raw = events.find(event => event.type === 'tool/result' && event.data.message.toolCallId === 'detail')
-      assert.ok(!raw.data.message.content[0].text.includes('level|parent|child_code'), 'original headerless result remains unchanged')
+      if (repairHandoff === 'scope') assert.ok(raw.data.message.content[0].text.includes('1|p|c|widget|2|0|?|0'), 'original inconsistent scope result remains unchanged')
+      else assert.ok(!raw.data.message.content[0].text.includes('level|parent|child_code'), 'original headerless result remains unchanged')
     }
-    return { scenario: repairHandoff ? 'headerless-cached-reprint' : !bound ? 'unbound-unaffected' : firstAnswer !== BAD ? 'full-question-summary-rejected' : secondAnswer === GOOD ? 'corrected-same-turn' : 'second-mismatch-errors', passed: true,
+    return { scenario: repairHandoff === 'scope' ? 'scoped-inventory-cached-repair' : repairHandoff ? 'headerless-cached-reprint' : !bound ? 'unbound-unaffected' : firstAnswer !== BAD ? 'full-question-summary-rejected' : secondAnswer === GOOD ? 'corrected-same-turn' : 'second-mismatch-errors', passed: true,
       turnReason: expectedReason, turns: ends.length, correctionNotices: notices.length, answerAttempts: answers.length, dataCalls, reprintCalls, modelCalls: adapter.requests.length,
       humanAfterTurnStart: human > turnStart, humanHasTurnField: false }
   } finally { for (const fiber of fibers.reverse()) await fiber.dispose() }
 }
 
 console.log(JSON.stringify({ evidence: 'official DSH runtime with scripted model and tool fixtures; no live platform/model', runtimeVersion: runtimeRequire('@deepseek-ai/dsh-agent-loop/package.json').version }))
-for (const [answer, bound, first, repair] of [[GOOD, true, BAD], [BAD, true, BAD], [BAD, false, BAD], [GOOD, true, 'Complete detail exists; summary only.'], [GOOD, true, GOOD, true]]) console.log(JSON.stringify(await scenario(answer, bound, first, repair)))
+for (const [answer, bound, first, repair] of [[GOOD, true, BAD], [BAD, true, BAD], [BAD, false, BAD], [GOOD, true, 'Complete detail exists; summary only.'], [GOOD, true, GOOD, true], [GOOD, true, GOOD, 'scope']]) console.log(JSON.stringify(await scenario(answer, bound, first, repair)))
