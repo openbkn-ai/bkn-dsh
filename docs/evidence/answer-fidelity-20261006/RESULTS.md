@@ -29,7 +29,7 @@ The pinned driver [commits `turn/start` at line 305](https://github.com/deepseek
 
 Upstream check on 2026-10-06: DSH `master` was `5badb15009ae1756c3afe0ae0cef1faafc290ccc` (`dsh-v0.2.1-alpha.1`); it was not substituted for the supported baseline. OpenBKN foundry `main` was `180ff56b565589f02f913d8e436043fd46f84157`, with latest release `v0.1.5`. No newly discovered tool was added to the guard whitelist.
 
-## Validation before review
+## Historical initial validation before source review
 
 - Captured-failure regressions reject the actual 314-row answer and the invented source name; the transcription generated from the captured successful result has 313 rows and preserves the legitimate repeated child in level 4.
 - Scoped hook tests cover one notice, unchanged original events, a persistent mismatch, cancellation, per-turn reset and native/unbound scope isolation.
@@ -41,7 +41,7 @@ This section is local/source and controlled-runtime evidence. PR approval, a new
 
 The first independent PR review approved the initial head while flagging the intermediate-message edge and two assumptions. The source revision excludes pending tool calls; verifies the native question ordering with an omission-sensitive runtime scenario; and refuses conflicting self-declared complete batches instead of silently shrinking the answer. Updated source approval is required before CI delivery.
 
-## Delivery state at source review
+## Historical delivery state at the initial source review
 
 New CI artifact and real-model replay: pending. Windows delivery: held until approval, build-only CI and Mac exact-artifact checks pass. Version remains `0.2.0-rc.2-openbkn.0.2.0-7`; no npm publish, release tag or dist-tag action is authorized by this repair request.
 
@@ -112,3 +112,9 @@ The final product download is `/Users/kalias/Downloads/OpenBKN-diagnostic-202610
 The frozen G6 set remains unchanged: **3 tested / 3 pass, 8 not-run**. `g6-results.md`, `final-verdict.json` and `qa-observed-limitations.json` state the boundaries. Full original CLI snapshot bytes are preserved in each snapshot directory's `raw-cli-snapshot.zip`, bound per file by `archive-index.json`; selected comparison data stays readable. CSV line endings alone were normalized to LF after checking every cell is unchanged. In the BOM turn a published depth-5 inventory call timed out and the answer disclosed an independently checked read-only fallback. This does not establish that timeout's root cause or fix the separately open platform #2029 large-result persistence problem. Restricted account, mixed-network real UI, automatic renewal and native unified -7 Windows retest remain open. No tag, npm publish or dist-tag action occurred.
 
 The fixed Windows kit is `docs/handoff/2026-10-06-release-7/fidelity-windows/`; the forwardable fixed-commit download notice is `WINDOWS-FIDELITY-NOTICE.md` in its parent. Native Desktop/npm retest must use that exact artifact, fully uninstall/reinstall, preserve old evidence and mark credential-dependent cases not-run when credentials are unavailable.
+
+## Delivery review follow-up
+
+PR #73 identified that the initial delivery commit `a73c637` omitted the ignored tgz from the tracked `fidelity-windows/candidate/` directory. Its ZIP was already complete, but the README's repository-checkout alternative failed the offline verifier. The follow-up tracks the identical accepted tgz in that directory and updates the fixed delivery commit in the forwardable notice. The tgz and Windows ZIP bytes, kit-file hashes, package runtime, source commit and Mac acceptance remain unchanged. The repository-index audit verifies all 30 kit files against both `kit-files.json` and the immutable ZIP; the anonymous remote check also verifies the checkout tgz. The earlier rejected root artifact is explicitly marked historical without altering its package bytes.
+
+Test totals above belong to their stated historical source or CI run. Current CI totals remain 344 plugin tests (343 pass, 1 skip), with 60 repository tests. The post-CI, test-only actual-TOON assertion was validated separately by the 25 focused tests recorded above; it adds assertions within an existing case and does not claim a new full-suite run or a rebuilt package.
