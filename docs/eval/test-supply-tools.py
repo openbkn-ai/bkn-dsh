@@ -25,7 +25,6 @@ class EvidenceRedactionTests(unittest.TestCase):
             {"type": "assistant/message", "data": {"turn": 1, "step": 2, "message": {"content": [{"type": "text", "text": "bad table"}]}}},
             {"type": "user/message", "data": {"source": {"kind": "openbkn-answer-fidelity", "form": "notice", "summary": "Checking"}, "content": [{"type": "text", "text": "correct it"}]}},
             {"type": "assistant/message", "data": {"turn": 1, "step": 3, "message": {"content": [{"type": "text", "text": "correct table"}]}}},
-            {"type": "assistant/message", "data": {"turn": 1, "step": 4, "interrupted": True, "message": {"content": [{"type": "text", "text": "interrupted"}]}}},
             {"type": "turn/end", "time": 9, "data": {"turn": 1, "reason": {"kind": "error"}}},
         ]
         data = "\n".join(json.dumps(row) for row in rows).encode()
@@ -35,12 +34,28 @@ class EvidenceRedactionTests(unittest.TestCase):
                  patch.object(export.subprocess, "run", return_value=SimpleNamespace(stdout=data)), patch("builtins.print"):
                 export.main()
             record = json.loads(output.with_suffix(".json").read_text())
-            self.assertEqual(record["assistantText"], ["bad table", "correct table", "interrupted"])
+            self.assertEqual(record["assistantText"], ["bad table", "correct table"])
             self.assertEqual(output.with_suffix(".md").read_text(), "correct table\n")
             self.assertEqual(record["finalAnswer"]["step"], 3)
             self.assertEqual(record["finalAnswer"]["turnEndReason"], {"kind": "error"})
             self.assertEqual(len(record["fidelityNotices"]), 1)
             self.assertEqual(record["question"], [])
+
+    def test_pending_tool_message_preserves_attempts_without_exporting_an_older_answer_as_final(self):
+        rows = [
+            {"type": "assistant/message", "data": {"turn": 1, "message": {"content": [{"type": "text", "text": "older answer"}]}}},
+            {"type": "assistant/message", "data": {"turn": 1, "message": {"content": [{"type": "text", "text": "pending"}, {"type": "tool-call", "name": "tool"}]}}},
+        ]
+        data = "\n".join(json.dumps(row) for row in rows).encode()
+        with tempfile.TemporaryDirectory() as folder:
+            output = Path(folder) / "answer"
+            with patch("sys.argv", ["export", "session/session.v4.jsonl.zstd", "--output", str(output)]), \
+                 patch.object(export.subprocess, "run", return_value=SimpleNamespace(stdout=data)), patch("builtins.print"):
+                export.main()
+            record = json.loads(output.with_suffix(".json").read_text())
+            self.assertEqual(record["assistantText"], ["older answer", "pending"])
+            self.assertIsNone(record["finalAnswer"])
+            self.assertEqual(output.with_suffix(".md").read_text(), "No final answer yet.\n")
 
     def test_short_and_alias_credentials_in_structured_results(self):
         result = export.redact({"password": "pw1", "accessToken": "short", "api-key": "tiny", "material_code": "382-000005", "available_qty": 34})

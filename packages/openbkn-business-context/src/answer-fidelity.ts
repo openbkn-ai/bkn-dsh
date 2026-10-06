@@ -19,7 +19,7 @@ export interface DetailRow {
 }
 
 export interface AnswerFidelityIssue {
-  readonly code: 'detail-mismatch' | 'source-name-mismatch' | 'detail-count-mismatch' | 'tool-detail-incomplete'
+  readonly code: 'detail-mismatch' | 'source-name-mismatch' | 'detail-count-mismatch' | 'tool-detail-incomplete' | 'detail-handoff-conflict'
   readonly reason: string
   readonly correction: string
 }
@@ -225,6 +225,7 @@ export function inspectAnswerFidelity(events: readonly FidelityEvent[], turn: nu
   let answer = ''
   let activeTurn: number | undefined
   let incomplete = false
+  let handoffConflict = false
   for (const event of events) {
     const data = record(event.data)
     if (event.type === 'turn/start' && typeof data?.turn === 'number') activeTurn = data.turn
@@ -233,7 +234,13 @@ export function inspectAnswerFidelity(events: readonly FidelityEvent[], turn: nu
     if (event.type === 'user/message' && activeTurn === turn && record(data?.source)?.kind === 'user') question = textOf(data?.content)
     if (data?.turn !== turn) continue
     const message = record(data.message)
-    if (event.type === 'assistant/message' && data.interrupted !== true) answer = textOf(message?.content)
+    if (event.type === 'assistant/message') {
+      // A capped/error turn may stop on an intermediate text + tool-call
+      // message. It is not a deliverable, and must not leave an older answer
+      // selected after a newer pending tool call.
+      const pendingTool = Array.isArray(message?.content) && message.content.some(block => record(block)?.type === 'tool-call')
+      answer = data.interrupted === true || pendingTool ? '' : textOf(message?.content)
+    }
     if (event.type === 'tool/call' && typeof data.callId === 'string' && typeof data.name === 'string') calls.set(data.callId, data.name)
     if (event.type !== 'tool/result' || message?.isError === true || typeof message?.toolCallId !== 'string') continue
     const name = calls.get(message.toolCallId)
@@ -254,12 +261,17 @@ export function inspectAnswerFidelity(events: readonly FidelityEvent[], turn: nu
     const total = /^(?:DETAIL_ROWS|TOTAL_ROWS|BOM_ROWS):\s*(\d+)/m.exec(detail)?.[1]
     const emitted = /^EMITTED:\s*(\d+)/m.exec(detail)?.[1]
     if (rows.length > 0 && !parsed.malformed && Number(total) === rows.length && Number(emitted) === rows.length) {
-      expected = rows; sourceCall = message.toolCallId
+      if (expected.length === 0) { expected = rows; sourceCall = message.toolCallId }
+      else if (!sameRows(expected, rows, true)) handoffConflict = true
     } else if (total !== undefined && emitted !== undefined) {
       incomplete = true
     }
   }
   if (answer.length === 0) return undefined
+  if (handoffConflict) return {
+    code: 'detail-handoff-conflict', reason: 'Successful tool results claim conflicting complete details in this turn.',
+    correction: 'A single complete detail handoff cannot be established: two successful outputs both claim completeness but contain different rows or values. Do not silently select a smaller batch, infer that the largest is correct, or claim completeness. State that complete-detail validation failed. A new, explicitly scoped query is required; do not start another Interaction in this turn.',
+  }
   const wrongSources = [...answer.matchAll(/\b\w+(?:\.\w+)+\b/g)].map(match => match[0]).filter(name => {
     if (sources.has(name)) return false
     const suffix = name.slice(name.lastIndexOf('.'))

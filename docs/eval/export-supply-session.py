@@ -68,7 +68,9 @@ def main():
     for line in data.splitlines():
         row = json.loads(line)
         kind, body = row["type"], row.get("data", {})
-        if kind == "user/message" and body.get("source", {}).get("kind") == "user":
+        if kind == "turn/start":
+            final_answer = None
+        elif kind == "user/message" and body.get("source", {}).get("kind") == "user":
             question.extend(item["text"] for item in body.get("content", []) if item["type"] == "text")
         elif kind == "user/message" and body.get("source", {}).get("kind") == "openbkn-answer-fidelity":
             notices.append({"source": body["source"], "content": [item for item in body.get("content", []) if item["type"] == "text"]})
@@ -77,8 +79,10 @@ def main():
             text = "\n".join(item["text"] for item in message.get("content", []) if item["type"] == "text")
             if text:
                 answers.append(text)
-                if not body.get("interrupted", False):
-                    final_answer = {"turn": body.get("turn"), "step": body.get("step"), "text": text}
+            if text and not body.get("interrupted", False) and not any(item["type"] == "tool-call" for item in message.get("content", [])):
+                final_answer = {"turn": body.get("turn"), "step": body.get("step"), "text": text}
+            else:
+                final_answer = None
         elif kind == "turn/end":
             turn_ends.append({"time": row["time"], "turn": body["turn"], "reason": body["reason"]})
         elif kind == "tool/call":

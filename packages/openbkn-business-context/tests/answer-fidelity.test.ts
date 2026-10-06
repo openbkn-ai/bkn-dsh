@@ -25,7 +25,7 @@ function captured(name: string): { readonly events: FidelityEvent[]; readonly an
   const answer = raw.assistantText.join('\n')
   return { answer, events: [
     { type: 'turn/start', data: { turn: 1 } },
-    { type: 'user/message', data: { source: { kind: 'user' }, content: [{ type: 'text', text: raw.question }] } },
+    { type: 'user/message', data: { source: { kind: 'user' }, content: [{ type: 'text', text: Array.isArray(raw.question) ? raw.question.join('\n') : raw.question }] } },
     ...raw.toolEvents.map((e: Record<string, unknown>) => e.type === 'tool/call'
       ? { type: e.type, data: e }
       : { type: e.type, data: { turn: e.turn, message: { toolCallId: e.callId, isError: e.hostErrorFlag === true, content: e.content } } }),
@@ -95,6 +95,19 @@ test('an incomplete declared handoff cannot accept a complete-answer claim', () 
   assert.equal(inspectAnswerFidelity(events(stdout, '完整结果已交付。'), 1)?.code, 'tool-detail-incomplete')
 })
 
+test('conflicting self-declared complete batches fail closed instead of shrinking a correct full answer', () => {
+  const rows = detailRowsOf(detail())
+  const log = events(detail(), renderDetail(rows))
+  log.splice(-1, 0,
+    { type: 'tool/call', data: { turn: 1, callId: 'spot-check', name: 'mcp__openbkn__run_code' } },
+    { type: 'tool/result', data: { turn: 1, message: { toolCallId: 'spot-check', content: [{ type: 'text', text: JSON.stringify({ exit_code: 0, stdout: detail(ROWS.split('\n')[0]!) }) }] } } },
+  )
+  const issue = inspectAnswerFidelity(log, 1)
+  assert.equal(issue?.code, 'detail-handoff-conflict')
+  assert.match(issue!.correction, /Do not silently select a smaller batch/)
+  assert.equal(detailRowsOf(issue!.correction).length, 0, 'conflicting data is not chosen as an authoritative replacement')
+})
+
 test('failed tools and failed run_code stdout never become authoritative detail', () => {
   const log = events(detail(), 'No result')
   const message = (log[3]!.data as { message: { isError?: boolean } }).message
@@ -148,4 +161,13 @@ test('fidelity failure metadata contains no business rows, values or private loc
   const error = new AnswerFidelityError(issue)
   assert.equal(error.code, 'answer-fidelity-failed')
   assert.doesNotMatch(error.message, /parent-a|shared-child|widget/)
+})
+
+test('an intermediate text plus pending tool call is not a final answer, including after an older final-form message', () => {
+  const log = events(detail(), 'Retrieving additional detail.')
+  ;(log[4]!.data as { message: { content: unknown[] } }).message.content.push({ type: 'tool-call', name: 'mcp__openbkn__run_code', id: 'pending', arguments: '{}' })
+  assert.equal(inspectAnswerFidelity(log, 1), undefined)
+  const olderFinal = events(detail(), 'Earlier incorrect final-form answer.')[4]!
+  log.splice(4, 0, olderFinal)
+  assert.equal(inspectAnswerFidelity(log, 1), undefined)
 })

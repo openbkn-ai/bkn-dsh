@@ -54,12 +54,12 @@ class ScriptedAdapter extends llm.LlmAdapter {
   }
 }
 
-async function scenario(secondAnswer, bound = true) {
+async function scenario(secondAnswer, bound = true, firstAnswer = BAD) {
   const ctx = new cordis.Context()
   const adapter = new ScriptedAdapter([
     callResponse('bkn_start_interaction', { conversation_mode: 'new' }, 'start'),
     callResponse('run_code', { kn_id: 'kn-probe' }, 'detail'),
-    callResponse('bkn_finish_interaction', {}, 'finish'), textResponse(BAD), textResponse(secondAnswer),
+    callResponse('bkn_finish_interaction', {}, 'finish'), textResponse(firstAnswer), textResponse(secondAnswer),
   ])
   let dataCalls = 0
   const fibers = []
@@ -83,6 +83,10 @@ async function scenario(secondAnswer, bound = true) {
     agent.followup(llm.createUserMessage({ source: { kind: 'user' }, content: [{ type: 'text', text: '完整 BOM 清单，每个物料的使用量和库存' }] }))
     await agent.whenIdle()
     const events = agent.session.snapshotEvents()
+    const turnStart = events.findIndex(event => event.type === 'turn/start')
+    const human = events.findIndex(event => event.type === 'user/message' && event.data.source.kind === 'user')
+    assert.ok(human > turnStart, 'official native log commits turn/start before the human message')
+    assert.equal(events[human].data.turn, undefined, 'native UserMessage has no turn field')
     const ends = events.filter(event => event.type === 'turn/end')
     const notices = events.filter(event => event.type === 'user/message' && event.data.source.kind === 'openbkn-answer-fidelity')
     const answers = events.filter(event => event.type === 'assistant/message').flatMap(event => event.data.message.content.filter(block => block.type === 'text').map(block => block.text))
@@ -90,14 +94,15 @@ async function scenario(secondAnswer, bound = true) {
     assert.equal(ends.length, 1, 'correction stays in one turn')
     assert.equal(ends[0].data.reason.kind, expectedReason)
     assert.equal(notices.length, bound ? 1 : 0)
-    assert.deepEqual(answers, bound ? [BAD, secondAnswer] : [BAD], 'all attempted answers remain in the native log')
+    assert.deepEqual(answers, bound ? [firstAnswer, secondAnswer] : [firstAnswer], 'all attempted answers remain in the native log')
     assert.equal(dataCalls, 1, 'no additional retrieval during correction')
     assert.equal(adapter.requests.length, bound ? 5 : 4, 'one correction budget only')
     if (expectedReason === 'error') assert.match(ends[0].data.reason.error.message, /OpenBKN answer validation failed after one correction/)
-    return { scenario: !bound ? 'unbound-unaffected' : secondAnswer === GOOD ? 'corrected-same-turn' : 'second-mismatch-errors', passed: true,
-      turnReason: expectedReason, turns: ends.length, correctionNotices: notices.length, answerAttempts: answers.length, dataCalls, modelCalls: adapter.requests.length }
+    return { scenario: !bound ? 'unbound-unaffected' : firstAnswer !== BAD ? 'full-question-summary-rejected' : secondAnswer === GOOD ? 'corrected-same-turn' : 'second-mismatch-errors', passed: true,
+      turnReason: expectedReason, turns: ends.length, correctionNotices: notices.length, answerAttempts: answers.length, dataCalls, modelCalls: adapter.requests.length,
+      humanAfterTurnStart: human > turnStart, humanHasTurnField: false }
   } finally { for (const fiber of fibers.reverse()) await fiber.dispose() }
 }
 
 console.log(JSON.stringify({ evidence: 'official DSH runtime with scripted model and tool fixtures; no live platform/model', runtimeVersion: runtimeRequire('@deepseek-ai/dsh-agent-loop/package.json').version }))
-for (const [answer, bound] of [[GOOD, true], [BAD, true], [BAD, false]]) console.log(JSON.stringify(await scenario(answer, bound)))
+for (const [answer, bound, first] of [[GOOD, true, BAD], [BAD, true, BAD], [BAD, false, BAD], [GOOD, true, 'Complete detail exists; summary only.']]) console.log(JSON.stringify(await scenario(answer, bound, first)))
