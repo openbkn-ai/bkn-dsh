@@ -1,0 +1,4 @@
+{"evidence":"official DSH runtime with scripted model and tool fixtures; no live platform/model","runtimeVersion":"0.2.0-rc.2"}
+{"scenario":"corrected-same-turn","passed":true,"turnReason":"completed","turns":1,"correctionNotices":1,"answerAttempts":2,"dataCalls":1,"modelCalls":5}
+{"scenario":"second-mismatch-errors","passed":true,"turnReason":"error","turns":1,"correctionNotices":1,"answerAttempts":2,"dataCalls":1,"modelCalls":5}
+{"scenario":"unbound-unaffected","passed":true,"turnReason":"completed","turns":1,"correctionNotices":0,"answerAttempts":1,"dataCalls":1,"modelCalls":4}

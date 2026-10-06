@@ -50,6 +50,7 @@ interface FakeAgent {
   readonly listeners: Record<string, Array<(...args: unknown[]) => unknown>>
   readonly logs: unknown[][]
   readonly appended: Array<{ readonly type: string; readonly data: unknown }>
+  readonly steering: Array<{ readonly source: { readonly kind: string }; readonly content: readonly { readonly type: string; readonly text?: string }[] }>
 }
 
 /** A conversation the session already holds, as DSH logged the successful start that opened it. */
@@ -77,6 +78,7 @@ function fakeAgent(events: Array<{ type: string; data: unknown }> = [BOUND_EVENT
   const listeners: FakeAgent['listeners'] = {}
   const logs: FakeAgent['logs'] = []
   const appended: FakeAgent['appended'] = []
+  const steering: FakeAgent['steering'] = []
   const ctx = {
     tools: {
       guard: (guard: FakeAgent['guards'][number]) => { guards.push(guard); return () => {} },
@@ -95,8 +97,9 @@ function fakeAgent(events: Array<{ type: string; data: unknown }> = [BOUND_EVENT
       append: (type: string, data: unknown) => { appended.push({ type, data }) },
     },
     ctx,
+    steer: (message: FakeAgent['steering'][number]) => { steering.push(message) },
   }
-  return { agent, guards, sections, listeners, logs, appended }
+  return { agent, guards, sections, listeners, logs, appended, steering }
 }
 
 /** The managed-session section as the next prompt assembly would render it. */
@@ -299,6 +302,61 @@ test('does not alter a native or differently configured DSH agent scope', () => 
   assert.equal(mountBoundBusinessNetworkTool(agent as never, config, undefined), false)
   assert.equal(mountBoundBusinessNetworkTool(agent as never, config, { ...BOUND_EVENT.data, platformBaseUrl: 'https://other.openbkn.ai' }), false)
   assert.deepEqual(mounted, [])
+})
+
+function fidelityEvents(): Array<{ type: string; data: unknown }> {
+  return [BOUND_EVENT,
+    { type: 'turn/start', data: { turn: 1 } },
+    { type: 'user/message', data: { source: { kind: 'user' }, content: [{ type: 'text', text: '完整 BOM 清单，每个物料的用量和库存' }] } },
+    { type: 'tool/call', data: { turn: 1, callId: 'detail', name: 'mcp__openbkn__run_code' } },
+    { type: 'tool/result', data: { turn: 1, message: { toolCallId: 'detail', content: [{ type: 'text', text: JSON.stringify({ exit_code: 0, stdout: 'DETAIL_ROWS:1\nlevel|parent|child_code|child_name|std_usage|available_qty|uom\n1|p|c|part|2|0*|?\nEMITTED:1' }) }] } } },
+    { type: 'assistant/message', data: { turn: 1, message: { content: [{ type: 'text', text: '| 层级 | 父件 | 子件编码 | 子件名称 | 单耗 | 可用库存 | 库存单位 |\n|---|---|---|---|---|---|---|\n| 1 | p | c | part | 2 | 9 | 件 |' }] } } },
+  ]
+}
+
+test('stop boundary steers one producer-labelled correction and keeps all original events', () => {
+  const events = fidelityEvents()
+  const original = structuredClone(events)
+  const fake = fakeAgent(events)
+  mount(fake)
+  const stop = fake.listeners['agent/turn-stopping']![0]!
+  stop({ turn: 1, signal: new AbortController().signal })
+  assert.equal(fake.steering.length, 1)
+  assert.equal(fake.steering[0]!.source.kind, 'openbkn-answer-fidelity')
+  assert.match(fake.steering[0]!.content[0]!.text!, /\| 1 \| p \| c \| part \| 2 \| 0\* \| \? \|/)
+  assert.deepEqual(events, original)
+  assert.deepEqual(fake.appended, [], 'Host steering, not direct session writes, owns persistence')
+  fake.appended.push({ type: 'user/message', data: fake.steering[0]! },
+    { type: 'assistant/message', data: { turn: 1, message: { content: [{ type: 'text', text: fake.steering[0]!.content[0]!.text! }] } } })
+  assert.doesNotThrow(() => stop({ turn: 1 }))
+  assert.equal(fake.steering.length, 1)
+})
+
+test('a second invalid final answer fails the turn instead of steering indefinitely', () => {
+  const fake = fakeAgent(fidelityEvents())
+  mount(fake)
+  const stop = fake.listeners['agent/turn-stopping']![0]!
+  stop({ turn: 1 })
+  assert.throws(() => stop({ turn: 1 }), (error: unknown) =>
+    error instanceof Error && error.name === 'AnswerFidelityError' &&
+    (error as Error & { code: string }).code === 'answer-fidelity-failed')
+  assert.equal(fake.steering.length, 1)
+})
+
+test('an aborted stop does not steer, and a fresh turn resets the one-correction budget', async () => {
+  const fake = fakeAgent(fidelityEvents())
+  mount(fake)
+  const stop = fake.listeners['agent/turn-stopping']![0]!
+  stop({ turn: 1, signal: AbortSignal.abort() })
+  assert.deepEqual(fake.steering, [])
+  stop({ turn: 1 })
+  await fake.listeners['agent/pre-step']![0]!({ step: 1 }, async () => {})
+  const next = fidelityEvents().filter(event => event !== BOUND_EVENT).map(event => ({
+    type: event.type, data: { ...(event.data as object), ...(event.type === 'user/message' ? {} : { turn: 2 }) },
+  }))
+  fake.appended.push(...next)
+  assert.doesNotThrow(() => stop({ turn: 2 }))
+  assert.equal(fake.steering.length, 2)
 })
 
 test('loads only the host selection service at the root instead of registering a global model tool', async () => {
