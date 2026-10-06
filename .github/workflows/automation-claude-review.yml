@@ -236,9 +236,9 @@ jobs:
 
           shards = [{
               "key": "review",
-              "label": "全量",
+              "label": "All files",
               "kind": "single",
-              "files": "\n".join("- " + f for f in deep_files) or "（本轮没有代码改动）",
+              "files": "\n".join("- " + f for f in deep_files) or "(No code changes in this round)",
               "files_shallow": "\n".join("- " + f for f in rest_files),
           }] if paths else []
 
@@ -300,8 +300,8 @@ jobs:
           # 落成文件由下面的 shell 发出。
           if skip:
               pathlib.Path("skip-notice.txt").write_text(
-                  "PR #%s 上一轮已放行，且本次改动未触及高危面，跳过自动复评。"
-                  "需要复评请回复 /review。" % pr, encoding="utf-8")
+                  "PR #%s was approved in the previous round and has no high-risk changes; skipping automatic re-review. "
+                  "Reply /review to request another round." % pr, encoding="utf-8")
           print("skip_round=%s" % ("true" if skip else "false"))
           print("file_total=%d" % total)
           print("file_listed=%d" % len(paths))
@@ -347,15 +347,15 @@ jobs:
           import json, os
           shards = json.loads(os.environ["SHARDS"])
           lines = ["<!-- claude-review-progress -->",
-                   '### <img src="%s" width="16" height="16" /> 评审进行中'
+                   '### <img src="%s" width="16" height="16" /> Review in progress'
                    % os.environ["SPINNER"],
                    "",
-                   "评审完成后统一给出一次结论。",
+                   "A consolidated verdict will be posted when the review finishes.",
                    ""]
           # 复选框由评审跑完后回来打勾（review job 的 Tick progress 步骤）。
           lines += ["- [ ] `%s`" % s["label"] for s in shards]
-          lines += ["", "[查看运行日志](%s)" % os.environ["RUN_URL"],
-                    "", "_结论落地后这条会自动消失。_"]
+          lines += ["", "[View run logs](%s)" % os.environ["RUN_URL"],
+                    "", "_This notice will be removed after the verdict is posted._"]
           print("\n".join(lines))
           PY
           )
@@ -662,8 +662,8 @@ jobs:
 
             两件事，缺一不可：
 
-            **一律用中文**写 inline comment 与 findings JSON 里的所有文字。代码标识符、
-            错误信息、命令、路径保持原样，不翻译。
+            Write all inline comments and all text in findings JSON in English.
+            Preserve code identifiers, literal error messages, commands, paths and quoted source text.
 
             **inline comment 的配额**：此前已有 ${{ needs.plan.outputs.prior_rounds }}
             轮结论。为 0 时最多贴 3 条；不为 0 时最多 1 条，且只针对本轮新增提交。
@@ -681,15 +681,15 @@ jobs:
             {
               "shard": "${{ matrix.shard.label }}",
               "status": "completed",
-              "summary": "整体判断，最多两句",
-              "impact": "这次改动可能波及什么（模块、页面、接口、存量状态），一句话；没什么可说就填空串",
+              "summary": "Overall assessment, at most two sentences",
+              "impact": "Affected modules, pages, interfaces or existing state; one sentence, or an empty string",
               "blockers": [
-                {"file": "packages/openbkn-business-context/src/auth.ts", "line": 42, "what": "问题是什么",
-                 "scenario": "什么输入、什么状态、坏成什么样",
-                 "evidence": ["runtime/prepare-compatible-runtime.mjs:88-95 这几行里读到的、支撑这条结论的事实"]}
+                {"file": "packages/openbkn-business-context/src/auth.ts", "line": 42, "what": "Concrete defect",
+                 "scenario": "Input, state and resulting failure",
+                 "evidence": ["runtime/prepare-compatible-runtime.mjs:88-95 facts read at these lines that support this finding"]}
               ],
-              "unconfirmed": [{"file": "...", "what": "待确认项，一到两句，不阻断放行"}],
-              "not_covered": "本轮没核到的面，一句话；全核到了就填空串"
+              "unconfirmed": [{"file": "...", "what": "Nonblocking item to confirm, one or two sentences"}],
+              "not_covered": "Unverified scope, one sentence, or an empty string when fully covered"
             }
             ```
 
@@ -702,8 +702,8 @@ jobs:
             固定形状，两句话：**哪里坏了** + **什么情况下坏**。位置放 `file`/`line`，
             证据放 `evidence`，都不要写进正文。
 
-            > `openbkn-cli-subprocess.ts:64` 没等子进程退出就读它的 stdout。慢机器上输出
-            > 还没写完就被当成完整响应解析，解析失败会被报成「平台返回空」。
+            > `openbkn-cli-subprocess.ts:64` reads stdout before the child exits. On a slow machine,
+            > incomplete output is parsed as a complete response and reported as an empty platform response.
 
             不要写的东西，一条都不要：
 
@@ -825,7 +825,7 @@ jobs:
 
           done = "- [x] `%s`" % label
           if not reviewed:
-              done += " —— 未产出结论，本片文件未经评审"
+              done += " — No findings produced; this shard was not reviewed"
           todo = "- [ ] `%s`" % label
 
           def gh(*args):
@@ -1085,17 +1085,17 @@ jobs:
             {
               "verdicts": [
                 {"id": "review#0", "refuted": true,
-                 "reason": "驳回或确认的理由，指明你读了哪个文件的哪几行"}
+                 "reason": "Reason for refuting or confirming, citing the file and lines actually read"}
               ],
-              "notes": "复核过程中顺带发现的、但不属于本次阻塞项的事情，可以为空串"
+              "notes": "Observations outside these blockers, or an empty string"
             }
             ```
 
             `reason` 里必须出现你**这一轮真读过的** file:line。这是复核结论本身的
             evidence，写不出来的结论和它要驳回的东西是同一种毛病。
 
-            `reason` **一律用中文**。它会原样进 verdict 正文，与骨架和评审给的文字
-            并排显示，语言不一致会读成两份东西。
+            Write `reason` and `notes` in English. They are included verbatim in the PR verdict,
+            and must use the same language as the findings and output template.
           claude_args: |
             --model claude-opus-5
             --effort xhigh
@@ -1228,28 +1228,25 @@ jobs:
               except (ValueError, OSError):
                   verdicts = {}
 
-          # 机器人贴到 PR 上的文字一律中文：结论骨架、分片名、进度评论、空转通告、
-          # 回填占位、verify 的驳回理由，全部同一种语言。曾按投票在 zh/en 之间切换，
-          # 结果是骨架跟着投票走、分片名等仍写死中文，拿到的是混排文档——所以不做切换，
-          # 定死一种。注意这与「我们自己写的 PR 标题与正文用英文」是两回事，别混淆。
-          T = {"block": "阻塞项",
-               "verified": "以下每一条都经过一轮独立复核（默认驳回，核实通过才保留）。",
-               "unrev": "（**未复核**，复核环节未产出结论）",
-               "scen": "失效场景：",
-               "dropped": "复核未通过、已丢弃的 %d 条", "why": "驳回理由：",
-               "byshard": "各分片结论", "impact": "影响范围：", "notcov": "未覆盖：",
-               "clean": "_（无问题）_", "counts": "_（阻塞 %d，待确认 %d）_",
-               "detail": "影响范围与未覆盖面",
-               "more_unconf": "另有 %d 条待确认项已省略，以免正文过长；详见运行日志。",
-               "unconf": "待确认项（不阻断放行）", "missing": "未产出结论的分片",
-               "missing_body": "下面这些分片没有产出结论，**这些文件本轮未经评审**：",
-               "reason_no_output": "跑完了但没落下结论（多半是撞轮次上限或提前收尾）",
-               "reason_absent": "整个分片没跑起来或中途挂了",
-               "reason_malformed": "写出的结论文件解析不了",
-               "trunc": "文件清单被截断",
-               "trunc_body": "本 PR 共 %s 个改动文件，评审只拿到 %s 个（`gh pr view --json files` 单次上限 100），**其余 %d 个未进入评审范围、本轮未经评审**。",
-               "footer": "改完请推新提交，或回复 `/review` 要一轮复评。",
-               "footer_ok": "有异议或想再评一轮，请回复 `/review`——普通回帖不会触发复评，且回帖人需为本仓 OWNER/MEMBER/COLLABORATOR。"}
+          # All PR-visible output follows the project English-language rule, including bots.
+          T = {"block": "Blocking issues",
+               "verified": "Each item was independently checked and retained only when confirmed.",
+               "unrev": " (**not verified**; the verification stage produced no verdict)",
+               "scen": "Failure scenario: ",
+               "dropped": "%d findings refuted and discarded", "why": "Reason: ",
+               "byshard": "Shard conclusions", "impact": "Impact: ", "notcov": "Not covered: ",
+               "clean": "_(No findings)_", "counts": "_(Blockers: %d; items to confirm: %d)_",
+               "detail": "Impact and review coverage",
+               "more_unconf": "%d more nonblocking items omitted for brevity; see the run logs.",
+               "unconf": "Items to confirm (nonblocking)", "missing": "Shards without findings",
+               "missing_body": "These shards produced no findings; **their files were not reviewed in this round**:",
+               "reason_no_output": "The shard ran but produced no findings (possibly a turn limit or early exit)",
+               "reason_absent": "The shard did not start or failed before completion",
+               "reason_malformed": "The findings file could not be parsed",
+               "trunc": "Truncated file list",
+               "trunc_body": "This PR changes %s files, but the review received only %s. **The remaining %d files were outside this round's review scope**.",
+               "footer": "Push fixes or reply `/review` to request another round.",
+               "footer_ok": "Reply `/review` to discuss findings or request another round; ordinary replies do not trigger a review. The requester must be an OWNER, MEMBER or COLLABORATOR."}
 
           # 模型不一定听话，长度要有确定性兜底——与「模型输出是不可信输入」同一思路。
           # 只有一个评审者时，每行挂 [标签] 前缀、外加一个只有一行的「各分片结论」
@@ -1429,7 +1426,7 @@ jobs:
             echo "::warning::approve 被拒，改以评论形式给出结论。"
             {
               cat verdict.md
-              printf '\n\n---\n\n_本轮没有阻塞项。仓库当前禁止 GitHub Actions 批准 PR，因此以评论形式给出结论，没有 APPROVED 状态。需要自动批准的话，在 Settings → Actions → General 打开「Allow GitHub Actions to create and approve pull requests」。_\n'
+              printf '\n\n---\n\n_No blockers were found. The approval attempt was rejected, so the verdict is posted as a comment and does not set APPROVED status. Check repository rules and reviewer permissions. If GitHub Actions approval is disabled, enable "Allow GitHub Actions to create and approve pull requests" in Settings → Actions → General._\n'
             } > verdict-comment.md
             gh pr comment "$PR_NUMBER" --body-file verdict-comment.md
           fi
@@ -1484,7 +1481,7 @@ jobs:
           state=$(gh pr view "$PR_NUMBER" --json state --jq .state)
           [ "$state" = "OPEN" ] || exit 0
           MARKER='<!-- claude-review-empty -->'
-          body=$(printf '%s\n### 本轮评审没有产出结论\n\n没有落下结论，**这些改动本轮未经评审**。没有表态是因为无从表态——既不该 request-changes，也不该 approve。\n\n常见原因：本轮运行期间 workflow 文件被合进默认分支（claude-code-action 要求两者逐字一致，不一致会整步跳过）、撞轮次上限、模型未写出结论文件、汇总步骤失败、凭据缺失。[查看运行日志](%s)\n\n回复 `/review` 可以再要一轮。下一轮真出了结论，这条会自动消失。' "$MARKER" "$RUN_URL")
+          body=$(printf '%s\n### No review verdict was produced\n\nNo verdict was produced; **these changes were not reviewed in this round**. No approval or change request is issued without review findings.\n\nPossible causes include a workflow mismatch with the default branch (claude-code-action requires identical files), the turn limit, missing model findings, verdict assembly failure or missing credentials. [View run logs](%s)\n\nReply `/review` to request another round. This notice will be removed after a verdict is posted.' "$MARKER" "$RUN_URL")
           # 复用同一条：synchronize 每次推送跑一轮，凭据缺失这类持续故障否则会在 PR 上
           # 堆出一串一模一样的通告，正是进度评论当初特意避开的噪声。
           existing=$(gh api "repos/${GH_REPO}/issues/${PR_NUMBER}/comments" --paginate \
