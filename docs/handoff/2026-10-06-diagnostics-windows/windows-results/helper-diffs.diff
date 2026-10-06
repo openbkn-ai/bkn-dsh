@@ -21,7 +21,7 @@
  $desktopCli = Join-Path $env:LOCALAPPDATA 'Programs\DeepSeek Harness\resources\runtime\cli\bin\dsh.cmd'
 === diff windows/run-case.ps1 ===
 --- orig/run-case.ps1	2026-10-06 10:38:57.389032100 +0800
-+++ diag6-kit/windows/run-case.ps1	2026-10-06 12:14:33.611998500 +0800
++++ diag6-kit/windows/run-case.ps1	2026-10-06 13:20:15.911130200 +0800
 @@ -79,12 +79,16 @@
  if ($LASTEXITCODE -ne 0) { throw "install of $installTgz failed" }
  
@@ -41,54 +41,77 @@
  }
  
  if ($Form -eq 'desktop') {
-@@ -107,6 +111,17 @@
+@@ -96,7 +100,7 @@
+     "started desktop app pid $($proc.Id) (DSH_HOME=$($prepared.dshHome), profile $profileName)" | Add-Content -Encoding utf8 $evidence
+     Write-Host "Case $CaseId (desktop): the DeepSeek Harness application started (pid $($proc.Id))."
+     Write-Host "Open OpenBKN, click the top-right diagnostic button, exercise the case, and export the report."
+-    $proc.Id | Set-Content -Encoding utf8 (Join-Path $TestRoot "evidence\$CaseId-$Form.pid")
++    "$($proc.Id):$((Get-CimInstance Win32_Process -Filter "ProcessId=$($proc.Id)").CreationDate.Ticks)" | Set-Content -Encoding utf8 (Join-Path $TestRoot "evidence\$CaseId-$Form.pid")
+ } else {
+     # Startup output contains a localhost access token. Keep it outside the
+     # shareable evidence directory and never copy it into the case report.
+@@ -107,9 +111,22 @@
          -RedirectStandardOutput $log -RedirectStandardError (Join-Path $privateDir "$CaseId-$Form-web.err.log") `
          -PassThru -WindowStyle Hidden
      Start-Sleep -Seconds 10
 +    # Record the real web child pid by resolving the listener on our chosen
 +    # port, so cleanup stops exactly this process instead of sweeping by path.
++    # The record carries the child's creation time; cleanup re-verifies both
++    # identity and current port ownership before stopping.
 +    $listener = Get-NetTCPConnection -LocalPort $Port -State Listen -ErrorAction SilentlyContinue | Select-Object -First 1
 +    if ($listener) {
 +        $childPid = $listener.OwningProcess
 +        $childProc = Get-CimInstance Win32_Process -Filter "ProcessId=$childPid" -ErrorAction SilentlyContinue
 +        if ($null -ne $childProc -and $childProc.CommandLine -match ' web ') {
-+            "$childPid`:$Port" | Set-Content -Encoding ascii (Join-Path $TestRoot "evidence\$CaseId-$Form.children.pid")
++            "$childPid`:$Port`:$($childProc.CreationDate.Ticks)" | Set-Content -Encoding ascii (Join-Path $TestRoot "evidence\$CaseId-$Form.children.pid")
 +            "recorded web child pid $childPid on port $Port" | Add-Content -Encoding utf8 $evidence
 +        }
 +    }
      "started dsh web pid $($proc.Id) on port $Port" | Add-Content -Encoding utf8 $evidence
      Write-Host "Case $CaseId (npm): dsh web on http://127.0.0.1:$Port (pid $($proc.Id)). Exercise the diagnostics panel in a browser."
-     $proc.Id | Set-Content -Encoding utf8 (Join-Path $TestRoot "evidence\$CaseId-$Form.pid")
+-    $proc.Id | Set-Content -Encoding utf8 (Join-Path $TestRoot "evidence\$CaseId-$Form.pid")
++    "$($proc.Id):$((Get-CimInstance Win32_Process -Filter "ProcessId=$($proc.Id)").CreationDate.Ticks)" | Set-Content -Encoding utf8 (Join-Path $TestRoot "evidence\$CaseId-$Form.pid")
+ }
+ 
+ Write-Host "Stop with: cleanup.ps1 -TestRoot $TestRoot -CandidateTgz <path> (it only stops pids recorded here)."
 === diff windows/cleanup.ps1 ===
 --- orig/cleanup.ps1	2026-10-06 10:44:51.035545500 +0800
-+++ diag6-kit/windows/cleanup.ps1	2026-10-06 13:09:25.306677800 +0800
-@@ -13,17 +13,53 @@
++++ diag6-kit/windows/cleanup.ps1	2026-10-06 13:19:12.231398200 +0800
+@@ -13,17 +13,63 @@
  $env:BKN_CONFIG_DIR = $prepared.bknConfigDir
  if ((Get-FileHash -LiteralPath $CandidateTgz -Algorithm SHA256).Hash -ne $prepared.candidate) { throw 'Candidate differs from preparation' }
  
 -# Stop only processes this test root started.
 -Get-ChildItem (Join-Path $TestRoot 'evidence') -Filter '*.pid' -ErrorAction SilentlyContinue | ForEach-Object {
-+# Stop only processes this test root started, after verifying identity so a
-+# reused pid can never be stopped by mistake. ('*.pid' must not swallow the
-+# '*.children.pid' records handled below.)
-+Get-ChildItem (Join-Path $TestRoot 'evidence') -Filter '*.pid' -ErrorAction SilentlyContinue |
-+  Where-Object { $_.Name -notlike '*.children.pid' } | ForEach-Object {
-     $pidText = (Get-Content $_.FullName -ErrorAction SilentlyContinue | Select-Object -First 1)
-     if ($pidText -match '^\d+$') {
+-    $pidText = (Get-Content $_.FullName -ErrorAction SilentlyContinue | Select-Object -First 1)
+-    if ($pidText -match '^\d+$') {
 -        $target = Get-Process -Id ([int]$pidText) -ErrorAction SilentlyContinue
 -        if ($null -ne $target) {
 -            Stop-Process -Id $target.Id -Force
 -            Write-Host "stopped pid $($target.Id) ($($_.BaseName))"
-+        $proc = Get-CimInstance Win32_Process -Filter "ProcessId=$pidText" -ErrorAction SilentlyContinue
++# Stop only processes this test root started, after verifying identity so a
++# reused pid can never be stopped by mistake: the recorded pid must still be
++# alive, carry the same creation time as at boot, and match this round's
++# expected host per form. ('*.pid' must not swallow '*.children.pid'.)
++Get-ChildItem (Join-Path $TestRoot 'evidence') -Filter '*.pid' -ErrorAction SilentlyContinue |
++  Where-Object { $_.Name -notlike '*.children.pid' } | ForEach-Object {
++    $pidRecord = (Get-Content $_.FullName -ErrorAction SilentlyContinue | Select-Object -First 1)
++    if ($pidRecord -match '^(\d+):(\d+)$') {
++        $stopPid = [int]$Matches[1]; $bootTicks = $Matches[2]
++        $proc = Get-CimInstance Win32_Process -Filter "ProcessId=$stopPid" -ErrorAction SilentlyContinue
 +        if ($null -ne $proc) {
-+            $identityOk = $false
-+            if ($prepared.form -eq 'desktop' -and $prepared.desktopAppPath -and $proc.ExecutablePath -eq $prepared.desktopAppPath) { $identityOk = $true }
-+            if ($prepared.form -eq 'npm' -and $proc.CommandLine -like ("*" + $prepared.dshCli + "*")) { $identityOk = $true }
-+            if ($identityOk) {
-+                Stop-Process -Id $proc.ProcessId -Force
-+                Write-Host "stopped verified pid $($proc.ProcessId) ($($_.BaseName))"
++            if ("$($proc.CreationDate.Ticks)" -ne $bootTicks) {
++                Write-Host "skip pid $stopPid : creation time differs (pid reused or host restarted); not this round's process"
 +            } else {
-+                Write-Host "skip pid $pidText : identity no longer matches this round's recorded host"
++                $identityOk = $false
++                if ($prepared.form -eq 'desktop' -and $prepared.desktopAppPath -and $proc.ExecutablePath -eq $prepared.desktopAppPath) { $identityOk = $true }
++                if ($prepared.form -eq 'npm' -and $proc.CommandLine -like ("*" + $prepared.dshCli + "*")) { $identityOk = $true }
++                if ($identityOk) {
++                    Stop-Process -Id $proc.ProcessId -Force
++                    Write-Host "stopped verified pid $($proc.ProcessId) ($($_.BaseName))"
++                } else {
++                    Write-Host "skip pid $stopPid : identity no longer matches this round's recorded host"
++                }
 +            }
          }
      }
@@ -99,24 +122,28 @@
 +}
 +
 +# The npm `.cmd` launcher exits while its node web child keeps serving. Stop
-+# only child pids run-case recorded, after re-verifying identity: node.exe,
-+# this round's CLI tree path, ' web ', and the exact recorded port with a
-+# digit boundary (so --port 826 cannot match --port 8260).
++# only child pids run-case recorded, after re-verifying five things: node.exe,
++# this round's CLI tree path, ' web ', the exact recorded port with a digit
++# boundary (so --port 826 cannot match --port 8260), the recorded creation
++# time, and that this pid still owns the port's current listener.
 +$cliTree = Split-Path (Split-Path $prepared.dshCli)
 +Get-ChildItem (Join-Path $TestRoot 'evidence') -Filter '*.children.pid' -ErrorAction SilentlyContinue | ForEach-Object {
-+    $childPidText = (Get-Content $_.FullName -ErrorAction SilentlyContinue | Select-Object -First 1)
-+    if ($childPidText -match '^(\d+):(\d+)$') {
-+        $childPid = [int]$Matches[1]; $childPort = $Matches[2]
++    $childRecord = (Get-Content $_.FullName -ErrorAction SilentlyContinue | Select-Object -First 1)
++    if ($childRecord -match '^(\d+):(\d+):(\d+)$') {
++        $childPid = [int]$Matches[1]; $childPort = $Matches[2]; $bootTicks = $Matches[3]
 +        $target = Get-CimInstance Win32_Process -Filter "ProcessId=$childPid" -ErrorAction SilentlyContinue
 +        $portPattern = ('--port ' + $childPort + '(\s|$)')
++        $currentListener = Get-NetTCPConnection -LocalPort ([int]$childPort) -State Listen -ErrorAction SilentlyContinue | Select-Object -First 1
 +        if ($null -ne $target -and $target.Name -eq 'node.exe' -and
 +            $target.CommandLine -like ("*" + $cliTree + "*") -and
 +            $target.CommandLine -match ' web ' -and
-+            $target.CommandLine -match $portPattern) {
-+            Write-Host ("stopping recorded npm web child pid $childPid (port $childPort)")
++            $target.CommandLine -match $portPattern -and
++            "$($target.CreationDate.Ticks)" -eq $bootTicks -and
++            $currentListener -and $currentListener.OwningProcess -eq $childPid) {
++            Write-Host ("stopping recorded npm web child pid $childPid (port $childPort, listener verified)")
 +            Stop-Process -Id $childPid -Force
 +        } elseif ($null -ne $target) {
-+            Write-Host ("skipping pid $childPid : identity no longer matches this round's web child")
++            Write-Host ("skipping pid $childPid : identity, creation time, or port ownership no longer matches this round's web child")
 +        }
 +        Remove-Item -LiteralPath $_.FullName -Force
 +    }

@@ -6,6 +6,11 @@
 > 10. cleanup 身份核验补强：父 PID 停前按形态核验（desktop=ExecutablePath 与 prepared.desktopAppPath 相等；npm=命令行含本轮 dsh.cmd 路径），子进程四重核验（node.exe + CLI 树路径 + ' web ' + 端口正则带数字边界 `(\s|$)`），已实测；
 > 11. 原始 before-W2/W3/W4/W10.json 已恢复为 b2c0eca 原值，补测哈希另存 before-W-*-r2.json；
 > 12. 原用户状态表述收窄为"mtime 扫描未发现变化"（不以 mtime 证明内容未变）。
+>
+> 修订说明（第 3 轮复核意见已落实）：
+> 13. helper 身份核验补强至创建时间维度：run-case 记录 `pid:creationTicks`（父）与 `pid:port:creationTicks`（web 子进程）；cleanup 停止前比对创建时间，子进程另核验当前端口监听归属。实测：**同 pid 同端口但创建时间不符的伪造记录被拒绝**（两条 skip 日志），真实记录经"listener verified"后停止、端口释放；
+> 14. 修正后的三个 helper 以可执行文件随结果目录交付（`helpers-fixed/`，原生 PowerShell 解析通过），交付 ZIP 保持字节锁定；下次构建 kit 时合入；
+> 15. 非诊断 JSON 计数更正为 **20 份（desktop 8 + npm 12）**；"隔离偏差"段残留的"确认未变"措辞已清除。
 
 > 修订说明（对应复核意见逐条落实）：
 > 1. W2 npm 报告编号已在表格与证据文件间对齐（b10fcb42/2f59d3c7/0214f597 三份 JSON 同分类）；
@@ -62,7 +67,7 @@
 - **npm cordis.patch.yml 前后哈希变化解释（复核指出）**：patch 是本轮受控变量——每轮 run-case/W7/U1 脚本按 case 写入对应内容（健康/缺 baseUrl/非法 URL/canary），before-*.json 在写前快照、after 反映复位值；全部变化均来自本轮受控写入，非 Host 自行改写
 - **原用户状态核验（收窄后的事实）**：验收开始时原用户无 DSH 进程、无 %APPDATA%\DeepSeek Harness；用户默认 home ~/.dsh（9 月起在用）除下述偏差外，**mtime 扫描未发现变化**（mtime 不构成内容未变的证明；profiles/desktop、profiles/work、sessions、storages 未见本轮时间戳）
 - **补测与原始记录的关系**：npm 补测轮的状态哈希另存为 before-W*-r2.json，b2c0eca 中的原始 before-W*.json 已恢复并保留，保证首轮前后配对完整
-- **隔离偏差与纠正（本轮自纠，2026-10-06 复核追查时发现）**：10:30 的 `dsh web` 冒烟测试未设 DSH_HOME，初始化了用户默认 home 的 ~/.dsh/profiles/web（仅 4 个样板文件：package.json 空 deps + 空 cordis 骨架；无插件/会话/凭据写入）；已确认内容后删除该目录，~/.dsh 其余状态经 mtime 扫描确认未变。教训已写入 helper（run-case 固定设置 DSH_HOME）
+- **隔离偏差与纠正（本轮自纠，2026-10-06 复核追查时发现）**：10:30 的 `dsh web` 冒烟测试未设 DSH_HOME，初始化了用户默认 home 的 ~/.dsh/profiles/web（仅 4 个样板文件：package.json 空 deps + 空 cordis 骨架；无插件/会话/凭据写入）；已确认内容后删除该目录；~/.dsh 其余状态 **mtime 扫描未发现变化**（不以 mtime 证明内容未变）。教训已写入 helper（run-case 固定设置 DSH_HOME）
 - 本轮 PID/临时登录与清理：零登录；结束态本轮进程 0 残留（多次全量核验）；两 profile 候选已卸载；canary 伪造凭据已删；patch 复位；首启自动创建的空默认工作区目录已删；IAB 遗留保存对话框已逐一关闭
 - 所有异常/未测/根因未知项：
   1) 非法格式 baseUrl 未被 configuration 校验拦截（候选缺陷，两形态一致；源码层面仅要求字符串必填——复核确认）
