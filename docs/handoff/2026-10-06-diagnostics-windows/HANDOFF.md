@@ -1,5 +1,7 @@
 # Windows agent：-6 UI 修订候选诊断实机验收
 
+远端获取完整 ZIP 及源码、固定哈希与开测顺序见 [WINDOWS-START.md](WINDOWS-START.md)。从源码目录直接运行 verify-kit 会缺候选与历史资产，应先核验并解压完整 ZIP。
+
 ## 可直接复制的任务
 
 > 请验收主开发交付的 DIAG-01 固定候选及测试包，先阅读本文件和已填写的 candidate-manifest.json。仅在 Windows 原生普通桌面版和官方 npm DSH 中运行，不用 WSL 或 patched runtime，不开启 inspector。先核对 tgz SHA、源码/工作流身份和真实加载目标；清单未填完或辅助脚本缺失时，回报输入未齐，不用模板占位值开测。在隔离环境完成 W0–W12，真实 Host 故障与模拟/受控协议结果分别标注，不能把静态文件完整当运行正常。只处理本轮进程、profile 和 CLI store，保护原用户凭据与状态。仅回传脱敏报告、逐项结果、版本/包身份、操作/退出码和清理证据；不合并、不发布、不打 tag、不移动 dist-tag，不修改 main/release 或向其他聊天发送消息。你不是唯一开发者，不回退其他人的修改。
