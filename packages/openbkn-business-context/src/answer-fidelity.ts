@@ -67,9 +67,18 @@ function quantity(value: string): string | undefined {
   return `${negative}${integer}${fraction.length === 0 ? '' : `.${fraction}`}${match[4] ?? ''}`
 }
 
+function stockQuantity(value: string): string | undefined {
+  // A successful live handoff can explicitly state that the scoped query
+  // returned no stock row. Keep that absence distinct from measured zero;
+  // unknown/missing quantities and nonnumeric usage are never inferred.
+  const cleaned = cell(value)
+  if (['无合格库存行', '无库存行', '无库存记录', '无记录', 'no_row'].includes(cleaned.toLowerCase())) return '0*'
+  return quantity(cleaned)
+}
+
 function unit(value: string): string {
   const cleaned = cell(value)
-  return ['?', '—', '-', '未知'].includes(cleaned) ? '?' : cleaned
+  return ['?', '—', '-', '未知', '未提供'].includes(cleaned) ? '?' : cleaned
 }
 
 /** Read explicit columns/level headings only; never infer levels from IDs. */
@@ -118,7 +127,7 @@ function parseDetail(text: string): { readonly rows: readonly DetailRow[]; reado
     }
     const level = columns.level === undefined ? heading : values[columns.level]?.replace(/^L/i, '')
     const usage = quantity(values[columns.usage!] ?? '')
-    const stock = quantity(values[columns.stock!] ?? '')
+    const stock = stockQuantity(values[columns.stock!] ?? '')
     if (level === undefined || !/^\d+$/.test(level) || usage === undefined || stock === undefined) {
       if (line.startsWith('|')) malformed = true
       continue
@@ -145,6 +154,8 @@ export function renderDetail(rows: readonly DetailRow[]): string {
     '| 层级 | 父件 | 子件编码 | 子件名称 | 单耗 | 可用库存 | 库存单位 |',
     '|---|---|---|---|---|---|---|',
     ...rows.map(row => `| ${DETAIL_KEYS.map(key => markdownCell(row[key])).join(' | ')} |`),
+    ...(rows.some(row => row.stock.endsWith('*')) ? ['* 表示本次查询范围内未查到该物料的库存行，不能据此断言范围外实际库存为零。'] : []),
+    ...(rows.some(row => row.unit === '?') ? ['? 表示库存单位未提供。'] : []),
   ].join('\n')
 }
 

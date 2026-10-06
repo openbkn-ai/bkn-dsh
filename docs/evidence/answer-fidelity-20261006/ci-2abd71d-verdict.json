@@ -1,0 +1,17 @@
+{
+  "sourceCommit": "2abd71d0ac4d1bc62575e6e2d58c9821aa637add",
+  "ciRunId": 37458538284,
+  "tgzSha256": "5aee755974ca3551d0414511806c9b8ad7535fe82c96edea70252c7a595b41ee",
+  "cases": {
+    "standard-lead-time": "completed; correct production 1-day definition and physical source",
+    "bom-usage-inventory": "error after one native fidelity notice; valid scoped no-stock-row words were not parsed",
+    "missing-object": "not-run; held after this candidate failed"
+  },
+  "releaseAccepted": false,
+  "windowsHandedOff": false,
+  "followup": "stock-only explicit absence normalization; unknown stock and nonnumeric usage stay rejected",
+  "preparationDeviations": [
+    "Standalone profile import lacks Host-provided peers; controlled probes used a separately verified copy with official matching peer bridge.",
+    "Initial isolated npm test override omitted the config wrapper; no npm pass was counted. Host exited; correct fixture will be used for next fixed candidate."
+  ]
+}
