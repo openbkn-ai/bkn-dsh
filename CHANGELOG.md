@@ -2,6 +2,14 @@
 
 All notable changes to this project are documented here.
 
+## 0.2.0-rc.2-openbkn.0.2.0-7 (2026-10-06)
+
+Candidate fixes for provenance origin and connection-error guidance. Same official DSH pin (`0.2.0-rc.2`).
+
+- Fix #62: show each authorized business element's source network from the canonical Trace `ref_type`/`ref_id` contract. Mixed-network operations retain each element's origin; malformed or undisclosed references remain unlocated. No network is guessed from the current binding or model output.
+- Fix #63: unknown connection/RPC failures direct users to the existing diagnostic report instead of assuming a Token or platform-address fault. Known CLI, authentication and platform failures keep their specific guidance.
+- This is a build-only candidate. Windows acceptance and the remaining G6 failures are still open; these fixes do not constitute release acceptance.
+
 ## 0.2.0-rc.2-openbkn.0.2.0-6 (2026-10-05)
 
 Entry isolation so diagnostics survive business import failures. Same DSH pin (`0.2.0-rc.2`); no patch needed.

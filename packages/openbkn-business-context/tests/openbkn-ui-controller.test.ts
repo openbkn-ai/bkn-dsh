@@ -5,6 +5,30 @@ import { OpenBknUiController, directoryPickerFailure, workspaceSelectionCancelle
 const authenticated = { kind: 'authenticated' as const, baseUrl: 'https://poc.openbkn.ai', username: 'leecky' }
 const authenticationRequired = { kind: 'authentication-required' as const, baseUrl: 'https://poc.openbkn.ai' }
 
+test('directs unavailable RPC and unknown connection failures to diagnostics without guessing credentials', async () => {
+  for (const failure of [
+    Object.assign(new Error('definition unavailable'), { code: 'gateway/definition-unavailable' }),
+    new Error('unclassified failure with private-error-detail'),
+    undefined,
+  ]) {
+    const controller = new OpenBknUiController({
+      status: async () => { throw failure },
+      configureToken: async () => { throw failure },
+      listNetworks: async () => [],
+      bindNetworkWorkspace: async () => { throw new Error('must not bind') },
+      bindNetwork: async () => { throw new Error('must not bind') },
+    }, async () => 'session-1')
+    controller.open()
+    await controller.refresh()
+    assert.equal(controller.snapshot().phase, 'error')
+    assert.match(controller.snapshot().message ?? '', /诊断/)
+    assert.doesNotMatch(controller.snapshot().message ?? '', /检查 Token|平台地址|private-error-detail/)
+    await controller.configureToken('test-only-token')
+    assert.match(controller.snapshot().message ?? '', /诊断/)
+    assert.doesNotMatch(controller.snapshot().message ?? '', /检查 Token|平台地址|private-error-detail/)
+  }
+})
+
 test('loads only the visible network catalogue after OpenBKN authentication succeeds', async () => {
   const controller = new OpenBknUiController({
     status: async () => authenticated,

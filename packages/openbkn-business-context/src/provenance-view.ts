@@ -218,7 +218,14 @@ function projectBusiness(value: unknown | undefined, operationsResponse: unknown
   }
   return {
     kind: 'ready' as const,
-    operations: [...byOperation.values()],
+    operations: [...byOperation.values()].map(operation => {
+      const networkId = operation.elements[0]?.knowledgeNetworkId
+      // An operation can cite multiple networks. Only retain its legacy
+      // single-network field when every displayed ref discloses the same one.
+      return networkId !== undefined && operation.elements.every(element => element.knowledgeNetworkId === networkId)
+        ? { ...operation, knowledgeNetworkId: networkId }
+        : operation
+    }),
     // The Trace 3 interaction graph currently contracts operation-to-ref
     // links, not object-to-object semantic relations or cross-turn facts.
     // Preserve that distinction instead of deriving a richer graph locally.
@@ -237,7 +244,32 @@ function projectTraceBusinessRef(entry: Record<string, unknown> | undefined, rem
   const name = display === undefined ? undefined : stringValue(display.name)
   if (id === undefined || kind === undefined || name === undefined) return undefined
   remaining.value -= 1
-  return { id, kind, name }
+  const knowledgeNetworkId = traceRefNetworkId(technicalRef)
+  return knowledgeNetworkId === undefined ? { id, kind, name } : { id, kind, name, knowledgeNetworkId }
+}
+
+/** Parse only the canonical ref_type/ref_id contract on already-authorized refs. */
+function traceRefNetworkId(ref: Record<string, unknown> | undefined): string | undefined {
+  const id = ref?.ref_id
+  // Do not infer an origin from a truncated or malformed display identifier.
+  if (typeof id !== 'string' || id.length > 512 || /\s/.test(id)) return undefined
+  const parts = id.split(':')
+  let prefix: string, count: number, opaqueTail = false
+  switch (ref?.ref_type) {
+    case 'knowledge_network': prefix = 'kn'; count = 2; break
+    case 'object_type': prefix = 'object'; count = 3; break
+    case 'object_instance': prefix = 'object_instance'; count = 4; opaqueTail = true; break
+    case 'property': prefix = 'property'; count = 4; break
+    case 'relation_type': prefix = 'relation'; count = 3; break
+    case 'metric': prefix = 'metric'; count = 3; break
+    case 'logic': prefix = 'logic'; count = 4; break
+    case 'action_type': prefix = 'action_type'; count = 3; break
+    case 'action_instance': prefix = 'action_instance'; count = 4; opaqueTail = true; break
+    default: return undefined
+  }
+  if (parts[0] !== prefix || (opaqueTail ? parts.length < count : parts.length !== count)) return undefined
+  const segments = opaqueTail ? [...parts.slice(0, 3), parts.slice(3).join(':')] : parts
+  return segments.every(segment => segment.length > 0) ? parts[1] : undefined
 }
 
 function record(value: unknown): Record<string, unknown> | undefined {
@@ -263,7 +295,7 @@ function traceRefKind(value: unknown): ProvenanceBusinessElement['kind'] | undef
   switch (value) {
     case 'object': case 'object_type': case 'object_instance': case 'knowledge_network': return 'object'
     case 'relation': case 'relation_type': return 'relation'
-    case 'action': case 'action_type': return 'action'
+    case 'action': case 'action_type': case 'action_instance': return 'action'
     case 'property': case 'property_type': return 'property'
     case 'logic': case 'logic_property': return 'logic'
     case 'metric': return 'metric'

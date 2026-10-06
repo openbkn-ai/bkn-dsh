@@ -199,7 +199,7 @@ function connectionFailureMessage(error: unknown): string {
       if (layer === 'platform-api') return 'Context Loader MCP 已连接，但无法读取业务知识网络目录。请确认 Token 具有 OpenBKN 平台访问权限。'
     }
   }
-  return '无法验证 OpenBKN 连接。请检查 Token 和平台地址后重试。'
+  return '暂时无法验证 OpenBKN 连接，当前原因尚未确定。请点击右上角“诊断”查看检查结果；若问题持续，请导出报告交给支持人员。'
 }
 
 /** Shown while the native chooser is open; on some hosts (Windows `dsh web`) it opens behind other windows. */

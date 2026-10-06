@@ -25,6 +25,66 @@ const timeline: readonly ProvenanceTimelineNode[] = [
 
 const limits = { maxGraphNodes: 10, maxGraphEdges: 10 }
 
+function traceBusinessView(refs: readonly { ref_type: string, ref_id: string }[]) {
+  return buildProvenanceView(handle, timeline, { entries: [] }, {
+    assembly: {
+      operation_business_edges: refs.map(technical_ref => ({
+        operation_id: 'op-1',
+        business_ref: { technical_ref, display: { name: '已授权业务元素' } },
+      })),
+    },
+  }, {}, limits).business
+}
+
+// Independent contract: bkn-trace/agent-observability/README.md, ref_type/ref_id table.
+test('projects the disclosed network from canonical Trace references, including opaque instance tails', () => {
+  for (const ref of [
+    { ref_type: 'knowledge_network', ref_id: 'kn:kn-supply' },
+    { ref_type: 'object_type', ref_id: 'object:kn-supply:material' },
+    { ref_type: 'object_instance', ref_id: 'object_instance:kn-supply:material:opaque:instance' },
+    { ref_type: 'property', ref_id: 'property:kn-supply:material:stock' },
+    { ref_type: 'relation_type', ref_id: 'relation:kn-supply:supply' },
+    { ref_type: 'metric', ref_id: 'metric:kn-supply:delivery-risk' },
+    { ref_type: 'logic', ref_id: 'logic:kn-supply:material:risk' },
+    { ref_type: 'action_type', ref_id: 'action_type:kn-supply:order' },
+    { ref_type: 'action_instance', ref_id: 'action_instance:kn-supply:order:opaque:instance' },
+  ]) {
+    const business = traceBusinessView([ref])
+    assert.equal(business.kind, 'ready')
+    if (business.kind !== 'ready') continue
+    assert.equal(business.operations[0]?.elements[0]?.knowledgeNetworkId, 'kn-supply', ref.ref_id)
+    assert.equal(business.operations[0]?.knowledgeNetworkId, 'kn-supply', ref.ref_id)
+  }
+})
+
+test('keeps each disclosed reference network and leaves mixed-operation origin unlocated', () => {
+  const business = traceBusinessView([
+    { ref_type: 'object_type', ref_id: 'object:kn-a:material' },
+    { ref_type: 'metric', ref_id: 'metric:kn-b:risk' },
+  ])
+  assert.equal(business.kind, 'ready')
+  if (business.kind !== 'ready') return
+  assert.deepEqual(business.operations[0]?.elements.map(element => element.knowledgeNetworkId), ['kn-a', 'kn-b'])
+  assert.equal(business.operations[0]?.knowledgeNetworkId, undefined)
+})
+
+test('does not guess a network from malformed or undocumented references', () => {
+  for (const ref of [
+    { ref_type: 'object_type', ref_id: 'object_type:kn-supply:material' },
+    { ref_type: 'object_type', ref_id: 'metric:kn-supply:material' },
+    { ref_type: 'object_type', ref_id: 'object::material' },
+    { ref_type: 'object_type', ref_id: 'object:kn-supply:material:extra' },
+    { ref_type: 'object_type', ref_id: 'object:kn-supply:mat erial' },
+    { ref_type: 'property_type', ref_id: 'property:kn-supply:material:stock' },
+  ]) {
+    const business = traceBusinessView([ref])
+    assert.equal(business.kind, 'ready')
+    if (business.kind !== 'ready') continue
+    assert.equal(business.operations[0]?.elements[0]?.knowledgeNetworkId, undefined, ref.ref_id)
+    assert.equal(business.operations[0]?.knowledgeNetworkId, undefined, ref.ref_id)
+  }
+})
+
 test('keeps the local timeline and projects receipts when only operations are available', () => {
   const view = buildProvenanceView(handle, timeline, {
     entries: [{
@@ -161,10 +221,10 @@ test('projects only the authorized Trace 3 interaction business graph into the b
     execution_status: 'completed',
     evidence_status: 'complete',
     assembly: {
-      business_refs: [{ technical_ref: { ref_id: 'object_type:kn-supply:supplier', ref_type: 'object_type' }, display: { name: '供应商' } }],
+      business_refs: [{ technical_ref: { ref_id: 'object:kn-supply:supplier', ref_type: 'object_type' }, display: { name: '供应商' } }],
       operation_business_edges: [{
         operation_id: 'op-1', role: 'read',
-        business_ref: { technical_ref: { ref_id: 'object_type:kn-supply:supplier', ref_type: 'object_type' }, display: { name: '供应商' } },
+        business_ref: { technical_ref: { ref_id: 'object:kn-supply:supplier', ref_type: 'object_type' }, display: { name: '供应商' } },
       }, {
         operation_id: 'op-1', role: 'read',
         business_ref: { technical_ref: { ref_id: 'metric:kn-supply:delivery-risk', ref_type: 'metric' }, display: { name: '交付风险' } },
@@ -177,8 +237,8 @@ test('projects only the authorized Trace 3 interaction business graph into the b
   assert.deepEqual(view.business, {
     kind: 'ready',
     operations: [{
-      id: 'op-1', attempt: 0, toolName: 'OpenBKN operation', status: 'resolved',
-      elements: [{ kind: 'object', id: 'object_type:kn-supply:supplier', name: '供应商' }, { kind: 'metric', id: 'metric:kn-supply:delivery-risk', name: '交付风险' }],
+      id: 'op-1', attempt: 0, toolName: 'OpenBKN operation', status: 'resolved', knowledgeNetworkId: 'kn-supply',
+      elements: [{ kind: 'object', id: 'object:kn-supply:supplier', name: '供应商', knowledgeNetworkId: 'kn-supply' }, { kind: 'metric', id: 'metric:kn-supply:delivery-risk', name: '交付风险', knowledgeNetworkId: 'kn-supply' }],
       missingFacts: [],
     }],
     conversationContext: [],
@@ -192,7 +252,7 @@ test('projects only the authorized Trace 3 interaction business graph into the b
 test('bounds official Trace 3 operation-to-reference edges without deriving missing endpoints', () => {
   const view = buildProvenanceView(handle, timeline, { entries: [] }, {
     interaction_id: 'int-123',
-    assembly: { operation_business_edges: [{ operation_id: 'op-1', business_ref: { technical_ref: { ref_id: 'object_type:kn-supply:supplier', ref_type: 'object_type' }, display: { name: '供应商' } } }, { operation_id: 'op-2', business_ref: { technical_ref: { ref_id: 'object_type:kn-supply:material', ref_type: 'object_type' }, display: { name: '物料' } } }] },
+    assembly: { operation_business_edges: [{ operation_id: 'op-1', business_ref: { technical_ref: { ref_id: 'object:kn-supply:supplier', ref_type: 'object_type' }, display: { name: '供应商' } } }, { operation_id: 'op-2', business_ref: { technical_ref: { ref_id: 'object:kn-supply:material', ref_type: 'object_type' }, display: { name: '物料' } } }] },
   }, {}, { maxGraphNodes: 10, maxGraphEdges: 2 })
 
   assert.equal(view.business.kind, 'ready')
