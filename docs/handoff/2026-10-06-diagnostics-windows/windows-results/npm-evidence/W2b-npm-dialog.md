@@ -1,11 +1,9 @@
-W2b npm OpenBKN 诊断 dialog (product UI snapshot, 2026-10-06 11:04:15):
-报告编号 172d20a3 · 模式 被动采集 · Host 形态 npm · 平台 win32 · 插件（磁盘）0.2.0-rc.2-openbkn.0.2.0-6
-patch: baseUrl: ht!tp://not a valid url with spaces (invalid format)
+W2b npm 非法格式 baseUrl（product UI + 导出 JSON，2026-10-06 12:4x，port 8273）：
+patch: baseUrl: ht!tp://not a valid url with spaces（非法格式）
+导出报告：evidence/W2b-npm-073b491e.json（reportId 073b491e，sha256 前缀 E6AA774B00FE6AB4）
 checks:
-- bootstrap-entry 通过 installation/component-loaded
-- business-entry 通过 component/component-loaded  ← 非法格式未被 configuration 阶段拦截
-- diagnostics-entry 通过 diagnostics/component-loaded
-- observed:cli 通过
-- observed:login-state 失败 authentication/not-logged-in
-conclusion: 与 desktop W2b (addbb3eb) 一致——invalid-format baseUrl 不产生 configuration-invalid 分类，
-失败仅在未登录状态体现。候选行为发现，非 helper 问题。
+- bootstrap-entry / business-entry / diagnostics-entry 均 pass（business-entry=component-loaded ← 非法格式未被 configuration 拦截）
+- observed:cli pass；observed:login-state fail/not-logged-in
+面板同时回显配置的平台地址原文（ht!tp://…）
+结论：与 desktop W2b（addbb3eb，JSON）一致——候选缺陷：非法格式 baseUrl 不产生 configuration-invalid 分类。
+历史：首轮观察 172d20a3（2026-10-06 11:04 UI 记录）同结论。

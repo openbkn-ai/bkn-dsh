@@ -61,22 +61,35 @@
      $proc.Id | Set-Content -Encoding utf8 (Join-Path $TestRoot "evidence\$CaseId-$Form.pid")
 === diff windows/cleanup.ps1 ===
 --- orig/cleanup.ps1	2026-10-06 10:44:51.035545500 +0800
-+++ diag6-kit/windows/cleanup.ps1	2026-10-06 12:34:22.603653700 +0800
-@@ -13,8 +13,10 @@
++++ diag6-kit/windows/cleanup.ps1	2026-10-06 13:09:25.306677800 +0800
+@@ -13,17 +13,53 @@
  $env:BKN_CONFIG_DIR = $prepared.bknConfigDir
  if ((Get-FileHash -LiteralPath $CandidateTgz -Algorithm SHA256).Hash -ne $prepared.candidate) { throw 'Candidate differs from preparation' }
  
 -# Stop only processes this test root started.
 -Get-ChildItem (Join-Path $TestRoot 'evidence') -Filter '*.pid' -ErrorAction SilentlyContinue | ForEach-Object {
-+# Stop only processes this test root started. ('*.pid' must not swallow the
++# Stop only processes this test root started, after verifying identity so a
++# reused pid can never be stopped by mistake. ('*.pid' must not swallow the
 +# '*.children.pid' records handled below.)
 +Get-ChildItem (Join-Path $TestRoot 'evidence') -Filter '*.pid' -ErrorAction SilentlyContinue |
 +  Where-Object { $_.Name -notlike '*.children.pid' } | ForEach-Object {
      $pidText = (Get-Content $_.FullName -ErrorAction SilentlyContinue | Select-Object -First 1)
      if ($pidText -match '^\d+$') {
-         $target = Get-Process -Id ([int]$pidText) -ErrorAction SilentlyContinue
-@@ -23,7 +25,28 @@
-             Write-Host "stopped pid $($target.Id) ($($_.BaseName))"
+-        $target = Get-Process -Id ([int]$pidText) -ErrorAction SilentlyContinue
+-        if ($null -ne $target) {
+-            Stop-Process -Id $target.Id -Force
+-            Write-Host "stopped pid $($target.Id) ($($_.BaseName))"
++        $proc = Get-CimInstance Win32_Process -Filter "ProcessId=$pidText" -ErrorAction SilentlyContinue
++        if ($null -ne $proc) {
++            $identityOk = $false
++            if ($prepared.form -eq 'desktop' -and $prepared.desktopAppPath -and $proc.ExecutablePath -eq $prepared.desktopAppPath) { $identityOk = $true }
++            if ($prepared.form -eq 'npm' -and $proc.CommandLine -like ("*" + $prepared.dshCli + "*")) { $identityOk = $true }
++            if ($identityOk) {
++                Stop-Process -Id $proc.ProcessId -Force
++                Write-Host "stopped verified pid $($proc.ProcessId) ($($_.BaseName))"
++            } else {
++                Write-Host "skip pid $pidText : identity no longer matches this round's recorded host"
++            }
          }
      }
 -    Remove-Item $_ -Force
@@ -86,19 +99,24 @@
 +}
 +
 +# The npm `.cmd` launcher exits while its node web child keeps serving. Stop
-+# only child pids run-case recorded, after re-verifying each is still this
-+# round's web child (CLI tree path + ' web ' + the recorded port in its
-+# command line); never sweep by path alone.
++# only child pids run-case recorded, after re-verifying identity: node.exe,
++# this round's CLI tree path, ' web ', and the exact recorded port with a
++# digit boundary (so --port 826 cannot match --port 8260).
++$cliTree = Split-Path (Split-Path $prepared.dshCli)
 +Get-ChildItem (Join-Path $TestRoot 'evidence') -Filter '*.children.pid' -ErrorAction SilentlyContinue | ForEach-Object {
 +    $childPidText = (Get-Content $_.FullName -ErrorAction SilentlyContinue | Select-Object -First 1)
 +    if ($childPidText -match '^(\d+):(\d+)$') {
 +        $childPid = [int]$Matches[1]; $childPort = $Matches[2]
 +        $target = Get-CimInstance Win32_Process -Filter "ProcessId=$childPid" -ErrorAction SilentlyContinue
-+        if ($null -ne $target -and $target.CommandLine -match ' web ' -and $target.CommandLine -match ('--port ' + $childPort)) {
++        $portPattern = ('--port ' + $childPort + '(\s|$)')
++        if ($null -ne $target -and $target.Name -eq 'node.exe' -and
++            $target.CommandLine -like ("*" + $cliTree + "*") -and
++            $target.CommandLine -match ' web ' -and
++            $target.CommandLine -match $portPattern) {
 +            Write-Host ("stopping recorded npm web child pid $childPid (port $childPort)")
 +            Stop-Process -Id $childPid -Force
 +        } elseif ($null -ne $target) {
-+            Write-Host ("skipping pid $childPid : command line no longer matches this round's web child")
++            Write-Host ("skipping pid $childPid : identity no longer matches this round's web child")
 +        }
 +        Remove-Item -LiteralPath $_.FullName -Force
 +    }

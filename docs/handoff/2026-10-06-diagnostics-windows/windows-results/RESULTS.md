@@ -1,4 +1,11 @@
-# Windows -6 诊断候选验收结果（本机独立实测 · 按 2026-10-06 主 agent 复核意见修订）
+# Windows -6 诊断候选验收结果（本机独立实测 · 按主 agent 两轮复核意见修订）
+
+> 修订说明（第 2 轮复核意见已落实）：
+> 8. 数量口径更正：第 2 次提交（5f41fcb）实际变更 19 个文件；结果目录现有诊断 JSON **desktop 6 份 + npm 9 份 = 15 份**（另含状态哈希/prepared 12 份）；
+> 9. npm 非法 URL 补导出 JSON（073b491e，business-entry 未拦截）；README 原先误引缺-baseUrl 报告支持非法 URL 结论——已纠正为 addbb3eb（desktop）+ 073b491e（npm）；
+> 10. cleanup 身份核验补强：父 PID 停前按形态核验（desktop=ExecutablePath 与 prepared.desktopAppPath 相等；npm=命令行含本轮 dsh.cmd 路径），子进程四重核验（node.exe + CLI 树路径 + ' web ' + 端口正则带数字边界 `(\s|$)`），已实测；
+> 11. 原始 before-W2/W3/W4/W10.json 已恢复为 b2c0eca 原值，补测哈希另存 before-W-*-r2.json；
+> 12. 原用户状态表述收窄为"mtime 扫描未发现变化"（不以 mtime 证明内容未变）。
 
 > 修订说明（对应复核意见逐条落实）：
 > 1. W2 npm 报告编号已在表格与证据文件间对齐（b10fcb42/2f59d3c7/0214f597 三份 JSON 同分类）；
@@ -24,7 +31,7 @@
 | W0 | pass | pass | 实机安装+逐文件哈希 | tgz ffcd7772…；两形态 65/65 | 桌面首启初始化为 Windows 特有前置（helper diff prepare.ps1） |
 | W1 | pass | pass | 产品入口一次导出 JSON | desktop 20e57aba / npm e5c1a19c | 侧栏单一 OpenBKN→面板右上角仅"诊断"→导出；编号与面板一致；passive；checks 见 JSON。**收窄**：无登录凭据+passive 只能证明"导出时无可刷新 token 且无登录态检查记录"，不能证明 getReport 全路径零平台请求——该强结论未验证 |
 | W2 缺 baseUrl | pass | pass | JSON 导出（两形态） | desktop e35583f2；npm b10fcb42/2f59d3c7/0214f597（三轮一致） | business-entry=fail/configuration-invalid/configField=baseUrl |
-| W2 非法格式 | fail(候选行为) | fail(候选行为) | JSON 导出（desktop）/JSON+UI（npm） | desktop addbb3eb；npm 172d20a3 | 非法格式未被 configuration 拦截：business-entry=pass，仅 not-logged-in。两形态一致 → 主开发判定 |
+| W2 非法格式 | fail(候选行为) | fail(候选行为) | JSON 导出（两形态） | desktop addbb3eb；npm 073b491e（另 172d20a3 UI 记录同结论） | 非法格式未被 configuration 拦截：business-entry=pass，仅 not-logged-in。两形态一致 → 主开发判定 |
 | W3 | pass | pass | JSON 导出（两形态） | desktop b8062c24；npm 5349bb3a（另 aa8e40a3/33db54bf 两轮 UI 记录一致） | business-entry=fail/module-resolution-failed；变体 SHA 见 evidence/W3-*.md |
 | W4 apply() 抛错 | pass | pass | JSON 导出（两形态） | desktop 73033c09；npm b53dcd31（另 32c3ff70/6f94a7b9 一致） | business-entry=fail/initialization-failed |
 | W4 存储初始化失败子项 | not-run | not-run | — | — | 未能从包外构造该受控故障（HANDOFF 允许"未能构造的子项留未测"） |
@@ -53,7 +60,8 @@
 - 原生 helper 修正（helper-diffs.diff，共 4 处）：prepare.ps1 桌面首启例外；run-case.ps1 无 BOM patch 写入（PS5.1 BOM 曾致 Host"未能保存设置"启动故障）+ 记录 web 子进程（端口监听者→evidence\*.children.pid）；cleanup.ps1 FileInfo -LiteralPath + 仅停记录在案子进程（PID+端口+命令行三重核验，`*.pid` 排除 `*.children.pid`）——已实测：`stopping recorded npm web child pid 15104 (port 8280)` 后端口释放
 - 已选原状态哈希：各 root evidence/before-*.json、after-*.json（仅隔离测试根内 profile 文件——**不构成原用户状态证明，见下**）
 - **npm cordis.patch.yml 前后哈希变化解释（复核指出）**：patch 是本轮受控变量——每轮 run-case/W7/U1 脚本按 case 写入对应内容（健康/缺 baseUrl/非法 URL/canary），before-*.json 在写前快照、after 反映复位值；全部变化均来自本轮受控写入，非 Host 自行改写
-- **原用户状态核验（收窄后的事实）**：验收开始时原用户无 DSH 进程、无 %APPDATA%\DeepSeek Harness；用户默认 home ~/.dsh（9 月起在用）除下述偏差外未触碰（profiles/desktop、profiles/work、sessions、storages 的 mtime 均早于本轮或未变）
+- **原用户状态核验（收窄后的事实）**：验收开始时原用户无 DSH 进程、无 %APPDATA%\DeepSeek Harness；用户默认 home ~/.dsh（9 月起在用）除下述偏差外，**mtime 扫描未发现变化**（mtime 不构成内容未变的证明；profiles/desktop、profiles/work、sessions、storages 未见本轮时间戳）
+- **补测与原始记录的关系**：npm 补测轮的状态哈希另存为 before-W*-r2.json，b2c0eca 中的原始 before-W*.json 已恢复并保留，保证首轮前后配对完整
 - **隔离偏差与纠正（本轮自纠，2026-10-06 复核追查时发现）**：10:30 的 `dsh web` 冒烟测试未设 DSH_HOME，初始化了用户默认 home 的 ~/.dsh/profiles/web（仅 4 个样板文件：package.json 空 deps + 空 cordis 骨架；无插件/会话/凭据写入）；已确认内容后删除该目录，~/.dsh 其余状态经 mtime 扫描确认未变。教训已写入 helper（run-case 固定设置 DSH_HOME）
 - 本轮 PID/临时登录与清理：零登录；结束态本轮进程 0 残留（多次全量核验）；两 profile 候选已卸载；canary 伪造凭据已删；patch 复位；首启自动创建的空默认工作区目录已删；IAB 遗留保存对话框已逐一关闭
 - 所有异常/未测/根因未知项：
