@@ -1,0 +1,79 @@
+{
+  "interactionId": "int_31d816841b7257b24a20a6992b299377",
+  "cliExitCode": 0,
+  "technicalReferences": [
+    {
+      "ref_type": "object_type",
+      "ref_id": "object:supply_ontology_hand:supply_ontology_hand_material"
+    },
+    {
+      "ref_type": "property",
+      "ref_id": "property:supply_ontology_hand:supply_ontology_hand_material:baseunit_name"
+    },
+    {
+      "ref_type": "property",
+      "ref_id": "property:supply_ontology_hand:supply_ontology_hand_material:material_code"
+    },
+    {
+      "ref_type": "property",
+      "ref_id": "property:supply_ontology_hand:supply_ontology_hand_material:material_name"
+    },
+    {
+      "ref_type": "property",
+      "ref_id": "property:supply_ontology_hand:supply_ontology_hand_material:materialattr"
+    },
+    {
+      "ref_type": "property",
+      "ref_id": "property:supply_ontology_hand:supply_ontology_hand_material:modelnum"
+    },
+    {
+      "ref_type": "property",
+      "ref_id": "property:supply_ontology_hand:supply_ontology_hand_material:product_fixedleadtime"
+    },
+    {
+      "ref_type": "property",
+      "ref_id": "property:supply_ontology_hand:supply_ontology_hand_material:product_status"
+    },
+    {
+      "ref_type": "property",
+      "ref_id": "property:supply_ontology_hand:supply_ontology_hand_material:purchase_fixedleadtime"
+    },
+    {
+      "ref_type": "object_type",
+      "ref_id": "object:supply_ontology_hand:supply_ontology_hand_material"
+    },
+    {
+      "ref_type": "property",
+      "ref_id": "property:supply_ontology_hand:supply_ontology_hand_material:baseunit_name"
+    },
+    {
+      "ref_type": "property",
+      "ref_id": "property:supply_ontology_hand:supply_ontology_hand_material:material_code"
+    },
+    {
+      "ref_type": "property",
+      "ref_id": "property:supply_ontology_hand:supply_ontology_hand_material:material_name"
+    },
+    {
+      "ref_type": "property",
+      "ref_id": "property:supply_ontology_hand:supply_ontology_hand_material:materialattr"
+    },
+    {
+      "ref_type": "property",
+      "ref_id": "property:supply_ontology_hand:supply_ontology_hand_material:modelnum"
+    },
+    {
+      "ref_type": "property",
+      "ref_id": "property:supply_ontology_hand:supply_ontology_hand_material:product_fixedleadtime"
+    },
+    {
+      "ref_type": "property",
+      "ref_id": "property:supply_ontology_hand:supply_ontology_hand_material:product_status"
+    },
+    {
+      "ref_type": "property",
+      "ref_id": "property:supply_ontology_hand:supply_ontology_hand_material:purchase_fixedleadtime"
+    }
+  ],
+  "scope": "Authorized original question business graph; two same-network elements observed in official Desktop UI, no mixed-network UI acceptance claimed"
+}

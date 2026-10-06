@@ -1,0 +1,25 @@
+{
+  "formatVersion": 1,
+  "repository": "openbkn-ai/bkn-dsh",
+  "deliveryBranch": "release/unified-7-acceptance",
+  "deliveryIdentityNote": "Use the 40-hex Git delivery commit given by the main agent; delivery commit is not package source commit.",
+  "candidate": {
+    "version": "0.2.0-rc.2-openbkn.0.2.0-7",
+    "sourceCommit": "7553cc13a17e80b87e4d8b2b22381ab8f05bc22d",
+    "runId": 37447961098,
+    "publish": false,
+    "tgzSha256": "4e4f7c3d44453038b4f2a723ec5334c443565ef0628e1e295bd339eda8f14d86",
+    "fileCount": 65
+  },
+  "archive": {
+    "path": "docs/handoff/2026-10-06-release-7/assets/windows-unified7-7553cc1.zip",
+    "sha256": "4a2c3112b4314961f32068df3939792c4118a8a259bec20f38744f16f1fdb2de",
+    "sizeBytes": 227496,
+    "entryCount": 28
+  },
+  "entrypoint": "README.md",
+  "handoff": "HANDOFF.md",
+  "offlineVerifier": "verify-kit.ps1",
+  "notReleaseAccepted": true,
+  "nativeWindowsUnified7Retest": "pending"
+}

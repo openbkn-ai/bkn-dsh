@@ -1,0 +1,55 @@
+{
+  "candidateSha256": "4e4f7c3d44453038b4f2a723ec5334c443565ef0628e1e295bd339eda8f14d86",
+  "sourceCommit": "7553cc13a17e80b87e4d8b2b22381ab8f05bc22d",
+  "ciRunId": 37447961098,
+  "originalQuestionsUnchanged": true,
+  "attemptsPerQuestion": 1,
+  "model": "DeepSeek-V41-Flash",
+  "reasoning": "High",
+  "candidateG6FullAcceptance": false,
+  "cases": {
+    "standard-lead-time": {
+      "frozenG6Verdict": "pass",
+      "sessionId": "session-c7377fcc-74a4-4d5c-ad90-1ccb735b79e2",
+      "question": "382-000005 的标准交期？",
+      "toolCalls": 7,
+      "turnEnded": {
+        "kind": "completed"
+      },
+      "firstToolToTurnEndSeconds": 11.683,
+      "timingScope": "excludes pre-first-tool thinking; one run, not a performance benchmark"
+    },
+    "bom-usage-inventory": {
+      "frozenG6Verdict": "fail",
+      "sessionId": "session-d1cafacb-57f1-468c-bf1f-84e362fa0847",
+      "question": "查询 382-000005 的 BOM 清单，每个物料的使用量，以及每个物料的库存情况",
+      "toolCalls": 15,
+      "turnEnded": {
+        "kind": "completed"
+      },
+      "firstToolToTurnEndSeconds": 181.871,
+      "timingScope": "excludes pre-first-tool thinking; one run, not a performance benchmark",
+      "reason": "314 delivered rows vs 313 expected; wrong-level duplicate added in final answer; deep inventory capability timed out and read-only fallback was disclosed."
+    },
+    "missing-object": {
+      "frozenG6Verdict": "pass",
+      "sessionId": "session-ce8bd034-4f29-4fd6-b8ca-070d0b7d63fd",
+      "question": "物料 999-999999 的库存和订单情况？",
+      "toolCalls": 4,
+      "turnEnded": {
+        "kind": "completed"
+      },
+      "firstToolToTurnEndSeconds": 9.005,
+      "timingScope": "excludes pre-first-tool thinking; one run, not a performance benchmark",
+      "additionalAccuracyAnomaly": "Final text names supply_ontology_hand.erp_material, whereas live object metadata names supply_demo_hand.erp_material. Original frozen no-data/no-nonzero rules pass; source attribution anomaly remains open."
+    }
+  },
+  "untested": "Other frozen G6 cases not rerun on this candidate; restricted account unavailable by user instruction; old candidate results remain historical.",
+  "frozenCriteriaSummary": {
+    "pass": 2,
+    "fail": 1,
+    "tested": 3,
+    "notRun": 8
+  },
+  "releaseAccepted": false
+}

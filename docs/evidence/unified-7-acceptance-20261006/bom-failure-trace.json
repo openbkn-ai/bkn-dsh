@@ -1,0 +1,32 @@
+{
+  "source": "redacted final run_code tool result, not model final text",
+  "sourceCallId": "call_00_kN86taShj1zTpooL3XZF6242",
+  "toolTableRows": 313,
+  "toolTableMatchesIndependentOracle": true,
+  "toolTableLevels": {
+    "1": 9,
+    "2": 16,
+    "3": 38,
+    "4": 212,
+    "5": 38
+  },
+  "toolReference": {
+    "level": 4,
+    "parent": "791-000012",
+    "child": "165-002371",
+    "name": "YN403_前壳",
+    "usage": 1,
+    "available_qty": 119
+  },
+  "answerRows": 314,
+  "answerExtra": {
+    "level": 3,
+    "parent": "791-000012",
+    "child": "165-002371",
+    "name": "YN403_前壳",
+    "usage": 1,
+    "available_qty": 119
+  },
+  "finalTextStatedRows": 313,
+  "conclusion": "Tool data matches the independent snapshot; the model final table adds a wrong-level duplicate. No platform data error demonstrated."
+}

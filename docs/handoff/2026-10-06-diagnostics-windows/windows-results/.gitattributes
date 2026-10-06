@@ -1,0 +1,2 @@
+# Preserve the original patch context: a blank context line is one space.
+helper-diffs.diff whitespace=-blank-at-eol

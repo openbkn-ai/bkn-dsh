@@ -1,0 +1,40 @@
+{
+  "datas": [
+    {
+      "material_code": "382-000005",
+      "modelnum": "YN406BDS-2.5GD(YN406拖拉机V2)",
+      "_display": "北斗导航农机驾驶仪",
+      "baseunit_number": "pcs",
+      "group_type": "406包装成品",
+      "_instance_identity": {
+        "material_code": "382-000005"
+      },
+      "product_fixedleadtime": 1,
+      "huid_productline_name": "自动驾驶",
+      "purchase_fixedleadtime": 1,
+      "material_standard_price": null,
+      "_instance_id": "supply_ontology_hand_material-382-000005",
+      "materialattr": "自制",
+      "product_status": "已上架",
+      "baseunit_name": "个",
+      "material_name": "北斗导航农机驾驶仪",
+      "group_name": "库存商品-产成品"
+    }
+  ],
+  "effective_permissions": {
+    "huid_productline_name": "full",
+    "baseunit_number": "full",
+    "product_fixedleadtime": "full",
+    "material_standard_price": "full",
+    "group_name": "full",
+    "baseunit_name": "full",
+    "group_type": "full",
+    "materialattr": "full",
+    "material_name": "full",
+    "product_status": "full",
+    "material_code": "full",
+    "modelnum": "full",
+    "purchase_fixedleadtime": "full"
+  },
+  "total_count": 1
+}

@@ -1,0 +1,30 @@
+{
+  "officialDesktop": true,
+  "unpatched": true,
+  "inspectorUsed": false,
+  "candidateSha256": "4e4f7c3d44453038b4f2a723ec5334c443565ef0628e1e295bd339eda8f14d86",
+  "freshPluginRemoveInstall": true,
+  "model": "DeepSeek-V41-Flash",
+  "reasoning": "High",
+  "mode": "standard",
+  "workspace": "workspace-supply",
+  "knowledgeNetworkId": "supply_ontology_hand",
+  "sidebarOpenBknEntries": 1,
+  "diagnosticButtonText": "诊断",
+  "normalReportId": "5ff681ab",
+  "normalReportChecksPassed": 7,
+  "provenanceInteractionId": "int_31d816841b7257b24a20a6992b299377",
+  "elementsObserved": [
+    {
+      "label": "物料",
+      "kind": "object",
+      "displayedSourceKnowledgeNetwork": "supply_ontology_hand"
+    },
+    {
+      "label": "生产固定提前期",
+      "kind": "property",
+      "displayedSourceKnowledgeNetwork": "supply_ontology_hand"
+    }
+  ],
+  "evidenceMethod": "Actual native UI AX observations, actual downloaded JSON and independent authorized platform references; no multi-network UI acceptance claimed"
+}

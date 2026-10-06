@@ -1,0 +1,32 @@
+{
+  "archive": {
+    "path": "docs/handoff/2026-10-06-release-7/assets/windows-unified7-7553cc1.zip",
+    "sha256": "4a2c3112b4314961f32068df3939792c4118a8a259bec20f38744f16f1fdb2de",
+    "sizeBytes": 227496,
+    "entryCount": 28
+  },
+  "zipCrc": "pass",
+  "kitHashManifestFilesChecked": 27,
+  "candidateFilesChecked": 65,
+  "packageDeclaredTargetsChecked": 16,
+  "nativeTestedHelperCopies": [
+    {
+      "path": "prepare.ps1",
+      "sha256": "5b661cc9286973a0965daf39eaf8075d909d25b2d7a01460e5dfc5245a1f6a64",
+      "nativeEvidenceSourceCommit": "54f6669ed73284a7818acad23a3985a04157c49d"
+    },
+    {
+      "path": "run-case.ps1",
+      "sha256": "786a16b1930fb7e2b10cd58122420ca2872c10f120c8ad69e8f7f157aa298483",
+      "nativeEvidenceSourceCommit": "54f6669ed73284a7818acad23a3985a04157c49d"
+    },
+    {
+      "path": "cleanup.ps1",
+      "sha256": "31bc3a021e548fb54ae16eba8afd87f444a6c153786f88d4589c3721cceb5011",
+      "nativeEvidenceSourceCommit": "54f6669ed73284a7818acad23a3985a04157c49d"
+    }
+  ],
+  "evalToolCopiesMatch": true,
+  "nativePowerShellUpdatedVerifierRun": "not-run (macOS host has no pwsh)",
+  "scope": "Python static integrity/contract checks only; native Windows execution remains required."
+}

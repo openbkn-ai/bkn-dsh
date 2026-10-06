@@ -1,0 +1,81 @@
+{
+  "packageName": "@openbkn/dsh-business-context",
+  "version": "0.2.0-rc.2-openbkn.0.2.0-7",
+  "sourceCommit": "7553cc13a17e80b87e4d8b2b22381ab8f05bc22d",
+  "sourceBranch": "main",
+  "ciRunId": 37447961098,
+  "publish": false,
+  "artifactName": "plugin-tarball",
+  "artifactId": 11403394143,
+  "artifactZipDigest": "sha256:df839b6bf4b3b87ef2ae8fa682171ecd1a3c1ab24bfd526e7266ed1c6e073735",
+  "tgzSha256": "4e4f7c3d44453038b4f2a723ec5334c443565ef0628e1e295bd339eda8f14d86",
+  "tgzSizeBytes": 166727,
+  "tgzPath": "release/unified-7-candidate/openbkn-dsh-business-context-0.2.0-rc.2-openbkn.0.2.0-7.tgz",
+  "fileCount": 65,
+  "declaredTargets": [
+    {
+      "condition": "exports/./types",
+      "path": "./lib/types/index.d.ts"
+    },
+    {
+      "condition": "exports/./default",
+      "path": "./lib/index.js"
+    },
+    {
+      "condition": "exports/./business/types",
+      "path": "./lib/types/business.d.ts"
+    },
+    {
+      "condition": "exports/./business/default",
+      "path": "./lib/business.js"
+    },
+    {
+      "condition": "exports/./diagnostics/types",
+      "path": "./lib/types/diagnostics.d.ts"
+    },
+    {
+      "condition": "exports/./diagnostics/default",
+      "path": "./lib/diagnostics.js"
+    },
+    {
+      "condition": "exports/./types/types",
+      "path": "./lib/types/types.d.ts"
+    },
+    {
+      "condition": "exports/./client/types",
+      "path": "./lib/types/client/index.d.ts"
+    },
+    {
+      "condition": "exports/./client/default",
+      "path": "./lib/client.js"
+    },
+    {
+      "condition": "exports/./typert/types",
+      "path": "./lib/typert.host.d.ts"
+    },
+    {
+      "condition": "exports/./typert/default",
+      "path": "./lib/typert.host.js"
+    },
+    {
+      "condition": "exports/./remote/types",
+      "path": "./lib/typert.remote-client.d.ts"
+    },
+    {
+      "condition": "exports/./remote/default",
+      "path": "./lib/typert.remote-client.js"
+    },
+    {
+      "condition": "exports/./package.json",
+      "path": "./package.json"
+    },
+    {
+      "condition": "main",
+      "path": "./lib/index.js"
+    },
+    {
+      "condition": "types",
+      "path": "./lib/types/index.d.ts"
+    }
+  ]
+}
