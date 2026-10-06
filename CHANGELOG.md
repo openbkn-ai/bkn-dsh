@@ -4,31 +4,18 @@ All notable changes to this project are documented here.
 
 ## 0.2.0-rc.2-openbkn.0.2.0-7 (2026-10-06)
 
-Candidate fixes for provenance origin and connection-error guidance. Same official DSH pin (`0.2.0-rc.2`).
+Unified release candidate for the previously unpublished -5/-6 diagnostics work and subsequent fixes. The official DSH pin stays `0.2.0-rc.2`; historical evidence keeps its original candidate labels and hashes.
 
-- Fix #62: show each authorized business element's source network from the canonical Trace `ref_type`/`ref_id` contract. Mixed-network operations retain each element's origin; malformed or undisclosed references remain unlocated. No network is guessed from the current binding or model output.
-- Fix #63: unknown connection/RPC failures direct users to the existing diagnostic report instead of assuming a Token or platform-address fault. Known CLI, authentication and platform failures keep their specific guidance.
-- This is a build-only candidate. Windows acceptance and the remaining G6 failures are still open; these fixes do not constitute release acceptance.
-
-## 0.2.0-rc.2-openbkn.0.2.0-6 (2026-10-05)
-
-Entry isolation so diagnostics survive business import failures. Same DSH pin (`0.2.0-rc.2`); no patch needed.
-
-- UI: the sidebar has a single OpenBKN entry. Open that panel and click **诊断** at its top right to open diagnostics. The panel shell registers independently of business services, so business import failures do not hide the only diagnostics route; diagnostics import failures show an explicit unavailable view.
-
-- Breaking (package layout): the package root is now a minimal bootstrap plugin (`openbkn-business-context-bootstrap`) that only keeps the host serving this package's browser bundle. The business implementation moved to the `./business` subpath row (id, config schema, and behavior unchanged); diagnostics stays on `./diagnostics`. Import business API values from `@openbkn/dsh-business-context/business`; the five Remote boundary types (`AuthSnapshot`, `BusinessNetworkBinding`, `BusinessNetworkSummary`, `ProvenanceHandle`, `ProvenanceView`) are exported from `@openbkn/dsh-business-context/types` only.
-- Fix (D0 gate 2): when the business entry fails to import, the diagnostics panel now stays available and reports `module-resolution-failed` for the business row — verified on the official npm dsh host (S2), alongside S4 (diagnostics import failure keeps the business panel working with an explicit degraded diagnostics view) and S0 (three rows, no duplicates).
-- The report gains a `bootstrap-entry` check (the package-root row's own health, never impersonating the business row). The internal guard probe and the Windows verification kit resolve `./business`/`./diagnostics` from the package manifest instead of hardcoding `lib/index.js`.
-- Known limitations: same open items as -5 (Windows W0–W12, macOS desktop form, real download completion, CLI 0.1.5 pairing, CI rehearsal, G6/live guard, active retest); breaking the shared observer chunk or the bootstrap root itself is a whole-package fault and is out of the single-component fault model.
-
-## 0.2.0-rc.2-openbkn.0.2.0-5 (2026-10-05)
-
-Diagnostics for support workflows. Same DSH pin (`0.2.0-rc.2`); no patch needed.
-
-- Add: a standalone diagnostics entry (`openbkn-business-context-diagnostics`) in the same package. When the business entry fails config validation or startup, the diagnostics row keeps running and the panel classifies the failure (`configuration-invalid` with the whitelisted field, `initialization-failed`, `module-resolution-failed`) through the public fiber surface only. Verified on the unpatched npm-form dsh host (see `docs/evidence/diagnostics-d0.md`).
-- Add: a diagnostics panel reachable from the sidebar at all times, plus an "导出诊断" hand-off on the business error page. It exports a whitelisted JSON report (`OpenBKN-diagnostic-<UTC>-<id>.json`): schema version, checks with stage/status/source/code and scalar-only evidence, target facts, and coverage. Raw messages, stacks, URLs, causes, and credentials never enter the report (canary-tested).
-- Add: passive observations. Platform-reader, auth, CLI, and MCP failures record bounded, capture-time-sanitized outcomes; a later success marks the earlier failure as recovered instead of leaving it current.
-- Known limitations: when the business entry itself cannot be imported, dsh serves no client bundle for the package, so the in-package diagnostics UI is unavailable in that one case (the Host-side diagnostics service stays up; dsh's own startup warning names the module error). Active retesting (read-only reconnection probes) is not included; the panel's "重新采集" re-reads passive state only. Desktop/npm verification on Windows is pending (see the Windows verification pack).
+- Add: an independent diagnostics entry, passive bounded observations, stage-specific failure classification, and a whitelisted JSON export. The single OpenBKN sidebar entry opens a panel with a **诊断** action. Business import/configuration failures leave diagnostics accessible; diagnostics import failures show an explicit unavailable view while the business panel remains usable. A broken bootstrap/shared chunk remains a whole-package fault.
+- Breaking (package layout): the package root is a minimal bootstrap (`openbkn-business-context-bootstrap`); business values move to `@openbkn/dsh-business-context/business`, diagnostics to `./diagnostics`, and the five Remote boundary types to `./types`. The business row's id remains unchanged. Installation uses all three rows from `cordis.patch.yml`.
+- Fix: reject malformed/non-HTTP(S) `baseUrl` values before business initialization and authentication, including whitespace/backslashes silently repaired by URL parsing; diagnostics identifies the invalid configuration field without exporting its value.
+- Fix #62: identify each authorized business element's source network using canonical Trace `ref_type`/`ref_id`. Mixed-network operations retain each element's origin; malformed or undisclosed references remain unlocated.
+- Fix #63: unknown connection/RPC failures point to the diagnostic report; known CLI, authentication and platform failures keep their specific guidance.
+- Fix: a plain Node Host now reports its form as `unknown`; official Desktop also spawns Node, so that signal cannot prove npm usage.
+- Improve managed-session guidance for exact material identifiers, lead-time field semantics/units/source, complete paginated BOM usage and inventory, warehouse/reservation/in-transit scope, and stopping unrelated exploration after a missing-object lookup. These are model instructions, not a deterministic query implementation or a guarantee that every answer succeeds.
+- Add reproducible supply-session exports and completeness checks; short credentials, credential-field aliases and Markdown answers use the same redaction path.
+- Evidence: the three original supply questions passed on the policy-only local round-6 pack on macOS official Desktop with DeepSeek-V41-Flash High; the complete BOM contains five levels, 313 parent-child rows and 272 materials, checked against independent platform queries. This does not accept the subsequently combined -7 artifact. No missing credentials or macOS-specific root cause is inferred from the original failures.
+- Known limitations: deep inventory capability queries still time out; sandbox callback persistence was reported to the platform as [bkn-foundry #2029](https://github.com/openbkn-ai/bkn-foundry/issues/2029). The successful answer used a disclosed read-only fallback. Active reconnection probes are not included: **重新采集** reads passive state. Guard enforcement inside platform `run_code` remains outside the plugin boundary. Windows, download completion, the remaining G6/guard cases, and CI-artifact real-host acceptance remain open. See `docs/handoff/2026-10-06-release-7/README.md`; this candidate is not yet published or release-accepted.
 
 ## 0.2.0-rc.2-openbkn.0.2.0-4 (2026-10-04)
 

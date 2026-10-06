@@ -1,5 +1,7 @@
 # bkn-dsh
 
+当前 -7 统一候选的范围与待完成发布验收见 [交接文档](docs/handoff/2026-10-06-release-7/README.md)。历史 -5/-6 包及此前 CI7 保留原身份，不能代表此次合并候选。
+
 [English](README.md)
 
 将受治理的 OpenBKN 业务知识带入 DeepSeek Harness 对话。

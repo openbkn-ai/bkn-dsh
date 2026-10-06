@@ -1,0 +1,43 @@
+{
+  "kind": "read-only schema inspection and migration plan; DDL NOT applied",
+  "exit": 0,
+  "plans": [
+    {
+      "mode": "plan",
+      "table": "t_sandbox_execution",
+      "columns": [
+        {
+          "COLUMN_NAME": "f_return_value",
+          "DATA_TYPE": "text",
+          "IS_NULLABLE": "NO",
+          "COLUMN_DEFAULT": null,
+          "COLUMN_COMMENT": "",
+          "EXTRA": "",
+          "CHARACTER_SET_NAME": "utf8mb4",
+          "COLLATION_NAME": "utf8mb4_unicode_ci"
+        },
+        {
+          "COLUMN_NAME": "f_stdout",
+          "DATA_TYPE": "text",
+          "IS_NULLABLE": "NO",
+          "COLUMN_DEFAULT": null,
+          "COLUMN_COMMENT": "",
+          "EXTRA": "",
+          "CHARACTER_SET_NAME": "utf8mb4",
+          "COLLATION_NAME": "utf8mb4_unicode_ci"
+        },
+        {
+          "COLUMN_NAME": "f_stderr",
+          "DATA_TYPE": "text",
+          "IS_NULLABLE": "NO",
+          "COLUMN_DEFAULT": null,
+          "COLUMN_COMMENT": "",
+          "EXTRA": "",
+          "CHARACTER_SET_NAME": "utf8mb4",
+          "COLLATION_NAME": "utf8mb4_unicode_ci"
+        }
+      ],
+      "ddl": "ALTER TABLE `t_sandbox_execution` MODIFY COLUMN `f_return_value` MEDIUMTEXT CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL, MODIFY COLUMN `f_stdout` MEDIUMTEXT CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL, MODIFY COLUMN `f_stderr` MEDIUMTEXT CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL"
+    }
+  ]
+}

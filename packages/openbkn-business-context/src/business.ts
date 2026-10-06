@@ -71,7 +71,7 @@ export { mountBoundBusinessNetworkTool } from './scoped-business-context.js'
 
 /**
  * Cordis identity used by the business row. The package root belongs to the
- * bootstrap entry (src/bootstrap.ts); this module loads through the
+ * bootstrap entry (src/index.ts); this module loads through the
  * `@openbkn/dsh-business-context/business` subpath row, so an import failure
  * here leaves the root — and the client bundle it serves — alive.
  */

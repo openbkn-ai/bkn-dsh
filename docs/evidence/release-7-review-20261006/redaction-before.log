@@ -1,0 +1,35 @@
+.FF.F
+======================================================================
+FAIL: test_bearer_and_url_credentials_are_redacted (__main__.EvidenceRedactionTests.test_bearer_and_url_credentials_are_redacted)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/Users/kalias/Documents/project/app/openBKN/bkn-dsh-release-7/docs/eval/test-supply-tools.py", line 39, in test_bearer_and_url_credentials_are_redacted
+    self.assertNotIn(secret, result)
+    ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^
+AssertionError: 'short' unexpectedly found in 'Bearer short https://user:pw1@platform.example/path?token=tiny&kn_id=supply_ontology_hand'
+
+======================================================================
+FAIL: test_credentials_in_json_and_python_repr_keep_business_values (__main__.EvidenceRedactionTests.test_credentials_in_json_and_python_repr_keep_business_values)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/Users/kalias/Documents/project/app/openBKN/bkn-dsh-release-7/docs/eval/test-supply-tools.py", line 31, in test_credentials_in_json_and_python_repr_keep_business_values
+    self.assertNotIn("pw1", result)
+    ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^
+AssertionError: 'pw1' unexpectedly found in '{"password": "pw1", "available_qty": 34}'
+
+======================================================================
+FAIL: test_short_and_alias_credentials_in_structured_results (__main__.EvidenceRedactionTests.test_short_and_alias_credentials_in_structured_results)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/Users/kalias/Documents/project/app/openBKN/bkn-dsh-release-7/docs/eval/test-supply-tools.py", line 23, in test_short_and_alias_credentials_in_structured_results
+    self.assertEqual(result["accessToken"], "[REDACTED]")
+    ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: 'short' != '[REDACTED]'
+- short
++ [REDACTED]
+
+
+----------------------------------------------------------------------
+Ran 5 tests in 0.001s
+
+FAILED (failures=3)

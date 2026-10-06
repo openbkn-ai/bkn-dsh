@@ -1,0 +1,24 @@
+{
+  "kind": "sanitized platform evidence; raw logs excluded",
+  "execution": [
+    {
+      "executionId": "exec_20261006052924_c7de189f",
+      "durationMs": 1846.105835866183,
+      "exitCode": 0
+    }
+  ],
+  "controlPlaneErrors": [
+    {
+      "column": "f_return_value",
+      "mysqlError": 1406,
+      "message": "Data too long for column 'f_return_value' at row 1"
+    },
+    {
+      "column": "f_stdout",
+      "mysqlError": 1406,
+      "message": "Data too long for column 'f_stdout' at row 1"
+    }
+  ],
+  "issue": "https://github.com/openbkn-ai/bkn-foundry/issues/2029",
+  "causalityLimit": "reproduced oversized result persistence failure in this run; not proof of every historical timeout cause"
+}

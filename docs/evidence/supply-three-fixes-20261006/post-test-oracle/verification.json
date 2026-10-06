@@ -1,0 +1,270 @@
+{
+  "verification": "independent live CLI oracle; not a Desktop/model verdict",
+  "bom": {
+    "line_count": 313,
+    "scoped_line_count": 313,
+    "unique_child_count": 272,
+    "max_level": 5,
+    "caliber": "main_only"
+  },
+  "retrieved_lines": 313,
+  "distinct_materials": 272,
+  "levels": [
+    1,
+    2,
+    3,
+    4,
+    5
+  ],
+  "material": [
+    {
+      "_instance_identity": {
+        "material_code": "382-000005"
+      },
+      "material_code": "382-000005",
+      "_instance_id": "supply_ontology_hand_material-382-000005",
+      "group_name": "库存商品-产成品",
+      "baseunit_name": "个",
+      "huid_productline_name": "自动驾驶",
+      "modelnum": "YN406BDS-2.5GD(YN406拖拉机V2)",
+      "purchase_fixedleadtime": 1,
+      "product_fixedleadtime": 1,
+      "product_status": "已上架",
+      "materialattr": "自制",
+      "baseunit_number": "pcs",
+      "material_standard_price": null,
+      "material_name": "北斗导航农机驾驶仪",
+      "_display": "北斗导航农机驾驶仪",
+      "group_type": "406包装成品"
+    }
+  ],
+  "missing_material_rows": 0,
+  "warehouse_filter": [
+    "苏州半成品仓",
+    "苏州成品仓",
+    "苏州电子原料仓",
+    "苏州无人机原料仓",
+    "苏州装配原料仓",
+    "乌鲁木齐成品仓",
+    "哈尔滨成品仓"
+  ],
+  "inventory_source": "supply_ontology_hand_inventory",
+  "reserved": "display only; not deducted again",
+  "in_transit": "excluded; purchase orders not loaded",
+  "no_stock_rows": "sum is 0 in queried warehouse scope; no physical stock claim",
+  "first_level_checks": {
+    "528-000036": {
+      "available_qty": 34,
+      "reserved_qty": 0,
+      "stock_rows": 1,
+      "inventory_uom": "个"
+    },
+    "791-000007": {
+      "available_qty": 0,
+      "reserved_qty": 0,
+      "stock_rows": 0,
+      "inventory_uom": null
+    },
+    "791-000015": {
+      "available_qty": 0,
+      "reserved_qty": 0,
+      "stock_rows": 0,
+      "inventory_uom": null
+    }
+  },
+  "material_source": {
+    "type": "resource",
+    "id": "01a0f6e5-fd61-7280-ae39-73fd4c0877d0",
+    "name": "supply_demo_hand.erp_material"
+  },
+  "calls": [
+    {
+      "name": "material-0",
+      "seconds": 0.456,
+      "command": [
+        "context",
+        "query-object-instance",
+        "supply_ontology_hand",
+        "--args",
+        "{\"ot_id\": \"supply_ontology_hand_material\", \"condition\": {\"operation\": \"==\", \"field\": \"material_code\", \"value\": \"382-000005\", \"value_from\": \"const\"}, \"limit\": 1000, \"offset\": 0}"
+      ]
+    },
+    {
+      "name": "material-schema",
+      "seconds": 0.339,
+      "command": [
+        "context",
+        "object-types",
+        "supply_ontology_hand",
+        "supply_ontology_hand_material"
+      ]
+    },
+    {
+      "name": "live-tools",
+      "seconds": 0.183,
+      "command": [
+        "context",
+        "tools",
+        "supply_ontology_hand"
+      ]
+    },
+    {
+      "name": "missing-material-0",
+      "seconds": 0.257,
+      "command": [
+        "context",
+        "query-object-instance",
+        "supply_ontology_hand",
+        "--args",
+        "{\"ot_id\": \"supply_ontology_hand_material\", \"condition\": {\"operation\": \"==\", \"field\": \"material_code\", \"value\": \"999-999999\", \"value_from\": \"const\"}, \"limit\": 1000, \"offset\": 0}"
+      ]
+    },
+    {
+      "name": "bom-0",
+      "seconds": 1.544,
+      "command": [
+        "context",
+        "tool-call",
+        "supply_ontology_hand",
+        "execute_tool",
+        "--args",
+        "{\"kn_id\": \"supply_ontology_hand\", \"toolbox_id\": \"203d444b-1f20-47e7-a1af-bce6dfaeebb3\", \"tool_id\": \"afd1823b-0234-4f35-ba03-3c0b91409445\", \"arguments\": {\"product\": \"382-000005\", \"depth\": 5, \"report_grain\": \"full\", \"page_size\": 100, \"offset\": 0}}"
+      ]
+    },
+    {
+      "name": "bom-100",
+      "seconds": 1.344,
+      "command": [
+        "context",
+        "tool-call",
+        "supply_ontology_hand",
+        "execute_tool",
+        "--args",
+        "{\"kn_id\": \"supply_ontology_hand\", \"toolbox_id\": \"203d444b-1f20-47e7-a1af-bce6dfaeebb3\", \"tool_id\": \"afd1823b-0234-4f35-ba03-3c0b91409445\", \"arguments\": {\"product\": \"382-000005\", \"depth\": 5, \"report_grain\": \"full\", \"page_size\": 100, \"offset\": 100}}"
+      ]
+    },
+    {
+      "name": "bom-200",
+      "seconds": 1.418,
+      "command": [
+        "context",
+        "tool-call",
+        "supply_ontology_hand",
+        "execute_tool",
+        "--args",
+        "{\"kn_id\": \"supply_ontology_hand\", \"toolbox_id\": \"203d444b-1f20-47e7-a1af-bce6dfaeebb3\", \"tool_id\": \"afd1823b-0234-4f35-ba03-3c0b91409445\", \"arguments\": {\"product\": \"382-000005\", \"depth\": 5, \"report_grain\": \"full\", \"page_size\": 100, \"offset\": 200}}"
+      ]
+    },
+    {
+      "name": "bom-300",
+      "seconds": 1.345,
+      "command": [
+        "context",
+        "tool-call",
+        "supply_ontology_hand",
+        "execute_tool",
+        "--args",
+        "{\"kn_id\": \"supply_ontology_hand\", \"toolbox_id\": \"203d444b-1f20-47e7-a1af-bce6dfaeebb3\", \"tool_id\": \"afd1823b-0234-4f35-ba03-3c0b91409445\", \"arguments\": {\"product\": \"382-000005\", \"depth\": 5, \"report_grain\": \"full\", \"page_size\": 100, \"offset\": 300}}"
+      ]
+    },
+    {
+      "name": "inventory-0-0",
+      "seconds": 0.325,
+      "command": [
+        "context",
+        "query-object-instance",
+        "supply_ontology_hand",
+        "--args",
+        "{\"ot_id\": \"supply_ontology_hand_inventory\", \"condition\": {\"operation\": \"in\", \"field\": \"material_code\", \"value\": [\"165-000120\", \"165-000229\", \"165-000257\", \"165-000266\", \"165-000722\", \"165-002371\", \"165-002372\", \"165-002375\", \"165-002376\", \"165-002377\", \"165-002378\", \"165-002405\", \"165-002408\", \"165-002644\", \"165-002646\", \"165-002647\", \"165-002702\", \"165-002708\", \"182-000055\", \"321-000476\", \"321-000498\", \"321-000501\", \"321-000502\", \"321-000503\", \"321-000543\", \"321-000556\", \"356-000081\", \"356-000200\", \"356-000251\", \"356-000382\", \"356-000389\", \"356-000490\"], \"value_from\": \"const\"}, \"limit\": 1000, \"offset\": 0}"
+      ]
+    },
+    {
+      "name": "inventory-32-0",
+      "seconds": 1.151,
+      "command": [
+        "context",
+        "query-object-instance",
+        "supply_ontology_hand",
+        "--args",
+        "{\"ot_id\": \"supply_ontology_hand_inventory\", \"condition\": {\"operation\": \"in\", \"field\": \"material_code\", \"value\": [\"356-000491\", \"356-000557\", \"356-000558\", \"356-000559\", \"356-000560\", \"356-000561\", \"356-000562\", \"356-000563\", \"356-000602\", \"358-000091\", \"358-000166\", \"358-000180\", \"364-000046\", \"364-000050\", \"454-000004\", \"454-000009\", \"454-000050\", \"454-000068\", \"454-000181\", \"454-000187\", \"454-000206\", \"454-000213\", \"454-000256\", \"454-000258\", \"454-000310\", \"454-000319\", \"454-000322\", \"454-000347\", \"468-000493\", \"468-000530\", \"468-000565\", \"527-000036\"], \"value_from\": \"const\"}, \"limit\": 1000, \"offset\": 0}"
+      ]
+    },
+    {
+      "name": "inventory-64-0",
+      "seconds": 0.415,
+      "command": [
+        "context",
+        "query-object-instance",
+        "supply_ontology_hand",
+        "--args",
+        "{\"ot_id\": \"supply_ontology_hand_inventory\", \"condition\": {\"operation\": \"in\", \"field\": \"material_code\", \"value\": [\"527-000038\", \"527-000053\", \"528-000031\", \"528-000036\", \"539-000001\", \"539-000002\", \"539-000003\", \"539-000005\", \"539-000006\", \"539-000008\", \"539-000014\", \"539-000015\", \"539-000018\", \"539-000022\", \"539-000025\", \"539-000026\", \"539-000027\", \"539-000028\", \"539-000031\", \"539-000037\", \"539-000042\", \"539-000043\", \"539-000045\", \"539-000046\", \"539-000047\", \"539-000048\", \"539-000050\", \"539-000063\", \"539-000070\", \"539-000073\", \"539-000075\", \"539-000082\"], \"value_from\": \"const\"}, \"limit\": 1000, \"offset\": 0}"
+      ]
+    },
+    {
+      "name": "inventory-96-0",
+      "seconds": 0.317,
+      "command": [
+        "context",
+        "query-object-instance",
+        "supply_ontology_hand",
+        "--args",
+        "{\"ot_id\": \"supply_ontology_hand_inventory\", \"condition\": {\"operation\": \"in\", \"field\": \"material_code\", \"value\": [\"539-000094\", \"539-000099\", \"539-000100\", \"539-000103\", \"539-000106\", \"539-000110\", \"539-000114\", \"539-000120\", \"539-000124\", \"539-000138\", \"539-000147\", \"539-000154\", \"539-000159\", \"539-000162\", \"539-000171\", \"539-000237\", \"539-000241\", \"539-000244\", \"539-000245\", \"539-000247\", \"539-000248\", \"539-000249\", \"539-000251\", \"539-000264\", \"539-000267\", \"539-000271\", \"539-000276\", \"539-000287\", \"539-000300\", \"539-000310\", \"539-000318\", \"539-000326\"], \"value_from\": \"const\"}, \"limit\": 1000, \"offset\": 0}"
+      ]
+    },
+    {
+      "name": "inventory-128-0",
+      "seconds": 0.261,
+      "command": [
+        "context",
+        "query-object-instance",
+        "supply_ontology_hand",
+        "--args",
+        "{\"ot_id\": \"supply_ontology_hand_inventory\", \"condition\": {\"operation\": \"in\", \"field\": \"material_code\", \"value\": [\"539-000374\", \"539-000379\", \"539-000382\", \"539-000386\", \"539-000411\", \"539-000515\", \"539-000544\", \"539-000589\", \"539-000631\", \"554-000036\", \"554-000069\", \"588-000620\", \"588-000649\", \"588-000653\", \"588-000654\", \"588-000655\", \"588-000712\", \"588-000726\", \"606-000012\", \"606-000852\", \"606-000853\", \"606-000989\", \"606-000990\", \"690-000005\", \"690-000012\", \"690-000047\", \"725-000004\", \"725-000007\", \"725-000015\", \"725-000019\", \"725-000033\", \"725-000041\"], \"value_from\": \"const\"}, \"limit\": 1000, \"offset\": 0}"
+      ]
+    },
+    {
+      "name": "inventory-160-0",
+      "seconds": 0.334,
+      "command": [
+        "context",
+        "query-object-instance",
+        "supply_ontology_hand",
+        "--args",
+        "{\"ot_id\": \"supply_ontology_hand_inventory\", \"condition\": {\"operation\": \"in\", \"field\": \"material_code\", \"value\": [\"725-000046\", \"725-000048\", \"725-000069\", \"725-000083\", \"725-000086\", \"725-000088\", \"725-000089\", \"725-000101\", \"725-000104\", \"725-000105\", \"725-000118\", \"725-000129\", \"725-000167\", \"725-000170\", \"725-000174\", \"725-000176\", \"725-000179\", \"725-000226\", \"725-000242\", \"725-000249\", \"725-000307\", \"725-000320\", \"725-000342\", \"725-000357\", \"725-000415\", \"725-000431\", \"725-000432\", \"725-000433\", \"725-000434\", \"725-000448\", \"733-000023\", \"733-000038\"], \"value_from\": \"const\"}, \"limit\": 1000, \"offset\": 0}"
+      ]
+    },
+    {
+      "name": "inventory-192-0",
+      "seconds": 0.277,
+      "command": [
+        "context",
+        "query-object-instance",
+        "supply_ontology_hand",
+        "--args",
+        "{\"ot_id\": \"supply_ontology_hand_inventory\", \"condition\": {\"operation\": \"in\", \"field\": \"material_code\", \"value\": [\"733-000039\", \"733-000043\", \"733-000082\", \"733-000084\", \"733-000100\", \"733-000121\", \"733-000129\", \"733-000130\", \"733-000154\", \"733-000199\", \"733-000236\", \"791-000003\", \"791-000007\", \"791-000012\", \"791-000013\", \"791-000015\", \"795-000130\", \"795-000133\", \"795-000176\", \"795-000302\", \"795-000728\", \"795-000863\", \"795-000865\", \"795-000884\", \"795-000885\", \"795-000886\", \"795-000887\", \"795-000993\", \"838-000375\", \"838-000376\", \"838-000403\", \"849-000011\"], \"value_from\": \"const\"}, \"limit\": 1000, \"offset\": 0}"
+      ]
+    },
+    {
+      "name": "inventory-224-0",
+      "seconds": 0.271,
+      "command": [
+        "context",
+        "query-object-instance",
+        "supply_ontology_hand",
+        "--args",
+        "{\"ot_id\": \"supply_ontology_hand_inventory\", \"condition\": {\"operation\": \"in\", \"field\": \"material_code\", \"value\": [\"849-000023\", \"849-000204\", \"849-000208\", \"849-000215\", \"849-000288\", \"849-000382\", \"849-000392\", \"849-000484\", \"849-000700\", \"849-000717\", \"849-000846\", \"849-000928\", \"849-000929\", \"849-000942\", \"849-000943\", \"849-000987\", \"849-001021\", \"895-000088\", \"972-000085\", \"972-000159\", \"972-000196\", \"972-000264\", \"972-000270\", \"972-000273\", \"972-000303\", \"972-000323\", \"972-000333\", \"972-000338\", \"972-000418\", \"972-000432\", \"972-000448\", \"972-000475\"], \"value_from\": \"const\"}, \"limit\": 1000, \"offset\": 0}"
+      ]
+    },
+    {
+      "name": "inventory-256-0",
+      "seconds": 0.272,
+      "command": [
+        "context",
+        "query-object-instance",
+        "supply_ontology_hand",
+        "--args",
+        "{\"ot_id\": \"supply_ontology_hand_inventory\", \"condition\": {\"operation\": \"in\", \"field\": \"material_code\", \"value\": [\"972-000528\", \"972-000536\", \"972-000587\", \"972-000610\", \"972-000688\", \"972-000689\", \"972-000712\", \"972-000741\", \"972-000743\", \"972-000744\", \"972-000745\", \"972-000746\", \"972-000770\", \"972-000815\", \"994-000550\", \"994-000606\"], \"value_from\": \"const\"}, \"limit\": 1000, \"offset\": 0}"
+      ]
+    }
+  ]
+}

@@ -1,0 +1,29 @@
+ℹ tsdown v0.22.14 powered by rolldown v1.2.7
+ℹ config file: /Users/kalias/Documents/project/app/openBKN/bkn-dsh-release-7/packages/openbkn-business-context/tsdown.config.ts
+ℹ entry: src/index.ts, src/business.ts, src/diagnostics.ts
+ℹ target: es2022
+ℹ tsconfig: tsconfig.json
+ℹ Build start
+ℹ lib/business.js                       149.88 kB │ gzip: 40.90 kB
+ℹ lib/diagnostics.js                     15.54 kB │ gzip:  5.17 kB
+ℹ lib/index.js                            1.42 kB │ gzip:  0.77 kB
+ℹ lib/diagnostics-observer-JWsKga4E.js    9.73 kB │ gzip:  3.90 kB
+ℹ 4 files, total: 176.58 kB
+ℹ tsdown v0.22.14 powered by rolldown v1.2.7
+ℹ config file: /Users/kalias/Documents/project/app/openBKN/bkn-dsh-release-7/packages/openbkn-business-context/tsdown.config.ts
+ℹ entry: src/client/index.tsx
+ℹ target: node22.19.0
+ℹ tsconfig: tsconfig.json
+ℹ Build start
+ℹ Hint: consider adding deps.onlyBundle option to avoid unintended bundling of dependencies, or set deps.onlyBundle: false to disable this hint.
+ℹ lib/client.js  313.55 kB │ gzip: 64.48 kB
+ℹ 1 files, total: 313.55 kB
+﹣ Windows CLI lookup runs a PATH .cmd and a shim in a path containing spaces and & (0.244834ms) # SKIP
+ℹ tests 313
+ℹ suites 0
+ℹ pass 312
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 1
+ℹ todo 0
+ℹ duration_ms 1409.224208

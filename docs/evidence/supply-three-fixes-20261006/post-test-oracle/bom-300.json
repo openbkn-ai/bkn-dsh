@@ -1,0 +1,315 @@
+{
+  "status_code": 200,
+  "headers": {
+    "Cache-Control": "private, no-cache",
+    "Content-Type": "application/json",
+    "Date": "Tue, 06 Oct 2026 06:17:26 GMT"
+  },
+  "body": {
+    "artifacts": [],
+    "session_id": "sess_aoi_0",
+    "stdout": "",
+    "stderr": "",
+    "result": {
+      "rows_incl_root": 507,
+      "lines": [
+        {
+          "material_code": "539-000018",
+          "parent_material_code": "588-000620",
+          "alt_priority": 0,
+          "alt_method": "",
+          "bom_level": 5,
+          "bom_version": "2026-08-05T00:00:00+08:00",
+          "is_substitute": false,
+          "standard_usage": 2,
+          "alt_group_no": "",
+          "material_name": "贴片电阻"
+        },
+        {
+          "material_code": "690-000012",
+          "alt_group_no": "",
+          "alt_method": "",
+          "is_substitute": false,
+          "bom_version": "2026-08-05T00:00:00+08:00",
+          "bom_level": 5,
+          "material_name": "贴片发光二极管",
+          "alt_priority": 0,
+          "standard_usage": 1,
+          "parent_material_code": "588-000620"
+        },
+        {
+          "standard_usage": 1,
+          "material_name": "贴片发光二极管",
+          "bom_level": 5,
+          "alt_group_no": "",
+          "alt_priority": 0,
+          "alt_method": "",
+          "bom_version": "2026-08-05T00:00:00+08:00",
+          "parent_material_code": "588-000620",
+          "is_substitute": false,
+          "material_code": "690-000005"
+        },
+        {
+          "material_name": "ESD静电保护管",
+          "standard_usage": 7,
+          "is_substitute": false,
+          "bom_level": 5,
+          "alt_method": "",
+          "material_code": "454-000004",
+          "alt_priority": 0,
+          "parent_material_code": "588-000620",
+          "alt_group_no": "",
+          "bom_version": "2026-08-05T00:00:00+08:00"
+        },
+        {
+          "parent_material_code": "588-000620",
+          "alt_group_no": "",
+          "alt_priority": 0,
+          "material_code": "364-000046",
+          "is_substitute": false,
+          "bom_version": "2026-08-05T00:00:00+08:00",
+          "bom_level": 5,
+          "standard_usage": 1,
+          "alt_method": "",
+          "material_name": "贴片自恢复保险丝"
+        },
+        {
+          "material_name": "贴片功率电感",
+          "standard_usage": 1,
+          "parent_material_code": "588-000620",
+          "material_code": "733-000199",
+          "alt_group_no": "",
+          "alt_method": "",
+          "alt_priority": 0,
+          "is_substitute": false,
+          "bom_level": 5,
+          "bom_version": "2026-08-05T00:00:00+08:00"
+        },
+        {
+          "alt_priority": 0,
+          "bom_level": 5,
+          "standard_usage": 1,
+          "alt_group_no": "",
+          "is_substitute": false,
+          "bom_version": "2026-08-05T00:00:00+08:00",
+          "material_code": "972-000587",
+          "alt_method": "",
+          "material_name": "负载开关",
+          "parent_material_code": "588-000620"
+        },
+        {
+          "alt_priority": 0,
+          "alt_group_no": "",
+          "is_substitute": false,
+          "bom_version": "2026-08-05T00:00:00+08:00",
+          "material_code": "356-000558",
+          "material_name": "双排排针 DIP 2.0Pitch 2X5pin",
+          "standard_usage": 1,
+          "bom_level": 5,
+          "alt_method": "",
+          "parent_material_code": "588-000653"
+        },
+        {
+          "parent_material_code": "588-000653",
+          "bom_version": "2026-08-05T00:00:00+08:00",
+          "standard_usage": 1,
+          "material_name": "YN403_USB&SIM_P1_PCB",
+          "alt_group_no": "",
+          "alt_method": "",
+          "material_code": "321-000501",
+          "alt_priority": 0,
+          "is_substitute": false,
+          "bom_level": 5
+        },
+        {
+          "material_code": "356-000389",
+          "is_substitute": false,
+          "parent_material_code": "588-000653",
+          "material_name": "沉板前插后贴式短款USB 2.0母座",
+          "bom_version": "2026-08-05T00:00:00+08:00",
+          "standard_usage": 1,
+          "bom_level": 5,
+          "alt_priority": 0,
+          "alt_group_no": "",
+          "alt_method": ""
+        },
+        {
+          "alt_group_no": "",
+          "material_code": "454-000258",
+          "standard_usage": 6,
+          "alt_method": "",
+          "bom_version": "2026-08-05T00:00:00+08:00",
+          "material_name": "ESD二极管",
+          "alt_priority": 0,
+          "bom_level": 5,
+          "parent_material_code": "588-000653",
+          "is_substitute": false
+        },
+        {
+          "material_code": "356-000382",
+          "standard_usage": 1,
+          "bom_level": 5,
+          "alt_group_no": "",
+          "is_substitute": false,
+          "alt_priority": 0,
+          "material_name": "Push-Push Nano SIM 卡座",
+          "parent_material_code": "588-000653",
+          "alt_method": "",
+          "bom_version": "2026-08-05T00:00:00+08:00"
+        },
+        {
+          "bom_version": "2026-08-05T00:00:00+08:00",
+          "alt_method": "",
+          "standard_usage": 3,
+          "alt_group_no": "",
+          "material_code": "539-000026",
+          "material_name": "贴片电阻",
+          "bom_level": 5,
+          "parent_material_code": "588-000653",
+          "alt_priority": 0,
+          "is_substitute": false
+        }
+      ],
+      "caliber": "main_only",
+      "page_size": 100,
+      "data_source": {
+        "knowledge_network_id": "supply_ontology_hand",
+        "loaded_datasets": [
+          "bom"
+        ]
+      },
+      "offset": 300,
+      "max_level": 5,
+      "depth": 5,
+      "include_substitute": false,
+      "unique_child_count": 272,
+      "line_count": 313,
+      "l1_lines": [
+        {
+          "material_code": "791-000013",
+          "is_substitute": false,
+          "parent_material_code": "382-000005",
+          "material_name": "YN406预组装包(拖拉机)",
+          "bom_version": "2026-08-05T00:00:00+08:00",
+          "alt_method": "",
+          "bom_level": 1,
+          "alt_group_no": "",
+          "standard_usage": 1,
+          "alt_priority": 0
+        },
+        {
+          "alt_method": "",
+          "standard_usage": 1,
+          "bom_level": 1,
+          "alt_priority": 0,
+          "bom_version": "2026-08-05T00:00:00+08:00",
+          "material_name": "YN406 包装外箱_V2",
+          "alt_group_no": "",
+          "is_substitute": false,
+          "material_code": "606-000989",
+          "parent_material_code": "382-000005"
+        },
+        {
+          "is_substitute": false,
+          "bom_version": "2026-08-05T00:00:00+08:00",
+          "parent_material_code": "382-000005",
+          "bom_level": 1,
+          "alt_method": "",
+          "material_code": "606-000990",
+          "alt_priority": 0,
+          "material_name": "YN406 珍珠棉内托_V2",
+          "standard_usage": 1,
+          "alt_group_no": ""
+        },
+        {
+          "is_substitute": false,
+          "material_code": "528-000036",
+          "alt_group_no": "",
+          "alt_priority": 0,
+          "bom_level": 1,
+          "standard_usage": 1,
+          "parent_material_code": "382-000005",
+          "alt_method": "",
+          "bom_version": "2026-08-05T00:00:00+08:00",
+          "material_name": "YS221A接收机组件_国内"
+        },
+        {
+          "alt_group_no": "",
+          "material_code": "791-000007",
+          "material_name": "YN406B方向盘组件（拖拉机）",
+          "standard_usage": 1,
+          "is_substitute": false,
+          "parent_material_code": "382-000005",
+          "bom_level": 1,
+          "alt_priority": 0,
+          "alt_method": "",
+          "bom_version": "2026-08-05T00:00:00+08:00"
+        },
+        {
+          "standard_usage": 1,
+          "bom_level": 1,
+          "is_substitute": false,
+          "bom_version": "2026-08-05T00:00:00+08:00",
+          "material_name": "406电源+电机+接收机连接线",
+          "alt_method": "",
+          "alt_group_no": "",
+          "alt_priority": 0,
+          "material_code": "994-000550",
+          "parent_material_code": "382-000005"
+        },
+        {
+          "alt_priority": 0,
+          "is_substitute": false,
+          "material_name": "YN406说明书（中文）",
+          "bom_version": "2026-08-05T00:00:00+08:00",
+          "parent_material_code": "382-000005",
+          "alt_group_no": "",
+          "alt_method": "",
+          "material_code": "468-000493",
+          "standard_usage": 1,
+          "bom_level": 1
+        },
+        {
+          "bom_version": "2026-08-05T00:00:00+08:00",
+          "parent_material_code": "382-000005",
+          "bom_level": 1,
+          "alt_method": "",
+          "is_substitute": false,
+          "material_name": "导航车贴(60*15cm)",
+          "standard_usage": 1,
+          "alt_priority": 0,
+          "alt_group_no": "",
+          "material_code": "468-000530"
+        },
+        {
+          "standard_usage": 1,
+          "parent_material_code": "382-000005",
+          "bom_level": 1,
+          "is_substitute": false,
+          "bom_version": "2026-08-05T00:00:00+08:00",
+          "alt_group_no": "",
+          "alt_priority": 0,
+          "material_code": "791-000015",
+          "material_name": "YN403显示终端整机_预装组件_拖拉机",
+          "alt_method": ""
+        }
+      ],
+      "scoped_line_count": 313,
+      "l1_main_count": 9,
+      "next_offset": null,
+      "product_code": "382-000005",
+      "report_grain": "full"
+    },
+    "metrics": {
+      "duration_ms": 746.4055239688605,
+      "cpu_time_ms": 8.315666999976656,
+      "peak_memory_mb": null,
+      "io_read_bytes": null,
+      "io_write_bytes": null
+    },
+    "exit_code": 0,
+    "execution_time_ms": 0
+  },
+  "error": "",
+  "duration_ms": 1058
+}

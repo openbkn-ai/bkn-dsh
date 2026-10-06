@@ -1,5 +1,7 @@
 # bkn-dsh
 
+Release candidate -7 consolidates the unpublished diagnostics work and supply-answer guidance. A plain Node Host reports its form as unknown because Desktop also uses Node. CI-artifact real-host and Windows acceptance remain pending; see the repository release-7 handoff.
+
 [中文](README.zh.md)
 
 Bring governed enterprise business knowledge into DeepSeek Harness conversations.

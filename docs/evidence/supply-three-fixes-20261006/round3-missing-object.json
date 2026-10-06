@@ -1,0 +1,136 @@
+{
+  "sessionId": "session-631c4d42-632a-4aea-8f9e-2ab35319c7ae",
+  "question": [
+    "物料 999-999999 的库存和订单情况？"
+  ],
+  "assistantText": [
+    "I'll start a managed OpenBKN interaction for this question.",
+    "物料 **999-999999** 没有查到数据。\n\n我按精确编码等值匹配查询了四个对象类，均返回 0 条：\n\n| 查询对象 | 匹配字段 | 结果 |\n|---|---|---|\n| 物料 | `material_code` | 0 条 |\n| 库存 | `material_code` | 0 条 |\n| 采购订单 | `material_number` | 0 条 |\n| 销售订单 | `product_code` | 0 条 |\n\n所以在这个知识网络（供应链本体知识网络-手工版）的当前数据范围内，不存在该物料，也就没有对应的库存或订单记录。如果这个编码是从别处抄来的，可以确认一下格式（例如是否漏了位数或分隔符），我再帮你查准确的那个编码。"
+  ],
+  "toolEvents": [
+    {
+      "type": "tool/call",
+      "time": 1791266053853,
+      "turn": 1,
+      "step": 1,
+      "callId": "call_00_zKXDMeIsiaHWhCE4vGwO0887",
+      "name": "mcp__openbkn__bkn_start_interaction",
+      "arguments": "{\"conversation_mode\": \"new\", \"question\": \"物料 999-999999 的库存和订单情况？\", \"agent_name\": \"bkn-agent-dsh-business-context\"}"
+    },
+    {
+      "type": "tool/result",
+      "time": 1791266053963,
+      "turn": 1,
+      "step": 1,
+      "callId": "call_00_zKXDMeIsiaHWhCE4vGwO0887",
+      "hostErrorFlag": null,
+      "content": [
+        {
+          "type": "text",
+          "text": "{\"interaction_id\":\"int_8c86fc36bd68ca5eb65d26731d7d52c5\",\"conversation_id\":\"conv_4dac4504248690568baf370b36fb0604\",\"execution_status\":\"active\"}"
+        }
+      ]
+    },
+    {
+      "type": "tool/call",
+      "time": 1791266057416,
+      "turn": 1,
+      "step": 2,
+      "callId": "call_00_oxkV9NWZ8TC1G71HBqNr1098",
+      "name": "mcp__openbkn__run_code",
+      "arguments": "{\"bkn_context\": {\"conversation_id\": \"conv_4dac4504248690568baf370b36fb0604\", \"interaction_id\": \"int_8c86fc36bd68ca5eb65d26731d7d52c5\"}, \"code\": \"\\nkn = \\\"supply_ontology_hand\\\"\\nd = get_kn_detail(kn_id=kn)\\nots = d.get(\\\"object_types\\\", []) or []\\nprint(\\\"OT_COUNT\\\", len(ots))\\nfor o in ots:\\n    print(\\\"OT\\\", o.get(\\\"id\\\"), \\\"|\\\", o.get(\\\"name\\\"), \\\"|metrics:\\\", o.get(\\\"related_metric_count\\\"))\\n\"}"
+    },
+    {
+      "type": "tool/result",
+      "time": 1791266059176,
+      "turn": 1,
+      "step": 2,
+      "callId": "call_00_oxkV9NWZ8TC1G71HBqNr1098",
+      "hostErrorFlag": null,
+      "content": [
+        {
+          "type": "text",
+          "text": "{\"stdout\":\"OT_COUNT 15\\nOT skills | Skills |metrics: None\\nOT supply_ontology_hand_product | 产品 |metrics: 1\\nOT supply_ontology_hand_bom | 产品BOM |metrics: None\\nOT supply_ontology_hand_forecast | 产品需求预测单 |metrics: 2\\nOT supply_ontology_hand_supplier | 供应商 |metrics: 1\\nOT supply_ontology_hand_mps | 工厂生产计划 |metrics: None\\nOT supply_ontology_hand_inventory | 库存 |metrics: 2\\nOT supply_ontology_hand_material | 物料 |metrics: 1\\nOT supply_ontology_hand_mrp | 物料需求计划 |metrics: None\\nOT supply_ontology_hand_mon_task | 监控任务 |metrics: None\\nOT supply_ontology_hand_mon_item | 监控证据明细 |metrics: None\\nOT supply_ontology_hand_pr_decision | 采购申请决策 |metrics: None\\nOT supply_ontology_hand_pr | 采购申请单 |metrics: None\\nOT supply_ontology_hand_po | 采购订单 |metrics: None\\nOT supply_ontology_hand_salesorder | 销售订单 |metrics: 1\\n\",\"stderr\":\"\",\"exit_code\":0}"
+        }
+      ]
+    },
+    {
+      "type": "tool/call",
+      "time": 1791266060875,
+      "turn": 1,
+      "step": 3,
+      "callId": "call_00_VjoXHmShrnFbcUW2am5p9059",
+      "name": "mcp__openbkn__run_code",
+      "arguments": "{\"bkn_context\": {\"conversation_id\": \"conv_4dac4504248690568baf370b36fb0604\", \"interaction_id\": \"int_8c86fc36bd68ca5eb65d26731d7d52c5\"}, \"code\": \"\\nkn = \\\"supply_ontology_hand\\\"\\nids = [\\\"supply_ontology_hand_material\\\",\\\"supply_ontology_hand_inventory\\\",\\\"supply_ontology_hand_salesorder\\\",\\\"supply_ontology_hand_po\\\"]\\ngot = get_object_types(kn_id=kn, ids=ids)\\nfor o in got.get(\\\"object_types\\\", []) or []:\\n    print(\\\"=== OT\\\", o.get(\\\"id\\\"), o.get(\\\"name\\\"))\\n    for p in o.get(\\\"data_properties\\\", []) or []:\\n        print(\\\"   dp\\\", p.get(\\\"name\\\"), \\\"|\\\", p.get(\\\"type\\\"), \\\"|\\\", p.get(\\\"mapped_field\\\"), \\\"|\\\", p.get(\\\"comment\\\"))\\n    for p in o.get(\\\"logic_properties\\\", []) or []:\\n        print(\\\"   lp\\\", p.get(\\\"name\\\"), \\\"|\\\", p.get(\\\"data_source\\\"))\\nprint(\\\"MISSING\\\", got.get(\\\"missing\\\"))\\n\"}"
+    },
+    {
+      "type": "tool/result",
+      "time": 1791266061544,
+      "turn": 1,
+      "step": 3,
+      "callId": "call_00_VjoXHmShrnFbcUW2am5p9059",
+      "hostErrorFlag": null,
+      "content": [
+        {
+          "type": "text",
+          "text": "{\"stdout\":\"=== OT supply_ontology_hand_inventory 库存\\n   dp id | string | {'name': 'id', 'type': 'integer', 'display_name': 'id'} | None\\n   dp seq_no | integer | {'name': 'seq_no', 'type': 'integer', 'display_name': 'seq_no'} | None\\n   dp available_inventory_qty | decimal | {'name': 'available_inventory_qty', 'type': 'float', 'display_name': 'available_inventory_qty'} | 可用库存数量 = 库存数量-预留库存数量\\n   dp batch_master | string | {'name': 'batch_master', 'type': 'text', 'display_name': 'batch_master'} | 一批物料的主档批号\\n   dp batch_no | string | {'name': 'batch_no', 'type': 'text', 'display_name': 'batch_no'} | 一批物料的编号\\n   dp bin_location | string | {'name': 'bin_location', 'type': 'text', 'display_name': 'bin_location'} | 物料所在仓位\\n   dp expiry_date | date | {'name': 'expiry_date', 'type': 'text', 'display_name': 'expiry_date'} | 是否呆滞物料的关键字段，超过有效日期的可以视为呆滞物料。\\n   dp inbound_date | date | {'name': 'inbound_date', 'type': 'datetime', 'display_name': 'inbound_date'} | None\\n   dp inventory_org | string | {'name': 'inventory_org', 'type': 'text', 'display_name': 'inventory_org'} | 库存所属组织\\n   dp inventory_qty | decimal | {'display_name': 'inventory_qty', 'name': 'inventory_qty', 'type': 'float'} | None\\n   dp inventory_uom | string | {'name': 'inventory_uom', 'type': 'text', 'display_name': 'inventory_uom'} | 个，套等单位。\\n   dp manufacture_date | date | {'name': 'manufacture_date', 'type': 'text', 'display_name': 'manufacture_date'} | None\\n   dp material_code | string | {'display_name': 'material_code', 'name': 'material_code', 'type': 'text'} | None\\n   dp material_name | string | {'name': 'material_name', 'type': 'text', 'display_name': 'material_name'} | None\\n   dp purchase_qty | decimal | {'name': 'purchase_qty', 'type': 'text', 'display_name': 'purchase_qty'} | None\\n   dp reserved_inventory_qty | decimal | {'type': 'float', 'display_name': 'reserved_inventory_qty', 'name': 'reserved_inventory_qty'} | None\\n   dp spec_model | string | {'name': 'spec_model', 'type': 'text', 'display_name': 'spec_model'} | None\\n   dp stock_status | string | {'type': 'text', 'display_name': 'stock_status', 'name': 'stock_status'} | 可用或者其他状态\\n   dp stock_type | string | {'name': 'stock_type', 'type': 'text', 'display_name': 'stock_type'} | 普通或者特殊用途库存等等\\n   dp warehouse | string | {'name': 'warehouse', 'type': 'text', 'display_name': 'warehouse'} | 仓库名称\\n   lp warehouse_count | {'id': '01a0f6e6-5e9e-72c3-8694-7851b3e5186f', 'name': '仓库数', 'type': 'metric'}\\n   lp available_qty_sum | {'type': 'metric', 'id': '01a0f6e6-5e9e-72c4-8d14-76e2a96ce966', 'name': '库存可用量'}\\n=== OT supply_ontology_hand_material 物料\\n   dp material_code | string | {'name': 'material_code', 'type': 'text', 'display_name': 'material_code'} | 物料的唯一标识编码\\n   dp material_name | string | {'name': 'material_name', 'type': 'text', 'display_name': 'material_name'} | 物料的正式名称\\n   dp modelnum | string | {'display_name': 'modelnum', 'name': 'modelnum', 'type': 'text'} | 物料的规格与其型号\\n   dp huid_productline_name | string | {'name': 'huid_productline_name', 'type': 'text', 'display_name': 'huid_productline_name'} | 所属产品线\\n   dp baseunit_number | string | {'name': 'baseunit_number', 'type': 'text', 'display_name': 'baseunit_number'} | 计量单位的编码，pcs\\n   dp baseunit_name | string | {'name': 'baseunit_name', 'type': 'text', 'display_name': 'baseunit_name'} | 计量单位名称 (如:  个，套)\\n   dp group_name | string | {'type': 'text', 'display_name': 'group_name', 'name': 'group_name'} | 原材料-半成品\\n   dp group_type | string | {'display_name': 'group_type', 'name': 'group_type', 'type': 'text'} | 物料的类别描述\\n   dp materialattr | string | {'name': 'materialattr', 'type': 'text', 'display_name': 'materialattr'} | 物料属性 (如: 外购)\\n   dp purchase_fixedleadtime | decimal | {'type': 'float', 'display_name': 'purchase_fixedleadtime', 'name': 'purchase_fixedleadtime'} | 采购交货提前期 (天)\\n   dp product_fixedleadtime | decimal | {'name': 'product_fixedleadtime', 'type': 'float', 'display_name': 'product_fixedleadtime'} | 自制件包括产成品、半成品的生产提前期 (天)\\n   dp material_standard_price | decimal | {'name': 'material_standard_price', 'type': 'float', 'display_name': 'material_standard_price'} | None\\n   dp product_status | string | {'name': 'product_status', 'type': 'text', 'display_name': 'product_status'} | None\\n   lp material_total_count | {'id': '01a0f6e6-5e9e-72bf-a34a-afcc0ca532d9', 'name': '物料总数', 'type': 'metric'}\\n=== OT supply_ontology_hand_po 采购订单\\n   dp srcbillentryid | string | {'name': 'srcbillentryid', 'type': 'integer', 'display_name': 'srcbillentryid'} | 来源单据号（对应采购申请单明细主键ID）\\n   dp srcbillid | string | {'name': 'srcbillid', 'type': 'integer', 'display_name': 'srcbillid'} | 来源单据号（对应采购申请单主键ID）\\n   dp billno | string | {'name': 'billno', 'type': 'text', 'display_name': 'billno'} | 采购订单单号\\n   dp biztime | date | {'name': 'biztime', 'type': 'datetime', 'display_name': 'biztime'} | 业务日期\\n   dp org_name | string | {'type': 'text', 'display_name': 'org_name', 'name': 'org_name'} | 购买签订的主体\\n   dp billtype_name | string | {'type': 'text', 'display_name': 'billtype_name', 'name': 'billtype_name'} | 生产项目采购订单、研发项目采购订单等等。\\n   dp supplier_number | string | {'name': 'supplier_number', 'type': 'text', 'display_name': 'supplier_number'} | 供应商编码\\n   dp supplier_name | string | {'name': 'supplier_name', 'type': 'text', 'display_name': 'supplier_name'} | 供应商名称\\n   dp operatorname | string | {'name': 'operatorname', 'type': 'text', 'display_name': 'operatorname'} |  执行采购的采购人员\\n   dp huid_xycg_operatorname | string | {'name': 'huid_xycg_operatorname', 'type': 'text', 'display_name': 'huid_xycg_operatorname'} | 采购寻源的人员\\n   dp createtime | timestamp | {'name': 'createtime', 'type': 'datetime', 'display_name': 'createtime'} | 创建时间\\n   dp auditdate | timestamp | {'name': 'auditdate', 'type': 'datetime', 'display_name': 'auditdate'} | 审核时间\\n   dp material_number | string | {'name': 'material_number', 'type': 'text', 'display_name': 'material_number'} | 物料编码\\n   dp material_name | string | {'display_name': 'material_name', 'name': 'material_name', 'type': 'text'} | 物料名称\\n   dp qty | decimal | {'name': 'qty', 'type': 'float', 'display_name': 'qty'} | 数量\\n   dp deliverdate | date | {'name': 'deliverdate', 'type': 'datetime', 'display_name': 'deliverdate'} | 预计交货日期，取用的标准交货时间。采购员可在ERP更新供应商反馈的交货时间。\\n   dp srcbillnumber | string | {'name': 'srcbillnumber', 'type': 'text', 'display_name': 'srcbillnumber'} | 来源单据号（对应采购申请单号）\\n   dp invqty | decimal | {'display_name': 'invqty', 'name': 'invqty', 'type': 'float'} | 入库数量\\n   dp returnqty | decimal | {'name': 'returnqty', 'type': 'float', 'display_name': 'returnqty'} | 退库数量\\n   dp actqty | decimal | {'name': 'actqty', 'type': 'float', 'display_name': 'actqty'} | 实际入库数量（入库数量 - 退库数量）\\n   dp entry_id | string | {'name': 'entry_id', 'type': 'integer', 'display_name': 'entry_id'} | None\\n   dp id | string | {'name': 'id', 'type': 'integer', 'display_name': 'id'} | None\\n   dp rowclosestatus_title | string | {'name': 'rowclosestatus_title', 'type': 'text', 'display_name': 'rowclosestatus_title'} | None\\n   dp rowterminatestatus_title | string | {'name': 'rowterminatestatus_title', 'type': 'text', 'display_name': 'rowterminatestatus_title'} | None\\n=== OT supply_ontology_hand_salesorder 销售订单\\n   dp sales_order_id | string | {'type': 'text', 'display_name': 'sales_order_id', 'name': 'sales_order_id'} | 重建主键\\n   dp contract_number | string | {'name': 'contract_number', 'type': 'text', 'display_name': 'contract_number'} | None\\n   dp customer_id | string | {'name': 'customer_id', 'type': 'integer', 'display_name': 'customer_id'} | None\\n   dp customer_name | string | {'name': 'customer_name', 'type': 'text', 'display_name': 'customer_name'} | None\\n   dp product_code | string | {'name': 'product_code', 'type': 'text', 'display_name': 'product_code'} | 对齐产品 material_number\\n   dp product_name | string | {'display_name': 'product_name', 'name': 'product_name', 'type': 'text'} | None\\n   dp signing_quantity | integer | {'name': 'signing_quantity', 'type': 'integer', 'display_name': 'signing_quantity'} | None\\n   dp signing_date | date | {'name': 'signing_date', 'type': 'datetime', 'display_name': 'signing_date'} | None\\n   dp promised_delivery_date | date | {'name': 'promised_delivery_date', 'type': 'datetime', 'display_name': 'promised_delivery_date'} | None\\n   dp shipping_quantity | float | {'display_name': 'shipping_quantity', 'name': 'shipping_quantity', 'type': 'integer'} | None\\n   dp shipping_date | date | {'display_name': 'shipping_date', 'name': 'shipping_date', 'type': 'datetime'} | None\\n   dp order_status | string | {'type': 'text', 'display_name': 'order_status', 'name': 'order_status'} | None\\n   dp salesperson | string | {'name': 'salesperson', 'type': 'text', 'display_name': 'salesperson'} | None\\n   lp sales_order_count | {'type': 'metric', 'id': '01a0f6e6-5e9e-72c1-b69b-64e663b5e45d', 'name': '销售订单数'}\\nMISSING None\\n\",\"stderr\":\"\",\"exit_code\":0}"
+        }
+      ]
+    },
+    {
+      "type": "tool/call",
+      "time": 1791266064142,
+      "turn": 1,
+      "step": 4,
+      "callId": "call_00_w3qWtZSXhv3VdXR7T4DX6773",
+      "name": "mcp__openbkn__run_code",
+      "arguments": "{\"bkn_context\": {\"conversation_id\": \"conv_4dac4504248690568baf370b36fb0604\", \"interaction_id\": \"int_8c86fc36bd68ca5eb65d26731d7d52c5\"}, \"code\": \"\\nkn = \\\"supply_ontology_hand\\\"\\ncode = \\\"999-999999\\\"\\n\\ndef exact(ot, field):\\n    try:\\n        r = query_object_instance(kn_id=kn, ot_id=ot, limit=10,\\n            condition={\\\"operation\\\":\\\"==\\\",\\\"field\\\":field,\\\"value\\\":code,\\\"value_from\\\":\\\"const\\\"})\\n        rows = r.get(\\\"data\\\") or r.get(\\\"instances\\\") or r.get(\\\"items\\\") or []\\n        print(\\\"OK\\\", ot, field, \\\"total:\\\", r.get(\\\"total_count\\\"), \\\"rows:\\\", len(rows))\\n        for x in rows[:5]:\\n            print(\\\"   \\\", {k:v for k,v in x.items() if not k.startswith(\\\"_\\\")})\\n        return r\\n    except Exception as e:\\n        print(\\\"ERR\\\", ot, field, str(e)[:300])\\n        return None\\n\\nexact(\\\"supply_ontology_hand_material\\\", \\\"material_code\\\")\\nexact(\\\"supply_ontology_hand_inventory\\\", \\\"material_code\\\")\\nexact(\\\"supply_ontology_hand_po\\\", \\\"material_number\\\")\\nexact(\\\"supply_ontology_hand_salesorder\\\", \\\"product_code\\\")\\n\"}"
+    },
+    {
+      "type": "tool/result",
+      "time": 1791266065266,
+      "turn": 1,
+      "step": 4,
+      "callId": "call_00_w3qWtZSXhv3VdXR7T4DX6773",
+      "hostErrorFlag": null,
+      "content": [
+        {
+          "type": "text",
+          "text": "{\"stdout\":\"OK supply_ontology_hand_material material_code total: 0 rows: 0\\nOK supply_ontology_hand_inventory material_code total: 0 rows: 0\\nOK supply_ontology_hand_po material_number total: 0 rows: 0\\nOK supply_ontology_hand_salesorder product_code total: 0 rows: 0\\n\",\"stderr\":\"\",\"exit_code\":0}"
+        }
+      ]
+    },
+    {
+      "type": "tool/call",
+      "time": 1791266067094,
+      "turn": 1,
+      "step": 5,
+      "callId": "call_00_f1ClrDNEmWjtHjIWG4Oo6839",
+      "name": "mcp__openbkn__bkn_finish_interaction",
+      "arguments": "{\"interaction_id\": \"int_8c86fc36bd68ca5eb65d26731d7d52c5\", \"outcome\": \"completed\", \"answer\": \"在供应链本体知识网络中，按精确编码 999-999999 查询物料（material.material_code）、库存（inventory.material_code）、采购订单（po.material_number）和销售订单（salesorder.product_code）四个对象类，均返回 0 条匹配记录，因此没有该物料的库存或订单数据。（查询范围：可见对象类全部实例，精确等值匹配。）\"}"
+    },
+    {
+      "type": "tool/result",
+      "time": 1791266067153,
+      "turn": 1,
+      "step": 5,
+      "callId": "call_00_f1ClrDNEmWjtHjIWG4Oo6839",
+      "hostErrorFlag": null,
+      "content": [
+        {
+          "type": "text",
+          "text": "{\"execution_status\":\"completed\",\"evidence_status\":\"partial\",\"interaction_id\":\"int_8c86fc36bd68ca5eb65d26731d7d52c5\",\"conversation_id\":\"conv_4dac4504248690568baf370b36fb0604\"}"
+        }
+      ]
+    }
+  ],
+  "turnEnds": [
+    {
+      "time": 1791266068886,
+      "turn": 1,
+      "reason": {
+        "kind": "completed"
+      }
+    }
+  ]
+}

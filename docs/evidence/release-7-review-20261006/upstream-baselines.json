@@ -1,0 +1,18 @@
+{
+  "checkedAt": "2026-10-06",
+  "dsh": {
+    "supportedTag": "dsh-v0.2.0-rc.2",
+    "supportedCommit": "639ed015397290b3745d163aafe02ffee4aa3f84",
+    "latestTag": "dsh-v0.2.1-alpha.1",
+    "latestCommit": "5badb15009ae1756c3afe0ae0cef1faafc290ccc",
+    "upgraded": false
+  },
+  "openbkn": {
+    "supportedTag": "v0.1.5",
+    "supportedCommit": "e6445df3fd70f0768a77764d10ec084954d3a770",
+    "latestStable": "v0.1.5",
+    "latestMain": "b1a8e10d860bf0bf54438f8240131ebc301cf1bd",
+    "deployedVersionsEvidence": "live-platform-images.json",
+    "mcpContractEvidence": "live-mcp-contract.json"
+  }
+}

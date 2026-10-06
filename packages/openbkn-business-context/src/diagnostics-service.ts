@@ -67,16 +67,15 @@ function readDiskVersion(): string | null {
 
 /**
  * Classify the running host form from process facts only. An Electron
- * main-process preload marks the desktop app; a plain Node process is the npm
- * CLI form (a source build is indistinguishable from npm by this signal
- * alone and stays `npm` only when the DSH version is observable — otherwise
- * `unknown`, never a guess dressed as evidence).
+ * process marks an Electron runtime. Plain Node is inconclusive: the official
+ * Desktop also spawns a Node Host, as do npm and source builds. Without an
+ * authoritative host-form signal, keep the form unknown.
  * @returns the observed host form.
  */
 function hostFormOf(): DiagnosticsTarget['hostForm'] {
   const versions = (process as unknown as { versions?: Record<string, string | undefined> }).versions
   if (versions?.electron !== undefined) return 'desktop'
-  return 'npm'
+  return 'unknown'
 }
 
 /**

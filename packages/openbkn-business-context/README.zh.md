@@ -1,5 +1,7 @@
 # bkn-dsh
 
+-7 候选统一此前未发布的诊断工作与供应链回答指导。普通 Node Host 的形态显示为未知，因为 Desktop 也使用 Node。合并候选的 CI 包实机及 Windows 验收仍待完成；详见仓库 -7 交接文档。
+
 [English](README.md)
 
 把经过治理的企业业务知识带入 DeepSeek Harness 会话。

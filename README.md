@@ -1,5 +1,7 @@
 # bkn-dsh
 
+Current -7 candidate scope and pending release acceptance: [release handoff](docs/handoff/2026-10-06-release-7/README.md). Historical -5/-6 packages and the earlier CI7 retain their original identities; they do not represent the combined candidate.
+
 [中文](README.zh.md)
 
 Bring governed OpenBKN business knowledge into DeepSeek Harness conversations.

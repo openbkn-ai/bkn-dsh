@@ -1,0 +1,13 @@
+{
+  "status": "local-only-unpublished",
+  "baseCommit": "ba9f604c083ea5c9312564b3f6653e116ea90ad9",
+  "source": "base commit plus local src/config.ts diff",
+  "packageVersion": "0.2.0-rc.2-openbkn.0.2.0-7",
+  "sha256": "549f4cf32d898ac05c88273bdaa28cccb97a6fed9574c0d34f746a10fe6384b0",
+  "files": 65,
+  "installedMatches": true,
+  "hostPackage": "@deepseek-ai/dsh@0.2.0-rc.2",
+  "nodeVersion": "v24.19.0",
+  "platform": "darwin-arm64",
+  "verification": "native npm dsh web, diagnostic API; no browser UI acceptance"
+}

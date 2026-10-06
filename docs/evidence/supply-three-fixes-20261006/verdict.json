@@ -1,0 +1,29 @@
+{
+  "kind": "manual review of original criteria plus exhaustive row/unit comparison; not release acceptance",
+  "candidateSha256": "37cd29fce780367dbb49dc227d22c916600db16f3f086a02943a2327f53e619f",
+  "model": "DeepSeek-V41-Flash",
+  "reasoningEffort": "high",
+  "execution": "serial",
+  "cases": {
+    "standard-lead-time": {
+      "passed": true,
+      "basis": "self-made product_fixedleadtime=1 day, erp_material source, production/purchase distinction"
+    },
+    "bom-usage-inventory": {
+      "passed": true,
+      "basis": "313/313 parent-child rows, 272 materials, levels 1..5; quantities/units and inventory caliber independently verified",
+      "platformDeepInventoryCapabilityFixed": false
+    },
+    "missing-object": {
+      "passed": true,
+      "basis": "exact filtered no-data; no nonzero business figures",
+      "queriedScope": [
+        "material",
+        "inventory",
+        "purchase_order"
+      ]
+    }
+  },
+  "forbiddenBusinessNumbersInMissingAnswer": [],
+  "releaseAccepted": false
+}

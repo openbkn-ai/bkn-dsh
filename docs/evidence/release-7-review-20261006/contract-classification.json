@@ -1,0 +1,178 @@
+{
+  "captured": "2026-10-06",
+  "rows": [
+    {
+      "name": "bkn_finish_interaction",
+      "classification": "managed",
+      "knId": "absent",
+      "fixtureKnId": "unknown"
+    },
+    {
+      "name": "bkn_start_interaction",
+      "classification": "managed",
+      "knId": "absent",
+      "fixtureKnId": "unknown"
+    },
+    {
+      "name": "describe_resource",
+      "classification": "excluded",
+      "knId": "absent",
+      "fixtureKnId": "absent"
+    },
+    {
+      "name": "execute_action",
+      "classification": "excluded",
+      "knId": "required",
+      "fixtureKnId": "required"
+    },
+    {
+      "name": "execute_tool",
+      "classification": "managed",
+      "knId": "required",
+      "fixtureKnId": "required"
+    },
+    {
+      "name": "explore_subgraph",
+      "classification": "managed",
+      "knId": "required",
+      "fixtureKnId": "required"
+    },
+    {
+      "name": "get_action_execution",
+      "classification": "excluded",
+      "knId": "required",
+      "fixtureKnId": "required"
+    },
+    {
+      "name": "get_action_info",
+      "classification": "excluded",
+      "knId": "required",
+      "fixtureKnId": "required"
+    },
+    {
+      "name": "get_kn_detail",
+      "classification": "managed",
+      "knId": "required",
+      "fixtureKnId": "required"
+    },
+    {
+      "name": "get_logic_properties_values",
+      "classification": "managed",
+      "knId": "required",
+      "fixtureKnId": "required"
+    },
+    {
+      "name": "get_object_types",
+      "classification": "managed",
+      "knId": "required",
+      "fixtureKnId": "required"
+    },
+    {
+      "name": "get_relation_types",
+      "classification": "managed",
+      "knId": "required",
+      "fixtureKnId": "required"
+    },
+    {
+      "name": "get_skill_content",
+      "classification": "managed",
+      "knId": "required",
+      "fixtureKnId": "required"
+    },
+    {
+      "name": "list_action_executions",
+      "classification": "excluded",
+      "knId": "required",
+      "fixtureKnId": "required"
+    },
+    {
+      "name": "list_knowledge_networks",
+      "classification": "excluded",
+      "knId": "absent",
+      "fixtureKnId": "absent"
+    },
+    {
+      "name": "list_resources",
+      "classification": "excluded",
+      "knId": "optional",
+      "fixtureKnId": "optional"
+    },
+    {
+      "name": "list_skills",
+      "classification": "managed",
+      "knId": "absent",
+      "fixtureKnId": "absent"
+    },
+    {
+      "name": "query_instance_subgraph",
+      "classification": "managed",
+      "knId": "required",
+      "fixtureKnId": "required"
+    },
+    {
+      "name": "query_metric",
+      "classification": "managed",
+      "knId": "required",
+      "fixtureKnId": "required"
+    },
+    {
+      "name": "query_object_instance",
+      "classification": "managed",
+      "knId": "required",
+      "fixtureKnId": "required"
+    },
+    {
+      "name": "read_skill_file",
+      "classification": "managed",
+      "knId": "required",
+      "fixtureKnId": "required"
+    },
+    {
+      "name": "run_code",
+      "classification": "managed",
+      "knId": "absent",
+      "fixtureKnId": "unknown"
+    },
+    {
+      "name": "run_cypher",
+      "classification": "excluded",
+      "knId": "required",
+      "fixtureKnId": "required"
+    },
+    {
+      "name": "run_shell",
+      "classification": "excluded",
+      "knId": "absent",
+      "fixtureKnId": "unknown"
+    },
+    {
+      "name": "run_sql",
+      "classification": "excluded",
+      "knId": "absent",
+      "fixtureKnId": "absent"
+    },
+    {
+      "name": "search_capabilities",
+      "classification": "managed",
+      "knId": "required",
+      "fixtureKnId": "required"
+    },
+    {
+      "name": "search_instance",
+      "classification": "managed",
+      "knId": "optional",
+      "fixtureKnId": "optional"
+    },
+    {
+      "name": "search_schema",
+      "classification": "managed",
+      "knId": "required",
+      "fixtureKnId": "required"
+    }
+  ],
+  "errors": [],
+  "absentFromLive": [
+    "execute_skill"
+  ],
+  "note": "execute_skill is conditionally enabled upstream and absent on this live deployment; no new tool admitted."
+}

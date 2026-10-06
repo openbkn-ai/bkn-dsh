@@ -1,0 +1,37 @@
+[
+  {
+    "service": "agent-observability",
+    "image": "swr.cn-east-3.myhuaweicloud.com/openbkn-ai-ee/agent-observability-ee:0.1.5",
+    "imageID": "swr.cn-east-3.myhuaweicloud.com/openbkn-ai-ee/agent-observability-ee@sha256:590ee9f66b5de24528c0509791a66a247ed5178054398db59ee33cef8c658644"
+  },
+  {
+    "service": "agent-operator-integration",
+    "image": "swr.cn-east-3.myhuaweicloud.com/openbkn-ai/agent-operator-integration:0.1.5",
+    "imageID": "swr.cn-east-3.myhuaweicloud.com/openbkn-ai/agent-operator-integration@sha256:9f001e8f65696885795db853d4a1f61b2adc869080edfe0b4237caa73c421c9c"
+  },
+  {
+    "service": "agent-retrieval",
+    "image": "swr.cn-east-3.myhuaweicloud.com/openbkn-ai-ee/agent-retrieval-ee:0.1.5",
+    "imageID": "swr.cn-east-3.myhuaweicloud.com/openbkn-ai-ee/agent-retrieval-ee@sha256:3c164e13b382fe4f8f0bd34af9d93da2d1762347d38f6e321c92f8ed97e5df22"
+  },
+  {
+    "service": "bkn-backend",
+    "image": "swr.cn-east-3.myhuaweicloud.com/openbkn-ai/bkn-backend:0.1.5",
+    "imageID": "swr.cn-east-3.myhuaweicloud.com/openbkn-ai/bkn-backend@sha256:a24f289a9f8bb54fb4c1bb19544b7be8f502b7ab3fb202408cab8616ee37c1e6"
+  },
+  {
+    "service": "ontology-query",
+    "image": "swr.cn-east-3.myhuaweicloud.com/openbkn-ai/ontology-query:0.1.5",
+    "imageID": "swr.cn-east-3.myhuaweicloud.com/openbkn-ai/ontology-query@sha256:a7d84a6dcdcfde1a04055dc5193a50cb0010d449cc40354d162efe57de86e869"
+  },
+  {
+    "service": "sandbox-control-plane",
+    "image": "swr.cn-east-3.myhuaweicloud.com/openbkn-ai/sandbox-control-plane:0.1.5",
+    "imageID": "swr.cn-east-3.myhuaweicloud.com/openbkn-ai/sandbox-control-plane@sha256:47b4003575d9de9401b95675aae658267eaffa08a53809766194956b0b0cf76e"
+  },
+  {
+    "service": "vega-backend",
+    "image": "swr.cn-east-3.myhuaweicloud.com/openbkn-ai-ee/vega-backend-ee:0.1.5",
+    "imageID": "swr.cn-east-3.myhuaweicloud.com/openbkn-ai-ee/vega-backend-ee@sha256:12c0fd9adbfe11a8708abdf1441e2c47e477a0b3cc4f838211aee8b8e094a2fb"
+  }
+]

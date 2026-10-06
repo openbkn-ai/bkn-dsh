@@ -1,5 +1,6 @@
 import assert from 'node:assert/strict'
 import test from 'node:test'
+import { OpenBknDiagnosticsService } from '../src/diagnostics-service.ts'
 import {
   codeOfObservation,
   configurationFieldOf,
@@ -98,4 +99,12 @@ test('observations map onto the frozen code table', () => {
   assert.equal(codeOfObservation({ kind: 'initialization-failed' }), 'initialization-failed')
   assert.equal(codeOfObservation({ kind: 'waiting-services' }), 'component-waiting-services')
   assert.equal(codeOfObservation({ kind: 'unknown-state', state: 9 }), 'component-unknown-state')
+})
+
+test('plain Node does not establish npm host form: official Desktop also spawns a Node host', async () => {
+  assert.equal(process.versions.electron, undefined)
+  const report = await OpenBknDiagnosticsService.prototype.getReport.call({
+    ctx: { get: () => undefined },
+  } as unknown as OpenBknDiagnosticsService)
+  assert.equal(report.target.hostForm, 'unknown')
 })
