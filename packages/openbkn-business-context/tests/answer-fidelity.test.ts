@@ -134,6 +134,22 @@ test('reservation explanation uses disclosed property formula rather than capabi
   assert.equal(addSchema(run.answer, schema, true), undefined, 'an errored schema is not authoritative')
 })
 
+test('one level-count correction also carries the simultaneous reservation correction', () => {
+  const schema = JSON.parse(readFileSync(new URL('../../../docs/evidence/answer-fidelity-20261006/inventory-schema-20261006.json', import.meta.url), 'utf8'))
+  const rows = detailRowsOf(detail())
+  const log = events(detail(), `${renderDetail(rows).replace('L1: 1', 'L1: 99')}\n预留未从可用量中扣除`)
+  log.splice(-1, 0,
+    { type: 'tool/call', data: { turn: 1, callId: 'inventory-schema', name: 'mcp__openbkn__get_object_types' } },
+    { type: 'tool/result', data: { turn: 1, message: { toolCallId: 'inventory-schema', content: [{ type: 'text', text: JSON.stringify(schema) }] } } },
+  )
+  const issue = inspectAnswerFidelity(log, 1)!
+  assert.equal(issue.code, 'detail-count-mismatch')
+  assert.match(issue.correction, /reservation is already deducted/)
+  assert.match(issue.correction, /L1: 1/)
+  log.push({ type: 'assistant/message', data: { turn: 1, message: { content: [{ type: 'text', text: `${renderDetail(rows)}\n预留已扣除，不再二次扣减。` }] } } })
+  assert.equal(inspectAnswerFidelity(log, 1), undefined)
+})
+
 test('live empty-stock handoff rejects the excerpt but accepts all 313 faithfully copied rows', () => {
   const excerpt = captured('ci-2abd71d-bom-failed', 'answer-fidelity-20261006', 0)
   const issue = inspectAnswerFidelity(excerpt.events, 1)

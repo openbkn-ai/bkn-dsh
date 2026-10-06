@@ -396,7 +396,7 @@ export function inspectAnswerFidelity(events: readonly FidelityEvent[], turn: nu
   const counts = new Map<string, number>()
   for (const row of expected) counts.set(row.level, (counts.get(row.level) ?? 0) + 1)
   for (const match of answer.matchAll(/\bL(\d+)\s*[:：=]\s*(\d+)\b/g)) {
-    if (complete && counts.get(match[1]!) !== Number(match[2])) return { code: 'detail-count-mismatch', reason: 'The final level count contradicts its complete tool detail.', correction: `${sourceIssue?.correction ?? ''}\n${correction}` }
+    if (complete && counts.get(match[1]!) !== Number(match[2])) return { code: 'detail-count-mismatch', reason: 'The final level count contradicts its complete tool detail.', correction: [sourceIssue?.correction, reservationIssue?.correction, correction].filter(Boolean).join('\n\n') }
   }
   return sourceIssue ?? reservationIssue
 }
