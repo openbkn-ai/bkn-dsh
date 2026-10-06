@@ -56,7 +56,9 @@ export function loadRuntimeManifest(source) {
   if (!string(plugin.version, 'plugin.version').startsWith(`${string(dsh.tag, 'dsh.tag').replace(/^dsh-v/, '')}-openbkn.`)) {
     fail('plugin.version must carry the pinned DSH version (<dsh-version>-openbkn.N)')
   }
-  if (!string(plugin.artifact, 'plugin.artifact').endsWith('.tgz')) fail('plugin.artifact must be a tgz archive')
+  const artifact = string(plugin.artifact, 'plugin.artifact')
+  const expectedArtifact = `${plugin.packageName.replace(/^@/, '').replace('/', '-')}-${plugin.version}.tgz`
+  if (artifact !== expectedArtifact) fail('plugin.artifact must match plugin.packageName and plugin.version')
 
   const compatibility = asObject(manifest.compatibility, 'compatibility')
   if (!string(compatibility.directory, 'compatibility.directory').startsWith('compat/')) fail('compatibility.directory must stay within compat/')

@@ -54,6 +54,8 @@ Historical regression to preserve: on 2026-10-03, main `948e359` and the release
 
 ## Repo etiquette
 
+- Agent-authored PR titles, descriptions, and follow-up comments must be written in English.
+
 - Pre-release accuracy check: run the G6 eval batch (`node docs/eval/run-eval.mjs --list` for the questions; grade a recorded run with `--answers`) against a live platform + model, and file the results markdown under `docs/evidence/`. Not in CI — it needs credentials.
 
 - Remote: `origin` = openbkn-ai/bkn-dsh, the only remote; the maintainer has push access. Work lands on a feature branch pushed to `origin` and merges into `main` through a PR (squash, PR number in the subject). PRs trigger only Claude Code Review (code paths) and CodeQL — no build/test CI — so run the plugin tests, `package:check`, and the repo `node --test` suites locally before opening one. Rulesets `main`/`protect` block direct pushes and require one approving review; the author cannot approve their own PR, and docs-only PRs get no automatic Claude review, so request one by commenting `/review` on the PR or by dispatching `automation-claude-review.yml` with the PR number (or ask a human reviewer). Both paths share one concurrency group: a newer run cancels a running one. `compatible-runtime` runs via `workflow_dispatch` or an `openbkn-dsh-runtime-v*` tag.
