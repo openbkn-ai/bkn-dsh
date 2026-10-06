@@ -24,6 +24,8 @@ bkn-dsh connects DeepSeek Harness to OpenBKN so an authorized user can:
 
 The integration is designed as an additive DSH plugin. It preserves the native DSH conversation experience while OpenBKN remains the authority for identity, permissions, business semantics, and traceable evidence.
 
+For complete BOM detail with explicit row counts, the plugin checks that the final answer preserves the tool's rows, levels, quantities and units, and checks disclosed physical source names. A mismatch preserves the original answer and requests one correction; a persistent mismatch ends in an explicit error. This checks supported detail handoffs, not the correctness of business rules or platform data.
+
 ## Who it is for
 
 - **Business users** who need reliable analysis without learning query languages or platform APIs.

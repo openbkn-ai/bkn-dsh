@@ -1,3 +1,9 @@
+# Historical notice — superseded by the answer fidelity repair
+
+Do not start the next Windows retest from the candidate named below. It is the earlier `7553cc1` artifact that failed Mac answer-delivery checks. The next notice will bind the approved repair, new build-only CI artifact and Mac validation; its identity must be used for the next retest.
+
+---
+
 # 可转发给 Windows agent 的复测通知
 
 统一 -7 已固定并提交到远端，可以开始无需登录的受影响复测。当前候选用于验证，不授权发布；Mac同包的BOM回答及源表名准确性仍有阻塞。先按以下固定身份拿包，不从本机临时目录或其他CI取替代包。

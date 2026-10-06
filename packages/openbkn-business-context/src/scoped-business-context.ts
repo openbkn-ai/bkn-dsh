@@ -1,5 +1,6 @@
 import type { Context } from '@deepseek-ai/cordis'
 import type { Agent } from '@deepseek-ai/dsh-agent'
+import { createUserMessage } from '@deepseek-ai/dsh-llm'
 import type { ToolExecution, ToolExecutionResult } from '@deepseek-ai/dsh-tools'
 import {
   FINISH_INTERACTION_TOOL,
@@ -16,6 +17,17 @@ import type { NetworkCapabilityProfile } from './network-capability-profile.js'
 import type { PlatformReaderConfig } from './platform-reader.js'
 import type { BusinessNetworkBinding } from './types.js'
 import { trimTrailingSlashes } from './trailing-slashes.js'
+import { AnswerFidelityError, inspectAnswerFidelity } from './answer-fidelity.js'
+
+declare module '@deepseek-ai/dsh-llm' {
+  interface MessageSourceMap {
+    'openbkn-answer-fidelity': {
+      readonly kind: 'openbkn-answer-fidelity'
+      readonly form: 'notice'
+      readonly summary: string
+    }
+  }
+}
 
 interface ScopedSystemPrompt {
   section(section: { readonly name: string; readonly order: number; readonly text: string | (() => string) }): () => void
@@ -30,7 +42,7 @@ interface ScopedTools {
 interface ScopedAgentEvents {
   on(event: 'tools/result', listener: (exec: Readonly<ToolExecution>, result: Readonly<ToolExecutionResult>) => void): () => void
   on(event: 'agent/pre-step', listener: (payload: { readonly step: number }, next: () => Promise<unknown>) => Promise<unknown>): () => void
-  on(event: 'agent/turn-stopping', listener: (payload: { readonly turn: number }) => void): () => void
+  on(event: 'agent/turn-stopping', listener: (payload: { readonly turn: number; readonly signal?: AbortSignal }) => void): () => void
 }
 
 /** The managed lifecycle pair that brackets any OpenBKN access. */
@@ -192,6 +204,7 @@ const scopedPolicyPlugin = (
     // DSH's monotonic enforcement point and works regardless of registration
     // timing; it also covers tools contributed by the agent preset itself.
     let lifecycle: InteractionLifecycleState = restoreFrom(agent.session.snapshotEvents())
+    let correctedTurn: number | undefined
     tools.guard(execution => {
       if (execution.name === PTC_RUN_CODE_TOOL) return PTC_UNSUPPORTED_DENIAL
       const unmanaged = unmanagedDenial(execution.name)
@@ -214,7 +227,10 @@ const scopedPolicyPlugin = (
     // Turn boundary (§6.4): reset the per-turn flags; the conversation id
     // survives inside `lifecycle` and the section below renders from it.
     events.on('agent/pre-step', async (payload, next) => {
-      if (payload.step === 1) lifecycle = onTurnStart(lifecycle)
+      if (payload.step === 1) {
+        lifecycle = onTurnStart(lifecycle)
+        correctedTurn = undefined
+      }
       return await next()
     })
     events.on('agent/turn-stopping', payload => {
@@ -229,6 +245,23 @@ const scopedPolicyPlugin = (
           lifecycle.interactionId ?? 'unknown',
         )
       }
+      if (payload.signal?.aborted) return
+      const issue = inspectAnswerFidelity(agent.session.snapshotEvents(), payload.turn)
+      if (issue === undefined) return
+      if (correctedTurn === payload.turn) throw new AnswerFidelityError(issue)
+      correctedTurn = payload.turn
+      // The official stop boundary re-reads steering and enters another step.
+      // DSH persists this producer-labelled notice and the corrected model
+      // answer; no assistant event or platform result is rewritten.
+      agent.steer(createUserMessage({
+        source: { kind: 'openbkn-answer-fidelity', form: 'notice', summary: '回答与工具结果不一致，正在核对。' },
+        content: [{ type: 'text', text: [
+          'OpenBKN final-answer validation failed. This is a plugin consistency notice, not a new user request.',
+          issue.reason,
+          issue.correction,
+          'Produce one corrected replacement answer, not a separate appendix. The previous answer is unverified. Do not perform new business retrieval or start another Interaction merely to repair this transcription; keep the original question and checked scope. If you cannot deliver the complete correction, state that validation failed instead of claiming completion.',
+        ].join('\n') }],
+      }))
     })
     // Evaluated per assembly: PTC is a per-session preset whose tool may be
     // composed after this mount. An empty text renders no section.
