@@ -32,7 +32,7 @@ Upstream check on 2026-10-06: DSH `master` was `5badb15009ae1756c3afe0ae0cef1faa
 - Captured-failure regressions reject the actual 314-row answer and the invented source name; the transcription generated from the captured successful result has 313 rows and preserves the legitimate repeated child in level 4.
 - Scoped hook tests cover one notice, unchanged original events, a persistent mismatch, cancellation, per-turn reset and native/unbound scope isolation.
 - Official npm DSH runtime probe uses scripted model/tool fixtures, without credentials or a live platform: corrected answer ends `completed` in one turn; persistent mismatch ends `error`; unbound session is unchanged; summary-only full-detail delivery triggers correction, proving the native human question is captured. Each scenario executes data retrieval once. Results are in `runtime-probe.jsonl`.
-- Plugin tests: 331 total, 330 pass, 0 fail, 1 skip. Repository Node tests: 50/50. Evidence-export Python tests: 10/10. Typecheck succeeds after normal generation/build.
+- Plugin tests: 332 total, 331 pass, 0 fail, 1 skip. Repository Node tests: 50/50. Evidence-export Python tests: 11/11. Typecheck succeeds after normal generation/build.
 - Package audit, final diff check and pack identity are recorded in `local-validation.json`.
 
 This section is local/source and controlled-runtime evidence. PR approval, a new CI tarball, exact-artifact real-model acceptance and Windows retest are separate required steps; they are not inherited from these tests or from the old candidate.
@@ -44,3 +44,5 @@ The first independent PR review approved the initial head while flagging the int
 New CI artifact and real-model replay: pending. Windows delivery: held until approval, build-only CI and Mac exact-artifact checks pass. Version remains `0.2.0-rc.2-openbkn.0.2.0-7`; no npm publish, release tag or dist-tag action is authorized by this repair request.
 
 The three original questions will each be run once against the new fixed CI artifact with the configured real model. All intermediate failed/corrected attempts remain evidence. BOM rows will be compared independently against before/after CLI snapshots; source names, units, caveats, native completion and scope will be checked separately. If that fixed artifact fails, it is not handed to Windows as ready.
+
+The second source review approved `078539d`. Its remaining conflict question is intentional: contradictory complete handoffs cannot be repaired by changing prose, so the turn cannot end completed; a new explicitly scoped query is needed. The follow-up adds interrupted-message regressions on both checker and exporter without changing runtime or package content.

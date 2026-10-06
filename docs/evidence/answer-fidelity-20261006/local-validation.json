@@ -3,8 +3,8 @@
   "artifactKind": "local pack before PR; not the Windows delivery artifact",
   "nodeVersion": "24.19.0",
   "pluginTests": {
-    "total": 331,
-    "passed": 330,
+    "total": 332,
+    "passed": 331,
     "failed": 0,
     "skipped": 1
   },
@@ -13,8 +13,8 @@
     "passed": 50
   },
   "evidencePythonTests": {
-    "total": 10,
-    "passed": 10
+    "total": 11,
+    "passed": 11
   },
   "typecheck": "passed",
   "packageAudit": "passed",

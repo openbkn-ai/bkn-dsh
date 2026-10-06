@@ -20,7 +20,7 @@ verify = load("verify-supply-answer")
 
 
 class EvidenceRedactionTests(unittest.TestCase):
-    def test_correction_keeps_both_answers_but_delivers_only_latest_uninterrupted_text(self):
+    def test_correction_keeps_both_answers_but_delivers_only_latest_final_form_text(self):
         rows = [
             {"type": "assistant/message", "data": {"turn": 1, "step": 2, "message": {"content": [{"type": "text", "text": "bad table"}]}}},
             {"type": "user/message", "data": {"source": {"kind": "openbkn-answer-fidelity", "form": "notice", "summary": "Checking"}, "content": [{"type": "text", "text": "correct it"}]}},
@@ -40,6 +40,24 @@ class EvidenceRedactionTests(unittest.TestCase):
             self.assertEqual(record["finalAnswer"]["turnEndReason"], {"kind": "error"})
             self.assertEqual(len(record["fidelityNotices"]), 1)
             self.assertEqual(record["question"], [])
+
+    def test_trailing_interrupted_message_clears_final_answer_without_discarding_attempts(self):
+        rows = [
+            {"type": "assistant/message", "data": {"turn": 1, "step": 3, "message": {"content": [{"type": "text", "text": "earlier answer"}]}}},
+            {"type": "assistant/message", "data": {"turn": 1, "step": 4, "interrupted": True, "message": {"content": [{"type": "text", "text": "interrupted replacement"}]}}},
+            {"type": "turn/end", "time": 9, "data": {"turn": 1, "reason": {"kind": "aborted", "reason": {"kind": "user"}}}},
+        ]
+        data = "\n".join(json.dumps(row) for row in rows).encode()
+        with tempfile.TemporaryDirectory() as folder:
+            output = Path(folder) / "answer"
+            with patch("sys.argv", ["export", "session/session.v4.jsonl.zstd", "--output", str(output)]), \
+                 patch.object(export.subprocess, "run", return_value=SimpleNamespace(stdout=data)), patch("builtins.print"):
+                export.main()
+            record = json.loads(output.with_suffix(".json").read_text())
+            self.assertEqual(record["assistantText"], ["earlier answer", "interrupted replacement"])
+            self.assertIsNone(record["finalAnswer"])
+            self.assertEqual(record["turnEnds"][-1]["reason"]["kind"], "aborted")
+            self.assertEqual(output.with_suffix(".md").read_text(), "No final answer yet.\n")
 
     def test_pending_tool_message_preserves_attempts_without_exporting_an_older_answer_as_final(self):
         rows = [

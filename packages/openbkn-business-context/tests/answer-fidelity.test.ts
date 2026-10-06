@@ -171,3 +171,10 @@ test('an intermediate text plus pending tool call is not a final answer, includi
   log.splice(4, 0, olderFinal)
   assert.equal(inspectAnswerFidelity(log, 1), undefined)
 })
+
+test('a trailing interrupted message clears an older final-form answer instead of revalidating it', () => {
+  const log = events(detail(), 'Earlier incorrect final-form answer.')
+  log.push({ type: 'assistant/message', data: { turn: 1, interrupted: true, message: { content: [{ type: 'text', text: 'Interrupted replacement.' }] } } })
+  assert.equal(inspectAnswerFidelity(log, 1), undefined)
+  assert.equal(log.filter(event => event.type === 'assistant/message').length, 2, 'both attempts remain in the input log')
+})
