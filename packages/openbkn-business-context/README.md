@@ -41,27 +41,29 @@ The integration is designed as an additive DSH plugin. It preserves the native D
 
 ## Install
 
+This -7 candidate is not on npm yet. Use the absolute path to the fixed CI candidate `.tgz` before publication; the command below applies after publication. The currently published -4 has [separate installation instructions](https://github.com/openbkn-ai/bkn-dsh/blob/v0.2.0-rc.2-openbkn.0.2.0-4/README.md).
+
 Works on an unpatched DeepSeek Harness `0.2.0-rc.2`: the official desktop app, the npm CLI (`@deepseek-ai/dsh@0.2.0-rc.2`), or a built source checkout. Install it with DSH's own plugin manager while DSH is stopped:
 
 ```bash
-dsh plugin --profile <desktop|web> add @openbkn/dsh-business-context@0.2.0-rc.2-openbkn.0.2.0-6
+dsh plugin --profile <desktop|web> add @openbkn/dsh-business-context@0.2.0-rc.2-openbkn.0.2.0-7
 ```
 
 Then set the platform address, sign in with the `openbkn` CLI, and bind a network from the **OpenBKN** sidebar entry. Bound sessions must use DSH's Standard mode (PTC mode is not supported yet). Step-by-step setup, certificates, and uninstall: [repository README](https://github.com/openbkn-ai/bkn-dsh#install-and-start).
 
-## Package layout (changed in -6)
+## Package layout (changed in -7)
 
 The package root is a minimal bootstrap plugin that keeps the host serving the browser bundle. Import the business API from `@openbkn/dsh-business-context/business`; the Remote boundary types live on `@openbkn/dsh-business-context/types`. Diagnostics remains on `@openbkn/dsh-business-context/diagnostics`.
 
-### Upgrading name-qualified overrides (required for -6)
+### Upgrading name-qualified overrides (required for -7)
 
 The host treats a `name` field in a profile override as an assertion about
-the row it patches. In `-6` the business row loads from
+the row it patches. When upgrading from published versions <= -4 to `-7` the business row loads from
 `@openbkn/dsh-business-context/business`, so an override that keeps the old
 bare package name is skipped and its `config` is silently lost:
 
 ```yaml
-# Stops matching after -6 — baseUrl/cliPath are dropped:
+# Stops matching after upgrading to -7 — baseUrl/cliPath are dropped:
 - id: openbkn-business-context
   name: '@openbkn/dsh-business-context'
   config: { baseUrl: ..., cliPath: ... }

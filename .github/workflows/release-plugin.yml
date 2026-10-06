@@ -106,6 +106,12 @@ jobs:
         shell: bash
         run: |
           set -euo pipefail
+          # Reuse the manifest validator so mismatched artifact names fail here,
+          # even though runtime archives are no longer published.
+          node --input-type=module -e '
+            import { loadRuntimeManifest } from "./runtime/runtime-manifest.mjs";
+            loadRuntimeManifest(new URL("./runtime/openbkn-dsh-runtime.manifest.json", import.meta.url));
+          '
           if [[ "${MANIFEST_PLUGIN_VERSION}" != "${PKG_VERSION}" ]]; then
             echo "::error::runtime/openbkn-dsh-runtime.manifest.json says plugin ${MANIFEST_PLUGIN_VERSION}, package.json says ${PKG_VERSION}. The runtime archive names the plugin tarball by version — fix the manifest (plugin.version and plugin.artifact) before releasing."
             exit 1
