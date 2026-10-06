@@ -1,0 +1,26 @@
+{
+  "candidateSource": "3414bdec3c956cc0d580aebd959ac6f3439bb352",
+  "originalBomQuestionCompleted": true,
+  "publishedDepth5InventoryTimedOut": true,
+  "modelDisclosedReadOnlyScopedFallback": true,
+  "independentFallbackAccepted": true,
+  "timeoutResultMarkers": [
+    {
+      "tool": "mcp__openbkn__execute_tool",
+      "callId": "call_01_XmaDLKzPmSy73Qarb5UY9875",
+      "hostErrorFlag": true,
+      "transportOrTimeoutTextMarkers": {
+        "timeout": false,
+        "timed out": true,
+        "deadline": false,
+        "canceled": false,
+        "cancelled": false
+      },
+      "exitCode": null
+    }
+  ],
+  "rootCauseBoundary": "The depth-5 timeout remains an observed platform/tool path limitation. This run does not establish that it is caused by the separately open bkn-foundry #2029 large-result persistence defect, nor claim that defect fixed.",
+  "automaticTokenRenewal": "not-run; only normal manual CLI refresh prepared this test",
+  "mixedNetworkRealUi": "not-run",
+  "restrictedAccount": "not-run; user has no real restricted account"
+}

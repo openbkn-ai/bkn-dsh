@@ -1,0 +1,10 @@
+{
+  "scope": "Fresh independent before snapshot: warehouse-only oracle aggregation is equivalent to the declared warehouse plus usable-status filter on these actual records; no claim for other snapshots.",
+  "candidateSource": "3414bdec3c956cc0d580aebd959ac6f3439bb352",
+  "inventoryRows": 2681,
+  "warehouseScopedRows": 521,
+  "scopedStatusCounts": {
+    "可用": 521
+  },
+  "warehouseAndStatusFilteringEquivalentOnSnapshot": true
+}

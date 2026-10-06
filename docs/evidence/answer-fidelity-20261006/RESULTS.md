@@ -1,5 +1,7 @@
 # Answer fidelity repair — 2026-10-06
 
+Current acceptance: reviewed source `3414bde`, build-only CI [37478119730](https://github.com/openbkn-ai/bkn-dsh/actions/runs/37478119730), tgz `6bbab278…`, is **accepted for native Windows affected retest**. All three original questions ended natively completed on the official macOS Desktop. Independent comparison matches 313 BOM rows, eight business fields, all 48 scoped-absence markers and 313 disclosed scoped record counts; the reservation explanation matches the schema. Selected before/after data is unchanged. Windows is still pending and this is not release acceptance. All failed candidates and preparation deviations below remain historical failures.
+
 ## Trigger and responsibility
 
 The unified `-7` CI candidate built from `7553cc1` failed answer delivery on the official macOS Desktop Host. Its successful `run_code` result contained 313 BOM parent-child rows, while the final answer contained 314, including an invented level-3 row. A separate no-data answer changed the physical source `supply_demo_hand.erp_material` to `supply_ontology_hand.erp_material`, despite correct `get_kn_detail` metadata. Original evidence remains in `../unified-7-acceptance-20261006/`; it is not replaced with corrected answers.
@@ -27,7 +29,7 @@ The pinned driver [commits `turn/start` at line 305](https://github.com/deepseek
 
 Upstream check on 2026-10-06: DSH `master` was `5badb15009ae1756c3afe0ae0cef1faafc290ccc` (`dsh-v0.2.1-alpha.1`); it was not substituted for the supported baseline. OpenBKN foundry `main` was `180ff56b565589f02f913d8e436043fd46f84157`, with latest release `v0.1.5`. No newly discovered tool was added to the guard whitelist.
 
-## Validation before review
+## Historical initial validation before source review
 
 - Captured-failure regressions reject the actual 314-row answer and the invented source name; the transcription generated from the captured successful result has 313 rows and preserves the legitimate repeated child in level 4.
 - Scoped hook tests cover one notice, unchanged original events, a persistent mismatch, cancellation, per-turn reset and native/unbound scope isolation.
@@ -39,7 +41,7 @@ This section is local/source and controlled-runtime evidence. PR approval, a new
 
 The first independent PR review approved the initial head while flagging the intermediate-message edge and two assumptions. The source revision excludes pending tool calls; verifies the native question ordering with an omission-sensitive runtime scenario; and refuses conflicting self-declared complete batches instead of silently shrinking the answer. Updated source approval is required before CI delivery.
 
-## Delivery state at source review
+## Historical delivery state at the initial source review
 
 New CI artifact and real-model replay: pending. Windows delivery: held until approval, build-only CI and Mac exact-artifact checks pass. Version remains `0.2.0-rc.2-openbkn.0.2.0-7`; no npm publish, release tag or dist-tag action is authorized by this repair request.
 
@@ -71,3 +73,48 @@ The follow-up checks this narrowly defined producer defect at settled `tools/res
 The producer contract now pins the literal header immediately after DETAIL_ROWS and retains the same full labelled text in a sandbox cache. Sandbox cache creation is local calculation bookkeeping, not a platform business write or a user-accessible deliverable. Supported named columns are still required; the checker cannot establish business calculation correctness.
 
 Local validation: 338 plugin tests (337 pass, 0 fail, 1 skip), 60 repository tests, typecheck and package audit. Five official npm-core and five official Desktop ASAR-core fixture scenarios pass. The new scenario records one turn, one data retrieval, one cached reprint and one producer notice before the original finish call; the headerless result remains in the log. This is controlled runtime evidence, not real sandbox/model acceptance. A fresh independent PR approval, CI package and original-question replay are required before Windows delivery.
+
+## Exact CI replay: scoped absence and reservation semantics
+
+PR #71 was independently approved and merged as `3ac73cc`. Its CI artifact (`b73d5b13…`, run 37467766263) is **failed and held**. The lead-time question passed and the BOM turn ended completed, but the independent eight-field comparator found 43 absent-marker differences: 48 parent-child rows had no eligible inventory record in the established seven-warehouse/usable-status scope, while the answer marked only five rows absent based on global record existence. Other compared fields matched. The answer also contradicted the inventory property's disclosed formula by saying reservations had not been deducted. Selected before/after data matched; the third question was not run. `ci-3ac73cc-bom-failed.json`, `ci-3ac73cc-verdict.json`, the independent audit and prefixed preparation/runtime files preserve this failure.
+
+PR [#72](https://github.com/openbkn-ai/bkn-dsh/pull/72) requires scoped direct-inventory fallback producers to disclose an eighth `scoped_stock_rows` column. Eligibility is established before grouping: zero eligible records means `0*`/`?`; eligible records summing to zero mean plain zero with their disclosed unit. An inconsistent audited producer can reprint from cached records once before the original Interaction finishes. The check refuses contradictory audit metadata and does not independently recompute stock or accept arbitrary tool calculations as correct. Reservation wording is checked only against an explicit direct `available_inventory_qty` property comment. Both JSON and the tool's default TOON forms are supported; nested mapped fields and unrelated comments do not establish that formula. Simultaneous correction reasons share one notice.
+
+The independent review rejected the JSON-only implementation, then approved the exact final head `deac64b` on 2026-10-06 at 14:18 UTC. It merged as `3414bdec3c956cc0d580aebd959ac6f3439bb352`. A test-only delivery follow-up also asserts the retained **actual** default-format schema from the earlier live capture; its 25 focused tests pass. That test does not enter the tarball, change its runtime or claim a new live capture. The separately named derived TOON fixture remains labelled as derived. `inventory-default-toon-envelope.json` and `inventory-toon-envelope.json` are CLI-normalized JSON probe results, not actual TOON captures.
+
+## Current fixed artifact and real-host acceptance
+
+| Identity | Fixed value |
+|---|---|
+| Package | `@openbkn/dsh-business-context@0.2.0-rc.2-openbkn.0.2.0-7` |
+| Source on main | `3414bdec3c956cc0d580aebd959ac6f3439bb352` |
+| CI dispatch branch / run | `docs/unified7-fidelity-acceptance` at that source / `37478119730`, `publish=false` |
+| Artifact ID / ZIP SHA | `11420131739` / `9c898b0cc6addd663e4321620a5d3a0999c18ae00c9c8b4a48b126f69b95b233` |
+| tgz SHA / size | `6bbab27876e743032572ddce107fcce09e0d681f87bee19fba8d78180e5a63a8` / 177442 bytes |
+| Contents | 66 files, all 16 declared targets present; no later package edit |
+
+CI passed 344 plugin tests (343 pass, 0 fail, 1 skip), 60 repository tests, typechecking and package audit. Both npm publishing and GitHub Release were skipped. The installed official Desktop package matched 66/66 files before and after runtime acceptance. Full plugin removal/reinstall preserved adjacent credential and user-patch hashes. A Token expired during preparation and was refreshed through the normal CLI command before formal questions; `qa-preparation-3414bde.json` records this without its value. Automatic renewal is not accepted by this run. User model/configuration and every historical session remain; only owned test processes were stopped.
+
+| Check on this CI package | Result and evidence |
+|---|---|
+| Original standard lead-time question | Native completed, one turn; manufacturing lead time 1 day, correct quantity/time units and physical `supply_demo_hand.erp_material` source. `standard-lead-time.json` / `.md` |
+| Original full BOM/usage/inventory question | Native completed, one turn; 313 rows / 272 materials / 5 levels. Eight fields match the independent CLI oracle, including 48 scoped absence markers; all 313 eighth-column record counts also match. Reservations are already deducted, with no second deduction. `delivered-fields.json`, `scoped-stock-row-count-comparison.json`, `bom-usage-inventory.json` / `.md` |
+| Original missing-object question | Native completed, one turn; exact-code sources return zero rows, no invented stock/order values or source prefix. `missing-object.json` / `.md` |
+| Independent data stability | Five selected queried datasets/schema/catalogue snapshots equal before/after. All 521 inventory rows in the queried seven-warehouse scope have usable status, so the independently checked status filter is equivalent on this snapshot. This says nothing about the entire database. `data-stability.json`, `oracle-scope-status-audit.json` |
+| Official Desktop UI/export | One sidebar entry; panel button is exactly “诊断”. Genuine product download has nine passing checks and excludes the current CLI token, private paths and raw configured platform. `desktop-export-verification.json`, `desktop-final-diagnostic-report.json` |
+| #62 actual graph | 12 graph elements; inventory object, product BOM object and available-stock property individually selected. Each source matches independent authorized Trace refs. Same-network real UI only; mixed-network real UI not-run. `provenance-platform-references.json` |
+| Official npm affected faults | Production RPC passes normal loading, invalid URL configuration rejection and business bad-import isolation; bootstrap and diagnostics survive. These are npm Host checks, with no browser UI assertion. `normal-npm-report.json`, `invalid-url-npm-report.json`, `business-import-npm-report.json` |
+| Controlled core probes | Six scripted scenarios pass on official npm core and official Desktop core. ASAR symlinks were rejected before execution by the ESM resolver; the revised task-only bridge uses verified byte copies of the installed Desktop dependency/peer closure. It does not modify the app or substitute npm core. Fixtures are not provider/platform acceptance. `npm-runtime-probe.jsonl`, `desktop-runtime-probe.jsonl`, `desktop-core-preparation.json` |
+| Live guard | Real ToolRuntime with this package and authorized networks: 16/16 checks pass; only permitted dispatch is recorded. `live-guard.jsonl` |
+
+The final product download is `/Users/kalias/Downloads/OpenBKN-diagnostic-20261006T144257878Z-1360cca0.json`, SHA `b6a35739a5d1f2967881499158cc8f75cf6f6f6e106e6c621a89d1161c8071a2`. The formal model shown by the official app was DeepSeek-V41-Flash, High. Every intermediate assistant/tool event is retained; native final outcomes are graded separately.
+
+The frozen G6 set remains unchanged: **3 tested / 3 pass, 8 not-run**. `g6-results.md`, `final-verdict.json` and `qa-observed-limitations.json` state the boundaries. Full original CLI snapshot bytes are preserved in each snapshot directory's `raw-cli-snapshot.zip`, bound per file by `archive-index.json`; selected comparison data stays readable. CSV line endings alone were normalized to LF after checking every cell is unchanged. In the BOM turn a published depth-5 inventory call timed out and the answer disclosed an independently checked read-only fallback. This does not establish that timeout's root cause or fix the separately open platform #2029 large-result persistence problem. Restricted account, mixed-network real UI, automatic renewal and native unified -7 Windows retest remain open. No tag, npm publish or dist-tag action occurred.
+
+The fixed Windows kit is `docs/handoff/2026-10-06-release-7/fidelity-windows/`; the forwardable fixed-commit download notice is `WINDOWS-FIDELITY-NOTICE.md` in its parent. Native Desktop/npm retest must use that exact artifact, fully uninstall/reinstall, preserve old evidence and mark credential-dependent cases not-run when credentials are unavailable.
+
+## Delivery review follow-up
+
+PR #73 identified that the initial delivery commit `a73c637` omitted the ignored tgz from the tracked `fidelity-windows/candidate/` directory. Its ZIP was already complete, but the README's repository-checkout alternative failed the offline verifier. The follow-up tracks the identical accepted tgz in that directory and updates the fixed delivery commit in the forwardable notice. The tgz and Windows ZIP bytes, kit-file hashes, package runtime, source commit and Mac acceptance remain unchanged. The repository-index audit verifies all 30 kit files against both `kit-files.json` and the immutable ZIP; the anonymous remote check also verifies the checkout tgz. The earlier rejected root artifact is explicitly marked historical without altering its package bytes.
+
+Test totals above belong to their stated historical source or CI run. Current CI totals remain 344 plugin tests (343 pass, 1 skip), with 60 repository tests. The post-CI, test-only actual-TOON assertion was validated separately by the 25 focused tests recorded above; it adds assertions within an existing case and does not claim a new full-suite run or a rebuilt package.

@@ -1,0 +1,63 @@
+{
+  "checkedAt": "2026-10-06T14:46:46.480797+00:00",
+  "candidateSource": "3414bdec3c956cc0d580aebd959ac6f3439bb352",
+  "ciRunId": 37478119730,
+  "candidateSha256": "6bbab27876e743032572ddce107fcce09e0d681f87bee19fba8d78180e5a63a8",
+  "acceptedForWindowsRetest": true,
+  "releaseAccepted": false,
+  "macOriginalQuestionsPassed": 3,
+  "nativeTurnsCompleted": 3,
+  "macAffectedChecksPassed": true,
+  "affectedCheckScope": {
+    "officialDesktop": "Three original real-model questions, normal business/diagnostic UI, genuine Downloads export, three same-network graph elements and protected user patch.",
+    "officialNpm": "Normal, invalid URL, controlled business import failure production RPC; no browser UI assertion."
+  },
+  "controlledNpmCorePassed": 6,
+  "controlledDesktopCorePassed": 6,
+  "controlledRuntimeBoundary": "Scripted model/tool fixtures. Desktop runtime uses verified read-only ASAR copies, not npm core substitution.",
+  "liveGuardPassed": 16,
+  "liveGuardTotal": 16,
+  "g6Tested": 3,
+  "g6NotRun": 8,
+  "cases": [
+    {
+      "case": "standard-lead-time",
+      "sessionId": "session-b236cd0e-8b9d-4dda-b476-04d2e8d777ea",
+      "nativeFinal": "completed",
+      "nativeTurnCount": 1,
+      "retainedAssistantMessages": 1,
+      "fidelityNoticeCount": 0,
+      "accepted": true
+    },
+    {
+      "case": "bom-usage-inventory",
+      "sessionId": "session-29e4d742-3cf7-4b73-869f-29e6fbe331f0",
+      "nativeFinal": "completed",
+      "nativeTurnCount": 1,
+      "retainedAssistantMessages": 10,
+      "fidelityNoticeCount": 0,
+      "accepted": true
+    },
+    {
+      "case": "missing-object",
+      "sessionId": "session-89e774e6-b577-48fc-bf14-403c26ee6fe8",
+      "nativeFinal": "completed",
+      "nativeTurnCount": 1,
+      "retainedAssistantMessages": 2,
+      "fidelityNoticeCount": 0,
+      "accepted": true
+    }
+  ],
+  "independentBom": {
+    "rows": 313,
+    "distinctMaterials": 272,
+    "comparedBusinessFields": 8,
+    "expectedAbsentRows": 48,
+    "deliveredAbsentRows": 48,
+    "disclosedScopedStockCountRowsMatched": 313,
+    "reservationExplanationCorrect": true
+  },
+  "beforeAfterSelectedDataEqual": true,
+  "nativeWindowsRetest": "pending",
+  "knownLimitationsEvidence": "qa-observed-limitations.json"
+}

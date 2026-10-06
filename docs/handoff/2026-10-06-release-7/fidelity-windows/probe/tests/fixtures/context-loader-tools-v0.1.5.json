@@ -1,0 +1,99 @@
+{
+  "source": {
+    "repository": "openbkn-ai/bkn-foundry",
+    "tag": "v0.1.5",
+    "commit": "e6445df3fd70f0768a77764d10ec084954d3a770",
+    "path": "adp/context-loader/agent-retrieval/server/driveradapters/mcp/schemas/tools_meta.json",
+    "captured": "2026-10-04",
+    "note": "Tool names from tools_meta.json; knId from each <tool>.json input_schema (\"unknown\": no schema file in that directory)."
+  },
+  "tools": {
+    "bkn_finish_interaction": {
+      "knId": "unknown"
+    },
+    "bkn_start_interaction": {
+      "knId": "unknown"
+    },
+    "search_schema": {
+      "knId": "required"
+    },
+    "search_instance": {
+      "knId": "optional"
+    },
+    "query_object_instance": {
+      "knId": "required"
+    },
+    "query_instance_subgraph": {
+      "knId": "required"
+    },
+    "explore_subgraph": {
+      "knId": "required"
+    },
+    "get_logic_properties_values": {
+      "knId": "required"
+    },
+    "query_metric": {
+      "knId": "required"
+    },
+    "get_action_info": {
+      "knId": "required"
+    },
+    "execute_action": {
+      "knId": "required"
+    },
+    "get_action_execution": {
+      "knId": "required"
+    },
+    "list_action_executions": {
+      "knId": "required"
+    },
+    "list_knowledge_networks": {
+      "knId": "absent"
+    },
+    "get_kn_detail": {
+      "knId": "required"
+    },
+    "get_object_types": {
+      "knId": "required"
+    },
+    "get_relation_types": {
+      "knId": "required"
+    },
+    "run_sql": {
+      "knId": "absent"
+    },
+    "run_cypher": {
+      "knId": "required"
+    },
+    "list_resources": {
+      "knId": "optional"
+    },
+    "describe_resource": {
+      "knId": "absent"
+    },
+    "list_skills": {
+      "knId": "absent"
+    },
+    "get_skill_content": {
+      "knId": "required"
+    },
+    "read_skill_file": {
+      "knId": "required"
+    },
+    "execute_skill": {
+      "knId": "required"
+    },
+    "run_code": {
+      "knId": "unknown"
+    },
+    "run_shell": {
+      "knId": "unknown"
+    },
+    "search_capabilities": {
+      "knId": "required"
+    },
+    "execute_tool": {
+      "knId": "required"
+    }
+  }
+}

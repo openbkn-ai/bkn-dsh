@@ -1,0 +1,28 @@
+{
+  "checkedAt": "2026-10-06T11:29:59.965924+00:00",
+  "artifactKind": "local pack before PR; not the Windows delivery artifact",
+  "nodeVersion": "24.19.0",
+  "pluginTests": {
+    "total": 332,
+    "passed": 331,
+    "failed": 0,
+    "skipped": 1
+  },
+  "repositoryNodeTests": {
+    "total": 50,
+    "passed": 50
+  },
+  "evidencePythonTests": {
+    "total": 11,
+    "passed": 11
+  },
+  "typecheck": "passed",
+  "packageAudit": "passed",
+  "diffCheck": "passed",
+  "localPack": {
+    "filename": "openbkn-dsh-business-context-0.2.0-rc.2-openbkn.0.2.0-7.tgz",
+    "bytes": 173136,
+    "sha256": "817f124360023e5a1a526b5c3b62f21ae7b15e37b53f091fb3b0dbb863b15939",
+    "files": 66
+  }
+}

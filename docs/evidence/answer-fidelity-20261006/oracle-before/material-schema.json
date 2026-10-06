@@ -1,0 +1,252 @@
+{
+  "kn_id": "supply_ontology_hand",
+  "object_types": [
+    {
+      "module_type": "object_type",
+      "id": "supply_ontology_hand_material",
+      "name": "物料",
+      "tags": [
+        "已审核"
+      ],
+      "comment": "记录物料的基础信息，包括编码、名称、规格型号、属性（自制/外购）及单位等及相关参数。",
+      "_score": 0,
+      "data_source": {
+        "type": "resource",
+        "id": "01a0f6e5-fd61-7280-ae39-73fd4c0877d0",
+        "name": "supply_demo_hand.erp_material"
+      },
+      "data_properties": [
+        {
+          "name": "material_code",
+          "display_name": "物料编码",
+          "type": "string",
+          "comment": "物料的唯一标识编码",
+          "mapped_field": {
+            "type": "text",
+            "display_name": "material_code",
+            "name": "material_code"
+          }
+        },
+        {
+          "name": "material_name",
+          "display_name": "物料名称",
+          "type": "string",
+          "comment": "物料的正式名称",
+          "mapped_field": {
+            "name": "material_name",
+            "type": "text",
+            "display_name": "material_name"
+          }
+        },
+        {
+          "name": "modelnum",
+          "display_name": "规格型号",
+          "type": "string",
+          "comment": "物料的规格与其型号",
+          "mapped_field": {
+            "type": "text",
+            "display_name": "modelnum",
+            "name": "modelnum"
+          }
+        },
+        {
+          "name": "huid_productline_name",
+          "display_name": "产品线名称",
+          "type": "string",
+          "comment": "所属产品线",
+          "mapped_field": {
+            "name": "huid_productline_name",
+            "type": "text",
+            "display_name": "huid_productline_name"
+          }
+        },
+        {
+          "name": "baseunit_number",
+          "display_name": "物料规格编码",
+          "type": "string",
+          "comment": "计量单位的编码，pcs",
+          "mapped_field": {
+            "name": "baseunit_number",
+            "type": "text",
+            "display_name": "baseunit_number"
+          }
+        },
+        {
+          "name": "baseunit_name",
+          "display_name": "物料规格",
+          "type": "string",
+          "comment": "计量单位名称 (如:  个，套)",
+          "mapped_field": {
+            "name": "baseunit_name",
+            "type": "text",
+            "display_name": "baseunit_name"
+          }
+        },
+        {
+          "name": "group_name",
+          "display_name": "存货类别",
+          "type": "string",
+          "comment": "原材料-半成品",
+          "mapped_field": {
+            "name": "group_name",
+            "type": "text",
+            "display_name": "group_name"
+          }
+        },
+        {
+          "name": "group_type",
+          "display_name": "物料分类",
+          "type": "string",
+          "comment": "物料的类别描述",
+          "mapped_field": {
+            "display_name": "group_type",
+            "name": "group_type",
+            "type": "text"
+          }
+        },
+        {
+          "name": "materialattr",
+          "display_name": "物料属性",
+          "type": "string",
+          "comment": "物料属性 (如: 外购)",
+          "mapped_field": {
+            "name": "materialattr",
+            "type": "text",
+            "display_name": "materialattr"
+          }
+        },
+        {
+          "name": "purchase_fixedleadtime",
+          "display_name": "采购固定提前期",
+          "type": "decimal",
+          "comment": "采购交货提前期 (天)",
+          "mapped_field": {
+            "display_name": "purchase_fixedleadtime",
+            "name": "purchase_fixedleadtime",
+            "type": "float"
+          }
+        },
+        {
+          "name": "product_fixedleadtime",
+          "display_name": "生产固定提前期",
+          "type": "decimal",
+          "comment": "自制件包括产成品、半成品的生产提前期 (天)",
+          "mapped_field": {
+            "type": "float",
+            "display_name": "product_fixedleadtime",
+            "name": "product_fixedleadtime"
+          }
+        },
+        {
+          "name": "material_standard_price",
+          "display_name": "物料标准价格（含税单价）",
+          "type": "decimal",
+          "mapped_field": {
+            "name": "material_standard_price",
+            "type": "float",
+            "display_name": "material_standard_price"
+          }
+        },
+        {
+          "name": "product_status",
+          "display_name": "产品状态",
+          "type": "string",
+          "mapped_field": {
+            "name": "product_status",
+            "type": "text",
+            "display_name": "product_status"
+          }
+        }
+      ],
+      "logic_properties": [
+        {
+          "name": "material_total_count",
+          "display_name": "物料总数",
+          "type": "metric",
+          "comment": "类级：物料种数。可按物料属性 / 存货类别过滤。",
+          "data_source": {
+            "type": "metric",
+            "id": "01a0f6e6-5e9e-72bf-a34a-afcc0ca532d9",
+            "name": "物料总数"
+          },
+          "parameters": [
+            {
+              "name": "materialattr",
+              "type": "string",
+              "value_from": "input",
+              "comment": "物料属性"
+            },
+            {
+              "name": "group_name",
+              "type": "string",
+              "value_from": "input",
+              "comment": "存货类别"
+            },
+            {
+              "name": "instant",
+              "type": "boolean",
+              "value_from": "input",
+              "if_system_generate": true,
+              "comment": "是否进行即时查询。可选，默认为 false。instant=true 表示即时查询；否则表示范围查询。"
+            },
+            {
+              "name": "start",
+              "type": "integer",
+              "value_from": "input",
+              "if_system_generate": true,
+              "comment": "指标查询的开始时间，格式为 start=<unix_timestamp>，单位为毫秒，例如 1646360670123。"
+            },
+            {
+              "name": "end",
+              "type": "integer",
+              "value_from": "input",
+              "if_system_generate": true,
+              "comment": "指标查询的结束时间，格式为 end=<unix_timestamp>，单位为毫秒，例如 1646471470123。"
+            },
+            {
+              "name": "step",
+              "type": "string",
+              "value_from": "input",
+              "if_system_generate": true,
+              "comment": "范围查询的步长。instant=false 时必填，格式为 step=<time_duration>，由数字和时间单位组成。"
+            }
+          ]
+        }
+      ],
+      "primary_keys": [
+        "material_code"
+      ],
+      "effective_permissions": {
+        "huid_productline_name": "full",
+        "product_fixedleadtime": "full",
+        "modelnum": "full",
+        "group_name": "full",
+        "material_standard_price": "full",
+        "baseunit_number": "full",
+        "baseunit_name": "full",
+        "group_type": "full",
+        "product_status": "full",
+        "material_code": "full",
+        "purchase_fixedleadtime": "full",
+        "materialattr": "full",
+        "material_name": "full"
+      },
+      "related_metrics": [
+        {
+          "id": "01a0f6e6-5e9e-72bf-a34a-afcc0ca532d9",
+          "name": "物料总数",
+          "comment": "count(material_code)。可按 materialattr / group_name 过滤或分组。快照 3497。",
+          "metric_type": "atomic",
+          "unit": "piece",
+          "unit_type": "countUnit",
+          "scope_ref": "supply_ontology_hand_material",
+          "analysis_dimensions": [
+            "materialattr",
+            "group_name"
+          ]
+        }
+      ],
+      "related_metric_count": 1
+    }
+  ]
+}

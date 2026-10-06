@@ -1,0 +1,108 @@
+{
+  "schemaVersion": 1,
+  "reportId": "850e74f6",
+  "createdAt": "2026-10-06T14:31:55.763Z",
+  "target": {
+    "hostForm": "desktop",
+    "platform": "darwin",
+    "dshVersion": null,
+    "pluginDiskVersion": "0.2.0-rc.2-openbkn.0.2.0-7",
+    "pluginLoadedVersion": null
+  },
+  "mode": "passive",
+  "checks": [
+    {
+      "id": "bootstrap-entry",
+      "stage": "installation",
+      "status": "pass",
+      "source": "host-runtime",
+      "code": "component-loaded",
+      "evidence": {
+        "entryPresent": true
+      },
+      "nextAction": null
+    },
+    {
+      "id": "business-entry",
+      "stage": "component",
+      "status": "pass",
+      "source": "host-runtime",
+      "code": "component-loaded",
+      "evidence": {
+        "entryPresent": true
+      },
+      "nextAction": null
+    },
+    {
+      "id": "diagnostics-entry",
+      "stage": "diagnostics",
+      "status": "pass",
+      "source": "host-runtime",
+      "code": "component-loaded",
+      "evidence": {
+        "schemaVersion": 1
+      },
+      "nextAction": null
+    },
+    {
+      "id": "observed:cli",
+      "stage": "cli",
+      "status": "pass",
+      "source": "observed-operation",
+      "code": "cli",
+      "evidence": {
+        "failureCount": 0,
+        "lastOutcomeAgoMs": 30311,
+        "exitCode": 0
+      },
+      "nextAction": null
+    },
+    {
+      "id": "observed:login-state",
+      "stage": "authentication",
+      "status": "pass",
+      "source": "observed-operation",
+      "code": "login-state",
+      "evidence": {
+        "failureCount": 2,
+        "lastOutcomeAgoMs": 30502,
+        "recovered": true,
+        "lastFailureCode": "not-logged-in",
+        "loggedIn": true
+      },
+      "nextAction": null
+    },
+    {
+      "id": "observed:context-loader",
+      "stage": "context-loader",
+      "status": "pass",
+      "source": "observed-operation",
+      "code": "context-loader",
+      "evidence": {
+        "failureCount": 0,
+        "lastOutcomeAgoMs": 30274,
+        "toolsPublished": true
+      },
+      "nextAction": null
+    },
+    {
+      "id": "observed:platform-network-list",
+      "stage": "platform-directory",
+      "status": "pass",
+      "source": "observed-operation",
+      "code": "platform-network-list",
+      "evidence": {
+        "failureCount": 0,
+        "lastOutcomeAgoMs": 30253,
+        "networkCount": 2
+      },
+      "nextAction": null
+    }
+  ],
+  "coverage": {
+    "executedChecks": 7,
+    "notRunChecks": 0,
+    "insufficientEvidenceChecks": 0,
+    "notes": []
+  }
+}

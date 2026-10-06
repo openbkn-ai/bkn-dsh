@@ -1,0 +1,10 @@
+{
+  "initialPreparation": "Direct symlinks into app.asar were readable through Electron fs but rejected by the ESM package resolver before the scripted scenarios began.",
+  "initialErrorCode": "ERR_MODULE_NOT_FOUND",
+  "revisedPreparation": "Byte-for-byte dependency closure copied from installed official Desktop ASAR to a task-only directory; application untouched.",
+  "stagedPackages": 510,
+  "stagedFiles": 11547,
+  "probeIsControlledFixtureNotProviderAcceptance": true,
+  "availablePeersAlsoCopied": true,
+  "controlledScenariosPassed": 6
+}

@@ -1,0 +1,1572 @@
+{
+  "scope": "Independently compares the disclosed eighth fallback audit column against the fresh before snapshot. All warehouse-scoped snapshot rows were separately confirmed stock_status=可用.",
+  "comparedRows": 313,
+  "allPassed": true,
+  "rows": [
+    {
+      "childCode": "791-000013",
+      "disclosedScopedStockRows": 1,
+      "independentScopedStockRows": 1
+    },
+    {
+      "childCode": "606-000989",
+      "disclosedScopedStockRows": 2,
+      "independentScopedStockRows": 2
+    },
+    {
+      "childCode": "606-000990",
+      "disclosedScopedStockRows": 3,
+      "independentScopedStockRows": 3
+    },
+    {
+      "childCode": "528-000036",
+      "disclosedScopedStockRows": 1,
+      "independentScopedStockRows": 1
+    },
+    {
+      "childCode": "791-000007",
+      "disclosedScopedStockRows": 0,
+      "independentScopedStockRows": 0
+    },
+    {
+      "childCode": "994-000550",
+      "disclosedScopedStockRows": 8,
+      "independentScopedStockRows": 8
+    },
+    {
+      "childCode": "468-000493",
+      "disclosedScopedStockRows": 1,
+      "independentScopedStockRows": 1
+    },
+    {
+      "childCode": "468-000530",
+      "disclosedScopedStockRows": 1,
+      "independentScopedStockRows": 1
+    },
+    {
+      "childCode": "791-000015",
+      "disclosedScopedStockRows": 0,
+      "independentScopedStockRows": 0
+    },
+    {
+      "childCode": "795-000993",
+      "disclosedScopedStockRows": 1,
+      "independentScopedStockRows": 1
+    },
+    {
+      "childCode": "606-000852",
+      "disclosedScopedStockRows": 1,
+      "independentScopedStockRows": 1
+    },
+    {
+      "childCode": "606-000853",
+      "disclosedScopedStockRows": 1,
+      "independentScopedStockRows": 1
+    },
+    {
+      "childCode": "795-000130",
+      "disclosedScopedStockRows": 2,
+      "independentScopedStockRows": 2
+    },
+    {
+      "childCode": "795-000728",
+      "disclosedScopedStockRows": 2,
+      "independentScopedStockRows": 2
+    },
+    {
+      "childCode": "795-000302",
+      "disclosedScopedStockRows": 1,
+      "independentScopedStockRows": 1
+    },
+    {
+      "childCode": "165-000257",
+      "disclosedScopedStockRows": 3,
+      "independentScopedStockRows": 3
+    },
+    {
+      "childCode": "795-000865",
+      "disclosedScopedStockRows": 2,
+      "independentScopedStockRows": 2
+    },
+    {
+      "childCode": "795-000133",
+      "disclosedScopedStockRows": 3,
+      "independentScopedStockRows": 3
+    },
+    {
+      "childCode": "606-000012",
+      "disclosedScopedStockRows": 1,
+      "independentScopedStockRows": 1
+    },
+    {
+      "childCode": "528-000031",
+      "disclosedScopedStockRows": 1,
+      "independentScopedStockRows": 1
+    },
+    {
+      "childCode": "849-001021",
+      "disclosedScopedStockRows": 2,
+      "independentScopedStockRows": 2
+    },
+    {
+      "childCode": "849-000288",
+      "disclosedScopedStockRows": 9,
+      "independentScopedStockRows": 9
+    },
+    {
+      "childCode": "791-000003",
+      "disclosedScopedStockRows": 4,
+      "independentScopedStockRows": 4
+    },
+    {
+      "childCode": "165-000120",
+      "disclosedScopedStockRows": 1,
+      "independentScopedStockRows": 1
+    },
+    {
+      "childCode": "849-000987",
+      "disclosedScopedStockRows": 5,
+      "independentScopedStockRows": 5
+    },
+    {
+      "childCode": "588-000712",
+      "disclosedScopedStockRows": 5,
+      "independentScopedStockRows": 5
+    },
+    {
+      "childCode": "838-000403",
+      "disclosedScopedStockRows": 1,
+      "independentScopedStockRows": 1
+    },
+    {
+      "childCode": "165-002644",
+      "disclosedScopedStockRows": 1,
+      "independentScopedStockRows": 1
+    },
+    {
+      "childCode": "165-002702",
+      "disclosedScopedStockRows": 3,
+      "independentScopedStockRows": 3
+    },
+    {
+      "childCode": "165-002646",
+      "disclosedScopedStockRows": 1,
+      "independentScopedStockRows": 1
+    },
+    {
+      "childCode": "994-000606",
+      "disclosedScopedStockRows": 1,
+      "independentScopedStockRows": 1
+    },
+    {
+      "childCode": "165-002708",
+      "disclosedScopedStockRows": 2,
+      "independentScopedStockRows": 2
+    },
+    {
+      "childCode": "165-000722",
+      "disclosedScopedStockRows": 3,
+      "independentScopedStockRows": 3
+    },
+    {
+      "childCode": "165-002647",
+      "disclosedScopedStockRows": 2,
+      "independentScopedStockRows": 2
+    },
+    {
+      "childCode": "849-000382",
+      "disclosedScopedStockRows": 3,
+      "independentScopedStockRows": 3
+    },
+    {
+      "childCode": "849-000717",
+      "disclosedScopedStockRows": 3,
+      "independentScopedStockRows": 3
+    },
+    {
+      "childCode": "849-000204",
+      "disclosedScopedStockRows": 2,
+      "independentScopedStockRows": 2
+    },
+    {
+      "childCode": "849-000700",
+      "disclosedScopedStockRows": 3,
+      "independentScopedStockRows": 3
+    },
+    {
+      "childCode": "468-000565",
+      "disclosedScopedStockRows": 1,
+      "independentScopedStockRows": 1
+    },
+    {
+      "childCode": "588-000726",
+      "disclosedScopedStockRows": 7,
+      "independentScopedStockRows": 7
+    },
+    {
+      "childCode": "588-000654",
+      "disclosedScopedStockRows": 2,
+      "independentScopedStockRows": 2
+    },
+    {
+      "childCode": "588-000655",
+      "disclosedScopedStockRows": 6,
+      "independentScopedStockRows": 6
+    },
+    {
+      "childCode": "165-002372",
+      "disclosedScopedStockRows": 3,
+      "independentScopedStockRows": 3
+    },
+    {
+      "childCode": "165-002375",
+      "disclosedScopedStockRows": 2,
+      "independentScopedStockRows": 2
+    },
+    {
+      "childCode": "165-002376",
+      "disclosedScopedStockRows": 1,
+      "independentScopedStockRows": 1
+    },
+    {
+      "childCode": "165-002377",
+      "disclosedScopedStockRows": 2,
+      "independentScopedStockRows": 2
+    },
+    {
+      "childCode": "165-002378",
+      "disclosedScopedStockRows": 1,
+      "independentScopedStockRows": 1
+    },
+    {
+      "childCode": "849-000846",
+      "disclosedScopedStockRows": 3,
+      "independentScopedStockRows": 3
+    },
+    {
+      "childCode": "182-000055",
+      "disclosedScopedStockRows": 1,
+      "independentScopedStockRows": 1
+    },
+    {
+      "childCode": "838-000375",
+      "disclosedScopedStockRows": 1,
+      "independentScopedStockRows": 1
+    },
+    {
+      "childCode": "838-000376",
+      "disclosedScopedStockRows": 1,
+      "independentScopedStockRows": 1
+    },
+    {
+      "childCode": "165-002405",
+      "disclosedScopedStockRows": 2,
+      "independentScopedStockRows": 2
+    },
+    {
+      "childCode": "165-002408",
+      "disclosedScopedStockRows": 1,
+      "independentScopedStockRows": 1
+    },
+    {
+      "childCode": "791-000012",
+      "disclosedScopedStockRows": 2,
+      "independentScopedStockRows": 2
+    },
+    {
+      "childCode": "165-000229",
+      "disclosedScopedStockRows": 3,
+      "independentScopedStockRows": 3
+    },
+    {
+      "childCode": "795-000176",
+      "disclosedScopedStockRows": 1,
+      "independentScopedStockRows": 1
+    },
+    {
+      "childCode": "849-000943",
+      "disclosedScopedStockRows": 1,
+      "independentScopedStockRows": 1
+    },
+    {
+      "childCode": "849-000700",
+      "disclosedScopedStockRows": 3,
+      "independentScopedStockRows": 3
+    },
+    {
+      "childCode": "849-000204",
+      "disclosedScopedStockRows": 2,
+      "independentScopedStockRows": 2
+    },
+    {
+      "childCode": "849-000392",
+      "disclosedScopedStockRows": 3,
+      "independentScopedStockRows": 3
+    },
+    {
+      "childCode": "849-000208",
+      "disclosedScopedStockRows": 4,
+      "independentScopedStockRows": 4
+    },
+    {
+      "childCode": "849-000717",
+      "disclosedScopedStockRows": 3,
+      "independentScopedStockRows": 3
+    },
+    {
+      "childCode": "165-000266",
+      "disclosedScopedStockRows": 4,
+      "independentScopedStockRows": 4
+    },
+    {
+      "childCode": "725-000176",
+      "disclosedScopedStockRows": 1,
+      "independentScopedStockRows": 1
+    },
+    {
+      "childCode": "725-000357",
+      "disclosedScopedStockRows": 3,
+      "independentScopedStockRows": 3
+    },
+    {
+      "childCode": "725-000179",
+      "disclosedScopedStockRows": 6,
+      "independentScopedStockRows": 6
+    },
+    {
+      "childCode": "725-000320",
+      "disclosedScopedStockRows": 1,
+      "independentScopedStockRows": 1
+    },
+    {
+      "childCode": "725-000226",
+      "disclosedScopedStockRows": 12,
+      "independentScopedStockRows": 12
+    },
+    {
+      "childCode": "725-000086",
+      "disclosedScopedStockRows": 5,
+      "independentScopedStockRows": 5
+    },
+    {
+      "childCode": "725-000307",
+      "disclosedScopedStockRows": 1,
+      "independentScopedStockRows": 1
+    },
+    {
+      "childCode": "725-000105",
+      "disclosedScopedStockRows": 0,
+      "independentScopedStockRows": 0
+    },
+    {
+      "childCode": "539-000022",
+      "disclosedScopedStockRows": 2,
+      "independentScopedStockRows": 2
+    },
+    {
+      "childCode": "539-000276",
+      "disclosedScopedStockRows": 2,
+      "independentScopedStockRows": 2
+    },
+    {
+      "childCode": "539-000026",
+      "disclosedScopedStockRows": 4,
+      "independentScopedStockRows": 4
+    },
+    {
+      "childCode": "539-000002",
+      "disclosedScopedStockRows": 4,
+      "independentScopedStockRows": 4
+    },
+    {
+      "childCode": "539-000267",
+      "disclosedScopedStockRows": 2,
+      "independentScopedStockRows": 2
+    },
+    {
+      "childCode": "539-000028",
+      "disclosedScopedStockRows": 2,
+      "independentScopedStockRows": 2
+    },
+    {
+      "childCode": "539-000106",
+      "disclosedScopedStockRows": 5,
+      "independentScopedStockRows": 5
+    },
+    {
+      "childCode": "539-000154",
+      "disclosedScopedStockRows": 2,
+      "independentScopedStockRows": 2
+    },
+    {
+      "childCode": "539-000162",
+      "disclosedScopedStockRows": 2,
+      "independentScopedStockRows": 2
+    },
+    {
+      "childCode": "539-000005",
+      "disclosedScopedStockRows": 2,
+      "independentScopedStockRows": 2
+    },
+    {
+      "childCode": "539-000025",
+      "disclosedScopedStockRows": 1,
+      "independentScopedStockRows": 1
+    },
+    {
+      "childCode": "539-000006",
+      "disclosedScopedStockRows": 2,
+      "independentScopedStockRows": 2
+    },
+    {
+      "childCode": "539-000008",
+      "disclosedScopedStockRows": 2,
+      "independentScopedStockRows": 2
+    },
+    {
+      "childCode": "539-000247",
+      "disclosedScopedStockRows": 1,
+      "independentScopedStockRows": 1
+    },
+    {
+      "childCode": "539-000411",
+      "disclosedScopedStockRows": 1,
+      "independentScopedStockRows": 1
+    },
+    {
+      "childCode": "539-000045",
+      "disclosedScopedStockRows": 1,
+      "independentScopedStockRows": 1
+    },
+    {
+      "childCode": "539-000018",
+      "disclosedScopedStockRows": 3,
+      "independentScopedStockRows": 3
+    },
+    {
+      "childCode": "539-000047",
+      "disclosedScopedStockRows": 0,
+      "independentScopedStockRows": 0
+    },
+    {
+      "childCode": "539-000048",
+      "disclosedScopedStockRows": 1,
+      "independentScopedStockRows": 1
+    },
+    {
+      "childCode": "539-000271",
+      "disclosedScopedStockRows": 1,
+      "independentScopedStockRows": 1
+    },
+    {
+      "childCode": "454-000310",
+      "disclosedScopedStockRows": 1,
+      "independentScopedStockRows": 1
+    },
+    {
+      "childCode": "454-000213",
+      "disclosedScopedStockRows": 1,
+      "independentScopedStockRows": 1
+    },
+    {
+      "childCode": "454-000347",
+      "disclosedScopedStockRows": 1,
+      "independentScopedStockRows": 1
+    },
+    {
+      "childCode": "356-000602",
+      "disclosedScopedStockRows": 1,
+      "independentScopedStockRows": 1
+    },
+    {
+      "childCode": "358-000091",
+      "disclosedScopedStockRows": 2,
+      "independentScopedStockRows": 2
+    },
+    {
+      "childCode": "454-000319",
+      "disclosedScopedStockRows": 0,
+      "independentScopedStockRows": 0
+    },
+    {
+      "childCode": "733-000121",
+      "disclosedScopedStockRows": 1,
+      "independentScopedStockRows": 1
+    },
+    {
+      "childCode": "733-000129",
+      "disclosedScopedStockRows": 1,
+      "independentScopedStockRows": 1
+    },
+    {
+      "childCode": "733-000130",
+      "disclosedScopedStockRows": 1,
+      "independentScopedStockRows": 1
+    },
+    {
+      "childCode": "972-000475",
+      "disclosedScopedStockRows": 3,
+      "independentScopedStockRows": 3
+    },
+    {
+      "childCode": "972-000815",
+      "disclosedScopedStockRows": 1,
+      "independentScopedStockRows": 1
+    },
+    {
+      "childCode": "972-000323",
+      "disclosedScopedStockRows": 1,
+      "independentScopedStockRows": 1
+    },
+    {
+      "childCode": "972-000528",
+      "disclosedScopedStockRows": 0,
+      "independentScopedStockRows": 0
+    },
+    {
+      "childCode": "588-000649",
+      "disclosedScopedStockRows": 0,
+      "independentScopedStockRows": 0
+    },
+    {
+      "childCode": "972-000610",
+      "disclosedScopedStockRows": 2,
+      "independentScopedStockRows": 2
+    },
+    {
+      "childCode": "321-000543",
+      "disclosedScopedStockRows": 0,
+      "independentScopedStockRows": 0
+    },
+    {
+      "childCode": "849-000011",
+      "disclosedScopedStockRows": 2,
+      "independentScopedStockRows": 2
+    },
+    {
+      "childCode": "849-000215",
+      "disclosedScopedStockRows": 0,
+      "independentScopedStockRows": 0
+    },
+    {
+      "childCode": "849-000700",
+      "disclosedScopedStockRows": 3,
+      "independentScopedStockRows": 3
+    },
+    {
+      "childCode": "849-000484",
+      "disclosedScopedStockRows": 1,
+      "independentScopedStockRows": 1
+    },
+    {
+      "childCode": "849-000023",
+      "disclosedScopedStockRows": 0,
+      "independentScopedStockRows": 0
+    },
+    {
+      "childCode": "588-000620",
+      "disclosedScopedStockRows": 1,
+      "independentScopedStockRows": 1
+    },
+    {
+      "childCode": "539-000631",
+      "disclosedScopedStockRows": 0,
+      "independentScopedStockRows": 0
+    },
+    {
+      "childCode": "321-000556",
+      "disclosedScopedStockRows": 0,
+      "independentScopedStockRows": 0
+    },
+    {
+      "childCode": "972-000746",
+      "disclosedScopedStockRows": 0,
+      "independentScopedStockRows": 0
+    },
+    {
+      "childCode": "972-000745",
+      "disclosedScopedStockRows": 2,
+      "independentScopedStockRows": 2
+    },
+    {
+      "childCode": "972-000744",
+      "disclosedScopedStockRows": 0,
+      "independentScopedStockRows": 0
+    },
+    {
+      "childCode": "733-000121",
+      "disclosedScopedStockRows": 1,
+      "independentScopedStockRows": 1
+    },
+    {
+      "childCode": "554-000036",
+      "disclosedScopedStockRows": 3,
+      "independentScopedStockRows": 3
+    },
+    {
+      "childCode": "554-000069",
+      "disclosedScopedStockRows": 1,
+      "independentScopedStockRows": 1
+    },
+    {
+      "childCode": "972-000273",
+      "disclosedScopedStockRows": 1,
+      "independentScopedStockRows": 1
+    },
+    {
+      "childCode": "972-000338",
+      "disclosedScopedStockRows": 4,
+      "independentScopedStockRows": 4
+    },
+    {
+      "childCode": "972-000418",
+      "disclosedScopedStockRows": 1,
+      "independentScopedStockRows": 1
+    },
+    {
+      "childCode": "972-000587",
+      "disclosedScopedStockRows": 0,
+      "independentScopedStockRows": 0
+    },
+    {
+      "childCode": "972-000333",
+      "disclosedScopedStockRows": 3,
+      "independentScopedStockRows": 3
+    },
+    {
+      "childCode": "972-000196",
+      "disclosedScopedStockRows": 2,
+      "independentScopedStockRows": 2
+    },
+    {
+      "childCode": "972-000743",
+      "disclosedScopedStockRows": 0,
+      "independentScopedStockRows": 0
+    },
+    {
+      "childCode": "972-000536",
+      "disclosedScopedStockRows": 1,
+      "independentScopedStockRows": 1
+    },
+    {
+      "childCode": "972-000448",
+      "disclosedScopedStockRows": 1,
+      "independentScopedStockRows": 1
+    },
+    {
+      "childCode": "972-000270",
+      "disclosedScopedStockRows": 1,
+      "independentScopedStockRows": 1
+    },
+    {
+      "childCode": "972-000610",
+      "disclosedScopedStockRows": 2,
+      "independentScopedStockRows": 2
+    },
+    {
+      "childCode": "972-000432",
+      "disclosedScopedStockRows": 2,
+      "independentScopedStockRows": 2
+    },
+    {
+      "childCode": "972-000323",
+      "disclosedScopedStockRows": 1,
+      "independentScopedStockRows": 1
+    },
+    {
+      "childCode": "972-000085",
+      "disclosedScopedStockRows": 0,
+      "independentScopedStockRows": 0
+    },
+    {
+      "childCode": "972-000303",
+      "disclosedScopedStockRows": 2,
+      "independentScopedStockRows": 2
+    },
+    {
+      "childCode": "972-000770",
+      "disclosedScopedStockRows": 2,
+      "independentScopedStockRows": 2
+    },
+    {
+      "childCode": "972-000741",
+      "disclosedScopedStockRows": 2,
+      "independentScopedStockRows": 2
+    },
+    {
+      "childCode": "527-000036",
+      "disclosedScopedStockRows": 3,
+      "independentScopedStockRows": 3
+    },
+    {
+      "childCode": "527-000038",
+      "disclosedScopedStockRows": 1,
+      "independentScopedStockRows": 1
+    },
+    {
+      "childCode": "725-000342",
+      "disclosedScopedStockRows": 1,
+      "independentScopedStockRows": 1
+    },
+    {
+      "childCode": "356-000081",
+      "disclosedScopedStockRows": 2,
+      "independentScopedStockRows": 2
+    },
+    {
+      "childCode": "356-000200",
+      "disclosedScopedStockRows": 2,
+      "independentScopedStockRows": 2
+    },
+    {
+      "childCode": "725-000174",
+      "disclosedScopedStockRows": 1,
+      "independentScopedStockRows": 1
+    },
+    {
+      "childCode": "725-000167",
+      "disclosedScopedStockRows": 1,
+      "independentScopedStockRows": 1
+    },
+    {
+      "childCode": "725-000041",
+      "disclosedScopedStockRows": 1,
+      "independentScopedStockRows": 1
+    },
+    {
+      "childCode": "725-000118",
+      "disclosedScopedStockRows": 4,
+      "independentScopedStockRows": 4
+    },
+    {
+      "childCode": "725-000033",
+      "disclosedScopedStockRows": 2,
+      "independentScopedStockRows": 2
+    },
+    {
+      "childCode": "725-000089",
+      "disclosedScopedStockRows": 3,
+      "independentScopedStockRows": 3
+    },
+    {
+      "childCode": "725-000015",
+      "disclosedScopedStockRows": 8,
+      "independentScopedStockRows": 8
+    },
+    {
+      "childCode": "725-000104",
+      "disclosedScopedStockRows": 2,
+      "independentScopedStockRows": 2
+    },
+    {
+      "childCode": "725-000019",
+      "disclosedScopedStockRows": 3,
+      "independentScopedStockRows": 3
+    },
+    {
+      "childCode": "725-000048",
+      "disclosedScopedStockRows": 3,
+      "independentScopedStockRows": 3
+    },
+    {
+      "childCode": "725-000083",
+      "disclosedScopedStockRows": 0,
+      "independentScopedStockRows": 0
+    },
+    {
+      "childCode": "725-000046",
+      "disclosedScopedStockRows": 3,
+      "independentScopedStockRows": 3
+    },
+    {
+      "childCode": "725-000101",
+      "disclosedScopedStockRows": 2,
+      "independentScopedStockRows": 2
+    },
+    {
+      "childCode": "725-000170",
+      "disclosedScopedStockRows": 1,
+      "independentScopedStockRows": 1
+    },
+    {
+      "childCode": "725-000007",
+      "disclosedScopedStockRows": 2,
+      "independentScopedStockRows": 2
+    },
+    {
+      "childCode": "725-000129",
+      "disclosedScopedStockRows": 2,
+      "independentScopedStockRows": 2
+    },
+    {
+      "childCode": "725-000242",
+      "disclosedScopedStockRows": 1,
+      "independentScopedStockRows": 1
+    },
+    {
+      "childCode": "725-000249",
+      "disclosedScopedStockRows": 0,
+      "independentScopedStockRows": 0
+    },
+    {
+      "childCode": "725-000448",
+      "disclosedScopedStockRows": 1,
+      "independentScopedStockRows": 1
+    },
+    {
+      "childCode": "725-000069",
+      "disclosedScopedStockRows": 3,
+      "independentScopedStockRows": 3
+    },
+    {
+      "childCode": "454-000206",
+      "disclosedScopedStockRows": 1,
+      "independentScopedStockRows": 1
+    },
+    {
+      "childCode": "454-000009",
+      "disclosedScopedStockRows": 4,
+      "independentScopedStockRows": 4
+    },
+    {
+      "childCode": "454-000256",
+      "disclosedScopedStockRows": 3,
+      "independentScopedStockRows": 3
+    },
+    {
+      "childCode": "454-000187",
+      "disclosedScopedStockRows": 3,
+      "independentScopedStockRows": 3
+    },
+    {
+      "childCode": "454-000181",
+      "disclosedScopedStockRows": 6,
+      "independentScopedStockRows": 6
+    },
+    {
+      "childCode": "454-000258",
+      "disclosedScopedStockRows": 6,
+      "independentScopedStockRows": 6
+    },
+    {
+      "childCode": "454-000050",
+      "disclosedScopedStockRows": 3,
+      "independentScopedStockRows": 3
+    },
+    {
+      "childCode": "690-000012",
+      "disclosedScopedStockRows": 3,
+      "independentScopedStockRows": 3
+    },
+    {
+      "childCode": "454-000068",
+      "disclosedScopedStockRows": 3,
+      "independentScopedStockRows": 3
+    },
+    {
+      "childCode": "733-000154",
+      "disclosedScopedStockRows": 2,
+      "independentScopedStockRows": 2
+    },
+    {
+      "childCode": "733-000084",
+      "disclosedScopedStockRows": 4,
+      "independentScopedStockRows": 4
+    },
+    {
+      "childCode": "356-000491",
+      "disclosedScopedStockRows": 0,
+      "independentScopedStockRows": 0
+    },
+    {
+      "childCode": "356-000490",
+      "disclosedScopedStockRows": 0,
+      "independentScopedStockRows": 0
+    },
+    {
+      "childCode": "356-000557",
+      "disclosedScopedStockRows": 0,
+      "independentScopedStockRows": 0
+    },
+    {
+      "childCode": "454-000322",
+      "disclosedScopedStockRows": 2,
+      "independentScopedStockRows": 2
+    },
+    {
+      "childCode": "356-000251",
+      "disclosedScopedStockRows": 1,
+      "independentScopedStockRows": 1
+    },
+    {
+      "childCode": "356-000559",
+      "disclosedScopedStockRows": 0,
+      "independentScopedStockRows": 0
+    },
+    {
+      "childCode": "356-000561",
+      "disclosedScopedStockRows": 0,
+      "independentScopedStockRows": 0
+    },
+    {
+      "childCode": "356-000563",
+      "disclosedScopedStockRows": 1,
+      "independentScopedStockRows": 1
+    },
+    {
+      "childCode": "849-000215",
+      "disclosedScopedStockRows": 0,
+      "independentScopedStockRows": 0
+    },
+    {
+      "childCode": "733-000100",
+      "disclosedScopedStockRows": 5,
+      "independentScopedStockRows": 5
+    },
+    {
+      "childCode": "733-000023",
+      "disclosedScopedStockRows": 1,
+      "independentScopedStockRows": 1
+    },
+    {
+      "childCode": "733-000082",
+      "disclosedScopedStockRows": 1,
+      "independentScopedStockRows": 1
+    },
+    {
+      "childCode": "733-000130",
+      "disclosedScopedStockRows": 1,
+      "independentScopedStockRows": 1
+    },
+    {
+      "childCode": "733-000039",
+      "disclosedScopedStockRows": 2,
+      "independentScopedStockRows": 2
+    },
+    {
+      "childCode": "733-000038",
+      "disclosedScopedStockRows": 3,
+      "independentScopedStockRows": 3
+    },
+    {
+      "childCode": "733-000043",
+      "disclosedScopedStockRows": 0,
+      "independentScopedStockRows": 0
+    },
+    {
+      "childCode": "849-000929",
+      "disclosedScopedStockRows": 0,
+      "independentScopedStockRows": 0
+    },
+    {
+      "childCode": "849-000928",
+      "disclosedScopedStockRows": 1,
+      "independentScopedStockRows": 1
+    },
+    {
+      "childCode": "849-000011",
+      "disclosedScopedStockRows": 2,
+      "independentScopedStockRows": 2
+    },
+    {
+      "childCode": "358-000166",
+      "disclosedScopedStockRows": 2,
+      "independentScopedStockRows": 2
+    },
+    {
+      "childCode": "358-000180",
+      "disclosedScopedStockRows": 4,
+      "independentScopedStockRows": 4
+    },
+    {
+      "childCode": "539-000124",
+      "disclosedScopedStockRows": 3,
+      "independentScopedStockRows": 3
+    },
+    {
+      "childCode": "539-000046",
+      "disclosedScopedStockRows": 2,
+      "independentScopedStockRows": 2
+    },
+    {
+      "childCode": "539-000374",
+      "disclosedScopedStockRows": 10,
+      "independentScopedStockRows": 10
+    },
+    {
+      "childCode": "539-000237",
+      "disclosedScopedStockRows": 1,
+      "independentScopedStockRows": 1
+    },
+    {
+      "childCode": "539-000382",
+      "disclosedScopedStockRows": 2,
+      "independentScopedStockRows": 2
+    },
+    {
+      "childCode": "539-000147",
+      "disclosedScopedStockRows": 4,
+      "independentScopedStockRows": 4
+    },
+    {
+      "childCode": "539-000082",
+      "disclosedScopedStockRows": 3,
+      "independentScopedStockRows": 3
+    },
+    {
+      "childCode": "539-000075",
+      "disclosedScopedStockRows": 1,
+      "independentScopedStockRows": 1
+    },
+    {
+      "childCode": "539-000318",
+      "disclosedScopedStockRows": 1,
+      "independentScopedStockRows": 1
+    },
+    {
+      "childCode": "539-000162",
+      "disclosedScopedStockRows": 2,
+      "independentScopedStockRows": 2
+    },
+    {
+      "childCode": "539-000015",
+      "disclosedScopedStockRows": 1,
+      "independentScopedStockRows": 1
+    },
+    {
+      "childCode": "539-000031",
+      "disclosedScopedStockRows": 3,
+      "independentScopedStockRows": 3
+    },
+    {
+      "childCode": "539-000249",
+      "disclosedScopedStockRows": 1,
+      "independentScopedStockRows": 1
+    },
+    {
+      "childCode": "539-000042",
+      "disclosedScopedStockRows": 2,
+      "independentScopedStockRows": 2
+    },
+    {
+      "childCode": "539-000287",
+      "disclosedScopedStockRows": 1,
+      "independentScopedStockRows": 1
+    },
+    {
+      "childCode": "539-000014",
+      "disclosedScopedStockRows": 1,
+      "independentScopedStockRows": 1
+    },
+    {
+      "childCode": "539-000048",
+      "disclosedScopedStockRows": 1,
+      "independentScopedStockRows": 1
+    },
+    {
+      "childCode": "539-000002",
+      "disclosedScopedStockRows": 4,
+      "independentScopedStockRows": 4
+    },
+    {
+      "childCode": "539-000264",
+      "disclosedScopedStockRows": 3,
+      "independentScopedStockRows": 3
+    },
+    {
+      "childCode": "539-000006",
+      "disclosedScopedStockRows": 2,
+      "independentScopedStockRows": 2
+    },
+    {
+      "childCode": "539-000045",
+      "disclosedScopedStockRows": 1,
+      "independentScopedStockRows": 1
+    },
+    {
+      "childCode": "539-000050",
+      "disclosedScopedStockRows": 2,
+      "independentScopedStockRows": 2
+    },
+    {
+      "childCode": "539-000073",
+      "disclosedScopedStockRows": 4,
+      "independentScopedStockRows": 4
+    },
+    {
+      "childCode": "539-000018",
+      "disclosedScopedStockRows": 3,
+      "independentScopedStockRows": 3
+    },
+    {
+      "childCode": "539-000070",
+      "disclosedScopedStockRows": 1,
+      "independentScopedStockRows": 1
+    },
+    {
+      "childCode": "539-000171",
+      "disclosedScopedStockRows": 2,
+      "independentScopedStockRows": 2
+    },
+    {
+      "childCode": "539-000159",
+      "disclosedScopedStockRows": 2,
+      "independentScopedStockRows": 2
+    },
+    {
+      "childCode": "539-000248",
+      "disclosedScopedStockRows": 2,
+      "independentScopedStockRows": 2
+    },
+    {
+      "childCode": "539-000241",
+      "disclosedScopedStockRows": 2,
+      "independentScopedStockRows": 2
+    },
+    {
+      "childCode": "539-000094",
+      "disclosedScopedStockRows": 2,
+      "independentScopedStockRows": 2
+    },
+    {
+      "childCode": "539-000099",
+      "disclosedScopedStockRows": 0,
+      "independentScopedStockRows": 0
+    },
+    {
+      "childCode": "539-000037",
+      "disclosedScopedStockRows": 2,
+      "independentScopedStockRows": 2
+    },
+    {
+      "childCode": "539-000103",
+      "disclosedScopedStockRows": 4,
+      "independentScopedStockRows": 4
+    },
+    {
+      "childCode": "539-000027",
+      "disclosedScopedStockRows": 2,
+      "independentScopedStockRows": 2
+    },
+    {
+      "childCode": "539-000251",
+      "disclosedScopedStockRows": 1,
+      "independentScopedStockRows": 1
+    },
+    {
+      "childCode": "539-000110",
+      "disclosedScopedStockRows": 7,
+      "independentScopedStockRows": 7
+    },
+    {
+      "childCode": "539-000100",
+      "disclosedScopedStockRows": 3,
+      "independentScopedStockRows": 3
+    },
+    {
+      "childCode": "539-000138",
+      "disclosedScopedStockRows": 3,
+      "independentScopedStockRows": 3
+    },
+    {
+      "childCode": "539-000326",
+      "disclosedScopedStockRows": 0,
+      "independentScopedStockRows": 0
+    },
+    {
+      "childCode": "539-000120",
+      "disclosedScopedStockRows": 5,
+      "independentScopedStockRows": 5
+    },
+    {
+      "childCode": "539-000244",
+      "disclosedScopedStockRows": 2,
+      "independentScopedStockRows": 2
+    },
+    {
+      "childCode": "364-000050",
+      "disclosedScopedStockRows": 1,
+      "independentScopedStockRows": 1
+    },
+    {
+      "childCode": "539-000300",
+      "disclosedScopedStockRows": 3,
+      "independentScopedStockRows": 3
+    },
+    {
+      "childCode": "539-000276",
+      "disclosedScopedStockRows": 2,
+      "independentScopedStockRows": 2
+    },
+    {
+      "childCode": "539-000026",
+      "disclosedScopedStockRows": 4,
+      "independentScopedStockRows": 4
+    },
+    {
+      "childCode": "539-000515",
+      "disclosedScopedStockRows": 2,
+      "independentScopedStockRows": 2
+    },
+    {
+      "childCode": "539-000063",
+      "disclosedScopedStockRows": 1,
+      "independentScopedStockRows": 1
+    },
+    {
+      "childCode": "539-000114",
+      "disclosedScopedStockRows": 5,
+      "independentScopedStockRows": 5
+    },
+    {
+      "childCode": "539-000386",
+      "disclosedScopedStockRows": 1,
+      "independentScopedStockRows": 1
+    },
+    {
+      "childCode": "895-000088",
+      "disclosedScopedStockRows": 0,
+      "independentScopedStockRows": 0
+    },
+    {
+      "childCode": "795-000884",
+      "disclosedScopedStockRows": 1,
+      "independentScopedStockRows": 1
+    },
+    {
+      "childCode": "795-000885",
+      "disclosedScopedStockRows": 1,
+      "independentScopedStockRows": 1
+    },
+    {
+      "childCode": "795-000886",
+      "disclosedScopedStockRows": 1,
+      "independentScopedStockRows": 1
+    },
+    {
+      "childCode": "795-000887",
+      "disclosedScopedStockRows": 1,
+      "independentScopedStockRows": 1
+    },
+    {
+      "childCode": "849-000942",
+      "disclosedScopedStockRows": 0,
+      "independentScopedStockRows": 0
+    },
+    {
+      "childCode": "849-000943",
+      "disclosedScopedStockRows": 1,
+      "independentScopedStockRows": 1
+    },
+    {
+      "childCode": "588-000653",
+      "disclosedScopedStockRows": 0,
+      "independentScopedStockRows": 0
+    },
+    {
+      "childCode": "356-000560",
+      "disclosedScopedStockRows": 0,
+      "independentScopedStockRows": 0
+    },
+    {
+      "childCode": "321-000502",
+      "disclosedScopedStockRows": 0,
+      "independentScopedStockRows": 0
+    },
+    {
+      "childCode": "690-000047",
+      "disclosedScopedStockRows": 3,
+      "independentScopedStockRows": 3
+    },
+    {
+      "childCode": "539-000110",
+      "disclosedScopedStockRows": 7,
+      "independentScopedStockRows": 7
+    },
+    {
+      "childCode": "321-000503",
+      "disclosedScopedStockRows": 0,
+      "independentScopedStockRows": 0
+    },
+    {
+      "childCode": "356-000081",
+      "disclosedScopedStockRows": 2,
+      "independentScopedStockRows": 2
+    },
+    {
+      "childCode": "725-000089",
+      "disclosedScopedStockRows": 3,
+      "independentScopedStockRows": 3
+    },
+    {
+      "childCode": "725-000041",
+      "disclosedScopedStockRows": 1,
+      "independentScopedStockRows": 1
+    },
+    {
+      "childCode": "725-000088",
+      "disclosedScopedStockRows": 2,
+      "independentScopedStockRows": 2
+    },
+    {
+      "childCode": "725-000019",
+      "disclosedScopedStockRows": 3,
+      "independentScopedStockRows": 3
+    },
+    {
+      "childCode": "725-000033",
+      "disclosedScopedStockRows": 2,
+      "independentScopedStockRows": 2
+    },
+    {
+      "childCode": "454-000258",
+      "disclosedScopedStockRows": 6,
+      "independentScopedStockRows": 6
+    },
+    {
+      "childCode": "733-000084",
+      "disclosedScopedStockRows": 4,
+      "independentScopedStockRows": 4
+    },
+    {
+      "childCode": "849-000215",
+      "disclosedScopedStockRows": 0,
+      "independentScopedStockRows": 0
+    },
+    {
+      "childCode": "733-000236",
+      "disclosedScopedStockRows": 1,
+      "independentScopedStockRows": 1
+    },
+    {
+      "childCode": "358-000166",
+      "disclosedScopedStockRows": 2,
+      "independentScopedStockRows": 2
+    },
+    {
+      "childCode": "539-000026",
+      "disclosedScopedStockRows": 4,
+      "independentScopedStockRows": 4
+    },
+    {
+      "childCode": "539-000043",
+      "disclosedScopedStockRows": 2,
+      "independentScopedStockRows": 2
+    },
+    {
+      "childCode": "539-000162",
+      "disclosedScopedStockRows": 2,
+      "independentScopedStockRows": 2
+    },
+    {
+      "childCode": "539-000002",
+      "disclosedScopedStockRows": 4,
+      "independentScopedStockRows": 4
+    },
+    {
+      "childCode": "539-000006",
+      "disclosedScopedStockRows": 2,
+      "independentScopedStockRows": 2
+    },
+    {
+      "childCode": "356-000562",
+      "disclosedScopedStockRows": 0,
+      "independentScopedStockRows": 0
+    },
+    {
+      "childCode": "165-002371",
+      "disclosedScopedStockRows": 5,
+      "independentScopedStockRows": 5
+    },
+    {
+      "childCode": "321-000498",
+      "disclosedScopedStockRows": 0,
+      "independentScopedStockRows": 0
+    },
+    {
+      "childCode": "795-000863",
+      "disclosedScopedStockRows": 2,
+      "independentScopedStockRows": 2
+    },
+    {
+      "childCode": "725-000242",
+      "disclosedScopedStockRows": 1,
+      "independentScopedStockRows": 1
+    },
+    {
+      "childCode": "725-000415",
+      "disclosedScopedStockRows": 2,
+      "independentScopedStockRows": 2
+    },
+    {
+      "childCode": "725-000431",
+      "disclosedScopedStockRows": 1,
+      "independentScopedStockRows": 1
+    },
+    {
+      "childCode": "725-000432",
+      "disclosedScopedStockRows": 1,
+      "independentScopedStockRows": 1
+    },
+    {
+      "childCode": "725-000433",
+      "disclosedScopedStockRows": 1,
+      "independentScopedStockRows": 1
+    },
+    {
+      "childCode": "725-000434",
+      "disclosedScopedStockRows": 0,
+      "independentScopedStockRows": 0
+    },
+    {
+      "childCode": "539-000379",
+      "disclosedScopedStockRows": 1,
+      "independentScopedStockRows": 1
+    },
+    {
+      "childCode": "539-000310",
+      "disclosedScopedStockRows": 1,
+      "independentScopedStockRows": 1
+    },
+    {
+      "childCode": "539-000589",
+      "disclosedScopedStockRows": 2,
+      "independentScopedStockRows": 2
+    },
+    {
+      "childCode": "539-000544",
+      "disclosedScopedStockRows": 0,
+      "independentScopedStockRows": 0
+    },
+    {
+      "childCode": "972-000264",
+      "disclosedScopedStockRows": 0,
+      "independentScopedStockRows": 0
+    },
+    {
+      "childCode": "972-000688",
+      "disclosedScopedStockRows": 1,
+      "independentScopedStockRows": 1
+    },
+    {
+      "childCode": "972-000689",
+      "disclosedScopedStockRows": 3,
+      "independentScopedStockRows": 3
+    },
+    {
+      "childCode": "972-000159",
+      "disclosedScopedStockRows": 2,
+      "independentScopedStockRows": 2
+    },
+    {
+      "childCode": "527-000053",
+      "disclosedScopedStockRows": 2,
+      "independentScopedStockRows": 2
+    },
+    {
+      "childCode": "539-000245",
+      "disclosedScopedStockRows": 2,
+      "independentScopedStockRows": 2
+    },
+    {
+      "childCode": "972-000712",
+      "disclosedScopedStockRows": 2,
+      "independentScopedStockRows": 2
+    },
+    {
+      "childCode": "321-000476",
+      "disclosedScopedStockRows": 0,
+      "independentScopedStockRows": 0
+    },
+    {
+      "childCode": "725-000004",
+      "disclosedScopedStockRows": 2,
+      "independentScopedStockRows": 2
+    },
+    {
+      "childCode": "725-000088",
+      "disclosedScopedStockRows": 2,
+      "independentScopedStockRows": 2
+    },
+    {
+      "childCode": "539-000001",
+      "disclosedScopedStockRows": 5,
+      "independentScopedStockRows": 5
+    },
+    {
+      "childCode": "539-000003",
+      "disclosedScopedStockRows": 2,
+      "independentScopedStockRows": 2
+    },
+    {
+      "childCode": "539-000005",
+      "disclosedScopedStockRows": 2,
+      "independentScopedStockRows": 2
+    },
+    {
+      "childCode": "539-000018",
+      "disclosedScopedStockRows": 3,
+      "independentScopedStockRows": 3
+    },
+    {
+      "childCode": "690-000012",
+      "disclosedScopedStockRows": 3,
+      "independentScopedStockRows": 3
+    },
+    {
+      "childCode": "690-000005",
+      "disclosedScopedStockRows": 2,
+      "independentScopedStockRows": 2
+    },
+    {
+      "childCode": "454-000004",
+      "disclosedScopedStockRows": 0,
+      "independentScopedStockRows": 0
+    },
+    {
+      "childCode": "364-000046",
+      "disclosedScopedStockRows": 2,
+      "independentScopedStockRows": 2
+    },
+    {
+      "childCode": "733-000199",
+      "disclosedScopedStockRows": 2,
+      "independentScopedStockRows": 2
+    },
+    {
+      "childCode": "972-000587",
+      "disclosedScopedStockRows": 0,
+      "independentScopedStockRows": 0
+    },
+    {
+      "childCode": "356-000558",
+      "disclosedScopedStockRows": 0,
+      "independentScopedStockRows": 0
+    },
+    {
+      "childCode": "321-000501",
+      "disclosedScopedStockRows": 0,
+      "independentScopedStockRows": 0
+    },
+    {
+      "childCode": "356-000389",
+      "disclosedScopedStockRows": 0,
+      "independentScopedStockRows": 0
+    },
+    {
+      "childCode": "454-000258",
+      "disclosedScopedStockRows": 6,
+      "independentScopedStockRows": 6
+    },
+    {
+      "childCode": "356-000382",
+      "disclosedScopedStockRows": 0,
+      "independentScopedStockRows": 0
+    },
+    {
+      "childCode": "539-000026",
+      "disclosedScopedStockRows": 4,
+      "independentScopedStockRows": 4
+    }
+  ]
+}

@@ -1,0 +1,80 @@
+{
+  "packageName": "@openbkn/dsh-business-context",
+  "version": "0.2.0-rc.2-openbkn.0.2.0-7",
+  "sourceCommit": "3414bdec3c956cc0d580aebd959ac6f3439bb352",
+  "sourceBranch": "docs/unified7-fidelity-acceptance",
+  "ciRunId": 37478119730,
+  "publish": false,
+  "artifactName": "plugin-tarball",
+  "tgzSha256": "6bbab27876e743032572ddce107fcce09e0d681f87bee19fba8d78180e5a63a8",
+  "tgzSizeBytes": 177442,
+  "tgzPath": "release/unified-7-candidate/3414bde/openbkn-dsh-business-context-0.2.0-rc.2-openbkn.0.2.0-7.tgz",
+  "fileCount": 66,
+  "declaredTargets": [
+    {
+      "condition": "exports/./types",
+      "path": "./lib/types/index.d.ts"
+    },
+    {
+      "condition": "exports/./default",
+      "path": "./lib/index.js"
+    },
+    {
+      "condition": "exports/./business/types",
+      "path": "./lib/types/business.d.ts"
+    },
+    {
+      "condition": "exports/./business/default",
+      "path": "./lib/business.js"
+    },
+    {
+      "condition": "exports/./diagnostics/types",
+      "path": "./lib/types/diagnostics.d.ts"
+    },
+    {
+      "condition": "exports/./diagnostics/default",
+      "path": "./lib/diagnostics.js"
+    },
+    {
+      "condition": "exports/./types/types",
+      "path": "./lib/types/types.d.ts"
+    },
+    {
+      "condition": "exports/./client/types",
+      "path": "./lib/types/client/index.d.ts"
+    },
+    {
+      "condition": "exports/./client/default",
+      "path": "./lib/client.js"
+    },
+    {
+      "condition": "exports/./typert/types",
+      "path": "./lib/typert.host.d.ts"
+    },
+    {
+      "condition": "exports/./typert/default",
+      "path": "./lib/typert.host.js"
+    },
+    {
+      "condition": "exports/./remote/types",
+      "path": "./lib/typert.remote-client.d.ts"
+    },
+    {
+      "condition": "exports/./remote/default",
+      "path": "./lib/typert.remote-client.js"
+    },
+    {
+      "condition": "exports/./package.json",
+      "path": "./package.json"
+    },
+    {
+      "condition": "main",
+      "path": "./lib/index.js"
+    },
+    {
+      "condition": "types",
+      "path": "./lib/types/index.d.ts"
+    }
+  ],
+  "dshLlmPeerVersion": "0.2.0-rc.2"
+}

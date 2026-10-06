@@ -1,0 +1,157 @@
+{
+  "formatVersion": 1,
+  "scope": "All kit files except this hash manifest; outer fixed-commit ZIP SHA binds the manifest itself.",
+  "fileCount": 30,
+  "files": [
+    {
+      "path": "HANDOFF.md",
+      "sizeBytes": 12357,
+      "sha256": "b89e5ff1fb455ce9fda59093f751795e97afea3a674c92a888f698febbe190f3"
+    },
+    {
+      "path": "README.md",
+      "sizeBytes": 4875,
+      "sha256": "b5d99d54cb9cd569c9718272d460e329a1d357e3481f70c2c08fb008de98f688"
+    },
+    {
+      "path": "RESULTS.template.md",
+      "sizeBytes": 1966,
+      "sha256": "9f6dff2a903eb3278aca269a5d2ce4b593bc99225b58afce413b4e8d39870dcc"
+    },
+    {
+      "path": "candidate/candidate-files.json",
+      "sizeBytes": 11891,
+      "sha256": "47d7f51e776dac66450b72a1c498814fe646463a79c928934ea272cfdf9a7ab5"
+    },
+    {
+      "path": "candidate/candidate-files.txt",
+      "sizeBytes": 7000,
+      "sha256": "0fa06ccd7360a9d109ccf7dad082ebab85b23b8bc1e54786374bc4e0fe984fa0"
+    },
+    {
+      "path": "candidate/openbkn-dsh-business-context-0.2.0-rc.2-openbkn.0.2.0-7.tgz",
+      "sizeBytes": 177442,
+      "sha256": "6bbab27876e743032572ddce107fcce09e0d681f87bee19fba8d78180e5a63a8"
+    },
+    {
+      "path": "candidate-manifest.json",
+      "sizeBytes": 6737,
+      "sha256": "353a7b387eba894c95a15b5553204aff4d1a9ee70d134f911307112908dbb3b4"
+    },
+    {
+      "path": "certificates/certificate-identity.json",
+      "sizeBytes": 606,
+      "sha256": "b4a668c9e380e6254cbe7eec73dc40d55ff4fcf0beb9663e72afdb3a5ff2a62a"
+    },
+    {
+      "path": "certificates/openbkn-dev-ca.pem",
+      "sizeBytes": 1192,
+      "sha256": "89e53b4e7a09305c01c37513a9bdda63698735a33a0df71f725875ec47180453"
+    },
+    {
+      "path": "eval/export-supply-session.py",
+      "sizeBytes": 6338,
+      "sha256": "fab9d96a216f5cd599dd17013f3fc4b3bc5b0e69af1a0f1af6d97decca4215d6"
+    },
+    {
+      "path": "eval/run-eval.mjs",
+      "sizeBytes": 6154,
+      "sha256": "52f8eb0dba9f59b09c7cb975996095b8a690d4b27cf2711ca19cdcca1dbf5f35"
+    },
+    {
+      "path": "eval/run-eval.test.mjs",
+      "sizeBytes": 2454,
+      "sha256": "43daee9af3171121e511e8e6ad547ee761c4ff2a45fa427c693f75aff8f26894"
+    },
+    {
+      "path": "eval/supply-ontology.yaml",
+      "sizeBytes": 5563,
+      "sha256": "dfed0e81646aa28d4e4c68f83607462c428ed1423fc2c58b30c4f4b3644fcf23"
+    },
+    {
+      "path": "eval/test-supply-tools.py",
+      "sizeBytes": 8547,
+      "sha256": "1053eb9f6dcecf1c83e1a003bcc7adf5cf6a3676e58349f3eeeadbf2e3f384f9"
+    },
+    {
+      "path": "eval/verify-delivered-inventory.py",
+      "sizeBytes": 4669,
+      "sha256": "6b11f2bf4d90f1ef3d5a5932c9534d19cdc7ea05e3819fe6e56749a48876cd61"
+    },
+    {
+      "path": "eval/verify-supply-answer.py",
+      "sizeBytes": 4816,
+      "sha256": "d4a0198c8c28114abd27d039104eacb574624a11fa26e79ef9a18314a8cf5b43"
+    },
+    {
+      "path": "eval/verify-supply-completeness.py",
+      "sizeBytes": 7481,
+      "sha256": "123626a65b20f2310970511eceee4915b22dc1a7d461671fa9b8e9b5c5794c8f"
+    },
+    {
+      "path": "probe/prepare-fidelity-probe.mjs",
+      "sizeBytes": 2848,
+      "sha256": "395f3cbdf6312d4eee16c34b026666bd205643e8140a4a2b885f5910a2f9c1a8"
+    },
+    {
+      "path": "probe/tests/fixtures/context-loader-tools-v0.1.5.json",
+      "sizeBytes": 2097,
+      "sha256": "f018fced44f7d95116df92bac5353e8767f0be6c48666277b964d3180102e65e"
+    },
+    {
+      "path": "probe/tests/guard-probe-cli.test.mjs",
+      "sizeBytes": 3336,
+      "sha256": "6ec6321a23dc78688049cf375555db6ea7ef59390bad7d27bb30296b51fe35f1"
+    },
+    {
+      "path": "probe/tests/probes/answer-fidelity-runtime.probe.mjs",
+      "sizeBytes": 9232,
+      "sha256": "dfb84e40b7ba025e6263620f5deebbc31f38a0680cc4b4af778d89e8e79c6559"
+    },
+    {
+      "path": "probe/tests/probes/guard-probe-cli.mjs",
+      "sizeBytes": 2532,
+      "sha256": "42e9304b92b830b87f0ab6e42aacc5afe7454ae1b93bb17f3b0d57d032635051"
+    },
+    {
+      "path": "probe/tests/probes/guard-runtime.probe.mjs",
+      "sizeBytes": 12456,
+      "sha256": "589dd2306660eab6f9f44383d27dc83241ee734d60b2f33fc60c4616fcac5aac"
+    },
+    {
+      "path": "schema/diagnostics-contract.ts",
+      "sizeBytes": 9196,
+      "sha256": "f44c9981d2bbc3143a14a4dab54eef6d3b34cdbba8d27529cf96ead5abd7dab1"
+    },
+    {
+      "path": "verify-kit.ps1",
+      "sizeBytes": 4327,
+      "sha256": "0805d4793a9168d32fad638540c47ed2632e00a5c68246ee1ff9565df3221f03"
+    },
+    {
+      "path": "windows/README.md",
+      "sizeBytes": 3994,
+      "sha256": "a5137ece2d953a191cbca42d966a6c026cec4c6a057e3b5ac044b2cb002750f3"
+    },
+    {
+      "path": "windows/cleanup.ps1",
+      "sizeBytes": 5311,
+      "sha256": "31bc3a021e548fb54ae16eba8afd87f444a6c153786f88d4589c3721cceb5011"
+    },
+    {
+      "path": "windows/collect-state-hashes.ps1",
+      "sizeBytes": 838,
+      "sha256": "a382a74363af10d784028648281a5919153117eb559d5718321a17aa69c38c99"
+    },
+    {
+      "path": "windows/prepare.ps1",
+      "sizeBytes": 4239,
+      "sha256": "5b661cc9286973a0965daf39eaf8075d909d25b2d7a01460e5dfc5245a1f6a64"
+    },
+    {
+      "path": "windows/run-case.ps1",
+      "sizeBytes": 8612,
+      "sha256": "786a16b1930fb7e2b10cd58122420ca2872c10f120c8ad69e8f7f157aa298483"
+    }
+  ]
+}

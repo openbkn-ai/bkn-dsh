@@ -1,0 +1,62 @@
+{
+  "sourceCommit": "3ac73ccd4f2d8bf359466f715040e53944f24fad",
+  "ciRunId": 37467766263,
+  "candidateSha256": "b73d5b13693cdfe86ea6d0e944bc27641a37d32594e33f7070ca11567295d424",
+  "status": "ci-and-headless-checks-pass-native-desktop-replay-in-progress",
+  "pluginTests": {
+    "total": 338,
+    "passed": 337,
+    "failed": 0,
+    "skipped": 1
+  },
+  "repositoryTests": {
+    "passed": 60,
+    "failed": 0
+  },
+  "declaredTargets": 16,
+  "installedFilesMatched": 66,
+  "selectedProtectedFilesUnchanged": true,
+  "controlledCoreProbes": {
+    "npm-runtime-probe": {
+      "passed": 5,
+      "total": 5,
+      "scope": "official core with fixture model/tools"
+    },
+    "desktop-runtime-probe": {
+      "passed": 5,
+      "total": 5,
+      "scope": "official core with fixture model/tools"
+    }
+  },
+  "liveGuard": {
+    "passed": 16,
+    "total": 16,
+    "scope": "two authorized real networks; not restricted-account acceptance"
+  },
+  "npmHostCases": [
+    "normal component-loaded",
+    "invalid URL configuration-invalid/configField=baseUrl",
+    "business import module-resolution-failed; bootstrap/diagnostics pass"
+  ],
+  "nativeOriginalQuestions": {
+    "status": "formal replay after verified readiness; Q1 completed, Q2 running, Q3 pending",
+    "attempted": 1,
+    "passed": 1,
+    "failedPreparationAttempt": "ci-3ac73cc-preparation-standard-lead-time.json"
+  },
+  "desktopProcess": {
+    "pid": 59945,
+    "processStart": "Tue Oct  6 21:10:05 2026",
+    "executable": "/Applications/DeepSeek Harness.app/Contents/MacOS/DeepSeek Harness",
+    "command": "/Applications/DeepSeek Harness.app/Contents/MacOS/DeepSeek Harness",
+    "testHome": "/private/var/folders/9r/1zks6bqd7f3dtwybvxsksbc40000gn/T/openbkn-diag-ui-h76__jwb/desktop-home",
+    "sourceCommit": "3ac73ccd4f2d8bf359466f715040e53944f24fad",
+    "ciRunId": 37467766263,
+    "candidateSha256": "b73d5b13693cdfe86ea6d0e944bc27641a37d32594e33f7070ca11567295d424",
+    "inspectorUsed": false,
+    "launchedAt": "2026-10-06T13:10:05.024921+00:00"
+  },
+  "windowsHandoffHeld": true,
+  "releaseAccepted": false,
+  "publish": false
+}

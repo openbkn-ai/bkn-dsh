@@ -1,0 +1,154 @@
+{
+  "pullRequest": 71,
+  "approvedExactHead": "c5c001a4311dff38ea96eded309fd8b71aed7bad",
+  "reviewRunId": 37467267776,
+  "beforeMerge": {
+    "headRefOid": "c5c001a4311dff38ea96eded309fd8b71aed7bad",
+    "mergeStateStatus": "CLEAN",
+    "reviewDecision": "APPROVED",
+    "reviews": [
+      {
+        "id": "PRR_kwDOUNu5088AAAABQ5Lluw",
+        "author": {
+          "login": "claude"
+        },
+        "authorAssociation": "NONE",
+        "body": "",
+        "submittedAt": "2026-10-06T12:56:04Z",
+        "includesCreatedEdit": false,
+        "reactionGroups": [],
+        "state": "COMMENTED",
+        "commit": {
+          "oid": "f69e379aa6024eff2592a890b653ef167ec3e3fd"
+        }
+      },
+      {
+        "id": "PRR_kwDOUNu5088AAAABQ5MK7Q",
+        "author": {
+          "login": "github-actions"
+        },
+        "authorAssociation": "NONE",
+        "body": "The new producer-side handoff repair is narrowly gated (open Interaction, successful non-aborted run_code, full-detail question, equal positive counts, no parsed header) and deduped per turn, and the tests/probe exercise the real captured headerless failure. The main open question is that the solicited reprint becomes the sole authoritative handoff without any cross-check against the headerless o\u2026\n\n\n<details><summary>Impact and review coverage</summary>\n\n- Impact: A turn that previously failed closed on a headerless complete handoff can now complete as validated against a model-supplied relabelled reprint.\n- Not covered: `ToolExecution.signal` on `tools/result` and the DSH-side handling of the new optional `source.phase` field were not verified against the pinned DSH types (no installed DSH checkout here); the offici\u2026\n\n</details>\n\n## Items to confirm (nonblocking)\n\n- **packages/openbkn-business-context/src/answer-fidelity.ts** \u2014 Once any labelled table parses as complete, the `incomplete` evidence from the original headerless handoff is discarded unconditionally (`answer-fidelity.ts:303-308` sets it, `:324` only consults it when `expected.lengt\u2026\n- **packages/openbkn-business-context/src/managed-session-policy.ts** \u2014 `managed-session-policy.ts:83` makes the sandbox copy in `openbkn-bom-handoff.txt` part of the same rule that mandates the header, and the repair notice's recovery path allows only \"the saved handoff or existing sandbox\u2026\n\nReply `/review` to discuss findings or request another round; ordinary replies do not trigger a review. The requester must be an OWNER, MEMBER or COLLABORATOR.",
+        "submittedAt": "2026-10-06T12:56:49Z",
+        "includesCreatedEdit": false,
+        "reactionGroups": [],
+        "state": "APPROVED",
+        "commit": {
+          "oid": "f69e379aa6024eff2592a890b653ef167ec3e3fd"
+        }
+      },
+      {
+        "id": "PRR_kwDOUNu5088AAAABQ5MsvA",
+        "author": {
+          "login": "kalias"
+        },
+        "authorAssociation": "MEMBER",
+        "body": "",
+        "submittedAt": "2026-10-06T12:57:31Z",
+        "includesCreatedEdit": false,
+        "reactionGroups": [],
+        "state": "COMMENTED",
+        "commit": {
+          "oid": "f69e379aa6024eff2592a890b653ef167ec3e3fd"
+        }
+      },
+      {
+        "id": "PRR_kwDOUNu5088AAAABQ5PodQ",
+        "author": {
+          "login": "github-actions"
+        },
+        "authorAssociation": "NONE",
+        "body": "The only new commit (c5c001a) strips the header from the intermediate-page fixture, so that assertion now depends on the declared/emitted count mismatch alone and the headerless count guard is genuinely exercised. Both prior nonblocking items were answered by the author (deliberate no-inference design plus the pinned-DSH typecheck and dual-core signal/lifecycle scenarios); nothing new surfaced.\n\n\n<details><summary>Impact and review coverage</summary>\n\n- Not covered: Tests were not executed in this environment (command approval unavailable), so the 20/20 focused run and the pending live model/sandbox replay rest on the author's report.\n\n</details>\n\nReply `/review` to discuss findings or request another round; ordinary replies do not trigger a review. The requester must be an OWNER, MEMBER or COLLABORATOR.",
+        "submittedAt": "2026-10-06T13:01:45Z",
+        "includesCreatedEdit": false,
+        "reactionGroups": [],
+        "state": "APPROVED",
+        "commit": {
+          "oid": "c5c001a4311dff38ea96eded309fd8b71aed7bad"
+        }
+      }
+    ],
+    "statusCheckRollup": [
+      {
+        "__typename": "CheckRun",
+        "completedAt": "2026-10-06T12:58:00Z",
+        "conclusion": "SUCCESS",
+        "detailsUrl": "https://github.com/openbkn-ai/bkn-dsh/actions/runs/37467098724/job/112280772344",
+        "name": "plan",
+        "startedAt": "2026-10-06T12:57:40Z",
+        "status": "COMPLETED",
+        "workflowName": "Claude Code Review"
+      },
+      {
+        "__typename": "CheckRun",
+        "completedAt": "2026-10-06T12:58:57Z",
+        "conclusion": "SUCCESS",
+        "detailsUrl": "https://github.com/openbkn-ai/bkn-dsh/actions/runs/37467092032/job/112280757110",
+        "name": "Analyze (actions)",
+        "startedAt": "2026-10-06T12:57:40Z",
+        "status": "COMPLETED",
+        "workflowName": "CodeQL"
+      },
+      {
+        "__typename": "CheckRun",
+        "completedAt": "2026-10-06T12:59:20Z",
+        "conclusion": "SUCCESS",
+        "detailsUrl": "https://github.com/openbkn-ai/bkn-dsh/actions/runs/37467092032/job/112280756845",
+        "name": "Analyze (javascript-typescript)",
+        "startedAt": "2026-10-06T12:57:38Z",
+        "status": "COMPLETED",
+        "workflowName": "CodeQL"
+      },
+      {
+        "__typename": "CheckRun",
+        "completedAt": "2026-10-06T12:58:02Z",
+        "conclusion": "SKIPPED",
+        "detailsUrl": "https://github.com/openbkn-ai/bkn-dsh/actions/runs/37467098724/job/112280952278",
+        "name": "review (${{ matrix.shard.label }})",
+        "startedAt": "2026-10-06T12:58:02Z",
+        "status": "COMPLETED",
+        "workflowName": "Claude Code Review"
+      },
+      {
+        "__typename": "CheckRun",
+        "completedAt": "2026-10-06T12:58:03Z",
+        "conclusion": "SKIPPED",
+        "detailsUrl": "https://github.com/openbkn-ai/bkn-dsh/actions/runs/37467098724/job/112280954993",
+        "name": "verify",
+        "startedAt": "2026-10-06T12:58:03Z",
+        "status": "COMPLETED",
+        "workflowName": "Claude Code Review"
+      },
+      {
+        "__typename": "CheckRun",
+        "completedAt": "2026-10-06T12:58:03Z",
+        "conclusion": "SKIPPED",
+        "detailsUrl": "https://github.com/openbkn-ai/bkn-dsh/actions/runs/37467098724/job/112280957235",
+        "name": "verdict",
+        "startedAt": "2026-10-06T12:58:03Z",
+        "status": "COMPLETED",
+        "workflowName": "Claude Code Review"
+      },
+      {
+        "__typename": "CheckRun",
+        "completedAt": "2026-10-06T12:58:49Z",
+        "conclusion": "SUCCESS",
+        "detailsUrl": "https://github.com/openbkn-ai/bkn-dsh/runs/112281265070",
+        "name": "CodeQL",
+        "startedAt": "2026-10-06T12:58:46Z",
+        "status": "COMPLETED",
+        "workflowName": ""
+      }
+    ],
+    "url": "https://github.com/openbkn-ai/bkn-dsh/pull/71"
+  },
+  "afterMerge": {
+    "headRefOid": "c5c001a4311dff38ea96eded309fd8b71aed7bad",
+    "mergeCommit": {
+      "oid": "3ac73ccd4f2d8bf359466f715040e53944f24fad"
+    },
+    "mergedAt": "2026-10-06T13:02:25Z",
+    "state": "MERGED",
+    "url": "https://github.com/openbkn-ai/bkn-dsh/pull/71"
+  }
+}

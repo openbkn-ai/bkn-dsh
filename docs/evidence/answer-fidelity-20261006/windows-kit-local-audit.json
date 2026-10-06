@@ -1,0 +1,32 @@
+{
+  "scope": "macOS Python ZIP/tgz/hash audit only. Native PowerShell verifier parsing/execution and Windows Host tests remain pending.",
+  "zipSha256": "df0016c6d2b511c009f932402dd80155248c4ac61260cbd3cad70ecb483cef54",
+  "zipEntries": 31,
+  "kitFilesHashed": 30,
+  "tgzSha256": "6bbab27876e743032572ddce107fcce09e0d681f87bee19fba8d78180e5a63a8",
+  "packageFilesVerified": 66,
+  "verifiedHelpers": [
+    {
+      "name": "prepare.ps1",
+      "sha256": "5b661cc9286973a0965daf39eaf8075d909d25b2d7a01460e5dfc5245a1f6a64",
+      "unchangedFromWindowsVerified54f6669Kit": true
+    },
+    {
+      "name": "run-case.ps1",
+      "sha256": "786a16b1930fb7e2b10cd58122420ca2872c10f120c8ad69e8f7f157aa298483",
+      "unchangedFromWindowsVerified54f6669Kit": true
+    },
+    {
+      "name": "cleanup.ps1",
+      "sha256": "31bc3a021e548fb54ae16eba8afd87f444a6c153786f88d4589c3721cceb5011",
+      "unchangedFromWindowsVerified54f6669Kit": true
+    },
+    {
+      "name": "collect-state-hashes.ps1",
+      "sha256": "a382a74363af10d784028648281a5919153117eb559d5718321a17aa69c38c99",
+      "unchangedFromWindowsVerified54f6669Kit": true
+    }
+  ],
+  "probeScriptMatchesAcceptedSource": true,
+  "nativeWindowsRetest": "pending"
+}

@@ -1,0 +1,14 @@
+{
+  "scope": "selected existing isolated Host configuration; fresh content hashes immediately before repeated full plugin remove/install; no credentials exported",
+  "capturedAt": "2026-10-06T12:26:11.888152+00:00",
+  "files": [
+    {
+      "relativePath": ".credentials.yaml",
+      "sha256": "74c48524ad8fb747af7c32f372bf9d7897dcba5ed77ef296ced1cc8701a73974"
+    },
+    {
+      "relativePath": "profiles/desktop/cordis.patch.yml",
+      "sha256": "ee08d266e84ed62d9e83b6c2350255db7615916a1990fd023e388098221f245c"
+    }
+  ]
+}

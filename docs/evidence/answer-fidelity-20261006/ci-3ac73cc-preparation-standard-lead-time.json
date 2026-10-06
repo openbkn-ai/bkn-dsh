@@ -1,0 +1,99 @@
+{
+  "sessionId": "session-1ddd9a67-9757-4f25-8b65-bc5f0871bbf5",
+  "question": [
+    "382-000005 的标准交期？"
+  ],
+  "assistantText": [
+    "I'll look this up in the bound knowledge network.",
+    "无法查询到该数据：本会话未注册 OpenBKN 托管工具（`bkn_start_interaction` 返回 “not registered in this session”），因此无法建立 Interaction，也无法访问绑定知识网络 `supply_ontology_hand` 中的物料 382-000005 交期字段。\n\n这是平台侧的工具注册/会话条件问题，不是该物料无数据。请在 OpenBKN 托管工具可用后重试，或联系管理员检查该会话的工具注册。"
+  ],
+  "finalAnswer": {
+    "turn": 1,
+    "step": 3,
+    "text": "无法查询到该数据：本会话未注册 OpenBKN 托管工具（`bkn_start_interaction` 返回 “not registered in this session”），因此无法建立 Interaction，也无法访问绑定知识网络 `supply_ontology_hand` 中的物料 382-000005 交期字段。\n\n这是平台侧的工具注册/会话条件问题，不是该物料无数据。请在 OpenBKN 托管工具可用后重试，或联系管理员检查该会话的工具注册。",
+    "turnEndReason": {
+      "kind": "completed"
+    }
+  },
+  "fidelityNotices": [],
+  "toolEvents": [
+    {
+      "type": "tool/call",
+      "time": 1791292979932,
+      "turn": 1,
+      "step": 1,
+      "callId": "call_00_AiRr8B9HDdG4Sfu7KCQd1244",
+      "name": "bash",
+      "arguments": "{\"command\": \"pwd\", \"description\": \"Show working directory\"}"
+    },
+    {
+      "type": "tool/result",
+      "time": 1791292979935,
+      "turn": 1,
+      "step": 1,
+      "callId": "call_00_AiRr8B9HDdG4Sfu7KCQd1244",
+      "hostErrorFlag": true,
+      "content": [
+        {
+          "type": "text",
+          "text": "Error: This OpenBKN business session only permits managed OpenBKN tools."
+        }
+      ]
+    },
+    {
+      "type": "tool/call",
+      "time": 1791292979936,
+      "turn": 1,
+      "step": 1,
+      "callId": "call_01_gxeaaAScde2SIyMnhyFo1765",
+      "name": "ask_user_question",
+      "arguments": "{\"questions\": [{\"id\": \"noop\", \"header\": \"Placeholder\", \"question\": \"ignore\", \"options\": [{\"label\": \"ignore\"}]}]}"
+    },
+    {
+      "type": "tool/result",
+      "time": 1791292979936,
+      "turn": 1,
+      "step": 1,
+      "callId": "call_01_gxeaaAScde2SIyMnhyFo1765",
+      "hostErrorFlag": true,
+      "content": [
+        {
+          "type": "text",
+          "text": "Error: This OpenBKN business session only permits managed OpenBKN tools."
+        }
+      ]
+    },
+    {
+      "type": "tool/call",
+      "time": 1791292981115,
+      "turn": 1,
+      "step": 2,
+      "callId": "call_00_cFfy4lq3a3NZqosDiyAE3711",
+      "name": "mcp__openbkn__bkn_start_interaction",
+      "arguments": "{\"conversation_mode\": \"new\", \"question\": \"382-000005 的标准交期？\", \"agent_name\": \"bkn-agent-dsh-business-context\"}"
+    },
+    {
+      "type": "tool/result",
+      "time": 1791292981116,
+      "turn": 1,
+      "step": 2,
+      "callId": "call_00_cFfy4lq3a3NZqosDiyAE3711",
+      "hostErrorFlag": true,
+      "content": [
+        {
+          "type": "text",
+          "text": "Error: mcp__openbkn__bkn_start_interaction is not registered in this session, so its network scope cannot be checked. Do not retry it."
+        }
+      ]
+    }
+  ],
+  "turnEnds": [
+    {
+      "time": 1791292983233,
+      "turn": 1,
+      "reason": {
+        "kind": "completed"
+      }
+    }
+  ]
+}

@@ -1,0 +1,169 @@
+{
+  "interactionId": "int_4288c020a1855a19aa93f10b97057f74",
+  "method": "independent authorized CLI trace detail; reference fields only",
+  "technicalReferences": [
+    {
+      "ref_type": "knowledge_network",
+      "ref_id": "kn:supply_ontology_hand"
+    },
+    {
+      "ref_type": "object_type",
+      "ref_id": "object:supply_ontology_hand:supply_ontology_hand_material"
+    },
+    {
+      "ref_type": "object_type",
+      "ref_id": "object:supply_ontology_hand:supply_ontology_hand_po"
+    },
+    {
+      "ref_type": "object_type",
+      "ref_id": "object:supply_ontology_hand:supply_ontology_hand_forecast"
+    },
+    {
+      "ref_type": "object_type",
+      "ref_id": "object:supply_ontology_hand:supply_ontology_hand_pr"
+    },
+    {
+      "ref_type": "object_type",
+      "ref_id": "object:supply_ontology_hand:supply_ontology_hand_mps"
+    },
+    {
+      "ref_type": "object_type",
+      "ref_id": "object:supply_ontology_hand:supply_ontology_hand_salesorder"
+    },
+    {
+      "ref_type": "object_type",
+      "ref_id": "object:supply_ontology_hand:supply_ontology_hand_mrp"
+    },
+    {
+      "ref_type": "object_type",
+      "ref_id": "object:supply_ontology_hand:supply_ontology_hand_pr_decision"
+    },
+    {
+      "ref_type": "object_type",
+      "ref_id": "object:supply_ontology_hand:supply_ontology_hand_inventory"
+    },
+    {
+      "ref_type": "object_type",
+      "ref_id": "object:supply_ontology_hand:supply_ontology_hand_bom"
+    },
+    {
+      "ref_type": "object_type",
+      "ref_id": "object:supply_ontology_hand:supply_ontology_hand_mon_item"
+    },
+    {
+      "ref_type": "object_type",
+      "ref_id": "object:supply_ontology_hand:supply_ontology_hand_product"
+    },
+    {
+      "ref_type": "relation_type",
+      "ref_id": "relation:supply_ontology_hand:supply_ontology_hand_prdec2mat"
+    },
+    {
+      "ref_type": "relation_type",
+      "ref_id": "relation:supply_ontology_hand:supply_ontology_hand_pr2mrp"
+    },
+    {
+      "ref_type": "relation_type",
+      "ref_id": "relation:supply_ontology_hand:supply_ontology_hand_pr2po"
+    },
+    {
+      "ref_type": "relation_type",
+      "ref_id": "relation:supply_ontology_hand:supply_ontology_hand_monitem2mat"
+    },
+    {
+      "ref_type": "relation_type",
+      "ref_id": "relation:supply_ontology_hand:supply_ontology_hand_prdec2prod"
+    },
+    {
+      "ref_type": "relation_type",
+      "ref_id": "relation:supply_ontology_hand:supply_ontology_hand_mrp2fcst"
+    },
+    {
+      "ref_type": "relation_type",
+      "ref_id": "relation:supply_ontology_hand:supply_ontology_hand_mrp2mat"
+    },
+    {
+      "ref_type": "relation_type",
+      "ref_id": "relation:supply_ontology_hand:supply_ontology_hand_mps2fcst"
+    },
+    {
+      "ref_type": "relation_type",
+      "ref_id": "relation:supply_ontology_hand:supply_ontology_hand_prdec2fcst"
+    },
+    {
+      "ref_type": "relation_type",
+      "ref_id": "relation:supply_ontology_hand:supply_ontology_hand_bom2mat"
+    },
+    {
+      "ref_type": "action_type",
+      "ref_id": "action_type:supply_ontology_hand:supply_ontology_hand_act_po"
+    },
+    {
+      "ref_type": "metric",
+      "ref_id": "metric:supply_ontology_hand:01a0f6e6-5e9e-72c3-8694-7851b3e5186f"
+    },
+    {
+      "ref_type": "metric",
+      "ref_id": "metric:supply_ontology_hand:01a0f6e6-5e9e-72bf-a34a-afcc0ca532d9"
+    },
+    {
+      "ref_type": "metric",
+      "ref_id": "metric:supply_ontology_hand:01a0f6e6-5e9e-72b5-a295-1b36b7539502"
+    },
+    {
+      "ref_type": "object_type",
+      "ref_id": "object:supply_ontology_hand:supply_ontology_hand_material"
+    },
+    {
+      "ref_type": "property",
+      "ref_id": "property:supply_ontology_hand:supply_ontology_hand_material:material_code"
+    },
+    {
+      "ref_type": "property",
+      "ref_id": "property:supply_ontology_hand:supply_ontology_hand_material:material_name"
+    },
+    {
+      "ref_type": "property",
+      "ref_id": "property:supply_ontology_hand:supply_ontology_hand_material:modelnum"
+    },
+    {
+      "ref_type": "property",
+      "ref_id": "property:supply_ontology_hand:supply_ontology_hand_material:materialattr"
+    },
+    {
+      "ref_type": "property",
+      "ref_id": "property:supply_ontology_hand:supply_ontology_hand_material:group_name"
+    },
+    {
+      "ref_type": "property",
+      "ref_id": "property:supply_ontology_hand:supply_ontology_hand_material:baseunit_name"
+    },
+    {
+      "ref_type": "property",
+      "ref_id": "property:supply_ontology_hand:supply_ontology_hand_material:purchase_fixedleadtime"
+    },
+    {
+      "ref_type": "property",
+      "ref_id": "property:supply_ontology_hand:supply_ontology_hand_material:product_fixedleadtime"
+    },
+    {
+      "ref_type": "property",
+      "ref_id": "property:supply_ontology_hand:supply_ontology_hand_material:product_status"
+    }
+  ],
+  "uiElements": [
+    {
+      "name": "物料",
+      "kind": "object",
+      "knowledgeNetworkId": "supply_ontology_hand",
+      "operationId": "op_8cb1a224c42d7e2f2b521e53669864af"
+    },
+    {
+      "name": "生产固定提前期",
+      "kind": "property",
+      "knowledgeNetworkId": "supply_ontology_hand",
+      "operationId": "op_d4c6cf247993912c8d89e9900f1c398a"
+    }
+  ],
+  "scope": "Two same-network elements observed in official Desktop and cross-checked against canonical references; no real mixed-network UI acceptance claim"
+}

@@ -1,4 +1,7 @@
 {
+  "status": "historical-rejected-answer-delivery-candidate",
+  "supersededBy": "release/unified-7-candidate/3414bde/identity.json",
+  "historyNote": "Retained unchanged package bytes from source 7553cc1 for failed real-model replay evidence. Do not install this artifact for the current Windows retest; version text alone does not identify candidate bytes.",
   "packageName": "@openbkn/dsh-business-context",
   "version": "0.2.0-rc.2-openbkn.0.2.0-7",
   "sourceCommit": "7553cc13a17e80b87e4d8b2b22381ab8f05bc22d",

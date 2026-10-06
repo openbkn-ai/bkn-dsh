@@ -1,0 +1,13 @@
+{
+  "scope": "Adjacent before full plugin remove/install; selected credentials and user patch content hashes only. No claim about the entire store.",
+  "files": [
+    {
+      "relativePath": ".credentials.yaml",
+      "sha256": "ec4fa196fc0ed958d8046da22507ba06b46a9b9a949b10d282898c03f9ba66bb"
+    },
+    {
+      "relativePath": "profiles/desktop/cordis.patch.yml",
+      "sha256": "ee08d266e84ed62d9e83b6c2350255db7615916a1990fd023e388098221f245c"
+    }
+  ]
+}
