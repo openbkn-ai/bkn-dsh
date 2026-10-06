@@ -1,6 +1,18 @@
 # -7 统一候选交接
 
-日期：2026-10-06。目标版本：`0.2.0-rc.2-openbkn.0.2.0-7`。本轮授权为整合、review、提交 PR；发布、tag、npm dist-tag 迁移尚未执行。
+日期：2026-10-06。目标版本：`0.2.0-rc.2-openbkn.0.2.0-7`。本轮已授权整合、提交推送、build-only CI 和实机复验；发布、tag、npm dist-tag 迁移尚未执行。
+
+## Windows反馈后的当前状态
+
+PR #64 已合入main，诊断 -5/-6、baseUrl校验、#62/#63与三题指导已在同一源码。新的main build-only run [37447961098](https://github.com/openbkn-ai/bkn-dsh/actions/runs/37447961098)成功：source `7553cc13a17e80b87e4d8b2b22381ab8f05bc22d`，tgz SHA `4e4f7c3d44453038b4f2a723ec5334c443565ef0628e1e295bd339eda8f14d86`，65文件；与review分支CI包逐字节一致。
+
+**当前尚不能发布。** 本包Mac诊断/URL/隔离/live guard复测通过，但原题BOM回答多出一行，缺失物料回答另有源表名准确性异常。完整结果与失败定位见 [RESULTS](../../evidence/unified-7-acceptance-20261006/RESULTS.md)，下一项源码任务见 [回答质量收口](../../evidence/unified-7-acceptance-20261006/ANSWER-QUALITY-HANDOFF.md)。不能继承局部策略包“三题通过”的结论。
+
+可直接转发 [Windows复测通知](WINDOWS-NOTICE.md)，其中固定交付 commit、ZIP下载和SHA已通过远端下载核验。
+
+Windows -6 反馈已归档于 [windows-results](../2026-10-06-diagnostics-windows/windows-results/README.md)。新包仅做 [统一 -7 受影响复测](windows/HANDOFF.md)，交付/下载入口见 [Windows包说明](windows/README.md)。根据用户决定，**不再要求旧版本就地升级**；完全移除旧插件后安装新包，保护会话、凭据和无关patch。无凭据的登录/G6/live guard保持not-run。
+
+用户账户的累计更新只用 [这一份发布说明](../../releases/2026-10-06-unified-7-notes.md)，不另发 -5/-6 公告。以下原整合计划与门槛保留作为历史/后续规则；当前逐项状态以本节及RESULTS为准。
 
 ## 范围
 

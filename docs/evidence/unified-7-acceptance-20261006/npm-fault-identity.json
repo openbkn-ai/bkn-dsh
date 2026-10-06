@@ -1,0 +1,8 @@
+{
+  "baseSha256": "4e4f7c3d44453038b4f2a723ec5334c443565ef0628e1e295bd339eda8f14d86",
+  "variantSha256": "58f2082e46046634bac4e2db4ff8806b618f60af62127795426c5096a99fd31d",
+  "modifiedEntry": "package/lib/business.js",
+  "beforeSha256": "b3582bffe7838fe1c12ab9060b8f599eebb7bf87241cbb66be1cec1a122cf014",
+  "afterSha256": "0cb66e7204aa445451b7343178306eb50c7a81c208c6cb7ebd2e11d33ee488bc",
+  "fault": "controlled business-entry missing import; bootstrap/diagnostics intact"
+}

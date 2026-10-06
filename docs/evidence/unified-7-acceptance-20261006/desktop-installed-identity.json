@@ -1,0 +1,14 @@
+{
+  "taskRoot": "/private/tmp/bkn-unified7-3hrxwt9l",
+  "testHome": "/private/var/folders/9r/1zks6bqd7f3dtwybvxsksbc40000gn/T/openbkn-diag-ui-h76__jwb/desktop-home",
+  "originalSafeFileHashes": {
+    "cordis.patch.yml": "ee08d266e84ed62d9e83b6c2350255db7615916a1990fd023e388098221f245c",
+    "package.json": "671e0f4a866a295219c9b60f4de201866751b0fbdd670b4f7ca40219bdb41a94",
+    "pnpm-lock.yaml": "4cd91a941104a08fb7a971c1b7dbbdd0ac0b7b220c3870ee7895a1808a01eed5",
+    "pnpm-workspace.yaml": "ae7c5b68e2f157528e62885804e69e88583897b775e03c86fcbe52feaf498aba"
+  },
+  "candidateSha256": "4e4f7c3d44453038b4f2a723ec5334c443565ef0628e1e295bd339eda8f14d86",
+  "installedFilesMatched": 65,
+  "installedPackageDirectory": "/private/var/folders/9r/1zks6bqd7f3dtwybvxsksbc40000gn/T/openbkn-diag-ui-h76__jwb/desktop-home/profiles/desktop/node_modules/@openbkn/dsh-business-context",
+  "scope": "existing user-configured isolated model test profile, not daily profile; full plugin remove then install; providers/credentials not edited"
+}
