@@ -1,0 +1,39 @@
+﻿{
+    "prepareStart":  "2026-10-06T21:06:34.9164884Z",
+    "prepareEnd":  "2026-10-06T21:06:35.2043288Z",
+    "runEnd":  "2026-10-06T21:06:35.4577059Z",
+    "prepareExit":  0,
+    "runExit":  0,
+    "workDir":  "C:\\bkn-verify\\unified7-fidelity-npm\\fidelity-final-probe-050634",
+    "pluginArg":  "C:\\bkn-verify\\unified7-fidelity-npm\\fidelity-final-probe-050634\\package",
+    "probePackage":  "C:\\bkn-verify\\unified7-fidelity-npm\\fidelity-final-probe-050634\\package",
+    "scenarioCount":  6,
+    "scenarios":  [
+                      {
+                          "scenario":  "corrected-same-turn",
+                          "passed":  true
+                      },
+                      {
+                          "scenario":  "second-mismatch-errors",
+                          "passed":  true
+                      },
+                      {
+                          "scenario":  "unbound-unaffected",
+                          "passed":  true
+                      },
+                      {
+                          "scenario":  "full-question-summary-rejected",
+                          "passed":  true
+                      },
+                      {
+                          "scenario":  "headerless-cached-reprint",
+                          "passed":  true
+                      },
+                      {
+                          "scenario":  "scoped-inventory-cached-repair",
+                          "passed":  true
+                      }
+                  ],
+    "jsonlSha256":  "BA544874AB612BEC20BEE5DD5F07BFBBC5D60F0F63B9BFFD7AEC173D5E00AD2F",
+    "jsonlBytes":  1498
+}

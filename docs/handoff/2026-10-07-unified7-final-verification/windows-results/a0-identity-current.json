@@ -1,0 +1,35 @@
+﻿{
+    "checkedAt":  "2026-10-06T20:34:38.5684394Z",
+    "forms":  [
+                  {
+                      "form":  "desktop",
+                      "installedVersion":  "0.2.0-rc.2-openbkn.0.2.0-7",
+                      "matched":  66,
+                      "missing":  [
+
+                                  ],
+                      "differs":  [
+
+                                  ],
+                      "extra":  [
+
+                                ],
+                      "installedPath":  "C:\\bkn-verify\\unified7-fidelity-desktop\\dsh-home\\profiles\\desktop\\node_modules\\@openbkn\\dsh-business-context"
+                  },
+                  {
+                      "form":  "npm",
+                      "installedVersion":  "0.2.0-rc.2-openbkn.0.2.0-7",
+                      "matched":  66,
+                      "missing":  [
+
+                                  ],
+                      "differs":  [
+
+                                  ],
+                      "extra":  [
+
+                                ],
+                      "installedPath":  "C:\\bkn-verify\\unified7-fidelity-npm\\dsh-home\\profiles\\web\\node_modules\\@openbkn\\dsh-business-context"
+                  }
+              ]
+}

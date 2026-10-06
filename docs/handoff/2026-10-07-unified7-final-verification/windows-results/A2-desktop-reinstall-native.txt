@@ -1,0 +1,11 @@
+✓ Lockfile passes supply-chain policies (verified 19s ago)
+Progress: resolved 0, reused 1, downloaded 0, added 0
+[WARN] Issues with peer dependencies found. Run "pnpm peers check" to list them.
+
+dependencies:
++ @openbkn/dsh-business-context file:C:/bkn-verify/diag7-fidelity/candidate/openbkn-dsh-business-context-0.2.0-rc.2-openbkn.0.2.0-7.tgz
+
+Packages: +5
++++++
+Progress: resolved 5, reused 5, downloaded 0, added 5, done
+Done in 984ms using pnpm v11.7.0
