@@ -1,0 +1,28 @@
+{
+  "candidateSource": "3414bdec3c956cc0d580aebd959ac6f3439bb352",
+  "candidateSha256": "6bbab27876e743032572ddce107fcce09e0d681f87bee19fba8d78180e5a63a8",
+  "sourcePr": 72,
+  "approvedSourceHead": "deac64b28fd5be9ae699a0ce0a0f06c446e6798b",
+  "buildOnlyCiRun": 37478119730,
+  "ciPluginTests": {
+    "total": 344,
+    "pass": 343,
+    "fail": 0,
+    "skip": 1
+  },
+  "ciRepositoryTests": {
+    "total": 60,
+    "pass": 60,
+    "fail": 0
+  },
+  "typecheckAndPackageAudit": "passed in the CI build",
+  "declaredTargets": 16,
+  "fileCount": 66,
+  "testsNotProviderAcceptance": true,
+  "controlledNpmCoreScenarios": 6,
+  "controlledDesktopCoreScenarios": 6,
+  "liveGuardChecks": 16,
+  "macOriginalQuestionsPassed": 3,
+  "nativeWindowsRetest": "pending",
+  "publish": false
+}

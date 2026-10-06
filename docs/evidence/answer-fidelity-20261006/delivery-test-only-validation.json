@@ -1,0 +1,7 @@
+{
+  "scope": "Test-only follow-up to the approved PR #72 nonblocking review: asserts the retained actual live default-format TOON schema, not only the derived fixture. No runtime/package content changed.",
+  "command": "node --test packages/openbkn-business-context/tests/answer-fidelity.test.ts",
+  "nodeVersion": "24.19.0",
+  "tests": 25,
+  "failures": 0
+}

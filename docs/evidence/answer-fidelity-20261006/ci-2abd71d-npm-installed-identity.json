@@ -1,0 +1,34 @@
+{
+  "officialNpmDshVersion": "0.2.0-rc.2",
+  "nodeVersion": "v24.19.0",
+  "profiles": [
+    {
+      "label": "normal",
+      "root": "/var/folders/9r/1zks6bqd7f3dtwybvxsksbc40000gn/T/openbkn-fidelity-hosts-pumb5zdy/normal",
+      "profile": "web",
+      "installedFilesMatched": 66,
+      "controlledFault": false,
+      "candidateSha256": "5aee755974ca3551d0414511806c9b8ad7535fe82c96edea70252c7a595b41ee",
+      "installerExitCode": 0
+    },
+    {
+      "label": "invalid-url",
+      "root": "/var/folders/9r/1zks6bqd7f3dtwybvxsksbc40000gn/T/openbkn-fidelity-hosts-pumb5zdy/invalid-url",
+      "profile": "web",
+      "installedFilesMatched": 66,
+      "controlledFault": false,
+      "candidateSha256": "5aee755974ca3551d0414511806c9b8ad7535fe82c96edea70252c7a595b41ee",
+      "installerExitCode": 0
+    },
+    {
+      "label": "business-import",
+      "root": "/var/folders/9r/1zks6bqd7f3dtwybvxsksbc40000gn/T/openbkn-fidelity-hosts-pumb5zdy/business-import",
+      "profile": "web",
+      "installedFilesMatched": 66,
+      "controlledFault": true,
+      "candidateSha256": "6ef61adf8566b7b3fa7551011d6805e5741b80b3b2eb9efb240b99439ee8b5fa",
+      "installerExitCode": 0
+    }
+  ],
+  "scope": "Isolated configuration/entry production RPC checks without credentials or a real model"
+}

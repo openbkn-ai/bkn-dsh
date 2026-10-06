@@ -1,0 +1,395 @@
+{
+  "kn_id": "supply_ontology_hand",
+  "object_types": [
+    {
+      "_score": 0,
+      "comment": "实时记录物料在各仓库及仓位的库存数量、状态与批次信息。\n1. 生产可用库存\n定义：仅统计「有效仓库」内、状态为「可用」的库存数量。\n有效仓库范围：苏州半成品仓、苏州成品仓、苏州电子原料仓、苏州无人机原料仓、苏州装配原料仓、乌鲁木齐成品仓、哈尔滨成品仓。\n2. 全仓可用库存\n定义：统计全部仓库内、状态为「可用」的库存数量。\n仓库范围：系统内全部仓库。",
+      "data_properties": [
+        {
+          "display_name": "id",
+          "mapped_field": {
+            "display_name": "id",
+            "name": "id",
+            "type": "integer"
+          },
+          "name": "id",
+          "type": "string"
+        },
+        {
+          "display_name": "库存编号",
+          "mapped_field": {
+            "display_name": "seq_no",
+            "name": "seq_no",
+            "type": "integer"
+          },
+          "name": "seq_no",
+          "type": "integer"
+        },
+        {
+          "comment": "可用库存数量 = 库存数量-预留库存数量",
+          "display_name": "可用库存数量",
+          "mapped_field": {
+            "display_name": "available_inventory_qty",
+            "name": "available_inventory_qty",
+            "type": "float"
+          },
+          "name": "available_inventory_qty",
+          "type": "decimal"
+        },
+        {
+          "comment": "一批物料的主档批号",
+          "display_name": "批号主档",
+          "mapped_field": {
+            "display_name": "batch_master",
+            "name": "batch_master",
+            "type": "text"
+          },
+          "name": "batch_master",
+          "type": "string"
+        },
+        {
+          "comment": "一批物料的编号",
+          "display_name": "批号",
+          "mapped_field": {
+            "display_name": "batch_no",
+            "name": "batch_no",
+            "type": "text"
+          },
+          "name": "batch_no",
+          "type": "string"
+        },
+        {
+          "comment": "物料所在仓位",
+          "display_name": "仓位",
+          "mapped_field": {
+            "display_name": "bin_location",
+            "name": "bin_location",
+            "type": "text"
+          },
+          "name": "bin_location",
+          "type": "string"
+        },
+        {
+          "comment": "是否呆滞物料的关键字段，超过有效日期的可以视为呆滞物料。",
+          "display_name": "有效日期",
+          "mapped_field": {
+            "display_name": "expiry_date",
+            "name": "expiry_date",
+            "type": "text"
+          },
+          "name": "expiry_date",
+          "type": "date"
+        },
+        {
+          "display_name": "入库时间",
+          "mapped_field": {
+            "display_name": "inbound_date",
+            "name": "inbound_date",
+            "type": "datetime"
+          },
+          "name": "inbound_date",
+          "type": "date"
+        },
+        {
+          "comment": "库存所属组织",
+          "display_name": "库存所属组织",
+          "mapped_field": {
+            "display_name": "inventory_org",
+            "name": "inventory_org",
+            "type": "text"
+          },
+          "name": "inventory_org",
+          "type": "string"
+        },
+        {
+          "display_name": "库存数量",
+          "mapped_field": {
+            "display_name": "inventory_qty",
+            "name": "inventory_qty",
+            "type": "float"
+          },
+          "name": "inventory_qty",
+          "type": "decimal"
+        },
+        {
+          "comment": "个，套等单位。",
+          "display_name": "库存单位",
+          "mapped_field": {
+            "display_name": "inventory_uom",
+            "name": "inventory_uom",
+            "type": "text"
+          },
+          "name": "inventory_uom",
+          "type": "string"
+        },
+        {
+          "display_name": "生产日期",
+          "mapped_field": {
+            "display_name": "manufacture_date",
+            "name": "manufacture_date",
+            "type": "text"
+          },
+          "name": "manufacture_date",
+          "type": "date"
+        },
+        {
+          "display_name": "物料编码",
+          "mapped_field": {
+            "display_name": "material_code",
+            "name": "material_code",
+            "type": "text"
+          },
+          "name": "material_code",
+          "type": "string"
+        },
+        {
+          "display_name": "物料名称",
+          "mapped_field": {
+            "display_name": "material_name",
+            "name": "material_name",
+            "type": "text"
+          },
+          "name": "material_name",
+          "type": "string"
+        },
+        {
+          "display_name": "采购数量",
+          "mapped_field": {
+            "display_name": "purchase_qty",
+            "name": "purchase_qty",
+            "type": "text"
+          },
+          "name": "purchase_qty",
+          "type": "decimal"
+        },
+        {
+          "display_name": "预留库存数量",
+          "mapped_field": {
+            "display_name": "reserved_inventory_qty",
+            "name": "reserved_inventory_qty",
+            "type": "float"
+          },
+          "name": "reserved_inventory_qty",
+          "type": "decimal"
+        },
+        {
+          "display_name": "规格型号",
+          "mapped_field": {
+            "display_name": "spec_model",
+            "name": "spec_model",
+            "type": "text"
+          },
+          "name": "spec_model",
+          "type": "string"
+        },
+        {
+          "comment": "可用或者其他状态",
+          "display_name": "库存状态",
+          "mapped_field": {
+            "display_name": "stock_status",
+            "name": "stock_status",
+            "type": "text"
+          },
+          "name": "stock_status",
+          "type": "string"
+        },
+        {
+          "comment": "普通或者特殊用途库存等等",
+          "display_name": "库存类型",
+          "mapped_field": {
+            "display_name": "stock_type",
+            "name": "stock_type",
+            "type": "text"
+          },
+          "name": "stock_type",
+          "type": "string"
+        },
+        {
+          "comment": "仓库名称",
+          "display_name": "仓库",
+          "mapped_field": {
+            "display_name": "warehouse",
+            "name": "warehouse",
+            "type": "text"
+          },
+          "name": "warehouse",
+          "type": "string"
+        }
+      ],
+      "data_source": {
+        "id": "01a0f6e5-fd95-723f-ad5f-86413091ebf5",
+        "name": "supply_demo_hand.erp_real_time_inventory",
+        "type": "resource"
+      },
+      "effective_permissions": {
+        "available_inventory_qty": "full",
+        "batch_master": "full",
+        "batch_no": "full",
+        "bin_location": "full",
+        "expiry_date": "full",
+        "id": "full",
+        "inbound_date": "full",
+        "inventory_org": "full",
+        "inventory_qty": "full",
+        "inventory_uom": "full",
+        "manufacture_date": "full",
+        "material_code": "full",
+        "material_name": "full",
+        "purchase_qty": "full",
+        "reserved_inventory_qty": "full",
+        "seq_no": "full",
+        "spec_model": "full",
+        "stock_status": "full",
+        "stock_type": "full",
+        "warehouse": "full"
+      },
+      "id": "supply_ontology_hand_inventory",
+      "logic_properties": [
+        {
+          "comment": "库存记录中仓库去重。不是「生产可用仓个数」。",
+          "data_source": {
+            "id": "01a0f6e6-5e9e-72c3-8694-7851b3e5186f",
+            "name": "仓库数",
+            "type": "metric"
+          },
+          "display_name": "仓库数",
+          "name": "warehouse_count",
+          "parameters": [
+            {
+              "comment": "库存状态",
+              "name": "stock_status",
+              "type": "string",
+              "value_from": "input"
+            },
+            {
+              "comment": "是否进行即时查询。可选，默认为 false。instant=true 表示即时查询；否则表示范围查询。",
+              "if_system_generate": true,
+              "name": "instant",
+              "type": "boolean",
+              "value_from": "input"
+            },
+            {
+              "comment": "指标查询的开始时间，格式为 start=<unix_timestamp>，单位为毫秒，例如 1646360670123。",
+              "if_system_generate": true,
+              "name": "start",
+              "type": "integer",
+              "value_from": "input"
+            },
+            {
+              "comment": "指标查询的结束时间，格式为 end=<unix_timestamp>，单位为毫秒，例如 1646471470123。",
+              "if_system_generate": true,
+              "name": "end",
+              "type": "integer",
+              "value_from": "input"
+            },
+            {
+              "comment": "范围查询的步长。instant=false 时必填，格式为 step=<time_duration>，由数字和时间单位组成。",
+              "if_system_generate": true,
+              "name": "step",
+              "type": "string",
+              "value_from": "input"
+            }
+          ],
+          "type": "metric"
+        },
+        {
+          "comment": "sum(available_inventory_qty)。仓范围在查询时用 warehouse in 展开预设，不要写进指标定义。",
+          "data_source": {
+            "id": "01a0f6e6-5e9e-72c4-8d14-76e2a96ce966",
+            "name": "库存可用量",
+            "type": "metric"
+          },
+          "display_name": "库存可用量",
+          "name": "available_qty_sum",
+          "parameters": [
+            {
+              "comment": "物料编码",
+              "name": "material_code",
+              "type": "string",
+              "value": "material_code",
+              "value_from": "property"
+            },
+            {
+              "comment": "仓库",
+              "name": "warehouse",
+              "type": "string",
+              "value_from": "input"
+            },
+            {
+              "comment": "库存状态",
+              "name": "stock_status",
+              "type": "string",
+              "value_from": "input"
+            },
+            {
+              "comment": "是否进行即时查询。可选，默认为 false。instant=true 表示即时查询；否则表示范围查询。",
+              "if_system_generate": true,
+              "name": "instant",
+              "type": "boolean",
+              "value_from": "input"
+            },
+            {
+              "comment": "指标查询的开始时间，格式为 start=<unix_timestamp>，单位为毫秒，例如 1646360670123。",
+              "if_system_generate": true,
+              "name": "start",
+              "type": "integer",
+              "value_from": "input"
+            },
+            {
+              "comment": "指标查询的结束时间，格式为 end=<unix_timestamp>，单位为毫秒，例如 1646471470123。",
+              "if_system_generate": true,
+              "name": "end",
+              "type": "integer",
+              "value_from": "input"
+            },
+            {
+              "comment": "范围查询的步长。instant=false 时必填，格式为 step=<time_duration>，由数字和时间单位组成。",
+              "if_system_generate": true,
+              "name": "step",
+              "type": "string",
+              "value_from": "input"
+            }
+          ],
+          "type": "metric"
+        }
+      ],
+      "module_type": "object_type",
+      "name": "库存",
+      "primary_keys": [
+        "id"
+      ],
+      "related_metric_count": 2,
+      "related_metrics": [
+        {
+          "analysis_dimensions": [
+            "stock_status"
+          ],
+          "comment": "库存记录 warehouse 去重。快照 29。生产可用仓是 7 个预设，不是本指标。",
+          "id": "01a0f6e6-5e9e-72c3-8694-7851b3e5186f",
+          "metric_type": "atomic",
+          "name": "仓库数",
+          "scope_ref": "supply_ontology_hand_inventory",
+          "unit": "piece",
+          "unit_type": "countUnit"
+        },
+        {
+          "analysis_dimensions": [
+            "material_code",
+            "warehouse",
+            "stock_status"
+          ],
+          "comment": "sum(available_inventory_qty)。不要在定义里写死仓列表。查询时用 warehouse in 展开 production_available / finished_goods，或 all 不限制。",
+          "id": "01a0f6e6-5e9e-72c4-8d14-76e2a96ce966",
+          "metric_type": "atomic",
+          "name": "库存可用量",
+          "scope_ref": "supply_ontology_hand_inventory",
+          "unit": "piece",
+          "unit_type": "countUnit"
+        }
+      ],
+      "tags": [
+        "已审核"
+      ]
+    }
+  ]
+}

@@ -1,0 +1,88 @@
+{
+  "evidenceLevel": "Official Desktop real original BOM graph: three individually selected elements; independent authorized CLI Trace detail references. No raw credentials/operation payload exported.",
+  "candidateSource": "3414bdec3c956cc0d580aebd959ac6f3439bb352",
+  "interactionId": "int_b69a0d4b9b79121b20bc8ad20fcbf4e1",
+  "graphElementCount": 12,
+  "checkedUiElementCount": 3,
+  "scope": "Same-network real UI only. Mixed-network real UI remains not-run; fixtures do not establish it.",
+  "elements": [
+    {
+      "label": "库存",
+      "kind": "object",
+      "sourceKnowledgeNetwork": "supply_ontology_hand",
+      "operationId": "op_0019b35e01f4f2eb91c4cc3eef00a41e",
+      "traceId": "10615ff1ec24350923d6501b91f0f747",
+      "references": [
+        {
+          "ref_type": "object_type",
+          "ref_id": "object:supply_ontology_hand:supply_ontology_hand_inventory"
+        }
+      ],
+      "sourceMatchedCanonicalReference": true
+    },
+    {
+      "label": "产品BOM",
+      "kind": "object",
+      "sourceKnowledgeNetwork": "supply_ontology_hand",
+      "operationId": "op_03e42f290efa993c4272f0580a66d0a3",
+      "traceId": "1460c6e0dde48266d9f9b467b3ab3ce5",
+      "references": [
+        {
+          "ref_type": "object_type",
+          "ref_id": "object:supply_ontology_hand:supply_ontology_hand_bom"
+        }
+      ],
+      "sourceMatchedCanonicalReference": true
+    },
+    {
+      "label": "可用库存数量",
+      "kind": "property",
+      "sourceKnowledgeNetwork": "supply_ontology_hand",
+      "operationId": "op_043035f932b659548c7366f9aa4daf3f",
+      "traceId": "b1b6cdba72b9467913adebb8b9442c6e",
+      "references": [
+        {
+          "ref_type": "object_type",
+          "ref_id": "object:supply_ontology_hand:supply_ontology_hand_inventory"
+        },
+        {
+          "ref_type": "property",
+          "ref_id": "property:supply_ontology_hand:supply_ontology_hand_inventory:material_code"
+        },
+        {
+          "ref_type": "property",
+          "ref_id": "property:supply_ontology_hand:supply_ontology_hand_inventory:material_name"
+        },
+        {
+          "ref_type": "property",
+          "ref_id": "property:supply_ontology_hand:supply_ontology_hand_inventory:warehouse"
+        },
+        {
+          "ref_type": "property",
+          "ref_id": "property:supply_ontology_hand:supply_ontology_hand_inventory:stock_status"
+        },
+        {
+          "ref_type": "property",
+          "ref_id": "property:supply_ontology_hand:supply_ontology_hand_inventory:stock_type"
+        },
+        {
+          "ref_type": "property",
+          "ref_id": "property:supply_ontology_hand:supply_ontology_hand_inventory:inventory_qty"
+        },
+        {
+          "ref_type": "property",
+          "ref_id": "property:supply_ontology_hand:supply_ontology_hand_inventory:reserved_inventory_qty"
+        },
+        {
+          "ref_type": "property",
+          "ref_id": "property:supply_ontology_hand:supply_ontology_hand_inventory:available_inventory_qty"
+        },
+        {
+          "ref_type": "property",
+          "ref_id": "property:supply_ontology_hand:supply_ontology_hand_inventory:inventory_uom"
+        }
+      ],
+      "sourceMatchedCanonicalReference": true
+    }
+  ]
+}

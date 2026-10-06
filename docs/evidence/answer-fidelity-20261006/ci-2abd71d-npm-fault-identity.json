@@ -1,0 +1,13 @@
+{
+  "baseSha256": "5aee755974ca3551d0414511806c9b8ad7535fe82c96edea70252c7a595b41ee",
+  "variantSha256": "6ef61adf8566b7b3fa7551011d6805e5741b80b3b2eb9efb240b99439ee8b5fa",
+  "changes": [
+    {
+      "path": "package/lib/business.js",
+      "beforeSha256": "eef217bbbc4830942eaf4dc6ffbac934a6bc58954cec4af5d5f106c1a7afb13d",
+      "afterSha256": "89dd1046fb245a32bf88002c7228b20c740ff654bf84ab839f79d44e5979d552"
+    }
+  ],
+  "fault": "controlled missing business import; other 65 packed files unchanged",
+  "variantPath": "/var/folders/9r/1zks6bqd7f3dtwybvxsksbc40000gn/T/openbkn-fidelity-hosts-pumb5zdy/business-import-fault.tgz"
+}

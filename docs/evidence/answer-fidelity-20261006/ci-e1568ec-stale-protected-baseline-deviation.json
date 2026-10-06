@@ -1,0 +1,9 @@
+{
+  "failure": "Initial final-candidate install used the first-CI protected baseline, not a fresh pre-install baseline.",
+  "differingFile": ".credentials.yaml",
+  "fileMtime": "2026-10-06T11:54:56.287093+00:00",
+  "userPatchMatchesOldSnapshot": true,
+  "firstInstallFilesMatched": 66,
+  "initialInstallProtectionProof": "insufficient-evidence; old baseline is stale",
+  "resolution": "Preserve both snapshots and credentials; repeat full plugin remove/install against fresh hashes."
+}

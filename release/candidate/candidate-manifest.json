@@ -1,29 +1,29 @@
 {
   "template": false,
-  "status": "main-ci-fixed-macos-diagnostics-pass-answer-quality-failed-windows-retest-pending",
+  "status": "approved-source-fixed-ci-macos-original-questions-pass-native-windows-retest-pending",
   "plan": "DIAG-01",
   "candidate": {
     "packageName": "@openbkn/dsh-business-context",
     "version": "0.2.0-rc.2-openbkn.0.2.0-7",
-    "sourceCommit": "7553cc13a17e80b87e4d8b2b22381ab8f05bc22d",
-    "branch": "main",
+    "sourceCommit": "3414bdec3c956cc0d580aebd959ac6f3439bb352",
+    "branch": "docs/unified7-fidelity-acceptance",
     "build": {
       "workflow": "release-plugin.yml",
       "publish": false,
-      "runId": 37447961098,
-      "runUrl": "https://github.com/openbkn-ai/bkn-dsh/actions/runs/37447961098",
-      "artifactId": 11403394143,
+      "runId": 37478119730,
+      "runUrl": "https://github.com/openbkn-ai/bkn-dsh/actions/runs/37478119730",
+      "artifactId": 11420131739,
       "artifactName": "plugin-tarball",
-      "artifactZipDigest": "sha256:df839b6bf4b3b87ef2ae8fa682171ecd1a3c1ab24bfd526e7266ed1c6e073735",
-      "note": "Exact successful main build-only artifact; byte-identical to review-branch run 37436610287, not the earlier e972d31 or policy-only local pack."
+      "artifactZipDigest": "sha256:9c898b0cc6addd663e4321620a5d3a0999c18ae00c9c8b4a48b126f69b95b233",
+      "note": "Build-only CI dispatched on the delivery branch at the independently approved and merged main source commit 3414bde. Artifact ZIP digest and all tgz files verified. npm Publish and GitHub Release were skipped. Delivery documentation and tests are outside the accepted package."
     },
     "artifact": {
-      "path": "release/unified-7-candidate/openbkn-dsh-business-context-0.2.0-rc.2-openbkn.0.2.0-7.tgz",
-      "sha256": "4e4f7c3d44453038b4f2a723ec5334c443565ef0628e1e295bd339eda8f14d86",
-      "sizeBytes": 166727,
-      "fileCount": 65,
-      "fileManifestPath": "release/unified-7-candidate/candidate-files.txt",
-      "fileManifestJsonPath": "release/unified-7-candidate/candidate-files.json"
+      "path": "release/unified-7-candidate/3414bde/openbkn-dsh-business-context-0.2.0-rc.2-openbkn.0.2.0-7.tgz",
+      "sha256": "6bbab27876e743032572ddce107fcce09e0d681f87bee19fba8d78180e5a63a8",
+      "sizeBytes": 177442,
+      "fileCount": 66,
+      "fileManifestPath": "release/unified-7-candidate/3414bde/candidate-files.txt",
+      "fileManifestJsonPath": "release/unified-7-candidate/3414bde/candidate-files.json"
     }
   },
   "supportedBaseline": {
@@ -43,10 +43,10 @@
     "platformServices": [
       "kind cluster bkn-dev (192.168.50.28, platform 0.1.5 image set; pods Running during the live run)"
     ],
-    "platformContractEvidencePath": "docs/evidence/diag-ui-20261005/cli-015-mcp-catalogue.json",
-    "g6EvidencePath": "docs/evidence/unified-7-acceptance-20261006/RESULTS.md",
-    "acceptanceScope": "Exact fixed main CI tgz accepted for macOS diagnostic UI/export, configuration failure, business-entry isolation and 16-case real ToolRuntime live guard. Original-question QA is 2/3 under frozen G6 rules, with a BOM extra-row failure and a separate source-name anomaly. Other G6 cases and unified -7 native Windows retest remain pending; no release acceptance inferred.",
-    "currentAcceptanceEvidencePath": "docs/evidence/unified-7-acceptance-20261006/RESULTS.md"
+    "platformContractEvidencePath": "docs/evidence/answer-fidelity-20261006/upstream-scope-refresh.json",
+    "g6EvidencePath": "docs/evidence/answer-fidelity-20261006/RESULTS.md",
+    "acceptanceScope": "Exact CI tgz: official macOS Desktop three original real-model questions and native completed outcomes; independent 313-row/eight-field BOM comparison plus 313 scoped record-count checks; genuine diagnostic UI/export and three same-network graph elements. Official npm production RPC confirms normal, invalid URL and business import isolation. Six fixture scenarios pass on both official core baselines; live ToolRuntime guard 16/16. Eight G6 cases and native unified -7 Windows retest remain not-run/pending; no release acceptance inferred.",
+    "currentAcceptanceEvidencePath": "docs/evidence/answer-fidelity-20261006/RESULTS.md"
   },
   "diagnostics": {
     "reportSchemaVersion": 1,
@@ -60,8 +60,8 @@
     "caseScript": "scripts/windows-verification/run-case.ps1",
     "stateHashScript": "scripts/windows-verification/collect-state-hashes.ps1",
     "cleanupScript": "scripts/windows-verification/cleanup.ps1",
-    "caseGuidePath": "docs/handoff/2026-10-06-release-7/windows/HANDOFF.md",
-    "regressionGuidePath": "docs/handoff/2026-10-06-release-7/windows/HANDOFF.md",
+    "caseGuidePath": "docs/handoff/2026-10-06-release-7/fidelity-windows/HANDOFF.md",
+    "regressionGuidePath": "docs/handoff/2026-10-06-release-7/fidelity-windows/HANDOFF.md",
     "faultVariants": [
       "W3: prepend a missing top-level import to the business entry, resolved from exports['./business'] (lib/business.js)",
       "W4: throw inside the business apply() after the registry plugin, in lib/business.js",
@@ -72,15 +72,16 @@
   },
   "knownLimitations": [
     "Passive re-collection only; active network probes are not implemented.",
-    "Windows -6 core diagnostic isolation has native two-form evidence at 54f6669. The unified main CI -7 affected retest is pending; no old-version in-place upgrade testing is required.",
-    "Fixed main CI package original-question QA: 2/3 under frozen G6 rules. BOM tool output matches all 313 oracle rows but final answer adds one row (314); missing-object answer passes original no-data rules but invents a physical source name. Both quality issues are release blockers; eight other current-candidate G6 cases remain not-run. Earlier policy-only local-pack passes are historical.",
+    "Windows -6 core diagnostic isolation has native two-form evidence at 54f6669. This fixed CI -7 affected retest is pending; fully uninstall/reinstall, with no old-version upgrade matrix.",
+    "Current fixed CI -7 original-question QA is 3/3 natively completed. BOM independently matches 313 rows, all eight business fields, all 48 scoped-absence markers and 313 disclosed record counts. Eight other G6 cases remain not-run. Prior extra-row/source-name/empty-marker/headerless/scoped-marker failures remain preserved; their results are not inherited.",
     "unauthorized-network not-run: user has no real restricted account; no simulated 403 or model self-restraint substitutes platform authorization acceptance.",
     "Windows real-login/G6/live-guard remain not-run without credentials.",
-    "Platform bkn-foundry #2029 (oversized sandbox result persistence) remains open; successful read-only fallback does not fix that platform failure or guard inside run_code.",
+    "Platform bkn-foundry #2029 (large sandbox result persistence) remains open. This replay also observed a depth-5 published inventory capability timeout and an accepted disclosed read-only fallback; it does not establish that timeout is caused by #2029, and does not fix either path or guard internal run_code calls.",
     "Historical startup/definition-unavailable cause remains unknown; settings wizard recurrence on Windows remains an observation, not a diagnosed plugin defect.",
     "Diagnostic Host and loaded-plugin versions may be unknown; installed-file hashes and actual process/CLI/profile provide separate identity proof.",
     "Bootstrap/shared-chunk corruption is outside per-row isolation.",
-    "CLI normal manual credential refresh may recover an expired token; automatic renewal behavior is unchanged and not accepted."
+    "CLI normal manual credential refresh may recover an expired token; automatic renewal behavior is unchanged and not accepted.",
+    "Same-network real provenance graph checked on three elements; mixed-network real UI remains not-run. Scoped inventory metadata checks validate disclosed consistency, not the correctness of arbitrary tool computation."
   ],
   "releaseAuthorization": "not-granted-by-this-plan"
 }

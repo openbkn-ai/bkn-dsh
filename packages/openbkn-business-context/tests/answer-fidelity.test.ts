@@ -163,6 +163,12 @@ test('default TOON inventory schema retains the disclosed formula without leakin
     run.events.at(-1)!,
   ], 1)
   assert.equal(check(actualSchema)?.code, 'inventory-semantics-mismatch')
+  const liveCapture = JSON.parse(readFileSync(new URL('../../../docs/evidence/answer-fidelity-20261006/ci-e1568ec-bom-failed.json', import.meta.url), 'utf8'))
+  const schemaCalls = new Set(liveCapture.toolEvents.filter((e: { type: string; name?: string }) => e.type === 'tool/call' && e.name === 'mcp__openbkn__get_object_types').map((e: { callId: string }) => e.callId))
+  const liveSchema = liveCapture.toolEvents.filter((e: { type: string; callId: string; hostErrorFlag?: boolean }) => e.type === 'tool/result' && schemaCalls.has(e.callId) && e.hostErrorFlag !== true)
+    .flatMap((e: { content: Array<{ text?: string }> }) => e.content.map(block => block.text ?? '')).find((text: string) => text.startsWith('kn_id:') && text.includes('可用库存数量 = 库存数量-预留库存数量'))
+  assert.ok(liveSchema, 'the earlier real default-format tool capture includes the formula')
+  assert.equal(check(liveSchema)?.code, 'inventory-semantics-mismatch')
   assert.equal(check('data_properties[#1]{comment,name}:\n  "可用库存数量 = 库存数量-预留库存数量, already deducted",available_inventory_qty')?.code, 'inventory-semantics-mismatch')
   assert.equal(check('data_properties[#1]:\n  - comment: not the available-stock definition\n    name: another_field\n    mapped_field:\n      name: available_inventory_qty\n      comment: 可用库存数量 = 库存数量-预留库存数量\ncomment: 可用库存数量 = 库存数量-预留库存数量'), undefined)
   assert.equal(check('data_properties[#2]:\n  - name: another_field\n    comment: 可用库存数量 = 库存数量-预留库存数量\n  - name: available_inventory_qty\n    type: decimal\ncomment: 可用库存数量 = 库存数量-预留库存数量'), undefined)

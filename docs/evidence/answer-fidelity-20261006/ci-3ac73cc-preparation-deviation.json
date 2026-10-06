@@ -1,0 +1,41 @@
+{
+  "sourceCommit": "3ac73ccd4f2d8bf359466f715040e53944f24fad",
+  "candidateSha256": "b73d5b13693cdfe86ea6d0e944bc27641a37d32594e33f7070ca11567295d424",
+  "classification": "preparation failure: CLI authentication expired before the business-question replay; managed MCP tools were unavailable",
+  "firstAttemptEvidence": "ci-3ac73cc-preparation-standard-lead-time.json",
+  "nativeEnd": "completed but no business data; not counted as a QA pass",
+  "productDiagnostic": {
+    "reportId": "7e719eb7",
+    "downloadPath": "/Users/kalias/Downloads/OpenBKN-diagnostic-20261006T132456500Z-7e719eb7.json",
+    "sha256": "fbae65d2595ad47865c341a216ee4198210fd74da54f54b2506fdbbb0916837a",
+    "loginState": {
+      "id": "observed:login-state",
+      "stage": "authentication",
+      "status": "fail",
+      "source": "observed-operation",
+      "code": "not-logged-in",
+      "evidence": {
+        "failureCount": 2,
+        "lastOutcomeAgoMs": 30531,
+        "loggedIn": false
+      },
+      "nextAction": "Export this report and send it to support; the failing stage is listed above."
+    }
+  },
+  "cliStatusBefore": {
+    "hasToken": true,
+    "expired": true,
+    "configuredPlatformMatches": true
+  },
+  "manualNormalCliRefresh": {
+    "exitCode": 0,
+    "credentialOutputExported": false
+  },
+  "cliStatusAfter": {
+    "hasToken": true,
+    "expired": false,
+    "configuredPlatformMatches": true
+  },
+  "automaticRenewalAccepted": false,
+  "replayPolicy": "After an independently verified readiness change, restart the formal original-question replay. Preserve this failed preparation attempt; do not describe it as a passing answer."
+}

@@ -1,0 +1,188 @@
+{
+  "headRefOid": "0ff4ec5ec740c0070d69ab2048c05b2f2df5e94d",
+  "mergeCommit": {
+    "oid": "2abd71d0ac4d1bc62575e6e2d58c9821aa637add"
+  },
+  "mergedAt": "2026-10-06T11:45:15Z",
+  "reviews": [
+    {
+      "id": "PRR_kwDOUNu5088AAAABQ4Lpuw",
+      "author": {
+        "login": "claude"
+      },
+      "authorAssociation": "NONE",
+      "body": "",
+      "submittedAt": "2026-10-06T11:24:59Z",
+      "includesCreatedEdit": false,
+      "reactionGroups": [],
+      "state": "COMMENTED",
+      "commit": {
+        "oid": "79d5b19d9ef9968323b0afb4630b7982114f6ec4"
+      }
+    },
+    {
+      "id": "PRR_kwDOUNu5088AAAABQ4MLzg",
+      "author": {
+        "login": "github-actions"
+      },
+      "authorAssociation": "NONE",
+      "body": "The answer-fidelity check is well bounded, read-only on session events, and the stop-boundary wiring correctly uses `agent.steer` instead of writing plugin session events, with a one-correction budget reset per turn. Two behaviours depend on assumptions the tests cannot distinguish: how the human question is located in the event log, and which `run_code` print becomes the authoritative detail.\n\n\n<details><summary>Impact and review coverage</summary>\n\n- Impact: If the question is not located, the strict full-detail checks (exact row count, level counts, incomplete-handoff) silently stop firing; if a later smaller print wins, a correct full answer can be ste\u2026\n- Not covered: DSH-side behaviour of `agent/turn-stopping` (whether `payload.signal` is supplied, and the turn outcome when the listener throws) was not verified against DSH source; it is asserted only by the autho\u2026\n\n</details>\n\n## Items to confirm (nonblocking)\n\n- **packages/openbkn-business-context/src/answer-fidelity.ts** \u2014 `question` is located by tracking `activeTurn` from `turn/start`, so it is only captured when `turn/start` precedes the `user/message` event; the repo's other reader instead keys `user/message` on `data.turn` (turn-time\u2026\n- **packages/openbkn-business-context/src/answer-fidelity.ts** \u2014 `expected` is reassigned by every successful `run_code` result whose own `DETAIL_ROWS`/`EMITTED` agree with its parsed rows (answer-fidelity.ts:256-257), so the last self-consistent print wins rather than the largest. T\u2026\n\nReply `/review` to discuss findings or request another round; ordinary replies do not trigger a review. The requester must be an OWNER, MEMBER or COLLABORATOR.",
+      "submittedAt": "2026-10-06T11:25:51Z",
+      "includesCreatedEdit": false,
+      "reactionGroups": [],
+      "state": "APPROVED",
+      "commit": {
+        "oid": "79d5b19d9ef9968323b0afb4630b7982114f6ec4"
+      }
+    },
+    {
+      "id": "PRR_kwDOUNu5088AAAABQ4QY2g",
+      "author": {
+        "login": "kalias"
+      },
+      "authorAssociation": "MEMBER",
+      "body": "",
+      "submittedAt": "2026-10-06T11:32:36Z",
+      "includesCreatedEdit": false,
+      "reactionGroups": [],
+      "state": "COMMENTED",
+      "commit": {
+        "oid": "078539d6d44dee917b5442b3dc150af17a4930f5"
+      }
+    },
+    {
+      "id": "PRR_kwDOUNu5088AAAABQ4SMsA",
+      "author": {
+        "login": "claude"
+      },
+      "authorAssociation": "NONE",
+      "body": "",
+      "submittedAt": "2026-10-06T11:35:40Z",
+      "includesCreatedEdit": false,
+      "reactionGroups": [],
+      "state": "COMMENTED",
+      "commit": {
+        "oid": "078539d6d44dee917b5442b3dc150af17a4930f5"
+      }
+    },
+    {
+      "id": "PRR_kwDOUNu5088AAAABQ4SmFg",
+      "author": {
+        "login": "github-actions"
+      },
+      "authorAssociation": "NONE",
+      "body": "Both items from the previous round are addressed: a message carrying a pending tool-call no longer becomes the final answer, and a second self-declared complete handoff now fails closed instead of silently replacing the first. One open question remains on whether the new conflict code is meant to be unrecoverable within the turn.\n\n\n<details><summary>Impact and review coverage</summary>\n\n- Impact: A turn in which two successful run_code results both declare complete-but-different detail now always ends in AnswerFidelityError regardless of the corrected answer.\n- Not covered: Files unchanged by 078539d (package.json, pnpm-lock.yaml, scoped-business-context.ts, both READMEs, scoped-business-context.test.ts, WINDOWS-NOTICE.md) were not re-read this round.\n\n</details>\n\n## Items to confirm (nonblocking)\n\n- **packages/openbkn-business-context/src/answer-fidelity.ts** \u2014 `handoffConflict` (answer-fidelity.ts:228, set at :265 from run_code stdout only) is independent of the answer text, so the steered correction cannot clear it: the second `agent/turn-stopping` inspection returns `detail\u2026\n\nReply `/review` to discuss findings or request another round; ordinary replies do not trigger a review. The requester must be an OWNER, MEMBER or COLLABORATOR.",
+      "submittedAt": "2026-10-06T11:36:20Z",
+      "includesCreatedEdit": false,
+      "reactionGroups": [],
+      "state": "APPROVED",
+      "commit": {
+        "oid": "078539d6d44dee917b5442b3dc150af17a4930f5"
+      }
+    },
+    {
+      "id": "PRR_kwDOUNu5088AAAABQ4UA3Q",
+      "author": {
+        "login": "kalias"
+      },
+      "authorAssociation": "MEMBER",
+      "body": "",
+      "submittedAt": "2026-10-06T11:38:43Z",
+      "includesCreatedEdit": false,
+      "reactionGroups": [],
+      "state": "COMMENTED",
+      "commit": {
+        "oid": "0ff4ec5ec740c0070d69ab2048c05b2f2df5e94d"
+      }
+    },
+    {
+      "id": "PRR_kwDOUNu5088AAAABQ4V0_g",
+      "author": {
+        "login": "github-actions"
+      },
+      "authorAssociation": "NONE",
+      "body": "The follow-up commit adds only the requested interrupted-message regressions on both the checker and the evidence exporter, and both tests pin the real behaviour rather than asserting something always true. No new defect found; no open items from earlier rounds remain unaddressed.\n\n\n<details><summary>Impact and review coverage</summary>\n\n- Not covered: Only the new commit 0ff4ec5 was re-read this round; the earlier commits were reviewed in the previous rounds.\n\n</details>\n\nReply `/review` to discuss findings or request another round; ordinary replies do not trigger a review. The requester must be an OWNER, MEMBER or COLLABORATOR.",
+      "submittedAt": "2026-10-06T11:41:32Z",
+      "includesCreatedEdit": false,
+      "reactionGroups": [],
+      "state": "APPROVED",
+      "commit": {
+        "oid": "0ff4ec5ec740c0070d69ab2048c05b2f2df5e94d"
+      }
+    }
+  ],
+  "state": "MERGED",
+  "statusCheckRollup": [
+    {
+      "__typename": "CheckRun",
+      "completedAt": "2026-10-06T11:38:51Z",
+      "conclusion": "SUCCESS",
+      "detailsUrl": "https://github.com/openbkn-ai/bkn-dsh/actions/runs/37457746971/job/112249404530",
+      "name": "plan",
+      "startedAt": "2026-10-06T11:38:31Z",
+      "status": "COMPLETED",
+      "workflowName": "Claude Code Review"
+    },
+    {
+      "__typename": "CheckRun",
+      "completedAt": "2026-10-06T11:39:32Z",
+      "conclusion": "SUCCESS",
+      "detailsUrl": "https://github.com/openbkn-ai/bkn-dsh/actions/runs/37457740157/job/112249388421",
+      "name": "Analyze (actions)",
+      "startedAt": "2026-10-06T11:38:31Z",
+      "status": "COMPLETED",
+      "workflowName": "CodeQL"
+    },
+    {
+      "__typename": "CheckRun",
+      "completedAt": "2026-10-06T11:39:16Z",
+      "conclusion": "SUCCESS",
+      "detailsUrl": "https://github.com/openbkn-ai/bkn-dsh/actions/runs/37457740157/job/112249388357",
+      "name": "Analyze (javascript-typescript)",
+      "startedAt": "2026-10-06T11:38:28Z",
+      "status": "COMPLETED",
+      "workflowName": "CodeQL"
+    },
+    {
+      "__typename": "CheckRun",
+      "completedAt": "2026-10-06T11:41:10Z",
+      "conclusion": "SUCCESS",
+      "detailsUrl": "https://github.com/openbkn-ai/bkn-dsh/actions/runs/37457746971/job/112249546674",
+      "name": "review (All files)",
+      "startedAt": "2026-10-06T11:38:55Z",
+      "status": "COMPLETED",
+      "workflowName": "Claude Code Review"
+    },
+    {
+      "__typename": "CheckRun",
+      "completedAt": "2026-10-06T11:41:24Z",
+      "conclusion": "SUCCESS",
+      "detailsUrl": "https://github.com/openbkn-ai/bkn-dsh/actions/runs/37457746971/job/112250387484",
+      "name": "verify",
+      "startedAt": "2026-10-06T11:41:13Z",
+      "status": "COMPLETED",
+      "workflowName": "Claude Code Review"
+    },
+    {
+      "__typename": "CheckRun",
+      "completedAt": "2026-10-06T11:41:36Z",
+      "conclusion": "SUCCESS",
+      "detailsUrl": "https://github.com/openbkn-ai/bkn-dsh/actions/runs/37457746971/job/112250478394",
+      "name": "verdict",
+      "startedAt": "2026-10-06T11:41:27Z",
+      "status": "COMPLETED",
+      "workflowName": "Claude Code Review"
+    },
+    {
+      "__typename": "CheckRun",
+      "completedAt": "2026-10-06T11:39:09Z",
+      "conclusion": "SUCCESS",
+      "detailsUrl": "https://github.com/openbkn-ai/bkn-dsh/runs/112249636986",
+      "name": "CodeQL",
+      "startedAt": "2026-10-06T11:39:07Z",
+      "status": "COMPLETED",
+      "workflowName": ""
+    }
+  ],
+  "url": "https://github.com/openbkn-ai/bkn-dsh/pull/69"
+}

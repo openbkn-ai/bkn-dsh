@@ -1,0 +1,135 @@
+{
+  "scope": "Full original read-only CLI snapshot retained byte-for-byte in raw-cli-snapshot.zip. Selected JSON datasets are also directly readable; CSV only normalizes CRLF to LF with cell-for-cell equality checked. Raw pages were compressed for review size, not altered or replaced by model answers.",
+  "archive": {
+    "path": "raw-cli-snapshot.zip",
+    "sha256": "32bb7cadfe5cecbc2ee34481f04a12697df5a01720b360908efedb15ab25a880",
+    "sizeBytes": 278493,
+    "fileCount": 20
+  },
+  "files": [
+    {
+      "path": "bom-0.json",
+      "sizeBytes": 44348,
+      "sha256": "ef18bbd58e668f0de613ebd640445aa69b93597dc93392a680b3fee06cbec780"
+    },
+    {
+      "path": "bom-100.json",
+      "sizeBytes": 43768,
+      "sha256": "8055be881b3ed8c17a89807a3685742eb58144f0a91cebbf88c2bda1f10e68e0"
+    },
+    {
+      "path": "bom-200.json",
+      "sizeBytes": 43479,
+      "sha256": "dddd2dcb2282227aa050c7e7ae362881473fb64f51df56052788b99313514df9"
+    },
+    {
+      "path": "bom-300.json",
+      "sizeBytes": 9876,
+      "sha256": "286ab35e6321382fdf25dd49834297315b6cb4c436419ba05526ecc6e3db0df5"
+    },
+    {
+      "path": "complete-bom-inventory.csv",
+      "sizeBytes": 30159,
+      "sha256": "bffc179fa7e5aa7d30ef6c1065a9d60b1174cbdebb003eabf35ff48e749fec6f"
+    },
+    {
+      "path": "complete-bom-inventory.json",
+      "sizeBytes": 130854,
+      "sha256": "655a85d927cd6921f5611f41a6eb05e9facc8ade20242fa84ff0d3aee52fdb22"
+    },
+    {
+      "path": "inventory-0-0.json",
+      "sizeBytes": 202600,
+      "sha256": "e7285038235a7118fe0cf8a6ed125122a5edb286c9a0f263cfef4cfcf7ffcb2c"
+    },
+    {
+      "path": "inventory-128-0.json",
+      "sizeBytes": 249477,
+      "sha256": "2c461e8827175bbe22bbfc5b47fbe82b23e1852e008e5304c247a2d0a44d7833"
+    },
+    {
+      "path": "inventory-160-0.json",
+      "sizeBytes": 346953,
+      "sha256": "4c14be74c0bc351d1f3eb32ab15a813dced1447e9064948165007e62ec2651f7"
+    },
+    {
+      "path": "inventory-192-0.json",
+      "sizeBytes": 200198,
+      "sha256": "96c9ddc3adeddfe05aa1f5b1755d1dab669c88e6b56b289c5b095a7e9f7c3f17"
+    },
+    {
+      "path": "inventory-224-0.json",
+      "sizeBytes": 231632,
+      "sha256": "3384a8f2e5a997b1b373cfdeb413aa8912a803a410433e50ee6247ac16808bac"
+    },
+    {
+      "path": "inventory-256-0.json",
+      "sizeBytes": 86166,
+      "sha256": "114981209e7fda195d4c7a2714cfed7acbd8b4d17aea097cd7077de5472b3d39"
+    },
+    {
+      "path": "inventory-32-0.json",
+      "sizeBytes": 256699,
+      "sha256": "5426d90047e8786d9e4385c8987e208c29322e25cd1d8921b820cc7e06492c07"
+    },
+    {
+      "path": "inventory-64-0.json",
+      "sizeBytes": 443313,
+      "sha256": "562bbea43367b7cb4e00aca32eb94964c295c63e1df8d0c7070af596700edeca"
+    },
+    {
+      "path": "inventory-96-0.json",
+      "sizeBytes": 376339,
+      "sha256": "930051e221628f2045832d9f6fa2d99e3dc37b2d4897dbf7d3a270beb968595e"
+    },
+    {
+      "path": "live-tools.json",
+      "sizeBytes": 251045,
+      "sha256": "6c7e68b7a7c79d0aef005d6ec7466afd4d028badaa6cb0e09ea737ce52e73c9f"
+    },
+    {
+      "path": "material-0.json",
+      "sizeBytes": 1196,
+      "sha256": "a8eae9a0fd54b23d5698a9b0f8f52d6c6dcddee059edd66b5523be4e95b6ecb5"
+    },
+    {
+      "path": "material-schema.json",
+      "sizeBytes": 8024,
+      "sha256": "6ca3a59b0bececb44b7fedfbe6580bd7b1692243fbf67f86b732a1456dc663d6"
+    },
+    {
+      "path": "missing-material-0.json",
+      "sizeBytes": 474,
+      "sha256": "c13b3657398ab624723fa58202695a622bd6520233eff6914b9df13d616935fe"
+    },
+    {
+      "path": "verification.json",
+      "sizeBytes": 13237,
+      "sha256": "3c3473f18703a73f575e490d735d1330aaf5960211b0f33e1c970dbbfa5cd0c5"
+    }
+  ],
+  "readableFiles": [
+    "complete-bom-inventory.csv",
+    "complete-bom-inventory.json",
+    "live-tools.json",
+    "material-0.json",
+    "material-schema.json",
+    "missing-material-0.json",
+    "verification.json"
+  ],
+  "rawOnlyFiles": [
+    "bom-0.json",
+    "bom-100.json",
+    "bom-200.json",
+    "bom-300.json",
+    "inventory-0-0.json",
+    "inventory-128-0.json",
+    "inventory-160-0.json",
+    "inventory-192-0.json",
+    "inventory-224-0.json",
+    "inventory-256-0.json",
+    "inventory-32-0.json",
+    "inventory-64-0.json",
+    "inventory-96-0.json"
+  ]
+}

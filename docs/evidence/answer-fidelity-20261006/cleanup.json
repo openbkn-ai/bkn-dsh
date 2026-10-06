@@ -1,0 +1,21 @@
+{
+  "ownedDesktopPid": 4454,
+  "creationTimeMatched": true,
+  "executableMatched": true,
+  "ownedProcessExited": true,
+  "npmTestPort18797Free": true,
+  "installedFilesStillMatched": 66,
+  "afterRuntimeSelectedFileHashes": [
+    {
+      "relativePath": ".credentials.yaml",
+      "sha256": "fe95ab87d1ab1f3b8b071ac8b35b1cb6ec25e0bc0b6aa88e4a213d97f20d5926",
+      "equalToBeforeInstall": false
+    },
+    {
+      "relativePath": "profiles/desktop/cordis.patch.yml",
+      "sha256": "ee08d266e84ed62d9e83b6c2350255db7615916a1990fd023e388098221f245c",
+      "equalToBeforeInstall": true
+    }
+  ],
+  "scope": "Only owned test processes stopped; model config, credentials, user patch, session history and failed evidence retained. Credentials may legitimately rotate during the recorded normal CLI refresh and Host synchronization; this is not a claim of byte-identical runtime credentials."
+}

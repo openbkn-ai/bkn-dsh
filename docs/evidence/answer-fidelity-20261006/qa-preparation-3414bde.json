@@ -1,0 +1,18 @@
+{
+  "sourceCommit": "3414bdec3c956cc0d580aebd959ac6f3439bb352",
+  "observedAt": "2026-10-06T14:31:07.161820+00:00",
+  "before": {
+    "hasToken": true,
+    "expired": true,
+    "configuredPlatformMatches": true
+  },
+  "after": {
+    "hasToken": true,
+    "expired": false,
+    "configuredPlatformMatches": true
+  },
+  "normalManualCliRefresh": true,
+  "tokenValueDiscarded": true,
+  "formalQuestionsStarted": false,
+  "doesNotAcceptAutomaticRenewal": true
+}

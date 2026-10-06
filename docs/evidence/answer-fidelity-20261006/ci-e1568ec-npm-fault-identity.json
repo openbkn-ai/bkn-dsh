@@ -1,0 +1,9 @@
+{
+  "baseSha256": "bd9ef90d755d499c663316278a17342d8724cc720bcc823f80a8653164371299",
+  "faultSha256": "1063bc2ff24f72c3722536526e10f187a43a69f8fe5f07bbe954d07613b0023c",
+  "changedFiles": [
+    "package/lib/business.js"
+  ],
+  "fileCount": 66,
+  "purpose": "controlled business-entry import failure only; not a deliverable package"
+}

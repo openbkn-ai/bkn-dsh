@@ -1,3 +1,5 @@
+> 现行统一 -7 交接：请使用 [Windows 固定包复测说明](fidelity-windows/README.md) 和 [固定 commit 下载通知](WINDOWS-FIDELITY-NOTICE.md)。其包源码为 `3414bde`，tgz SHA 为 `6bbab278…`。下文及旧 `windows/`、旧 ZIP 保留为 `7553cc1` 失败候选的历史交接，不能作为本轮开测输入。
+
 # -7 统一候选交接
 
 日期：2026-10-06。目标版本：`0.2.0-rc.2-openbkn.0.2.0-7`。本轮已授权整合、提交推送、build-only CI 和实机复验；发布、tag、npm dist-tag 迁移尚未执行。

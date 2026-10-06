@@ -1,0 +1,32 @@
+{
+  "scope": "Only these independently queried datasets and compared fields; not a claim about entire database immutability.",
+  "candidateSource": "3414bdec3c956cc0d580aebd959ac6f3439bb352",
+  "checks": {
+    "complete-bom-inventory.json": {
+      "beforeJsonSha256": "f3d85b59d29161e539e3260ab8668411caae1df62b4de74875912c4c3efc8a82",
+      "afterJsonSha256": "f3d85b59d29161e539e3260ab8668411caae1df62b4de74875912c4c3efc8a82",
+      "equal": true
+    },
+    "material-0.json": {
+      "beforeJsonSha256": "849b198576c35a77a6104fd4fc5ec14aa30552130ea8ecd38f289d79a10bbe5c",
+      "afterJsonSha256": "849b198576c35a77a6104fd4fc5ec14aa30552130ea8ecd38f289d79a10bbe5c",
+      "equal": true
+    },
+    "missing-material-0.json": {
+      "beforeJsonSha256": "45d7bd13285c6e1d2429f78bd119128a11c0bca3f622cf718f45f98fc8e203bd",
+      "afterJsonSha256": "45d7bd13285c6e1d2429f78bd119128a11c0bca3f622cf718f45f98fc8e203bd",
+      "equal": true
+    },
+    "material-schema.json": {
+      "beforeJsonSha256": "815bd6176c41c543b1b44357835c3278bf8449b6ee2708344ed33d5a772647ae",
+      "afterJsonSha256": "815bd6176c41c543b1b44357835c3278bf8449b6ee2708344ed33d5a772647ae",
+      "equal": true
+    },
+    "live-tools.json": {
+      "beforeJsonSha256": "b7181e525c34a7cd74b6f075beac93fb40ac8fa8b2b8da7b501b29bd1eb264ff",
+      "afterJsonSha256": "b7181e525c34a7cd74b6f075beac93fb40ac8fa8b2b8da7b501b29bd1eb264ff",
+      "equal": true
+    }
+  },
+  "allComparedEqual": true
+}

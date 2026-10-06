@@ -1,0 +1,45 @@
+{
+  "evidenceLevel": "independent real platform Trace references; no raw CLI credentials or full trace payload exported",
+  "interactionId": "int_2db0a0a45a3336ac6a12fb8024e25fcd",
+  "uiObservedElements": [
+    {
+      "label": "物料",
+      "kind": "object",
+      "sourceKnowledgeNetwork": "supply_ontology_hand",
+      "operationId": "op_7f0e52b0bf38bb8596078982d27b08b2"
+    }
+  ],
+  "multiElementRealUiCheck": "pending BOM turn; Q1 graph has one element",
+  "traces": [
+    {
+      "tool": "get_kn_detail",
+      "traceId": "df2440502eef23ce085c34a977be9daf",
+      "references": [
+        {
+          "ref_type": "knowledge_network",
+          "ref_id": "kn:supply_ontology_hand"
+        }
+      ]
+    },
+    {
+      "tool": "query_object_instance",
+      "traceId": "5b145aa199eede77c75b2b365010527e",
+      "references": [
+        {
+          "ref_type": "object_type",
+          "ref_id": "object:supply_ontology_hand:supply_ontology_hand_material"
+        }
+      ]
+    },
+    {
+      "tool": "get_object_types",
+      "traceId": "4fbdbed514769825265693f82a411ee9",
+      "references": [
+        {
+          "ref_type": "knowledge_network",
+          "ref_id": "kn:supply_ontology_hand"
+        }
+      ]
+    }
+  ]
+}

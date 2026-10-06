@@ -1,0 +1,31 @@
+{
+  "method": "independent CLI snapshot vs delivered table; no plugin parser or model count reused",
+  "fields": [
+    "level",
+    "parent",
+    "child",
+    "name",
+    "usage",
+    "available_stock",
+    "inventory_unit",
+    "absent_row_marker"
+  ],
+  "oracleRows": 313,
+  "answerRows": 314,
+  "expectedAbsentRows": 48,
+  "deliveredAbsentRows": 48,
+  "missingOrChanged": [],
+  "extraOrChanged": [
+    [
+      3,
+      "791-000012",
+      "165-002371",
+      "YN403_前壳",
+      "1",
+      "119",
+      "个",
+      false
+    ]
+  ],
+  "passed": false
+}

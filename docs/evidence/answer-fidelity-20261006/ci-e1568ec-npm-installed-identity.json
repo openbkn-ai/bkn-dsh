@@ -1,0 +1,29 @@
+{
+  "sourceCommit": "e1568ece07abdf4452cfb02513d75a45964e2796",
+  "ciRunId": 37462485682,
+  "roots": [
+    {
+      "label": "normal",
+      "root": "/var/folders/9r/1zks6bqd7f3dtwybvxsksbc40000gn/T/openbkn-fidelity-final-hosts-w8zevyjw/normal",
+      "installedFilesMatched": 66,
+      "candidateSha256": "bd9ef90d755d499c663316278a17342d8724cc720bcc823f80a8653164371299",
+      "variantSha256": null
+    },
+    {
+      "label": "invalid-url",
+      "root": "/var/folders/9r/1zks6bqd7f3dtwybvxsksbc40000gn/T/openbkn-fidelity-final-hosts-w8zevyjw/invalid-url",
+      "installedFilesMatched": 66,
+      "candidateSha256": "bd9ef90d755d499c663316278a17342d8724cc720bcc823f80a8653164371299",
+      "variantSha256": null
+    },
+    {
+      "label": "business-import",
+      "root": "/var/folders/9r/1zks6bqd7f3dtwybvxsksbc40000gn/T/openbkn-fidelity-final-hosts-w8zevyjw/business-import",
+      "installedFilesMatched": 66,
+      "candidateSha256": "bd9ef90d755d499c663316278a17342d8724cc720bcc823f80a8653164371299",
+      "variantSha256": "1063bc2ff24f72c3722536526e10f187a43a69f8fe5f07bbe954d07613b0023c"
+    }
+  ],
+  "newIsolatedProfiles": true,
+  "noInPlaceUpgrade": true
+}

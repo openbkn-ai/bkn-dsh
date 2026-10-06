@@ -1,0 +1,13 @@
+{
+  "scope": "selected existing isolated Host configuration; content hashes only, no credentials exported",
+  "files": [
+    {
+      "relativePath": ".credentials.yaml",
+      "sha256": "65c006c6e7cf3480dd7a76185453516a0c1e2c25c7f4f79ec80c290a76413564"
+    },
+    {
+      "relativePath": "profiles/desktop/cordis.patch.yml",
+      "sha256": "ee08d266e84ed62d9e83b6c2350255db7615916a1990fd023e388098221f245c"
+    }
+  ]
+}

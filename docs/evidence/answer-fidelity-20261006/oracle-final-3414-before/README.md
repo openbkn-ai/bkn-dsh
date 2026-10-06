@@ -1,0 +1,1 @@
+Full original CLI bytes, including paginated responses, are in `raw-cli-snapshot.zip`; `archive-index.json` binds each file. Selected comparison datasets remain readable. CSV line endings alone were normalized to LF with cell-for-cell equality checked. This snapshot is an independent platform observation, not a model or Desktop verdict.
