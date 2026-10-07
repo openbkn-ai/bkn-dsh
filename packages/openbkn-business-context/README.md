@@ -24,9 +24,7 @@ bkn-dsh connects DeepSeek Harness to OpenBKN so an authorized user can:
 
 The integration is designed as an additive DSH plugin. It preserves the native DSH conversation experience while OpenBKN remains the authority for identity, permissions, business semantics, and traceable evidence.
 
-For complete BOM detail with explicit row counts, the plugin checks that the final answer preserves the tool's rows, levels, quantities and units, and checks disclosed physical source names. A mismatch preserves the original answer and requests one correction; a persistent mismatch ends in an explicit error. This checks supported detail handoffs, not the correctness of business rules or platform data.
-
-A declared complete handoff without column names receives at most one earlier producer notice, while the original Interaction remains open. It requests a labelled reprint of already cached rows, never new retrieval or guessed positions. This metadata repair is separate from the one final-answer correction; all original attempts remain in the log.
+Ordinary answers use the tool results and DSH's native model output. The plugin enforces access and Interaction boundaries, but does not rewrite answers, force a report format, or retry/reject a turn based on natural-language consistency. Completion records execution status; factual correctness is checked separately in evaluations.
 
 ## Who it is for
 

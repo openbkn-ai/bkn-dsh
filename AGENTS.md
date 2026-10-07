@@ -9,3 +9,7 @@
 - 会话内的进度、提问、解释及最终回复都用中文。所有 PR 内容用英文，包括标题、正文、评审、行内评论、后续评论及机器人生成的通知。
 - 所有 Git commit message 的标题和正文都用英文，merge / squash commit message 同样适用。
 - 创建或更新 PR、发表评审、提交 commit 前检查语言；自动评审的提示词和输出模板遵守同一规则，机器人不例外。必要的标识符、命令、路径及原文引用保持原样，周围解释用英文。
+
+## Plugin functional boundary
+
+bkn-dsh integrates OpenBKN authentication, network-scoped tool access, Interaction governance, diagnostics and provenance with native DSH conversations. OpenBKN owns business semantics and calculations; the model owns natural-language answers. Do not add default final-answer arbitration, automatic corrective turns, fixed report formats, or duplicate business algorithms. Keep factual answer checks in independent evaluations; a completed turn is not proof of a correct answer.

@@ -4,6 +4,8 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 
 bkn-dsh = OpenBKN business-context plugin for DeepSeek Harness (DSH). Plugin source: `packages/openbkn-business-context` (`@openbkn/dsh-business-context`). Target DSH is pinned to `dsh-v0.2.0-rc.2`. The plugin runs on an unpatched DSH (desktop app, npm CLI, source build) and writes nothing to the DSH session log; `compat/dsh-0.2.0-rc.2/` is the fail-closed patch series needed only to build the plugin and the runtime from source, and `runtime/` + `scripts/` build the self-contained OpenBKN DSH Runtime archive. **Runtime archives are discontinued (decision 2026-09-30)**: the product goal is that installing the plugin alone delivers every feature; do not cut new `openbkn-dsh-runtime-v*` releases, and the runtime tooling is slated for removal.
 
+Functional scope follows the **Plugin functional boundary** in `AGENTS.md`: access governance, integration, diagnostics and provenance. Preserve native model output; factual answer checks belong in independent evaluations.
+
 ## Commands
 
 Order matters: the plugin build imports `@deepseek-ai/dsh-typert-generator/tsdown`, whose `lib/` only exists after the pinned DSH source is built. `.github/workflows/compatible-runtime.yml` is the reference sequence.

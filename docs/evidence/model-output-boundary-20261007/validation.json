@@ -1,0 +1,35 @@
+{
+  "stage": "local source and official-core fixtures; not CI-candidate real-model acceptance",
+  "node": "24.19.0",
+  "pnpm": "11.7.0",
+  "pluginTests": {
+    "tests": 314,
+    "pass": 313,
+    "fail": 0,
+    "skip": 1
+  },
+  "repoAndEvalNodeTests": {
+    "tests": 63,
+    "pass": 63,
+    "fail": 0
+  },
+  "pythonEvalTests": {
+    "tests": 11,
+    "pass": 11
+  },
+  "typecheckExit": 0,
+  "packageCheckExit": 0,
+  "diffCheckExit": 0,
+  "nativeRuntimeProbe": {
+    "scenarios": 8,
+    "pass": 8,
+    "model": "scripted fixture",
+    "runtime": "official npm DSH 0.2.0-rc.2"
+  },
+  "unchanged": [
+    "MCP allowed-tool catalogue and bound-network guards",
+    "Interaction lifecycle state machine",
+    "diagnostics and provenance implementation",
+    "original evaluation questions and historical evidence"
+  ]
+}
