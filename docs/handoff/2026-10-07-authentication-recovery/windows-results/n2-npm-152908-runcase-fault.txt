@@ -1,0 +1,10 @@
+✓ Lockfile passes supply-chain policies (verified 1s ago)
+Progress: resolved 0, reused 1, downloaded 0, added 0
+[WARN] Issues with peer dependencies found. Run "pnpm peers check" to list them.
+
+Packages: +1
++
+Progress: resolved 5, reused 1, downloaded 0, added 1, done
+Done in 344ms using pnpm v11.7.0
+Case W1 (npm): dsh web on http://127.0.0.1:18268 (pid 10380). Exercise the diagnostics panel in a browser.
+Stop with: cleanup.ps1 -TestRoot C:\bkn-verify\authentication-recovery-c91fe09-npm4 -CandidateTgz <path> (it only stops pids recorded here).

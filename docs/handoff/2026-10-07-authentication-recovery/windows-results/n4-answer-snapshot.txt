@@ -1,0 +1,177 @@
+- button "新建会话":
+- button "收起侧边栏":
+- button "新建会话":
+  - generic: 新会话
+  - generic: Ctrl
+  - generic: +
+  - generic: Alt
+  - generic: +
+  - generic: "N"
+- navigation "全局面板":
+  - button "插件":
+    - generic: 插件
+- generic: 工作区
+- button "搜索会话":
+- textbox "搜索会话名称"
+- button "视图选项":
+- button "添加工作区":
+- tree "会话":
+  - treeitem "workspace-supply" [expanded]:
+    - generic: workspace-supply
+  - treeitem "查询 382-000005 的 BOM 构成 刚刚" [selected]:
+    - generic: 查询 382-000005 的 BOM 构成
+    - generic: 刚刚
+  - treeitem "默认工作区" [expanded]:
+    - generic: 默认工作区
+- button "OpenBKN business knowledge networks":
+  - generic: B
+  - generic: OpenBKN
+- button "设置":
+  - generic: 设置
+- banner:
+  - navigation "会话层级":
+    - generic: 查询 382-000005 的 BOM 构成
+  - generic "处理代码、文件和资料，适合大多数任务。Agent 会按需使用检索、编辑和终端等工具。":
+    - text: 标准模式
+  - generic "This conversation is permanently bound to this OpenBKN business knowledge network.":
+    - generic: B
+    - generic: 供应链本体知识网络-手工版
+  - button "用 文件资源管理器 打开"
+  - button "更多打开方式":
+  - button "更多操作":
+  - button "打开右侧边栏":
+  - tablist:
+    - tab "对话" [selected]
+    - tab "轨迹"
+- generic: 382-000005 的 BOM 构成是什么？
+- generic: 16:53
+- button "复制":
+- status: 已完成
+- button "已完成，用时 51秒":
+  - generic: 已完成，用时 51秒
+- heading "382-000005 的 BOM 构成" [level=2]
+- paragraph:
+  - strong: 对象识别
+  - text: ：382-000005 是产品
+  - code: material_number
+  - text: =
+  - strong: 北斗导航农机驾驶仪
+  - text: ，同时是产品 BOM 的
+  - code: bom_material_code
+  - text: （该字段口径：以产品编码 = BOM 物料号即可找到该产品的全部物料）。
+- paragraph:
+  - strong: 总览
+  - text: （对象类「产品BOM」
+  - code: supply_ontology_hand_bom
+  - text: ，资源 supply_demo_hand.erp_material_bom）
+- list:
+  - text: BOM 版本：
+  - strong: 2026-08-05
+  - text: （该产品仅此一个版本）
+  - text: 明细行：
+  - strong: 507 行
+  - text: ，覆盖
+  - strong: 408 个不同物料编码
+  - listitem: 层级 L0–L5；分布：L0 1 行、L1 9 行、L2 31 行、L3 42 行、L4 362 行、L5 62 行
+- heading "一级构成（L1，9 项，标准用量均 ×1）" [level=3]
+- table:
+  - rowgroup:
+    - row "序号 物料编码 物料名称 下级子件数":
+      - columnheader "序号"
+      - columnheader "物料编码"
+      - columnheader "物料名称"
+      - columnheader "下级子件数"
+  - rowgroup:
+    - row "2 791-000013 YN406预组装包(拖拉机) 14":
+      - cell "2"
+      - cell "791-000013"
+      - cell "YN406预组装包(拖拉机)"
+      - cell "14"
+    - row "3 606-000989 YN406 包装外箱_V2 0":
+      - cell "3"
+      - cell "606-000989"
+      - cell "YN406 包装外箱_V2"
+      - cell "0"
+    - row "4 606-000990 YN406 珍珠棉内托_V2 0":
+      - cell "4"
+      - cell "606-000990"
+      - cell "YN406 珍珠棉内托_V2"
+      - cell "0"
+    - row "5 528-000036 YS221A接收机组件_国内 4":
+      - cell "5"
+      - cell "528-000036"
+      - cell "YS221A接收机组件_国内"
+      - cell "4"
+    - row "6 791-000007 YN406B方向盘组件（拖拉机） 10":
+      - cell "6"
+      - cell "791-000007"
+      - cell "YN406B方向盘组件（拖拉机）"
+      - cell "10"
+    - row "7 994-000550 406电源+电机+接收机连接线 0":
+      - cell "7"
+      - cell "994-000550"
+      - cell "406电源+电机+接收机连接线"
+      - cell "0"
+    - row "8 468-000493 YN406说明书（中文） 0":
+      - cell "8"
+      - cell "468-000493"
+      - cell "YN406说明书（中文）"
+      - cell "0"
+    - row "9 468-000530 导航车贴(60*15cm) 0":
+      - cell "9"
+      - cell "468-000530"
+      - cell "导航车贴(60*15cm)"
+      - cell "0"
+    - row "10 791-000015 YN403显示终端整机_预装组件_拖拉机 3":
+      - cell "10"
+      - cell "791-000015"
+      - cell "YN403显示终端整机_预装组件_拖拉机"
+      - cell "3"
+- heading "二级构成（有下级的 4 个组件）" [level=3]
+- list:
+  - strong: 791-000013 YN406预组装包(拖拉机)
+  - text: → 14 项：795-000993 IMU/蘑菇头/显示终端安装附件包(30长)、849-001041 与 849-000210 1号电机支架抱箍B（S22新款/S22）、849-001042 与 849-000211 1号电机支架抱箍A（S22新款/S22）、606-000852 I406预组装外箱、606-000853 I406预组装珍珠棉内托、795-000130 显示终端安装附件包、795-000728 终端RAM支架U型底座安装附件包、795-000302 电机安装附件包、165-000257 1号电机支架底板圆柱(L=100mm)、795-000865 电机1号安装支架附件包、795-000133 线束安装附件包（×10）、606-000012 4号自封袋
+  - strong: 528-000036 YS221A接收机组件_国内
+  - text: → 4 项：528-000031 YS221A接收机整机_国内版_整机（×1，下挂 16 项）、165-003886 接收机可调节底座（×2）、849-001021 M6X16不锈钢外六角三组合螺丝_半耐落（×4）、165-002658 YS221接收机支架底座(带背胶)（×2）
+  - strong: 791-000007 YN406B方向盘组件（拖拉机）
+  - text: → 10 项：549-000880 / 549-000881 / 549-001813 方向盘本体铭牌（杭州明日 / 宁波威盛 / AG，替代料）、165-001299 方向盘盖板_ODM_威盛、165-001235 方向盘盖板（无logo）、165-002527 与 165-002281 拖拉机方向盘LOGO贴（YN新 / YN）、791-000001 406电机(KY)、791-000004 406电机(SL)、849-000288 M4*22 不锈钢内六角螺丝（×6）
+  - strong: 791-000015 YN403显示终端整机_预装组件_拖拉机
+  - text: → 3 项：791-000003 YN403（406）整机（×1，下挂 26 项）、165-000120 308终端RAM支架（×1）、849-000987 M5*22 不锈钢内六角螺丝（×4）
+- heading "更深层级" [level=3]
+- paragraph: L4/L5（共 424 行）基本是 PCBA 元器件级明细，集中在三块单板下：588-000726 YN403_MAINBOARD_P2_PCBA（245 个子件）、588-000712 YS221_P0_(四信+M2-BD)S01_PCBA（60 个）、588-000655 YN403_4GBOARD_P0_PCBA（48 个）。
+- paragraph:
+  - strong: 口径与限制
+  - text: ：数据取自对象类「产品BOM」在
+  - code: bom_material_code = 382-000005
+  - text: 条件下的全量结果（total_count = 507，单页返回，无缺页）。行数多于物料编码数，因同一物料会在不同父级下重复出现；
+  - code: alt_group_no
+  - text: /
+  - code: alt_priority
+  - text: 标识可替代物料（优先级 0 为主料）。完整 507 行的树形展开与明细 CSV 已在本次会话的沙箱工作目录生成（
+  - code: bom_382-000005_tree.md
+  - text: 、
+  - code: bom_382-000005.csv
+  - text: ），但该沙箱仅允许 OpenBKN 受管工具访问，无法投递到你的本地工作目录；需要逐行清单我可以直接在对话里输出。
+- button "复制":
+- button "好的回答":
+- button "有问题的回答":
+- button "查看业务溯源"
+- button "在新对话中分支":
+- button "用量 554K tok":
+  - generic: 用量 554K tok
+- generic: 16:54
+- textbox "发消息或创建任务, / 调用指令, @ 文件或对话" [active]
+- generic: 发消息或创建任务, / 调用指令, @ 文件或对话
+- button "添加文件或调用指令":
+- button "访问模式，当前：工作区内修改":
+  - generic: 工作区内修改
+- button "选择模型，当前 DeepSeek-V41-Flash，推理等级 High":
+  - generic: DeepSeek-V41-Flash
+  - generic: High
+- button "发送消息" [disabled]:
+- button "1 轮 10 步 · 280 tok/s":
+  - generic: 1 轮 10 步·280 tok/s
+- button "554K tok · 缓存命中 90%":
+  - generic: 554K tok·缓存命中 90%
+- button "上下文已用 6%":
+  - generic: 6%

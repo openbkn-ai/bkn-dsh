@@ -1,0 +1,75 @@
+{
+  "checkedAt": "2026-10-07T13:59:07.217882+00:00",
+  "windowsSnapshotCommit": "19c2dc5a9d5083cc1e59f2dd2d9544ad0394489c",
+  "mainBaseCommit": "e7f40c2282d2f6617ac56116a3fdf8349f2ea72f",
+  "snapshotFiles": 107,
+  "snapshotBlobBytesExact": true,
+  "manifestFilesExcludingSelf": 106,
+  "verifiedManifestEntries": 106,
+  "identical": 80,
+  "normalizedCRLFToLF": 26,
+  "unexplainedDifferences": 0,
+  "evidenceBranchAncestryImported": false,
+  "credentialScan": {
+    "patterns": [
+      "provider key-shaped literals",
+      "JWT-shaped literals",
+      "private-key PEM headers"
+    ],
+    "matchedFiles": 0,
+    "scope": "final imported snapshot; historical source-branch objects are excluded"
+  },
+  "keyRevocationEvidence": "Holder confirmation, ac0f8a8; revoked key not independently tested",
+  "candidate": {
+    "sourceCommit": "c91fe090e0aac2dc72a4ff1b3d221d72baa432ba",
+    "ciRun": 37570295456,
+    "sha256": "fa168d8113e8dd43348ea4751c7e4d297049e2c1ddced9c586e6d3a1f3f0718c",
+    "bytes": 165804,
+    "files": 65
+  },
+  "localValidation": {
+    "node": "24.19.0",
+    "pnpm": "11.7.0",
+    "typecheckExit": 0,
+    "pluginTests": {
+      "total": 320,
+      "pass": 319,
+      "skip": 1,
+      "fail": 0
+    },
+    "repositoryAndEvalTests": {
+      "total": 63,
+      "pass": 63,
+      "fail": 0
+    },
+    "packageCheckExit": 0,
+    "stagedDiffCheckExit": 0,
+    "nativeOutputWhitespaceException": "prepare-npm.txt line 8 preserved with file-specific whitespace=-blank-at-eol",
+    "localPackSha256": "43a0065d6d23a6659005c026bcdbf60030a58558aa702ed7415deede92ecc610",
+    "localPackContentsMatchCandidate": true
+  },
+  "upstreams": {
+    "supportedDshTag": "dsh-v0.2.0-rc.2",
+    "supportedDshCommit": "639ed015397290b3745d163aafe02ffee4aa3f84",
+    "availableDshTag": "dsh-v0.2.1-alpha.1",
+    "dshMaster": "5badb15009ae1756c3afe0ae0cef1faafc290ccc",
+    "availableDshRelease": "dsh-v0.2.1-alpha.1 (prerelease)",
+    "foundryMain": "74a9ade79aed62a9c8325c77166f1096cd6b14fa",
+    "foundryLatestRelease": "v0.1.5",
+    "changesSinceCandidateFoundryBaseline": "Only #2030 historical 0.1.5-to-0.2.0 migration commands, deployment scripts and documentation; no Context Loader/CLI/SDK or sandbox contract changes in that diff",
+    "liveContract": {
+      "checkedAt": "2026-10-07T13:58:05.968Z",
+      "platform": "https://192.168.50.28",
+      "cliVersion": "0.1.5",
+      "isolatedConfig": true,
+      "evidence": "Live authenticated tools/list and schemas; no model or business tool calls",
+      "status": "verified",
+      "protocolVersion": "2024-11-05",
+      "toolCount": 28,
+      "added": [],
+      "removed": [],
+      "schemaChanges": []
+    }
+  },
+  "releaseStateAtCheck": "Preparation only; no tag, publish or dist-tag mutation"
+}

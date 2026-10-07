@@ -1,0 +1,64 @@
+- button "新建会话":
+- button "收起侧边栏":
+- button "新建会话":
+  - generic: 新会话
+  - generic: Ctrl
+  - generic: +
+  - generic: Alt
+  - generic: +
+  - generic: "N"
+- navigation "全局面板":
+  - button "插件":
+    - generic: 插件
+- generic: 工作区
+- button "搜索会话":
+- textbox "搜索会话名称"
+- button "视图选项":
+- button "添加工作区":
+- tree "会话":
+  - treeitem "默认工作区" [expanded]:
+    - generic: 默认工作区
+  - treeitem "新会话" [selected]:
+    - generic: 新会话
+- button "OpenBKN business knowledge networks":
+  - generic: B
+  - generic: OpenBKN
+- button "设置":
+  - generic: 设置
+- banner:
+  - button "打开右侧边栏":
+- generic: 探索未至之境
+- generic: 预览版
+- button "选择工作区":
+  - generic: 默认工作区
+- button "标准模式":
+  - generic: 标准模式
+- textbox "描述你想要构建的内容, / 调用指令, @ 文件或对话"
+- generic: 描述你想要构建的内容, / 调用指令, @ 文件或对话
+- button "添加文件或调用指令":
+- button "访问模式，当前：工作区内修改":
+  - generic: 工作区内修改
+- button "选择模型，当前 DeepSeek-V41-Flash，推理等级 High":
+  - generic: DeepSeek-V41-Flash
+  - generic: High
+- button "发送消息" [disabled]:
+- dialog "OpenBKN business knowledge networks":
+  - banner:
+    - generic: OPENBKN
+    - heading "业务知识网络" [level=2]
+    - button "诊断"
+    - button "Close": ×
+  - paragraph: 使用本机 OpenBKN CLI 登录。登录完成后，插件会在 Host 内同步凭据、连接 Context Loader MCP，并加载你有权限访问的业务知识网络。
+  - paragraph: 平台地址：https://192.168.50.28
+  - paragraph:
+    - button "使用 OpenBKN CLI 登录并同步"
+  - generic "手动输入 Token（兼容无 CLI 部署）"
+  - button "刷新状态"
+- dialog "添加一个 API Key 开始使用":
+  - heading "添加一个 API Key 开始使用" [level=2]
+  - paragraph: 配置 DeepSeek 官方模型，即可开始使用。
+  - generic: API 密钥
+  - textbox "API 密钥" [active]:
+    - /placeholder: 输入 API 密钥
+  - button "稍后配置"
+  - button "保存并继续" [disabled]

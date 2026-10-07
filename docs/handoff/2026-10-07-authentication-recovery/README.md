@@ -4,7 +4,8 @@
 
 - **交 Windows agent**：[WINDOWS-NOTICE.md](WINDOWS-NOTICE.md) 提供固定 commit/下载/ZIP SHA；解压 windows-kit 后执行 [HANDOFF.md](windows-kit/HANDOFF.md)，R1 鉴权恢复、N0–N6 受影响原生输出复测、E1 旧报告补正分别判定。
 - **Mac 已完成**：[RESULTS.md](../../evidence/authentication-recovery-20261007/RESULTS.md)：本 CI 安装 65/65、真实 MCP401 → 产品 CLI 正常授权 → 同 Host 恢复、TLS 分类、原配置健康、四份 UI 真实下载、8 项官方核心 fixture、16 项 live guard；selected-file 与进程证据范围明确。
+- **Windows 最终回传已复核**：取固定 `19c2dc5a9d5083cc1e59f2dd2d9544ad0394489c` 的[脱敏最终快照](windows-results/RESULTS.md)，主 agent 的[复核与剩余范围](WINDOWS-REVIEW.md)分列实际通过、未验证和历史记录不足。106 项清单全部匹配，两个 Host 形态的 MCP 401 登录恢复成立；N4 仅一级结构事实通过，其他业务事实限制仍保留。
 - **本机清单**：[MAC-TODO.md](MAC-TODO.md) 所列已执行，历史不足不追溯补造。
 - **单一账户累计发布说明**：[统一 -7 更新说明](../../releases/2026-10-06-unified-7-notes.md)，作者快照至 c91fe09 / 75 项。
 
-先前原生输出候选五题 native completed 与两项事实失败保持历史结论；本次鉴权修复未重跑或宣布质量修复。旧 Windows 66 文件包的 B 批通过不能接受这个 65 文件新 SHA。没有发布/tag/dist-tag 授权。
+先前原生输出候选五题 native completed 与两项事实失败保持历史结论；本次鉴权修复未在 Mac 重跑或宣布质量修复。当前 65 文件新 SHA 的 Windows 验收使用本轮原件，旧 66 文件包的 B 批仅作历史证据。用户已授权提交最终证据 PR 和推进发布准备；主线 build-only 与包一致性核验完成后仍须确认保留项和正式发布，尚未发布/tag/dist-tag。
