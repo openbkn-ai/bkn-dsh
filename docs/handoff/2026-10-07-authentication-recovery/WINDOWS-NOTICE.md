@@ -32,6 +32,21 @@ Set-Location (Join-Path $AuthDeliveryRoot 'windows-kit')
 
 **执行顺序：采 before → N0 安装身份 → 优先 R1 → N1–N3 与有条件的 N4/N5 → N6 最终收态。E1 在不依赖 Host 的时段处理。** 两形态分别取 prepared.json 设置 DSH_HOME/BKN_CONFIG_DIR，不共用 token/store；全卸载重装固定 tgz，不做旧版本升级，不改候选/main、发布/tag/dist-tag。四个既有 helper 与 Windows-tested 54f6669 字节相同；新 identity verifier/八场景 probe/鉴权 fixture 需本机验证。PowerShell 全流 `*>&1` 留真实内容、退出码；不上传原 Host/授权日志、凭据或 profile。
 
+**R1 授权前必须核对实际 CLI 为 `0.1.5`。** `diag6-tools` 只是旧目录名，不能作为版本证据；不要仅填写结果模板。对当前形态将使用的真实 CLI entry 运行以下检查，记录原生版本输出和退出码；不符合则停止该项，在独立工具目录安装正确版本后再继续。将已核对的 entry 赋给 HANDOFF 中的 `$AuthCliEntry`，两形态均确认实际调用路径。
+
+```powershell
+$AuthDeliveryNode = (Get-Command node).Source
+$AuthDeliveryCliEntry = 'C:\bkn-verify\diag6-tools\node_modules\@openbkn\bkn-sdk\dist\cli.js'
+if (-not (Test-Path -LiteralPath $AuthDeliveryCliEntry -PathType Leaf)) { throw 'Resolve the actual isolated OpenBKN CLI entry first' }
+$AuthDeliveryCliVersion = (& $AuthDeliveryNode $AuthDeliveryCliEntry --version | Out-String).Trim()
+$AuthDeliveryCliVersionExit = $LASTEXITCODE
+Write-Output "OpenBKN CLI entry: $AuthDeliveryCliEntry"
+Write-Output "OpenBKN CLI version: $AuthDeliveryCliVersion; exit: $AuthDeliveryCliVersionExit"
+if ($AuthDeliveryCliVersionExit -ne 0 -or $AuthDeliveryCliVersion -ne '0.1.5') { throw 'R1 requires OpenBKN CLI 0.1.5' }
+```
+
+固定 ZIP SHA 和全新解压目录共同锁定 kit 输入；`verify-kit.ps1` 会核对所列 kit 文件，但不会枚举拒绝额外文件。不要复用或向 kit 添加输入；结果、临时文件和变体放到独立测试 root。此说明不改固定 ZIP。
+
 R1 是明确 MCP401 的**产品 CLI 登录恢复**，不是自然过期/自动续期验收：原 store 保留，公开无效 token 只在 wrapper 返回边界注入；仅真实 CLI login exit 0 清 fault。初次授权失败/超时照实保留，不能手工清 flag 造通过；成功后同 Host 诊断恢复、原 patch 精确字节还原、owned PID/真实端口完整收态。fixture 会拒绝 unset/另一形态 BKN_CONFIG_DIR。无需模型。
 
 E1 完整内容在 kit 的 WINDOWS-OLD-EVIDENCE-REVIEW.md：旧 09018fa 的 dshApps=6 与 8 小时 ticks 偏差、A-only 37 记录/34 唯一路径哈希、npm 复制 store、缺源 Markdown、属性 operation 独立回执和陈旧汇总措辞逐项补正。找不到历史原件则 insufficient-evidence；当下零残留不改写旧时点。
