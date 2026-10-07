@@ -15,6 +15,7 @@
 - MCP 401 映射 `openbkn/authentication-required`，现有 UI 显示 CLI 登录并同步。登录后仍被拒绝时保持该状态，不伪报成功。
 - 403 保留账号访问拒绝提示；TLS/连接/未知原因继续走错误与诊断，不推测重新登录能恢复。
 - 平台目录请求的 401 和 403 分开，提示包含实际来源，不再把 MCP 401 写成“MCP 已连接”。
+- 独立评审指出首版将目录 403 转到普通错误页会移除旧手动 Token 入口。修正后目录 403 保留既有凭据恢复视图，仍明确显示访问权限拒绝、建议管理员或已授权凭据，不保证重登同一账号恢复。MCP 403、TLS/网络分类保持各自语义。
 - 全套插件 320 项：319 pass / 0 fail / 1 skip；repo + Node eval 63/63；typecheck、package:check、diff-check、pack 通过。`regression-after-fix.txt` 为集中回归原生输出。
 - 最新上游核对：DSH master / 最新 tag `dsh-v0.2.1-alpha.1` 仍为 `5badb15009ae1756c3afe0ae0cef1faafc290ccc`；支持的 `dsh-v0.2.0-rc.2` 为 `639ed015397290b3745d163aafe02ffee4aa3f84`。Foundry main 仍为 `4a0db7799bc2f29aeeeb190bbecd8c7f6a90360f`，最新正式 release `v0.1.5`。本轮不升级 pin 或平台。
 

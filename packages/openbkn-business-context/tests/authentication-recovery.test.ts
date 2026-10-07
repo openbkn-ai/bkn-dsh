@@ -125,12 +125,13 @@ test('MCP permission denial and transport failures do not offer re-login as thei
   }
 })
 
-test('the platform catalogue reports 401 and 403 separately after a successful MCP handshake', async () => {
+test('catalogue 401 and 403 retain credential recovery with distinct refusal messages', async () => {
   for (const status of [401, 403]) {
     const { controller, allowHandshake } = recoveryCase(undefined, status)
     allowHandshake()
     await controller.refresh()
-    assert.equal(controller.snapshot().phase, status === 401 ? 'authentication-required' : 'error')
+    assert.equal(controller.snapshot().phase, 'authentication-required', 'the existing login and manual-token form must remain available')
     assert.match(controller.snapshot().message ?? '', new RegExp(`平台.*${status}`))
+    if (status === 403) assert.match(controller.snapshot().message ?? '', /管理员.*Token.*不保证恢复/)
   }
 })

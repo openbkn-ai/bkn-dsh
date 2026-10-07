@@ -44,7 +44,7 @@ declare module '@deepseek-ai/dsh-typert-protocol' {
     'openbkn/authentication-required': {
       readonly baseUrl: string
       readonly layer?: 'context-loader-mcp' | 'platform-api'
-      readonly httpStatus?: 401
+      readonly httpStatus?: 401 | 403
     }
     'openbkn/connection-failed': {
       readonly baseUrl: string
@@ -321,15 +321,10 @@ export class OpenBknBusinessContextService extends TypertRemoteService {
       payload = await this.platformReader().listKnowledgeNetworks(signal, '.')
     } catch (error: unknown) {
       if (error instanceof PlatformReaderError && error.code === 'AUTHENTICATION_REQUIRED') {
-        if (error.httpStatus === 403) {
-          throw new RemoteError('openbkn/connection-failed', 'OpenBKN platform access was denied.', {
-            baseUrl: this.config.baseUrl, layer: 'platform-api', httpStatus: 403,
-          })
-        }
         throw new RemoteError(
           'openbkn/authentication-required',
           'OpenBKN authentication is required.',
-          { baseUrl: this.config.baseUrl, layer: 'platform-api', ...(error.httpStatus === 401 ? { httpStatus: 401 } : {}) },
+          { baseUrl: this.config.baseUrl, layer: 'platform-api', ...((error.httpStatus === 401 || error.httpStatus === 403) ? { httpStatus: error.httpStatus } : {}) },
         )
       }
       if (error instanceof PlatformReaderError && error.code === 'PLATFORM_UNAVAILABLE') {

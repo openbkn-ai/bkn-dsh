@@ -180,6 +180,9 @@ function isAuthenticationRequiredError(error: unknown): error is {
 
 function authenticationFailureMessage(error: { readonly details: { readonly layer?: unknown; readonly httpStatus?: unknown } }): string {
   const source = error.details.layer === 'context-loader-mcp' ? 'Context Loader MCP' : 'OpenBKN 平台'
+  if (error.details.httpStatus === 403) {
+    return `${source} 拒绝了当前账号的访问（HTTP 403）。请联系平台管理员核实访问权限，或更换具有平台访问权限的账号或 Token；重新登录同一账号不保证恢复。`
+  }
   const status = error.details.httpStatus === 401 ? '（HTTP 401）' : ''
   return `${source} 拒绝了当前凭据${status}。请使用 OpenBKN CLI 重新登录并同步，或更新具有平台访问权限的 Token。`
 }
