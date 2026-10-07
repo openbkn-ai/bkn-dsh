@@ -88,7 +88,7 @@ test('returns to sign-in when the platform rejects a locally present credential'
     phase: 'authentication-required',
     auth: authenticationRequired,
     networks: [],
-    message: 'Context Loader MCP 已连接，但该 Token 无法读取 OpenBKN 平台的业务知识网络目录。请使用具有平台访问权限的用户访问 Token 或 AppKey。',
+    message: 'OpenBKN 平台 拒绝了当前凭据。请使用 OpenBKN CLI 重新登录并同步，或更新具有平台访问权限的 Token。',
   })
 })
 
@@ -112,7 +112,7 @@ test('explains whether a failed verification came from MCP or the platform catal
   assert.match(controller.snapshot().message ?? '', /Context Loader MCP 已连接/)
 })
 
-test('explains that a Context Loader-only token cannot load the platform catalogue', async () => {
+test('offers credential recovery without inferring why the platform catalogue rejected a token', async () => {
   const rejected = Object.assign(new Error('OpenBKN authentication is required.'), {
     code: 'openbkn/authentication-required',
     details: { baseUrl: authenticated.baseUrl },
@@ -129,7 +129,7 @@ test('explains that a Context Loader-only token cannot load the platform catalog
   await controller.configureToken('context-loader-only-token')
 
   assert.equal(controller.snapshot().phase, 'authentication-required')
-  assert.match(controller.snapshot().message ?? '', /MCP 已连接/)
+  assert.match(controller.snapshot().message ?? '', /平台.*拒绝了当前凭据/)
   assert.match(controller.snapshot().message ?? '', /平台访问权限/)
 })
 

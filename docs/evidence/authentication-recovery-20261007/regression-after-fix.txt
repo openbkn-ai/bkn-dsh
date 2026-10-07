@@ -1,0 +1,37 @@
+✔ a locally present CLI token rejected by MCP exposes login and recovers through the existing CLI flow (9.557333ms)
+✔ manual-token and login verification retain an MCP 401 as an authentication-required Remote error (0.535541ms)
+✔ a completed CLI login whose credential is still rejected keeps the login recovery state (0.2265ms)
+✔ MCP permission denial and transport failures do not offer re-login as their classification (0.667292ms)
+✔ the platform catalogue reports 401 and 403 separately after a successful MCP handshake (0.677875ms)
+✔ derives the standard Context Loader endpoint from the configured OpenBKN platform (0.348375ms)
+✔ honours an explicitly configured Context Loader endpoint on the same origin (0.0725ms)
+✔ mounts the compatible MCP client with an ephemeral bearer header and verifies its managed tool (0.951167ms)
+✔ turns an MCP handshake rejection into an actionable re-login hint (G6 finding) (0.296125ms)
+✔ keeps a plain startup failure in its original shape (0.199167ms)
+✔ keeps the HTTP refusal brand across the SDK data.cause wrapper without retaining private errors (0.094666ms)
+✔ recognizes a 403 brand as an account-authorization hint, not re-login (0.131459ms)
+✔ the tool-call timeout defaults to 20 s and is configurable (0.728208ms)
+✔ directs unavailable RPC and unknown connection failures to diagnostics without guessing credentials (0.650083ms)
+✔ loads only the visible network catalogue after OpenBKN authentication succeeds (0.30925ms)
+✔ does not request the catalogue while OpenBKN authentication is required (0.061416ms)
+✔ returns to sign-in when the platform rejects a locally present credential (0.089167ms)
+✔ explains whether a failed verification came from MCP or the platform catalogue (0.079125ms)
+✔ offers credential recovery without inferring why the platform catalogue rejected a token (0.079375ms)
+✔ keeps the saved token and identifies a temporarily unavailable platform catalogue (0.060083ms)
+✔ creates the selected network session before binding it (0.157ms)
+✔ binds the selected visible network to the newly opened network session (0.172833ms)
+✔ refreshes native additive session contributions after binding a new session (0.128875ms)
+✔ attributes a browse-only Host refusal to the connection mode (0.16625ms)
+✔ reports a failing native chooser with its own cause, not as a connection-mode limit (0.06575ms)
+✔ returns to the network list without an error when the chooser is dismissed (0.058167ms)
+✔ includes the underlying cause in the generic bind-failure message (0.069ms)
+✔ tells the user how to make the OpenBKN CLI available instead of blaming the token (0.057917ms)
+✔ while the workspace chooser is open, the panel says where to look instead of "binding" (0.059542ms)
+ℹ tests 29
+ℹ suites 0
+ℹ pass 29
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 285.543792

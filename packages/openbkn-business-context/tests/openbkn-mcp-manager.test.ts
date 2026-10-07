@@ -1,6 +1,6 @@
 import assert from 'node:assert/strict'
 import test from 'node:test'
-import { OpenBknMcpManager, resolveMcpUrl } from '../src/openbkn-mcp-manager.ts'
+import { OpenBknMcpManager, OpenBknMcpCredentialRejectedError, explainMcpStartupFailure, resolveMcpUrl } from '../src/openbkn-mcp-manager.ts'
 
 test('derives the standard Context Loader endpoint from the configured OpenBKN platform', () => {
   assert.equal(
@@ -75,6 +75,17 @@ test('keeps a plain startup failure in its original shape', async () => {
   const manager = new OpenBknMcpManager(ctx as never, { baseUrl: 'http://localhost:8081' } as never, async () => 'test-token')
 
   await assert.rejects(manager.ensure(), /ECONNREFUSED/)
+})
+
+test('keeps the HTTP refusal brand across the SDK data.cause wrapper without retaining private errors', () => {
+  const wrapped = Object.assign(new Error('SDK negotiation failed'), {
+    data: { cause: Object.assign(new Error('private credential detail'), { code: 'CLIENT_HTTP_AUTHENTICATION' }) },
+  })
+  const failure = explainMcpStartupFailure(wrapped)
+  assert.ok(failure instanceof OpenBknMcpCredentialRejectedError)
+  assert.equal(failure.httpStatus, 401)
+  assert.equal(failure.cause, undefined)
+  assert.doesNotMatch(failure.message, /private credential detail/)
 })
 
 test('recognizes a 403 brand as an account-authorization hint, not re-login', async () => {
