@@ -23,8 +23,8 @@
 
 ## 全部文件哈希对照（本地原件 vs Git blob）
 
-- `E1-OLD-EVIDENCE-CORRECTIONS.md` | local sha256=421d267431bbc4d789c43c32202026d1b16f5cb726624da33da5d3c58af8d4fe | git blob sha256=4969beb5a13e026f5e83b0ed2e0dbefd7abc239b16e484f98ebbc8d27027feac | normalized (local CRLF -> repo LF)
-- `N45-SUMMARY.md` | local sha256=7de0989ea55a641a55644023496cb92bbe8dda2d4eeb4be8420d0b09b497b05a | git blob sha256=9f130443ec39bcf7d4d692a0bc28b9ca93adfa36ecdfe627ea43efc5388944fe | normalized (local CRLF -> repo LF)
+- `E1-OLD-EVIDENCE-CORRECTIONS.md` | local sha256=a8627fb6c429ae78e27cf980dbd15a498b765e3b22e8816a02bd8162ef810755 | git blob sha256=41202fabc9371bbc717284b5641b1af8ac4e6b86e84f41346567d8c544491dc4 | normalized (local CRLF -> repo LF)
+- `N45-SUMMARY.md` | local sha256=1139f6aaa63485ec637048d2b6d12a98a356d06251bd65e846f74c609d180acb | git blob sha256=1df2eec3fc2e04fc3bbcac6983d6fac0efc9ca685a64a38db1e0cf7a3b4463ad | normalized (local CRLF -> repo LF)
 - `OpenBKN-diagnostic-20261007T052241390Z-7c619431.json` | local sha256=9da3c4eb34cbf6c0db1b62c79038cf7a9477dfe4722562ca770e0269e7d72fe4 | git blob sha256=9da3c4eb34cbf6c0db1b62c79038cf7a9477dfe4722562ca770e0269e7d72fe4 | identical
 - `OpenBKN-diagnostic-fault-npm-13cb6741.json` | local sha256=dab620bdafe7e38f823fdb47e02a41d678f7b6d363b060157470220db9954a5e | git blob sha256=dab620bdafe7e38f823fdb47e02a41d678f7b6d363b060157470220db9954a5e | identical
 - `OpenBKN-diagnostic-n1-desktop-c926d0f6.json` | local sha256=fb3979e5ba784d6af7c89b62e500a2611e1743175f1bb7b574cbc4dc21487ee6 | git blob sha256=fb3979e5ba784d6af7c89b62e500a2611e1743175f1bb7b574cbc4dc21487ee6 | identical
@@ -36,7 +36,7 @@
 - `OpenBKN-diagnostic-recovered-desktop-8228b264.json` | local sha256=63137af8a34bc08350245036fc82cc57dd72333fd516058d4a0cc83a952f3e5d | git blob sha256=63137af8a34bc08350245036fc82cc57dd72333fd516058d4a0cc83a952f3e5d | identical
 - `OpenBKN-diagnostic-recovered-npm-8f07c6a5.json` | local sha256=c7036a231d35cce364f1b3d46faec5603e4a1235a6aa6c9d64ff84543f00c65e | git blob sha256=c7036a231d35cce364f1b3d46faec5603e4a1235a6aa6c9d64ff84543f00c65e | identical
 - `PROCESS-RECORDS-STATUS.md` | local sha256=80e341b81b942a1230971739a0132136ab9de0f7fc67d09d3b466104b2d194ac | git blob sha256=80e341b81b942a1230971739a0132136ab9de0f7fc67d09d3b466104b2d194ac | identical
-- `RESULTS.md` | local sha256=ec5acb40d8935fb92e2e866d02e65b2b7c1a9f7679ff3695d7b43d38d495c648 | git blob sha256=609553a089835540325db69133ef3e3cac8105f38e3df976a41f077a3db88b15 | normalized (local CRLF -> repo LF)
+- `RESULTS.md` | local sha256=6293f4845196ac09e83b58244d7715bb250f6a25e72d503b7cc66be3f2242fc3 | git blob sha256=781f5101b18465f9aa2799a83ad06a001951f8c41a8fdcf7f444664ade3d372b | normalized (local CRLF -> repo LF)
 - `cli-version-native.txt` | local sha256=edb25450d34a9d2ee6746a414b1fc0cb05511581918d83203ae48ef7008e9813 | git blob sha256=da9a924fd06b3605d7118771ed05116f1724e96201bd558df0976fee304852f0 | normalized (local CRLF -> repo LF)
 - `dn-desktop-patch-original.yml` | local sha256=ef189a8c27db6d63930aa3046a3040482e952eafcb7487c644d508e8d461f027 | git blob sha256=ef189a8c27db6d63930aa3046a3040482e952eafcb7487c644d508e8d461f027 | identical
 - `dsh-cli-version-native.txt` | local sha256=be45752595db3ecc6ca4a98d6879db3d6574c1bab7d579fda75edc24fe53be37 | git blob sha256=3476ecca09e2c1bd770bdf01b429b610441a28405dd9e4ecbd812d89dcf359ee | normalized (local CRLF -> repo LF)
