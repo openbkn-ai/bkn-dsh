@@ -71,5 +71,29 @@
       "schemaChanges": []
     }
   },
-  "releaseStateAtCheck": "Preparation only; no tag, publish or dist-tag mutation"
+  "releaseStateAtCheck": "Preparation only; no tag, publish or dist-tag mutation",
+  "archiveCheckoutVerification": {
+    "checkedAt": "2026-10-07T14:17:22.612228+00:00",
+    "sourceSnapshotCommit": "19c2dc5a9d5083cc1e59f2dd2d9544ad0394489c",
+    "checkoutMode": "Git checkout filters with core.autocrlf=true; archived directory has text unset (-text)",
+    "snapshotFiles": 107,
+    "exactSourceBlobMatches": 107,
+    "workingCopyByteMatches": 107,
+    "autocrlfCheckoutByteMatches": 107,
+    "manifestEntriesVerified": 106,
+    "identical": 80,
+    "normalizedCRLFToLF": 26,
+    "unexplainedDifferences": 0,
+    "scope": "Git filter behavior checked on macOS; no new Windows Host run claimed"
+  },
+  "archivedScriptCaveats": {
+    "n3ActualArchive": "windows-results/n3-command-provenance.sh",
+    "n3NameInOriginalReport": "step-ar-n3.sh",
+    "desktopDriversNotInSnapshot": [
+      "step-ar-dn1-fix.ps1",
+      "step-ar-dn2.ps1",
+      "dn2r2"
+    ],
+    "historicalStopsWithoutNativeOutput": "insufficient-evidence; no missing records reconstructed"
+  }
 }

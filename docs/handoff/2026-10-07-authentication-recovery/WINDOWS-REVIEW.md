@@ -11,7 +11,15 @@
 - 11 份产品诊断 JSON、10 个唯一 reportId；`7c619431` 两份副本字节相同，11 份均保持此前原件字节。desktop 6 份、npm/IAB 5 份的来源与已被清除的 `.tmp` 状态分列，不补造已清除的原件。
 - RESULTS、E1、N45 的最终修正均被清单覆盖；源码、候选、helper 和历史原始记录没有随补证修改。
 - `prepare-npm.txt` 第 8 行是原生命令输出的单空格行；仓库只为该文件关闭行尾空格检查，保留原字节和 SHA，不清理原件。
+- 归档目录设置 `-text`，禁止 Git 在 Windows checkout 时转换换行。以 `core.autocrlf=true` 调用 Git checkout 过滤器复核，107/107 输出与归档 Git blob 字节一致；清单的 106 项 SHA 与 26 项 CRLF 重建核验仍全部通过。这是 macOS 上的 Git 过滤器核验，不新增 Windows Host 验收。
 - 发布准备时重新读取当前平台 28 项 `tools/list`，输入/输出 schema 与候选基准无新增、移除或变化；CLI 为 0.1.5。DSH 最新可用版仍为 `dsh-v0.2.1-alpha.1`，本包支持与验收固定在 `dsh-v0.2.0-rc.2`。Foundry main 相对候选基准仅多出 #2030 历史迁移代码，不调整宿主 pin 或部署。完整记录见 [WINDOWS-REVIEW.json](WINDOWS-REVIEW.json)。
+
+## 原始回传的脚本引用修正
+
+PR #78 评审发现 [PROCESS-RECORDS-STATUS.md](windows-results/PROCESS-RECORDS-STATUS.md) 的脚本名称和归档范围有两处错误。原始回传及其清单保持固定提交的字节，以下更正作为主 agent 的复核结论：
+
+- N3 命令实际归档为 [n3-command-provenance.sh](windows-results/n3-command-provenance.sh)，原文的 `step-ar-n3.sh` 是回传时使用的名称，不是仓库文件名。原生退出码未独立存档的限制不变。
+- 原文提到的 `step-ar-dn1-fix.ps1`、`step-ar-dn2.ps1` 以及 dn2r2 脚本均不在最终 Git 快照；不能依据“脚本在档”证明这些历史停止操作。相关 PID 原件保留，脚本及原生停止输出证据不足仍记 `insufficient-evidence`，不补造或推定执行成功。
 
 ## 已验证范围
 
