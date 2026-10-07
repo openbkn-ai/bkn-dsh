@@ -1,8 +1,27 @@
-# 证据清单（复核后重建 v2，2026-10-07 晚）
+# 证据清单 v3（2026-10-07 晚，P2 修正后重建）
 
-- 口径：仅列 Git 内文件（不含本清单自引用）；每项给出 Windows 本地原件完整 SHA-256 与 Git blob 内容完整 SHA-256；两者不同时注明换行转换方向。
-- 诊断 JSON：本地归档 11 份 / 10 个唯一 reportId（7c619431 两份副本：r1-desktop-fault-report.json 与 OpenBKN-diagnostic-fault-desktop-7c619431.json，为同报告两次导出）。
-- 下载原件路径：desktop blob 导出 = D:\mydocs\downloads\OpenBKN-diagnostic-*.json 与 r1-desktop-fault-report.json（11 份原件仍在档，已逐一复核存在）；npm IAB 导出 = D:\mydocs\downloads\<uuid>.tmp（按 reportId 归档后已被浏览器下载生命周期清除，归档副本即捕获字节）。
+- 口径：仅列 Git 内文件（不含本清单自引用）；每项给出 Windows 本地原件完整 SHA-256 与 Git blob 内容完整 SHA-256；不同时注明换行转换方向。
+- 诊断 JSON：**11 份 / 10 个唯一 reportId**；desktop 场景 6 份、npm(IAB) 场景 5 份；7c619431 两份副本字节相同（同报告两次导出：r1-desktop-fault-report.json 与 OpenBKN-diagnostic-20261007T052241390Z-7c619431.json）。
+
+## 逐件来源表（诊断 JSON）
+
+| 归档文件名 | reportId | Host 场景 | 实际下载/保存路径 | 原下载件仍在 | 本地归档性质 |
+|---|---|---|---|---|---|
+| OpenBKN-diagnostic-20261007T052241390Z-7c619431.json | 7c619431 | desktop | D:/mydocs/downloads\OpenBKN-diagnostic-20261007T052241390Z-7c619431.json | 是 | download original (save dialog, 2nd export) |
+| OpenBKN-diagnostic-fault-npm-13cb6741.json | 13cb6741 | npm(IAB) | D:/mydocs/downloads\ (original: <uuid>3463b2fd.tmp, cleared by browser) | 否（已被浏览器下载生命周期清除） | archive copy of .tmp capture bytes |
+| OpenBKN-diagnostic-n1-desktop-c926d0f6.json | c926d0f6 | desktop | D:/mydocs/downloads\OpenBKN-diagnostic-20261007T075821538Z-c926d0f6.json | 是 | copy of download original (save dialog) |
+| OpenBKN-diagnostic-n1-npm-7959b46a.json | 7959b46a | npm(IAB) | D:/mydocs/downloads\ (original: <uuid>8f8a395e.tmp, cleared by browser) | 否（已被浏览器下载生命周期清除） | archive copy of .tmp capture bytes |
+| OpenBKN-diagnostic-n2-fault-desktop-0fcbd4b8.json | 0fcbd4b8 | desktop | D:/mydocs/downloads\OpenBKN-diagnostic-20261007T075959432Z-0fcbd4b8.json | 是 | copy of download original (save dialog) |
+| OpenBKN-diagnostic-n2-fault-npm-b70022e4.json | b70022e4 | npm(IAB) | D:/mydocs/downloads\ (original: <uuid>36ecf885.tmp, cleared by browser) | 否（已被浏览器下载生命周期清除） | archive copy of .tmp capture bytes |
+| OpenBKN-diagnostic-n2-recovery-desktop-5c331485.json | 5c331485 | desktop | D:/mydocs/downloads\OpenBKN-diagnostic-20261007T080255574Z-5c331485.json | 是 | copy of download original (save dialog) |
+| OpenBKN-diagnostic-n2-recovery-npm-fcc4e435.json | fcc4e435 | npm(IAB) | D:/mydocs/downloads\ (original: <uuid>653d7025.tmp, cleared by browser) | 否（已被浏览器下载生命周期清除） | archive copy of .tmp capture bytes |
+| OpenBKN-diagnostic-recovered-desktop-8228b264.json | 8228b264 | desktop | D:/mydocs/downloads\OpenBKN-diagnostic-20261007T064929057Z-8228b264.json | 是 | copy of download original (save dialog) |
+| OpenBKN-diagnostic-recovered-npm-8f07c6a5.json | 8f07c6a5 | npm(IAB) | D:/mydocs/downloads\ (original: <uuid>3572c232.tmp, cleared by browser) | 否（已被浏览器下载生命周期清除） | archive copy of .tmp capture bytes |
+| r1-desktop-fault-report.json | 7c619431 | desktop | D:/mydocs/downloads\r1-desktop-fault-report.json | 是 | download original (save dialog) |
+
+- 说明：desktop 场景经产品保存对话框直接落盘至 D:\mydocs\downloads（Windows 已知 Downloads 重定向），原件仍在，已逐件复核存在；npm(IAB) 场景下载以 <uuid>.tmp 落盘、按 reportId 归档为上述文件，**.tmp 原件已被浏览器下载生命周期清除，无法重新核验，归档副本即捕获字节**——如实记录，不声称已复核不存在的原件。
+
+## 全部文件哈希对照（本地原件 vs Git blob）
 
 - `E1-OLD-EVIDENCE-CORRECTIONS.md` | local sha256=421d267431bbc4d789c43c32202026d1b16f5cb726624da33da5d3c58af8d4fe | git blob sha256=4969beb5a13e026f5e83b0ed2e0dbefd7abc239b16e484f98ebbc8d27027feac | normalized (local CRLF -> repo LF)
 - `N45-SUMMARY.md` | local sha256=7de0989ea55a641a55644023496cb92bbe8dda2d4eeb4be8420d0b09b497b05a | git blob sha256=9f130443ec39bcf7d4d692a0bc28b9ca93adfa36ecdfe627ea43efc5388944fe | normalized (local CRLF -> repo LF)
@@ -111,5 +130,5 @@
 - `user-state-before.json` | local sha256=c020befd696585d4166397d959c17c40511655ca06bdb6d55a09964dd985e954 | git blob sha256=291994423895882da94b12adcc10aa182b28c48505a9870625a20906b047b3e6 | normalized (local CRLF -> repo LF)
 - `verify-kit-native.txt` | local sha256=b3f8481d479666a5d97bcef834e5cd6e5a7cb8fdb6d327ae9d24e1d72ffbf36e | git blob sha256=bc3febbc1165e0cf5c9ba8361f4dfa4637217f578189367f6a257aae2b506bc0 | normalized (local CRLF -> repo LF)
 
-合计：Git 内 106 文件（不含本清单）；本地对账 80 identical + 26 normalized + 0 特例（无）。
-- 注：上轮清单（101 条、短 SHA、含自引用）作废，以本清单为准；E1 本地副本已与仓库修正版同步。
+合计：Git 内 106 文件（不含本清单）；80 identical + 26 normalized + 0 特例（无）。
+- 注：本清单 v3 取代 v1/v2；受本轮 P2 文字修正影响的文件（RESULTS.md、E1-OLD-EVIDENCE-CORRECTIONS.md、本清单）以本次提交后的 Git blob 为准。
