@@ -41,6 +41,8 @@ test('renders compact managed-session guidance without exposing untrusted platfo
   assert.match(policy.governance, /do not probe.*bash.*tool list.*bkn_start_interaction directly/i)
   assert.match(policy.governance, /retry at most once.*do not retry again/i)
   assert.match(policy.governance, /get_kn_detail.*do not repeat it with another format or detail_level/i)
+  assert.match(policy.governance, /Use search_schema at most once/)
+  assert.match(policy.governance, /search hits cannot establish an exact exhaustive count or list/)
   assert.match(policy.governance, /Use run_code only as a read-only fallback/i)
   assert.match(policy.governance, /documented field meaning/)
   assert.match(policy.governance, /Do not add unrequested metrics or calculations/)
