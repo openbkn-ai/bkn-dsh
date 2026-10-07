@@ -1,0 +1,29 @@
+{
+  "incident": "CUA app selection launched default profile before candidate acceptance; no test question or model call; stopped only the newly launched processes after creation/executable checks.",
+  "beforeStateCapture": true,
+  "records": [
+    {
+      "pid": 34458,
+      "creationIdentityMatched": false,
+      "terminationSent": false
+    },
+    {
+      "pid": 34875,
+      "creationIdentityMatched": false,
+      "terminationSent": false
+    }
+  ],
+  "closeMethod": "native Quit action",
+  "recordedPidsNowAbsent": true,
+  "additionalDefaultLaunch": {
+    "pid": 35301,
+    "childHostPid": 35663,
+    "start": "Wed Oct  7 10:19:10 2026",
+    "dshHome": null,
+    "profile": "/Users/kalias/.dsh/profiles/desktop",
+    "observation": "A post-Quit native AX observation re-opened the default application; discovered before install, no question/model call, then Quit without further AX observation. The installer refused to proceed while it was running.",
+    "closure": "Main and child were absent before the bundled-CLI installation."
+  },
+  "separateInstallerPreparationDeviation": "The official npm CLI correctly refused the desktop profile; exit 1, no install mutation. Retried via the application-bundled CLI; remove/install exit 0.",
+  "clarification": "The first identity audit ran after native Quit, so creationIdentityMatched=false means the recorded PID had already vanished; no fallback termination was sent. The available daily-file baseline is post-incident, pre-candidate acceptance, not pre-turn."
+}

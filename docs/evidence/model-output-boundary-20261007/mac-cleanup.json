@@ -1,0 +1,50 @@
+{
+  "capturedAt": "2026-10-07T02:52:58.722188+00:00",
+  "records": [
+    {
+      "pid": 50276,
+      "recordedStart": "Wed Oct  7 10:42:39 2026",
+      "recordedExecutable": "/Applications/DeepSeek Harness.app/Contents/MacOS/DeepSeek Harness",
+      "stopMethod": "native application Quit",
+      "remainingProcess": false,
+      "noFallbackSignalSent": true
+    },
+    {
+      "pid": 50279,
+      "recordedStart": "Wed Oct  7 10:42:39 2026",
+      "recordedExecutable": "/Applications/DeepSeek Harness.app/Contents/Frameworks/DeepSeek Harness Helper.app/Contents/MacOS/DeepSeek Harness Helper",
+      "stopMethod": "native application Quit",
+      "remainingProcess": false,
+      "noFallbackSignalSent": true
+    },
+    {
+      "pid": 50280,
+      "recordedStart": "Wed Oct  7 10:42:39 2026",
+      "recordedExecutable": "/Applications/DeepSeek Harness.app/Contents/Frameworks/DeepSeek Harness Helper.app/Contents/MacOS/DeepSeek Harness Helper",
+      "stopMethod": "native application Quit",
+      "remainingProcess": false,
+      "noFallbackSignalSent": true
+    },
+    {
+      "pid": 50295,
+      "recordedStart": "Wed Oct  7 10:42:39 2026",
+      "recordedExecutable": "/Applications/DeepSeek Harness.app/Contents/Frameworks/DeepSeek Harness Helper (Renderer).app/Contents/MacOS/DeepSeek Harness Helper (Renderer)",
+      "stopMethod": "native application Quit",
+      "remainingProcess": false,
+      "noFallbackSignalSent": true
+    },
+    {
+      "pid": 50654,
+      "recordedStart": "Wed Oct  7 10:42:40 2026",
+      "recordedExecutable": "/Applications/DeepSeek Harness.app/Contents/MacOS/DeepSeek Harness",
+      "stopMethod": "native application Quit",
+      "remainingProcess": false,
+      "noFallbackSignalSent": true
+    }
+  ],
+  "allOwnedPidsAbsent": true,
+  "testPort": 19387,
+  "portListenOutput": "",
+  "portReleased": true,
+  "scope": "Only the recorded isolated application process tree and its test listener; not a global sweep"
+}

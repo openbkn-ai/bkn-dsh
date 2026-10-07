@@ -1,0 +1,39 @@
+{
+  "independentScope": "Physical ERP rows are a superset of published main_only; no assertion they are equivalent",
+  "disclosedL1Rows": 9,
+  "l1NamesCodesUsageMatch": true,
+  "physicalAllCount": 507,
+  "physicalAllLevelCounts": {
+    "0": 1,
+    "1": 9,
+    "2": 31,
+    "3": 42,
+    "4": 362,
+    "5": 62
+  },
+  "physicalAltPriority0Count": 400,
+  "physicalAltPriority0LevelCounts": {
+    "0": 1,
+    "1": 9,
+    "2": 23,
+    "3": 40,
+    "4": 278,
+    "5": 49
+  },
+  "publishedSummary": {
+    "lines": 313,
+    "uniqueChildren": 272,
+    "maxLevel": 5,
+    "source": "original execute_tool result in this session; not independent physical-ERP same-scope proof"
+  },
+  "coverage": "L1/L2 composition plus level counts; explicitly omits L3-L5 individual rows",
+  "unverifiedClaims": [
+    "Causal explanation for 313 published-scope rows vs 400 alt_priority=0 physical rows is not established by raw rows or summary output",
+    "Final statement that fallback scope is consistent with published capability is not accepted as equivalence proof"
+  ],
+  "nativeTurnOutcome": {
+    "kind": "completed"
+  },
+  "fidelityNotices": 0,
+  "factVerdict": "Core disclosed L1 and physical level counts verified; scope-cause explanation remains unverified; no all-fields/all-313-row pass claim"
+}

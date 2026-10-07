@@ -1,0 +1,17 @@
+{
+  "command": [
+    "bkn",
+    "object-type",
+    "query",
+    "supply_ontology_hand",
+    "supply_ontology_hand_inventory",
+    "--body",
+    "{\"limit\": 1000, \"need_total\": true, \"condition\": {\"operation\": \"in\", \"field\": \"material_code\", \"value\": [\"791-000013\", \"606-000989\", \"606-000990\", \"528-000036\", \"791-000007\", \"994-000550\", \"468-000493\", \"468-000530\", \"791-000015\"], \"value_from\": \"const\"}}",
+    "--json"
+  ],
+  "exitCode": 0,
+  "rowCount": 37,
+  "capturedAt": "2026-10-07T02:51:34.927532+00:00",
+  "sha256": "ee14410f9adfc0ca636bbad77bf321a281bfd4b8d70cbb9cd3e39ce38894f47d",
+  "scope": "Only nine disclosed L1 components; not the full 272-material inventory"
+}

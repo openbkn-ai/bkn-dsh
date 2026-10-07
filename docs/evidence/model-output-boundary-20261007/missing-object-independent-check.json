@@ -1,0 +1,30 @@
+{
+  "nativeTurnOutcome": {
+    "kind": "completed"
+  },
+  "fidelityNotices": 0,
+  "independentRowCounts": {
+    "missing-material": 0,
+    "missing-inventory": 0,
+    "missing-orders": 0
+  },
+  "coreNoDataClaimMatches": true,
+  "nonzeroValuesForRequestedMaterial": false,
+  "limits": [
+    "Independently verified exact material/inventory/sales-order filters only; the model queried additional object types and prefix counts, whose tool output is retained but not independently re-counted",
+    "No platform rule establishes that 999 prefix is an invalid code; the tentative model inference is not accepted as a schema rule"
+  ],
+  "factVerdict": "Core requested-material no-data conclusion verified; original negative-case criterion fails due to unrelated nonzero figures; code-validity inference unverified.",
+  "unrelatedNonzeroBusinessStatistics": [
+    {
+      "scope": "all material records",
+      "count": 3497
+    },
+    {
+      "scope": "all product records",
+      "count": 30
+    }
+  ],
+  "fullOriginalCriterionPassed": false,
+  "criterionFailureReason": "Original missing-object evaluation forbids nonzero business figures. The answer adds unrelated full-catalogue counts (3497 materials / 30 products); the correct no-data conclusion for 999-999999 does not override this scope failure."
+}

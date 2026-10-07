@@ -1,0 +1,37 @@
+[
+  {
+    "name": "orders",
+    "beforeRows": 40,
+    "afterRows": 40,
+    "rowsEqual": true,
+    "totalCountEqual": true
+  },
+  {
+    "name": "inventory",
+    "beforeRows": 36,
+    "afterRows": 36,
+    "rowsEqual": true,
+    "totalCountEqual": true
+  },
+  {
+    "name": "purchase-orders",
+    "beforeRows": 0,
+    "afterRows": 0,
+    "rowsEqual": true,
+    "totalCountEqual": true
+  },
+  {
+    "name": "purchase-requests",
+    "beforeRows": 0,
+    "afterRows": 0,
+    "rowsEqual": true,
+    "totalCountEqual": true
+  },
+  {
+    "name": "bom",
+    "beforeRows": 507,
+    "afterRows": 507,
+    "rowsEqual": true,
+    "totalCountEqual": true
+  }
+]

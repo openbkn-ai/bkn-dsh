@@ -1,8 +1,8 @@
 # OpenBKN DSH 插件累计更新说明
 
-更新目标：`@openbkn/dsh-business-context@0.2.0-rc.2-openbkn.0.2.0-7`。这是待发布的统一说明；截至 2026-10-06，npm 的 `latest` 为 `-3`、`rc` 为 `-4`，`-5/-6` 仅为开发候选，`-7` 尚未发布。
+更新目标：`@openbkn/dsh-business-context@0.2.0-rc.2-openbkn.0.2.0-7`。这是待发布的统一说明；截至 2026-10-07 实时 registry 核对，npm 的 `latest` 为 `-3`、`rc` 为 `-4`，`-5/-6` 仅为开发候选，`-7` 尚未发布。
 
-本文合并 GitHub 账户 **kalias** 已合入主线的功能、修复与交付改进，不按开发候选拆成多份公告。作者归属来自 GitHub commits 的 `author=kalias` 查询，完整清单见 [account-contributions.json](../evidence/answer-fidelity-20261006/account-contributions.json)。其他账户的基础实现不计为该账户的新增贡献；下列说明描述最终行为，后续纠正过的历史判断不作为现行功能。
+本文合并 GitHub 账户 **kalias** 已合入主线的功能、修复与交付改进，不按开发候选拆成多份公告。作者归属来自 GitHub commits 的 `author=kalias` 查询，当前完整清单核对至源码 `2813f3a`，共 73 项；见 [account-contributions.json](../evidence/model-output-boundary-20261007/account-contributions.json)。旧清单按历史源码保留。其他账户的基础实现不计为该账户的新增贡献；下列说明描述最终行为，后续纠正过的历史判断不作为现行功能。
 
 ## 用户可以看到的变化
 
@@ -47,10 +47,10 @@ Windows 测试 helper 现吸收实际 Windows 复验的修正：配置写入 BOM
 
 ## 验收与已知限制
 
-准确的固定候选身份和逐项状态见 [Windows 固定包交接](../handoff/2026-10-06-release-7/fidelity-windows/README.md) 与 [本轮结果](../evidence/answer-fidelity-20261006/RESULTS.md)。历史 Windows `-6` 两形态诊断隔离通过；非法 URL 缺陷已经在 `-7` 源码修复，需 Windows 对本轮固定包复测。Windows 无凭据的真实登录、问答和 live guard 均保留未测；用户没有真实受限账号，该授权场景同样未测。
+准确的当前候选身份和逐项状态见 [新的 Windows 固定包交接](../handoff/2026-10-07-native-output/windows-kit/README.md) 与 [原生回答边界实机结果](../evidence/model-output-boundary-20261007/RESULTS.md)。历史 Windows `-6` 两形态诊断隔离及旧统一 `-7` 的非法 URL/收态补证保留；不能由旧 SHA 接受本次新包。Windows 无凭据的真实登录、问答和 live guard 均保留未测；用户没有真实受限账号，该授权场景同样未测。
 
 “重新采集”读取被动观察，主动网络探测未实现。旧启动异常的根因未知；未复现不等于修复。平台 [#2029](https://github.com/openbkn-ai/bkn-foundry/issues/2029) 的大结果落库问题仍开放，`run_code` 内部调用也不经过插件 guard。报告中的 Host/插件版本可能未知，另用安装清单与进程来源确认身份。发布、tag 和 dist-tag 迁移须待验收结论及用户发版决定。
 
 历史统一 CI 包曾出现 BOM 多一行及物理源表名转述错误；后续固定 CI 包又暴露空库存标记、缺列头及库存范围/预留说明问题。这些失败均保留。回答交付修复已通过 PR #69–#72 独立评审并合入 main；本账户主线累计 71 项提交归属已核对至 `3414bde`。其 build-only CI 37478119730 产物 `6bbab278…` 已在 macOS 官方 Desktop 完成三道原题（均原生 completed）；BOM 的 313 行、八个业务字段、48 行范围内无记录标记和 313 个披露记录数均通过独立核对。真实诊断导出九项通过、同网络图的三个元素来源、npm 配置/导入隔离、16 项 live guard 与两种官方核心的六项受控场景也通过。八项其他 G6、跨网络真实图和原生 Windows 复测仍未测；深层库存能力本轮仍超时，已披露并核验只读回退。这一候选可交 Windows 复测，尚未放行发布。
 
-2026-10-07 边界修正：以上历史固定包与评测记录保留，不能接受随后移除终答校验的新包。新候选仍使用未发布的 `-7` 版本串，必须按新的源码提交和 SHA 区分并重做受影响验收；此前六项自动纠错受控探针已被原生输出与访问治理探针替代，不要求恢复旧纠错行为。
+2026-10-07 边界修正已通过 PR #74 最终 head 独立批准并合入 main。新候选源码 `2813f3a` → build-only CI `37562531405` → tgz `3c345ef6…`（65 文件），仍使用未发布的 `-7` 版本串。Mac 安装件逐文件匹配，5 道原题均原生完成且零插件纠错通知，诊断真实导出 7 项通过；官方核心 8 项输出/治理探针和新包 live guard 16 项通过。**完整 BOM 题仅返回 9 项一级料，全量覆盖未通过；无此物料题夹带无关非零统计，原负向标准未通过；部分口径解释未证实。** 保留答案和独立评测，不将运行完成写成事实正确，不在插件里追加裁判或重复平台算法。此前六项纠错探针不再是当前预期。新包 Windows 受影响复测仍待完成，发布没有放行。

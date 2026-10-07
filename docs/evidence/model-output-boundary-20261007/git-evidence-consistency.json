@@ -1,0 +1,385 @@
+{
+  "method": "Every file in this evidence directory compared to its current staged Git blob, plus the kit ZIP and candidate tgz. Evidence attributes disable newline conversion; only this ledger excludes itself to avoid circular hashing.",
+  "checkedAt": "2026-10-07T03:14:55.192377+00:00",
+  "parentCommit": "75fb5bacc679068e8987dd9754a0d6caceb092bd",
+  "evidenceDirectoryFilesExcludingSelf": 73,
+  "additionalDeliveryAssets": 2,
+  "allByteEqual": true,
+  "files": [
+    {
+      "path": "docs/evidence/model-output-boundary-20261007/.gitattributes",
+      "sha256": "705fd4d6451a31d36b3df7de96f83f30ac976c9b4a6d1e51671d8e2f33e2d0da",
+      "indexByteEqual": true
+    },
+    {
+      "path": "docs/evidence/model-output-boundary-20261007/README.md",
+      "sha256": "b18990a4bf9b51f635791da6398e225c38a6af9dcc797cf5494a92e1b1e02253",
+      "indexByteEqual": true
+    },
+    {
+      "path": "docs/evidence/model-output-boundary-20261007/RESULTS.md",
+      "sha256": "39e9e27d8cc8f09dbbc20d69ced78026021d30b3c5c368401346978d066946ac",
+      "indexByteEqual": true
+    },
+    {
+      "path": "docs/evidence/model-output-boundary-20261007/account-contributions.json",
+      "sha256": "43e18fcbf4460bd118b719ee0ba59f3ff22135aaf6e6156005f5ddb8b7b46e5e",
+      "indexByteEqual": true
+    },
+    {
+      "path": "docs/evidence/model-output-boundary-20261007/bom-structure-independent-check.json",
+      "sha256": "63115568211651383a52c7876d89659ec2441821d4c9722860c5888f4baad7c3",
+      "indexByteEqual": true
+    },
+    {
+      "path": "docs/evidence/model-output-boundary-20261007/bom-structure.json",
+      "sha256": "7ac3651196172efa19a28887fc0ea61d32d06ff165996823a9cbf824891b38f4",
+      "indexByteEqual": true
+    },
+    {
+      "path": "docs/evidence/model-output-boundary-20261007/bom-structure.md",
+      "sha256": "b5f5367f82ce52aace9718544089ca933619334ec606f1e3a9b394287d87408e",
+      "indexByteEqual": true
+    },
+    {
+      "path": "docs/evidence/model-output-boundary-20261007/bom-usage-inventory-independent-check.json",
+      "sha256": "5f7dd001d1e60ca96a174de0d14bcef1fc0dd6d7c5b2fe8f56f0f9f060f6ffed",
+      "indexByteEqual": true
+    },
+    {
+      "path": "docs/evidence/model-output-boundary-20261007/bom-usage-inventory.json",
+      "sha256": "18098c67e95ea8a6563eceb29c9d2472d8a81abe937ccc1e251b420a282ed293",
+      "indexByteEqual": true
+    },
+    {
+      "path": "docs/evidence/model-output-boundary-20261007/bom-usage-inventory.md",
+      "sha256": "8c7932052e572ff351826908f123e2e33fe3342194567ab886fd6a55cb3a0927",
+      "indexByteEqual": true
+    },
+    {
+      "path": "docs/evidence/model-output-boundary-20261007/ci-build-only.json",
+      "sha256": "303191c1caa47e772c5f37042c6d6d1b32486f97a9e37d462ff6a3e5b29c616b",
+      "indexByteEqual": true
+    },
+    {
+      "path": "docs/evidence/model-output-boundary-20261007/ci-candidate-identity.json",
+      "sha256": "a3cc65838b00bd6ae80609224fd5731ac98f6ef4407db1ffbccaf9ce670aaae8",
+      "indexByteEqual": true
+    },
+    {
+      "path": "docs/evidence/model-output-boundary-20261007/ci-live-guard-execution.json",
+      "sha256": "7ad3c0a770658b04962cc38ff3632f7f7b728c404d4ac3cd2b42a281d6c34119",
+      "indexByteEqual": true
+    },
+    {
+      "path": "docs/evidence/model-output-boundary-20261007/ci-live-guard.jsonl",
+      "sha256": "537d66adc112da2de07c933dc46690d9070b43958d8fa3f844227634f116f6c7",
+      "indexByteEqual": true
+    },
+    {
+      "path": "docs/evidence/model-output-boundary-20261007/ci-native-output-runtime.jsonl",
+      "sha256": "b88cd5ca478dd1a5041d3b7ae91fc9ee511bdb4ef26a927353985ec845bf1087",
+      "indexByteEqual": true
+    },
+    {
+      "path": "docs/evidence/model-output-boundary-20261007/ci-native-probe-execution.json",
+      "sha256": "5a3ebf027512e215baaf44e7b90ca4a114b60fe145d4b923aafbb99db5643a99",
+      "indexByteEqual": true
+    },
+    {
+      "path": "docs/evidence/model-output-boundary-20261007/ci-native-probe-prepare.json",
+      "sha256": "84ba7d81e14514f3101239da0588ced64c0182c3d6ad95eb2b33366473926e7c",
+      "indexByteEqual": true
+    },
+    {
+      "path": "docs/evidence/model-output-boundary-20261007/collect-oracles.py",
+      "sha256": "82e04abb8b15f69e41974b18724857f12c60c6e51808eeb78b4c917c62b91eb2",
+      "indexByteEqual": true
+    },
+    {
+      "path": "docs/evidence/model-output-boundary-20261007/current-acceptance.json",
+      "sha256": "5085a726a7f19ff3770a15bacecacb3de91cda598f85422d337a9ea93aac18e8",
+      "indexByteEqual": true
+    },
+    {
+      "path": "docs/evidence/model-output-boundary-20261007/daily-selected-after.json",
+      "sha256": "d372120813d68fded339704bb9d5ebe45433535dbe160a7a4afc5ae4d4d5c767",
+      "indexByteEqual": true
+    },
+    {
+      "path": "docs/evidence/model-output-boundary-20261007/daily-selected-before.json",
+      "sha256": "0d9084485b60567d998f9a5974751b13f4c1e4a841f93941e2d62f000d1f2472",
+      "indexByteEqual": true
+    },
+    {
+      "path": "docs/evidence/model-output-boundary-20261007/desktop-product-2bef889e.json",
+      "sha256": "7f45416df1725e227ea967d201526d9cb870966f720f7bd41bc6865aab57073a",
+      "indexByteEqual": true
+    },
+    {
+      "path": "docs/evidence/model-output-boundary-20261007/execution-deviations.json",
+      "sha256": "e45399fc8614608c731143aeeda81e89fbcef1628162ed078e08fb1167d520d8",
+      "indexByteEqual": true
+    },
+    {
+      "path": "docs/evidence/model-output-boundary-20261007/local-native-output-runtime.jsonl",
+      "sha256": "b88cd5ca478dd1a5041d3b7ae91fc9ee511bdb4ef26a927353985ec845bf1087",
+      "indexByteEqual": true
+    },
+    {
+      "path": "docs/evidence/model-output-boundary-20261007/local-pack.json",
+      "sha256": "286be0f361b4e54564937e9040b12e1f4767133dae4ac47e58be4cb17e96c2ce",
+      "indexByteEqual": true
+    },
+    {
+      "path": "docs/evidence/model-output-boundary-20261007/local-package-check.txt",
+      "sha256": "7a897412e2a963c9bceefb1a5b6954717e418195725c115c6aaabad6af8ea8c7",
+      "indexByteEqual": true
+    },
+    {
+      "path": "docs/evidence/model-output-boundary-20261007/local-typecheck.txt",
+      "sha256": "e9bde1b9c430b1f263cf72baa9160a680b8c6a2046c94728f535c5a45341fd3b",
+      "indexByteEqual": true
+    },
+    {
+      "path": "docs/evidence/model-output-boundary-20261007/mac-bom-completed-ui.png",
+      "sha256": "e29515f5fe8e7979eea1fe20b007fcab9e0a7f5e4e7baff1aacdeee131dfe730",
+      "indexByteEqual": true
+    },
+    {
+      "path": "docs/evidence/model-output-boundary-20261007/mac-cleanup.json",
+      "sha256": "e4314e17e70db0e4c0148d969bc8276d31457ae44e1322409e4c9d0883930ab7",
+      "indexByteEqual": true
+    },
+    {
+      "path": "docs/evidence/model-output-boundary-20261007/mac-diagnostics-ui.png",
+      "sha256": "318f5a7b1766ebf18ab680e960ba6bae808d8d82025def0f08808fc5e13da48a",
+      "indexByteEqual": true
+    },
+    {
+      "path": "docs/evidence/model-output-boundary-20261007/mac-installation.json",
+      "sha256": "94ca9b9de96aa0179330a6ce93feea763eac2c477349db942cafb31c417aa4e6",
+      "indexByteEqual": true
+    },
+    {
+      "path": "docs/evidence/model-output-boundary-20261007/mac-installed-identity.json",
+      "sha256": "b4ba5b33134419b21a700d78bb2de20b462c083f01e18c0467e9a32b514476c1",
+      "indexByteEqual": true
+    },
+    {
+      "path": "docs/evidence/model-output-boundary-20261007/mac-orders-completed-ui.png",
+      "sha256": "6cd333dc00ca7c3114ba788156de5e48ceb61ebfe6531f9325fdfd2dab5fc536",
+      "indexByteEqual": true
+    },
+    {
+      "path": "docs/evidence/model-output-boundary-20261007/mac-owned-process-starts.json",
+      "sha256": "cf66d7cd60ca6a8111961c5d1de8cdbb65b6333da7f6a5b3f7fe27d660f34777",
+      "indexByteEqual": true
+    },
+    {
+      "path": "docs/evidence/model-output-boundary-20261007/mac-owned-processes-before-stop.json",
+      "sha256": "92e2d0136e3413b08524ad72384f49638d8583678253075c68209d7bef288325",
+      "indexByteEqual": true
+    },
+    {
+      "path": "docs/evidence/model-output-boundary-20261007/mac-process.json",
+      "sha256": "eba46e3ba5cc697e22ec3eebb1c4cfb0af31fcb17db003ff5a9d81a58192bab5",
+      "indexByteEqual": true
+    },
+    {
+      "path": "docs/evidence/model-output-boundary-20261007/missing-object-independent-check.json",
+      "sha256": "9443f8b83682e1a84377b8b31842f86f991be2e543dd63b652e4a5c453a78e30",
+      "indexByteEqual": true
+    },
+    {
+      "path": "docs/evidence/model-output-boundary-20261007/missing-object.json",
+      "sha256": "c3fabcfe86eaf9a3990234af7a7e810806085ec1bb2fd8af709443f86352b173",
+      "indexByteEqual": true
+    },
+    {
+      "path": "docs/evidence/model-output-boundary-20261007/missing-object.md",
+      "sha256": "d163c26ace2b68afb0d5ceeb245f514ec57d84b3739001b52d1be3a980ff9633",
+      "indexByteEqual": true
+    },
+    {
+      "path": "docs/evidence/model-output-boundary-20261007/oracle-after/bom.json",
+      "sha256": "db3d56b86357469520aa1db27d942cacc48347f3d6bf43eec372d67aa10c7635",
+      "indexByteEqual": true
+    },
+    {
+      "path": "docs/evidence/model-output-boundary-20261007/oracle-after/calls.json",
+      "sha256": "df89a8ca81f885aae7a61df2b15f0dc5a9523561bf1ad6a9e9070bed04820046",
+      "indexByteEqual": true
+    },
+    {
+      "path": "docs/evidence/model-output-boundary-20261007/oracle-after/inventory.json",
+      "sha256": "b972c8a57856540d88be6bb57dfa8d5792c751ed3ea4929c3f9ae1a9a0cc86cb",
+      "indexByteEqual": true
+    },
+    {
+      "path": "docs/evidence/model-output-boundary-20261007/oracle-after/orders.json",
+      "sha256": "01322fe3f4844f5031468860a3a02410a9f7195795078e28e91975853811ee0f",
+      "indexByteEqual": true
+    },
+    {
+      "path": "docs/evidence/model-output-boundary-20261007/oracle-after/purchase-orders.json",
+      "sha256": "32e91b98d09283c91d53fecd91e19534c35a1707da8a53c2e582e27a27a70ed5",
+      "indexByteEqual": true
+    },
+    {
+      "path": "docs/evidence/model-output-boundary-20261007/oracle-after/purchase-requests.json",
+      "sha256": "90aefd11f66c7b68f4d9c91b44c72cf32ef4f69e551b8b088cfbbf3e5bedb0f4",
+      "indexByteEqual": true
+    },
+    {
+      "path": "docs/evidence/model-output-boundary-20261007/oracle-before/bom.json",
+      "sha256": "003c5f91957764aa534b8687334aa0950f03d04f5f5aec7a448a6b544aa2ebcf",
+      "indexByteEqual": true
+    },
+    {
+      "path": "docs/evidence/model-output-boundary-20261007/oracle-before/calls.json",
+      "sha256": "2a0855594ef5bee4d941cc7c4de23f8c9a693127cce4742380e5dad2ef5080a5",
+      "indexByteEqual": true
+    },
+    {
+      "path": "docs/evidence/model-output-boundary-20261007/oracle-before/inventory.json",
+      "sha256": "a64be7b69f492a976c2fcfe82ebf788d806d321cee5d1c7e7867b1ce2ae56d9a",
+      "indexByteEqual": true
+    },
+    {
+      "path": "docs/evidence/model-output-boundary-20261007/oracle-before/orders.json",
+      "sha256": "c1a5623bfdf3986bd735c3e58a613b4e879ee6e1b644da7e6a9d1edc898b1bdf",
+      "indexByteEqual": true
+    },
+    {
+      "path": "docs/evidence/model-output-boundary-20261007/oracle-before/purchase-orders.json",
+      "sha256": "6621af1b8a470bed6810a5e2b2092cab94f3d3793914fab624f362b8544c54bc",
+      "indexByteEqual": true
+    },
+    {
+      "path": "docs/evidence/model-output-boundary-20261007/oracle-before/purchase-requests.json",
+      "sha256": "11de8ef48342107a61107513eaa908b013270bf1f7acaca833402b5cb5dcd256",
+      "indexByteEqual": true
+    },
+    {
+      "path": "docs/evidence/model-output-boundary-20261007/oracle-before-after-comparison.json",
+      "sha256": "387ffe53bf06f1b68a85093cde4422ef60b13d74b40aa0f841ad07d14e2cf727",
+      "indexByteEqual": true
+    },
+    {
+      "path": "docs/evidence/model-output-boundary-20261007/oracle-regression/calls.json",
+      "sha256": "02d85fa0cde4402d1e315a2858aa9f3d6926d7f5ef807acaa9ac17cbae9e6186",
+      "indexByteEqual": true
+    },
+    {
+      "path": "docs/evidence/model-output-boundary-20261007/oracle-regression/l1-component-inventory-call.json",
+      "sha256": "ee4e9467d3e2ef4b22a246b0649d14d4c1d4528205f6ee30216850a355e11d87",
+      "indexByteEqual": true
+    },
+    {
+      "path": "docs/evidence/model-output-boundary-20261007/oracle-regression/l1-component-inventory.json",
+      "sha256": "ee14410f9adfc0ca636bbad77bf321a281bfd4b8d70cbb9cd3e39ce38894f47d",
+      "indexByteEqual": true
+    },
+    {
+      "path": "docs/evidence/model-output-boundary-20261007/oracle-regression/material.json",
+      "sha256": "7aa6f5311208277bd39d0f079f45c3d7b63cf148a6177039770188c857bda1b4",
+      "indexByteEqual": true
+    },
+    {
+      "path": "docs/evidence/model-output-boundary-20261007/oracle-regression/missing-inventory.json",
+      "sha256": "5e042ea2822066b1b9356d0045bdb287206bebf915b26ca431219125ac023dab",
+      "indexByteEqual": true
+    },
+    {
+      "path": "docs/evidence/model-output-boundary-20261007/oracle-regression/missing-material.json",
+      "sha256": "078e52b880b1437c6817cc302b55ffe91c9b260a353df6f8a607faa4709e2fca",
+      "indexByteEqual": true
+    },
+    {
+      "path": "docs/evidence/model-output-boundary-20261007/oracle-regression/missing-orders.json",
+      "sha256": "7f8405b2de13985abc1161911b6a9cffb1235853654839a177f2abe8a259b415",
+      "indexByteEqual": true
+    },
+    {
+      "path": "docs/evidence/model-output-boundary-20261007/pack-content-comparison.json",
+      "sha256": "8f03be15f2a8aca93d69fb57c2b48b5a2c072b51bdae6f05b819ce5483a1fd72",
+      "indexByteEqual": true
+    },
+    {
+      "path": "docs/evidence/model-output-boundary-20261007/product-download.json",
+      "sha256": "1a1dbb53e8accc8224183e8ccaf01a01e9e1d03453ddd5aee5f4e7dd0b3b7a6c",
+      "indexByteEqual": true
+    },
+    {
+      "path": "docs/evidence/model-output-boundary-20261007/registry-status.json",
+      "sha256": "92e1a52c27935baa5e685d413932f86780cf4e52f65bc5e471162fc54447b5de",
+      "indexByteEqual": true
+    },
+    {
+      "path": "docs/evidence/model-output-boundary-20261007/remote-download-check.json",
+      "sha256": "1ddfec688746baea7d2bdb64586ef2b36cf73c651a0239ba82f99dba76ee30f1",
+      "indexByteEqual": true
+    },
+    {
+      "path": "docs/evidence/model-output-boundary-20261007/sales-order-detail.json",
+      "sha256": "d6e1fd4cb478ba9e7ca23da3ae8a68680f3e876192149f8edcbc55d5b967b8c9",
+      "indexByteEqual": true
+    },
+    {
+      "path": "docs/evidence/model-output-boundary-20261007/sales-order-detail.md",
+      "sha256": "bfe93d124354e8eea0b44653fad8cdb66ca44e981e501e660afc75ec1a5b339d",
+      "indexByteEqual": true
+    },
+    {
+      "path": "docs/evidence/model-output-boundary-20261007/sales-order-independent-check.json",
+      "sha256": "bca4f895f878b773b0184264cd4c49a113407aae1f59746c8e65da3560717883",
+      "indexByteEqual": true
+    },
+    {
+      "path": "docs/evidence/model-output-boundary-20261007/source-pr-review.json",
+      "sha256": "d8363306609721ba3a7e49335bd6b0370df8dd29a73b9648473baca37978d367",
+      "indexByteEqual": true
+    },
+    {
+      "path": "docs/evidence/model-output-boundary-20261007/standard-lead-time-independent-check.json",
+      "sha256": "57203c63101f3071d234fc9c09950c528b09ae3ff11acd198b11e7d638ef761b",
+      "indexByteEqual": true
+    },
+    {
+      "path": "docs/evidence/model-output-boundary-20261007/standard-lead-time.json",
+      "sha256": "63d5d59d1bab227a4cfb848d979f50d496ca64a026ea1b8811859e4aaf3566da",
+      "indexByteEqual": true
+    },
+    {
+      "path": "docs/evidence/model-output-boundary-20261007/standard-lead-time.md",
+      "sha256": "2ab97fd06c8c9d381b288dc66a4fe84b8d390471a479ee9486bc7a7b6a096a17",
+      "indexByteEqual": true
+    },
+    {
+      "path": "docs/evidence/model-output-boundary-20261007/upstream-contract-check.json",
+      "sha256": "fde7ffea6b4eeef545c630097ed9f515858e21fc9a4cdb00e4bf102a62d707a7",
+      "indexByteEqual": true
+    },
+    {
+      "path": "docs/evidence/model-output-boundary-20261007/validation.json",
+      "sha256": "74a5a67b8e1d03bc8a855ce512b66fdb75c7aab954f6ff2b127039b38720fa3f",
+      "indexByteEqual": true
+    },
+    {
+      "path": "docs/evidence/model-output-boundary-20261007/windows-kit-local-verification.json",
+      "sha256": "936ee375df1c8487391fe0c280fd41975d6cb9c3ce3f92638407e3a9edf74c09",
+      "indexByteEqual": true
+    },
+    {
+      "path": "docs/handoff/2026-10-07-native-output/assets/windows-unified7-2813f3a-native-output.zip",
+      "sha256": "917e821836c4aed64646065e8fe3c72be606782449ef580ba7a5d2f973cbf67e",
+      "indexByteEqual": true
+    },
+    {
+      "path": "docs/handoff/2026-10-07-native-output/windows-kit/candidate/openbkn-dsh-business-context-0.2.0-rc.2-openbkn.0.2.0-7.tgz",
+      "sha256": "3c345ef643589fbf79f4958598d4345544c632feac2a3b4f859403db1125b8f0",
+      "indexByteEqual": true
+    }
+  ]
+}

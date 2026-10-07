@@ -1,0 +1,36 @@
+{
+  "originCommit": "54f6669 (native Windows-tested helpers; copied via prior fixed kit)",
+  "files": [
+    {
+      "path": "windows/prepare.ps1",
+      "sha256": "5b661cc9286973a0965daf39eaf8075d909d25b2d7a01460e5dfc5245a1f6a64",
+      "byteEqualToPreviousKit": true
+    },
+    {
+      "path": "windows/run-case.ps1",
+      "sha256": "786a16b1930fb7e2b10cd58122420ca2872c10f120c8ad69e8f7f157aa298483",
+      "byteEqualToPreviousKit": true
+    },
+    {
+      "path": "windows/collect-state-hashes.ps1",
+      "sha256": "a382a74363af10d784028648281a5919153117eb559d5718321a17aa69c38c99",
+      "byteEqualToPreviousKit": true
+    },
+    {
+      "path": "windows/cleanup.ps1",
+      "sha256": "31bc3a021e548fb54ae16eba8afd87f444a6c153786f88d4589c3721cceb5011",
+      "byteEqualToPreviousKit": true
+    },
+    {
+      "path": "windows/README.md",
+      "sha256": "a5137ece2d953a191cbca42d966a6c026cec4c6a057e3b5ac044b2cb002750f3",
+      "byteEqualToPreviousKit": true
+    }
+  ],
+  "newInputs": [
+    "verify-kit.ps1 fixed candidate identity",
+    "native-output-runtime.probe.mjs",
+    "new CI tarball and per-file manifests"
+  ],
+  "nativeWindowsCurrentKit": "not-run"
+}

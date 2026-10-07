@@ -1,0 +1,103 @@
+{
+  "nativeTurnOutcome": {
+    "kind": "completed"
+  },
+  "fidelityNotices": 0,
+  "method": "Disclosed nine L1 material tuples compared to independent ERP BOM and raw inventory; sum available_inventory_qty in explicitly disclosed warehouses",
+  "productionWarehousesDisclosed": [
+    "乌鲁木齐成品仓",
+    "哈尔滨成品仓",
+    "苏州半成品仓",
+    "苏州成品仓",
+    "苏州无人机原料仓",
+    "苏州电子原料仓",
+    "苏州装配原料仓"
+  ],
+  "l1Checks": [
+    {
+      "material": "791-000013",
+      "structureMatch": true,
+      "rawInventoryRows": 1,
+      "productionAvailable": "1000",
+      "allAvailable": "1000",
+      "displayedValuesMatch": true,
+      "allReservationsZero": true
+    },
+    {
+      "material": "606-000989",
+      "structureMatch": true,
+      "rawInventoryRows": 2,
+      "productionAvailable": "344",
+      "allAvailable": "344",
+      "displayedValuesMatch": true,
+      "allReservationsZero": true
+    },
+    {
+      "material": "606-000990",
+      "structureMatch": true,
+      "rawInventoryRows": 3,
+      "productionAvailable": "400",
+      "allAvailable": "400",
+      "displayedValuesMatch": true,
+      "allReservationsZero": true
+    },
+    {
+      "material": "528-000036",
+      "structureMatch": true,
+      "rawInventoryRows": 4,
+      "productionAvailable": "34",
+      "allAvailable": "51",
+      "displayedValuesMatch": true,
+      "allReservationsZero": true
+    },
+    {
+      "material": "791-000007",
+      "structureMatch": true,
+      "rawInventoryRows": 0,
+      "productionAvailable": "0",
+      "allAvailable": "0",
+      "displayedValuesMatch": true,
+      "allReservationsZero": true
+    },
+    {
+      "material": "994-000550",
+      "structureMatch": true,
+      "rawInventoryRows": 23,
+      "productionAvailable": "1875",
+      "allAvailable": "1925",
+      "displayedValuesMatch": true,
+      "allReservationsZero": true
+    },
+    {
+      "material": "468-000493",
+      "structureMatch": true,
+      "rawInventoryRows": 2,
+      "productionAvailable": "1867",
+      "allAvailable": "1887",
+      "displayedValuesMatch": true,
+      "allReservationsZero": true
+    },
+    {
+      "material": "468-000530",
+      "structureMatch": true,
+      "rawInventoryRows": 2,
+      "productionAvailable": "1500",
+      "allAvailable": "1501",
+      "displayedValuesMatch": true,
+      "allReservationsZero": true
+    },
+    {
+      "material": "791-000015",
+      "structureMatch": true,
+      "rawInventoryRows": 0,
+      "productionAvailable": "0",
+      "allAvailable": "0",
+      "displayedValuesMatch": true,
+      "allReservationsZero": true
+    }
+  ],
+  "l1DisplayedFieldsPass": true,
+  "fullBomCoveragePassed": false,
+  "fullBomCoverageReason": "Only nine L1 rows delivered; the original every-material evaluation requires all five levels/313 published-scope parent-child rows/272 materials",
+  "factualLimit": "Full physical ERP contains 507 records and differs from the published main_only scope. This independent L1 comparison does not accept full capability computation or all 272-material inventories."
+}

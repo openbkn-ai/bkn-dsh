@@ -1,0 +1,119 @@
+{
+  "files": [
+    {
+      "path": ".gitattributes",
+      "sha256": "705fd4d6451a31d36b3df7de96f83f30ac976c9b4a6d1e51671d8e2f33e2d0da",
+      "bytes": 8
+    },
+    {
+      "path": "HANDOFF.md",
+      "sha256": "7f3801d946034845692f7c68f56679296cbb63b8b4aa4489bee37c73a7212981",
+      "bytes": 11979
+    },
+    {
+      "path": "README.md",
+      "sha256": "269b67c27bdc46ee4c1961b5d1d9e0764067812bdcacfb18943e7959462341ae",
+      "bytes": 1128
+    },
+    {
+      "path": "RESULTS.template.md",
+      "sha256": "8da88457177ae65fcdc73fad8ef491d5ddf125e16da7612ef75557ce1c66f631",
+      "bytes": 1846
+    },
+    {
+      "path": "candidate/candidate-files.json",
+      "sha256": "0e7ebc9ccc9f05efbea1b7684cf4f0d031521049234093267364f8e77c306ce4",
+      "bytes": 11323
+    },
+    {
+      "path": "candidate/candidate-files.txt",
+      "sha256": "0bc0e56e8bcd543ddcdcaa2af42b1bd3d4459ac6476810f4a9f766b43d9a6d23",
+      "bytes": 6895
+    },
+    {
+      "path": "candidate/openbkn-dsh-business-context-0.2.0-rc.2-openbkn.0.2.0-7.tgz",
+      "sha256": "3c345ef643589fbf79f4958598d4345544c632feac2a3b4f859403db1125b8f0",
+      "bytes": 165176
+    },
+    {
+      "path": "candidate-manifest.json",
+      "sha256": "2364bcb67fa32d989aad0f0b91f33ad8390e36fbd7c23c79df95fbe51e5f23a1",
+      "bytes": 6021
+    },
+    {
+      "path": "certificates/certificate-identity.json",
+      "sha256": "b4a668c9e380e6254cbe7eec73dc40d55ff4fcf0beb9663e72afdb3a5ff2a62a",
+      "bytes": 606
+    },
+    {
+      "path": "certificates/openbkn-dev-ca.pem",
+      "sha256": "89e53b4e7a09305c01c37513a9bdda63698735a33a0df71f725875ec47180453",
+      "bytes": 1192
+    },
+    {
+      "path": "eval/export-supply-session.py",
+      "sha256": "fab9d96a216f5cd599dd17013f3fc4b3bc5b0e69af1a0f1af6d97decca4215d6",
+      "bytes": 6338
+    },
+    {
+      "path": "eval/run-eval.mjs",
+      "sha256": "52f8eb0dba9f59b09c7cb975996095b8a690d4b27cf2711ca19cdcca1dbf5f35",
+      "bytes": 6154
+    },
+    {
+      "path": "eval/supply-ontology.yaml",
+      "sha256": "dfed0e81646aa28d4e4c68f83607462c428ed1423fc2c58b30c4f4b3644fcf23",
+      "bytes": 5563
+    },
+    {
+      "path": "helper-origin.json",
+      "sha256": "5a892f3a9a998d7896b21caa196ba6596da963833e16a39ae7df0dce3a2bee77",
+      "bytes": 1168
+    },
+    {
+      "path": "probe/prepare-native-probe.mjs",
+      "sha256": "395f3cbdf6312d4eee16c34b026666bd205643e8140a4a2b885f5910a2f9c1a8",
+      "bytes": 2848
+    },
+    {
+      "path": "probe/tests/probes/native-output-runtime.probe.mjs",
+      "sha256": "d4e3c961b2b6a4a28377e49d08c8e589581425f3b65a14903b093f44292196fc",
+      "bytes": 8089
+    },
+    {
+      "path": "schema/diagnostics-contract.ts",
+      "sha256": "f44c9981d2bbc3143a14a4dab54eef6d3b34cdbba8d27529cf96ead5abd7dab1",
+      "bytes": 9196
+    },
+    {
+      "path": "verify-kit.ps1",
+      "sha256": "fdd3f490d58a9c27a57e75af066a49dcb534618c22bab1ffd65b6aa4232fdfa8",
+      "bytes": 4327
+    },
+    {
+      "path": "windows/README.md",
+      "sha256": "a5137ece2d953a191cbca42d966a6c026cec4c6a057e3b5ac044b2cb002750f3",
+      "bytes": 3994
+    },
+    {
+      "path": "windows/cleanup.ps1",
+      "sha256": "31bc3a021e548fb54ae16eba8afd87f444a6c153786f88d4589c3721cceb5011",
+      "bytes": 5311
+    },
+    {
+      "path": "windows/collect-state-hashes.ps1",
+      "sha256": "a382a74363af10d784028648281a5919153117eb559d5718321a17aa69c38c99",
+      "bytes": 838
+    },
+    {
+      "path": "windows/prepare.ps1",
+      "sha256": "5b661cc9286973a0965daf39eaf8075d909d25b2d7a01460e5dfc5245a1f6a64",
+      "bytes": 4239
+    },
+    {
+      "path": "windows/run-case.ps1",
+      "sha256": "786a16b1930fb7e2b10cd58122420ca2872c10f120c8ad69e8f7f157aa298483",
+      "bytes": 8612
+    }
+  ]
+}
