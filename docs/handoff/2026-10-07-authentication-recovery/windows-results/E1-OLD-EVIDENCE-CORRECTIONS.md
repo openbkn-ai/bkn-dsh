@@ -28,16 +28,20 @@
 
 - 旧 B1 npm 复用 desktop store：不是独立 npm 登录，也不构成自动续期验收——维持收窄表述
   （"拒绝与重登恢复已证明；rotation 机制/复制因果/插件续期能力均未证明"）。
-- **本轮新证据**：R1 按 HANDOFF 要求两形态各自独立授权、未复制 token；同账号下 desktop/npm4 的
-  token 先后被平台判失效（npm4 `expired=true` 于 desktop 产品内重登后），第三次实证"同账号多设备
-  侧 token 互踢"现象——但仍仅为行为观察，**平台 rotation 策略与根因未证实**，如实保留为开放项。
+- **本轮新证据**：R1 按 HANDOFF 要求两形态各自独立授权、未复制 token；npm4 store 出现两次重复
+  失效、重登恢复（时序与同账号他端登录相关）。CLI 0.1.5 的 status() 仅读本地 expiresAt、不向平台
+  验证撤销；归档的 auth-status 原件均为 expired=false，失效时点的 expired=true 为操作者会话观察、
+  无时间化原件 → **表述收窄为"重复失效/拒绝、重登恢复，与他端登录顺序相关；原因未证实"，
+  不写"互踢实证"**，维持开放项。
 
 ## 4. B3 npm `*` 差异（14 名称+4 缺库存标记）
 
 - 旧证据仅 DOM 快照 textContent；**原始 Markdown / innerHTML 未随 509cce5/bee714c 提交**，
   无法定责"渲染层 vs 源文本"。结论收窄为"原因未证实"，不写"确认为 markdown 渲染"。
-- 旧纠错包（6bbab278）三题通过**不继承**到本轮原生输出候选（fa168d81）：本轮 N4/N5 未执行
-  （隔离 Host 无模型凭据），如实 not-run。
+- 旧纠错包（6bbab278）三题通过**不继承**到本轮原生输出候选（fa168d81）：本节撰写时点 N4/N5
+  未执行（隔离 Host 无模型凭据），如实 not-run——**时点说明：当日傍晚用户配置 DEEPSEEK_API_KEY
+  后 npm 形态已补测 pass（N45-SUMMARY.md，增补 commit），desktop 仍未测；该补测不继承到旧全 BOM
+  用量库存题与 missing-object 负向题**。
 
 ## 5. B2/F01 属性 operation 闭环
 
