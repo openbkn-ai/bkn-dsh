@@ -1,0 +1,54 @@
+{
+  "sourceCommit": "2813f3ad3e175d94ee747a796f638cc8d1f3e712",
+  "ciRunId": 37562531405,
+  "tgzSha256": "3c345ef643589fbf79f4958598d4345544c632feac2a3b4f859403db1125b8f0",
+  "runtimeBoundaryPassed": true,
+  "modelNativeCompletedCases": [
+    {
+      "case": "bom-structure",
+      "session": "session-db4a5b49-323d-4f6f-9777-530cc83a75b3",
+      "originalQuestion": "382-000005 的 BOM 构成是什么？",
+      "nativeReason": "completed",
+      "pluginFidelityNotices": 0,
+      "answerChars": 1984
+    },
+    {
+      "case": "sales-order-detail",
+      "session": "session-2f6233d5-6534-42ec-aa04-a8fc81c8faad",
+      "originalQuestion": "列出 382-000005 的销售订单明细。",
+      "nativeReason": "completed",
+      "pluginFidelityNotices": 0,
+      "answerChars": 5014
+    },
+    {
+      "case": "standard-lead-time",
+      "session": "session-6b643ab5-e749-4ffc-b51c-ea0a6f7cc7c2",
+      "originalQuestion": "382-000005 的标准交期？",
+      "nativeReason": "completed",
+      "pluginFidelityNotices": 0,
+      "answerChars": 341
+    },
+    {
+      "case": "missing-object",
+      "session": "session-228189e8-467f-4348-9bf4-b22a82d8036f",
+      "originalQuestion": "物料 999-999999 的库存和订单情况？",
+      "nativeReason": "completed",
+      "pluginFidelityNotices": 0,
+      "answerChars": 872
+    },
+    {
+      "case": "bom-usage-inventory",
+      "session": "session-92b870d5-747b-4b6f-a027-4f6b6144d0a6",
+      "originalQuestion": "查询 382-000005 的 BOM 清单，每个物料的使用量，以及每个物料的库存情况",
+      "nativeReason": "completed",
+      "pluginFidelityNotices": 0,
+      "answerChars": 1350
+    }
+  ],
+  "factualAcceptance": "Incomplete: BOM every-material coverage failed; scope explanations unverified. Completed is not factual pass.",
+  "controlledCoreScenariosPassed": 8,
+  "liveGuardPassed": 16,
+  "desktopProductChecksPassed": 7,
+  "windowsCurrentCandidate": "not-run",
+  "publish": "not authorized"
+}

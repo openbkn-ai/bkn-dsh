@@ -1,0 +1,51 @@
+{
+  "startedAt": "2026-10-07T02:42:38.297070+00:00",
+  "dshHome": "/private/var/folders/9r/1zks6bqd7f3dtwybvxsksbc40000gn/T/openbkn-diag-ui-h76__jwb/desktop-home",
+  "cli": "/Applications/DeepSeek Harness.app/Contents/Resources/runtime/cli/bin/dsh",
+  "form": "official application-bundled CLI installs desktop profile",
+  "protectedBefore": {
+    ".credentials.yaml": "dbfcb14833fd89a5419df40af133f822cdecd434dc5ccccd6f3aef593555c6da",
+    "profiles/desktop/cordis.patch.yml": "ee08d266e84ed62d9e83b6c2350255db7615916a1990fd023e388098221f245c"
+  },
+  "commands": [
+    {
+      "command": [
+        "/Applications/DeepSeek Harness.app/Contents/Resources/runtime/cli/bin/dsh",
+        "plugin",
+        "--profile",
+        "desktop",
+        "remove",
+        "@openbkn/dsh-business-context"
+      ],
+      "exitCode": 0,
+      "stdout": "✓ Lockfile passes supply-chain policies (verified 6h ago)\n\ndependencies:\n- @openbkn/dsh-business-context file:/Users/kalias/Documents/project/app/openBKN/bkn-dsh-unified-7/release/unified-7-candidate/3414bde/openbkn-dsh-business-context-0.2.0-rc.2-openbkn.0.2.0-7.tgz\n\nAlready up to date\nDone in 230ms using pnpm v11.7.0\n",
+      "stderr": "",
+      "protectedHashes": {
+        ".credentials.yaml": "dbfcb14833fd89a5419df40af133f822cdecd434dc5ccccd6f3aef593555c6da",
+        "profiles/desktop/cordis.patch.yml": "ee08d266e84ed62d9e83b6c2350255db7615916a1990fd023e388098221f245c"
+      }
+    },
+    {
+      "command": [
+        "/Applications/DeepSeek Harness.app/Contents/Resources/runtime/cli/bin/dsh",
+        "plugin",
+        "--profile",
+        "desktop",
+        "install",
+        "/Users/kalias/Documents/project/app/openBKN/bkn-dsh-unified-7/release/native-output-candidate/2813f3a/openbkn-dsh-business-context-0.2.0-rc.2-openbkn.0.2.0-7.tgz"
+      ],
+      "exitCode": 0,
+      "stdout": "✓ Lockfile passes supply-chain policies (verified 330ms ago)\nProgress: resolved 0, reused 0, downloaded 1, added 0\n[WARN] Issues with peer dependencies found. Run \"pnpm peers check\" to list them.\n\ndependencies:\n+ @openbkn/dsh-business-context file:/Users/kalias/Documents/project/app/openBKN/bkn-dsh-unified-7/release/native-output-candidate/2813f3a/openbkn-dsh-business-context-0.2.0-rc.2-openbkn.0.2.0-7.tgz\n\nPackages: +5\n+++++\nProgress: resolved 5, reused 4, downloaded 1, added 5, done\nDone in 406ms using pnpm v11.7.0\n",
+      "stderr": "",
+      "protectedHashes": {
+        ".credentials.yaml": "dbfcb14833fd89a5419df40af133f822cdecd434dc5ccccd6f3aef593555c6da",
+        "profiles/desktop/cordis.patch.yml": "ee08d266e84ed62d9e83b6c2350255db7615916a1990fd023e388098221f245c"
+      }
+    }
+  ],
+  "protectedAfter": {
+    ".credentials.yaml": "dbfcb14833fd89a5419df40af133f822cdecd434dc5ccccd6f3aef593555c6da",
+    "profiles/desktop/cordis.patch.yml": "ee08d266e84ed62d9e83b6c2350255db7615916a1990fd023e388098221f245c"
+  },
+  "finishedAt": "2026-10-07T02:42:39.520899+00:00"
+}

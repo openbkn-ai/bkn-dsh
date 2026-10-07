@@ -1,0 +1,13 @@
+{
+  "command": [
+    "/Users/kalias/.nvm/versions/node/v24.19.0/bin/node",
+    "/Users/kalias/Documents/project/app/openBKN/bkn-dsh-unified-7/docs/handoff/2026-10-07-native-output/windows-kit/probe/tests/probes/native-output-runtime.probe.mjs",
+    "--runtime",
+    "/Users/kalias/Documents/project/app/openBKN/dsh-npm-020/node_modules/@deepseek-ai/dsh",
+    "--plugin",
+    "/private/var/folders/9r/1zks6bqd7f3dtwybvxsksbc40000gn/T/openbkn-diag-ui-h76__jwb/native-output-ci-probe-104248/package"
+  ],
+  "exitCode": 0,
+  "stderr": "",
+  "preparePluginMatchesExecution": true
+}

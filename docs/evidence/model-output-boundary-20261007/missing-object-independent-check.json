@@ -1,0 +1,18 @@
+{
+  "nativeTurnOutcome": {
+    "kind": "completed"
+  },
+  "fidelityNotices": 0,
+  "independentRowCounts": {
+    "missing-material": 0,
+    "missing-inventory": 0,
+    "missing-orders": 0
+  },
+  "coreNoDataClaimMatches": true,
+  "nonzeroValuesForRequestedMaterial": false,
+  "limits": [
+    "Independently verified exact material/inventory/sales-order filters only; the model queried additional object types and prefix counts, whose tool output is retained but not independently re-counted",
+    "No platform rule establishes that 999 prefix is an invalid code; the tentative model inference is not accepted as a schema rule"
+  ],
+  "factVerdict": "Requested-material no-data conclusion verified; additional prefix/rule claims are not independent acceptance"
+}

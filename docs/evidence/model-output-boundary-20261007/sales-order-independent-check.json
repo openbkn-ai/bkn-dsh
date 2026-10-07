@@ -1,0 +1,31 @@
+{
+  "method": "Each of the nine displayed columns compared to independent live CLI orders snapshot; state statement compared to every row",
+  "answerRows": 40,
+  "oracleRows": 40,
+  "missingIds": [],
+  "extraIds": [],
+  "fieldDifferences": [],
+  "displayedColumns": [
+    "sales_order_id",
+    "contract_number",
+    "customer_name",
+    "signing_quantity",
+    "signing_date",
+    "promised_delivery_date",
+    "shipping_quantity",
+    "shipping_date",
+    "salesperson"
+  ],
+  "statuses": {
+    "已确认": 40
+  },
+  "signedTotal": 1081,
+  "shippedTotal": 1066,
+  "totalStatementsMatch": true,
+  "allStatesConfirmed": true,
+  "nativeTurnOutcome": {
+    "kind": "completed"
+  },
+  "fidelityNotices": 0,
+  "passed": true
+}

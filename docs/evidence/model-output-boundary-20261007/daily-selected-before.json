@@ -1,0 +1,50 @@
+{
+  "scope": "9 selected daily files; captured after incidental default launch, before candidate installation/live acceptance; not whole-home proof",
+  "files": [
+    {
+      "path": "/Users/kalias/.dsh/.credentials.yaml",
+      "exists": true,
+      "sha256": "f582357fa04d46daf252508c83123c6975aa102c484b03a20a488a3d05753242"
+    },
+    {
+      "path": "/Users/kalias/.dsh/profiles/desktop/package.json",
+      "exists": true,
+      "sha256": "eafc5b4ebc3e702e8aaee00f6012ae1d76ef8ea24b8bbe03a003f369c5d2934f"
+    },
+    {
+      "path": "/Users/kalias/.dsh/profiles/desktop/cordis.yml",
+      "exists": true,
+      "sha256": "c300dcf2ebc5f02062d6591268d29d3db6fe45e0cb138f5467276fe2ba06076e"
+    },
+    {
+      "path": "/Users/kalias/.dsh/profiles/desktop/cordis.patch.yml",
+      "exists": true,
+      "sha256": "de9bc7623edaa12efac39cf438ffcdee906ac8f55a9832d5b5ded64aa71ef8a3"
+    },
+    {
+      "path": "/Users/kalias/.dsh/profiles/desktop/pnpm-lock.yaml",
+      "exists": false,
+      "sha256": null
+    },
+    {
+      "path": "/Users/kalias/.dsh/profiles/work/package.json",
+      "exists": false,
+      "sha256": null
+    },
+    {
+      "path": "/Users/kalias/.dsh/profiles/work/cordis.yml",
+      "exists": false,
+      "sha256": null
+    },
+    {
+      "path": "/Users/kalias/.dsh/profiles/work/cordis.patch.yml",
+      "exists": false,
+      "sha256": null
+    },
+    {
+      "path": "/Users/kalias/.dsh/profiles/work/pnpm-lock.yaml",
+      "exists": false,
+      "sha256": null
+    }
+  ]
+}

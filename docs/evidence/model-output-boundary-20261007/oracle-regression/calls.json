@@ -1,0 +1,78 @@
+[
+  {
+    "name": "material",
+    "command": [
+      "bkn",
+      "object-type",
+      "query",
+      "supply_ontology_hand",
+      "supply_ontology_hand_material",
+      "--body",
+      "{\"limit\": 1000, \"need_total\": true, \"condition\": {\"operation\": \"==\", \"field\": \"material_code\", \"value\": \"382-000005\", \"value_from\": \"const\"}}",
+      "--json"
+    ],
+    "exitCode": 0,
+    "capturedAt": "2026-10-07T02:47:47.549234+00:00",
+    "rawBytesRetained": true,
+    "rowCount": 1,
+    "totalCount": 1,
+    "sha256": "7aa6f5311208277bd39d0f079f45c3d7b63cf148a6177039770188c857bda1b4"
+  },
+  {
+    "name": "missing-material",
+    "command": [
+      "bkn",
+      "object-type",
+      "query",
+      "supply_ontology_hand",
+      "supply_ontology_hand_material",
+      "--body",
+      "{\"limit\": 1000, \"need_total\": true, \"condition\": {\"operation\": \"==\", \"field\": \"material_code\", \"value\": \"999-999999\", \"value_from\": \"const\"}}",
+      "--json"
+    ],
+    "exitCode": 0,
+    "capturedAt": "2026-10-07T02:47:47.728571+00:00",
+    "rawBytesRetained": true,
+    "rowCount": 0,
+    "totalCount": null,
+    "sha256": "078e52b880b1437c6817cc302b55ffe91c9b260a353df6f8a607faa4709e2fca"
+  },
+  {
+    "name": "missing-inventory",
+    "command": [
+      "bkn",
+      "object-type",
+      "query",
+      "supply_ontology_hand",
+      "supply_ontology_hand_inventory",
+      "--body",
+      "{\"limit\": 1000, \"need_total\": true, \"condition\": {\"operation\": \"==\", \"field\": \"material_code\", \"value\": \"999-999999\", \"value_from\": \"const\"}}",
+      "--json"
+    ],
+    "exitCode": 0,
+    "capturedAt": "2026-10-07T02:47:48.036167+00:00",
+    "rawBytesRetained": true,
+    "rowCount": 0,
+    "totalCount": null,
+    "sha256": "5e042ea2822066b1b9356d0045bdb287206bebf915b26ca431219125ac023dab"
+  },
+  {
+    "name": "missing-orders",
+    "command": [
+      "bkn",
+      "object-type",
+      "query",
+      "supply_ontology_hand",
+      "supply_ontology_hand_salesorder",
+      "--body",
+      "{\"limit\": 1000, \"need_total\": true, \"condition\": {\"operation\": \"==\", \"field\": \"product_code\", \"value\": \"999-999999\", \"value_from\": \"const\"}}",
+      "--json"
+    ],
+    "exitCode": 0,
+    "capturedAt": "2026-10-07T02:47:48.265484+00:00",
+    "rawBytesRetained": true,
+    "rowCount": 0,
+    "totalCount": null,
+    "sha256": "7f8405b2de13985abc1161911b6a9cffb1235853654839a177f2abe8a259b415"
+  }
+]

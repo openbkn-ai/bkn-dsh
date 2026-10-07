@@ -1,0 +1,41 @@
+{
+  "startedAt": "2026-10-07T02:49:10.302434+00:00",
+  "finishedAt": "2026-10-07T02:49:11.243476+00:00",
+  "command": [
+    "/Users/kalias/.nvm/versions/node/v24.19.0/bin/node",
+    "/private/var/folders/9r/1zks6bqd7f3dtwybvxsksbc40000gn/T/openbkn-diag-ui-h76__jwb/native-output-live-guard-104910/tests/probes/guard-runtime.probe.mjs",
+    "--plugin",
+    "/private/var/folders/9r/1zks6bqd7f3dtwybvxsksbc40000gn/T/openbkn-diag-ui-h76__jwb/native-output-ci-probe-104248/package",
+    "--live",
+    "https://192.168.50.28",
+    "--kn",
+    "supply_ontology_hand",
+    "--other-kn",
+    "worldcup_vega_catalog_bkn",
+    "--cli",
+    "/private/var/folders/9r/1zks6bqd7f3dtwybvxsksbc40000gn/T/openbkn-diag-ui-h76__jwb/cli-0.1.5/node_modules/.bin/openbkn"
+  ],
+  "cwd": "/private/var/folders/9r/1zks6bqd7f3dtwybvxsksbc40000gn/T/openbkn-diag-ui-h76__jwb/native-output-live-guard-104910",
+  "exitCode": 0,
+  "stderrBytes": 0,
+  "candidateSha256": "3c345ef643589fbf79f4958598d4345544c632feac2a3b4f859403db1125b8f0",
+  "peers": [
+    {
+      "name": "@deepseek-ai/cordis",
+      "version": "4.0.4"
+    },
+    {
+      "name": "@deepseek-ai/dsh-tools",
+      "version": "0.2.0-rc.2"
+    },
+    {
+      "name": "@deepseek-ai/dsh-mcp-client",
+      "version": "0.2.0-rc.2"
+    },
+    {
+      "name": "@deepseek-ai/dsh-system-prompt",
+      "version": "0.2.0-rc.2"
+    }
+  ],
+  "evidence": "Direct official npm ToolRuntime calls against real platform; no model; not real restricted-account acceptance"
+}
