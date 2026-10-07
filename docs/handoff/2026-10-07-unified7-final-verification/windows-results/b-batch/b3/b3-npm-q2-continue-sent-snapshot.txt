@@ -1,0 +1,177 @@
+- button "新建会话":
+- button "收起侧边栏":
+- button "新建会话":
+  - generic: 新会话
+  - generic: Ctrl
+  - generic: +
+  - generic: Alt
+  - generic: +
+  - generic: "N"
+- navigation "全局面板":
+  - button "插件":
+    - generic: 插件
+- generic: 工作区
+- button "搜索会话":
+- textbox "搜索会话名称"
+- button "视图选项":
+- button "添加工作区":
+- tree "会话":
+  - treeitem "workspace-supply" [expanded]:
+    - generic: workspace-supply
+  - treeitem "进行中 查询BOM清单及物料库存 刚刚" [selected]:
+    - generic: 进行中
+    - generic: 查询BOM清单及物料库存
+    - generic: 刚刚
+  - treeitem "382-000005 标准交期查询 3分钟":
+    - generic: 382-000005 标准交期查询
+    - generic: 3分钟
+  - treeitem "382-000005 的标准交期？ 12分钟":
+    - generic: 382-000005 的标准交期？
+    - generic: 12分钟
+  - treeitem "默认工作区" [expanded]:
+    - generic: 默认工作区
+- button "OpenBKN business knowledge networks":
+  - generic: B
+  - generic: OpenBKN
+- button "设置":
+  - generic: 设置
+- banner:
+  - navigation "会话层级":
+    - generic: 查询BOM清单及物料库存
+  - generic "处理代码、文件和资料，适合大多数任务。Agent 会按需使用检索、编辑和终端等工具。":
+    - text: 标准模式
+  - generic "This conversation is permanently bound to this OpenBKN business knowledge network.":
+    - generic: B
+    - generic: 供应链本体知识网络-手工版
+  - button "用 文件资源管理器 打开"
+  - button "更多打开方式":
+  - button "更多操作":
+  - button "打开右侧边栏":
+  - tablist:
+    - tab "对话" [selected]
+    - tab "轨迹"
+- navigation "轮次导航":
+  - button "跳转到第 1 轮"
+  - button "跳转到第 2 轮"
+- generic: 查询 382-000005 的 BOM 清单，每个物料的使用量，以及每个物料的库存情况
+- generic: 10:01
+- button "复制":
+- status: 已完成
+- button "已完成，用时 1分39秒":
+  - generic: 已完成，用时 1分39秒
+- paragraph:
+  - text: 本轮查询
+  - strong: 未能完成交付
+  - text: ，原因是平台侧硬限制，不是我放弃执行。
+- heading "已确认取得的上下文（本轮完成的部分）" [level=2]
+- paragraph:
+  - strong: BOM 结构完整取得
+  - text: ：
+  - code: 382-000005
+  - text: 通过已发布能力「BOM清单」（full 粒度、
+  - code: include_substitute=false
+  - text: ，主料口径 main_only）完整分页展开：
+- list:
+  - text: 明细行数
+  - code: line_count = 313
+  - text: ，实际收集 313 行（13 页 × 25，末页 13），分页到
+  - code: next_offset=null
+  - text: 为止，
+  - code: l1_main_count = 9
+  - text: ，
+  - code: unique_child_count = 272
+  - text: ，
+  - code: max_level = 5
+  - text: ，含根共
+  - code: rows_incl_root = 507
+  - text: 。
+  - text: 每一行都带
+  - code: bom_level
+  - text: 、
+  - code: parent_material_code
+  - text: 、
+  - code: material_code
+  - text: 、
+  - code: material_name
+  - text: 、
+  - code: standard_usage
+  - text: 、
+  - code: bom_version
+  - text: （版本 2026-08-05）、
+  - code: alt_priority
+  - text: ，样本已核对（如
+  - code: 791-000013
+  - text: 层1 单耗 1；其下
+  - code: 795-000133
+  - text: 线束安装附件包 单耗 10）。
+- paragraph:
+  - strong: 库存口径已核实
+  - text: （来自对象「库存」字段定义）：可用库存数量
+  - code: available_inventory_qty
+  - text: = 库存数量 − 预留库存数量，即预留已被扣减、不再二次扣减；能力「子料分层库存」默认仓范围
+  - code: production_available
+  - text: = 苏州半成品仓、苏州成品仓、苏州电子原料仓、苏州无人机原料仓、苏州装配原料仓、乌鲁木齐成品仓、哈尔滨成品仓，状态取「可用」。
+- paragraph:
+  - strong: 库存数据只完成 120 / 272 个物料
+  - text: ：逐物料按上述「仓库 + stock_status=可用」过滤后查询，已落盘 4 批（
+  - code: inv_0000/0030/0060/0090.json
+  - text: ）。
+- heading "缺失与失败点（必须说明）" [level=2]
+- list:
+  - text: 「子料分层库存」能力在
+  - code: depth=5
+  - text: （全树，313 行 / 272 物料）请求
+  - strong: 超时
+  - text: ；
+  - code: depth=1
+  - text: 校准调用成功（9 条一级料可用量：1000 / 344 / 400 / 34 / 0 / 1875 / 1867 / 1500 / 0）。
+  - text: 改用只读对象查询逐料取库存作为回退，在取到第 120 个物料时被平台拒绝：
+  - code: operation_required
+  - text: 「交互操作数量已达到容量上限」，
+  - code: retryable=false
+  - text: 。此后同一 Interaction 内任何 OpenBKN 操作（含组装明细的脚本）都被同一限制拒绝。
+  - text: 因此还有
+  - strong: 152 个物料没有库存结论
+  - text: ，且无法在本轮生成完整的
+  - code: level|parent|child_code|child_name|std_usage|available_qty|uom
+  - text: 明细交付；不能把未取到的库存当作 0，也不能用一级料数值代替全树。
+- paragraph: BOM 结构侧是完整且可复核的；库存侧是部分结果，两者不可混为一谈。请在新一轮继续——届时库存回退可直接从已缓存的 4 批继续，剩余 152 个物料按同样口径补齐。
+- button "复制":
+- button "好的回答":
+- button "有问题的回答":
+- button "在新对话中分支":
+- button "用量 1M tok":
+  - generic: 用量 1M tok
+- generic: 10:03
+- generic: 继续。请从已落盘的 4 批库存缓存（inv_0000/0030/0060/0090.json）继续补齐剩余 152 个物料的库存，完成后按 level|parent|child_code|child_name|std_usage|available_qty|uom 给出完整 313 行明细交付。
+- generic: 10:03
+- button "复制":
+- text: 正在分析请求 · I'm
+- button "思考 I need to continue with a fresh interaction since the previous one failed. Let me pick up from where I left off with the cached inventory batches and fetch the remaining 152 materials' inventory data, then pull in the full BOM rows and build out the complete handoff table with all 313 rows.":
+  - generic: 思考
+  - generic: I need to continue with a fresh interaction since the previous one failed. Let me pick up from where I left off with the cached inventory batches and fetch the remaining 152 materials' inventory data, then pull in the full BOM rows and build out the complete handoff table with all 313 rows.
+- button "工具调用 mcp__openbkn__bkn_start_interaction · bkn-agent-dsh-business-context":
+  - generic: 工具调用
+  - generic: mcp__openbkn__bkn_start_interaction · bkn-agent-dsh-business-context
+- generic: 运行中
+- button "思考":
+  - generic: 思考
+  - generic: 思考
+- status: 深度求索中
+- generic: 深度求索中，用时 4秒 ···
+- generic: 深度求索中，用时 4秒 ···
+- textbox "发消息或创建任务, / 调用指令, @ 文件或对话" [active]
+- generic: 发消息或创建任务, / 调用指令, @ 文件或对话
+- button "添加文件或调用指令":
+- button "访问模式，当前：工作区内修改":
+  - generic: 工作区内修改
+- button "选择模型，当前 DeepSeek-V41-Flash，推理等级 High":
+  - generic: DeepSeek-V41-Flash
+  - generic: High
+- button "停止生成":
+- button "2 轮 16 步 · 249 tok/s":
+  - generic: 2 轮 16 步·249 tok/s
+- button "1.1M tok · 缓存命中 97%":
+  - generic: 1.1M tok·缓存命中 97%
+- button "上下文已用 8%":
+  - generic: 8%

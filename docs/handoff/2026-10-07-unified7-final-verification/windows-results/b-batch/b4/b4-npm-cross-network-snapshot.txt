@@ -1,0 +1,98 @@
+- button "新建会话":
+- button "收起侧边栏":
+- button "新建会话":
+  - generic: 新会话
+  - generic: Ctrl
+  - generic: +
+  - generic: Alt
+  - generic: +
+  - generic: "N"
+- navigation "全局面板":
+  - button "插件":
+    - generic: 插件
+- generic: 工作区
+- button "搜索会话":
+- textbox "搜索会话名称"
+- button "视图选项":
+- button "添加工作区":
+- tree "会话":
+  - treeitem "workspace-worldcup" [expanded]:
+    - generic: workspace-worldcup
+  - treeitem "查询物料库存数量和名称 刚刚" [selected]:
+    - generic: 查询物料库存数量和名称
+    - generic: 刚刚
+  - treeitem "workspace-supply" [expanded]:
+    - generic: workspace-supply
+  - treeitem "物料 999-999999 库存订单查询 5分钟":
+    - generic: 物料 999-999999 库存订单查询
+    - generic: 5分钟
+  - treeitem "查询BOM清单及物料库存 9分钟":
+    - generic: 查询BOM清单及物料库存
+    - generic: 9分钟
+  - treeitem "382-000005 标准交期查询 13分钟":
+    - generic: 382-000005 标准交期查询
+    - generic: 13分钟
+  - treeitem "382-000005 的标准交期？ 21分钟":
+    - generic: 382-000005 的标准交期？
+    - generic: 21分钟
+  - treeitem "默认工作区":
+    - generic: 默认工作区
+- button "OpenBKN business knowledge networks":
+  - generic: B
+  - generic: OpenBKN
+- button "设置":
+  - generic: 设置
+- banner:
+  - navigation "会话层级":
+    - generic: 查询物料库存数量和名称
+  - generic "处理代码、文件和资料，适合大多数任务。Agent 会按需使用检索、编辑和终端等工具。":
+    - text: 标准模式
+  - generic "This conversation is permanently bound to this OpenBKN business knowledge network.":
+    - generic: B
+    - generic: Fjelstul 世界杯 · Vega Catalog 绑定（占位符）
+  - button "用 文件资源管理器 打开"
+  - button "更多打开方式":
+  - button "更多操作":
+  - button "打开右侧边栏":
+  - tablist:
+    - tab "对话" [selected]
+    - tab "轨迹"
+- generic: 查询物料 382-000005 的库存数量和物料名称
+- generic: 10:12
+- button "复制":
+- status: 已完成
+- button "已完成，用时 19秒":
+  - generic: 已完成，用时 19秒
+- paragraph:
+  - text: 未找到物料
+  - strong: 382-000005
+  - text: 的库存数量和物料名称。
+- paragraph:
+  - text: 已检查的范围：本会话绑定的知识网络
+  - code: worldcup_vega_catalog_bkn
+  - text: 。该网络已建模的对象类全部为 Fjelstul 世界杯赛事数据（赛事、球队、球员、比赛、进球、奖项、球场、裁判等），
+  - strong: 不存在任何“物料/库存”类对象及其字段
+  - text: ；其已挂载能力也只有通用 Vega SQL 执行工具，没有物料库存相关的建模口径。因此该标识符在绑定网络的语义与数据范围内无匹配数据，无法返回库存数量或物料名称。
+- button "复制":
+- button "好的回答":
+- button "有问题的回答":
+- button "查看业务溯源"
+- button "在新对话中分支":
+- button "用量 299K tok":
+  - generic: 用量 299K tok
+- generic: 10:12
+- textbox "发消息或创建任务, / 调用指令, @ 文件或对话" [active]
+- generic: 发消息或创建任务, / 调用指令, @ 文件或对话
+- button "添加文件或调用指令":
+- button "访问模式，当前：工作区内修改":
+  - generic: 工作区内修改
+- button "选择模型，当前 DeepSeek-V41-Flash，推理等级 High":
+  - generic: DeepSeek-V41-Flash
+  - generic: High
+- button "发送消息" [disabled]:
+- button "1 轮 6 步 · 244 tok/s":
+  - generic: 1 轮 6 步·244 tok/s
+- button "299K tok · 缓存命中 83%":
+  - generic: 299K tok·缓存命中 83%
+- button "上下文已用 5%":
+  - generic: 5%

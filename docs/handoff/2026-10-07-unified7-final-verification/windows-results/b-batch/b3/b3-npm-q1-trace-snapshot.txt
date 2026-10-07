@@ -1,0 +1,283 @@
+- button "新建会话":
+- button "收起侧边栏":
+- button "新建会话":
+  - generic: 新会话
+  - generic: Ctrl
+  - generic: +
+  - generic: Alt
+  - generic: +
+  - generic: "N"
+- navigation "全局面板":
+  - button "插件":
+    - generic: 插件
+- generic: 工作区
+- button "搜索会话":
+- textbox "搜索会话名称"
+- button "视图选项":
+- button "添加工作区":
+- tree "会话":
+  - treeitem "workspace-supply" [expanded]:
+    - generic: workspace-supply
+  - treeitem "382-000005 标准交期查询 刚刚" [selected]:
+    - generic: 382-000005 标准交期查询
+    - generic: 刚刚
+  - treeitem "382-000005 的标准交期？ 8分钟":
+    - generic: 382-000005 的标准交期？
+    - generic: 8分钟
+  - treeitem "默认工作区" [expanded]:
+    - generic: 默认工作区
+- button "OpenBKN business knowledge networks":
+  - generic: B
+  - generic: OpenBKN
+- button "设置":
+  - generic: 设置
+- banner:
+  - navigation "会话层级":
+    - generic: 382-000005 标准交期查询
+  - generic "处理代码、文件和资料，适合大多数任务。Agent 会按需使用检索、编辑和终端等工具。":
+    - text: 标准模式
+  - generic "This conversation is permanently bound to this OpenBKN business knowledge network.":
+    - generic: B
+    - generic: 供应链本体知识网络-手工版
+  - button "用 文件资源管理器 打开"
+  - button "更多打开方式":
+  - button "更多操作":
+  - button "打开右侧边栏":
+  - tablist:
+    - tab "对话" [selected]
+    - tab "轨迹"
+- generic: 382-000005 的标准交期？
+- generic: 09:59
+- button "复制":
+- status: 已完成
+- button "已完成，用时 16秒":
+  - generic: 已完成，用时 16秒
+- paragraph:
+  - strong: 382-000005 的标准交期是 1 天。
+- table:
+  - rowgroup:
+    - row "项目 值":
+      - columnheader "项目"
+      - columnheader "值"
+  - rowgroup:
+    - row "物料 382-000005 北斗导航农机驾驶仪（YN406BDS-2.5GD，自动驾驶产品线）":
+      - cell "物料"
+      - cell "382-000005 北斗导航农机驾驶仪（YN406BDS-2.5GD，自动驾驶产品线）"
+    - row "标准交期 1 天":
+      - cell "标准交期"
+      - cell "1 天":
+        - strong: 1 天
+    - row "适用口径 生产提前期（ product_fixedleadtime ，注释“自制件的生产提前期 (天)”）":
+      - cell "适用口径"
+      - cell "生产提前期（ product_fixedleadtime ，注释“自制件的生产提前期 (天)”）":
+        - text: 生产提前期（
+        - code: product_fixedleadtime
+        - text: ，注释“自制件的生产提前期 (天)”）
+    - row "判定依据 物料属性 materialattr = 自制，故取生产口径":
+      - cell "判定依据"
+      - cell "物料属性 materialattr = 自制，故取生产口径":
+        - text: 物料属性
+        - code: materialattr
+        - text: = 自制，故取生产口径
+    - row "对照字段 purchase_fixedleadtime （采购固定提前期，天）= 1，按属性不适用":
+      - cell "对照字段"
+      - cell "purchase_fixedleadtime （采购固定提前期，天）= 1，按属性不适用":
+        - code: purchase_fixedleadtime
+        - text: （采购固定提前期，天）= 1，按属性不适用
+    - row "时间单位 天，取自提前期字段定义（与计量单位“个/pcs”无关）":
+      - cell "时间单位"
+      - cell "天，取自提前期字段定义（与计量单位“个/pcs”无关）"
+- paragraph:
+  - text: 取数路径：通过知识网络
+  - code: supply_ontology_hand
+  - text: 上已发布的「标准交期」函数按
+  - code: material_code=382-000005
+  - text: 查询，返回
+  - code: leadtime_days=1
+  - text: ；并核对物料对象
+  - code: supply_ontology_hand_material
+  - text: （数据源
+  - code: supply_demo_hand.erp_material
+  - text: ）确认口径字段与单位。
+- button "复制":
+- button "好的回答":
+- button "有问题的回答":
+- button "查看业务溯源"
+- button "在新对话中分支":
+- button "用量 336K tok":
+  - generic: 用量 336K tok
+- generic: 09:59
+- textbox "发消息或创建任务, / 调用指令, @ 文件或对话"
+- generic: 发消息或创建任务, / 调用指令, @ 文件或对话
+- button "添加文件或调用指令":
+- button "访问模式，当前：工作区内修改":
+  - generic: 工作区内修改
+- button "选择模型，当前 DeepSeek-V41-Flash，推理等级 High":
+  - generic: DeepSeek-V41-Flash
+  - generic: High
+- button "发送消息" [disabled]:
+- button "1 轮 6 步 · 300 tok/s":
+  - generic: 1 轮 6 步·300 tok/s
+- button "336K tok · 缓存命中 83%":
+  - generic: 336K tok·缓存命中 83%
+- button "上下文已用 6%":
+  - generic: 6%
+- dialog "OpenBKN business provenance" [active]:
+  - banner:
+    - generic: TRACE-BACKED PROVENANCE
+    - heading "业务溯源" [level=2]
+    - button "Close": ×
+  - navigation "Provenance views":
+    - button "执行溯源"
+    - button "业务上下文图"
+    - button "证据链"
+  - main:
+    - generic: Interaction ID
+    - strong: int_4396d39a2d969c4d4a5c3c2e5f74e74d
+    - generic: 执行状态
+    - strong: completed
+    - generic: 时间链节点
+    - strong: "8"
+    - strong: 执行时间链
+    - generic: 由本机会话事件重建，不依赖平台授权；耗时为本机口径。
+    - generic: 本地会话
+    - generic: 部分标识符
+    - article:
+      - generic: 生命周期
+      - strong: bkn_start_interaction
+      - generic: "bkn_start_interaction · new · conversation: yes"
+      - generic: 121 ms
+    - article:
+      - generic: 受管访问
+      - strong: search_capabilities
+      - generic: Op
+      - code: op_57cf9e0d646325d6df74577239240832
+      - generic: Receipt
+      - code: rcpt_2d07077b3543e433435d866747f0e9ce
+      - generic: Status
+      - code: completed
+      - generic: search_capabilities
+      - generic: 403 ms
+    - article:
+      - generic: 受管访问
+      - strong: get_kn_detail
+      - generic: Op
+      - code: op_456645382d3defd9f9dc483f9f553d2f
+      - generic: Receipt
+      - code: rcpt_3f84eaf2b8fce497cbba69221abda9e6
+      - generic: Status
+      - code: completed
+      - generic: get_kn_detail
+      - generic: 364 ms
+    - article:
+      - generic: 受管访问
+      - strong: execute_tool
+      - generic: Op
+      - code: op_ec7c132aa663ec7249780a6f5a7173f6
+      - generic: Receipt
+      - code: rcpt_bb2243bc4441a3e6ab71d07afe65cc7e
+      - generic: Status
+      - code: completed
+      - generic: execute_tool
+      - generic: 1.2 s
+    - article:
+      - generic: 受管访问
+      - strong: get_object_types
+      - generic: Op
+      - code: op_e57c1c6392f78b56bb8c03c2d839d8d6
+      - generic: Receipt
+      - code: rcpt_34389da72ce8a5db9918c7ff7fd0538b
+      - generic: Status
+      - code: completed
+      - generic: get_object_types · 1 项
+      - generic: 170 ms
+    - article:
+      - generic: 受管访问
+      - strong: query_object_instance
+      - generic: query_object_instance · 1 项
+      - generic: 64 ms
+    - article:
+      - generic: 生命周期
+      - strong: bkn_finish_interaction
+      - generic: bkn_finish_interaction · completed
+      - generic: 61 ms
+    - article:
+      - generic: 回答
+      - generic: 本轮回答
+      - generic: 09:59:59
+    - strong: 平台执行事实
+    - generic: 平台口径的操作状态、耗时与 Request / Trace / Receipt 引用。
+    - generic: 平台
+    - article:
+      - generic: "01"
+      - strong: search_capabilities
+      - generic: completed
+      - generic: mcp · 2026-10-07T01:59:47.861225Z · 2026-10-07T01:59:48.210831Z
+      - generic: Request
+      - code: req_263e5c5f-e080-4ac7-aee5-238a3644a339
+      - generic: Trace
+      - code: bb7352c02ae08c4e94d2a472862e25ec
+      - generic: Receipt
+      - code: rcpt_2d07077b3543e433435d866747f0e9ce
+    - article:
+      - generic: "02"
+      - strong: get_kn_detail
+      - generic: completed
+      - generic: mcp · 2026-10-07T01:59:48.249969Z · 2026-10-07T01:59:48.571762Z
+      - generic: Request
+      - code: req_4cf87955-7db5-4b41-9041-b2ad81f01992
+      - generic: Trace
+      - code: 38bc408b93fa79ef5765b657c0bc12c7
+      - generic: Receipt
+      - code: rcpt_3f84eaf2b8fce497cbba69221abda9e6
+    - article:
+      - generic: "03"
+      - strong: execute_tool
+      - generic: completed
+      - generic: mcp · 2026-10-07T01:59:50.399911Z · 2026-10-07T01:59:51.560912Z
+      - generic: Request
+      - code: req_81a495fc-83ef-44e6-b2a1-8542654f4dd1
+      - generic: Trace
+      - code: 91eabdf6e114ee5901463ad99eb81b6f
+      - generic: Receipt
+      - code: rcpt_bb2243bc4441a3e6ab71d07afe65cc7e
+    - article:
+      - generic: "04"
+      - strong: 5ce8e842-a2bf-46b3-a89d-6a7f16ea6630
+      - generic: pending
+      - generic: internal · 2026-10-07T01:59:50.440552Z
+      - generic: Receipt
+      - code: rcpt_00edd1ca86de0312d21a7a7262069e4d
+    - article:
+      - generic: "05"
+      - strong: query_object_instance
+      - generic: completed
+      - generic: mcp · 2026-10-07T01:59:51.336983Z · 2026-10-07T01:59:51.463241Z
+      - generic: Request
+      - code: req_d54a1933-1ff5-405e-b096-433158eb637f
+      - generic: Trace
+      - code: 61d7311f480baf388d8213f4d9047c3a
+      - generic: Receipt
+      - code: rcpt_61a4f1f5754620eb3d7ae0aff33668f4
+    - article:
+      - generic: "06"
+      - strong: get_object_types
+      - generic: completed
+      - generic: mcp · 2026-10-07T01:59:54.362976Z · 2026-10-07T01:59:54.489828Z
+      - generic: Request
+      - code: req_a4960106-5e1a-4f68-bf6b-6889fa4caf72
+      - generic: Trace
+      - code: df28c78e4e24b3ca5c313054669bc7c2
+      - generic: Receipt
+      - code: rcpt_34389da72ce8a5db9918c7ff7fd0538b
+    - article:
+      - generic: "07"
+      - strong: query_object_instance
+      - generic: completed
+      - generic: mcp · 2026-10-07T01:59:54.51171Z · 2026-10-07T01:59:54.555982Z
+      - generic: Request
+      - code: req_445e8b19-0024-41b8-8be4-d210492eaa7d
+      - generic: Trace
+      - code: 1c182ffcc3e2f0974f442f4aeec72450
+      - generic: Receipt
+      - code: rcpt_7b6962cb6463368ec93599402069fa33

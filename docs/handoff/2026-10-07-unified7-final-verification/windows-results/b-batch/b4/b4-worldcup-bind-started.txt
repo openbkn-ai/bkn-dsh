@@ -1,0 +1,104 @@
+- button "新建会话":
+- button "收起侧边栏":
+- button "新建会话":
+  - generic: 新会话
+  - generic: Ctrl
+  - generic: +
+  - generic: Alt
+  - generic: +
+  - generic: "N"
+- navigation "全局面板":
+  - button "插件":
+    - generic: 插件
+- generic: 工作区
+- button "搜索会话":
+- textbox "搜索会话名称"
+- button "视图选项":
+- button "添加工作区":
+- tree "会话":
+  - treeitem "workspace-supply" [expanded]:
+    - generic: workspace-supply
+  - treeitem "物料 999-999999 库存订单查询 3分钟":
+    - generic: 物料 999-999999 库存订单查询
+    - generic: 3分钟
+  - treeitem "查询BOM清单及物料库存 7分钟":
+    - generic: 查询BOM清单及物料库存
+    - generic: 7分钟
+  - treeitem "382-000005 标准交期查询 11分钟":
+    - generic: 382-000005 标准交期查询
+    - generic: 11分钟
+  - treeitem "382-000005 的标准交期？ 19分钟":
+    - generic: 382-000005 的标准交期？
+    - generic: 19分钟
+  - treeitem "默认工作区":
+    - generic: 默认工作区
+- button "OpenBKN business knowledge networks":
+  - generic: B
+  - generic: OpenBKN
+- button "设置":
+  - generic: 设置
+- banner:
+  - navigation "会话层级":
+    - generic: 查询物料382-000005库存名称
+  - generic "处理代码、文件和资料，适合大多数任务。Agent 会按需使用检索、编辑和终端等工具。":
+    - text: 标准模式
+  - button "用 文件资源管理器 打开"
+  - button "更多打开方式":
+  - button "更多操作":
+  - button "打开右侧边栏":
+  - tablist:
+    - tab "对话" [selected]
+    - tab "轨迹"
+- generic: 查询物料 382-000005 的库存和物料名称
+- generic: 10:10
+- button "复制":
+- status: 已完成
+- button "已完成，用时 6秒":
+  - generic: 已完成，用时 6秒
+- paragraph: 我无法执行这个查询：当前会话没有绑定 OpenBKN 知识网络，物料数据（物料名称、库存）只能通过知识网络的对象类/指标获取。
+- paragraph: 平台返回的错误是明确的、不可重试：
+- blockquote:
+  - paragraph: OpenBKN tools are available only in a session bound to an OpenBKN knowledge network.
+- paragraph:
+  - text: 同时我也确认了当前工作目录
+  - code: D:\mydocs\documents\deepseek-harness\default-workspace
+  - text: 是空的，没有任何本地数据文件（如 SQLite/CSV）可以替代查询，所以没有绕过的办法。
+- paragraph:
+  - strong: 怎么解决
+  - text: ：请在标准模式（Standard mode）下，从 OpenBKN 侧边栏入口新建/进入一个业务会话，把该会话绑定到包含物料主数据与库存数据的知识网络，然后在那个会话里重新提问：
+- blockquote:
+  - paragraph: 查询物料 382-000005 的库存和物料名称
+- paragraph: 进入绑定后的会话，我就能直接走对象类实例查询（物料名称）和库存指标（库存数量，可按仓库/时间维度拆分）来回答，并附带数据来源与口径说明。
+- paragraph:
+  - text: 如果你其实是想问 DSH 本身（比如这个 OpenBKN 侧边栏入口在产品里怎么配置、为什么当前会话没绑定），告诉我一声，我可以从本机代码仓库
+  - code: C:\bkn-verify\diag6-tools\
+  - text: 里查证具体原因和配置路径。
+- button "复制":
+- button "好的回答":
+- button "有问题的回答":
+- button "在新对话中分支":
+- button "用量 122K tok":
+  - generic: 用量 122K tok
+- generic: 10:10
+- textbox "发消息或创建任务, / 调用指令, @ 文件或对话"
+- generic: 发消息或创建任务, / 调用指令, @ 文件或对话
+- button "添加文件或调用指令":
+- button "访问模式，当前：工作区内修改":
+  - generic: 工作区内修改
+- button "选择模型，当前 DeepSeek-V41-Flash，推理等级 High":
+  - generic: DeepSeek-V41-Flash
+  - generic: High
+- button "发送消息" [disabled]:
+- button "1 轮 3 步 · 222 tok/s":
+  - generic: 1 轮 3 步·222 tok/s
+- button "122K tok · 缓存命中 67%":
+  - generic: 122K tok·缓存命中 67%
+- button "上下文已用 4%":
+  - generic: 4%
+- dialog "OpenBKN business knowledge networks":
+  - banner:
+    - generic: OPENBKN
+    - heading "业务知识网络" [level=2]
+    - button "诊断"
+    - button "Close": ×
+  - paragraph: 请在弹出的系统窗口中选择工作区目录（窗口可能被其他窗口挡住，可从任务栏或 Dock 切换过去）。选好后会自动创建工作区并绑定会话。

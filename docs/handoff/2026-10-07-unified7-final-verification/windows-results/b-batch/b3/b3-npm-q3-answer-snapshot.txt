@@ -1,0 +1,107 @@
+- button "新建会话":
+- button "收起侧边栏":
+- button "新建会话":
+  - generic: 新会话
+  - generic: Ctrl
+  - generic: +
+  - generic: Alt
+  - generic: +
+  - generic: "N"
+- navigation "全局面板":
+  - button "插件":
+    - generic: 插件
+- generic: 工作区
+- button "搜索会话":
+- textbox "搜索会话名称"
+- button "视图选项":
+- button "添加工作区":
+- tree "会话":
+  - treeitem "workspace-supply" [expanded]:
+    - generic: workspace-supply
+  - treeitem "物料 999-999999 库存订单查询 刚刚" [selected]:
+    - generic: 物料 999-999999 库存订单查询
+    - generic: 刚刚
+  - treeitem "查询BOM清单及物料库存 3分钟":
+    - generic: 查询BOM清单及物料库存
+    - generic: 3分钟
+  - treeitem "382-000005 标准交期查询 7分钟":
+    - generic: 382-000005 标准交期查询
+    - generic: 7分钟
+  - treeitem "382-000005 的标准交期？ 16分钟":
+    - generic: 382-000005 的标准交期？
+    - generic: 16分钟
+  - treeitem "默认工作区" [expanded]:
+    - generic: 默认工作区
+- button "OpenBKN business knowledge networks":
+  - generic: B
+  - generic: OpenBKN
+- button "设置":
+  - generic: 设置
+- banner:
+  - navigation "会话层级":
+    - generic: 物料 999-999999 库存订单查询
+  - generic "处理代码、文件和资料，适合大多数任务。Agent 会按需使用检索、编辑和终端等工具。":
+    - text: 标准模式
+  - generic "This conversation is permanently bound to this OpenBKN business knowledge network.":
+    - generic: B
+    - generic: 供应链本体知识网络-手工版
+  - button "用 文件资源管理器 打开"
+  - button "更多打开方式":
+  - button "更多操作":
+  - button "打开右侧边栏":
+  - tablist:
+    - tab "对话" [selected]
+    - tab "轨迹"
+- generic: 物料 999-999999 的库存和订单情况？
+- generic: 10:07
+- button "复制":
+- status: 已完成
+- button "已完成，用时 16秒":
+  - generic: 已完成，用时 16秒
+- paragraph:
+  - strong: 物料 999-999999 无匹配数据。
+- paragraph: 我用该编码做了三次精确查询，均返回 0 行：
+- table:
+  - rowgroup:
+    - row "查询对象 过滤字段 结果":
+      - columnheader "查询对象"
+      - columnheader "过滤字段"
+      - columnheader "结果"
+  - rowgroup:
+    - row "物料（erp_material） material_code == \"999-999999\" 0 行":
+      - cell "物料（erp_material）"
+      - cell "material_code == \"999-999999\""
+      - cell "0 行"
+    - row "库存（erp_real_time_inventory） material_code == \"999-999999\" 0 行":
+      - cell "库存（erp_real_time_inventory）"
+      - cell "material_code == \"999-999999\""
+      - cell "0 行"
+    - row "采购订单（erp_purchase_order） material_number == \"999-999999\" 0 行":
+      - cell "采购订单（erp_purchase_order）"
+      - cell "material_number == \"999-999999\""
+      - cell "0 行"
+- paragraph: 该编码在 supply_ontology_hand 的物料主档中不存在，因此也没有对应的库存记录或采购订单。0 行只说明该编码在上述三个对象类中没有数据，不代表全局库存为零。
+- paragraph: （"订单"我按物料的采购订单口径查询；如需查该物料关联的 MRP 物料需求计划或采购申请单，请告知，我再按对应对象类查一次。）
+- button "复制":
+- button "好的回答":
+- button "有问题的回答":
+- button "查看业务溯源"
+- button "在新对话中分支":
+- button "用量 269K tok":
+  - generic: 用量 269K tok
+- generic: 10:07
+- textbox "发消息或创建任务, / 调用指令, @ 文件或对话" [active]
+- generic: 发消息或创建任务, / 调用指令, @ 文件或对话
+- button "添加文件或调用指令":
+- button "访问模式，当前：工作区内修改":
+  - generic: 工作区内修改
+- button "选择模型，当前 DeepSeek-V41-Flash，推理等级 High":
+  - generic: DeepSeek-V41-Flash
+  - generic: High
+- button "发送消息" [disabled]:
+- button "1 轮 5 步 · 269 tok/s":
+  - generic: 1 轮 5 步·269 tok/s
+- button "269K tok · 缓存命中 94%":
+  - generic: 269K tok·缓存命中 94%
+- button "上下文已用 6%":
+  - generic: 6%

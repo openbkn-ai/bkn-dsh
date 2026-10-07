@@ -13,11 +13,11 @@ kit commit/ZIP SHA/实际工具路径和版本：kit `1fcffa9…` / ZIP `df0016c
 | A2 R9 adjacent patch hashes | pass | pass | desktop：beforeHash=afterHash=afterReinstallHash=**E70A7C04…（三次完全一致）**，A2-desktop-patch-{beforeHash,afterHash,afterReinstallHash}.txt；npm：**6E73523D…（三次完全一致）**；卸载后 deps 空、@openbkn 0 文件、三 row/UI 消失；重装 exit 0（A2-*-reinstall-native.txt）、66/66、新 Host 三 row/v-7 | 卸载前后紧邻取哈希、中间无 setup；测试 patch 层（两 root 无真实用户 patch）；无 Host 重写发生，无需单独解释项 |
 | A3 state and owned cleanup | pass | pass | owned-pids-final.md（修正版全表：pid:ticks/端口/pid 原件；**停止动作的原生控制台行未留存，标 insufficient-evidence**，见"留存状态"节——pid 原件与零残留终态在档，五重身份核验过程性断言降级为会话记录引用）；user-state-after.json：**37/37 与开始前完全一致（内容哈希级）**；final-residual-check.json：node=0、app=0、端口 0 | 本次 before/after 均为内容哈希（此前"未验证"缺口已闭合）；执行偏差 1 项如实记录（归因限定见 A1 行） |
 | A4 synchronized F02 | n/a | **pass 6/6** | A4-prepare-native-*.txt（exit 0，probePackage 路径与 probe --plugin 参数**完全相同**，A4-path-consistency 存档）；A4-fidelity-runtime-*.jsonl（六场景显式 pass：corrected-same-turn / second-mismatch-errors / unbound-unaffected / full-question-summary-rejected / headerless-cached-reprint / scoped-inventory-cached-repair）；A4-summary.json（起止时间/退出码/SHA=BA544874…/bytes） | 全新 fidelity-final-probe-\<stamp\> 目录；fixture 不算真实模型/平台验收 |
-| B1 real login | not-run | not-run | — | 无真实账号/凭据（未借用日常凭据） |
-| B2 F01 | not-run | not-run | — | 同上 |
-| B3 original three questions | not-run | not-run | — | 无模型凭据；不产生模型费用 |
-| B4 live guard | not-run | not-run | — | 需有效登录+两个授权网络 |
-| B5 remaining G6 | not-run | not-run | — | 同 B1/B3 |
+| B1 real login | **pass** | **pass** | b-batch/b1/（B1-SUMMARY.md + axtree/PNG/快照/pid 原件） | 设备授权流（用户浏览器确认）；token 落隔离 bkn-config；两形态列网 2、绑定 workspace-supply、刷新"已关联优先显示"；npm 复用隔离 store（交接允许，见偏差 4） |
+| B2 F01 provenance | **pass**（图 13 元素样例） | **pass**（6 元素三层闭环） | b-batch/b3/B2-F01-SUMMARY.md + f01-q2-*.txt/json；b-batch/b3-desktop/d-f01-q2-graph-axtree.txt | 图元素 ref（op id/工具/网络）↔证据链回执↔CLI `trace receipts get` 平台核验闭环（npm）；desktop 记录图结构样例，未逐元素重放 |
+| B3 original three questions | **3/3 pass** | **3/3 pass** | b-batch/b3/（三题快照+对账 B3-Q2-RECON.md+oracle 20 文件）；b-batch/b3-desktop/B-DESKTOP-SUMMARY.md | DeepSeek-V41-Flash High 新会话；独立 oracle 作答前预采集；Q2 两形态均 313/313 行零缺零多零差值（npm 需续轮、desktop 首轮完成）；Q1/Q3 全要点命中；已知开放项（容量上限/深层库存超时）如实记录 |
+| B4 live guard | **2 核心用例 pass** | **2 核心用例 pass** | b-batch/b4/B4-LIVE-GUARD-SUMMARY.md + 快照；b-batch/b3-desktop/d-guard-*.txt | 未绑定会话平台硬拒绝 + 跨网隔离（worldcup 绑定会话问 supply 数据无跨网披露）；其余 live guard 细分用例 not-run，不宣称全量通过 |
+| B5 remaining G6 | not-run | not-run | — | 受限账号仍缺，unauthorized-network 等保持 not-run（用户决定） |
 
 ## State files and adjacent hashes
 - 日常选定文件（profiles/{desktop,work} 的 package.json/cordis.patch.yml/pnpm-lock.yaml + sessions/storages 保护清单）：**37 项 before/after 内容哈希全部一致**（user-state-before.json / user-state-after.json，仅哈希无正文）
@@ -33,10 +33,12 @@ owned-pids-final.md（修正版全表+终态扫描）；本轮无 cleanup skip�
 **修正（provenance 补交）**：A 批 6 份报告 = **5 份产品 UI 导出 + 1 份 Host API**（A1-desktop 故障/恢复 2、A1-npm 故障 1、UIexport×2、A1-npm-recovered-53df4e9b 为 Host API）。每份的采集通道、归档绝对路径、SHA-256、字节数与 Git blob 逐一对比见 **report-provenance.md**（本地原件 vs `git show HEAD:` 字节级 SHA 全部 identical，无换行归一处理）。API 件与 UI 件只宣称判定一致，不宣称字节一致。
 
 ## Remaining items
-1. B1–B5 本表仍记 not-run（截至本修正提交）；**B 批已于 2026-10-07 晚开始执行**（B1 desktop 真实登录/列网/绑定已完成），其证据与结果将另行提交，不混入本修正提交
-2. 执行偏差（非候选缺陷）：A1 期间观察到 ZCode 宿主重启（13788→2384），随后保存对话框机制失效、npm 两个 UI 导出延迟落盘——**仅为时间顺序关联，因果未证实**；已用 Host API 补证，API/UI 判定一致（非字节一致）
-3. 开放项沿用：深层库存能力超时、平台 #2029 大结果落库、历史故障机器根因、设置向导重现根因
-4. 不得据本轮测试通过宣称发布；发布门禁由主 agent 决定
+1. B 批已于 2026-10-07 晚全部执行（见上表）；本提交为 B 批独立回传（b-batch/，72 文件）
+2. **token 复制共享失效实证（G6"自动续期"开放项现场证据）**：npm 复用 desktop 设备授权 token 后，两份字节相同的 token 先后被平台判 401（desktop 10:33、两侧 10:44 起）；desktop 以独立设备授权重登（用户确认用户码 jrqMJCN4）后全部通过。npm 侧结果均在事件前取得，不受影响
+3. **产品行为观察（非判定项）**：token 失效态 OpenBKN 面板仅"重试/诊断"无重新登录入口，重试不恢复，需 CLI `auth login --device` 修复
+4. 执行偏差（如实）：desktop 自动化输入曾误粘剪贴板残留（用户 API key 片段）入 composer，**未发送即清除**，未进入会话/请求，证据文件已扫描确认无残留
+5. 开放项沿用：深层库存能力超时、平台 #2029 大结果落库、历史故障机器根因、设置向导重现根因、token 自动续期（新增上述实证）
+6. 不得据本轮测试通过宣称发布；发布门禁由主 agent 决定
 
 ## 本修正提交内容（amendment，2026-10-07 晚）
 1. **corr1-verify-kit-native-\*.txt**：以 `*>&1` 重采 verify-kit 原生输出（原 verify-kit-native.txt 仅一空行，系 `2>&1` 不捕获 Write-Host/Information 流）；kit 未改动

@@ -1,0 +1,88 @@
+- button "新建会话":
+- button "收起侧边栏":
+- button "新建会话":
+  - generic: 新会话
+  - generic: Ctrl
+  - generic: +
+  - generic: Alt
+  - generic: +
+  - generic: "N"
+- navigation "全局面板":
+  - button "插件":
+    - generic: 插件
+- generic: 工作区
+- button "搜索会话":
+- textbox "搜索会话名称"
+- button "视图选项":
+- button "添加工作区":
+- tree "会话":
+  - treeitem "workspace-supply" [expanded]:
+    - generic: workspace-supply
+  - treeitem "进行中 查询BOM清单及物料库存 刚刚" [selected]:
+    - generic: 进行中
+    - generic: 查询BOM清单及物料库存
+    - generic: 刚刚
+  - treeitem "382-000005 标准交期查询 1分钟":
+    - generic: 382-000005 标准交期查询
+    - generic: 1分钟
+  - treeitem "382-000005 的标准交期？ 10分钟":
+    - generic: 382-000005 的标准交期？
+    - generic: 10分钟
+  - treeitem "默认工作区" [expanded]:
+    - generic: 默认工作区
+- button "OpenBKN business knowledge networks":
+  - generic: B
+  - generic: OpenBKN
+- button "设置":
+  - generic: 设置
+- banner:
+  - navigation "会话层级":
+    - generic: 查询BOM清单及物料库存
+  - generic "处理代码、文件和资料，适合大多数任务。Agent 会按需使用检索、编辑和终端等工具。":
+    - text: 标准模式
+  - generic "This conversation is permanently bound to this OpenBKN business knowledge network.":
+    - generic: B
+    - generic: 供应链本体知识网络-手工版
+  - button "用 文件资源管理器 打开"
+  - button "更多打开方式":
+  - button "更多操作":
+  - button "打开右侧边栏":
+  - tablist:
+    - tab "对话" [selected]
+    - tab "轨迹"
+- generic: 查询 382-000005 的 BOM 清单，每个物料的使用量，以及每个物料的库存情况
+- generic: 10:01
+- button "复制":
+- text: 准备调用工具 · mcp__openbkn__search_capabilities
+- button "思考 I need to retrieve the BOM for material 382-000005, so I'll start by setting up an OpenBKN interaction and then searching for capabilities that handle BOM expansion and availability checks.":
+  - generic: 思考
+  - generic: I need to retrieve the BOM for material 382-000005, so I'll start by setting up an OpenBKN interaction and then searching for capabilities that handle BOM expansion and availability checks.
+- button "工具调用 mcp__openbkn__bkn_start_interaction · new":
+  - generic: 工具调用
+  - generic: mcp__openbkn__bkn_start_interaction · new
+- button "思考 I'm noticing there's already a conversation from before, so this might be a continuation or a retry of the same question about that BOM list. Let me start by searching for capabilities related to BOM expansion and inventory, and I'll pull the knowledge network details to understand the structure.":
+  - generic: 思考
+  - generic: I'm noticing there's already a conversation from before, so this might be a continuation or a retry of the same question about that BOM list. Let me start by searching for capabilities related to BOM expansion and inventory, and I'll pull the knowledge network details to understand the structure.
+- generic: 正在准备调用
+- generic: 工具调用
+- generic: mcp__openbkn__search_capabilities
+- generic: 工具调用
+- generic: mcp__openbkn__search_capabilities
+- status: 深度求索中
+- generic: 深度求索中，用时 4秒 ···
+- generic: 深度求索中，用时 4秒 ···
+- textbox "发消息或创建任务, / 调用指令, @ 文件或对话" [active]
+- generic: 发消息或创建任务, / 调用指令, @ 文件或对话
+- button "添加文件或调用指令":
+- button "访问模式，当前：工作区内修改":
+  - generic: 工作区内修改
+- button "选择模型，当前 DeepSeek-V41-Flash，推理等级 High":
+  - generic: DeepSeek-V41-Flash
+  - generic: High
+- button "停止生成":
+- button "1 轮 1 步 · 279 tok/s":
+  - generic: 1 轮 1 步·279 tok/s
+- button "43.1K tok · 缓存命中 98%":
+  - generic: 43.1K tok·缓存命中 98%
+- button "上下文已用 5%":
+  - generic: 5%

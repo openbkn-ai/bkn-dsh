@@ -1,0 +1,36 @@
+{
+  "receipt_id": "rcpt_469db8d7b460e74881710cfd1b8cc3eb",
+  "schema_version": "3.0.0",
+  "owner": {
+    "application_principal_id": "openbkn-sdk",
+    "effective_subject_type": "user",
+    "effective_subject_id": "266c6a42-6131-4d62-8f39-853e7093701c"
+  },
+  "conversation_id": "conv_e362040fe0939fc6a97797fba161addd",
+  "interaction_id": "int_d18376ad2ec0ce464eafddde69004ed6",
+  "operation_id": "op_05fc3c72299eff16ce8f1d1994498905",
+  "attempt": 1,
+  "operation_key": "mcp:a0136a81ee62f51eb1b4df63fbcac501",
+  "tool_name": "query_object_instance",
+  "receipt_status": "completed",
+  "evidence_durability": "durable",
+  "required": true,
+  "request_id": "req_2910c0c5-2965-4c0a-924a-5673f34183e3",
+  "trace_id": "216a7bec1d301e21f1f5c7461562dd2b",
+  "causation_event_ids": [],
+  "observed_evidence_refs": [
+    "evt_917eb56fbe6191b2e4433ecef4387cebfaaf56294a9888ad03008338aa8ab0a4"
+  ],
+  "business_refs": [
+    {
+      "ref_type": "object_type",
+      "ref_id": "object:supply_ontology_hand:supply_ontology_hand_inventory",
+      "version": "unversioned"
+    }
+  ],
+  "artifact_refs": [],
+  "partial_reasons": [],
+  "row_version": 2,
+  "issued_at": "2026-10-07T02:03:45.949638Z",
+  "terminal_at": "2026-10-07T02:03:46.0195Z"
+}

@@ -1,0 +1,573 @@
+- button "新建会话":
+- button "收起侧边栏":
+- button "新建会话":
+  - generic: 新会话
+  - generic: Ctrl
+  - generic: +
+  - generic: Alt
+  - generic: +
+  - generic: "N"
+- navigation "全局面板":
+  - button "插件":
+    - generic: 插件
+- generic: 工作区
+- button "搜索会话":
+- textbox "搜索会话名称"
+- button "视图选项":
+- button "添加工作区":
+- tree "会话":
+  - treeitem "workspace-supply" [expanded]:
+    - generic: workspace-supply
+  - treeitem "物料 999-999999 库存订单查询 刚刚":
+    - generic: 物料 999-999999 库存订单查询
+    - generic: 刚刚
+  - treeitem "查询BOM清单及物料库存 4分钟" [selected]:
+    - generic: 查询BOM清单及物料库存
+    - generic: 4分钟
+  - treeitem "382-000005 标准交期查询 8分钟":
+    - generic: 382-000005 标准交期查询
+    - generic: 8分钟
+  - treeitem "382-000005 的标准交期？ 16分钟":
+    - generic: 382-000005 的标准交期？
+    - generic: 16分钟
+  - treeitem "默认工作区" [expanded]:
+    - generic: 默认工作区
+- button "OpenBKN business knowledge networks":
+  - generic: B
+  - generic: OpenBKN
+- button "设置":
+  - generic: 设置
+- banner:
+  - navigation "会话层级":
+    - generic: 查询BOM清单及物料库存
+  - generic "处理代码、文件和资料，适合大多数任务。Agent 会按需使用检索、编辑和终端等工具。":
+    - text: 标准模式
+  - generic "This conversation is permanently bound to this OpenBKN business knowledge network.":
+    - generic: B
+    - generic: 供应链本体知识网络-手工版
+  - button "用 文件资源管理器 打开"
+  - button "更多打开方式":
+  - button "更多操作":
+  - button "打开右侧边栏":
+  - tablist:
+    - tab "对话" [selected]
+    - tab "轨迹"
+- navigation "轮次导航":
+  - button "跳转到第 1 轮"
+  - button "跳转到第 2 轮"
+- generic: 查询 382-000005 的 BOM 清单，每个物料的使用量，以及每个物料的库存情况
+- generic: 10:01
+- button "复制":
+- status: 已完成
+- button "已完成，用时 1分39秒":
+  - generic: 已完成，用时 1分39秒
+- paragraph:
+  - text: 本轮查询
+  - strong: 未能完成交付
+  - text: ，原因是平台侧硬限制，不是我放弃执行。
+- heading "已确认取得的上下文（本轮完成的部分）" [level=2]
+- paragraph:
+  - strong: BOM 结构完整取得
+  - text: ：
+  - code: 382-000005
+  - text: 通过已发布能力「BOM清单」（full 粒度、
+  - code: include_substitute=false
+  - text: ，主料口径 main_only）完整分页展开：
+- list:
+  - text: 明细行数
+  - code: line_count = 313
+  - text: ，实际收集 313 行（13 页 × 25，末页 13），分页到
+  - code: next_offset=null
+  - text: 为止，
+  - code: l1_main_count = 9
+  - text: ，
+  - code: unique_child_count = 272
+  - text: ，
+  - code: max_level = 5
+  - text: ，含根共
+  - code: rows_incl_root = 507
+  - text: 。
+  - text: 每一行都带
+  - code: bom_level
+  - text: 、
+  - code: parent_material_code
+  - text: 、
+  - code: material_code
+  - text: 、
+  - code: material_name
+  - text: 、
+  - code: standard_usage
+  - text: 、
+  - code: bom_version
+  - text: （版本 2026-08-05）、
+  - code: alt_priority
+  - text: ，样本已核对（如
+  - code: 791-000013
+  - text: 层1 单耗 1；其下
+  - code: 795-000133
+  - text: 线束安装附件包 单耗 10）。
+- paragraph:
+  - strong: 库存口径已核实
+  - text: （来自对象「库存」字段定义）：可用库存数量
+  - code: available_inventory_qty
+  - text: = 库存数量 − 预留库存数量，即预留已被扣减、不再二次扣减；能力「子料分层库存」默认仓范围
+  - code: production_available
+  - text: = 苏州半成品仓、苏州成品仓、苏州电子原料仓、苏州无人机原料仓、苏州装配原料仓、乌鲁木齐成品仓、哈尔滨成品仓，状态取「可用」。
+- paragraph:
+  - strong: 库存数据只完成 120 / 272 个物料
+  - text: ：逐物料按上述「仓库 + stock_status=可用」过滤后查询，已落盘 4 批（
+  - code: inv_0000/0030/0060/0090.json
+  - text: ）。
+- heading "缺失与失败点（必须说明）" [level=2]
+- list:
+  - text: 「子料分层库存」能力在
+  - code: depth=5
+  - text: （全树，313 行 / 272 物料）请求
+  - strong: 超时
+  - text: ；
+  - code: depth=1
+  - text: 校准调用成功（9 条一级料可用量：1000 / 344 / 400 / 34 / 0 / 1875 / 1867 / 1500 / 0）。
+  - text: 改用只读对象查询逐料取库存作为回退，在取到第 120 个物料时被平台拒绝：
+  - code: operation_required
+  - text: 「交互操作数量已达到容量上限」，
+  - code: retryable=false
+  - text: 。此后同一 Interaction 内任何 OpenBKN 操作（含组装明细的脚本）都被同一限制拒绝。
+  - text: 因此还有
+  - strong: 152 个物料没有库存结论
+  - text: ，且无法在本轮生成完整的
+  - code: level|parent|child_code|child_name|std_usage|available_qty|uom
+  - text: 明细交付；不能把未取到的库存当作 0，也不能用一级料数值代替全树。
+- paragraph: BOM 结构侧是完整且可复核的；库存侧是部分结果，两者不可混为一谈。请在新一轮继续——届时库存回退可直接从已缓存的 4 批继续，剩余 152 个物料按同样口径补齐。
+- button "复制":
+- button "好的回答":
+- button "有问题的回答":
+- button "在新对话中分支":
+- button "用量 1M tok":
+  - generic: 用量 1M tok
+- generic: 10:03
+- generic: 继续。请从已落盘的 4 批库存缓存（inv_0000/0030/0060/0090.json）继续补齐剩余 152 个物料的库存，完成后按 level|parent|child_code|child_name|std_usage|available_qty|uom 给出完整 313 行明细交付。
+- generic: 10:03
+- button "复制":
+- status: 已完成
+- button "已完成，用时 1分21秒":
+  - generic: 已完成，用时 1分21秒
+- paragraph:
+  - text: 校验说明：上一版答复的明细在转录时
+  - strong: 丢了一行
+  - text: （
+  - code: 4|588-000726|356-000561
+  - text: ），因此被判为 312 行、未通过校验；下表的行数、层级分布、单耗、库存量与单位均已与工具返回一致（L1:9、L2:16、L3:38、L4:212、L5:38，合计 313）。本答复不新增取数、不改口径，仅作完整替换。
+- paragraph:
+  - text: 口径回顾（不变）：BOM 为「BOM清单」能力 full 粒度、
+  - code: include_substitute=false
+  - text: （main_only 主料）、分页至
+  - code: next_offset=null
+  - text: ，
+  - code: line_count=313
+  - text: 、
+  - code: unique_child_count=272
+  - text: 、
+  - code: max_level=5
+  - text: 、版本 2026-08-05；库存为「子料分层库存」口径
+  - code: production_available
+  - text: （苏州半成品仓、苏州成品仓、苏州电子原料仓、苏州无人机原料仓、苏州装配原料仓、乌鲁木齐成品仓、哈尔滨成品仓），
+  - code: stock_status=可用
+  - text: ，字段
+  - code: available_inventory_qty
+  - text: = 库存数量 − 预留库存数量（预留已扣减，不再二次扣减），不含在途；一级 9 项与能力
+  - code: depth=1
+  - text: 结果逐项一致。标记：
+  - code: "*"
+  - text: = 本次查询范围内未查到该物料的库存行，不能据此断言范围外实际库存为零；
+  - code: "?"
+  - text: = 库存单位未提供。
+- paragraph:
+  - text: "DETAIL_ROWS: 313 level|parent|child_code|child_name|std_usage|available_qty|uom 1|382-000005|791-000013|YN406预组装包(拖拉机)|1|1000|个 1|382-000005|606-000989|YN406 包装外箱_V2|1|344|个 1|382-000005|606-000990|YN406 珍珠棉内托_V2|1|400|个 1|382-000005|528-000036|YS221A接收机组件_国内|1|34|个 1|382-000005|791-000007|YN406B方向盘组件（拖拉机）|1|0*|? 1|382-000005|994-000550|406电源+电机+接收机连接线|1|1875|个 1|382-000005|468-000493|YN406说明书（中文）|1|1867|个 1|382-000005|468-000530|导航车贴(60"
+  - emphasis: 15cm)|1|1500|个 1|382-000005|791-000015|YN403显示终端整机_预装组件_拖拉机|1|0
+  - text: "|? 2|791-000013|795-000993|IMU、蘑菇头、显示终端安装附件包(30长)|1|2000|包 2|791-000013|606-000852|I406 预组装外箱|1|600|个 2|791-000013|606-000853|I406 预组装珍珠棉内托|1|590|个 2|791-000013|795-000130|显示终端安装附件包|1|1124|个 2|791-000013|795-000728|终端RAM支架U型底座安装附件包|1|2950|个 2|791-000013|795-000302|电机安装附件包|1|2374|个 2|791-000013|165-000257|1号电机支架底板圆柱（L=100mm）|1|1409|个 2|791-000013|795-000865|电机1号安装支架附件包|1|2867|个 2|791-000013|795-000133|线束安装附件包|10|26297|个 2|791-000013|606-000012|4号自封袋|1|19500|个 2|528-000036|528-000031|YS221A接收机整机_国内版_整机|1|391|个 2|528-000036|849-001021|M6X16不锈钢外六角三组合螺丝_半耐落|4|8843|个 2|791-000007|849-000288|M4"
+  - emphasis: 22_不锈钢杯头内六角滚花机牙螺丝_整圈耐落|6|161549|个 2|791-000015|791-000003|YN403（406）整机|1|445|个 2|791-000015|165-000120|308终端RAM支架|1|1712|个 2|791-000015|849-000987|M5
+  - text: 22_不锈钢内六角机牙螺丝_整圈耐落|4|19826|个 3|528-000031|588-000712|YS221_P0_(四信+M2-BD)S01_PCBA|1|894|个 3|528-000031|838-000403|YS221-TNC转IPEX连接线|1|740|个 3|528-000031|165-002644|YS221接收机上壳|1|857|个 3|528-000031|165-002702|YS221接收机下壳(P+R)|1|870|个 3|528-000031|165-002646|YS221接收机防水硅胶件|1|859|个 3|528-000031|994-000606|YS221_M16-12P信号转接线|1|650|个 3|528-000031|165-002708|TNC防尘堵头|1|2359|个 3|528-000031|165-000722|YN501_M16连接器防水胶套|1|5404|个 3|528-000031|165-002647|GPS散热硅胶垫|1|1660|个 3|528-000031|849-000382|M16
+  - emphasis: E19
+  - text: L2.8六角螺母|1|14703|个 3|528-000031|849-000717|812 M5防水透气阀|1|3087|个 3|528-000031|849-000204|M3
+  - emphasis: 10不锈钢耐落机制螺丝|9|53184|个 3|528-000031|849-000700|M3
+  - text: 6-不锈钢十字圆头机牙螺丝_半耐落|12|116123|个 3|528-000031|468-000565|YS221固定标签(国内)|1|1312|个 3|791-000003|588-000726|YN403_MAINBOARD_P2_PCBA|1|1034|个 3|791-000003|588-000654|YN403_KEYBOARD_P0_PCBA|1|1044|个 3|791-000003|588-000655|YN403_4GBOARD_P0_PCBA|1|1034|个 3|791-000003|165-002372|YN403_后壳|1|1046|个 3|791-000003|165-002375|YN403_SIM卡盖板|1|1246|个 3|791-000003|165-002376|YN403_防水硅胶圈|1|1566|个 3|791-000003|165-002377|YN403_USB防水密封圈|1|1246|个 3|791-000003|165-002378|YN403_SIM卡防水密封圈|1|3946|个 3|791-000003|849-000846|M2.5
+  - emphasis: 6-不锈钢十字圆头机牙螺丝_半耐落|3|138907|个 3|791-000003|182-000055|一卡三通NaNo物联卡（腾讯薄款）|1|6393|张 3|791-000003|838-000375|YN406-4G天线|1|1037|个 3|791-000003|838-000376|YN406-WIFI天线|1|1039|个 3|791-000003|165-002405|YN403_导电泡棉3|1|12791|个 3|791-000003|165-002408|YN403_导电泡棉6|2|3292|个 3|791-000003|791-000012|YN403_前壳预装组件_不带终端互联|1|144|个 3|791-000003|165-000229|701pro密封圈（摄像头）|3|12420|个 3|791-000003|795-000176|308终端防水透气膜|1|16708|个 3|791-000003|849-000943|M3
+  - text: 6十字薄头螺丝|9|17514|个 3|791-000003|849-000700|M3
+  - emphasis: 6-不锈钢十字圆头机牙螺丝_半耐落|10|116123|个 3|791-000003|849-000204|M3
+  - text: 10不锈钢耐落机制螺丝|14|53184|个 3|791-000003|849-000392|ST2.6
+  - emphasis: 6-镀锌铁十字圆头尖尾自攻螺丝|4|65052|个 3|791-000003|849-000208|M12
+  - text: E19
+  - emphasis: L2.5六角螺帽|3|17644|个 3|791-000003|849-000717|812 M5防水透气阀|1|3087|个 3|791-000003|165-000266|701pro摄像头连接器防水胶套|3|8667|个 4|588-000712|725-000176|贴片陶瓷电容|1|39490|个 4|588-000712|725-000357|贴片陶瓷电容|4|39950|个 4|588-000712|725-000179|贴片陶瓷电容|3|247043|个 4|588-000712|725-000320|贴片陶瓷电容|1|9500|个 4|588-000712|725-000226|贴片陶瓷电容|24|1516029|个 4|588-000712|725-000086|贴片陶瓷电容|1|1280510|个 4|588-000712|725-000307|贴片陶瓷电容|10|44000|个 4|588-000712|725-000105|贴片陶瓷电容|2|0
+  - text: "|? 4|588-000712|539-000022|贴片电阻|4|58369|个 4|588-000712|539-000276|贴片电阻|3|24944|个 4|588-000712|539-000026|贴片电阻|1|80817|个 4|588-000712|539-000002|贴片电阻|22|281246|个 4|588-000712|539-000267|贴片电阻|2|155240|个 4|588-000712|539-000028|贴片电阻|1|16260|个 4|588-000712|539-000106|贴片电阻|1|74024|个 4|588-000712|539-000154|贴片电阻|1|130018|个 4|588-000712|539-000162|贴片电阻|1|140000|个 4|588-000712|539-000005|贴片电阻|1|103388|个 4|588-000712|539-000025|贴片电阻|1|20000|个 4|588-000712|539-000006|贴片电阻|1|155903|个 4|588-000712|539-000008|贴片电阻|5|210003|个 4|588-000712|539-000247|贴片电阻|1|10000|个 4|588-000712|539-000411|贴片电阻|1|10000|个 4|588-000712|539-000045|贴片电阻|4|50029|个 4|588-000712|539-000018|贴片电阻|2|94254|个 4|588-000712|539-000047|贴片电阻|1|0*|? 4|588-000712|539-000048|贴片电阻|1|20000|个 4|588-000712|539-000271|贴片电阻|2|10000|个 4|588-000712|454-000310|肖特基二极管|1|6000|个 4|588-000712|454-000213|贴片开关二极管|1|30000|个 4|588-000712|454-000347|ESD静电保护管|2|3000|个 4|588-000712|356-000602|12P双排卧插连接器|1|2000|个 4|588-000712|358-000091|NPN三极管|1|107329|个 4|588-000712|454-000319|TVS二极管|1|0*|? 4|588-000712|733-000121|贴片共模电感|1|20181|个 4|588-000712|733-000129|绕线贴片功率电感|1|12000|个 4|588-000712|733-000130|贴片功率电感|1|2824|个 4|588-000712|972-000475|电源芯片|1|20999|个 4|588-000712|972-000815|DC-DC电源芯片|1|3000|个 4|588-000712|972-000323|SS232收发器|2|20000|个 4|588-000712|972-000528|四信LORA 模组|1|0*|? 4|588-000712|588-000649|YS210_自研IMU模块_P1_PCBA|1|0*|? 4|588-000712|972-000610|CAN收发器|1|16998|个 4|588-000712|321-000543|YS221_P0_PCB|1|0*|? 4|588-000712|849-000011|贴片螺母|4|1045|个 4|588-000712|849-000215|1.37线径射频线夹|2|0*|? 4|588-000712|849-000700|M3"
+  - emphasis: 6-不锈钢十字圆头机牙螺丝_半耐落|4|116123|个 4|588-000712|849-000484|M3X7.5+4单头六角不锈钢螺柱，六角对边尺寸4.6|2|600|个 4|588-000712|849-000023|M3X8+4单头六角铜柱，六角对边尺寸4.6|2|0
+  - text: "|? 4|588-000712|588-000620|GPS模块M20_P2_S01_PCBA|1|1|个 4|588-000726|539-000631|贴片电阻|28|0*|? 4|588-000726|321-000556|YN403_Mainboard_P2_PCB|1|0*|? 4|588-000726|972-000746|CPU|1|0*|? 4|588-000726|972-000745|LPDDR4|1|2812|个 4|588-000726|972-000744|PMIC|1|0*|? 4|588-000726|733-000121|贴片共模电感|2|20181|个 4|588-000726|554-000036|异步降压转换器|2|19685|个 4|588-000726|554-000069|线性稳压器|1|2955|个 4|588-000726|972-000273|DC-DC电源芯片|2|3000|个 4|588-000726|972-000338|LDO|3|24833|个 4|588-000726|972-000418|BOOST芯片|2|5096|个 4|588-000726|972-000587|负载开关|2|0*|? 4|588-000726|972-000333|限流负载开关|2|18000|个 4|588-000726|972-000196|视频解码器|1|12000|个 4|588-000726|972-000743|LED驱动|1|0*|? 4|588-000726|972-000536|MCU|1|13500|个 4|588-000726|972-000448|MCU电源监控芯片|2|4590|个 4|588-000726|972-000270|音频功放|1|4000|个 4|588-000726|972-000610|CAN收发器|2|16998|个 4|588-000726|972-000432|逻辑芯片|1|8985|个 4|588-000726|972-000323|SS232收发器|1|20000|个 4|588-000726|972-000085|WIFI+蓝牙模块|1|0*|? 4|588-000726|972-000303|随机存储器|1|5000|个 4|588-000726|972-000770|DCDC转换器|1|6000|个 4|588-000726|972-000741|电压监控IC|1|6000|个 4|588-000726|527-000036|贴片无源晶振|1|14112|个 4|588-000726|527-000038|贴片无源晶振|1|15000|个 4|588-000726|725-000342|法拉电容|2|12676|个 4|588-000726|356-000081|IPEX天线座|1|10153|个 4|588-000726|356-000200|40pin卧贴抽屉式FPC连接器|1|11995|个 4|588-000726|725-000174|贴片陶瓷电容|7|38000|个 4|588-000726|725-000167|贴片陶瓷电容|4|92016|个 4|588-000726|725-000041|贴片陶瓷电容|18|530000|个 4|588-000726|725-000118|贴片陶瓷电容|4|11567|个 4|588-000726|725-000033|贴片陶瓷电容|33|19550|个 4|588-000726|725-000089|贴片陶瓷电容|41|153909|个 4|588-000726|725-000015|贴片陶瓷电容|1|168000|个 4|588-000726|725-000104|贴片陶瓷电容|13|42038|个 4|588-000726|725-000019|贴片陶瓷电容|5|22667|个 4|588-000726|725-000048|贴片陶瓷电容|8|73850|个 4|588-000726|725-000083|贴片陶瓷电容|2|0*|? 4|588-000726|725-000046|贴片陶瓷电容|5|58000|个 4|588-000726|725-000101|贴片陶瓷电容|6|19650|个 4|588-000726|725-000170|贴片陶瓷电容|3|44000|个 4|588-000726|725-000007|贴片陶瓷电容|2|20000|个 4|588-000726|725-000129|贴片陶瓷电容|1|40000|个 4|588-000726|725-000242|贴片陶瓷电容|79|40200|个 4|588-000726|725-000249|贴片陶瓷电容|5|0*|? 4|588-000726|725-000448|贴片陶瓷电容|8|19700|个 4|588-000726|725-000069|贴片陶瓷电容|7|356000|个 4|588-000726|454-000206|稳压二极管|3|36000|个 4|588-000726|454-000009|肖特基二极管|2|8062|个 4|588-000726|454-000256|TVS二极管|1|20100|个 4|588-000726|454-000187|肖特基二极管|2|23676|个 4|588-000726|454-000181|贴片开关二极管|4|116449|个 4|588-000726|454-000258|ESD二极管|18|108608|个 4|588-000726|454-000050|ESD二极管|2|67706|个 4|588-000726|690-000012|贴片发光二极管|4|119987|个 4|588-000726|454-000068|TVS二极管|1|160076|个 4|588-000726|733-000154|贴片磁珠|11|16000|个 4|588-000726|733-000084|贴片磁珠|3|123364|个 4|588-000726|356-000491|M12防水8P-B款板端公头-26L|1|0*|? 4|588-000726|356-000490|M12防水5P-A款板端公头-26L|1|0*|? 4|588-000726|356-000557|M12防水6P-A款板端公头-26L|1|0*|? 4|588-000726|454-000322|肖特基二极管|1|96000|个 4|588-000726|356-000251|白色贴片插座母座|1|4000|个 4|588-000726|356-000559|双排排母 立贴 2.0Pitch 2X5pin|1|0*|? 4|588-000726|356-000561|双排排母 立贴 2.0Pitch 2X4pin|1|0*|? 4|588-000726|356-000563|双排排母 立贴 2.0Pitch 2X7pin|1|1000|个 4|588-000726|849-000215|1.37线径射频线夹|1|0*|? 4|588-000726|733-000100|贴片功率电感|2|34513|个 4|588-000726|733-000023|绕线贴片功率电感|1|1500|个 4|588-000726|733-000082|功率电感|5|10000|个 4|588-000726|733-000130|贴片功率电感|2|2824|个 4|588-000726|733-000039|绕线贴片功率电感|2|12000|个 4|588-000726|733-000038|绕线贴片功率电感|2|12293|个 4|588-000726|733-000043|绕线贴片功率电感|1|0*|? 4|588-000726|849-000929|贴片螺母|4|0*|? 4|588-000726|849-000928|贴片螺母|3|8378|个 4|588-000726|849-000011|贴片螺母|4|1045|个 4|588-000726|358-000166|贴片PMOS管|3|8940|个 4|588-000726|358-000180|MOSFET|2|14812|个 4|588-000726|539-000124|贴片电阻|1|75000|个 4|588-000726|539-000046|贴片电阻|1|111065|个 4|588-000726|539-000374|贴片电阻|2|260000|个 4|588-000726|539-000237|贴片电阻|2|100000|个 4|588-000726|539-000382|贴片电阻|1|49056|个 4|588-000726|539-000147|贴片电阻|4|178381|个 4|588-000726|539-000082|贴片电阻|2|99999|个 4|588-000726|539-000075|贴片电阻|2|90060|个 4|588-000726|539-000318|贴片电阻|1|9996|个 4|588-000726|539-000162|贴片电阻|4|140000|个 4|588-000726|539-000015|贴片电阻|1|20000|个 4|588-000726|539-000031|贴片电阻|8|134234|个 4|588-000726|539-000249|贴片电阻|1|10000|个 4|588-000726|539-000042|贴片电阻|1|40190|个 4|588-000726|539-000287|贴片电阻|1|9999|个 4|588-000726|539-000014|贴片电阻|1|76904|个 4|588-000726|539-000048|贴片电阻|1|20000|个 4|588-000726|539-000002|贴片电阻|54|281246|个 4|588-000726|539-000264|贴片电阻|1|33246|个 4|588-000726|539-000006|贴片电阻|10|155903|个 4|588-000726|539-000045|贴片电阻|1|50029|个 4|588-000726|539-000050|贴片电阻|1|30060|个 4|588-000726|539-000073|贴片电阻|1|40818|个 4|588-000726|539-000018|贴片电阻|4|94254|个 4|588-000726|539-000070|贴片电阻|2|90000|个 4|588-000726|539-000171|贴片电阻|1|19900|个 4|588-000726|539-000159|贴片电阻|4|21771|个 4|588-000726|539-000248|贴片电阻|2|19152|个 4|588-000726|539-000241|贴片电阻|2|20250|个 4|588-000726|539-000094|贴片电阻|2|47829|个 4|588-000726|539-000099|贴片电阻|2|0*|? 4|588-000726|539-000037|贴片电阻|1|14087|个 4|588-000726|539-000103|贴片电阻|11|150000|个 4|588-000726|539-000027|贴片电阻|2|130437|个 4|588-000726|539-000251|贴片电阻|1|5000|个 4|588-000726|539-000110|贴片电阻|2|395000|个 4|588-000726|539-000100|贴片电阻|2|133845|个 4|588-000726|539-000138|贴片电阻|11|29740|个 4|588-000726|539-000326|贴片电阻|4|0*|? 4|588-000726|539-000120|贴片电阻|4|64951|个 4|588-000726|539-000244|贴片电阻|1|21059|个 4|588-000726|364-000050|贴片可恢复保险丝|9|35885|个 4|588-000726|539-000300|贴片电阻|2|31671|个 4|588-000726|539-000276|贴片电阻|2|24944|个 4|588-000726|539-000026|贴片电阻|2|80817|个 4|588-000726|539-000515|贴片电阻|1|20000|个 4|588-000726|539-000063|贴片电阻|2|86000|个 4|588-000726|539-000114|贴片电阻|1|45000|个 4|588-000726|539-000386|贴片电阻|2|25000|个 4|588-000726|895-000088|轻触开关|1|0*|? 4|588-000726|795-000884|YN403主板CPU屏蔽罩|2|1885|个 4|588-000726|795-000885|YN403主板CPU屏蔽罩支架|2|1730|个 4|588-000726|795-000886|YN403主板电源屏蔽罩|1|2300|个 4|588-000726|795-000887|YN403主板电源屏蔽罩支架|1|2300|个 4|588-000726|849-000942|M3X9+4单头六角铜柱，六角对边尺寸4.6|4|0*|? 4|588-000726|849-000943|M3"
+  - emphasis: 6十字薄头螺丝|4|17514|个 4|588-000726|588-000653|YN403_USB&SIM_P1_PCBA|1|0
+  - text: "|? 4|588-000654|356-000560|双排排针 DIP 2.0Pitch 2X4pin|1|0*|? 4|588-000654|321-000502|YN403_KEYBOARD_P0_PCB|1|0*|? 4|588-000654|690-000047|贴片发光二极管|10|18854|个 4|588-000654|539-000110|贴片电阻|10|395000|个 4|588-000655|321-000503|YN403_4GBOARD_P0_PCB|1|0*|? 4|588-000655|356-000081|IPEX天线座|1|10153|个 4|588-000655|725-000089|贴片陶瓷电容|2|153909|个 4|588-000655|725-000041|贴片陶瓷电容|4|530000|个 4|588-000655|725-000088|贴片陶瓷电容|1|116000|个 4|588-000655|725-000019|贴片陶瓷电容|6|22667|个 4|588-000655|725-000033|贴片陶瓷电容|1|19550|个 4|588-000655|454-000258|ESD二极管|11|108608|个 4|588-000655|733-000084|贴片磁珠|3|123364|个 4|588-000655|849-000215|1.37线径射频线夹|2|0*|? 4|588-000655|733-000236|贴片功率电感|1|2000|个 4|588-000655|358-000166|贴片PMOS管|1|8940|个 4|588-000655|539-000026|贴片电阻|1|80817|个 4|588-000655|539-000043|贴片电阻|1|19690|个 4|588-000655|539-000162|贴片电阻|2|140000|个 4|588-000655|539-000002|贴片电阻|6|281246|个 4|588-000655|539-000006|贴片电阻|1|155903|个 4|588-000655|356-000562|双排排针 DIP 2.0Pitch 2X7pin|1|0*|? 4|791-000012|165-002371|YN403_前壳|1|119|个 5|588-000649|321-000498|YS210_自研IMU模块_P1_PCB|1|0*|? 5|588-000649|795-000863|408IMU自研屏蔽罩V2|1|550|个 5|588-000649|725-000242|贴片陶瓷电容|13|40200|个 5|588-000649|725-000415|贴片陶瓷电容|2|29750|个 5|588-000649|725-000431|贴片陶瓷电容|3|10000|个 5|588-000649|725-000432|贴片陶瓷电容|1|15000|个 5|588-000649|725-000433|贴片陶瓷电容|2|15000|个 5|588-000649|725-000434|贴片陶瓷电容|1|0*|? 5|588-000649|539-000379|贴片电阻|7|10000|个 5|588-000649|539-000310|贴片电阻|26|20000|个 5|588-000649|539-000589|贴片电阻|1|20000|个 5|588-000649|539-000544|贴片电阻|2|0*|? 5|588-000649|972-000264|IMU|1|0*|? 5|588-000649|972-000688|IMU|1|230|个 5|588-000649|972-000689|MCU|1|12019|个 5|588-000649|972-000159|贴片IMU|1|5000|个 5|588-000649|527-000053|贴片无源晶振|1|6001|个 5|588-000620|539-000245|贴片电阻|1|20000|个 5|588-000620|972-000712|GPS模块|1|295|个 5|588-000620|321-000476|GPS模块M20_P2_PCB|1|0*|? 5|588-000620|725-000004|贴片陶瓷电容|1|20000|个 5|588-000620|725-000088|贴片陶瓷电容|1|116000|个 5|588-000620|539-000001|贴片电阻|6|286734|个 5|588-000620|539-000003|贴片电阻|4|181785|个 5|588-000620|539-000005|贴片电阻|3|103388|个 5|588-000620|539-000018|贴片电阻|2|94254|个 5|588-000620|690-000012|贴片发光二极管|1|119987|个 5|588-000620|690-000005|贴片发光二极管|1|6675|个 5|588-000620|454-000004|ESD静电保护管|7|0*|? 5|588-000620|364-000046|贴片自恢复保险丝|1|10000|个 5|588-000620|733-000199|贴片功率电感|1|20000|个 5|588-000620|972-000587|负载开关|1|0*|? 5|588-000653|356-000558|双排排针 DIP 2.0Pitch 2X5pin|1|0*|? 5|588-000653|321-000501|YN403_USB&SIM_P1_PCB|1|0*|? 5|588-000653|356-000389|沉板前插后贴式短款USB 2.0母座|1|0*|? 5|588-000653|454-000258|ESD二极管|6|108608|个 5|588-000653|356-000382|Push-Push Nano SIM 卡座|1|0*|? 5|588-000653|539-000026|贴片电阻|3|80817|个 EMITTED: 313"
+- list:
+  - listitem: 表示本次查询范围内未查到该物料的库存行，不能据此断言范围外实际库存为零；? 表示库存单位未提供。
+- button "复制":
+- button "好的回答":
+- button "有问题的回答":
+- button "查看业务溯源"
+- button "在新对话中分支":
+- button "用量 870K tok":
+  - generic: 用量 870K tok
+- generic: 10:04
+- textbox "发消息或创建任务, / 调用指令, @ 文件或对话"
+- generic: 发消息或创建任务, / 调用指令, @ 文件或对话
+- button "添加文件或调用指令":
+- button "访问模式，当前：工作区内修改":
+  - generic: 工作区内修改
+- button "选择模型，当前 DeepSeek-V41-Flash，推理等级 High":
+  - generic: DeepSeek-V41-Flash
+  - generic: High
+- button "发送消息" [disabled]:
+- button "2 轮 25 步 · 321 tok/s":
+  - generic: 2 轮 25 步·321 tok/s
+- button "1.9M tok · 缓存命中 97%":
+  - generic: 1.9M tok·缓存命中 97%
+- button "上下文已用 11%":
+  - generic: 11%
+- dialog "OpenBKN business provenance":
+  - banner:
+    - generic: TRACE-BACKED PROVENANCE
+    - heading "业务溯源" [level=2]
+    - button "Close": ×
+  - navigation "Provenance views":
+    - button "执行溯源"
+    - button "业务上下文图"
+    - button "证据链" [active]
+  - main:
+    - strong: 业务回执清单
+    - generic: 回执是业务操作落库的耐久凭据；下方指引可在本机 CLI 中核验，面板自身不执行任何命令。
+    - generic: 平台
+    - article:
+      - generic: "01"
+      - strong: rcpt_f9928b1de7ecfa3a122823e2daaf1dd6
+      - generic: completed
+      - generic: run_code · operation op_89849544db34540fe0762dd1f143ecaa · 来源：平台
+      - code: openbkn trace receipts get rcpt_f9928b1de7ecfa3a122823e2daaf1dd6
+    - article:
+      - generic: "02"
+      - strong: rcpt_c1b2a98f62b668ec6d0be6a529637487
+      - generic: completed
+      - generic: query_object_instance · operation op_220f1c1fdeea76c6ed3c0c5206edc074 · 来源：平台
+      - code: openbkn trace receipts get rcpt_c1b2a98f62b668ec6d0be6a529637487
+    - article:
+      - generic: "03"
+      - strong: rcpt_51c22d65610e470198a55dc745f91063
+      - generic: completed
+      - generic: run_code · operation op_9c692ff472ce918b30782b347ab597f8 · 来源：平台
+      - code: openbkn trace receipts get rcpt_51c22d65610e470198a55dc745f91063
+    - article:
+      - generic: "04"
+      - strong: rcpt_4406c3ab7809a3f53c2776dea880f676
+      - generic: completed
+      - generic: query_object_instance · operation op_de07adfc20f536a1fa1b3a64bfc90234 · 来源：平台
+      - code: openbkn trace receipts get rcpt_4406c3ab7809a3f53c2776dea880f676
+    - article:
+      - generic: "05"
+      - strong: rcpt_469db8d7b460e74881710cfd1b8cc3eb
+      - generic: completed
+      - generic: query_object_instance · operation op_05fc3c72299eff16ce8f1d1994498905 · 来源：平台
+      - code: openbkn trace receipts get rcpt_469db8d7b460e74881710cfd1b8cc3eb
+    - article:
+      - generic: "06"
+      - strong: rcpt_97daed29b377e27cf3a8ab935fa8ac08
+      - generic: completed
+      - generic: query_object_instance · operation op_0dcfca5a0069de6d7ae338d69473db00 · 来源：平台
+      - code: openbkn trace receipts get rcpt_97daed29b377e27cf3a8ab935fa8ac08
+    - article:
+      - generic: "07"
+      - strong: rcpt_cfb3272e63cc29b9253d3c8d00beea79
+      - generic: completed
+      - generic: run_code · operation op_8414112c3120f0c85feef8e4d709498c · 来源：平台
+      - code: openbkn trace receipts get rcpt_cfb3272e63cc29b9253d3c8d00beea79
+    - article:
+      - generic: "08"
+      - strong: rcpt_3600b33601349e77fe9552dfbb3dd834
+      - generic: completed
+      - generic: run_code · operation op_5e21aed0753b11b341bcec91786db9f4 · 来源：平台
+      - code: openbkn trace receipts get rcpt_3600b33601349e77fe9552dfbb3dd834
+    - article:
+      - generic: "09"
+      - strong: rcpt_765aa994faf2c6cf6cf284c2db7e6b64
+      - generic: completed
+      - generic: query_object_instance · operation op_6592d45cc7b1c8584d13cd2228a80859 · 来源：平台
+      - code: openbkn trace receipts get rcpt_765aa994faf2c6cf6cf284c2db7e6b64
+    - article:
+      - generic: "10"
+      - strong: rcpt_ecf2d5d9f945db84aa5d14f2fa874606
+      - generic: completed
+      - generic: query_object_instance · operation op_d3f02c92668a1e0bde1760b16db55a63 · 来源：平台
+      - code: openbkn trace receipts get rcpt_ecf2d5d9f945db84aa5d14f2fa874606
+    - article:
+      - generic: "11"
+      - strong: rcpt_343606c8af447e3c88e5bbb6eb4953fa
+      - generic: completed
+      - generic: query_object_instance · operation op_2af63133817db27222670934bf5f4c64 · 来源：平台
+      - code: openbkn trace receipts get rcpt_343606c8af447e3c88e5bbb6eb4953fa
+    - article:
+      - generic: "12"
+      - strong: rcpt_053afbdb951b9d43ccb0541c2eb70e8d
+      - generic: completed
+      - generic: query_object_instance · operation op_7c276677212fa7be05ff483e9c7c6f7f · 来源：平台
+      - code: openbkn trace receipts get rcpt_053afbdb951b9d43ccb0541c2eb70e8d
+    - article:
+      - generic: "13"
+      - strong: rcpt_5e5f334ad0be0844e239ed3e6c4fa9de
+      - generic: completed
+      - generic: query_object_instance · operation op_a9d9547396173911293d308f5b836ebc · 来源：平台
+      - code: openbkn trace receipts get rcpt_5e5f334ad0be0844e239ed3e6c4fa9de
+    - article:
+      - generic: "14"
+      - strong: rcpt_d4744c42a08ffd96d329dffb0631c221
+      - generic: completed
+      - generic: query_object_instance · operation op_b9eee2083f25dea906c178e88a4fca25 · 来源：平台
+      - code: openbkn trace receipts get rcpt_d4744c42a08ffd96d329dffb0631c221
+    - article:
+      - generic: "15"
+      - strong: rcpt_6d1ec1e541b24171b61df200a05ba0a2
+      - generic: completed
+      - generic: query_object_instance · operation op_ac46c6ce8feae53410b397a495984fcc · 来源：平台
+      - code: openbkn trace receipts get rcpt_6d1ec1e541b24171b61df200a05ba0a2
+    - article:
+      - generic: "16"
+      - strong: rcpt_733c47cebb8a7e84e2a0c3fd159cc72f
+      - generic: completed
+      - generic: query_object_instance · operation op_c75c09037c8ca90d009a06d1e0fa71d4 · 来源：平台
+      - code: openbkn trace receipts get rcpt_733c47cebb8a7e84e2a0c3fd159cc72f
+    - article:
+      - generic: "17"
+      - strong: rcpt_140a02789689772b9af32485c96eeae7
+      - generic: completed
+      - generic: query_object_instance · operation op_18bc9e1efe68f642bc3411f6ce831b71 · 来源：平台
+      - code: openbkn trace receipts get rcpt_140a02789689772b9af32485c96eeae7
+    - article:
+      - generic: "18"
+      - strong: rcpt_6c09584a97b237e4f0d01d78aaa7ef65
+      - generic: completed
+      - generic: query_object_instance · operation op_59712cc09d1abb66da794dfea905051a · 来源：平台
+      - code: openbkn trace receipts get rcpt_6c09584a97b237e4f0d01d78aaa7ef65
+    - article:
+      - generic: "19"
+      - strong: rcpt_48922f889688c8856f64223b096013e5
+      - generic: completed
+      - generic: query_object_instance · operation op_cd97d37d31cf0c5c18364fe73f476f62 · 来源：平台
+      - code: openbkn trace receipts get rcpt_48922f889688c8856f64223b096013e5
+    - article:
+      - generic: "20"
+      - strong: rcpt_6da35a63a8a91dfd7dbd5a0214471a1e
+      - generic: completed
+      - generic: query_object_instance · operation op_08a7669763a9b0b43b64789ca86b02ec · 来源：平台
+      - code: openbkn trace receipts get rcpt_6da35a63a8a91dfd7dbd5a0214471a1e
+    - article:
+      - generic: "21"
+      - strong: rcpt_5fa1451e5c1fcf456136ca80a7715f3a
+      - generic: completed
+      - generic: query_object_instance · operation op_8e320a04a1d880f660b86598053ed09f · 来源：平台
+      - code: openbkn trace receipts get rcpt_5fa1451e5c1fcf456136ca80a7715f3a
+    - article:
+      - generic: "22"
+      - strong: rcpt_6a48cfb5e26632b1173d27fa0d2615c6
+      - generic: completed
+      - generic: query_object_instance · operation op_b0d59f79faa39f3d54db1c5e458e00e5 · 来源：平台
+      - code: openbkn trace receipts get rcpt_6a48cfb5e26632b1173d27fa0d2615c6
+    - article:
+      - generic: "23"
+      - strong: rcpt_b00deb1b3a32194c9baca50f07a973a7
+      - generic: completed
+      - generic: query_object_instance · operation op_f2c3feffe2ee20580e5d104b85ec4817 · 来源：平台
+      - code: openbkn trace receipts get rcpt_b00deb1b3a32194c9baca50f07a973a7
+    - article:
+      - generic: "24"
+      - strong: rcpt_f3bbf578e1301f15543f96b8f069511a
+      - generic: completed
+      - generic: query_object_instance · operation op_218064061fb74afc86a4f93de7c93581 · 来源：平台
+      - code: openbkn trace receipts get rcpt_f3bbf578e1301f15543f96b8f069511a
+    - article:
+      - generic: "25"
+      - strong: rcpt_b8a0a95de1941db5f25d7938d4a801a3
+      - generic: completed
+      - generic: query_object_instance · operation op_491f146d977c939d027c81f11e8c1083 · 来源：平台
+      - code: openbkn trace receipts get rcpt_b8a0a95de1941db5f25d7938d4a801a3
+    - article:
+      - generic: "26"
+      - strong: rcpt_0a6bd5b22c116b61db560143e072155c
+      - generic: completed
+      - generic: query_object_instance · operation op_1834192714a138131a9eff5a7cbb4b2a · 来源：平台
+      - code: openbkn trace receipts get rcpt_0a6bd5b22c116b61db560143e072155c
+    - article:
+      - generic: "27"
+      - strong: rcpt_924f9a2a484c7125b8df4761f4cd85bc
+      - generic: completed
+      - generic: query_object_instance · operation op_a5ac095daaf48be6231fc48d8c27cb75 · 来源：平台
+      - code: openbkn trace receipts get rcpt_924f9a2a484c7125b8df4761f4cd85bc
+    - article:
+      - generic: "28"
+      - strong: rcpt_afda62cfa7e9d29b0acea7e5b25304d0
+      - generic: completed
+      - generic: query_object_instance · operation op_7e449c48185d220a3165ff25b3feba15 · 来源：平台
+      - code: openbkn trace receipts get rcpt_afda62cfa7e9d29b0acea7e5b25304d0
+    - article:
+      - generic: "29"
+      - strong: rcpt_cb0ea50eb4f3d6e8d702f847478d157e
+      - generic: completed
+      - generic: query_object_instance · operation op_4b2a933710cf62f94f003dd45ae6dab6 · 来源：平台
+      - code: openbkn trace receipts get rcpt_cb0ea50eb4f3d6e8d702f847478d157e
+    - article:
+      - generic: "30"
+      - strong: rcpt_8ec6b2eeb2cba1ab43c3295d5c70135d
+      - generic: completed
+      - generic: query_object_instance · operation op_0c815749f6c3e82d6f2feff27f24ad5f · 来源：平台
+      - code: openbkn trace receipts get rcpt_8ec6b2eeb2cba1ab43c3295d5c70135d
+    - article:
+      - generic: "31"
+      - strong: rcpt_0885c3c708ad76fc64c52f1ca1160c96
+      - generic: completed
+      - generic: query_object_instance · operation op_a86b4ac8a16c5f470dd854f9becd454d · 来源：平台
+      - code: openbkn trace receipts get rcpt_0885c3c708ad76fc64c52f1ca1160c96
+    - article:
+      - generic: "32"
+      - strong: rcpt_11e69a0cf07f564bcce93f32d4a799df
+      - generic: completed
+      - generic: query_object_instance · operation op_a0b6e957cf7ab62ca238e8c17440b2dc · 来源：平台
+      - code: openbkn trace receipts get rcpt_11e69a0cf07f564bcce93f32d4a799df
+    - article:
+      - generic: "33"
+      - strong: rcpt_8e1a52a08b9873cb809342019ead87b8
+      - generic: completed
+      - generic: query_object_instance · operation op_d3729a5277659ae9be33ca1a95db9132 · 来源：平台
+      - code: openbkn trace receipts get rcpt_8e1a52a08b9873cb809342019ead87b8
+    - article:
+      - generic: "34"
+      - strong: rcpt_41d73cde3dd9bb510d14757adf915d7a
+      - generic: completed
+      - generic: query_object_instance · operation op_a70934a49bc44b17475196af446142bb · 来源：平台
+      - code: openbkn trace receipts get rcpt_41d73cde3dd9bb510d14757adf915d7a
+    - article:
+      - generic: "35"
+      - strong: rcpt_5c3718eb1123eb92e7e4b701325bd261
+      - generic: completed
+      - generic: query_object_instance · operation op_2b1117de114b61bec1118724a7aec5d1 · 来源：平台
+      - code: openbkn trace receipts get rcpt_5c3718eb1123eb92e7e4b701325bd261
+    - article:
+      - generic: "36"
+      - strong: rcpt_ec94d8456ac5c451fff3cdf67f3f4937
+      - generic: completed
+      - generic: query_object_instance · operation op_e21f03818af79483d73b6240400b7a17 · 来源：平台
+      - code: openbkn trace receipts get rcpt_ec94d8456ac5c451fff3cdf67f3f4937
+    - article:
+      - generic: "37"
+      - strong: rcpt_e83fbb2a293108e409cdd91c040f249e
+      - generic: completed
+      - generic: query_object_instance · operation op_c5b97fbea4f4e4f96271ae660d8acd4a · 来源：平台
+      - code: openbkn trace receipts get rcpt_e83fbb2a293108e409cdd91c040f249e
+    - article:
+      - generic: "38"
+      - strong: rcpt_cb0187b737ed95845c192b3f0b359eda
+      - generic: completed
+      - generic: query_object_instance · operation op_8cb68466998fa8fc8e04c61476c196a6 · 来源：平台
+      - code: openbkn trace receipts get rcpt_cb0187b737ed95845c192b3f0b359eda
+    - article:
+      - generic: "39"
+      - strong: rcpt_16659b667af47fcfa66f51cdc0bdf830
+      - generic: completed
+      - generic: query_object_instance · operation op_fcac857033b189a74f7107b00e92e0df · 来源：平台
+      - code: openbkn trace receipts get rcpt_16659b667af47fcfa66f51cdc0bdf830
+    - article:
+      - generic: "40"
+      - strong: rcpt_544e7f6af63925e8432a30f471c1a8ce
+      - generic: completed
+      - generic: query_object_instance · operation op_9197391e06e6b02613c148ca12ec387d · 来源：平台
+      - code: openbkn trace receipts get rcpt_544e7f6af63925e8432a30f471c1a8ce
+    - article:
+      - generic: "41"
+      - strong: rcpt_b3739f3c2a655a32c98a655c7d11cf5f
+      - generic: completed
+      - generic: query_object_instance · operation op_24d4d855ed8307bddd30f03e992d1a8b · 来源：平台
+      - code: openbkn trace receipts get rcpt_b3739f3c2a655a32c98a655c7d11cf5f
+    - article:
+      - generic: "42"
+      - strong: rcpt_0d8eb2310fbdecf953ebf1980a589363
+      - generic: completed
+      - generic: query_object_instance · operation op_47f02bc1526cd693a71b83f6afdc7ac8 · 来源：平台
+      - code: openbkn trace receipts get rcpt_0d8eb2310fbdecf953ebf1980a589363
+    - article:
+      - generic: "43"
+      - strong: rcpt_4edbbf8adb85c797001ee1596aac9b8d
+      - generic: completed
+      - generic: query_object_instance · operation op_9d2eb877c1e9c2bd5836d8d8ec03661a · 来源：平台
+      - code: openbkn trace receipts get rcpt_4edbbf8adb85c797001ee1596aac9b8d
+    - article:
+      - generic: "44"
+      - strong: rcpt_f0eaaaa158c3d94031c6c6c53d5a8994
+      - generic: completed
+      - generic: query_object_instance · operation op_56a010f973d71235d869487214380ff4 · 来源：平台
+      - code: openbkn trace receipts get rcpt_f0eaaaa158c3d94031c6c6c53d5a8994
+    - article:
+      - generic: "45"
+      - strong: rcpt_1f6e9c40caa8fd14604dc4c89e3e9e82
+      - generic: completed
+      - generic: query_object_instance · operation op_ee0eda6b5a44acddee2cb0f997edf39e · 来源：平台
+      - code: openbkn trace receipts get rcpt_1f6e9c40caa8fd14604dc4c89e3e9e82
+    - article:
+      - generic: "46"
+      - strong: rcpt_9f9c819fbba7a090c80e98149ca225a2
+      - generic: completed
+      - generic: query_object_instance · operation op_b2125368572f0867e38bcd577f37064d · 来源：平台
+      - code: openbkn trace receipts get rcpt_9f9c819fbba7a090c80e98149ca225a2
+    - article:
+      - generic: "47"
+      - strong: rcpt_3b2865911af3f6fac247fb96449b1080
+      - generic: completed
+      - generic: query_object_instance · operation op_250c52c4a6304293af805e48bb305ffa · 来源：平台
+      - code: openbkn trace receipts get rcpt_3b2865911af3f6fac247fb96449b1080
+    - article:
+      - generic: "48"
+      - strong: rcpt_16add56df1c7a715b3ae0236a1839561
+      - generic: completed
+      - generic: query_object_instance · operation op_4bd7cdf75b8507cd3d23b6f54e957dab · 来源：平台
+      - code: openbkn trace receipts get rcpt_16add56df1c7a715b3ae0236a1839561
+    - article:
+      - generic: "49"
+      - strong: rcpt_f6b5f3ddb641c129969a995ca10f1a86
+      - generic: completed
+      - generic: query_object_instance · operation op_25ad2fd8843c65af2555e923588272a3 · 来源：平台
+      - code: openbkn trace receipts get rcpt_f6b5f3ddb641c129969a995ca10f1a86
+    - article:
+      - generic: "50"
+      - strong: rcpt_d39dd272dda2f9c95962e4893f95d2db
+      - generic: completed
+      - generic: query_object_instance · operation op_6494a5b695e79f5e391d919188b6d843 · 来源：平台
+      - code: openbkn trace receipts get rcpt_d39dd272dda2f9c95962e4893f95d2db
+    - article:
+      - generic: "51"
+      - strong: rcpt_822cb3455348ab88c585aa9c7c1f8c89
+      - generic: completed
+      - generic: query_object_instance · operation op_4eb6e834f2757045037d90c40ff01b2a · 来源：平台
+      - code: openbkn trace receipts get rcpt_822cb3455348ab88c585aa9c7c1f8c89
+    - article:
+      - generic: "52"
+      - strong: rcpt_6c13c58c5eb88af375255444ae4dda81
+      - generic: completed
+      - generic: query_object_instance · operation op_b6de033273a9226a4902ba66ad27ec48 · 来源：平台
+      - code: openbkn trace receipts get rcpt_6c13c58c5eb88af375255444ae4dda81
+    - article:
+      - generic: "53"
+      - strong: rcpt_527eea4d2580463db84f950506c56480
+      - generic: completed
+      - generic: query_object_instance · operation op_d80c2143fa00c9b96e18692f78e6f0b2 · 来源：平台
+      - code: openbkn trace receipts get rcpt_527eea4d2580463db84f950506c56480
+    - article:
+      - generic: "54"
+      - strong: rcpt_fc367fe5b7aaf6f433aa3528c1fe4a1d
+      - generic: completed
+      - generic: run_code · operation op_a507126225080c86647823090e55fc20 · 来源：平台
+      - code: openbkn trace receipts get rcpt_fc367fe5b7aaf6f433aa3528c1fe4a1d
+    - article:
+      - generic: "55"
+      - strong: rcpt_2929db1f4f6aca80a1014ef093282576
+      - generic: completed
+      - generic: run_code · operation op_59fb9250b63f028d6a43f8400791f4e1 · 来源：平台
+      - code: openbkn trace receipts get rcpt_2929db1f4f6aca80a1014ef093282576
