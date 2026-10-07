@@ -73,7 +73,7 @@
   },
   "releaseStateAtCheck": "Preparation only; no tag, publish or dist-tag mutation",
   "archiveCheckoutVerification": {
-    "checkedAt": "2026-10-07T14:17:22.612228+00:00",
+    "checkedAt": "2026-10-07T14:26:35.886489+00:00",
     "sourceSnapshotCommit": "19c2dc5a9d5083cc1e59f2dd2d9544ad0394489c",
     "checkoutMode": "Git checkout filters with core.autocrlf=true; archived directory has text unset (-text)",
     "snapshotFiles": 107,
@@ -95,5 +95,65 @@
       "dn2r2"
     ],
     "historicalStopsWithoutNativeOutput": "insufficient-evidence; no missing records reconstructed"
+  },
+  "compatibilityPatchCheckoutVerification": {
+    "before": {
+      "checkedAt": "2026-10-07T14:26:07.345807+00:00",
+      "mode": "before",
+      "coreAutocrlf": true,
+      "patches": [
+        {
+          "file": "compat/dsh-0.2.0-rc.2/patches/0001-third-party-typert-protocol.patch",
+          "declaredSha256": "a4f03a3ea4fcab1824ccfb113e71f5aab6d525a751adb8a971d375dcd8391d81",
+          "checkoutSha256": "b2c119a4d50d0571271686b9387ac1b48d9a83941914ec4273560bf573c67d72",
+          "bytesMatch": false
+        },
+        {
+          "file": "compat/dsh-0.2.0-rc.2/patches/0002-plugin-ignorable-session-events.patch",
+          "declaredSha256": "d6881fdaa125da9ed7f819a37b2e3447817ee896f4a418dc25d80a6d8518e651",
+          "checkoutSha256": "fd8e7362b935f92686f6d1c4b0b084166950592a035bbbfe25fbb6f0dc907299",
+          "bytesMatch": false
+        },
+        {
+          "file": "compat/dsh-0.2.0-rc.2/patches/0003-compatible-runtime-lockfile.patch",
+          "declaredSha256": "af0a29e4eb70220b8b4dc1ff45f5a580ae16ec0ad80aad1795c994ba87c8f762",
+          "checkoutSha256": "8498feb1555e9919ac532df45db453acb57413a341f28d58aaa935dfd0a3841c",
+          "bytesMatch": false
+        }
+      ],
+      "loaderExitCode": 1,
+      "loaderStdout": "",
+      "loaderStderr": "Compatibility patch digest does not match: patches/0001-third-party-typert-protocol.patch\n",
+      "scope": "Git filters and actual loadManifest on macOS; no Windows end-to-end source build claimed"
+    },
+    "after": {
+      "checkedAt": "2026-10-07T14:26:34.311583+00:00",
+      "mode": "after",
+      "coreAutocrlf": true,
+      "patches": [
+        {
+          "file": "compat/dsh-0.2.0-rc.2/patches/0001-third-party-typert-protocol.patch",
+          "declaredSha256": "a4f03a3ea4fcab1824ccfb113e71f5aab6d525a751adb8a971d375dcd8391d81",
+          "checkoutSha256": "a4f03a3ea4fcab1824ccfb113e71f5aab6d525a751adb8a971d375dcd8391d81",
+          "bytesMatch": true
+        },
+        {
+          "file": "compat/dsh-0.2.0-rc.2/patches/0002-plugin-ignorable-session-events.patch",
+          "declaredSha256": "d6881fdaa125da9ed7f819a37b2e3447817ee896f4a418dc25d80a6d8518e651",
+          "checkoutSha256": "d6881fdaa125da9ed7f819a37b2e3447817ee896f4a418dc25d80a6d8518e651",
+          "bytesMatch": true
+        },
+        {
+          "file": "compat/dsh-0.2.0-rc.2/patches/0003-compatible-runtime-lockfile.patch",
+          "declaredSha256": "af0a29e4eb70220b8b4dc1ff45f5a580ae16ec0ad80aad1795c994ba87c8f762",
+          "checkoutSha256": "af0a29e4eb70220b8b4dc1ff45f5a580ae16ec0ad80aad1795c994ba87c8f762",
+          "bytesMatch": true
+        }
+      ],
+      "loaderExitCode": 0,
+      "loaderStdout": "manifest accepted 3 patches\n",
+      "loaderStderr": "",
+      "scope": "Git filters and actual loadManifest on macOS; no Windows end-to-end source build claimed"
+    }
   }
 }

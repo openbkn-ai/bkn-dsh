@@ -21,6 +21,8 @@ PR #78 评审发现 [PROCESS-RECORDS-STATUS.md](windows-results/PROCESS-RECORDS-
 - N3 命令实际归档为 [n3-command-provenance.sh](windows-results/n3-command-provenance.sh)，原文的 `step-ar-n3.sh` 是回传时使用的名称，不是仓库文件名。原生退出码未独立存档的限制不变。
 - 原文提到的 `step-ar-dn1-fix.ps1`、`step-ar-dn2.ps1` 以及 dn2r2 脚本均不在最终 Git 快照；不能依据“脚本在档”证明这些历史停止操作。相关 PID 原件保留，脚本及原生停止输出证据不足仍记 `insufficient-evidence`，不补造或推定执行成功。
 
+评审另提示源码克隆时的既有兼容补丁换行问题。主 agent 在 macOS 上使用 Git 的 `core.autocrlf=true` 过滤器和实际 `loadManifest` 复现：3 份补丁均被转换，加载器以 SHA 不符拒绝（exit 1）。为固定补丁目录设置 `-text` 后，3/3 原字节及 manifest SHA 匹配，加载器接受（exit 0）。未改补丁或 manifest 内容，不新增 Windows 源码端到端构建验收，也不改变已接受的插件包。
+
 ## 已验证范围
 
 详见 [Windows RESULTS](windows-results/RESULTS.md)、[N45](windows-results/N45-SUMMARY.md) 与 [进程记录状态](windows-results/PROCESS-RECORDS-STATUS.md)。
