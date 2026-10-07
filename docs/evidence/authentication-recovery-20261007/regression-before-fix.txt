@@ -1,0 +1,86 @@
+✖ a locally present CLI token rejected by MCP exposes login and recovers through the existing CLI flow (2.256ms)
+✖ manual-token and login verification retain an MCP 401 as an authentication-required Remote error (0.313083ms)
+✖ MCP permission denial and transport failures do not offer re-login as their classification (0.321375ms)
+✖ the platform catalogue reports 401 and 403 separately after a successful MCP handshake (7.884833ms)
+ℹ tests 4
+ℹ suites 0
+ℹ pass 0
+ℹ fail 4
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 297.85375
+
+✖ failing tests:
+
+test at tests/authentication-recovery.test.ts:1:3156
+✖ a locally present CLI token rejected by MCP exposes login and recovers through the existing CLI flow (2.256ms)
+  AssertionError [ERR_ASSERTION]: Expected values to be strictly equal:
+  + actual - expected
+  
+  + 'error'
+  - 'authentication-required'
+  
+      at TestContext.<anonymous> (/Users/kalias/Documents/project/app/openBKN/bkn-dsh-unified-7/packages/openbkn-business-context/tests/authentication-recovery.test.ts:83:10)
+      at async Test.run (node:internal/test_runner/test:1389:7)
+      at async startSubtestAfterBootstrap (node:internal/test_runner/harness:387:3) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: 'error',
+    expected: 'authentication-required',
+    operator: 'strictEqual',
+    diff: 'simple'
+  }
+
+test at tests/authentication-recovery.test.ts:1:3976
+✖ manual-token and login verification retain an MCP 401 as an authentication-required Remote error (0.313083ms)
+  AssertionError [ERR_ASSERTION]: Expected values to be strictly equal:
+  + actual - expected
+  
+  + 'error'
+  - 'authentication-required'
+  
+      at TestContext.<anonymous> (/Users/kalias/Documents/project/app/openBKN/bkn-dsh-unified-7/packages/openbkn-business-context/tests/authentication-recovery.test.ts:97:10)
+      at async Test.run (node:internal/test_runner/test:1389:7)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:960:7) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: 'error',
+    expected: 'authentication-required',
+    operator: 'strictEqual',
+    diff: 'simple'
+  }
+
+test at tests/authentication-recovery.test.ts:1:4599
+✖ MCP permission denial and transport failures do not offer re-login as their classification (0.321375ms)
+  AssertionError [ERR_ASSERTION]: The input did not match the regular expression /403.*管理员/. Input:
+  
+  '暂时无法验证 OpenBKN 连接，当前原因尚未确定。请点击右上角“诊断”查看检查结果；若问题持续，请导出报告交给支持人员。'
+  
+      at TestContext.<anonymous> (/Users/kalias/Documents/project/app/openBKN/bkn-dsh-unified-7/packages/openbkn-business-context/tests/authentication-recovery.test.ts:113:45)
+      at async Test.run (node:internal/test_runner/test:1389:7)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:960:7) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: '暂时无法验证 OpenBKN 连接，当前原因尚未确定。请点击右上角“诊断”查看检查结果；若问题持续，请导出报告交给支持人员。',
+    expected: /403.*管理员/,
+    operator: 'match',
+    diff: 'simple'
+  }
+
+test at tests/authentication-recovery.test.ts:1:5247
+✖ the platform catalogue reports 401 and 403 separately after a successful MCP handshake (7.884833ms)
+  AssertionError [ERR_ASSERTION]: The input did not match the regular expression /平台.*401/. Input:
+  
+  'Context Loader MCP 已连接，但该 Token 无法读取 OpenBKN 平台的业务知识网络目录。请使用具有平台访问权限的用户访问 Token 或 AppKey。'
+  
+      at TestContext.<anonymous> (/Users/kalias/Documents/project/app/openBKN/bkn-dsh-unified-7/packages/openbkn-business-context/tests/authentication-recovery.test.ts:124:12)
+      at async Test.run (node:internal/test_runner/test:1389:7)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:960:7) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: 'Context Loader MCP 已连接，但该 Token 无法读取 OpenBKN 平台的业务知识网络目录。请使用具有平台访问权限的用户访问 Token 或 AppKey。',
+    expected: /平台.*401/,
+    operator: 'match',
+    diff: 'simple'
+  }

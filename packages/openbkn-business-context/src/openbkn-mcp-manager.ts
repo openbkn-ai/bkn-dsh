@@ -106,6 +106,16 @@ export class OpenBknMcpManager {
 
 const MAX_CAUSE_DEPTH = 8
 
+/** A known MCP refusal with no upstream cause or credential detail attached. */
+export class OpenBknMcpCredentialRejectedError extends Error {
+  constructor(readonly httpStatus: 401 | 403) {
+    super(httpStatus === 403
+      ? 'OpenBKN rejected this account for the Context Loader MCP (HTTP 403). Ask the platform administrator to authorize this account, then retry.'
+      : 'OpenBKN rejected the Context Loader MCP credential (HTTP 401). Re-login with `openbkn auth login` (or update the stored token) and retry; no business data was read.')
+    this.name = 'OpenBknMcpCredentialRejectedError'
+  }
+}
+
 /** Walk the cause chain for the MCP SDK's HTTP status error brands. */
 function authenticationBrand(error: unknown, depth: number): string | undefined {
   if (depth > MAX_CAUSE_DEPTH || error === null || error === undefined) return undefined
@@ -117,7 +127,8 @@ function authenticationBrand(error: unknown, depth: number): string | undefined 
   // code itself was lost through a wrapper that only kept the cause chain.
   if (message.includes('requires authorization (HTTP 401)')) return 'CLIENT_HTTP_AUTHENTICATION'
   if (message.includes('denied access (HTTP 403)')) return 'CLIENT_HTTP_FORBIDDEN'
-  return authenticationBrand((error as { cause?: unknown }).cause, depth + 1)
+  const wrapper = error as { cause?: unknown; data?: { cause?: unknown } }
+  return authenticationBrand(wrapper.cause ?? wrapper.data?.cause, depth + 1)
 }
 
 /**
@@ -169,9 +180,7 @@ export function explainMcpStartupFailure(error: unknown): Error {
       status: 'fail',
       evidence: { httpStatus: denied ? 403 : 401 },
     })
-    return new Error(denied
-      ? 'OpenBKN rejected this account for the Context Loader MCP (HTTP 403). Ask the platform administrator to authorize this account, then retry.'
-      : 'OpenBKN rejected the Context Loader MCP credential (HTTP 401). Re-login with `openbkn auth login` (or update the stored token) and retry; no business data was read.')
+    return new OpenBknMcpCredentialRejectedError(denied ? 403 : 401)
   }
   const markers = transportMarkersOf(error)
   passiveDiagnostics.record({

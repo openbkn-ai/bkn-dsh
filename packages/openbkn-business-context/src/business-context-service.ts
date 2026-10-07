@@ -20,7 +20,7 @@ import { SessionBindingStore } from './session-binding-store.js'
 import { OpenBknPlatformReader, PlatformReaderError } from './platform-reader.js'
 import { AuthCoordinator, OpenBknCliError } from './auth.js'
 import { OpenBknCliSubprocess, OpenBknCliUnavailableError } from './openbkn-cli-subprocess.js'
-import { OPENBKN_MCP_TOKEN_REF, OpenBknMcpManager } from './openbkn-mcp-manager.js'
+import { OPENBKN_MCP_TOKEN_REF, OpenBknMcpManager, OpenBknMcpCredentialRejectedError } from './openbkn-mcp-manager.js'
 import { buildProvenanceView } from './provenance-view.js'
 import { buildNetworkCapabilityProfile, type NetworkCapabilityProfile } from './network-capability-profile.js'
 import { mountBoundBusinessNetworkTool } from './scoped-business-context.js'
@@ -41,10 +41,15 @@ declare module '@deepseek-ai/cordis' {
 
 declare module '@deepseek-ai/dsh-typert-protocol' {
   interface RemoteErrorDetailsMap {
-    'openbkn/authentication-required': { readonly baseUrl: string }
+    'openbkn/authentication-required': {
+      readonly baseUrl: string
+      readonly layer?: 'context-loader-mcp' | 'platform-api'
+      readonly httpStatus?: 401 | 403
+    }
     'openbkn/connection-failed': {
       readonly baseUrl: string
       readonly layer: 'context-loader-mcp' | 'platform-api'
+      readonly httpStatus?: 403
     }
     'openbkn/platform-unavailable': { readonly baseUrl: string }
     'openbkn/cli-unavailable': { readonly cliPath: string }
@@ -71,6 +76,14 @@ function cliUnavailableAsRemote(error: unknown): unknown {
   return error instanceof OpenBknCliUnavailableError
     ? new RemoteError('openbkn/cli-unavailable', error.message, { cliPath: error.cliPath }, { cause: error })
     : error
+}
+
+/** Preserve a known credential refusal at the Host/browser boundary. */
+function mcpFailureAsRemote(error: unknown, baseUrl: string): unknown {
+  if (!(error instanceof OpenBknMcpCredentialRejectedError)) return error
+  return error.httpStatus === 401
+    ? new RemoteError('openbkn/authentication-required', error.message, { baseUrl, layer: 'context-loader-mcp', httpStatus: 401 })
+    : new RemoteError('openbkn/connection-failed', error.message, { baseUrl, layer: 'context-loader-mcp', httpStatus: 403 })
 }
 
 const OPENBKN_TOOL_PREFIX = 'mcp__openbkn__'
@@ -167,6 +180,7 @@ export class OpenBknBusinessContextService extends TypertRemoteService {
     try {
       await this.refreshMcpConnection()
     } catch (error: unknown) {
+      if (error instanceof RemoteError) throw error
       throw new RemoteError(
         'openbkn/connection-failed',
         'The OpenBKN Context Loader MCP could not be connected.',
@@ -310,7 +324,7 @@ export class OpenBknBusinessContextService extends TypertRemoteService {
         throw new RemoteError(
           'openbkn/authentication-required',
           'OpenBKN authentication is required.',
-          { baseUrl: this.config.baseUrl },
+          { baseUrl: this.config.baseUrl, layer: 'platform-api', ...((error.httpStatus === 401 || error.httpStatus === 403) ? { httpStatus: error.httpStatus } : {}) },
         )
       }
       if (error instanceof PlatformReaderError && error.code === 'PLATFORM_UNAVAILABLE') {
@@ -562,12 +576,20 @@ export class OpenBknBusinessContextService extends TypertRemoteService {
 
   private async ensureMcpConnection(): Promise<void> {
     if (this.ctx.tools === undefined) return
-    await this.mcpManager().ensure()
+    try {
+      await this.mcpManager().ensure()
+    } catch (error: unknown) {
+      throw mcpFailureAsRemote(error, this.config.baseUrl)
+    }
   }
 
   private async refreshMcpConnection(): Promise<void> {
     if (this.ctx.tools === undefined) return
-    await this.mcpManager().refresh()
+    try {
+      await this.mcpManager().refresh()
+    } catch (error: unknown) {
+      throw mcpFailureAsRemote(error, this.config.baseUrl)
+    }
   }
 
   private mcpManager(): OpenBknMcpManager {
