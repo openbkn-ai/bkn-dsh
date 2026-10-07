@@ -1,0 +1,87 @@
+- button "新建会话":
+- button "收起侧边栏":
+- button "新建会话":
+  - generic: 新会话
+  - generic: Ctrl
+  - generic: +
+  - generic: Alt
+  - generic: +
+  - generic: "N"
+- navigation "全局面板":
+  - button "插件":
+    - generic: 插件
+- generic: 工作区
+- button "搜索会话":
+- textbox "搜索会话名称"
+- button "视图选项":
+- button "添加工作区":
+- tree "会话":
+  - treeitem "workspace-supply" [expanded]:
+    - generic: workspace-supply
+  - treeitem "进行中 销售订单明细查询 刚刚" [selected]:
+    - generic: 进行中
+    - generic: 销售订单明细查询
+    - generic: 刚刚
+  - treeitem "查询 382-000005 的 BOM 构成 1分钟":
+    - generic: 查询 382-000005 的 BOM 构成
+    - generic: 1分钟
+  - treeitem "默认工作区" [expanded]:
+    - generic: 默认工作区
+- button "OpenBKN business knowledge networks":
+  - generic: B
+  - generic: OpenBKN
+- button "设置":
+  - generic: 设置
+- banner:
+  - navigation "会话层级":
+    - generic: 销售订单明细查询
+  - generic "处理代码、文件和资料，适合大多数任务。Agent 会按需使用检索、编辑和终端等工具。":
+    - text: 标准模式
+  - generic "This conversation is permanently bound to this OpenBKN business knowledge network.":
+    - generic: B
+    - generic: 供应链本体知识网络-手工版
+  - button "用 文件资源管理器 打开"
+  - button "更多打开方式":
+  - button "更多操作":
+  - button "打开右侧边栏":
+  - tablist:
+    - tab "对话" [selected]
+    - tab "轨迹"
+- generic: 列出 382-000005 的销售订单明细。
+- generic: 16:54
+- button "复制":
+- 'button "思考 The user asks: \"列出 382-000005 的销售订单明细。\" This requires OpenBKN. Need to start interaction first, then search schema, then query."':
+  - generic: 思考
+  - generic: "The user asks: \"列出 382-000005 的销售订单明细。\" This requires OpenBKN. Need to start interaction first, then search schema, then query."
+- paragraph: I'll start the managed interaction and look into the supply ontology network.
+- text: 正在调用工具 · mcp__openbkn__get_kn_detail
+- button "工具调用 mcp__openbkn__bkn_start_interaction · new":
+  - generic: 工具调用
+  - generic: mcp__openbkn__bkn_start_interaction · new
+- 'button "思考 The runtime notice now says a prior OpenBKN conversation is available: conv_d44faeb983be7897cbb879b45d40669f. But I already started a new interaction for this turn. Hmm — this is the same turn''s question? Actually the reminder appeared after my start call. The prompt says: \"A prior OpenBKN conversation is available for this DSH session: conv_d44faeb983be7897cbb879b45d40669f. When this turn needs OpenBKN, start with conversation_mode ''continue'' and exactly this conversation_id.\""':
+  - generic: 思考
+  - generic: "The runtime notice now says a prior OpenBKN conversation is available: conv_d44faeb983be7897cbb879b45d40669f. But I already started a new interaction for this turn. Hmm — this is the same turn's question? Actually the reminder appeared after my start call. The prompt says: \"A prior OpenBKN conversation is available for this DSH session: conv_d44faeb983be7897cbb879b45d40669f. When this turn needs OpenBKN, start with conversation_mode 'continue' and exactly this conversation_id.\""
+- generic: 运行中
+- button "工具调用 mcp__openbkn__get_kn_detail · supply_ontology_hand":
+  - generic: 工具调用
+  - generic: mcp__openbkn__get_kn_detail · supply_ontology_hand
+  - generic: 工具调用
+  - generic: mcp__openbkn__get_kn_detail · supply_ontology_hand
+- status: 深度求索中
+- generic: 深度求索中，用时 5秒 ···
+- generic: 深度求索中，用时 5秒 ···
+- textbox "发消息或创建任务, / 调用指令, @ 文件或对话" [active]
+- generic: 发消息或创建任务, / 调用指令, @ 文件或对话
+- button "添加文件或调用指令":
+- button "访问模式，当前：工作区内修改":
+  - generic: 工作区内修改
+- button "选择模型，当前 DeepSeek-V41-Flash，推理等级 High":
+  - generic: DeepSeek-V41-Flash
+  - generic: High
+- button "停止生成":
+- button "1 轮 1 步 · 279 tok/s":
+  - generic: 1 轮 1 步·279 tok/s
+- button "85.8K tok · 缓存命中 96%":
+  - generic: 85.8K tok·缓存命中 96%
+- button "上下文已用 4%":
+  - generic: 4%
