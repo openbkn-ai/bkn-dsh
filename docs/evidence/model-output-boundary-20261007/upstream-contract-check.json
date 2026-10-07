@@ -1,0 +1,16 @@
+{
+  "checkedAt": "2026-10-07T02:15:58.462Z",
+  "platform": "https://192.168.50.28",
+  "baseline": "oracle-final-3414-before/live-tools.json",
+  "tools": 28,
+  "added": [],
+  "removed": [],
+  "schemaChanges": [],
+  "toolPolicyChanged": false,
+  "dshSupported": "0.2.0-rc.2",
+  "dshLatestTag": "dsh-v0.2.1-alpha.1",
+  "dshMaster": "5badb15009ae1756c3afe0ae0cef1faafc290ccc",
+  "foundryMain": "4a0db7799bc2f29aeeeb190bbecd8c7f6a90360f",
+  "foundryLatestTag": "v0.1.5",
+  "upstreamDelta": "Foundry #2032: managed lease/artifact connection reuse; no MCP tool catalogue/schema changes in the refreshed deployed contract."
+}

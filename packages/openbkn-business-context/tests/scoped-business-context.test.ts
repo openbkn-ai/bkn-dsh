@@ -304,110 +304,34 @@ test('does not alter a native or differently configured DSH agent scope', () => 
   assert.deepEqual(mounted, [])
 })
 
-function fidelityEvents(): Array<{ type: string; data: unknown }> {
-  return [BOUND_EVENT,
-    { type: 'turn/start', data: { turn: 1 } },
-    { type: 'user/message', data: { source: { kind: 'user' }, content: [{ type: 'text', text: '完整 BOM 清单，每个物料的用量和库存' }] } },
-    { type: 'tool/call', data: { turn: 1, callId: 'detail', name: 'mcp__openbkn__run_code' } },
-    { type: 'tool/result', data: { turn: 1, message: { toolCallId: 'detail', content: [{ type: 'text', text: JSON.stringify({ exit_code: 0, stdout: 'DETAIL_ROWS:1\nlevel|parent|child_code|child_name|std_usage|available_qty|uom\n1|p|c|part|2|0*|?\nEMITTED:1' }) }] } } },
-    { type: 'assistant/message', data: { turn: 1, message: { content: [{ type: 'text', text: '| 层级 | 父件 | 子件编码 | 子件名称 | 单耗 | 可用库存 | 库存单位 |\n|---|---|---|---|---|---|---|\n| 1 | p | c | part | 2 | 9 | 件 |' }] } } },
-  ]
-}
-
-test('stop boundary steers one producer-labelled correction and keeps all original events', () => {
-  const events = fidelityEvents()
-  const original = structuredClone(events)
-  const fake = fakeAgent(events)
-  mount(fake)
-  const stop = fake.listeners['agent/turn-stopping']![0]!
-  stop({ turn: 1, signal: new AbortController().signal })
-  assert.equal(fake.steering.length, 1)
-  assert.equal(fake.steering[0]!.source.kind, 'openbkn-answer-fidelity')
-  assert.match(fake.steering[0]!.content[0]!.text!, /\| 1 \| p \| c \| part \| 2 \| 0\* \| \? \|/)
-  assert.deepEqual(events, original)
-  assert.deepEqual(fake.appended, [], 'Host steering, not direct session writes, owns persistence')
-  fake.appended.push({ type: 'user/message', data: fake.steering[0]! },
-    { type: 'assistant/message', data: { turn: 1, message: { content: [{ type: 'text', text: fake.steering[0]!.content[0]!.text! }] } } })
-  assert.doesNotThrow(() => stop({ turn: 1 }))
-  assert.equal(fake.steering.length, 1)
-})
-
-test('settled headerless handoff steers once before finish, without changing guard or results', async () => {
-  const events = fidelityEvents().slice(0, -1)
-  const original = structuredClone(events)
-  const fake = fakeAgent(events)
-  mount(fake)
-  startSucceeded(fake)
-  const settle = fake.listeners['tools/result']![0]!
-  const result = { isError: false, content: [{ type: 'text', text: JSON.stringify({ exit_code: 0, stdout: 'DETAIL_ROWS:1\n1|p|c|part|2|0*|?\nEMITTED:1' }) }] }
-  settle({ name: 'mcp__openbkn__run_code' }, result)
-  settle({ name: 'mcp__openbkn__run_code' }, result)
-  assert.equal(fake.steering.length, 1)
-  assert.match(fake.steering[0]!.content[0]!.text!, /literal header level\|parent\|child_code/)
-  assert.equal(fake.guards[0]!({ name: 'mcp__openbkn__run_code', arguments: { kn_id: 'kn-supply' } }), undefined)
-  assert.deepEqual(events, original)
-  assert.deepEqual(fake.appended, [])
-  fake.appended.push({ type: 'turn/end', data: { turn: 1 } }, { type: 'turn/start', data: { turn: 2 } },
-    { type: 'user/message', data: { source: { kind: 'user' }, content: [{ type: 'text', text: '完整 BOM 清单，每个物料的用量和库存' }] } })
-  await fake.listeners['agent/pre-step']![0]!({ step: 1 }, async () => {})
-  startSucceeded(fake)
-  settle({ name: 'mcp__openbkn__run_code' }, result)
-  assert.equal(fake.steering.length, 2, 'a new turn resets the one-producer-repair budget')
-})
-
-test('producer repair does not steer on canceled or failed executions or a closed Interaction', () => {
-  for (const mode of ['aborted', 'failed', 'closed']) {
-    const fake = fakeAgent(fidelityEvents().slice(0, -1))
+test('tool results and final answers remain native, including legacy detail markers and mismatches', () => {
+  for (const stdout of [
+    'DETAIL_ROWS:1\n1|p|c|part|2|0*|?\nEMITTED:1',
+    'INVENTORY_FALLBACK: scoped-stock-rows\nDETAIL_ROWS:1\nlevel|parent|child_code|child_name|std_usage|available_qty|uom|scoped_stock_rows\n1|p|c|part|2|1.51603e+06|个|12\nEMITTED:1',
+    'A successful tool response without a table.',
+  ]) {
+    const result = { isError: false, content: [{ type: 'text', text: JSON.stringify({ exit_code: 0, stdout }) }] }
+    const events = [BOUND_EVENT,
+      { type: 'turn/start', data: { turn: 1 } },
+      { type: 'user/message', data: { source: { kind: 'user' }, content: [{ type: 'text', text: '完整 BOM 清单，每个物料的用量和库存' }] } },
+      { type: 'tool/result', data: { turn: 1, message: result } },
+      { type: 'assistant/message', data: { turn: 1, message: { content: [{ type: 'text', text: 'The model output need not match a plugin table contract.' }] } } },
+    ]
+    const original = structuredClone(events)
+    const fake = fakeAgent(events)
     mount(fake)
     startSucceeded(fake)
-    const settle = fake.listeners['tools/result']![0]!
-    if (mode === 'closed') settle({ name: FINISH }, { isError: false, content: [{ type: 'text', text: '{"interaction_id":"int-1","execution_status":"completed"}' }] })
-    settle({ name: 'mcp__openbkn__run_code', signal: mode === 'aborted' ? AbortSignal.abort() : new AbortController().signal },
-      { isError: mode === 'failed', content: [{ type: 'text', text: JSON.stringify({ exit_code: 0, stdout: 'DETAIL_ROWS:1\n1|p|c|part|2|0*|?\nEMITTED:1' }) }] })
-    assert.deepEqual(fake.steering, [], mode)
+    fake.listeners['tools/result']![0]!({ name: 'mcp__openbkn__run_code' }, result)
+    assert.equal(fake.guards[0]!({ name: 'mcp__openbkn__run_code', arguments: { kn_id: 'kn-supply' } }), undefined)
+    fake.listeners['tools/result']![0]!({ name: FINISH }, { isError: false, content: [{ type: 'text', text: '{"interaction_id":"int-1","execution_status":"completed"}' }] })
+    const stop = fake.listeners['agent/turn-stopping']![0]!
+    assert.doesNotThrow(() => stop({ turn: 1 }))
+    assert.doesNotThrow(() => stop({ turn: 1 }))
+    assert.deepEqual(fake.steering, [], 'no tool-handoff or final-answer correction')
+    assert.deepEqual(fake.appended, [], 'no synthetic assistant answer or tool result')
+    assert.deepEqual(events, original)
+    assert.deepEqual(fake.logs, [], 'a closed interaction needs no lifecycle warning')
   }
-})
-
-test('scoped inventory audit steers a cached repair before finish without dispatch or event mutation', () => {
-  const events = fidelityEvents().slice(0, -1)
-  const original = structuredClone(events)
-  const fake = fakeAgent(events)
-  mount(fake)
-  startSucceeded(fake)
-  const result = { content: [{ type: 'text', text: JSON.stringify({ exit_code: 0, stdout: 'INVENTORY_FALLBACK: scoped-stock-rows\nDETAIL_ROWS:1\nlevel|parent|child_code|child_name|std_usage|available_qty|uom|scoped_stock_rows\n1|p|c|part|2|0|?|0\nEMITTED:1' }) }] }
-  fake.listeners['tools/result']![0]!({ name: 'mcp__openbkn__run_code' }, result)
-  assert.equal(fake.steering.length, 1)
-  assert.match(fake.steering[0]!.content[0]!.text!, /count 0 requires 0\* and \?/)
-  assert.match(fake.steering[0]!.content[0]!.text!, /Reuse cached records only/)
-  assert.deepEqual(events, original)
-  assert.deepEqual(fake.appended, [])
-})
-
-test('a second invalid final answer fails the turn instead of steering indefinitely', () => {
-  const fake = fakeAgent(fidelityEvents())
-  mount(fake)
-  const stop = fake.listeners['agent/turn-stopping']![0]!
-  stop({ turn: 1 })
-  assert.throws(() => stop({ turn: 1 }), (error: unknown) =>
-    error instanceof Error && error.name === 'AnswerFidelityError' &&
-    (error as Error & { code: string }).code === 'answer-fidelity-failed')
-  assert.equal(fake.steering.length, 1)
-})
-
-test('an aborted stop does not steer, and a fresh turn resets the one-correction budget', async () => {
-  const fake = fakeAgent(fidelityEvents())
-  mount(fake)
-  const stop = fake.listeners['agent/turn-stopping']![0]!
-  stop({ turn: 1, signal: AbortSignal.abort() })
-  assert.deepEqual(fake.steering, [])
-  stop({ turn: 1 })
-  await fake.listeners['agent/pre-step']![0]!({ step: 1 }, async () => {})
-  const next = fidelityEvents().filter(event => event !== BOUND_EVENT).map(event => ({
-    type: event.type, data: { ...(event.data as object), ...(event.type === 'user/message' ? {} : { turn: 2 }) },
-  }))
-  fake.appended.push(...next)
-  assert.doesNotThrow(() => stop({ turn: 2 }))
-  assert.equal(fake.steering.length, 2)
 })
 
 test('loads only the host selection service at the root instead of registering a global model tool', async () => {
