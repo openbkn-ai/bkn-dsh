@@ -1,0 +1,93 @@
+{
+  "schemaVersion": 1,
+  "reportId": "7c619431",
+  "createdAt": "2026-10-07T05:22:41.390Z",
+  "target": {
+    "hostForm": "desktop",
+    "platform": "win32",
+    "dshVersion": null,
+    "pluginDiskVersion": "0.2.0-rc.2-openbkn.0.2.0-7",
+    "pluginLoadedVersion": null
+  },
+  "mode": "passive",
+  "checks": [
+    {
+      "id": "bootstrap-entry",
+      "stage": "installation",
+      "status": "pass",
+      "source": "host-runtime",
+      "code": "component-loaded",
+      "evidence": {
+        "entryPresent": true
+      },
+      "nextAction": null
+    },
+    {
+      "id": "business-entry",
+      "stage": "component",
+      "status": "pass",
+      "source": "host-runtime",
+      "code": "component-loaded",
+      "evidence": {
+        "entryPresent": true
+      },
+      "nextAction": null
+    },
+    {
+      "id": "diagnostics-entry",
+      "stage": "diagnostics",
+      "status": "pass",
+      "source": "host-runtime",
+      "code": "component-loaded",
+      "evidence": {
+        "schemaVersion": 1
+      },
+      "nextAction": null
+    },
+    {
+      "id": "observed:cli",
+      "stage": "cli",
+      "status": "pass",
+      "source": "observed-operation",
+      "code": "cli",
+      "evidence": {
+        "failureCount": 0,
+        "lastOutcomeAgoMs": 11527,
+        "exitCode": 0
+      },
+      "nextAction": null
+    },
+    {
+      "id": "observed:login-state",
+      "stage": "authentication",
+      "status": "pass",
+      "source": "observed-operation",
+      "code": "login-state",
+      "evidence": {
+        "failureCount": 0,
+        "lastOutcomeAgoMs": 11708,
+        "loggedIn": true
+      },
+      "nextAction": null
+    },
+    {
+      "id": "observed:context-loader",
+      "stage": "context-loader",
+      "status": "fail",
+      "source": "observed-operation",
+      "code": "auth-rejected",
+      "evidence": {
+        "failureCount": 1,
+        "lastOutcomeAgoMs": 11410,
+        "httpStatus": 401
+      },
+      "nextAction": "Export this report and send it to support; the failing stage is listed above."
+    }
+  ],
+  "coverage": {
+    "executedChecks": 6,
+    "notRunChecks": 0,
+    "insufficientEvidenceChecks": 0,
+    "notes": []
+  }
+}

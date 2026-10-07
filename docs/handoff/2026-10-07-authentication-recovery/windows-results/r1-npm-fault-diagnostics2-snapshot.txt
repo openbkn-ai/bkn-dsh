@@ -1,0 +1,83 @@
+- button "新建会话":
+- button "收起侧边栏":
+- button "新建会话":
+  - generic: 新会话
+  - generic: Ctrl
+  - generic: +
+  - generic: Alt
+  - generic: +
+  - generic: "N"
+- navigation "全局面板":
+  - button "插件":
+    - generic: 插件
+- generic: 工作区
+- button "搜索会话":
+- textbox "搜索会话名称"
+- button "视图选项":
+- button "添加工作区":
+- tree "会话":
+  - treeitem "默认工作区" [expanded]:
+    - generic: 默认工作区
+  - treeitem "新会话" [selected]:
+    - generic: 新会话
+- button "OpenBKN business knowledge networks":
+  - generic: B
+  - generic: OpenBKN
+- button "设置":
+  - generic: 设置
+- banner:
+  - button "打开右侧边栏":
+- generic: 探索未至之境
+- generic: 预览版
+- button "选择工作区":
+  - generic: 默认工作区
+- button "标准模式":
+  - generic: 标准模式
+- textbox "描述你想要构建的内容, / 调用指令, @ 文件或对话"
+- generic: 描述你想要构建的内容, / 调用指令, @ 文件或对话
+- button "添加文件或调用指令":
+- button "访问模式，当前：工作区内修改":
+  - generic: 工作区内修改
+- button "选择模型，当前 DeepSeek-V41-Flash，推理等级 High":
+  - generic: DeepSeek-V41-Flash
+  - generic: High
+- button "发送消息" [disabled]:
+- dialog "OpenBKN 诊断":
+  - banner:
+    - generic: OPENBKN
+    - heading "诊断" [level=2]
+    - button "Close": ×
+  - paragraph: 报告编号 2246694e · 生成于 2026/10/7 14:56:00 · 模式 被动采集
+  - generic: Host 形态
+  - generic: unknown
+  - generic: 平台
+  - generic: win32
+  - generic: DSH 版本
+  - generic: 未知
+  - generic: 插件（磁盘）
+  - generic: 0.2.0-rc.2-openbkn.0.2.0-7
+  - generic: 插件（已加载）
+  - generic: 未知
+  - generic: ● 通过
+  - generic: bootstrap-entry
+  - generic: installation / component-loaded
+  - generic: entryPresent=true
+  - generic: ● 通过
+  - generic: business-entry
+  - generic: component / component-loaded
+  - generic: entryPresent=true
+  - generic: ● 通过
+  - generic: diagnostics-entry
+  - generic: diagnostics / component-loaded
+  - generic: schemaVersion=1
+  - generic: ● 通过
+  - generic: observed:cli
+  - generic: cli / cli
+  - generic: failureCount=0 lastOutcomeAgoMs=112497 exitCode=0
+  - generic: ● 失败
+  - generic: observed:login-state
+  - generic: authentication / not-logged-in
+  - generic: failureCount=1 lastOutcomeAgoMs=112496 loggedIn=false
+  - generic: Export this report and send it to support; the failing stage is listed above.
+  - button "导出诊断报告"
+  - button "重新采集"

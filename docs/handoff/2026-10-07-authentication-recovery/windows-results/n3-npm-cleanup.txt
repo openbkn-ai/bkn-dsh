@@ -1,0 +1,11 @@
+stopped verified pid 9100 (W1-npm)
+stopping recorded npm web child pid 14524 (port 18268, listener verified)
+✓ Lockfile passes supply-chain policies (verified 14m ago)
+Progress: resolved 0, reused 1, downloaded 0, added 0
+[WARN] Issues with peer dependencies found. Run "pnpm peers check" to list them.
+
+Packages: +1
++
+Progress: resolved 5, reused 1, downloaded 0, added 1, done
+Done in 340ms using pnpm v11.7.0
+Cleaned C:\bkn-verify\authentication-recovery-c91fe09-npm4 (evidence kept). Remove the whole directory when the run is accepted.
