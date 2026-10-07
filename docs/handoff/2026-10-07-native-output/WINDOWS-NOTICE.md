@@ -46,6 +46,6 @@ $NativeKit = Join-Path $NativeExtract 'windows-kit'
 
 ## Mac 结果和发布边界
 
-[固定 Mac 结果](https://github.com/openbkn-ai/bkn-dsh/blob/141adf7b8e95ffd68ffa06e86616296355560c28/docs/evidence/model-output-boundary-20261007/RESULTS.md)：5 题原生完成、零插件纠错通知，销售订单 40 行/交期独立核对通过，8 项 fixture 与 16 项 live guard 通过，真实诊断下载 7 项 pass。
+[Mac 实机结果（含评测口径复核）](../../evidence/model-output-boundary-20261007/RESULTS.md)：5 题原生完成、零插件纠错通知，销售订单 40 行/交期独立核对通过，8 项 fixture 与 16 项 live guard 通过，真实诊断下载 7 项 pass。
 
-**完整 BOM 每个物料题仅交付一级 9 项，全量覆盖未通过**；部分结构口径解释未证实。这些质量缺口照实保留，不恢复插件裁判，不把 native completed 写成事实全对。Windows 先验证新包的接入/输出边界，发布及其余 G6/真实受限账号等门禁仍待后续决定。
+**完整 BOM 每个物料题仅交付一级 9 项，全量覆盖未通过**；无此物料题夹带无关非零统计，原负向标准未通过；部分结构口径解释未证实。这些质量缺口照实保留，不恢复插件裁判，不把 native completed 写成事实全对。Windows 先验证新包的接入/输出边界，发布及其余 G6/真实受限账号等门禁仍待后续决定。

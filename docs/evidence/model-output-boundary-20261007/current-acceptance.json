@@ -45,7 +45,7 @@
       "answerChars": 1350
     }
   ],
-  "factualAcceptance": "Incomplete: BOM every-material coverage failed; scope explanations unverified. Completed is not factual pass.",
+  "factualAcceptance": "Incomplete: full BOM coverage failed; missing-object answer adds forbidden unrelated nonzero catalogue counts; scope explanations unverified. Native completed is not factual pass.",
   "controlledCoreScenariosPassed": 8,
   "liveGuardPassed": 16,
   "desktopProductChecksPassed": 7,

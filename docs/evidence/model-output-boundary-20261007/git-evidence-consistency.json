@@ -1,5 +1,7 @@
 {
-  "method": "Current staged Git blob compared to actual local bytes; new evidence attributes disable newline conversion",
+  "method": "Current staged Git blob compared to actual local bytes; evidence attributes disable newline conversion. This record excludes itself to avoid circular hashing.",
+  "checkedAt": "2026-10-07T03:03:26.537161+00:00",
+  "parentCommit": "76ecb7978a78e072f26615f8f9fce97a52b7b8c1",
   "allByteEqual": true,
   "files": [
     {
@@ -9,7 +11,7 @@
     },
     {
       "path": "docs/evidence/model-output-boundary-20261007/RESULTS.md",
-      "sha256": "9b670538e0393c038d97e5cdacea5452b41dbe0176162e125f6c6d36741ac091",
+      "sha256": "796111f7b414ea5534dd0dd34de6b86276e76a821ca30be5f7f5057b03f7d290",
       "indexByteEqual": true
     },
     {
@@ -84,7 +86,7 @@
     },
     {
       "path": "docs/evidence/model-output-boundary-20261007/current-acceptance.json",
-      "sha256": "ed933adf7234d879542d0346e4360a3fffaa123d33d0024f1a60515a5adbcb7e",
+      "sha256": "0762e6261bb473b89e160f9756d12555702b37dd74f036b56f032b9df42807c1",
       "indexByteEqual": true
     },
     {
@@ -164,7 +166,7 @@
     },
     {
       "path": "docs/evidence/model-output-boundary-20261007/missing-object-independent-check.json",
-      "sha256": "f29aa231368b698e94460d18b430b1540e0f90bd217718655aff90ca7ff49da3",
+      "sha256": "9443f8b83682e1a84377b8b31842f86f991be2e543dd63b652e4a5c453a78e30",
       "indexByteEqual": true
     },
     {
@@ -290,6 +292,11 @@
     {
       "path": "docs/evidence/model-output-boundary-20261007/registry-status.json",
       "sha256": "92e1a52c27935baa5e685d413932f86780cf4e52f65bc5e471162fc54447b5de",
+      "indexByteEqual": true
+    },
+    {
+      "path": "docs/evidence/model-output-boundary-20261007/remote-download-check.json",
+      "sha256": "1ddfec688746baea7d2bdb64586ef2b36cf73c651a0239ba82f99dba76ee30f1",
       "indexByteEqual": true
     },
     {
