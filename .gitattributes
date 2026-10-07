@@ -1,2 +1,6 @@
-# Keep this archived native output byte-for-byte; its line 8 is one space.
+# Preserve the final archived Git bytes on every checkout.
+docs/handoff/2026-10-07-authentication-recovery/windows-results/** -text
+# Native output contains a space-only line; retain its recorded digest.
 docs/handoff/2026-10-07-authentication-recovery/windows-results/prepare-npm.txt whitespace=-blank-at-eol
+# The compatibility manifest validates these immutable patch bytes by SHA-256.
+compat/dsh-0.2.0-rc.2/patches/** -text
