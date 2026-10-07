@@ -30,7 +30,7 @@ Set-Location (Join-Path $AuthDeliveryRoot 'windows-kit')
 # require this exact working directory. Begin with the BEFORE hashes.
 ```
 
-**执行优先级：R1 → N0–N3/N6 → 本人独立隔离账号/模型的 N4/N5 → E1 历史补正。** 两形态分别取 prepared.json 设置 DSH_HOME/BKN_CONFIG_DIR，不共用 token/store；全卸载重装固定 tgz，不做旧版本升级，不改候选/main、发布/tag/dist-tag。四个既有 helper 与 Windows-tested 54f6669 字节相同；新 identity verifier/八场景 probe/鉴权 fixture 需本机验证。PowerShell 全流 `*>&1` 留真实内容、退出码；不上传原 Host/授权日志、凭据或 profile。
+**执行顺序：采 before → N0 安装身份 → 优先 R1 → N1–N3 与有条件的 N4/N5 → N6 最终收态。E1 在不依赖 Host 的时段处理。** 两形态分别取 prepared.json 设置 DSH_HOME/BKN_CONFIG_DIR，不共用 token/store；全卸载重装固定 tgz，不做旧版本升级，不改候选/main、发布/tag/dist-tag。四个既有 helper 与 Windows-tested 54f6669 字节相同；新 identity verifier/八场景 probe/鉴权 fixture 需本机验证。PowerShell 全流 `*>&1` 留真实内容、退出码；不上传原 Host/授权日志、凭据或 profile。
 
 R1 是明确 MCP401 的**产品 CLI 登录恢复**，不是自然过期/自动续期验收：原 store 保留，公开无效 token 只在 wrapper 返回边界注入；仅真实 CLI login exit 0 清 fault。初次授权失败/超时照实保留，不能手工清 flag 造通过；成功后同 Host 诊断恢复、原 patch 精确字节还原、owned PID/真实端口完整收态。fixture 会拒绝 unset/另一形态 BKN_CONFIG_DIR。无需模型。
 
