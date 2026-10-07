@@ -1,6 +1,6 @@
 # OpenBKN DSH 插件累计更新说明
 
-更新目标：`@openbkn/dsh-business-context@0.2.0-rc.2-openbkn.0.2.0-7`。这是待发布的统一说明；截至 2026-10-07 实时 registry 核对，npm 的 `latest` 为 `-3`、`rc` 为 `-4`，`-5/-6` 仅为开发候选，`-7` 尚未发布。
+更新目标：`@openbkn/dsh-business-context@0.2.0-rc.2-openbkn.0.2.0-7`。本文统一描述本版更新；`-5/-6` 曾作为开发候选，其更新已合并到本版。实际发布版本以 npm dist-tag 和 GitHub Release 记录为准。
 
 本文合并 GitHub 账户 **kalias** 已合入主线的功能、修复与交付改进，不按开发候选拆成多份公告。作者归属来自 GitHub commits 的 `author=kalias` 查询，当前完整清单核对至源码 `c91fe09`，共 75 项；见 [account-contributions.json](../evidence/authentication-recovery-20261007/account-contributions.json)。旧清单按历史源码保留。其他账户的基础实现不计为该账户的新增贡献；下列说明描述最终行为，后续纠正过的历史判断不作为现行功能。
 
@@ -56,6 +56,6 @@ Windows 测试 helper 现吸收实际 Windows 复验的修正：配置写入 BOM
 
 2026-10-07 边界修正已通过 PR #74 最终 head 独立批准并合入 main。新候选源码 `2813f3a` → build-only CI `37562531405` → tgz `3c345ef6…`（65 文件），仍使用未发布的 `-7` 版本串。Mac 安装件逐文件匹配，5 道原题均原生完成且零插件纠错通知，诊断真实导出 7 项通过；官方核心 8 项输出/治理探针和新包 live guard 16 项通过。**完整 BOM 题仅返回 9 项一级料，全量覆盖未通过；无此物料题夹带无关非零统计，原负向标准未通过；部分口径解释未证实。** 保留答案和独立评测，不将运行完成写成事实正确，不在插件里追加裁判或重复平台算法。此前六项纠错探针不再是当前预期。新包 Windows 受影响复测仍待完成，发布没有放行。
 
-2026-10-07 鉴权恢复追加修复通过 PR #76 最终 head 独立批准，现行候选源码 `c91fe09` → build-only CI `37570295456` → 原始 tgz `fa168d81…`（165804 bytes / 65 文件）。本包 Mac 真实 MCP 401 产品登录与同 Host 恢复、TLS 分支、原配置健康轮、四份产品下载，以及 8 项 fixture/16 项 direct live guard 通过。平台 49 个容器的实际镜像/tag/imageID 已新采，核心 tag 0.1.5；不推断全部镜像的构建 commit。Mac 未重跑前一候选的五道模型题，完整 BOM 覆盖与无匹配夹带统计两项失败保留。Windows 新 SHA 的受影响验收、旧报告补正及最终哈希清单已完成并复核；npm 原生 BOM 结构题的一级 9 项与独立基准一致，二级及全量未验证；销售订单题的 40 条、状态、单号范围和字段口径等关键事实通过。desktop 未复跑两题，该补测不覆盖旧完整 BOM/库存题及 missing-object 负向题。自动续期/共享根因未知，不扩大插件所有权。后续只有发布准备授权，尚未发布。
+2026-10-07 鉴权恢复追加修复通过 PR #76 最终 head 独立批准，现行候选源码 `c91fe09` → build-only CI `37570295456` → 原始 tgz `fa168d81…`（165804 bytes / 65 文件）。本包 Mac 真实 MCP 401 产品登录与同 Host 恢复、TLS 分支、原配置健康轮、四份产品下载，以及 8 项 fixture/16 项 direct live guard 通过。平台 49 个容器的实际镜像/tag/imageID 已新采，核心 tag 0.1.5；不推断全部镜像的构建 commit。Mac 未重跑前一候选的五道模型题，完整 BOM 覆盖与无匹配夹带统计两项失败保留。Windows 新 SHA 的受影响验收、旧报告补正及最终哈希清单已完成并复核；npm 原生 BOM 结构题的一级 9 项与独立基准一致，二级及全量未验证；销售订单题的 40 条、状态、单号范围和字段口径等关键事实通过。desktop 未复跑两题，该补测不覆盖旧完整 BOM/库存题及 missing-object 负向题。自动续期/共享根因未知，不扩大插件所有权。主线 `aecbb7b` 的 [build-only CI 37637573530](https://github.com/openbkn-ai/bkn-dsh/actions/runs/37637573530) 已通过；原始 tgz SHA 与上述已接受候选完全相同，65/65 文件字节一致，沿用此前限定的验收范围。
 
 CLI 授权超时/取消的现有 UX 仍保留：未及时完成授权的请求可转为通用重试提示，重开面板重新核对 MCP 拒绝后可再次发起。此次只修明确 MCP 401 的入口路由，没有增加自动取消、超时恢复或 Token 管理。
