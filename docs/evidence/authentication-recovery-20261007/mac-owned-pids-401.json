@@ -1,0 +1,44 @@
+[
+  {
+    "pid": 14056,
+    "parent": 1,
+    "executable": "/Applications/DeepSeek Harness.app/Contents/MacOS/DeepSeek Harness",
+    "start": "Wed Oct  7 12:20:34 2026"
+  },
+  {
+    "pid": 14058,
+    "parent": 14056,
+    "executable": "/Applications/DeepSeek Harness.app/Contents/Frameworks/DeepSeek Harness Helper.app/Contents/MacOS/DeepSeek Harness Helper",
+    "start": "Wed Oct  7 12:20:35 2026"
+  },
+  {
+    "pid": 14059,
+    "parent": 14056,
+    "executable": "/Applications/DeepSeek Harness.app/Contents/Frameworks/DeepSeek Harness Helper.app/Contents/MacOS/DeepSeek Harness Helper",
+    "start": "Wed Oct  7 12:20:35 2026"
+  },
+  {
+    "pid": 14073,
+    "parent": 14056,
+    "executable": "/Applications/DeepSeek Harness.app/Contents/Frameworks/DeepSeek Harness Helper (Renderer).app/Contents/MacOS/DeepSeek Harness Helper (Renderer)",
+    "start": "Wed Oct  7 12:20:35 2026"
+  },
+  {
+    "pid": 14434,
+    "parent": 14056,
+    "executable": "/Applications/DeepSeek Harness.app/Contents/MacOS/DeepSeek Harness",
+    "start": "Wed Oct  7 12:20:36 2026"
+  },
+  {
+    "pid": 16678,
+    "parent": 14434,
+    "executable": "/bin/zsh",
+    "start": "Wed Oct  7 12:23:50 2026"
+  },
+  {
+    "pid": 16679,
+    "parent": 16678,
+    "executable": "node",
+    "start": "Wed Oct  7 12:23:50 2026"
+  }
+]

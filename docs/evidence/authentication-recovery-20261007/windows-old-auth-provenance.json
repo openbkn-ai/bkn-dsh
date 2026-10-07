@@ -1,0 +1,32 @@
+{
+  "evidenceCommit": "09018faeeb476c6f93c4557b35c151f97839a8b1",
+  "sourcePath": "docs/handoff/2026-10-07-unified7-final-verification/windows-results/b-batch/b3-desktop/d-token-invalid-panel-axtree.txt",
+  "sourcePackage": "3414bde/6bbab278/66 files",
+  "excerpt": "Selected original AX lines; not a new Windows UI capture",
+  "sourceByteContinuity": [
+    {
+      "path": "packages/openbkn-business-context/src/auth.ts",
+      "oldSha256": "eb8fec266f2ba1f121897938c6848fa29c3e42dc3cb0e1446001fe666691b922",
+      "beforeFixSha256": "eb8fec266f2ba1f121897938c6848fa29c3e42dc3cb0e1446001fe666691b922",
+      "byteEqual": true
+    },
+    {
+      "path": "packages/openbkn-business-context/src/business-context-service.ts",
+      "oldSha256": "c45be48a462103a833c8f38a9ba8107c3c4e812d7caa07c7625ef0e65b50717a",
+      "beforeFixSha256": "c45be48a462103a833c8f38a9ba8107c3c4e812d7caa07c7625ef0e65b50717a",
+      "byteEqual": true
+    },
+    {
+      "path": "packages/openbkn-business-context/src/client/openbkn-ui-controller.ts",
+      "oldSha256": "3d65f0ed383c9a554a1e3e6f459e5f25c98e27fcf80d8cc702229b3750710a30",
+      "beforeFixSha256": "3d65f0ed383c9a554a1e3e6f459e5f25c98e27fcf80d8cc702229b3750710a30",
+      "byteEqual": true
+    },
+    {
+      "path": "packages/openbkn-business-context/src/client/OpenBknOverlay.tsx",
+      "oldSha256": "269cfc5cf616be613396635ce582fcca4a7c9486f48a06b39c0bfdd8291b436e",
+      "beforeFixSha256": "269cfc5cf616be613396635ce582fcca4a7c9486f48a06b39c0bfdd8291b436e",
+      "byteEqual": true
+    }
+  ]
+}

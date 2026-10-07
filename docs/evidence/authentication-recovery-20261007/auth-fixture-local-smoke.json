@@ -1,0 +1,100 @@
+{
+  "scope": "Controlled auth fixture only; macOS Node24.19; no real CLI login or native PowerShell proof",
+  "fixtureSha256": "f8991401b45e09e8396cc4d5ef808a49b012fd1488e6413ca1606223e45f9816",
+  "pathsContainSpaces": true,
+  "testStoreIsolation": "Existing same-TestRoot/bkn-config required; other form and missing store fail before dispatch",
+  "events": [
+    {
+      "case": "public-token-refusal",
+      "args": [
+        "auth",
+        "token"
+      ],
+      "exitCode": 0,
+      "faultFlagExists": true,
+      "realCliDispatchPrevented": true,
+      "passed": true
+    },
+    {
+      "case": "failed-login-keeps-fault",
+      "args": [
+        "auth",
+        "login",
+        "https://platform.example"
+      ],
+      "exitCode": 1,
+      "faultFlagExists": true,
+      "realCliDispatchPrevented": false,
+      "passed": true
+    },
+    {
+      "case": "successful-login-clears-fault",
+      "args": [
+        "auth",
+        "login",
+        "https://platform.example"
+      ],
+      "exitCode": 0,
+      "faultFlagExists": false,
+      "realCliDispatchPrevented": false,
+      "passed": true
+    },
+    {
+      "case": "normal-token-through-cli",
+      "args": [
+        "auth",
+        "token"
+      ],
+      "exitCode": 0,
+      "faultFlagExists": false,
+      "realCliDispatchPrevented": false,
+      "passed": true
+    },
+    {
+      "case": "reject-unapproved-command",
+      "args": [
+        "other"
+      ],
+      "exitCode": 2,
+      "faultFlagExists": false,
+      "realCliDispatchPrevented": true,
+      "passed": true
+    },
+    {
+      "case": "reject-unset-store",
+      "args": [
+        "auth",
+        "status",
+        "--json"
+      ],
+      "exitCode": 2,
+      "faultFlagExists": false,
+      "realCliDispatchPrevented": true,
+      "passed": true
+    },
+    {
+      "case": "reject-other-form-store",
+      "args": [
+        "auth",
+        "status",
+        "--json"
+      ],
+      "exitCode": 2,
+      "faultFlagExists": false,
+      "realCliDispatchPrevented": true,
+      "passed": true
+    },
+    {
+      "case": "reject-nonexistent-store",
+      "args": [
+        "auth",
+        "status",
+        "--json"
+      ],
+      "exitCode": 2,
+      "faultFlagExists": false,
+      "realCliDispatchPrevented": true,
+      "passed": true
+    }
+  ]
+}

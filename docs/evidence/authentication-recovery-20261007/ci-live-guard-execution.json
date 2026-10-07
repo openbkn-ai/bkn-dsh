@@ -1,0 +1,86 @@
+{
+  "startedAt": "2026-10-07T04:30:08.257943+00:00",
+  "finishedAt": "2026-10-07T04:30:09.607808+00:00",
+  "command": [
+    "/Users/kalias/.nvm/versions/node/v24.19.0/bin/node",
+    "/private/var/folders/9r/1zks6bqd7f3dtwybvxsksbc40000gn/T/openbkn-diag-ui-h76__jwb/authentication-live-guard-123008/tests/probes/guard-runtime.probe.mjs",
+    "--plugin",
+    "/private/var/folders/9r/1zks6bqd7f3dtwybvxsksbc40000gn/T/openbkn-diag-ui-h76__jwb/authentication-native-ci-probe-122948/package",
+    "--live",
+    "https://192.168.50.28",
+    "--kn",
+    "supply_ontology_hand",
+    "--other-kn",
+    "worldcup_vega_catalog_bkn",
+    "--cli",
+    "/private/var/folders/9r/1zks6bqd7f3dtwybvxsksbc40000gn/T/openbkn-diag-ui-h76__jwb/cli-0.1.5/node_modules/.bin/openbkn"
+  ],
+  "cwd": "/private/var/folders/9r/1zks6bqd7f3dtwybvxsksbc40000gn/T/openbkn-diag-ui-h76__jwb/authentication-live-guard-123008",
+  "exitCode": 0,
+  "stderrBytes": 0,
+  "candidateSha256": "fa168d8113e8dd43348ea4751c7e4d297049e2c1ddced9c586e6d3a1f3f0718c",
+  "checks": 16,
+  "peers": [
+    {
+      "name": "@deepseek-ai/schemastery",
+      "version": "3.18.4"
+    },
+    {
+      "name": "zod",
+      "version": "4.6.5"
+    },
+    {
+      "name": "@deepseek-ai/cordis",
+      "version": "4.0.4"
+    },
+    {
+      "name": "@deepseek-ai/dsh-agent",
+      "version": "0.2.0-rc.2"
+    },
+    {
+      "name": "@deepseek-ai/dsh-credentials",
+      "version": "0.2.0-rc.2"
+    },
+    {
+      "name": "@deepseek-ai/dsh-home-paths",
+      "version": "0.2.0-rc.2"
+    },
+    {
+      "name": "@deepseek-ai/dsh-mcp-client",
+      "version": "0.2.0-rc.2"
+    },
+    {
+      "name": "@deepseek-ai/dsh-session",
+      "version": "0.2.0-rc.2"
+    },
+    {
+      "name": "@deepseek-ai/dsh-storage",
+      "version": "0.2.0-rc.2"
+    },
+    {
+      "name": "@deepseek-ai/dsh-storage-domain",
+      "version": "0.2.0-rc.2"
+    },
+    {
+      "name": "@deepseek-ai/dsh-system-prompt",
+      "version": "0.2.0-rc.2"
+    },
+    {
+      "name": "@deepseek-ai/dsh-subprocess",
+      "version": "0.2.0-rc.2"
+    },
+    {
+      "name": "@deepseek-ai/dsh-tools",
+      "version": "0.2.0-rc.2"
+    },
+    {
+      "name": "@deepseek-ai/dsh-typert-protocol",
+      "version": "0.2.0-rc.2"
+    },
+    {
+      "name": "@deepseek-ai/dsh-util-values",
+      "version": "0.2.0-rc.2"
+    }
+  ],
+  "evidence": "Direct official npm ToolRuntime against real platform; no model; not restricted-account or npm GUI acceptance"
+}

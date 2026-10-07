@@ -1,0 +1,36 @@
+{
+  "startedAt": "2026-10-07T04:19:45.376465+00:00",
+  "form": "official application-bundled CLI",
+  "commands": [
+    {
+      "command": [
+        "/Applications/DeepSeek Harness.app/Contents/Resources/runtime/cli/bin/dsh",
+        "plugin",
+        "--profile",
+        "desktop",
+        "remove",
+        "@openbkn/dsh-business-context"
+      ],
+      "exitCode": 0,
+      "stdout": "✓ Lockfile passes supply-chain policies (verified 1h ago)\n\ndependencies:\n- @openbkn/dsh-business-context file:/Users/kalias/Documents/project/app/openBKN/bkn-dsh-unified-7/release/native-output-candidate/2813f3a/openbkn-dsh-business-context-0.2.0-rc.2-openbkn.0.2.0-7.tgz\n\nAlready up to date\nDone in 233ms using pnpm v11.7.0\n",
+      "stderr": "",
+      "patchSha256": "ee08d266e84ed62d9e83b6c2350255db7615916a1990fd023e388098221f245c"
+    },
+    {
+      "command": [
+        "/Applications/DeepSeek Harness.app/Contents/Resources/runtime/cli/bin/dsh",
+        "plugin",
+        "--profile",
+        "desktop",
+        "install",
+        "release/authentication-recovery-candidate/c91fe09/openbkn-dsh-business-context-0.2.0-rc.2-openbkn.0.2.0-7.tgz"
+      ],
+      "exitCode": 254,
+      "stdout": "✓ Lockfile passes supply-chain policies (verified 381ms ago)\n[ENOENT] ENOENT: no such file or directory, open '/private/var/folders/9r/1zks6bqd7f3dtwybvxsksbc40000gn/T/openbkn-diag-ui-h76__jwb/desktop-home/profiles/desktop/release/authentication-recovery-candidate/c91fe09/openbkn-dsh-business-context-0.2.0-rc.2-openbkn.0.2.0-7.tgz'\n\nThis error happened while installing a direct dependency of /private/var/folders/9r/1zks6bqd7f3dtwybvxsksbc40000gn/T/openbkn-diag-ui-h76__jwb/desktop-home/profiles/desktop\n\n\n\n",
+      "stderr": "dsh: plugin command failed; diagnostics: /private/var/folders/9r/1zks6bqd7f3dtwybvxsksbc40000gn/T/openbkn-diag-ui-h76__jwb/desktop-home/profiles/desktop/.plugin-manager/logs/operation-tocW0o/pnpm.log\n",
+      "patchSha256": "ee08d266e84ed62d9e83b6c2350255db7615916a1990fd023e388098221f245c"
+    }
+  ],
+  "cliVersion": "0.2.0-rc.2",
+  "profile": "/private/var/folders/9r/1zks6bqd7f3dtwybvxsksbc40000gn/T/openbkn-diag-ui-h76__jwb/desktop-home/profiles/desktop"
+}

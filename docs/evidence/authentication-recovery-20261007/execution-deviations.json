@@ -1,0 +1,36 @@
+{
+  "items": [
+    {
+      "kind": "installation harness",
+      "detail": "First relative tarball argument was resolved by DSH under its profile and failed ENOENT after removing old package; preserved mac-installation-before-path-fix.json. Corrected to absolute input."
+    },
+    {
+      "kind": "installation harness",
+      "detail": "Repeated remove on already empty isolated profile failed ERR_PNPM_CANNOT_REMOVE_MISSING_DEPS; preserved separate output. Conditional remove plus absolute install succeeded."
+    },
+    {
+      "kind": "browser discovery/authorization timing",
+      "detail": "CLI opened an additional Chrome window without the automation extension. Initial request expired before authorization; CLI diagnostic exit 2 was observed. Normal authorization was repeated from the product button and succeeded. No manual fault-flag deletion."
+    },
+    {
+      "kind": "probe result parser",
+      "detail": "Local summarizer initially counted metadata/summary JSONL rows as scenarios and assumed a verdict field for native fixtures. Both probe processes exited 0. Re-read the retained outputs: eight scenario/passed rows and sixteen check/verdict rows plus empty failed list. No probe failure or additional run fabricated."
+    },
+    {
+      "kind": "UI accessibility targeting",
+      "detail": "A hidden full-tree observation regenerated indices, so one old diagnostic index opened the manual-token disclosure; corrected using the fresh tree, entered no token. A later AX offscreen response was resolved via a fresh screenshot and visible diagnostic button."
+    },
+    {
+      "kind": "process evidence coverage",
+      "detail": "Host PIDs/children/listeners captured for three launches, first CLI login PID observed, final isolated CLI scan empty. Other short-lived CLI PIDs were not individually archived; no complete historical transient-process claim."
+    },
+    {
+      "kind": "process inventory text decoding",
+      "detail": "An unrelated process command contained non-UTF8 bytes; inventory decoder used replacement to collect only task-scoped PID metadata. No unrelated command contents exported."
+    }
+  ],
+  "noCredentialContentsCommitted": true,
+  "rawHostAndAuthorizationOutput": "private only",
+  "officialRuntimeModified": false,
+  "inspectorUsed": false
+}

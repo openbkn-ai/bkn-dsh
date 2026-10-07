@@ -1,0 +1,36 @@
+{
+  "checkedAt": "2026-10-07T03:56:51.379Z",
+  "platform": "https://192.168.50.28",
+  "tools": 28,
+  "added": [],
+  "removed": [],
+  "schemaChanges": [],
+  "dshSupported": "0.2.0-rc.2",
+  "dshSupportedCommit": "639ed015397290b3745d163aafe02ffee4aa3f84",
+  "dshLatestTag": "dsh-v0.2.1-alpha.1",
+  "dshMaster": "5badb15009ae1756c3afe0ae0cef1faafc290ccc",
+  "foundryMain": "4a0db7799bc2f29aeeeb190bbecd8c7f6a90360f",
+  "foundryLatestRelease": "v0.1.5",
+  "upstreamChangesSincePreviousCheck": [],
+  "platformImageTags": {
+    "evidence": "platform-images.json",
+    "context": "kind-bkn-dev",
+    "coreServices": [
+      "agent-observability",
+      "agent-operator-integration",
+      "agent-retrieval",
+      "bkn-agent",
+      "bkn-backend",
+      "bkn-safe",
+      "bkn-studio",
+      "ontology-query",
+      "control-plane",
+      "executor"
+    ],
+    "coreTag": "0.1.5",
+    "cliVersion": "0.1.5",
+    "scope": "Fresh declared/runtime images; no deployment mutation; image source commit not inferred from tag"
+  },
+  "credentialHandling": "auth token stays in process; no token or raw CLI stderr exported",
+  "schemaComparison": "Parsed input/output schema objects compared recursively; JSON key order ignored"
+}

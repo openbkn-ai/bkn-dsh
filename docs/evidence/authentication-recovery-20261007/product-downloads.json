@@ -1,0 +1,294 @@
+{
+  "checkedAt": "2026-10-07T04:36:30.449933+00:00",
+  "reportCount": 4,
+  "entries": [
+    {
+      "phase": "401",
+      "reportId": "d867ec03",
+      "originalDownloadPath": "/Users/kalias/Downloads/OpenBKN-diagnostic-20261007T042313970Z-d867ec03.json",
+      "evidenceCopy": "docs/evidence/authentication-recovery-20261007/desktop-product-d867ec03.json",
+      "sizeBytes": 2170,
+      "sha256": "d70de83cdcd4071ca2fe3bc080dc7a0e283cf8a2495e7c79ed603e4c35d49da1",
+      "downloadBytesEqualToEvidenceCopy": true,
+      "source": "Product UI export -> native Save dialog -> Downloads; not Host API",
+      "checks": [
+        {
+          "id": "bootstrap-entry",
+          "status": "pass",
+          "code": "component-loaded",
+          "evidence": {
+            "entryPresent": true
+          }
+        },
+        {
+          "id": "business-entry",
+          "status": "pass",
+          "code": "component-loaded",
+          "evidence": {
+            "entryPresent": true
+          }
+        },
+        {
+          "id": "diagnostics-entry",
+          "status": "pass",
+          "code": "component-loaded",
+          "evidence": {
+            "schemaVersion": 1
+          }
+        },
+        {
+          "id": "observed:cli",
+          "status": "pass",
+          "code": "cli",
+          "evidence": {
+            "failureCount": 0,
+            "lastOutcomeAgoMs": 19095,
+            "exitCode": 0
+          }
+        },
+        {
+          "id": "observed:login-state",
+          "status": "pass",
+          "code": "login-state",
+          "evidence": {
+            "failureCount": 0,
+            "lastOutcomeAgoMs": 19102,
+            "loggedIn": true
+          }
+        },
+        {
+          "id": "observed:context-loader",
+          "status": "fail",
+          "code": "auth-rejected",
+          "evidence": {
+            "failureCount": 1,
+            "lastOutcomeAgoMs": 18834,
+            "httpStatus": 401
+          }
+        }
+      ]
+    },
+    {
+      "phase": "same-host-recovery",
+      "reportId": "7a116535",
+      "originalDownloadPath": "/Users/kalias/Downloads/OpenBKN-diagnostic-20261007T042833425Z-7a116535.json",
+      "evidenceCopy": "docs/evidence/authentication-recovery-20261007/desktop-product-7a116535.json",
+      "sizeBytes": 2589,
+      "sha256": "df8c51987739c15ba0bd98dbca3891a603494c13e8e46c43c7488e71b37ded9d",
+      "downloadBytesEqualToEvidenceCopy": true,
+      "source": "Product UI export -> native Save dialog -> Downloads; not Host API",
+      "checks": [
+        {
+          "id": "bootstrap-entry",
+          "status": "pass",
+          "code": "component-loaded",
+          "evidence": {
+            "entryPresent": true
+          }
+        },
+        {
+          "id": "business-entry",
+          "status": "pass",
+          "code": "component-loaded",
+          "evidence": {
+            "entryPresent": true
+          }
+        },
+        {
+          "id": "diagnostics-entry",
+          "status": "pass",
+          "code": "component-loaded",
+          "evidence": {
+            "schemaVersion": 1
+          }
+        },
+        {
+          "id": "observed:cli",
+          "status": "pass",
+          "code": "cli",
+          "evidence": {
+            "failureCount": 1,
+            "lastOutcomeAgoMs": 29827,
+            "recovered": true,
+            "lastFailureCode": "cli-execution-failed",
+            "exitCode": 0
+          }
+        },
+        {
+          "id": "observed:login-state",
+          "status": "pass",
+          "code": "login-state",
+          "evidence": {
+            "failureCount": 0,
+            "lastOutcomeAgoMs": 29952,
+            "loggedIn": true
+          }
+        },
+        {
+          "id": "observed:context-loader",
+          "status": "pass",
+          "code": "context-loader",
+          "evidence": {
+            "failureCount": 4,
+            "lastOutcomeAgoMs": 29781,
+            "recovered": true,
+            "lastFailureCode": "auth-rejected",
+            "toolsPublished": true
+          }
+        },
+        {
+          "id": "observed:platform-network-list",
+          "status": "pass",
+          "code": "platform-network-list",
+          "evidence": {
+            "failureCount": 0,
+            "lastOutcomeAgoMs": 30183,
+            "networkCount": 2
+          }
+        }
+      ]
+    },
+    {
+      "phase": "tls",
+      "reportId": "37de9124",
+      "originalDownloadPath": "/Users/kalias/Downloads/OpenBKN-diagnostic-20261007T043107611Z-37de9124.json",
+      "evidenceCopy": "docs/evidence/authentication-recovery-20261007/desktop-product-37de9124.json",
+      "sizeBytes": 2140,
+      "sha256": "fd32877787714b8af1962ce597905683c69e43fd3c2cfaa3c05e8b60571fe427",
+      "downloadBytesEqualToEvidenceCopy": true,
+      "source": "Product UI export -> native Save dialog -> Downloads; not Host API",
+      "checks": [
+        {
+          "id": "bootstrap-entry",
+          "status": "pass",
+          "code": "component-loaded",
+          "evidence": {
+            "entryPresent": true
+          }
+        },
+        {
+          "id": "business-entry",
+          "status": "pass",
+          "code": "component-loaded",
+          "evidence": {
+            "entryPresent": true
+          }
+        },
+        {
+          "id": "diagnostics-entry",
+          "status": "pass",
+          "code": "component-loaded",
+          "evidence": {
+            "schemaVersion": 1
+          }
+        },
+        {
+          "id": "observed:cli",
+          "status": "pass",
+          "code": "cli",
+          "evidence": {
+            "failureCount": 0,
+            "lastOutcomeAgoMs": 48293,
+            "exitCode": 0
+          }
+        },
+        {
+          "id": "observed:login-state",
+          "status": "pass",
+          "code": "login-state",
+          "evidence": {
+            "failureCount": 0,
+            "lastOutcomeAgoMs": 48444,
+            "loggedIn": true
+          }
+        },
+        {
+          "id": "observed:context-loader",
+          "status": "fail",
+          "code": "tls-failed",
+          "evidence": {
+            "failureCount": 1,
+            "lastOutcomeAgoMs": 48268
+          }
+        }
+      ]
+    },
+    {
+      "phase": "original-config-normal",
+      "reportId": "17e1ce66",
+      "originalDownloadPath": "/Users/kalias/Downloads/OpenBKN-diagnostic-20261007T043317825Z-17e1ce66.json",
+      "evidenceCopy": "docs/evidence/authentication-recovery-20261007/desktop-product-17e1ce66.json",
+      "sizeBytes": 2440,
+      "sha256": "d03cce9deae3e6379a09c9a13d369bf7bde920ad00800d3d2805a2db9b096626",
+      "downloadBytesEqualToEvidenceCopy": true,
+      "source": "Product UI export -> native Save dialog -> Downloads; not Host API",
+      "checks": [
+        {
+          "id": "bootstrap-entry",
+          "status": "pass",
+          "code": "component-loaded",
+          "evidence": {
+            "entryPresent": true
+          }
+        },
+        {
+          "id": "business-entry",
+          "status": "pass",
+          "code": "component-loaded",
+          "evidence": {
+            "entryPresent": true
+          }
+        },
+        {
+          "id": "diagnostics-entry",
+          "status": "pass",
+          "code": "component-loaded",
+          "evidence": {
+            "schemaVersion": 1
+          }
+        },
+        {
+          "id": "observed:cli",
+          "status": "pass",
+          "code": "cli",
+          "evidence": {
+            "failureCount": 0,
+            "lastOutcomeAgoMs": 64328,
+            "exitCode": 0
+          }
+        },
+        {
+          "id": "observed:login-state",
+          "status": "pass",
+          "code": "login-state",
+          "evidence": {
+            "failureCount": 0,
+            "lastOutcomeAgoMs": 64423,
+            "loggedIn": true
+          }
+        },
+        {
+          "id": "observed:context-loader",
+          "status": "pass",
+          "code": "context-loader",
+          "evidence": {
+            "failureCount": 0,
+            "lastOutcomeAgoMs": 64295,
+            "toolsPublished": true
+          }
+        },
+        {
+          "id": "observed:platform-network-list",
+          "status": "pass",
+          "code": "platform-network-list",
+          "evidence": {
+            "failureCount": 0,
+            "lastOutcomeAgoMs": 64263,
+            "networkCount": 2
+          }
+        }
+      ]
+    }
+  ],
+  "gitByteConsistency": "Checked separately after staging; no line-ending normalization used"
+}

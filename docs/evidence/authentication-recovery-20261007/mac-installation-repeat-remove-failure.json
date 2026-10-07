@@ -1,0 +1,22 @@
+{
+  "startedAt": "2026-10-07T04:20:03.424103+00:00",
+  "form": "official application-bundled CLI",
+  "commands": [
+    {
+      "command": [
+        "/Applications/DeepSeek Harness.app/Contents/Resources/runtime/cli/bin/dsh",
+        "plugin",
+        "--profile",
+        "desktop",
+        "remove",
+        "@openbkn/dsh-business-context"
+      ],
+      "exitCode": 1,
+      "stdout": "[ERR_PNPM_CANNOT_REMOVE_MISSING_DEPS] Cannot remove '@openbkn/dsh-business-context': project has no dependencies of any kind\n",
+      "stderr": "dsh: plugin command failed; diagnostics: /private/var/folders/9r/1zks6bqd7f3dtwybvxsksbc40000gn/T/openbkn-diag-ui-h76__jwb/desktop-home/profiles/desktop/.plugin-manager/logs/operation-1Vv4eA/pnpm.log\n",
+      "patchSha256": "ee08d266e84ed62d9e83b6c2350255db7615916a1990fd023e388098221f245c"
+    }
+  ],
+  "cliVersion": "0.2.0-rc.2",
+  "profile": "/private/var/folders/9r/1zks6bqd7f3dtwybvxsksbc40000gn/T/openbkn-diag-ui-h76__jwb/desktop-home/profiles/desktop"
+}

@@ -1,0 +1,109 @@
+{
+  "template": false,
+  "status": "source-approved-ci-pass-mac-affected-acceptance-pass-windows-pending",
+  "plan": "Known authentication recovery, native output boundary and evidence corrections",
+  "candidate": {
+    "packageName": "@openbkn/dsh-business-context",
+    "version": "0.2.0-rc.2-openbkn.0.2.0-7",
+    "sourceCommit": "c91fe090e0aac2dc72a4ff1b3d221d72baa432ba",
+    "branch": "main",
+    "build": {
+      "workflow": "release-plugin.yml",
+      "publish": false,
+      "runId": 37570295456,
+      "runUrl": "https://github.com/openbkn-ai/bkn-dsh/actions/runs/37570295456",
+      "artifactId": 11459684902,
+      "artifactName": "plugin-tarball",
+      "artifactZipDigest": "sha256:0d2decd13210246bcec11aa68549aab0b2404124af03134c8a9d3635977c790e",
+      "note": "Build-only on merged main after final-head independent approval of PR #76; npm Publish and GitHub Release skipped. Kit ZIP is separate."
+    },
+    "artifact": {
+      "path": "candidate/openbkn-dsh-business-context-0.2.0-rc.2-openbkn.0.2.0-7.tgz",
+      "sha256": "fa168d8113e8dd43348ea4751c7e4d297049e2c1ddced9c586e6d3a1f3f0718c",
+      "sizeBytes": 165804,
+      "fileCount": 65,
+      "fileManifestPath": "candidate/candidate-files.txt",
+      "fileManifestJsonPath": "candidate/candidate-files.json"
+    }
+  },
+  "supportedBaseline": {
+    "dshVersion": "0.2.0-rc.2",
+    "dshTag": "dsh-v0.2.0-rc.2",
+    "dshCommit": "639ed015397290b3745d163aafe02ffee4aa3f84",
+    "pnpmVersion": "11.7.0",
+    "nodeRange": "^22.19.0 || >=24.0.0"
+  },
+  "diagnostics": {
+    "reportSchemaVersion": 1,
+    "reportSchemaPath": "schema/diagnostics-contract.ts",
+    "hostEntry": "three rows: openbkn-business-context-bootstrap (package root -> lib/index.js), openbkn-business-context (./business -> lib/business.js), openbkn-business-context-diagnostics (./diagnostics -> lib/diagnostics.js)",
+    "remoteExport": "openbknDiagnostics/getReport (aggregated into lib/typert.host.js + lib/typert.remote-client.js)",
+    "d0EvidencePath": "docs/evidence/diagnostics-d0.md"
+  },
+  "testKit": {
+    "prepareScript": "windows/prepare.ps1",
+    "caseScript": "windows/run-case.ps1",
+    "stateHashScript": "windows/collect-state-hashes.ps1",
+    "cleanupScript": "windows/cleanup.ps1",
+    "caseGuidePath": "HANDOFF.md",
+    "regressionGuidePath": "HANDOFF.md",
+    "faultVariants": [
+      "W3: prepend a missing top-level import to the business entry, resolved from exports['./business'] (lib/business.js)",
+      "W4: throw inside the business apply() after the registry plugin, in lib/business.js",
+      "W10: prepend a missing top-level import to the diagnostics implementation, resolved from exports['./diagnostics'] (lib/diagnostics.js)",
+      "note: lib/index.js is the package-root bootstrap since -6; breaking it is a whole-package fault and must not stand in for W3/W10"
+    ],
+    "note": "prepare/run-case/state/cleanup helpers copied byte-for-byte from native PS5.1-tested 54f6669. New fixed identity verifier, native probe inputs and auth fixture still need native Windows parse/smoke. Capture all PS streams with *>&1; raw Host/authorization logs remain private."
+  },
+  "outputBoundary": {
+    "modelAnswer": "Native DSH output; no final-answer arbitration or automatic corrective turns",
+    "toolData": "Preserved native tool results and platform errors",
+    "accessGovernance": "Authentication, bound kn_id, allowlisted tools and Interaction lifecycle remain enforced",
+    "answerEvaluation": "Independent factual checks; native completed is not a correctness verdict",
+    "probePreparation": "probe/prepare-native-probe.mjs",
+    "probe": "probe/tests/probes/native-output-runtime.probe.mjs",
+    "requiredFixtureScenarios": [
+      "native-answer-no-arbitration",
+      "headerless-output",
+      "scientific-notation-structure",
+      "native-tool-error",
+      "cross-network-denied",
+      "before-start-denied",
+      "excluded-tool-denied",
+      "unbound-unaffected"
+    ]
+  },
+  "knownLimitations": [
+    "Mac full BOM every-material question returned only nine L1 rows: original all-level/313-row coverage failed. BOM structure scope-cause explanation also unverified. Keep independent evaluation; do not reinstate plugin arbitration.",
+    "Prior native-output Mac missing-object question included unrelated nonzero statistics; original negative criterion failed. This authentication-only fix does not retest or fix model answer quality.",
+    "This new CI package requires Windows affected retest; neither 6bbab278/66 files nor 3c345ef6/65 files accepts it.",
+    "No real restricted account; unauthorized-network remains not-run.",
+    "Windows real platform/model cases require the tester's own isolated credentials; unavailable cases must be not-run, not simulated acceptance.",
+    "Passive diagnostic re-collection only; active network probes not implemented.",
+    "Shared/bootstrap chunk corruption is outside per-row isolation.",
+    "Platform computation errors and model factual mistakes remain observable; this package does not add business calculators or report rendering/export.",
+    "Automatic token renewal/sharing cause is unverified; CLI remains its owner. This patch only exposes existing recovery for explicit refusal.",
+    "CLI browser authorization timeout/cancel UX is unchanged: the timed-out attempt may show generic retry guidance; reopening the panel re-evaluates MCP refusal. No automatic login cancellation or timeout recovery was added."
+  ],
+  "releaseAuthorization": "not-granted",
+  "verificationEnvironment": {
+    "desktopVersion": "0.2.0-rc.2 official app, unpatched, no inspector",
+    "desktopCliVersion": "0.2.0-rc.2 application-bundled CLI",
+    "desktopHostNodeVersion": "24.18.1",
+    "npmDshVersion": "0.2.0-rc.2 official npm core (fixture and live ToolRuntime; not a new npm GUI matrix)",
+    "npmNodeVersion": "24.19.0",
+    "openbknCliVersion": "0.1.5 isolated authorized store",
+    "realModel": "DeepSeek-V41-Flash / High",
+    "currentAcceptanceEvidencePath": "docs/evidence/authentication-recovery-20261007/RESULTS.md",
+    "acceptanceScope": "This final CI artifact: real Mac Desktop known MCP401/product CLI recovery, TLS classification, original-config health and four UI downloads; native fixtures 8/8, live guard 16/16. Current real-model rerun and Windows acceptance not-run/pending; prior five native-output questions remain historical with two quality failures.",
+    "platformImagesEvidencePath": "docs/evidence/authentication-recovery-20261007/platform-images.json",
+    "actualPlatformImageInventory": "Fresh read-only kind-bkn-dev pod inventory, 49 containers with image/runtimeImage/imageID; core platform tags 0.1.5. Tags/digests do not prove Foundry main commit."
+  },
+  "authenticationRecovery": {
+    "mcp401": "Explicit known refusal reaches existing CLI login and synchronization; no automatic login",
+    "catalogue403": "Preserve existing CLI/manual-token recovery pane, distinguish permission denial and avoid promising same-account re-login",
+    "mcp403": "Account access denial, not missing credentials",
+    "transport": "TLS/network/unknown failures retain diagnostics",
+    "testFixture": "auth/openbkn-auth-fixture.mjs; not packed into plugin; requires independently authorized isolated CLI store"
+  }
+}

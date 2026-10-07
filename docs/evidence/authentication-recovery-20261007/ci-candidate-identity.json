@@ -1,0 +1,25 @@
+{
+  "checkedAt": "2026-10-07T04:36:30.449933+00:00",
+  "sourceCommit": "c91fe090e0aac2dc72a4ff1b3d221d72baa432ba",
+  "runId": 37570295456,
+  "runUrl": "https://github.com/openbkn-ai/bkn-dsh/actions/runs/37570295456",
+  "ciConclusion": "success",
+  "npmPublishStep": [
+    {
+      "completedAt": "2026-10-07T04:17:53Z",
+      "conclusion": "skipped",
+      "name": "Publish to npm",
+      "number": 20,
+      "startedAt": "2026-10-07T04:17:53Z",
+      "status": "completed"
+    }
+  ],
+  "githubReleaseJobConclusion": "skipped",
+  "tgzAbsolutePath": "/Users/kalias/Documents/project/app/openBKN/bkn-dsh-unified-7/release/authentication-recovery-candidate/c91fe09/openbkn-dsh-business-context-0.2.0-rc.2-openbkn.0.2.0-7.tgz",
+  "tgzSha256": "fa168d8113e8dd43348ea4751c7e4d297049e2c1ddced9c586e6d3a1f3f0718c",
+  "tgzSizeBytes": 165804,
+  "fileCount": 65,
+  "artifactZipSha256": "0d2decd13210246bcec11aa68549aab0b2404124af03134c8a9d3635977c790e",
+  "artifactZipSizeBytes": 166091,
+  "releaseAuthorization": "not-granted"
+}

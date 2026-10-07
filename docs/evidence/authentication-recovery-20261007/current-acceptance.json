@@ -1,0 +1,25 @@
+{
+  "checkedAt": "2026-10-07T04:36:30.449933+00:00",
+  "candidateSha256": "fa168d8113e8dd43348ea4751c7e4d297049e2c1ddced9c586e6d3a1f3f0718c",
+  "sourceCommit": "c91fe090e0aac2dc72a4ff1b3d221d72baa432ba",
+  "ciRunId": 37570295456,
+  "desktopInstalledFiles": "65/65",
+  "mcp401KnownRefusalUi": "pass: real platform SDK 401 using public invalid token fixture; local authorized store retained",
+  "productCliLoginRecovery": "pass: normal account browser authorization through product button; fixture clears fault only on real CLI exit 0; same Host PID 14056",
+  "sameHostDiagnosticsRecovery": {
+    "reportId": "7a116535",
+    "passChecks": 7,
+    "contextLoaderRecovered": true,
+    "lastFailureCode": "auth-rejected"
+  },
+  "withoutCa": "pass: context-loader/tls-failed; not a 401 recovery pane",
+  "originalPatchAndCliRestored": "pass: byte-equal patch and a separate healthy Host, report 17e1ce66 seven checks pass",
+  "nativeRuntimeFixtures": "8/8 pass, official npm core, scripted answers",
+  "liveGuard": "16/16 pass, official npm ToolRuntime and real platform, no model",
+  "newCandidateModelQuestions": "not-run: authentication changes do not alter tools or native answer policy; prior native-output real-model results and two quality failures remain historical, not retested or declared fixed",
+  "windowsCurrentCandidate": "pending: new tgz SHA requires affected two-form retest",
+  "mac403RealPermissionAccount": "not-run: actual restricted account unavailable; request-chain tests distinguish catalogue 403 and MCP 403",
+  "dailyState": "9 selected paths equal (4 existing-file SHA checks, 5 absence checks); not whole home",
+  "cleanup": "three recorded Host families stopped, listener released, no isolated CLI process currently; transient CLI PID archive partial",
+  "releaseAuthorization": "not-granted"
+}

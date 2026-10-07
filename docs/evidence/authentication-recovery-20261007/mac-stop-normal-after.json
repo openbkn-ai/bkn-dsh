@@ -1,0 +1,53 @@
+{
+  "checkedAt": "2026-10-07T04:33:58.179802+00:00",
+  "phase": "normal",
+  "launchPid": 22448,
+  "sameMainIdentity": false,
+  "processes": [],
+  "listenerNativeStdout": "",
+  "listenerExitCode": 1,
+  "expectedDshHome": "/private/var/folders/9r/1zks6bqd7f3dtwybvxsksbc40000gn/T/openbkn-diag-ui-h76__jwb/desktop-home",
+  "inspectorUsed": false,
+  "ownedPidAfter": [
+    {
+      "pid": 22448,
+      "recordedStart": "Wed Oct  7 12:31:48 2026",
+      "presentAfter": false,
+      "currentStart": null,
+      "sameRecordedProcessStillPresent": false
+    },
+    {
+      "pid": 22473,
+      "recordedStart": "Wed Oct  7 12:31:48 2026",
+      "presentAfter": false,
+      "currentStart": null,
+      "sameRecordedProcessStillPresent": false
+    },
+    {
+      "pid": 22474,
+      "recordedStart": "Wed Oct  7 12:31:48 2026",
+      "presentAfter": false,
+      "currentStart": null,
+      "sameRecordedProcessStillPresent": false
+    },
+    {
+      "pid": 22480,
+      "recordedStart": "Wed Oct  7 12:31:48 2026",
+      "presentAfter": false,
+      "currentStart": null,
+      "sameRecordedProcessStillPresent": false
+    },
+    {
+      "pid": 22830,
+      "recordedStart": "Wed Oct  7 12:31:49 2026",
+      "presentAfter": false,
+      "currentStart": null,
+      "sameRecordedProcessStillPresent": false
+    }
+  ],
+  "quitMethod": "native CUA super+q after identity match",
+  "port19387NativeStdout": "",
+  "portScanExitCode": 1,
+  "ownedProcessesAllStopped": true,
+  "portReleased": true
+}

@@ -1,0 +1,130 @@
+{
+  "scope": "Every kit file except this self-referential manifest",
+  "files": [
+    {
+      "path": ".gitattributes",
+      "sha256": "705fd4d6451a31d36b3df7de96f83f30ac976c9b4a6d1e51671d8e2f33e2d0da",
+      "sizeBytes": 8
+    },
+    {
+      "path": "HANDOFF.md",
+      "sha256": "c62c3a3efea956e220453b4b34fa358483f07e9ac0722836bd344714073578c3",
+      "sizeBytes": 18834
+    },
+    {
+      "path": "README.md",
+      "sha256": "41c4015568c6becb4a4823797c5ac3e5642cc586edaec9248d1a4d617de33fb2",
+      "sizeBytes": 1501
+    },
+    {
+      "path": "RESULTS.template.md",
+      "sha256": "5d3ea3b823a321ab9c5c1614cb291c5167672aa709de11cbdc10ede4849482d6",
+      "sizeBytes": 2028
+    },
+    {
+      "path": "WINDOWS-OLD-EVIDENCE-REVIEW.md",
+      "sha256": "cc52c967e48771564047986655d5b0dd1d4807ef57ec252f8828a861d7692bbb",
+      "sizeBytes": 3076
+    },
+    {
+      "path": "auth/openbkn-auth-fixture.mjs",
+      "sha256": "f8991401b45e09e8396cc4d5ef808a49b012fd1488e6413ca1606223e45f9816",
+      "sizeBytes": 2044
+    },
+    {
+      "path": "candidate/candidate-files.json",
+      "sha256": "5314e33e00397def0e9b618b3bad00df9599ddbca9921f5baadeea2d3b9051be",
+      "sizeBytes": 11583
+    },
+    {
+      "path": "candidate/candidate-files.txt",
+      "sha256": "d3723ca39fec68f3e4747e38a6168e166e5256842643eb8597abc957252b1c85",
+      "sizeBytes": 6895
+    },
+    {
+      "path": "candidate/openbkn-dsh-business-context-0.2.0-rc.2-openbkn.0.2.0-7.tgz",
+      "sha256": "fa168d8113e8dd43348ea4751c7e4d297049e2c1ddced9c586e6d3a1f3f0718c",
+      "sizeBytes": 165804
+    },
+    {
+      "path": "candidate-manifest.json",
+      "sha256": "bd2148a3140873722da21ff36dcbd6ed89989e4ae6c7d618e315d0ce9354ba3d",
+      "sizeBytes": 7277
+    },
+    {
+      "path": "certificates/certificate-identity.json",
+      "sha256": "b4a668c9e380e6254cbe7eec73dc40d55ff4fcf0beb9663e72afdb3a5ff2a62a",
+      "sizeBytes": 606
+    },
+    {
+      "path": "certificates/openbkn-dev-ca.pem",
+      "sha256": "89e53b4e7a09305c01c37513a9bdda63698735a33a0df71f725875ec47180453",
+      "sizeBytes": 1192
+    },
+    {
+      "path": "eval/export-supply-session.py",
+      "sha256": "fab9d96a216f5cd599dd17013f3fc4b3bc5b0e69af1a0f1af6d97decca4215d6",
+      "sizeBytes": 6338
+    },
+    {
+      "path": "eval/run-eval.mjs",
+      "sha256": "52f8eb0dba9f59b09c7cb975996095b8a690d4b27cf2711ca19cdcca1dbf5f35",
+      "sizeBytes": 6154
+    },
+    {
+      "path": "eval/supply-ontology.yaml",
+      "sha256": "dfed0e81646aa28d4e4c68f83607462c428ed1423fc2c58b30c4f4b3644fcf23",
+      "sizeBytes": 5563
+    },
+    {
+      "path": "helper-origin.json",
+      "sha256": "215763540ca451e73a82be9081d1401d905a95d6b349c885adcde5f193d10623",
+      "sizeBytes": 1350
+    },
+    {
+      "path": "probe/prepare-native-probe.mjs",
+      "sha256": "395f3cbdf6312d4eee16c34b026666bd205643e8140a4a2b885f5910a2f9c1a8",
+      "sizeBytes": 2848
+    },
+    {
+      "path": "probe/tests/probes/native-output-runtime.probe.mjs",
+      "sha256": "d4e3c961b2b6a4a28377e49d08c8e589581425f3b65a14903b093f44292196fc",
+      "sizeBytes": 8089
+    },
+    {
+      "path": "schema/diagnostics-contract.ts",
+      "sha256": "f44c9981d2bbc3143a14a4dab54eef6d3b34cdbba8d27529cf96ead5abd7dab1",
+      "sizeBytes": 9196
+    },
+    {
+      "path": "verify-kit.ps1",
+      "sha256": "f0178399f6d4cbfb2aaa7e223de3563590a70eddde580d29b880e42eb2aff5b2",
+      "sizeBytes": 4327
+    },
+    {
+      "path": "windows/README.md",
+      "sha256": "a5137ece2d953a191cbca42d966a6c026cec4c6a057e3b5ac044b2cb002750f3",
+      "sizeBytes": 3994
+    },
+    {
+      "path": "windows/cleanup.ps1",
+      "sha256": "31bc3a021e548fb54ae16eba8afd87f444a6c153786f88d4589c3721cceb5011",
+      "sizeBytes": 5311
+    },
+    {
+      "path": "windows/collect-state-hashes.ps1",
+      "sha256": "a382a74363af10d784028648281a5919153117eb559d5718321a17aa69c38c99",
+      "sizeBytes": 838
+    },
+    {
+      "path": "windows/prepare.ps1",
+      "sha256": "5b661cc9286973a0965daf39eaf8075d909d25b2d7a01460e5dfc5245a1f6a64",
+      "sizeBytes": 4239
+    },
+    {
+      "path": "windows/run-case.ps1",
+      "sha256": "786a16b1930fb7e2b10cd58122420ca2872c10f120c8ad69e8f7f157aa298483",
+      "sizeBytes": 8612
+    }
+  ]
+}
