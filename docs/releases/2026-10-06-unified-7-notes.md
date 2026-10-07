@@ -1,8 +1,8 @@
 # OpenBKN DSH 插件累计更新说明
 
-更新目标：`@openbkn/dsh-business-context@0.2.0-rc.2-openbkn.0.2.0-7`。本文统一描述本版更新；`-5/-6` 曾作为开发候选，其更新已合并到本版。实际发布版本以 npm dist-tag 和 GitHub Release 记录为准。
+已发布：`@openbkn/dsh-business-context@0.2.0-rc.2-openbkn.0.2.0-7`，npm 的 `latest` 与 `rc` 均指向本版；[GitHub Release](https://github.com/openbkn-ai/bkn-dsh/releases/tag/v0.2.0-rc.2-openbkn.0.2.0-7)及[公开包核验凭证](https://github.com/openbkn-ai/bkn-dsh/releases/download/v0.2.0-rc.2-openbkn.0.2.0-7/PUBLICATION-VERIFICATION.json)可查阅。本文统一描述本版更新；`-5/-6` 曾作为开发候选，其更新已合并到本版。
 
-本文合并 GitHub 账户 **kalias** 已合入主线的功能、修复与交付改进，不按开发候选拆成多份公告。作者归属来自 GitHub commits 的 `author=kalias` 查询，当前完整清单核对至源码 `c91fe09`，共 75 项；见 [account-contributions.json](../evidence/authentication-recovery-20261007/account-contributions.json)。旧清单按历史源码保留。其他账户的基础实现不计为该账户的新增贡献；下列说明描述最终行为，后续纠正过的历史判断不作为现行功能。
+本文合并 GitHub 账户 **kalias** 已合入主线的功能、修复与交付改进，不按开发候选拆成多份公告。作者归属来自 GitHub commits 的 `author=kalias` 查询，清单核对至源码 `c91fe09`，共 75 项；见 [account-contributions.json](../evidence/authentication-recovery-20261007/account-contributions.json)。该归属清单是固定源码时点的快照，非发布后的提交总计。旧清单按历史源码保留。其他账户的基础实现不计为该账户的新增贡献；下列说明描述最终行为，后续纠正过的历史判断不作为现行功能。
 
 ## 用户可以看到的变化
 
@@ -48,9 +48,13 @@ Windows 测试 helper 现吸收实际 Windows 复验的修正：配置写入 BOM
 
 ## 验收与已知限制
 
-准确的当前候选身份和逐项状态见 [鉴权恢复实机结果](../evidence/authentication-recovery-20261007/RESULTS.md) 与 [Windows 最终复核](../handoff/2026-10-07-authentication-recovery/WINDOWS-REVIEW.md)。历史 Windows `-6` 两形态诊断隔离及旧统一 `-7` 的非法 URL/收态补证保留；不能由旧 SHA 接受本次新包。旧 `3414bde/6bbab278` 的 Windows B 批已完成真实问答和部分 guard/图样例，复核后证据范围见旧回传审核；不能转为当前包验收。本新 SHA 已由 Windows 两形态验证安装件 65/65、MCP 401 产品登录与同 Host 恢复、正常诊断/下载及非法 URL 拒绝与恢复；官方核心原生输出 fixture 8/8。最终回传固定 `19c2dc5`，106 项归档清单复核通过。用户没有真实受限账号，该授权场景保持未测。
+已接受候选的身份和逐项状态见 [鉴权恢复实机结果](../evidence/authentication-recovery-20261007/RESULTS.md) 与 [Windows 最终复核](../handoff/2026-10-07-authentication-recovery/WINDOWS-REVIEW.md)。历史 Windows `-6` 两形态诊断隔离及旧统一 `-7` 的非法 URL/收态补证保留；不能由旧 SHA 接受本次新包。旧 `3414bde/6bbab278` 的 Windows B 批已完成真实问答和部分 guard/图样例，复核后证据范围见旧回传审核；不能转为当前包验收。本新 SHA 已由 Windows 两形态验证安装件 65/65、MCP 401 产品登录与同 Host 恢复、正常诊断/下载及非法 URL 拒绝与恢复；官方核心原生输出 fixture 8/8。最终回传固定 `19c2dc5`，106 项归档清单复核通过。用户没有真实受限账号，该授权场景保持未测。
 
-“重新采集”读取被动观察，主动网络探测未实现。旧启动异常的根因未知；未复现不等于修复。平台 [#2029](https://github.com/openbkn-ai/bkn-foundry/issues/2029) 的大结果落库问题仍开放，`run_code` 内部调用也不经过插件 guard。报告中的 Host/插件版本可能未知，另用安装清单与进程来源确认身份。发布、tag 和 dist-tag 迁移须待验收结论及用户发版决定。
+“重新采集”读取被动观察，主动网络探测未实现。旧启动异常的根因未知；未复现不等于修复。平台 [#2029](https://github.com/openbkn-ai/bkn-foundry/issues/2029) 的大结果落库问题仍开放，`run_code` 内部调用也不经过插件 guard。报告中的 Host/插件版本可能未知，另用安装清单与进程来源确认身份。用户已授权发布，正式 tag、npm/GitHub 发布及 `latest` 迁移已完成；这些开放项保持原判定，不因发布转为通过。
+
+## 历史验收记录
+
+以下保留各候选当时的验收与放行状态；当前发布身份见文末。
 
 历史统一 CI 包曾出现 BOM 多一行及物理源表名转述错误；后续固定 CI 包又暴露空库存标记、缺列头及库存范围/预留说明问题。这些失败均保留。回答交付修复已通过 PR #69–#72 独立评审并合入 main；本账户主线累计 71 项提交归属已核对至 `3414bde`。其 build-only CI 37478119730 产物 `6bbab278…` 已在 macOS 官方 Desktop 完成三道原题（均原生 completed）；BOM 的 313 行、八个业务字段、48 行范围内无记录标记和 313 个披露记录数均通过独立核对。真实诊断导出九项通过、同网络图的三个元素来源、npm 配置/导入隔离、16 项 live guard 与两种官方核心的六项受控场景也通过。该历史快照的其他 G6、跨网络真实图和当时 Windows 复测未测；Windows 后续 B 批已经回传，现行结论按固定 commit 复核收窄；深层库存能力本轮仍超时，已披露并核验只读回退。这一候选可交 Windows 复测，尚未放行发布。
 
@@ -59,3 +63,11 @@ Windows 测试 helper 现吸收实际 Windows 复验的修正：配置写入 BOM
 2026-10-07 鉴权恢复追加修复通过 PR #76 最终 head 独立批准，现行候选源码 `c91fe09` → build-only CI `37570295456` → 原始 tgz `fa168d81…`（165804 bytes / 65 文件）。本包 Mac 真实 MCP 401 产品登录与同 Host 恢复、TLS 分支、原配置健康轮、四份产品下载，以及 8 项 fixture/16 项 direct live guard 通过。平台 49 个容器的实际镜像/tag/imageID 已新采，核心 tag 0.1.5；不推断全部镜像的构建 commit。Mac 未重跑前一候选的五道模型题，完整 BOM 覆盖与无匹配夹带统计两项失败保留。Windows 新 SHA 的受影响验收、旧报告补正及最终哈希清单已完成并复核；npm 原生 BOM 结构题的一级 9 项与独立基准一致，二级及全量未验证；销售订单题的 40 条、状态、单号范围和字段口径等关键事实通过。desktop 未复跑两题，该补测不覆盖旧完整 BOM/库存题及 missing-object 负向题。自动续期/共享根因未知，不扩大插件所有权。主线 `aecbb7b` 的 [build-only CI 37637573530](https://github.com/openbkn-ai/bkn-dsh/actions/runs/37637573530) 已通过；原始 tgz SHA 与上述已接受候选完全相同，65/65 文件字节一致，沿用此前限定的验收范围。
 
 CLI 授权超时/取消的现有 UX 仍保留：未及时完成授权的请求可转为通用重试提示，重开面板重新核对 MCP 拒绝后可再次发起。此次只修明确 MCP 401 的入口路由，没有增加自动取消、超时恢复或 Token 管理。
+
+## 正式发布记录
+
+- 正式 tag：`v0.2.0-rc.2-openbkn.0.2.0-7`；源码 commit：`decdc601640798635824fdcf90d873f9f4e42df8`；[发布 CI 37646858011](https://github.com/openbkn-ai/bkn-dsh/actions/runs/37646858011) 两个 job 均成功，插件测试 319 pass / 1 skip / 0 fail，仓库及兼容工具 60/60。
+- npm 与 GitHub Release 的公开 tgz 字节相同：SHA-256 `306194238ffb2537038b103fa4f97b0fb7ac59d7cb77e031d22865b4adfd507d`，165185 bytes / 65 文件。正式 tag 构建的原始 tgz 仍为已接受候选 `fa168d8113e8dd43348ea4751c7e4d297049e2c1ddced9c586e6d3a1f3f0718c`，165804 bytes / 65 文件。
+- 与已接受候选逐文件比较：64 文件字节完全相同，`package.json` 仅键顺序/序列化变化，字段值相同；没有缺失、多余或其他差异。沿用此前限定的 Mac/Windows 验收范围，没有将未测项转为通过。
+- npm registry 的两份签名及 Sigstore 来源证明均通过密码学验证；来源绑定上述 commit、正式 tag、发布工作流与 CI run。公开 registry 与默认 npm 查询均确认 `latest`、`rc` 指向 -7；`latest` 在公开包核验通过、维护者完成二次验证后迁移。
+- 包内 README 保留候选构建时的未发布措辞，以保持已接受包内容；仓库安装说明已同步发布状态。[核验凭证](https://github.com/openbkn-ai/bkn-dsh/releases/download/v0.2.0-rc.2-openbkn.0.2.0-7/PUBLICATION-VERIFICATION.json)包含完整逐文件对照与来源验证结果。
