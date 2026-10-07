@@ -27,9 +27,15 @@ if ((Get-Item -LiteralPath $NativeDownload).Length -ne 215374) { throw 'Kit ZIP 
 if ((Get-FileHash -LiteralPath $NativeDownload -Algorithm SHA256).Hash -ne '917e821836c4aed64646065e8fe3c72be606782449ef580ba7a5d2f973cbf67e') { throw 'Kit ZIP SHA differs' }
 Expand-Archive -LiteralPath $NativeDownload -DestinationPath $NativeExtract
 $NativeKit = Join-Path $NativeExtract 'windows-kit'
+Set-Location -LiteralPath $NativeKit
+# HANDOFF section 0 deliberately derives NativeKit from the current directory.
 # First collect the new selected daily/protected-file before hashes.
 # Then read HANDOFF.md and run verify-kit with all streams captured (*>&1).
 ```
+
+**执行前提**：运行上面的 `Set-Location` 后，才粘贴包内 HANDOFF 第 0 节操作块；该块用当前目录定位 kit。单独从 Git checkout 执行时，同样先进入 `windows-kit` 目录。
+
+本轮重新核对了部署端 MCP 28 项工具及 input/output schema，但未重新采集各平台服务的镜像集合。旧 kit 的 [环境记录](../2026-10-06-release-7/fidelity-windows/candidate-manifest.json) 与 [契约记录](../../evidence/answer-fidelity-20261006/upstream-scope-refresh.json)仅作历史，不能当作本轮逐服务镜像核验；正式发布前该门禁仍须补齐。
 
 也可从远端取得固定 kit commit，在独立 checkout/worktree 读取该目录；不要重置你现有证据分支。ZIP 是原始交付字节，本地 checkout 则按 kit-files.json 检查全部文件身份。
 

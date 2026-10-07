@@ -50,5 +50,6 @@
   "liveGuardPassed": 16,
   "desktopProductChecksPassed": 7,
   "windowsCurrentCandidate": "not-run",
-  "publish": "not authorized"
+  "publish": "not authorized",
+  "platformServiceImageVerification": "not-recaptured for this candidate run; prior environment records are historical. Fresh deployed tools/list and schemas were checked; release image-set gate remains open."
 }

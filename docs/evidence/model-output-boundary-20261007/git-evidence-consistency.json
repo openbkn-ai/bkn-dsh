@@ -1,9 +1,16 @@
 {
-  "method": "Current staged Git blob compared to actual local bytes; evidence attributes disable newline conversion. This record excludes itself to avoid circular hashing.",
-  "checkedAt": "2026-10-07T03:03:26.537161+00:00",
-  "parentCommit": "76ecb7978a78e072f26615f8f9fce97a52b7b8c1",
+  "method": "Every file in this evidence directory compared to its current staged Git blob, plus the kit ZIP and candidate tgz. Evidence attributes disable newline conversion; only this ledger excludes itself to avoid circular hashing.",
+  "checkedAt": "2026-10-07T03:14:55.192377+00:00",
+  "parentCommit": "75fb5bacc679068e8987dd9754a0d6caceb092bd",
+  "evidenceDirectoryFilesExcludingSelf": 73,
+  "additionalDeliveryAssets": 2,
   "allByteEqual": true,
   "files": [
+    {
+      "path": "docs/evidence/model-output-boundary-20261007/.gitattributes",
+      "sha256": "705fd4d6451a31d36b3df7de96f83f30ac976c9b4a6d1e51671d8e2f33e2d0da",
+      "indexByteEqual": true
+    },
     {
       "path": "docs/evidence/model-output-boundary-20261007/README.md",
       "sha256": "b18990a4bf9b51f635791da6398e225c38a6af9dcc797cf5494a92e1b1e02253",
@@ -11,7 +18,7 @@
     },
     {
       "path": "docs/evidence/model-output-boundary-20261007/RESULTS.md",
-      "sha256": "796111f7b414ea5534dd0dd34de6b86276e76a821ca30be5f7f5057b03f7d290",
+      "sha256": "39e9e27d8cc8f09dbbc20d69ced78026021d30b3c5c368401346978d066946ac",
       "indexByteEqual": true
     },
     {
@@ -85,8 +92,13 @@
       "indexByteEqual": true
     },
     {
+      "path": "docs/evidence/model-output-boundary-20261007/collect-oracles.py",
+      "sha256": "82e04abb8b15f69e41974b18724857f12c60c6e51808eeb78b4c917c62b91eb2",
+      "indexByteEqual": true
+    },
+    {
       "path": "docs/evidence/model-output-boundary-20261007/current-acceptance.json",
-      "sha256": "0762e6261bb473b89e160f9756d12555702b37dd74f036b56f032b9df42807c1",
+      "sha256": "5085a726a7f19ff3770a15bacecacb3de91cda598f85422d337a9ea93aac18e8",
       "indexByteEqual": true
     },
     {
@@ -117,6 +129,16 @@
     {
       "path": "docs/evidence/model-output-boundary-20261007/local-pack.json",
       "sha256": "286be0f361b4e54564937e9040b12e1f4767133dae4ac47e58be4cb17e96c2ce",
+      "indexByteEqual": true
+    },
+    {
+      "path": "docs/evidence/model-output-boundary-20261007/local-package-check.txt",
+      "sha256": "7a897412e2a963c9bceefb1a5b6954717e418195725c115c6aaabad6af8ea8c7",
+      "indexByteEqual": true
+    },
+    {
+      "path": "docs/evidence/model-output-boundary-20261007/local-typecheck.txt",
+      "sha256": "e9bde1b9c430b1f263cf72baa9160a680b8c6a2046c94728f535c5a45341fd3b",
       "indexByteEqual": true
     },
     {

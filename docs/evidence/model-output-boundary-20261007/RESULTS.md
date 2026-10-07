@@ -18,7 +18,7 @@
 
 源码本地验证：typecheck/package:check/diff-check exit 0；插件 314（313 pass、0 fail、1 skip）；repo/Node eval 63/63、Python eval 11/11；官方 npm 核心原生输出探针 8/8。Node 最终显式固定 24.19.0，先前错误使用 Node 23 的结果已重跑并保留修正说明。CI 完成同工作流的测试、构建、打包审计。
 
-上游检查：官方平台 fresh tools/list 28 项，与旧目录的 input/output schema 无变化；DSH 支持基线仍为 0.2.0-rc.2，未因最新上游版本而擅自换 pin。详见 `upstream-contract-check.json`。
+上游检查：官方平台 fresh tools/list 28 项，与旧目录的 input/output schema 无变化；DSH 支持基线仍为 0.2.0-rc.2，未因最新上游版本而擅自换 pin。详见 `upstream-contract-check.json`。本轮未重新采集各平台服务的部署镜像集合；旧 kit 的 platformServices 与契约路径是历史记录，不能当作本轮逐服务镜像核验，正式发布前仍须补齐。
 
 ## Mac：实际加载与产品操作
 
@@ -64,6 +64,7 @@ BOM 构成题的 depth=5/full 已发布能力发生一次 `Request timed out`；
 
 - 新 CI 包的 Windows N0–N6 受影响复测，包含新 verifier/8 项 probe 的原生执行；旧 66 文件包的 A 批结果不接受新包。固定交接另见 `docs/handoff/2026-10-07-native-output/`。
 - 完整 BOM 问答覆盖仍未通过；无此物料题夹带无关非零统计，原负向标准也未通过。BOM 口径差异原因尚未证实。它们属于独立质量评测；本轮没有借插件裁判或重复平台算法来改成通过。若发布需要全量问答验收，仍需另处理平台能力/模型取数交付问题。
+- 本轮未重新采集各平台服务的部署镜像集合，发布门禁第 5 项仍开放；fresh tools/list 和版本端点不能替代逐服务镜像核验。
 - 新 SHA 没重跑全部其余 G6、Windows 真实登录/模型/live guard、真实受限账号；没有凭据的项目照实 not-run。旧证据按旧 SHA 保留，不自动移植通过状态。
 - 深层能力超时、平台 #2029、run_code 内部调用不受外层 kn_id guard、自动续期、混合网络真实 UI、历史客户启动根因及主动探测继续保持各自原有边界。本轮没有跨界实现。
 
