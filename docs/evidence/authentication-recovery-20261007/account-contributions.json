@@ -1,0 +1,459 @@
+{
+  "checkedAt": "2026-10-07T04:13:39.054142+00:00",
+  "repository": "openbkn-ai/bkn-dsh",
+  "authorFilter": "kalias",
+  "sourceCommit": "c91fe090e0aac2dc72a4ff1b3d221d72baa432ba",
+  "count": 75,
+  "commits": [
+    {
+      "sha": "c91fe090e0aac2dc72a4ff1b3d221d72baa432ba",
+      "subject": "fix: restore credential recovery in the OpenBKN panel (#76)",
+      "url": "https://github.com/openbkn-ai/bkn-dsh/commit/c91fe090e0aac2dc72a4ff1b3d221d72baa432ba",
+      "authorLogin": "kalias"
+    },
+    {
+      "sha": "27ca05486b09ab6ba9a0315ab310913f6e9b9dc3",
+      "subject": "docs: deliver native-output -7 candidate for Windows retest (#75)",
+      "url": "https://github.com/openbkn-ai/bkn-dsh/commit/27ca05486b09ab6ba9a0315ab310913f6e9b9dc3",
+      "authorLogin": "kalias"
+    },
+    {
+      "sha": "2813f3ad3e175d94ee747a796f638cc8d1f3e712",
+      "subject": "fix: restore native model output within plugin boundary (#74)",
+      "url": "https://github.com/openbkn-ai/bkn-dsh/commit/2813f3ad3e175d94ee747a796f638cc8d1f3e712",
+      "authorLogin": "kalias"
+    },
+    {
+      "sha": "870e26958bde734f64c5af046f9bab134e3512e1",
+      "subject": "docs: deliver accepted unified -7 candidate for Windows retest (#73)",
+      "url": "https://github.com/openbkn-ai/bkn-dsh/commit/870e26958bde734f64c5af046f9bab134e3512e1",
+      "authorLogin": "kalias"
+    },
+    {
+      "sha": "3414bdec3c956cc0d580aebd959ac6f3439bb352",
+      "subject": "fix: preserve scoped inventory absence and reservation semantics (#72)",
+      "url": "https://github.com/openbkn-ai/bkn-dsh/commit/3414bdec3c956cc0d580aebd959ac6f3439bb352",
+      "authorLogin": "kalias"
+    },
+    {
+      "sha": "3ac73ccd4f2d8bf359466f715040e53944f24fad",
+      "subject": "fix: repair missing BOM handoff columns before interaction finish (#71)",
+      "url": "https://github.com/openbkn-ai/bkn-dsh/commit/3ac73ccd4f2d8bf359466f715040e53944f24fad",
+      "authorLogin": "kalias"
+    },
+    {
+      "sha": "e1568ece07abdf4452cfb02513d75a45964e2796",
+      "subject": "fix: preserve explicit absent-stock rows in answer validation (#70)",
+      "url": "https://github.com/openbkn-ai/bkn-dsh/commit/e1568ece07abdf4452cfb02513d75a45964e2796",
+      "authorLogin": "kalias"
+    },
+    {
+      "sha": "2abd71d0ac4d1bc62575e6e2d58c9821aa637add",
+      "subject": "fix: validate OpenBKN final answers against observed tool data (#69)",
+      "url": "https://github.com/openbkn-ai/bkn-dsh/commit/2abd71d0ac4d1bc62575e6e2d58c9821aa637add",
+      "authorLogin": "kalias"
+    },
+    {
+      "sha": "001034b5e19cc00e5e260094fd7843b199e58942",
+      "subject": "chore: use English for PR and commit content (#66)",
+      "url": "https://github.com/openbkn-ai/bkn-dsh/commit/001034b5e19cc00e5e260094fd7843b199e58942",
+      "authorLogin": "kalias"
+    },
+    {
+      "sha": "9d7e8ca8c42e1cf92ec41b292ed4b39fea55736b",
+      "subject": "docs: bind unified -7 acceptance and Windows retest kit (#68)",
+      "url": "https://github.com/openbkn-ai/bkn-dsh/commit/9d7e8ca8c42e1cf92ec41b292ed4b39fea55736b",
+      "authorLogin": "kalias"
+    },
+    {
+      "sha": "7553cc13a17e80b87e4d8b2b22381ab8f05bc22d",
+      "subject": "docs: record rc4 publication and Windows installation handoff (#61)",
+      "url": "https://github.com/openbkn-ai/bkn-dsh/commit/7553cc13a17e80b87e4d8b2b22381ab8f05bc22d",
+      "authorLogin": "kalias"
+    },
+    {
+      "sha": "33094d0312e71bf3371a28bbfe4c7d3613661f7c",
+      "subject": "fix: unify diagnostics and supply-answer fixes for plugin -7 (#64)",
+      "url": "https://github.com/openbkn-ai/bkn-dsh/commit/33094d0312e71bf3371a28bbfe4c7d3613661f7c",
+      "authorLogin": "kalias"
+    },
+    {
+      "sha": "a134f5d573e11846bb6665d1c170510149d09d4d",
+      "subject": "Release 0.2.0-rc.2-openbkn.0.2.0-4: sign-in fixes; model-free guard probe (#60)",
+      "url": "https://github.com/openbkn-ai/bkn-dsh/commit/a134f5d573e11846bb6665d1c170510149d09d4d",
+      "authorLogin": "kalias"
+    },
+    {
+      "sha": "927364c665e7a4ed9a5d2237272cca1d683d4d95",
+      "subject": "docs: Windows verification of 0.2.0-rc.2-openbkn.0.2.0-3; deferred list; release-gate additions (#58)",
+      "url": "https://github.com/openbkn-ai/bkn-dsh/commit/927364c665e7a4ed9a5d2237272cca1d683d4d95",
+      "authorLogin": "kalias"
+    },
+    {
+      "sha": "df187221442ba57be73720fe210b59899760eec4",
+      "subject": "fix: accept the OpenBKN CLI's logged-out and unknown-expiry auth status (#57)",
+      "url": "https://github.com/openbkn-ai/bkn-dsh/commit/df187221442ba57be73720fe210b59899760eec4",
+      "authorLogin": "kalias"
+    },
+    {
+      "sha": "3ec6d0e2d25368fc19535f75020b6b698122595b",
+      "subject": "fix: read large provenance operation records; configurable OpenBKN tool-call timeout; release 0.2.0-rc.2-openbkn.0.2.0-3 (#56)",
+      "url": "https://github.com/openbkn-ai/bkn-dsh/commit/3ec6d0e2d25368fc19535f75020b6b698122595b",
+      "authorLogin": "kalias"
+    },
+    {
+      "sha": "08644145c808dc11aba95697d8d0cc7cb5c1e5e3",
+      "subject": "ci: cut a GitHub Release when a plugin version is published (#54)",
+      "url": "https://github.com/openbkn-ai/bkn-dsh/commit/08644145c808dc11aba95697d8d0cc7cb5c1e5e3",
+      "authorLogin": "kalias"
+    },
+    {
+      "sha": "856298cb0dd599cb10f4575c4aca073decaced78",
+      "subject": "fix: follow the OpenBKN 0.1.5 Context Loader contract (search_capabilities) (#55)",
+      "url": "https://github.com/openbkn-ai/bkn-dsh/commit/856298cb0dd599cb10f4575c4aca073decaced78",
+      "authorLogin": "kalias"
+    },
+    {
+      "sha": "948e3598d84599b32df1f528fc536a5292087f83",
+      "subject": "docs: close out the 0.2.0-rc.2-openbkn.0.2.0-1 release checklist (#53)",
+      "url": "https://github.com/openbkn-ai/bkn-dsh/commit/948e3598d84599b32df1f528fc536a5292087f83",
+      "authorLogin": "kalias"
+    },
+    {
+      "sha": "ff1df790b191094dc5b1412b08ef88e4790f1e79",
+      "subject": "fix: resolve the OpenBKN CLI through DSH on Windows; release follow-up docs (#52)",
+      "url": "https://github.com/openbkn-ai/bkn-dsh/commit/ff1df790b191094dc5b1412b08ef88e4790f1e79",
+      "authorLogin": "kalias"
+    },
+    {
+      "sha": "9a3a2863c377f69fac43c8a86709c3a7864fc09e",
+      "subject": "Release 0.2.0-rc.2-openbkn.0.2.0-1: patch-free install on stock DSH 0.2.0-rc.2 (#50)",
+      "url": "https://github.com/openbkn-ai/bkn-dsh/commit/9a3a2863c377f69fac43c8a86709c3a7864fc09e",
+      "authorLogin": "kalias"
+    },
+    {
+      "sha": "98391aeed237732c49eae25d0e183b13eff8f39c",
+      "subject": "docs: document official desktop install and date the 0.2.0-rc.2 release in the changelog (#49)",
+      "url": "https://github.com/openbkn-ai/bkn-dsh/commit/98391aeed237732c49eae25d0e183b13eff8f39c",
+      "authorLogin": "kalias"
+    },
+    {
+      "sha": "0fe6c170e8bf320cf79cbe19f474033a7c9030c4",
+      "subject": "feat: keep plugin state out of the DSH session log so stock hosts (official desktop) reload bound sessions (#48)",
+      "url": "https://github.com/openbkn-ai/bkn-dsh/commit/0fe6c170e8bf320cf79cbe19f474033a7c9030c4",
+      "authorLogin": "kalias"
+    },
+    {
+      "sha": "7008bcd969e76734e757122909ebffc485414ba7",
+      "subject": "ci: exclude the @deepseek-ai/dsh-* line from the release-age gate (#47)",
+      "url": "https://github.com/openbkn-ai/bkn-dsh/commit/7008bcd969e76734e757122909ebffc485414ba7",
+      "authorLogin": "kalias"
+    },
+    {
+      "sha": "5f8672a92139a61f6f7180d8e8f8cfb74aed024c",
+      "subject": "feat: retarget the plugin and compatible runtime to dsh-v0.2.0-rc.2 (#46)",
+      "url": "https://github.com/openbkn-ai/bkn-dsh/commit/5f8672a92139a61f6f7180d8e8f8cfb74aed024c",
+      "authorLogin": "kalias"
+    },
+    {
+      "sha": "7fdd474bb255ae245d3647a401be7258da2d79fc",
+      "subject": "test: poll instead of fixed sleeps in the badge retry tests (#45)",
+      "url": "https://github.com/openbkn-ai/bkn-dsh/commit/7fdd474bb255ae245d3647a401be7258da2d79fc",
+      "authorLogin": "kalias"
+    },
+    {
+      "sha": "ee062d3a295bf2cb06395bdce0413a99e105b4eb",
+      "subject": "fix: derive the 0003 lockfile from upstream's exact resolutions (#44)",
+      "url": "https://github.com/openbkn-ai/bkn-dsh/commit/ee062d3a295bf2cb06395bdce0413a99e105b4eb",
+      "authorLogin": "kalias"
+    },
+    {
+      "sha": "2b7f122576154c8c0ee1238c095e84fee186ccc2",
+      "subject": "chore: release 0.1.7-rc.2-openbkn.0.2.0 (#43)",
+      "url": "https://github.com/openbkn-ai/bkn-dsh/commit/2b7f122576154c8c0ee1238c095e84fee186ccc2",
+      "authorLogin": "kalias"
+    },
+    {
+      "sha": "9a5c8d9c9c9b4000dd007bd8c722785a0f4c9812",
+      "subject": "feat: version the plugin and bundle as <dsh>-openbkn.<openbkn> and restore the pairing docs to main (#42)",
+      "url": "https://github.com/openbkn-ai/bkn-dsh/commit/9a5c8d9c9c9b4000dd007bd8c722785a0f4c9812",
+      "authorLogin": "kalias"
+    },
+    {
+      "sha": "f4d4b9da48ce66d11ac7ede1250a416d3b38ff28",
+      "subject": "feat: retarget the plugin and compatible runtime to dsh-v0.1.7-rc.2 (#40)",
+      "url": "https://github.com/openbkn-ai/bkn-dsh/commit/f4d4b9da48ce66d11ac7ede1250a416d3b38ff28",
+      "authorLogin": "kalias"
+    },
+    {
+      "sha": "3f99235508b20b2587f4a5f9cfa3badecf769ff5",
+      "subject": "chore(release): 0.1.5-rc.2 (#39)",
+      "url": "https://github.com/openbkn-ai/bkn-dsh/commit/3f99235508b20b2587f4a5f9cfa3badecf769ff5",
+      "authorLogin": "kalias"
+    },
+    {
+      "sha": "ee6734ca76b9dd89db1d6903b0d2aa859300b684",
+      "subject": "fix: surface MCP handshake rejections as actionable credential hints (#38)",
+      "url": "https://github.com/openbkn-ai/bkn-dsh/commit/ee6734ca76b9dd89db1d6903b0d2aa859300b684",
+      "authorLogin": "kalias"
+    },
+    {
+      "sha": "9cb06d9ab41efaf846353c20c222ed2a483f3199",
+      "subject": "docs(eval): record the first real G6 eval batch (8/10) and hook the release checklist (#37)",
+      "url": "https://github.com/openbkn-ai/bkn-dsh/commit/9cb06d9ab41efaf846353c20c222ed2a483f3199",
+      "authorLogin": "kalias"
+    },
+    {
+      "sha": "3bc6930f0f98f0c990ce98721854e2b0af0638db",
+      "subject": "fix: scope the 404 gate and stream-cap the error-envelope reads (PR #35 follow-up) (#36)",
+      "url": "https://github.com/openbkn-ai/bkn-dsh/commit/3bc6930f0f98f0c990ce98721854e2b0af0638db",
+      "authorLogin": "kalias"
+    },
+    {
+      "sha": "63cfd086d2466883057ea619f347e99448977c2a",
+      "subject": "feat: rebuild per-turn provenance as a layered timeline with independent pane degradation (#35)",
+      "url": "https://github.com/openbkn-ai/bkn-dsh/commit/63cfd086d2466883057ea619f347e99448977c2a",
+      "authorLogin": "kalias"
+    },
+    {
+      "sha": "bd1886818c12eb2e9857cb1502b527a56cb5e944",
+      "subject": "test: unlink the symlink probe instead of rmSync (Node 24 EISDIR) (#34)",
+      "url": "https://github.com/openbkn-ai/bkn-dsh/commit/bd1886818c12eb2e9857cb1502b527a56cb5e944",
+      "authorLogin": "kalias"
+    },
+    {
+      "sha": "06ac6638edb476a5333123581618bff410edadc1",
+      "subject": "fix(interaction): land the probe TLS root-fix and CodeQL disposition record left out of the #31 squash merge (#32)",
+      "url": "https://github.com/openbkn-ai/bkn-dsh/commit/06ac6638edb476a5333123581618bff410edadc1",
+      "authorLogin": "kalias"
+    },
+    {
+      "sha": "10384ee2c5843e46951a001fe6a9ed3080a51050",
+      "subject": "feat(interaction): Interaction \u6210\u4e3a OpenBKN \u8bbf\u95ee\u8fb9\u754c\uff0c\u6d88\u9664\u7ed1\u5b9a\u4f1a\u8bdd\u7a7a Interaction \u566a\u58f0 (#31)",
+      "url": "https://github.com/openbkn-ai/bkn-dsh/commit/10384ee2c5843e46951a001fe6a9ed3080a51050",
+      "authorLogin": "kalias"
+    },
+    {
+      "sha": "a5928a01e392bc16345684cf0fe6c77a5952ae8f",
+      "subject": "Merge pull request #30 from kalias/chore/market-entry-tarball",
+      "url": "https://github.com/openbkn-ai/bkn-dsh/commit/a5928a01e392bc16345684cf0fe6c77a5952ae8f",
+      "authorLogin": "kalias"
+    },
+    {
+      "sha": "bea56d20324908d5463b9971d705f7f083397598",
+      "subject": "fix(market): \u6761\u76ee\u6539\u6307 monorepo \u5b50\u5305\uff0c\u7b26\u5408\u6536\u5f55\u65b9 monorepo \u89c4\u5219",
+      "url": "https://github.com/openbkn-ai/bkn-dsh/commit/bea56d20324908d5463b9971d705f7f083397598",
+      "authorLogin": "kalias"
+    },
+    {
+      "sha": "5b65b8cf822e8cebd667dca54eb209ca474a6200",
+      "subject": "chore(market): \u6761\u76ee\u8865 tarball \u76f4\u94fe\u5e76\u5237\u65b0\u6536\u5f55\u524d\u7f6e\u72b6\u6001",
+      "url": "https://github.com/openbkn-ai/bkn-dsh/commit/5b65b8cf822e8cebd667dca54eb209ca474a6200",
+      "authorLogin": "kalias"
+    },
+    {
+      "sha": "62c63efbeefe0029b293ce32198a37c71058827d",
+      "subject": "chore: upstream DSH tag watch and npm publish readiness",
+      "url": "https://github.com/openbkn-ai/bkn-dsh/commit/62c63efbeefe0029b293ce32198a37c71058827d",
+      "authorLogin": "kalias"
+    },
+    {
+      "sha": "fe9836b638e7d481ea0593aa4417c054dda4212c",
+      "subject": "feat(eval): minimal answer-accuracy evaluation set for supply_ontology_hand",
+      "url": "https://github.com/openbkn-ai/bkn-dsh/commit/fe9836b638e7d481ea0593aa4417c054dda4212c",
+      "authorLogin": "kalias"
+    },
+    {
+      "sha": "1d6e6363e1d492ef148b2e216846bfd7b2d923fe",
+      "subject": "fix(docs+ux): close the documentation gaps and surface swallowed bind errors",
+      "url": "https://github.com/openbkn-ai/bkn-dsh/commit/1d6e6363e1d492ef148b2e216846bfd7b2d923fe",
+      "authorLogin": "kalias"
+    },
+    {
+      "sha": "1269973e0c8c6a82e7340ea228d43e1dd2331963",
+      "subject": "docs: G2 stock-install experiment, deliverable verification, and plugin+patch install guide",
+      "url": "https://github.com/openbkn-ai/bkn-dsh/commit/1269973e0c8c6a82e7340ea228d43e1dd2331963",
+      "authorLogin": "kalias"
+    },
+    {
+      "sha": "500d0a73a53b9ea99379f1f7ab3b8e89f8f7731f",
+      "subject": "docs: record the round-9 response (outbound boundary hardening, guard reject verified online)",
+      "url": "https://github.com/openbkn-ai/bkn-dsh/commit/500d0a73a53b9ea99379f1f7ab3b8e89f8f7731f",
+      "authorLogin": "kalias"
+    },
+    {
+      "sha": "e142abd461e74e167fe3491e7f8effb9419369c4",
+      "subject": "fix: pass the smoke home through environment inheritance, not a cmd prefix",
+      "url": "https://github.com/openbkn-ai/bkn-dsh/commit/e142abd461e74e167fe3491e7f8effb9419369c4",
+      "authorLogin": "kalias"
+    },
+    {
+      "sha": "0ee6d9af899ce30ff3d3125a90f0021c75ba1131",
+      "subject": "fix: harden the plugin's outbound security boundary (round 9)",
+      "url": "https://github.com/openbkn-ai/bkn-dsh/commit/0ee6d9af899ce30ff3d3125a90f0021c75ba1131",
+      "authorLogin": "kalias"
+    },
+    {
+      "sha": "952d40445d73145c92de7f6b5f31a841366f5a11",
+      "subject": "docs: record the round-8 response (full bash gates, real .cmd smoke green on run 10)",
+      "url": "https://github.com/openbkn-ai/bkn-dsh/commit/952d40445d73145c92de7f6b5f31a841366f5a11",
+      "authorLogin": "kalias"
+    },
+    {
+      "sha": "1b8d8a38b9e4958b85b1db39ead2d0d94bc7cec0",
+      "subject": "fix: give cmd.exe a backslash bundle path in the win32 smoke",
+      "url": "https://github.com/openbkn-ai/bkn-dsh/commit/1b8d8a38b9e4958b85b1db39ead2d0d94bc7cec0",
+      "authorLogin": "kalias"
+    },
+    {
+      "sha": "b9836bdd481a581b9ec72c96fdf301ce7e057bb9",
+      "subject": "fix: keep git-bash from rewriting cmd.exe /c into a path in the win32 smoke",
+      "url": "https://github.com/openbkn-ai/bkn-dsh/commit/b9836bdd481a581b9ec72c96fdf301ce7e057bb9",
+      "authorLogin": "kalias"
+    },
+    {
+      "sha": "f26ebced4fe9397e8d78a76fd0289e6659dea49b",
+      "subject": "fix: expand workflow constants with GitHub expressions, not shell variables",
+      "url": "https://github.com/openbkn-ai/bkn-dsh/commit/f26ebced4fe9397e8d78a76fd0289e6659dea49b",
+      "authorLogin": "kalias"
+    },
+    {
+      "sha": "670b86d4f57ede1c5710d9c3b375a958845eaca9",
+      "subject": "fix: complete the false-green closure (every gate step bash, real .cmd smoke, workflow constants)",
+      "url": "https://github.com/openbkn-ai/bkn-dsh/commit/670b86d4f57ede1c5710d9c3b375a958845eaca9",
+      "authorLogin": "kalias"
+    },
+    {
+      "sha": "c492fafb1c5e389ef0c64c64af3cce4eed51dc17",
+      "subject": "docs: record the false-green fix verification runs (run6 truly green on both platforms)",
+      "url": "https://github.com/openbkn-ai/bkn-dsh/commit/c492fafb1c5e389ef0c64c64af3cce4eed51dc17",
+      "authorLogin": "kalias"
+    },
+    {
+      "sha": "5b1e7921429a2bd904da1f38af1c020d658bcef2",
+      "subject": "test: expect the normalized separator form from the pure mirror matcher",
+      "url": "https://github.com/openbkn-ai/bkn-dsh/commit/5b1e7921429a2bd904da1f38af1c020d658bcef2",
+      "authorLogin": "kalias"
+    },
+    {
+      "sha": "49307073d4372ada05d48e439bede1e1811c30e7",
+      "subject": "fix: close the CI false-green hole and the two real Windows test failures",
+      "url": "https://github.com/openbkn-ai/bkn-dsh/commit/49307073d4372ada05d48e439bede1e1811c30e7",
+      "authorLogin": "kalias"
+    },
+    {
+      "sha": "6e3ac654760ea5828c56e40a9a2475790719a54a",
+      "subject": "docs: record the online CI acceptance runs (four-run trail to green)",
+      "url": "https://github.com/openbkn-ai/bkn-dsh/commit/6e3ac654760ea5828c56e40a9a2475790719a54a",
+      "authorLogin": "kalias"
+    },
+    {
+      "sha": "4860bb9215085bc8537e2d26019a436c2f799604",
+      "subject": "ci: drop the darwin-x64 target",
+      "url": "https://github.com/openbkn-ai/bkn-dsh/commit/4860bb9215085bc8537e2d26019a436c2f799604",
+      "authorLogin": "kalias"
+    },
+    {
+      "sha": "47c03ab6d3c3d135ed874de4bc7cb2ab0a22c383",
+      "subject": "fix: win32 pnpm spawn via shell and case-insensitive mirror-root matching",
+      "url": "https://github.com/openbkn-ai/bkn-dsh/commit/47c03ab6d3c3d135ed874de4bc7cb2ab0a22c383",
+      "authorLogin": "kalias"
+    },
+    {
+      "sha": "f71c1d595376dda2b596cbe5ca7794e4b7e72311",
+      "subject": "fix: make the test and audit toolchain Windows-runnable (first CI round findings)",
+      "url": "https://github.com/openbkn-ai/bkn-dsh/commit/f71c1d595376dda2b596cbe5ca7794e4b7e72311",
+      "authorLogin": "kalias"
+    },
+    {
+      "sha": "1c527af053ece7c0caddffe78dcb08cb0f77f559",
+      "subject": "fix: fail-fast with context in the two build-script manifest parses (round 6)",
+      "url": "https://github.com/openbkn-ai/bkn-dsh/commit/1c527af053ece7c0caddffe78dcb08cb0f77f559",
+      "authorLogin": "kalias"
+    },
+    {
+      "sha": "282561f8fed95ab079a7ccca1c5f730606e84031",
+      "subject": "fix: round-5 follow-ups (remove an unnecessary cast, fail-closed manifest parsing, portability test hardening)",
+      "url": "https://github.com/openbkn-ai/bkn-dsh/commit/282561f8fed95ab079a7ccca1c5f730606e84031",
+      "authorLogin": "kalias"
+    },
+    {
+      "sha": "4272e2eabf26ce9ead0c81751b383660610a9300",
+      "subject": "fix: unify build-root path forms across scrub and detection (round 4)",
+      "url": "https://github.com/openbkn-ai/bkn-dsh/commit/4272e2eabf26ce9ead0c81751b383660610a9300",
+      "authorLogin": "kalias"
+    },
+    {
+      "sha": "19eefe0cdd6ba912e0ef954867fde97e4cef8000",
+      "subject": "fix: address the third review round (cross-platform tests, real launcher guard, link-form and Windows detection)",
+      "url": "https://github.com/openbkn-ai/bkn-dsh/commit/19eefe0cdd6ba912e0ef954867fde97e4cef8000",
+      "authorLogin": "kalias"
+    },
+    {
+      "sha": "bf5868cf0b48001c0255776aca044d76d0546199",
+      "subject": "fix: address the re-review (CI ordering, portability gaps, .bin regression, clean upstream branch)",
+      "url": "https://github.com/openbkn-ai/bkn-dsh/commit/bf5868cf0b48001c0255776aca044d76d0546199",
+      "authorLogin": "kalias"
+    },
+    {
+      "sha": "4ab36bdf415b8262ec2a252d81498937bad62294",
+      "subject": "fix: address the 2026-09-19 compat review (release blockers, portability, toolchain contracts)",
+      "url": "https://github.com/openbkn-ai/bkn-dsh/commit/4ab36bdf415b8262ec2a252d81498937bad62294",
+      "authorLogin": "kalias"
+    },
+    {
+      "sha": "5720a4f22557940cbdc70dc6822db1ffd9883053",
+      "subject": "chore: market-readiness metadata, screenshots and listing entry",
+      "url": "https://github.com/openbkn-ai/bkn-dsh/commit/5720a4f22557940cbdc70dc6822db1ffd9883053",
+      "authorLogin": "kalias"
+    },
+    {
+      "sha": "50f2d6d848e77e6a543b0fcfaf783145c3a2082f",
+      "subject": "docs: record enterprise provenance verification",
+      "url": "https://github.com/openbkn-ai/bkn-dsh/commit/50f2d6d848e77e6a543b0fcfaf783145c3a2082f",
+      "authorLogin": "kalias"
+    },
+    {
+      "sha": "28eea4cd2ee1cc0dc8d9846b14985e5a8989849f",
+      "subject": "fix: send the business-domain header on platform reads",
+      "url": "https://github.com/openbkn-ai/bkn-dsh/commit/28eea4cd2ee1cc0dc8d9846b14985e5a8989849f",
+      "authorLogin": "kalias"
+    },
+    {
+      "sha": "f82c4fd8b84ab1ea394f15a2c422401c53bd2406",
+      "subject": "chore: use License wording in the provenance license hint",
+      "url": "https://github.com/openbkn-ai/bkn-dsh/commit/f82c4fd8b84ab1ea394f15a2c422401c53bd2406",
+      "authorLogin": "kalias"
+    },
+    {
+      "sha": "f3a8f174ecf5505551b475f47233ff22f9ab13c4",
+      "subject": "chore: trim the provenance license hint copy",
+      "url": "https://github.com/openbkn-ai/bkn-dsh/commit/f3a8f174ecf5505551b475f47233ff22f9ab13c4",
+      "authorLogin": "kalias"
+    },
+    {
+      "sha": "e5e6988abde2836190badb447640a2b58510d33d",
+      "subject": "test: cover the 401 permission_denied license gate classification",
+      "url": "https://github.com/openbkn-ai/bkn-dsh/commit/e5e6988abde2836190badb447640a2b58510d33d",
+      "authorLogin": "kalias"
+    },
+    {
+      "sha": "574f4d2f3bc23e00c6110a9d79fee9f068dd0c5b",
+      "subject": "fix: map license-gated provenance reads to an enterprise hint (#22)",
+      "url": "https://github.com/openbkn-ai/bkn-dsh/commit/574f4d2f3bc23e00c6110a9d79fee9f068dd0c5b",
+      "authorLogin": "kalias"
+    },
+    {
+      "sha": "00d5942572be38f9362404788109d18747097c32",
+      "subject": "feat(compat): restore the write side of ignorable plugin session events",
+      "url": "https://github.com/openbkn-ai/bkn-dsh/commit/00d5942572be38f9362404788109d18747097c32",
+      "authorLogin": "kalias"
+    },
+    {
+      "sha": "6a5311eb7c2a1503ca856b5e1bcd21ea9220ae5f",
+      "subject": "feat: target dsh-v0.1.6-alpha.2 with rebuilt compatibility series",
+      "url": "https://github.com/openbkn-ai/bkn-dsh/commit/6a5311eb7c2a1503ca856b5e1bcd21ea9220ae5f",
+      "authorLogin": "kalias"
+    }
+  ]
+}

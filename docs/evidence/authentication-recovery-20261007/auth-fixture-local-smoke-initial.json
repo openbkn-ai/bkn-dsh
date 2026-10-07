@@ -1,0 +1,47 @@
+{
+  "scope": "Controlled fixture helper only; macOS Node24; no real CLI login or native PowerShell proof",
+  "pathsContainSpaces": true,
+  "events": [
+    {
+      "args": [
+        "auth",
+        "token"
+      ],
+      "exitCode": 0,
+      "faultFlagExists": true
+    },
+    {
+      "args": [
+        "auth",
+        "login",
+        "https://platform.example"
+      ],
+      "exitCode": 1,
+      "faultFlagExists": true
+    },
+    {
+      "args": [
+        "auth",
+        "login",
+        "https://platform.example"
+      ],
+      "exitCode": 0,
+      "faultFlagExists": false
+    },
+    {
+      "args": [
+        "auth",
+        "token"
+      ],
+      "exitCode": 0,
+      "faultFlagExists": false
+    },
+    {
+      "args": [
+        "other"
+      ],
+      "exitCode": 2,
+      "faultFlagExists": false
+    }
+  ]
+}

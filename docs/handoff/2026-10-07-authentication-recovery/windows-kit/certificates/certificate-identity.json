@@ -1,0 +1,12 @@
+{
+  "purpose": "public self-signed server certificate for the 192.168.50.28 test platform only",
+  "path": "certificates/openbkn-dev-ca.pem",
+  "pemFileSha256": "89e53b4e7a09305c01c37513a9bdda63698735a33a0df71f725875ec47180453",
+  "certificateDerSha256": "44D1ABA439179FFCBEDDB6405A4848BEFE59C921A9A14AE134012A764CAA17F7",
+  "subject": "CN=192.168.50.28",
+  "issuer": "CN=192.168.50.28",
+  "notBefore": "2026-09-22T17:39:47Z",
+  "notAfter": "2028-12-25T17:39:47Z",
+  "privateKeyIncluded": false,
+  "trustScope": "NODE_EXTRA_CA_CERTS in this test shell and its child processes; no OS trust-store changes"
+}

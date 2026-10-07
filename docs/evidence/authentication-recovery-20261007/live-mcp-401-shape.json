@@ -1,0 +1,16 @@
+{
+  "capturedAt": "2026-10-07T04:00:45.191Z",
+  "platform": "https://192.168.50.28",
+  "officialDsh": "0.2.0-rc.2",
+  "input": "public invalid credential; authorized store untouched",
+  "errorShape": {
+    "name": "SdkHttpError",
+    "code": "CLIENT_HTTP_AUTHENTICATION",
+    "message": "Version negotiation failed: the server requires authorization (HTTP 401)",
+    "httpStatus": 401,
+    "hasCause": false,
+    "hasDataCause": false,
+    "cause": null
+  },
+  "evidence": "Live SDK handshake using the SDK bundled with official DSH; safe error codes/paths only; not Desktop UI acceptance"
+}

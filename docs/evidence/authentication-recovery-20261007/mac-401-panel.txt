@@ -1,0 +1,267 @@
+Window: "查询物料BOM清单及库存情况 — DeepSeek Harness", App: DeepSeek Harness.
+0 standard window 查询物料BOM清单及库存情况 — DeepSeek Harness, Secondary Actions: Raise
+	1 container 查询物料BOM清单及库存情况 — DeepSeek Harness
+		2 container
+			3 HTML content 查询物料BOM清单及库存情况 — DeepSeek Harness, URL: dsh-app://app/
+				4 container
+					5 button 收起侧边栏
+					6 button 新建会话
+					7 container 全局面板
+						8 button 插件
+					9 text 工作区
+					10 button 搜索会话
+					11 text field (settable) 搜索会话名称
+					12 button 视图选项
+					13 button 添加工作区
+					14 outline 会话
+						15 container
+							16 row workspace-supply
+								17 text workspace-supply
+							18 row (selected) 查询物料BOM清单及库存情况 1小时
+								19 text 查询物料BOM清单及库存情况 1小时
+							20 row 物料 999-999999 库存订单查询 1小时
+								21 text 物料 999-999999 库存订单查询 1小时
+							22 row 382-000005 标准交期查询 1小时
+								23 text 382-000005 标准交期查询 1小时
+							24 row 查询销售订单382-000005明细 1小时
+								25 text 查询销售订单382-000005明细 1小时
+							26 row 查询 BOM 构成详情 1小时
+								27 text 查询 BOM 构成详情 1小时
+							28 button 展开其余 52 个会话
+						29 row 默认工作区
+							30 text 默认工作区
+					31 button OpenBKN business knowledge networks
+					32 pop up button 账号菜单
+					33 container
+						34 container 会话层级
+							35 text 查询物料BOM清单及库存情况
+						36 text 标准模式
+						37 text 供应链本体知识网络-手工版
+						38 button 用 访达 打开
+						39 pop up button 更多打开方式
+						40 pop up button 更多操作
+						41 button 打开右侧边栏
+						42 tab group
+							43 tab (selected) 对话, Value: 1
+							44 tab (settable, integer) 轨迹, Value: 0
+					45 container
+						46 container
+							47 text 查询 382-000005 的 BOM 清单，每个物料的使用量，以及每个物料的库存情况 10:48
+							48 button 复制
+							49 text 已完成
+							50 button 已完成，用时 1分6秒
+								51 text 已完成，用时 
+								52 text 1
+								53 text 分
+								54 text 6
+								55 text 秒
+							56 heading 382-000005（北斗导航农机驾驶仪）BOM 清单 + 单耗 + 库存, Value: 2
+								57 text 382-000005（北斗导航农机驾驶仪）BOM 清单 + 单耗 + 库存
+							58 text 来源：本知识网络已发布函数「BOM清单」（数据集 
+							59 text bom
+							60 text ）与「子料分层库存」（数据集 
+							61 text bom
+							62 text  + 
+							63 text inventory
+							64 text ）。BOM 版本 2026-08-05，口径 
+							65 text main_only
+							66 text （主料，不含替代料行）。
+							67 text 一级 BOM 共 9 项，单耗均为 1；生产可用库存 7 项有货、2 项为 0。
+							68 table
+								69 row
+									70 column header
+										71 text #
+									72 column header
+										73 text 物料编码
+									74 column header
+										75 text 物料名称
+									76 column header
+										77 text 单耗
+									78 column header
+										79 text 生产可用库存
+									80 column header
+										81 text 全仓可用库存
+								82 row
+									83 cell
+										84 text 1
+									85 cell
+										86 text 791-000013
+									87 cell
+										88 text YN406预组装包(拖拉机)
+									89 cell
+										90 text 1
+									91 cell
+										92 text 1000
+									93 cell
+										94 text 1000
+								95 row
+									96 cell
+										97 text 2
+									98 cell
+										99 text 606-000989
+									100 cell
+										101 text YN406 包装外箱_V2
+									102 cell
+										103 text 1
+									104 cell
+										105 text 344
+									106 cell
+										107 text 344
+								108 row
+									109 cell
+										110 text 3
+									111 cell
+										112 text 606-000990
+									113 cell
+										114 text YN406 珍珠棉内托_V2
+									115 cell
+										116 text 1
+									117 cell
+										118 text 400
+									119 cell
+										120 text 400
+								121 row
+									122 cell
+										123 text 4
+									124 cell
+										125 text 528-000036
+									126 cell
+										127 text YS221A接收机组件_国内
+									128 cell
+										129 text 1
+									130 cell
+										131 text 34
+									132 cell
+										133 text 51
+								134 row
+									135 cell
+										136 text 5
+									137 cell
+										138 text 791-000007
+									139 cell
+										140 text YN406B方向盘组件（拖拉机）
+									141 cell
+										142 text 1
+									143 cell
+										144 text 0
+									145 cell
+										146 text 0
+								147 row
+									148 cell
+										149 text 6
+									150 cell
+										151 text 994-000550
+									152 cell
+										153 text 406电源+电机+接收机连接线
+									154 cell
+										155 text 1
+									156 cell
+										157 text 1875
+									158 cell
+										159 text 1925
+								160 row
+									161 cell
+										162 text 7
+									163 cell
+										164 text 468-000493
+									165 cell
+										166 text YN406说明书（中文）
+									167 cell
+										168 text 1
+									169 cell
+										170 text 1867
+									171 cell
+										172 text 1887
+								173 row
+									174 cell
+										175 text 8
+									176 cell
+										177 text 468-000530
+									178 cell
+										179 text 导航车贴(60*15cm)
+									180 cell
+										181 text 1
+									182 cell
+										183 text 1500
+									184 cell
+										185 text 1501
+								186 row
+									187 cell
+										188 text 9
+									189 cell
+										190 text 791-000015
+									191 cell
+										192 text YN403显示终端整机_预装组件_拖拉机
+									193 cell
+										194 text 1
+									195 cell
+										196 text 0
+									197 cell
+										198 text 0
+							199 text 口径与说明：
+							200 content list
+								201 container
+									202 AXListMarker • 
+									203 text 单耗 取 BOM 行的  standard_usage ，9 行均为 1（分子/分母 = 1/1，变动损耗率 0）， alt_priority  均为 0、无替代组。
+								204 container
+									205 AXListMarker • 
+									206 text 生产可用库存 ：函数默认仓范围  production_available ，即 7 个预设有效仓（苏州半成品仓、苏州成品仓、苏州电子原料仓、苏州无人机原料仓、苏州装配原料仓、乌鲁木齐成品仓、哈尔滨成品仓）。
+								207 container
+									208 AXListMarker • 
+									209 text 全仓可用库存 ： warehouse_scope=all ，不限仓库。两者差额全部来自非生产有效仓——528-000036 差 17（借用仓 16 + 苏州待处理仓 1）；994-000550 差 50（苏州不良品仓 38 + 借用仓 9 + 苏州备件仓 2 + 客退返修仓 1）；468-000493 差 20（借用仓）；468-000530 差 1（苏州不良品仓）。
+								210 container
+									211 AXListMarker • 
+									212 text 9 项的预留库存均为 0（函数注明「reserved 仅展示，P0 不扣减」）。
+								213 container
+									214 AXListMarker • 
+									215 text 791-000007、791-000015 在库存表内无任何记录，两种口径下可用量都是 0。
+							216 text BOM 整体结构（同一产品、同一版本）：最大层级 5 层，含根行共 507 行，去重子料 272 个。上表是 382-000005 的
+							217 text 一级 BOM 明细
+							218 text ；若要展开到 2–5 层子料及其库存，我可以按 
+							219 text depth
+							220 text  继续往前取。
+							221 button 复制
+							222 toggle button Description: 好的回答, Value: 0
+							223 toggle button Description: 有问题的回答, Value: 0
+							224 button 查看业务溯源, Help: View OpenBKN provenance for this answer
+							225 button 在新对话中分支
+							226 pop up button 用量 776K tok
+							227 text 10:49
+						228 container
+							229 text entry area (settable) 发消息或创建任务, / 调用指令, @ 文件或对话
+							230 pop up button 添加文件或调用指令
+							231 button 访问模式，当前：工作区内修改
+							232 pop up button Description: 选择模型，当前 DeepSeek-V41-Flash，推理等级 High, Help: DeepSeek-V41-Flash · High
+							233 button (disabled) 发送消息
+							234 pop up button 1 轮 11 步 · 274 tok/s
+								235 text 1 轮 11 步
+								236 text 274 tok/s
+							237 pop up button 776K tok · 缓存命中 96%
+								238 text 776K tok
+								239 text 缓存命中 96%
+							240 pop up button 上下文已用 8%
+					241 container OpenBKN business knowledge networks
+						242 container
+							243 text OPENBKN
+							244 heading 业务知识网络, Value: 2
+								245 text 业务知识网络
+							246 button 诊断
+							247 button Close
+						248 text 使用本机 OpenBKN CLI 登录。登录完成后，插件会在 Host 内同步凭据、连接 Context Loader MCP，并加载你有权限访问的业务知识网络。
+						249 container
+							250 text 平台地址： https://192.168.50.28
+						251 text Context Loader MCP 拒绝了当前凭据（HTTP 401）。请使用 OpenBKN CLI 重新登录并同步，或更新具有平台访问权限的 Token。
+						252 button 使用 OpenBKN CLI 登录并同步
+						253 disclosure triangle 手动输入 Token（兼容无 CLI 部署）
+							254 text 手动输入 Token（兼容无 CLI 部署）
+						255 button 刷新状态
+	256 close button
+	257 full screen button Help: this button also has an action to zoom the window, Secondary Actions: zoom the window
+	258 minimize button
+259 menu bar
+	260 DeepSeek Harness
+	261 文件
+	262 Edit
+	263 Window
+
+The focused UI element is 31 button OpenBKN business knowledge networks

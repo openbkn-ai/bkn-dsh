@@ -1,0 +1,42 @@
+{
+  "checkedAt": "2026-10-07T04:33:47.525885+00:00",
+  "phase": "normal",
+  "launchPid": 22448,
+  "sameMainIdentity": true,
+  "processes": [
+    {
+      "pid": 22448,
+      "parent": 1,
+      "executable": "/Applications/DeepSeek Harness.app/Contents/MacOS/DeepSeek Harness",
+      "start": "Wed Oct  7 12:31:48 2026"
+    },
+    {
+      "pid": 22473,
+      "parent": 22448,
+      "executable": "/Applications/DeepSeek Harness.app/Contents/Frameworks/DeepSeek Harness Helper.app/Contents/MacOS/DeepSeek Harness Helper",
+      "start": "Wed Oct  7 12:31:48 2026"
+    },
+    {
+      "pid": 22474,
+      "parent": 22448,
+      "executable": "/Applications/DeepSeek Harness.app/Contents/Frameworks/DeepSeek Harness Helper.app/Contents/MacOS/DeepSeek Harness Helper",
+      "start": "Wed Oct  7 12:31:48 2026"
+    },
+    {
+      "pid": 22480,
+      "parent": 22448,
+      "executable": "/Applications/DeepSeek Harness.app/Contents/Frameworks/DeepSeek Harness Helper (Renderer).app/Contents/MacOS/DeepSeek Harness Helper (Renderer)",
+      "start": "Wed Oct  7 12:31:48 2026"
+    },
+    {
+      "pid": 22830,
+      "parent": 22448,
+      "executable": "/Applications/DeepSeek Harness.app/Contents/MacOS/DeepSeek Harness",
+      "start": "Wed Oct  7 12:31:49 2026"
+    }
+  ],
+  "listenerNativeStdout": "COMMAND     PID   USER   FD   TYPE             DEVICE SIZE/OFF NODE NAME\nDeepSeek  22830 kalias   19u  IPv4 0x9fdb9966ab5e5422      0t0  TCP 127.0.0.1:19387 (LISTEN)\n",
+  "listenerExitCode": 0,
+  "expectedDshHome": "/private/var/folders/9r/1zks6bqd7f3dtwybvxsksbc40000gn/T/openbkn-diag-ui-h76__jwb/desktop-home",
+  "inspectorUsed": false
+}

@@ -1,0 +1,39 @@
+{
+  "checkedAt": "2026-10-07T04:40:15.270818+00:00",
+  "method": "git show :<path> vs product evidence copy and recorded original download SHA; raw bytes, no newline normalization",
+  "verifiedReports": 4,
+  "entries": [
+    {
+      "path": "docs/evidence/authentication-recovery-20261007/desktop-product-17e1ce66.json",
+      "reportId": "17e1ce66",
+      "sha256": "d03cce9deae3e6379a09c9a13d369bf7bde920ad00800d3d2805a2db9b096626",
+      "sizeBytes": 2440,
+      "stagedGitBlobOid": "a1b870d1f6e146882872a1dc2db59f8b9107509c",
+      "byteIdentical": true
+    },
+    {
+      "path": "docs/evidence/authentication-recovery-20261007/desktop-product-37de9124.json",
+      "reportId": "37de9124",
+      "sha256": "fd32877787714b8af1962ce597905683c69e43fd3c2cfaa3c05e8b60571fe427",
+      "sizeBytes": 2140,
+      "stagedGitBlobOid": "7c990f76508f249c2e7c5008d39ce23d0995b4d2",
+      "byteIdentical": true
+    },
+    {
+      "path": "docs/evidence/authentication-recovery-20261007/desktop-product-7a116535.json",
+      "reportId": "7a116535",
+      "sha256": "df8c51987739c15ba0bd98dbca3891a603494c13e8e46c43c7488e71b37ded9d",
+      "sizeBytes": 2589,
+      "stagedGitBlobOid": "8818edd8bdaee707825f01a2b31f3484d0d8d8e3",
+      "byteIdentical": true
+    },
+    {
+      "path": "docs/evidence/authentication-recovery-20261007/desktop-product-d867ec03.json",
+      "reportId": "d867ec03",
+      "sha256": "d70de83cdcd4071ca2fe3bc080dc7a0e283cf8a2495e7c79ed603e4c35d49da1",
+      "sizeBytes": 2170,
+      "stagedGitBlobOid": "2a4586defa0f5e22b504b2b6b6d0234f04fb0e4e",
+      "byteIdentical": true
+    }
+  ]
+}

@@ -1,0 +1,788 @@
+{
+  "checkedAt": "2026-10-07T04:07:12.356833+00:00",
+  "context": "kind-bkn-dev",
+  "platform": "https://192.168.50.28",
+  "evidence": "Live Kubernetes declared and runtime image identities; no pod env/secret/config exported",
+  "containers": [
+    {
+      "namespace": "ingress-nginx",
+      "pod": "ingress-nginx-controller-58ddd9bb9c-7zbst",
+      "container": "controller",
+      "declaredImage": "registry.k8s.io/ingress-nginx/controller:v1.15.1@sha256:594ceea76b01c592858f803f9ff4d2cb40542cae2060410b2c95f75907d659e1",
+      "runtimeImage": "registry.k8s.io/ingress-nginx/controller:v1.15.1",
+      "imageID": "docker.io/library/import-2026-09-22@sha256:6209e8dbbd7d0344d740a2978e4b9987f74ebc85472320ad83d1ba08b9a74e04",
+      "ready": true,
+      "phase": "Running",
+      "state": {
+        "running": {
+          "startedAt": "2026-09-23T13:46:01Z"
+        }
+      }
+    },
+    {
+      "namespace": "kube-system",
+      "pod": "coredns-559f6c778d-p5n9r",
+      "container": "coredns",
+      "declaredImage": "registry.k8s.io/coredns/coredns:v1.14.6",
+      "runtimeImage": "registry.k8s.io/coredns/coredns:v1.14.6",
+      "imageID": "sha256:fbccbf70a429fb9ce1cdb13a40ed96b16272ef763dafe050b2c0d121dd29811b",
+      "ready": true,
+      "phase": "Running",
+      "state": {
+        "running": {
+          "startedAt": "2026-09-22T16:34:18Z"
+        }
+      }
+    },
+    {
+      "namespace": "kube-system",
+      "pod": "coredns-559f6c778d-xmc8m",
+      "container": "coredns",
+      "declaredImage": "registry.k8s.io/coredns/coredns:v1.14.6",
+      "runtimeImage": "registry.k8s.io/coredns/coredns:v1.14.6",
+      "imageID": "sha256:fbccbf70a429fb9ce1cdb13a40ed96b16272ef763dafe050b2c0d121dd29811b",
+      "ready": true,
+      "phase": "Running",
+      "state": {
+        "running": {
+          "startedAt": "2026-09-22T16:34:18Z"
+        }
+      }
+    },
+    {
+      "namespace": "kube-system",
+      "pod": "etcd-bkn-dev-control-plane",
+      "container": "etcd",
+      "declaredImage": "registry.k8s.io/etcd:3.7.0-0",
+      "runtimeImage": "registry.k8s.io/etcd:3.7.0-0",
+      "imageID": "sha256:c2e426bbd1cd63b4d1cbdca2eba371a0a2e64b6934dcc48c51a62d488fe64fe8",
+      "ready": true,
+      "phase": "Running",
+      "state": {
+        "running": {
+          "startedAt": "2026-09-22T16:33:55Z"
+        }
+      }
+    },
+    {
+      "namespace": "kube-system",
+      "pod": "kindnet-ckgm6",
+      "container": "kindnet-cni",
+      "declaredImage": "docker.io/kindest/kindnetd:v20260820-69b56db7",
+      "runtimeImage": "docker.io/kindest/kindnetd:v20260820-69b56db7",
+      "imageID": "sha256:8e13ccc0aaa682502a49e5f98b88acf75fbf5f724875058b3e7a78b1f38a11e7",
+      "ready": true,
+      "phase": "Running",
+      "state": {
+        "running": {
+          "startedAt": "2026-09-22T16:34:07Z"
+        }
+      }
+    },
+    {
+      "namespace": "kube-system",
+      "pod": "kube-apiserver-bkn-dev-control-plane",
+      "container": "kube-apiserver",
+      "declaredImage": "registry.k8s.io/kube-apiserver:v1.37.0",
+      "runtimeImage": "registry.k8s.io/kube-apiserver-arm64:v1.37.0",
+      "imageID": "docker.io/library/import-2026-08-26@sha256:4fbbef5581e6ed60b96426e3786371b57da07f66e350b4ff2b0077413c2b0444",
+      "ready": true,
+      "phase": "Running",
+      "state": {
+        "running": {
+          "startedAt": "2026-09-22T16:33:55Z"
+        }
+      }
+    },
+    {
+      "namespace": "kube-system",
+      "pod": "kube-controller-manager-bkn-dev-control-plane",
+      "container": "kube-controller-manager",
+      "declaredImage": "registry.k8s.io/kube-controller-manager:v1.37.0",
+      "runtimeImage": "registry.k8s.io/kube-controller-manager-arm64:v1.37.0",
+      "imageID": "docker.io/library/import-2026-08-26@sha256:dda35f6553455c1dde75aebfbb20759d24b7de776b884eb06415f242f276200c",
+      "ready": true,
+      "phase": "Running",
+      "state": {
+        "running": {
+          "startedAt": "2026-09-30T05:40:14Z"
+        }
+      }
+    },
+    {
+      "namespace": "kube-system",
+      "pod": "kube-proxy-8lcgr",
+      "container": "kube-proxy",
+      "declaredImage": "registry.k8s.io/kube-proxy:v1.37.0",
+      "runtimeImage": "registry.k8s.io/kube-proxy-arm64:v1.37.0",
+      "imageID": "docker.io/library/import-2026-08-26@sha256:d5e740cce95911da5590b633aae2f7f7e3370ec9d212d4dbbbf3bf19fa07551f",
+      "ready": true,
+      "phase": "Running",
+      "state": {
+        "running": {
+          "startedAt": "2026-09-22T16:34:07Z"
+        }
+      }
+    },
+    {
+      "namespace": "kube-system",
+      "pod": "kube-scheduler-bkn-dev-control-plane",
+      "container": "kube-scheduler",
+      "declaredImage": "registry.k8s.io/kube-scheduler:v1.37.0",
+      "runtimeImage": "registry.k8s.io/kube-scheduler-arm64:v1.37.0",
+      "imageID": "docker.io/library/import-2026-08-26@sha256:2aa78b45454b3df79d15bf6a57b4f9871f11ce16c8b645109ba2310076d228dd",
+      "ready": true,
+      "phase": "Running",
+      "state": {
+        "running": {
+          "startedAt": "2026-09-30T05:40:14Z"
+        }
+      }
+    },
+    {
+      "namespace": "local-path-storage",
+      "pod": "local-path-provisioner-75f7fc7dc5-28smc",
+      "container": "local-path-provisioner",
+      "declaredImage": "docker.io/kindest/local-path-provisioner:v20260820-69b56db7",
+      "runtimeImage": "docker.io/kindest/local-path-provisioner:v20260820-69b56db7",
+      "imageID": "sha256:0771a8a05619f4bb6f4c8484f942f509b21a04ebe56ee26d17a3006e250bfd46",
+      "ready": true,
+      "phase": "Running",
+      "state": {
+        "running": {
+          "startedAt": "2026-09-22T16:34:18Z"
+        }
+      }
+    },
+    {
+      "namespace": "openbkn",
+      "pod": "agent-observability-58898697f6-xmlxq",
+      "container": "agent-observability",
+      "declaredImage": "swr.cn-east-3.myhuaweicloud.com/openbkn-ai-ee/agent-observability-ee:0.1.5",
+      "runtimeImage": "swr.cn-east-3.myhuaweicloud.com/openbkn-ai-ee/agent-observability-ee:0.1.5",
+      "imageID": "swr.cn-east-3.myhuaweicloud.com/openbkn-ai-ee/agent-observability-ee@sha256:590ee9f66b5de24528c0509791a66a247ed5178054398db59ee33cef8c658644",
+      "ready": true,
+      "phase": "Running",
+      "state": {
+        "running": {
+          "startedAt": "2026-10-01T09:56:45Z"
+        }
+      }
+    },
+    {
+      "namespace": "openbkn",
+      "pod": "agent-operator-integration-574779c69f-nhbnw",
+      "container": "agent-operator-integration",
+      "declaredImage": "swr.cn-east-3.myhuaweicloud.com/openbkn-ai/agent-operator-integration:0.1.5",
+      "runtimeImage": "swr.cn-east-3.myhuaweicloud.com/openbkn-ai/agent-operator-integration:0.1.5",
+      "imageID": "swr.cn-east-3.myhuaweicloud.com/openbkn-ai/agent-operator-integration@sha256:9f001e8f65696885795db853d4a1f61b2adc869080edfe0b4237caa73c421c9c",
+      "ready": true,
+      "phase": "Running",
+      "state": {
+        "running": {
+          "startedAt": "2026-10-03T18:19:58Z"
+        }
+      }
+    },
+    {
+      "namespace": "openbkn",
+      "pod": "agent-retrieval-c45b455bf-s62fb",
+      "container": "agent-retrieval",
+      "declaredImage": "swr.cn-east-3.myhuaweicloud.com/openbkn-ai-ee/agent-retrieval-ee:0.1.5",
+      "runtimeImage": "swr.cn-east-3.myhuaweicloud.com/openbkn-ai-ee/agent-retrieval-ee:0.1.5",
+      "imageID": "swr.cn-east-3.myhuaweicloud.com/openbkn-ai-ee/agent-retrieval-ee@sha256:3c164e13b382fe4f8f0bd34af9d93da2d1762347d38f6e321c92f8ed97e5df22",
+      "ready": true,
+      "phase": "Running",
+      "state": {
+        "running": {
+          "startedAt": "2026-10-03T18:00:58Z"
+        }
+      }
+    },
+    {
+      "namespace": "openbkn",
+      "pod": "bkn-agent-6c88c5d8bb-gkwpd",
+      "container": "bkn-agent",
+      "declaredImage": "swr.cn-east-3.myhuaweicloud.com/openbkn-ai/bkn-agent:0.1.5",
+      "runtimeImage": "swr.cn-east-3.myhuaweicloud.com/openbkn-ai/bkn-agent:0.1.5",
+      "imageID": "swr.cn-east-3.myhuaweicloud.com/openbkn-ai/bkn-agent@sha256:3fa5d8ec843b1d47c8c5ff02bc84392fce38f53388264c6149bde8cdee814f9a",
+      "ready": true,
+      "phase": "Running",
+      "state": {
+        "running": {
+          "startedAt": "2026-10-01T09:48:43Z"
+        }
+      }
+    },
+    {
+      "namespace": "openbkn",
+      "pod": "bkn-backend-7877cdc679-r6vct",
+      "container": "bkn-backend",
+      "declaredImage": "swr.cn-east-3.myhuaweicloud.com/openbkn-ai/bkn-backend:0.1.5",
+      "runtimeImage": "swr.cn-east-3.myhuaweicloud.com/openbkn-ai/bkn-backend:0.1.5",
+      "imageID": "swr.cn-east-3.myhuaweicloud.com/openbkn-ai/bkn-backend@sha256:a24f289a9f8bb54fb4c1bb19544b7be8f502b7ab3fb202408cab8616ee37c1e6",
+      "ready": true,
+      "phase": "Running",
+      "state": {
+        "running": {
+          "startedAt": "2026-10-01T10:01:37Z"
+        }
+      }
+    },
+    {
+      "namespace": "openbkn",
+      "pod": "bkn-backend-trace-outbox-cleanup-29855700-f76qc",
+      "container": "trace-outbox-cleanup",
+      "declaredImage": "swr.cn-east-3.myhuaweicloud.com/openbkn-ai/bkn-backend:0.1.5",
+      "runtimeImage": "swr.cn-east-3.myhuaweicloud.com/openbkn-ai/bkn-backend:0.1.5",
+      "imageID": "swr.cn-east-3.myhuaweicloud.com/openbkn-ai/bkn-backend@sha256:a24f289a9f8bb54fb4c1bb19544b7be8f502b7ab3fb202408cab8616ee37c1e6",
+      "ready": false,
+      "phase": "Succeeded",
+      "state": {
+        "terminated": {
+          "containerID": "containerd://dc4605c8faa0e5dcc7fd02252b04ec7801cbe0c4af6f4117cbfc1ceb379af9eb",
+          "exitCode": 0,
+          "finishedAt": "2026-10-07T03:00:01Z",
+          "reason": "Completed",
+          "startedAt": "2026-10-07T03:00:00Z"
+        }
+      }
+    },
+    {
+      "namespace": "openbkn",
+      "pod": "bkn-safe-bb5cd864f-k9k9r",
+      "container": "bkn-safe",
+      "declaredImage": "swr.cn-east-3.myhuaweicloud.com/openbkn-ai-ee/bkn-safe-ee:0.1.5",
+      "runtimeImage": "swr.cn-east-3.myhuaweicloud.com/openbkn-ai-ee/bkn-safe-ee:0.1.5",
+      "imageID": "swr.cn-east-3.myhuaweicloud.com/openbkn-ai-ee/bkn-safe-ee@sha256:3410e07923b120101a13d124b8d723e2e5a0c759140d3dcc02072e44fcbe8f12",
+      "ready": true,
+      "phase": "Running",
+      "state": {
+        "running": {
+          "startedAt": "2026-10-01T09:50:40Z"
+        }
+      }
+    },
+    {
+      "namespace": "openbkn",
+      "pod": "bkn-safe-hydra-cdcf49cfd-tgvhh",
+      "container": "hydra",
+      "declaredImage": "swr.cn-east-3.myhuaweicloud.com/openbkn-ai-ee/oryd/hydra:v26.2.0",
+      "runtimeImage": "swr.cn-east-3.myhuaweicloud.com/openbkn-ai-ee/oryd/hydra:v26.2.0",
+      "imageID": "swr.cn-east-3.myhuaweicloud.com/openbkn-ai-ee/oryd/hydra@sha256:530bf5b53cc801d533f79ec45707cff98c8f3b966b42ebdb5a4e6a86fbe9fc5b",
+      "ready": true,
+      "phase": "Running",
+      "state": {
+        "running": {
+          "startedAt": "2026-10-01T09:52:51Z"
+        }
+      }
+    },
+    {
+      "namespace": "openbkn",
+      "pod": "bkn-safe-hydra-cdcf49cfd-tgvhh",
+      "container": "migrate",
+      "declaredImage": "swr.cn-east-3.myhuaweicloud.com/openbkn-ai-ee/oryd/hydra:v26.2.0",
+      "runtimeImage": "swr.cn-east-3.myhuaweicloud.com/openbkn-ai-ee/oryd/hydra:v26.2.0",
+      "imageID": "swr.cn-east-3.myhuaweicloud.com/openbkn-ai-ee/oryd/hydra@sha256:530bf5b53cc801d533f79ec45707cff98c8f3b966b42ebdb5a4e6a86fbe9fc5b",
+      "ready": true,
+      "phase": "Running",
+      "state": {
+        "terminated": {
+          "containerID": "containerd://c222ba136f68749aeb0e83ce96f8f5c1895e5286e8ad2392c38d668c59000d51",
+          "exitCode": 0,
+          "finishedAt": "2026-10-01T09:52:50Z",
+          "reason": "Completed",
+          "startedAt": "2026-10-01T09:50:33Z"
+        }
+      }
+    },
+    {
+      "namespace": "openbkn",
+      "pod": "bkn-safe-postgres-89c775cbd-69cfp",
+      "container": "postgres",
+      "declaredImage": "swr.cn-east-3.myhuaweicloud.com/openbkn-ai-ee/postgres:16",
+      "runtimeImage": "swr.cn-east-3.myhuaweicloud.com/openbkn-ai-ee/postgres:16",
+      "imageID": "swr.cn-east-3.myhuaweicloud.com/openbkn-ai-ee/postgres@sha256:d3378e1a2b0accaf0fd8b2c7f110f18472cd68e458de7572595c45cfeb54c7ad",
+      "ready": true,
+      "phase": "Running",
+      "state": {
+        "running": {
+          "startedAt": "2026-10-01T09:50:34Z"
+        }
+      }
+    },
+    {
+      "namespace": "openbkn",
+      "pod": "bkn-studio-5f8ffd877c-824d8",
+      "container": "bkn-studio",
+      "declaredImage": "swr.cn-east-3.myhuaweicloud.com/openbkn-ai/bkn-studio:0.1.5",
+      "runtimeImage": "swr.cn-east-3.myhuaweicloud.com/openbkn-ai/bkn-studio:0.1.5",
+      "imageID": "swr.cn-east-3.myhuaweicloud.com/openbkn-ai/bkn-studio@sha256:b4fbfada25b1ff191313e35894b74f9f6e0451afb771c7f15746106b688352bd",
+      "ready": true,
+      "phase": "Running",
+      "state": {
+        "running": {
+          "startedAt": "2026-10-01T09:48:55Z"
+        }
+      }
+    },
+    {
+      "namespace": "openbkn",
+      "pod": "core-data-migrator-job-8lgng",
+      "container": "core-data-migrator",
+      "declaredImage": "swr.cn-east-3.myhuaweicloud.com/openbkn-ai/core-data-migrator:0.1.5",
+      "runtimeImage": "swr.cn-east-3.myhuaweicloud.com/openbkn-ai/core-data-migrator:0.1.5",
+      "imageID": "swr.cn-east-3.myhuaweicloud.com/openbkn-ai/core-data-migrator@sha256:c5794d45d2650c01035cd0a10be7c97175ed3b45762f09d506ff97cb5e227941",
+      "ready": false,
+      "phase": "Succeeded",
+      "state": {
+        "terminated": {
+          "containerID": "containerd://c1764f18ad7d737b343edbcb87b42508c4d47ae5c01ec911c827814bfdcc196e",
+          "exitCode": 0,
+          "finishedAt": "2026-10-01T09:47:08Z",
+          "reason": "Completed",
+          "startedAt": "2026-10-01T09:47:06Z"
+        }
+      }
+    },
+    {
+      "namespace": "openbkn",
+      "pod": "fake-embedding-5989f8db87-bxhxh",
+      "container": "emb",
+      "declaredImage": "swr.cn-east-3.myhuaweicloud.com/openbkn-ai/sandbox-template-python-basic:0.1.5",
+      "runtimeImage": "swr.cn-east-3.myhuaweicloud.com/openbkn-ai/sandbox-template-python-basic:0.1.5",
+      "imageID": "swr.cn-east-3.myhuaweicloud.com/openbkn-ai/sandbox-template-python-basic@sha256:8033f85323ca8ed4b9236ce91ad18d0f47b892ca6e4e55ef306c084be75f6bc2",
+      "ready": true,
+      "phase": "Running",
+      "state": {
+        "running": {
+          "startedAt": "2026-10-03T18:06:06Z"
+        }
+      }
+    },
+    {
+      "namespace": "openbkn",
+      "pod": "install-status-6b88b4c957-fln2k",
+      "container": "refresher",
+      "declaredImage": "swr.cn-east-3.myhuaweicloud.com/openbkn-ai/portainer/kubectl-shell:latest",
+      "runtimeImage": "swr.cn-east-3.myhuaweicloud.com/openbkn-ai/portainer/kubectl-shell:latest",
+      "imageID": "swr.cn-east-3.myhuaweicloud.com/openbkn-ai/portainer/kubectl-shell@sha256:765ccd773c526733f0e1f00ff400d68e8659081c102df34e0ac162b261b404e9",
+      "ready": true,
+      "phase": "Running",
+      "state": {
+        "running": {
+          "startedAt": "2026-10-01T04:39:56Z"
+        }
+      }
+    },
+    {
+      "namespace": "openbkn",
+      "pod": "install-status-6b88b4c957-fln2k",
+      "container": "nginx",
+      "declaredImage": "swr.cn-east-3.myhuaweicloud.com/openbkn-ai/library/nginx:1.27-alpine",
+      "runtimeImage": "swr.cn-east-3.myhuaweicloud.com/openbkn-ai/library/nginx:1.27-alpine",
+      "imageID": "swr.cn-east-3.myhuaweicloud.com/openbkn-ai/library/nginx@sha256:06777150f7cf8dff938cfaf5044b11a35fb2bc02ec4b4882685b12db08e97f01",
+      "ready": true,
+      "phase": "Running",
+      "state": {
+        "running": {
+          "startedAt": "2026-10-01T04:39:56Z"
+        }
+      }
+    },
+    {
+      "namespace": "openbkn",
+      "pod": "mf-model-api-ccb794b56-htcnn",
+      "container": "mf-model-api",
+      "declaredImage": "swr.cn-east-3.myhuaweicloud.com/openbkn-ai/mf-model-api:0.1.5",
+      "runtimeImage": "swr.cn-east-3.myhuaweicloud.com/openbkn-ai/mf-model-api:0.1.5",
+      "imageID": "swr.cn-east-3.myhuaweicloud.com/openbkn-ai/mf-model-api@sha256:668cc6c084d5af8003b86a5920ffc06fbb51f50a7ac3310dc459ce2acb6238e6",
+      "ready": true,
+      "phase": "Running",
+      "state": {
+        "running": {
+          "startedAt": "2026-10-01T09:47:48Z"
+        }
+      }
+    },
+    {
+      "namespace": "openbkn",
+      "pod": "mf-model-manager-6f8f479996-x85fl",
+      "container": "mf-model-manager",
+      "declaredImage": "swr.cn-east-3.myhuaweicloud.com/openbkn-ai/mf-model-manager:0.1.5",
+      "runtimeImage": "swr.cn-east-3.myhuaweicloud.com/openbkn-ai/mf-model-manager:0.1.5",
+      "imageID": "swr.cn-east-3.myhuaweicloud.com/openbkn-ai/mf-model-manager@sha256:90410cd84d33ba06b94a555883077d11aa50e6c077d30fd03fcb2c61be0a5dfc",
+      "ready": true,
+      "phase": "Running",
+      "state": {
+        "running": {
+          "startedAt": "2026-10-01T09:47:41Z"
+        }
+      }
+    },
+    {
+      "namespace": "openbkn",
+      "pod": "minio-6686d85998-8zfd4",
+      "container": "minio",
+      "declaredImage": "swr.cn-east-3.myhuaweicloud.com/openbkn-ai/minio:RELEASE.2025-09-07T16-13-09Z",
+      "runtimeImage": "swr.cn-east-3.myhuaweicloud.com/openbkn-ai/minio:RELEASE.2025-09-07T16-13-09Z",
+      "imageID": "sha256:69b2ec208575b69597784255eec6fa6a2985ee9e1a47f4411a51f7f5fdd193a9",
+      "ready": true,
+      "phase": "Running",
+      "state": {
+        "running": {
+          "startedAt": "2026-10-01T09:48:16Z"
+        }
+      }
+    },
+    {
+      "namespace": "openbkn",
+      "pod": "ontology-query-6bb9bf4c7f-mbhk7",
+      "container": "ontology-query",
+      "declaredImage": "swr.cn-east-3.myhuaweicloud.com/openbkn-ai/ontology-query:0.1.5",
+      "runtimeImage": "swr.cn-east-3.myhuaweicloud.com/openbkn-ai/ontology-query:0.1.5",
+      "imageID": "swr.cn-east-3.myhuaweicloud.com/openbkn-ai/ontology-query@sha256:a7d84a6dcdcfde1a04055dc5193a50cb0010d449cc40354d162efe57de86e869",
+      "ready": true,
+      "phase": "Running",
+      "state": {
+        "running": {
+          "startedAt": "2026-10-01T09:48:02Z"
+        }
+      }
+    },
+    {
+      "namespace": "openbkn",
+      "pod": "ontology-query-trace-outbox-cleanup-29855700-kpz4x",
+      "container": "trace-outbox-cleanup",
+      "declaredImage": "swr.cn-east-3.myhuaweicloud.com/openbkn-ai/ontology-query:0.1.5",
+      "runtimeImage": "swr.cn-east-3.myhuaweicloud.com/openbkn-ai/ontology-query:0.1.5",
+      "imageID": "swr.cn-east-3.myhuaweicloud.com/openbkn-ai/ontology-query@sha256:a7d84a6dcdcfde1a04055dc5193a50cb0010d449cc40354d162efe57de86e869",
+      "ready": false,
+      "phase": "Succeeded",
+      "state": {
+        "terminated": {
+          "containerID": "containerd://972e4e670916e761e1be4240d4e1f883b5c2ae9867d99259c2ae5583f87d4837",
+          "exitCode": 0,
+          "finishedAt": "2026-10-07T03:00:01Z",
+          "reason": "Completed",
+          "startedAt": "2026-10-07T03:00:00Z"
+        }
+      }
+    },
+    {
+      "namespace": "openbkn",
+      "pod": "oss-gateway-backend-59bbdc8fc6-nc2db",
+      "container": "oss-gateway-backend",
+      "declaredImage": "swr.cn-east-3.myhuaweicloud.com/openbkn-ai/oss-gateway-backend:0.1.5",
+      "runtimeImage": "swr.cn-east-3.myhuaweicloud.com/openbkn-ai/oss-gateway-backend:0.1.5",
+      "imageID": "swr.cn-east-3.myhuaweicloud.com/openbkn-ai/oss-gateway-backend@sha256:2412e695e4a6a2c0516bbb046b7c94c4dcd4e49ba99e23423bf4ae1bbbf1c787",
+      "ready": true,
+      "phase": "Running",
+      "state": {
+        "running": {
+          "startedAt": "2026-10-01T09:48:12Z"
+        }
+      }
+    },
+    {
+      "namespace": "openbkn",
+      "pod": "otelcol-contrib-5cff9c4666-wc5mv",
+      "container": "otelcol-contrib",
+      "declaredImage": "swr.cn-east-3.myhuaweicloud.com/openbkn-ai/otel/opentelemetry-collector-contrib:0.148.0",
+      "runtimeImage": "swr.cn-east-3.myhuaweicloud.com/openbkn-ai/otel/opentelemetry-collector-contrib:0.148.0",
+      "imageID": "swr.cn-east-3.myhuaweicloud.com/openbkn-ai/otel/opentelemetry-collector-contrib@sha256:be6c34e377b6277d25a9883450796a53fab4075c0366d16cff9f507a34885f25",
+      "ready": true,
+      "phase": "Running",
+      "state": {
+        "running": {
+          "startedAt": "2026-10-01T09:48:52Z"
+        }
+      }
+    },
+    {
+      "namespace": "openbkn",
+      "pod": "sandbox-control-plane-97dc8b444-bxvwq",
+      "container": "control-plane",
+      "declaredImage": "swr.cn-east-3.myhuaweicloud.com/openbkn-ai/sandbox-control-plane:0.1.5",
+      "runtimeImage": "swr.cn-east-3.myhuaweicloud.com/openbkn-ai/sandbox-control-plane:0.1.5",
+      "imageID": "swr.cn-east-3.myhuaweicloud.com/openbkn-ai/sandbox-control-plane@sha256:47b4003575d9de9401b95675aae658267eaffa08a53809766194956b0b0cf76e",
+      "ready": true,
+      "phase": "Running",
+      "state": {
+        "running": {
+          "startedAt": "2026-10-03T18:38:14Z"
+        }
+      }
+    },
+    {
+      "namespace": "openbkn",
+      "pod": "sandbox-sandbox-sess-aoi-0",
+      "container": "executor",
+      "declaredImage": "swr.cn-east-3.myhuaweicloud.com/openbkn-ai/sandbox-template-python-basic:0.1.5",
+      "runtimeImage": "swr.cn-east-3.myhuaweicloud.com/openbkn-ai/sandbox-template-python-basic:0.1.5",
+      "imageID": "swr.cn-east-3.myhuaweicloud.com/openbkn-ai/sandbox-template-python-basic@sha256:8033f85323ca8ed4b9236ce91ad18d0f47b892ca6e4e55ef306c084be75f6bc2",
+      "ready": true,
+      "phase": "Running",
+      "state": {
+        "running": {
+          "startedAt": "2026-10-03T18:39:07Z"
+        }
+      }
+    },
+    {
+      "namespace": "openbkn",
+      "pod": "vega-backend-8875d989d-s8tcx",
+      "container": "vega-backend",
+      "declaredImage": "swr.cn-east-3.myhuaweicloud.com/openbkn-ai-ee/vega-backend-ee:0.1.5",
+      "runtimeImage": "swr.cn-east-3.myhuaweicloud.com/openbkn-ai-ee/vega-backend-ee:0.1.5",
+      "imageID": "swr.cn-east-3.myhuaweicloud.com/openbkn-ai-ee/vega-backend-ee@sha256:12c0fd9adbfe11a8708abdf1441e2c47e477a0b3cc4f838211aee8b8e094a2fb",
+      "ready": true,
+      "phase": "Running",
+      "state": {
+        "running": {
+          "startedAt": "2026-10-03T18:10:11Z"
+        }
+      }
+    },
+    {
+      "namespace": "resource",
+      "pod": "kafka-broker-0",
+      "container": "kafka",
+      "declaredImage": "swr.cn-east-3.myhuaweicloud.com/openbkn-ai/bitnami/kafka:3.9.0-debian-12-r10",
+      "runtimeImage": "swr.cn-east-3.myhuaweicloud.com/openbkn-ai/bitnami/kafka:3.9.0-debian-12-r10",
+      "imageID": "swr.cn-east-3.myhuaweicloud.com/openbkn-ai/bitnami/kafka@sha256:cb11b692283a8d4fe189d3aa166eea63334d9ed3f13226e7c578cb2a3842e85a",
+      "ready": true,
+      "phase": "Running",
+      "state": {
+        "running": {
+          "startedAt": "2026-09-22T17:00:42Z"
+        }
+      }
+    },
+    {
+      "namespace": "resource",
+      "pod": "kafka-broker-0",
+      "container": "prepare-config",
+      "declaredImage": "swr.cn-east-3.myhuaweicloud.com/openbkn-ai/bitnami/kafka:3.9.0-debian-12-r10",
+      "runtimeImage": "swr.cn-east-3.myhuaweicloud.com/openbkn-ai/bitnami/kafka:3.9.0-debian-12-r10",
+      "imageID": "swr.cn-east-3.myhuaweicloud.com/openbkn-ai/bitnami/kafka@sha256:cb11b692283a8d4fe189d3aa166eea63334d9ed3f13226e7c578cb2a3842e85a",
+      "ready": true,
+      "phase": "Running",
+      "state": {
+        "terminated": {
+          "containerID": "containerd://5cb35ca8a51e0a26d8907e788dc5ba64a09cd8a018329fef251c0c378c0156d6",
+          "exitCode": 0,
+          "finishedAt": "2026-09-22T17:00:41Z",
+          "reason": "Completed",
+          "startedAt": "2026-09-22T17:00:41Z"
+        }
+      }
+    },
+    {
+      "namespace": "resource",
+      "pod": "kafka-controller-0",
+      "container": "kafka",
+      "declaredImage": "swr.cn-east-3.myhuaweicloud.com/openbkn-ai/bitnami/kafka:3.9.0-debian-12-r10",
+      "runtimeImage": "swr.cn-east-3.myhuaweicloud.com/openbkn-ai/bitnami/kafka:3.9.0-debian-12-r10",
+      "imageID": "swr.cn-east-3.myhuaweicloud.com/openbkn-ai/bitnami/kafka@sha256:cb11b692283a8d4fe189d3aa166eea63334d9ed3f13226e7c578cb2a3842e85a",
+      "ready": true,
+      "phase": "Running",
+      "state": {
+        "running": {
+          "startedAt": "2026-09-22T17:00:41Z"
+        }
+      }
+    },
+    {
+      "namespace": "resource",
+      "pod": "kafka-controller-0",
+      "container": "prepare-config",
+      "declaredImage": "swr.cn-east-3.myhuaweicloud.com/openbkn-ai/bitnami/kafka:3.9.0-debian-12-r10",
+      "runtimeImage": "swr.cn-east-3.myhuaweicloud.com/openbkn-ai/bitnami/kafka:3.9.0-debian-12-r10",
+      "imageID": "swr.cn-east-3.myhuaweicloud.com/openbkn-ai/bitnami/kafka@sha256:cb11b692283a8d4fe189d3aa166eea63334d9ed3f13226e7c578cb2a3842e85a",
+      "ready": true,
+      "phase": "Running",
+      "state": {
+        "terminated": {
+          "containerID": "containerd://390f9a10bebe0b6bbe708f6c641b6ca1873f07dc19cef761d396c43428f5cd20",
+          "exitCode": 0,
+          "finishedAt": "2026-09-22T17:00:40Z",
+          "reason": "Completed",
+          "startedAt": "2026-09-22T17:00:40Z"
+        }
+      }
+    },
+    {
+      "namespace": "resource",
+      "pod": "mariadb-0",
+      "container": "mariadb",
+      "declaredImage": "swr.cn-east-3.myhuaweicloud.com/openbkn-ai/mariadb:11.4.7",
+      "runtimeImage": "swr.cn-east-3.myhuaweicloud.com/openbkn-ai/mariadb:11.4.7",
+      "imageID": "swr.cn-east-3.myhuaweicloud.com/openbkn-ai/mariadb@sha256:c5bb662f24634059a0748aa84bd0f982d50428ebd178e4b4eb40caec9582cc89",
+      "ready": true,
+      "phase": "Running",
+      "state": {
+        "running": {
+          "startedAt": "2026-09-22T16:54:04Z"
+        }
+      }
+    },
+    {
+      "namespace": "resource",
+      "pod": "opensearch-cluster-master-0",
+      "container": "opensearch",
+      "declaredImage": "swr.cn-east-3.myhuaweicloud.com/openbkn-ai/opensearch:2.19.4-main.20260818163046.shaaeb5d56",
+      "runtimeImage": "swr.cn-east-3.myhuaweicloud.com/openbkn-ai/opensearch:2.19.4-main.20260818163046.shaaeb5d56",
+      "imageID": "swr.cn-east-3.myhuaweicloud.com/openbkn-ai/opensearch@sha256:a8b5ba6c0e8bd6b2de66c3b5f96bed5ef710d2ff0496ed787f77ee359ddb93b5",
+      "ready": true,
+      "phase": "Running",
+      "state": {
+        "running": {
+          "startedAt": "2026-09-22T17:01:35Z"
+        }
+      }
+    },
+    {
+      "namespace": "resource",
+      "pod": "opensearch-cluster-master-0",
+      "container": "fsgroup-volume",
+      "declaredImage": "swr.cn-east-3.myhuaweicloud.com/openbkn-ai/busybox:1.36.1",
+      "runtimeImage": "swr.cn-east-3.myhuaweicloud.com/openbkn-ai/busybox:1.36.1",
+      "imageID": "swr.cn-east-3.myhuaweicloud.com/openbkn-ai/busybox@sha256:2f7e786c77596b6bd4c4bec8943c8bde7d3266018e9951097398852bf228b04c",
+      "ready": true,
+      "phase": "Running",
+      "state": {
+        "terminated": {
+          "containerID": "containerd://c5db61488fdd404a797823578a6c77cb26a538dca4f50b7bdbef472359e8ea92",
+          "exitCode": 0,
+          "finishedAt": "2026-09-22T17:01:00Z",
+          "reason": "Completed",
+          "startedAt": "2026-09-22T17:01:00Z"
+        }
+      }
+    },
+    {
+      "namespace": "resource",
+      "pod": "opensearch-cluster-master-0",
+      "container": "sysctl",
+      "declaredImage": "swr.cn-east-3.myhuaweicloud.com/openbkn-ai/busybox:1.36.1",
+      "runtimeImage": "swr.cn-east-3.myhuaweicloud.com/openbkn-ai/busybox:1.36.1",
+      "imageID": "swr.cn-east-3.myhuaweicloud.com/openbkn-ai/busybox@sha256:2f7e786c77596b6bd4c4bec8943c8bde7d3266018e9951097398852bf228b04c",
+      "ready": true,
+      "phase": "Running",
+      "state": {
+        "terminated": {
+          "containerID": "containerd://8ef0389c260cf4d258cc28d70bdf443889a3c5f27801d745f18c94e7258f1291",
+          "exitCode": 0,
+          "finishedAt": "2026-09-22T17:01:00Z",
+          "reason": "Completed",
+          "startedAt": "2026-09-22T17:01:00Z"
+        }
+      }
+    },
+    {
+      "namespace": "resource",
+      "pod": "opensearch-cluster-master-0",
+      "container": "configfile",
+      "declaredImage": "swr.cn-east-3.myhuaweicloud.com/openbkn-ai/opensearch:2.19.4-main.20260818163046.shaaeb5d56",
+      "runtimeImage": "swr.cn-east-3.myhuaweicloud.com/openbkn-ai/opensearch:2.19.4-main.20260818163046.shaaeb5d56",
+      "imageID": "swr.cn-east-3.myhuaweicloud.com/openbkn-ai/opensearch@sha256:a8b5ba6c0e8bd6b2de66c3b5f96bed5ef710d2ff0496ed787f77ee359ddb93b5",
+      "ready": true,
+      "phase": "Running",
+      "state": {
+        "terminated": {
+          "containerID": "containerd://df24292671819739146910234bd2c4596bdc235cfbb9060f8e90a90974819fb7",
+          "exitCode": 0,
+          "finishedAt": "2026-09-22T17:01:33Z",
+          "reason": "Completed",
+          "startedAt": "2026-09-22T17:01:33Z"
+        }
+      }
+    },
+    {
+      "namespace": "resource",
+      "pod": "redis-redis-0",
+      "container": "redis",
+      "declaredImage": "swr.cn-east-3.myhuaweicloud.com/openbkn-ai/redis:1.11.2-main.20260718025853.shaf24e971",
+      "runtimeImage": "swr.cn-east-3.myhuaweicloud.com/openbkn-ai/redis:1.11.2-main.20260718025853.shaf24e971",
+      "imageID": "sha256:e7d0a6c840bfb315b98fdac4012ba2e7d8a6c51d43d8711b6ee96ec92841cfbc",
+      "ready": true,
+      "phase": "Running",
+      "state": {
+        "running": {
+          "startedAt": "2026-09-22T17:00:23Z"
+        }
+      }
+    },
+    {
+      "namespace": "resource",
+      "pod": "redis-redis-0",
+      "container": "sentinel",
+      "declaredImage": "swr.cn-east-3.myhuaweicloud.com/openbkn-ai/redis:1.11.2-main.20260718025853.shaf24e971",
+      "runtimeImage": "swr.cn-east-3.myhuaweicloud.com/openbkn-ai/redis:1.11.2-main.20260718025853.shaf24e971",
+      "imageID": "sha256:e7d0a6c840bfb315b98fdac4012ba2e7d8a6c51d43d8711b6ee96ec92841cfbc",
+      "ready": true,
+      "phase": "Running",
+      "state": {
+        "running": {
+          "startedAt": "2026-09-22T17:00:23Z"
+        }
+      }
+    },
+    {
+      "namespace": "resource",
+      "pod": "redis-redis-0",
+      "container": "exporter",
+      "declaredImage": "swr.cn-east-3.myhuaweicloud.com/openbkn-ai/public/oliver006/redis_exporter:v1.77.0",
+      "runtimeImage": "swr.cn-east-3.myhuaweicloud.com/openbkn-ai/public/oliver006/redis_exporter:v1.77.0",
+      "imageID": "swr.cn-east-3.myhuaweicloud.com/openbkn-ai/public/oliver006/redis_exporter@sha256:9075a38ba294c5a74f6830f60023d3a12655345c7b467ec6276fedcc9525a157",
+      "ready": true,
+      "phase": "Running",
+      "state": {
+        "running": {
+          "startedAt": "2026-09-22T17:00:24Z"
+        }
+      }
+    },
+    {
+      "namespace": "resource",
+      "pod": "redis-redis-0",
+      "container": "wipe-stale-acl",
+      "declaredImage": "swr.cn-east-3.myhuaweicloud.com/openbkn-ai/redis:1.11.2-main.20260718025853.shaf24e971",
+      "runtimeImage": "swr.cn-east-3.myhuaweicloud.com/openbkn-ai/redis:1.11.2-main.20260718025853.shaf24e971",
+      "imageID": "sha256:e7d0a6c840bfb315b98fdac4012ba2e7d8a6c51d43d8711b6ee96ec92841cfbc",
+      "ready": true,
+      "phase": "Running",
+      "state": {
+        "terminated": {
+          "containerID": "containerd://1d7a3f95fde3f12a218bf986beaa148980195427ca082c729b2c8a871463e921",
+          "exitCode": 0,
+          "finishedAt": "2026-09-22T17:00:06Z",
+          "reason": "Completed",
+          "startedAt": "2026-09-22T17:00:06Z"
+        }
+      }
+    },
+    {
+      "namespace": "resource",
+      "pod": "redis-redis-0",
+      "container": "config-init",
+      "declaredImage": "swr.cn-east-3.myhuaweicloud.com/openbkn-ai/redis:1.11.2-main.20260718025853.shaf24e971",
+      "runtimeImage": "swr.cn-east-3.myhuaweicloud.com/openbkn-ai/redis:1.11.2-main.20260718025853.shaf24e971",
+      "imageID": "sha256:e7d0a6c840bfb315b98fdac4012ba2e7d8a6c51d43d8711b6ee96ec92841cfbc",
+      "ready": true,
+      "phase": "Running",
+      "state": {
+        "terminated": {
+          "containerID": "containerd://5cc383e27aedc2e534c6f9af5edd5c84eedd6182c80973dd33c9239b40f00ce0",
+          "exitCode": 0,
+          "finishedAt": "2026-09-22T17:00:22Z",
+          "reason": "Completed",
+          "startedAt": "2026-09-22T17:00:07Z"
+        }
+      }
+    }
+  ],
+  "note": "Completed init containers may have ready=false with exitCode=0; this is not a failure verdict. Tags and runtime image identities do not prove a Foundry main build commit."
+}

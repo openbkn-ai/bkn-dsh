@@ -1,0 +1,13 @@
+{
+  "checkedAt": "2026-10-07T04:42:57.745976+00:00",
+  "zipPath": "docs/handoff/2026-10-07-authentication-recovery/assets/windows-unified7-c91fe09-authentication-recovery.zip",
+  "zipSha256": "e3d0e59e450f5a3d048812ab8ee65ca213caa1791b072e71cc24c0a72cd35134",
+  "zipSizeBytes": 223708,
+  "archiveFileCount": 26,
+  "ledgerFileCount": 25,
+  "candidateSha256": "fa168d8113e8dd43348ea4751c7e4d297049e2c1ddced9c586e6d3a1f3f0718c",
+  "candidateFilesVerified": 65,
+  "nativeWindowsCurrentKit": "not-run",
+  "helpersByteEqual": true,
+  "localVerification": "Python offline zip/ledger/tar/per-file identity; not native PowerShell or Windows UI acceptance"
+}
