@@ -1,0 +1,16 @@
+{
+    "stamp":  "105221",
+    "nodeProcs":  0,
+    "dshApps":  6,
+    "ports":  [
+                  0
+              ],
+    "userProfiles":  [
+                         "desktop",
+                         "work"
+                     ],
+    "desktopStopped":  false,
+    "npmCleanupOk":  true,
+    "desktopStoppedManual":  true,
+    "desktopStopNote":  "pid-file ticks mismatch rejected auto-stop (protection worked); manual identity check: pid 2256 start 09:29:25 == B1 launch moment, exe path + window title matched isolated session; stopped manually at 10:53"
+}
