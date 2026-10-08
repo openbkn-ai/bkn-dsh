@@ -1,0 +1,11 @@
+dsh: initialized profile web at /tmp/bkn-firstuse8-mac-npm/home/profiles/web
+Progress: resolved 0, reused 0, downloaded 1, added 0
+[WARN] Issues with peer dependencies found. Run "pnpm peers check" to list them.
+
+dependencies:
++ @openbkn/dsh-business-context file:/tmp/bkn-firstuse8-ci-37725960498/openbkn-dsh-business-context-0.2.0-rc.2-openbkn.0.2.0-8.tgz
+
+Packages: +5
++++++
+Progress: resolved 5, reused 4, downloaded 1, added 5, done
+Done in 452ms using pnpm v11.7.0

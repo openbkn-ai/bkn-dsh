@@ -1,0 +1,86 @@
+{
+  "evidenceLevel": "Final CI candidate official Host with raw native expression fixture; not UI",
+  "rawFixture": [
+    {
+      "id": "openbkn-business-context",
+      "name": "@openbkn/dsh-business-context/business",
+      "config": {
+        "requestTimeoutMs": 45000,
+        "maxResultBytes": 2000000,
+        "businessDomain": "bd_public",
+        "baseUrl": {
+          "__jsExpr": "\"https://192.168.50.28/\""
+        },
+        "cliPath": {
+          "__jsExpr": "\"/tmp/first-use8-absent-cli\""
+        }
+      }
+    }
+  ],
+  "configuration": {
+    "ok": true,
+    "value": {
+      "baseUrl": "https://192.168.50.28/",
+      "cliPath": "/tmp/first-use8-absent-cli",
+      "configured": true,
+      "editable": true
+    }
+  },
+  "report": {
+    "ok": true,
+    "value": {
+      "schemaVersion": 1,
+      "reportId": "04a3ba6c",
+      "createdAt": "2026-10-08T04:25:26.921Z",
+      "target": {
+        "hostForm": "unknown",
+        "platform": "darwin",
+        "dshVersion": null,
+        "pluginDiskVersion": "0.2.0-rc.2-openbkn.0.2.0-8",
+        "pluginLoadedVersion": null
+      },
+      "mode": "passive",
+      "checks": [
+        {
+          "id": "bootstrap-entry",
+          "stage": "installation",
+          "status": "pass",
+          "source": "host-runtime",
+          "code": "component-loaded",
+          "evidence": {
+            "entryPresent": true
+          },
+          "nextAction": null
+        },
+        {
+          "id": "business-entry",
+          "stage": "component",
+          "status": "pass",
+          "source": "host-runtime",
+          "code": "component-loaded",
+          "evidence": {
+            "entryPresent": true
+          },
+          "nextAction": null
+        },
+        {
+          "id": "diagnostics-entry",
+          "stage": "diagnostics",
+          "status": "pass",
+          "source": "host-runtime",
+          "code": "component-loaded",
+          "evidence": {
+            "schemaVersion": 1
+          },
+          "nextAction": null
+        }
+      ],
+      "coverage": {
+        "executedChecks": 3,
+        "notRunChecks": 0,
+        "insufficientEvidenceChecks": 0,
+        "notes": []
+      }
+    }
+  }
+}

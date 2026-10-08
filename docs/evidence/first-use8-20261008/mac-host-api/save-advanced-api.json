@@ -1,0 +1,81 @@
+{
+  "evidenceLevel": "Final CI candidate official npm Host API; not UI authorization/model acceptance",
+  "before": {
+    "patchSha256": "b55913f7e7e020a941cf61973a3ea69de63de5b846b585495750e80b761d6c83",
+    "configuration": {
+      "ok": true,
+      "value": {
+        "baseUrl": "",
+        "cliPath": "openbkn",
+        "configured": false,
+        "editable": true
+      }
+    }
+  },
+  "saved": {
+    "ok": true,
+    "value": {
+      "baseUrl": "https://192.168.50.28/",
+      "cliPath": "/tmp/first-use8-absent-cli",
+      "configured": true,
+      "editable": true
+    }
+  },
+  "patchSha256": "90f32a6262dd79859e377d7ff853b1918f537690814768d921d31498681d25c0",
+  "advancedFieldsPreserved": true,
+  "diagnosticsAlive": true,
+  "report": {
+    "schemaVersion": 1,
+    "reportId": "579dbb6a",
+    "createdAt": "2026-10-08T04:23:45.701Z",
+    "target": {
+      "hostForm": "unknown",
+      "platform": "darwin",
+      "dshVersion": null,
+      "pluginDiskVersion": "0.2.0-rc.2-openbkn.0.2.0-8",
+      "pluginLoadedVersion": null
+    },
+    "mode": "passive",
+    "checks": [
+      {
+        "id": "bootstrap-entry",
+        "stage": "installation",
+        "status": "pass",
+        "source": "host-runtime",
+        "code": "component-loaded",
+        "evidence": {
+          "entryPresent": true
+        },
+        "nextAction": null
+      },
+      {
+        "id": "business-entry",
+        "stage": "component",
+        "status": "pass",
+        "source": "host-runtime",
+        "code": "component-loaded",
+        "evidence": {
+          "entryPresent": true
+        },
+        "nextAction": null
+      },
+      {
+        "id": "diagnostics-entry",
+        "stage": "diagnostics",
+        "status": "pass",
+        "source": "host-runtime",
+        "code": "component-loaded",
+        "evidence": {
+          "schemaVersion": 1
+        },
+        "nextAction": null
+      }
+    ],
+    "coverage": {
+      "executedChecks": 3,
+      "notRunChecks": 0,
+      "insufficientEvidenceChecks": 0,
+      "notes": []
+    }
+  }
+}

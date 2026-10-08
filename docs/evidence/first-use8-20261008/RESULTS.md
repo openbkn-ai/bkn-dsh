@@ -28,8 +28,25 @@
 
 平台实际容器镜像已重新只读采集，见 `platform-images.json`。旧隔离 CLI 凭据本地状态已过期；其失败不推断平台根因，后续使用正常授权验证。
 
-## 待取得的候选验收
+## 固定候选验收与待完成项
 
-固定 CI 构建身份、逐文件清单与 macOS F0–F8 记录待补。Windows Desktop/npm 及用户源码构建 web 的受影响矩阵使用同一固定候选，单独 handoff；旧 -7 的实机证据不替代 -8。
+固定候选：source `23ac2daa6d3538235f33a9627a8178a48f3e1ebf` → build-only run `37725960498`（success，publish=false）→ tgz `6a946030a6152d2899609fac95c66cd246e36cca5a8ce4e5f87ed379cbe706ea`，175800 字节、66 文件，见 candidate-manifest.json / candidate-files.json。源码独立评审 APPROVED、CodeQL 通过；当前未发布。Windows Desktop/npm 及用户源码构建 web 的受影响矩阵使用同一固定候选，单独 handoff；旧 -7 的实机证据不替代 -8。
 
 既有受限账号未测、平台超时/落库、Token 重复拒绝根因、原故障机器根因沿用既定开放范围。后续完善项不进入本轮。
+
+
+## 最终包的已执行验证
+
+- 两个 Mac 隔离 profile 安装后均 66/66 字节匹配（missing/different/extra 全空），见 `mac-host-api/*installed-identity.json`。包版本/磁盘身份核验与真实界面验收分别判断。
+- 官方 npm Host API：待配置时三条目 active；五个连接/配置检查 not-run；四种非法提交无写入；合法地址/非默认 CLI 路径经原生编辑器保存，重启可读回；三个高级字段保留；ACTIVE fiber 的 native expression 值正确识别；home 高层覆盖拒绝且 profile patch SHA 不变。原件见 `mac-host-api/`，属于实际 Host API，不能算点击 UI/授权通过。
+- 官方 CLI remove/reinstall：已停止的隔离 Host 上，profile/home 两个选定配置文件在卸载前、立即卸载后、重装后 SHA 完全相同。未执行真实绑定文件或管理器 UI 的 F8，范围见 `cli-uninstall-preservation.json`。
+- 最终包 + 官方核心库受控运行：原生回答/工具结果保留及 guard 八场景 8/8；所有者生命周期 6 条记录全部 pass（含身份、重载移除旧贡献、同会话重挂、会话释放父注册），见 `controlled-runtime/`。初次 lifecycle helper 的传递依赖查找失败发生在任何候选场景前，修正 helper 解析后通过；保留 attempt-1 原件。此证据不是实时平台/模型或完整 Desktop UI。
+- 日常 profile 选定的 8 个 JSON/YAML 文件同清单内容哈希均未改变；不延伸到全部日常用户数据，见 `daily-selected-content-check.json`。
+
+## 当前阻断与进程状态
+
+Computer Use 返回 Mac 已锁屏，已请求用户手动解锁。先前测试模型 Key 已撤销；仅从本轮新隔离 home 移除了复制的旧引用，未改原凭据或共享 CLI store；已请用户在隔离应用配置可用模型，不能把模型未测算通过。Mac 最终包 UI 导出、首次真实授权/401/TLS 恢复、真实标准模式问答/溯源、运行中设置围栏、管理器 UI 卸载等仍待实测；G6、live MCP catalogue/guard 也待新隔离 CLI 正常授权。没有使用旧 -7 实机结果补 pass。
+
+为用户配置与续测保留本轮隔离 Desktop（记录 PID 4582）与 npm Host（记录 PID 8357、18320）；PID 仅是本次记录，续测/停止前须重新核对创建时间、命令与 listener。单独 Host API-case root 的 5 轮进程已经身份核验停止，原始 owned-stop / process-history 已归档，18321 已释放。不宣称整台机器零残留。
+
+Windows 固定交接已远端推送（文档提交 `59ac630784ac3a6d8cfce3eecc47e5f283cd1882`），可与 Mac 并行。Windows 回传、Mac 上述验收及 main 彩排包一致性仍是发布门槛，本次没有 tag/npm publication/dist-tag 更新。

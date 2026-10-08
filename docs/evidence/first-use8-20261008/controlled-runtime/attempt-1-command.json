@@ -1,0 +1,14 @@
+{
+  "command": "/Users/kalias/.nvm/versions/node/v24.19.0/bin/node /tmp/bkn-firstuse8-lifecycle/verify-packed-lifecycle.mjs /tmp/bkn-firstuse8-native-probe/package /tmp/bkn-firstuse8-ci-37725960498/openbkn-dsh-business-context-0.2.0-rc.2-openbkn.0.2.0-8.tgz 6a946030a6152d2899609fac95c66cd246e36cca5a8ce4e5f87ed379cbe706ea 23ac2daa6d3538235f33a9627a8178a48f3e1ebf 37725960498 /tmp/bkn-firstuse8-lifecycle/packed-lifecycle.jsonl > /tmp/bkn-firstuse8-lifecycle/packed-lifecycle-stdout.jsonl 2> /tmp/bkn-firstuse8-lifecycle/packed-lifecycle-stderr.txt",
+  "startedUtc": "2026-10-08 04:19:17 UTC",
+  "endedUtc": "2026-10-08 04:19:17 UTC",
+  "result": {
+    "chunk_id": "d4fe16",
+    "wall_time_seconds": 0.000015125,
+    "exit_code": 1,
+    "original_token_count": 0,
+    "output": ""
+  },
+  "classification": "fixture peer resolution failure before identity/scenario execution",
+  "detail": "dsh-llm is a transitive official tools dependency; corrected helper resolution through dsh-tools"
+}
