@@ -100,6 +100,7 @@ test('business reload removes agent policy and permits a duplicate-free remount 
     assert.doesNotMatch(await policyText(), /OpenBKN knowledge network/)
     assert.match(JSON.stringify(await call()), /native-local-result/)
     assert.equal(agent.ctx.fiber.getEffects().filter(effect => effect.label.includes('ctx.on(')).length, 0)
+    assert.equal(agent.ctx.fiber.getEffects().filter(effect => effect.label === 'openbkn.agentPolicyCleanup').length, 0)
 
     const second = await owner()
     assert.equal(mountBoundBusinessNetworkTool(agent as never, config, BOUND_EVENT.data, undefined, second.context), true)
@@ -117,9 +118,12 @@ test('agent disposal cleans the policy before its still-live business owner unlo
   try {
     const business = await owner()
     assert.equal(mountBoundBusinessNetworkTool(agent as never, config, BOUND_EVENT.data, undefined, business.context), true)
+    const parentRegistrations = () => business.context.fiber.getEffects().filter(effect => effect.label === 'openbkn.businessPolicyCleanup')
+    assert.equal(parentRegistrations().length, 1)
     assert.match(await policyText(), /OpenBKN knowledge network/)
     await scope.dispose()
     assert.doesNotMatch(await policyText(), /OpenBKN knowledge network/)
+    assert.equal(parentRegistrations().length, 0, 'closed sessions release their parent effect while the business owner remains live')
     await business.dispose()
     assert.doesNotMatch(await policyText(), /OpenBKN knowledge network/)
   } finally {

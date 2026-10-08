@@ -28,6 +28,7 @@ import {
   type DiagnosticsStage,
   type DiagnosticsStatus,
 } from './diagnostics-contract.js'
+import { trimTrailingSlashes } from './trailing-slashes.js'
 
 /** Upper bound on distinct observed subjects; further novel keys are dropped. */
 export const PASSIVE_BUFFER_LIMIT = 20
@@ -79,7 +80,7 @@ export class PassiveDiagnosticsBuffer {
    * its address changes. The address is private and never enters evidence.
    */
   selectConfiguration(baseUrl: string): void {
-    const selected = baseUrl.trim().replace(/\/+$/, '')
+    const selected = trimTrailingSlashes(baseUrl.trim())
     if (selected === this.configuration) return
     this.configuration = selected
     this.clear()

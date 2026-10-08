@@ -5,6 +5,7 @@ import { tmpdir } from 'node:os'
 import { join } from 'node:path'
 import { Context } from '@deepseek-ai/cordis'
 import { OpenBknBusinessContextService } from '../src/business-context-service.ts'
+import { OpenBknCliError } from '../src/auth.ts'
 import { SessionBindingStore } from '../src/session-binding-store.ts'
 import { OpenBknCliUnavailableError } from '../src/openbkn-cli-subprocess.ts'
 
@@ -39,6 +40,99 @@ test('historical provenance can obtain a verified CLI token before panel status 
   const tokens = await Promise.all([service.resolveOpenBknToken(), service.resolveOpenBknToken()])
   assert.deepEqual(tokens, ['verified-current-platform-token', 'verified-current-platform-token'])
   assert.equal(reads, 1)
+})
+
+test('historical provenance with an expired or missing CLI degrades as authentication-required before any platform or vault access', async () => {
+  const { passiveDiagnostics } = await import('../src/diagnostics-observer.ts')
+  const originalFetch = globalThis.fetch
+  let platformCalls = 0
+  globalThis.fetch = async () => { platformCalls++; throw new Error('must not request a platform without a verified token') }
+  try {
+    for (const unavailable of [false, true]) {
+      passiveDiagnostics.clear()
+      let cliSpawns = 0
+      let vaultCalls = 0
+      const handle = {
+        schemaVersion: 2 as const, interactionId: 'historical-int', requestIds: [], traceIds: [], receiptIds: [],
+        status: 'completed' as const, partial: true, turn: 3,
+      }
+      const events = [
+        { type: 'openbkn/turn-provenance', data: { messageId: 'historical-answer', handle } },
+        { type: 'user/message', time: 1_000, data: { turn: 3, message: { id: 'historical-question', role: 'user', content: [{ type: 'text', text: 'Q?' }] } } },
+        { type: 'assistant/message', time: 1_500, data: { turn: 3, step: 2, message: { id: 'historical-answer', role: 'assistant', content: [{ type: 'text', text: 'A.' }] } } },
+      ]
+      const agent = { id: 'historical-session', session: { header: { cwd: '/workspace' }, snapshotEvents: () => events } }
+      const service = Object.create(OpenBknBusinessContextService.prototype) as {
+        config: typeof config & { maxGraphNodes: number; maxGraphEdges: number }
+        lifetime: AbortController
+        ctx: unknown
+        synchronizedToken?: string
+        remoteGetTurnProvenanceView(sessionId: string, messageId: string, signal: AbortSignal): Promise<{
+          timeline: readonly unknown[]
+          sources: { degraded: readonly { pane: string; reason: string }[] }
+        } | undefined>
+      }
+      service.config = { ...config, maxGraphNodes: 10, maxGraphEdges: 10 }
+      service.lifetime = new AbortController()
+      service.ctx = {
+        agents: { get: (id: string) => id === agent.id ? agent : undefined },
+        logger: { warn: () => {} },
+        credentials: new Proxy({}, { get: () => { vaultCalls++; throw new Error('must not borrow shared vault credentials') } }),
+        subprocess: {
+          resolveExecutable: async () => {
+            if (unavailable) throw new Error('fictional missing CLI')
+            return 'openbkn'
+          },
+          spawn: (spec: { argv: readonly string[] }) => {
+            cliSpawns++
+            assert.deepEqual(spec.argv, ['openbkn', 'auth', 'status', '--json'], 'expired status must prevent token reads')
+            return {
+              done: Promise.resolve({ exitCode: 0 }),
+              collected: { stdout: { readFrom: () => ({
+                text: JSON.stringify({ baseUrl: config.baseUrl, hasToken: true, expired: true }), lossy: false,
+              }) } },
+            }
+          },
+        },
+      }
+
+      const view = await service.remoteGetTurnProvenanceView(agent.id, 'historical-answer', new AbortController().signal)
+
+      assert.equal(view?.timeline.length, 2)
+      assert.deepEqual(view?.sources.degraded, [
+        { pane: 'operations', reason: 'authentication-required' },
+        { pane: 'business', reason: 'authentication-required' },
+        { pane: 'evidence', reason: 'authentication-required' },
+      ])
+      assert.equal(cliSpawns, unavailable ? 0 : 1, 'parallel historical panes coalesce the verified token read')
+      assert.equal(service.synchronizedToken, undefined)
+      assert.equal(vaultCalls, 0)
+      assert.equal(platformCalls, 0)
+      const readerChecks = passiveDiagnostics.snapshot().filter(check => /observed:platform-(operations|business-graph)/.test(check.id))
+      assert.equal(readerChecks.length, 2)
+      assert.ok(readerChecks.every(check => check.code === 'not-logged-in' && check.status === 'fail'))
+    }
+  } finally {
+    globalThis.fetch = originalFetch
+    passiveDiagnostics.clear()
+  }
+})
+
+test('a disposed historical token read preserves cancellation instead of degrading it as missing authentication', async () => {
+  let reject!: (reason: unknown) => void
+  const pending = new Promise<string>((_resolve, no) => { reject = no })
+  const lifetime = new AbortController()
+  const service = Object.create(OpenBknBusinessContextService.prototype) as {
+    lifetime: AbortController
+    authCoordinator(): { readToken(): Promise<string> }
+    resolveOpenBknToken(): Promise<string | undefined>
+  }
+  service.lifetime = lifetime
+  service.authCoordinator = () => ({ readToken: () => pending })
+  const completed = assert.rejects(service.resolveOpenBknToken(), { name: 'AbortError' })
+  lifetime.abort()
+  reject(new OpenBknCliError('fictional canceled CLI authentication'))
+  await completed
 })
 
 test('a delayed CLI token from a disposed configuration is never synchronized', async () => {
@@ -964,6 +1058,7 @@ test('concurrent binds of one session to different networks mount the winner wit
   try {
     const sections: Array<{ name: string; text: string | (() => string) }> = []
     const agentCtx = {
+      effect: (callback: () => () => void) => callback(),
       tools: { guard: () => () => {}, get: () => undefined },
       systemPrompt: { section: (section: { name: string; text: string | (() => string) }) => { sections.push(section); return () => {} } },
       on: () => () => {},

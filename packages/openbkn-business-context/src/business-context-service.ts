@@ -704,7 +704,16 @@ export class OpenBknBusinessContextService extends TypertRemoteService {
       this.synchronizedToken = token
       return token
     })().finally(() => { this.tokenRead = undefined })
-    return await this.tokenRead
+    try {
+      return await this.tokenRead
+    } catch (error: unknown) {
+      this.lifetime?.signal.throwIfAborted()
+      // Historical provenance can precede panel login. An unusable CLI
+      // session supplies no verified token; let the reader retain its
+      // authentication-required boundary rather than invent network failure.
+      if (error instanceof OpenBknCliError || error instanceof OpenBknCliUnavailableError) return undefined
+      throw error
+    }
   }
 
   private operationSignal(signal: AbortSignal): AbortSignal {

@@ -299,9 +299,21 @@ export function mountBoundBusinessNetworkTool(
   // The registrations retain their native Agent ownership. The service also
   // owns their exact disposers so ordinary business-entry reload removes the
   // policy from still-live sessions before the replacement service remounts.
+  let detachOwner: (() => unknown) | undefined
+  let detachAgent: (() => unknown) | undefined
   try {
-    owner?.effect(() => dispose, 'openbkn.businessPolicyCleanup')
+    if (owner !== undefined) {
+      detachOwner = owner.effect(() => () => {
+        dispose()
+        detachAgent?.()
+      }, 'openbkn.businessPolicyCleanup')
+      // Releasing either lifecycle also unregisters the other ownership link.
+      // Cordis's exact effect disposers are single-shot, so this reciprocal
+      // detach cannot recurse or retain closed sessions on the business owner.
+      detachAgent = agent.ctx.effect(() => () => { detachOwner?.() }, 'openbkn.agentPolicyCleanup')
+    }
   } catch (error) {
+    detachOwner?.()
     dispose()
     throw error
   }
