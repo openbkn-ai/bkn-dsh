@@ -1,0 +1,15 @@
+{
+  "form": "npm",
+  "stage": "F1 UI validation",
+  "inputs": [
+    "",
+    "ht!tp://not a valid url with spaces",
+    "relative/path",
+    "file:///tmp/first-use8"
+  ],
+  "inlineErrorForAll": "HTTP(S) full platform address required",
+  "inputRetained": true,
+  "beforeSha256": "cdc61a089a65c7445ae206ff2686c38cddfa51085da0a7593103b3cd1ee531fb",
+  "afterSha256": "cdc61a089a65c7445ae206ff2686c38cddfa51085da0a7593103b3cd1ee531fb",
+  "patchUnchanged": true
+}

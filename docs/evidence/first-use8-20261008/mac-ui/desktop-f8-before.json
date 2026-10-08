@@ -1,0 +1,52 @@
+{
+  "form": "desktop",
+  "phase": "before",
+  "recordedAt": "2026-10-08T06:30:32.253277+00:00",
+  "scope": "Selected configuration, workspace index and isolated CLI-store files; no Desktop OpenBKN binding exists, so binding retention is not tested here. No full-home claim.",
+  "files": [
+    {
+      "path": "/tmp/bkn-firstuse8-mac-desktop/home/profiles/desktop/cordis.patch.yml",
+      "exists": true,
+      "bytes": 423,
+      "sha256": "e502554b21537f950fa09ec9533d3ab055c338a4b7316d154e67e22b98cb44a2"
+    },
+    {
+      "path": "/tmp/bkn-firstuse8-mac-desktop/home/profiles/desktop/cordis.yml",
+      "exists": true,
+      "bytes": 223,
+      "sha256": "c300dcf2ebc5f02062d6591268d29d3db6fe45e0cb138f5467276fe2ba06076e"
+    },
+    {
+      "path": "/tmp/bkn-firstuse8-mac-desktop/home/storages/workspace.json",
+      "exists": true,
+      "bytes": 709,
+      "sha256": "ef32393f7292cd4f6e3d51b93f6184605252394708ab4cd65c88269bba704967"
+    },
+    {
+      "path": "/tmp/bkn-firstuse8-mac-desktop/home/storages/openbkn_workspace_bindings.json",
+      "exists": false,
+      "bytes": null,
+      "sha256": null
+    },
+    {
+      "path": "/tmp/bkn-firstuse8-mac-desktop/bkn-config/platforms/aHR0cHM6Ly8xOTIuMTY4LjUwLjI4/users/266c6a42-6131-4d62-8f39-853e7093701c/token.json",
+      "exists": true,
+      "bytes": 1532,
+      "sha256": "37e1b7c0e554821b46f1cff33e62f636b77365c4bed99e99686c4ef9ffb3ba9e"
+    },
+    {
+      "path": "/tmp/bkn-firstuse8-mac-desktop/bkn-config/platforms/aHR0cHM6Ly8xOTIuMTY4LjUwLjI4/version-check.json",
+      "exists": true,
+      "bytes": 74,
+      "sha256": "6f6d2198813a1700277521e0c0d90262187352bfc68ff102cfe5e0a327b41b35"
+    },
+    {
+      "path": "/tmp/bkn-firstuse8-mac-desktop/bkn-config/state.json",
+      "exists": true,
+      "bytes": 141,
+      "sha256": "e133281161841df22c8c5d200c1a5e016b864ae7b8c203bf9153b44c022b73c5"
+    }
+  ],
+  "packageExists": true,
+  "dependency": "file:/tmp/bkn-firstuse8-ci-37725960498/openbkn-dsh-business-context-0.2.0-rc.2-openbkn.0.2.0-8.tgz"
+}

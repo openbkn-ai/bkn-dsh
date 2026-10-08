@@ -1,0 +1,359 @@
+{
+  "interactionId": "int_1cfc8bc32a0a38c0103dfb5c6ae8c881",
+  "conversationId": "conv_f7bb3696702ec20230c4f79dfc9789a0",
+  "sources": {
+    "timeline": "local-session",
+    "operations": "platform",
+    "business": "platform-enterprise",
+    "evidence": "platform",
+    "degraded": []
+  },
+  "timeline": [
+    {
+      "kind": "lifecycle",
+      "tool": "bkn_start_interaction",
+      "at": 1791438893742,
+      "durationMs": 181,
+      "outcome": "ok",
+      "summary": "bkn_start_interaction · new · conversation: yes",
+      "seq": 0
+    },
+    {
+      "kind": "managed",
+      "tool": "search_schema",
+      "at": 1791438896461,
+      "durationMs": 639,
+      "outcome": "ok",
+      "summary": "search_schema",
+      "seq": 1,
+      "platform": {
+        "operationId": "op_48efc4adca5a9ca9f22f13bf867db7a1",
+        "requestId": "req_efd27be7-5af8-4e2d-b3ba-8b2fafcf7788",
+        "traceId": "9f8897603d3334821474f79ab970030b",
+        "receiptId": "rcpt_c8fd7ca7be10280a4ebcb130c9f9a783",
+        "status": "completed"
+      }
+    },
+    {
+      "kind": "managed",
+      "tool": "get_object_types",
+      "at": 1791438899986,
+      "durationMs": 182,
+      "outcome": "ok",
+      "summary": "get_object_types · 1 项",
+      "seq": 2,
+      "platform": {
+        "operationId": "op_575010703ecfc795fe947cba71d67a8f",
+        "requestId": "req_218ea770-f73e-4528-bff7-04bb343cff0f",
+        "traceId": "6f7cf6e4a6ed885d2ca5090c5ad74bf0",
+        "receiptId": "rcpt_d46651077956ec1f77b9e2a5eb35963f",
+        "status": "completed"
+      }
+    },
+    {
+      "kind": "managed",
+      "tool": "query_object_instance",
+      "at": 1791438900169,
+      "durationMs": 78,
+      "outcome": "ok",
+      "summary": "query_object_instance · 1 项",
+      "seq": 3,
+      "platform": {
+        "operationId": "op_e14752e0929387aa542c1cf3d46c416a",
+        "requestId": "req_e8acbf40-98c7-4067-b013-adb26badbad7",
+        "traceId": "4da5abd94db9fc7a9019784ca93e4d07",
+        "receiptId": "rcpt_1ff42c258e2e0c356fdc49c26b5da583",
+        "status": "completed"
+      }
+    },
+    {
+      "kind": "lifecycle",
+      "tool": "bkn_finish_interaction",
+      "at": 1791438903411,
+      "durationMs": 107,
+      "outcome": "ok",
+      "summary": "bkn_finish_interaction · completed",
+      "seq": 4
+    },
+    {
+      "kind": "answer",
+      "at": 1791438904974,
+      "seq": 5
+    }
+  ],
+  "execution": {
+    "status": "completed",
+    "operations": [
+      {
+        "id": "op_48efc4adca5a9ca9f22f13bf867db7a1",
+        "label": "search_schema",
+        "protocol": "mcp",
+        "status": "completed",
+        "startedAt": "2026-10-08T05:54:56.518422Z",
+        "finishedAt": "2026-10-08T05:54:57.071295Z",
+        "requestId": "req_efd27be7-5af8-4e2d-b3ba-8b2fafcf7788",
+        "traceId": "9f8897603d3334821474f79ab970030b",
+        "receiptId": "rcpt_c8fd7ca7be10280a4ebcb130c9f9a783"
+      },
+      {
+        "id": "op_575010703ecfc795fe947cba71d67a8f",
+        "label": "get_object_types",
+        "protocol": "mcp",
+        "status": "completed",
+        "startedAt": "2026-10-08T05:55:00.028214Z",
+        "finishedAt": "2026-10-08T05:55:00.159391Z",
+        "requestId": "req_218ea770-f73e-4528-bff7-04bb343cff0f",
+        "traceId": "6f7cf6e4a6ed885d2ca5090c5ad74bf0",
+        "receiptId": "rcpt_d46651077956ec1f77b9e2a5eb35963f"
+      },
+      {
+        "id": "op_e14752e0929387aa542c1cf3d46c416a",
+        "label": "query_object_instance",
+        "protocol": "mcp",
+        "status": "completed",
+        "startedAt": "2026-10-08T05:55:00.182835Z",
+        "finishedAt": "2026-10-08T05:55:00.23848Z",
+        "requestId": "req_e8acbf40-98c7-4067-b013-adb26badbad7",
+        "traceId": "4da5abd94db9fc7a9019784ca93e4d07",
+        "receiptId": "rcpt_1ff42c258e2e0c356fdc49c26b5da583"
+      }
+    ]
+  },
+  "business": {
+    "kind": "ready",
+    "operations": [
+      {
+        "id": "op_48efc4adca5a9ca9f22f13bf867db7a1",
+        "attempt": 0,
+        "toolName": "search_schema",
+        "status": "resolved",
+        "elements": [
+          {
+            "id": "action_type:supply_ontology_hand:supply_ontology_hand_act_po",
+            "kind": "action",
+            "name": "发起PO",
+            "knowledgeNetworkId": "supply_ontology_hand"
+          },
+          {
+            "id": "kn:supply_ontology_hand",
+            "kind": "object",
+            "name": "供应链本体知识网络-手工版",
+            "knowledgeNetworkId": "supply_ontology_hand"
+          },
+          {
+            "id": "metric:supply_ontology_hand:01a0f6e6-5e9e-72bf-a34a-afcc0ca532d9",
+            "kind": "metric",
+            "name": "物料总数",
+            "knowledgeNetworkId": "supply_ontology_hand"
+          },
+          {
+            "id": "metric:supply_ontology_hand:01a0f6e6-5e9e-72c0-a36a-36849f8cd18f",
+            "kind": "metric",
+            "name": "供应商总数",
+            "knowledgeNetworkId": "supply_ontology_hand"
+          },
+          {
+            "id": "metric:supply_ontology_hand:01a0f6e6-5e9e-72c3-8694-7851b3e5186f",
+            "kind": "metric",
+            "name": "仓库数",
+            "knowledgeNetworkId": "supply_ontology_hand"
+          },
+          {
+            "id": "metric:supply_ontology_hand:01a0f6e6-5e9e-72c6-950b-cea1ef7900ad",
+            "kind": "metric",
+            "name": "未关闭预测单数",
+            "knowledgeNetworkId": "supply_ontology_hand"
+          },
+          {
+            "id": "object:supply_ontology_hand:supply_ontology_hand_bom",
+            "kind": "object",
+            "name": "产品BOM",
+            "knowledgeNetworkId": "supply_ontology_hand"
+          },
+          {
+            "id": "object:supply_ontology_hand:supply_ontology_hand_forecast",
+            "kind": "object",
+            "name": "产品需求预测单",
+            "knowledgeNetworkId": "supply_ontology_hand"
+          },
+          {
+            "id": "object:supply_ontology_hand:supply_ontology_hand_inventory",
+            "kind": "object",
+            "name": "库存",
+            "knowledgeNetworkId": "supply_ontology_hand"
+          },
+          {
+            "id": "object:supply_ontology_hand:supply_ontology_hand_material",
+            "kind": "object",
+            "name": "物料",
+            "knowledgeNetworkId": "supply_ontology_hand"
+          },
+          {
+            "id": "object:supply_ontology_hand:supply_ontology_hand_mon_item",
+            "kind": "object",
+            "name": "监控证据明细",
+            "knowledgeNetworkId": "supply_ontology_hand"
+          },
+          {
+            "id": "object:supply_ontology_hand:supply_ontology_hand_mon_task",
+            "kind": "object",
+            "name": "监控任务",
+            "knowledgeNetworkId": "supply_ontology_hand"
+          },
+          {
+            "id": "object:supply_ontology_hand:supply_ontology_hand_mps",
+            "kind": "object",
+            "name": "工厂生产计划",
+            "knowledgeNetworkId": "supply_ontology_hand"
+          },
+          {
+            "id": "object:supply_ontology_hand:supply_ontology_hand_mrp",
+            "kind": "object",
+            "name": "物料需求计划",
+            "knowledgeNetworkId": "supply_ontology_hand"
+          },
+          {
+            "id": "object:supply_ontology_hand:supply_ontology_hand_po",
+            "kind": "object",
+            "name": "采购订单",
+            "knowledgeNetworkId": "supply_ontology_hand"
+          },
+          {
+            "id": "object:supply_ontology_hand:supply_ontology_hand_pr",
+            "kind": "object",
+            "name": "采购申请单",
+            "knowledgeNetworkId": "supply_ontology_hand"
+          },
+          {
+            "id": "object:supply_ontology_hand:supply_ontology_hand_pr_decision",
+            "kind": "object",
+            "name": "采购申请决策",
+            "knowledgeNetworkId": "supply_ontology_hand"
+          },
+          {
+            "id": "object:supply_ontology_hand:supply_ontology_hand_product",
+            "kind": "object",
+            "name": "产品",
+            "knowledgeNetworkId": "supply_ontology_hand"
+          },
+          {
+            "id": "object:supply_ontology_hand:supply_ontology_hand_supplier",
+            "kind": "object",
+            "name": "供应商",
+            "knowledgeNetworkId": "supply_ontology_hand"
+          },
+          {
+            "id": "relation:supply_ontology_hand:supply_ontology_hand_mon2item",
+            "kind": "relation",
+            "name": "监控任务包含证据明细",
+            "knowledgeNetworkId": "supply_ontology_hand"
+          },
+          {
+            "id": "relation:supply_ontology_hand:supply_ontology_hand_monitem2mat",
+            "kind": "relation",
+            "name": "监控证据引用物料",
+            "knowledgeNetworkId": "supply_ontology_hand"
+          },
+          {
+            "id": "relation:supply_ontology_hand:supply_ontology_hand_mrp2fcst",
+            "kind": "relation",
+            "name": "物料需求计划关联产品预测需求",
+            "knowledgeNetworkId": "supply_ontology_hand"
+          },
+          {
+            "id": "relation:supply_ontology_hand:supply_ontology_hand_mrp2mat",
+            "kind": "relation",
+            "name": "物料需求计划关联物料",
+            "knowledgeNetworkId": "supply_ontology_hand"
+          },
+          {
+            "id": "relation:supply_ontology_hand:supply_ontology_hand_po2sup",
+            "kind": "relation",
+            "name": "采购订单关联供应商",
+            "knowledgeNetworkId": "supply_ontology_hand"
+          },
+          {
+            "id": "relation:supply_ontology_hand:supply_ontology_hand_pr2mrp",
+            "kind": "relation",
+            "name": "采购申请单关联物料需求计划",
+            "knowledgeNetworkId": "supply_ontology_hand"
+          },
+          {
+            "id": "relation:supply_ontology_hand:supply_ontology_hand_pr2po",
+            "kind": "relation",
+            "name": "采购订单关联物料请购单",
+            "knowledgeNetworkId": "supply_ontology_hand"
+          },
+          {
+            "id": "relation:supply_ontology_hand:supply_ontology_hand_prdec2fcst",
+            "kind": "relation",
+            "name": "采购申请决策来源于需求预测",
+            "knowledgeNetworkId": "supply_ontology_hand"
+          },
+          {
+            "id": "relation:supply_ontology_hand:supply_ontology_hand_prdec2mat",
+            "kind": "relation",
+            "name": "采购申请决策建议采购物料",
+            "knowledgeNetworkId": "supply_ontology_hand"
+          },
+          {
+            "id": "relation:supply_ontology_hand:supply_ontology_hand_prdec2prod",
+            "kind": "relation",
+            "name": "采购申请决策针对产品",
+            "knowledgeNetworkId": "supply_ontology_hand"
+          }
+        ],
+        "missingFacts": [],
+        "knowledgeNetworkId": "supply_ontology_hand"
+      },
+      {
+        "id": "op_e14752e0929387aa542c1cf3d46c416a",
+        "attempt": 0,
+        "toolName": "query_object_instance",
+        "status": "resolved",
+        "elements": [
+          {
+            "id": "object:supply_ontology_hand:supply_ontology_hand_material",
+            "kind": "object",
+            "name": "物料",
+            "knowledgeNetworkId": "supply_ontology_hand"
+          }
+        ],
+        "missingFacts": [],
+        "knowledgeNetworkId": "supply_ontology_hand"
+      }
+    ],
+    "conversationContext": [],
+    "contextRelations": [],
+    "derivedFacts": []
+  },
+  "evidence": {
+    "kind": "ready",
+    "receipts": [
+      {
+        "receiptId": "rcpt_c8fd7ca7be10280a4ebcb130c9f9a783",
+        "operationId": "op_48efc4adca5a9ca9f22f13bf867db7a1",
+        "toolLabel": "search_schema",
+        "status": "completed",
+        "source": "platform",
+        "verifyHint": "openbkn trace receipts get rcpt_c8fd7ca7be10280a4ebcb130c9f9a783"
+      },
+      {
+        "receiptId": "rcpt_d46651077956ec1f77b9e2a5eb35963f",
+        "operationId": "op_575010703ecfc795fe947cba71d67a8f",
+        "toolLabel": "get_object_types",
+        "status": "completed",
+        "source": "platform",
+        "verifyHint": "openbkn trace receipts get rcpt_d46651077956ec1f77b9e2a5eb35963f"
+      },
+      {
+        "receiptId": "rcpt_1ff42c258e2e0c356fdc49c26b5da583",
+        "operationId": "op_e14752e0929387aa542c1cf3d46c416a",
+        "toolLabel": "query_object_instance",
+        "status": "completed",
+        "source": "platform",
+        "verifyHint": "openbkn trace receipts get rcpt_1ff42c258e2e0c356fdc49c26b5da583"
+      }
+    ]
+  }
+}

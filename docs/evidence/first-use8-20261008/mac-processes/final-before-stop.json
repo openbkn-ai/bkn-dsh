@@ -1,0 +1,81 @@
+{
+  "recordedAt": "2026-10-08T07:38:57.536001+00:00",
+  "scope": "owned leaders and their observed descendant trees only",
+  "owned": [
+    {
+      "form": "desktop",
+      "leader": {
+        "pid": 82181,
+        "created": "Thu Oct  8 14:58:32 2026",
+        "argv": [
+          "/Applications/DeepSeek Harness.app/Contents/MacOS/DeepSeek Harness"
+        ],
+        "root": "/tmp/bkn-firstuse8-mac-desktop",
+        "port": null,
+        "form": "desktop"
+      },
+      "observedMembers": [
+        {
+          "pid": 82181,
+          "ppid": 1,
+          "pgid": 82181,
+          "created": "Thu Oct 8 14:58:32 2026",
+          "argv": "/Applications/DeepSeek Harness.app/Contents/MacOS/DeepSeek Harness"
+        },
+        {
+          "pid": 82183,
+          "ppid": 82181,
+          "pgid": 82181,
+          "created": "Thu Oct 8 14:58:33 2026",
+          "argv": "/Applications/DeepSeek Harness.app/Contents/Frameworks/DeepSeek Harness Helper.app/Contents/MacOS/DeepSeek Harness Helper --type=gpu-process --user-data-dir=/Users/kalias/Library/Application Support/@deepseek-ai/dsh-desktop --gpu-preferences=WAAAAAAAAAAgAQAEAAAAAAAAAAAAAGAAQAAAAAAAAAADAAAAAAAAADgAAAAAAAAAAAAAAAAAAAACAAAAAAAAAAAAAAAAAAAAKAAAAAAAAAAoAAAAAAAAAAgAAAAAAAAADAAAAAEAAAAAAAAAAAAAAAgAAAAAAAAACAAAAAAAAAA= --shared-files --field-trial-handle=1718379636,r,6146929321826695121,17227457172518394634,262144 --enable-features=PdfUseShowSaveFilePicker,ScreenCaptureKitPickerScreen,ScreenCaptureKitStreamPickerSonoma --disable-features=DropInputEventsWhilePaintHolding,LocalNetworkAccessChecks,ScreenAIOCREnabled,SpareRendererForSitePerProcess,TimeoutHangingVideoCaptureStarts,TraceSiteInstanceGetProcessCreation --variations-seed-version --pseudonymization-salt-handle=1935764596,r,11529090658608967141,17235885957922650475,4 --trace-process-track-uuid=3190708988185955192 --seatbelt-client=31"
+        },
+        {
+          "pid": 82184,
+          "ppid": 82181,
+          "pgid": 82181,
+          "created": "Thu Oct 8 14:58:33 2026",
+          "argv": "/Applications/DeepSeek Harness.app/Contents/Frameworks/DeepSeek Harness Helper.app/Contents/MacOS/DeepSeek Harness Helper --type=utility --utility-sub-type=network.mojom.NetworkService --lang=en-US --service-sandbox-type=network --user-data-dir=/Users/kalias/Library/Application Support/@deepseek-ai/dsh-desktop --standard-schemes=dsh-app --secure-schemes=dsh-app --cors-schemes=dsh-app --fetch-schemes=dsh-app --streaming-schemes=dsh-app --code-cache-schemes=dsh-app --shared-files --field-trial-handle=1718379636,r,6146929321826695121,17227457172518394634,262144 --enable-features=PdfUseShowSaveFilePicker,ScreenCaptureKitPickerScreen,ScreenCaptureKitStreamPickerSonoma --disable-features=DropInputEventsWhilePaintHolding,LocalNetworkAccessChecks,ScreenAIOCREnabled,SpareRendererForSitePerProcess,TimeoutHangingVideoCaptureStarts,TraceSiteInstanceGetProcessCreation --variations-seed-version --pseudonymization-salt-handle=1935764596,r,11529090658608967141,17235885957922650475,4 --trace-process-track-uuid=3190708989122997041 --seatbelt-client=31"
+        },
+        {
+          "pid": 82194,
+          "ppid": 82181,
+          "pgid": 82181,
+          "created": "Thu Oct 8 14:58:33 2026",
+          "argv": "/Applications/DeepSeek Harness.app/Contents/Frameworks/DeepSeek Harness Helper (Renderer).app/Contents/MacOS/DeepSeek Harness Helper (Renderer) --type=renderer --user-data-dir=/Users/kalias/Library/Application Support/@deepseek-ai/dsh-desktop --standard-schemes=dsh-app --secure-schemes=dsh-app --cors-schemes=dsh-app --fetch-schemes=dsh-app --streaming-schemes=dsh-app --code-cache-schemes=dsh-app --app-path=/Applications/DeepSeek Harness.app/Contents/Resources/app.asar --enable-sandbox --lang=en-US --num-raster-threads=4 --enable-zero-copy --enable-gpu-memory-buffer-compositor-resources --enable-main-frame-before-activation --renderer-client-id=4 --launch-time-ticks=2775452546182 --shared-files --field-trial-handle=1718379636,r,6146929321826695121,17227457172518394634,262144 --enable-features=PdfUseShowSaveFilePicker,ScreenCaptureKitPickerScreen,ScreenCaptureKitStreamPickerSonoma --disable-features=DropInputEventsWhilePaintHolding,LocalNetworkAccessChecks,ScreenAIOCREnabled,SpareRendererForSitePerProcess,TimeoutHangingVideoCaptureStarts,TraceSiteInstanceGetProcessCreation --variations-seed-version --pseudonymization-salt-handle=1935764596,r,11529090658608967141,17235885957922650475,4 --trace-process-track-uuid=3190708990060038890 --seatbelt-client=56"
+        },
+        {
+          "pid": 82538,
+          "ppid": 82181,
+          "pgid": 82181,
+          "created": "Thu Oct 8 14:58:34 2026",
+          "argv": "/Applications/DeepSeek Harness.app/Contents/MacOS/DeepSeek Harness --expose-internals /Applications/DeepSeek Harness.app/Contents/Resources/app.asar/dsh/node_modules/@deepseek-ai/dsh-desktop-host/lib/index.js /Applications/DeepSeek Harness.app/Contents/Resources/app.asar/dsh /tmp/bkn-firstuse8-mac-desktop/home/profiles/desktop /Applications/DeepSeek Harness.app/Contents/Resources/runtime/primary-runtime /Applications/DeepSeek Harness.app/Contents/Resources/runtime/pnpm/bin/pnpm.mjs /Applications/DeepSeek Harness.app/Contents/Resources/runtime/bin"
+        }
+      ]
+    },
+    {
+      "form": "npm",
+      "leader": {
+        "pid": 94333,
+        "created": "Thu Oct  8 15:24:10 2026",
+        "argv": [
+          "/Users/kalias/Documents/project/app/openBKN/dsh-npm-020/node_modules/.bin/dsh",
+          "web",
+          "--port",
+          "18320"
+        ],
+        "root": "/tmp/bkn-firstuse8-mac-npm",
+        "port": 18320,
+        "form": "npm"
+      },
+      "observedMembers": [
+        {
+          "pid": 94333,
+          "ppid": 1,
+          "pgid": 94333,
+          "created": "Thu Oct 8 15:24:10 2026",
+          "argv": "node /Users/kalias/Documents/project/app/openBKN/dsh-npm-020/node_modules/.bin/dsh web --port 18320"
+        }
+      ]
+    }
+  ]
+}

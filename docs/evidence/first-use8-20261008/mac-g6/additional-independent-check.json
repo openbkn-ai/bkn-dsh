@@ -1,0 +1,196 @@
+{
+  "checkedAt": "2026-10-08T06:42:56.282897+00:00",
+  "scope": "Fresh read-only CLI data versus delivered answers; criterion-level grading remains separate.",
+  "checks": [
+    {
+      "check": "additional questions before/after unchanged: orders",
+      "expected": "87517393f75f19c7d22709a3b1ea296cdff3c6295d90249ca87e1746ab77d86c",
+      "actual": "87517393f75f19c7d22709a3b1ea296cdff3c6295d90249ca87e1746ab77d86c",
+      "pass": true
+    },
+    {
+      "check": "additional questions before/after unchanged: inventory",
+      "expected": "8b883b8e4ea032580e22625c2efb61dc79baa8351ad5777f1f85bbbfbb6da342",
+      "actual": "8b883b8e4ea032580e22625c2efb61dc79baa8351ad5777f1f85bbbfbb6da342",
+      "pass": true
+    },
+    {
+      "check": "additional questions before/after unchanged: material",
+      "expected": "aa4fbbc172144f962ee2476176bc30b25b077f767c44dd630de4dec91240e020",
+      "actual": "aa4fbbc172144f962ee2476176bc30b25b077f767c44dd630de4dec91240e020",
+      "pass": true
+    },
+    {
+      "check": "additional questions before/after unchanged: bom-physical-all",
+      "expected": "3c1fd4ec6b34becd1426ef444affb04691e01cc69b9f6dbc439a1d982287be49",
+      "actual": "3c1fd4ec6b34becd1426ef444affb04691e01cc69b9f6dbc439a1d982287be49",
+      "pass": true
+    },
+    {
+      "check": "additional questions before/after unchanged: purchase-orders",
+      "expected": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "actual": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "pass": true
+    },
+    {
+      "check": "additional questions before/after unchanged: purchase-requests",
+      "expected": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "actual": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "pass": true
+    },
+    {
+      "check": "additional questions before/after unchanged: missing-material",
+      "expected": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "actual": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "pass": true
+    },
+    {
+      "check": "additional questions before/after unchanged: missing-inventory",
+      "expected": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "actual": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "pass": true
+    },
+    {
+      "check": "additional questions before/after unchanged: missing-orders",
+      "expected": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "actual": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "pass": true
+    },
+    {
+      "check": "full main_only independent inventory oracle before/after unchanged",
+      "expected": "b16fb7ddba2d9f3ef07e1af4972ea4d5cb8c24fdc6d1be8a02a6b3f1c2c5bce6",
+      "actual": "b16fb7ddba2d9f3ef07e1af4972ea4d5cb8c24fdc6d1be8a02a6b3f1c2c5bce6",
+      "pass": true
+    },
+    {
+      "check": "finished goods exact warehouse table, including total and record counts",
+      "expected": [
+        [
+          "苏州成品仓",
+          "325",
+          "个",
+          "5"
+        ],
+        [
+          "乌鲁木齐成品仓",
+          "127",
+          "个",
+          "2"
+        ],
+        [
+          "哈尔滨成品仓",
+          "82",
+          "个",
+          "2"
+        ],
+        [
+          "合计",
+          "534",
+          "个",
+          "9"
+        ]
+      ],
+      "actual": [
+        [
+          "苏州成品仓",
+          "325",
+          "个",
+          "5"
+        ],
+        [
+          "乌鲁木齐成品仓",
+          "127",
+          "个",
+          "2"
+        ],
+        [
+          "哈尔滨成品仓",
+          "82",
+          "个",
+          "2"
+        ],
+        [
+          "合计",
+          "534",
+          "个",
+          "9"
+        ]
+      ],
+      "pass": true
+    },
+    {
+      "check": "other warehouse figures",
+      "expected": [
+        232,
+        44,
+        6,
+        0
+      ],
+      "actual": [
+        232,
+        44,
+        6,
+        0
+      ],
+      "pass": true
+    },
+    {
+      "check": "finished goods answer declares limited warehouse scope",
+      "expected": true,
+      "actual": true,
+      "pass": true
+    },
+    {
+      "check": "order count/status fresh oracle",
+      "expected": [
+        40,
+        [
+          "已确认"
+        ]
+      ],
+      "actual": [
+        40,
+        [
+          "已确认"
+        ]
+      ],
+      "pass": true
+    },
+    {
+      "check": "orders count answer states count, sole status and both ranges",
+      "expected": true,
+      "actual": true,
+      "pass": true
+    },
+    {
+      "check": "purchase target PR/PO independently empty",
+      "expected": [
+        0,
+        0
+      ],
+      "actual": [
+        0,
+        0
+      ],
+      "pass": true
+    },
+    {
+      "check": "purchase target scope and separate PR/PO result declared",
+      "expected": true,
+      "actual": true,
+      "pass": true
+    },
+    {
+      "check": "extra purchase answer child-code distinct count (not an expected purchase criterion)",
+      "expected": 407,
+      "actual": 406,
+      "pass": false
+    }
+  ],
+  "allCheckedClaimsPass": false,
+  "limits": [
+    "Purchase target PR/PO=0 is checked; extra PR=5028 and narrative MPS/status claims are unverified.",
+    "Purchase answer extra distinct-child count is 406 versus independent physical-table 407, so entire-answer accuracy is not claimed.",
+    "BOM physical 507 rows include root; main_only published oracle is 313 lines / 272 materials / 5 levels. These scopes are distinct."
+  ]
+}

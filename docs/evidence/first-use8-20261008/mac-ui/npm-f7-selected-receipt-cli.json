@@ -1,0 +1,76 @@
+{
+  "receipt_id": "rcpt_f46016358a018e13110460d7ec1bb989",
+  "schema_version": "3.0.0",
+  "owner": {
+    "application_principal_id": "openbkn-sdk",
+    "effective_subject_type": "user",
+    "effective_subject_id": "266c6a42-6131-4d62-8f39-853e7093701c"
+  },
+  "conversation_id": "conv_785a3c9fcafe10aca6e10fe631f2f4b1",
+  "interaction_id": "int_a9b9c8af2621daa9f3449369900153d3",
+  "operation_id": "op_0a6f7281ec65aa770724de701159a92e",
+  "attempt": 1,
+  "operation_key": "mcp:4f49476aead319cb71d83f96d0f576d6",
+  "tool_name": "query_object_instance",
+  "receipt_status": "completed",
+  "evidence_durability": "durable",
+  "required": true,
+  "request_id": "req_a6515a06-6703-4af3-aacc-d920d8d1ca09",
+  "trace_id": "e3c4f93dc9c77bda8837128bae372183",
+  "causation_event_ids": [],
+  "observed_evidence_refs": [
+    "evt_e3d46401fb7eb74781b807f3feb16534e1c128800d5dcd3dda2c45de22ca6472"
+  ],
+  "business_refs": [
+    {
+      "ref_type": "object_type",
+      "ref_id": "object:supply_ontology_hand:supply_ontology_hand_inventory",
+      "version": "unversioned"
+    },
+    {
+      "ref_type": "property",
+      "ref_id": "property:supply_ontology_hand:supply_ontology_hand_inventory:material_code",
+      "version": "unversioned"
+    },
+    {
+      "ref_type": "property",
+      "ref_id": "property:supply_ontology_hand:supply_ontology_hand_inventory:material_name",
+      "version": "unversioned"
+    },
+    {
+      "ref_type": "property",
+      "ref_id": "property:supply_ontology_hand:supply_ontology_hand_inventory:warehouse",
+      "version": "unversioned"
+    },
+    {
+      "ref_type": "property",
+      "ref_id": "property:supply_ontology_hand:supply_ontology_hand_inventory:stock_status",
+      "version": "unversioned"
+    },
+    {
+      "ref_type": "property",
+      "ref_id": "property:supply_ontology_hand:supply_ontology_hand_inventory:available_inventory_qty",
+      "version": "unversioned"
+    },
+    {
+      "ref_type": "property",
+      "ref_id": "property:supply_ontology_hand:supply_ontology_hand_inventory:inventory_qty",
+      "version": "unversioned"
+    },
+    {
+      "ref_type": "property",
+      "ref_id": "property:supply_ontology_hand:supply_ontology_hand_inventory:reserved_inventory_qty",
+      "version": "unversioned"
+    },
+    {
+      "ref_type": "property",
+      "ref_id": "property:supply_ontology_hand:supply_ontology_hand_inventory:inventory_uom",
+      "version": "unversioned"
+    }
+  ],
+  "artifact_refs": [],
+  "partial_reasons": [],
+  "row_version": 2,
+  "issued_at": "2026-10-08T06:01:58.299283Z",
+  "terminal_at": "2026-10-08T06:01:58.343688Z"
+}

@@ -1,0 +1,15 @@
+{
+  "address": "https://192.168.50.28",
+  "initialRoute": "utun4 via198.18.0.1",
+  "initialComparison": "Chrome ERR_CONNECTION_CLOSED; independent CLI ECONNRESET before TLS; direct curl exit35",
+  "loopbackComparison": "same Host/SNI via --resolve127.0.0.1 HTTP302 verify0",
+  "userAppliedTemporaryMapping": "lo0 alias192.168.50.28/32",
+  "afterMappingRoute": "lo0 LOCAL",
+  "afterMappingHTTPS": {
+    "httpStatus": 302,
+    "certificateVerify": 0
+  },
+  "tlsValidationDisabled": false,
+  "removeCommand": "sudo /sbin/ifconfig lo0 -alias 192.168.50.28",
+  "scope": "User-authorized local test-platform remapping; no repository/runtime network change"
+}

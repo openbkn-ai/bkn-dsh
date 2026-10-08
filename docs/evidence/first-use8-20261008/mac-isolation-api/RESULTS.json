@@ -1,0 +1,31 @@
+{
+  "checkedAt": "2026-10-08T05:22:29.556106+00:00",
+  "host": "official npm DSH 0.2.0-rc.2 on macOS, independent fresh web profiles",
+  "candidateVersion": "0.2.0-rc.2-openbkn.0.2.0-8",
+  "baseSha256": "6a946030a6152d2899609fac95c66cd246e36cca5a8ce4e5f87ed379cbe706ea",
+  "scenarios": [
+    {
+      "scenario": "S2",
+      "result": "pass at Host API/HTTP level",
+      "reportId": "714bb382",
+      "businessFailure": "module-resolution-failed",
+      "diagnostics": "available and active",
+      "configuration": "readable configured=false; editable=false/entry-inactive because business import failed",
+      "bootstrapClientSupply": "active boot entry + HTTP200 JavaScript",
+      "ownedCleanup": "creation/argv/listener verified; PID absent and assigned port free"
+    },
+    {
+      "scenario": "S4",
+      "result": "pass at Host API/HTTP level",
+      "business": "active; no URL configured, pending first-use setup, no business request/Q&A acceptance claimed",
+      "diagnostics": "unavailable as expected for broken diagnostics import",
+      "configuration": "unavailable, same failed diagnostics owner",
+      "bootstrapClientSupply": "active boot entry + HTTP200 JavaScript",
+      "ownedCleanup": "creation/argv/listener verified; PID absent and assigned port free"
+    }
+  ],
+  "uiAcceptance": "not-run; Host API/HTTP evidence only",
+  "sourceCandidateReleaseChanges": "none",
+  "dailyProfileBoundary": "One accidental empty daily plugin-manager help log retained and disclosed; no before snapshot of the daily profile",
+  "externalCredentialOrModelRequests": "none"
+}

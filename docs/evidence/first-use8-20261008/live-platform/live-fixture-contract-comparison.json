@@ -1,0 +1,62 @@
+{
+  "fixtureSource": {
+    "repository": "openbkn-ai/bkn-foundry",
+    "tag": "v0.1.5",
+    "commit": "e6445df3fd70f0768a77764d10ec084954d3a770",
+    "path": "adp/context-loader/agent-retrieval/server/driveradapters/mcp/schemas/tools_meta.json",
+    "captured": "2026-10-04",
+    "note": "Tool names from tools_meta.json; knId from each <tool>.json input_schema (\"unknown\": no schema file in that directory)."
+  },
+  "fixtureSHA256": "f018fced44f7d95116df92bac5353e8767f0be6c48666277b964d3180102e65e",
+  "liveCatalogueSHA256": "e0fd25bb949f097e3301657e3dc1b1fbd476b6db11250a1ea5d8cd3781edc0ba",
+  "matchedKnownKnIdContracts": [
+    "search_schema",
+    "search_instance",
+    "query_object_instance",
+    "query_instance_subgraph",
+    "explore_subgraph",
+    "get_logic_properties_values",
+    "query_metric",
+    "get_action_info",
+    "execute_action",
+    "get_action_execution",
+    "list_action_executions",
+    "list_knowledge_networks",
+    "get_kn_detail",
+    "get_object_types",
+    "get_relation_types",
+    "run_sql",
+    "run_cypher",
+    "list_resources",
+    "describe_resource",
+    "list_skills",
+    "get_skill_content",
+    "read_skill_file",
+    "search_capabilities",
+    "execute_tool"
+  ],
+  "knownKnIdContractMismatches": [],
+  "fixtureToolsNotExposed": [
+    "execute_skill"
+  ],
+  "liveToolsNotInFixture": [],
+  "unknownFixtureFieldsObservedNotUpgradedToClaim": [
+    {
+      "name": "bkn_finish_interaction",
+      "observedKnId": "absent"
+    },
+    {
+      "name": "bkn_start_interaction",
+      "observedKnId": "absent"
+    },
+    {
+      "name": "run_code",
+      "observedKnId": "absent"
+    },
+    {
+      "name": "run_shell",
+      "observedKnId": "absent"
+    }
+  ],
+  "scope": "Fresh authenticated MCP tools/list compared with independent v0.1.5 source-derived fixture; full prior-catalogue input/output comparison is in live-contract-comparison.json. execute_skill absence is the previously documented default-disabled catalogue condition, not newly supported."
+}

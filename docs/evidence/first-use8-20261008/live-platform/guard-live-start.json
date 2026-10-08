@@ -1,0 +1,33 @@
+{
+  "candidateSourceCommit": "23ac2daa6d3538235f33a9627a8178a48f3e1ebf",
+  "candidateTgzSHA256": "6a946030a6152d2899609fac95c66cd246e36cca5a8ce4e5f87ed379cbe706ea",
+  "candidateVersion": "0.2.0-rc.2-openbkn.0.2.0-8",
+  "guardProbeSHA256": "589dd2306660eab6f9f44383d27dc83241ee734d60b2f33fc60c4616fcac5aac",
+  "guardCliHelperSHA256": "42e9304b92b830b87f0ab6e42aacc5afe7454ae1b93bb17f3b0d57d032635051",
+  "prepareOutputSHA256": "cc7ae564341a6b5897862e7ea0b71f348de01fab86e756dded0dd7ba1d5ff261",
+  "node": "/Users/kalias/.nvm/versions/node/v24.19.0/bin/node",
+  "argv": [
+    "/tmp/bkn-firstuse8-live-validation/live-guard-work/tests/probes/guard-runtime.probe.mjs",
+    "--plugin",
+    "/tmp/bkn-firstuse8-live-validation/live-guard-work/package",
+    "--live",
+    "https://192.168.50.28",
+    "--kn",
+    "supply_ontology_hand",
+    "--other-kn",
+    "worldcup_vega_catalog_bkn",
+    "--cli",
+    "/private/var/folders/9r/1zks6bqd7f3dtwybvxsksbc40000gn/T/openbkn-diag-ui-h76__jwb/cli-0.1.5/node_modules/.bin/openbkn"
+  ],
+  "startedAt": "2026-10-08T05:28:55.031Z",
+  "wrapperPid": 39136,
+  "nodeVersion": "v24.19.0",
+  "probePackage": "/tmp/bkn-firstuse8-live-validation/live-guard-work/package",
+  "preparePathMatchesActualPluginArgument": true,
+  "cliStore": "/tmp/bkn-firstuse8-mac-desktop/bkn-config",
+  "CA_SHA256": "89e53b4e7a09305c01c37513a9bdda63698735a33a0df71f725875ec47180453",
+  "proxyExceptionScope": "Only this wrapper and its owned child processes; no global environment change",
+  "networkIdentitySource": "/tmp/bkn-firstuse8-live-validation/live-networks.json",
+  "scope": "Fixed candidate bytes on official npm DSH ToolRuntime, real MCP transport and platform operation verification; no model/Desktop UI acceptance inferred",
+  "probePid": 39145
+}

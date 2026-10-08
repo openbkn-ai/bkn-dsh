@@ -1,0 +1,62 @@
+{
+  "type": "server-response",
+  "rpcId": "6501967a-2b6b-4fcc-99d1-2e81eebfc9ca",
+  "result": {
+    "ok": true,
+    "value": {
+      "schemaVersion": 1,
+      "reportId": "4bc62b72",
+      "createdAt": "2026-10-08T05:52:03.432Z",
+      "target": {
+        "hostForm": "unknown",
+        "platform": "darwin",
+        "dshVersion": null,
+        "pluginDiskVersion": "0.2.0-rc.2-openbkn.0.2.0-8",
+        "pluginLoadedVersion": null
+      },
+      "mode": "passive",
+      "checks": [
+        {
+          "id": "bootstrap-entry",
+          "stage": "installation",
+          "status": "pass",
+          "source": "host-runtime",
+          "code": "component-loaded",
+          "evidence": {
+            "entryPresent": true
+          },
+          "nextAction": null
+        },
+        {
+          "id": "business-entry",
+          "stage": "configuration",
+          "status": "fail",
+          "source": "host-runtime",
+          "code": "configuration-invalid",
+          "evidence": {
+            "entryPresent": true,
+            "configField": "baseUrl"
+          },
+          "nextAction": "Export this report and send it to support; the OpenBKN panel cannot start until the listed stage is fixed."
+        },
+        {
+          "id": "diagnostics-entry",
+          "stage": "diagnostics",
+          "status": "pass",
+          "source": "host-runtime",
+          "code": "component-loaded",
+          "evidence": {
+            "schemaVersion": 1
+          },
+          "nextAction": null
+        }
+      ],
+      "coverage": {
+        "executedChecks": 3,
+        "notRunChecks": 0,
+        "insufficientEvidenceChecks": 0,
+        "notes": []
+      }
+    }
+  }
+}

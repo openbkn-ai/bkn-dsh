@@ -1,0 +1,239 @@
+{
+  "sessionId": "session-019f3899-852e-4dc7-a206-8cf9b4b20c3e",
+  "question": [
+    "当前供应链知识网络中共有多少张销售订单？状态分布如何？请说明查询口径和来源。"
+  ],
+  "assistantText": [
+    "I'll query the bound knowledge network for sales order data.",
+    "Schema located. Now querying the governed metric and cross-checking with a direct model query.",
+    "The governed metric returns totals; let me cross-check the per-status counts against the object query path.",
+    "## 结论\n\n当前供应链知识网络中共有 **800 张销售订单**。\n\n**状态分布**\n\n| 订单状态 (order_status) | 订单数 |\n|---|---|\n| 已确认 | 784 |\n| 执行中 | 16 |\n| **合计** | **800** |\n\n784 + 16 = 800，与总数吻合，未出现第三种状态值。\n\n## 查询口径与来源\n\n**实体定位**\n- 对象类：销售订单 `supply_ontology_hand_salesorder`（概念名「销售订单」，注释：记录销售签约与交付信息）\n- 物理数据源：`supply_demo_hand.sales_order`，resource id `01a0f6e5-fda9-717a-aa25-f5573d2b246c`\n- 状态字段：`order_status`（string，权限 full）\n\n**计数口径**\n- 总数取自该对象类下**已建模指标「销售订单数」**（metric id `01a0f6e6-5e9e-72c1-b69b-64e663b5e45d`），聚合公式为 `count(sales_order_id)`，单位 transaction（计数单位），指标快照标注为 800。\n- 分布通过同一指标的 `analysis_dimensions=[order_status]` 拆维得到——按状态分组计数，而非自定义重算。\n- 未附加时间窗过滤，即**全量快照口径**（该指标无时间维度，查询返回单一时间点 `times:[0]`）。\n\n**交叉验证（对象查询路径）**\n用 `query_object_instance` 在 `ot_id=supply_ontology_hand_salesorder` 上读取 `total_count`，三条查询互相印证：\n\n| 过滤条件 | total_count |\n|---|---|\n| 无过滤 | 800 |\n| order_status = 已确认 | 784 |\n| order_status = 执行中 | 16 |\n\n**说明与限制**\n- 本次未使用 `run_cypher`：该工具在本部署的 OpenBKN 业务会话中不受支持（返回明确的不支持提示），因此全部结论来自受管指标与对象查询两条路径。\n- 上述 800 为「销售订单」对象类的记录数；该口径按 `sales_order_id` 计数，本次已验证首条实例 `SO0000001`、`SO0000029` 与各自状态一致，未发现订单号重复导致的口径偏差迹象。\n- 状态取值仅为「已确认」「执行中」两者，这是查询所得的事实，不代表该字段在其他时间点不存在其他取值。\n\n本次交互已在同一 OpenBKN Interaction 内完成并结束（evidence_status: complete），知识网络绑定为 `supply_ontology_hand`、会话 `conv_796b358bd3b602a0a0bb87c787cef9ed`。"
+  ],
+  "finalAnswer": {
+    "turn": 1,
+    "step": 7,
+    "text": "## 结论\n\n当前供应链知识网络中共有 **800 张销售订单**。\n\n**状态分布**\n\n| 订单状态 (order_status) | 订单数 |\n|---|---|\n| 已确认 | 784 |\n| 执行中 | 16 |\n| **合计** | **800** |\n\n784 + 16 = 800，与总数吻合，未出现第三种状态值。\n\n## 查询口径与来源\n\n**实体定位**\n- 对象类：销售订单 `supply_ontology_hand_salesorder`（概念名「销售订单」，注释：记录销售签约与交付信息）\n- 物理数据源：`supply_demo_hand.sales_order`，resource id `01a0f6e5-fda9-717a-aa25-f5573d2b246c`\n- 状态字段：`order_status`（string，权限 full）\n\n**计数口径**\n- 总数取自该对象类下**已建模指标「销售订单数」**（metric id `01a0f6e6-5e9e-72c1-b69b-64e663b5e45d`），聚合公式为 `count(sales_order_id)`，单位 transaction（计数单位），指标快照标注为 800。\n- 分布通过同一指标的 `analysis_dimensions=[order_status]` 拆维得到——按状态分组计数，而非自定义重算。\n- 未附加时间窗过滤，即**全量快照口径**（该指标无时间维度，查询返回单一时间点 `times:[0]`）。\n\n**交叉验证（对象查询路径）**\n用 `query_object_instance` 在 `ot_id=supply_ontology_hand_salesorder` 上读取 `total_count`，三条查询互相印证：\n\n| 过滤条件 | total_count |\n|---|---|\n| 无过滤 | 800 |\n| order_status = 已确认 | 784 |\n| order_status = 执行中 | 16 |\n\n**说明与限制**\n- 本次未使用 `run_cypher`：该工具在本部署的 OpenBKN 业务会话中不受支持（返回明确的不支持提示），因此全部结论来自受管指标与对象查询两条路径。\n- 上述 800 为「销售订单」对象类的记录数；该口径按 `sales_order_id` 计数，本次已验证首条实例 `SO0000001`、`SO0000029` 与各自状态一致，未发现订单号重复导致的口径偏差迹象。\n- 状态取值仅为「已确认」「执行中」两者，这是查询所得的事实，不代表该字段在其他时间点不存在其他取值。\n\n本次交互已在同一 OpenBKN Interaction 内完成并结束（evidence_status: complete），知识网络绑定为 `supply_ontology_hand`、会话 `conv_796b358bd3b602a0a0bb87c787cef9ed`。",
+    "turnEndReason": {
+      "kind": "completed"
+    }
+  },
+  "fidelityNotices": [],
+  "toolEvents": [
+    {
+      "type": "tool/call",
+      "time": 1791442540787,
+      "turn": 1,
+      "step": 1,
+      "callId": "call_00_tZHYKb4xkvC7f0ABzBir6282",
+      "name": "mcp__openbkn__bkn_start_interaction",
+      "arguments": "{\"conversation_mode\": \"new\", \"question\": \"当前供应链知识网络中共有多少张销售订单？状态分布如何？请说明查询口径和来源。\", \"agent_name\": \"bkn-agent-dsh-business-context\"}"
+    },
+    {
+      "type": "tool/result",
+      "time": 1791442541229,
+      "turn": 1,
+      "step": 1,
+      "callId": "call_00_tZHYKb4xkvC7f0ABzBir6282",
+      "hostErrorFlag": false,
+      "content": [
+        {
+          "type": "text",
+          "text": "{\"interaction_id\":\"int_7dd12ff68f3f92b4e9f1e2e2ba3f8654\",\"conversation_id\":\"conv_796b358bd3b602a0a0bb87c787cef9ed\",\"execution_status\":\"active\"}"
+        }
+      ]
+    },
+    {
+      "type": "tool/call",
+      "time": 1791442542806,
+      "turn": 1,
+      "step": 2,
+      "callId": "call_00_bfpRG35AxttmnUWWx38E2452",
+      "name": "mcp__openbkn__search_schema",
+      "arguments": "{\"kn_id\": \"supply_ontology_hand\", \"query\": \"销售订单 状态 订单\", \"include_columns\": true, \"bkn_context\": {\"conversation_id\": \"conv_796b358bd3b602a0a0bb87c787cef9ed\", \"interaction_id\": \"int_7dd12ff68f3f92b4e9f1e2e2ba3f8654\"}}"
+    },
+    {
+      "type": "tool/result",
+      "time": 1791442543660,
+      "turn": 1,
+      "step": 2,
+      "callId": "call_00_bfpRG35AxttmnUWWx38E2452",
+      "hostErrorFlag": false,
+      "content": [
+        {
+          "type": "text",
+          "text": "action_types[#0]:\nmetric_types[#2]:\n  - analysis_dimensions[#2]{display_name,name}:\n    产品编码,product_code\n    订单状态,order_status\n    calculation_formula:\n      aggregation:\n        aggr: count\n        property: sales_order_id\n    comment: count(sales_order_id)。可按 product_code / order_status 过滤或分组。快照 800。\n    id: \"01a0f6e6-5e9e-72c1-b69b-64e663b5e45d\"\n    metric_type: atomic\n    name: 销售订单数\n    scope_ref: supply_ontology_hand_salesorder\n    scope_type: object_type\n    unit: transaction\n    unit_type: countUnit\n  - analysis_dimensions[#1]{display_name,name}:\n    产品编码,material_number\n    calculation_formula:\n      aggregation:\n        aggr: count\n        property: id\n    comment: 意图：count(id) 且 closestatus_title != 已关闭。定义态 condition 当前会被丢弃；查询时必须再带该过滤。快照 90。\n    id: \"01a0f6e6-5e9e-72c6-950b-cea1ef7900ad\"\n    metric_type: atomic\n    name: 未关闭预测单数\n    scope_ref: supply_ontology_hand_forecast\n    scope_type: object_type\n    unit: transaction\n    unit_type: countUnit\nobject_types[#12]:\n  - comment: 记录销售签约与交付信息。产品编码与「产品」对象一致，可直接关联查询；并包含客户、签约数量、承诺交期与交付情况等业务字段，便于体验订单履约分析。\n    concept_id: supply_ontology_hand_salesorder\n    concept_name: 销售订单\n    data_properties[#13]{column,name,type}:\n      sales_order_id,sales_order_id,string\n      contract_number,contract_number,string\n      customer_id,customer_id,string\n      customer_name,customer_name,string\n      product_code,product_code,string\n      product_name,product_name,string\n      signing_quantity,signing_quantity,integer\n      signing_date,signing_date,date\n      promised_delivery_date,promised_delivery_date,date\n      shipping_quantity,shipping_quantity,float\n      shipping_date,shipping_date,date\n      order_status,order_status,string\n      salesperson,salesperson,string\n    data_source:\n      id: \"01a0f6e5-fda9-717a-aa25-f5573d2b246c\"\n      name: supply_demo_hand.sales_order\n      type: resource\n    effective_permissions:\n      contract_number: full\n      customer_id: full\n      customer_name: full\n      order_status: full\n      product_code: full\n      product_name: full\n      promised_delivery_date: full\n      sales_order_id: full\n      salesperson: full\n      shipping_date: full\n      shipping_quantity: full\n      signing_date: full\n      signing_quantity: full\n    logic_properties[#1]:\n      -\n        data_source:\n          id: \"01a0f6e6-5e9e-72c1-b69b-64e663b5e45d\"\n          name: 销售订单数\n          type: metric\n        name: sales_order_count\n        parameters[#6]:\n          - comment: 产品编码\n            name: product_code\n            type: string\n            value: product_code\n            value_from: property\n          - comment: 订单状态\n            name: order_status\n            type: string\n            value_from: input\n          - comment: 是否进行即时查询。可选，默认为 false。instant=true 表示即时查询；否则表示范围查询。\n            if_system_generate: true\n            name: instant\n            type: boolean\n            value_from: input\n          - comment: 指标查询的开始时间，格式为 start=<unix_timestamp>，单位为毫秒，例如 1646360670123。\n            if_system_generate: true\n            name: start\n            type: integer\n            value_from: input\n          - comment: 指标查询的结束时间，格式为 end=<unix_timestamp>，单位为毫秒，例如 1646471470123。\n            if_system_generate: true\n            name: end\n            type: integer\n            value_from: input\n          - comment: 范围查询的步长。instant=false 时必填，格式为 step=<time_duration>，由数字和时间单位组成。\n            if_system_generate: true\n            name: step\n            type: string\n            value_from: input\n        type: metric\n  - comment: 发给供应商的正式采购订单。\n    concept_id: supply_ontology_hand_po\n    concept_name: 采购订单\n    data_properties[#24]{column,name,type}:\n      srcbillentryid,srcbillentryid,string\n      srcbillid,srcbillid,string\n      billno,billno,string\n      biztime,biztime,date\n      org_name,org_name,string\n      billtype_name,billtype_name,string\n      supplier_number,supplier_number,string\n      supplier_name,supplier_name,string\n      operatorname,operatorname,string\n      huid_xycg_operatorname,huid_xycg_operatorname,string\n      createtime,createtime,timestamp\n      auditdate,auditdate,timestamp\n      material_number,material_number,string\n      material_name,material_name,string\n      qty,qty,decimal\n      deliverdate,deliverdate,date\n      srcbillnumber,srcbillnumber,string\n      invqty,invqty,decimal\n      returnqty,returnqty,decimal\n      actqty,actqty,decimal\n      entry_id,entry_id,string\n      id,id,string\n      rowclosestatus_title,rowclosestatus_title,string\n      rowterminatestatus_title,rowterminatestatus_title,string\n    data_source:\n      id: \"01a0f6e5-fd83-7472-a9cb-8e0bb5a2bfd5\"\n      name: supply_demo_hand.erp_purchase_order\n      type: resource\n    effective_permissions:\n      actqty: full\n      auditdate: full\n      billno: full\n      billtype_name: full\n      biztime: full\n      createtime: full\n      deliverdate: full\n      entry_id: full\n      huid_xycg_operatorname: full\n      id: full\n      invqty: full\n      material_name: full\n      material_number: full\n      operatorname: full\n      org_name: full\n      qty: full\n      returnqty: full\n      rowclosestatus_title: full\n      rowterminatestatus_title: full\n      srcbillentryid: full\n      srcbillid: full\n      srcbillnumber: full\n      supplier_name: full\n      supplier_number: full\n  - comment: 根据MRP生成的内部采购申请PR。\n    concept_id: supply_ontology_hand_pr\n    concept_name: 采购申请单\n    data_properties[#18]{column,name,type}:\n      huid_xmh_name,huid_xmh_name,string\n      srcbillentryid,srcbillentryid,string\n      srcbillid,srcbillid,string\n      srcbillnumber,srcbillnumber,string\n      id,id,string\n      billno,billno,string\n      biztime,biztime,timestamp\n      billtype_name,billtype_name,string\n      org_name,org_name,string\n      auditdate,auditdate,timestamp\n      entry_id,entry_id,string\n      material_number,material_number,string\n      material_name,material_name,string\n      qty,qty,decimal\n      unit_name,unit_name,string\n      joinqty,joinqty,decimal\n      rowclosestatus_title,rowclosestatus_title,string\n      rowterminatestatus_title,rowterminatestatus_title,string\n    data_source:\n      id: \"01a0f6e5-fd8b-7e0d-bc68-536ab2ca1cbf\"\n      name: supply_demo_hand.erp_purchase_request\n      type: resource\n    effective_permissions:\n      auditdate: full\n      billno: full\n      billtype_name: full\n      biztime: full\n      entry_id: full\n      huid_xmh_name: full\n      id: full\n      joinqty: full\n      material_name: full\n      material_number: full\n      org_name: full\n      qty: full\n      rowclosestatus_title: full\n      rowterminatestatus_title: full\n      srcbillentryid: full\n      srcbillid: full\n      srcbillnumber: full\n      unit_name: full\n  - comment: 业务端（产品经理）基于销售需求、市场预判制定的基础需求数据源，是偏 “预判性” 的原始单据，核心记录产品、预测数量、对应月份 / 时间节点等基础信息，是“最上游单据”。每个月预测未来3个月的需求数据，每个产品都是滚动预测，滚动排产。从产品需求预测到物料需求计划（MRP），正式投放后，发起采购申请，通过后形成采购订单，当成品物料齐套后，安排生产工单，生产完成，则产品需求计划（产品需求预测单）完成。所以，当前产品需求预测单等同于产品需求计划。\n    concept_id: supply_ontology_hand_forecast\n    concept_name: 产品需求预测单\n    data_properties[#12]:\n      - column: id\n        name: id\n        type: string\n      - column: auditdate\n        name: auditdate\n        type: timestamp\n      - column: auditor_name\n        name: auditor_name\n        type: string\n      - column: billno\n        name: billno\n        type: string\n      - column: bizdate\n        name: bizdate\n        type: date\n      - column: creator_name\n        name: creator_name\n        type: string\n      - column: enddate\n        name: enddate\n        type: date\n      - column: material_name\n        name: material_name\n        type: string\n      - column: material_number\n        name: material_number\n        type: string\n      - column: qty\n        name: qty\n        type: decimal\n      - column: startdate\n        name: startdate\n        type: date\n      - column: closestatus_title\n        condition_operations[#2]: match,multi_match\n        name: closestatus_title\n        type: text\n    data_source:\n      id: \"01a0f6e5-fd70-761a-ae98-f2deb903fa68\"\n      name: supply_demo_hand.erp_mds_forecast\n      type: resource\n    effective_permissions:\n      auditdate: full\n      auditor_name: full\n      billno: full\n      bizdate: full\n      closestatus_title: full\n      creator_name: full\n      enddate: full\n      id: full\n      material_name: full\n      material_number: full\n      qty: full\n      startdate: full\n    logic_properties[#2]:\n      -\n        data_source:\n          id: \"01a0f6e6-5e9e-72c5-96f0-5d21afbe81b0\"\n          name: 预测需求量合计\n          type: metric\n        name: forecast_qty_sum\n        parameters[#6]:\n          - comment: 产品编码\n            name: material_number\n            type: string\n            value: material_number\n            value_from: property\n          - comment: 关闭状态\n            name: closestatus_title\n            type: string\n            value_from: input\n          - comment: 是否进行即时查询。可选，默认为 false。instant=true 表示即时查询；否则表示范围查询。\n            if_system_generate: true\n            name: instant\n            type: boolean\n            value_from: input\n          - comment: 指标查询的开始时间，格式为 start=<unix_timestamp>，单位为毫秒，例如 1646360670123。\n            if_system_generate: true\n            name: start\n            type: integer\n            value_from: input\n          - comment: 指标查询的结束时间，格式为 end=<unix_timestamp>，单位为毫秒，例如 1646471470123。\n            if_system_generate: true\n            name: end\n            type: integer\n            value_from: input\n          - comment: 范围查询的步长。instant=false 时必填，格式为 step=<time_duration>，由数字和时间单位组成。\n            if_system_generate: true\n            name: step\n            type: string\n            value_from: input\n        type: metric\n      -\n        data_source:\n          id: \"01a0f6e6-5e9e-72c6-950b-cea1ef7900ad\"\n          name: 未关闭预测单数\n          type: metric\n        name: open_forecast_count\n        parameters[#6]:\n          - comment: 产品编码\n            name: material_number\n            type: string\n            value: material_number\n            value_from: property\n          - comment: 关闭状态；未关闭请传 已关闭 + operation !=\n            name: closestatus_title\n            type: string\n            value_from: input\n          - comment: 是否进行即时查询。可选，默认为 false。instant=true 表示即时查询；否则表示范围查询。\n            if_system_generate: true\n            name: instant\n            type: boolean\n            value_from: input\n          - comment: 指标查询的开始时间，格式为 start=<unix_timestamp>，单位为毫秒，例如 1646360670123。\n            if_system_generate: true\n            name: start\n            type: integer\n            value_from: input\n          - comment: 指标查询的结束时间，格式为 end=<unix_timestamp>，单位为毫秒，例如 1646471470123。\n            if_system_generate: true\n            name: end\n            type: integer\n            value_from: input\n          - comment: 范围查询的步长。instant=false 时必填，格式为 step=<time_duration>，由数字和时间单位组成。\n            if_system_generate: true\n            name: step\n            type: string\n            value_from: input\n        type: metric\n  - comment: 通过ERP系统的MRP运算产生的物料需求计划。\n    concept_id: supply_ontology_hand_mrp\n    concept_name: 物料需求计划\n    data_properties[#22]{column,name,type}:\n      advisedroptime,advisedroptime,date\n      adviseenddate,adviseenddate,date\n      adviseorderqty,adviseorderqty,decimal\n      advisestartdate,advisestartdate,date\n      availabledate,availabledate,date\n      billno,billno,string\n      bizdropqty,bizdropqty,decimal\n      bizorderqty,bizorderqty,decimal\n      closestatus_title,closestatus_title,string\n      createtime,createtime,timestamp\n      creator_name,creator_name,string\n      dropbilltype_name,dropbilltype_name,string\n      dropstatus_title,dropstatus_title,string\n      droptime,droptime,timestamp\n      enddate,enddate,date\n      materialattr_title,materialattr_title,string\n      materialplanid_name,materialplanid_name,string\n      materialplanid_number,materialplanid_number,string\n      orderdate,orderdate,date\n      planoperatenum,planoperatenum,string\n      rootdemandbillno,rootdemandbillno,string\n      startdate,startdate,date\n    data_source:\n      id: \"01a0f6e5-fd76-73e4-b0ce-18c88736ea2c\"\n      name: supply_demo_hand.erp_mrp_plan_order\n      type: resource\n    effective_permissions:\n      advisedroptime: full\n      adviseenddate: full\n      adviseorderqty: full\n      advisestartdate: full\n      availabledate: full\n      billno: full\n      bizdropqty: full\n      bizorderqty: full\n      closestatus_title: full\n      createtime: full\n      creator_name: full\n      dropbilltype_name: full\n      dropstatus_title: full\n      droptime: full\n      enddate: full\n      materialattr_title: full\n      materialplanid_name: full\n      materialplanid_number: full\n      orderdate: full\n      planoperatenum: full\n      rootdemandbillno: full\n      startdate: full\n  - comment: \"实时记录物料在各仓库及仓位的库存数量、状态与批次信息。\\n1. 生产可用库存\\n定义：仅统计「有效仓库」内、状态为「可用」的库存数量。\\n有效仓库范围：苏州半成品仓、苏州成品仓、苏州电子原料仓、苏州无人机原料仓、苏州装配原料仓、乌鲁木齐成品仓、哈尔滨成品仓。\\n2. 全仓可用库存\\n定义：统计全部仓库内、状态为「可用」的库存数量。\\n仓库范围：系统内全部仓库。\"\n    concept_id: supply_ontology_hand_inventory\n    concept_name: 库存\n    data_properties[#20]{column,name,type}:\n      id,id,string\n      seq_no,seq_no,integer\n      available_inventory_qty,available_inventory_qty,decimal\n      batch_master,batch_master,string\n      batch_no,batch_no,string\n      bin_location,bin_location,string\n      expiry_date,expiry_date,date\n      inbound_date,inbound_date,date\n      inventory_org,inventory_org,string\n      inventory_qty,inventory_qty,decimal\n      inventory_uom,inventory_uom,string\n      manufacture_date,manufacture_date,date\n      material_code,material_code,string\n      material_name,material_name,string\n      purchase_qty,purchase_qty,decimal\n      reserved_inventory_qty,reserved_inventory_qty,decimal\n      spec_model,spec_model,string\n      stock_status,stock_status,string\n      stock_type,stock_type,string\n      warehouse,warehouse,string\n    data_source:\n      id: \"01a0f6e5-fd95-723f-ad5f-86413091ebf5\"\n      name: supply_demo_hand.erp_real_time_inventory\n      type: resource\n    effective_permissions:\n      available_inventory_qty: full\n      batch_master: full\n      batch_no: full\n      bin_location: full\n      expiry_date: full\n      id: full\n      inbound_date: full\n      inventory_org: full\n      inventory_qty: full\n      inventory_uom: full\n      manufacture_date: full\n      material_code: full\n      material_name: full\n      purchase_qty: full\n      reserved_inventory_qty: full\n      seq_no: full\n      spec_model: full\n      stock_status: full\n      stock_type: full\n      warehouse: full\n    logic_properties[#2]:\n      -\n        data_source:\n          id: \"01a0f6e6-5e9e-72c3-8694-7851b3e5186f\"\n          name: 仓库数\n          type: metric\n        name: warehouse_count\n        parameters[#5]:\n          - comment: 库存状态\n            name: stock_status\n            type: string\n            value_from: input\n          - comment: 是否进行即时查询。可选，默认为 false。instant=true 表示即时查询；否则表示范围查询。\n            if_system_generate: true\n            name: instant\n            type: boolean\n            value_from: input\n          - comment: 指标查询的开始时间，格式为 start=<unix_timestamp>，单位为毫秒，例如 1646360670123。\n            if_system_generate: true\n            name: start\n            type: integer\n            value_from: input\n          - comment: 指标查询的结束时间，格式为 end=<unix_timestamp>，单位为毫秒，例如 1646471470123。\n            if_system_generate: true\n            name: end\n            type: integer\n            value_from: input\n          - comment: 范围查询的步长。instant=false 时必填，格式为 step=<time_duration>，由数字和时间单位组成。\n            if_system_generate: true\n            name: step\n            type: string\n            value_from: input\n        type: metric\n      -\n        data_source:\n          id: \"01a0f6e6-5e9e-72c4-8d14-76e2a96ce966\"\n          name: 库存可用量\n          type: metric\n        name: available_qty_sum\n        parameters[#7]:\n          - comment: 物料编码\n            name: material_code\n            type: string\n            value: material_code\n            value_from: property\n          - comment: 仓库\n            name: warehouse\n            type: string\n            value_from: input\n          - comment: 库存状态\n            name: stock_status\n            type: string\n            value_from: input\n          - comment: 是否进行即时查询。可选，默认为 false。instant=true 表示即时查询；否则表示范围查询。\n            if_system_generate: true\n            name: instant\n            type: boolean\n            value_from: input\n          - comment: 指标查询的开始时间，格式为 start=<unix_timestamp>，单位为毫秒，例如 1646360670123。\n            if_system_generate: true\n            name: start\n            type: integer\n            value_from: input\n          - comment: 指标查询的结束时间，格式为 end=<unix_timestamp>，单位为毫秒，例如 1646471470123。\n            if_system_generate: true\n            name: end\n            type: integer\n            value_from: input\n          - comment: 范围查询的步长。instant=false 时必填，格式为 step=<time_duration>，由数字和时间单位组成。\n            if_system_generate: true\n            name: step\n            type: string\n            value_from: input\n        type: metric\n  - comment: \"也叫做生产工单，生产计划基于产品需求计划制定（当前需求计划与需求预测等同），以需求计划的产品、数量、时间为核心依据，默认将产品需求直接作为生产需求。\\n生产计划与物料需求计划联动，物料齐套后再下达生产工单，即先完成外购料的采购和到料，再向生产部门推送生产工单，领料生产。\"\n    concept_id: supply_ontology_hand_mps\n    concept_name: 工厂生产计划\n    data_properties[#18]:\n      - column: auditdate\n        name: auditdate\n        type: timestamp\n      - column: billdate\n        name: billdate\n        type: date\n      - column: billno\n        name: billno\n        type: string\n      - column: billstatus\n        condition_operations[#2]: match,multi_match\n        name: billstatus\n        type: text\n      - column: entry_id\n        name: entry_id\n        type: string\n      - column: huid_scxmh_number\n        name: huid_scxmh_number\n        type: string\n      - column: id\n        name: id\n        type: string\n      - column: material_name\n        name: material_name\n        type: string\n      - column: material_number\n        name: material_number\n        type: string\n      - column: pickstatus_title\n        name: pickstatus_title\n        type: string\n      - column: planbegintime\n        name: planbegintime\n        type: timestamp\n      - column: planendtime\n        name: planendtime\n        type: timestamp\n      - column: qty\n        name: qty\n        type: decimal\n      - column: sourcebillnumber\n        name: sourcebillnumber\n        type: string\n      - column: sourcebilltype\n        name: sourcebilltype\n        type: string\n      - column: srcbillentity\n        name: srcbillentity\n        type: string\n      - column: taskstatus_title\n        name: taskstatus_title\n        type: string\n      - column: xkquainwaqty\n        name: xkquainwaqty\n        type: decimal\n    data_source:\n      id: \"01a0f6e5-fd7b-7351-904e-19a6b58826ab\"\n      name: supply_demo_hand.erp_production_work_order\n      type: resource\n    effective_permissions:\n      auditdate: full\n      billdate: full\n      billno: full\n      billstatus: full\n      entry_id: full\n      huid_scxmh_number: full\n      id: full\n      material_name: full\n      material_number: full\n      pickstatus_title: full\n      planbegintime: full\n      planendtime: full\n      qty: full\n      sourcebillnumber: full\n      sourcebilltype: full\n      srcbillentity: full\n      taskstatus_title: full\n      xkquainwaqty: full\n  - comment: 记录物料的基础信息，包括编码、名称、规格型号、属性（自制/外购）及单位等及相关参数。\n    concept_id: supply_ontology_hand_material\n    concept_name: 物料\n    data_properties[#13]{column,name,type}:\n      material_code,material_code,string\n      material_name,material_name,string\n      modelnum,modelnum,string\n      huid_productline_name,huid_productline_name,string\n      baseunit_number,baseunit_number,string\n      baseunit_name,baseunit_name,string\n      group_name,group_name,string\n      group_type,group_type,string\n      materialattr,materialattr,string\n      purchase_fixedleadtime,purchase_fixedleadtime,decimal\n      product_fixedleadtime,product_fixedleadtime,decimal\n      material_standard_price,material_standard_price,decimal\n      product_status,product_status,string\n    data_source:\n      id: \"01a0f6e5-fd61-7280-ae39-73fd4c0877d0\"\n      name: supply_demo_hand.erp_material\n      type: resource\n    effective_permissions:\n      baseunit_name: full\n      baseunit_number: full\n      group_name: full\n      group_type: full\n      huid_productline_name: full\n      material_code: full\n      material_name: full\n      material_standard_price: full\n      materialattr: full\n      modelnum: full\n      product_fixedleadtime: full\n      product_status: full\n      purchase_fixedleadtime: full\n    logic_properties[#1]:\n      -\n        data_source:\n          id: \"01a0f6e6-5e9e-72bf-a34a-afcc0ca532d9\"\n          name: 物料总数\n          type: metric\n        name: material_total_count\n        parameters[#6]:\n          - comment: 物料属性\n            name: materialattr\n            type: string\n            value_from: input\n          - comment: 存货类别\n            name: group_name\n            type: string\n            value_from: input\n          - comment: 是否进行即时查询。可选，默认为 false。instant=true 表示即时查询；否则表示范围查询。\n            if_system_generate: true\n            name: instant\n            type: boolean\n            value_from: input\n          - comment: 指标查询的开始时间，格式为 start=<unix_timestamp>，单位为毫秒，例如 1646360670123。\n            if_system_generate: true\n            name: start\n            type: integer\n            value_from: input\n          - comment: 指标查询的结束时间，格式为 end=<unix_timestamp>，单位为毫秒，例如 1646471470123。\n            if_system_generate: true\n            name: end\n            type: integer\n            value_from: input\n          - comment: 范围查询的步长。instant=false 时必填，格式为 step=<time_duration>，由数字和时间单位组成。\n            if_system_generate: true\n            name: step\n            type: string\n            value_from: input\n        type: metric\n  - comment: 生产计划倒排监控任务：一个任务只对应一个产品与一张需求预测单，物料是履约证据。\n    concept_id: supply_ontology_hand_mon_task\n    concept_name: 监控任务\n  - comment: 人工批准后的采购建议决策记录。不是 ERP 采购申请，本期不调用 ERP。\n    concept_id: supply_ontology_hand_pr_decision\n    concept_name: 采购申请决策\n  - comment: 存储企业生产的成品基本信息，包括产品编码、名称。\n    concept_id: supply_ontology_hand_product\n    concept_name: 产品\n    data_properties[#2]{column,name,type}:\n      material_name,material_name,string\n      material_code,material_number,string\n    data_source:\n      id: \"01a0f6e5-fda2-780e-b5bc-a3f2332649d1\"\n      name: supply_demo_hand.hd_product_view\n      type: resource\n    effective_permissions:\n      material_name: full\n      material_number: full\n    logic_properties[#1]:\n      -\n        data_source:\n          id: \"01a0f6e6-5e9e-72b5-a295-1b36b7539502\"\n          name: 产品总数\n          type: metric\n        name: product_total_count\n        parameters[#4]{comment,if_system_generate,name,type,value_from}:\n          是否进行即时查询。可选，默认为 false。instant=true 表示即时查询；否则表示范围查询。,true,instant,boolean,input\n          指标查询的开始时间，格式为 start=<unix_timestamp>，单位为毫秒，例如 1646360670123。,true,start,integer,input\n          指标查询的结束时间，格式为 end=<unix_timestamp>，单位为毫秒，例如 1646471470123。,true,end,integer,input\n          范围查询的步长。instant=false 时必填，格式为 step=<time_duration>，由数字和时间单位组成。,true,step,string,input\n        type: metric\n  - comment: 记录供应商的基础信息，包括编码、名称、信用代码、付款条件及对应采购员。\n    concept_id: supply_ontology_hand_supplier\n    concept_name: 供应商\n    data_properties[#5]{column,name,type}:\n      supplier_code,supplier_code,string\n      supplier_name,supplier_name,string\n      societycreditcode,societycreditcode,string\n      purchaserid_name,purchaserid_name,string\n      paycond_name,paycond_name,string\n    data_source:\n      id: \"01a0f6e5-fd9b-7b84-ac22-283307123d8c\"\n      name: supply_demo_hand.erp_supplier\n      type: resource\n    effective_permissions:\n      paycond_name: full\n      purchaserid_name: full\n      societycreditcode: full\n      supplier_code: full\n      supplier_name: full\n    logic_properties[#1]:\n      -\n        data_source:\n          id: \"01a0f6e6-5e9e-72c0-a36a-36849f8cd18f\"\n          name: 供应商总数\n          type: metric\n        name: supplier_total_count\n        parameters[#5]:\n          - comment: 采购员\n            name: purchaserid_name\n            type: string\n            value_from: input\n          - comment: 是否进行即时查询。可选，默认为 false。instant=true 表示即时查询；否则表示范围查询。\n            if_system_generate: true\n            name: instant\n            type: boolean\n            value_from: input\n          - comment: 指标查询的开始时间，格式为 start=<unix_timestamp>，单位为毫秒，例如 1646360670123。\n            if_system_generate: true\n            name: start\n            type: integer\n            value_from: input\n          - comment: 指标查询的结束时间，格式为 end=<unix_timestamp>，单位为毫秒，例如 1646471470123。\n            if_system_generate: true\n            name: end\n            type: integer\n            value_from: input\n          - comment: 范围查询的步长。instant=false 时必填，格式为 step=<time_duration>，由数字和时间单位组成。\n            if_system_generate: true\n            name: step\n            type: string\n            value_from: input\n        type: metric\nrelation_types[#9]{concept_id,concept_name,source_object_type_id,target_object_type_id}:\n  supply_ontology_hand_pr2po,采购订单关联物料请购单,supply_ontology_hand_po,supply_ontology_hand_pr\n  supply_ontology_hand_so2prod,销售订单关联产品,supply_ontology_hand_salesorder,supply_ontology_hand_product\n  supply_ontology_hand_pr2mrp,采购申请单关联物料需求计划,supply_ontology_hand_pr,supply_ontology_hand_mrp\n  supply_ontology_hand_po2sup,采购订单关联供应商,supply_ontology_hand_po,supply_ontology_hand_supplier\n  supply_ontology_hand_prod2fcst,产品关联需求预测单,supply_ontology_hand_product,supply_ontology_hand_forecast\n  supply_ontology_hand_mps2fcst,生产计划关联需求预测单,supply_ontology_hand_mps,supply_ontology_hand_forecast\n  supply_ontology_hand_mrp2fcst,物料需求计划关联产品预测需求,supply_ontology_hand_mrp,supply_ontology_hand_forecast\n  supply_ontology_hand_prdec2fcst,采购申请决策来源于需求预测,supply_ontology_hand_pr_decision,supply_ontology_hand_forecast\n  supply_ontology_hand_mon2fcst,监控任务依据需求预测,supply_ontology_hand_mon_task,supply_ontology_hand_forecast"
+        }
+      ]
+    },
+    {
+      "type": "tool/call",
+      "time": 1791442550272,
+      "turn": 1,
+      "step": 3,
+      "callId": "call_00_q9zhVwDVyGCfGDgChzhZ4670",
+      "name": "mcp__openbkn__query_metric",
+      "arguments": "{\"bkn_context\": {\"conversation_id\": \"conv_796b358bd3b602a0a0bb87c787cef9ed\", \"interaction_id\": \"int_7dd12ff68f3f92b4e9f1e2e2ba3f8654\", \"business_refs\": [{\"ref_type\": \"object_type\", \"ref_id\": \"object:supply_ontology_hand:supply_ontology_hand_salesorder\"}, {\"ref_type\": \"metric\", \"ref_id\": \"metric:supply_ontology_hand:01a0f6e6-5e9e-72c1-b69b-64e663b5e45d\"}]}, \"kn_id\": \"supply_ontology_hand\", \"metric_id\": \"01a0f6e6-5e9e-72c1-b69b-64e663b5e45d\", \"response_format\": \"json\"}"
+    },
+    {
+      "type": "tool/result",
+      "time": 1791442550835,
+      "turn": 1,
+      "step": 3,
+      "callId": "call_00_q9zhVwDVyGCfGDgChzhZ4670",
+      "hostErrorFlag": false,
+      "content": [
+        {
+          "type": "text",
+          "text": "{\"kn_id\":\"supply_ontology_hand\",\"metric_id\":\"01a0f6e6-5e9e-72c1-b69b-64e663b5e45d\",\"datas\":[{\"times\":[0],\"values\":[800]}]}"
+        }
+      ]
+    },
+    {
+      "type": "tool/call",
+      "time": 1791442550836,
+      "turn": 1,
+      "step": 3,
+      "callId": "call_01_bezlc7ga2HnreOwa9DaI9938",
+      "name": "mcp__openbkn__query_metric",
+      "arguments": "{\"bkn_context\": {\"conversation_id\": \"conv_796b358bd3b602a0a0bb87c787cef9ed\", \"interaction_id\": \"int_7dd12ff68f3f92b4e9f1e2e2ba3f8654\", \"business_refs\": [{\"ref_type\": \"object_type\", \"ref_id\": \"object:supply_ontology_hand:supply_ontology_hand_salesorder\"}, {\"ref_type\": \"metric\", \"ref_id\": \"metric:supply_ontology_hand:01a0f6e6-5e9e-72c1-b69b-64e663b5e45d\"}]}, \"kn_id\": \"supply_ontology_hand\", \"metric_id\": \"01a0f6e6-5e9e-72c1-b69b-64e663b5e45d\", \"analysis_dimensions\": [\"order_status\"], \"response_format\": \"json\"}"
+    },
+    {
+      "type": "tool/result",
+      "time": 1791442550945,
+      "turn": 1,
+      "step": 3,
+      "callId": "call_01_bezlc7ga2HnreOwa9DaI9938",
+      "hostErrorFlag": false,
+      "content": [
+        {
+          "type": "text",
+          "text": "{\"kn_id\":\"supply_ontology_hand\",\"metric_id\":\"01a0f6e6-5e9e-72c1-b69b-64e663b5e45d\",\"datas\":[{\"labels\":{\"order_status\":\"已确认\"},\"times\":[0],\"values\":[784]},{\"labels\":{\"order_status\":\"执行中\"},\"times\":[0],\"values\":[16]}]}"
+        }
+      ]
+    },
+    {
+      "type": "tool/call",
+      "time": 1791442550945,
+      "turn": 1,
+      "step": 3,
+      "callId": "call_02_b1TMOCbetqAAc8U2pUgp4442",
+      "name": "mcp__openbkn__run_cypher",
+      "arguments": "{\"bkn_context\": {\"conversation_id\": \"conv_796b358bd3b602a0a0bb87c787cef9ed\", \"interaction_id\": \"int_7dd12ff68f3f92b4e9f1e2e2ba3f8654\", \"business_refs\": [{\"ref_type\": \"object_type\", \"ref_id\": \"object:supply_ontology_hand:supply_ontology_hand_salesorder\"}]}, \"kn_id\": \"supply_ontology_hand\", \"query\": \"MATCH (o:supply_ontology_hand_salesorder) RETURN count(*) AS total_orders, count(DISTINCT o.sales_order_id) AS distinct_order_ids\", \"response_format\": \"json\"}"
+    },
+    {
+      "type": "tool/result",
+      "time": 1791442550946,
+      "turn": 1,
+      "step": 3,
+      "callId": "call_02_b1TMOCbetqAAc8U2pUgp4442",
+      "hostErrorFlag": true,
+      "content": [
+        {
+          "type": "text",
+          "text": "Error: mcp__openbkn__run_cypher is not supported in an OpenBKN business session by this version of the bkn-dsh plugin. Do not retry it; continue with the managed OpenBKN tools."
+        }
+      ]
+    },
+    {
+      "type": "tool/call",
+      "time": 1791442555143,
+      "turn": 1,
+      "step": 4,
+      "callId": "call_00_yGxqyS5BIRPNShSHAARt4764",
+      "name": "mcp__openbkn__query_object_instance",
+      "arguments": "{\"bkn_context\": {\"conversation_id\": \"conv_796b358bd3b602a0a0bb87c787cef9ed\", \"interaction_id\": \"int_7dd12ff68f3f92b4e9f1e2e2ba3f8654\", \"business_refs\": [{\"ref_type\": \"object_type\", \"ref_id\": \"object:supply_ontology_hand:supply_ontology_hand_salesorder\"}]}, \"kn_id\": \"supply_ontology_hand\", \"ot_id\": \"supply_ontology_hand_salesorder\", \"condition\": {\"operation\": \"==\", \"field\": \"order_status\", \"value\": \"已确认\", \"value_from\": \"const\"}, \"properties\": [\"sales_order_id\", \"order_status\"], \"limit\": 1, \"response_format\": \"json\"}"
+    },
+    {
+      "type": "tool/result",
+      "time": 1791442555370,
+      "turn": 1,
+      "step": 4,
+      "callId": "call_00_yGxqyS5BIRPNShSHAARt4764",
+      "hostErrorFlag": false,
+      "content": [
+        {
+          "type": "text",
+          "text": "{\"datas\":[{\"order_status\":\"已确认\",\"sales_order_id\":\"SO0000001\",\"_instance_id\":\"supply_ontology_hand_salesorder-SO0000001\",\"_instance_identity\":{\"sales_order_id\":\"SO0000001\"},\"_display\":\"SO0000001\"}],\"effective_permissions\":{\"product_name\":\"full\",\"salesperson\":\"full\",\"product_code\":\"full\",\"signing_quantity\":\"full\",\"signing_date\":\"full\",\"shipping_quantity\":\"full\",\"contract_number\":\"full\",\"customer_id\":\"full\",\"order_status\":\"full\",\"sales_order_id\":\"full\",\"customer_name\":\"full\",\"promised_delivery_date\":\"full\",\"shipping_date\":\"full\"},\"total_count\":784,\"cursor\":\"eH6qNhSicMkSNJsqdDzqJ9-LDR_N--oEF7MRuz3e-1cZf1RbDQ2YtPTkQedUY3htCFdelV1CcLeNlChzmu0mn0oaXpOxBXw8i5fyYj3tPsz6hdyBUK6v5X8jxFvofsTGbLFl2QuFyGJNXrroLfGPSu_hb8dabYtUYYRvhOQ_JVvHemRqcb6vzpX4zxMDb3t2ruH5oyYmRWgXqavS432692uOtYRMfjt-VAffTDfupcRPScL_Pvt46h5MqpN9l5Tuxy4Nm1csoVf8WemiXp1CY7gvoWQig2s8pxkKJ6bivbH06QT8cNUC5mIirVDpoLnnHeOgAcpgmEP4hQUNtGyQSWDcbG8oRBSF_lHXV7n7C-WwVJI1IvVTe9f2TP0uu_7a8oJMYz8ksTDdgLFwQhZavvwyeZFpB9Dyf3_GAvE6yH9xZQlsjiJwaInb-inHDkcinxfS0pIBV2dBQ6pWcprHVdRJqEjhpzrFue9yy0sfi_acXnDlyubEj5SZIW6dpqYjcgLHGgEUXpgf7umpw0eGHHvv_KuiiWK9GtUMndylobJBnbAtSuKnEuctZtrTucAgBRT5R0MOjWUI_vLGzkumtEGOXquoXkdyajjjcU6wSRbxiP6Hbp8cabu3cnjcnTJw3YbwqEaxRL_ah1hwe765gDhNNOS-nYHw_kTxAHc\"}"
+        }
+      ]
+    },
+    {
+      "type": "tool/call",
+      "time": 1791442555371,
+      "turn": 1,
+      "step": 4,
+      "callId": "call_01_4NCYtGa60pKAkY5JInHG7455",
+      "name": "mcp__openbkn__query_object_instance",
+      "arguments": "{\"bkn_context\": {\"conversation_id\": \"conv_796b358bd3b602a0a0bb87c787cef9ed\", \"interaction_id\": \"int_7dd12ff68f3f92b4e9f1e2e2ba3f8654\", \"business_refs\": [{\"ref_type\": \"object_type\", \"ref_id\": \"object:supply_ontology_hand:supply_ontology_hand_salesorder\"}]}, \"kn_id\": \"supply_ontology_hand\", \"ot_id\": \"supply_ontology_hand_salesorder\", \"properties\": [\"sales_order_id\", \"order_status\"], \"limit\": 1, \"response_format\": \"json\"}"
+    },
+    {
+      "type": "tool/result",
+      "time": 1791442555452,
+      "turn": 1,
+      "step": 4,
+      "callId": "call_01_4NCYtGa60pKAkY5JInHG7455",
+      "hostErrorFlag": false,
+      "content": [
+        {
+          "type": "text",
+          "text": "{\"datas\":[{\"sales_order_id\":\"SO0000001\",\"order_status\":\"已确认\",\"_instance_id\":\"supply_ontology_hand_salesorder-SO0000001\",\"_instance_identity\":{\"sales_order_id\":\"SO0000001\"},\"_display\":\"SO0000001\"}],\"effective_permissions\":{\"promised_delivery_date\":\"full\",\"shipping_quantity\":\"full\",\"customer_name\":\"full\",\"sales_order_id\":\"full\",\"product_name\":\"full\",\"customer_id\":\"full\",\"contract_number\":\"full\",\"signing_quantity\":\"full\",\"product_code\":\"full\",\"signing_date\":\"full\",\"shipping_date\":\"full\",\"salesperson\":\"full\",\"order_status\":\"full\"},\"total_count\":800,\"cursor\":\"XiSW2BayHdHYh66axU2F58dhughRgijsGxCXqISzBAgN4yFQ8CORZVHDi6AdBfcC0XKcNXAtI_rs5oWa4SBI9xUiBawNYhKaqmhB1wQOOET45uq5o9TiMyYLLdOotXMcinflfG-pJUABHa2yHmIsqzsL9peJXlw_TZo7LROWoD1DIPy27JSL3-Gx-Wt_Natx0mJQmMcy61qhNxR7HjqBH3oA7aFXwxbFMA33qpk4m2P8O3ffntiDxMP5dhK4Nucxg234vBc03bNkvlFMe10EsIoVYmpJ_HSgknZgHXE9ZtCKTFoLuwtbi8lqy8553Pt_Ppg8hNKn4o1C3hMMxkVtGREqrcDN6ux0xYqluMX-ff5S3xIiSQuXi_fy0AvrZy2Rpzxr6fJafYXguGKPa2KdMxjrlbdPXzobFl7b1rttbYSivzBM6WVHlnQsUsFEU3--8HF5sZg6G8-QgD6zhuLRzQXM0ogfGMYWY4ZBS-wb8YkHn06MeVL9HnhtrT3tdTdop73cstIcFFxFYpFdSyBJDtqdMfph-kjzxHI-as1CGsSnX8q6E3JjP7i7_jBSYsSHYWZCasQkQSm89GavwcuD6zwG__ypit7bG43SkjAZe-t-qgIAcxE-e2gx9e7IQJ7ZCV-Id1K0fmnuGplBekWrqTG04ZkkeoYsjl9Y_h8\"}"
+        }
+      ]
+    },
+    {
+      "type": "tool/call",
+      "time": 1791442558942,
+      "turn": 1,
+      "step": 5,
+      "callId": "call_00_CA6Fs0RnChY12mjtALhQ7986",
+      "name": "mcp__openbkn__query_object_instance",
+      "arguments": "{\"bkn_context\": {\"business_refs\": [{\"ref_id\": \"object:supply_ontology_hand:supply_ontology_hand_salesorder\", \"ref_type\": \"object_type\"}], \"conversation_id\": \"conv_796b358bd3b602a0a0bb87c787cef9ed\", \"interaction_id\": \"int_7dd12ff68f3f92b4e9f1e2e2ba3f8654\"}, \"condition\": {\"field\": \"order_status\", \"operation\": \"==\", \"value\": \"执行中\", \"value_from\": \"const\"}, \"limit\": 1, \"kn_id\": \"supply_ontology_hand\", \"ot_id\": \"supply_ontology_hand_salesorder\", \"properties\": [\"sales_order_id\", \"order_status\"], \"response_format\": \"json\"}"
+    },
+    {
+      "type": "tool/result",
+      "time": 1791442559158,
+      "turn": 1,
+      "step": 5,
+      "callId": "call_00_CA6Fs0RnChY12mjtALhQ7986",
+      "hostErrorFlag": false,
+      "content": [
+        {
+          "type": "text",
+          "text": "{\"datas\":[{\"order_status\":\"执行中\",\"_instance_id\":\"supply_ontology_hand_salesorder-SO0000029\",\"_instance_identity\":{\"sales_order_id\":\"SO0000029\"},\"_display\":\"SO0000029\",\"sales_order_id\":\"SO0000029\"}],\"effective_permissions\":{\"shipping_date\":\"full\",\"customer_id\":\"full\",\"product_code\":\"full\",\"signing_quantity\":\"full\",\"order_status\":\"full\",\"contract_number\":\"full\",\"promised_delivery_date\":\"full\",\"salesperson\":\"full\",\"sales_order_id\":\"full\",\"customer_name\":\"full\",\"shipping_quantity\":\"full\",\"product_name\":\"full\",\"signing_date\":\"full\"},\"total_count\":16,\"cursor\":\"aj0XDE3NFT2EbeqWfxwR5WnRzyIlOUibAGTT--Y15N3MReo7-NpBDaLX6lqO3vlc63EwTMORDOdU-JZ-ON5T4VHCobKTMxmzGUdhXpkfBKGFXU-r2Mo-SX24XMrYT_Uq_v1ZiB544JyDSloBO_ZfB6rXsIKCfryEfQt-XfoKyIN6A-DF5vm3_wmLSnlZYP6yHqsrMNsfD1ZKrok78NyZa4CvQDARPTFNZablmxwBRhHBuGWa69ethadL2vasordVVKxVetgZCtntd7vWXMV0SHJefrp3ljSa9JnfbI_7hyp1cBQ_X0Xqr5xCt7r9RciI4-txHDWIkzbnvNwgeC2ntVwByQvigLg4Qr0b3dezVVgMhrwVC-FS3t8vO4vl18IfjuwXKe-2sObXlFJYMXp7mraJ6sNQg85d_qJJbF8Yvk1NY6HNUZ233ghRU2Dw190e6ew92YVox6RVC05NtLPqvAGYHxp2iqKcn2Wn9LECCcrLt-4LrdIPfKuTE5Yk9SFXN8bWvGeHv8ePPqNxuk8QoqPzFosve2ZFEuvpG0b9TIfKb0qKrWee8pSrbGzOUnnzAOzbROu4RwoD_WWKg5Gx56DY5wF65osA-dCjCGTcuEGeU2AM1w9pxmQKhZypa-k6mLKdIFH5X3b9dgLpQ07AgVBDs6rNgX1ITIK1NWc\"}"
+        }
+      ]
+    },
+    {
+      "type": "tool/call",
+      "time": 1791442562873,
+      "turn": 1,
+      "step": 6,
+      "callId": "call_00_OpLDOQrNTevWJz93la1e1656",
+      "name": "mcp__openbkn__bkn_finish_interaction",
+      "arguments": "{\"interaction_id\": \"int_7dd12ff68f3f92b4e9f1e2e2ba3f8654\", \"outcome\": \"completed\", \"answer\": \"知识网络 supply_ontology_hand 中共有 800 张销售订单。按 order_status 分布：已确认 784 张、执行中 16 张（784+16=800，无其他状态值）。\\n\\n口径与来源：\\n1. 对象类「销售订单」supply_ontology_hand_salesorder，物理数据源 supply_demo_hand.sales_order（resource id 01a0f6e5-fda9-717a-aa25-f5573d2b246c）。\\n2. 总数取自该对象类下已建模指标「销售订单数」(metric id 01a0f6e6-5e9e-72c1-b69b-64e663b5e45d)，聚合公式 count(sales_order_id)，单位 transaction；调用 query_metric 无过滤条件得到 800。\\n3. 状态分布用同一指标、analysis_dimensions=[order_status] 拆维，返回 已确认=784、执行中=16。状态字段为属性 order_status。\\n4. 交叉验证：query_object_instance 在 ot_id=supply_ontology_hand_salesorder 上返回 total_count：无过滤 800、order_status=已确认 784、order_status=执行中 16，与指标口径一致。\\n5. 未加时间窗过滤，即全量快照口径（该指标快照标注为 800）；run_cypher 在本部署不受支持，故未使用。\"}"
+    },
+    {
+      "type": "tool/result",
+      "time": 1791442563046,
+      "turn": 1,
+      "step": 6,
+      "callId": "call_00_OpLDOQrNTevWJz93la1e1656",
+      "hostErrorFlag": false,
+      "content": [
+        {
+          "type": "text",
+          "text": "{\"interaction_id\":\"int_7dd12ff68f3f92b4e9f1e2e2ba3f8654\",\"conversation_id\":\"conv_796b358bd3b602a0a0bb87c787cef9ed\",\"execution_status\":\"completed\",\"evidence_status\":\"complete\"}"
+        }
+      ]
+    }
+  ],
+  "turnEnds": [
+    {
+      "time": 1791442566771,
+      "turn": 1,
+      "reason": {
+        "kind": "completed"
+      }
+    }
+  ]
+}

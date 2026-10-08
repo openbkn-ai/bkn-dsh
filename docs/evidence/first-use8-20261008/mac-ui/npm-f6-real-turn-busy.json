@@ -1,0 +1,19 @@
+{
+  "form": "npm",
+  "case": "F6 real model turn settings admission",
+  "observedAt": "2026-10-08T05:56:02.508632+00:00",
+  "uiInputDisabled": true,
+  "uiSaveDisabled": true,
+  "uiMessage": "业务回合仍在运行，请等回合结束后重新打开设置。",
+  "actualRpcMethod": "openbknConfiguration/saveConfiguration",
+  "rpcOk": false,
+  "rpcErrorCode": "openbkn/configuration-busy",
+  "beforeSha256": "857aee58acd4c13361bccae5a50e9f7a89620d26b3c426e72b64ecf8032fba68",
+  "afterSha256": "857aee58acd4c13361bccae5a50e9f7a89620d26b3c426e72b64ecf8032fba68",
+  "patchUnchanged": true,
+  "reopenedAfterTurnInputEnabled": true,
+  "reopenedAfterTurnSaveEnabled": true,
+  "postTurnPatchSha256": "857aee58acd4c13361bccae5a50e9f7a89620d26b3c426e72b64ecf8032fba68",
+  "afterTurnUiRecordWrittenAt": "2026-10-08T06:02:00.895751+00:00",
+  "observationWindow": "After the first four original native turns completed, before the additional normal batch was started."
+}

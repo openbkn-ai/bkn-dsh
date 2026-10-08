@@ -1,0 +1,2845 @@
+{
+  "interactionId": "int_dc90109f655dd7cfbf85ef3901953dd5",
+  "conversationId": "conv_8ce10d5a4cf1cdc3f1f1b80c55fbb01a",
+  "sources": {
+    "timeline": "local-session",
+    "operations": "platform",
+    "business": "platform-enterprise",
+    "evidence": "platform",
+    "degraded": []
+  },
+  "timeline": [
+    {
+      "kind": "lifecycle",
+      "tool": "bkn_start_interaction",
+      "at": 1791439349584,
+      "durationMs": 71,
+      "outcome": "ok",
+      "summary": "bkn_start_interaction · new · conversation: yes",
+      "seq": 0
+    },
+    {
+      "kind": "managed",
+      "tool": "get_object_types",
+      "at": 1791439351939,
+      "durationMs": 227,
+      "outcome": "ok",
+      "summary": "get_object_types",
+      "seq": 1
+    },
+    {
+      "kind": "managed",
+      "tool": "query_object_instance",
+      "at": 1791439355789,
+      "durationMs": 112,
+      "outcome": "ok",
+      "summary": "query_object_instance",
+      "seq": 2
+    },
+    {
+      "kind": "managed",
+      "tool": "query_object_instance",
+      "at": 1791439355902,
+      "durationMs": 70,
+      "outcome": "ok",
+      "summary": "query_object_instance",
+      "seq": 3
+    },
+    {
+      "kind": "managed",
+      "tool": "query_object_instance",
+      "at": 1791439355973,
+      "durationMs": 69,
+      "outcome": "ok",
+      "summary": "query_object_instance",
+      "seq": 4
+    },
+    {
+      "kind": "managed",
+      "tool": "run_code",
+      "at": 1791439359416,
+      "durationMs": 671,
+      "outcome": "ok",
+      "summary": "run_code",
+      "seq": 5,
+      "platform": {
+        "operationId": "op_377635f2e9b5967484b5ae3c2c4b7f54",
+        "requestId": "req_8f0173e8-7af8-4626-9f9c-e1e41b7e3dec",
+        "traceId": "c11b2024e2a30795d655ad7b93723940",
+        "receiptId": "rcpt_3decca47091117364ef9a6afb08978ab",
+        "status": "completed"
+      }
+    },
+    {
+      "kind": "managed",
+      "tool": "run_code",
+      "at": 1791439363743,
+      "durationMs": 1130,
+      "outcome": "ok",
+      "summary": "run_code",
+      "seq": 6,
+      "platform": {
+        "operationId": "op_9088cd8fb4869705219b37e9aad472bb",
+        "requestId": "req_34d830ae-51be-4c8b-95aa-5b08e80d9a57",
+        "traceId": "c0744fb67fb4472b70054414321f7ef9",
+        "receiptId": "rcpt_a491e10f0b70d3be8588a7bda6b6a003",
+        "status": "completed"
+      }
+    },
+    {
+      "kind": "managed",
+      "tool": "run_code",
+      "at": 1791439371608,
+      "durationMs": 3898,
+      "outcome": "ok",
+      "summary": "run_code",
+      "seq": 7,
+      "platform": {
+        "operationId": "op_903979977d2c4de1b9fc493a97e3564a",
+        "requestId": "req_97b0067d-fa7a-45ba-bba4-be08c9ee88f9",
+        "traceId": "4244f87ed62a75330961783b0286c6b6",
+        "receiptId": "rcpt_0964f0ceed74086b0778688973571654",
+        "status": "completed"
+      }
+    },
+    {
+      "kind": "managed",
+      "tool": "run_code",
+      "at": 1791439383680,
+      "durationMs": 680,
+      "outcome": "ok",
+      "summary": "run_code",
+      "seq": 8,
+      "platform": {
+        "operationId": "op_e513de0b1aa7233c424f9ce466d6427f",
+        "requestId": "req_fe1ead08-8ea0-4830-a1fc-87b12fbdb597",
+        "traceId": "31f7f097c63cb886ea86f0c2f291e253",
+        "receiptId": "rcpt_616d5ac30910ff00e402ea178e157424",
+        "status": "completed"
+      }
+    },
+    {
+      "kind": "managed",
+      "tool": "run_code",
+      "at": 1791439387170,
+      "durationMs": 723,
+      "outcome": "error",
+      "summary": "run_code",
+      "seq": 9,
+      "platform": {
+        "operationId": "op_d76ebcef9a14b1f25f939e2756ea0e44",
+        "requestId": "req_c61d13d9-bbd4-44fe-b80d-278b9e5d8022",
+        "traceId": "c5ed0f2b7b9defea51948b3116ca3491",
+        "receiptId": "rcpt_13148d0d7f818776f0c7117c95a4a2cc",
+        "status": "failed"
+      }
+    },
+    {
+      "kind": "managed",
+      "tool": "run_code",
+      "at": 1791439395822,
+      "durationMs": 1245,
+      "outcome": "ok",
+      "summary": "run_code",
+      "seq": 10,
+      "platform": {
+        "operationId": "op_cc8985d5f5ab5cd2b425204456d5a9a6",
+        "requestId": "req_71c61650-9a6f-4794-8315-8711a639f941",
+        "traceId": "72d90ce1aee674d460497333ad3b3956",
+        "receiptId": "rcpt_f24451fad00ea667c0071c5ba1a0f5ca",
+        "status": "completed"
+      }
+    },
+    {
+      "kind": "lifecycle",
+      "tool": "bkn_finish_interaction",
+      "at": 1791439404575,
+      "durationMs": 230,
+      "outcome": "ok",
+      "summary": "bkn_finish_interaction · completed",
+      "seq": 11
+    },
+    {
+      "kind": "answer",
+      "at": 1791439409670,
+      "seq": 12
+    }
+  ],
+  "execution": {
+    "status": "completed",
+    "operations": [
+      {
+        "id": "op_b01bbff53f18401f311530a540cd1276",
+        "label": "get_object_types",
+        "protocol": "mcp",
+        "status": "completed",
+        "startedAt": "2026-10-08T06:02:31.999508Z",
+        "finishedAt": "2026-10-08T06:02:32.155565Z",
+        "requestId": "req_6a49bd10-ea07-4080-a65b-fadbbb13be4d",
+        "traceId": "1ab5bf70288b626ce8896497a9a6fa44",
+        "receiptId": "rcpt_474d437a104d01c0586d8adeaa067fae"
+      },
+      {
+        "id": "op_02d68723e848a7f8ee06034b8e34423c",
+        "label": "query_object_instance",
+        "protocol": "mcp",
+        "status": "completed",
+        "startedAt": "2026-10-08T06:02:35.825826Z",
+        "finishedAt": "2026-10-08T06:02:35.887329Z",
+        "requestId": "req_3e39514a-916e-4539-aca8-3b06d3be5895",
+        "traceId": "493676698e6443a516581f2557eac387",
+        "receiptId": "rcpt_ad471fa1a0726e54189f9ea27b705e01"
+      },
+      {
+        "id": "op_8b42bc1b1a730ba8cde97ff2f964c054",
+        "label": "query_object_instance",
+        "protocol": "mcp",
+        "status": "completed",
+        "startedAt": "2026-10-08T06:02:35.915324Z",
+        "finishedAt": "2026-10-08T06:02:35.965753Z",
+        "requestId": "req_4237f4a4-965d-42d0-8eda-9b0d51fe2189",
+        "traceId": "594055af3ff8a532f2c23d7f7583ad34",
+        "receiptId": "rcpt_bead81d54560f94a838e12fefc0e4944"
+      },
+      {
+        "id": "op_84f721364cfb9ac00b29135b907261bb",
+        "label": "query_object_instance",
+        "protocol": "mcp",
+        "status": "completed",
+        "startedAt": "2026-10-08T06:02:35.987101Z",
+        "finishedAt": "2026-10-08T06:02:36.036115Z",
+        "requestId": "req_ae63931b-98d3-4c68-9c82-e0fde79425f2",
+        "traceId": "e6d2ee3b4ba27189b393b6937dc1f979",
+        "receiptId": "rcpt_6cd8a8d921986beaf25934671cfcf3b1"
+      },
+      {
+        "id": "op_377635f2e9b5967484b5ae3c2c4b7f54",
+        "label": "run_code",
+        "protocol": "mcp",
+        "status": "completed",
+        "startedAt": "2026-10-08T06:02:39.448732Z",
+        "finishedAt": "2026-10-08T06:02:40.082424Z",
+        "requestId": "req_8f0173e8-7af8-4626-9f9c-e1e41b7e3dec",
+        "traceId": "c11b2024e2a30795d655ad7b93723940",
+        "receiptId": "rcpt_3decca47091117364ef9a6afb08978ab"
+      },
+      {
+        "id": "op_5402ceb0a5de88abb93a2ad42d3e86c0",
+        "label": "query_object_instance",
+        "protocol": "mcp",
+        "status": "completed",
+        "startedAt": "2026-10-08T06:02:39.759775Z",
+        "finishedAt": "2026-10-08T06:02:39.800068Z",
+        "requestId": "req_e17db6ef-1ebe-4dd1-b175-cbdbda84b52c",
+        "traceId": "7434d480e7f5131e180b918e8bd739ba",
+        "receiptId": "rcpt_ad14f59121592381e30f83f77286ee20"
+      },
+      {
+        "id": "op_c9b6019ad8be03fe95964fdde506d553",
+        "label": "query_object_instance",
+        "protocol": "mcp",
+        "status": "completed",
+        "startedAt": "2026-10-08T06:02:39.811465Z",
+        "finishedAt": "2026-10-08T06:02:39.851093Z",
+        "requestId": "req_c3d5d838-322f-49f6-8c3d-17afec21a556",
+        "traceId": "3914c57da56e65e9b335a49bdcee5695",
+        "receiptId": "rcpt_e93da200fe833e5259b96a3499c4461a"
+      },
+      {
+        "id": "op_fdcfad72c929e0129a97c5d3616157db",
+        "label": "get_object_types",
+        "protocol": "mcp",
+        "status": "completed",
+        "startedAt": "2026-10-08T06:02:39.861006Z",
+        "finishedAt": "2026-10-08T06:02:39.956393Z",
+        "requestId": "req_8b309ff9-9be2-43d1-b7bc-dc230c4907c2",
+        "traceId": "455bfbec6f1024cc2ec4679d3facfdcd",
+        "receiptId": "rcpt_f59eef34dd9e7ce3d93761c423e84348"
+      },
+      {
+        "id": "op_9088cd8fb4869705219b37e9aad472bb",
+        "label": "run_code",
+        "protocol": "mcp",
+        "status": "completed",
+        "startedAt": "2026-10-08T06:02:43.800401Z",
+        "finishedAt": "2026-10-08T06:02:44.864537Z",
+        "requestId": "req_34d830ae-51be-4c8b-95aa-5b08e80d9a57",
+        "traceId": "c0744fb67fb4472b70054414321f7ef9",
+        "receiptId": "rcpt_a491e10f0b70d3be8588a7bda6b6a003"
+      },
+      {
+        "id": "op_1507304a71ca5a0afc543edd702af9ee",
+        "label": "query_object_instance",
+        "protocol": "mcp",
+        "status": "completed",
+        "startedAt": "2026-10-08T06:02:43.975419Z",
+        "finishedAt": "2026-10-08T06:02:44.033536Z",
+        "requestId": "req_8e6856ca-b909-45f7-8f1d-819228bfc740",
+        "traceId": "5913cd486bd0288e1e09698253627722",
+        "receiptId": "rcpt_a1bc97596cfdeb4309639f5074df7404"
+      },
+      {
+        "id": "op_92194f900d4c5eb7ab2ab4819817fdf3",
+        "label": "query_object_instance",
+        "protocol": "mcp",
+        "status": "completed",
+        "startedAt": "2026-10-08T06:02:44.044075Z",
+        "finishedAt": "2026-10-08T06:02:44.110633Z",
+        "requestId": "req_158ff4a8-ca0b-427b-bdf5-a8f680b28b81",
+        "traceId": "2aef8fb6ee6fc2d30cf2cf38ef920197",
+        "receiptId": "rcpt_53978bf427ea203d5e11460b1be294fb"
+      },
+      {
+        "id": "op_6bcddfd35df858c72dfa97aae366c572",
+        "label": "query_object_instance",
+        "protocol": "mcp",
+        "status": "completed",
+        "startedAt": "2026-10-08T06:02:44.12318Z",
+        "finishedAt": "2026-10-08T06:02:44.152182Z",
+        "requestId": "req_1beb9825-4a1c-49ec-ad0f-78546747bf35",
+        "traceId": "ec3ceb2cecdcdd42f9d79d8486dd796f",
+        "receiptId": "rcpt_aabcca0952aa5512dae6bdfe3e55fda8"
+      },
+      {
+        "id": "op_4c5a02bbb4d2afa07d7f371ec6697fe4",
+        "label": "query_object_instance",
+        "protocol": "mcp",
+        "status": "completed",
+        "startedAt": "2026-10-08T06:02:44.160691Z",
+        "finishedAt": "2026-10-08T06:02:44.233689Z",
+        "requestId": "req_14ea253e-0d69-4dd6-868b-08d3b10888a9",
+        "traceId": "35e6892ca0f5d7816c09010704c1cad5",
+        "receiptId": "rcpt_338b683e8366535054246114274d4e05"
+      },
+      {
+        "id": "op_b4e787237fbb08a5c16e048cfcea35a4",
+        "label": "query_object_instance",
+        "protocol": "mcp",
+        "status": "completed",
+        "startedAt": "2026-10-08T06:02:44.244467Z",
+        "finishedAt": "2026-10-08T06:02:44.304612Z",
+        "requestId": "req_b8fbea56-c7eb-4af5-a8fe-e23a05c81176",
+        "traceId": "1a65fb8694c784cf90fb72ebd919bc82",
+        "receiptId": "rcpt_df25535223ae48b5fc440bdd550dda6e"
+      },
+      {
+        "id": "op_00784018e63628f7a6944c75c3502f31",
+        "label": "query_object_instance",
+        "protocol": "mcp",
+        "status": "failed",
+        "startedAt": "2026-10-08T06:02:44.313646Z",
+        "finishedAt": "2026-10-08T06:02:44.327806Z",
+        "requestId": "req_2bea183e-3bf1-420c-9486-cd182183ccba",
+        "traceId": "a6f8a1ef37c2d3720626991441022270",
+        "receiptId": "rcpt_10a713d9064a9013eef2a1c0424e5079"
+      },
+      {
+        "id": "op_fe8b166f4807960f1ff31b5b895ae936",
+        "label": "query_object_instance",
+        "protocol": "mcp",
+        "status": "failed",
+        "startedAt": "2026-10-08T06:02:44.334984Z",
+        "finishedAt": "2026-10-08T06:02:44.343279Z",
+        "requestId": "req_8488e0ad-a478-4a90-ad71-ff4f25dec3e9",
+        "traceId": "08a8b7bbed08454c839814425c5f53b8",
+        "receiptId": "rcpt_97a2469e84a4bbd5dac1c6390d547b82"
+      },
+      {
+        "id": "op_29873a3a5af0d61b29c03548005edfbb",
+        "label": "query_object_instance",
+        "protocol": "mcp",
+        "status": "completed",
+        "startedAt": "2026-10-08T06:02:44.351182Z",
+        "finishedAt": "2026-10-08T06:02:44.376944Z",
+        "requestId": "req_04b0e570-438e-468a-b50a-9ee250e7d91e",
+        "traceId": "030d53807f040bd66dd7a4e693c4e275",
+        "receiptId": "rcpt_b18b62aaaa5bf8bc15e666e713e0112e"
+      },
+      {
+        "id": "op_903979977d2c4de1b9fc493a97e3564a",
+        "label": "run_code",
+        "protocol": "mcp",
+        "status": "completed",
+        "startedAt": "2026-10-08T06:02:51.700792Z",
+        "finishedAt": "2026-10-08T06:02:55.49221Z",
+        "requestId": "req_97b0067d-fa7a-45ba-bba4-be08c9ee88f9",
+        "traceId": "4244f87ed62a75330961783b0286c6b6",
+        "receiptId": "rcpt_0964f0ceed74086b0778688973571654"
+      },
+      {
+        "id": "op_d27ada99eb41c22c320f7666ddf99245",
+        "label": "query_object_instance",
+        "protocol": "mcp",
+        "status": "completed",
+        "startedAt": "2026-10-08T06:02:52.125655Z",
+        "finishedAt": "2026-10-08T06:02:52.302879Z",
+        "requestId": "req_eedbab6e-6597-4b0c-bf2f-6260567c580b",
+        "traceId": "f7d574b74b7f619ac2d775bbc6826a9c",
+        "receiptId": "rcpt_1e878565946d1f40bd04ce1fb68896d7"
+      },
+      {
+        "id": "op_21cfbdbbc11b7aec42dcedbee3a1c22e",
+        "label": "query_object_instance",
+        "protocol": "mcp",
+        "status": "completed",
+        "startedAt": "2026-10-08T06:02:52.31455Z",
+        "finishedAt": "2026-10-08T06:02:52.363803Z",
+        "requestId": "req_b89ff31a-f947-4ffd-89a8-a629b4ab7662",
+        "traceId": "c08e51d31dc74bff9e4b7811fba8b160",
+        "receiptId": "rcpt_76e6e0558a93a84caa9f6f6b197fa504"
+      },
+      {
+        "id": "op_1b3b2246d24c27b91e41d9bc64a23b34",
+        "label": "query_object_instance",
+        "protocol": "mcp",
+        "status": "completed",
+        "startedAt": "2026-10-08T06:02:52.383109Z",
+        "finishedAt": "2026-10-08T06:02:52.428355Z",
+        "requestId": "req_9ed39315-14b7-4693-955e-bfc254325b88",
+        "traceId": "6c9d6b4fd25d5ce4b822b410ecc335c5",
+        "receiptId": "rcpt_36d7844c2ab2164ee51626d6cdd3bba1"
+      },
+      {
+        "id": "op_acf7977ed8d527cc3e8a3e053fa4095e",
+        "label": "query_object_instance",
+        "protocol": "mcp",
+        "status": "completed",
+        "startedAt": "2026-10-08T06:02:52.44169Z",
+        "finishedAt": "2026-10-08T06:02:52.492853Z",
+        "requestId": "req_0cfc3a46-4734-4851-9a6a-4e87a7f725ef",
+        "traceId": "555a5a296ddaa18cbfc20b263e9ca7ff",
+        "receiptId": "rcpt_f29ea64f30098d8faa0e819b0a9d37bf"
+      },
+      {
+        "id": "op_472b89fb1246b1c0305890c41162f44a",
+        "label": "query_object_instance",
+        "protocol": "mcp",
+        "status": "completed",
+        "startedAt": "2026-10-08T06:02:52.505245Z",
+        "finishedAt": "2026-10-08T06:02:52.54258Z",
+        "requestId": "req_30a548a3-e853-4569-a13b-160934b54835",
+        "traceId": "ab0a2997ae3b6fc8e49abe1a6bacf231",
+        "receiptId": "rcpt_0d78217ed01f5688f41c065d81258233"
+      },
+      {
+        "id": "op_b8224de19534235074f4132791f7b040",
+        "label": "query_object_instance",
+        "protocol": "mcp",
+        "status": "completed",
+        "startedAt": "2026-10-08T06:02:52.555297Z",
+        "finishedAt": "2026-10-08T06:02:52.583946Z",
+        "requestId": "req_b95f5e5f-7123-4003-9420-a54e3518addf",
+        "traceId": "519764ef2877dfa318e43ed4de290cac",
+        "receiptId": "rcpt_eb8f76678f5e726bb43d6f1447fe66a2"
+      },
+      {
+        "id": "op_c96641acd0b0d858cfeb5daa6fd6a21f",
+        "label": "query_object_instance",
+        "protocol": "mcp",
+        "status": "completed",
+        "startedAt": "2026-10-08T06:02:52.601511Z",
+        "finishedAt": "2026-10-08T06:02:52.630153Z",
+        "requestId": "req_a18a1f8b-1a24-4fe0-826a-95560059cf82",
+        "traceId": "232f250445095739a6cdc9340026f52d",
+        "receiptId": "rcpt_2fe722b2c01f760c5d465879795f6d25"
+      },
+      {
+        "id": "op_fb1df01034b73e8b9daae2d2af4938ad",
+        "label": "query_object_instance",
+        "protocol": "mcp",
+        "status": "completed",
+        "startedAt": "2026-10-08T06:02:52.643212Z",
+        "finishedAt": "2026-10-08T06:02:52.67413Z",
+        "requestId": "req_f4a9ec38-53ef-42e1-a481-6ebc410cb718",
+        "traceId": "11d024cc9dc1423875075524cf983c98",
+        "receiptId": "rcpt_bec5fde31962545e78eb3c02a0558632"
+      },
+      {
+        "id": "op_4779e4605b77bdfa3b13fb3cc9a27912",
+        "label": "query_object_instance",
+        "protocol": "mcp",
+        "status": "completed",
+        "startedAt": "2026-10-08T06:02:52.684356Z",
+        "finishedAt": "2026-10-08T06:02:52.750445Z",
+        "requestId": "req_7daf6af0-1e27-45e5-a586-22febafd9a9a",
+        "traceId": "9affffa54b1b62740d723f13841441f7",
+        "receiptId": "rcpt_c41cc51d51bfef097c522d9b2e3cf212"
+      },
+      {
+        "id": "op_aa5e60c160424eb9e5f8a06d26a999eb",
+        "label": "query_object_instance",
+        "protocol": "mcp",
+        "status": "completed",
+        "startedAt": "2026-10-08T06:02:52.779878Z",
+        "finishedAt": "2026-10-08T06:02:52.853663Z",
+        "requestId": "req_28588f2c-6afe-4421-98de-09e9abad7ee8",
+        "traceId": "49480df4dbbae4eaa67de463c2740523",
+        "receiptId": "rcpt_47fbfb0d30290b53264845fbaceb0197"
+      },
+      {
+        "id": "op_bd05ae58dfd6a7e21709faf753f3c24d",
+        "label": "query_object_instance",
+        "protocol": "mcp",
+        "status": "completed",
+        "startedAt": "2026-10-08T06:02:52.947796Z",
+        "finishedAt": "2026-10-08T06:02:53.126676Z",
+        "requestId": "req_fb4ba378-d565-419a-96d1-66f9f9263b1a",
+        "traceId": "5a2ddc6c248c1ec8c92bd2f4a28ed408",
+        "receiptId": "rcpt_cbbc31af8ae894a9ac0302a8d7d1741d"
+      },
+      {
+        "id": "op_28c41db94a6aadce512db23ecc06d7e7",
+        "label": "query_object_instance",
+        "protocol": "mcp",
+        "status": "completed",
+        "startedAt": "2026-10-08T06:02:53.183964Z",
+        "finishedAt": "2026-10-08T06:02:53.293287Z",
+        "requestId": "req_cf53cb41-85f2-46e3-b72b-cbbfdfc79d4c",
+        "traceId": "92bba172bddba8ddf405d8e06b57d72e",
+        "receiptId": "rcpt_307a0196267145d4a60e4d79b0765d0b"
+      },
+      {
+        "id": "op_c8d51519dbab66e4318fec34fcf19790",
+        "label": "query_object_instance",
+        "protocol": "mcp",
+        "status": "completed",
+        "startedAt": "2026-10-08T06:02:53.33022Z",
+        "finishedAt": "2026-10-08T06:02:53.40825Z",
+        "requestId": "req_17bf9e2c-a502-4020-b14f-da5397e9543d",
+        "traceId": "d79ddb70455b2d0f67c2c1896ab21468",
+        "receiptId": "rcpt_876a5376ed2bc2841f88e0faabd1492b"
+      },
+      {
+        "id": "op_c141609d021400bb93d331f44809a4a7",
+        "label": "query_object_instance",
+        "protocol": "mcp",
+        "status": "completed",
+        "startedAt": "2026-10-08T06:02:53.434877Z",
+        "finishedAt": "2026-10-08T06:02:53.527506Z",
+        "requestId": "req_8e9da952-b5b6-4fd5-a5f2-ce105b4a1e37",
+        "traceId": "ec7cf77ad402f35c4a182d15ec8afafe",
+        "receiptId": "rcpt_8693d214dcf69e2f2fd210c1374ba9fb"
+      },
+      {
+        "id": "op_5e9b3d66b5388816a3162ea461b07431",
+        "label": "query_object_instance",
+        "protocol": "mcp",
+        "status": "completed",
+        "startedAt": "2026-10-08T06:02:53.570104Z",
+        "finishedAt": "2026-10-08T06:02:53.649913Z",
+        "requestId": "req_ec4928c4-1938-4aab-b7ac-d5801e8a69e9",
+        "traceId": "2492e6ceff1296924a5925d74eb19eca",
+        "receiptId": "rcpt_6c86026cf8133d46d3a9d55d51263d0d"
+      },
+      {
+        "id": "op_244b06fcbdbe8871c6d13bbbab035445",
+        "label": "query_object_instance",
+        "protocol": "mcp",
+        "status": "completed",
+        "startedAt": "2026-10-08T06:02:53.682016Z",
+        "finishedAt": "2026-10-08T06:02:53.751589Z",
+        "requestId": "req_f8eb7e50-3b6a-4234-8c1e-5d6af2806f0a",
+        "traceId": "e709365490d9348fc7ececa34cf39c81",
+        "receiptId": "rcpt_a348361d853e0069b35dfcf01df73374"
+      },
+      {
+        "id": "op_93b9306214e61b60b2edfa0b5296bdbc",
+        "label": "query_object_instance",
+        "protocol": "mcp",
+        "status": "completed",
+        "startedAt": "2026-10-08T06:02:53.810585Z",
+        "finishedAt": "2026-10-08T06:02:53.900552Z",
+        "requestId": "req_1fef2f07-1204-491d-b244-c2a659cebd82",
+        "traceId": "0141789ec1163925f572864d92abf3a2",
+        "receiptId": "rcpt_5e0b60f2125164efbab37da6d8cd013f"
+      },
+      {
+        "id": "op_799d7735d48925ba17b7e6d1d6d726ab",
+        "label": "query_object_instance",
+        "protocol": "mcp",
+        "status": "completed",
+        "startedAt": "2026-10-08T06:02:53.935201Z",
+        "finishedAt": "2026-10-08T06:02:54.065466Z",
+        "requestId": "req_c4835699-7e08-4f58-9a39-da6bba88aaa2",
+        "traceId": "e153c0d753b28cee3f89845ffe264de9",
+        "receiptId": "rcpt_431163bbc36d67b49799a50670f07e40"
+      },
+      {
+        "id": "op_c07c2e4c9ea82fcd2b55dd837da93e01",
+        "label": "query_object_instance",
+        "protocol": "mcp",
+        "status": "completed",
+        "startedAt": "2026-10-08T06:02:54.102974Z",
+        "finishedAt": "2026-10-08T06:02:54.181085Z",
+        "requestId": "req_e5f194ab-6221-4777-b4da-15c8947b3ab1",
+        "traceId": "5b294392fb8cac4d4e6ee03515ccd14a",
+        "receiptId": "rcpt_eec528c3b665008d50c9d2e6a4383880"
+      },
+      {
+        "id": "op_f079f13520cc729d9e754b197e9f7d64",
+        "label": "query_object_instance",
+        "protocol": "mcp",
+        "status": "completed",
+        "startedAt": "2026-10-08T06:02:54.210772Z",
+        "finishedAt": "2026-10-08T06:02:54.28424Z",
+        "requestId": "req_8ad0a04c-073e-449a-977d-2266b073ee50",
+        "traceId": "508fb1c9b030ceb4be871b61ee855494",
+        "receiptId": "rcpt_d8c58056fadbcf3c2ebb1d92d2e33bef"
+      },
+      {
+        "id": "op_fa64f7f1883004d12d66ae9b7ced08f3",
+        "label": "query_object_instance",
+        "protocol": "mcp",
+        "status": "completed",
+        "startedAt": "2026-10-08T06:02:54.307271Z",
+        "finishedAt": "2026-10-08T06:02:54.380774Z",
+        "requestId": "req_ca406f87-baff-4d0d-8293-6bb1bfc83300",
+        "traceId": "91df2792c13b02ffb0f46cdf7d891a08",
+        "receiptId": "rcpt_c1641db5cab4a6ec2b9827b813d50cd0"
+      },
+      {
+        "id": "op_a56eab129f9c79a67925c5ce4ec3f7db",
+        "label": "query_object_instance",
+        "protocol": "mcp",
+        "status": "completed",
+        "startedAt": "2026-10-08T06:02:54.403162Z",
+        "finishedAt": "2026-10-08T06:02:54.489724Z",
+        "requestId": "req_f1c193f1-cc5b-4a15-982f-99dd05bb8487",
+        "traceId": "6d096b5f2b84e42195f7abb184bd23f9",
+        "receiptId": "rcpt_f48292f2f1a2286f6a631bf458351044"
+      },
+      {
+        "id": "op_555d47bcfcbd1f0cc54c662fd9ad4a58",
+        "label": "query_object_instance",
+        "protocol": "mcp",
+        "status": "completed",
+        "startedAt": "2026-10-08T06:02:54.51556Z",
+        "finishedAt": "2026-10-08T06:02:54.575944Z",
+        "requestId": "req_271621d4-7e10-46a9-b23d-7be450784a38",
+        "traceId": "a8a3efdbed3ef52f3ca1669550049d72",
+        "receiptId": "rcpt_83d5430626d879260a241984d8c55535"
+      },
+      {
+        "id": "op_df48f0a42b5e179efeb3801e2178930d",
+        "label": "query_object_instance",
+        "protocol": "mcp",
+        "status": "completed",
+        "startedAt": "2026-10-08T06:02:54.617132Z",
+        "finishedAt": "2026-10-08T06:02:54.696582Z",
+        "requestId": "req_1ec15f22-690d-45d2-a35b-fa88aff4307f",
+        "traceId": "cc03c66897226c53bb6467c99add3784",
+        "receiptId": "rcpt_1bc79e995d72af1992d078dba68e8bd5"
+      },
+      {
+        "id": "op_1f85dfff2a161cd9c56e0a86e503a9bb",
+        "label": "query_object_instance",
+        "protocol": "mcp",
+        "status": "completed",
+        "startedAt": "2026-10-08T06:02:54.721632Z",
+        "finishedAt": "2026-10-08T06:02:54.804619Z",
+        "requestId": "req_f8362da9-aa0a-4b4c-aad9-c65067b166eb",
+        "traceId": "6a9636ecceac02f6353ac9452168de79",
+        "receiptId": "rcpt_97207eb2ae20959fcbe1505a154b55b5"
+      },
+      {
+        "id": "op_8eca8d16ca4ad963216aace95d53c166",
+        "label": "query_object_instance",
+        "protocol": "mcp",
+        "status": "completed",
+        "startedAt": "2026-10-08T06:02:54.824903Z",
+        "finishedAt": "2026-10-08T06:02:54.885643Z",
+        "requestId": "req_499e02fd-feb1-4541-9144-5ced70fe3082",
+        "traceId": "2befa00b0d5b31350411430afb629101",
+        "receiptId": "rcpt_d43d60683e66006e7469ade38de55fad"
+      },
+      {
+        "id": "op_05083856bee1c5012328cd899a1215b4",
+        "label": "query_object_instance",
+        "protocol": "mcp",
+        "status": "completed",
+        "startedAt": "2026-10-08T06:02:54.909874Z",
+        "finishedAt": "2026-10-08T06:02:54.997273Z",
+        "requestId": "req_6092eece-7d31-44c9-aa22-7924ece54e13",
+        "traceId": "62781564d866bcb62a2741067b8123c2",
+        "receiptId": "rcpt_af26147d2da15b7fbfe44edf4a8c4848"
+      },
+      {
+        "id": "op_258b1497830ebc4457d7eddc298224e4",
+        "label": "query_object_instance",
+        "protocol": "mcp",
+        "status": "completed",
+        "startedAt": "2026-10-08T06:02:55.022599Z",
+        "finishedAt": "2026-10-08T06:02:55.075595Z",
+        "requestId": "req_4155e264-6d61-4bd1-993d-cae0da0a39f9",
+        "traceId": "11ba57a27ee3d3607392e73f83b25154",
+        "receiptId": "rcpt_581addf37e82aa6df8a864448dd0b51f"
+      },
+      {
+        "id": "op_a5ad3cf103eac8e09debea739e5b686a",
+        "label": "query_object_instance",
+        "protocol": "mcp",
+        "status": "completed",
+        "startedAt": "2026-10-08T06:02:55.094391Z",
+        "finishedAt": "2026-10-08T06:02:55.158212Z",
+        "requestId": "req_05c0fe4d-8155-4cd4-8273-6b64ec4514df",
+        "traceId": "160dee70a46dd1ddf742e8b5d361ccfe",
+        "receiptId": "rcpt_72587811f99ec73cf8745b1e6292309f"
+      },
+      {
+        "id": "op_18cc0d33e2378744b8a08acea82415e3",
+        "label": "query_object_instance",
+        "protocol": "mcp",
+        "status": "completed",
+        "startedAt": "2026-10-08T06:02:55.181197Z",
+        "finishedAt": "2026-10-08T06:02:55.236278Z",
+        "requestId": "req_c38dd815-11eb-4559-912a-8c73904a020c",
+        "traceId": "61fb973997be0942209f694179810ed1",
+        "receiptId": "rcpt_ea2c7f7d496b808bc0e71a81c03da040"
+      },
+      {
+        "id": "op_e513de0b1aa7233c424f9ce466d6427f",
+        "label": "run_code",
+        "protocol": "mcp",
+        "status": "completed",
+        "startedAt": "2026-10-08T06:03:03.757203Z",
+        "finishedAt": "2026-10-08T06:03:04.354368Z",
+        "requestId": "req_fe1ead08-8ea0-4830-a1fc-87b12fbdb597",
+        "traceId": "31f7f097c63cb886ea86f0c2f291e253",
+        "receiptId": "rcpt_616d5ac30910ff00e402ea178e157424"
+      },
+      {
+        "id": "op_5405c059555302ad4534455f019148df",
+        "label": "get_object_types",
+        "protocol": "mcp",
+        "status": "completed",
+        "startedAt": "2026-10-08T06:03:04.018395Z",
+        "finishedAt": "2026-10-08T06:03:04.162768Z",
+        "requestId": "req_b3655e11-dcf5-4cfe-9b66-14016d982173",
+        "traceId": "dfa95580b6190f6ccc90ced7e3a68b35",
+        "receiptId": "rcpt_b46e16626377ee0796574d6a4648817a"
+      },
+      {
+        "id": "op_5d01efbebee17ff8cc0395b1b357ae95",
+        "label": "get_relation_types",
+        "protocol": "mcp",
+        "status": "completed",
+        "startedAt": "2026-10-08T06:03:04.18292Z",
+        "finishedAt": "2026-10-08T06:03:04.265175Z",
+        "requestId": "req_ab4b19cf-c22c-4e7a-a07a-2fa76ecfc294",
+        "traceId": "215cb3eb206ccf02df0c38a3d464c0ee",
+        "receiptId": "rcpt_efd38922a116b74c523df3a7de1e78d1"
+      },
+      {
+        "id": "op_d76ebcef9a14b1f25f939e2756ea0e44",
+        "label": "run_code",
+        "protocol": "mcp",
+        "status": "failed",
+        "startedAt": "2026-10-08T06:03:07.286112Z",
+        "finishedAt": "2026-10-08T06:03:07.884733Z",
+        "requestId": "req_c61d13d9-bbd4-44fe-b80d-278b9e5d8022",
+        "traceId": "c5ed0f2b7b9defea51948b3116ca3491",
+        "receiptId": "rcpt_13148d0d7f818776f0c7117c95a4a2cc"
+      },
+      {
+        "id": "op_719949de209eed808cdca6876f4e89b4",
+        "label": "query_object_instance",
+        "protocol": "mcp",
+        "status": "completed",
+        "startedAt": "2026-10-08T06:03:07.524777Z",
+        "finishedAt": "2026-10-08T06:03:07.645937Z",
+        "requestId": "req_31cb29c5-860b-40fe-92d5-93e337112f90",
+        "traceId": "274f245a6a57a4a7ff3e587cc0ef4cb1",
+        "receiptId": "rcpt_2af3f454f9e12e0e611a166904827b3e"
+      },
+      {
+        "id": "op_5d172475cd87400559998aba02160bdb",
+        "label": "query_object_instance",
+        "protocol": "mcp",
+        "status": "completed",
+        "startedAt": "2026-10-08T06:03:07.68846Z",
+        "finishedAt": "2026-10-08T06:03:07.797442Z",
+        "requestId": "req_0bfe41f5-694e-4113-b7d4-2d3db8fbfe73",
+        "traceId": "f464511c9b62f81a2b55cb78e8302f33",
+        "receiptId": "rcpt_e92dd5a849c7426fad3c0b7e5f5c8339"
+      },
+      {
+        "id": "op_8653b7d47e2d860fa70adb4097b22e68",
+        "label": "query_object_instance",
+        "protocol": "mcp",
+        "status": "failed",
+        "startedAt": "2026-10-08T06:03:07.834741Z",
+        "finishedAt": "2026-10-08T06:03:07.856643Z",
+        "requestId": "req_5f5ac4f6-21f7-4640-a80c-bef8e7886ccd",
+        "traceId": "14f5e697f229e0381760cd3b5eabcb9a",
+        "receiptId": "rcpt_cebf96124e90dd8b72e2d2e8da1e0034"
+      },
+      {
+        "id": "op_cc8985d5f5ab5cd2b425204456d5a9a6",
+        "label": "run_code",
+        "protocol": "mcp",
+        "status": "completed",
+        "startedAt": "2026-10-08T06:03:15.890651Z",
+        "finishedAt": "2026-10-08T06:03:17.050955Z",
+        "requestId": "req_71c61650-9a6f-4794-8315-8711a639f941",
+        "traceId": "72d90ce1aee674d460497333ad3b3956",
+        "receiptId": "rcpt_f24451fad00ea667c0071c5ba1a0f5ca"
+      },
+      {
+        "id": "op_d128f2df48f0eca5e26abfe61a6fe574",
+        "label": "query_object_instance",
+        "protocol": "mcp",
+        "status": "completed",
+        "startedAt": "2026-10-08T06:03:16.218979Z",
+        "finishedAt": "2026-10-08T06:03:16.343373Z",
+        "requestId": "req_f06ca87e-517d-46ef-b449-6531aa11ad62",
+        "traceId": "d14752959696e35886681ac5049b7d76",
+        "receiptId": "rcpt_02b0150f270bab4eb9d6c968197c48a9"
+      },
+      {
+        "id": "op_4be01b1b48c8f43ad6bd68b209a7ed92",
+        "label": "query_object_instance",
+        "protocol": "mcp",
+        "status": "completed",
+        "startedAt": "2026-10-08T06:03:16.36593Z",
+        "finishedAt": "2026-10-08T06:03:16.418185Z",
+        "requestId": "req_9c98f02e-cff0-4cb6-9e3d-0b3db3529cea",
+        "traceId": "91049878361e5665a54a684f29a5c62b",
+        "receiptId": "rcpt_1c305690e555fdd9f795ff630f9feb1a"
+      },
+      {
+        "id": "op_b3a5c50632809faba357a726f0daa1f9",
+        "label": "query_object_instance",
+        "protocol": "mcp",
+        "status": "completed",
+        "startedAt": "2026-10-08T06:03:16.435875Z",
+        "finishedAt": "2026-10-08T06:03:16.47967Z",
+        "requestId": "req_b55a4df0-1a1e-407f-94b0-6e0824e3c725",
+        "traceId": "84e71bc5df43df3d98a39f0758a47ae4",
+        "receiptId": "rcpt_f0e7de20bc0c8b6476784b7adf871055"
+      },
+      {
+        "id": "op_176033d2a9696f57301436587b3862a8",
+        "label": "query_object_instance",
+        "protocol": "mcp",
+        "status": "completed",
+        "startedAt": "2026-10-08T06:03:16.489889Z",
+        "finishedAt": "2026-10-08T06:03:16.545661Z",
+        "requestId": "req_a36308a3-2520-41c6-968e-19e1a3aa38b6",
+        "traceId": "65844cb13c9edc81a1c84f08d2351dd9",
+        "receiptId": "rcpt_f5420877793bfb9e6f7393cf93286e59"
+      },
+      {
+        "id": "op_99dca1cb0f497da68df9ab76b7a26915",
+        "label": "query_object_instance",
+        "protocol": "mcp",
+        "status": "completed",
+        "startedAt": "2026-10-08T06:03:16.572956Z",
+        "finishedAt": "2026-10-08T06:03:16.622962Z",
+        "requestId": "req_3ddb92fe-4227-437b-9ed5-ba761490412b",
+        "traceId": "05b68173468532ce63f0a9a81add1f9f",
+        "receiptId": "rcpt_53b8c31a705ccff7fc3ebc83bbf283b7"
+      },
+      {
+        "id": "op_4487b5ce9b7c742ea650e3ca08ab4235",
+        "label": "query_object_instance",
+        "protocol": "mcp",
+        "status": "completed",
+        "startedAt": "2026-10-08T06:03:16.634542Z",
+        "finishedAt": "2026-10-08T06:03:16.686794Z",
+        "requestId": "req_96758e30-8a43-4d43-9e07-28343822bc6b",
+        "traceId": "af8d8eccbe290f0e2592cc7d94891dfe",
+        "receiptId": "rcpt_c318c2de5f70274217762a7c536eb2c7"
+      },
+      {
+        "id": "op_dcb02ae9076b58f49a4ad71e3e4c5023",
+        "label": "search_capabilities",
+        "protocol": "mcp",
+        "status": "completed",
+        "startedAt": "2026-10-08T06:03:16.701561Z",
+        "finishedAt": "2026-10-08T06:03:16.934084Z",
+        "requestId": "req_806e6109-9840-4d3a-938a-af24ba4aeaa7",
+        "traceId": "fecabd112c5f8c1fdfa63dc869448ab5",
+        "receiptId": "rcpt_f08dad9fad4a89bdc24d61a3e12deba1"
+      }
+    ]
+  },
+  "business": {
+    "kind": "ready",
+    "operations": [
+      {
+        "id": "op_02d68723e848a7f8ee06034b8e34423c",
+        "attempt": 0,
+        "toolName": "query_object_instance",
+        "status": "resolved",
+        "elements": [
+          {
+            "id": "object:supply_ontology_hand:supply_ontology_hand_material",
+            "kind": "object",
+            "name": "物料",
+            "knowledgeNetworkId": "supply_ontology_hand"
+          }
+        ],
+        "missingFacts": [],
+        "knowledgeNetworkId": "supply_ontology_hand"
+      },
+      {
+        "id": "op_05083856bee1c5012328cd899a1215b4",
+        "attempt": 0,
+        "toolName": "query_object_instance",
+        "status": "resolved",
+        "elements": [
+          {
+            "id": "object:supply_ontology_hand:supply_ontology_hand_pr",
+            "kind": "object",
+            "name": "采购申请单",
+            "knowledgeNetworkId": "supply_ontology_hand"
+          },
+          {
+            "id": "property:supply_ontology_hand:supply_ontology_hand_pr:rowclosestatus_title",
+            "kind": "property",
+            "name": "关闭状态",
+            "knowledgeNetworkId": "supply_ontology_hand"
+          },
+          {
+            "id": "property:supply_ontology_hand:supply_ontology_hand_pr:rowterminatestatus_title",
+            "kind": "property",
+            "name": "终止状态",
+            "knowledgeNetworkId": "supply_ontology_hand"
+          }
+        ],
+        "missingFacts": [],
+        "knowledgeNetworkId": "supply_ontology_hand"
+      },
+      {
+        "id": "op_1507304a71ca5a0afc543edd702af9ee",
+        "attempt": 0,
+        "toolName": "query_object_instance",
+        "status": "resolved",
+        "elements": [
+          {
+            "id": "object:supply_ontology_hand:supply_ontology_hand_pr",
+            "kind": "object",
+            "name": "采购申请单",
+            "knowledgeNetworkId": "supply_ontology_hand"
+          },
+          {
+            "id": "property:supply_ontology_hand:supply_ontology_hand_pr:billno",
+            "kind": "property",
+            "name": "采购申请单号",
+            "knowledgeNetworkId": "supply_ontology_hand"
+          },
+          {
+            "id": "property:supply_ontology_hand:supply_ontology_hand_pr:material_name",
+            "kind": "property",
+            "name": "物料名称",
+            "knowledgeNetworkId": "supply_ontology_hand"
+          },
+          {
+            "id": "property:supply_ontology_hand:supply_ontology_hand_pr:material_number",
+            "kind": "property",
+            "name": "物料编码",
+            "knowledgeNetworkId": "supply_ontology_hand"
+          },
+          {
+            "id": "property:supply_ontology_hand:supply_ontology_hand_pr:rowclosestatus_title",
+            "kind": "property",
+            "name": "关闭状态",
+            "knowledgeNetworkId": "supply_ontology_hand"
+          },
+          {
+            "id": "property:supply_ontology_hand:supply_ontology_hand_pr:rowterminatestatus_title",
+            "kind": "property",
+            "name": "终止状态",
+            "knowledgeNetworkId": "supply_ontology_hand"
+          }
+        ],
+        "missingFacts": [],
+        "knowledgeNetworkId": "supply_ontology_hand"
+      },
+      {
+        "id": "op_176033d2a9696f57301436587b3862a8",
+        "attempt": 0,
+        "toolName": "query_object_instance",
+        "status": "resolved",
+        "elements": [
+          {
+            "id": "object:supply_ontology_hand:supply_ontology_hand_po",
+            "kind": "object",
+            "name": "采购订单",
+            "knowledgeNetworkId": "supply_ontology_hand"
+          }
+        ],
+        "missingFacts": [],
+        "knowledgeNetworkId": "supply_ontology_hand"
+      },
+      {
+        "id": "op_18cc0d33e2378744b8a08acea82415e3",
+        "attempt": 0,
+        "toolName": "query_object_instance",
+        "status": "resolved",
+        "elements": [
+          {
+            "id": "object:supply_ontology_hand:supply_ontology_hand_po",
+            "kind": "object",
+            "name": "采购订单",
+            "knowledgeNetworkId": "supply_ontology_hand"
+          },
+          {
+            "id": "property:supply_ontology_hand:supply_ontology_hand_po:rowclosestatus_title",
+            "kind": "property",
+            "name": "关闭状态",
+            "knowledgeNetworkId": "supply_ontology_hand"
+          },
+          {
+            "id": "property:supply_ontology_hand:supply_ontology_hand_po:rowterminatestatus_title",
+            "kind": "property",
+            "name": "终止状态",
+            "knowledgeNetworkId": "supply_ontology_hand"
+          }
+        ],
+        "missingFacts": [],
+        "knowledgeNetworkId": "supply_ontology_hand"
+      },
+      {
+        "id": "op_1b3b2246d24c27b91e41d9bc64a23b34",
+        "attempt": 0,
+        "toolName": "query_object_instance",
+        "status": "resolved",
+        "elements": [
+          {
+            "id": "object:supply_ontology_hand:supply_ontology_hand_pr",
+            "kind": "object",
+            "name": "采购申请单",
+            "knowledgeNetworkId": "supply_ontology_hand"
+          },
+          {
+            "id": "property:supply_ontology_hand:supply_ontology_hand_pr:billno",
+            "kind": "property",
+            "name": "采购申请单号",
+            "knowledgeNetworkId": "supply_ontology_hand"
+          },
+          {
+            "id": "property:supply_ontology_hand:supply_ontology_hand_pr:material_name",
+            "kind": "property",
+            "name": "物料名称",
+            "knowledgeNetworkId": "supply_ontology_hand"
+          },
+          {
+            "id": "property:supply_ontology_hand:supply_ontology_hand_pr:material_number",
+            "kind": "property",
+            "name": "物料编码",
+            "knowledgeNetworkId": "supply_ontology_hand"
+          }
+        ],
+        "missingFacts": [],
+        "knowledgeNetworkId": "supply_ontology_hand"
+      },
+      {
+        "id": "op_1f85dfff2a161cd9c56e0a86e503a9bb",
+        "attempt": 0,
+        "toolName": "query_object_instance",
+        "status": "resolved",
+        "elements": [
+          {
+            "id": "object:supply_ontology_hand:supply_ontology_hand_pr",
+            "kind": "object",
+            "name": "采购申请单",
+            "knowledgeNetworkId": "supply_ontology_hand"
+          },
+          {
+            "id": "property:supply_ontology_hand:supply_ontology_hand_pr:rowclosestatus_title",
+            "kind": "property",
+            "name": "关闭状态",
+            "knowledgeNetworkId": "supply_ontology_hand"
+          },
+          {
+            "id": "property:supply_ontology_hand:supply_ontology_hand_pr:rowterminatestatus_title",
+            "kind": "property",
+            "name": "终止状态",
+            "knowledgeNetworkId": "supply_ontology_hand"
+          }
+        ],
+        "missingFacts": [],
+        "knowledgeNetworkId": "supply_ontology_hand"
+      },
+      {
+        "id": "op_21cfbdbbc11b7aec42dcedbee3a1c22e",
+        "attempt": 0,
+        "toolName": "query_object_instance",
+        "status": "resolved",
+        "elements": [
+          {
+            "id": "object:supply_ontology_hand:supply_ontology_hand_pr",
+            "kind": "object",
+            "name": "采购申请单",
+            "knowledgeNetworkId": "supply_ontology_hand"
+          },
+          {
+            "id": "property:supply_ontology_hand:supply_ontology_hand_pr:billno",
+            "kind": "property",
+            "name": "采购申请单号",
+            "knowledgeNetworkId": "supply_ontology_hand"
+          },
+          {
+            "id": "property:supply_ontology_hand:supply_ontology_hand_pr:material_name",
+            "kind": "property",
+            "name": "物料名称",
+            "knowledgeNetworkId": "supply_ontology_hand"
+          },
+          {
+            "id": "property:supply_ontology_hand:supply_ontology_hand_pr:material_number",
+            "kind": "property",
+            "name": "物料编码",
+            "knowledgeNetworkId": "supply_ontology_hand"
+          }
+        ],
+        "missingFacts": [],
+        "knowledgeNetworkId": "supply_ontology_hand"
+      },
+      {
+        "id": "op_244b06fcbdbe8871c6d13bbbab035445",
+        "attempt": 0,
+        "toolName": "query_object_instance",
+        "status": "resolved",
+        "elements": [
+          {
+            "id": "object:supply_ontology_hand:supply_ontology_hand_pr",
+            "kind": "object",
+            "name": "采购申请单",
+            "knowledgeNetworkId": "supply_ontology_hand"
+          },
+          {
+            "id": "property:supply_ontology_hand:supply_ontology_hand_pr:rowclosestatus_title",
+            "kind": "property",
+            "name": "关闭状态",
+            "knowledgeNetworkId": "supply_ontology_hand"
+          },
+          {
+            "id": "property:supply_ontology_hand:supply_ontology_hand_pr:rowterminatestatus_title",
+            "kind": "property",
+            "name": "终止状态",
+            "knowledgeNetworkId": "supply_ontology_hand"
+          }
+        ],
+        "missingFacts": [],
+        "knowledgeNetworkId": "supply_ontology_hand"
+      },
+      {
+        "id": "op_258b1497830ebc4457d7eddc298224e4",
+        "attempt": 0,
+        "toolName": "query_object_instance",
+        "status": "resolved",
+        "elements": [
+          {
+            "id": "object:supply_ontology_hand:supply_ontology_hand_pr",
+            "kind": "object",
+            "name": "采购申请单",
+            "knowledgeNetworkId": "supply_ontology_hand"
+          },
+          {
+            "id": "property:supply_ontology_hand:supply_ontology_hand_pr:rowclosestatus_title",
+            "kind": "property",
+            "name": "关闭状态",
+            "knowledgeNetworkId": "supply_ontology_hand"
+          },
+          {
+            "id": "property:supply_ontology_hand:supply_ontology_hand_pr:rowterminatestatus_title",
+            "kind": "property",
+            "name": "终止状态",
+            "knowledgeNetworkId": "supply_ontology_hand"
+          }
+        ],
+        "missingFacts": [],
+        "knowledgeNetworkId": "supply_ontology_hand"
+      },
+      {
+        "id": "op_28c41db94a6aadce512db23ecc06d7e7",
+        "attempt": 0,
+        "toolName": "query_object_instance",
+        "status": "resolved",
+        "elements": [
+          {
+            "id": "object:supply_ontology_hand:supply_ontology_hand_pr",
+            "kind": "object",
+            "name": "采购申请单",
+            "knowledgeNetworkId": "supply_ontology_hand"
+          },
+          {
+            "id": "property:supply_ontology_hand:supply_ontology_hand_pr:rowclosestatus_title",
+            "kind": "property",
+            "name": "关闭状态",
+            "knowledgeNetworkId": "supply_ontology_hand"
+          },
+          {
+            "id": "property:supply_ontology_hand:supply_ontology_hand_pr:rowterminatestatus_title",
+            "kind": "property",
+            "name": "终止状态",
+            "knowledgeNetworkId": "supply_ontology_hand"
+          }
+        ],
+        "missingFacts": [],
+        "knowledgeNetworkId": "supply_ontology_hand"
+      },
+      {
+        "id": "op_29873a3a5af0d61b29c03548005edfbb",
+        "attempt": 0,
+        "toolName": "query_object_instance",
+        "status": "resolved",
+        "elements": [
+          {
+            "id": "object:supply_ontology_hand:supply_ontology_hand_mps",
+            "kind": "object",
+            "name": "工厂生产计划",
+            "knowledgeNetworkId": "supply_ontology_hand"
+          }
+        ],
+        "missingFacts": [],
+        "knowledgeNetworkId": "supply_ontology_hand"
+      },
+      {
+        "id": "op_4487b5ce9b7c742ea650e3ca08ab4235",
+        "attempt": 0,
+        "toolName": "query_object_instance",
+        "status": "resolved",
+        "elements": [
+          {
+            "id": "object:supply_ontology_hand:supply_ontology_hand_po",
+            "kind": "object",
+            "name": "采购订单",
+            "knowledgeNetworkId": "supply_ontology_hand"
+          }
+        ],
+        "missingFacts": [],
+        "knowledgeNetworkId": "supply_ontology_hand"
+      },
+      {
+        "id": "op_472b89fb1246b1c0305890c41162f44a",
+        "attempt": 0,
+        "toolName": "query_object_instance",
+        "status": "resolved",
+        "elements": [
+          {
+            "id": "object:supply_ontology_hand:supply_ontology_hand_po",
+            "kind": "object",
+            "name": "采购订单",
+            "knowledgeNetworkId": "supply_ontology_hand"
+          },
+          {
+            "id": "property:supply_ontology_hand:supply_ontology_hand_po:billno",
+            "kind": "property",
+            "name": "采购订单单号",
+            "knowledgeNetworkId": "supply_ontology_hand"
+          },
+          {
+            "id": "property:supply_ontology_hand:supply_ontology_hand_po:material_name",
+            "kind": "property",
+            "name": "物料名称",
+            "knowledgeNetworkId": "supply_ontology_hand"
+          },
+          {
+            "id": "property:supply_ontology_hand:supply_ontology_hand_po:material_number",
+            "kind": "property",
+            "name": "物料编码",
+            "knowledgeNetworkId": "supply_ontology_hand"
+          }
+        ],
+        "missingFacts": [],
+        "knowledgeNetworkId": "supply_ontology_hand"
+      },
+      {
+        "id": "op_4779e4605b77bdfa3b13fb3cc9a27912",
+        "attempt": 0,
+        "toolName": "query_object_instance",
+        "status": "resolved",
+        "elements": [
+          {
+            "id": "object:supply_ontology_hand:supply_ontology_hand_pr",
+            "kind": "object",
+            "name": "采购申请单",
+            "knowledgeNetworkId": "supply_ontology_hand"
+          },
+          {
+            "id": "property:supply_ontology_hand:supply_ontology_hand_pr:rowclosestatus_title",
+            "kind": "property",
+            "name": "关闭状态",
+            "knowledgeNetworkId": "supply_ontology_hand"
+          },
+          {
+            "id": "property:supply_ontology_hand:supply_ontology_hand_pr:rowterminatestatus_title",
+            "kind": "property",
+            "name": "终止状态",
+            "knowledgeNetworkId": "supply_ontology_hand"
+          }
+        ],
+        "missingFacts": [],
+        "knowledgeNetworkId": "supply_ontology_hand"
+      },
+      {
+        "id": "op_4be01b1b48c8f43ad6bd68b209a7ed92",
+        "attempt": 0,
+        "toolName": "query_object_instance",
+        "status": "resolved",
+        "elements": [
+          {
+            "id": "object:supply_ontology_hand:supply_ontology_hand_pr",
+            "kind": "object",
+            "name": "采购申请单",
+            "knowledgeNetworkId": "supply_ontology_hand"
+          }
+        ],
+        "missingFacts": [],
+        "knowledgeNetworkId": "supply_ontology_hand"
+      },
+      {
+        "id": "op_4c5a02bbb4d2afa07d7f371ec6697fe4",
+        "attempt": 0,
+        "toolName": "query_object_instance",
+        "status": "resolved",
+        "elements": [
+          {
+            "id": "object:supply_ontology_hand:supply_ontology_hand_po",
+            "kind": "object",
+            "name": "采购订单",
+            "knowledgeNetworkId": "supply_ontology_hand"
+          },
+          {
+            "id": "property:supply_ontology_hand:supply_ontology_hand_po:billno",
+            "kind": "property",
+            "name": "采购订单单号",
+            "knowledgeNetworkId": "supply_ontology_hand"
+          },
+          {
+            "id": "property:supply_ontology_hand:supply_ontology_hand_po:material_name",
+            "kind": "property",
+            "name": "物料名称",
+            "knowledgeNetworkId": "supply_ontology_hand"
+          },
+          {
+            "id": "property:supply_ontology_hand:supply_ontology_hand_po:material_number",
+            "kind": "property",
+            "name": "物料编码",
+            "knowledgeNetworkId": "supply_ontology_hand"
+          },
+          {
+            "id": "property:supply_ontology_hand:supply_ontology_hand_po:rowclosestatus_title",
+            "kind": "property",
+            "name": "关闭状态",
+            "knowledgeNetworkId": "supply_ontology_hand"
+          },
+          {
+            "id": "property:supply_ontology_hand:supply_ontology_hand_po:rowterminatestatus_title",
+            "kind": "property",
+            "name": "终止状态",
+            "knowledgeNetworkId": "supply_ontology_hand"
+          }
+        ],
+        "missingFacts": [],
+        "knowledgeNetworkId": "supply_ontology_hand"
+      },
+      {
+        "id": "op_5402ceb0a5de88abb93a2ad42d3e86c0",
+        "attempt": 0,
+        "toolName": "query_object_instance",
+        "status": "resolved",
+        "elements": [
+          {
+            "id": "object:supply_ontology_hand:supply_ontology_hand_pr",
+            "kind": "object",
+            "name": "采购申请单",
+            "knowledgeNetworkId": "supply_ontology_hand"
+          },
+          {
+            "id": "property:supply_ontology_hand:supply_ontology_hand_pr:billno",
+            "kind": "property",
+            "name": "采购申请单号",
+            "knowledgeNetworkId": "supply_ontology_hand"
+          },
+          {
+            "id": "property:supply_ontology_hand:supply_ontology_hand_pr:huid_xmh_name",
+            "kind": "property",
+            "name": "生产项目号",
+            "knowledgeNetworkId": "supply_ontology_hand"
+          },
+          {
+            "id": "property:supply_ontology_hand:supply_ontology_hand_pr:joinqty",
+            "kind": "property",
+            "name": "已下推采购订单数量",
+            "knowledgeNetworkId": "supply_ontology_hand"
+          },
+          {
+            "id": "property:supply_ontology_hand:supply_ontology_hand_pr:material_name",
+            "kind": "property",
+            "name": "物料名称",
+            "knowledgeNetworkId": "supply_ontology_hand"
+          },
+          {
+            "id": "property:supply_ontology_hand:supply_ontology_hand_pr:material_number",
+            "kind": "property",
+            "name": "物料编码",
+            "knowledgeNetworkId": "supply_ontology_hand"
+          },
+          {
+            "id": "property:supply_ontology_hand:supply_ontology_hand_pr:qty",
+            "kind": "property",
+            "name": "数量",
+            "knowledgeNetworkId": "supply_ontology_hand"
+          },
+          {
+            "id": "property:supply_ontology_hand:supply_ontology_hand_pr:rowclosestatus_title",
+            "kind": "property",
+            "name": "关闭状态",
+            "knowledgeNetworkId": "supply_ontology_hand"
+          },
+          {
+            "id": "property:supply_ontology_hand:supply_ontology_hand_pr:rowterminatestatus_title",
+            "kind": "property",
+            "name": "终止状态",
+            "knowledgeNetworkId": "supply_ontology_hand"
+          },
+          {
+            "id": "property:supply_ontology_hand:supply_ontology_hand_pr:srcbillnumber",
+            "kind": "property",
+            "name": "来源单据号",
+            "knowledgeNetworkId": "supply_ontology_hand"
+          }
+        ],
+        "missingFacts": [],
+        "knowledgeNetworkId": "supply_ontology_hand"
+      },
+      {
+        "id": "op_555d47bcfcbd1f0cc54c662fd9ad4a58",
+        "attempt": 0,
+        "toolName": "query_object_instance",
+        "status": "resolved",
+        "elements": [
+          {
+            "id": "object:supply_ontology_hand:supply_ontology_hand_pr",
+            "kind": "object",
+            "name": "采购申请单",
+            "knowledgeNetworkId": "supply_ontology_hand"
+          },
+          {
+            "id": "property:supply_ontology_hand:supply_ontology_hand_pr:rowclosestatus_title",
+            "kind": "property",
+            "name": "关闭状态",
+            "knowledgeNetworkId": "supply_ontology_hand"
+          },
+          {
+            "id": "property:supply_ontology_hand:supply_ontology_hand_pr:rowterminatestatus_title",
+            "kind": "property",
+            "name": "终止状态",
+            "knowledgeNetworkId": "supply_ontology_hand"
+          }
+        ],
+        "missingFacts": [],
+        "knowledgeNetworkId": "supply_ontology_hand"
+      },
+      {
+        "id": "op_5d172475cd87400559998aba02160bdb",
+        "attempt": 0,
+        "toolName": "query_object_instance",
+        "status": "resolved",
+        "elements": [
+          {
+            "id": "object:supply_ontology_hand:supply_ontology_hand_pr",
+            "kind": "object",
+            "name": "采购申请单",
+            "knowledgeNetworkId": "supply_ontology_hand"
+          },
+          {
+            "id": "property:supply_ontology_hand:supply_ontology_hand_pr:billno",
+            "kind": "property",
+            "name": "采购申请单号",
+            "knowledgeNetworkId": "supply_ontology_hand"
+          },
+          {
+            "id": "property:supply_ontology_hand:supply_ontology_hand_pr:biztime",
+            "kind": "property",
+            "name": "业务时间",
+            "knowledgeNetworkId": "supply_ontology_hand"
+          },
+          {
+            "id": "property:supply_ontology_hand:supply_ontology_hand_pr:joinqty",
+            "kind": "property",
+            "name": "已下推采购订单数量",
+            "knowledgeNetworkId": "supply_ontology_hand"
+          },
+          {
+            "id": "property:supply_ontology_hand:supply_ontology_hand_pr:material_name",
+            "kind": "property",
+            "name": "物料名称",
+            "knowledgeNetworkId": "supply_ontology_hand"
+          },
+          {
+            "id": "property:supply_ontology_hand:supply_ontology_hand_pr:material_number",
+            "kind": "property",
+            "name": "物料编码",
+            "knowledgeNetworkId": "supply_ontology_hand"
+          },
+          {
+            "id": "property:supply_ontology_hand:supply_ontology_hand_pr:qty",
+            "kind": "property",
+            "name": "数量",
+            "knowledgeNetworkId": "supply_ontology_hand"
+          },
+          {
+            "id": "property:supply_ontology_hand:supply_ontology_hand_pr:rowclosestatus_title",
+            "kind": "property",
+            "name": "关闭状态",
+            "knowledgeNetworkId": "supply_ontology_hand"
+          },
+          {
+            "id": "property:supply_ontology_hand:supply_ontology_hand_pr:rowterminatestatus_title",
+            "kind": "property",
+            "name": "终止状态",
+            "knowledgeNetworkId": "supply_ontology_hand"
+          }
+        ],
+        "missingFacts": [],
+        "knowledgeNetworkId": "supply_ontology_hand"
+      },
+      {
+        "id": "op_5e9b3d66b5388816a3162ea461b07431",
+        "attempt": 0,
+        "toolName": "query_object_instance",
+        "status": "resolved",
+        "elements": [
+          {
+            "id": "object:supply_ontology_hand:supply_ontology_hand_pr",
+            "kind": "object",
+            "name": "采购申请单",
+            "knowledgeNetworkId": "supply_ontology_hand"
+          },
+          {
+            "id": "property:supply_ontology_hand:supply_ontology_hand_pr:rowclosestatus_title",
+            "kind": "property",
+            "name": "关闭状态",
+            "knowledgeNetworkId": "supply_ontology_hand"
+          },
+          {
+            "id": "property:supply_ontology_hand:supply_ontology_hand_pr:rowterminatestatus_title",
+            "kind": "property",
+            "name": "终止状态",
+            "knowledgeNetworkId": "supply_ontology_hand"
+          }
+        ],
+        "missingFacts": [],
+        "knowledgeNetworkId": "supply_ontology_hand"
+      },
+      {
+        "id": "op_6bcddfd35df858c72dfa97aae366c572",
+        "attempt": 0,
+        "toolName": "query_object_instance",
+        "status": "resolved",
+        "elements": [
+          {
+            "id": "object:supply_ontology_hand:supply_ontology_hand_po",
+            "kind": "object",
+            "name": "采购订单",
+            "knowledgeNetworkId": "supply_ontology_hand"
+          },
+          {
+            "id": "property:supply_ontology_hand:supply_ontology_hand_po:billno",
+            "kind": "property",
+            "name": "采购订单单号",
+            "knowledgeNetworkId": "supply_ontology_hand"
+          },
+          {
+            "id": "property:supply_ontology_hand:supply_ontology_hand_po:material_name",
+            "kind": "property",
+            "name": "物料名称",
+            "knowledgeNetworkId": "supply_ontology_hand"
+          },
+          {
+            "id": "property:supply_ontology_hand:supply_ontology_hand_po:material_number",
+            "kind": "property",
+            "name": "物料编码",
+            "knowledgeNetworkId": "supply_ontology_hand"
+          },
+          {
+            "id": "property:supply_ontology_hand:supply_ontology_hand_po:rowclosestatus_title",
+            "kind": "property",
+            "name": "关闭状态",
+            "knowledgeNetworkId": "supply_ontology_hand"
+          },
+          {
+            "id": "property:supply_ontology_hand:supply_ontology_hand_po:rowterminatestatus_title",
+            "kind": "property",
+            "name": "终止状态",
+            "knowledgeNetworkId": "supply_ontology_hand"
+          }
+        ],
+        "missingFacts": [],
+        "knowledgeNetworkId": "supply_ontology_hand"
+      },
+      {
+        "id": "op_719949de209eed808cdca6876f4e89b4",
+        "attempt": 0,
+        "toolName": "query_object_instance",
+        "status": "resolved",
+        "elements": [
+          {
+            "id": "object:supply_ontology_hand:supply_ontology_hand_bom",
+            "kind": "object",
+            "name": "产品BOM",
+            "knowledgeNetworkId": "supply_ontology_hand"
+          },
+          {
+            "id": "property:supply_ontology_hand:supply_ontology_hand_bom:bom_level",
+            "kind": "property",
+            "name": "物料层级",
+            "knowledgeNetworkId": "supply_ontology_hand"
+          },
+          {
+            "id": "property:supply_ontology_hand:supply_ontology_hand_bom:bom_version",
+            "kind": "property",
+            "name": "BOM版本",
+            "knowledgeNetworkId": "supply_ontology_hand"
+          },
+          {
+            "id": "property:supply_ontology_hand:supply_ontology_hand_bom:material_code",
+            "kind": "property",
+            "name": "物料编码",
+            "knowledgeNetworkId": "supply_ontology_hand"
+          },
+          {
+            "id": "property:supply_ontology_hand:supply_ontology_hand_bom:material_name",
+            "kind": "property",
+            "name": "物料名称",
+            "knowledgeNetworkId": "supply_ontology_hand"
+          },
+          {
+            "id": "property:supply_ontology_hand:supply_ontology_hand_bom:parent_material_code",
+            "kind": "property",
+            "name": "父级物料编码",
+            "knowledgeNetworkId": "supply_ontology_hand"
+          },
+          {
+            "id": "property:supply_ontology_hand:supply_ontology_hand_bom:seq_no",
+            "kind": "property",
+            "name": "BOM序号",
+            "knowledgeNetworkId": "supply_ontology_hand"
+          },
+          {
+            "id": "property:supply_ontology_hand:supply_ontology_hand_bom:standard_usage",
+            "kind": "property",
+            "name": "标准用量",
+            "knowledgeNetworkId": "supply_ontology_hand"
+          }
+        ],
+        "missingFacts": [],
+        "knowledgeNetworkId": "supply_ontology_hand"
+      },
+      {
+        "id": "op_799d7735d48925ba17b7e6d1d6d726ab",
+        "attempt": 0,
+        "toolName": "query_object_instance",
+        "status": "resolved",
+        "elements": [
+          {
+            "id": "object:supply_ontology_hand:supply_ontology_hand_pr",
+            "kind": "object",
+            "name": "采购申请单",
+            "knowledgeNetworkId": "supply_ontology_hand"
+          },
+          {
+            "id": "property:supply_ontology_hand:supply_ontology_hand_pr:rowclosestatus_title",
+            "kind": "property",
+            "name": "关闭状态",
+            "knowledgeNetworkId": "supply_ontology_hand"
+          },
+          {
+            "id": "property:supply_ontology_hand:supply_ontology_hand_pr:rowterminatestatus_title",
+            "kind": "property",
+            "name": "终止状态",
+            "knowledgeNetworkId": "supply_ontology_hand"
+          }
+        ],
+        "missingFacts": [],
+        "knowledgeNetworkId": "supply_ontology_hand"
+      },
+      {
+        "id": "op_84f721364cfb9ac00b29135b907261bb",
+        "attempt": 0,
+        "toolName": "query_object_instance",
+        "status": "resolved",
+        "elements": [
+          {
+            "id": "object:supply_ontology_hand:supply_ontology_hand_po",
+            "kind": "object",
+            "name": "采购订单",
+            "knowledgeNetworkId": "supply_ontology_hand"
+          }
+        ],
+        "missingFacts": [],
+        "knowledgeNetworkId": "supply_ontology_hand"
+      },
+      {
+        "id": "op_8b42bc1b1a730ba8cde97ff2f964c054",
+        "attempt": 0,
+        "toolName": "query_object_instance",
+        "status": "resolved",
+        "elements": [
+          {
+            "id": "object:supply_ontology_hand:supply_ontology_hand_pr",
+            "kind": "object",
+            "name": "采购申请单",
+            "knowledgeNetworkId": "supply_ontology_hand"
+          }
+        ],
+        "missingFacts": [],
+        "knowledgeNetworkId": "supply_ontology_hand"
+      },
+      {
+        "id": "op_8eca8d16ca4ad963216aace95d53c166",
+        "attempt": 0,
+        "toolName": "query_object_instance",
+        "status": "resolved",
+        "elements": [
+          {
+            "id": "object:supply_ontology_hand:supply_ontology_hand_pr",
+            "kind": "object",
+            "name": "采购申请单",
+            "knowledgeNetworkId": "supply_ontology_hand"
+          },
+          {
+            "id": "property:supply_ontology_hand:supply_ontology_hand_pr:rowclosestatus_title",
+            "kind": "property",
+            "name": "关闭状态",
+            "knowledgeNetworkId": "supply_ontology_hand"
+          },
+          {
+            "id": "property:supply_ontology_hand:supply_ontology_hand_pr:rowterminatestatus_title",
+            "kind": "property",
+            "name": "终止状态",
+            "knowledgeNetworkId": "supply_ontology_hand"
+          }
+        ],
+        "missingFacts": [],
+        "knowledgeNetworkId": "supply_ontology_hand"
+      },
+      {
+        "id": "op_92194f900d4c5eb7ab2ab4819817fdf3",
+        "attempt": 0,
+        "toolName": "query_object_instance",
+        "status": "resolved",
+        "elements": [
+          {
+            "id": "object:supply_ontology_hand:supply_ontology_hand_pr",
+            "kind": "object",
+            "name": "采购申请单",
+            "knowledgeNetworkId": "supply_ontology_hand"
+          },
+          {
+            "id": "property:supply_ontology_hand:supply_ontology_hand_pr:billno",
+            "kind": "property",
+            "name": "采购申请单号",
+            "knowledgeNetworkId": "supply_ontology_hand"
+          },
+          {
+            "id": "property:supply_ontology_hand:supply_ontology_hand_pr:material_name",
+            "kind": "property",
+            "name": "物料名称",
+            "knowledgeNetworkId": "supply_ontology_hand"
+          },
+          {
+            "id": "property:supply_ontology_hand:supply_ontology_hand_pr:material_number",
+            "kind": "property",
+            "name": "物料编码",
+            "knowledgeNetworkId": "supply_ontology_hand"
+          },
+          {
+            "id": "property:supply_ontology_hand:supply_ontology_hand_pr:rowclosestatus_title",
+            "kind": "property",
+            "name": "关闭状态",
+            "knowledgeNetworkId": "supply_ontology_hand"
+          },
+          {
+            "id": "property:supply_ontology_hand:supply_ontology_hand_pr:rowterminatestatus_title",
+            "kind": "property",
+            "name": "终止状态",
+            "knowledgeNetworkId": "supply_ontology_hand"
+          }
+        ],
+        "missingFacts": [],
+        "knowledgeNetworkId": "supply_ontology_hand"
+      },
+      {
+        "id": "op_93b9306214e61b60b2edfa0b5296bdbc",
+        "attempt": 0,
+        "toolName": "query_object_instance",
+        "status": "resolved",
+        "elements": [
+          {
+            "id": "object:supply_ontology_hand:supply_ontology_hand_pr",
+            "kind": "object",
+            "name": "采购申请单",
+            "knowledgeNetworkId": "supply_ontology_hand"
+          },
+          {
+            "id": "property:supply_ontology_hand:supply_ontology_hand_pr:rowclosestatus_title",
+            "kind": "property",
+            "name": "关闭状态",
+            "knowledgeNetworkId": "supply_ontology_hand"
+          },
+          {
+            "id": "property:supply_ontology_hand:supply_ontology_hand_pr:rowterminatestatus_title",
+            "kind": "property",
+            "name": "终止状态",
+            "knowledgeNetworkId": "supply_ontology_hand"
+          }
+        ],
+        "missingFacts": [],
+        "knowledgeNetworkId": "supply_ontology_hand"
+      },
+      {
+        "id": "op_99dca1cb0f497da68df9ab76b7a26915",
+        "attempt": 0,
+        "toolName": "query_object_instance",
+        "status": "resolved",
+        "elements": [
+          {
+            "id": "object:supply_ontology_hand:supply_ontology_hand_po",
+            "kind": "object",
+            "name": "采购订单",
+            "knowledgeNetworkId": "supply_ontology_hand"
+          }
+        ],
+        "missingFacts": [],
+        "knowledgeNetworkId": "supply_ontology_hand"
+      },
+      {
+        "id": "op_a56eab129f9c79a67925c5ce4ec3f7db",
+        "attempt": 0,
+        "toolName": "query_object_instance",
+        "status": "resolved",
+        "elements": [
+          {
+            "id": "object:supply_ontology_hand:supply_ontology_hand_pr",
+            "kind": "object",
+            "name": "采购申请单",
+            "knowledgeNetworkId": "supply_ontology_hand"
+          },
+          {
+            "id": "property:supply_ontology_hand:supply_ontology_hand_pr:rowclosestatus_title",
+            "kind": "property",
+            "name": "关闭状态",
+            "knowledgeNetworkId": "supply_ontology_hand"
+          },
+          {
+            "id": "property:supply_ontology_hand:supply_ontology_hand_pr:rowterminatestatus_title",
+            "kind": "property",
+            "name": "终止状态",
+            "knowledgeNetworkId": "supply_ontology_hand"
+          }
+        ],
+        "missingFacts": [],
+        "knowledgeNetworkId": "supply_ontology_hand"
+      },
+      {
+        "id": "op_a5ad3cf103eac8e09debea739e5b686a",
+        "attempt": 0,
+        "toolName": "query_object_instance",
+        "status": "resolved",
+        "elements": [
+          {
+            "id": "object:supply_ontology_hand:supply_ontology_hand_po",
+            "kind": "object",
+            "name": "采购订单",
+            "knowledgeNetworkId": "supply_ontology_hand"
+          },
+          {
+            "id": "property:supply_ontology_hand:supply_ontology_hand_po:rowclosestatus_title",
+            "kind": "property",
+            "name": "关闭状态",
+            "knowledgeNetworkId": "supply_ontology_hand"
+          },
+          {
+            "id": "property:supply_ontology_hand:supply_ontology_hand_po:rowterminatestatus_title",
+            "kind": "property",
+            "name": "终止状态",
+            "knowledgeNetworkId": "supply_ontology_hand"
+          }
+        ],
+        "missingFacts": [],
+        "knowledgeNetworkId": "supply_ontology_hand"
+      },
+      {
+        "id": "op_aa5e60c160424eb9e5f8a06d26a999eb",
+        "attempt": 0,
+        "toolName": "query_object_instance",
+        "status": "resolved",
+        "elements": [
+          {
+            "id": "object:supply_ontology_hand:supply_ontology_hand_pr",
+            "kind": "object",
+            "name": "采购申请单",
+            "knowledgeNetworkId": "supply_ontology_hand"
+          },
+          {
+            "id": "property:supply_ontology_hand:supply_ontology_hand_pr:rowclosestatus_title",
+            "kind": "property",
+            "name": "关闭状态",
+            "knowledgeNetworkId": "supply_ontology_hand"
+          },
+          {
+            "id": "property:supply_ontology_hand:supply_ontology_hand_pr:rowterminatestatus_title",
+            "kind": "property",
+            "name": "终止状态",
+            "knowledgeNetworkId": "supply_ontology_hand"
+          }
+        ],
+        "missingFacts": [],
+        "knowledgeNetworkId": "supply_ontology_hand"
+      },
+      {
+        "id": "op_acf7977ed8d527cc3e8a3e053fa4095e",
+        "attempt": 0,
+        "toolName": "query_object_instance",
+        "status": "resolved",
+        "elements": [
+          {
+            "id": "object:supply_ontology_hand:supply_ontology_hand_pr",
+            "kind": "object",
+            "name": "采购申请单",
+            "knowledgeNetworkId": "supply_ontology_hand"
+          }
+        ],
+        "missingFacts": [],
+        "knowledgeNetworkId": "supply_ontology_hand"
+      },
+      {
+        "id": "op_b3a5c50632809faba357a726f0daa1f9",
+        "attempt": 0,
+        "toolName": "query_object_instance",
+        "status": "resolved",
+        "elements": [
+          {
+            "id": "object:supply_ontology_hand:supply_ontology_hand_pr",
+            "kind": "object",
+            "name": "采购申请单",
+            "knowledgeNetworkId": "supply_ontology_hand"
+          }
+        ],
+        "missingFacts": [],
+        "knowledgeNetworkId": "supply_ontology_hand"
+      },
+      {
+        "id": "op_b4e787237fbb08a5c16e048cfcea35a4",
+        "attempt": 0,
+        "toolName": "query_object_instance",
+        "status": "resolved",
+        "elements": [
+          {
+            "id": "object:supply_ontology_hand:supply_ontology_hand_product",
+            "kind": "object",
+            "name": "产品",
+            "knowledgeNetworkId": "supply_ontology_hand"
+          }
+        ],
+        "missingFacts": [],
+        "knowledgeNetworkId": "supply_ontology_hand"
+      },
+      {
+        "id": "op_b8224de19534235074f4132791f7b040",
+        "attempt": 0,
+        "toolName": "query_object_instance",
+        "status": "resolved",
+        "elements": [
+          {
+            "id": "object:supply_ontology_hand:supply_ontology_hand_po",
+            "kind": "object",
+            "name": "采购订单",
+            "knowledgeNetworkId": "supply_ontology_hand"
+          },
+          {
+            "id": "property:supply_ontology_hand:supply_ontology_hand_po:billno",
+            "kind": "property",
+            "name": "采购订单单号",
+            "knowledgeNetworkId": "supply_ontology_hand"
+          },
+          {
+            "id": "property:supply_ontology_hand:supply_ontology_hand_po:material_name",
+            "kind": "property",
+            "name": "物料名称",
+            "knowledgeNetworkId": "supply_ontology_hand"
+          },
+          {
+            "id": "property:supply_ontology_hand:supply_ontology_hand_po:material_number",
+            "kind": "property",
+            "name": "物料编码",
+            "knowledgeNetworkId": "supply_ontology_hand"
+          }
+        ],
+        "missingFacts": [],
+        "knowledgeNetworkId": "supply_ontology_hand"
+      },
+      {
+        "id": "op_bd05ae58dfd6a7e21709faf753f3c24d",
+        "attempt": 0,
+        "toolName": "query_object_instance",
+        "status": "resolved",
+        "elements": [
+          {
+            "id": "object:supply_ontology_hand:supply_ontology_hand_pr",
+            "kind": "object",
+            "name": "采购申请单",
+            "knowledgeNetworkId": "supply_ontology_hand"
+          },
+          {
+            "id": "property:supply_ontology_hand:supply_ontology_hand_pr:rowclosestatus_title",
+            "kind": "property",
+            "name": "关闭状态",
+            "knowledgeNetworkId": "supply_ontology_hand"
+          },
+          {
+            "id": "property:supply_ontology_hand:supply_ontology_hand_pr:rowterminatestatus_title",
+            "kind": "property",
+            "name": "终止状态",
+            "knowledgeNetworkId": "supply_ontology_hand"
+          }
+        ],
+        "missingFacts": [],
+        "knowledgeNetworkId": "supply_ontology_hand"
+      },
+      {
+        "id": "op_c07c2e4c9ea82fcd2b55dd837da93e01",
+        "attempt": 0,
+        "toolName": "query_object_instance",
+        "status": "resolved",
+        "elements": [
+          {
+            "id": "object:supply_ontology_hand:supply_ontology_hand_pr",
+            "kind": "object",
+            "name": "采购申请单",
+            "knowledgeNetworkId": "supply_ontology_hand"
+          },
+          {
+            "id": "property:supply_ontology_hand:supply_ontology_hand_pr:rowclosestatus_title",
+            "kind": "property",
+            "name": "关闭状态",
+            "knowledgeNetworkId": "supply_ontology_hand"
+          },
+          {
+            "id": "property:supply_ontology_hand:supply_ontology_hand_pr:rowterminatestatus_title",
+            "kind": "property",
+            "name": "终止状态",
+            "knowledgeNetworkId": "supply_ontology_hand"
+          }
+        ],
+        "missingFacts": [],
+        "knowledgeNetworkId": "supply_ontology_hand"
+      },
+      {
+        "id": "op_c141609d021400bb93d331f44809a4a7",
+        "attempt": 0,
+        "toolName": "query_object_instance",
+        "status": "resolved",
+        "elements": [
+          {
+            "id": "object:supply_ontology_hand:supply_ontology_hand_pr",
+            "kind": "object",
+            "name": "采购申请单",
+            "knowledgeNetworkId": "supply_ontology_hand"
+          },
+          {
+            "id": "property:supply_ontology_hand:supply_ontology_hand_pr:rowclosestatus_title",
+            "kind": "property",
+            "name": "关闭状态",
+            "knowledgeNetworkId": "supply_ontology_hand"
+          },
+          {
+            "id": "property:supply_ontology_hand:supply_ontology_hand_pr:rowterminatestatus_title",
+            "kind": "property",
+            "name": "终止状态",
+            "knowledgeNetworkId": "supply_ontology_hand"
+          }
+        ],
+        "missingFacts": [],
+        "knowledgeNetworkId": "supply_ontology_hand"
+      },
+      {
+        "id": "op_c8d51519dbab66e4318fec34fcf19790",
+        "attempt": 0,
+        "toolName": "query_object_instance",
+        "status": "resolved",
+        "elements": [
+          {
+            "id": "object:supply_ontology_hand:supply_ontology_hand_pr",
+            "kind": "object",
+            "name": "采购申请单",
+            "knowledgeNetworkId": "supply_ontology_hand"
+          },
+          {
+            "id": "property:supply_ontology_hand:supply_ontology_hand_pr:rowclosestatus_title",
+            "kind": "property",
+            "name": "关闭状态",
+            "knowledgeNetworkId": "supply_ontology_hand"
+          },
+          {
+            "id": "property:supply_ontology_hand:supply_ontology_hand_pr:rowterminatestatus_title",
+            "kind": "property",
+            "name": "终止状态",
+            "knowledgeNetworkId": "supply_ontology_hand"
+          }
+        ],
+        "missingFacts": [],
+        "knowledgeNetworkId": "supply_ontology_hand"
+      },
+      {
+        "id": "op_c96641acd0b0d858cfeb5daa6fd6a21f",
+        "attempt": 0,
+        "toolName": "query_object_instance",
+        "status": "resolved",
+        "elements": [
+          {
+            "id": "object:supply_ontology_hand:supply_ontology_hand_po",
+            "kind": "object",
+            "name": "采购订单",
+            "knowledgeNetworkId": "supply_ontology_hand"
+          },
+          {
+            "id": "property:supply_ontology_hand:supply_ontology_hand_po:billno",
+            "kind": "property",
+            "name": "采购订单单号",
+            "knowledgeNetworkId": "supply_ontology_hand"
+          },
+          {
+            "id": "property:supply_ontology_hand:supply_ontology_hand_po:material_name",
+            "kind": "property",
+            "name": "物料名称",
+            "knowledgeNetworkId": "supply_ontology_hand"
+          },
+          {
+            "id": "property:supply_ontology_hand:supply_ontology_hand_po:material_number",
+            "kind": "property",
+            "name": "物料编码",
+            "knowledgeNetworkId": "supply_ontology_hand"
+          }
+        ],
+        "missingFacts": [],
+        "knowledgeNetworkId": "supply_ontology_hand"
+      },
+      {
+        "id": "op_c9b6019ad8be03fe95964fdde506d553",
+        "attempt": 0,
+        "toolName": "query_object_instance",
+        "status": "resolved",
+        "elements": [
+          {
+            "id": "object:supply_ontology_hand:supply_ontology_hand_po",
+            "kind": "object",
+            "name": "采购订单",
+            "knowledgeNetworkId": "supply_ontology_hand"
+          },
+          {
+            "id": "property:supply_ontology_hand:supply_ontology_hand_po:actqty",
+            "kind": "property",
+            "name": "实际入库数量",
+            "knowledgeNetworkId": "supply_ontology_hand"
+          },
+          {
+            "id": "property:supply_ontology_hand:supply_ontology_hand_po:billno",
+            "kind": "property",
+            "name": "采购订单单号",
+            "knowledgeNetworkId": "supply_ontology_hand"
+          },
+          {
+            "id": "property:supply_ontology_hand:supply_ontology_hand_po:material_name",
+            "kind": "property",
+            "name": "物料名称",
+            "knowledgeNetworkId": "supply_ontology_hand"
+          },
+          {
+            "id": "property:supply_ontology_hand:supply_ontology_hand_po:material_number",
+            "kind": "property",
+            "name": "物料编码",
+            "knowledgeNetworkId": "supply_ontology_hand"
+          },
+          {
+            "id": "property:supply_ontology_hand:supply_ontology_hand_po:qty",
+            "kind": "property",
+            "name": "采购数量",
+            "knowledgeNetworkId": "supply_ontology_hand"
+          },
+          {
+            "id": "property:supply_ontology_hand:supply_ontology_hand_po:rowclosestatus_title",
+            "kind": "property",
+            "name": "关闭状态",
+            "knowledgeNetworkId": "supply_ontology_hand"
+          },
+          {
+            "id": "property:supply_ontology_hand:supply_ontology_hand_po:rowterminatestatus_title",
+            "kind": "property",
+            "name": "终止状态",
+            "knowledgeNetworkId": "supply_ontology_hand"
+          }
+        ],
+        "missingFacts": [],
+        "knowledgeNetworkId": "supply_ontology_hand"
+      },
+      {
+        "id": "op_d128f2df48f0eca5e26abfe61a6fe574",
+        "attempt": 0,
+        "toolName": "query_object_instance",
+        "status": "resolved",
+        "elements": [
+          {
+            "id": "object:supply_ontology_hand:supply_ontology_hand_pr",
+            "kind": "object",
+            "name": "采购申请单",
+            "knowledgeNetworkId": "supply_ontology_hand"
+          }
+        ],
+        "missingFacts": [],
+        "knowledgeNetworkId": "supply_ontology_hand"
+      },
+      {
+        "id": "op_d27ada99eb41c22c320f7666ddf99245",
+        "attempt": 0,
+        "toolName": "query_object_instance",
+        "status": "resolved",
+        "elements": [
+          {
+            "id": "object:supply_ontology_hand:supply_ontology_hand_pr",
+            "kind": "object",
+            "name": "采购申请单",
+            "knowledgeNetworkId": "supply_ontology_hand"
+          },
+          {
+            "id": "property:supply_ontology_hand:supply_ontology_hand_pr:billno",
+            "kind": "property",
+            "name": "采购申请单号",
+            "knowledgeNetworkId": "supply_ontology_hand"
+          },
+          {
+            "id": "property:supply_ontology_hand:supply_ontology_hand_pr:material_name",
+            "kind": "property",
+            "name": "物料名称",
+            "knowledgeNetworkId": "supply_ontology_hand"
+          },
+          {
+            "id": "property:supply_ontology_hand:supply_ontology_hand_pr:material_number",
+            "kind": "property",
+            "name": "物料编码",
+            "knowledgeNetworkId": "supply_ontology_hand"
+          }
+        ],
+        "missingFacts": [],
+        "knowledgeNetworkId": "supply_ontology_hand"
+      },
+      {
+        "id": "op_df48f0a42b5e179efeb3801e2178930d",
+        "attempt": 0,
+        "toolName": "query_object_instance",
+        "status": "resolved",
+        "elements": [
+          {
+            "id": "object:supply_ontology_hand:supply_ontology_hand_pr",
+            "kind": "object",
+            "name": "采购申请单",
+            "knowledgeNetworkId": "supply_ontology_hand"
+          },
+          {
+            "id": "property:supply_ontology_hand:supply_ontology_hand_pr:rowclosestatus_title",
+            "kind": "property",
+            "name": "关闭状态",
+            "knowledgeNetworkId": "supply_ontology_hand"
+          },
+          {
+            "id": "property:supply_ontology_hand:supply_ontology_hand_pr:rowterminatestatus_title",
+            "kind": "property",
+            "name": "终止状态",
+            "knowledgeNetworkId": "supply_ontology_hand"
+          }
+        ],
+        "missingFacts": [],
+        "knowledgeNetworkId": "supply_ontology_hand"
+      },
+      {
+        "id": "op_f079f13520cc729d9e754b197e9f7d64",
+        "attempt": 0,
+        "toolName": "query_object_instance",
+        "status": "resolved",
+        "elements": [
+          {
+            "id": "object:supply_ontology_hand:supply_ontology_hand_pr",
+            "kind": "object",
+            "name": "采购申请单",
+            "knowledgeNetworkId": "supply_ontology_hand"
+          },
+          {
+            "id": "property:supply_ontology_hand:supply_ontology_hand_pr:rowclosestatus_title",
+            "kind": "property",
+            "name": "关闭状态",
+            "knowledgeNetworkId": "supply_ontology_hand"
+          },
+          {
+            "id": "property:supply_ontology_hand:supply_ontology_hand_pr:rowterminatestatus_title",
+            "kind": "property",
+            "name": "终止状态",
+            "knowledgeNetworkId": "supply_ontology_hand"
+          }
+        ],
+        "missingFacts": [],
+        "knowledgeNetworkId": "supply_ontology_hand"
+      },
+      {
+        "id": "op_fa64f7f1883004d12d66ae9b7ced08f3",
+        "attempt": 0,
+        "toolName": "query_object_instance",
+        "status": "resolved",
+        "elements": [
+          {
+            "id": "object:supply_ontology_hand:supply_ontology_hand_pr",
+            "kind": "object",
+            "name": "采购申请单",
+            "knowledgeNetworkId": "supply_ontology_hand"
+          },
+          {
+            "id": "property:supply_ontology_hand:supply_ontology_hand_pr:rowclosestatus_title",
+            "kind": "property",
+            "name": "关闭状态",
+            "knowledgeNetworkId": "supply_ontology_hand"
+          },
+          {
+            "id": "property:supply_ontology_hand:supply_ontology_hand_pr:rowterminatestatus_title",
+            "kind": "property",
+            "name": "终止状态",
+            "knowledgeNetworkId": "supply_ontology_hand"
+          }
+        ],
+        "missingFacts": [],
+        "knowledgeNetworkId": "supply_ontology_hand"
+      },
+      {
+        "id": "op_fb1df01034b73e8b9daae2d2af4938ad",
+        "attempt": 0,
+        "toolName": "query_object_instance",
+        "status": "resolved",
+        "elements": [
+          {
+            "id": "object:supply_ontology_hand:supply_ontology_hand_po",
+            "kind": "object",
+            "name": "采购订单",
+            "knowledgeNetworkId": "supply_ontology_hand"
+          }
+        ],
+        "missingFacts": [],
+        "knowledgeNetworkId": "supply_ontology_hand"
+      }
+    ],
+    "conversationContext": [],
+    "contextRelations": [],
+    "derivedFacts": []
+  },
+  "evidence": {
+    "kind": "ready",
+    "receipts": [
+      {
+        "receiptId": "rcpt_474d437a104d01c0586d8adeaa067fae",
+        "operationId": "op_b01bbff53f18401f311530a540cd1276",
+        "toolLabel": "get_object_types",
+        "status": "completed",
+        "source": "platform",
+        "verifyHint": "openbkn trace receipts get rcpt_474d437a104d01c0586d8adeaa067fae"
+      },
+      {
+        "receiptId": "rcpt_ad471fa1a0726e54189f9ea27b705e01",
+        "operationId": "op_02d68723e848a7f8ee06034b8e34423c",
+        "toolLabel": "query_object_instance",
+        "status": "completed",
+        "source": "platform",
+        "verifyHint": "openbkn trace receipts get rcpt_ad471fa1a0726e54189f9ea27b705e01"
+      },
+      {
+        "receiptId": "rcpt_bead81d54560f94a838e12fefc0e4944",
+        "operationId": "op_8b42bc1b1a730ba8cde97ff2f964c054",
+        "toolLabel": "query_object_instance",
+        "status": "completed",
+        "source": "platform",
+        "verifyHint": "openbkn trace receipts get rcpt_bead81d54560f94a838e12fefc0e4944"
+      },
+      {
+        "receiptId": "rcpt_6cd8a8d921986beaf25934671cfcf3b1",
+        "operationId": "op_84f721364cfb9ac00b29135b907261bb",
+        "toolLabel": "query_object_instance",
+        "status": "completed",
+        "source": "platform",
+        "verifyHint": "openbkn trace receipts get rcpt_6cd8a8d921986beaf25934671cfcf3b1"
+      },
+      {
+        "receiptId": "rcpt_3decca47091117364ef9a6afb08978ab",
+        "operationId": "op_377635f2e9b5967484b5ae3c2c4b7f54",
+        "toolLabel": "run_code",
+        "status": "completed",
+        "source": "platform",
+        "verifyHint": "openbkn trace receipts get rcpt_3decca47091117364ef9a6afb08978ab"
+      },
+      {
+        "receiptId": "rcpt_ad14f59121592381e30f83f77286ee20",
+        "operationId": "op_5402ceb0a5de88abb93a2ad42d3e86c0",
+        "toolLabel": "query_object_instance",
+        "status": "completed",
+        "source": "platform",
+        "verifyHint": "openbkn trace receipts get rcpt_ad14f59121592381e30f83f77286ee20"
+      },
+      {
+        "receiptId": "rcpt_e93da200fe833e5259b96a3499c4461a",
+        "operationId": "op_c9b6019ad8be03fe95964fdde506d553",
+        "toolLabel": "query_object_instance",
+        "status": "completed",
+        "source": "platform",
+        "verifyHint": "openbkn trace receipts get rcpt_e93da200fe833e5259b96a3499c4461a"
+      },
+      {
+        "receiptId": "rcpt_f59eef34dd9e7ce3d93761c423e84348",
+        "operationId": "op_fdcfad72c929e0129a97c5d3616157db",
+        "toolLabel": "get_object_types",
+        "status": "completed",
+        "source": "platform",
+        "verifyHint": "openbkn trace receipts get rcpt_f59eef34dd9e7ce3d93761c423e84348"
+      },
+      {
+        "receiptId": "rcpt_a491e10f0b70d3be8588a7bda6b6a003",
+        "operationId": "op_9088cd8fb4869705219b37e9aad472bb",
+        "toolLabel": "run_code",
+        "status": "completed",
+        "source": "platform",
+        "verifyHint": "openbkn trace receipts get rcpt_a491e10f0b70d3be8588a7bda6b6a003"
+      },
+      {
+        "receiptId": "rcpt_a1bc97596cfdeb4309639f5074df7404",
+        "operationId": "op_1507304a71ca5a0afc543edd702af9ee",
+        "toolLabel": "query_object_instance",
+        "status": "completed",
+        "source": "platform",
+        "verifyHint": "openbkn trace receipts get rcpt_a1bc97596cfdeb4309639f5074df7404"
+      },
+      {
+        "receiptId": "rcpt_53978bf427ea203d5e11460b1be294fb",
+        "operationId": "op_92194f900d4c5eb7ab2ab4819817fdf3",
+        "toolLabel": "query_object_instance",
+        "status": "completed",
+        "source": "platform",
+        "verifyHint": "openbkn trace receipts get rcpt_53978bf427ea203d5e11460b1be294fb"
+      },
+      {
+        "receiptId": "rcpt_aabcca0952aa5512dae6bdfe3e55fda8",
+        "operationId": "op_6bcddfd35df858c72dfa97aae366c572",
+        "toolLabel": "query_object_instance",
+        "status": "completed",
+        "source": "platform",
+        "verifyHint": "openbkn trace receipts get rcpt_aabcca0952aa5512dae6bdfe3e55fda8"
+      },
+      {
+        "receiptId": "rcpt_338b683e8366535054246114274d4e05",
+        "operationId": "op_4c5a02bbb4d2afa07d7f371ec6697fe4",
+        "toolLabel": "query_object_instance",
+        "status": "completed",
+        "source": "platform",
+        "verifyHint": "openbkn trace receipts get rcpt_338b683e8366535054246114274d4e05"
+      },
+      {
+        "receiptId": "rcpt_df25535223ae48b5fc440bdd550dda6e",
+        "operationId": "op_b4e787237fbb08a5c16e048cfcea35a4",
+        "toolLabel": "query_object_instance",
+        "status": "completed",
+        "source": "platform",
+        "verifyHint": "openbkn trace receipts get rcpt_df25535223ae48b5fc440bdd550dda6e"
+      },
+      {
+        "receiptId": "rcpt_10a713d9064a9013eef2a1c0424e5079",
+        "operationId": "op_00784018e63628f7a6944c75c3502f31",
+        "toolLabel": "query_object_instance",
+        "status": "failed",
+        "source": "platform",
+        "verifyHint": "openbkn trace receipts get rcpt_10a713d9064a9013eef2a1c0424e5079"
+      },
+      {
+        "receiptId": "rcpt_97a2469e84a4bbd5dac1c6390d547b82",
+        "operationId": "op_fe8b166f4807960f1ff31b5b895ae936",
+        "toolLabel": "query_object_instance",
+        "status": "failed",
+        "source": "platform",
+        "verifyHint": "openbkn trace receipts get rcpt_97a2469e84a4bbd5dac1c6390d547b82"
+      },
+      {
+        "receiptId": "rcpt_b18b62aaaa5bf8bc15e666e713e0112e",
+        "operationId": "op_29873a3a5af0d61b29c03548005edfbb",
+        "toolLabel": "query_object_instance",
+        "status": "completed",
+        "source": "platform",
+        "verifyHint": "openbkn trace receipts get rcpt_b18b62aaaa5bf8bc15e666e713e0112e"
+      },
+      {
+        "receiptId": "rcpt_0964f0ceed74086b0778688973571654",
+        "operationId": "op_903979977d2c4de1b9fc493a97e3564a",
+        "toolLabel": "run_code",
+        "status": "completed",
+        "source": "platform",
+        "verifyHint": "openbkn trace receipts get rcpt_0964f0ceed74086b0778688973571654"
+      },
+      {
+        "receiptId": "rcpt_1e878565946d1f40bd04ce1fb68896d7",
+        "operationId": "op_d27ada99eb41c22c320f7666ddf99245",
+        "toolLabel": "query_object_instance",
+        "status": "completed",
+        "source": "platform",
+        "verifyHint": "openbkn trace receipts get rcpt_1e878565946d1f40bd04ce1fb68896d7"
+      },
+      {
+        "receiptId": "rcpt_76e6e0558a93a84caa9f6f6b197fa504",
+        "operationId": "op_21cfbdbbc11b7aec42dcedbee3a1c22e",
+        "toolLabel": "query_object_instance",
+        "status": "completed",
+        "source": "platform",
+        "verifyHint": "openbkn trace receipts get rcpt_76e6e0558a93a84caa9f6f6b197fa504"
+      },
+      {
+        "receiptId": "rcpt_36d7844c2ab2164ee51626d6cdd3bba1",
+        "operationId": "op_1b3b2246d24c27b91e41d9bc64a23b34",
+        "toolLabel": "query_object_instance",
+        "status": "completed",
+        "source": "platform",
+        "verifyHint": "openbkn trace receipts get rcpt_36d7844c2ab2164ee51626d6cdd3bba1"
+      },
+      {
+        "receiptId": "rcpt_f29ea64f30098d8faa0e819b0a9d37bf",
+        "operationId": "op_acf7977ed8d527cc3e8a3e053fa4095e",
+        "toolLabel": "query_object_instance",
+        "status": "completed",
+        "source": "platform",
+        "verifyHint": "openbkn trace receipts get rcpt_f29ea64f30098d8faa0e819b0a9d37bf"
+      },
+      {
+        "receiptId": "rcpt_0d78217ed01f5688f41c065d81258233",
+        "operationId": "op_472b89fb1246b1c0305890c41162f44a",
+        "toolLabel": "query_object_instance",
+        "status": "completed",
+        "source": "platform",
+        "verifyHint": "openbkn trace receipts get rcpt_0d78217ed01f5688f41c065d81258233"
+      },
+      {
+        "receiptId": "rcpt_eb8f76678f5e726bb43d6f1447fe66a2",
+        "operationId": "op_b8224de19534235074f4132791f7b040",
+        "toolLabel": "query_object_instance",
+        "status": "completed",
+        "source": "platform",
+        "verifyHint": "openbkn trace receipts get rcpt_eb8f76678f5e726bb43d6f1447fe66a2"
+      },
+      {
+        "receiptId": "rcpt_2fe722b2c01f760c5d465879795f6d25",
+        "operationId": "op_c96641acd0b0d858cfeb5daa6fd6a21f",
+        "toolLabel": "query_object_instance",
+        "status": "completed",
+        "source": "platform",
+        "verifyHint": "openbkn trace receipts get rcpt_2fe722b2c01f760c5d465879795f6d25"
+      },
+      {
+        "receiptId": "rcpt_bec5fde31962545e78eb3c02a0558632",
+        "operationId": "op_fb1df01034b73e8b9daae2d2af4938ad",
+        "toolLabel": "query_object_instance",
+        "status": "completed",
+        "source": "platform",
+        "verifyHint": "openbkn trace receipts get rcpt_bec5fde31962545e78eb3c02a0558632"
+      },
+      {
+        "receiptId": "rcpt_c41cc51d51bfef097c522d9b2e3cf212",
+        "operationId": "op_4779e4605b77bdfa3b13fb3cc9a27912",
+        "toolLabel": "query_object_instance",
+        "status": "completed",
+        "source": "platform",
+        "verifyHint": "openbkn trace receipts get rcpt_c41cc51d51bfef097c522d9b2e3cf212"
+      },
+      {
+        "receiptId": "rcpt_47fbfb0d30290b53264845fbaceb0197",
+        "operationId": "op_aa5e60c160424eb9e5f8a06d26a999eb",
+        "toolLabel": "query_object_instance",
+        "status": "completed",
+        "source": "platform",
+        "verifyHint": "openbkn trace receipts get rcpt_47fbfb0d30290b53264845fbaceb0197"
+      },
+      {
+        "receiptId": "rcpt_cbbc31af8ae894a9ac0302a8d7d1741d",
+        "operationId": "op_bd05ae58dfd6a7e21709faf753f3c24d",
+        "toolLabel": "query_object_instance",
+        "status": "completed",
+        "source": "platform",
+        "verifyHint": "openbkn trace receipts get rcpt_cbbc31af8ae894a9ac0302a8d7d1741d"
+      },
+      {
+        "receiptId": "rcpt_307a0196267145d4a60e4d79b0765d0b",
+        "operationId": "op_28c41db94a6aadce512db23ecc06d7e7",
+        "toolLabel": "query_object_instance",
+        "status": "completed",
+        "source": "platform",
+        "verifyHint": "openbkn trace receipts get rcpt_307a0196267145d4a60e4d79b0765d0b"
+      },
+      {
+        "receiptId": "rcpt_876a5376ed2bc2841f88e0faabd1492b",
+        "operationId": "op_c8d51519dbab66e4318fec34fcf19790",
+        "toolLabel": "query_object_instance",
+        "status": "completed",
+        "source": "platform",
+        "verifyHint": "openbkn trace receipts get rcpt_876a5376ed2bc2841f88e0faabd1492b"
+      },
+      {
+        "receiptId": "rcpt_8693d214dcf69e2f2fd210c1374ba9fb",
+        "operationId": "op_c141609d021400bb93d331f44809a4a7",
+        "toolLabel": "query_object_instance",
+        "status": "completed",
+        "source": "platform",
+        "verifyHint": "openbkn trace receipts get rcpt_8693d214dcf69e2f2fd210c1374ba9fb"
+      },
+      {
+        "receiptId": "rcpt_6c86026cf8133d46d3a9d55d51263d0d",
+        "operationId": "op_5e9b3d66b5388816a3162ea461b07431",
+        "toolLabel": "query_object_instance",
+        "status": "completed",
+        "source": "platform",
+        "verifyHint": "openbkn trace receipts get rcpt_6c86026cf8133d46d3a9d55d51263d0d"
+      },
+      {
+        "receiptId": "rcpt_a348361d853e0069b35dfcf01df73374",
+        "operationId": "op_244b06fcbdbe8871c6d13bbbab035445",
+        "toolLabel": "query_object_instance",
+        "status": "completed",
+        "source": "platform",
+        "verifyHint": "openbkn trace receipts get rcpt_a348361d853e0069b35dfcf01df73374"
+      },
+      {
+        "receiptId": "rcpt_5e0b60f2125164efbab37da6d8cd013f",
+        "operationId": "op_93b9306214e61b60b2edfa0b5296bdbc",
+        "toolLabel": "query_object_instance",
+        "status": "completed",
+        "source": "platform",
+        "verifyHint": "openbkn trace receipts get rcpt_5e0b60f2125164efbab37da6d8cd013f"
+      },
+      {
+        "receiptId": "rcpt_431163bbc36d67b49799a50670f07e40",
+        "operationId": "op_799d7735d48925ba17b7e6d1d6d726ab",
+        "toolLabel": "query_object_instance",
+        "status": "completed",
+        "source": "platform",
+        "verifyHint": "openbkn trace receipts get rcpt_431163bbc36d67b49799a50670f07e40"
+      },
+      {
+        "receiptId": "rcpt_eec528c3b665008d50c9d2e6a4383880",
+        "operationId": "op_c07c2e4c9ea82fcd2b55dd837da93e01",
+        "toolLabel": "query_object_instance",
+        "status": "completed",
+        "source": "platform",
+        "verifyHint": "openbkn trace receipts get rcpt_eec528c3b665008d50c9d2e6a4383880"
+      },
+      {
+        "receiptId": "rcpt_d8c58056fadbcf3c2ebb1d92d2e33bef",
+        "operationId": "op_f079f13520cc729d9e754b197e9f7d64",
+        "toolLabel": "query_object_instance",
+        "status": "completed",
+        "source": "platform",
+        "verifyHint": "openbkn trace receipts get rcpt_d8c58056fadbcf3c2ebb1d92d2e33bef"
+      },
+      {
+        "receiptId": "rcpt_c1641db5cab4a6ec2b9827b813d50cd0",
+        "operationId": "op_fa64f7f1883004d12d66ae9b7ced08f3",
+        "toolLabel": "query_object_instance",
+        "status": "completed",
+        "source": "platform",
+        "verifyHint": "openbkn trace receipts get rcpt_c1641db5cab4a6ec2b9827b813d50cd0"
+      },
+      {
+        "receiptId": "rcpt_f48292f2f1a2286f6a631bf458351044",
+        "operationId": "op_a56eab129f9c79a67925c5ce4ec3f7db",
+        "toolLabel": "query_object_instance",
+        "status": "completed",
+        "source": "platform",
+        "verifyHint": "openbkn trace receipts get rcpt_f48292f2f1a2286f6a631bf458351044"
+      },
+      {
+        "receiptId": "rcpt_83d5430626d879260a241984d8c55535",
+        "operationId": "op_555d47bcfcbd1f0cc54c662fd9ad4a58",
+        "toolLabel": "query_object_instance",
+        "status": "completed",
+        "source": "platform",
+        "verifyHint": "openbkn trace receipts get rcpt_83d5430626d879260a241984d8c55535"
+      },
+      {
+        "receiptId": "rcpt_1bc79e995d72af1992d078dba68e8bd5",
+        "operationId": "op_df48f0a42b5e179efeb3801e2178930d",
+        "toolLabel": "query_object_instance",
+        "status": "completed",
+        "source": "platform",
+        "verifyHint": "openbkn trace receipts get rcpt_1bc79e995d72af1992d078dba68e8bd5"
+      },
+      {
+        "receiptId": "rcpt_97207eb2ae20959fcbe1505a154b55b5",
+        "operationId": "op_1f85dfff2a161cd9c56e0a86e503a9bb",
+        "toolLabel": "query_object_instance",
+        "status": "completed",
+        "source": "platform",
+        "verifyHint": "openbkn trace receipts get rcpt_97207eb2ae20959fcbe1505a154b55b5"
+      },
+      {
+        "receiptId": "rcpt_d43d60683e66006e7469ade38de55fad",
+        "operationId": "op_8eca8d16ca4ad963216aace95d53c166",
+        "toolLabel": "query_object_instance",
+        "status": "completed",
+        "source": "platform",
+        "verifyHint": "openbkn trace receipts get rcpt_d43d60683e66006e7469ade38de55fad"
+      },
+      {
+        "receiptId": "rcpt_af26147d2da15b7fbfe44edf4a8c4848",
+        "operationId": "op_05083856bee1c5012328cd899a1215b4",
+        "toolLabel": "query_object_instance",
+        "status": "completed",
+        "source": "platform",
+        "verifyHint": "openbkn trace receipts get rcpt_af26147d2da15b7fbfe44edf4a8c4848"
+      },
+      {
+        "receiptId": "rcpt_581addf37e82aa6df8a864448dd0b51f",
+        "operationId": "op_258b1497830ebc4457d7eddc298224e4",
+        "toolLabel": "query_object_instance",
+        "status": "completed",
+        "source": "platform",
+        "verifyHint": "openbkn trace receipts get rcpt_581addf37e82aa6df8a864448dd0b51f"
+      },
+      {
+        "receiptId": "rcpt_72587811f99ec73cf8745b1e6292309f",
+        "operationId": "op_a5ad3cf103eac8e09debea739e5b686a",
+        "toolLabel": "query_object_instance",
+        "status": "completed",
+        "source": "platform",
+        "verifyHint": "openbkn trace receipts get rcpt_72587811f99ec73cf8745b1e6292309f"
+      },
+      {
+        "receiptId": "rcpt_ea2c7f7d496b808bc0e71a81c03da040",
+        "operationId": "op_18cc0d33e2378744b8a08acea82415e3",
+        "toolLabel": "query_object_instance",
+        "status": "completed",
+        "source": "platform",
+        "verifyHint": "openbkn trace receipts get rcpt_ea2c7f7d496b808bc0e71a81c03da040"
+      },
+      {
+        "receiptId": "rcpt_616d5ac30910ff00e402ea178e157424",
+        "operationId": "op_e513de0b1aa7233c424f9ce466d6427f",
+        "toolLabel": "run_code",
+        "status": "completed",
+        "source": "platform",
+        "verifyHint": "openbkn trace receipts get rcpt_616d5ac30910ff00e402ea178e157424"
+      },
+      {
+        "receiptId": "rcpt_b46e16626377ee0796574d6a4648817a",
+        "operationId": "op_5405c059555302ad4534455f019148df",
+        "toolLabel": "get_object_types",
+        "status": "completed",
+        "source": "platform",
+        "verifyHint": "openbkn trace receipts get rcpt_b46e16626377ee0796574d6a4648817a"
+      },
+      {
+        "receiptId": "rcpt_efd38922a116b74c523df3a7de1e78d1",
+        "operationId": "op_5d01efbebee17ff8cc0395b1b357ae95",
+        "toolLabel": "get_relation_types",
+        "status": "completed",
+        "source": "platform",
+        "verifyHint": "openbkn trace receipts get rcpt_efd38922a116b74c523df3a7de1e78d1"
+      },
+      {
+        "receiptId": "rcpt_13148d0d7f818776f0c7117c95a4a2cc",
+        "operationId": "op_d76ebcef9a14b1f25f939e2756ea0e44",
+        "toolLabel": "run_code",
+        "status": "failed",
+        "source": "platform",
+        "verifyHint": "openbkn trace receipts get rcpt_13148d0d7f818776f0c7117c95a4a2cc"
+      },
+      {
+        "receiptId": "rcpt_2af3f454f9e12e0e611a166904827b3e",
+        "operationId": "op_719949de209eed808cdca6876f4e89b4",
+        "toolLabel": "query_object_instance",
+        "status": "completed",
+        "source": "platform",
+        "verifyHint": "openbkn trace receipts get rcpt_2af3f454f9e12e0e611a166904827b3e"
+      },
+      {
+        "receiptId": "rcpt_e92dd5a849c7426fad3c0b7e5f5c8339",
+        "operationId": "op_5d172475cd87400559998aba02160bdb",
+        "toolLabel": "query_object_instance",
+        "status": "completed",
+        "source": "platform",
+        "verifyHint": "openbkn trace receipts get rcpt_e92dd5a849c7426fad3c0b7e5f5c8339"
+      },
+      {
+        "receiptId": "rcpt_cebf96124e90dd8b72e2d2e8da1e0034",
+        "operationId": "op_8653b7d47e2d860fa70adb4097b22e68",
+        "toolLabel": "query_object_instance",
+        "status": "failed",
+        "source": "platform",
+        "verifyHint": "openbkn trace receipts get rcpt_cebf96124e90dd8b72e2d2e8da1e0034"
+      },
+      {
+        "receiptId": "rcpt_f24451fad00ea667c0071c5ba1a0f5ca",
+        "operationId": "op_cc8985d5f5ab5cd2b425204456d5a9a6",
+        "toolLabel": "run_code",
+        "status": "completed",
+        "source": "platform",
+        "verifyHint": "openbkn trace receipts get rcpt_f24451fad00ea667c0071c5ba1a0f5ca"
+      },
+      {
+        "receiptId": "rcpt_02b0150f270bab4eb9d6c968197c48a9",
+        "operationId": "op_d128f2df48f0eca5e26abfe61a6fe574",
+        "toolLabel": "query_object_instance",
+        "status": "completed",
+        "source": "platform",
+        "verifyHint": "openbkn trace receipts get rcpt_02b0150f270bab4eb9d6c968197c48a9"
+      },
+      {
+        "receiptId": "rcpt_1c305690e555fdd9f795ff630f9feb1a",
+        "operationId": "op_4be01b1b48c8f43ad6bd68b209a7ed92",
+        "toolLabel": "query_object_instance",
+        "status": "completed",
+        "source": "platform",
+        "verifyHint": "openbkn trace receipts get rcpt_1c305690e555fdd9f795ff630f9feb1a"
+      },
+      {
+        "receiptId": "rcpt_f0e7de20bc0c8b6476784b7adf871055",
+        "operationId": "op_b3a5c50632809faba357a726f0daa1f9",
+        "toolLabel": "query_object_instance",
+        "status": "completed",
+        "source": "platform",
+        "verifyHint": "openbkn trace receipts get rcpt_f0e7de20bc0c8b6476784b7adf871055"
+      },
+      {
+        "receiptId": "rcpt_f5420877793bfb9e6f7393cf93286e59",
+        "operationId": "op_176033d2a9696f57301436587b3862a8",
+        "toolLabel": "query_object_instance",
+        "status": "completed",
+        "source": "platform",
+        "verifyHint": "openbkn trace receipts get rcpt_f5420877793bfb9e6f7393cf93286e59"
+      },
+      {
+        "receiptId": "rcpt_53b8c31a705ccff7fc3ebc83bbf283b7",
+        "operationId": "op_99dca1cb0f497da68df9ab76b7a26915",
+        "toolLabel": "query_object_instance",
+        "status": "completed",
+        "source": "platform",
+        "verifyHint": "openbkn trace receipts get rcpt_53b8c31a705ccff7fc3ebc83bbf283b7"
+      },
+      {
+        "receiptId": "rcpt_c318c2de5f70274217762a7c536eb2c7",
+        "operationId": "op_4487b5ce9b7c742ea650e3ca08ab4235",
+        "toolLabel": "query_object_instance",
+        "status": "completed",
+        "source": "platform",
+        "verifyHint": "openbkn trace receipts get rcpt_c318c2de5f70274217762a7c536eb2c7"
+      },
+      {
+        "receiptId": "rcpt_f08dad9fad4a89bdc24d61a3e12deba1",
+        "operationId": "op_dcb02ae9076b58f49a4ad71e3e4c5023",
+        "toolLabel": "search_capabilities",
+        "status": "completed",
+        "source": "platform",
+        "verifyHint": "openbkn trace receipts get rcpt_f08dad9fad4a89bdc24d61a3e12deba1"
+      }
+    ]
+  }
+}

@@ -1,0 +1,18 @@
+{
+  "scenario": "S4",
+  "started": "2026-10-08T05:21:33.753338+00:00",
+  "ended": "2026-10-08T05:21:33.971077+00:00",
+  "stopExitCode": 0,
+  "stopNativeStdout": "Stopped owned npm pid=35175; creation/argv/listener verified\n",
+  "stopNativeStderr": "",
+  "ownedAfter": [
+    {
+      "pid": 35175,
+      "exitCode": 1,
+      "native": ""
+    }
+  ],
+  "listenerAfterExitCode": 1,
+  "listenerAfterNative": "",
+  "evidenceBoundary": "Only these owned PIDs/descendants and two assigned ports; no global user/host zero-residual claim"
+}

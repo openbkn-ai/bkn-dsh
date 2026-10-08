@@ -1,0 +1,21 @@
+{
+  "scenario": "S2",
+  "startedAt": "2026-10-08T05:18:26.290241+00:00",
+  "finishedAt": "2026-10-08T05:18:27.166876+00:00",
+  "durationSeconds": 0.877,
+  "argv": [
+    "/Users/kalias/.nvm/versions/node/v24.19.0/bin/node",
+    "/Users/kalias/Documents/project/app/openBKN/dsh-npm-020/node_modules/@deepseek-ai/dsh/lib/bin.js",
+    "plugin",
+    "--profile",
+    "web",
+    "install",
+    "/var/folders/9r/1zks6bqd7f3dtwybvxsksbc40000gn/T/bkn-firstuse8-isolation-s2-ie5ubpmd/s2-variant.tgz"
+  ],
+  "environment": {
+    "DSH_HOME": "/var/folders/9r/1zks6bqd7f3dtwybvxsksbc40000gn/T/bkn-firstuse8-isolation-s2-ie5ubpmd/home",
+    "BKN_CONFIG_DIR": "/var/folders/9r/1zks6bqd7f3dtwybvxsksbc40000gn/T/bkn-firstuse8-isolation-s2-ie5ubpmd/bkn-config"
+  },
+  "exitCode": 0,
+  "nativeLogPath": "/var/folders/9r/1zks6bqd7f3dtwybvxsksbc40000gn/T/bkn-firstuse8-isolation-s2-ie5ubpmd/install-native.log"
+}

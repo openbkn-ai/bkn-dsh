@@ -1,0 +1,14 @@
+{
+  "type": "server-response",
+  "rpcId": "0d53a2fe-f35c-4df9-8c2c-00de215b658e",
+  "result": {
+    "ok": true,
+    "value": {
+      "baseUrl": "",
+      "cliPath": "openbkn",
+      "configured": false,
+      "editable": false,
+      "unavailableReason": "entry-inactive"
+    }
+  }
+}

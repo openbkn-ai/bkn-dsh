@@ -1,0 +1,132 @@
+[
+  {
+    "file": "RESULTS.json",
+    "bytes": 1586,
+    "sha256": "c0b9611bed79d5ddd3b7120c1f9b0b6e2572e54008c8a0543d0705220d52a1c8"
+  },
+  {
+    "file": "RESULTS.md",
+    "bytes": 3346,
+    "sha256": "2914f3660f47b81b55a14161b6b1a106a68d8b25320cb9d423c2e3acc204f3f6"
+  },
+  {
+    "file": "execution-deviations.json",
+    "bytes": 764,
+    "sha256": "47faca39b25815fa3190f2f0fa53ee83d251f69e211655c2cd71ea9fc987cd3f"
+  },
+  {
+    "file": "finalize-results.py",
+    "bytes": 8345,
+    "sha256": "cf066f5d14319de50009faeff55898ae1cc2ae399911cfba74b01bc6f11644c0"
+  },
+  {
+    "file": "helpers-provenance.json",
+    "bytes": 587,
+    "sha256": "e1c4be4dc6cbf6d5ec033c80c6d18738d1e63f02e9efe8ce04dc27e88aee5500"
+  },
+  {
+    "file": "native-logs-manifest.json",
+    "bytes": 11762,
+    "sha256": "3965fd0802b867f62bf87ade684085a1421b59eb2f1b2fadcec539529fc2bb72"
+  },
+  {
+    "file": "s2-cleanup.json",
+    "bytes": 531,
+    "sha256": "583b22d31278df580bd5a0544ad0c8bb705a7fc1aecfb1416443cbc8fffae4bf"
+  },
+  {
+    "file": "s2-host-supply.json",
+    "bytes": 791,
+    "sha256": "574ce83e8727930570d19ed674230bbca62b7a07372a4459c7a9f3aaf1d3f662"
+  },
+  {
+    "file": "s2-install.json",
+    "bytes": 892,
+    "sha256": "ea39f6f26c1e8743d8da13864db340be5a86fa8717c562c37f8c4769999718ae"
+  },
+  {
+    "file": "s2-installed-identity.json",
+    "bytes": 315,
+    "sha256": "4eaf9c267cfd720fc7d2ee40c53bfeefea014d37d6d840a4e8370bf534c52dde"
+  },
+  {
+    "file": "s2-openbknConfiguration-getConfiguration.json",
+    "bytes": 284,
+    "sha256": "c6e5b3d2c9571d606ba171b21e84c17c4a462b3935b4e5a6195ac19b20b1367f"
+  },
+  {
+    "file": "s2-openbknDiagnostics-getReport.json",
+    "bytes": 1632,
+    "sha256": "6c517ccce630cba2ffef34fd28f8a7347ce9bb2da0121bafdb177683caa8138f"
+  },
+  {
+    "file": "s2-owned-processes-before-stop.json",
+    "bytes": 528,
+    "sha256": "6dd06a254c2877e9596d20eceeb57fbd4e8105c64a13c86edac9936e7c3c861e"
+  },
+  {
+    "file": "s2-pluginInventory-list.json",
+    "bytes": 114251,
+    "sha256": "a652e375a64598a070ca2d2ab82a79af5555b5f86e18a0dd345cca0a26e80213"
+  },
+  {
+    "file": "s2-start.json",
+    "bytes": 520,
+    "sha256": "dc5fcded5db373c49eb1dcc62741e8325cf7b6169f186180d703b2c17dc274b3"
+  },
+  {
+    "file": "s4-cleanup.json",
+    "bytes": 531,
+    "sha256": "f16a14e70013db73c947a9fa2e8e66f1a54586a21ef6175d4b19630b03d99f02"
+  },
+  {
+    "file": "s4-host-supply.json",
+    "bytes": 791,
+    "sha256": "671c766f96b881d2668d1efebf217cba6fd794b83916eb7882616ab94c424d40"
+  },
+  {
+    "file": "s4-install.json",
+    "bytes": 892,
+    "sha256": "60e73f5f1a75025b24e86592909f4f8a9423228f0eca0864ecfae46a4062dd2a"
+  },
+  {
+    "file": "s4-installed-identity.json",
+    "bytes": 315,
+    "sha256": "d3d1a4461f3d5c019da7a13987c96137ee97a555f8c897906b2847e1b32aec0d"
+  },
+  {
+    "file": "s4-openbknConfiguration-getConfiguration.json",
+    "bytes": 402,
+    "sha256": "2d1ad5fbee5144696275d18031f8058229dc3dd6a4855507fdb5059390c38e60"
+  },
+  {
+    "file": "s4-openbknDiagnostics-getReport.json",
+    "bytes": 382,
+    "sha256": "d0f098ab11b9cecb1657fd99c74588f3bdef90fd7770d15785ad07261e73569a"
+  },
+  {
+    "file": "s4-owned-processes-before-stop.json",
+    "bytes": 528,
+    "sha256": "6de628167e1d19f9bdef5998c52a58ffce62ab355b2776579175e36a2ce2569e"
+  },
+  {
+    "file": "s4-pluginInventory-list.json",
+    "bytes": 114251,
+    "sha256": "8633d6a77cb4c2a9194ab43a7f15950a4dd5f74054bc2d53001f52c1638d9725"
+  },
+  {
+    "file": "s4-start.json",
+    "bytes": 520,
+    "sha256": "bd287ff3028fdaa7ed406f2ef5e77f6ba3b103b4a7cca9b764a6f6453de4392e"
+  },
+  {
+    "file": "variants.json",
+    "bytes": 1689,
+    "sha256": "3af134b7838ac6ab322a5a028b68b19d0df5343872c47baa1ff60801c823ad51"
+  },
+  {
+    "file": "verify-host-supply.py",
+    "bytes": 1900,
+    "sha256": "6193c7de31e21495c68357022e13a468775e48d70fa3ff45de24b5d41faeb529"
+  }
+]

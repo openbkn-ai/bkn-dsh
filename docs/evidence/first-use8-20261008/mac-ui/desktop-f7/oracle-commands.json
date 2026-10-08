@@ -1,0 +1,59 @@
+[
+  {
+    "statusFilter": null,
+    "startedAt": "2026-10-08T06:57:05.151847+00:00",
+    "arguments": [
+      "bkn",
+      "object-type",
+      "query",
+      "supply_ontology_hand",
+      "supply_ontology_hand_salesorder",
+      "--body",
+      "{\"limit\": 1000, \"need_total\": true}",
+      "--json"
+    ],
+    "exitCode": 0,
+    "rowCount": 800,
+    "totalCount": 800,
+    "nextCursor": null,
+    "sha256": "bd7ebb7b97c55425376feb177c41d1ce153fbd0550a11fdf59dadd461f727c71"
+  },
+  {
+    "statusFilter": "已确认",
+    "startedAt": "2026-10-08T06:57:05.985809+00:00",
+    "arguments": [
+      "bkn",
+      "object-type",
+      "query",
+      "supply_ontology_hand",
+      "supply_ontology_hand_salesorder",
+      "--body",
+      "{\"limit\": 1000, \"need_total\": true, \"condition\": {\"operation\": \"==\", \"field\": \"order_status\", \"value\": \"\\u5df2\\u786e\\u8ba4\", \"value_from\": \"const\"}}",
+      "--json"
+    ],
+    "exitCode": 0,
+    "rowCount": 784,
+    "totalCount": 784,
+    "nextCursor": null,
+    "sha256": "c46ab7785483758a7580a9893230ad2fee10276d945341e56dc110da03767efe"
+  },
+  {
+    "statusFilter": "执行中",
+    "startedAt": "2026-10-08T06:57:06.207062+00:00",
+    "arguments": [
+      "bkn",
+      "object-type",
+      "query",
+      "supply_ontology_hand",
+      "supply_ontology_hand_salesorder",
+      "--body",
+      "{\"limit\": 1000, \"need_total\": true, \"condition\": {\"operation\": \"==\", \"field\": \"order_status\", \"value\": \"\\u6267\\u884c\\u4e2d\", \"value_from\": \"const\"}}",
+      "--json"
+    ],
+    "exitCode": 0,
+    "rowCount": 16,
+    "totalCount": 16,
+    "nextCursor": null,
+    "sha256": "067a5efe1dd4e3c2aa00633450d2cefb37f57cd29a0d0f3115946d7b94613f28"
+  }
+]

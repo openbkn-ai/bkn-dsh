@@ -1,0 +1,48 @@
+{
+  "scope": "Same 8 selected immediate JSON/YAML files; not the empty daily-profile operation log or full home",
+  "beforeSource": "daily-selected-content-check.json",
+  "after": [
+    {
+      "path": "/Users/kalias/.dsh/profiles/desktop/cordis.patch.yml",
+      "exists": true,
+      "sha256": "de9bc7623edaa12efac39cf438ffcdee906ac8f55a9832d5b5ded64aa71ef8a3"
+    },
+    {
+      "path": "/Users/kalias/.dsh/profiles/desktop/cordis.yml",
+      "exists": true,
+      "sha256": "c300dcf2ebc5f02062d6591268d29d3db6fe45e0cb138f5467276fe2ba06076e"
+    },
+    {
+      "path": "/Users/kalias/.dsh/profiles/desktop/package.json",
+      "exists": true,
+      "sha256": "eafc5b4ebc3e702e8aaee00f6012ae1d76ef8ea24b8bbe03a003f369c5d2934f"
+    },
+    {
+      "path": "/Users/kalias/.dsh/profiles/desktop/pnpm-workspace.yaml",
+      "exists": true,
+      "sha256": "ae7c5b68e2f157528e62885804e69e88583897b775e03c86fcbe52feaf498aba"
+    },
+    {
+      "path": "/Users/kalias/.dsh/profiles/web/cordis.patch.yml",
+      "exists": true,
+      "sha256": "ef189a8c27db6d63930aa3046a3040482e952eafcb7487c644d508e8d461f027"
+    },
+    {
+      "path": "/Users/kalias/.dsh/profiles/web/cordis.yml",
+      "exists": true,
+      "sha256": "c300dcf2ebc5f02062d6591268d29d3db6fe45e0cb138f5467276fe2ba06076e"
+    },
+    {
+      "path": "/Users/kalias/.dsh/profiles/web/package.json",
+      "exists": true,
+      "sha256": "210068ddb9ebc4cdf395ebb53020be6ccaaedb917e74dae16296d62394626398"
+    },
+    {
+      "path": "/Users/kalias/.dsh/profiles/web/pnpm-workspace.yaml",
+      "exists": true,
+      "sha256": "ae7c5b68e2f157528e62885804e69e88583897b775e03c86fcbe52feaf498aba"
+    }
+  ],
+  "changed": [],
+  "coversAllDailyState": false
+}

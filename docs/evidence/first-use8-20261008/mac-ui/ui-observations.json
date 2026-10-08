@@ -1,0 +1,48 @@
+{
+  "f0": {
+    "reportId": "e1d259ac",
+    "productExport": "/Users/kalias/Downloads/OpenBKN-diagnostic-20261008T050549125Z-e1d259ac.json"
+  },
+  "f1": {
+    "inputs": [
+      "",
+      "ht!tp://not a valid url with spaces",
+      "relative/path",
+      "file:///tmp/first-use8"
+    ],
+    "beforePatchSHA": "1aa2bbd98b002b43273ab0e4ac7b54d02fd2e34be417288deb2f9b330faf1d5d",
+    "afterPatchSHA": "1aa2bbd98b002b43273ab0e4ac7b54d02fd2e34be417288deb2f9b330faf1d5d",
+    "sameBytes": true,
+    "noDownstreamRequestClaim": "local UI rejection; no transport-level capture"
+  },
+  "f3FirstAttempt": {
+    "reportId": "c11f3d70",
+    "productExport": "/Users/kalias/Downloads/OpenBKN-diagnostic-20261008T050805555Z-c11f3d70.json",
+    "sizeBytes": 1945,
+    "sha256": "3e841da919740218520cf003fd29b61f4340a9a01c1ec1bae67e10cbc8cb110b",
+    "result": "fail cli-execution-failed; independent CLI same store TLS handshake ECONNRESET; browser ERR_CONNECTION_CLOSED",
+    "cause": "network path unknown; current route utun4; local loopback ingress HTTP302 TLS verified"
+  },
+  "f5": {
+    "savePhase": "settings saved, checking connection; controlled auth-status delay 5000ms",
+    "closedWhileLoading": true,
+    "lateResultCheck": "No overlay remained after >5s; then reopening read pending auth anew; UI current-address config remained correct",
+    "outcome": "pass for controlled status-read close/reopen only; OAuth cancellation not claimed"
+  },
+  "desktopRenderAnomaly": {
+    "oldPID": 4582,
+    "AXDialogPresent": true,
+    "visualDialogPresent": false,
+    "setValueError": "elementHasNoFrame",
+    "afterSameCandidateRestartPID": 25757,
+    "visualAndInputPassed": true,
+    "rootCause": "unknown; not a confirmed plugin defect"
+  },
+  "updatedAt": "2026-10-08T13:13:19.093126+08:00",
+  "networkAdjustment": {
+    "time": "2026-10-08T13:14:27.020886+08:00",
+    "userApplied": "lo0 alias192.168.50.28/32",
+    "verified": "route lo0, HTTPS302 with certificateVerify0",
+    "isolation": "NO_PROXY appended only in owned Host child environment"
+  }
+}

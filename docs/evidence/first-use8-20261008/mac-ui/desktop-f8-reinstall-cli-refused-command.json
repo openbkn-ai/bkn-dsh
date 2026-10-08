@@ -1,0 +1,16 @@
+{
+  "argv": [
+    "/Users/kalias/Documents/project/app/openBKN/dsh-npm-020/node_modules/.bin/dsh",
+    "plugin",
+    "--profile",
+    "desktop",
+    "add",
+    "/tmp/bkn-firstuse8-ci-37725960498/openbkn-dsh-business-context-0.2.0-rc.2-openbkn.0.2.0-8.tgz"
+  ],
+  "DSH_HOME": "/tmp/bkn-firstuse8-mac-desktop/home",
+  "BKN_CONFIG_DIR": "/tmp/bkn-firstuse8-mac-desktop/bkn-config",
+  "node": "24.19.0",
+  "startedAt": "2026-10-08T06:31:53.271458+00:00",
+  "finishedAt": "2026-10-08T06:31:53.349808+00:00",
+  "exitCode": 1
+}

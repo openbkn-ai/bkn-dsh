@@ -1,0 +1,22 @@
+{
+  "restoredAt": "2026-10-08T06:18:00.406668+00:00",
+  "candidateClientSha256": "5a60ee8d2137e65080b4445b3dc640cb96d00aa2815e521b325ec557e3d920f8",
+  "byteIdenticalToOriginal": true,
+  "probe1": {
+    "downloadFunctionCalled": true,
+    "bytes": 3380,
+    "anchorConnected": true,
+    "delayRevokeMs": 30000,
+    "downloadRecorded": false
+  },
+  "probe2": {
+    "carrier": "data URL",
+    "bytes": 3380,
+    "anchorConnected": true,
+    "anchorClickObserved": true,
+    "defaultPrevented": false,
+    "userActivation": true,
+    "downloadRecorded": false
+  },
+  "conclusion": "Neither delayed blob cleanup nor data URL comparison produced a browser download. Immediate revoke is not established as the cause. No source/package fix made."
+}

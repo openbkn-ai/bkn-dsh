@@ -1,0 +1,39 @@
+{
+  "bom": {
+    "line_count": 313,
+    "scoped_line_count": 313,
+    "unique_child_count": 272,
+    "max_level": 5,
+    "caliber": "main_only"
+  },
+  "retrieved_lines": 313,
+  "distinct_materials": 272,
+  "levels": [
+    1,
+    2,
+    3,
+    4,
+    5
+  ],
+  "missing_material_rows": 0,
+  "first_level_checks": {
+    "528-000036": {
+      "available_qty": 34,
+      "reserved_qty": 0,
+      "stock_rows": 1,
+      "inventory_uom": "个"
+    },
+    "791-000007": {
+      "available_qty": 0,
+      "reserved_qty": 0,
+      "stock_rows": 0,
+      "inventory_uom": null
+    },
+    "791-000015": {
+      "available_qty": 0,
+      "reserved_qty": 0,
+      "stock_rows": 0,
+      "inventory_uom": null
+    }
+  }
+}

@@ -1,0 +1,65 @@
+{
+  "phase": "immediate-after-uninstall",
+  "recordedAt": "2026-10-08T07:35:19.832798+00:00",
+  "scope": "selected patch/workspace indexes/bindings and isolated CLI store; no full-home/model-store claim",
+  "files": [
+    {
+      "path": "/tmp/bkn-firstuse8-mac-desktop/home/profiles/desktop/cordis.patch.yml",
+      "exists": true,
+      "bytes": 870,
+      "sha256": "2af063addf275f83028cc7f37c0d225d91a8d0a8171e5453629d219094945ea9",
+      "kind": "selected user file"
+    },
+    {
+      "path": "/tmp/bkn-firstuse8-mac-desktop/home/profiles/desktop/cordis.yml",
+      "exists": true,
+      "bytes": 44784,
+      "sha256": "0540aa920f43bbdd7709bf09f1a5f098e63602407801de398e34fcb69b4db3e0",
+      "kind": "generated declaration"
+    },
+    {
+      "path": "/tmp/bkn-firstuse8-mac-desktop/home/storages/workspace.json",
+      "exists": true,
+      "bytes": 1113,
+      "sha256": "b3f8386f0da946fca86a7778f0b8f00c8a18a02a552ff113feeb69e2465f6e5c",
+      "kind": "selected user file"
+    },
+    {
+      "path": "/tmp/bkn-firstuse8-mac-desktop/home/storages/openbkn_workspace_bindings.json",
+      "exists": true,
+      "bytes": 505,
+      "sha256": "053cd1138f4c099487448a982290c521abeb4561596c03140f5a4691ef5cd595",
+      "kind": "selected user file"
+    },
+    {
+      "path": "/tmp/bkn-firstuse8-mac-desktop/bkn-config/platforms/aHR0cHM6Ly8xOTIuMTY4LjUwLjI4/users/266c6a42-6131-4d62-8f39-853e7093701c/token.json",
+      "exists": true,
+      "bytes": 1532,
+      "sha256": "0d64b60bae404796f2acc0ef1c2d3f1f82258ec820d336371da7be0f70b692eb",
+      "kind": "selected user file"
+    },
+    {
+      "path": "/tmp/bkn-firstuse8-mac-desktop/bkn-config/platforms/aHR0cHM6Ly8xOTIuMTY4LjUwLjI4/version-check.json",
+      "exists": true,
+      "bytes": 74,
+      "sha256": "c5069ee30ce775f7861fd50ab517d1b7737d6b93b6a2334f0568efb91d04d5a5",
+      "kind": "selected user file"
+    },
+    {
+      "path": "/tmp/bkn-firstuse8-mac-desktop/bkn-config/state.json",
+      "exists": true,
+      "bytes": 141,
+      "sha256": "e133281161841df22c8c5d200c1a5e016b864ae7b8c203bf9153b44c022b73c5",
+      "kind": "selected user file"
+    },
+    {
+      "path": "/tmp/bkn-firstuse8-mac-desktop/home/openbkn/session-bindings/session-019f3899-852e-4dc7-a206-8cf9b4b20c3e.json",
+      "exists": true,
+      "bytes": 286,
+      "sha256": "563eafb03a06654e5e6278b0ef956e851b43c3b3d3f7591323dd63f575bc9e54",
+      "kind": "selected user file"
+    }
+  ],
+  "packageExists": false,
+  "dependency": null
+}

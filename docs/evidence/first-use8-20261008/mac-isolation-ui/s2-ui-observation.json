@@ -1,0 +1,27 @@
+{
+  "case": "S2",
+  "observedAt": "2026-10-08T07:14:31.954355+00:00",
+  "form": "official npm Host in Chrome",
+  "businessPanelOpened": true,
+  "diagnosticsOpened": true,
+  "reportId": "98b95ece",
+  "bootstrap": "pass/component-loaded",
+  "business": "fail/module-resolution-failed",
+  "diagnostics": "pass/component-loaded",
+  "reportDownloadClicked": true,
+  "downloadFilesObserved": [],
+  "variantIdentity": "../mac-isolation-api/s2-installed-identity.json",
+  "process": {
+    "pid": 88522,
+    "created": "Thu Oct  8 15:12:27 2026",
+    "argv": [
+      "/Users/kalias/Documents/project/app/openBKN/dsh-npm-020/node_modules/.bin/dsh",
+      "web",
+      "--port",
+      "18322"
+    ],
+    "root": "/var/folders/9r/1zks6bqd7f3dtwybvxsksbc40000gn/T/bkn-firstuse8-isolation-s2-ie5ubpmd",
+    "port": 18322,
+    "form": "npm"
+  }
+}

@@ -1,0 +1,31 @@
+{
+  "datas": [],
+  "paging": {
+    "next_cursor": null,
+    "expires_at_sec": null
+  },
+  "overall_ms": 48,
+  "search_from_index": false,
+  "effective_permissions": {
+    "bin_location": "full",
+    "expiry_date": "full",
+    "inventory_org": "full",
+    "manufacture_date": "full",
+    "purchase_qty": "full",
+    "inventory_qty": "full",
+    "stock_type": "full",
+    "warehouse": "full",
+    "id": "full",
+    "stock_status": "full",
+    "batch_no": "full",
+    "batch_master": "full",
+    "reserved_inventory_qty": "full",
+    "available_inventory_qty": "full",
+    "inventory_uom": "full",
+    "seq_no": "full",
+    "material_name": "full",
+    "inbound_date": "full",
+    "material_code": "full",
+    "spec_model": "full"
+  }
+}

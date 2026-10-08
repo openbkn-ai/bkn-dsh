@@ -1,0 +1,254 @@
+[
+  {
+    "scenario": "S2",
+    "path": "/var/folders/9r/1zks6bqd7f3dtwybvxsksbc40000gn/T/bkn-firstuse8-isolation-s2-ie5ubpmd/host-private.log",
+    "bytes": 206,
+    "sha256": "cf4a4780911189cb811550619332585f60be29e6140df6d0b162e4b5049ef9ab",
+    "privacy": "private local launch credential; retained in owned root, contents not exported"
+  },
+  {
+    "scenario": "S2",
+    "path": "/var/folders/9r/1zks6bqd7f3dtwybvxsksbc40000gn/T/bkn-firstuse8-isolation-s2-ie5ubpmd/install-native.log",
+    "bytes": 535,
+    "sha256": "b631fc9c9ffc7199d68f6200bc82a85c0a8dfc8740bbd733d7dde1592e43ab03",
+    "privacy": "native execution archive; retained in owned root"
+  },
+  {
+    "scenario": "S2",
+    "path": "/var/folders/9r/1zks6bqd7f3dtwybvxsksbc40000gn/T/bkn-firstuse8-isolation-s2-ie5ubpmd/launch-private.url",
+    "bytes": 73,
+    "sha256": "5a6c983deb5a5eb67c0bc72d339062276e7bcb8bf771afe868e8bf99ee132c92",
+    "privacy": "private local launch credential; retained in owned root, contents not exported"
+  },
+  {
+    "scenario": "S2",
+    "path": "/var/folders/9r/1zks6bqd7f3dtwybvxsksbc40000gn/T/bkn-firstuse8-isolation-s2-ie5ubpmd/openbknConfiguration-getConfiguration-native.stderr",
+    "bytes": 0,
+    "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "privacy": "native execution archive; retained in owned root"
+  },
+  {
+    "scenario": "S2",
+    "path": "/var/folders/9r/1zks6bqd7f3dtwybvxsksbc40000gn/T/bkn-firstuse8-isolation-s2-ie5ubpmd/openbknConfiguration-getConfiguration-native.stdout",
+    "bytes": 284,
+    "sha256": "c6e5b3d2c9571d606ba171b21e84c17c4a462b3935b4e5a6195ac19b20b1367f",
+    "privacy": "native execution archive; retained in owned root"
+  },
+  {
+    "scenario": "S2",
+    "path": "/var/folders/9r/1zks6bqd7f3dtwybvxsksbc40000gn/T/bkn-firstuse8-isolation-s2-ie5ubpmd/openbknDiagnostics-getReport-native.stderr",
+    "bytes": 0,
+    "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "privacy": "native execution archive; retained in owned root"
+  },
+  {
+    "scenario": "S2",
+    "path": "/var/folders/9r/1zks6bqd7f3dtwybvxsksbc40000gn/T/bkn-firstuse8-isolation-s2-ie5ubpmd/openbknDiagnostics-getReport-native.stdout",
+    "bytes": 1632,
+    "sha256": "6c517ccce630cba2ffef34fd28f8a7347ce9bb2da0121bafdb177683caa8138f",
+    "privacy": "native execution archive; retained in owned root"
+  },
+  {
+    "scenario": "S2",
+    "path": "/var/folders/9r/1zks6bqd7f3dtwybvxsksbc40000gn/T/bkn-firstuse8-isolation-s2-ie5ubpmd/owned-stop.log",
+    "bytes": 61,
+    "sha256": "c2a8b47783270adf89e5a557dcb67c2f23d64dece0a69704e17ededdfd4c0bda",
+    "privacy": "native execution archive; retained in owned root"
+  },
+  {
+    "scenario": "S2",
+    "path": "/var/folders/9r/1zks6bqd7f3dtwybvxsksbc40000gn/T/bkn-firstuse8-isolation-s2-ie5ubpmd/pluginInventory-list-native.stderr",
+    "bytes": 0,
+    "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "privacy": "native execution archive; retained in owned root"
+  },
+  {
+    "scenario": "S2",
+    "path": "/var/folders/9r/1zks6bqd7f3dtwybvxsksbc40000gn/T/bkn-firstuse8-isolation-s2-ie5ubpmd/pluginInventory-list-native.stdout",
+    "bytes": 114251,
+    "sha256": "a652e375a64598a070ca2d2ab82a79af5555b5f86e18a0dd345cca0a26e80213",
+    "privacy": "native execution archive; retained in owned root"
+  },
+  {
+    "scenario": "S2",
+    "path": "/var/folders/9r/1zks6bqd7f3dtwybvxsksbc40000gn/T/bkn-firstuse8-isolation-s2-ie5ubpmd/process-history.jsonl",
+    "bytes": 310,
+    "sha256": "cfb593948c6244f3b6673d423c72dd62ea9dc1caac0e5d33b9393460c99c2c36",
+    "privacy": "native execution archive; retained in owned root"
+  },
+  {
+    "scenario": "S2",
+    "path": "/var/folders/9r/1zks6bqd7f3dtwybvxsksbc40000gn/T/bkn-firstuse8-isolation-s2-ie5ubpmd/process.json",
+    "bytes": 348,
+    "sha256": "5f34e784acdcdcab46c0e6bbebe57b4da8bf11f60dc2efae6060995f263e7261",
+    "privacy": "native execution archive; retained in owned root"
+  },
+  {
+    "scenario": "S2",
+    "path": "/var/folders/9r/1zks6bqd7f3dtwybvxsksbc40000gn/T/bkn-firstuse8-isolation-s2-ie5ubpmd/start-native.stderr",
+    "bytes": 0,
+    "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "privacy": "native execution archive; retained in owned root"
+  },
+  {
+    "scenario": "S2",
+    "path": "/var/folders/9r/1zks6bqd7f3dtwybvxsksbc40000gn/T/bkn-firstuse8-isolation-s2-ie5ubpmd/start-native.stdout",
+    "bytes": 310,
+    "sha256": "cfb593948c6244f3b6673d423c72dd62ea9dc1caac0e5d33b9393460c99c2c36",
+    "privacy": "native execution archive; retained in owned root"
+  },
+  {
+    "scenario": "S2",
+    "path": "/var/folders/9r/1zks6bqd7f3dtwybvxsksbc40000gn/T/bkn-firstuse8-isolation-s2-ie5ubpmd/stop-native.stderr",
+    "bytes": 0,
+    "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "privacy": "native execution archive; retained in owned root"
+  },
+  {
+    "scenario": "S2",
+    "path": "/var/folders/9r/1zks6bqd7f3dtwybvxsksbc40000gn/T/bkn-firstuse8-isolation-s2-ie5ubpmd/stop-native.stdout",
+    "bytes": 61,
+    "sha256": "c2a8b47783270adf89e5a557dcb67c2f23d64dece0a69704e17ededdfd4c0bda",
+    "privacy": "native execution archive; retained in owned root"
+  },
+  {
+    "scenario": "S2",
+    "path": "/var/folders/9r/1zks6bqd7f3dtwybvxsksbc40000gn/T/bkn-firstuse8-isolation-s2-ie5ubpmd/supply-native.stderr",
+    "bytes": 0,
+    "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "privacy": "native execution archive; retained in owned root"
+  },
+  {
+    "scenario": "S2",
+    "path": "/var/folders/9r/1zks6bqd7f3dtwybvxsksbc40000gn/T/bkn-firstuse8-isolation-s2-ie5ubpmd/supply-native.stdout",
+    "bytes": 713,
+    "sha256": "6f0a3d58a9f05cbfecc62ead8d6b3f2e07ee40aa717cb774a41169164f5c949e",
+    "privacy": "native execution archive; retained in owned root"
+  },
+  {
+    "scenario": "S4",
+    "path": "/var/folders/9r/1zks6bqd7f3dtwybvxsksbc40000gn/T/bkn-firstuse8-isolation-s4-40zhqjyv/host-private.log",
+    "bytes": 221,
+    "sha256": "f0cf81aeeaaaee7c8182d19fb970276cd2b4d69d2e63275d62217e6478b7779b",
+    "privacy": "private local launch credential; retained in owned root, contents not exported"
+  },
+  {
+    "scenario": "S4",
+    "path": "/var/folders/9r/1zks6bqd7f3dtwybvxsksbc40000gn/T/bkn-firstuse8-isolation-s4-40zhqjyv/install-native.log",
+    "bytes": 535,
+    "sha256": "895d023b94bc498e0fa718d7d899b0cb64af4a1a9a38da6f74800d11b78854f0",
+    "privacy": "native execution archive; retained in owned root"
+  },
+  {
+    "scenario": "S4",
+    "path": "/var/folders/9r/1zks6bqd7f3dtwybvxsksbc40000gn/T/bkn-firstuse8-isolation-s4-40zhqjyv/launch-private.url",
+    "bytes": 73,
+    "sha256": "f917c2d217a1f77b760ffcf0d6e75ab19ea462aedb4a4d1b0011056d86b4b7ac",
+    "privacy": "private local launch credential; retained in owned root, contents not exported"
+  },
+  {
+    "scenario": "S4",
+    "path": "/var/folders/9r/1zks6bqd7f3dtwybvxsksbc40000gn/T/bkn-firstuse8-isolation-s4-40zhqjyv/openbknConfiguration-getConfiguration-native.stderr",
+    "bytes": 0,
+    "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "privacy": "native execution archive; retained in owned root"
+  },
+  {
+    "scenario": "S4",
+    "path": "/var/folders/9r/1zks6bqd7f3dtwybvxsksbc40000gn/T/bkn-firstuse8-isolation-s4-40zhqjyv/openbknConfiguration-getConfiguration-native.stdout",
+    "bytes": 402,
+    "sha256": "2d1ad5fbee5144696275d18031f8058229dc3dd6a4855507fdb5059390c38e60",
+    "privacy": "native execution archive; retained in owned root"
+  },
+  {
+    "scenario": "S4",
+    "path": "/var/folders/9r/1zks6bqd7f3dtwybvxsksbc40000gn/T/bkn-firstuse8-isolation-s4-40zhqjyv/openbknDiagnostics-getReport-native.stderr",
+    "bytes": 0,
+    "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "privacy": "native execution archive; retained in owned root"
+  },
+  {
+    "scenario": "S4",
+    "path": "/var/folders/9r/1zks6bqd7f3dtwybvxsksbc40000gn/T/bkn-firstuse8-isolation-s4-40zhqjyv/openbknDiagnostics-getReport-native.stdout",
+    "bytes": 382,
+    "sha256": "d0f098ab11b9cecb1657fd99c74588f3bdef90fd7770d15785ad07261e73569a",
+    "privacy": "native execution archive; retained in owned root"
+  },
+  {
+    "scenario": "S4",
+    "path": "/var/folders/9r/1zks6bqd7f3dtwybvxsksbc40000gn/T/bkn-firstuse8-isolation-s4-40zhqjyv/owned-stop.log",
+    "bytes": 61,
+    "sha256": "39390e077f4280d7030d52b1392007b68fb9b5816a77062055020508b1cb7712",
+    "privacy": "native execution archive; retained in owned root"
+  },
+  {
+    "scenario": "S4",
+    "path": "/var/folders/9r/1zks6bqd7f3dtwybvxsksbc40000gn/T/bkn-firstuse8-isolation-s4-40zhqjyv/pluginInventory-list-native.stderr",
+    "bytes": 0,
+    "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "privacy": "native execution archive; retained in owned root"
+  },
+  {
+    "scenario": "S4",
+    "path": "/var/folders/9r/1zks6bqd7f3dtwybvxsksbc40000gn/T/bkn-firstuse8-isolation-s4-40zhqjyv/pluginInventory-list-native.stdout",
+    "bytes": 114251,
+    "sha256": "8633d6a77cb4c2a9194ab43a7f15950a4dd5f74054bc2d53001f52c1638d9725",
+    "privacy": "native execution archive; retained in owned root"
+  },
+  {
+    "scenario": "S4",
+    "path": "/var/folders/9r/1zks6bqd7f3dtwybvxsksbc40000gn/T/bkn-firstuse8-isolation-s4-40zhqjyv/process-history.jsonl",
+    "bytes": 310,
+    "sha256": "f3093cb0b336799909f24a560c9a03931bc9dc477dc6ae710689a71bfc7c3c41",
+    "privacy": "native execution archive; retained in owned root"
+  },
+  {
+    "scenario": "S4",
+    "path": "/var/folders/9r/1zks6bqd7f3dtwybvxsksbc40000gn/T/bkn-firstuse8-isolation-s4-40zhqjyv/process.json",
+    "bytes": 348,
+    "sha256": "e9c96073d27f9e7168cc43e54b9c3f2deb1c9d411cb2c7503d08bf5b8380682d",
+    "privacy": "native execution archive; retained in owned root"
+  },
+  {
+    "scenario": "S4",
+    "path": "/var/folders/9r/1zks6bqd7f3dtwybvxsksbc40000gn/T/bkn-firstuse8-isolation-s4-40zhqjyv/start-native.stderr",
+    "bytes": 0,
+    "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "privacy": "native execution archive; retained in owned root"
+  },
+  {
+    "scenario": "S4",
+    "path": "/var/folders/9r/1zks6bqd7f3dtwybvxsksbc40000gn/T/bkn-firstuse8-isolation-s4-40zhqjyv/start-native.stdout",
+    "bytes": 310,
+    "sha256": "f3093cb0b336799909f24a560c9a03931bc9dc477dc6ae710689a71bfc7c3c41",
+    "privacy": "native execution archive; retained in owned root"
+  },
+  {
+    "scenario": "S4",
+    "path": "/var/folders/9r/1zks6bqd7f3dtwybvxsksbc40000gn/T/bkn-firstuse8-isolation-s4-40zhqjyv/stop-native.stderr",
+    "bytes": 0,
+    "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "privacy": "native execution archive; retained in owned root"
+  },
+  {
+    "scenario": "S4",
+    "path": "/var/folders/9r/1zks6bqd7f3dtwybvxsksbc40000gn/T/bkn-firstuse8-isolation-s4-40zhqjyv/stop-native.stdout",
+    "bytes": 61,
+    "sha256": "39390e077f4280d7030d52b1392007b68fb9b5816a77062055020508b1cb7712",
+    "privacy": "native execution archive; retained in owned root"
+  },
+  {
+    "scenario": "S4",
+    "path": "/var/folders/9r/1zks6bqd7f3dtwybvxsksbc40000gn/T/bkn-firstuse8-isolation-s4-40zhqjyv/supply-native.stderr",
+    "bytes": 0,
+    "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "privacy": "native execution archive; retained in owned root"
+  },
+  {
+    "scenario": "S4",
+    "path": "/var/folders/9r/1zks6bqd7f3dtwybvxsksbc40000gn/T/bkn-firstuse8-isolation-s4-40zhqjyv/supply-native.stdout",
+    "bytes": 713,
+    "sha256": "dfb7e26e17ceeee6fdb854056a93404f8e8cb0b56a8bffae304c60cd7730e92e",
+    "privacy": "native execution archive; retained in owned root"
+  }
+]
