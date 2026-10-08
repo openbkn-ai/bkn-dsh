@@ -1,34 +1,70 @@
 # Windows：-8 首次使用验收
 
-状态：交接草案，**固定 CI 身份仍为 PENDING，当前不能开测**。主开发填齐下表并推送后再执行。本轮只覆盖 [首次使用计划](../../plans/2026-10-08-plugin-first-use-quick-fix.md) A0–A5/F0–F8，不做旧版本升级，不继承 -7 的通过结论，不发布、打 tag 或改 npm dist-tag。
+状态：**固定 CI 候选已就绪，Windows 产品验收待执行**。从主开发通知中的交付 commit 取得本文与清单后执行；本文件不宣称已发布或 Windows 已通过。本轮只覆盖 [首次使用计划](../../plans/2026-10-08-plugin-first-use-quick-fix.md) A0–A5/F0–F8，不做旧版本升级，不继承 -7 的通过结论，不发布、打 tag 或改 npm dist-tag。
 
 ## 1. 固定输入与取得候选
 
 | 身份 | 值 |
 |---|---|
 | 仓库/开发分支 | `openbkn-ai/bkn-dsh` / `fix/plugin-first-use-8` |
-| 交接固定 commit（执行时 checkout 此值） | **PENDING** |
-| 候选源码完整 commit | **PENDING** |
-| 插件版本 | `0.2.0-rc.2-openbkn.0.2.0-8`（待 CI 确认） |
-| `release-plugin.yml` run / `publish` | **PENDING** / 必须 `false` |
-| CI artifact | `plugin-tarball` |
-| tgz 下载后绝对路径 / 字节数 / 完整 SHA-256 | **PENDING** |
-| 逐文件清单路径 / SHA-256 / 文件数 | **PENDING**（预计 66，以固定 CI 清单为准） |
+| 交接文档版本 | 候选源码 commit 固定如下；交付文档 commit 随主开发 handoff 链接提供，执行时记录 `git rev-parse` 的实际结果 |
+| 候选源码完整 commit | `23ac2daa6d3538235f33a9627a8178a48f3e1ebf` |
+| 插件版本 | `0.2.0-rc.2-openbkn.0.2.0-8` |
+| `release-plugin.yml` run / `publish` | [37725960498](https://github.com/openbkn-ai/bkn-dsh/actions/runs/37725960498) / `false`（success；npm Publish 与 GitHub Release 均 skipped） |
+| CI artifact | `plugin-tarball` / ID `11527543358` |
+| tgz 下载后绝对路径 / 字节数 / 完整 SHA-256 | `C:\bkn-verify\first-use8-download\openbkn-dsh-business-context-0.2.0-rc.2-openbkn.0.2.0-8.tgz` / `175800` / `6a946030a6152d2899609fac95c66cd246e36cca5a8ce4e5f87ed379cbe706ea` |
+| 逐文件清单路径 / SHA-256 / 文件数 | 本目录 `candidate-files.json` / `31298c18cc87ac7a44039f8311e51340a56a830ecbad9fd270bd5ecf275ad257` / `66` |
 | 受支持 DSH / Node / pnpm | `0.2.0-rc.2` / `^22.19.0 || >=24.0.0` / `11.7.0` |
 | 本次实际 OpenBKN 平台、CLI 版本与路径 | 执行侧记录；0.1.5 平台推荐 CLI `@openbkn/bkn-sdk@0.1.5` |
 
-从远端固定交接 commit 获取本文和逐文件清单；从指定 run 获取 tgz。不要用本地 pack、旧 -7 kit 或当时的 `latest` 代替固定 CI 包。
+从远端主开发通知中的固定交付 commit 获取本文和逐文件清单；从指定 run 获取 tgz。候选源码与交付文档分别记录，避免把文档提交误认成构建源码。不要用本地 pack、旧 -7 kit 或当时的 `latest` 代替固定 CI 包。
+
+在仓库根目录先 `git fetch origin fix/plugin-first-use-8`，再 `git checkout --detach 23ac2daa6d3538235f33a9627a8178a48f3e1ebf`；按通知提供的交付 commit，用 `git -c core.autocrlf=false checkout <delivery-commit> -- docs/evidence/first-use8-20261008/WINDOWS-HANDOFF.md docs/evidence/first-use8-20261008/WINDOWS-RESULTS-TEMPLATE.md docs/evidence/first-use8-20261008/candidate-manifest.json docs/evidence/first-use8-20261008/candidate-files.json` 取最终文档。记录源码 `git rev-parse HEAD` 和 `git rev-parse <delivery-commit>` 两值。测试开始前另建自己的 docs 证据分支，不提交/更改候选源码。上述单条 checkout 的 `core.autocrlf=false` 保持清单 LF 字节，不修改日常 Git 全局设置；不要把自动转为 CRLF 的清单用于完整 SHA 核验。
 
 ```powershell
-$FirstUse8Run = 'PENDING' # 主开发填定值后执行
+$FirstUse8Run = '37725960498'
 $FirstUse8Download = 'C:\bkn-verify\first-use8-download'
-if ($FirstUse8Run -eq 'PENDING') { throw 'Fixed CI identity is not ready' }
-gh run view $FirstUse8Run --repo openbkn-ai/bkn-dsh --json headSha,conclusion,event,url
+$FirstUse8RunInfo = gh run view $FirstUse8Run --repo openbkn-ai/bkn-dsh --json headSha,conclusion,event,url | ConvertFrom-Json
+if ($LASTEXITCODE -ne 0 -or $FirstUse8RunInfo.headSha -ne '23ac2daa6d3538235f33a9627a8178a48f3e1ebf' -or $FirstUse8RunInfo.conclusion -ne 'success' -or $FirstUse8RunInfo.event -ne 'workflow_dispatch') { throw 'Fixed CI run identity differs' }
 gh run download $FirstUse8Run --repo openbkn-ai/bkn-dsh --name plugin-tarball --dir $FirstUse8Download
-# 按表中固定路径选择唯一 tgz；Get-FileHash -Algorithm SHA256 与字节数均须匹配。
+if ($LASTEXITCODE -ne 0) { throw 'CI download failed; do not substitute another run' }
+$FirstUse8Tgz = Join-Path $FirstUse8Download 'openbkn-dsh-business-context-0.2.0-rc.2-openbkn.0.2.0-8.tgz'
+if ((Get-Item -LiteralPath $FirstUse8Tgz).Length -ne 175800 -or (Get-FileHash -LiteralPath $FirstUse8Tgz -Algorithm SHA256).Hash.ToLowerInvariant() -ne '6a946030a6152d2899609fac95c66cd246e36cca5a8ce4e5f87ed379cbe706ea') { throw 'Downloaded tgz identity differs' }
+Get-Item -LiteralPath $FirstUse8Tgz | Select-Object FullName,Length
+Get-FileHash -LiteralPath $FirstUse8Tgz -Algorithm SHA256
 ```
 
 每形态安装后将实际 `profiles/<profile>/node_modules/@openbkn/dsh-business-context` 与固定清单逐件比对 SHA、字节数，记录 missing/diff/extra，三者必须空；清单 `package/` 前缀对应安装包目录。留存安装后的 package.json 版本、实际绝对路径、三 row。CLI 版本和包内容一致不能替代真正启动对应 Host。
+
+可在每形态安装后执行下面的只读检查，先填写该形态的真实路径。清单文件本身先与上表 SHA 比对；任何缺失/差异/多余文件都停止验收，不能只看版本。输出保存到本轮证据目录：
+
+```powershell
+$FirstUse8Installed = 'C:\bkn-verify\first-use8-desktop\dsh-home\profiles\desktop\node_modules\@openbkn\dsh-business-context' # npm/source必须改为本轮真实web路径
+$FirstUse8FilesPath = Join-Path (Get-Location).Path 'docs/evidence/first-use8-20261008/candidate-files.json' # 从交接仓库根目录执行
+$FirstUse8FilesSHA = '31298c18cc87ac7a44039f8311e51340a56a830ecbad9fd270bd5ecf275ad257'
+if ((Get-FileHash -LiteralPath $FirstUse8FilesPath -Algorithm SHA256).Hash.ToLowerInvariant() -ne $FirstUse8FilesSHA) { throw 'File manifest identity differs' }
+$FirstUse8RootPath = (Resolve-Path -LiteralPath $FirstUse8Installed).Path.TrimEnd('\')
+$FirstUse8Expected = @((Get-Content -Raw -LiteralPath $FirstUse8FilesPath | ConvertFrom-Json).files)
+$FirstUse8Missing = @(); $FirstUse8Diff = @(); $FirstUse8Paths = @{}
+foreach ($FirstUse8File in $FirstUse8Expected) {
+    if ($FirstUse8File.path -notmatch '^package/' -or $FirstUse8File.path -match '(^|/)\.\.(/|$)|\\') { throw 'Unexpected manifest path' }
+    $FirstUse8Relative = $FirstUse8File.path.Substring(8)
+    if ($FirstUse8Paths.ContainsKey($FirstUse8Relative)) { throw 'Duplicate manifest path' }
+    $FirstUse8Paths[$FirstUse8Relative] = $true
+    $FirstUse8Path = Join-Path $FirstUse8RootPath $FirstUse8Relative
+    if (-not (Test-Path -LiteralPath $FirstUse8Path -PathType Leaf)) { $FirstUse8Missing += $FirstUse8Relative; continue }
+    if ((Get-Item -LiteralPath $FirstUse8Path).Length -ne $FirstUse8File.sizeBytes -or
+        (Get-FileHash -LiteralPath $FirstUse8Path -Algorithm SHA256).Hash.ToLowerInvariant() -ne $FirstUse8File.sha256) { $FirstUse8Diff += $FirstUse8Relative }
+}
+$FirstUse8Actual = @(Get-ChildItem -LiteralPath $FirstUse8RootPath -Recurse -File | ForEach-Object { $_.FullName.Substring($FirstUse8RootPath.Length + 1).Replace('\', '/') })
+$FirstUse8Extra = @($FirstUse8Actual | Where-Object { -not $FirstUse8Paths.ContainsKey($_) })
+$FirstUse8Package = Get-Content -Raw -LiteralPath (Join-Path $FirstUse8RootPath 'package.json') | ConvertFrom-Json
+[ordered]@{ installedPath=$FirstUse8RootPath; version=$FirstUse8Package.version; expectedCount=$FirstUse8Expected.Count; actualCount=$FirstUse8Actual.Count; missing=$FirstUse8Missing; differs=$FirstUse8Diff; extra=$FirstUse8Extra } | ConvertTo-Json -Depth 4
+if ($FirstUse8Package.name -ne '@openbkn/dsh-business-context' -or $FirstUse8Package.version -ne '0.2.0-rc.2-openbkn.0.2.0-8' -or
+    $FirstUse8Missing.Count -ne 0 -or $FirstUse8Diff.Count -ne 0 -or $FirstUse8Extra.Count -ne 0) { throw 'Installed candidate verification failed' }
+```
+
+该片段待 Windows 原生运行确认；静态清单核验不是产品 UI 验收。若安装器实际增加依赖链接/文件，先列 extra 的真实路径与来源再交主开发判定，不能临时全目录豁免。
 
 ## 2. 开测前与隔离启动
 
@@ -66,8 +102,8 @@ F3 的可复用 fixture 是仓库 `docs/handoff/2026-10-07-authentication-recove
 $env:DSH_HOME = 'C:\bkn-verify\first-use8-source\dsh-home'
 $env:BKN_CONFIG_DIR = 'C:\bkn-verify\first-use8-source\bkn-config'
 $FirstUse8SourceCli = 'D:\AI\project\app\openBKN\dsh-src\apps\cli\lib\bin.js' # 核对实际存在/版本
-$FirstUse8Tgz = 'PENDING' # 固定 CI 下载绝对路径
-node $FirstUse8SourceCli plugin --profile web add $FirstUse8Tgz
+$FirstUse8Tgz = 'C:\bkn-verify\first-use8-download\openbkn-dsh-business-context-0.2.0-rc.2-openbkn.0.2.0-8.tgz'
+node $FirstUse8SourceCli plugin --profile web install $FirstUse8Tgz
 if ($LASTEXITCODE -ne 0) { throw 'Source-build installation failed' }
 node $FirstUse8SourceCli web --port 18408 --no-open
 ```

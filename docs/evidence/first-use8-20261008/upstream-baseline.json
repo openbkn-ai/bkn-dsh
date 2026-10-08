@@ -1,0 +1,23 @@
+{
+  "checkedAt": "2026-10-08T03:55:28.359159+00:00",
+  "pluginBranch": "fix/plugin-first-use-8",
+  "dshSupportedTag": "dsh-v0.2.0-rc.2",
+  "dshSupportedCommit": "639ed015397290b3745d163aafe02ffee4aa3f84",
+  "dshLatestAvailableTag": "dsh-v0.2.1-alpha.1",
+  "dshMaster": "5badb15009ae1756c3afe0ae0cef1faafc290ccc",
+  "foundryMain": "7f9fbf9dba473e7e7e93370b708d7ecdf3840341",
+  "foundryLatestStableRelease": "v0.1.5",
+  "foundryChangesSince20261007": 12,
+  "sourceInspection": "Changes concern observability pagination and historical trace migration; no automatic platform deploy or supported pin change. Live MCP schema check remains pending fresh normal CLI authorization.",
+  "liveImages": "platform-images.json",
+  "imageChangesSince20261007": [
+    {
+      "namespace": "openbkn",
+      "container": "trace-outbox-cleanup",
+      "declaredImage": "swr.cn-east-3.myhuaweicloud.com/openbkn-ai/bkn-backend:0.1.5",
+      "imageID": "swr.cn-east-3.myhuaweicloud.com/openbkn-ai/bkn-backend@sha256:a24f289a9f8bb54fb4c1bb19544b7be8f502b7ab3fb202408cab8616ee37c1e6"
+    }
+  ],
+  "liveContractStatus": "pending-fresh-login",
+  "cliVersionUsed": "0.1.5"
+}
