@@ -40,3 +40,38 @@ test('disposing an older business connection does not detach its replacement', a
   await bridge.controller.refresh()
   assert.equal(bridge.controller.snapshot().networks[0].id, 'new')
 })
+
+
+test('configuration is available without business services and survives their reload', async () => {
+  const bridge = new OpenBknPanelBridge()
+  let resolveSave!: (value: { baseUrl: string; cliPath: string; configured: boolean; editable: boolean }) => void
+  bridge.connectConfiguration({
+    getConfiguration: async () => ({ baseUrl: '', cliPath: 'openbkn', configured: false, editable: true }),
+    saveConfiguration: async () => new Promise(resolve => { resolveSave = resolve }),
+  })
+  bridge.controller.open()
+  await bridge.controller.refresh()
+  assert.equal(bridge.controller.snapshot().phase, 'configuration')
+  const pending = bridge.controller.saveConfiguration({ baseUrl: 'https://platform.invalid', cliPath: 'openbkn' })
+  const disconnect = bridge.connect(port, async () => 'session', () => undefined)
+  disconnect()
+  bridge.connect({ ...port, listNetworks: async () => [{ id: 'reloaded', displayName: 'Reloaded' }] }, async () => 'session', () => undefined)
+  resolveSave({ baseUrl: 'https://platform.invalid', cliPath: 'openbkn', configured: true, editable: true })
+  await pending
+  assert.equal(bridge.controller.snapshot().phase, 'ready')
+  assert.equal(bridge.controller.snapshot().networks[0]?.id, 'reloaded')
+})
+
+test('business replacement rejects an old reply even when its Remote ignores cancellation', async () => {
+  const bridge = new OpenBknPanelBridge()
+  let resolveStatus!: (value: { kind: 'authenticated'; baseUrl: string }) => void
+  bridge.connect({ ...port, status: async () => new Promise(resolve => { resolveStatus = resolve }) }, async () => 'old', () => undefined)
+  bridge.controller.open()
+  const old = bridge.controller.refresh()
+  await new Promise(resolve => setImmediate(resolve))
+  bridge.connect({ ...port, listNetworks: async () => [{ id: 'new', displayName: 'New' }] }, async () => 'new', () => undefined)
+  await bridge.controller.refresh()
+  resolveStatus({ kind: 'authenticated', baseUrl: 'https://old.invalid' })
+  await old
+  assert.equal(bridge.controller.snapshot().networks[0]?.id, 'new')
+})

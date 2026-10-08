@@ -8,7 +8,7 @@ import { OpenBknDiagnosticsService } from '../src/diagnostics-service.ts'
 
 const invalidBaseUrls = [
   'ht!tp://not a valid url with spaces',
-  '', '   ', 'platform.example', '/api', '//platform.example',
+  '   ', 'platform.example', '/api', '//platform.example',
   'https://', 'https:///platform.example', 'https:platform.example',
   'https://not a valid host', 'https://platform.example/path with spaces',
   ' https://platform.example', 'https://platform.example\n',
@@ -39,7 +39,8 @@ test('valid deployment URLs retain their bytes and existing configuration defaul
     assert.equal(config.allowInsecureTls, false)
     assert.equal(config.requestTimeoutMs, 30_000)
   }
-  assert.throws(() => Config({}), /\$\.baseUrl/)
+  assert.equal(Config({}).baseUrl, '')
+  assert.equal(Config({ baseUrl: '' }).baseUrl, '')
   assert.throws(() => Config({ baseUrl: 443 }), /\$\.baseUrl/)
   assert.throws(() => Config({ baseUrl: invalidBaseUrls[0], allowInsecureTls: true }), /\$\.baseUrl/)
 })

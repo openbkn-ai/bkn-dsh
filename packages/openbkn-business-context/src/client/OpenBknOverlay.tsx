@@ -2,14 +2,15 @@ import { useEffect, useMemo, useState } from 'react'
 import type { InjectFace, PropsRuntime } from '@deepseek-ai/dsh-client-ui-slots'
 import type { OpenBknUiController, OpenBknOverlayState } from './openbkn-ui-controller.ts'
 import { INITIAL_NETWORK_DIRECTORY_LIMIT, selectNetworkDirectory } from './network-directory.ts'
-import type { BusinessNetworkSummary } from '../types.ts'
+import type { BusinessNetworkSummary, OpenBknConfigurationInput } from '../types.ts'
 
 export interface OpenBknOverlayInjected {
   hooks: { ui: OpenBknUiController }
   close(): void
   refresh(): Promise<void>
   beginLogin(): Promise<void>
-  configureToken(token: string): Promise<void>
+  showSettings(): Promise<void>
+  saveConfiguration(input: OpenBknConfigurationInput): Promise<void>
   openNetwork(networkId: string, mode: 'continue' | 'new' | 'create-workspace'): Promise<void>
   openDiagnostics(): void
 }
@@ -17,7 +18,7 @@ export interface OpenBknOverlayInjected {
 export type OpenBknOverlayProps = PropsRuntime<'shell.overlay'> & InjectFace<OpenBknOverlayInjected>
 
 /** Frame-wide, additive OpenBKN control plane. It is intentionally outside DSH chat scroll containers. */
-export function OpenBknOverlay({ useUi, close, refresh, beginLogin, configureToken, openNetwork, openDiagnostics }: OpenBknOverlayProps) {
+export function OpenBknOverlay({ useUi, close, refresh, beginLogin, showSettings, saveConfiguration, openNetwork, openDiagnostics }: OpenBknOverlayProps) {
   const state = useUi((value: OpenBknOverlayState) => value)
 
   useEffect(() => {
@@ -41,22 +42,23 @@ export function OpenBknOverlay({ useUi, close, refresh, beginLogin, configureTok
             <h2 style={{ margin: '4px 0 0', fontSize: 20 }}>业务知识网络</h2>
           </div>
           <div style={{ display: 'flex', alignItems: 'center', gap: 12 }}>
+            <button type="button" onClick={() => void showSettings()} disabled={state.savingConfiguration} style={{ ...secondaryStyle, fontSize: 13 }}>设置</button>
             <button type="button" onClick={openDiagnostics} style={{ ...secondaryStyle, fontSize: 13 }}>诊断</button>
             <button type="button" onClick={close} aria-label="Close" style={closeStyle}>×</button>
           </div>
         </header>
         <div style={{ padding: 20 }}>
-          <OverlayBody state={state} beginLogin={beginLogin} configureToken={configureToken} refresh={refresh} openNetwork={openNetwork} />
+          <OverlayBody state={state} beginLogin={beginLogin} saveConfiguration={saveConfiguration} refresh={refresh} openNetwork={openNetwork} />
         </div>
       </section>
     </div>
   )
 }
 
-function OverlayBody({ state, beginLogin, configureToken, refresh, openNetwork }: {
+function OverlayBody({ state, beginLogin, saveConfiguration, refresh, openNetwork }: {
   state: OpenBknOverlayState
   beginLogin(): Promise<void>
-  configureToken(token: string): Promise<void>
+  saveConfiguration(input: OpenBknConfigurationInput): Promise<void>
   refresh(): Promise<void>
   openNetwork(networkId: string, mode: 'continue' | 'new' | 'create-workspace'): Promise<void>
 }) {
@@ -74,7 +76,11 @@ function OverlayBody({ state, beginLogin, configureToken, refresh, openNetwork }
   )
 
   if (state.phase === 'loading' || state.phase === 'binding') {
-    return <p style={mutedStyle}>{state.phase === 'binding' ? state.message ?? '正在绑定当前会话…' : '正在连接 OpenBKN…'}</p>
+    return <p style={mutedStyle}>{state.phase === 'binding' ? state.message ?? '正在绑定当前会话…' : state.message ?? '正在连接 OpenBKN…'}</p>
+  }
+
+  if (state.phase === 'configuration') {
+    return <ConfigurationForm state={state} saveConfiguration={saveConfiguration} />
   }
 
   if (state.phase === 'authentication-required') {
@@ -84,7 +90,6 @@ function OverlayBody({ state, beginLogin, configureToken, refresh, openNetwork }
         <p style={{ ...mutedStyle, marginTop: 0 }}>平台地址：{displayBaseUrl(state.auth)}</p>
         {state.message ? <p role="status" style={authenticationNoticeStyle}>{state.message}</p> : null}
         <p style={{ margin: '0 0 12px' }}><button type="button" style={primaryStyle} onClick={() => void beginLogin()}>使用 OpenBKN CLI 登录并同步</button></p>
-        <details style={{ marginBottom: 10 }}><summary style={loginLinkStyle}>手动输入 Token（兼容无 CLI 部署）</summary><div style={{ marginTop: 10 }}><TokenForm configureToken={configureToken} /></div></details>
         <button type="button" style={secondaryStyle} onClick={() => void refresh()}>刷新状态</button>
       </div>
     )
@@ -160,15 +165,47 @@ function NetworkRow({ network, expanded, onToggle, openNetwork }: {
   </article>
 }
 
-function TokenForm({ configureToken }: { configureToken(token: string): Promise<void> }) {
-  const [token, setToken] = useState('')
-  return <form onSubmit={event => { event.preventDefault(); void configureToken(token).finally(() => setToken('')) }} style={{ display: 'grid', gap: 10, marginBottom: 10 }}>
-    <label style={{ display: 'grid', gap: 6, fontSize: 13, fontWeight: 650 }}>
-      OpenBKN Token
-      <input aria-label="OpenBKN Token" type="password" autoComplete="off" value={token} onChange={event => setToken(event.target.value)} style={tokenStyle} />
+function ConfigurationForm({ state, saveConfiguration }: {
+  state: OpenBknOverlayState
+  saveConfiguration(input: OpenBknConfigurationInput): Promise<void>
+}) {
+  const [baseUrl, setBaseUrl] = useState(state.configuration?.baseUrl ?? '')
+  const [cliPath, setCliPath] = useState(state.configuration?.cliPath ?? 'openbkn')
+  const [advanced, setAdvanced] = useState(false)
+  useEffect(() => {
+    if (state.configuration === undefined) return
+    setBaseUrl(state.configuration.baseUrl)
+    setCliPath(state.configuration.cliPath)
+  }, [state.configuration])
+  const editable = state.configuration?.editable === true && state.loadingConfiguration !== true
+  const saving = state.savingConfiguration === true
+  return <form onSubmit={event => { event.preventDefault(); void saveConfiguration({ baseUrl, cliPath }) }} style={{ display: 'grid', gap: 14 }}>
+    <p style={{ margin: 0, ...mutedStyle, lineHeight: 1.6 }}>
+      {state.configuration?.configured ? '修改当前 DSH profile 的 OpenBKN 设置。已有业务会话保持原平台和网络绑定。' : '先填写 OpenBKN 平台地址，再使用本机 OpenBKN CLI 登录。尚未配置时不会连接平台。'}
+    </p>
+    <label style={searchLabelStyle}>
+      OpenBKN 平台地址
+      <input aria-label="OpenBKN 平台地址" type="text" inputMode="url" autoComplete="url" placeholder="https://openbkn.example.com" value={baseUrl} onChange={event => setBaseUrl(event.target.value)} disabled={!editable || saving} style={searchInputStyle} />
     </label>
-    <span><button type="submit" style={primaryStyle} disabled={token.trim().length === 0}>保存并测试连接</button></span>
+    <details open={advanced} onToggle={event => setAdvanced(event.currentTarget.open)}>
+      <summary style={loginLinkStyle}>高级设置</summary>
+      <label style={{ ...searchLabelStyle, marginTop: 10 }}>
+        OpenBKN CLI 执行路径（cliPath）
+        <input aria-label="OpenBKN CLI 执行路径" type="text" autoComplete="off" value={cliPath} onChange={event => setCliPath(event.target.value)} disabled={!editable || saving} style={searchInputStyle} />
+      </label>
+      <p style={{ ...mutedStyle, marginBottom: 0 }}>默认 openbkn。若 DSH 找不到命令，可填写绝对路径；Windows 上填写 openbkn.cmd。</p>
+    </details>
+    {!editable && state.configuration !== undefined && state.loadingConfiguration !== true ? <p role="status" style={authenticationNoticeStyle}>{configurationUnavailableMessage(state.configuration.unavailableReason)}</p> : null}
+    {state.loadingConfiguration ? <p style={mutedStyle}>正在读取设置…</p> : null}
+    {state.configurationMessage ? <p role="status" style={authenticationNoticeStyle}>{state.configurationMessage}</p> : null}
+    <div><button type="submit" style={primaryStyle} disabled={!editable || saving}>{saving ? '正在保存…' : '保存并继续'}</button></div>
   </form>
+}
+
+function configurationUnavailableMessage(reason?: string): string {
+  return reason === 'business-busy' || reason === 'busy'
+    ? '业务回合仍在运行，请等回合结束后重新打开设置。'
+    : '当前无法修改此配置，请检查插件条目是否已启用、是否有重复条目或更高层覆盖。诊断仍可查看。'
 }
 
 function displayBaseUrl(auth: OpenBknOverlayState['auth']): string {
@@ -190,7 +227,6 @@ const networkIdStyle = { color: '#64748b', fontSize: 12, marginTop: 2, fontFamil
 const workspaceStyle = { color: '#64748b', fontSize: 12, overflow: 'hidden', textOverflow: 'ellipsis', whiteSpace: 'nowrap' as const }
 const descriptionStyle = { color: '#64748b', fontSize: 14, lineHeight: 1.55 }
 const actionsStyle = { display: 'flex', gap: 8, justifyContent: 'flex-end' }
-const tokenStyle = { border: '1px solid #cbd5e1', borderRadius: 8, padding: '9px 10px', font: 'inherit' }
 const searchLabelStyle = { display: 'grid', gap: 6, fontSize: 13, fontWeight: 650 }
 const searchInputStyle = { border: '1px solid #cbd5e1', borderRadius: 8, padding: '9px 10px', font: 'inherit' }
 const loginLinkStyle = { color: '#087d72', fontSize: 14, fontWeight: 650 }

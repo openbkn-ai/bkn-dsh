@@ -12,6 +12,7 @@
 import type { Context } from '@deepseek-ai/cordis'
 import Schema from '@deepseek-ai/schemastery'
 import { OpenBknDiagnosticsService } from './diagnostics-service.js'
+import { OpenBknConfigurationService } from './configuration-service.js'
 
 export { OpenBknDiagnosticsService }
 
@@ -27,4 +28,5 @@ export const Config = Schema.object({})
 /** Register the passive diagnostics service. */
 export async function apply(ctx: Context): Promise<void> {
   await ctx.plugin(OpenBknDiagnosticsService)
+  await ctx.plugin(OpenBknConfigurationService)
 }

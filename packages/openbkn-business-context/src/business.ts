@@ -2,6 +2,7 @@ import type { Context } from '@deepseek-ai/cordis'
 import { Config as ConfigSchema, type Config as PluginConfig } from './config.js'
 import { OpenBknBusinessContextService } from './business-context-service.js'
 import { OpenBknWorkspaceBindingRegistry } from './workspace-binding-registry.js'
+import { passiveDiagnostics } from './diagnostics-observer.js'
 
 export { ConfigSchema as Config }
 export type { PluginConfig }
@@ -81,6 +82,8 @@ export const inject = ['agents', 'subprocess', 'storageDomain']
 
 /** Register the host service; it contributes no model-visible tool globally. */
 export async function apply(ctx: Context, config: PluginConfig): Promise<void> {
+  passiveDiagnostics.selectConfiguration(config.baseUrl)
+  if (config.baseUrl === '') return
   await ctx.plugin(OpenBknWorkspaceBindingRegistry)
   await ctx.plugin(OpenBknBusinessContextService, config)
 }

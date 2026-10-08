@@ -1,0 +1,68 @@
+{
+  "scope": "local pack / official npm Host API preflight; no UI acceptance",
+  "beforePatchSHA": "ef189a8c27db6d63930aa3046a3040482e952eafcb7487c644d508e8d461f027",
+  "invalid": {
+    "ok": false,
+    "error": {
+      "code": "openbkn/configuration-invalid",
+      "message": "Enter an absolute HTTP(S) platform URL.",
+      "details": {
+        "configField": "baseUrl"
+      }
+    }
+  },
+  "invalidPatchUnchanged": true,
+  "validSave": {
+    "ok": true,
+    "value": {
+      "baseUrl": "https://platform.example",
+      "cliPath": "/test/openbkn",
+      "configured": true,
+      "editable": true
+    }
+  },
+  "readAfterReload": {
+    "ok": true,
+    "value": {
+      "baseUrl": "https://platform.example",
+      "cliPath": "/test/openbkn",
+      "configured": true,
+      "editable": true
+    }
+  },
+  "checksAfterReload": [
+    {
+      "id": "bootstrap-entry",
+      "stage": "installation",
+      "status": "pass",
+      "source": "host-runtime",
+      "code": "component-loaded",
+      "evidence": {
+        "entryPresent": true
+      },
+      "nextAction": null
+    },
+    {
+      "id": "business-entry",
+      "stage": "component",
+      "status": "pass",
+      "source": "host-runtime",
+      "code": "component-loaded",
+      "evidence": {
+        "entryPresent": true
+      },
+      "nextAction": null
+    },
+    {
+      "id": "diagnostics-entry",
+      "stage": "diagnostics",
+      "status": "pass",
+      "source": "host-runtime",
+      "code": "component-loaded",
+      "evidence": {
+        "schemaVersion": 1
+      },
+      "nextAction": null
+    }
+  ]
+}

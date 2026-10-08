@@ -181,91 +181,101 @@ const scopedPolicyPlugin = (
 ) => ({
   name: 'openbkn-business-context-policy',
   inject: ['systemPrompt', 'tools'],
-  apply(ctx: Context): void {
-    if (binding === undefined) return
-    const policy = buildManagedSessionPolicy(binding, profile)
-    const systemPrompt = (ctx as Context & { systemPrompt: ScopedSystemPrompt }).systemPrompt
-    const tools = (ctx as Context & { tools: ScopedTools }).tools
-    const events = ctx as Context & { on: ScopedAgentEvents['on'] }
-    // Context Loader tools are dynamically registered after the agent is
-    // created, so `restrict()` cannot safely name them here. A scoped guard is
-    // DSH's monotonic enforcement point and works regardless of registration
-    // timing; it also covers tools contributed by the agent preset itself.
-    let lifecycle: InteractionLifecycleState = restoreFrom(agent.session.snapshotEvents())
-    tools.guard(execution => {
-      if (execution.name === PTC_RUN_CODE_TOOL) return PTC_UNSUPPORTED_DENIAL
-      const unmanaged = unmanagedDenial(execution.name)
-      if (unmanaged !== undefined) return unmanaged
-      // Rules 2–5 of the interaction boundary (§6.3) all live in the pure
-      // `denialFor`; the managed set (rule 1) and the network scope are the
-      // only other decisions here, and the guard itself stays side-effect
-      // free — state moves only through settled results below.
-      const args = recordArgs(execution.arguments)
-      return denialFor(lifecycle, execution.name, args)
-        ?? knScopeDenial(execution.name, args, binding.knowledgeNetworkId, tools.get(execution.name, agent))
-    })
-    // Constraint C2: this listener must stay synchronous so the state is
-    // updated before the next guard judgment (V0-3, probe-verified).
-    events.on('tools/result', (exec, result) => {
-      if (exec.name === START_INTERACTION_TOOL || exec.name === FINISH_INTERACTION_TOOL) {
-        // No write: the logged tool result itself is what `restoreFrom` replays.
-        lifecycle = onToolResult(lifecycle, exec.name, result.isError !== true, projectLifecycleOutcome(result))
-      }
-    })
-    events.on('agent/pre-step', async (payload, next) => {
-      if (payload.step === 1) {
-        lifecycle = onTurnStart(lifecycle)
-      }
-      return await next()
-    })
-    events.on('agent/turn-stopping', payload => {
-      // First batch: no automatic finish. An interaction left open here stays
-      // open platform-side — a documented known limitation (plan §11). The
-      // stable code token plus turn and interaction id make the residue
-      // countable and locatable without carrying any business payload.
-      if (lifecycle.open) {
-        ctx.logger.warn(
-          'openbkn-business-context: interaction left open at turn end (code=interaction-left-open, turn=%d, interactionId=%s)',
-          payload.turn,
-          lifecycle.interactionId ?? 'unknown',
-        )
-      }
-    })
-    // Evaluated per assembly: PTC is a per-session preset whose tool may be
-    // composed after this mount. An empty text renders no section.
-    systemPrompt.section({
-      name: 'openbkn:ptc-unsupported',
-      order: 519,
-      text: () => tools.get(PTC_RUN_CODE_TOOL, agent) === undefined ? '' : PTC_UNSUPPORTED_SECTION,
-    })
-    // The routing rule is evaluated per assembly: the Context Loader tools
-    // register after the mount, and which of them exist depends on the
-    // platform release and its deployment switches.
-    const offered = (shortName: string): boolean => tools.get(`${OPENBKN_TOOL_PREFIX}${shortName}`, agent) !== undefined
-    const availability = (): CapabilityToolAvailability | undefined => tools.get(START_INTERACTION_TOOL, agent) === undefined
-      ? undefined
-      : {
-          searchCapabilities: offered('search_capabilities'), findSkills: offered('find_skills'),
-          executeTool: offered('execute_tool'),
-          executeSkill: declaresKnId(tools.get(`${OPENBKN_TOOL_PREFIX}execute_skill`, agent)),
-        }
-    systemPrompt.section({
-      name: 'openbkn:managed-session',
-      order: 520,
-      text: () => `${policy.governance}\n${capabilityRoutingText(availability())}`,
-    })
-    if (policy.capabilities.length > 0) {
-      systemPrompt.section({ name: 'openbkn:network-capabilities', order: 521, text: policy.capabilities })
+  apply(ctx: Context): () => void {
+    if (binding === undefined) return () => {}
+    const disposers: Array<() => void> = []
+    const dispose = (): void => {
+      for (const cleanup of disposers.splice(0).reverse()) cleanup()
     }
-    // Conversation continuity renders through a provider evaluated at every
-    // assembly, so each turn's prompt carries the identity held at that moment
-    // without re-registering (and without racing the assembly that `pre-step`
-    // already performed before its waterfall runs).
-    systemPrompt.section({
-      name: CONVERSATION_SECTION_NAME,
-      order: CONVERSATION_SECTION_ORDER,
-      text: () => managedConversationSectionText(lifecycle.conversationId),
-    })
+    try {
+      const policy = buildManagedSessionPolicy(binding, profile)
+      const systemPrompt = (ctx as Context & { systemPrompt: ScopedSystemPrompt }).systemPrompt
+      const tools = (ctx as Context & { tools: ScopedTools }).tools
+      const events = ctx as Context & { on: ScopedAgentEvents['on'] }
+      // Context Loader tools are dynamically registered after the agent is
+      // created, so `restrict()` cannot safely name them here. A scoped guard is
+      // DSH's monotonic enforcement point and works regardless of registration
+      // timing; it also covers tools contributed by the agent preset itself.
+      let lifecycle: InteractionLifecycleState = restoreFrom(agent.session.snapshotEvents())
+      disposers.push(tools.guard(execution => {
+        if (execution.name === PTC_RUN_CODE_TOOL) return PTC_UNSUPPORTED_DENIAL
+        const unmanaged = unmanagedDenial(execution.name)
+        if (unmanaged !== undefined) return unmanaged
+        // Rules 2–5 of the interaction boundary (§6.3) all live in the pure
+        // `denialFor`; the managed set (rule 1) and the network scope are the
+        // only other decisions here, and the guard itself stays side-effect
+        // free — state moves only through settled results below.
+        const args = recordArgs(execution.arguments)
+        return denialFor(lifecycle, execution.name, args)
+          ?? knScopeDenial(execution.name, args, binding.knowledgeNetworkId, tools.get(execution.name, agent))
+      }))
+      // Constraint C2: this listener must stay synchronous so the state is
+      // updated before the next guard judgment (V0-3, probe-verified).
+      disposers.push(events.on('tools/result', (exec, result) => {
+        if (exec.name === START_INTERACTION_TOOL || exec.name === FINISH_INTERACTION_TOOL) {
+          // No write: the logged tool result itself is what `restoreFrom` replays.
+          lifecycle = onToolResult(lifecycle, exec.name, result.isError !== true, projectLifecycleOutcome(result))
+        }
+      }))
+      disposers.push(events.on('agent/pre-step', async (payload, next) => {
+        if (payload.step === 1) {
+          lifecycle = onTurnStart(lifecycle)
+        }
+        return await next()
+      }))
+      disposers.push(events.on('agent/turn-stopping', payload => {
+        // First batch: no automatic finish. An interaction left open here stays
+        // open platform-side — a documented known limitation (plan §11). The
+        // stable code token plus turn and interaction id make the residue
+        // countable and locatable without carrying any business payload.
+        if (lifecycle.open) {
+          ctx.logger.warn(
+            'openbkn-business-context: interaction left open at turn end (code=interaction-left-open, turn=%d, interactionId=%s)',
+            payload.turn,
+            lifecycle.interactionId ?? 'unknown',
+          )
+        }
+      }))
+      // Evaluated per assembly: PTC is a per-session preset whose tool may be
+      // composed after this mount. An empty text renders no section.
+      disposers.push(systemPrompt.section({
+        name: 'openbkn:ptc-unsupported',
+        order: 519,
+        text: () => tools.get(PTC_RUN_CODE_TOOL, agent) === undefined ? '' : PTC_UNSUPPORTED_SECTION,
+      }))
+      // The routing rule is evaluated per assembly: the Context Loader tools
+      // register after the mount, and which of them exist depends on the
+      // platform release and its deployment switches.
+      const offered = (shortName: string): boolean => tools.get(`${OPENBKN_TOOL_PREFIX}${shortName}`, agent) !== undefined
+      const availability = (): CapabilityToolAvailability | undefined => tools.get(START_INTERACTION_TOOL, agent) === undefined
+        ? undefined
+        : {
+            searchCapabilities: offered('search_capabilities'), findSkills: offered('find_skills'),
+            executeTool: offered('execute_tool'),
+            executeSkill: declaresKnId(tools.get(`${OPENBKN_TOOL_PREFIX}execute_skill`, agent)),
+          }
+      disposers.push(systemPrompt.section({
+        name: 'openbkn:managed-session',
+        order: 520,
+        text: () => `${policy.governance}\n${capabilityRoutingText(availability())}`,
+      }))
+      if (policy.capabilities.length > 0) {
+        disposers.push(systemPrompt.section({ name: 'openbkn:network-capabilities', order: 521, text: policy.capabilities }))
+      }
+      // Conversation continuity renders through a provider evaluated at every
+      // assembly, so each turn's prompt carries the identity held at that moment
+      // without re-registering (and without racing the assembly that `pre-step`
+      // already performed before its waterfall runs).
+      disposers.push(systemPrompt.section({
+        name: CONVERSATION_SECTION_NAME,
+        order: CONVERSATION_SECTION_ORDER,
+        text: () => managedConversationSectionText(lifecycle.conversationId),
+      }))
+      return dispose
+    } catch (error) {
+      dispose()
+      throw error
+    }
   },
 })
 
@@ -279,12 +289,22 @@ export function mountBoundBusinessNetworkTool(
   config: PlatformReaderConfig,
   binding: BusinessNetworkBinding | undefined,
   profile?: NetworkCapabilityProfile,
+  owner?: Context,
 ): boolean {
   if (binding === undefined || normalizeBaseUrl(binding.platformBaseUrl) !== normalizeBaseUrl(config.baseUrl)) return false
   // This event fires before `agent/session-start`, but `Context.inject()` may
   // schedule a later fiber. The standard preset has already composed these
   // services, so apply the contribution synchronously to this Agent scope.
-  scopedPolicyPlugin(binding, agent, profile).apply(agent.ctx)
+  const dispose = scopedPolicyPlugin(binding, agent, profile).apply(agent.ctx)
+  // The registrations retain their native Agent ownership. The service also
+  // owns their exact disposers so ordinary business-entry reload removes the
+  // policy from still-live sessions before the replacement service remounts.
+  try {
+    owner?.effect(() => dispose, 'openbkn.businessPolicyCleanup')
+  } catch (error) {
+    dispose()
+    throw error
+  }
   return true
 }
 

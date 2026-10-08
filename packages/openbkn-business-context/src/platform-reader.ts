@@ -1,6 +1,6 @@
 import type { JsonValue } from '@deepseek-ai/dsh-util-values'
 import type { BusinessNetworkBinding } from './session-binding.js'
-import { httpStatusEvidence, passiveDiagnostics, transportMarkersOf } from './diagnostics-observer.js'
+import { httpStatusEvidence, passiveDiagnostics, transportMarkersOf, type PassiveDiagnosticsWriter } from './diagnostics-observer.js'
 import type { DiagnosticsStage } from './diagnostics-contract.js'
 import { trimTrailingSlashes } from './trailing-slashes.js'
 
@@ -43,59 +43,59 @@ export class PlatformReaderError extends Error {
    * @param subject - check-point this failure belongs to.
    * @returns this error, for `throw` chaining.
    */
-  observeAs(subject: string): this {
+  observeAs(subject: string, observations: PassiveDiagnosticsWriter = passiveDiagnostics.writer()): this {
     if (this.observedSubject !== undefined) return this
     this.observedSubject = subject
-    observeReaderFailure(subject, this.code, this.cause, this.httpStatus)
+    observeReaderFailure(subject, this.code, this.cause, this.httpStatus, observations)
     return this
   }
 }
 
 /** Project one reader failure into the passive diagnostics buffer. */
 /** Record the success boundary of one reader interface on its own subject. */
-function readerSucceeded(subject: string, stage: DiagnosticsStage): void {
-  passiveDiagnostics.record({ subject, stage, code: subject, status: 'pass' })
+function readerSucceeded(subject: string, stage: DiagnosticsStage, observations: PassiveDiagnosticsWriter): void {
+  observations.record({ subject, stage, code: subject, status: 'pass' })
 }
 
 /** Attribute a caught failure to one check-point subject; pass unknown shapes through. */
-function observedAt(error: unknown, subject: string): unknown {
-  return error instanceof PlatformReaderError ? error.observeAs(subject) : error
+function observedAt(error: unknown, subject: string, observations: PassiveDiagnosticsWriter): unknown {
+  return error instanceof PlatformReaderError ? error.observeAs(subject, observations) : error
 }
 
-function observeReaderFailure(subject: string, code: PlatformReaderErrorCode, cause: unknown, httpStatus: unknown): void {
+function observeReaderFailure(subject: string, code: PlatformReaderErrorCode, cause: unknown, httpStatus: unknown, observations: PassiveDiagnosticsWriter): void {
   if (code === 'REQUEST_ABORTED') return
   const status = httpStatusEvidence(httpStatus)
   if (code === 'AUTHENTICATION_REQUIRED') {
     // 401/403 are refusals: record the status and refuse to infer a cause;
     // only the no-credential path is genuinely "not logged in".
     const refusal = typeof status.httpStatus === 'number' && (status.httpStatus === 401 || status.httpStatus === 403)
-    passiveDiagnostics.record({
+    observations.record({
       subject, stage: 'authentication',
       code: refusal ? 'auth-rejected' : 'not-logged-in', status: 'fail', evidence: status,
     })
     return
   }
   if (code === 'PLATFORM_MISMATCH') {
-    passiveDiagnostics.record({
+    observations.record({
       subject, stage: 'configuration', code: 'platform-mismatch',
       status: 'fail', evidence: { platformMismatch: true, ...status },
     })
     return
   }
   if (code === 'OUTPUT_OVERFLOW') {
-    passiveDiagnostics.record({ subject, stage: 'platform-directory', code: 'platform-response-overflow', status: 'fail', evidence: status })
+    observations.record({ subject, stage: 'platform-directory', code: 'platform-response-overflow', status: 'fail', evidence: status })
     return
   }
   if (code === 'INVALID_RESPONSE') {
-    passiveDiagnostics.record({ subject, stage: 'platform-directory', code: 'platform-response-invalid', status: 'fail', evidence: status })
+    observations.record({ subject, stage: 'platform-directory', code: 'platform-response-invalid', status: 'fail', evidence: status })
     return
   }
   if (code === 'RECORD_NOT_DISCLOSED') {
-    passiveDiagnostics.record({ subject, stage: 'platform-directory', code: 'record-not-disclosed', status: 'fail', evidence: status })
+    observations.record({ subject, stage: 'platform-directory', code: 'record-not-disclosed', status: 'fail', evidence: status })
     return
   }
   if (code === 'LICENSE_REQUIRED') {
-    passiveDiagnostics.record({ subject, stage: 'platform-directory', code: 'platform-directory-failed', status: 'fail', evidence: status })
+    observations.record({ subject, stage: 'platform-directory', code: 'platform-directory-failed', status: 'fail', evidence: status })
     return
   }
   // PLATFORM_UNAVAILABLE: classify the transport layer from the bounded
@@ -106,7 +106,7 @@ function observeReaderFailure(subject: string, code: PlatformReaderErrorCode, ca
     : markers.timeout ? 'timeout'
     : typeof status.httpStatus === 'number' && status.httpStatus >= 500 ? 'platform-unavailable'
     : 'network-unreachable'
-  passiveDiagnostics.record({ subject, stage: 'network', code: diagCode, status: 'fail', evidence: status })
+  observations.record({ subject, stage: 'network', code: diagCode, status: 'fail', evidence: status })
 }
 
 export interface PlatformReaderConfig {
@@ -138,6 +138,8 @@ const MAX_OPERATIONS_RESPONSE_BYTES = 64 * 1024 * 1024
  * only obtains the catalog, schema profile, and safe Trace projections.
  */
 export class OpenBknPlatformReader {
+  private readonly observations = passiveDiagnostics.writer()
+
   constructor(private readonly config: PlatformReaderConfig, private readonly fetcher: PlatformFetch = fetch) {}
 
   async listKnowledgeNetworks(signal: AbortSignal, _cwd?: string): Promise<JsonValue> {
@@ -146,7 +148,7 @@ export class OpenBknPlatformReader {
       // the payload; an HTTP 200 with an invalid body is not a success.
       return this.admit(await this.get('/api/bkn-backend/v1/knowledge-networks?limit=100', signal))
     } catch (error) {
-      throw observedAt(error, 'platform-network-list')
+      throw observedAt(error, 'platform-network-list', this.observations)
     }
   }
 
@@ -163,7 +165,7 @@ export class OpenBknPlatformReader {
         response_format: 'json',
       }, signal))
     } catch (error) {
-      throw observedAt(error, 'platform-network-detail')
+      throw observedAt(error, 'platform-network-detail', this.observations)
     }
   }
 
@@ -171,10 +173,10 @@ export class OpenBknPlatformReader {
     try {
       const value = await this.get(`/api/agent-observability/v1/interactions/${encodeURIComponent(interactionId)}/operations`, signal, { licenseGated: true, maxResponseBytes: MAX_OPERATIONS_RESPONSE_BYTES })
       const projected = this.admit(projectOperations(value))
-      readerSucceeded('platform-operations', 'platform-directory')
+      readerSucceeded('platform-operations', 'platform-directory', this.observations)
       return projected
     } catch (error) {
-      throw observedAt(error, 'platform-operations')
+      throw observedAt(error, 'platform-operations', this.observations)
     }
   }
 
@@ -182,10 +184,10 @@ export class OpenBknPlatformReader {
     try {
       const value = await this.get(`/api/agent-observability/v1/interactions/${encodeURIComponent(interactionId)}/business-graph`, signal, { licenseGated: true })
       const projected = this.admit(projectBusinessGraph(value))
-      readerSucceeded('platform-business-graph', 'platform-directory')
+      readerSucceeded('platform-business-graph', 'platform-directory', this.observations)
       return projected
     } catch (error) {
-      throw observedAt(error, 'platform-business-graph')
+      throw observedAt(error, 'platform-business-graph', this.observations)
     }
   }
 
@@ -196,10 +198,10 @@ export class OpenBknPlatformReader {
       const source = record(value)
       const edition = string(source?.edition)
       const detail = { ...(edition === undefined ? {} : { edition }), ...(typeof source?.licensed === 'boolean' ? { licensed: source?.licensed } : {}) }
-      readerSucceeded('platform-capabilities', 'platform-directory')
+      readerSucceeded('platform-capabilities', 'platform-directory', this.observations)
       return detail
     } catch (error) {
-      throw observedAt(error, 'platform-capabilities')
+      throw observedAt(error, 'platform-capabilities', this.observations)
     }
   }
 
@@ -219,6 +221,7 @@ export class OpenBknPlatformReader {
     if (signal.aborted) throw new PlatformReaderError('REQUEST_ABORTED', 'OpenBKN context request was cancelled.')
     const url = fixedUrl(this.config.baseUrl, path, this.config.allowInsecureTls)
     const token = await this.config.resolveToken?.()
+    if (signal.aborted) throw new PlatformReaderError('REQUEST_ABORTED', 'OpenBKN context request was cancelled.')
     if (token === undefined || token.trim().length === 0) {
       throw new PlatformReaderError('AUTHENTICATION_REQUIRED', 'OpenBKN authentication is required.')
     }
@@ -242,6 +245,7 @@ export class OpenBknPlatformReader {
       if (signal.aborted) throw new PlatformReaderError('REQUEST_ABORTED', 'OpenBKN context request was cancelled.', { cause: error })
       throw new PlatformReaderError('PLATFORM_UNAVAILABLE', 'OpenBKN platform data is temporarily unavailable.', { cause: error })
     }
+    if (signal.aborted) throw new PlatformReaderError('REQUEST_ABORTED', 'OpenBKN context request was cancelled.')
     if (response.status === 401) {
       // 401 is a caller-identity problem (expired or rejected token class);
       // the deployment-license gate answers 403 below.
@@ -253,6 +257,7 @@ export class OpenBknPlatformReader {
       // a caller-authorization problem.
       if (options?.licenseGated === true) {
         const failure = await errorEnvelope(response)
+        if (signal.aborted) throw new PlatformReaderError('REQUEST_ABORTED', 'OpenBKN context request was cancelled.')
         if (string(record(failure)?.code) === 'permission_denied') {
           throw new PlatformReaderError(
             'LICENSE_REQUIRED',
@@ -271,6 +276,7 @@ export class OpenBknPlatformReader {
       // deliberately does not distinguish). Retrying cannot fix that, so it
       // gets its own code; every other 404 stays a generic unavailable.
       const failure = await errorEnvelope(response)
+      if (signal.aborted) throw new PlatformReaderError('REQUEST_ABORTED', 'OpenBKN context request was cancelled.')
       if (string(record(failure)?.code) === 'resource_not_disclosed') {
         throw new PlatformReaderError('RECORD_NOT_DISCLOSED', 'The requested OpenBKN record is not disclosed.', { httpStatus: response.status })
       }
@@ -288,9 +294,11 @@ export class OpenBknPlatformReader {
     try {
       text = await readCappedBody(response, capBytes)
     } catch (error: unknown) {
+      if (signal.aborted) throw new PlatformReaderError('REQUEST_ABORTED', 'OpenBKN context request was cancelled.', { cause: error })
       if (error instanceof PlatformReaderError) throw error
       throw new PlatformReaderError('PLATFORM_UNAVAILABLE', 'OpenBKN platform data is temporarily unavailable.', { cause: error })
     }
+    if (signal.aborted) throw new PlatformReaderError('REQUEST_ABORTED', 'OpenBKN context request was cancelled.')
     let value: unknown
     try { value = JSON.parse(text) } catch (error: unknown) {
       throw new PlatformReaderError('INVALID_RESPONSE', 'OpenBKN platform returned an invalid response.', { cause: error })

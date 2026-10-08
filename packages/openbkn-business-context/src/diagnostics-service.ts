@@ -118,6 +118,20 @@ async function businessEntryCheck(ctx: Context): Promise<CheckDraft> {
   }
 }
 
+/** A configured address is required before connection checks can execute. */
+function pendingConfigurationChecks(ctx: Context): CheckDraft[] {
+  const loader = loaderOf(ctx)
+  const business = loader === undefined ? undefined : findOwnEntries(loader).business
+  if (business?.fiber?.state !== 2) return []
+  const config = business.options.config as { baseUrl?: unknown } | undefined
+  if (config?.baseUrl !== undefined && config.baseUrl !== '') return []
+  return ['configuration', 'cli', 'authentication', 'context-loader', 'platform-directory'].map(stage => ({
+    id: stage === 'configuration' ? 'configuration' : `pending:${stage}`,
+    stage: stage as DiagnosticsStage, status: 'not-run', code: DIAGNOSTICS_CODES.configurationRequired,
+    evidence: { configured: false }, nextAction: 'Open OpenBKN settings, save the platform URL, then sign in with the OpenBKN CLI.',
+  }))
+}
+
 /** The diagnostics entry's own health check (it is running by construction). */
 function selfCheck(): CheckDraft {
   return {
@@ -192,7 +206,7 @@ export class OpenBknDiagnosticsService extends TypertRemoteService {
   @Remote('getReport')
   async getReport(signal?: AbortSignal): Promise<DiagnosticsReport> {
     if (signal?.aborted) throw signal.reason
-    const drafts = [await bootstrapEntryCheck(this.ctx), await businessEntryCheck(this.ctx), selfCheck()]
+    const drafts = [await bootstrapEntryCheck(this.ctx), await businessEntryCheck(this.ctx), selfCheck(), ...pendingConfigurationChecks(this.ctx)]
     const observed = passiveDiagnostics.snapshot()
     const notes = passiveDiagnostics.droppedObservationCount > 0
       ? [`observation buffer dropped ${String(passiveDiagnostics.droppedObservationCount)} novel keys after the bound`]

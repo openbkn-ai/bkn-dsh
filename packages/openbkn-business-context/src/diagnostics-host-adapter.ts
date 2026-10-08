@@ -43,7 +43,7 @@ export const FIBER_OBSERVE_TIMEOUT_MS = 1_500
 
 /** The public entry surface the adapter reads. */
 export interface LoaderEntryLike {
-  readonly options: { readonly id: string; readonly name: string }
+  readonly options: { readonly id: string; readonly name: string; readonly config?: unknown }
   readonly fiber?: {
     readonly state?: number
     await(): Promise<unknown>

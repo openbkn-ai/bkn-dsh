@@ -1,3 +1,18 @@
+/** Current profile settings; credentials never cross this boundary. */
+export interface OpenBknConfigurationView {
+  readonly baseUrl: string
+  readonly cliPath: string
+  readonly configured: boolean
+  readonly editable: boolean
+  readonly unavailableReason?: 'editor-unavailable' | 'entry-unavailable' | 'entry-inactive' | 'busy'
+}
+
+/** The only fields the first-use panel may persist through DSH. */
+export interface OpenBknConfigurationInput {
+  readonly baseUrl: string
+  readonly cliPath: string
+}
+
 /** Safe, UI-ready representation of OpenBKN authentication state. */
 export type AuthSnapshot =
   | { readonly kind: 'authenticated'; readonly baseUrl: string; readonly userId?: string; readonly username?: string }

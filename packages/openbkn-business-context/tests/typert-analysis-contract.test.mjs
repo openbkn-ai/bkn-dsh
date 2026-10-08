@@ -17,6 +17,8 @@ test('discovers every public OpenBKN Remote method from the host aggregate', () 
   )
 
   assert.ok(bundle)
-  // Ten business methods plus the diagnostics getReport.
-  assert.equal(bundle.invocations.length, 11)
+  // Ten business methods, diagnostics getReport and two independent settings methods.
+  assert.equal(bundle.invocations.length, 13)
+  const settings = bundle.invocations.filter(invocation => invocation.service === 'openbknConfiguration')
+  assert.equal(settings.length, 2)
 })

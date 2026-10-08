@@ -1,6 +1,6 @@
 # bkn-dsh
 
--7 候选统一此前未发布的诊断工作与供应链回答指导。普通 Node Host 的形态显示为未知，因为 Desktop 也使用 Node。合并候选的 CI 包实机及 Windows 验收仍待完成；详见仓库 -7 交接文档。
+为 DeepSeek Harness 提供 OpenBKN 业务知识、网络范围治理、诊断与溯源。
 
 [English](README.md)
 
@@ -41,17 +41,41 @@ bkn-dsh 连接 DeepSeek Harness 与 OpenBKN，使经过授权的用户可以：
 - **降低交互成本**：用户可以自然提问，不必在多个系统间切换或编写技术查询。
 - **复用组织知识**：经过治理的知识网络成为跨会话、跨团队共享的决策语义层。
 
-## 安装
+## 安装并开始使用
 
-本 -7 候选尚未发布到 npm。发布前请用固定 CI 候选 `.tgz` 的绝对路径，下面的指令在发布后使用。当前已发布的 -4 使用[独立安装说明](https://github.com/openbkn-ai/bkn-dsh/blob/v0.2.0-rc.2-openbkn.0.2.0-4/README.zh.md)。
-
-适用于未打补丁的 DeepSeek Harness `0.2.0-rc.2`：官方桌面版、npm 命令行（`@deepseek-ai/dsh@0.2.0-rc.2`）或构建后的源码检出。在 DSH 停止时，用 DSH 自己的插件管理器安装：
+使用未打补丁的 DeepSeek Harness `0.2.0-rc.2`：官方桌面版、npm 命令行（`@deepseek-ai/dsh@0.2.0-rc.2`）或构建后的源码检出。在 DSH 的**插件**页面选择**添加插件**，填写 `@openbkn/dsh-business-context@latest` 并选择安装源。也可以停止 DSH 后执行：
 
 ```bash
-dsh plugin --profile <desktop|web> add @openbkn/dsh-business-context@0.2.0-rc.2-openbkn.0.2.0-7
+dsh plugin --profile <desktop|web> add @openbkn/dsh-business-context@latest
 ```
 
-然后填写平台地址、用 `openbkn` CLI 登录，并从侧栏 **OpenBKN** 入口绑定网络。绑定的会话必须使用 DSH 的标准模式（暂不支持 PTC 模式）。分步配置、证书与卸载：[仓库 README](https://github.com/openbkn-ai/bkn-dsh/blob/main/README.zh.md#安装并开始使用)。
+Windows 上使用 `dsh.cmd`。源码构建从 DSH 源码根目录执行 `node apps/cli/lib/bin.js plugin --profile web add @openbkn/dsh-business-context@latest`。请使用实际启动的 Host 的 profile 与 `DSH_HOME`，`desktop` 和 `web` 是独立的 profile。安装下载包时，把包名替换为 `.tgz` 的绝对路径。
+
+安装与平台版本匹配的 OpenBKN CLI：0.1.5 平台用 `npm install -g @openbkn/bkn-sdk@0.1.5`；0.1.4 平台用 `@openbkn/bkn-sdk@0.1.4`（`0.1.5-rc.1` 也可以）。CLI 从 `0.1.5-rc.2` 起要求平台提供健康/版本接口，0.1.4 没有该接口。配置插件前不必先登录。npm 版 DSH 还需要 `PATH` 中有 pnpm（`npm install -g pnpm@11.7.0`），桌面版自带。自签证书平台需为 DSH 进程设置 `NODE_EXTRA_CA_CERTS` 并完全重启；各形态的操作见[仓库 README](https://github.com/openbkn-ai/bkn-dsh/blob/main/README.zh.md#开始之前)。
+
+### 配置、授权、提问
+
+1. 启动 DSH，点击侧栏底部的 **OpenBKN**。未设置地址是正常的**待配置**状态，诊断仍可打开。配置前，插件不会连接 OpenBKN，也不会读取它的 CLI 凭据。
+2. 填写绝对 `http://` 或 `https://` 平台地址，点击**保存并继续**。非法输入会被拒绝，不改动已保存配置。地址通过 DSH 配置编辑器保存到当前 profile，按正常组件重载应用；保存地址不代表连接或授权已经成功。
+3. 若 DSH 找不到 CLI，在**高级设置**里填写 `cliPath`，默认是 `openbkn`。Windows 上的绝对路径必须包含 shim 文件名，例如 `C:/Users/<你>/AppData/Roaming/npm/openbkn.cmd`。以后可以从右上角的**设置**编辑同一表单；业务回合运行时，请等它结束再改地址。
+4. 点击**使用 OpenBKN CLI 登录并同步**，在浏览器完成授权，再回到 DSH。已有凭据被拒绝时，也使用这个入口重新登录。403 可能需要管理员授予权限，同账号重新登录不能保证恢复。
+5. 选择有权限的知识网络，新建或继续其工作区，在新会话中保持**标准模式**再提问。暂不支持 PTC 模式。完成的回答提供**查看业务溯源**。
+
+表单保留其他配置字段；更高优先级的覆盖阻止设置生效时，会明确报告。临时网络/TLS 失败不会清空已保存地址。已有会话保留原平台与网络绑定，改地址不会自动改绑。这条流程无需编辑 YAML，也不需要手动粘贴 Token；凭据仍由 OpenBKN CLI 与 DSH 凭证管理，不要把 Token 写进配置文件。
+
+关闭面板后，旧请求完成不会重新打开它；这不代表已取消正在进行的浏览器授权。完整步骤及目录选择器说明见[仓库 README](https://github.com/openbkn-ai/bkn-dsh/blob/main/README.zh.md#安装并开始使用)。
+
+## 卸载
+
+在 DSH 的**插件**页面移除整包。宿主若要求停止 profile，先停止再重试。也可以停止 DSH 后执行：
+
+```bash
+dsh plugin --profile <desktop|web> remove @openbkn/dsh-business-context
+```
+
+卸载会卸载包组件、移除 profile 包依赖，保留用户 profile 配置、DSH/OpenBKN 凭据、CLI 登录状态、会话、网络/工作区绑定和工作区文件。它不会退出账号或清空数据。不要删除整个 `node_modules/@openbkn` 目录，其中可能还有其他包。重装后可复用保留的配置与绑定。
+
+当前版本不向 DSH 会话日志添加插件事件，因此卸载后会话仍可读。最早的 `0.2.0-rc.2-openbkn.0.2.0` 版本另有会话日志限制，见[仓库历史说明](https://github.com/openbkn-ai/bkn-dsh/blob/main/README.zh.md#从-020-rc2-openbkn020-升级)。插件安装期间可能清理对应会话已不存在且记录至少七天的绑定；卸载不会执行全量清理。
 
 ## 包入口结构（-7 起调整）
 

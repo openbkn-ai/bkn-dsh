@@ -2,6 +2,19 @@
 
 All notable changes to this project are documented here.
 
+## 0.2.0-rc.2-openbkn.0.2.0-8 (unreleased)
+
+First-use setup for the existing DSH `0.2.0-rc.2` plugin. No runtime or upstream pin change.
+
+- Activate a fresh installation in a pending-configuration state. Until an address is saved, no business capability, CLI authentication or platform connection is started; diagnostics marks downstream checks as not run.
+- Add one settings form inside the OpenBKN panel for the platform URL and optional CLI path. Save through DSH's current-profile configuration editor and normal business-entry reload; malformed submissions preserve the existing configuration.
+- Keep ordinary sign-in on the OpenBKN CLI path. Remove the incomplete manual-token interface; the historical internal method is unchanged and is not a complete no-CLI mode.
+- Ignore stale panel operations after closing, reopening or reloading. Dispose Agent-scoped OpenBKN policy contributions when their business owner reloads, preserve immutable session bindings, and prevent an unverified new platform from receiving an old shared credential.
+- Scope passive diagnostics to the configured platform: changing addresses invalidates old observations, while recovery on the same address retains its history.
+- Align installation, configuration and uninstall instructions. Ordinary installation uses `@latest`; uninstall removes the plugin contribution while retaining user configuration and data.
+
+Candidate identity and actual Host acceptance are recorded separately before publication. Existing platform, restricted-account and historical evidence limitations are not resolved by this first-use change.
+
 ## 0.2.0-rc.2-openbkn.0.2.0-7 (2026-10-06)
 
 Unified plugin update combining the previously unpublished -5/-6 diagnostics work and subsequent fixes. The official DSH pin stays `0.2.0-rc.2`; historical evidence keeps its original candidate labels and hashes.

@@ -45,6 +45,11 @@ export interface PassiveObservationInput {
   readonly evidence?: Readonly<Record<string, unknown>>
 }
 
+/** A recorder bound to one configured-platform lifetime. */
+export interface PassiveDiagnosticsWriter {
+  record(input: PassiveObservationInput): void
+}
+
 /** Aggregated state for one subject. */
 interface PassiveRecord {
   readonly subject: string
@@ -66,6 +71,27 @@ interface PassiveRecord {
 export class PassiveDiagnosticsBuffer {
   private readonly records = new Map<string, PassiveRecord>()
   private droppedSubjects = 0
+  private configuration: string | undefined
+  private generation = 0
+
+  /**
+   * Retain recovery history for the same platform, but forget checks when
+   * its address changes. The address is private and never enters evidence.
+   */
+  selectConfiguration(baseUrl: string): void {
+    const selected = baseUrl.trim().replace(/\/+$/, '')
+    if (selected === this.configuration) return
+    this.configuration = selected
+    this.clear()
+  }
+
+  /** Late completions from a replaced platform cannot repopulate its checks. */
+  writer(): PassiveDiagnosticsWriter {
+    const generation = this.generation
+    return { record: input => {
+      if (generation === this.generation) this.record(input)
+    } }
+  }
 
   /** Record one outcome; the newest outcome on a subject defines its state. */
   record(input: PassiveObservationInput): void {
@@ -96,6 +122,7 @@ export class PassiveDiagnosticsBuffer {
 
   /** Forget everything (tests and explicit resets only). */
   clear(): void {
+    this.generation += 1
     this.records.clear()
     this.droppedSubjects = 0
   }

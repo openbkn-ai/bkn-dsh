@@ -12,6 +12,75 @@ const config = {
   maxResultBytes: 1_024, allowInsecureTls: false,
 }
 
+test('a reloaded service cannot resolve a shared token before this platform was verified', async () => {
+  const service = Object.create(OpenBknBusinessContextService.prototype) as {
+    synchronizedToken?: string
+    lifetime?: AbortController
+    authCoordinator(): { readToken(): Promise<string> }
+    resolveOpenBknToken(): Promise<string | undefined>
+  }
+  service.authCoordinator = () => ({ readToken: async () => { throw new Error('platform-mismatch') } })
+  await assert.rejects(service.resolveOpenBknToken(), /platform-mismatch/)
+  service.synchronizedToken = 'verified-fixture-token'
+  assert.equal(await service.resolveOpenBknToken(), 'verified-fixture-token')
+  service.lifetime = new AbortController()
+  service.lifetime.abort()
+  assert.equal(await service.resolveOpenBknToken(), undefined)
+})
+
+test('historical provenance can obtain a verified CLI token before panel status and coalesces parallel reads', async () => {
+  let reads = 0
+  const service = Object.create(OpenBknBusinessContextService.prototype) as {
+    authCoordinator(): { readToken(): Promise<string> }
+    resolveOpenBknToken(): Promise<string | undefined>
+  }
+  service.authCoordinator = () => ({ readToken: async () => { reads++; return 'verified-current-platform-token' } })
+  const tokens = await Promise.all([service.resolveOpenBknToken(), service.resolveOpenBknToken()])
+  assert.deepEqual(tokens, ['verified-current-platform-token', 'verified-current-platform-token'])
+  assert.equal(reads, 1)
+})
+
+test('a delayed CLI token from a disposed configuration is never synchronized', async () => {
+  let resolve!: (token: string) => void
+  let writes = 0
+  const pending = new Promise<string>(r => { resolve = r })
+  const signal = new AbortController()
+  const service = Object.create(OpenBknBusinessContextService.prototype) as {
+    ctx: unknown
+    authCoordinator(): { readToken(): Promise<string> }
+    synchronizeCliCredential(signal: AbortSignal): Promise<void>
+  }
+  service.ctx = { credentials: { set: async () => { writes++ } } }
+  service.authCoordinator = () => ({ readToken: () => pending })
+  const operation = service.synchronizeCliCredential(signal.signal)
+  signal.abort()
+  resolve('late-fixture-token')
+  await assert.rejects(operation)
+  assert.equal(writes, 0)
+})
+
+test('changing settings affects only current-platform bound turns, never ordinary sessions', async () => {
+  let syncs = 0
+  let nexts = 0
+  const service = Object.create(OpenBknBusinessContextService.prototype) as {
+    config: typeof config
+    ctx: unknown
+    remoteStatus(): Promise<unknown>
+    refreshManagedMcpAtTurnStart(agent: unknown, step: number, signal: AbortSignal, next: () => Promise<void>): Promise<void>
+  }
+  service.config = config
+  service.ctx = { get: () => ({ isChanging: true }) }
+  service.remoteStatus = async () => { syncs++ }
+  const next = async () => { nexts++ }
+  const unbound = { session: { snapshotEvents: () => [] } }
+  const bound = (baseUrl: string) => ({ session: { snapshotEvents: () => [{ type: 'openbkn/business-network-bound', data: { platformBaseUrl: baseUrl, knowledgeNetworkId: 'kn-fixture', displayName: 'Fixture' } }] } })
+  await service.refreshManagedMcpAtTurnStart(unbound, 1, new AbortController().signal, next)
+  await service.refreshManagedMcpAtTurnStart(bound('https://other.example'), 1, new AbortController().signal, next)
+  await assert.rejects(service.refreshManagedMcpAtTurnStart(bound(config.baseUrl), 1, new AbortController().signal, next), /settings are being applied/)
+  assert.equal(syncs, 0)
+  assert.equal(nexts, 2)
+})
+
 // Services built with Object.create skip the class-field initializer; give
 // them an empty binding store so bindings resolve from the given log events
 // alone, and any unexpected write fails the test.
@@ -80,6 +149,43 @@ test('enables the business capability only after the binding record is durable',
   assert.deepEqual(order, ['write', 'mount'])
 })
 
+test('a durable binding write blocks configuration reload until its policy mounts', async () => {
+  const agent = { id: 'session-write', status: 'idle', session: { id: 'session-write', snapshotEvents: () => [] } }
+  const service = serviceFor(agent) as ReturnType<typeof serviceFor> & { bindingRecords: unknown; readonly hasRunningTurn: boolean }
+  let complete!: () => void
+  let entered!: () => void
+  const started = new Promise<void>(resolve => { entered = resolve })
+  const pending = new Promise<void>(resolve => { complete = resolve })
+  Object.assign(service.ctx.agents, { list: () => [agent] })
+  service.bindingRecords = { read: () => undefined, write: async () => { entered(); await pending } }
+  service.mountIfBound = () => { assert.equal(service.hasRunningTurn, true) }
+  const binding = service.bind(agent, { platformBaseUrl: config.baseUrl, knowledgeNetworkId: 'kn-write', displayName: 'Write' })
+  await started
+  assert.equal(service.hasRunningTurn, true)
+  complete()
+  await binding
+  assert.equal(service.hasRunningTurn, false)
+})
+
+test('settings reload rejects a new binding before its durable write begins', async () => {
+  const agent = { id: 'session-save', session: { id: 'session-save', snapshotEvents: () => [] } }
+  const service = serviceFor(agent) as ReturnType<typeof serviceFor> & { bindingRecords: unknown }
+  let writes = 0
+  Object.assign(service.ctx, { get: () => ({ isChanging: true }) })
+  service.bindingRecords = { read: () => undefined, write: async () => { writes++ } }
+  await assert.rejects(service.bind(agent, { platformBaseUrl: config.baseUrl, knowledgeNetworkId: 'kn-save', displayName: 'Save' }), /settings are being applied/)
+  assert.equal(writes, 0)
+})
+
+test('reload detects a running bound turn even before its scoped policy restores', () => {
+  const agent = { id: 'session-restore', status: 'running', session: { id: 'session-restore', snapshotEvents: () => [{ type: 'openbkn/business-network-bound', data: { platformBaseUrl: config.baseUrl, knowledgeNetworkId: 'kn-restore', displayName: 'Restore' } }] } }
+  const service = serviceFor(agent) as ReturnType<typeof serviceFor> & { readonly hasRunningTurn: boolean }
+  Object.assign(service.ctx.agents, { list: () => [agent] })
+  assert.equal(service.hasRunningTurn, true)
+  Object.assign(agent.session, { snapshotEvents: () => [] })
+  assert.equal(service.hasRunningTurn, false)
+})
+
 test('stores a token through DSH credentials before testing the managed OpenBKN connection', async () => {
   let saved: string | undefined
   let tested = 0
@@ -132,6 +238,7 @@ test('refreshes the managed MCP credential before the first step of a bound busi
   let synchronized = 0
   let delegated = 0
   const service = Object.create(OpenBknBusinessContextService.prototype) as {
+    config: typeof config
     remoteStatus(signal: AbortSignal): Promise<unknown>
     refreshManagedMcpAtTurnStart(
       agent: { session: { snapshotEvents(): readonly unknown[] } },
@@ -140,6 +247,7 @@ test('refreshes the managed MCP credential before the first step of a bound busi
       next: () => Promise<{ readonly kind: 'enter' }>,
     ): Promise<{ readonly kind: 'enter' }>
   }
+  service.config = config
   service.remoteStatus = async () => { synchronized += 1; return { kind: 'authenticated', baseUrl: config.baseUrl } }
   const agent = {
     session: {
@@ -763,7 +871,7 @@ test('concurrent binds of one session to different networks mount the winner wit
     }
     const service = Object.create(OpenBknBusinessContextService.prototype) as {
       config: typeof config
-      ctx: { agents: { get(id: string): object | undefined }; logger: { warn(): void } }
+      ctx: { agents: { get(id: string): object | undefined }; logger: { warn(): void }; effect(callback: () => () => void): () => void }
       bindingRecords: SessionBindingStore
       mounted: WeakSet<object>
       capabilityProfiles: WeakMap<object, unknown>
@@ -772,7 +880,7 @@ test('concurrent binds of one session to different networks mount the winner wit
       remoteBindNetwork(sessionId: string, networkId: string, signal: AbortSignal): Promise<{ knowledgeNetworkId: string }>
     }
     service.config = config
-    service.ctx = { agents: { get: id => id === agent.id ? agent : undefined }, logger: { warn: () => {} } }
+    service.ctx = { agents: { get: id => id === agent.id ? agent : undefined }, logger: { warn: () => {} }, effect: callback => callback() }
     service.bindingRecords = new SessionBindingStore(root)
     service.mounted = new WeakSet()
     service.capabilityProfiles = new WeakMap()
