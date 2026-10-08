@@ -7,7 +7,7 @@ import { OpenBknConfigurationService } from '../src/configuration-service.ts'
 import { OpenBknDiagnosticsService } from '../src/diagnostics-service.ts'
 
 function fixture(config: Record<string, unknown> = {}) {
-  const entry = { options: { id: 'openbkn-business-context', name: '@openbkn/dsh-business-context/business', config }, fiber: { state: 2, await: async () => {} } }
+  const entry = { options: { id: 'openbkn-business-context', name: '@openbkn/dsh-business-context/business', config }, fiber: { state: 2, config: undefined as Record<string, unknown> | undefined, await: async () => {} } }
   let calls = 0
   let running = false
   let failure: Error | undefined
@@ -108,4 +108,43 @@ test('a missing editor preserves readable healthy config and never invents a pen
   const { entry, service } = fixture({ baseUrl: 'https://platform.example', cliPath: '/tools/openbkn' })
   Object.defineProperty(service, 'ctx', { configurable: true, value: { get: (name: string) => name === 'loader' ? { entries: () => [entry] } : undefined } })
   assert.deepEqual(await service.getConfiguration(), { baseUrl: 'https://platform.example', cliPath: '/tools/openbkn', configured: true, editable: false, unavailableReason: 'editor-unavailable' })
+})
+
+
+test('active native resolved values expose an expression-configured URL without evaluating raw nodes', async () => {
+  const raw = { baseUrl: { __jsExpr: 'process.env.OPENBKN_URL' }, cliPath: { __jsExpr: 'process.env.OPENBKN_CLI' },
+    requestTimeoutMs: 45_000, businessDomain: 'bd_public' }
+  const f = fixture(raw)
+  // The pinned Loader interpolates raw nodes before native Cordis Config resolution.
+  // The plugin reads only this public, already-resolved active Fiber.config.
+  f.entry.fiber.config = Config({ baseUrl: 'https://resolved.example', cliPath: '/tools/openbkn', requestTimeoutMs: 45_000, businessDomain: 'bd_public' })
+  assert.deepEqual(await f.service.getConfiguration(), { baseUrl: 'https://resolved.example', cliPath: '/tools/openbkn', configured: true, editable: true })
+  assert.deepEqual(f.entry.options.config, raw)
+  const report = await OpenBknDiagnosticsService.prototype.getReport.call({ ctx: { get: () => ({ entries: () => [f.entry] }) } } as unknown as OpenBknDiagnosticsService)
+  assert.equal(report.checks.some(check => check.code === 'configuration-required'), false)
+})
+
+test('an expression resolving to the empty native default stays pending in settings and diagnostics', async () => {
+  const f = fixture({ baseUrl: { __jsExpr: 'process.env.OPENBKN_URL ?? ""' } })
+  f.entry.fiber.config = Config({})
+  assert.equal((await f.service.getConfiguration()).configured, false)
+  const report = await OpenBknDiagnosticsService.prototype.getReport.call({ ctx: { get: () => ({ entries: () => [f.entry] }) } } as unknown as OpenBknDiagnosticsService)
+  assert.equal(report.checks.find(check => check.id === 'configuration')?.code, 'configuration-required')
+  assert.equal(report.checks.find(check => check.id === 'pending:authentication')?.status, 'not-run')
+})
+
+test('inactive fibers use current raw values rather than obsolete resolved configuration', async () => {
+  const f = fixture({ baseUrl: 'https://current.example', cliPath: '/tools/current' })
+  f.entry.fiber.config = Config({ baseUrl: 'https://previous.example', cliPath: '/tools/previous' })
+  f.entry.fiber.state = 3
+  assert.deepEqual(await f.service.getConfiguration(), { baseUrl: 'https://current.example', cliPath: '/tools/current', configured: true, editable: false, unavailableReason: 'entry-inactive' })
+})
+
+test('native editing preserves raw expression nodes outside the two submitted fields', async () => {
+  const expression = { __jsExpr: 'process.env.OPENBKN_MCP_URL' }
+  const f = fixture({ baseUrl: 'https://platform.example', mcpUrl: expression, requestTimeoutMs: 45_000 })
+  f.entry.fiber.config = Config({ baseUrl: 'https://platform.example', mcpUrl: 'https://platform.example/mcp', requestTimeoutMs: 45_000 })
+  await f.service.saveConfiguration({ baseUrl: 'https://platform.example', cliPath: '/tools/openbkn' })
+  assert.deepEqual(f.entry.options.config.mcpUrl, expression)
+  assert.equal(f.entry.options.config.requestTimeoutMs, 45_000)
 })

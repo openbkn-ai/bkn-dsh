@@ -7,7 +7,7 @@ import type { OpenBknConfigurationInput, OpenBknConfigurationView } from './type
 
 interface ConfigurationEntry {
   readonly options: { readonly id: string; readonly name: string; readonly config?: unknown }
-  readonly fiber?: { readonly state: number }
+  readonly fiber?: { readonly state: number; readonly config?: unknown }
 }
 /** Pinned public ConfigEditor API; optional so its absence cannot kill diagnostics. */
 interface ConfigurationEditor {
@@ -64,7 +64,11 @@ export class OpenBknConfigurationService extends TypertRemoteService {
     if (signal?.aborted) throw signal.reason
     const editor = this.editor()
     const entry = this.observedEntry(editor)
-    const config = entry?.options.config as Record<string, unknown> | undefined
+    // Loader keeps raw !!js nodes in options; active Fiber.config is the host-resolved value.
+    // Reading it reuses the native parser without evaluating expressions in the plugin.
+    const value = entry?.fiber?.state === 2 && entry.fiber.config !== undefined
+      ? entry.fiber.config : entry?.options.config
+    const config = value as Record<string, unknown> | undefined
     const baseUrl = typeof config?.baseUrl === 'string' ? config.baseUrl : ''
     const cliPath = typeof config?.cliPath === 'string' ? config.cliPath : 'openbkn'
     const unavailableReason = editor === undefined ? 'editor-unavailable'

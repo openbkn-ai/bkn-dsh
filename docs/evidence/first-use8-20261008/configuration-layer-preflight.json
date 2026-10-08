@@ -1,0 +1,215 @@
+{
+  "evidenceLevel": "native DSH composeEntries execution and plugin configuration structural fixture; not browser or Host acceptance",
+  "purpose": "PR82 inherited configuration claim and existing DSH expression read correctness",
+  "sources": [
+    {
+      "path": "/Users/kalias/Documents/project/app/openBKN/dsh-020/packages/boot/app-boot/src/profile.ts",
+      "sha256": "30a883b090c4489b14371d947113d532ab9484d4e0f79c7a4fcddd066e24b6ab"
+    },
+    {
+      "path": "/Users/kalias/Documents/project/app/openBKN/dsh-020/vendor/include/src/index.ts",
+      "sha256": "50005dcc3b35cb8e18e33ee157567aa14210b932fb25e22506d31aee25e59428"
+    },
+    {
+      "path": "/Users/kalias/Documents/project/app/openBKN/dsh-020/vendor/loader/src/config/group.ts",
+      "sha256": "5e138e8a8fad22e21d031859345797c445efbc380559fc32d35b03c835e60ccc"
+    },
+    {
+      "path": "/Users/kalias/Documents/project/app/openBKN/dsh-020/vendor/loader/src/index.ts",
+      "sha256": "a135e2189a0feb0af08ff79de761698fb8ce7b41c96fefda1d4a299e5982fef3"
+    },
+    {
+      "path": "/Users/kalias/Documents/project/app/openBKN/dsh-020/vendor/cordis/src/fiber.ts",
+      "sha256": "b7661d6c19be76cef6b97d88719a8112c0f8b5abe65bd9e7d5947773fd4b96d4"
+    },
+    {
+      "path": "/Users/kalias/Documents/project/app/openBKN/dsh-020/packages/boot/config-editor/src/index.ts",
+      "sha256": "34a0b17d43446f8e35d4a35de0da2fd0f93673a3dc925956a6abfa4d8ffcbf33"
+    }
+  ],
+  "conclusion": "Inherited bundle/profile/launcher values are already composed into Loader entry.options.config. Native raw expression nodes stay in options, while active Fiber.config holds parsed values; the plugin reads that public value without parsing or evaluating expressions.",
+  "cases": [
+    {
+      "name": "bundle-inherited-with-empty-profile",
+      "inputLayers": [
+        [
+          {
+            "insert": [
+              {
+                "id": "openbkn-business-context",
+                "name": "@openbkn/dsh-business-context/business",
+                "config": {
+                  "baseUrl": "https://bundle.example",
+                  "cliPath": "openbkn",
+                  "requestTimeoutMs": 45000
+                }
+              }
+            ]
+          }
+        ],
+        []
+      ],
+      "effectiveEntryConfig": {
+        "baseUrl": "https://bundle.example",
+        "cliPath": "openbkn",
+        "requestTimeoutMs": 45000
+      },
+      "pluginView": {
+        "baseUrl": "https://bundle.example",
+        "cliPath": "openbkn",
+        "configured": true,
+        "editable": true
+      }
+    },
+    {
+      "name": "profile-disable-only-preserves-inherited-config",
+      "inputLayers": [
+        [
+          {
+            "insert": [
+              {
+                "id": "openbkn-business-context",
+                "name": "@openbkn/dsh-business-context/business",
+                "config": {
+                  "baseUrl": "https://bundle.example",
+                  "cliPath": "openbkn",
+                  "requestTimeoutMs": 45000
+                }
+              }
+            ]
+          }
+        ],
+        [
+          {
+            "id": "openbkn-business-context",
+            "disabled": false
+          }
+        ]
+      ],
+      "effectiveEntryConfig": {
+        "baseUrl": "https://bundle.example",
+        "cliPath": "openbkn",
+        "requestTimeoutMs": 45000
+      },
+      "pluginView": {
+        "baseUrl": "https://bundle.example",
+        "cliPath": "openbkn",
+        "configured": true,
+        "editable": true
+      }
+    },
+    {
+      "name": "profile-explicit-config-replaces-bundle-config",
+      "inputLayers": [
+        [
+          {
+            "insert": [
+              {
+                "id": "openbkn-business-context",
+                "name": "@openbkn/dsh-business-context/business",
+                "config": {
+                  "baseUrl": "https://bundle.example",
+                  "cliPath": "openbkn",
+                  "requestTimeoutMs": 45000
+                }
+              }
+            ]
+          }
+        ],
+        [
+          {
+            "id": "openbkn-business-context",
+            "config": {
+              "baseUrl": "https://profile.example",
+              "cliPath": "/bin/openbkn"
+            }
+          }
+        ]
+      ],
+      "effectiveEntryConfig": {
+        "baseUrl": "https://profile.example",
+        "cliPath": "/bin/openbkn"
+      },
+      "pluginView": {
+        "baseUrl": "https://profile.example",
+        "cliPath": "/bin/openbkn",
+        "configured": true,
+        "editable": true
+      }
+    },
+    {
+      "name": "home-launch-overlay-becomes-effective-config",
+      "inputLayers": [
+        [
+          {
+            "insert": [
+              {
+                "id": "openbkn-business-context",
+                "name": "@openbkn/dsh-business-context/business",
+                "config": {
+                  "baseUrl": "https://bundle.example",
+                  "cliPath": "openbkn",
+                  "requestTimeoutMs": 45000
+                }
+              }
+            ]
+          }
+        ],
+        [
+          {
+            "id": "openbkn-business-context",
+            "config": {
+              "baseUrl": "https://profile.example"
+            }
+          }
+        ],
+        [
+          {
+            "id": "openbkn-business-context",
+            "config": {
+              "baseUrl": "https://overlay.example",
+              "cliPath": "openbkn"
+            }
+          }
+        ]
+      ],
+      "effectiveEntryConfig": {
+        "baseUrl": "https://overlay.example",
+        "cliPath": "openbkn"
+      },
+      "pluginView": {
+        "baseUrl": "https://overlay.example",
+        "cliPath": "openbkn",
+        "configured": true,
+        "editable": true
+      }
+    }
+  ],
+  "expressionCase": {
+    "rawEntryConfig": {
+      "baseUrl": {
+        "__jsExpr": "process.env.OPENBKN_URL"
+      },
+      "cliPath": {
+        "__jsExpr": "process.env.OPENBKN_CLI"
+      }
+    },
+    "resolvedFiberOwnedFields": {
+      "baseUrl": "https://resolved.example",
+      "cliPath": "/tools/openbkn"
+    },
+    "pluginView": {
+      "baseUrl": "https://resolved.example",
+      "cliPath": "/tools/openbkn",
+      "configured": true,
+      "editable": true
+    }
+  },
+  "focusedTests": {
+    "command": "node --import tsx --test tests/configuration-service.test.ts tests/diagnostics-host.test.ts",
+    "total": 23,
+    "pass": 23,
+    "fail": 0
+  },
+  "boundary": "Only the two form-owned fields are edited through native configEditor; no new expression implementation or layer merge."
+}

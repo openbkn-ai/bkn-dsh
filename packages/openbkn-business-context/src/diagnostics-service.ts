@@ -123,7 +123,8 @@ function pendingConfigurationChecks(ctx: Context): CheckDraft[] {
   const loader = loaderOf(ctx)
   const business = loader === undefined ? undefined : findOwnEntries(loader).business
   if (business?.fiber?.state !== 2) return []
-  const config = business.options.config as { baseUrl?: unknown } | undefined
+  // The active native Fiber owns resolved values; raw Loader options may contain !!js nodes.
+  const config = (business.fiber.config === undefined ? business.options.config : business.fiber.config) as { baseUrl?: unknown } | undefined
   if (config?.baseUrl !== undefined && config.baseUrl !== '') return []
   return ['configuration', 'cli', 'authentication', 'context-loader', 'platform-directory'].map(stage => ({
     id: stage === 'configuration' ? 'configuration' : `pending:${stage}`,

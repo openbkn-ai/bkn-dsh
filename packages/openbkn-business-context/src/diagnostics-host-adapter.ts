@@ -46,6 +46,8 @@ export interface LoaderEntryLike {
   readonly options: { readonly id: string; readonly name: string; readonly config?: unknown }
   readonly fiber?: {
     readonly state?: number
+    /** Native resolved configuration; Loader options retain raw expression nodes. */
+    readonly config?: unknown
     await(): Promise<unknown>
   } | undefined
 }
