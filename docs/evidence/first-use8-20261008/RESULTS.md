@@ -12,13 +12,21 @@
 - 配置重载释放旧业务所有者的策略/客户端；变更平台清除旧检查，同平台恢复保留历史。取消、旧地址与已销毁所有者的迟到结果不覆盖新检查。
 - 业务回合和短绑定落盘阻止设置修改；设置保存期间阻止新的绑定写入。已有会话平台/网络不改绑，新实例只使用当前平台经 CLI 验证的 Token。
 
-本地检查：typecheck exit 0；插件 371 项（370 pass / 0 fail / 1 skip）；仓库 suites 60/60；package audit 66 files；diff-check exit 0。原生输出随本目录归档。skip 为既有有条件平台用例，不能视为通过。
+本地检查：typecheck exit 0；插件 375 项（374 pass / 0 fail / 1 skip）；仓库 suites 60/60；package audit 66 files；diff-check exit 0。原生输出随本目录归档。skip 为既有有条件平台用例，不能视为通过。
 
 ## A0 官方 npm Host 原生预验
 
 证据：[native-config-editor-preflight.json](native-config-editor-preflight.json)。环境为官方 npm DSH `0.2.0-rc.2`、隔离 home/profile、无 inspector。使用本地构建包，**只证明原生配置链可用，不是固定 CI 候选的 UI/登录/发布验收**。
 
 首次无地址三组件正常启用，连接检查未执行。非法 `file:///tmp/invalid` 提交返回 `openbkn/configuration-invalid/configField=baseUrl`，profile patch 哈希不变。合法地址与非默认 CLI 路径经原生编辑器写入、重载后可读回；独立配置接口和诊断继续存活。没有把组件加载 pass 当作连接成功。
+
+## 审核收尾与候选状态
+
+首轮 build-only run `37723949454` 在 `f6bc2228154d1ddf388468b73ab2f131c04ee7b0` 通过。随后新增原生 Context 回归并修复配置重载期间既有工作区关联恢复的 admission 边界，以及 fork 绑定落盘窗口；该首轮包不再作为最终验收包。重新构建最终候选。
+
+本地界面预验（官方 npm DSH、全新无地址 profile）：单侧栏入口 → 地址表单 → 空值/非法地址就地提示 → 诊断明确未执行 → 通过表单保存合法地址及不存在的 CLI 路径 → 保存成功与缺 CLI 指引分别显示。未取得该预验浏览器的导出下载文件，不把点击导出记作下载通过；最终 CI 候选仍需实测。
+
+平台实际容器镜像已重新只读采集，见 `platform-images.json`。旧隔离 CLI 凭据本地状态已过期；其失败不推断平台根因，后续使用正常授权验证。
 
 ## 待取得的候选验收
 

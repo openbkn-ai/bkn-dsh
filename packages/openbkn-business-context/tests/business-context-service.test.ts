@@ -3,6 +3,7 @@ import test from 'node:test'
 import { mkdtempSync, rmSync } from 'node:fs'
 import { tmpdir } from 'node:os'
 import { join } from 'node:path'
+import { Context } from '@deepseek-ai/cordis'
 import { OpenBknBusinessContextService } from '../src/business-context-service.ts'
 import { SessionBindingStore } from '../src/session-binding-store.ts'
 import { OpenBknCliUnavailableError } from '../src/openbkn-cli-subprocess.ts'
@@ -175,6 +176,110 @@ test('settings reload rejects a new binding before its durable write begins', as
   service.bindingRecords = { read: () => undefined, write: async () => { writes++ } }
   await assert.rejects(service.bind(agent, { platformBaseUrl: config.baseUrl, knowledgeNetworkId: 'kn-save', displayName: 'Save' }), /settings are being applied/)
   assert.equal(writes, 0)
+})
+
+function reloadingConstructorFixture() {
+  const ctx = new Context()
+  const agent = { id: 'startup-association', status: 'idle', session: { id: 'startup-association', header: { cwd: '/fixture/workspace' }, snapshotEvents: () => [] } }
+  const agents = new Map([[agent.id, agent]])
+  Object.defineProperties(ctx, {
+    get: { value: () => ({ isChanging: true }) },
+    agents: { value: { get: (id: string) => agents.get(id), list: () => [...agents.values()] } },
+    tools: { value: { guard: () => () => {} } },
+    openbknWorkspaceBindingRegistry: { value: { findUniqueByWorkspace: () => ({ knowledgeNetworkId: 'kn-preserved', displayName: 'Preserved network' }) } },
+  })
+  // Exercise the actual constructor's capture, not a permanently enabled
+  // service-wide bypass. Replace persistence before the first restore resumes.
+  const service = new OpenBknBusinessContextService(ctx, config as never)
+  const internal = service as unknown as {
+    mountIfBound(agent: unknown): void
+    warnBindingUnavailable(error: unknown): void
+    restoreBinding(agent: unknown): Promise<void>
+  }
+  let mounted = 0
+  let warnings = 0
+  internal.mountIfBound = () => { mounted++ }
+  internal.warnBindingUnavailable = () => { warnings++ }
+  return { ctx, agent, agents, service, internal, mounted: () => mounted, warnings: () => warnings }
+}
+
+test('a replacement constructor restores an unbound workspace association inside the native save fence', async () => {
+  const f = reloadingConstructorFixture()
+  let writes = 0
+  let record: unknown
+  let finish!: () => void
+  let entered!: () => void
+  const started = new Promise<void>(resolve => { entered = resolve })
+  const pending = new Promise<void>(resolve => { finish = resolve })
+  f.service.bindingRecords = {
+    read: () => record as never,
+    write: async value => { writes++; entered(); await pending; record = value },
+  }
+  try {
+    await started
+    assert.equal(f.service.hasRunningTurn, true, 'startup restoration remains inside the durable-write admission window')
+    await assert.rejects(f.service.bind(f.agent as never, {
+      platformBaseUrl: config.baseUrl, knowledgeNetworkId: 'kn-user', displayName: 'New selection',
+    }), /settings are being applied/, 'the constructor exemption never applies to a user binding')
+    finish()
+    await new Promise(resolve => setImmediate(resolve))
+    assert.equal(writes, 1)
+    assert.equal(f.mounted(), 1)
+    assert.equal(f.warnings(), 0)
+    assert.equal(f.service.hasRunningTurn, false)
+    assert.deepEqual((record as { binding: unknown }).binding, {
+      platformBaseUrl: config.baseUrl, knowledgeNetworkId: 'kn-preserved', displayName: 'Preserved network',
+    })
+  } finally { finish(); await f.ctx.fiber.dispose() }
+})
+
+test('ordinary agent creation cannot borrow the replacement constructor restoration exemption', async () => {
+  const f = reloadingConstructorFixture()
+  let writes = 0
+  f.service.bindingRecords = { read: () => undefined, write: async () => { writes++ } }
+  try {
+    await new Promise(resolve => setImmediate(resolve))
+    assert.equal(writes, 1)
+    const created = { ...f.agent, id: 'created-during-save', session: { ...f.agent.session, id: 'created-during-save' } }
+    f.agents.set(created.id, created)
+    await f.ctx.serial(f.ctx, 'agent/created', { agent: created as never })
+    assert.equal(writes, 1)
+    assert.equal(f.mounted(), 1)
+    assert.equal(f.warnings(), 1)
+  } finally { await f.ctx.fiber.dispose() }
+})
+
+test('a disposed replacement constructor cannot persist its startup association', async () => {
+  const f = reloadingConstructorFixture()
+  let writes = 0
+  f.service.bindingRecords = { read: () => undefined, write: async () => { writes++ } }
+  await f.ctx.fiber.dispose()
+  await new Promise(resolve => setImmediate(resolve))
+  assert.equal(writes, 0)
+  assert.equal(f.mounted(), 0)
+  assert.equal(f.warnings(), 1)
+})
+
+test('ordinary fork inheritance blocks reload throughout its durable write', async () => {
+  const binding = { platformBaseUrl: config.baseUrl, knowledgeNetworkId: 'kn-parent', displayName: 'Parent' }
+  const parent = { sessionId: 'parent-fixture', binding, boundAtSeq: 0, recordedAt: '2026-10-08T00:00:00Z' }
+  const agent = { id: 'fork-fixture', status: 'idle', session: { id: 'fork-fixture', header: { parentSession: parent.sessionId, isSeeded: true }, inheritedEventCount: 2, snapshotEvents: () => [] } }
+  const service = serviceFor(agent) as ReturnType<typeof serviceFor> & { bindingRecords: unknown; readonly hasRunningTurn: boolean; restoreBinding(agent: unknown): Promise<void> }
+  Object.assign(service.ctx, { get: () => ({ isChanging: false }) })
+  Object.assign(service.ctx.agents, { list: () => [agent] })
+  let record: unknown
+  let entered!: () => void
+  let finish!: () => void
+  const started = new Promise<void>(resolve => { entered = resolve })
+  const pending = new Promise<void>(resolve => { finish = resolve })
+  service.bindingRecords = { read: (id: string) => id === parent.sessionId ? parent : record, write: async (value: unknown) => { entered(); await pending; record = value } }
+  const operation = service.restoreBinding(agent)
+  await started
+  assert.equal(service.hasRunningTurn, true)
+  finish()
+  await operation
+  assert.equal(service.hasRunningTurn, false)
+  assert.deepEqual((record as { binding: unknown }).binding, binding)
 })
 
 test('reload detects a running bound turn even before its scoped policy restores', () => {

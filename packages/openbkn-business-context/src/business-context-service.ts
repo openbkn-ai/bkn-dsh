@@ -135,9 +135,11 @@ export class OpenBknBusinessContextService extends TypertRemoteService {
     // session would see them; only a session whose scoped policy is mounted
     // may call them.
     ctx.tools.guard(execution => this.openBknToolDenial(execution))
-    // DSH can restore Agents before this service is constructed. Treat those
-    // resumed sessions exactly like newly created native sessions.
-    for (const agent of ctx.agents.list()) void this.restoreBinding(agent)
+    // The replacement owner is constructed inside ConfigEditor's save fence.
+    // Only its already-live Agents may restore existing workspace associations
+    // in that window; ordinary agent creation and user binding retain admission.
+    const restoringReload = (ctx.get?.('openbknConfiguration') as { isChanging?: boolean } | undefined)?.isChanging === true
+    for (const agent of ctx.agents.list()) void this.restoreBinding(agent, restoringReload)
     // Hosts without session persistence have no stored sessions to compare.
     ctx.inject(['sessionPersistence'], (persistenceCtx: Context) => {
       void this.pruneOrphanBindings(persistenceCtx.get('sessionPersistence') as SessionPersistenceStat)
@@ -468,6 +470,15 @@ export class OpenBknBusinessContextService extends TypertRemoteService {
    * durable; a failed write rejects and leaves the session unbound.
    */
   async bind(agent: Agent, requested: BusinessNetworkBinding, profile?: NetworkCapabilityProfile): Promise<BindBusinessNetworkResult> {
+    return await this.persistAndMountBinding(agent, requested, profile)
+  }
+
+  private async persistAndMountBinding(
+    agent: Agent,
+    requested: BusinessNetworkBinding,
+    profile?: NetworkCapabilityProfile,
+    restoringReload = false,
+  ): Promise<BindBusinessNetworkResult> {
     if (this.ctx.agents.get(agent.id) !== agent) {
       throw new Error('OpenBKN business-network selection target is not a live DSH agent.')
     }
@@ -482,13 +493,16 @@ export class OpenBknBusinessContextService extends TypertRemoteService {
       }
       this.mountIfBound(agent)
       return result
-    })
+    }, restoringReload)
   }
 
-  private async configurationMutation<T>(operation: () => Promise<T>): Promise<T> {
+  private async configurationMutation<T>(operation: () => Promise<T>, restoringReload = false): Promise<T> {
     this.lifetime?.signal.throwIfAborted()
+    // Parent disposal begins before its reverse-order lifetime effect runs.
+    const state = this.ctx.fiber?.state
+    if (state === 3 || state === 4 || state === 5) throw new Error('OpenBKN business owner is no longer active.')
     const settings = this.ctx.get?.('openbknConfiguration') as { isChanging?: boolean } | undefined
-    if (settings?.isChanging) throw new Error('OpenBKN settings are being applied; wait before changing a business binding.')
+    if (settings?.isChanging && !restoringReload) throw new Error('OpenBKN settings are being applied; wait before changing a business binding.')
     this.bindingMutations = (this.bindingMutations ?? 0) + 1
     try {
       return await operation()
@@ -531,10 +545,15 @@ export class OpenBknBusinessContextService extends TypertRemoteService {
    * failure leaves the session unbound (no OpenBKN capability) and is logged;
    * it never blocks the native DSH session.
    */
-  private async restoreBinding(agent: Agent): Promise<void> {
-    try {
+  private async restoreBinding(agent: Agent, restoringReload = false): Promise<void> {
+    const restore = async (): Promise<void> => {
       await inheritForkedBusinessNetwork(agent.session, this.bindingRecords)
-      await this.bindWorkspaceNetworkIfUnique(agent)
+      await this.bindWorkspaceNetworkIfUnique(agent, restoringReload)
+    }
+    try {
+      // Own the entire startup restore before its first await. A later save
+      // cannot race this constructor-only exemption after the original save ends.
+      await this.configurationMutation(restore, restoringReload)
     } catch (error: unknown) {
       this.warnBindingUnavailable(error)
     }
@@ -587,7 +606,7 @@ export class OpenBknBusinessContextService extends TypertRemoteService {
    * DSH session. A missing or ambiguous association deliberately leaves the
    * native session untouched.
    */
-  private async bindWorkspaceNetworkIfUnique(agent: Agent): Promise<void> {
+  private async bindWorkspaceNetworkIfUnique(agent: Agent, restoringReload = false): Promise<void> {
     if (this.bindingOf(agent) !== undefined) {
       this.mountIfBound(agent)
       return
@@ -596,13 +615,15 @@ export class OpenBknBusinessContextService extends TypertRemoteService {
     if (workspacePath === undefined) return
     const record = this.ctx.openbknWorkspaceBindingRegistry.findUniqueByWorkspace(this.config.baseUrl, workspacePath)
     if (record === undefined) return
-    await this.bind(agent, {
+    const requested = {
       platformBaseUrl: this.config.baseUrl,
       knowledgeNetworkId: record.knowledgeNetworkId,
       // Legacy mappings persisted before display metadata use the stable id
       // rather than guessing a business-facing name.
       displayName: record.displayName ?? record.knowledgeNetworkId,
-    })
+    }
+    if (restoringReload) await this.persistAndMountBinding(agent, requested, undefined, true)
+    else await this.bind(agent, requested)
   }
 
   /**
