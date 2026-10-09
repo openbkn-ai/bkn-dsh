@@ -1,0 +1,146 @@
+app: C:\Users\kalia\AppData\Local\Programs\DeepSeek Harness\DeepSeek Harness.exe pid=30164 "blob:dsh-app://app/66837345-b8e7-4c09-a26e-3cb9c2b935ed"
+window: "blob:dsh-app://app/66837345-b8e7-4c09-a26e-3cb9c2b935ed" window_id=1509220 bounds=[640,290,625,450]
+surface: kind=window actual_window_id=1509220 presentation_window_id=1509220 lifecycle=stable
+elements (142):
+ [0] window blob:dsh-app://app/66837345-b8e7-4c09-a26e-3cb9c2b935ed (pressable focused) actions=[AXPress]
+ [1] titlebar = blob:dsh-app://app/66837345-b8e7-4c09-a26e-3cb9c2b935ed actions=[AXSetValue]
+ [2] button 关闭 (pressable) actions=[AXPress]
+ [3] menuitem 系统
+ [4] menuitem 系统 (pressable has_menu) actions=[AXPress,AXExpand,AXCollapse]
+ [5] pane 在 下载 中搜索
+ [6] button 搜索 (pressable) actions=[AXPress]
+ [7] textfield 搜索框 (editable) actions=[AXSetValue]
+ [8] slider = 0% actions=[AXSetValue]
+ [9] toolbar 地址区段工具栏
+ [10] button 刷新“下载”(F5) (pressable) actions=[AXPress]
+ [11] button 上一个位置 (pressable) actions=[AXPress]
+ [12] toolbar 地址: 下载
+ [13] button 下载 (pressable) actions=[AXPress]
+ [14] button 此电脑 (pressable) actions=[AXPress]
+ [15] button 所有位置 (pressable) actions=[AXPress]
+ [16] toolbar 向上一级区段工具栏
+ [17] button 上移到“此电脑”(Alt + 向上键) (pressable) actions=[AXPress]
+ [18] toolbar 导航按钮
+ [19] button 最近浏览的位置 (pressable disabled) actions=[AXPress]
+ [20] button 前进 (Alt + 向右键) (pressable disabled) actions=[AXPress]
+ [21] button 后退 (Alt + 向左键) (pressable disabled) actions=[AXPress]
+ [22] thumb actions=[AXSetValue]
+ [23] button 取消 (pressable) actions=[AXPress]
+ [24] button 保存(S) (pressable) actions=[AXPress]
+ [25] button 隐藏文件夹 (pressable) actions=[AXPress]
+ [26] pane 浏览器窗格
+ [27] pane 文件夹布局窗格
+ [28] tree 应用程序控件
+ [29] pane 详细信息窗格
+ [30] tree 保存字段
+ [31] combobox 保存类型: = JSON 文件 (*.json) (editable has_menu) actions=[AXSetValue,AXExpand,AXCollapse]
+ [32] button 打开 (pressable) actions=[AXPress]
+ [33] text = JSON 文件 (*.json) actions=[AXSetValue]
+ [34] text 保存类型:
+ [35] combobox 文件名: = OpenBKN-diagnostic-20261008T141957421Z-1e04b23f.json (editable has_menu) actions=[AXSetValue,AXExpand,AXCollapse]
+ [36] button 打开 (pressable) actions=[AXPress]
+ [37] textfield 文件名: = OpenBKN-diagnostic-20261008T141957421Z-1e04b23f.json (editable focused) actions=[AXSetValue]
+ [38] text 文件名:
+ [39] pane Shell 文件夹视图
+ [40] list 项目视图
+ [41] group 昨天 (pressable has_menu) actions=[AXPress,AXExpand,AXCollapse,AXScrollIntoView]
+ [42] row OpenBKN-diagnostic-20261007T075821538Z-c926d0f6.json = OpenBKN-diagnostic-20261007T075821538Z-c926d0f6.json (pressable) actions=[AXPress,AXSetValue,AXSelect,AXScrollIntoView]
+ [43] textfield 大小 = 3 KB
+ [44] textfield 类型 = JSON 源文件
+ [45] textfield 修改日期 = ‎2026/‎10/‎7 ‏‎15:58
+ [46] textfield 名称 = OpenBKN-diagnostic-20261007T075821538Z-c926d0f6.json (editable) actions=[AXSetValue]
+ [47] row OpenBKN-diagnostic-20261007T075959432Z-0fcbd4b8.json = OpenBKN-diagnostic-20261007T075959432Z-0fcbd4b8.json (pressable) actions=[AXPress,AXSetValue,AXSelect,AXScrollIntoView]
+ [48] textfield 大小 = 2 KB
+ [49] textfield 类型 = JSON 源文件
+ [50] textfield 修改日期 = ‎2026/‎10/‎7 ‏‎16:00
+ [51] textfield 名称 = OpenBKN-diagnostic-20261007T075959432Z-0fcbd4b8.json (editable) actions=[AXSetValue]
+ [52] row OpenBKN-diagnostic-20261007T080255574Z-5c331485.json = OpenBKN-diagnostic-20261007T080255574Z-5c331485.json (pressable) actions=[AXPress,AXSetValue,AXSelect,AXScrollIntoView]
+ [53] textfield 大小 = 3 KB
+ [54] textfield 类型 = JSON 源文件
+ [55] textfield 修改日期 = ‎2026/‎10/‎7 ‏‎16:03
+ [56] textfield 名称 = OpenBKN-diagnostic-20261007T080255574Z-5c331485.json (editable) actions=[AXSetValue]
+ [57] custom 昨天 (11) (pressable has_menu) actions=[AXExpand,AXCollapse,AXPress]
+ [58] textfield 计数 = (11)
+ [59] textfield 名称 = 昨天
+ [60] button 折叠组 (pressable) actions=[AXPress]
+ [61] group 今天 (pressable has_menu) actions=[AXPress,AXExpand,AXCollapse,AXScrollIntoView]
+ [62] row OpenBKN-diagnostic-20261008T083526894Z-7d5c3d8b.json = OpenBKN-diagnostic-20261008T083526894Z-7d5c3d8b.json (pressable) actions=[AXPress,AXSetValue,AXSelect,AXScrollIntoView]
+ [63] textfield 大小 = 3 KB
+ [64] textfield 类型 = JSON 源文件
+ [65] textfield 修改日期 = ‎2026/‎10/‎8 ‏‎16:35
+ [66] textfield 名称 = OpenBKN-diagnostic-20261008T083526894Z-7d5c3d8b.json (editable) actions=[AXSetValue]
+ [67] row OpenBKN-diagnostic-20261008T083713080Z-9007a1f2.json = OpenBKN-diagnostic-20261008T083713080Z-9007a1f2.json (pressable) actions=[AXPress,AXSetValue,AXSelect,AXScrollIntoView]
+ [68] textfield 大小 = 3 KB
+ [69] textfield 类型 = JSON 源文件
+ [70] textfield 修改日期 = ‎2026/‎10/‎8 ‏‎16:39
+ [71] textfield 名称 = OpenBKN-diagnostic-20261008T083713080Z-9007a1f2.json (editable) actions=[AXSetValue]
+ [72] row OpenBKN-diagnostic-20261008T084137066Z-9713534c.json = OpenBKN-diagnostic-20261008T084137066Z-9713534c.json (pressable) actions=[AXPress,AXSetValue,AXSelect,AXScrollIntoView]
+ [73] textfield 大小 = 3 KB
+ [74] textfield 类型 = JSON 源文件
+ [75] textfield 修改日期 = ‎2026/‎10/‎8 ‏‎16:41
+ [76] textfield 名称 = OpenBKN-diagnostic-20261008T084137066Z-9713534c.json (editable) actions=[AXSetValue]
+ [77] row OpenBKN-diagnostic-20261008T085127167Z-0768081a.json = OpenBKN-diagnostic-20261008T085127167Z-0768081a.json (pressable) actions=[AXPress,AXSetValue,AXSelect,AXScrollIntoView]
+ [78] textfield 大小 = 2 KB
+ [79] textfield 类型 = JSON 源文件
+ [80] textfield 修改日期 = ‎2026/‎10/‎8 ‏‎16:51
+ [81] textfield 名称 = OpenBKN-diagnostic-20261008T085127167Z-0768081a.json (editable) actions=[AXSetValue]
+ [82] custom 今天 (4) (pressable has_menu) actions=[AXExpand,AXCollapse,AXPress]
+ [83] textfield 计数 = (4)
+ [84] textfield 名称 = 今天
+ [85] button 折叠组 (pressable) actions=[AXPress]
+ [86] header 标题
+ [87] button 大小 (pressable has_menu) actions=[AXPress,AXExpand,AXCollapse]
+ [88] button 筛选器下拉列表 (pressable) actions=[AXPress]
+ [89] button 类型 (pressable has_menu) actions=[AXPress,AXExpand,AXCollapse]
+ [90] button 筛选器下拉列表 (pressable) actions=[AXPress]
+ [91] button 修改日期 (pressable has_menu) actions=[AXPress,AXExpand,AXCollapse]
+ [92] button 筛选器下拉列表 (pressable) actions=[AXPress]
+ [93] button 名称 (pressable has_menu) actions=[AXPress,AXExpand,AXCollapse]
+ [94] button 筛选器下拉列表 (pressable) actions=[AXPress]
+ [95] scrollbar 垂直滚动条 = 0 actions=[AXSetValue]
+ [96] button 下一行 (pressable) actions=[AXPress]
+ [97] button 向下翻页 (pressable) actions=[AXPress]
+ [98] thumb 位置
+ [99] button 上一行 (pressable) actions=[AXPress]
+ [100] scrollbar 水平滚动条 = 0 actions=[AXSetValue]
+ [101] button 右移一列 (pressable) actions=[AXPress]
+ [102] button 向右翻页 (pressable) actions=[AXPress]
+ [103] thumb 位置
+ [104] button 左移一列 (pressable) actions=[AXPress]
+ [105] pane 控制项宿主
+ [106] tree 树视图
+ [107] row 桌面 = 桌面 (pressable has_menu) actions=[AXSetValue,AXSelect,AXExpand,AXCollapse,AXScrollIntoView,AXPress]
+ [108] row 网络 = 网络 (pressable has_menu) actions=[AXSetValue,AXSelect,AXExpand,AXCollapse,AXScrollIntoView,AXPress]
+ [109] row 此电脑 = 此电脑 (pressable has_menu) actions=[AXSetValue,AXSelect,AXExpand,AXCollapse,AXScrollIntoView,AXPress]
+ [110] row 新加卷 (G:) = 新加卷 (G:) (pressable has_menu) actions=[AXSetValue,AXSelect,AXExpand,AXCollapse,AXScrollIntoView,AXPress]
+ [111] row backup (F:) = backup (F:) (pressable has_menu) actions=[AXSetValue,AXSelect,AXExpand,AXCollapse,AXScrollIntoView,AXPress]
+ [112] row game (D:) = game (D:) (pressable has_menu) actions=[AXSetValue,AXSelect,AXExpand,AXCollapse,AXScrollIntoView,AXPress]
+ [113] row system (C:) = system (C:) (pressable has_menu) actions=[AXSetValue,AXSelect,AXExpand,AXCollapse,AXScrollIntoView,AXPress]
+ [114] row 桌面 = 桌面 (pressable has_menu) actions=[AXSetValue,AXSelect,AXExpand,AXCollapse,AXScrollIntoView,AXPress]
+ [115] row 音乐 = 音乐 (pressable has_menu) actions=[AXSetValue,AXSelect,AXExpand,AXCollapse,AXScrollIntoView,AXPress]
+ [116] row 下载 = 下载 (pressable has_menu) actions=[AXSetValue,AXSelect,AXExpand,AXCollapse,AXScrollIntoView,AXPress]
+ [117] row 文档 = 文档 (pressable has_menu) actions=[AXSetValue,AXSelect,AXExpand,AXCollapse,AXScrollIntoView,AXPress]
+ [118] row 图片 = 图片 (pressable has_menu) actions=[AXSetValue,AXSelect,AXExpand,AXCollapse,AXScrollIntoView,AXPress]
+ [119] row 视频 = 视频 (pressable has_menu) actions=[AXSetValue,AXSelect,AXExpand,AXCollapse,AXScrollIntoView,AXPress]
+ [120] row 3D 对象 = 3D 对象 (pressable has_menu) actions=[AXSetValue,AXSelect,AXExpand,AXCollapse,AXScrollIntoView,AXPress]
+ [121] row 快速访问 = 快速访问 (pressable has_menu) actions=[AXSetValue,AXSelect,AXExpand,AXCollapse,AXScrollIntoView,AXPress]
+ [122] row output = output (has_menu) actions=[AXSetValue,AXSelect,AXExpand,AXCollapse,AXScrollIntoView]
+ [123] row evidence = evidence (has_menu) actions=[AXSetValue,AXSelect,AXExpand,AXCollapse,AXScrollIntoView]
+ [124] row evidence = evidence (has_menu) actions=[AXSetValue,AXSelect,AXExpand,AXCollapse,AXScrollIntoView]
+ [125] row evidence = evidence (has_menu) actions=[AXSetValue,AXSelect,AXExpand,AXCollapse,AXScrollIntoView]
+ [126] row 图片 (已固定) = 图片 (已固定) (has_menu) actions=[AXSetValue,AXSelect,AXExpand,AXCollapse,AXScrollIntoView]
+ [127] row 文档 (已固定) = 文档 (已固定) (has_menu) actions=[AXSetValue,AXSelect,AXExpand,AXCollapse,AXScrollIntoView]
+ [128] row 下载 (已固定) = 下载 (已固定) (has_menu) actions=[AXSetValue,AXSelect,AXExpand,AXCollapse,AXScrollIntoView]
+ [129] row 桌面 (已固定) = 桌面 (已固定) (has_menu) actions=[AXSetValue,AXSelect,AXExpand,AXCollapse,AXScrollIntoView]
+ [130] scrollbar 垂直滚动条 = 66 actions=[AXSetValue]
+ [131] button 下一行 (pressable) actions=[AXPress]
+ [132] button 向下翻页 (pressable) actions=[AXPress]
+ [133] thumb 位置
+ [134] button 向上翻页 (pressable) actions=[AXPress]
+ [135] button 上一行 (pressable) actions=[AXPress]
+ [136] toolbar 命令模块
+ [137] button 新建​​文件夹​​ (pressable) actions=[AXPress]
+ [138] button 组织​​ (pressable) actions=[AXPress]
+ [139] button 视图 (pressable) actions=[AXPress]
+ [140] button 视图滑块 (pressable) actions=[AXPress]
+ [141] button 帮助(&H) (pressable) actions=[AXPress]

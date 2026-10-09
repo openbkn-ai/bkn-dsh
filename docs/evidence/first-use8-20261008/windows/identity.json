@@ -1,0 +1,19 @@
+{
+    "stamp":  "2026-10-08 16:29:15",
+    "ciRun":  "37725960498",
+    "ciHeadSha":  "23ac2daa6d3538235f33a9627a8178a48f3e1ebf",
+    "ciConclusion":  "success",
+    "ciEvent":  "workflow_dispatch",
+    "deliveryCommit":  "59ac630784ac3a6d8cfce3eecc47e5f283cd1882",
+    "tgzPath":  "C:\\bkn-verify\\first-use8-download\\openbkn-dsh-business-context-0.2.0-rc.2-openbkn.0.2.0-8.tgz",
+    "tgzBytes":  175800,
+    "tgzSha256":  "6a946030a6152d2899609fac95c66cd246e36cca5a8ce4e5f87ed379cbe706ea",
+    "manifestSha256":  "31298c18cc87ac7a44039f8311e51340a56a830ecbad9fd270bd5ecf275ad257",
+    "manifestFiles":  66,
+    "nodeVersion":  "v24.21.0",
+    "openbknCliEntry":  "C:\\bkn-verify\\diag6-tools\\node_modules\\@openbkn\\bkn-sdk\\dist\\cli.js",
+    "tgzShaActual":  "6a946030a6152d2899609fac95c66cd246e36cca5a8ce4e5f87ed379cbe706ea",
+    "manifestShaActual":  "31298c18cc87ac7a44039f8311e51340a56a830ecbad9fd270bd5ecf275ad257",
+    "openbknCliVersion":  "0.1.5",
+    "dshNpmVersion":  "0.2.0-rc.2"
+}

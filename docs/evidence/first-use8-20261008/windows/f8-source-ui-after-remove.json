@@ -1,0 +1,44 @@
+{
+    "label":  "source-ui-after-remove",
+    "at":  "2026-10-09T20:56:04.0777358+08:00",
+    "root":  "C:\\bkn-verify\\first-use8-source",
+    "profile":  "web",
+    "files":  [
+                  {
+                      "path":  "C:\\bkn-verify\\first-use8-source\\dsh-home\\profiles\\web\\cordis.patch.yml",
+                      "sha256":  "84500334637fdf9ef91b24af287d88a17971fc26d45bf14eb9ea9f1bb4cf7ba9",
+                      "bytes":  537
+                  },
+                  {
+                      "path":  "C:\\bkn-verify\\first-use8-source\\dsh-home\\storages\\openbkn_workspace_bindings.json",
+                      "sha256":  null,
+                      "bytes":  null
+                  },
+                  {
+                      "path":  "C:\\bkn-verify\\first-use8-source\\dsh-home\\storages\\workspace.json",
+                      "sha256":  "f979bb7f0f722a9561f106ec3505b093afdf594ac1b69049021fc9b2dadacd8e",
+                      "bytes":  709
+                  },
+                  {
+                      "path":  "C:\\bkn-verify\\first-use8-source\\bkn-config\\state.json",
+                      "sha256":  "e133281161841df22c8c5d200c1a5e016b864ae7b8c203bf9153b44c022b73c5",
+                      "bytes":  141
+                  },
+                  {
+                      "path":  "C:\\bkn-verify\\first-use8-source\\bkn-config\\platforms\\aHR0cHM6Ly8xOTIuMTY4LjUwLjI4\\version-check.json",
+                      "sha256":  "c5fab5f4ebfc54554d0b062d7f9e9dde2b76366581a070444fbabfeb386a30f6",
+                      "bytes":  74
+                  },
+                  {
+                      "path":  "C:\\bkn-verify\\first-use8-source\\bkn-config\\platforms\\aHR0cHM6Ly8xOTIuMTY4LjUwLjI4\\users\\266c6a42-6131-4d62-8f39-853e7093701c\\token.json",
+                      "sha256":  "6acb935211a8746395233b28502a48971b16e4009a3648b40e1167510c3be352",
+                      "bytes":  1532
+                  }
+              ],
+    "profilePackageJsonSha":  "207430228a8315c78dd73ee35c0f4ca6a2092121880031863ac15b38ed3ce5a8",
+    "dependencies":  null,
+    "pluginDirPresent":  false,
+    "pnpmOpenbknEntries":  [
+
+                           ]
+}

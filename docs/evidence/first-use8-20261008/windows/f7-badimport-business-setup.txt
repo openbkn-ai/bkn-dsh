@@ -1,0 +1,19 @@
+2026-10-09T14:44:07.2146236+08:00 variant=business root=C:\bkn-verify\first-use8-desktop-f7-business tgz=6a946030a6152d2899609fac95c66cd246e36cca5a8ce4e5f87ed379cbe706ea
+2026-10-09T14:44:33.3689912+08:00 profile initialized by real app pid=24200
+2026-10-09T14:44:35.6610528+08:00 install exit=0
+  | Progress: resolved 0, reused 1, downloaded 0, added 0
+  | [WARN] Issues with peer dependencies found. Run "pnpm peers check" to list them.
+  | 
+  | dependencies:
+  | + @openbkn/dsh-business-context file:C:/bkn-verify/first-use8-download/openbkn-dsh-business-context-0.2.0-rc.2-openbkn.0.2.0-8.tgz
+  | 
+  | Packages: +5
+  | +++++
+  | Progress: resolved 5, reused 5, downloaded 0, added 5, done
+  | Done in 1.2s using pnpm v11.7.0
+2026-10-09T14:44:35.6791154+08:00 installed package dir=C:\bkn-verify\first-use8-desktop-f7-business\dsh-home\profiles\desktop\node_modules\@openbkn\dsh-business-context realpath= package.json base sha=1bb5bfec0267d0255f7b3807683e17e855cbb80a119695bbc9f73cdc76351a99
+2026-10-09T14:44:35.6976787+08:00 variant edit: "default": "./lib/business.js" -> "default": "./lib/business.fu8-missing.js" ; package.json variant sha=5525a153fb719359940722f2cf352fc517b72d8d0f00f6a9673b232b62c185df
+2026-10-09T14:44:35.6996857+08:00 profile patch sha (untouched by this script)=ef189a8c27db6d63930aa3046a3040482e952eafcb7487c644d508e8d461f027
+2026-10-09T14:44:50.9430299+08:00 fault host pid=23240 ticks=639271250757118000
+1bb5bfec0267d0255f7b3807683e17e855cbb80a119695bbc9f73cdc76351a99 *C:/bkn-verify/first-use8-desktop-f7-business/dsh-home/profiles/desktop/node_modules/@openbkn/dsh-business-context/package.json
+restored package.json: 1bb5bfec0267d0255f7b3807683e17e855cbb80a119695bbc9f73cdc76351a99

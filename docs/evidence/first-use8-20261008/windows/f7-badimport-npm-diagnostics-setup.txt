@@ -1,0 +1,16 @@
+2026-10-09T20:43:29.8881923+08:00 variant=diagnostics root=C:\bkn-verify\first-use8-npm-f7-diagnostics tgz=6a946030a6152d2899609fac95c66cd246e36cca5a8ce4e5f87ed379cbe706ea cli=C:\bkn-verify\diag6-tools\node_modules\.bin\dsh.cmd
+2026-10-09T20:43:31.4827484+08:00 install exit=0
+  | Progress: resolved 0, reused 1, downloaded 0, added 0
+  | [WARN] Issues with peer dependencies found. Run "pnpm peers check" to list them.
+  | 
+  | dependencies:
+  | + @openbkn/dsh-business-context file:C:/bkn-verify/first-use8-download/openbkn-dsh-business-context-0.2.0-rc.2-openbkn.0.2.0-8.tgz
+  | 
+  | Packages: +5
+  | +++++
+  | Progress: resolved 5, reused 5, downloaded 0, added 5, done
+  | Done in 800ms using pnpm v11.7.0
+2026-10-09T20:43:31.4978009+08:00 installed dir=C:\bkn-verify\first-use8-npm-f7-diagnostics\dsh-home\profiles\web\node_modules\@openbkn\dsh-business-context linkType= package.json base sha=1bb5bfec0267d0255f7b3807683e17e855cbb80a119695bbc9f73cdc76351a99
+2026-10-09T20:43:31.5108462+08:00 variant edit: "default": "./lib/diagnostics.js" -> "default": "./lib/diagnostics.fu8-missing.js" ; variant sha=35af8f7b6f82b3d8021158ba4f97f577d2081416b8ff62ed3c1617d0bb9ac6e9
+2026-10-09T20:43:33.4550003+08:00 fault host pid=35172 port=18527 ticks=639271466115838170
+restored package.json: 1bb5bfec0267d0255f7b3807683e17e855cbb80a119695bbc9f73cdc76351a99
