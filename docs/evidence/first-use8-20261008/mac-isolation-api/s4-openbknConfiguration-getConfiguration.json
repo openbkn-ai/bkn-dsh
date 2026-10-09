@@ -1,0 +1,14 @@
+{
+  "type": "server-response",
+  "rpcId": "c161a118-25e0-4b3b-bc3f-20200c8efeda",
+  "result": {
+    "ok": false,
+    "error": {
+      "code": "gateway/service-unavailable",
+      "message": "typert gateway: openbknConfiguration/getConfiguration: active Service \"openbknConfiguration\" is unavailable",
+      "details": {
+        "endpoint": "openbknConfiguration/getConfiguration"
+      }
+    }
+  }
+}

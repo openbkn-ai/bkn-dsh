@@ -1,6 +1,12 @@
 import assert from 'node:assert/strict'
 import { readFileSync } from 'node:fs'
+import { createRequire } from 'node:module'
+import { pathToFileURL } from 'node:url'
 import test from 'node:test'
+import { Context } from '@deepseek-ai/cordis'
+import SystemPrompt, { renderPrompt } from '@deepseek-ai/dsh-system-prompt'
+import ToolRuntime from '@deepseek-ai/dsh-tools'
+import { ToolCallId } from '@deepseek-ai/dsh-llm'
 import { apply } from '../src/business.ts'
 import { managedConversationSectionText, mountBoundBusinessNetworkTool } from '../src/scoped-business-context.ts'
 
@@ -42,6 +48,88 @@ const BOUND_EVENT = {
   type: 'openbkn/business-network-bound',
   data: { platformBaseUrl: 'https://poc.openbkn.ai', knowledgeNetworkId: 'kn-supply', displayName: '供应链风险网络' },
 }
+
+// Use the scope implementation belonging to the installed official Tools
+// peer, rather than reaching into the developer's source-built DSH tree.
+const toolRequire = createRequire(import.meta.resolve('@deepseek-ai/dsh-tools'))
+const { createScope } = await import(pathToFileURL(toolRequire.resolve('@deepseek-ai/dsh-scope')).href)
+
+async function nativePolicyFixture() {
+  const ctx = new Context()
+  await ctx.plugin(SystemPrompt, {})
+  await ctx.plugin(ToolRuntime)
+  const agent = {
+    id: 'policy-lifecycle',
+    session: { snapshotEvents: () => [BOUND_EVENT] },
+    ctx: undefined as unknown as Context,
+  }
+  let scope!: { ctx: Context; dispose(): Promise<void> }
+  await ctx.plugin({
+    inject: ['tools', 'systemPrompt'],
+    apply(inner: Context) { scope = createScope(inner, agent) },
+  })
+  agent.ctx = scope.ctx
+  const policyText = async () => renderPrompt(await ctx.systemPrompt.assemble({ scope: agent }))
+  const owner = async () => {
+    let ownerContext!: Context
+    const fiber = await ctx.plugin({ apply(inner: Context) { ownerContext = inner } })
+    return { context: ownerContext, dispose: () => fiber.dispose() }
+  }
+  return { ctx, agent, scope, policyText, owner }
+}
+
+test('business reload removes agent policy and permits a duplicate-free remount in the same live session', async () => {
+  const fixture = await nativePolicyFixture()
+  const { ctx, agent, policyText, owner } = fixture
+  try {
+    ctx.tools.register({
+      name: 'local_read', description: 'Read local fixture state', parameters: { type: 'object', properties: {} },
+      output: { schema: { type: 'string' }, render: (_args: unknown, value: unknown) => [{ type: 'text', text: String(value) }] },
+      execute: async () => 'native-local-result',
+    })
+    const call = () => ctx.tools.execute({
+      signal: new AbortController().signal, callId: ToolCallId('owned-policy-call'),
+      name: 'local_read', arguments: {}, agent: agent as never,
+    })
+    const first = await owner()
+    assert.equal(mountBoundBusinessNetworkTool(agent as never, config, BOUND_EVENT.data, undefined, first.context), true)
+    assert.match(await policyText(), /OpenBKN knowledge network/)
+    assert.match(JSON.stringify(await call()), /only permits managed OpenBKN tools/)
+
+    await first.dispose()
+    assert.doesNotMatch(await policyText(), /OpenBKN knowledge network/)
+    assert.match(JSON.stringify(await call()), /native-local-result/)
+    assert.equal(agent.ctx.fiber.getEffects().filter(effect => effect.label.includes('ctx.on(')).length, 0)
+    assert.equal(agent.ctx.fiber.getEffects().filter(effect => effect.label === 'openbkn.agentPolicyCleanup').length, 0)
+
+    const second = await owner()
+    assert.equal(mountBoundBusinessNetworkTool(agent as never, config, BOUND_EVENT.data, undefined, second.context), true)
+    assert.match(await policyText(), /OpenBKN knowledge network/)
+    assert.match(JSON.stringify(await call()), /only permits managed OpenBKN tools/)
+    await second.dispose()
+    assert.doesNotMatch(await policyText(), /OpenBKN knowledge network/)
+  } finally {
+    await ctx.fiber.dispose()
+  }
+})
+
+test('agent disposal cleans the policy before its still-live business owner unloads', async () => {
+  const { ctx, agent, scope, owner, policyText } = await nativePolicyFixture()
+  try {
+    const business = await owner()
+    assert.equal(mountBoundBusinessNetworkTool(agent as never, config, BOUND_EVENT.data, undefined, business.context), true)
+    const parentRegistrations = () => business.context.fiber.getEffects().filter(effect => effect.label === 'openbkn.businessPolicyCleanup')
+    assert.equal(parentRegistrations().length, 1)
+    assert.match(await policyText(), /OpenBKN knowledge network/)
+    await scope.dispose()
+    assert.doesNotMatch(await policyText(), /OpenBKN knowledge network/)
+    assert.equal(parentRegistrations().length, 0, 'closed sessions release their parent effect while the business owner remains live')
+    await business.dispose()
+    assert.doesNotMatch(await policyText(), /OpenBKN knowledge network/)
+  } finally {
+    await ctx.fiber.dispose()
+  }
+})
 
 interface FakeAgent {
   readonly agent: unknown

@@ -1,0 +1,22 @@
+{
+  "checkedAt": "2026-10-08T05:20:21.215Z",
+  "source": "Actual isolated CLI bkn list response",
+  "cliArgv": [
+    "--json",
+    "bkn",
+    "list",
+    "--limit",
+    "100"
+  ],
+  "total_count": 2,
+  "entries": [
+    {
+      "id": "worldcup_vega_catalog_bkn",
+      "name": "Fjelstul 世界杯 · Vega Catalog 绑定（占位符）"
+    },
+    {
+      "id": "supply_ontology_hand",
+      "name": "供应链本体知识网络-手工版"
+    }
+  ]
+}

@@ -1,0 +1,27 @@
+{
+  "evidenceLevel": "UI save/reload + selected actual persisted binding files",
+  "bindingFiles": [
+    {
+      "path": "/tmp/bkn-firstuse8-mac-npm/home/openbkn/session-bindings/session-31b70f75-7c5c-4e66-ad25-3824b245a248.json",
+      "beforeSha256": "a6d3b6b43e4a152269433959937fac352dbd9b9560afc740154ddd28e5306b97",
+      "restoredSha256": "a6d3b6b43e4a152269433959937fac352dbd9b9560afc740154ddd28e5306b97"
+    },
+    {
+      "path": "/tmp/bkn-firstuse8-mac-npm/workspace-supply/user-canary.txt",
+      "beforeSha256": "ea4f5729a175c3b42f1c11c0806471be50479c42eed5d52014d7566d3f8ad3ec",
+      "restoredSha256": "ea4f5729a175c3b42f1c11c0806471be50479c42eed5d52014d7566d3f8ad3ec"
+    },
+    {
+      "path": "/tmp/bkn-firstuse8-mac-npm/home/storages/openbkn_workspace_bindings.json",
+      "beforeSha256": "772bc50485a12ae2bb6fe37f9393367e78e2aa8fa606995f29fb53809c797851",
+      "restoredSha256": "772bc50485a12ae2bb6fe37f9393367e78e2aa8fa606995f29fb53809c797851"
+    }
+  ],
+  "allSelectedUnchanged": true,
+  "restoredPatchSha256": "2fea086fc345d42b477316730c1970635b8eff0899a837f1f23ed64fa3032271",
+  "patchExactlyRestored": true,
+  "newAddressClassification": "platform-mismatch",
+  "tokenNotSentToNewAddress": "covered by independent controlled runtime; not inferred from UI alone",
+  "busyBusinessTurn": "pending real model",
+  "resources": "covered by independent owner-lifecycle probe; not inferred from UI alone"
+}

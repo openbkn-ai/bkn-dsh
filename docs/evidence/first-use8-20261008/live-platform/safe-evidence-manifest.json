@@ -1,0 +1,93 @@
+{
+  "scope": "Only listed safe evidence files; no store/profile/raw CLI token output scanned or exported",
+  "patterns": [
+    "API-key-like string",
+    "JWT-like string",
+    "Bearer credential",
+    "URL launch-token"
+  ],
+  "files": 16,
+  "filesWithPossibleCredentialPatterns": [],
+  "fileManifest": [
+    {
+      "path": "/tmp/bkn-firstuse8-live-validation/live-tools.json",
+      "sizeBytes": 251045,
+      "sha256": "e0fd25bb949f097e3301657e3dc1b1fbd476b6db11250a1ea5d8cd3781edc0ba"
+    },
+    {
+      "path": "/tmp/bkn-firstuse8-live-validation/live-contract-comparison.json",
+      "sizeBytes": 481,
+      "sha256": "738c05591fd60185e317f3f05026eac4eda317d25d050bec58081c5b685dc4d4"
+    },
+    {
+      "path": "/tmp/bkn-firstuse8-live-validation/live-fixture-contract-comparison.json",
+      "sizeBytes": 2004,
+      "sha256": "8f97c7aafbe0b97f337ec74b66aba52f36c7bcd273f3e0379c749750e10a2884"
+    },
+    {
+      "path": "/tmp/bkn-firstuse8-live-validation/live-networks.json",
+      "sizeBytes": 450,
+      "sha256": "9971f82e8702cfbf1c3e93c1463e850c80d38ca0b489299f0f48a978972b7a38"
+    },
+    {
+      "path": "/tmp/bkn-firstuse8-live-validation/catalogue-native.jsonl",
+      "sizeBytes": 444,
+      "sha256": "0cb564b08d1a3436d861a7ead6cf00d22ee4ae7d197b0f407dfec5a5f57248ec"
+    },
+    {
+      "path": "/tmp/bkn-firstuse8-live-validation/catalogue-exit.txt",
+      "sizeBytes": 2,
+      "sha256": "9a271f2a916b0b6ee6cecb2426f0b3206ef074578be55d9bc94f6f3fe3ab86aa"
+    },
+    {
+      "path": "/tmp/bkn-firstuse8-live-validation/catalogue-stderr.txt",
+      "sizeBytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "/tmp/bkn-firstuse8-live-validation/guard-prepare-native.json",
+      "sizeBytes": 1517,
+      "sha256": "cc7ae564341a6b5897862e7ea0b71f348de01fab86e756dded0dd7ba1d5ff261"
+    },
+    {
+      "path": "/tmp/bkn-firstuse8-live-validation/guard-prepare-exit.txt",
+      "sizeBytes": 2,
+      "sha256": "9a271f2a916b0b6ee6cecb2426f0b3206ef074578be55d9bc94f6f3fe3ab86aa"
+    },
+    {
+      "path": "/tmp/bkn-firstuse8-live-validation/guard-prepare-stderr.txt",
+      "sizeBytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "/tmp/bkn-firstuse8-live-validation/guard-live-native.jsonl",
+      "sizeBytes": 5626,
+      "sha256": "c47e0e8f2f3a4ded6d17e5ae92517b6ef8e8c60cd6d7720c4b739d63bf58a9de"
+    },
+    {
+      "path": "/tmp/bkn-firstuse8-live-validation/guard-live-stderr.txt",
+      "sizeBytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "/tmp/bkn-firstuse8-live-validation/guard-live-exit.txt",
+      "sizeBytes": 2,
+      "sha256": "9a271f2a916b0b6ee6cecb2426f0b3206ef074578be55d9bc94f6f3fe3ab86aa"
+    },
+    {
+      "path": "/tmp/bkn-firstuse8-live-validation/guard-live-start.json",
+      "sizeBytes": 1767,
+      "sha256": "2aee59f6966ae0fb19d70fdb78aeeb3ba6a02d6d3b3174d73521b8a42f6510c0"
+    },
+    {
+      "path": "/tmp/bkn-firstuse8-live-validation/guard-live-execution.json",
+      "sizeBytes": 2188,
+      "sha256": "33c532d408c050b8fdfed8a470b173f46ac4480b4f7fdee724f36caaf6f3549d"
+    },
+    {
+      "path": "/tmp/bkn-firstuse8-live-validation/guard-post-package-check.json",
+      "sizeBytes": 412,
+      "sha256": "4b8d8db0f422e7597106df34499ca40cea9575b083a0e09d2bd196eac194b7bb"
+    }
+  ]
+}

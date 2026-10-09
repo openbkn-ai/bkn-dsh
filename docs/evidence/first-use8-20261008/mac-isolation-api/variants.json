@@ -1,0 +1,36 @@
+[
+  {
+    "scenario": "S2",
+    "root": "/var/folders/9r/1zks6bqd7f3dtwybvxsksbc40000gn/T/bkn-firstuse8-isolation-s2-ie5ubpmd",
+    "port": 18322,
+    "exportFace": "./business",
+    "targetFile": "package/lib/business.js",
+    "baseSha256": "6a946030a6152d2899609fac95c66cd246e36cca5a8ce4e5f87ed379cbe706ea",
+    "variantSha256": "22d787b9e0fe9e6ccb08922d6817348407477b93e4dd91b85b5be7d5a93cc883",
+    "variantTgz": "/var/folders/9r/1zks6bqd7f3dtwybvxsksbc40000gn/T/bkn-firstuse8-isolation-s2-ie5ubpmd/s2-variant.tgz",
+    "targetBeforeSha256": "524949023cb2b58896b50ee4b9203b1dce39a393c6bf279d5688584fef3c6d30",
+    "targetAfterSha256": "a91fbb7c669440e1c15e0cce53f8e639101d07d1f1ca9df0cb7bb8d8c081a43e",
+    "files": 66,
+    "unchangedFiles": 65,
+    "inputBaseUrl": "absent",
+    "inputCredentials": "none",
+    "inputModel": "none"
+  },
+  {
+    "scenario": "S4",
+    "root": "/var/folders/9r/1zks6bqd7f3dtwybvxsksbc40000gn/T/bkn-firstuse8-isolation-s4-40zhqjyv",
+    "port": 18323,
+    "exportFace": "./diagnostics",
+    "targetFile": "package/lib/diagnostics.js",
+    "baseSha256": "6a946030a6152d2899609fac95c66cd246e36cca5a8ce4e5f87ed379cbe706ea",
+    "variantSha256": "9a90a9a520134d8bf3b15ec0f60767da614a3d95da8ef7de4ba8feff658964b5",
+    "variantTgz": "/var/folders/9r/1zks6bqd7f3dtwybvxsksbc40000gn/T/bkn-firstuse8-isolation-s4-40zhqjyv/s4-variant.tgz",
+    "targetBeforeSha256": "a94f9c3aad94e31bb1fbd4d57a25a603a5d55c38f5f43abdfdf3b2dc1b51f8e8",
+    "targetAfterSha256": "aec3540e6def9c95642e00d69f6babf9d2819245868bfd5c2f93c284d6da4569",
+    "files": 66,
+    "unchangedFiles": 65,
+    "inputBaseUrl": "absent",
+    "inputCredentials": "none",
+    "inputModel": "none"
+  }
+]

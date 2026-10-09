@@ -1,6 +1,6 @@
 # bkn-dsh
 
-Release candidate -7 consolidates the unpublished diagnostics work and supply-answer guidance. A plain Node Host reports its form as unknown because Desktop also uses Node. CI-artifact real-host and Windows acceptance remain pending; see the repository release-7 handoff.
+OpenBKN business knowledge, network-scoped access, diagnostics, and provenance for DeepSeek Harness.
 
 [中文](README.zh.md)
 
@@ -41,17 +41,41 @@ Ordinary answers use the tool results and DSH's native model output. The plugin 
 - **Lower interaction cost** — users ask business questions naturally instead of navigating multiple systems or writing technical queries.
 - **Reusable organizational knowledge** — governed knowledge networks become a shared decision layer across conversations and teams.
 
-## Install
+## Install and start
 
-This -7 candidate is not on npm yet. Use the absolute path to the fixed CI candidate `.tgz` before publication; the command below applies after publication. The currently published -4 has [separate installation instructions](https://github.com/openbkn-ai/bkn-dsh/blob/v0.2.0-rc.2-openbkn.0.2.0-4/README.md).
-
-Works on an unpatched DeepSeek Harness `0.2.0-rc.2`: the official desktop app, the npm CLI (`@deepseek-ai/dsh@0.2.0-rc.2`), or a built source checkout. Install it with DSH's own plugin manager while DSH is stopped:
+Use an unpatched DeepSeek Harness `0.2.0-rc.2`: the official desktop app, npm CLI (`@deepseek-ai/dsh@0.2.0-rc.2`), or a built source checkout. In DSH's **Plugins** page, choose **Add plugin**, enter `@openbkn/dsh-business-context@latest`, and select your registry. Or stop DSH and run:
 
 ```bash
-dsh plugin --profile <desktop|web> add @openbkn/dsh-business-context@0.2.0-rc.2-openbkn.0.2.0-7
+dsh plugin --profile <desktop|web> add @openbkn/dsh-business-context@latest
 ```
 
-Then set the platform address, sign in with the `openbkn` CLI, and bind a network from the **OpenBKN** sidebar entry. Bound sessions must use DSH's Standard mode (PTC mode is not supported yet). Step-by-step setup, certificates, and uninstall: [repository README](https://github.com/openbkn-ai/bkn-dsh#install-and-start).
+On Windows, use `dsh.cmd`. A source build uses `node apps/cli/lib/bin.js plugin --profile web add @openbkn/dsh-business-context@latest` from the DSH checkout root. Choose the actual profile and `DSH_HOME` of the Host you run; `desktop` and `web` are separate profiles. For a downloaded package, replace the package spec with its absolute `.tgz` path.
+
+Install an OpenBKN CLI version that matches the platform. For OpenBKN 0.1.5, use `npm install -g @openbkn/bkn-sdk@0.1.5`; for 0.1.4, use `@openbkn/bkn-sdk@0.1.4` (`0.1.5-rc.1` also works). CLI `0.1.5-rc.2` and later require a platform health/version endpoint absent in 0.1.4. You do not need to sign in before configuring the plugin. The npm DSH CLI also requires pnpm on `PATH` (`npm install -g pnpm@11.7.0`); the desktop app bundles it. For a self-signed platform certificate, configure `NODE_EXTRA_CA_CERTS` for the DSH process and fully restart it; detailed platform-specific instructions are in the [repository README](https://github.com/openbkn-ai/bkn-dsh#before-you-start).
+
+### Configure, authorize, and ask
+
+1. Start DSH and click **OpenBKN** in the sidebar footer. An unset address is a normal **待配置** (not configured) state, with diagnostics available. Before configuration, the plugin does not contact OpenBKN or read its CLI credentials.
+2. Enter an absolute `http://` or `https://` platform address and click **保存并继续** (Save and continue). Invalid input is rejected without changing the saved configuration. The address is saved through DSH's configuration editor in the current profile and applied by normal component reload. Saving it does not prove that a connection or authorization succeeded.
+3. If DSH cannot find the CLI, set `cliPath` in **高级设置** (Advanced settings); the default is `openbkn`. On Windows, an absolute path must include the shim filename, for example `C:/Users/<you>/AppData/Roaming/npm/openbkn.cmd`. Use **设置** (Settings) at the top right to edit the same form later. Wait for an active business turn to finish before changing the platform address.
+4. Choose **使用 OpenBKN CLI 登录并同步** (Sign in with OpenBKN CLI and sync), complete browser authorization, and return to DSH. If an existing credential is rejected, use the same action to sign in again. A 403 may require an administrator to grant access; another sign-in with the same account does not guarantee recovery.
+5. Select an authorized knowledge network, create or continue its workspace, and ask in a new **标准模式** (Standard mode) session. PTC mode is not supported. Completed answers offer **查看业务溯源** (View business provenance).
+
+The form preserves other configuration fields and reports higher-priority overrides that prevent a setting from applying. Temporary network/TLS failures do not erase the saved address. Existing sessions keep their original platform and network binding; changing the address does not rebind them. No YAML editing or manual token entry is needed for this flow. The OpenBKN CLI and DSH credentials manage tokens; never put them in configuration files.
+
+Closing the panel keeps it closed when an earlier request finishes. It does not promise to cancel browser authorization already in progress. For full setup and workspace chooser details, see the [repository README](https://github.com/openbkn-ai/bkn-dsh#install-and-start).
+
+## Uninstall
+
+Remove the package through DSH's **Plugins** page. If DSH asks you to stop the profile, stop it before retrying. Alternatively, with DSH stopped:
+
+```bash
+dsh plugin --profile <desktop|web> remove @openbkn/dsh-business-context
+```
+
+Removal unloads the package components and removes its profile dependency. It retains user profile overrides, DSH/OpenBKN credentials, CLI sign-in state, sessions, network/workspace bindings, and workspace files. It does not log out or wipe data. Do not delete the entire `node_modules/@openbkn` directory, which may contain other packages. Configuration and bindings can be reused after reinstalling.
+
+Current versions do not add plugin events to the DSH session log, so uninstalling keeps sessions readable. The original `0.2.0-rc.2-openbkn.0.2.0` release had a separate session-log limitation; see the [repository history note](https://github.com/openbkn-ai/bkn-dsh#upgrading-from-020-rc2-openbkn020). While installed, the plugin may prune bindings for sessions that no longer exist once a record is at least seven days old; uninstall does not run a blanket cleanup.
 
 ## Package layout (changed in -7)
 

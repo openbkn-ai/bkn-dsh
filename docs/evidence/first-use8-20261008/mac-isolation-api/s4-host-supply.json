@@ -1,0 +1,23 @@
+{
+  "scenario": "S4",
+  "observedAt": "2026-10-08T05:21:11.186274+00:00",
+  "hostPort": 18323,
+  "bootEntry": {
+    "id": "@openbkn/dsh-business-context",
+    "url": "plugins/??@openbkn/dsh-business-context/client.js&rev=1d271df1000b",
+    "rev": "1d271df1000b",
+    "inject": [
+      "@deepseek-ai/dsh-api-remotes",
+      "@deepseek-ai/dsh-client-ui-slots"
+    ]
+  },
+  "bootGraphRevision": "7b9a97fc30c8",
+  "clientBundle": {
+    "status": 200,
+    "contentType": "text/javascript; charset=utf-8",
+    "bytes": 327611,
+    "sha256": "640888abca95eda8ae6caae4d45fcb33dfaa6faf3318b82c5956d95ebb842316",
+    "packageRegistrationPresent": true
+  },
+  "evidenceBoundary": "Authenticated Host HTTP boot graph and supplied JavaScript only; no browser module execution or UI acceptance claimed"
+}

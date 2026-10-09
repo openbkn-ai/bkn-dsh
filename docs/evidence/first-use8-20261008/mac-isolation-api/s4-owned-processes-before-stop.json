@@ -1,0 +1,13 @@
+{
+  "scenario": "S4",
+  "observedAt": "2026-10-08T05:21:33.752705+00:00",
+  "owned": [
+    {
+      "pid": 35175,
+      "exitCode": 0,
+      "native": "35175     1 Thu Oct  8 13:20:14 2026     node /Users/kalias/Documents/project/app/openBKN/dsh-npm-020/node_modules/.bin/dsh web --port 18323 --no-open"
+    }
+  ],
+  "listenerNative": "COMMAND   PID   USER   FD   TYPE             DEVICE SIZE/OFF NODE NAME\nnode    35175 kalias   14u  IPv4 0x81398ad1b4cde9e1      0t0  TCP 127.0.0.1:18323 (LISTEN)\n",
+  "listenerExitCode": 0
+}

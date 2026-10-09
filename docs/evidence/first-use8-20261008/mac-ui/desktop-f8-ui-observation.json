@@ -1,0 +1,32 @@
+{
+  "recordWrittenAt": "2026-10-08T06:37:11.408169+00:00",
+  "packageManagerUI": {
+    "uninstallConfirmationAccepted": true,
+    "afterUI": {
+      "openbknSideEntryAbsent": true,
+      "packageEntryAbsent": true,
+      "dependencyAbsent": true
+    },
+    "installUI": {
+      "requestedSource": "/tmp/bkn-firstuse8-ci-37725960498/openbkn-dsh-business-context-0.2.0-rc.2-openbkn.0.2.0-8.tgz",
+      "kind": "local archive",
+      "successLabel": "\u5df2\u5b89\u88c5",
+      "immediateEnableClicked": true,
+      "version": "0.2.0-rc.2-openbkn.0.2.0-8",
+      "runningComponents": 3,
+      "openbknSideEntryPresent": true
+    }
+  },
+  "selectedUserFiles": 6,
+  "userFileHashesSameAcrossBeforeImmediateAfterAndReinstall": true,
+  "generatedCordisYml": {
+    "changedDuringUninstall": true,
+    "restoredExactAfterReinstall": true,
+    "scope": "Host-generated package component declarations; kept distinct from user patch/store retention."
+  },
+  "finalPatchSha256": "e502554b21537f950fa09ec9533d3ab055c338a4b7316d154e67e22b98cb44a2",
+  "limits": [
+    "No Desktop OpenBKN session/workspace binding was created; its retention is not claimed by this Desktop round.",
+    "npm CLI refused the managed Desktop profile before installation; that failed attempt was retained and actual reinstall used the native Electron manager."
+  ]
+}

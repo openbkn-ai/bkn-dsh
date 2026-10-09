@@ -1,0 +1,11 @@
+{
+  "evidenceLevel": "Actual official npm Host API, controlled CLI status/token input; no real-login or UI claim",
+  "candidateSource": "23ac2daa6d3538235f33a9627a8178a48f3e1ebf",
+  "tgzSHA256": "6a946030a6152d2899609fac95c66cd246e36cca5a8ce4e5f87ed379cbe706ea",
+  "platform": "https://127.0.0.1:19324",
+  "portVerifiedClosedBeforeRequest": true,
+  "storeFileCount": 0,
+  "fixture": "Public invalid token only; no real OpenBKN token exposed or reused",
+  "helperAttempt1": "Used nonexistent update method, returned HTTP404 before configuration; retained; corrected to declared saveConfiguration(input) method",
+  "healthyPatchRestoredAfterStop": true
+}

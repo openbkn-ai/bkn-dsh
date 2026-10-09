@@ -1,0 +1,24 @@
+{
+  "form": "desktop",
+  "hostPid": 31617,
+  "sameHostAcross401Recovery": true,
+  "failureUiReportId": "5bab2b3a",
+  "recoveredUiReportId": "dfc381da",
+  "failureSubject": "platform-network-list",
+  "failureCode": "auth-rejected",
+  "httpStatus": 401,
+  "recovered": true,
+  "lastFailureCode": "auth-rejected",
+  "networkCount": 2,
+  "healthyReports": [
+    "ba611212",
+    "dfc381da"
+  ],
+  "loginMethod": "product button invoked real OpenBKN CLI device authorization",
+  "fixture": "public invalid token in auth token output; actual store retained; only real auth login exit0 cleared rejection flag",
+  "flagAbsent": true,
+  "patchSha256Before": "e502554b21537f950fa09ec9533d3ab055c338a4b7316d154e67e22b98cb44a2",
+  "patchSha256Restored": "e502554b21537f950fa09ec9533d3ab055c338a4b7316d154e67e22b98cb44a2",
+  "patchRestoredThrough": "product settings UI",
+  "limit": "Rejected request was reader network-list; does not assert context-loader itself rejected 401 in this UI round"
+}

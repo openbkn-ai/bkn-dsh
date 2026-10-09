@@ -1,5 +1,5 @@
 import type { CliResult, OpenBknCli } from './auth.js'
-import { exitCodeEvidence, passiveDiagnostics } from './diagnostics-observer.js'
+import { exitCodeEvidence, passiveDiagnostics, type PassiveDiagnosticsWriter } from './diagnostics-observer.js'
 import { trimTrailingSlashes } from './trailing-slashes.js'
 
 const OUTPUT_LIMIT = 64 * 1024
@@ -34,16 +34,17 @@ export interface CliSubprocess {
 
 /** The configured OpenBKN CLI cannot be found or executed by the DSH host. */
 export class OpenBknCliUnavailableError extends Error {
-  constructor(readonly cliPath: string, options?: ErrorOptions) {
+  constructor(readonly cliPath: string, options?: ErrorOptions, observations: PassiveDiagnosticsWriter = passiveDiagnostics.writer()) {
     super(`OpenBKN CLI ${JSON.stringify(cliPath)} is not available to the DSH host.`, options)
     this.name = 'OpenBknCliUnavailableError'
-    passiveDiagnostics.record({ subject: 'cli', stage: 'cli', code: 'cli-missing', status: 'fail' })
+    observations.record({ subject: 'cli', stage: 'cli', code: 'cli-missing', status: 'fail' })
   }
 }
 
 /** DSH-managed invocation of the OpenBKN CLI with a fixed authentication contract. */
 export class OpenBknCliSubprocess implements OpenBknCli {
   private readonly baseUrl: string
+  private readonly observations = passiveDiagnostics.writer()
 
   constructor(
     private readonly subprocess: CliSubprocess,
@@ -61,8 +62,9 @@ export class OpenBknCliSubprocess implements OpenBknCli {
       executable = await this.subprocess.resolveExecutable(this.cliPath, undefined, signal)
     } catch (error: unknown) {
       if (signal?.aborted === true) throw error
-      throw new OpenBknCliUnavailableError(this.cliPath, { cause: error })
+      throw new OpenBknCliUnavailableError(this.cliPath, { cause: error }, this.observations)
     }
+    signal?.throwIfAborted()
     const child = this.subprocess.spawn({
       argv: [executable, ...rest],
       cwd: this.cwd,
@@ -75,18 +77,19 @@ export class OpenBknCliSubprocess implements OpenBknCli {
       ...(signal === undefined ? {} : { signal }),
     })
     const outcome = await child.done
+    signal?.throwIfAborted()
     const stdout = child.collected.stdout?.readFrom(0)
     const stderr = child.collected.stderr?.readFrom(0)
     if (stdout?.lossy || stderr?.lossy) {
       // The refusal must land as an outcome: an untrustworthy output is a
       // bounded CLI failure, not silence.
-      passiveDiagnostics.record({ subject: 'cli', stage: 'cli', code: 'cli-output-invalid', status: 'fail', evidence: { lossy: true } })
+      this.observations.record({ subject: 'cli', stage: 'cli', code: 'cli-output-invalid', status: 'fail', evidence: { lossy: true } })
       throw new Error('OpenBKN CLI output exceeded the safe size limit.')
     }
     const result = { code: outcome.exitCode ?? 1, stdout: stdout?.text ?? '', stderr: stderr?.text ?? '' }
     // One outcome boundary per invocation: a clean exit reconciles earlier
     // CLI failures (missing binary, parse refusals) on the same subject.
-    passiveDiagnostics.record(result.code === 0
+    this.observations.record(result.code === 0
       ? { subject: 'cli', stage: 'cli', code: 'cli', status: 'pass', evidence: exitCodeEvidence(result.code) }
       : { subject: 'cli', stage: 'cli', code: 'cli-execution-failed', status: 'fail', evidence: exitCodeEvidence(result.code) })
     return result

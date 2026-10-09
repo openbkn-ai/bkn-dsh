@@ -1,0 +1,14 @@
+{
+  "type": "server-response",
+  "rpcId": "b8a2ab0d-58b0-41f1-ba8c-a6cda44ad382",
+  "result": {
+    "ok": false,
+    "error": {
+      "code": "gateway/service-unavailable",
+      "message": "typert gateway: openbknDiagnostics/getReport: active Service \"openbknDiagnostics\" is unavailable",
+      "details": {
+        "endpoint": "openbknDiagnostics/getReport"
+      }
+    }
+  }
+}

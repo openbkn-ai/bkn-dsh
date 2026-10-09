@@ -1,0 +1,427 @@
+{
+  "checkedAt": "2026-10-08T06:02:46.667743+00:00",
+  "evidence": "Delivered model text checked against pre/post independent read-only CLI queries.",
+  "checks": [
+    {
+      "check": "before/after data unchanged: orders",
+      "expected": "87517393f75f19c7d22709a3b1ea296cdff3c6295d90249ca87e1746ab77d86c",
+      "actual": "87517393f75f19c7d22709a3b1ea296cdff3c6295d90249ca87e1746ab77d86c",
+      "pass": true
+    },
+    {
+      "check": "before/after data unchanged: inventory",
+      "expected": "8b883b8e4ea032580e22625c2efb61dc79baa8351ad5777f1f85bbbfbb6da342",
+      "actual": "8b883b8e4ea032580e22625c2efb61dc79baa8351ad5777f1f85bbbfbb6da342",
+      "pass": true
+    },
+    {
+      "check": "before/after data unchanged: material",
+      "expected": "aa4fbbc172144f962ee2476176bc30b25b077f767c44dd630de4dec91240e020",
+      "actual": "aa4fbbc172144f962ee2476176bc30b25b077f767c44dd630de4dec91240e020",
+      "pass": true
+    },
+    {
+      "check": "before/after data unchanged: bom-physical-all",
+      "expected": "3c1fd4ec6b34becd1426ef444affb04691e01cc69b9f6dbc439a1d982287be49",
+      "actual": "3c1fd4ec6b34becd1426ef444affb04691e01cc69b9f6dbc439a1d982287be49",
+      "pass": true
+    },
+    {
+      "check": "before/after data unchanged: purchase-orders",
+      "expected": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "actual": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "pass": true
+    },
+    {
+      "check": "before/after data unchanged: purchase-requests",
+      "expected": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "actual": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "pass": true
+    },
+    {
+      "check": "before/after data unchanged: missing-material",
+      "expected": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "actual": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "pass": true
+    },
+    {
+      "check": "before/after data unchanged: missing-inventory",
+      "expected": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "actual": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "pass": true
+    },
+    {
+      "check": "before/after data unchanged: missing-orders",
+      "expected": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "actual": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "pass": true
+    },
+    {
+      "check": "sales order delivered row count",
+      "expected": 40,
+      "actual": 40,
+      "pass": true
+    },
+    {
+      "check": "sales order distinct delivered identities",
+      "expected": 40,
+      "actual": 40,
+      "pass": true
+    },
+    {
+      "check": "sales order all 11 delivered fields, 40 rows",
+      "expected": [],
+      "actual": [],
+      "pass": true
+    },
+    {
+      "check": "sales order exact identity set",
+      "expected": [
+        "SO0000001",
+        "SO0000002",
+        "SO0000003",
+        "SO0000004",
+        "SO0000005",
+        "SO0000006",
+        "SO0000007",
+        "SO0000008",
+        "SO0000009",
+        "SO0000010",
+        "SO0000011",
+        "SO0000012",
+        "SO0000013",
+        "SO0000014",
+        "SO0000015",
+        "SO0000016",
+        "SO0000017",
+        "SO0000018",
+        "SO0000019",
+        "SO0000020",
+        "SO0000501",
+        "SO0000502",
+        "SO0000503",
+        "SO0000504",
+        "SO0000505",
+        "SO0000506",
+        "SO0000507",
+        "SO0000508",
+        "SO0000509",
+        "SO0000510",
+        "SO0000511",
+        "SO0000512",
+        "SO0000513",
+        "SO0000514",
+        "SO0000515",
+        "SO0000516",
+        "SO0000517",
+        "SO0000518",
+        "SO0000519",
+        "SO0000520"
+      ],
+      "actual": [
+        "SO0000001",
+        "SO0000002",
+        "SO0000003",
+        "SO0000004",
+        "SO0000005",
+        "SO0000006",
+        "SO0000007",
+        "SO0000008",
+        "SO0000009",
+        "SO0000010",
+        "SO0000011",
+        "SO0000012",
+        "SO0000013",
+        "SO0000014",
+        "SO0000015",
+        "SO0000016",
+        "SO0000017",
+        "SO0000018",
+        "SO0000019",
+        "SO0000020",
+        "SO0000501",
+        "SO0000502",
+        "SO0000503",
+        "SO0000504",
+        "SO0000505",
+        "SO0000506",
+        "SO0000507",
+        "SO0000508",
+        "SO0000509",
+        "SO0000510",
+        "SO0000511",
+        "SO0000512",
+        "SO0000513",
+        "SO0000514",
+        "SO0000515",
+        "SO0000516",
+        "SO0000517",
+        "SO0000518",
+        "SO0000519",
+        "SO0000520"
+      ],
+      "pass": true
+    },
+    {
+      "check": "BOM six level counts and alt_priority=0 counts",
+      "expected": [
+        [
+          0,
+          1,
+          1
+        ],
+        [
+          1,
+          9,
+          9
+        ],
+        [
+          2,
+          31,
+          23
+        ],
+        [
+          3,
+          42,
+          40
+        ],
+        [
+          4,
+          362,
+          278
+        ],
+        [
+          5,
+          62,
+          49
+        ]
+      ],
+      "actual": [
+        [
+          0,
+          1,
+          1
+        ],
+        [
+          1,
+          9,
+          9
+        ],
+        [
+          2,
+          31,
+          23
+        ],
+        [
+          3,
+          42,
+          40
+        ],
+        [
+          4,
+          362,
+          278
+        ],
+        [
+          5,
+          62,
+          49
+        ]
+      ],
+      "pass": true
+    },
+    {
+      "check": "BOM L1 nine codes and exact names",
+      "expected": [
+        [
+          "791-000013",
+          "YN406预组装包(拖拉机)"
+        ],
+        [
+          "606-000989",
+          "YN406 包装外箱_V2"
+        ],
+        [
+          "606-000990",
+          "YN406 珍珠棉内托_V2"
+        ],
+        [
+          "528-000036",
+          "YS221A接收机组件_国内"
+        ],
+        [
+          "791-000007",
+          "YN406B方向盘组件（拖拉机）"
+        ],
+        [
+          "994-000550",
+          "406电源+电机+接收机连接线"
+        ],
+        [
+          "468-000493",
+          "YN406说明书（中文）"
+        ],
+        [
+          "468-000530",
+          "导航车贴(60*15cm)"
+        ],
+        [
+          "791-000015",
+          "YN403显示终端整机_预装组件_拖拉机"
+        ]
+      ],
+      "actual": [
+        [
+          "791-000013",
+          "YN406预组装包(拖拉机)"
+        ],
+        [
+          "606-000989",
+          "YN406 包装外箱_V2"
+        ],
+        [
+          "606-000990",
+          "YN406 珍珠棉内托_V2"
+        ],
+        [
+          "528-000036",
+          "YS221A接收机组件_国内"
+        ],
+        [
+          "791-000007",
+          "YN406B方向盘组件（拖拉机）"
+        ],
+        [
+          "994-000550",
+          "406电源+电机+接收机连接线"
+        ],
+        [
+          "468-000493",
+          "YN406说明书（中文）"
+        ],
+        [
+          "468-000530",
+          "导航车贴(60*15cm)"
+        ],
+        [
+          "791-000015",
+          "YN403显示终端整机_预装组件_拖拉机"
+        ]
+      ],
+      "pass": true
+    },
+    {
+      "check": "BOM L1 stated unit usage",
+      "expected": true,
+      "actual": true,
+      "pass": true
+    },
+    {
+      "check": "BOM replacement marker rows",
+      "expected": 193,
+      "actual": 193,
+      "pass": true
+    },
+    {
+      "check": "BOM nonzero distinct replacement groups",
+      "expected": 70,
+      "actual": 70,
+      "pass": true
+    },
+    {
+      "check": "BOM deep direct-child table names/counts/levels, eight branches",
+      "expected": [],
+      "actual": [],
+      "pass": true
+    },
+    {
+      "check": "BOM named branch 791-000013",
+      "expected": 14,
+      "actual": 14,
+      "pass": true
+    },
+    {
+      "check": "BOM named branch 528-000036",
+      "expected": 4,
+      "actual": 4,
+      "pass": true
+    },
+    {
+      "check": "BOM named branch 791-000007",
+      "expected": 10,
+      "actual": 10,
+      "pass": true
+    },
+    {
+      "check": "BOM named branch 791-000015",
+      "expected": 3,
+      "actual": 3,
+      "pass": true
+    },
+    {
+      "check": "BOM named branch 528-000031",
+      "expected": 16,
+      "actual": 16,
+      "pass": true
+    },
+    {
+      "check": "BOM named branch 791-000003",
+      "expected": 26,
+      "actual": 26,
+      "pass": true
+    },
+    {
+      "check": "BOM delivered physical scope/source",
+      "expected": true,
+      "actual": true,
+      "pass": true
+    },
+    {
+      "check": "lead time independently verified self-made/production/purchase facts",
+      "expected": [
+        "自制",
+        1,
+        1
+      ],
+      "actual": [
+        "自制",
+        1,
+        1
+      ],
+      "pass": true
+    },
+    {
+      "check": "lead time explicitly selects production scope",
+      "expected": true,
+      "actual": true,
+      "pass": true
+    },
+    {
+      "check": "missing target three independent queries empty",
+      "expected": [
+        0,
+        0,
+        0
+      ],
+      "actual": [
+        0,
+        0,
+        0
+      ],
+      "pass": true
+    },
+    {
+      "check": "missing target answer nonempty and explicit no target data",
+      "expected": true,
+      "actual": true,
+      "pass": true
+    }
+  ],
+  "allCheckedClaimsPass": true,
+  "limits": [
+    "BOM response is a structural summary, not delivery of all 507 line items.",
+    "Physical 507-row BOM is distinct from the published main_only function scope of 313 lines.",
+    "Named branch aggregates/deep table and L1 names were checked; every narrative label was not independently parsed.",
+    "Missing-object positive control counts for other materials were not independently checked; no target stock/order values are asserted."
+  ]
+}

@@ -5,7 +5,7 @@ import { credentialRef } from '@deepseek-ai/dsh-credentials'
 import type { Agent } from '@deepseek-ai/dsh-agent'
 import type { SessionId } from '@deepseek-ai/dsh-session/types'
 import { Remote, RemoteError, TypertRemoteService } from '@deepseek-ai/dsh-typert-protocol'
-import { passiveDiagnostics } from './diagnostics-observer.js'
+import { passiveDiagnostics, type PassiveDiagnosticsWriter } from './diagnostics-observer.js'
 import { parseVisibleBusinessNetworks } from './business-network-catalog.js'
 import { Config, type Config as PluginConfig } from './config.js'
 import { dshHomePath } from '@deepseek-ai/dsh-home-paths'
@@ -53,6 +53,7 @@ declare module '@deepseek-ai/dsh-typert-protocol' {
     }
     'openbkn/platform-unavailable': { readonly baseUrl: string }
     'openbkn/cli-unavailable': { readonly cliPath: string }
+    'openbkn/provenance-platform-mismatch': Record<string, never>
   }
 }
 
@@ -103,11 +104,27 @@ export class OpenBknBusinessContextService extends TypertRemoteService {
   private readonly mounted = new WeakSet<Agent>()
   private readonly capabilityProfiles = new WeakMap<Agent, NetworkCapabilityProfile>()
   private mcpManagerInstance: OpenBknMcpManager | undefined
+  private readonly lifetime = new AbortController()
+  private readonly observations = passiveDiagnostics.writer()
+  /** This instance may use only the token verified for its configured platform. */
+  private synchronizedToken: string | undefined
+  private tokenRead: Promise<string> | undefined
+  private bindingMutations = 0
   /** Per-session binding records under `$DSH_HOME/openbkn/session-bindings`. */
   bindingRecords: SessionBindingRecords = new SessionBindingStore(dshHomePath('openbkn', 'session-bindings'))
 
+  /** Wait for current-platform turns and short durable binding writes. */
+  get hasRunningTurn(): boolean {
+    return this.bindingMutations > 0 || [...this.ctx.agents.list()].some(agent => {
+      if (agent.status !== 'running') return false
+      const binding = this.bindingOrUnbound(agent)
+      return binding !== undefined && normalizeBaseUrl(binding.platformBaseUrl) === normalizeBaseUrl(this.config.baseUrl)
+    })
+  }
+
   constructor(ctx: Context, readonly config: PluginConfig) {
     super(ctx, 'openbknBusinessContext')
+    ctx.effect(() => () => { this.lifetime.abort(new Error('OpenBKN configuration was reloaded.')) })
     ctx.on('agent/created', async ({ agent }) => {
       await this.restoreBinding(agent)
       return undefined
@@ -118,9 +135,11 @@ export class OpenBknBusinessContextService extends TypertRemoteService {
     // session would see them; only a session whose scoped policy is mounted
     // may call them.
     ctx.tools.guard(execution => this.openBknToolDenial(execution))
-    // DSH can restore Agents before this service is constructed. Treat those
-    // resumed sessions exactly like newly created native sessions.
-    for (const agent of ctx.agents.list()) void this.restoreBinding(agent)
+    // The replacement owner is constructed inside ConfigEditor's save fence.
+    // Only its already-live Agents may restore existing workspace associations
+    // in that window; ordinary agent creation and user binding retain admission.
+    const restoringReload = (ctx.get?.('openbknConfiguration') as { isChanging?: boolean } | undefined)?.isChanging === true
+    for (const agent of ctx.agents.list()) void this.restoreBinding(agent, restoringReload)
     // Hosts without session persistence have no stored sessions to compare.
     ctx.inject(['sessionPersistence'], (persistenceCtx: Context) => {
       void this.pruneOrphanBindings(persistenceCtx.get('sessionPersistence') as SessionPersistenceStat)
@@ -135,6 +154,7 @@ export class OpenBknBusinessContextService extends TypertRemoteService {
    */
   @Remote('status')
   async remoteStatus(signal: AbortSignal): Promise<AuthSnapshot> {
+    signal = this.operationSignal(signal)
     if (signal.aborted) throw signal.reason
     try {
       const auth = await this.authCoordinator().status(signal)
@@ -158,9 +178,10 @@ export class OpenBknBusinessContextService extends TypertRemoteService {
   /** Start the CLI's configured-platform browser login, then synchronize and verify it. */
   @Remote('beginLogin')
   async remoteBeginLogin(signal: AbortSignal): Promise<readonly BusinessNetworkSummary[]> {
+    signal = this.operationSignal(signal)
     if (signal.aborted) throw signal.reason
     try {
-      await this.authCoordinator().beginLogin()
+      await this.authCoordinator().beginLogin(signal)
       await this.synchronizeCliCredential(signal)
     } catch (error: unknown) {
       throw cliUnavailableAsRemote(error)
@@ -174,9 +195,12 @@ export class OpenBknBusinessContextService extends TypertRemoteService {
    */
   @Remote('configureToken')
   async remoteConfigureToken(token: string, signal: AbortSignal): Promise<readonly BusinessNetworkSummary[]> {
+    signal = this.operationSignal(signal)
     const value = token.trim()
     if (value.length === 0) throw new Error('An OpenBKN token is required.')
     await this.ctx.credentials.set(credentialRef(OPENBKN_MCP_TOKEN_REF), value)
+    signal.throwIfAborted()
+    this.synchronizedToken = value
     try {
       await this.refreshMcpConnection()
     } catch (error: unknown) {
@@ -227,12 +251,17 @@ export class OpenBknBusinessContextService extends TypertRemoteService {
     messageId: string,
     signal: AbortSignal,
   ): Promise<ProvenanceView | undefined> {
+    signal = this.operationSignal(signal)
     const agent = this.ctx.agents.get(sessionId)
     if (agent === undefined) {
       throw new Error('OpenBKN turn provenance target is not a live DSH session.')
     }
     const handle = readDshSessionTurnProvenance(agent.session, messageId)
     if (handle === undefined) return undefined
+    const binding = this.bindingOf(agent)
+    if (binding !== undefined && normalizeBaseUrl(binding.platformBaseUrl) !== normalizeBaseUrl(this.config.baseUrl)) {
+      throw new RemoteError('openbkn/provenance-platform-mismatch', 'This session belongs to another platform. Restore its original OpenBKN address to read platform provenance.', {})
+    }
     const cwd = agent.session.header.cwd ?? '.'
     const reader = this.platformReader()
     const timeline = buildTurnTimeline(
@@ -304,6 +333,7 @@ export class OpenBknBusinessContextService extends TypertRemoteService {
   /** List only the business networks authorized by the managed OpenBKN token. */
   @Remote('listNetworks')
   async remoteListNetworks(signal: AbortSignal): Promise<readonly BusinessNetworkSummary[]> {
+    signal = this.operationSignal(signal)
     const status = await this.remoteStatus(signal)
     if (status.kind !== 'authenticated') {
       throw new Error('OpenBKN authentication is required before listing business networks.')
@@ -342,27 +372,30 @@ export class OpenBknBusinessContextService extends TypertRemoteService {
         { cause: error },
       )
     }
+    signal.throwIfAborted()
     return observedNetworkList(payload, network => {
       const workspacePath = this.ctx.openbknWorkspaceBindingRegistry.get(this.config.baseUrl, network.id)?.workspacePath
       return workspacePath === undefined ? network : { ...network, workspacePath }
-    })
+    }, this.observations ?? passiveDiagnostics)
   }
 
   /** Persist a selected local DSH workspace only after the network is authorized. */
   @Remote('bindNetworkWorkspace')
   async remoteBindNetworkWorkspace(networkId: string, workspacePath: string, signal: AbortSignal): Promise<BusinessNetworkSummary> {
+    signal = this.operationSignal(signal)
     const status = await this.remoteStatus(signal)
     if (status.kind !== 'authenticated') throw new Error('OpenBKN authentication is required before selecting a workspace.')
-    const network = observedNetworkList(await this.platformReader().listKnowledgeNetworks(signal, '.'))
+    const network = observedNetworkList(await this.platformReader().listKnowledgeNetworks(signal, '.'), undefined, this.observations ?? passiveDiagnostics)
       .find(candidate => candidate.id === networkId.trim())
     if (network === undefined) throw new Error('The requested OpenBKN business network is not visible to the current identity.')
     const canonicalPath = await canonicalDirectory(workspacePath)
-    await this.ctx.openbknWorkspaceBindingRegistry.put({
+    signal.throwIfAborted()
+    await this.configurationMutation(() => this.ctx.openbknWorkspaceBindingRegistry.put({
       platformBaseUrl: this.config.baseUrl,
       knowledgeNetworkId: network.id,
       displayName: network.displayName,
       workspacePath: canonicalPath,
-    })
+    }))
     return { ...network, workspacePath: canonicalPath }
   }
 
@@ -377,12 +410,14 @@ export class OpenBknBusinessContextService extends TypertRemoteService {
     networkId: string,
     signal: AbortSignal,
   ): Promise<BusinessNetworkBinding> {
+    signal = this.operationSignal(signal)
     const status = await this.remoteStatus(signal)
     if (status.kind !== 'authenticated') {
       throw new Error('OpenBKN authentication is required before binding a business network.')
     }
     const network = observedNetworkList(
       await this.platformReader().listKnowledgeNetworks(signal, '.'),
+      undefined, this.observations ?? passiveDiagnostics,
     ).find(candidate => candidate.id === networkId.trim())
     if (network === undefined) {
       throw new Error('The requested OpenBKN business network is not visible to the current identity.')
@@ -406,7 +441,7 @@ export class OpenBknBusinessContextService extends TypertRemoteService {
         binding,
         await this.platformReader().getKnowledgeNetworkDetail(binding, signal, agent.session.header.cwd ?? '.'),
       )
-      passiveDiagnostics.record({
+      ;(this.observations ?? passiveDiagnostics).record({
         subject: 'platform-network-detail', stage: 'platform-directory', code: 'platform-network-detail',
         status: 'pass',
       })
@@ -414,7 +449,7 @@ export class OpenBknBusinessContextService extends TypertRemoteService {
       if (!(error instanceof PlatformReaderError)) {
         // The read succeeded but the payload or network identity failed
         // validation: that is a response-shape failure on this interface.
-        passiveDiagnostics.record({
+        ;(this.observations ?? passiveDiagnostics).record({
           subject: 'platform-network-detail', stage: 'platform-directory', code: 'platform-response-invalid',
           status: 'fail',
         })
@@ -424,6 +459,7 @@ export class OpenBknBusinessContextService extends TypertRemoteService {
         safeCapabilityProfileFailureCode(error),
       )
     }
+    signal.throwIfAborted()
     const result = await this.bind(agent, binding, profile)
     return result.binding
   }
@@ -434,20 +470,45 @@ export class OpenBknBusinessContextService extends TypertRemoteService {
    * durable; a failed write rejects and leaves the session unbound.
    */
   async bind(agent: Agent, requested: BusinessNetworkBinding, profile?: NetworkCapabilityProfile): Promise<BindBusinessNetworkResult> {
+    return await this.persistAndMountBinding(agent, requested, profile)
+  }
+
+  private async persistAndMountBinding(
+    agent: Agent,
+    requested: BusinessNetworkBinding,
+    profile?: NetworkCapabilityProfile,
+    restoringReload = false,
+  ): Promise<BindBusinessNetworkResult> {
     if (this.ctx.agents.get(agent.id) !== agent) {
       throw new Error('OpenBKN business-network selection target is not a live DSH agent.')
     }
     if (normalizeBaseUrl(requested.platformBaseUrl) !== normalizeBaseUrl(this.config.baseUrl)) {
       throw new Error('OpenBKN business-network selection must use the configured OpenBKN platform.')
     }
-    const result = await bindDshSessionBusinessNetwork(agent.session, this.bindingRecords, requested)
-    // Only the settled binding's own profile is published, and only before the
-    // policy mounts (a mounted policy keeps the profile it was built with).
-    if (profile !== undefined && profile.knowledgeNetworkId === result.binding.knowledgeNetworkId && !this.mounted.has(agent)) {
-      this.capabilityProfiles.set(agent, profile)
+    return await this.configurationMutation(async () => {
+      const result = await bindDshSessionBusinessNetwork(agent.session, this.bindingRecords, requested)
+      // Keep persistence and the resulting mount in one reload admission window.
+      if (profile !== undefined && profile.knowledgeNetworkId === result.binding.knowledgeNetworkId && !this.mounted.has(agent)) {
+        this.capabilityProfiles.set(agent, profile)
+      }
+      this.mountIfBound(agent)
+      return result
+    }, restoringReload)
+  }
+
+  private async configurationMutation<T>(operation: () => Promise<T>, restoringReload = false): Promise<T> {
+    this.lifetime?.signal.throwIfAborted()
+    // Parent disposal begins before its reverse-order lifetime effect runs.
+    const state = this.ctx.fiber?.state
+    if (state === 3 || state === 4 || state === 5) throw new Error('OpenBKN business owner is no longer active.')
+    const settings = this.ctx.get?.('openbknConfiguration') as { isChanging?: boolean } | undefined
+    if (settings?.isChanging && !restoringReload) throw new Error('OpenBKN settings are being applied; wait before changing a business binding.')
+    this.bindingMutations = (this.bindingMutations ?? 0) + 1
+    try {
+      return await operation()
+    } finally {
+      this.bindingMutations--
     }
-    this.mountIfBound(agent)
-    return result
   }
 
   private bindingOf(agent: Agent): BusinessNetworkBinding | undefined {
@@ -473,7 +534,8 @@ export class OpenBknBusinessContextService extends TypertRemoteService {
     const binding = this.bindingOf(agent)
     const profile = this.capabilityProfiles.get(agent)
     const matchingProfile = profile !== undefined && profile.knowledgeNetworkId === binding?.knowledgeNetworkId ? profile : undefined
-    if (!mountBoundBusinessNetworkTool(agent, this.config, binding, matchingProfile)) return
+    if (this.lifetime?.signal.aborted) return
+    if (!mountBoundBusinessNetworkTool(agent, this.config, binding, matchingProfile, this.ctx)) return
     this.mounted.add(agent)
   }
 
@@ -483,10 +545,15 @@ export class OpenBknBusinessContextService extends TypertRemoteService {
    * failure leaves the session unbound (no OpenBKN capability) and is logged;
    * it never blocks the native DSH session.
    */
-  private async restoreBinding(agent: Agent): Promise<void> {
-    try {
+  private async restoreBinding(agent: Agent, restoringReload = false): Promise<void> {
+    const restore = async (): Promise<void> => {
       await inheritForkedBusinessNetwork(agent.session, this.bindingRecords)
-      await this.bindWorkspaceNetworkIfUnique(agent)
+      await this.bindWorkspaceNetworkIfUnique(agent, restoringReload)
+    }
+    try {
+      // Own the entire startup restore before its first await. A later save
+      // cannot race this constructor-only exemption after the original save ends.
+      await this.configurationMutation(restore, restoringReload)
     } catch (error: unknown) {
       this.warnBindingUnavailable(error)
     }
@@ -539,7 +606,7 @@ export class OpenBknBusinessContextService extends TypertRemoteService {
    * DSH session. A missing or ambiguous association deliberately leaves the
    * native session untouched.
    */
-  private async bindWorkspaceNetworkIfUnique(agent: Agent): Promise<void> {
+  private async bindWorkspaceNetworkIfUnique(agent: Agent, restoringReload = false): Promise<void> {
     if (this.bindingOf(agent) !== undefined) {
       this.mountIfBound(agent)
       return
@@ -548,13 +615,15 @@ export class OpenBknBusinessContextService extends TypertRemoteService {
     if (workspacePath === undefined) return
     const record = this.ctx.openbknWorkspaceBindingRegistry.findUniqueByWorkspace(this.config.baseUrl, workspacePath)
     if (record === undefined) return
-    await this.bind(agent, {
+    const requested = {
       platformBaseUrl: this.config.baseUrl,
       knowledgeNetworkId: record.knowledgeNetworkId,
       // Legacy mappings persisted before display metadata use the stable id
       // rather than guessing a business-facing name.
       displayName: record.displayName ?? record.knowledgeNetworkId,
-    })
+    }
+    if (restoringReload) await this.persistAndMountBinding(agent, requested, undefined, true)
+    else await this.bind(agent, requested)
   }
 
   /**
@@ -568,7 +637,11 @@ export class OpenBknBusinessContextService extends TypertRemoteService {
     signal: AbortSignal,
     next: () => Promise<T>,
   ): Promise<T> {
-    if (step === 1 && this.bindingOrUnbound(agent) !== undefined) {
+    const binding = this.bindingOrUnbound(agent)
+    if (binding !== undefined && normalizeBaseUrl(binding.platformBaseUrl) === normalizeBaseUrl(this.config.baseUrl)) {
+      const settings = this.ctx?.get?.('openbknConfiguration') as { isChanging?: boolean } | undefined
+      if (settings?.isChanging) throw new Error('OpenBKN settings are being applied; wait before starting a business turn.')
+      if (step !== 1) return await next()
       await this.remoteStatus(signal)
     }
     return await next()
@@ -603,7 +676,10 @@ export class OpenBknBusinessContextService extends TypertRemoteService {
   /** Synchronize exactly one configured-platform CLI token into DSH credentials. */
   private async synchronizeCliCredential(signal: AbortSignal): Promise<void> {
     const token = await this.authCoordinator().readToken(signal)
+    signal.throwIfAborted()
     await this.ctx.credentials.set(credentialRef(OPENBKN_MCP_TOKEN_REF), token)
+    signal.throwIfAborted()
+    this.synchronizedToken = token
     await this.refreshMcpConnection()
   }
 
@@ -615,11 +691,33 @@ export class OpenBknBusinessContextService extends TypertRemoteService {
     })
   }
 
-  /** Resolve only the DSH-managed token; legacy environment variables are not silently migrated. */
+  /** Never send a shared credential from another platform before CLI verification. */
   private async resolveOpenBknToken(): Promise<string | undefined> {
-    const ref = credentialRef(OPENBKN_MCP_TOKEN_REF)
-    const managed = await this.ctx.credentials.resolve(ref)
-    return managed?.value
+    if (this.lifetime?.signal.aborted) return undefined
+    if (this.synchronizedToken !== undefined) return this.synchronizedToken
+    // Historical provenance may be opened before the panel or a new turn.
+    // Verify against the configured-platform CLI rather than borrowing the
+    // global vault. Parallel provenance panes share this one refresh.
+    this.tokenRead ??= (async () => {
+      const token = await this.authCoordinator().readToken(this.lifetime?.signal)
+      this.lifetime?.signal.throwIfAborted()
+      this.synchronizedToken = token
+      return token
+    })().finally(() => { this.tokenRead = undefined })
+    try {
+      return await this.tokenRead
+    } catch (error: unknown) {
+      this.lifetime?.signal.throwIfAborted()
+      // Historical provenance can precede panel login. An unusable CLI
+      // session supplies no verified token; let the reader retain its
+      // authentication-required boundary rather than invent network failure.
+      if (error instanceof OpenBknCliError || error instanceof OpenBknCliUnavailableError) return undefined
+      throw error
+    }
+  }
+
+  private operationSignal(signal: AbortSignal): AbortSignal {
+    return this.lifetime === undefined ? signal : AbortSignal.any([signal, this.lifetime.signal])
   }
 }
 
@@ -650,17 +748,18 @@ async function canonicalDirectory(path: string): Promise<string> {
 export function observedNetworkList(
   payload: unknown,
   decorate: (network: BusinessNetworkSummary) => BusinessNetworkSummary = network => network,
+  observations: PassiveDiagnosticsWriter = passiveDiagnostics,
 ): readonly BusinessNetworkSummary[] {
   try {
     const parsed = parseVisibleBusinessNetworks(payload).map(decorate)
-    passiveDiagnostics.record({
+    observations.record({
       subject: 'platform-network-list', stage: 'platform-directory', code: 'platform-network-list',
       status: 'pass', evidence: { networkCount: parsed.length },
     })
     return parsed
   } catch (error) {
     if (!(error instanceof PlatformReaderError)) {
-      passiveDiagnostics.record({
+      observations.record({
         subject: 'platform-network-list', stage: 'platform-directory', code: 'platform-response-invalid',
         status: 'fail',
       })

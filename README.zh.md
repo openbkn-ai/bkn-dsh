@@ -1,6 +1,6 @@
 # bkn-dsh
 
-统一 -7 已发布：[GitHub Release](https://github.com/openbkn-ai/bkn-dsh/releases/tag/v0.2.0-rc.2-openbkn.0.2.0-7)、[累计更新说明](docs/releases/2026-10-06-unified-7-notes.md)与[公开包核验凭证](https://github.com/openbkn-ai/bkn-dsh/releases/download/v0.2.0-rc.2-openbkn.0.2.0-7/PUBLICATION-VERIFICATION.json)。npm 的 `latest` 和 `rc` 均指向 -7。历史 -5/-6 包及较早的 -7 候选保留原身份，验收结论仍限定于记录的包和场景。
+已发布 -7 的历史记录：[GitHub Release](https://github.com/openbkn-ai/bkn-dsh/releases/tag/v0.2.0-rc.2-openbkn.0.2.0-7)、[累计更新说明](docs/releases/2026-10-06-unified-7-notes.md)与[公开包核验凭证](https://github.com/openbkn-ai/bkn-dsh/releases/download/v0.2.0-rc.2-openbkn.0.2.0-7/PUBLICATION-VERIFICATION.json)。历史 -5/-6 包及较早的 -7 候选保留原身份，验收结论仍限定于记录的包和场景。
 
 [English](README.md)
 
@@ -33,7 +33,7 @@ bkn-dsh 是一个增量式 DeepSeek Harness 插件。授权用户可为一个会
 
 ## 安装并开始使用
 
-从已发布的 <= -4 版本升级且配置里带 `name` 断言？请按[包 README 的迁移说明](packages/openbkn-business-context/README.zh.md#升级--7name-断言配置需迁移)调整。
+若保留了 <= -4 版本带 `name` 断言的配置，请按[包 README 的迁移说明](packages/openbkn-business-context/README.zh.md#升级--7name-断言配置需迁移)调整。全新安装不需要这项迁移。
 
 从插件 `0.2.0-rc.2-openbkn.0.2.0-1` 起，原版 DeepSeek Harness `0.2.0-rc.2` 就够用了，不需要打补丁：用 DSH 自己的插件管理器装上插件包即可。同一个插件包适用于 DSH 的三种形态：
 
@@ -43,14 +43,11 @@ bkn-dsh 是一个增量式 DeepSeek Harness 插件。授权用户可为一个会
 | npm 命令行 | `npm install -g @deepseek-ai/dsh@0.2.0-rc.2`，然后 `dsh web` |
 | 源码检出（构建后运行） | 检出 `dsh-v0.2.0-rc.2`，执行 `pnpm install && pnpm run build`，然后 `node apps/cli/lib/bin.js web` |
 
-三种形态都已在 macOS arm64 上验证：安装、绑定、带工具调用的问答、业务溯源、重启后重新打开会话，以及续接平台会话（[证据](docs/evidence/2026-09-29-desktop-direct-install.md)）。Windows 10 上也验证了桌面版和 npm 命令行：默认配置下的登录、绑定和问答已通过（第二轮，CLI 查找修复之后）；其余各项——溯源、重启续接、未绑定和 PTC 拒绝、卸载——是在第一轮设置了 `cliPath` 的情况下通过的，当时还没有这个修复（[结果](docs/handoff/2026-10-02-windows-verification-round2.md)）。源码检出形态没有在 Windows 上测。
+此前包的历史验收在 macOS arm64 上覆盖了三种形态：安装、绑定、带工具调用的问答、业务溯源、重启后重新打开会话，以及续接平台会话（[证据](docs/evidence/2026-09-29-desktop-direct-install.md)）。Windows 10 上也验证了桌面版和 npm 命令行：默认配置下的登录、绑定和问答已通过（第二轮，CLI 查找修复之后）；其余各项——溯源、重启续接、未绑定和 PTC 拒绝、卸载——是在第一轮设置了 `cliPath` 的情况下通过的，当时还没有这个修复（[结果](docs/handoff/2026-10-02-windows-verification-round2.md)）。该基线没有测 Windows 源码检出形态。这些历史结果不能替代新包或下述配置流程的验收。
 
 ### 开始之前
 
-1. **登录 OpenBKN CLI。** 安装与平台版本匹配的 CLI，执行一次 `openbkn auth login <平台地址>`。
-   - OpenBKN 0.1.5 平台用 `npm install -g @openbkn/bkn-sdk@0.1.5`；0.1.4 平台用 `@openbkn/bkn-sdk@0.1.4`（`0.1.5-rc.1` 也可以）。CLI 从 `0.1.5-rc.2` 起，每次请求前都会通过 `/api/bkn-backend/v1/health` 检查平台版本，平台没有这个接口（比如 0.1.4）就直接拒绝。
-   - **先登录再打开 OpenBKN 面板。** 插件 `0.2.0-rc.2-openbkn.0.2.0-3` 及之前的版本，在 CLI 从未登录时，面板显示「无法验证 OpenBKN 连接」而不是登录入口。用 CLI 0.1.5 读取 CLI 0.1.4 存下的登录状态时也可能出现同样的提示；实测刷新一次会话后恢复：`openbkn auth token > /dev/null`（PowerShell 用 `openbkn auth token > $null`）。这条命令会打印访问令牌，所以要像上面那样丢弃输出，不要让它显示在终端里。
-   - 插件通过 `openbkn` CLI 读取 Token，所以 DSH 要能在自己进程的 `PATH` 里找到它。macOS 桌面版从登录 shell 取得 `PATH`；Windows 上会找到 `openbkn.cmd`。找不到时，在第 2 步的条目里把 `cliPath` 设为 CLI 的绝对路径。DSH 只会给命令名补 Windows 扩展名，给绝对路径时不会补，所以 Windows 上要写到 `.cmd` 文件本身，例如 `C:/Users/<你>/AppData/Roaming/npm/openbkn.cmd`（用 `where.exe openbkn` 可以查到）。
+1. **OpenBKN CLI。** 安装与平台版本匹配的 CLI：OpenBKN 0.1.5 平台用 `npm install -g @openbkn/bkn-sdk@0.1.5`；0.1.4 平台用 `@openbkn/bkn-sdk@0.1.4`（`0.1.5-rc.1` 也可以）。CLI 从 `0.1.5-rc.2` 起要求平台提供健康/版本接口，0.1.4 没有该接口。可以先配置插件，面板会在需要时发起 CLI 授权。DSH 要能从自身进程的 `PATH` 找到 `openbkn`；macOS 桌面版读取登录 shell 环境，Windows 使用 `openbkn.cmd`。找不到时，在面板的**设置 → 高级设置**里填写 CLI 绝对路径。Windows 上要写到 shim 文件本身，例如 `C:/Users/<你>/AppData/Roaming/npm/openbkn.cmd`（`where.exe openbkn` 可以查到位置）。
 2. **pnpm（只有 npm 命令行需要）。** npm 版的 `dsh` 会把 `plugin add` 交给 `PATH` 里的 `pnpm` 执行，要先安装它（`npm install -g pnpm@11.7.0`，与 DSH 自己用的版本一致）。桌面版自带 pnpm。
 3. **自签证书的平台**（公开受信任的证书可跳过）。DSH 要通过 `NODE_EXTRA_CA_CERTS=<CA pem 路径>` 信任平台 CA：
    - 在终端里运行 `dsh web`：在命令前加上这个变量。
@@ -60,47 +57,60 @@ bkn-dsh 是一个增量式 DeepSeek Harness 插件。授权用户可为一个会
 
 ### 1. 安装插件
 
-**已发布版本：** -7 已可通过 npm 的 `latest` 与 `rc` 获取，直接使用下面的指令。若从下载包安装，把包版本参数替换为[正式 `.tgz`](https://github.com/openbkn-ai/bkn-dsh/releases/download/v0.2.0-rc.2-openbkn.0.2.0-7/openbkn-dsh-business-context-0.2.0-rc.2-openbkn.0.2.0-7.tgz)的绝对路径。不可变的包内 README 保留候选构建时的措辞；当前发布状态及哈希以上方 GitHub Release 的核验记录为准。
-
-先关闭桌面版（或停止 `dsh web`）。桌面版需要至少启动过一次，profile 才会存在。
+在 DSH 的**插件**页面选择**添加插件**，填写 `@openbkn/dsh-business-context@latest`，选择安装源后安装。也可以先停止 DSH，再用终端安装；桌面版需要至少启动过一次，profile 才会存在：
 
 ```bash
-# 桌面版（macOS）。应用菜单里的「管理 dsh 命令…」也可以把 `dsh` 加到 PATH。
-"/Applications/DeepSeek Harness.app/Contents/Resources/runtime/cli/bin/dsh" plugin --profile desktop add @openbkn/dsh-business-context@0.2.0-rc.2-openbkn.0.2.0-7
+# 桌面版（macOS）。应用菜单里的「管理 dsh 命令…」也可把 dsh 加到 PATH。
+"/Applications/DeepSeek Harness.app/Contents/Resources/runtime/cli/bin/dsh" plugin --profile desktop add @openbkn/dsh-business-context@latest
 
 # npm 命令行
-dsh plugin --profile web add @openbkn/dsh-business-context@0.2.0-rc.2-openbkn.0.2.0-7
+dsh plugin --profile web add @openbkn/dsh-business-context@latest
 
-# 源码检出，在 DSH 源码根目录执行
-node apps/cli/lib/bin.js plugin --profile web add @openbkn/dsh-business-context@0.2.0-rc.2-openbkn.0.2.0-7
+# 源码构建，在 DSH 源码根目录执行
+node apps/cli/lib/bin.js plugin --profile web add @openbkn/dsh-business-context@latest
 ```
 
-Windows 上用 `dsh.cmd` 代替 `dsh`。
+Windows 上用 `dsh.cmd` 代替 `dsh`。请使用实际启动的 Host 的 profile 和 `DSH_HOME`；默认 `desktop` 与 `web` 是独立的 profile。从下载包安装时，把包名替换为 `.tgz` 的绝对路径。
 
-### 2. 填写平台地址
+### 2. 在 OpenBKN 面板里配置
 
-在 profile 的补丁层 `~/.dsh/profiles/<profile>/cordis.patch.yml`（`desktop` 或 `web`；设置了 `$DSH_HOME` 就在它下面）里加入下面的条目。Windows 上是 `%USERPROFILE%\.dsh\…`。这个文件是一个 YAML 列表。新建的 profile 里可能只有一行 `[]`：要用条目替换掉这一行，直接接在 `[]` 后面追加会让文件失效。DSH 之后可能自己往文件里追加条目（比如首次运行的提示之后），再次编辑时要按 `id` 找到插件的条目。
+1. 启动 DSH，点击侧栏底部的 **OpenBKN**。未填写地址是正常的**待配置**状态：组件保持启用，诊断也可打开。配置地址前，插件不会连接 OpenBKN，也不会读取它的 CLI 凭据。
+2. 填写平台的绝对 `http://` 或 `https://` 地址，点击**保存并继续**。非法地址会被拒绝，不改动已保存配置。地址保存成功与平台连接/授权成功是两件事。
+3. 若 DSH 找不到 CLI，打开**高级设置**填写 `cliPath`，默认值是 `openbkn`。以后可通过面板右上角的**设置**重新编辑同一表单。业务回合运行时，请等它结束再改平台地址。
+4. 出现登录提示后，点击**使用 OpenBKN CLI 登录并同步**，在浏览器完成授权，再回到 DSH。已有凭据被拒绝时，也使用这个入口重新登录。403 可能需要平台管理员授予权限，不能保证同账号重新登录就能恢复。
+
+设置通过 DSH 配置编辑器保存到当前 profile，并由正常的组件重载应用；其他配置字段会保留。更高优先级的配置覆盖可能阻止修改生效，面板会明确报告，不会绕过它。临时网络或证书失败不会清空地址。已有会话保留原平台/网络绑定，修改地址不会自动改绑。
+
+这条使用流程无需编辑 YAML，也无需粘贴访问令牌。凭据仍由 OpenBKN CLI 与 DSH 凭证管理。管理员需要维护高级配置时，仍可使用仅按 `id` 定位的 profile override：
 
 ```yaml
 - id: openbkn-business-context
   config:
     baseUrl: https://<你的 OpenBKN 平台地址>
-    # cliPath: /openbkn/的/绝对路径   # 只在 DSH 找不到 CLI 时需要；Windows 上要写到 openbkn.cmd
+    # cliPath: /openbkn/的/绝对路径
 ```
 
-平台地址不是敏感信息。不要把 OpenBKN Token 写进 Cordis YAML；插件只把它保存在 DSH 凭证里。
+平台地址不是敏感信息。不要把 Token 写进 Cordis YAML。配置文件中主动填写的非法地址仍是配置错误，与未设置地址的待配置状态不同。
 
 ### 3. 绑定网络并提问
 
-1. 启动 DSH（打开桌面版，或运行 `dsh web`），在侧栏点击 **OpenBKN**。
-2. 选择有权限的知识网络，为它新建本地工作区（**新建工作区**会打开目录选择器），或继续它已有的工作区。
-3. 在新会话里保持**标准模式**，然后提问。每个完成的回答下都有**查看业务溯源**（执行溯源、业务上下文图、证据链）。
+1. 授权后选择有权限的知识网络，为它新建本地工作区（**新建工作区**会打开目录选择器），或继续已有工作区。
+2. 在新会话里保持**标准模式**，然后提问。每个完成的回答下都有**查看业务溯源**（执行溯源、业务上下文图、证据链）。
+3. 连接或配置有问题时，点击 OpenBKN 面板右上角的**诊断**并导出报告。关闭面板后，旧请求完成不会重新打开它；关闭面板不代表已经取消正在进行的浏览器授权。
 
 在 macOS 上用 `dsh web` 时，目录选择器会在运行 `dsh web` 的那台机器上弹出。远程或 SSH 访问使用 DSH 的浏览目录后端，无法从插件面板新建工作区：请先把网络关联到一个已有的本地工作区。
 
 ### 卸载
 
-在 DSH 停止时执行 `dsh plugin --profile <profile> remove @openbkn/dsh-business-context`，并删除该 profile 目录下残留的 `node_modules/@openbkn`。会话仍然可读：插件不往 DSH 会话日志写任何东西。`$DSH_HOME/openbkn/session-bindings/` 下的绑定记录会留下；插件在装着的时候，会清理那些对应会话已不存在、且写入超过七天的记录。
+在 DSH 的**插件**页面移除 `@openbkn/dsh-business-context` 整包。若宿主要求停止 profile，先停止再重试。也可以停止 DSH 后执行：
+
+```bash
+dsh plugin --profile <desktop|web> remove @openbkn/dsh-business-context
+```
+
+卸载会卸载包组件、移除 profile 包依赖，保留用户在 profile 补丁里的配置、DSH/OpenBKN 凭据、CLI 登录状态、会话、网络/工作区绑定及工作区文件。这是卸载，不是退出账号或清空数据。不要删除整个 `node_modules/@openbkn` 目录，其中可能还有其他包。
+
+当前版本不向 DSH 会话日志添加插件事件，因此会话仍然可读；重装后可以复用保留的配置与绑定。插件在安装期间可能清理对应会话已不存在且记录至少七天的会话绑定；卸载不会进行全量数据清理。最早的 `0.2.0-rc.2-openbkn.0.2.0` 版本另有会话日志限制，见下文。
 
 ### 备份与已知限制
 
@@ -130,7 +140,7 @@ OpenBKN Runtime 归档不再发布：把插件装进 DSH 是唯一受支持的�
 
 1. **平台** —— 用 [bkn-foundry](https://github.com/openbkn-ai/bkn-foundry) 本地部署（macOS 用 `deploy/dev/mac.sh`；Docker 引擎需 ≥16 GB 内存），或使用你所在组织的部署。
 2. **样例数据** —— 从 [bkn-samples](https://github.com/openbkn-ai/bkn-samples) 导入样例知识网络（`supply_ontology_hand` 是主端到端数据集）。
-3. **凭证** —— 执行一次 `openbkn auth login <平台地址>`；插件仅通过 CLI 握手读取 Token。
+3. **配置并授权** —— 在 OpenBKN 面板填写平台地址，再使用面板的 CLI 登录入口；插件仅通过 CLI 握手读取 Token。
 4. **绑定** —— 在 DSH 中打开 OpenBKN 面板，选择网络，在其工作区中开始会话。
 
 ## 支持的 DSH 版本
@@ -141,7 +151,7 @@ OpenBKN Runtime 归档不再发布：把插件装进 DSH 是唯一受支持的�
 
 | 你的 DSH 版本 | 兼容补丁系列 | 应安装的插件 | 预构建 Runtime 归档 |
 | --- | --- | --- | --- |
-| `dsh-v0.2.0-rc.2`（当前锁定）：桌面版、npm 命令行或源码构建 | 使用插件不需要；[`compat/dsh-0.2.0-rc.2/`](compat/dsh-0.2.0-rc.2/) 用于从源码构建 | npm 上的 `@openbkn/dsh-business-context@0.2.0-rc.2-openbkn.0.2.0-7` 或正式 `.tgz`（标准模式） | 已停止发布；最后一个：[openbkn-dsh-runtime-v0.2.0-rc.2-openbkn.0.2.0](https://github.com/openbkn-ai/bkn-dsh/releases/tag/openbkn-dsh-runtime-v0.2.0-rc.2-openbkn.0.2.0) |
+| `dsh-v0.2.0-rc.2`（当前锁定）：桌面版、npm 命令行或源码构建 | 使用插件不需要；[`compat/dsh-0.2.0-rc.2/`](compat/dsh-0.2.0-rc.2/) 用于从源码构建 | npm 上的 `@openbkn/dsh-business-context@latest` 或正式 `.tgz`（标准模式） | 已停止发布；最后一个：[openbkn-dsh-runtime-v0.2.0-rc.2-openbkn.0.2.0](https://github.com/openbkn-ai/bkn-dsh/releases/tag/openbkn-dsh-runtime-v0.2.0-rc.2-openbkn.0.2.0) |
 | `dsh-v0.1.7-rc.2`（上一代系列） | [`compat/dsh-0.1.7-rc.2/`](compat/dsh-0.1.7-rc.2/)（存档） | npm 上的 `@openbkn/dsh-business-context@0.1.7-rc.2-openbkn.0.2.0`，或从 git tag [`v0.1.7-rc.2-openbkn.0.2.0`](https://github.com/openbkn-ai/bkn-dsh/tree/v0.1.7-rc.2-openbkn.0.2.0) 源码构建 | [openbkn-dsh-runtime-v0.1.7-rc.2-openbkn.0.2.0](https://github.com/openbkn-ai/bkn-dsh/releases/tag/openbkn-dsh-runtime-v0.1.7-rc.2-openbkn.0.2.0) |
 | `dsh-v0.1.6-alpha.2`（上一代系列） | [`compat/dsh-0.1.6-alpha.2/`](compat/dsh-0.1.6-alpha.2/)（存档） | npm 上的 `@openbkn/dsh-business-context@0.1.5-rc.2`，或从 git tag [`v0.1.5-rc.2`](https://github.com/openbkn-ai/bkn-dsh/tree/v0.1.5-rc.2) 源码构建 | [openbkn-dsh-runtime-v0.1.6-alpha.2-openbkn.1](https://github.com/openbkn-ai/bkn-dsh/releases/tag/openbkn-dsh-runtime-v0.1.6-alpha.2-openbkn.1) |
 

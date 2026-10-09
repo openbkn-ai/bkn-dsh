@@ -1,0 +1,46 @@
+{
+  "form": "npm(web)",
+  "host": "official npm DSH 0.2.0-rc.2",
+  "observed": [
+    {
+      "case": "F0",
+      "result": "pending direct form + settings/diagnostics + three enabled entries; 3 pass / 5 not-run configuration-required",
+      "uiReportId": "1ec0953d"
+    },
+    {
+      "case": "F1",
+      "result": "four invalid inputs rejected inline, retained, profile bytes unchanged",
+      "record": "npm-f1.json"
+    },
+    {
+      "case": "F2",
+      "result": "legal address + missing/real cliPath saved via UI; exact read-back; restart preserved values"
+    },
+    {
+      "case": "F3",
+      "result": "independent empty CLI store before login; real device login completed from product; two networks listed; no desktop token copied"
+    },
+    {
+      "case": "F6",
+      "result": "address change/refused old platform state/restored current platform; three selected files unchanged, patch exact restoration",
+      "record": "npm-f6-restored.json"
+    },
+    {
+      "case": "F8",
+      "result": "native manager removal removed package/dependency/three rows/sidebar; selected seven files exact before-after-reinstall; fixed CI reinstall66/66",
+      "record": "npm-f8-reinstalled-identity.json"
+    },
+    {
+      "case": "F4",
+      "result": "without CA context-loader tls-failed; original address retained; restored CA Host started",
+      "uiReportId": "46245cb3"
+    }
+  ],
+  "open": [
+    "product diagnostic download not yet obtained; no actual file/record after AX and keyboard attempts",
+    "busy model turn, native real-model question/provenance and full F7 remain pending model configuration",
+    "native directory picker pending manual selection on desktop; npm binding prepared via official production RPC, not a picker UI claim"
+  ],
+  "tokenReuse": "No Token copied between forms",
+  "f8Bindings": "Prepared via real Host RPC, then inspected through UI; not native picker acceptance"
+}

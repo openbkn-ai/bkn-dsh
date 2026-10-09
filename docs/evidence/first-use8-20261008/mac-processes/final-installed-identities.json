@@ -1,0 +1,23 @@
+{
+  "checkedAt": "2026-10-08T07:38:57.488013+00:00",
+  "forms": [
+    {
+      "form": "desktop",
+      "packagePath": "/tmp/bkn-firstuse8-mac-desktop/home/profiles/desktop/node_modules/@openbkn/dsh-business-context",
+      "version": "0.2.0-rc.2-openbkn.0.2.0-8",
+      "matched": 66,
+      "missing": [],
+      "different": [],
+      "extra": []
+    },
+    {
+      "form": "npm",
+      "packagePath": "/tmp/bkn-firstuse8-mac-npm/home/profiles/web/node_modules/@openbkn/dsh-business-context",
+      "version": "0.2.0-rc.2-openbkn.0.2.0-8",
+      "matched": 66,
+      "missing": [],
+      "different": [],
+      "extra": []
+    }
+  ]
+}

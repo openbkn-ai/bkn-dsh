@@ -1,0 +1,17 @@
+[
+  {
+    "path": "/tmp/bkn-firstuse8-host-control.py",
+    "sha256": "5b58f38a69a15f8fbc9a5d446829d045fb8dda79da79b282dfee93731fab467a",
+    "status": "unchanged inherited helper"
+  },
+  {
+    "path": "/tmp/bkn-firstuse8-host-api.py",
+    "sha256": "b9f003d1eee5c0992279c1266a126149f5014b4c5aac0bb658e3ff08a16a81f9",
+    "status": "unchanged inherited helper"
+  },
+  {
+    "path": "/tmp/bkn-firstuse8-isolation-results/verify-host-supply.py",
+    "sha256": "6193c7de31e21495c68357022e13a468775e48d70fa3ff45de24b5d41faeb529",
+    "status": "new read-only HTTP verification helper"
+  }
+]

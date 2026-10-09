@@ -130,8 +130,8 @@ test('catalogue 401 and 403 retain credential recovery with distinct refusal mes
     const { controller, allowHandshake } = recoveryCase(undefined, status)
     allowHandshake()
     await controller.refresh()
-    assert.equal(controller.snapshot().phase, 'authentication-required', 'the existing login and manual-token form must remain available')
+    assert.equal(controller.snapshot().phase, 'authentication-required', 'the CLI login recovery must remain available')
     assert.match(controller.snapshot().message ?? '', new RegExp(`平台.*${status}`))
-    if (status === 403) assert.match(controller.snapshot().message ?? '', /管理员.*Token.*不保证恢复/)
+    if (status === 403) assert.match(controller.snapshot().message ?? '', /管理员.*权限.*不保证恢复/)
   }
 })

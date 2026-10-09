@@ -1,0 +1,17 @@
+{
+  "observedAt": "2026-10-08T07:26:27.726943+00:00",
+  "preference": "Ask where to save each file before downloading",
+  "before": "on",
+  "temporary": "off",
+  "restored": "on (verified in native Chrome UI)",
+  "userAuthorization": "explicit user reply: allow testing and restore",
+  "sourceChanged": false,
+  "candidateClient": "original fixed CI artifact; no probe replacement",
+  "chromeDownloadSucceeded": true,
+  "reportId": "875041b4",
+  "reportSha256": "c0d020405fd630371e8d13d511a1e7664993adc7a05fd3f90870885d725b92ce",
+  "allSevenChecksPass": true,
+  "chromeDownloadsUiBeforeControl": "only historical 4d141b89; no current report recorded",
+  "s2FreshChromeContext": "report 98b95ece also not downloaded with preference on",
+  "conclusion": "This controlled preference change isolates the observation to the browser save-inquiry/window path. Exact Chrome/OS/automation root cause remains unknown; no evidence for a plugin serializer or missing-handler defect."
+}

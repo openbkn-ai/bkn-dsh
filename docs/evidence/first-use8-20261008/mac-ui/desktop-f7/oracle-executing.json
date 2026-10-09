@@ -1,0 +1,346 @@
+{
+  "datas": [
+    {
+      "sales_order_id": "SO0000029",
+      "signing_date": "2026-04-08T00:00:00+08:00",
+      "_instance_identity": {
+        "sales_order_id": "SO0000029"
+      },
+      "customer_id": 10085,
+      "product_name": "北斗导航农机驾驶仪",
+      "shipping_quantity": 0,
+      "_instance_id": "supply_ontology_hand_salesorder-SO0000029",
+      "_display": "SO0000029",
+      "signing_quantity": 1,
+      "customer_name": "苏州光线文化工佩室",
+      "contract_number": "HT-2026-00029",
+      "promised_delivery_date": "2026-05-31T00:00:00+08:00",
+      "shipping_date": null,
+      "order_status": "执行中",
+      "product_code": "382-000006",
+      "salesperson": "臧子"
+    },
+    {
+      "shipping_quantity": 0,
+      "_instance_id": "supply_ontology_hand_salesorder-SO0000069",
+      "signing_date": "2026-05-18T00:00:00+08:00",
+      "product_name": "北斗导航农机驾驶仪",
+      "signing_quantity": 3,
+      "sales_order_id": "SO0000069",
+      "customer_name": "郑州绿洲农业服劮有限公司",
+      "contract_number": "HT-2026-00069",
+      "customer_id": 10025,
+      "promised_delivery_date": "2026-07-13T00:00:00+08:00",
+      "order_status": "执行中",
+      "product_code": "526-000005",
+      "salesperson": "解飞",
+      "shipping_date": null,
+      "_instance_identity": {
+        "sales_order_id": "SO0000069"
+      },
+      "_display": "SO0000069"
+    },
+    {
+      "shipping_date": null,
+      "sales_order_id": "SO0000091",
+      "signing_date": "2026-04-03T00:00:00+08:00",
+      "product_name": "北斗导航农机驾驶仪",
+      "signing_quantity": 3,
+      "order_status": "执行中",
+      "customer_name": "武哦守护安防科技服务有限公司",
+      "contract_number": "HT-2026-00091",
+      "customer_id": 10091,
+      "_instance_identity": {
+        "sales_order_id": "SO0000091"
+      },
+      "shipping_quantity": 0,
+      "product_code": "526-000006",
+      "salesperson": "路霞",
+      "_instance_id": "supply_ontology_hand_salesorder-SO0000091",
+      "_display": "SO0000091",
+      "promised_delivery_date": "2026-05-12T00:00:00+08:00"
+    },
+    {
+      "_display": "SO0000158",
+      "shipping_quantity": 0,
+      "order_status": "执行中",
+      "product_name": "YN580农业无人飞机",
+      "_instance_id": "supply_ontology_hand_salesorder-SO0000158",
+      "_instance_identity": {
+        "sales_order_id": "SO0000158"
+      },
+      "promised_delivery_date": "2026-04-05T00:00:00+08:00",
+      "sales_order_id": "SO0000158",
+      "customer_name": "武汉守护安全技术有倍公司",
+      "signing_date": "2026-03-10T00:00:00+08:00",
+      "customer_id": 10112,
+      "signing_quantity": 4,
+      "shipping_date": null,
+      "product_code": "367-000130",
+      "salesperson": "臧子",
+      "contract_number": "HT-2026-00158"
+    },
+    {
+      "product_name": "农业全程作业智能探测系统",
+      "sales_order_id": "SO0000187",
+      "_instance_id": "supply_ontology_hand_salesorder-SO0000187",
+      "_display": "SO0000187",
+      "signing_date": "2026-03-24T00:00:00+08:00",
+      "customer_id": 10019,
+      "signing_quantity": 1,
+      "_instance_identity": {
+        "sales_order_id": "SO0000187"
+      },
+      "salesperson": "路霞",
+      "contract_number": "HT-2026-00187",
+      "shipping_quantity": 0,
+      "shipping_date": null,
+      "product_code": "590-000064",
+      "promised_delivery_date": "2026-05-06T00:00:00+08:00",
+      "order_status": "执行中",
+      "customer_name": "剽都益农农机服务有限公司"
+    },
+    {
+      "signing_quantity": 2,
+      "sales_order_id": "SO0000253",
+      "signing_date": "2026-03-16T00:00:00+08:00",
+      "salesperson": "路霞",
+      "contract_number": "HT-2026-00253",
+      "customer_id": 10037,
+      "product_name": "农业全程作业智能探测系统",
+      "_instance_identity": {
+        "sales_order_id": "SO0000253"
+      },
+      "shipping_date": null,
+      "customer_name": "沈阳地信勘测工程侦限公司",
+      "_display": "SO0000253",
+      "order_status": "执行中",
+      "product_code": "590-000075",
+      "promised_delivery_date": "2026-04-01T00:00:00+08:00",
+      "shipping_quantity": 0,
+      "_instance_id": "supply_ontology_hand_salesorder-SO0000253"
+    },
+    {
+      "product_code": "590-000075",
+      "contract_number": "HT-2026-00262",
+      "_instance_id": "supply_ontology_hand_salesorder-SO0000262",
+      "order_status": "执行中",
+      "customer_name": "上海天地地理信僜技术有限公司",
+      "signing_date": "2026-03-06T00:00:00+08:00",
+      "salesperson": "路霞",
+      "customer_id": 10064,
+      "signing_quantity": 4,
+      "_instance_identity": {
+        "sales_order_id": "SO0000262"
+      },
+      "_display": "SO0000262",
+      "shipping_date": null,
+      "sales_order_id": "SO0000262",
+      "promised_delivery_date": "2026-03-25T00:00:00+08:00",
+      "shipping_quantity": 0,
+      "product_name": "农业全程作业智能探测系统"
+    },
+    {
+      "shipping_date": null,
+      "customer_name": "沈阳华能刪源有限公司",
+      "sales_order_id": "SO0000404",
+      "product_code": "U00-000161",
+      "_instance_id": "supply_ontology_hand_salesorder-SO0000404",
+      "_instance_identity": {
+        "sales_order_id": "SO0000404"
+      },
+      "_display": "SO0000404",
+      "order_status": "执行中",
+      "salesperson": "臧子",
+      "customer_id": 10130,
+      "signing_quantity": 4,
+      "promised_delivery_date": "2026-05-15T00:00:00+08:00",
+      "shipping_quantity": 0,
+      "signing_date": "2026-04-18T00:00:00+08:00",
+      "contract_number": "HT-2026-00404",
+      "product_name": "北斗车载智能终端系统"
+    },
+    {
+      "signing_quantity": 1,
+      "customer_name": "中山大厣自动化学院实验室",
+      "promised_delivery_date": "2026-05-19T00:00:00+08:00",
+      "shipping_quantity": 0,
+      "product_code": "U00-000170",
+      "contract_number": "HT-2026-00420",
+      "customer_id": 10178,
+      "shipping_date": null,
+      "order_status": "执行中",
+      "sales_order_id": "SO0000420",
+      "signing_date": "2026-04-15T00:00:00+08:00",
+      "salesperson": "解飞",
+      "_instance_id": "supply_ontology_hand_salesorder-SO0000420",
+      "product_name": "北斗车载智能终端系统",
+      "_instance_identity": {
+        "sales_order_id": "SO0000420"
+      },
+      "_display": "SO0000420"
+    },
+    {
+      "promised_delivery_date": "2026-04-02T00:00:00+08:00",
+      "shipping_quantity": 0,
+      "shipping_date": null,
+      "customer_name": "武汉生态保护环境俎测科技有限公司",
+      "salesperson": "臧子",
+      "_instance_identity": {
+        "sales_order_id": "SO0000533"
+      },
+      "customer_id": 10157,
+      "signing_quantity": 2,
+      "product_code": "382-000006",
+      "signing_date": "2026-03-01T00:00:00+08:00",
+      "_display": "SO0000533",
+      "product_name": "北斗导航农机驾驶仪",
+      "order_status": "执行中",
+      "_instance_id": "supply_ontology_hand_salesorder-SO0000533",
+      "sales_order_id": "SO0000533",
+      "contract_number": "HT-2026-00533"
+    },
+    {
+      "salesperson": "臧子",
+      "customer_id": 10004,
+      "signing_quantity": 1,
+      "order_status": "执行中",
+      "product_code": "526-000001",
+      "signing_date": "2026-05-23T00:00:00+08:00",
+      "_instance_id": "supply_ontology_hand_salesorder-SO0000542",
+      "contract_number": "HT-2026-00542",
+      "product_name": "北斗导航农机驾驶仪",
+      "shipping_quantity": 0,
+      "shipping_date": null,
+      "customer_name": "上海绿野冩业服务有限公司",
+      "_display": "SO0000542",
+      "promised_delivery_date": "2026-06-30T00:00:00+08:00",
+      "sales_order_id": "SO0000542",
+      "_instance_identity": {
+        "sales_order_id": "SO0000542"
+      }
+    },
+    {
+      "promised_delivery_date": "2026-04-29T00:00:00+08:00",
+      "customer_name": "武汉农兴农业勎技有限公司",
+      "_instance_identity": {
+        "sales_order_id": "SO0000544"
+      },
+      "order_status": "执行中",
+      "product_code": "526-000001",
+      "product_name": "北斗导航农机驾驶仪",
+      "_instance_id": "supply_ontology_hand_salesorder-SO0000544",
+      "_display": "SO0000544",
+      "shipping_quantity": 0,
+      "shipping_date": null,
+      "sales_order_id": "SO0000544",
+      "contract_number": "HT-2026-00544",
+      "signing_quantity": 1,
+      "signing_date": "2026-03-15T00:00:00+08:00",
+      "salesperson": "路霞",
+      "customer_id": 10010
+    },
+    {
+      "signing_date": "2026-06-06T00:00:00+08:00",
+      "customer_id": 10106,
+      "shipping_date": null,
+      "_instance_id": "supply_ontology_hand_salesorder-SO0000576",
+      "_display": "SO0000576",
+      "sales_order_id": "SO0000576",
+      "product_code": "526-000005",
+      "contract_number": "HT-2026-00576",
+      "_instance_identity": {
+        "sales_order_id": "SO0000576"
+      },
+      "product_name": "北斗导航农机驾驶仪",
+      "promised_delivery_date": "2026-07-18T00:00:00+08:00",
+      "shipping_quantity": 0,
+      "order_status": "执行中",
+      "customer_name": "哈尔滨安保通安兵服务有限公司",
+      "salesperson": "解飞",
+      "signing_quantity": 1
+    },
+    {
+      "_display": "SO0000614",
+      "promised_delivery_date": "2026-06-07T00:00:00+08:00",
+      "product_code": "367-000061",
+      "signing_date": "2026-05-19T00:00:00+08:00",
+      "contract_number": "HT-2026-00614",
+      "_instance_id": "supply_ontology_hand_salesorder-SO0000614",
+      "customer_name": "沈阳空间空间信息有限公吅",
+      "salesperson": "臧子",
+      "product_name": "农业无人飞机",
+      "signing_quantity": 2,
+      "order_status": "执行中",
+      "shipping_quantity": 0,
+      "shipping_date": null,
+      "sales_order_id": "SO0000614",
+      "customer_id": 10040,
+      "_instance_identity": {
+        "sales_order_id": "SO0000614"
+      }
+    },
+    {
+      "shipping_quantity": 0,
+      "sales_order_id": "SO0000672",
+      "_instance_id": "supply_ontology_hand_salesorder-SO0000672",
+      "customer_name": "厦门田园农服有限兹司",
+      "salesperson": "解飞",
+      "contract_number": "HT-2026-00672",
+      "order_status": "执行中",
+      "product_name": "YN580农业无人飞机",
+      "signing_quantity": 4,
+      "promised_delivery_date": "2026-04-06T00:00:00+08:00",
+      "_display": "SO0000672",
+      "shipping_date": null,
+      "product_code": "367-000131",
+      "signing_date": "2026-03-02T00:00:00+08:00",
+      "customer_id": 10034,
+      "_instance_identity": {
+        "sales_order_id": "SO0000672"
+      }
+    },
+    {
+      "product_code": "590-000073",
+      "signing_date": "2026-03-17T00:00:00+08:00",
+      "salesperson": "解飞",
+      "_instance_id": "supply_ontology_hand_salesorder-SO0000729",
+      "contract_number": "HT-2026-00729",
+      "customer_id": 10025,
+      "product_name": "农业全程作业智能探测系统",
+      "signing_quantity": 1,
+      "promised_delivery_date": "2026-03-31T00:00:00+08:00",
+      "shipping_quantity": 0,
+      "shipping_date": null,
+      "sales_order_id": "SO0000729",
+      "_instance_identity": {
+        "sales_order_id": "SO0000729"
+      },
+      "_display": "SO0000729",
+      "order_status": "执行中",
+      "customer_name": "郑州绿洲农业服劮有限公司"
+    }
+  ],
+  "total_count": 16,
+  "paging": {
+    "next_cursor": null,
+    "expires_at_sec": null
+  },
+  "overall_ms": 27,
+  "search_from_index": false,
+  "effective_permissions": {
+    "sales_order_id": "full",
+    "contract_number": "full",
+    "shipping_date": "full",
+    "order_status": "full",
+    "customer_name": "full",
+    "product_name": "full",
+    "promised_delivery_date": "full",
+    "shipping_quantity": "full",
+    "salesperson": "full",
+    "customer_id": "full",
+    "product_code": "full",
+    "signing_quantity": "full",
+    "signing_date": "full"
+  }
+}

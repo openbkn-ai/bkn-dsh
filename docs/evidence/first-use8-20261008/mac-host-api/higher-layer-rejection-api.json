@@ -1,0 +1,14 @@
+{
+  "evidenceLevel": "Final candidate actual official Host API; controlled public home override, not UI",
+  "result": {
+    "ok": false,
+    "error": {
+      "code": "openbkn/configuration-save-failed",
+      "message": "Settings were not applied. Check for a profile override or export diagnostics.",
+      "details": {}
+    }
+  },
+  "profilePatchBeforeSHA256": "9b8e4d44d98b6d81d24534abc6cf1f8c14c0c6412604913848eaf984faeb478e",
+  "profilePatchAfterSHA256": "9b8e4d44d98b6d81d24534abc6cf1f8c14c0c6412604913848eaf984faeb478e",
+  "unchanged": true
+}

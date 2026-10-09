@@ -25,7 +25,7 @@ import { OpenBknPanelBridge } from './openbkn-panel-bridge.ts'
 import { OpenBknContextToolView } from './OpenBknContextToolView.tsx'
 import { BoundNetworkBadge, BoundNetworkController } from './BoundNetworkBadge.tsx'
 import {
-  type OpenBknUiController, directoryPickerFailure, workspaceSelectionCancelled, type NetworkSessionMode, type OpenBknUiPort,
+  directoryPickerFailure, workspaceSelectionCancelled, type NetworkSessionMode, type OpenBknUiPort,
 } from './openbkn-ui-controller.ts'
 import { ProvenanceOverlay, ProvenanceOverlayController } from './ProvenanceOverlay.tsx'
 import type { ProvenanceView } from '../types.ts'
@@ -58,8 +58,8 @@ export async function apply(ctx: Context): Promise<() => Promise<void>> {
   // The diagnostics controller is created inside that injected scope; the
   // business segment connects to the independent panel bridge when ready.
   const panel = new OpenBknPanelBridge()
-  const diagnostics = ctx.inject(['slots', 'remote', 'remote.openbknDiagnostics'], scopedCtx =>
-    registerPanels(scopedCtx, panel.controller))
+  const diagnostics = ctx.inject(['slots', 'remote', 'remote.openbknDiagnostics', 'remote.openbknConfiguration'], scopedCtx =>
+    registerPanels(scopedCtx, panel))
   // A diagnostics failure degrades the panel only; it never blocks or breaks
   // the business registration below.
   const diagnosticsSettled = diagnostics.then(() => undefined, () => undefined)
@@ -95,7 +95,13 @@ export async function apply(ctx: Context): Promise<() => Promise<void>> {
  * Host; the business Remote namespace is deliberately absent. The created
  * panel shell shares a controller with the later business segment.
  */
-function registerPanels(ctx: Context, panel: OpenBknUiController): void {
+function registerPanels(ctx: Context, bridge: OpenBknPanelBridge): void {
+  const panel = bridge.controller
+  const disconnectConfiguration = bridge.connectConfiguration({
+    getConfiguration: async signal => unwrap(await ctx.remote.openbknConfiguration.getConfiguration(signal)),
+    saveConfiguration: async (input, signal) => unwrap(await ctx.remote.openbknConfiguration.saveConfiguration(input, signal)),
+  })
+  ctx.effect(() => disconnectConfiguration, 'openbkn panel configuration connection')
   const controller = new DiagnosticsPanelController({
     getReport: async signal => unwrap(await ctx.remote.openbknDiagnostics.getReport(signal)),
   })
@@ -105,13 +111,15 @@ function registerPanels(ctx: Context, panel: OpenBknUiController): void {
     close: () => panel.close(),
     refresh: () => panel.refresh(),
     beginLogin: () => panel.beginLogin(),
-    configureToken: (token: string) => panel.configureToken(token),
+    showSettings: () => panel.showSettings(),
+    saveConfiguration: (input: import('../types.ts').OpenBknConfigurationInput) => panel.saveConfiguration(input),
     openNetwork: (networkId: string, mode: NetworkSessionMode) => panel.openNetwork(networkId, mode),
     openDiagnostics: () => {
       panel.close()
       controller.open()
     },
   })
+  ctx.effect(() => () => { panel.close(); controller.close() }, 'openbkn panel lifecycle')
   ctx.slots.inject('sidebar.footer.action', () => ctx.slots.register({
     name: 'sidebar.footer.action', id: 'openbkn-business-context', order: 100, inject,
   }, OpenBknEntry))
@@ -270,7 +278,8 @@ function createNetworkSessionOpener(ctx: Context, port: OpenBknUiPort) {
   const sessions = ctx.get('sessions') as ISessions
   const workspaces = ctx.get('workspaces') as IWorkspaces
   const uiWorkspace = ctx.get('uiWorkspace') as UiWorkspace
-  return async (network: import('../types.ts').BusinessNetworkSummary, mode: NetworkSessionMode): Promise<SessionId> => {
+  return async (network: import('../types.ts').BusinessNetworkSummary, mode: NetworkSessionMode, signal?: AbortSignal): Promise<SessionId> => {
+    signal?.throwIfAborted()
     let workspace: WorkspaceView
     if (network.workspacePath === undefined) {
       if (mode !== 'create-workspace') throw new Error('This OpenBKN business knowledge network has no associated local workspace.')
@@ -280,16 +289,20 @@ function createNetworkSessionOpener(ctx: Context, port: OpenBknUiPort) {
       } catch (error: unknown) {
         throw directoryPickerFailure(error)
       }
+      signal?.throwIfAborted()
       if (path === null) throw workspaceSelectionCancelled()
       workspace = await workspaces.create({ path })
-      await port.bindNetworkWorkspace(network.id, workspace.path)
+      signal?.throwIfAborted()
+      await port.bindNetworkWorkspace(network.id, workspace.path, signal)
     } else {
       workspace = workspaces.list.getSnapshot().items.find(item => item.path === network.workspacePath)
         ?? await workspaces.create({ path: network.workspacePath })
     }
 
+    signal?.throwIfAborted()
     const sessionId = mode === 'continue' ? latestWorkspaceSession(workspace, sessions) ?? await sessions.create({ workspaceId: workspace.workspaceId })
       : await sessions.create({ workspaceId: workspace.workspaceId })
+    signal?.throwIfAborted()
     uiWorkspace.openSession(sessionId)
     return sessionId
   }

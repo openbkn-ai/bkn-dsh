@@ -1,4 +1,4 @@
-import type { AuthSnapshot, BusinessNetworkBinding, BusinessNetworkSummary } from '../types.ts'
+import type { AuthSnapshot, BusinessNetworkBinding, BusinessNetworkSummary, OpenBknConfigurationInput, OpenBknConfigurationView } from '../types.ts'
 
 /** Minimal browser-safe port over the generated OpenBKN Remote contract. */
 export interface OpenBknUiPort {
@@ -12,9 +12,15 @@ export interface OpenBknUiPort {
 
 export type NetworkSessionMode = 'continue' | 'new' | 'create-workspace'
 
-export type OpenNetworkSession = (network: BusinessNetworkSummary, mode: NetworkSessionMode) => Promise<string>
+export type OpenNetworkSession = (network: BusinessNetworkSummary, mode: NetworkSessionMode, signal?: AbortSignal) => Promise<string>
 
-export type OpenBknOverlayPhase = 'idle' | 'loading' | 'authentication-required' | 'ready' | 'binding' | 'error'
+/** Independent from the business row, so first-use configuration can reload it safely. */
+export interface OpenBknConfigurationPort {
+  getConfiguration(signal?: AbortSignal): Promise<OpenBknConfigurationView>
+  saveConfiguration(input: OpenBknConfigurationInput, signal?: AbortSignal): Promise<OpenBknConfigurationView>
+}
+
+export type OpenBknOverlayPhase = 'idle' | 'loading' | 'authentication-required' | 'ready' | 'binding' | 'configuration' | 'error'
 
 /** Render state for the additive OpenBKN overlay; credentials never enter it. */
 export interface OpenBknOverlayState {
@@ -23,6 +29,10 @@ export interface OpenBknOverlayState {
   readonly auth?: AuthSnapshot
   readonly networks: readonly BusinessNetworkSummary[]
   readonly message?: string
+  readonly configuration?: OpenBknConfigurationView
+  readonly configurationMessage?: string
+  readonly savingConfiguration?: boolean
+  readonly loadingConfiguration?: boolean
 }
 
 type Listener = () => void
@@ -36,21 +46,18 @@ type Listener = () => void
 export class OpenBknUiController {
   private state: OpenBknOverlayState = { open: false, phase: 'idle', networks: [] }
   private readonly listeners = new Set<Listener>()
+  private revision = 0
+  private operation?: AbortController
 
   constructor(
     private readonly port: OpenBknUiPort,
     private readonly openNetworkSession: OpenNetworkSession,
     private readonly refreshBoundSession?: (sessionId: string) => void,
+    private readonly configurationPort?: OpenBknConfigurationPort,
   ) {}
 
-  snapshot(): OpenBknOverlayState {
-    return this.state
-  }
-
-  /** Slot-renderer observable contract; kept alongside `snapshot()` for tests and callers. */
-  getSnapshot(): OpenBknOverlayState {
-    return this.state
-  }
+  snapshot(): OpenBknOverlayState { return this.state }
+  getSnapshot(): OpenBknOverlayState { return this.state }
 
   subscribe(listener: Listener): () => void {
     this.listeners.add(listener)
@@ -58,113 +65,219 @@ export class OpenBknUiController {
   }
 
   open(): void {
+    this.invalidate()
     this.publish({ open: true, phase: 'idle', networks: [] })
   }
 
   close(): void {
+    this.invalidate()
     this.publish({ open: false, phase: 'idle', networks: [] })
+  }
+
+  /** A business-row reload must not invalidate its independent configuration save. */
+  businessChanged(): void {
+    if (!this.state.open || this.state.phase === 'configuration') return
+    this.invalidate()
+    this.publish({ open: true, phase: 'idle', networks: [] })
   }
 
   async refresh(signal?: AbortSignal): Promise<void> {
     if (!this.state.open) return
-
+    const operation = this.start(signal)
     this.publish({ ...this.state, phase: 'loading', message: undefined, networks: [] })
-    try {
-      const auth = await this.port.status(signal)
-      if (auth.kind !== 'authenticated') {
-        this.publish({ open: true, phase: 'authentication-required', auth, networks: [] })
-        return
+    let configuration = this.state.configuration
+    if (this.configurationPort !== undefined) {
+      try {
+        configuration = await this.configurationPort.getConfiguration(operation.signal)
+        if (!this.current(operation)) return
+        if (isPendingConfiguration(configuration)) {
+          this.publish({ open: true, phase: 'configuration', networks: [], configuration })
+          return
+        }
+      } catch {
+        // Diagnostics/configuration entry faults must not disable a healthy business row.
+        if (!this.current(operation)) return
+        configuration = undefined
       }
+    }
+    await this.loadBusiness(operation, configuration)
+  }
 
-      const networks = await this.port.listNetworks(signal)
-      this.publish({ open: true, phase: 'ready', auth, networks })
-    } catch (error: unknown) {
-      if (isPlatformUnavailableError(error)) {
-        this.publish({ ...this.state, phase: 'error', networks: [], message: 'OpenBKN 平台的业务知识网络目录暂不可用。已保存 Token 未被修改；请确认本机 OpenBKN 服务恢复后重试。' })
-        return
-      }
-      if (isAuthenticationRequiredError(error)) {
-        this.publish({
-          open: true,
-          phase: 'authentication-required',
-          auth: { kind: 'authentication-required', baseUrl: error.details.baseUrl },
-          networks: [],
-          message: authenticationFailureMessage(error),
-        })
-        return
-      }
-      this.publish({ ...this.state, phase: 'error', networks: [], message: connectionFailureMessage(error) })
+  async showSettings(): Promise<void> {
+    if (!this.state.open) return
+    const operation = this.start()
+    this.publish({ open: true, phase: 'configuration', networks: [], configuration: this.state.configuration, loadingConfiguration: true })
+    try {
+      if (this.configurationPort === undefined) throw new Error('Configuration service unavailable')
+      const configuration = await this.configurationPort.getConfiguration(operation.signal)
+      if (!this.current(operation)) return
+      this.publish({ open: true, phase: 'configuration', networks: [], configuration })
+    } catch {
+      if (!this.current(operation)) return
+      this.publish({ ...this.state, configuration: undefined, loadingConfiguration: false, configurationMessage: '当前无法读取插件设置。请查看诊断，确认配置组件已启用后重试。' })
     }
   }
 
-  /** Save and test a token without retaining it in controller state. */
+  async saveConfiguration(input: OpenBknConfigurationInput): Promise<void> {
+    if (!this.state.open || this.state.phase !== 'configuration' || this.state.savingConfiguration) return
+    const invalid = validateConfigurationInput(input)
+    if (invalid !== undefined) {
+      this.publish({ ...this.state, configurationMessage: invalid })
+      return
+    }
+    if (this.state.configuration?.editable !== true || this.configurationPort === undefined) return
+    const operation = this.start()
+    this.publish({ ...this.state, savingConfiguration: true, configurationMessage: undefined })
+    try {
+      const configuration = await this.configurationPort.saveConfiguration(input, operation.signal)
+      if (!this.current(operation)) return
+      if (isPendingConfiguration(configuration)) {
+        this.publish({ open: true, phase: 'configuration', networks: [], configuration })
+        return
+      }
+      this.publish({ open: true, phase: 'loading', networks: [], configuration, message: '设置已保存，正在检查连接…' })
+      await this.loadBusiness(operation, configuration, true)
+    } catch (error: unknown) {
+      if (!this.current(operation)) return
+      this.publish({ ...this.state, phase: 'configuration', savingConfiguration: false, configurationMessage: configurationFailureMessage(error) })
+    }
+  }
+
+  /** Existing internal API; deliberately absent from the ordinary user interface. */
   async configureToken(token: string): Promise<void> {
     if (!this.state.open) return
-
+    const operation = this.start()
     this.publish({ ...this.state, phase: 'loading', message: undefined })
     try {
-      const networks = await this.port.configureToken(token)
-      const auth = await this.port.status()
-      this.publish({ open: true, phase: 'ready', auth, networks })
+      const networks = await this.port.configureToken(token, operation.signal)
+      if (!this.current(operation)) return
+      const auth = await this.port.status(operation.signal)
+      if (!this.current(operation)) return
+      this.publish({ open: true, phase: 'ready', auth, networks, ...withConfiguration(this.state.configuration) })
     } catch (error: unknown) {
-      if (isPlatformUnavailableError(error)) {
-        this.publish({ ...this.state, phase: 'error', message: 'OpenBKN 平台的业务知识网络目录暂不可用。已保存 Token 未被修改；请确认本机 OpenBKN 服务恢复后重试。' })
-        return
-      }
-      if (isAuthenticationRequiredError(error)) {
-        this.publish({
-          open: true,
-          phase: 'authentication-required',
-          auth: { kind: 'authentication-required', baseUrl: error.details.baseUrl },
-          networks: [],
-          message: authenticationFailureMessage(error),
-        })
-        return
-      }
-      this.publish({ ...this.state, phase: 'error', message: connectionFailureMessage(error) })
+      if (this.current(operation)) this.connectionFailed(error, this.state.configuration)
     }
   }
 
-  /** Run the Host-only OpenBKN CLI login, then present its verified catalogue. */
   async beginLogin(signal?: AbortSignal): Promise<void> {
     if (!this.state.open) return
+    const operation = this.start(signal)
     this.publish({ ...this.state, phase: 'loading', message: undefined })
     try {
-      const networks = await this.port.beginLogin(signal)
-      const auth = await this.port.status(signal)
-      this.publish({ open: true, phase: 'ready', auth, networks })
+      const networks = await this.port.beginLogin(operation.signal)
+      if (!this.current(operation)) return
+      const auth = await this.port.status(operation.signal)
+      if (!this.current(operation)) return
+      this.publish({ open: true, phase: 'ready', auth, networks, ...withConfiguration(this.state.configuration) })
     } catch (error: unknown) {
-      if (isAuthenticationRequiredError(error)) {
-        this.publish({ open: true, phase: 'authentication-required', auth: { kind: 'authentication-required', baseUrl: error.details.baseUrl }, networks: [], message: authenticationFailureMessage(error) })
-        return
-      }
-      this.publish({ ...this.state, phase: 'error', networks: [], message: connectionFailureMessage(error) })
+      if (this.current(operation)) this.connectionFailed(error, this.state.configuration)
     }
   }
 
   async openNetwork(networkId: string, mode: NetworkSessionMode, signal?: AbortSignal): Promise<void> {
+    if (!this.state.open) return
     const network = this.state.networks.find(candidate => candidate.id === networkId)
     if (network === undefined) {
-      this.publish({ ...this.state, message: 'The selected OpenBKN business knowledge network is no longer available.' })
+      this.publish({ ...this.state, message: '所选业务知识网络已不可用，请刷新后重试。' })
       return
     }
-
+    const operation = this.start(signal)
     this.publish({ ...this.state, phase: 'binding', message: mode === 'create-workspace' ? WORKSPACE_PICKER_HINT : undefined })
     try {
-      const sessionId = await this.openNetworkSession(network, mode)
-      await this.port.bindNetwork(sessionId, networkId, signal)
+      const sessionId = await this.openNetworkSession(network, mode, operation.signal)
+      if (!this.current(operation)) return
+      await this.port.bindNetwork(sessionId, networkId, operation.signal)
+      if (!this.current(operation)) return
       this.refreshBoundSession?.(sessionId)
       this.close()
     } catch (error: unknown) {
-      // Dismissing the chooser is a choice, not a failure: back to the list.
+      if (!this.current(operation)) return
       if (errorCode(error) === WORKSPACE_SELECTION_CANCELLED) this.publish({ ...this.state, phase: 'ready', message: undefined })
       else this.publish({ ...this.state, phase: 'error', message: bindFailureMessage(error) })
     }
   }
 
+  private async loadBusiness(operation: UiOperation, configuration?: OpenBknConfigurationView, saved = false): Promise<void> {
+    try {
+      const auth = await this.port.status(operation.signal)
+      if (!this.current(operation)) return
+      if (auth.kind !== 'authenticated') {
+        this.publish({ open: true, phase: 'authentication-required', auth, networks: [], ...withConfiguration(configuration), ...(saved ? { message: '设置已保存，请使用 OpenBKN CLI 登录并同步。' } : {}) })
+        return
+      }
+      const networks = await this.port.listNetworks(operation.signal)
+      if (!this.current(operation)) return
+      this.publish({ open: true, phase: 'ready', auth, networks, ...withConfiguration(configuration) })
+    } catch (error: unknown) {
+      if (this.current(operation)) this.connectionFailed(error, configuration, saved)
+    }
+  }
+
+  private connectionFailed(error: unknown, configuration?: OpenBknConfigurationView, saved = false): void {
+    const prefix = saved ? '设置已保存。' : ''
+    if (isAuthenticationRequiredError(error)) {
+      this.publish({ open: true, phase: 'authentication-required', auth: { kind: 'authentication-required', baseUrl: error.details.baseUrl }, networks: [], ...withConfiguration(configuration), message: prefix + authenticationFailureMessage(error) })
+      return
+    }
+    const message = isPlatformUnavailableError(error)
+      ? 'OpenBKN 平台的业务知识网络目录暂不可用。已保存的凭据未被修改；请确认服务恢复后重试。'
+      : connectionFailureMessage(error)
+    this.publish({ open: true, phase: 'error', networks: [], ...withConfiguration(configuration), message: prefix + message })
+  }
+
+  private start(signal?: AbortSignal): UiOperation {
+    this.invalidate()
+    const controller = new AbortController()
+    this.operation = controller
+    return { revision: this.revision, signal: signal === undefined ? controller.signal : AbortSignal.any([controller.signal, signal]) }
+  }
+
+  private current(operation: UiOperation): boolean {
+    return this.state.open && this.revision === operation.revision && !operation.signal.aborted
+  }
+
+  private invalidate(): void {
+    this.revision += 1
+    this.operation?.abort()
+    this.operation = undefined
+  }
+
   private publish(state: OpenBknOverlayState): void {
     this.state = state
     for (const listener of this.listeners) listener()
+  }
+}
+
+interface UiOperation { readonly revision: number; readonly signal: AbortSignal }
+
+function withConfiguration(configuration?: OpenBknConfigurationView): { configuration?: OpenBknConfigurationView } {
+  return configuration === undefined ? {} : { configuration }
+}
+
+/** Missing editor/entry is unknown configuration, not a confirmed first-use state. */
+function isPendingConfiguration(configuration: OpenBknConfigurationView): boolean {
+  return !configuration.configured && (configuration.editable || configuration.unavailableReason === 'busy')
+}
+
+/** Host validation remains authoritative; this prevents pointless invalid submissions. */
+function validateConfigurationInput(input: OpenBknConfigurationInput): string | undefined {
+  try {
+    const url = new URL(input.baseUrl)
+    if (!/^https?:\/\/[^/]/i.test(input.baseUrl) || /[\s\\]/u.test(input.baseUrl)
+      || !['http:', 'https:'].includes(url.protocol) || url.hostname === '') throw new Error('invalid')
+  } catch {
+    return '请输入完整的 HTTP(S) 平台地址，例如 https://openbkn.example.com。'
+  }
+  if (input.cliPath.trim() === '') return '请填写 OpenBKN CLI 执行路径；使用默认安装时填写 openbkn。'
+  return undefined
+}
+
+function configurationFailureMessage(error: unknown): string {
+  switch (errorCode(error)) {
+    case 'openbkn/configuration-invalid': return '平台地址或 CLI 执行路径无效，请检查输入后重试。'
+    case 'openbkn/configuration-busy': return '业务回合仍在运行，请等回合结束后保存设置。'
+    case 'openbkn/configuration-unavailable': return '当前无法修改这项配置。请检查插件条目是否启用、是否存在重复条目或更高层配置覆盖。'
+    default: return '设置未能保存，请重试或查看诊断。当前输入已保留。'
   }
 }
 
@@ -181,10 +294,10 @@ function isAuthenticationRequiredError(error: unknown): error is {
 function authenticationFailureMessage(error: { readonly details: { readonly layer?: unknown; readonly httpStatus?: unknown } }): string {
   const source = error.details.layer === 'context-loader-mcp' ? 'Context Loader MCP' : 'OpenBKN 平台'
   if (error.details.httpStatus === 403) {
-    return `${source} 拒绝了当前账号的访问（HTTP 403）。请联系平台管理员核实访问权限，或更换具有平台访问权限的账号或 Token；重新登录同一账号不保证恢复。`
+    return `${source} 拒绝了当前账号的访问（HTTP 403）。请联系平台管理员核实访问权限，或使用具有平台访问权限的账号；重新登录同一账号不保证恢复。`
   }
   const status = error.details.httpStatus === 401 ? '（HTTP 401）' : ''
-  return `${source} 拒绝了当前凭据${status}。请使用 OpenBKN CLI 重新登录并同步，或更新具有平台访问权限的 Token。`
+  return `${source} 拒绝了当前凭据${status}。请使用 OpenBKN CLI 重新登录并同步。`
 }
 
 function isPlatformUnavailableError(error: unknown): error is {
@@ -204,7 +317,7 @@ function connectionFailureMessage(error: unknown): string {
       return 'OpenBKN 业务组件尚未就绪或启动失败。请点击右上角“诊断”查看原因并导出报告。'
     }
     if (candidate.code === 'openbkn/cli-unavailable') {
-      return 'DSH 找不到 OpenBKN CLI（openbkn）。请先安装与平台版本一致的 CLI（`npm install -g @openbkn/bkn-sdk@<平台版本>`）并执行 `openbkn auth login`，确认启动 DSH 的环境 PATH 里能找到它，然后重启 DSH；也可以在 cordis.patch.yml 的 openbkn-business-context 条目里把 cliPath 设为它的绝对路径（Windows 上要写到 openbkn.cmd）。'
+      return 'DSH 找不到 OpenBKN CLI（openbkn）。请先安装与平台版本一致的 CLI（`npm install -g @openbkn/bkn-sdk@<平台版本>`），确认启动 DSH 的环境 PATH 里能找到它；也可以点击右上角“设置”，在高级设置的 cliPath 中填写它的绝对路径（Windows 上填写 openbkn.cmd）。保存后点击“使用 OpenBKN CLI 登录并同步”。'
     }
     if (candidate.code === 'openbkn/connection-failed' && typeof candidate.details === 'object' && candidate.details !== null) {
       const layer = (candidate.details as { layer?: unknown }).layer
@@ -212,8 +325,8 @@ function connectionFailureMessage(error: unknown): string {
         const source = layer === 'context-loader-mcp' ? 'Context Loader MCP' : 'OpenBKN 平台'
         return `${source} 拒绝了当前账号的访问（HTTP 403）。请联系平台管理员核实访问权限后重试。`
       }
-      if (layer === 'context-loader-mcp') return '无法连接 OpenBKN Context Loader MCP。请检查平台地址、网络连接和 Token 的 MCP 访问权限。'
-      if (layer === 'platform-api') return 'Context Loader MCP 已连接，但无法读取业务知识网络目录。请确认 Token 具有 OpenBKN 平台访问权限。'
+      if (layer === 'context-loader-mcp') return '无法连接 OpenBKN Context Loader MCP。请检查平台地址、网络连接及账号的 MCP 访问权限。'
+      if (layer === 'platform-api') return 'Context Loader MCP 已连接，但无法读取业务知识网络目录。请确认当前账号具有 OpenBKN 平台访问权限。'
     }
   }
   return '暂时无法验证 OpenBKN 连接，当前原因尚未确定。请点击右上角“诊断”查看检查结果；若问题持续，请导出报告交给支持人员。'

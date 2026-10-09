@@ -64,6 +64,7 @@ export type DiagnosticsSource =
 export const DIAGNOSTICS_CODES = {
   componentLoaded: 'component-loaded',
   configurationInvalid: 'configuration-invalid',
+  configurationRequired: 'configuration-required',
   moduleResolutionFailed: 'module-resolution-failed',
   initializationFailed: 'initialization-failed',
   componentWaitingServices: 'component-waiting-services',

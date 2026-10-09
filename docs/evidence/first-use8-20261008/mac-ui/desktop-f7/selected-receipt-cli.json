@@ -1,0 +1,46 @@
+{
+  "receipt_id": "rcpt_32d78b5ff0ca54dfd466ebfe132b90cb",
+  "schema_version": "3.0.0",
+  "owner": {
+    "application_principal_id": "openbkn-sdk",
+    "effective_subject_type": "user",
+    "effective_subject_id": "266c6a42-6131-4d62-8f39-853e7093701c"
+  },
+  "conversation_id": "conv_796b358bd3b602a0a0bb87c787cef9ed",
+  "interaction_id": "int_7dd12ff68f3f92b4e9f1e2e2ba3f8654",
+  "operation_id": "op_0c3601823a6f643333f5cde813144a9e",
+  "attempt": 1,
+  "operation_key": "mcp:ac3e8531e4a255e95533f55d28482d04",
+  "tool_name": "query_metric",
+  "receipt_status": "completed",
+  "evidence_durability": "durable",
+  "required": true,
+  "request_id": "req_3f86386b-77b9-435d-98a9-2a66c31a4185",
+  "trace_id": "733882f4d994c579407473d23a781fcc",
+  "causation_event_ids": [],
+  "observed_evidence_refs": [
+    "evt_b2180fd573a60f7f5a650d56a2fa5b3a3ef01a9b6ce1cb6e95d14ab9a0c66258"
+  ],
+  "business_refs": [
+    {
+      "ref_type": "object_type",
+      "ref_id": "object:supply_ontology_hand:supply_ontology_hand_salesorder",
+      "version": "unversioned"
+    },
+    {
+      "ref_type": "metric",
+      "ref_id": "metric:supply_ontology_hand:01a0f6e6-5e9e-72c1-b69b-64e663b5e45d",
+      "version": "unversioned"
+    },
+    {
+      "ref_type": "knowledge_network",
+      "ref_id": "kn:supply_ontology_hand",
+      "version": "unversioned"
+    }
+  ],
+  "artifact_refs": [],
+  "partial_reasons": [],
+  "row_version": 2,
+  "issued_at": "2026-10-08T06:55:50.859846Z",
+  "terminal_at": "2026-10-08T06:55:50.93696Z"
+}

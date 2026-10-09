@@ -1,0 +1,30 @@
+{
+  "case": "S4",
+  "observedAt": "2026-10-08T07:19:30.963496+00:00",
+  "form": "official npm Host in Chrome",
+  "diagnosticsFault": "module-resolution-failed (only diagnostics.js modified)",
+  "emptyConfigurationState": "panel opens; settings API unavailable with failed diagnostics owner",
+  "diagnosticsUi": "诊断服务不可用（诊断入口未随插件启动或连接中断）。请截图或复制此提示发给支持人员。",
+  "exportAvailableInDegradedDiagnostics": false,
+  "configuredPrecondition": "s4-ui-configured-precondition.json",
+  "configuredBusinessPanelOpened": true,
+  "configuredBusinessUi": "使用本机 OpenBKN CLI 登录并同步",
+  "cliStore": "empty independent store",
+  "limits": [
+    "No real platform authorization or business question in this fault root.",
+    "Configuration service is owned by diagnostics and is unavailable when that owner fails; healthy configured business fallback remains available."
+  ],
+  "process": {
+    "pid": 89745,
+    "created": "Thu Oct  8 15:15:04 2026",
+    "argv": [
+      "/Users/kalias/Documents/project/app/openBKN/dsh-npm-020/node_modules/.bin/dsh",
+      "web",
+      "--port",
+      "18323"
+    ],
+    "root": "/var/folders/9r/1zks6bqd7f3dtwybvxsksbc40000gn/T/bkn-firstuse8-isolation-s4-40zhqjyv",
+    "port": 18323,
+    "form": "npm"
+  }
+}

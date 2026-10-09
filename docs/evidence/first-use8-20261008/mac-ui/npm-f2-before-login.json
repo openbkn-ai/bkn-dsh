@@ -1,0 +1,12 @@
+{
+  "form": "npm",
+  "stage": "F2/F3 UI configuration before first login",
+  "patchPath": "/tmp/bkn-firstuse8-mac-npm/home/profiles/web/cordis.patch.yml",
+  "patchSha256": "2fea086fc345d42b477316730c1970635b8eff0899a837f1f23ed64fa3032271",
+  "patchBytes": 599,
+  "storeFileCount": 0,
+  "urlReadBack": "https://192.168.50.28",
+  "cliPathReadBack": "/private/var/folders/9r/1zks6bqd7f3dtwybvxsksbc40000gn/T/openbkn-diag-ui-h76__jwb/cli-0.1.5/node_modules/.bin/openbkn",
+  "uiGuidance": "normal CLI login required",
+  "login": "not attempted yet"
+}

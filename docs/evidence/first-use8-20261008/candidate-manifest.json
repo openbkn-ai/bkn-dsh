@@ -1,0 +1,66 @@
+{
+  "template": false,
+  "status": "fixed-ci-build-only-candidate-live-acceptance-pending",
+  "scope": "-8 first-use configuration, native profile reload, CLI-only UI, asynchronous panel lifetime and uninstall documentation; no business answer arbitration or platform changes",
+  "candidate": {
+    "packageName": "@openbkn/dsh-business-context",
+    "version": "0.2.0-rc.2-openbkn.0.2.0-8",
+    "sourceCommit": "23ac2daa6d3538235f33a9627a8178a48f3e1ebf",
+    "branch": "fix/plugin-first-use-8",
+    "build": {
+      "workflow": "release-plugin.yml",
+      "publish": false,
+      "runId": 37725960498,
+      "runUrl": "https://github.com/openbkn-ai/bkn-dsh/actions/runs/37725960498",
+      "conclusion": "success",
+      "event": "workflow_dispatch",
+      "artifactId": 11527543358,
+      "artifactName": "plugin-tarball",
+      "artifactZipDigestReportedByGitHub": "sha256:48ff6187311fe806be088f88cea58ddffee1a481ce3ecb2d9d971a5ffa1b720f",
+      "artifactZipSizeBytesReportedByGitHub": 176020,
+      "artifactCreatedAt": "2026-10-08T04:14:16Z",
+      "artifactExpiresAt": "2027-01-06T04:07:26Z",
+      "npmPublishStepConclusion": "skipped",
+      "githubReleaseJobConclusion": "skipped",
+      "note": "The CI log resolves publish requested=false; npm publication and GitHub Release are skipped. The GitHub artifact ZIP digest is reported metadata, distinct from the independently computed downloaded tgz digest."
+    },
+    "artifact": {
+      "path": "openbkn-dsh-business-context-0.2.0-rc.2-openbkn.0.2.0-8.tgz",
+      "sha256": "6a946030a6152d2899609fac95c66cd246e36cca5a8ce4e5f87ed379cbe706ea",
+      "sizeBytes": 175800,
+      "fileCount": 66,
+      "fileManifestJsonPath": "candidate-files.json",
+      "fileManifestJsonSha256": "31298c18cc87ac7a44039f8311e51340a56a830ecbad9fd270bd5ecf275ad257",
+      "windowsDownloadPath": "C:\\bkn-verify\\first-use8-download\\openbkn-dsh-business-context-0.2.0-rc.2-openbkn.0.2.0-8.tgz"
+    }
+  },
+  "supportedBaseline": {
+    "dshVersion": "0.2.0-rc.2",
+    "dshTag": "dsh-v0.2.0-rc.2",
+    "dshCommit": "639ed015397290b3745d163aafe02ffee4aa3f84",
+    "pnpmVersion": "11.7.0",
+    "nodeRange": "^22.19.0 || >=24.0.0",
+    "openbknCliRecommendation": "@openbkn/bkn-sdk@0.1.5 for the tested 0.1.5 platform; record actual executable/version per form"
+  },
+  "hostEntries": {
+    "bootstrap": "openbkn-business-context-bootstrap / package root / lib/index.js",
+    "business": "openbkn-business-context / ./business / lib/business.js",
+    "diagnostics": "openbkn-business-context-diagnostics / ./diagnostics / lib/diagnostics.js",
+    "configurationService": "openbknConfiguration/getConfiguration and saveConfiguration are owned by the existing diagnostics row; no fourth row"
+  },
+  "verification": {
+    "artifactInspection": "Downloaded only run 37725960498; source/run identity, package name/version, 66 unique regular tar files, three-row bundle patch and full per-file byte hashes checked. No live acceptance is inferred from artifact inspection.",
+    "windowsGuide": "WINDOWS-HANDOFF.md",
+    "windowsResultsTemplate": "WINDOWS-RESULTS-TEMPLATE.md",
+    "windowsAcceptance": "pending; official desktop/npm F0-F8 plus source-built web first-use core chain",
+    "macAcceptance": "recorded separately by the main agent; not inferred from this artifact check",
+    "publication": "This run did not publish, tag or move npm dist-tags."
+  },
+  "knownLimitations": [
+    "Real restricted-account G6 remains not-run by prior user decision.",
+    "Platform timeout/large-result persistence and repeated token refusal root causes are outside this first-use change.",
+    "Manual-token/no-CLI UI is removed; the retained internal configureToken interface is not certified as a complete no-CLI mode.",
+    "Active network retest, logout/data wipe, automatic cancellation of browser authorization and cross-host binding storage redesign are deferred.",
+    "The inline PowerShell installed-file verifier still needs native Windows execution; local/static checks do not replace Windows UI acceptance."
+  ]
+}

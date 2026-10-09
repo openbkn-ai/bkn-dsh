@@ -2,7 +2,7 @@ import Schema from '@deepseek-ai/schemastery'
 
 /** Deployment settings that are safe to keep in a DSH configuration patch. */
 export interface Config {
-  /** OpenBKN platform base URL; credentials stay exclusively in DSH credentials. */
+  /** Empty until configured; credentials stay exclusively in DSH credentials. */
   baseUrl: string
   /** Optional Context Loader MCP endpoint; defaults to the standard platform route. */
   mcpUrl?: string
@@ -36,7 +36,9 @@ export interface Config {
 
 /** Runtime schema and conservative defaults for the host plugin row. */
 export const Config: Schema<Config> = Schema.object({
-  baseUrl: Schema.transform(Schema.string().required(), (value) => {
+  baseUrl: Schema.transform(Schema.string().default(''), (value) => {
+    // A fresh install is active but contributes no business capability yet.
+    if (value === '') return value
     // WHATWG URL parsing repairs missing slashes, whitespace and backslashes.
     // Reject those inputs before parsing so typos fail at configuration time,
     // before business initialization or platform authentication.
@@ -61,7 +63,7 @@ export const Config: Schema<Config> = Schema.object({
       })
     }
     return value
-  }).required(),
+  }).default(''),
   mcpUrl: Schema.string(),
   businessDomain: Schema.string().pattern(/^[A-Za-z0-9_-]{1,64}$/),
   cliPath: Schema.string().default('openbkn'),

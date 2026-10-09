@@ -1,0 +1,111 @@
+{
+  "checkedAt": "2026-10-08T07:50:58.147552+00:00",
+  "source": "actual original download / archive / staged Git blob; blob OIDs survive commit creation",
+  "checks": [
+    {
+      "file": "mac-ui/F0-pending-product.json",
+      "reportId": "e1d259ac",
+      "sha256": "fb06a6e01df95908ed2c1fb4680a5428f3ed91584dc9f5aa5ccb68d60eb3db6a",
+      "gitBlobOid": "3a6dbab0994a8100a619abf8cf071153994558a3",
+      "originalEqualsArchiveEqualsGitBlob": true,
+      "newlineNormalizationUsed": false
+    },
+    {
+      "file": "mac-ui/F3-failed-cli-product.json",
+      "reportId": "c11f3d70",
+      "sha256": "3e841da919740218520cf003fd29b61f4340a9a01c1ec1bae67e10cbc8cb110b",
+      "gitBlobOid": "d40dc712d3a342c69a03ecc5384d61e88583b510",
+      "originalEqualsArchiveEqualsGitBlob": true,
+      "newlineNormalizationUsed": false
+    },
+    {
+      "file": "mac-ui/F3-login-success-product.json",
+      "reportId": "ba611212",
+      "sha256": "77b63d66445f79fcb322c4a32806833ea196025052507c5e7bc1dc3d0e3c21b6",
+      "gitBlobOid": "b4e2a7b3dffa1d043e8f171b5771ccd8d4f140c6",
+      "originalEqualsArchiveEqualsGitBlob": true,
+      "newlineNormalizationUsed": false
+    },
+    {
+      "file": "mac-ui/R1-auth-rejected-product.json",
+      "reportId": "5bab2b3a",
+      "sha256": "51b94c4a4bf1e7a62c7259b3ac5406e53ac20de40f806804e5d0e2efa615e276",
+      "gitBlobOid": "d87c357e0d05c78b320851e436b064f6e7ed4daa",
+      "originalEqualsArchiveEqualsGitBlob": true,
+      "newlineNormalizationUsed": false
+    },
+    {
+      "file": "mac-ui/R1-recovered-product.json",
+      "reportId": "dfc381da",
+      "sha256": "98c3ed95f5df390367ab7173ebe0d31c3c980cee6ea99c6bc4a6c2d9a19725f6",
+      "gitBlobOid": "1cba54a1b6e8660e75f867d2c7029b6a6d44dbd1",
+      "originalEqualsArchiveEqualsGitBlob": true,
+      "newlineNormalizationUsed": false
+    },
+    {
+      "file": "mac-ui/OpenBKN-diagnostic-20261008T060315635Z-76e60cb1.json",
+      "reportId": "76e60cb1",
+      "sha256": "549ec15daea507c2bfa6f68a9ecf670b499365ab19a4fc2fbd4948b6f5d10a08",
+      "gitBlobOid": "a6b171e288b54c6bd3c1da6a65524aa71d3ae7e3",
+      "originalEqualsArchiveEqualsGitBlob": true,
+      "newlineNormalizationUsed": false
+    },
+    {
+      "file": "mac-ui/OpenBKN-diagnostic-20261008T060538370Z-85779d0c.json",
+      "reportId": "85779d0c",
+      "sha256": "d5147b41e1e583ff145df1b6dee405636467450a1538505a79db0850bc9e53a0",
+      "gitBlobOid": "9e48cace7797b8491c23bab7db95d3acf4e04304",
+      "originalEqualsArchiveEqualsGitBlob": true,
+      "newlineNormalizationUsed": false
+    },
+    {
+      "file": "mac-ui/OpenBKN-diagnostic-20261008T061908472Z-8ca4405a.json",
+      "reportId": "8ca4405a",
+      "sha256": "3c6093a61029ed2469d9588a65467adb5182e8dfe8aa4765644c0aa357475d85",
+      "gitBlobOid": "70e00ef82deaa480ce2e3222cacc026b228e96ec",
+      "originalEqualsArchiveEqualsGitBlob": true,
+      "newlineNormalizationUsed": false
+    },
+    {
+      "file": "mac-ui/OpenBKN-diagnostic-20261008T062904990Z-3d002ea9.json",
+      "reportId": "3d002ea9",
+      "sha256": "50ee3cfaa85763eb8e5f0328d8bca275d8d632dbc703d86e37c7da9c377747c4",
+      "gitBlobOid": "cff05d52a9b8ce8f0704da5888d0c9295bb2c1ed",
+      "originalEqualsArchiveEqualsGitBlob": true,
+      "newlineNormalizationUsed": false
+    },
+    {
+      "file": "mac-ui/OpenBKN-diagnostic-20261008T070343833Z-32931744.json",
+      "reportId": "32931744",
+      "sha256": "e4c338eececc5ea507281c846b2b3f74a2844e0818708954a485e4c0ff530767",
+      "gitBlobOid": "96c10933fdce1316ea1689622ee6afd8538016c6",
+      "originalEqualsArchiveEqualsGitBlob": true,
+      "newlineNormalizationUsed": false
+    },
+    {
+      "file": "mac-ui/OpenBKN-diagnostic-20261008T072444402Z-875041b4.json",
+      "reportId": "875041b4",
+      "sha256": "c0d020405fd630371e8d13d511a1e7664993adc7a05fd3f90870885d725b92ce",
+      "gitBlobOid": "40bb3a4c0a031a283b7b504c2feb0da308071643",
+      "originalEqualsArchiveEqualsGitBlob": true,
+      "newlineNormalizationUsed": false
+    },
+    {
+      "file": "mac-ui/OpenBKN-diagnostic-20261008T072842223Z-a2c19c6e.json",
+      "reportId": "a2c19c6e",
+      "sha256": "dcc755e4838622566bc18a96560b5c6637717584c20afe7d26ec44160c0b7f45",
+      "gitBlobOid": "d64d8ebbe2ec85070a64e248ff6979fcea41e793",
+      "originalEqualsArchiveEqualsGitBlob": true,
+      "newlineNormalizationUsed": false
+    },
+    {
+      "file": "mac-ui/OpenBKN-diagnostic-20261008T073607446Z-db4f8f23.json",
+      "reportId": "db4f8f23",
+      "sha256": "e70472ae4039cd1ea8d0b6bba40826570055e5c8e0613ade89eaded7213aa57e",
+      "gitBlobOid": "ba8012a5f39d85c7257687991166eaf4535cb0bb",
+      "originalEqualsArchiveEqualsGitBlob": true,
+      "newlineNormalizationUsed": false
+    }
+  ],
+  "matched": 13
+}

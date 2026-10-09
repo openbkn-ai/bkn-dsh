@@ -1,0 +1,97 @@
+{
+  "sessionId": "session-24b2fb42-708e-4319-95da-a5996fa8b57c",
+  "harnessLimitMs": 300000,
+  "nativeTurnEnds": [
+    {
+      "kind": "aborted",
+      "reason": {
+        "kind": "user"
+      }
+    }
+  ],
+  "errors": [
+    {
+      "callId": "call_00_nGD8EGK6qr2tz6Jw8c4P6130",
+      "tool": "mcp__openbkn__run_code",
+      "callAtMs": 1791439474310,
+      "resultAtMs": 1791439494326,
+      "elapsedMs": 20016,
+      "error": "Error: Request timed out",
+      "argumentsSha256": "e8cd29c2f0ae1c1450fce8df43a14c9fb2ae779be6729f79bbb41f9f5806b102",
+      "declaredInvocationSignals": []
+    },
+    {
+      "callId": "call_00_Qzabm8wjkLPzY9uS2ymY8058",
+      "tool": "mcp__openbkn__run_code",
+      "callAtMs": 1791439505997,
+      "resultAtMs": 1791439526018,
+      "elapsedMs": 20021,
+      "error": "Error: Request timed out",
+      "argumentsSha256": "1d7d7db45d5f7358a4527f9815e07c57b8170c741c8fa760acd52d1e77b3f6a6",
+      "declaredInvocationSignals": []
+    },
+    {
+      "callId": "call_00_ZLdne3omI3zdgZBhpayM6124",
+      "tool": "mcp__openbkn__run_code",
+      "callAtMs": 1791439538466,
+      "resultAtMs": 1791439558484,
+      "elapsedMs": 20018,
+      "error": "Error: Request timed out",
+      "argumentsSha256": "5dc38e2c1c9d14dd75373f31ef76fc7f4a1d846ee5eac7101f6f4bcabe12a301",
+      "declaredInvocationSignals": []
+    },
+    {
+      "callId": "call_00_TpF032oD0YFoYrU3pFof7885",
+      "tool": "mcp__openbkn__run_code",
+      "callAtMs": 1791439570042,
+      "resultAtMs": 1791439590059,
+      "elapsedMs": 20017,
+      "error": "Error: Request timed out",
+      "argumentsSha256": "cd14a7968665bbd62a4bc29b51738fb9125c1e247df717005545cc7c9a484840",
+      "declaredInvocationSignals": []
+    },
+    {
+      "callId": "call_00_5BtaYVDxptQuizyL1c3W4298",
+      "tool": "mcp__openbkn__run_code",
+      "callAtMs": 1791439592141,
+      "resultAtMs": 1791439612154,
+      "elapsedMs": 20013,
+      "error": "Error: Request timed out",
+      "argumentsSha256": "0bf4010d852c691ef6a23a6bb8d68026e1f6e9008e5d89a4a0d881dfe9a55f82",
+      "declaredInvocationSignals": []
+    },
+    {
+      "callId": "call_00_kjyGvggbZ29cNbQtMZBS4063",
+      "tool": "mcp__openbkn__run_code",
+      "callAtMs": 1791439621494,
+      "resultAtMs": 1791439641528,
+      "elapsedMs": 20034,
+      "error": "Error: Request timed out",
+      "argumentsSha256": "ae694819b50b9ad4d215242329883eac8efa718945bf1e9c59ae0f16a8d270aa",
+      "declaredInvocationSignals": []
+    },
+    {
+      "callId": "call_00_plKiKWDVhJsLswTSEl8i3891",
+      "tool": "write",
+      "callAtMs": 1791439725505,
+      "resultAtMs": 1791439725509,
+      "elapsedMs": 4,
+      "error": "Error: This OpenBKN business session only permits managed OpenBKN tools.",
+      "argumentsSha256": "309c87572367a2c74d4c064746688e71a05802c6845714a2e360d59cdd757fff",
+      "declaredInvocationSignals": []
+    }
+  ],
+  "conclusion": "No final deliverable by the 300000 ms harness limit. Six tool-level Request timed out errors occurred at 20013–20034 ms. The plugin supplies the configured toolCallTimeoutMs to the official McpClient; its unchanged default is 20000 ms. This identifies the configured deadline but does not establish why the platform operation took longer or whether extending it would complete successfully.",
+  "limits": [
+    "Managed-only write rejection is expected plugin governance, not a released answer failure fix.",
+    "Independent full CLI oracle succeeds but does not prove identical MCP/run_code transport or timeout settings."
+  ],
+  "timeoutConfiguration": {
+    "pluginDefaultMs": 20000,
+    "configSource": "packages/openbkn-business-context/src/config.ts",
+    "forwardedTo": "official McpClient",
+    "forwardingSource": "packages/openbkn-business-context/src/openbkn-mcp-manager.ts",
+    "profileOverridePresent": false,
+    "changedInThisRound": false
+  }
+}

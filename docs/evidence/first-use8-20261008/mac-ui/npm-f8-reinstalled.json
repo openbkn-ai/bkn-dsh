@@ -1,0 +1,53 @@
+{
+  "form": "npm",
+  "phase": "reinstalled",
+  "recordedAt": "2026-10-08T05:44:40.335756+00:00",
+  "scope": "Same selected plugin configuration, session/workspace binding, workspace canary and isolated CLI-store files; no full-home claim",
+  "files": [
+    {
+      "path": "/tmp/bkn-firstuse8-mac-npm/bkn-config/platforms/aHR0cHM6Ly8xOTIuMTY4LjUwLjI4/users/266c6a42-6131-4d62-8f39-853e7093701c/token.json",
+      "exists": true,
+      "bytes": 1532,
+      "sha256": "90af0a90bfc4d6c665deb4f470caf39e025a0657b7327e26f38e807a07f69a1e"
+    },
+    {
+      "path": "/tmp/bkn-firstuse8-mac-npm/bkn-config/platforms/aHR0cHM6Ly8xOTIuMTY4LjUwLjI4/version-check.json",
+      "exists": true,
+      "bytes": 74,
+      "sha256": "76812ba30bb60fc7730fb58ad5c56eeccc4f3dbf8ebf60931b4246d69a32b984"
+    },
+    {
+      "path": "/tmp/bkn-firstuse8-mac-npm/bkn-config/state.json",
+      "exists": true,
+      "bytes": 141,
+      "sha256": "e133281161841df22c8c5d200c1a5e016b864ae7b8c203bf9153b44c022b73c5"
+    },
+    {
+      "path": "/tmp/bkn-firstuse8-mac-npm/home/openbkn/session-bindings/session-31b70f75-7c5c-4e66-ad25-3824b245a248.json",
+      "exists": true,
+      "bytes": 286,
+      "sha256": "a6d3b6b43e4a152269433959937fac352dbd9b9560afc740154ddd28e5306b97"
+    },
+    {
+      "path": "/tmp/bkn-firstuse8-mac-npm/home/profiles/web/cordis.patch.yml",
+      "exists": true,
+      "bytes": 599,
+      "sha256": "2fea086fc345d42b477316730c1970635b8eff0899a837f1f23ed64fa3032271"
+    },
+    {
+      "path": "/tmp/bkn-firstuse8-mac-npm/home/storages/openbkn_workspace_bindings.json",
+      "exists": true,
+      "bytes": 501,
+      "sha256": "772bc50485a12ae2bb6fe37f9393367e78e2aa8fa606995f29fb53809c797851"
+    },
+    {
+      "path": "/tmp/bkn-firstuse8-mac-npm/workspace-supply/user-canary.txt",
+      "exists": true,
+      "bytes": 39,
+      "sha256": "ea4f5729a175c3b42f1c11c0806471be50479c42eed5d52014d7566d3f8ad3ec"
+    }
+  ],
+  "packageExists": true,
+  "dependency": "file:/tmp/bkn-firstuse8-ci-37725960498/openbkn-dsh-business-context-0.2.0-rc.2-openbkn.0.2.0-8.tgz",
+  "sameSelectedBytes": true
+}

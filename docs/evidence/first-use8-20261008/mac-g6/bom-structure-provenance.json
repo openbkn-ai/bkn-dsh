@@ -1,0 +1,387 @@
+{
+  "interactionId": "int_1952a0fd40f1538850be6e950446f3f4",
+  "conversationId": "conv_371d7c2d7f6fff1d4bed2a89d2f2c982",
+  "sources": {
+    "timeline": "local-session",
+    "operations": "platform",
+    "business": "platform-enterprise",
+    "evidence": "platform",
+    "degraded": []
+  },
+  "timeline": [
+    {
+      "kind": "lifecycle",
+      "tool": "bkn_start_interaction",
+      "at": 1791438908663,
+      "durationMs": 105,
+      "outcome": "ok",
+      "summary": "bkn_start_interaction · new · conversation: yes",
+      "seq": 0
+    },
+    {
+      "kind": "managed",
+      "tool": "get_object_types",
+      "at": 1791438911753,
+      "durationMs": 211,
+      "outcome": "ok",
+      "summary": "get_object_types",
+      "seq": 1,
+      "platform": {
+        "operationId": "op_dc71bb8edfd952e5100a32037f5b105b",
+        "requestId": "req_305c740a-7aab-4b95-90a2-e60f39402cad",
+        "traceId": "ff96ea9bbbc5c115564534c5cfed1502",
+        "receiptId": "rcpt_58bdefba1526136bb14dcbde9c927d8d",
+        "status": "completed"
+      }
+    },
+    {
+      "kind": "managed",
+      "tool": "get_relation_types",
+      "at": 1791438911965,
+      "durationMs": 101,
+      "outcome": "ok",
+      "summary": "get_relation_types",
+      "seq": 2,
+      "platform": {
+        "operationId": "op_83b1d3262055999d9e89936b70513fda",
+        "requestId": "req_8cdea25b-c191-4d1c-abdc-0fde6de36c92",
+        "traceId": "78a4c364a0ba290a4c8190dee9c870a2",
+        "receiptId": "rcpt_d90b49f3b43d8550ae592eea2228a0b7",
+        "status": "completed"
+      }
+    },
+    {
+      "kind": "managed",
+      "tool": "query_object_instance",
+      "at": 1791438915464,
+      "durationMs": 310,
+      "outcome": "ok",
+      "summary": "query_object_instance",
+      "seq": 3
+    },
+    {
+      "kind": "managed",
+      "tool": "query_object_instance",
+      "at": 1791438915774,
+      "durationMs": 226,
+      "outcome": "ok",
+      "summary": "query_object_instance",
+      "seq": 4
+    },
+    {
+      "kind": "managed",
+      "tool": "run_code",
+      "at": 1791438923168,
+      "durationMs": 1739,
+      "outcome": "ok",
+      "summary": "run_code",
+      "seq": 5,
+      "platform": {
+        "operationId": "op_d241bb925ffef8b499b9089193e9e370",
+        "requestId": "req_ee5f0961-22d1-4f22-aed5-b7be0ecb19e2",
+        "traceId": "05d9c899c819b15c0fb74ff6e9db9481",
+        "receiptId": "rcpt_4342a04035c6326c5ededed94ac6ccd1",
+        "status": "completed"
+      }
+    },
+    {
+      "kind": "managed",
+      "tool": "run_code",
+      "at": 1791438929080,
+      "durationMs": 644,
+      "outcome": "ok",
+      "summary": "run_code",
+      "seq": 6,
+      "platform": {
+        "operationId": "op_4566054d69701ddf4ab22b2a9be30c53",
+        "requestId": "req_022cdaaa-139a-4fa1-bd5f-34709fb86956",
+        "traceId": "0907af4e004c067afb5487d650a00d0f",
+        "receiptId": "rcpt_8cf23af19bc2a4f776523d678e26c082",
+        "status": "completed"
+      }
+    },
+    {
+      "kind": "managed",
+      "tool": "run_code",
+      "at": 1791438934303,
+      "durationMs": 677,
+      "outcome": "error",
+      "summary": "run_code",
+      "seq": 7,
+      "platform": {
+        "operationId": "op_076ba1e2927327f5d4381de5382030a1",
+        "requestId": "req_bcafbbdf-076b-4c73-830b-785708c62932",
+        "traceId": "c07ea70f6ff9fb3bb658dea33cbb1427",
+        "receiptId": "rcpt_aec5af70d04eee2f11886fdbaa9a7aa4",
+        "status": "failed"
+      }
+    },
+    {
+      "kind": "lifecycle",
+      "tool": "bkn_finish_interaction",
+      "at": 1791438950692,
+      "durationMs": 151,
+      "outcome": "ok",
+      "summary": "bkn_finish_interaction · completed",
+      "seq": 8
+    },
+    {
+      "kind": "answer",
+      "at": 1791438956710,
+      "seq": 9
+    }
+  ],
+  "execution": {
+    "status": "completed",
+    "operations": [
+      {
+        "id": "op_dc71bb8edfd952e5100a32037f5b105b",
+        "label": "get_object_types",
+        "protocol": "mcp",
+        "status": "completed",
+        "startedAt": "2026-10-08T05:55:11.810528Z",
+        "finishedAt": "2026-10-08T05:55:11.950927Z",
+        "requestId": "req_305c740a-7aab-4b95-90a2-e60f39402cad",
+        "traceId": "ff96ea9bbbc5c115564534c5cfed1502",
+        "receiptId": "rcpt_58bdefba1526136bb14dcbde9c927d8d"
+      },
+      {
+        "id": "op_83b1d3262055999d9e89936b70513fda",
+        "label": "get_relation_types",
+        "protocol": "mcp",
+        "status": "completed",
+        "startedAt": "2026-10-08T05:55:11.981753Z",
+        "finishedAt": "2026-10-08T05:55:12.059887Z",
+        "requestId": "req_8cdea25b-c191-4d1c-abdc-0fde6de36c92",
+        "traceId": "78a4c364a0ba290a4c8190dee9c870a2",
+        "receiptId": "rcpt_d90b49f3b43d8550ae592eea2228a0b7"
+      },
+      {
+        "id": "op_8c03b692010d0c40660762c90aaa0792",
+        "label": "query_object_instance",
+        "protocol": "mcp",
+        "status": "completed",
+        "startedAt": "2026-10-08T05:55:15.501159Z",
+        "finishedAt": "2026-10-08T05:55:15.647912Z",
+        "requestId": "req_2c3684de-6608-4faa-af47-9cb4da8f1154",
+        "traceId": "b99231ad454b9a7ebefe34bb7e782a2c",
+        "receiptId": "rcpt_a5dc47b4688292401bc06ba3bf19664e"
+      },
+      {
+        "id": "op_92e1534bbbc71ad207dcc5606bf5daec",
+        "label": "query_object_instance",
+        "protocol": "mcp",
+        "status": "completed",
+        "startedAt": "2026-10-08T05:55:15.796539Z",
+        "finishedAt": "2026-10-08T05:55:15.99482Z",
+        "requestId": "req_8125f9a0-3cd1-4c9f-81b8-1e6798d862ff",
+        "traceId": "2cbed999a1d5ce6a28a6403ffe1198db",
+        "receiptId": "rcpt_bee07770590f05366de2f8602e4ad7d3"
+      },
+      {
+        "id": "op_d241bb925ffef8b499b9089193e9e370",
+        "label": "run_code",
+        "protocol": "mcp",
+        "status": "completed",
+        "startedAt": "2026-10-08T05:55:23.256507Z",
+        "finishedAt": "2026-10-08T05:55:24.895319Z",
+        "requestId": "req_ee5f0961-22d1-4f22-aed5-b7be0ecb19e2",
+        "traceId": "05d9c899c819b15c0fb74ff6e9db9481",
+        "receiptId": "rcpt_4342a04035c6326c5ededed94ac6ccd1"
+      },
+      {
+        "id": "op_ae0b84b7eb773812308dfc3fe160cb60",
+        "label": "query_object_instance",
+        "protocol": "mcp",
+        "status": "completed",
+        "startedAt": "2026-10-08T05:55:24.286185Z",
+        "finishedAt": "2026-10-08T05:55:24.446502Z",
+        "requestId": "req_caaf1a06-ea4d-42ae-aeff-d9f5f359f6b2",
+        "traceId": "064cf98e20947e413c8775dbc1fd20ac",
+        "receiptId": "rcpt_2a68ded4a6efcca08c7176436ba650f4"
+      },
+      {
+        "id": "op_b2d1b8aed6d18f21eddef57056a41da4",
+        "label": "query_object_instance",
+        "protocol": "mcp",
+        "status": "completed",
+        "startedAt": "2026-10-08T05:55:24.482657Z",
+        "finishedAt": "2026-10-08T05:55:24.545096Z",
+        "requestId": "req_8cbd87f7-3e69-4b5b-8dc2-c2e80515a9fa",
+        "traceId": "d7bd490b471db128d81d9b56f11b4945",
+        "receiptId": "rcpt_d3c90ec95b856c155eb82f0ae658d292"
+      },
+      {
+        "id": "op_4566054d69701ddf4ab22b2a9be30c53",
+        "label": "run_code",
+        "protocol": "mcp",
+        "status": "completed",
+        "startedAt": "2026-10-08T05:55:29.116737Z",
+        "finishedAt": "2026-10-08T05:55:29.705407Z",
+        "requestId": "req_022cdaaa-139a-4fa1-bd5f-34709fb86956",
+        "traceId": "0907af4e004c067afb5487d650a00d0f",
+        "receiptId": "rcpt_8cf23af19bc2a4f776523d678e26c082"
+      },
+      {
+        "id": "op_076ba1e2927327f5d4381de5382030a1",
+        "label": "run_code",
+        "protocol": "mcp",
+        "status": "failed",
+        "startedAt": "2026-10-08T05:55:34.32175Z",
+        "finishedAt": "2026-10-08T05:55:34.962827Z",
+        "requestId": "req_bcafbbdf-076b-4c73-830b-785708c62932",
+        "traceId": "c07ea70f6ff9fb3bb658dea33cbb1427",
+        "receiptId": "rcpt_aec5af70d04eee2f11886fdbaa9a7aa4"
+      }
+    ]
+  },
+  "business": {
+    "kind": "ready",
+    "operations": [
+      {
+        "id": "op_8c03b692010d0c40660762c90aaa0792",
+        "attempt": 0,
+        "toolName": "query_object_instance",
+        "status": "resolved",
+        "elements": [
+          {
+            "id": "object:supply_ontology_hand:supply_ontology_hand_bom",
+            "kind": "object",
+            "name": "产品BOM",
+            "knowledgeNetworkId": "supply_ontology_hand"
+          }
+        ],
+        "missingFacts": [],
+        "knowledgeNetworkId": "supply_ontology_hand"
+      },
+      {
+        "id": "op_92e1534bbbc71ad207dcc5606bf5daec",
+        "attempt": 0,
+        "toolName": "query_object_instance",
+        "status": "resolved",
+        "elements": [
+          {
+            "id": "object:supply_ontology_hand:supply_ontology_hand_product",
+            "kind": "object",
+            "name": "产品",
+            "knowledgeNetworkId": "supply_ontology_hand"
+          }
+        ],
+        "missingFacts": [],
+        "knowledgeNetworkId": "supply_ontology_hand"
+      },
+      {
+        "id": "op_ae0b84b7eb773812308dfc3fe160cb60",
+        "attempt": 0,
+        "toolName": "query_object_instance",
+        "status": "resolved",
+        "elements": [
+          {
+            "id": "object:supply_ontology_hand:supply_ontology_hand_bom",
+            "kind": "object",
+            "name": "产品BOM",
+            "knowledgeNetworkId": "supply_ontology_hand"
+          }
+        ],
+        "missingFacts": [],
+        "knowledgeNetworkId": "supply_ontology_hand"
+      },
+      {
+        "id": "op_b2d1b8aed6d18f21eddef57056a41da4",
+        "attempt": 0,
+        "toolName": "query_object_instance",
+        "status": "resolved",
+        "elements": [
+          {
+            "id": "object:supply_ontology_hand:supply_ontology_hand_bom",
+            "kind": "object",
+            "name": "产品BOM",
+            "knowledgeNetworkId": "supply_ontology_hand"
+          }
+        ],
+        "missingFacts": [],
+        "knowledgeNetworkId": "supply_ontology_hand"
+      }
+    ],
+    "conversationContext": [],
+    "contextRelations": [],
+    "derivedFacts": []
+  },
+  "evidence": {
+    "kind": "ready",
+    "receipts": [
+      {
+        "receiptId": "rcpt_58bdefba1526136bb14dcbde9c927d8d",
+        "operationId": "op_dc71bb8edfd952e5100a32037f5b105b",
+        "toolLabel": "get_object_types",
+        "status": "completed",
+        "source": "platform",
+        "verifyHint": "openbkn trace receipts get rcpt_58bdefba1526136bb14dcbde9c927d8d"
+      },
+      {
+        "receiptId": "rcpt_d90b49f3b43d8550ae592eea2228a0b7",
+        "operationId": "op_83b1d3262055999d9e89936b70513fda",
+        "toolLabel": "get_relation_types",
+        "status": "completed",
+        "source": "platform",
+        "verifyHint": "openbkn trace receipts get rcpt_d90b49f3b43d8550ae592eea2228a0b7"
+      },
+      {
+        "receiptId": "rcpt_a5dc47b4688292401bc06ba3bf19664e",
+        "operationId": "op_8c03b692010d0c40660762c90aaa0792",
+        "toolLabel": "query_object_instance",
+        "status": "completed",
+        "source": "platform",
+        "verifyHint": "openbkn trace receipts get rcpt_a5dc47b4688292401bc06ba3bf19664e"
+      },
+      {
+        "receiptId": "rcpt_bee07770590f05366de2f8602e4ad7d3",
+        "operationId": "op_92e1534bbbc71ad207dcc5606bf5daec",
+        "toolLabel": "query_object_instance",
+        "status": "completed",
+        "source": "platform",
+        "verifyHint": "openbkn trace receipts get rcpt_bee07770590f05366de2f8602e4ad7d3"
+      },
+      {
+        "receiptId": "rcpt_4342a04035c6326c5ededed94ac6ccd1",
+        "operationId": "op_d241bb925ffef8b499b9089193e9e370",
+        "toolLabel": "run_code",
+        "status": "completed",
+        "source": "platform",
+        "verifyHint": "openbkn trace receipts get rcpt_4342a04035c6326c5ededed94ac6ccd1"
+      },
+      {
+        "receiptId": "rcpt_2a68ded4a6efcca08c7176436ba650f4",
+        "operationId": "op_ae0b84b7eb773812308dfc3fe160cb60",
+        "toolLabel": "query_object_instance",
+        "status": "completed",
+        "source": "platform",
+        "verifyHint": "openbkn trace receipts get rcpt_2a68ded4a6efcca08c7176436ba650f4"
+      },
+      {
+        "receiptId": "rcpt_d3c90ec95b856c155eb82f0ae658d292",
+        "operationId": "op_b2d1b8aed6d18f21eddef57056a41da4",
+        "toolLabel": "query_object_instance",
+        "status": "completed",
+        "source": "platform",
+        "verifyHint": "openbkn trace receipts get rcpt_d3c90ec95b856c155eb82f0ae658d292"
+      },
+      {
+        "receiptId": "rcpt_8cf23af19bc2a4f776523d678e26c082",
+        "operationId": "op_4566054d69701ddf4ab22b2a9be30c53",
+        "toolLabel": "run_code",
+        "status": "completed",
+        "source": "platform",
+        "verifyHint": "openbkn trace receipts get rcpt_8cf23af19bc2a4f776523d678e26c082"
+      },
+      {
+        "receiptId": "rcpt_aec5af70d04eee2f11886fdbaa9a7aa4",
+        "operationId": "op_076ba1e2927327f5d4381de5382030a1",
+        "toolLabel": "run_code",
+        "status": "failed",
+        "source": "platform",
+        "verifyHint": "openbkn trace receipts get rcpt_aec5af70d04eee2f11886fdbaa9a7aa4"
+      }
+    ]
+  }
+}

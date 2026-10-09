@@ -1,0 +1,24 @@
+{
+  "datas": [],
+  "paging": {
+    "next_cursor": null,
+    "expires_at_sec": null
+  },
+  "overall_ms": 22,
+  "search_from_index": false,
+  "effective_permissions": {
+    "salesperson": "full",
+    "product_name": "full",
+    "shipping_date": "full",
+    "customer_id": "full",
+    "customer_name": "full",
+    "promised_delivery_date": "full",
+    "sales_order_id": "full",
+    "signing_date": "full",
+    "shipping_quantity": "full",
+    "order_status": "full",
+    "contract_number": "full",
+    "product_code": "full",
+    "signing_quantity": "full"
+  }
+}

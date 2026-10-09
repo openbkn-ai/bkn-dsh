@@ -1,0 +1,9 @@
+{"name": "orders", "exitCode": 0, "rowCount": 40, "totalCount": 40, "sha256": "b16ad40c1624a6be54b3f9e27f4789ddd079498e036df981f6823404ef39ef12", "hasNextCursor": false}
+{"name": "inventory", "exitCode": 0, "rowCount": 36, "totalCount": 36, "sha256": "3e0f1d23f6ea00f7b643842502044ed7c601ee90700522d8f38073dc472077d1", "hasNextCursor": false}
+{"name": "material", "exitCode": 0, "rowCount": 1, "totalCount": 1, "sha256": "4382513215d3bbbfd0e24d39ce94ccafcad80e3b03573ad1e2f90e1795ea28fe", "hasNextCursor": false}
+{"name": "bom-physical-all", "exitCode": 0, "rowCount": 507, "totalCount": 507, "sha256": "f99642f75121b076d1ea88f7c7a35d1ad72ccb5cae589abe90c69700bddf4678", "hasNextCursor": false}
+{"name": "purchase-orders", "exitCode": 0, "rowCount": 0, "totalCount": null, "sha256": "59c1795520ae64ff9b7520bda7d90219594067af7190031a8c97604c113c61af", "hasNextCursor": false}
+{"name": "purchase-requests", "exitCode": 0, "rowCount": 0, "totalCount": null, "sha256": "44772f6c9e9f2be199fa7bad5819b28a0a6b7101ce1c27942f9a811112bfb16f", "hasNextCursor": false}
+{"name": "missing-material", "exitCode": 0, "rowCount": 0, "totalCount": null, "sha256": "62153336521d472348a128da36d9631a5356e232facd04a6c5e16222b34cc92b", "hasNextCursor": false}
+{"name": "missing-inventory", "exitCode": 0, "rowCount": 0, "totalCount": null, "sha256": "590b5accd48c86dad28c8143d672933b454f28fd50bbfc0492d5d3c6df873ee0", "hasNextCursor": false}
+{"name": "missing-orders", "exitCode": 0, "rowCount": 0, "totalCount": null, "sha256": "40f04dae75aa5cd3fa18a55ece78faa0372a22bc569fb3f3f8cceb3c0d4b857a", "hasNextCursor": false}

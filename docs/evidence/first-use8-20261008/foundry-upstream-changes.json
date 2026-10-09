@@ -1,0 +1,127 @@
+{
+  "commits": [
+    {
+      "message": "fix(upgrade): convert 015 history into native 020 data and projections (#2030)\n\n* feat(bkn-trace): convert 015 history during 020 upgrade\n\n* fix(bkn-trace): harden historical upgrade identity and audit publish\n\n* fix(bkn-trace): publish verified history to OpenSearch logs\n\n* fix(bkn-trace): migrate all 015 history to 020 stores\n\n* fix(bkn-trace): complete historical OpenSearch migration\n\n* fix(bkn-trace): report history publication failures\n\n* fix(bkn-trace): expose migrated audit history safely\n\n* fix(bkn-trace): preserve query environment in historical logs\n\n* fix(bkn-trace): retain historical evidence query compatibility\n\n* fix(bkn-trace): show imported traces in historical ranges\n\n* fix(bkn-trace): preserve historical data and range pagination\n\n* fix(bkn-trace): resolve history forwarding and readback feedback\n\n* fix(bkn-trace): hydrate range previews after trace pagination\n\n* fix(upgrade): convert native history without query compatibility\n\n* fix(upgrade): convert complete historical data into native 020 records\n\n* docs(upgrade): record historical log and audit page acceptance\n\n* fix(upgrade): preflight and bound native historical imports\n\n* fix(upgrade): validate all native batches before importing",
+      "sha": "74a9ade79aed62a9c8325c77166f1096cd6b14fa"
+    },
+    {
+      "message": "docs(upgrade): record merged-image historical acceptance",
+      "sha": "78c2ce3e1295eb5dd73cecb484c62e46f2fef2f1"
+    },
+    {
+      "message": "docs(upgrade): reopen historical content completeness checks",
+      "sha": "36647ed6e8f26d6daa24449677fa8b2ac91f38d7"
+    },
+    {
+      "message": "docs(upgrade): identify retained September message source",
+      "sha": "2a6695779f573329999f67e05e55bdf37f3e1640"
+    },
+    {
+      "message": "fix(upgrade): convert historical Agent content and call relationships",
+      "sha": "faefdee2836c36653228ad98e52e145fc7ca11c9"
+    },
+    {
+      "message": "fix(agent-observability): allow trace and log pagination beyond 100 pages (#2035)\n\n* fix(agent-observability): allow trace and log pagination beyond 100 pages\n\n* fix(agent-observability): query numbered log pages directly\n\n* docs(agent-observability): link pagination companion PR\n\n* fix(agent-observability): preserve bounded legacy log paging",
+      "sha": "e6103fb95627a808b49581f000815167a6381e38"
+    },
+    {
+      "message": "feat(upgrade): convert 015 historical trace data to native 020 records",
+      "sha": "a106194ca698ddee3561a78732b41587333170b0"
+    },
+    {
+      "message": "fix(upgrade): require the documented history cutover variable",
+      "sha": "2f57ba707c1382966cff42067974dd02c6776125"
+    },
+    {
+      "message": "fix(upgrade): isolate rejected retained artifact content",
+      "sha": "9f8b050fdadb4e85b90d65856347cfa7718a6b39"
+    },
+    {
+      "message": "fix(upgrade): report retained artifact field losses",
+      "sha": "7021168e26b8f07371e232a0248a89af767cdd08"
+    },
+    {
+      "message": "fix(upgrade): satisfy historical converter static checks",
+      "sha": "6c8e101176720553285cc40729ef69af997211f1"
+    },
+    {
+      "message": "Merge pull request #2036 from openbkn-ai/fix/2012-agent-history-conversion\n\nfeat(upgrade): convert 015 historical trace data to native 020 records",
+      "sha": "7f9fbf9dba473e7e7e93370b708d7ecdf3840341"
+    }
+  ],
+  "files": [
+    ".github/workflows/ci-bkn-trace.yml",
+    "README.md",
+    "bkn-trace/agent-observability/cmd/historical-data-validate/artifact_import.go",
+    "bkn-trace/agent-observability/cmd/historical-data-validate/artifact_import_test.go",
+    "bkn-trace/agent-observability/cmd/historical-data-validate/core_history_wire.go",
+    "bkn-trace/agent-observability/cmd/historical-data-validate/core_import.go",
+    "bkn-trace/agent-observability/cmd/historical-data-validate/core_import_test.go",
+    "bkn-trace/agent-observability/cmd/historical-data-validate/core_rebuild.go",
+    "bkn-trace/agent-observability/cmd/historical-data-validate/core_rebuild_test.go",
+    "bkn-trace/agent-observability/cmd/historical-data-validate/ledger_import.go",
+    "bkn-trace/agent-observability/cmd/historical-data-validate/ledger_import_test.go",
+    "bkn-trace/agent-observability/cmd/historical-data-validate/main.go",
+    "bkn-trace/agent-observability/cmd/historical-data-validate/main_test.go",
+    "bkn-trace/agent-observability/cmd/historical-data-validate/message_ledger.go",
+    "bkn-trace/agent-observability/cmd/historical-data-validate/message_ledger_test.go",
+    "bkn-trace/agent-observability/cmd/historical-data-validate/provenance_import.go",
+    "bkn-trace/agent-observability/cmd/historical-data-validate/provenance_import_test.go",
+    "bkn-trace/agent-observability/locale/agent-observability.en-US.toml",
+    "bkn-trace/agent-observability/locale/agent-observability.zh-CN.toml",
+    "bkn-trace/agent-observability/src/domain/service/evidencesvc/summary.go",
+    "bkn-trace/agent-observability/src/domain/service/evidencesvc/summary_service_test.go",
+    "bkn-trace/agent-observability/src/domain/service/logsvc/numbered.go",
+    "bkn-trace/agent-observability/src/domain/service/logsvc/pagination_test.go",
+    "bkn-trace/agent-observability/src/domain/service/logsvc/service.go",
+    "bkn-trace/agent-observability/src/domain/service/logsvc/service_test.go",
+    "bkn-trace/agent-observability/src/drivenadapter/dbaccess/mariadb/auditstore/log_pagination.go",
+    "bkn-trace/agent-observability/src/drivenadapter/dbaccess/mariadb/auditstore/log_pagination_test.go",
+    "bkn-trace/agent-observability/src/driveradapter/api/httphandler/audit_ledger_source.go",
+    "bkn-trace/agent-observability/src/driveradapter/api/httphandler/log_handler.go",
+    "bkn-trace/agent-observability/src/driveradapter/api/httphandler/log_handler_test.go",
+    "bkn-trace/agent-observability/src/driveradapter/api/httphandler/pagination_test.go",
+    "bkn-trace/agent-observability/src/driveradapter/api/httphandler/trace_summary_handler.go",
+    "deploy/scripts/upgrades/0.2.0/historical_trace_data/015-020-\u5386\u53f2\u65e5\u5fd7-Trace-\u4e1a\u52a1\u6eaf\u6e90\u5347\u7ea7\u6307\u5357.md",
+    "deploy/scripts/upgrades/0.2.0/historical_trace_data/README.md",
+    "deploy/scripts/upgrades/0.2.0/historical_trace_data/agent_history.py",
+    "deploy/scripts/upgrades/0.2.0/historical_trace_data/agent_thread_history.py",
+    "deploy/scripts/upgrades/0.2.0/historical_trace_data/business_snapshot_links.py",
+    "deploy/scripts/upgrades/0.2.0/historical_trace_data/core_history.py",
+    "deploy/scripts/upgrades/0.2.0/historical_trace_data/core_history_batches.py",
+    "deploy/scripts/upgrades/0.2.0/historical_trace_data/core_snapshot.py",
+    "deploy/scripts/upgrades/0.2.0/historical_trace_data/history_plan.py",
+    "deploy/scripts/upgrades/0.2.0/historical_trace_data/history_restore.py",
+    "deploy/scripts/upgrades/0.2.0/historical_trace_data/logs.py",
+    "deploy/scripts/upgrades/0.2.0/historical_trace_data/native_core.py",
+    "deploy/scripts/upgrades/0.2.0/historical_trace_data/native_evidence.py",
+    "deploy/scripts/upgrades/0.2.0/historical_trace_data/opensearch_history.py",
+    "deploy/scripts/upgrades/0.2.0/historical_trace_data/reconcile.py",
+    "deploy/scripts/upgrades/0.2.0/historical_trace_data/requirements.txt",
+    "deploy/scripts/upgrades/0.2.0/historical_trace_data/retained_runtime.py",
+    "deploy/scripts/upgrades/0.2.0/historical_trace_data/run_upgrade.py",
+    "deploy/scripts/upgrades/0.2.0/historical_trace_data/test_agent_history.py",
+    "deploy/scripts/upgrades/0.2.0/historical_trace_data/test_agent_thread_history.py",
+    "deploy/scripts/upgrades/0.2.0/historical_trace_data/test_business_snapshot_links.py",
+    "deploy/scripts/upgrades/0.2.0/historical_trace_data/test_core_history.py",
+    "deploy/scripts/upgrades/0.2.0/historical_trace_data/test_core_history_batches.py",
+    "deploy/scripts/upgrades/0.2.0/historical_trace_data/test_core_snapshot.py",
+    "deploy/scripts/upgrades/0.2.0/historical_trace_data/test_history_plan.py",
+    "deploy/scripts/upgrades/0.2.0/historical_trace_data/test_history_restore.py",
+    "deploy/scripts/upgrades/0.2.0/historical_trace_data/test_logs.py",
+    "deploy/scripts/upgrades/0.2.0/historical_trace_data/test_native_core.py",
+    "deploy/scripts/upgrades/0.2.0/historical_trace_data/test_native_evidence.py",
+    "deploy/scripts/upgrades/0.2.0/historical_trace_data/test_opensearch_history.py",
+    "deploy/scripts/upgrades/0.2.0/historical_trace_data/test_reconcile.py",
+    "deploy/scripts/upgrades/0.2.0/historical_trace_data/test_retained_runtime.py",
+    "deploy/scripts/upgrades/0.2.0/historical_trace_data/test_run_upgrade.py",
+    "deploy/scripts/upgrades/0.2.0/historical_trace_data/test_thread_content_recovery.py",
+    "deploy/scripts/upgrades/0.2.0/historical_trace_data/test_thread_provenance.py",
+    "deploy/scripts/upgrades/0.2.0/historical_trace_data/thread_content_recovery.py",
+    "deploy/scripts/upgrades/0.2.0/historical_trace_data/thread_provenance.py",
+    "docs/api/observability/observability.json",
+    "docs/plans/2026-10-07-observability-pagination.md",
+    "docs/validation/2026-10-06-015-to-020-historical-conversion.md"
+  ],
+  "status": "ahead"
+}

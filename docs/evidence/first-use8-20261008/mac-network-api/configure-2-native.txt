@@ -1,0 +1,13 @@
+{
+  "type": "server-response",
+  "rpcId": "c02a77fd-b4f3-4112-8328-236cc8c996bb",
+  "result": {
+    "ok": true,
+    "value": {
+      "baseUrl": "https://127.0.0.1:19324",
+      "cliPath": "/tmp/bkn-firstuse8-network-case/controlled-cli.py",
+      "configured": true,
+      "editable": true
+    }
+  }
+}

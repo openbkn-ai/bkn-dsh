@@ -1,0 +1,23 @@
+{
+  "checkedAt": "2026-10-08T07:41:54.773796+00:00",
+  "scope": "recorded own process descendants and tested ports only; not all machine processes",
+  "observedOwnIds": [
+    82181,
+    82183,
+    82184,
+    82194,
+    82538,
+    94333
+  ],
+  "stillPresentIds": [],
+  "portListeners": {
+    "18320": [],
+    "18321": [],
+    "18322": [],
+    "18323": [],
+    "18324": []
+  },
+  "isolatedHomeRetained": true,
+  "networkAliasRetainedAsRequested": true,
+  "dailyStateRecord": "../daily-selected-content-check-3.json"
+}

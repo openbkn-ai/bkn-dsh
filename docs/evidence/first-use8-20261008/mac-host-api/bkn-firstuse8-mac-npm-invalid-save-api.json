@@ -1,0 +1,69 @@
+{
+  "evidenceLevel": "Fixed CI candidate real official npm Host API, not UI",
+  "before": {
+    "exists": true,
+    "sha256": "ef189a8c27db6d63930aa3046a3040482e952eafcb7487c644d508e8d461f027"
+  },
+  "results": [
+    {
+      "input": "",
+      "result": {
+        "ok": false,
+        "error": {
+          "code": "openbkn/configuration-invalid",
+          "message": "Enter an absolute HTTP(S) platform URL.",
+          "details": {
+            "configField": "baseUrl"
+          }
+        }
+      },
+      "patchUnchanged": true
+    },
+    {
+      "input": "relative/path",
+      "result": {
+        "ok": false,
+        "error": {
+          "code": "openbkn/configuration-invalid",
+          "message": "Enter an absolute HTTP(S) platform URL.",
+          "details": {
+            "configField": "baseUrl"
+          }
+        }
+      },
+      "patchUnchanged": true
+    },
+    {
+      "input": "file:///tmp/invalid",
+      "result": {
+        "ok": false,
+        "error": {
+          "code": "openbkn/configuration-invalid",
+          "message": "Enter an absolute HTTP(S) platform URL.",
+          "details": {
+            "configField": "baseUrl"
+          }
+        }
+      },
+      "patchUnchanged": true
+    },
+    {
+      "input": "ht!tp://bad host",
+      "result": {
+        "ok": false,
+        "error": {
+          "code": "openbkn/configuration-invalid",
+          "message": "Enter an absolute HTTP(S) platform URL.",
+          "details": {
+            "configField": "baseUrl"
+          }
+        }
+      },
+      "patchUnchanged": true
+    }
+  ],
+  "after": {
+    "exists": true,
+    "sha256": "ef189a8c27db6d63930aa3046a3040482e952eafcb7487c644d508e8d461f027"
+  }
+}

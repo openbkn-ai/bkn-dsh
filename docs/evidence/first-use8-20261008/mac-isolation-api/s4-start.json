@@ -1,0 +1,20 @@
+{
+  "scenario": "S4",
+  "start": "2026-10-08T05:20:14.195454+00:00",
+  "end": "2026-10-08T05:20:15.257689+00:00",
+  "exitCode": 0,
+  "process": {
+    "pid": 35175,
+    "created": "Thu Oct  8 13:20:14 2026",
+    "argv": [
+      "/Users/kalias/Documents/project/app/openBKN/dsh-npm-020/node_modules/.bin/dsh",
+      "web",
+      "--port",
+      "18323",
+      "--no-open"
+    ],
+    "root": "/var/folders/9r/1zks6bqd7f3dtwybvxsksbc40000gn/T/bkn-firstuse8-isolation-s4-40zhqjyv",
+    "port": 18323,
+    "form": "npm"
+  }
+}

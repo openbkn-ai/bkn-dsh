@@ -1,0 +1,19 @@
+{
+  "evidenceLevel": "Official CLI remove/reinstall on stopped isolated Host; disk/config preservation only, not UI or real binding acceptance",
+  "removeExitCode": 0,
+  "reinstallExitCode": 0,
+  "before": {
+    "/tmp/bkn-firstuse8-api-cases/home/profiles/web/cordis.patch.yml": "9b8e4d44d98b6d81d24534abc6cf1f8c14c0c6412604913848eaf984faeb478e",
+    "/tmp/bkn-firstuse8-api-cases/home/cordis.patch.yml": "ccca8c198501a70c4701a7ad46bb3c1e46b8210764431f017176c8fac1a5e6a2"
+  },
+  "immediatelyAfterRemove": {
+    "/tmp/bkn-firstuse8-api-cases/home/profiles/web/cordis.patch.yml": "9b8e4d44d98b6d81d24534abc6cf1f8c14c0c6412604913848eaf984faeb478e",
+    "/tmp/bkn-firstuse8-api-cases/home/cordis.patch.yml": "ccca8c198501a70c4701a7ad46bb3c1e46b8210764431f017176c8fac1a5e6a2"
+  },
+  "afterReinstall": {
+    "/tmp/bkn-firstuse8-api-cases/home/profiles/web/cordis.patch.yml": "9b8e4d44d98b6d81d24534abc6cf1f8c14c0c6412604913848eaf984faeb478e",
+    "/tmp/bkn-firstuse8-api-cases/home/cordis.patch.yml": "ccca8c198501a70c4701a7ad46bb3c1e46b8210764431f017176c8fac1a5e6a2"
+  },
+  "allTwoSelectedConfigFilesByteIdentical": true,
+  "activeUISidebarAndRealBindingNotTested": true
+}

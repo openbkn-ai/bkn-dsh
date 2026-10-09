@@ -1,6 +1,6 @@
 # bkn-dsh
 
-Unified -7 is published: [GitHub Release](https://github.com/openbkn-ai/bkn-dsh/releases/tag/v0.2.0-rc.2-openbkn.0.2.0-7), [cumulative update notes](docs/releases/2026-10-06-unified-7-notes.md), and [publication verification](https://github.com/openbkn-ai/bkn-dsh/releases/download/v0.2.0-rc.2-openbkn.0.2.0-7/PUBLICATION-VERIFICATION.json). Both npm `latest` and `rc` point to -7. Historical -5/-6 packages and earlier -7 candidates retain their original identities; acceptance remains limited to the recorded artifacts and scenarios.
+Published -7 history: [GitHub Release](https://github.com/openbkn-ai/bkn-dsh/releases/tag/v0.2.0-rc.2-openbkn.0.2.0-7), [cumulative update notes](docs/releases/2026-10-06-unified-7-notes.md), and [publication verification](https://github.com/openbkn-ai/bkn-dsh/releases/download/v0.2.0-rc.2-openbkn.0.2.0-7/PUBLICATION-VERIFICATION.json). Historical -5/-6 packages and earlier -7 candidates retain their original identities; acceptance remains limited to the recorded artifacts and scenarios.
 
 [中文](README.zh.md)
 
@@ -33,7 +33,7 @@ The published package README contains the same product overview for package cons
 
 ## Install and start
 
-Upgrading from a published version <= -4 with a `name`-qualified override? See the migration note in the [package README](packages/openbkn-business-context/README.md#upgrading-name-qualified-overrides-required-for--7).
+Have an existing `name`-qualified override from a version <= -4? See the [package migration note](packages/openbkn-business-context/README.md#upgrading-name-qualified-overrides-required-for--7). Fresh installs do not need this migration.
 
 From plugin `0.2.0-rc.2-openbkn.0.2.0-1` on, an unpatched DeepSeek Harness `0.2.0-rc.2` is all you need: install the plugin package with DSH's own plugin manager. The same package works on all three forms of DSH:
 
@@ -43,11 +43,11 @@ From plugin `0.2.0-rc.2-openbkn.0.2.0-1` on, an unpatched DeepSeek Harness `0.2.
 | npm CLI | `npm install -g @deepseek-ai/dsh@0.2.0-rc.2`, then `dsh web` |
 | Source checkout, built | `dsh-v0.2.0-rc.2` checkout after `pnpm install && pnpm run build`, then `node apps/cli/lib/bin.js web` |
 
-Verified on macOS arm64 for all three forms: install, binding, Q&A with tool calls, business provenance, reopening a session after a restart, and continuing its platform conversation ([evidence](docs/evidence/2026-09-29-desktop-direct-install.md)). On Windows 10, the desktop app and the npm CLI were verified too: with the default configuration, sign-in, binding, and Q&A pass (round 2, after the CLI-lookup fix); the remaining items — provenance, restart and continue, unbound and PTC refusals, uninstall — passed in round 1 with `cliPath` set, before that fix ([results](docs/handoff/2026-10-02-windows-verification-round2.md)). The source-checkout form was not run on Windows.
+Historical acceptance of earlier packages on macOS arm64 covered all three forms: install, binding, Q&A with tool calls, business provenance, reopening a session after a restart, and continuing its platform conversation ([evidence](docs/evidence/2026-09-29-desktop-direct-install.md)). On Windows 10, the desktop app and the npm CLI were verified too: with the default configuration, sign-in, binding, and Q&A pass (round 2, after the CLI-lookup fix); the remaining items — provenance, restart and continue, unbound and PTC refusals, uninstall — passed in round 1 with `cliPath` set, before that fix ([results](docs/handoff/2026-10-02-windows-verification-round2.md)). The source-checkout form was not run on Windows in that baseline. These dated results do not replace acceptance of a new package or the configuration flow described below.
 
 ### Before you start
 
-1. **OpenBKN CLI sign-in.** Install the CLI version that matches your platform and run `openbkn auth login <platform-url>` once. For an OpenBKN 0.1.5 platform use `npm install -g @openbkn/bkn-sdk@0.1.5`; for 0.1.4 use `@openbkn/bkn-sdk@0.1.4` (`0.1.5-rc.1` also works). CLI `0.1.5-rc.2` and later check the platform version through `/api/bkn-backend/v1/health` before every request and refuse platforms that lack it, such as 0.1.4. **Log in before you open the OpenBKN panel**: up to plugin `0.2.0-rc.2-openbkn.0.2.0-3` the panel shows "无法验证 OpenBKN 连接" (cannot verify the OpenBKN connection) instead of a sign-in prompt when the CLI has never logged in. The same message can appear with CLI 0.1.5 when the stored login came from CLI 0.1.4; refreshing the session once cleared it in our test: `openbkn auth token > /dev/null` (PowerShell: `openbkn auth token > $null`). The command prints the access token, so discard its output as shown instead of letting it reach the terminal. The plugin reads the token through the `openbkn` CLI, so DSH must find it on the `PATH` of the DSH process (the desktop app takes `PATH` from your login shell on macOS); on Windows it finds the `openbkn.cmd` shim. Otherwise set `cliPath` (step 2) to the CLI's absolute path. DSH adds the Windows extension only to a bare name, so on Windows the path must name the shim itself, e.g. `C:/Users/<you>/AppData/Roaming/npm/openbkn.cmd` (`where.exe openbkn` shows it).
+1. **OpenBKN CLI.** Install the CLI version recommended for your platform: for OpenBKN 0.1.5, use `npm install -g @openbkn/bkn-sdk@0.1.5`; for 0.1.4, use `@openbkn/bkn-sdk@0.1.4` (`0.1.5-rc.1` also works). CLI `0.1.5-rc.2` and later require the platform health/version endpoint, which 0.1.4 lacks. You can configure the plugin before signing in; the panel starts CLI authorization when needed. DSH must find `openbkn` on its own process `PATH`. The macOS desktop app reads the login-shell environment; Windows uses `openbkn.cmd`. If discovery fails, set the CLI's absolute path in **设置 → 高级设置** (Settings → Advanced settings). On Windows, name the shim itself, for example `C:/Users/<you>/AppData/Roaming/npm/openbkn.cmd`; `where.exe openbkn` shows its location.
 2. **pnpm, for the npm CLI only.** The npm `dsh` hands `plugin add` to the `pnpm` on `PATH`; install it first (`npm install -g pnpm@11.7.0`, the version DSH itself uses). The desktop app bundles its own.
 3. **Self-signed platform certificate** (skip for a publicly trusted one). DSH must trust the platform CA through `NODE_EXTRA_CA_CERTS=<CA pem path>`:
    - `dsh web` from a terminal: prefix the command with the variable.
@@ -57,47 +57,60 @@ Verified on macOS arm64 for all three forms: install, binding, Q&A with tool cal
 
 ### 1. Install the plugin
 
-**Published version:** -7 is available on npm under both `latest` and `rc`; use the commands below. To install a downloaded package, replace the package spec with the absolute path to the [published `.tgz`](https://github.com/openbkn-ai/bkn-dsh/releases/download/v0.2.0-rc.2-openbkn.0.2.0-7/openbkn-dsh-business-context-0.2.0-rc.2-openbkn.0.2.0-7.tgz). Its immutable packaged README preserves candidate construction-time wording; current publication status and hashes are recorded in the GitHub Release linked above.
-
-Close the desktop app (or stop `dsh web`) first. The desktop app must have been started once so that its profile exists.
+In DSH's **Plugins** page, choose **Add plugin** and enter `@openbkn/dsh-business-context@latest`. Select your registry and install the package. You can also install from a terminal while DSH is stopped; the desktop app must have been started once to create its profile:
 
 ```bash
-# Desktop app (macOS). The app menu "Manage dsh command…" can also put `dsh` on your PATH.
-"/Applications/DeepSeek Harness.app/Contents/Resources/runtime/cli/bin/dsh" plugin --profile desktop add @openbkn/dsh-business-context@0.2.0-rc.2-openbkn.0.2.0-7
+# Desktop app (macOS). “Manage dsh command…” can also add dsh to PATH.
+"/Applications/DeepSeek Harness.app/Contents/Resources/runtime/cli/bin/dsh" plugin --profile desktop add @openbkn/dsh-business-context@latest
 
 # npm CLI
-dsh plugin --profile web add @openbkn/dsh-business-context@0.2.0-rc.2-openbkn.0.2.0-7
+dsh plugin --profile web add @openbkn/dsh-business-context@latest
 
-# Source checkout, from the DSH checkout root
-node apps/cli/lib/bin.js plugin --profile web add @openbkn/dsh-business-context@0.2.0-rc.2-openbkn.0.2.0-7
+# Source build, from the DSH checkout root
+node apps/cli/lib/bin.js plugin --profile web add @openbkn/dsh-business-context@latest
 ```
 
-On Windows, run `dsh.cmd` in place of `dsh`.
+On Windows, use `dsh.cmd` in place of `dsh`. Use the actual profile and `DSH_HOME` of the Host you run; the default `desktop` and `web` profiles are separate. To install a downloaded package, replace the package spec with its absolute `.tgz` path.
 
-### 2. Set the platform address
+### 2. Configure in the OpenBKN panel
 
-Add the entry below to the profile's patch layer, `~/.dsh/profiles/<profile>/cordis.patch.yml` (`desktop` or `web`; under `$DSH_HOME` if you set one; `%USERPROFILE%\.dsh\…` on Windows). The file is a YAML list. A newly created profile may hold only `[]`: replace that line with the entry, because appending after `[]` makes the file invalid. DSH itself may append entries later (for example after the first-run notice), so find the plugin's entry by its `id` when you edit it again.
+1. Start DSH and click **OpenBKN** in the sidebar footer. An unset address is a normal **待配置** (not configured) state: the component stays enabled and diagnostics remains available. The plugin does not contact OpenBKN or read its CLI credentials until an address is configured.
+2. Enter your platform's absolute `http://` or `https://` address and choose **保存并继续** (Save and continue). A malformed address is rejected without changing the saved configuration. Saving the address does not itself prove that the platform is reachable or authorized.
+3. If DSH cannot find the CLI, open **高级设置** (Advanced settings) and set `cliPath`; its default is `openbkn`. The panel's **设置** (Settings) action lets you edit the same form later. Wait for an active business turn to finish before changing the platform address.
+4. When prompted, choose **使用 OpenBKN CLI 登录并同步** (Sign in with OpenBKN CLI and sync), complete browser authorization, and return to DSH. If an existing credential is rejected, use this action to sign in again. A 403 may require the platform administrator to grant access; signing in as the same account does not guarantee recovery.
+
+Settings are saved through DSH's configuration editor to the current profile and applied by its normal component reload. Other configuration fields are preserved. A higher-priority override may prevent a setting from taking effect; the panel reports this instead of silently bypassing it. A temporary network or certificate error does not erase the saved address. Existing sessions keep their original platform and network binding; changing the address does not rebind them.
+
+You do not need to edit YAML or paste an access token for this flow. Tokens remain managed by the OpenBKN CLI and DSH credentials. For administrator-managed advanced configuration, an ID-only profile override still works:
 
 ```yaml
 - id: openbkn-business-context
   config:
     baseUrl: https://<your-openbkn-platform>
-    # cliPath: /absolute/path/to/openbkn   # only if DSH cannot find the CLI on PATH; on Windows end it with openbkn.cmd
+    # cliPath: /absolute/path/to/openbkn
 ```
 
-The platform address is not sensitive. Never put the OpenBKN token in Cordis YAML; the plugin keeps it only in DSH credentials.
+The platform address is not sensitive. Never put tokens in Cordis YAML. An invalid address supplied in configuration remains a configuration error; it is distinct from an address that has not been set.
 
 ### 3. Bind a network and ask
 
-1. Start DSH (open the desktop app, or run `dsh web`) and click **OpenBKN** in the sidebar.
-2. Pick an authorized knowledge network and create its local workspace (**新建工作区** / New workspace opens the folder chooser), or continue its existing workspace.
-3. In the new session, keep **标准模式** (Standard mode), then ask. Each completed answer offers **查看业务溯源** (view business provenance: execution trace, business context graph, evidence).
+1. After authorization, pick an accessible knowledge network and create its local workspace (**新建工作区** / New workspace opens the folder chooser), or continue its existing workspace.
+2. In the new session, keep **标准模式** (Standard mode), then ask. Each completed answer offers **查看业务溯源** (view business provenance: execution trace, business context graph, evidence).
+3. For connection or setup problems, open **诊断** (Diagnostics) at the top right of the OpenBKN panel and export the report. Closing the panel keeps it closed when an earlier request finishes; it does not promise to cancel browser authorization already in progress.
 
 With `dsh web` on macOS, the folder chooser opens on the machine that runs `dsh web`. A remote or SSH session uses DSH's browse backend, which cannot create a workspace from the plugin panel: associate the network with an existing local workspace first.
 
 ### Uninstall
 
-With DSH stopped, run `dsh plugin --profile <profile> remove @openbkn/dsh-business-context` and delete the leftover `node_modules/@openbkn` in that profile directory. Sessions stay readable: the plugin writes nothing to the DSH session log. Binding records under `$DSH_HOME/openbkn/session-bindings/` stay behind; while the plugin is installed, it removes the record of a session DSH no longer stores once the record is seven days old.
+Use DSH's **Plugins** page to remove the `@openbkn/dsh-business-context` package. If the Host asks you to stop the profile, do so before retrying. Alternatively, stop DSH and run:
+
+```bash
+dsh plugin --profile <desktop|web> remove @openbkn/dsh-business-context
+```
+
+Removal unloads the package's components and removes its profile dependency. It does not erase user overrides in the profile patch, DSH/OpenBKN credentials, CLI sign-in state, sessions, network/workspace bindings, or workspace files. This is an uninstall, not a logout or data wipe. Do not delete the entire `node_modules/@openbkn` directory: it may contain other packages.
+
+Sessions written by current plugin versions stay readable because the plugin does not add events to the DSH session log. Retained configuration and bindings can be reused after reinstalling. While installed, the plugin may prune session-binding records whose session no longer exists and whose record is at least seven days old; uninstalling does not run a blanket cleanup. See the historical session-log limitation below for the original `0.2.0-rc.2-openbkn.0.2.0` release.
 
 ### Backup and known limitations
 
@@ -127,7 +140,7 @@ The plugin needs a reachable OpenBKN platform with at least one knowledge networ
 
 1. **Platform** — run one locally with [bkn-foundry](https://github.com/openbkn-ai/bkn-foundry) (`deploy/dev/mac.sh` on macOS; Docker engine with ≥16 GB memory), or use your organization's deployment.
 2. **Sample data** — import a sample knowledge network from [bkn-samples](https://github.com/openbkn-ai/bkn-samples) (`supply_ontology_hand` is the primary end-to-end dataset).
-3. **Credentials** — `openbkn auth login <platform-url>` once; the plugin reads the token through the CLI handshake only.
+3. **Configure and authorize** — enter the platform address in the OpenBKN panel, then use its CLI sign-in action. The plugin reads the token through the CLI handshake only.
 4. **Bind** — open the OpenBKN panel in DSH, pick the network, and start a session in its workspace.
 
 ## Supported DSH versions
@@ -138,7 +151,7 @@ Check your version with `dsh --version`, then pair it like this:
 
 | Your DSH version | Compatibility series | Plugin to install | Prebuilt runtime archive |
 | --- | --- | --- | --- |
-| `dsh-v0.2.0-rc.2` (current pin): desktop app, npm CLI, or source build | not needed to use the plugin; [`compat/dsh-0.2.0-rc.2/`](compat/dsh-0.2.0-rc.2/) builds it from source | `@openbkn/dsh-business-context@0.2.0-rc.2-openbkn.0.2.0-7` from npm or the published `.tgz` (Standard mode) | discontinued; last one: [openbkn-dsh-runtime-v0.2.0-rc.2-openbkn.0.2.0](https://github.com/openbkn-ai/bkn-dsh/releases/tag/openbkn-dsh-runtime-v0.2.0-rc.2-openbkn.0.2.0) |
+| `dsh-v0.2.0-rc.2` (current pin): desktop app, npm CLI, or source build | not needed to use the plugin; [`compat/dsh-0.2.0-rc.2/`](compat/dsh-0.2.0-rc.2/) builds it from source | `@openbkn/dsh-business-context@latest` from npm or a published `.tgz` (Standard mode) | discontinued; last one: [openbkn-dsh-runtime-v0.2.0-rc.2-openbkn.0.2.0](https://github.com/openbkn-ai/bkn-dsh/releases/tag/openbkn-dsh-runtime-v0.2.0-rc.2-openbkn.0.2.0) |
 | `dsh-v0.1.7-rc.2` (previous series) | [`compat/dsh-0.1.7-rc.2/`](compat/dsh-0.1.7-rc.2/) (archived) | `@openbkn/dsh-business-context@0.1.7-rc.2-openbkn.0.2.0` from npm, or build from git tag [`v0.1.7-rc.2-openbkn.0.2.0`](https://github.com/openbkn-ai/bkn-dsh/tree/v0.1.7-rc.2-openbkn.0.2.0) | [openbkn-dsh-runtime-v0.1.7-rc.2-openbkn.0.2.0](https://github.com/openbkn-ai/bkn-dsh/releases/tag/openbkn-dsh-runtime-v0.1.7-rc.2-openbkn.0.2.0) |
 | `dsh-v0.1.6-alpha.2` (previous series) | [`compat/dsh-0.1.6-alpha.2/`](compat/dsh-0.1.6-alpha.2/) (archived) | `@openbkn/dsh-business-context@0.1.5-rc.2` from npm, or a source build from git tag [`v0.1.5-rc.2`](https://github.com/openbkn-ai/bkn-dsh/tree/v0.1.5-rc.2) | [openbkn-dsh-runtime-v0.1.6-alpha.2-openbkn.1](https://github.com/openbkn-ai/bkn-dsh/releases/tag/openbkn-dsh-runtime-v0.1.6-alpha.2-openbkn.1) |
 

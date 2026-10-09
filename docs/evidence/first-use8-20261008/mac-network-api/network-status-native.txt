@@ -1,0 +1,12 @@
+{
+  "type": "server-response",
+  "rpcId": "bf10173a-1f39-4e98-bd30-c2a717fe89ae",
+  "result": {
+    "ok": false,
+    "error": {
+      "code": "gateway/internal",
+      "message": "mcp-client(openbkn): initial connection or tool synchronization failed",
+      "details": {}
+    }
+  }
+}

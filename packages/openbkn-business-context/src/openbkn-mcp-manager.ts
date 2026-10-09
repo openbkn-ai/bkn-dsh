@@ -1,6 +1,6 @@
 import type { Context } from '@deepseek-ai/cordis'
 import { assertHttpsEndpoint, isLoopbackHost } from './platform-reader.js'
-import { passiveDiagnostics, transportMarkersOf } from './diagnostics-observer.js'
+import { passiveDiagnostics, transportMarkersOf, type PassiveDiagnosticsWriter } from './diagnostics-observer.js'
 import * as McpClient from '@deepseek-ai/dsh-mcp-client'
 import type { Config } from './config.js'
 
@@ -14,6 +14,7 @@ const REQUIRED_TOOL = 'mcp__openbkn__bkn_start_interaction'
  * namespace is treated as the deployment-owned instance.
  */
 export class OpenBknMcpManager {
+  private readonly observations = passiveDiagnostics.writer()
   private starting: Promise<void> | undefined
   private fiber: { dispose(): Promise<void> } | undefined
 
@@ -25,7 +26,18 @@ export class OpenBknMcpManager {
 
   private reloading: Promise<void> | undefined
 
+  /** Failed, unloading, and disposed parents cannot publish a replacement client. */
+  private ownerActive(): boolean {
+    const state = this.ctx.fiber?.state
+    return state !== 3 && state !== 4 && state !== 5
+  }
+
+  private assertOwnerActive(): void {
+    if (!this.ownerActive()) throw new Error('OpenBKN MCP owner is no longer active.')
+  }
+
   async ensure(): Promise<void> {
+    this.assertOwnerActive()
     // During a refresh the old fiber's tools may still be registered while the
     // client behind them is being disposed; wait for the remount instead of
     // returning early against a dying client.
@@ -34,6 +46,7 @@ export class OpenBknMcpManager {
   }
 
   private async ensureMounted(): Promise<void> {
+    this.assertOwnerActive()
     if (this.ctx.tools.get(REQUIRED_TOOL) !== undefined) return
     if (this.starting === undefined) {
       this.starting = this.start().finally(() => { this.starting = undefined })
@@ -43,7 +56,9 @@ export class OpenBknMcpManager {
 
   /** Reconnect the client after DSH rotates the managed credential. */
   async refresh(): Promise<void> {
+    this.assertOwnerActive()
     await this.starting
+    this.assertOwnerActive()
     if (this.reloading !== undefined) return this.reloading
     this.reloading = (async () => {
       const fiber = this.fiber
@@ -57,6 +72,7 @@ export class OpenBknMcpManager {
   }
 
   private async start(): Promise<void> {
+    this.assertOwnerActive()
     // The mount config keeps a literal Authorization header resolved fresh at
     // connection time; the value never enters plugin profile configuration,
     // session state, browser state, or prompts. Token rotation stays at this
@@ -64,18 +80,28 @@ export class OpenBknMcpManager {
     // refresh() re-mounts on demand, so the mounted secret never outlives the
     // credential it was resolved from.
     const token = await this.resolveToken()
+    this.assertOwnerActive()
     if (token === undefined || token.length === 0) {
       throw new Error('OpenBKN Context Loader MCP requires a configured token.')
     }
-    const fiber = await this.mountFiber(token).catch(error => { throw this.explainStartupFailure(error) })
+    const fiber = await this.mountFiber(token).catch(error => {
+      this.assertOwnerActive()
+      throw this.explainStartupFailure(error)
+    })
+    if (!this.ownerActive()) {
+      // Native Cordis already owns this child. A late return is nevertheless
+      // unwound immediately; its outcome cannot overwrite the new owner's checks.
+      try { await fiber.dispose() } finally { this.assertOwnerActive() }
+    }
     this.fiber = fiber
     if (this.ctx.tools.get(REQUIRED_TOOL) === undefined) {
       this.fiber = undefined
       await fiber.dispose()
-      passiveDiagnostics.record({ subject: 'context-loader', stage: 'context-loader', code: 'mcp-initialization-failed', status: 'fail', evidence: { toolsPublished: false } })
+      this.assertOwnerActive()
+      this.observations.record({ subject: 'context-loader', stage: 'context-loader', code: 'mcp-initialization-failed', status: 'fail', evidence: { toolsPublished: false } })
       throw new Error('OpenBKN Context Loader MCP did not publish its managed interaction tools.')
     }
-    passiveDiagnostics.record({ subject: 'context-loader', stage: 'context-loader', code: 'context-loader', status: 'pass', evidence: { toolsPublished: true } })
+    this.observations.record({ subject: 'context-loader', stage: 'context-loader', code: 'context-loader', status: 'pass', evidence: { toolsPublished: true } })
   }
 
   private async mountFiber(token: string): Promise<{ dispose(): Promise<void> }> {
@@ -100,7 +126,7 @@ export class OpenBknMcpManager {
    * its original failure shape.
    */
   private explainStartupFailure(error: unknown): Error {
-    return explainMcpStartupFailure(error)
+    return explainMcpStartupFailure(error, this.observations)
   }
 }
 
@@ -167,13 +193,13 @@ export function resolveMcpUrl(config: Pick<Config, 'baseUrl' | 'mcpUrl' | 'allow
  * @param error - the rejection from the MCP mount.
  * @returns the caller-facing error (credential hints keep their wording).
  */
-export function explainMcpStartupFailure(error: unknown): Error {
+export function explainMcpStartupFailure(error: unknown, observations: PassiveDiagnosticsWriter = passiveDiagnostics.writer()): Error {
   const brand = authenticationBrand(error, 0)
   if (brand !== undefined) {
     const denied = brand === 'CLIENT_HTTP_FORBIDDEN'
     // The token was present and was refused: that is a rejection, not an
     // absence of login; only a missing credential could claim that.
-    passiveDiagnostics.record({
+    observations.record({
       subject: 'context-loader',
       stage: 'context-loader',
       code: 'auth-rejected',
@@ -183,7 +209,7 @@ export function explainMcpStartupFailure(error: unknown): Error {
     return new OpenBknMcpCredentialRejectedError(denied ? 403 : 401)
   }
   const markers = transportMarkersOf(error)
-  passiveDiagnostics.record({
+  observations.record({
     subject: 'context-loader',
     stage: 'context-loader',
     code: markers.tls ? 'tls-failed'

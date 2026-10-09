@@ -88,7 +88,7 @@ test('returns to sign-in when the platform rejects a locally present credential'
     phase: 'authentication-required',
     auth: authenticationRequired,
     networks: [],
-    message: 'OpenBKN 平台 拒绝了当前凭据。请使用 OpenBKN CLI 重新登录并同步，或更新具有平台访问权限的 Token。',
+    message: 'OpenBKN 平台 拒绝了当前凭据。请使用 OpenBKN CLI 重新登录并同步。',
   })
 })
 
@@ -130,7 +130,7 @@ test('offers credential recovery without inferring why the platform catalogue re
 
   assert.equal(controller.snapshot().phase, 'authentication-required')
   assert.match(controller.snapshot().message ?? '', /平台.*拒绝了当前凭据/)
-  assert.match(controller.snapshot().message ?? '', /平台访问权限/)
+  assert.match(controller.snapshot().message ?? '', /OpenBKN CLI 重新登录并同步/)
 })
 
 test('keeps the saved token and identifies a temporarily unavailable platform catalogue', async () => {
@@ -151,7 +151,7 @@ test('keeps the saved token and identifies a temporarily unavailable platform ca
 
   assert.equal(controller.snapshot().phase, 'error')
   assert.match(controller.snapshot().message ?? '', /目录暂不可用/)
-  assert.match(controller.snapshot().message ?? '', /Token 未被修改/)
+  assert.match(controller.snapshot().message ?? '', /凭据未被修改/)
 })
 
 test('creates the selected network session before binding it', async () => {
@@ -299,4 +299,260 @@ test('while the workspace chooser is open, the panel says where to look instead 
   release('session-1')
   await pending
   assert.equal(controller.snapshot().open, false)
+})
+
+
+function deferred<T>() {
+  let resolve!: (value: T) => void
+  const promise = new Promise<T>(accept => { resolve = accept })
+  return { promise, resolve }
+}
+
+const configuredView = { baseUrl: authenticated.baseUrl, cliPath: 'openbkn', configured: true, editable: true }
+const pendingView = { ...configuredView, baseUrl: '', configured: false }
+const safePort = {
+  status: async () => authenticated,
+  beginLogin: async () => [],
+  configureToken: async () => [],
+  listNetworks: async () => [{ id: 'network', displayName: 'Network' }],
+  bindNetworkWorkspace: async () => ({ id: 'network', displayName: 'Network' }),
+  bindNetwork: async () => ({ platformBaseUrl: authenticated.baseUrl, knowledgeNetworkId: 'network', displayName: 'Network' }),
+}
+
+test('first-use shows configuration without dispatching authentication or catalogue calls', async () => {
+  let businessCalls = 0
+  const controller = new OpenBknUiController({ ...safePort,
+    status: async () => { businessCalls += 1; return authenticated },
+    listNetworks: async () => { businessCalls += 1; return [] },
+  }, async () => 'session', undefined, {
+    getConfiguration: async () => pendingView,
+    saveConfiguration: async () => configuredView,
+  })
+  controller.open()
+  await controller.refresh()
+  assert.equal(controller.snapshot().phase, 'configuration')
+  assert.equal(controller.snapshot().configuration?.baseUrl, '')
+  assert.equal(businessCalls, 0)
+})
+
+test('invalid form submissions stay on configuration without saving or connecting', async () => {
+  let saved = 0
+  let connected = 0
+  const controller = new OpenBknUiController({ ...safePort,
+    status: async () => { connected += 1; return authenticated },
+  }, async () => 'session', undefined, {
+    getConfiguration: async () => pendingView,
+    saveConfiguration: async () => { saved += 1; return configuredView },
+  })
+  controller.open()
+  await controller.refresh()
+  for (const baseUrl of ['', 'file:///local', 'relative/path', 'https://platform.invalid bad']) {
+    await controller.saveConfiguration({ baseUrl, cliPath: 'openbkn' })
+    assert.equal(controller.snapshot().phase, 'configuration')
+    assert.match(controller.snapshot().configurationMessage!, /HTTP/)
+  }
+  assert.equal(saved, 0)
+  assert.equal(connected, 0)
+})
+
+test('a saved URL is distinct from connection failure and retains the saved settings', async () => {
+  const controller = new OpenBknUiController({ ...safePort,
+    status: async () => { throw new Error('offline private detail') },
+  }, async () => 'session', undefined, {
+    getConfiguration: async () => pendingView,
+    saveConfiguration: async input => ({ ...input, configured: true, editable: true }),
+  })
+  controller.open()
+  await controller.refresh()
+  await controller.saveConfiguration({ baseUrl: authenticated.baseUrl, cliPath: '/path/openbkn' })
+  assert.equal(controller.snapshot().phase, 'error')
+  assert.match(controller.snapshot().message!, /^设置已保存/)
+  assert.equal(controller.snapshot().configuration?.cliPath, '/path/openbkn')
+  assert.doesNotMatch(controller.snapshot().message!, /private detail/)
+})
+
+test('a rejected save remains in the form and does not request authentication', async () => {
+  let connected = 0
+  const controller = new OpenBknUiController({ ...safePort,
+    status: async () => { connected += 1; return authenticated },
+  }, async () => 'session', undefined, {
+    getConfiguration: async () => pendingView,
+    saveConfiguration: async () => { throw Object.assign(new Error('private editor text'), { code: 'openbkn/configuration-busy' }) },
+  })
+  controller.open()
+  await controller.refresh()
+  await controller.saveConfiguration({ baseUrl: authenticated.baseUrl, cliPath: 'openbkn' })
+  assert.equal(controller.snapshot().phase, 'configuration')
+  assert.equal(controller.snapshot().savingConfiguration, false)
+  assert.match(controller.snapshot().configurationMessage!, /回合结束/)
+  assert.doesNotMatch(controller.snapshot().configurationMessage!, /private editor text/)
+  assert.equal(connected, 0)
+})
+
+test('closing during authentication drops the response and prevents the next request', async () => {
+  const status = deferred<typeof authenticated>()
+  let listed = 0
+  let requestSignal: AbortSignal | undefined
+  const controller = new OpenBknUiController({ ...safePort,
+    status: async signal => { requestSignal = signal; return status.promise },
+    listNetworks: async () => { listed += 1; return [] },
+  }, async () => 'session')
+  controller.open()
+  const pending = controller.refresh()
+  controller.close()
+  status.resolve(authenticated)
+  await pending
+  assert.equal(controller.snapshot().open, false)
+  assert.equal(requestSignal?.aborted, true)
+  assert.equal(listed, 0)
+})
+
+test('close and reopen discard the old login result without replacing the new state', async () => {
+  const login = deferred<readonly []>()
+  let checked = 0
+  const controller = new OpenBknUiController({ ...safePort,
+    beginLogin: async () => login.promise,
+    status: async () => { checked += 1; return authenticated },
+  }, async () => 'session')
+  controller.open()
+  const pending = controller.beginLogin()
+  controller.close()
+  controller.open()
+  login.resolve([])
+  await pending
+  assert.deepEqual(controller.snapshot(), { open: true, phase: 'idle', networks: [] })
+  assert.equal(checked, 0)
+})
+
+test('a newer refresh wins when the older catalogue resolves last', async () => {
+  const oldCatalogue = deferred<readonly { id: string; displayName: string }[]>()
+  let listed = 0
+  const controller = new OpenBknUiController({ ...safePort,
+    listNetworks: async () => ++listed === 1 ? oldCatalogue.promise : [{ id: 'new', displayName: 'New' }],
+  }, async () => 'session')
+  controller.open()
+  const old = controller.refresh()
+  await new Promise(resolve => setImmediate(resolve))
+  await controller.refresh()
+  oldCatalogue.resolve([{ id: 'old', displayName: 'Old' }])
+  await old
+  assert.equal(controller.snapshot().networks[0]?.id, 'new')
+})
+
+test('closing while a workspace is selected prevents later binding and UI refresh', async () => {
+  const picker = deferred<string>()
+  let bound = 0
+  let refreshed = 0
+  const controller = new OpenBknUiController({ ...safePort,
+    bindNetwork: async () => { bound += 1; return { platformBaseUrl: authenticated.baseUrl, knowledgeNetworkId: 'network', displayName: 'Network' } },
+  }, async () => picker.promise, () => { refreshed += 1 })
+  controller.open()
+  await controller.refresh()
+  const pending = controller.openNetwork('network', 'create-workspace')
+  controller.close()
+  picker.resolve('session')
+  await pending
+  assert.equal(bound, 0)
+  assert.equal(refreshed, 0)
+  assert.equal(controller.snapshot().open, false)
+})
+
+test('closing during a configuration save ignores the result without connecting', async () => {
+  const save = deferred<typeof configuredView>()
+  let connected = 0
+  const controller = new OpenBknUiController({ ...safePort,
+    status: async () => { connected += 1; return authenticated },
+  }, async () => 'session', undefined, {
+    getConfiguration: async () => pendingView,
+    saveConfiguration: async () => save.promise,
+  })
+  controller.open()
+  await controller.refresh()
+  const pending = controller.saveConfiguration({ baseUrl: authenticated.baseUrl, cliPath: 'openbkn' })
+  controller.close()
+  save.resolve(configuredView)
+  await pending
+  assert.equal(controller.snapshot().open, false)
+  assert.equal(connected, 0)
+})
+
+test('an unavailable configuration entry preserves the healthy business panel', async () => {
+  const controller = new OpenBknUiController(safePort, async () => 'session', undefined, {
+    getConfiguration: async () => { throw new Error('diagnostics module unavailable') },
+    saveConfiguration: async () => configuredView,
+  })
+  controller.open()
+  await controller.refresh()
+  assert.equal(controller.snapshot().phase, 'ready')
+  assert.equal(controller.snapshot().networks[0]?.id, 'network')
+  await controller.showSettings()
+  assert.equal(controller.snapshot().phase, 'configuration')
+  assert.match(controller.snapshot().configurationMessage!, /无法读取插件设置/)
+})
+
+test('closing during the configuration read prevents reopening the setup form', async () => {
+  const configuration = deferred<typeof pendingView>()
+  const controller = new OpenBknUiController(safePort, async () => 'session', undefined, {
+    getConfiguration: async () => configuration.promise,
+    saveConfiguration: async () => configuredView,
+  })
+  controller.open()
+  const pending = controller.refresh()
+  controller.close()
+  configuration.resolve(pendingView)
+  await pending
+  assert.equal(controller.snapshot().open, false)
+  assert.equal(controller.snapshot().phase, 'idle')
+})
+
+test('a readonly configuration view refuses saves until the user retries settings', async () => {
+  let saved = 0
+  let busy = true
+  const controller = new OpenBknUiController(safePort, async () => 'session', undefined, {
+    getConfiguration: async () => ({ ...pendingView, editable: !busy, ...(busy ? { unavailableReason: 'busy' as const } : {}) }),
+    saveConfiguration: async () => { saved += 1; return configuredView },
+  })
+  controller.open()
+  await controller.refresh()
+  await controller.saveConfiguration({ baseUrl: authenticated.baseUrl, cliPath: 'openbkn' })
+  assert.equal(saved, 0)
+  busy = false
+  await controller.showSettings()
+  await controller.saveConfiguration({ baseUrl: authenticated.baseUrl, cliPath: 'openbkn' })
+  assert.equal(saved, 1)
+  assert.equal(controller.snapshot().phase, 'ready')
+})
+
+
+test('a readonly editor-unavailable view does not block a healthy business connection', async () => {
+  let authenticatedCalls = 0
+  const controller = new OpenBknUiController({ ...safePort,
+    status: async () => { authenticatedCalls += 1; return authenticated },
+  }, async () => 'session', undefined, {
+    getConfiguration: async () => ({ ...pendingView, editable: false, unavailableReason: 'editor-unavailable' }),
+    saveConfiguration: async () => configuredView,
+  })
+  controller.open()
+  await controller.refresh()
+  assert.equal(authenticatedCalls, 1)
+  assert.equal(controller.snapshot().phase, 'ready')
+  assert.equal(controller.snapshot().networks[0]?.id, 'network')
+  await controller.showSettings()
+  assert.equal(controller.snapshot().configuration?.editable, false)
+})
+
+test('unknown or inactive entries preserve the business failure and diagnostic guidance', async () => {
+  for (const unavailableReason of ['entry-unavailable', 'entry-inactive'] as const) {
+    const controller = new OpenBknUiController({ ...safePort,
+      status: async () => { throw Object.assign(new Error('unavailable'), { code: 'openbkn/business-unavailable' }) },
+    }, async () => 'session', undefined, {
+      getConfiguration: async () => ({ ...pendingView, editable: false, unavailableReason }),
+      saveConfiguration: async () => configuredView,
+    })
+    controller.open()
+    await controller.refresh()
+    assert.equal(controller.snapshot().phase, 'error')
+    assert.match(controller.snapshot().message!, /诊断/)
+    assert.equal(controller.snapshot().configuration?.unavailableReason, unavailableReason)
+  }
 })

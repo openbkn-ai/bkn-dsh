@@ -1,0 +1,20 @@
+[
+  {
+    "step": "CLI help inspection before isolated environment setup",
+    "command": [
+      "node24",
+      "official npm DSH CLI",
+      "plugin",
+      "--profile",
+      "web",
+      "--help"
+    ],
+    "result": "forwarded pnpm help (exit0), created one plugin-manager diagnostic log in daily web profile; no install or Host start",
+    "createdPath": "/Users/kalias/.dsh/profiles/web/.plugin-manager/logs/operation-WN3DUX/pnpm.log",
+    "scope": "Recent-file scan depth6 found this log only; no before snapshot; no claim of all daily-profile contents unchanged",
+    "logRetained": true,
+    "logSizeBytes": 0,
+    "logMtime": "2026-10-08T13:16:42.195579+08:00",
+    "logSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+  }
+]

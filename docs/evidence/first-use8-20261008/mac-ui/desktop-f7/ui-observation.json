@@ -1,0 +1,25 @@
+{
+  "observedAt": "2026-10-08T06:57:54.072038+00:00",
+  "form": "desktop",
+  "directorySelectedByUser": "/private/tmp/bkn-firstuse8-mac-desktop/workspace-supply",
+  "nativeMode": "standard",
+  "uiCompletedSeconds": 31,
+  "interactionId": "int_7dd12ff68f3f92b4e9f1e2e2ba3f8654",
+  "interactionStatus": "completed",
+  "executionNodes": 10,
+  "graphElements": 26,
+  "graphVisualEdges": 0,
+  "selectedGraphRef": {
+    "type": "metric",
+    "name": "销售订单数",
+    "operationId": "op_0c3601823a6f643333f5cde813144a9e",
+    "tool": "query_metric"
+  },
+  "matchingUiReceipt": "rcpt_32d78b5ff0ca54dfd466ebfe132b90cb",
+  "limits": [
+    "Only selected metric reference independently paired; not all graph nodes.",
+    "run_cypher unsupported response displayed and retained; answer completed using managed metric/object queries.",
+    "Question requests all-network orders; this is not the product-specific 40-order G6 question."
+  ],
+  "bindingSha256": "563eafb03a06654e5e6278b0ef956e851b43c3b3d3f7591323dd63f575bc9e54"
+}

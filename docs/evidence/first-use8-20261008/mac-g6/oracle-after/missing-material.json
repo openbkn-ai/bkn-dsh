@@ -1,0 +1,24 @@
+{
+  "datas": [],
+  "paging": {
+    "next_cursor": null,
+    "expires_at_sec": null
+  },
+  "overall_ms": 23,
+  "search_from_index": false,
+  "effective_permissions": {
+    "huid_productline_name": "full",
+    "group_type": "full",
+    "material_standard_price": "full",
+    "product_status": "full",
+    "material_code": "full",
+    "baseunit_number": "full",
+    "group_name": "full",
+    "materialattr": "full",
+    "purchase_fixedleadtime": "full",
+    "product_fixedleadtime": "full",
+    "modelnum": "full",
+    "baseunit_name": "full",
+    "material_name": "full"
+  }
+}
