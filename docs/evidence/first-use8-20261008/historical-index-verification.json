@@ -5,5 +5,12 @@
   "scope": "original macOS snapshot; excludes subsequent Windows and publication files",
   "fileCount": 340,
   "sizeAndSha256Matched": 340,
-  "differences": []
+  "differences": [],
+  "durableAnchor": {
+    "checkedAt": "2026-10-09T18:59:30.699829+00:00",
+    "commit": "fc4f2c49cdfdff8a50a2a4880072cd8db1a2b7f8",
+    "tag": "v0.2.0-rc.2-openbkn.0.2.0-8",
+    "sizeAndSha256Matched": 340,
+    "scope": "all original 340 snapshot entries exist unchanged in the tagged release tree; no feature-branch retention required"
+  }
 }

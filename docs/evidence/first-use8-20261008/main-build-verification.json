@@ -551,5 +551,9 @@
       "candidateBytes": 4669,
       "actualBytes": 4669
     }
-  ]
+  ],
+  "candidateSourceRole": "historical acceptance input; long-term reproduction uses the release commit and tag below",
+  "durableReleaseTag": "v0.2.0-rc.2-openbkn.0.2.0-8",
+  "acceptedPackageTree": "d93f8f2e257e7cebd65ca75185c5b022fdde8c24",
+  "releasePackageTree": "d93f8f2e257e7cebd65ca75185c5b022fdde8c24"
 }

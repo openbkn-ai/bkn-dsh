@@ -30,7 +30,9 @@
 
 ## 索引与上游复核
 
-PR #83 的非阻塞意见是旧索引的范围不明确。本次为 [EVIDENCE-FILES.json](EVIDENCE-FILES.json) 增加快照提交 `1d73426ebc8ba74b950f82b2852674179a1c03b5` 及 340 项范围说明；原条目未改。340/340 原条目独立对比该提交的 Git blob，大小和 SHA 均相同，见 [historical-index-verification.json](historical-index-verification.json)。该索引不是接入 Windows 后的整目录清单。
+PR #83 的非阻塞意见是旧索引的范围不明确。本次为 [EVIDENCE-FILES.json](EVIDENCE-FILES.json) 增加快照提交 `1d73426ebc8ba74b950f82b2852674179a1c03b5` 及 340 项范围说明；原条目未改。340/340 原条目独立对比该提交的 Git blob，大小和 SHA 均相同，见 [historical-index-verification.json](historical-index-verification.json)。该索引不是接入 Windows 后的整目录清单，Mac RESULTS 中相应措辞也已明确为历史阶段。
+
+长期复核锚点为现有正式 tag `v0.2.0-rc.2-openbkn.0.2.0-8` / `fc4f2c49cdfdff8a50a2a4880072cd8db1a2b7f8`：上述 340 项在该 tag 的树中同样逐项匹配；候选和发行提交的整个插件目录 Git tree SHA 相同。`1d73426`、`23ac2daa` 只作为历史来源记录，后续复现不依赖保留未合并的 feature 分支，也不额外创建 tag。
 
 本轮再次读取官方发布信息：OpenBKN 最新正式版为 [0.1.5](https://github.com/openbkn-ai/bkn-foundry/releases/tag/v0.1.5)，DSH 最新预览为 [0.2.1-alpha.2](https://github.com/deepseek-ai/deepseek-harness/releases/tag/dsh-v0.2.1-alpha.2)。支持与验收仍固定在 DSH `dsh-v0.2.0-rc.2`；不据此扩展 alpha 兼容声明。
 
