@@ -1,6 +1,8 @@
 {
   "schemaVersion": 1,
-  "scope": "all files currently in this evidence directory; excludes EVIDENCE-FILES.json itself",
+  "scope": "historical macOS evidence snapshot before the Windows import; excludes EVIDENCE-FILES.json itself; not a current combined-directory index",
+  "asOfCommit": "1d73426ebc8ba74b950f82b2852674179a1c03b5",
+  "snapshotFileCount": 340,
   "files": [
     {
       "path": "RESULTS.md",

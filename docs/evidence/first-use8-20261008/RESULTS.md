@@ -64,7 +64,7 @@ Desktop 第一轮 F8 的六个选定用户文件哈希一致，当轮尚无业�
 
 十三份真实产品导出原件（Desktop 八份、npm 五份）在 `mac-ui/report-provenance.json` 逐件列出实际下载路径、报告 ID、完整 SHA 与归档字节一致性。Desktop 经原生保存对话框、npm 四份经 IAB 下载及一份经 Chrome 下载；API 报告单列，不计入产品下载。`3d002ea9` 如实保留“传输恢复但登录检查仍失败”的采集时点，后续重新登录成功不追溯改写该报告。
 
-归档前重新读取十三份下载原件，与仓库归档字节/SHA/大小/reportId 逐一核对均一致，见 `evidence-validation.json`；暂存 Git blob 对照见 `product-git-consistency.json`。全部当前证据的文件/字节/SHA 清单在 `EVIDENCE-FILES.json`（明确排除清单自身，避免自引用）。凭据形状扫描、JSON/JSONL 解析、Python helper 语法与 Markdown 本地链接检查通过；扫描只覆盖本证据目录及列明的模式，不声称整个私密 home 或历史 Git 对象无敏感数据。
+归档前重新读取十三份下载原件，与仓库归档字节/SHA/大小/reportId 逐一核对均一致，见 `evidence-validation.json`；暂存 Git blob 对照见 `product-git-consistency.json`。本 macOS 阶段归档快照的文件/字节/SHA 清单在 `EVIDENCE-FILES.json`（340 项，明确排除清单自身，避免自引用；不是后来接入 Windows 和发布核验文件后的整目录清单）。凭据形状扫描、JSON/JSONL 解析、Python helper 语法与 Markdown 本地链接检查通过；扫描只覆盖本证据目录及列明的模式，不声称整个私密 home 或历史 Git 对象无敏感数据。
 
 CLI 生成的两个 oracle CSV 保留 CRLF 原字节，不为了 diff 检查修改数据原件；证据提交的 whitespace 检查明确使用 `git -c core.whitespace=blank-at-eol,blank-at-eof,space-before-tab,cr-at-eol diff --cached --check`。派生 Markdown 多余文件尾空行已移除。
 

@@ -1,0 +1,559 @@
+{
+  "checkedAt": "2026-10-09T18:32:36.341378+00:00",
+  "version": "0.2.0-rc.2-openbkn.0.2.0-8",
+  "mainCommit": "fc4f2c49cdfdff8a50a2a4880072cd8db1a2b7f8",
+  "ciRun": "https://github.com/openbkn-ai/bkn-dsh/actions/runs/37973006719",
+  "ciConclusion": "success",
+  "pluginTests": {
+    "total": 381,
+    "passed": 380,
+    "failed": 0,
+    "skipped": 1
+  },
+  "repositoryTests": {
+    "total": 60,
+    "passed": 60,
+    "failed": 0
+  },
+  "exportMainTypesTargetsPacked": 16,
+  "candidateSource": "23ac2daa6d3538235f33a9627a8178a48f3e1ebf",
+  "candidateRun": "https://github.com/openbkn-ai/bkn-dsh/actions/runs/37725960498",
+  "tarballSha256": "6a946030a6152d2899609fac95c66cd246e36cca5a8ce4e5f87ed379cbe706ea",
+  "tarballBytes": 175800,
+  "exactTarballMatch": true,
+  "unpackedFileCount": 66,
+  "payload": [
+    {
+      "path": "package/LICENSE",
+      "status": "identical",
+      "candidateSha256": "c71d239df91726fc519c6eb72d318ec65820627232b2f796219e87dcf35d0ab4",
+      "actualSha256": "c71d239df91726fc519c6eb72d318ec65820627232b2f796219e87dcf35d0ab4",
+      "candidateBytes": 11357,
+      "actualBytes": 11357
+    },
+    {
+      "path": "package/README.md",
+      "status": "identical",
+      "candidateSha256": "a02541b36e242cd643279202494e65e9c48e746ad41d7af01d8680ea9a6bdd90",
+      "actualSha256": "a02541b36e242cd643279202494e65e9c48e746ad41d7af01d8680ea9a6bdd90",
+      "candidateBytes": 9904,
+      "actualBytes": 9904
+    },
+    {
+      "path": "package/README.zh.md",
+      "status": "identical",
+      "candidateSha256": "c2488b9762e2e4ea07a1ad9704e3b75df105da8af8b51910ccce23a870cf575f",
+      "actualSha256": "c2488b9762e2e4ea07a1ad9704e3b75df105da8af8b51910ccce23a870cf575f",
+      "candidateBytes": 8624,
+      "actualBytes": 8624
+    },
+    {
+      "path": "package/cordis.patch.yml",
+      "status": "identical",
+      "candidateSha256": "3d7d06832b9c335147ed8680da71a0e0b8afb19c80b9ed1d3e7a0e138e72a3cb",
+      "actualSha256": "3d7d06832b9c335147ed8680da71a0e0b8afb19c80b9ed1d3e7a0e138e72a3cb",
+      "candidateBytes": 290,
+      "actualBytes": 290
+    },
+    {
+      "path": "package/lib/business.js",
+      "status": "identical",
+      "candidateSha256": "524949023cb2b58896b50ee4b9203b1dce39a393c6bf279d5688584fef3c6d30",
+      "actualSha256": "524949023cb2b58896b50ee4b9203b1dce39a393c6bf279d5688584fef3c6d30",
+      "candidateBytes": 151735,
+      "actualBytes": 151735
+    },
+    {
+      "path": "package/lib/client.js",
+      "status": "identical",
+      "candidateSha256": "5a60ee8d2137e65080b4445b3dc640cb96d00aa2815e521b325ec557e3d920f8",
+      "actualSha256": "5a60ee8d2137e65080b4445b3dc640cb96d00aa2815e521b325ec557e3d920f8",
+      "candidateBytes": 327525,
+      "actualBytes": 327525
+    },
+    {
+      "path": "package/lib/diagnostics-observer-vRub4cgb.js",
+      "status": "identical",
+      "candidateSha256": "69270547ec90067cc32af9386da6900dafaf558ef303af795ea8b4a9a8a2e4f5",
+      "actualSha256": "69270547ec90067cc32af9386da6900dafaf558ef303af795ea8b4a9a8a2e4f5",
+      "candidateBytes": 12245,
+      "actualBytes": 12245
+    },
+    {
+      "path": "package/lib/diagnostics.js",
+      "status": "identical",
+      "candidateSha256": "a94f9c3aad94e31bb1fbd4d57a25a603a5d55c38f5f43abdfdf3b2dc1b51f8e8",
+      "actualSha256": "a94f9c3aad94e31bb1fbd4d57a25a603a5d55c38f5f43abdfdf3b2dc1b51f8e8",
+      "candidateBytes": 23879,
+      "actualBytes": 23879
+    },
+    {
+      "path": "package/lib/index.js",
+      "status": "identical",
+      "candidateSha256": "bbed4784d42d49d32cad4889dde1441f12f2556ef828cd27903e9d5c5d8c0b44",
+      "actualSha256": "bbed4784d42d49d32cad4889dde1441f12f2556ef828cd27903e9d5c5d8c0b44",
+      "candidateBytes": 1422,
+      "actualBytes": 1422
+    },
+    {
+      "path": "package/lib/typert.host.d.ts",
+      "status": "identical",
+      "candidateSha256": "5e2d26ee86d0fe170dac8cd3f5854e67bdea334c57f40a5766ace57b8304c17d",
+      "actualSha256": "5e2d26ee86d0fe170dac8cd3f5854e67bdea334c57f40a5766ace57b8304c17d",
+      "candidateBytes": 123,
+      "actualBytes": 123
+    },
+    {
+      "path": "package/lib/typert.host.js",
+      "status": "identical",
+      "candidateSha256": "c292f724ab95fc7c5eab969407f9d2e1449ba76624f01447a316e8c6ae6ffe5a",
+      "actualSha256": "c292f724ab95fc7c5eab969407f9d2e1449ba76624f01447a316e8c6ae6ffe5a",
+      "candidateBytes": 54549,
+      "actualBytes": 54549
+    },
+    {
+      "path": "package/lib/typert.remote-client.d.ts",
+      "status": "identical",
+      "candidateSha256": "9e3fad8461f32944749318cf438528fa9f9d7340cd0ae3b065c53b3afff36f59",
+      "actualSha256": "9e3fad8461f32944749318cf438528fa9f9d7340cd0ae3b065c53b3afff36f59",
+      "candidateBytes": 4399,
+      "actualBytes": 4399
+    },
+    {
+      "path": "package/lib/typert.remote-client.js",
+      "status": "identical",
+      "candidateSha256": "7cc74a3f9b07ba7220c2cd5ef48c366ed8e9efc8238402a6b1c349d705abdfe4",
+      "actualSha256": "7cc74a3f9b07ba7220c2cd5ef48c366ed8e9efc8238402a6b1c349d705abdfe4",
+      "candidateBytes": 31731,
+      "actualBytes": 31731
+    },
+    {
+      "path": "package/lib/types/auth.d.ts",
+      "status": "identical",
+      "candidateSha256": "7230cba18a8c03e2a7c23d907d30f497a078e478cd45a22cddccd097b44fd25d",
+      "actualSha256": "7230cba18a8c03e2a7c23d907d30f497a078e478cd45a22cddccd097b44fd25d",
+      "candidateBytes": 1946,
+      "actualBytes": 1946
+    },
+    {
+      "path": "package/lib/types/business-context-service.d.ts",
+      "status": "identical",
+      "candidateSha256": "248a37b379e5b746700e59ca62e09226f9e2bad69c4df1a5ff378b66d7303f75",
+      "actualSha256": "248a37b379e5b746700e59ca62e09226f9e2bad69c4df1a5ff378b66d7303f75",
+      "candidateBytes": 9579,
+      "actualBytes": 9579
+    },
+    {
+      "path": "package/lib/types/business-graph-model.d.ts",
+      "status": "identical",
+      "candidateSha256": "4a6cc71b686d9ad79923e7206a01fa3d2688de83a8334de5afa18b05833252bf",
+      "actualSha256": "4a6cc71b686d9ad79923e7206a01fa3d2688de83a8334de5afa18b05833252bf",
+      "candidateBytes": 1411,
+      "actualBytes": 1411
+    },
+    {
+      "path": "package/lib/types/business-network-catalog.d.ts",
+      "status": "identical",
+      "candidateSha256": "a76067557bb935f31eea0d81370f398fa7b979197c64055a8db7808d48bcc07a",
+      "actualSha256": "a76067557bb935f31eea0d81370f398fa7b979197c64055a8db7808d48bcc07a",
+      "candidateBytes": 447,
+      "actualBytes": 447
+    },
+    {
+      "path": "package/lib/types/business.d.ts",
+      "status": "identical",
+      "candidateSha256": "7a6daaa57cf72f2584a10e4b05a5b52eeea84d9b7c580c1910210ed28915d56f",
+      "actualSha256": "7a6daaa57cf72f2584a10e4b05a5b52eeea84d9b7c580c1910210ed28915d56f",
+      "candidateBytes": 3600,
+      "actualBytes": 3600
+    },
+    {
+      "path": "package/lib/types/client/BoundNetworkBadge.d.ts",
+      "status": "identical",
+      "candidateSha256": "87028f24515ac814f7ae0aa90f4bc3d7784031fdeb1bbe56bcb4b95ca2e8de1a",
+      "actualSha256": "87028f24515ac814f7ae0aa90f4bc3d7784031fdeb1bbe56bcb4b95ca2e8de1a",
+      "candidateBytes": 1591,
+      "actualBytes": 1591
+    },
+    {
+      "path": "package/lib/types/client/OpenBknContextToolView.d.ts",
+      "status": "identical",
+      "candidateSha256": "07ee9643f7d0e56a8281081df56a01350a10587a35d8ffb52fc8abc0cf831275",
+      "actualSha256": "07ee9643f7d0e56a8281081df56a01350a10587a35d8ffb52fc8abc0cf831275",
+      "candidateBytes": 330,
+      "actualBytes": 330
+    },
+    {
+      "path": "package/lib/types/client/OpenBknDiagnostics.d.ts",
+      "status": "identical",
+      "candidateSha256": "cee3ea920e607993e5de752355a226bfd06d58db38f120a83d6212580b21df7c",
+      "actualSha256": "cee3ea920e607993e5de752355a226bfd06d58db38f120a83d6212580b21df7c",
+      "candidateBytes": 831,
+      "actualBytes": 831
+    },
+    {
+      "path": "package/lib/types/client/OpenBknEntry.d.ts",
+      "status": "identical",
+      "candidateSha256": "f6f306c7e19edfd5dd937ffc588d91427a0b0ca1b60405dbacb5537973993575",
+      "actualSha256": "f6f306c7e19edfd5dd937ffc588d91427a0b0ca1b60405dbacb5537973993575",
+      "candidateBytes": 585,
+      "actualBytes": 585
+    },
+    {
+      "path": "package/lib/types/client/OpenBknOverlay.d.ts",
+      "status": "identical",
+      "candidateSha256": "1c34e06c623ca00d4508ce068a4e98fe8a9046cb99195e815ac1b3fb5f75e1bb",
+      "actualSha256": "1c34e06c623ca00d4508ce068a4e98fe8a9046cb99195e815ac1b3fb5f75e1bb",
+      "candidateBytes": 1080,
+      "actualBytes": 1080
+    },
+    {
+      "path": "package/lib/types/client/ProvenanceOverlay.d.ts",
+      "status": "identical",
+      "candidateSha256": "332d939dcbe152e963d6af3f6c952589eb48b0da18f899f2c10036993fd0dddd",
+      "actualSha256": "332d939dcbe152e963d6af3f6c952589eb48b0da18f899f2c10036993fd0dddd",
+      "candidateBytes": 1506,
+      "actualBytes": 1506
+    },
+    {
+      "path": "package/lib/types/client/SuggestionDock.d.ts",
+      "status": "identical",
+      "candidateSha256": "e447021c1d1d64de0521db8db834362275538084e2f9a183445d261f33ddb018",
+      "actualSha256": "e447021c1d1d64de0521db8db834362275538084e2f9a183445d261f33ddb018",
+      "candidateBytes": 656,
+      "actualBytes": 656
+    },
+    {
+      "path": "package/lib/types/client/TurnProvenanceActions.d.ts",
+      "status": "identical",
+      "candidateSha256": "e5545baac9fd979c28b30bcfde30cd0d9b9c0dacec7fc3ba924d17761a703b83",
+      "actualSha256": "e5545baac9fd979c28b30bcfde30cd0d9b9c0dacec7fc3ba924d17761a703b83",
+      "candidateBytes": 869,
+      "actualBytes": 869
+    },
+    {
+      "path": "package/lib/types/client/diagnostics-controller.d.ts",
+      "status": "identical",
+      "candidateSha256": "98e47d666fab5a254d0c9b1ed64163a721940c9bc0d1f5ccef1b4e0515759d24",
+      "actualSha256": "98e47d666fab5a254d0c9b1ed64163a721940c9bc0d1f5ccef1b4e0515759d24",
+      "candidateBytes": 1757,
+      "actualBytes": 1757
+    },
+    {
+      "path": "package/lib/types/client/diagnostics-export.d.ts",
+      "status": "identical",
+      "candidateSha256": "5fc411469408787568bdc4976bc257b4473662a916b931d87ebb84264b12a403",
+      "actualSha256": "5fc411469408787568bdc4976bc257b4473662a916b931d87ebb84264b12a403",
+      "candidateBytes": 1217,
+      "actualBytes": 1217
+    },
+    {
+      "path": "package/lib/types/client/index.d.ts",
+      "status": "identical",
+      "candidateSha256": "8103984740bfd8e37abecec5dbb2cae4cea226fa28c8aa8498b6d90d0ed33729",
+      "actualSha256": "8103984740bfd8e37abecec5dbb2cae4cea226fa28c8aa8498b6d90d0ed33729",
+      "candidateBytes": 895,
+      "actualBytes": 895
+    },
+    {
+      "path": "package/lib/types/client/network-directory.d.ts",
+      "status": "identical",
+      "candidateSha256": "10bfbab117331d6970c4dd7a386eea47349e7a394661645217c749679d30ab80",
+      "actualSha256": "10bfbab117331d6970c4dd7a386eea47349e7a394661645217c749679d30ab80",
+      "candidateBytes": 641,
+      "actualBytes": 641
+    },
+    {
+      "path": "package/lib/types/client/openbkn-panel-bridge.d.ts",
+      "status": "identical",
+      "candidateSha256": "fac76999d6056491549658dec0ee2db5f8059be3f7a8f8f1ce44df55e56ef565",
+      "actualSha256": "fac76999d6056491549658dec0ee2db5f8059be3f7a8f8f1ce44df55e56ef565",
+      "candidateBytes": 679,
+      "actualBytes": 679
+    },
+    {
+      "path": "package/lib/types/client/openbkn-ui-controller.d.ts",
+      "status": "identical",
+      "candidateSha256": "5b9870a5e93ebe61658b825f3a6b59d56bbec92967fb0e5a493bb8ed0fb51a71",
+      "actualSha256": "5b9870a5e93ebe61658b825f3a6b59d56bbec92967fb0e5a493bb8ed0fb51a71",
+      "candidateBytes": 4215,
+      "actualBytes": 4215
+    },
+    {
+      "path": "package/lib/types/client/suggestion-dock-controller.d.ts",
+      "status": "identical",
+      "candidateSha256": "0e612bc5beb58e1091de1362ef2f29bf7df426b8b18cfe7d4ae866110ebd9ced",
+      "actualSha256": "0e612bc5beb58e1091de1362ef2f29bf7df426b8b18cfe7d4ae866110ebd9ced",
+      "candidateBytes": 1039,
+      "actualBytes": 1039
+    },
+    {
+      "path": "package/lib/types/client/turn-provenance-controller.d.ts",
+      "status": "identical",
+      "candidateSha256": "eb633affb0bf66242ee1ff3256a14fa1a7c96f380a8f39769a12e514ab6e749b",
+      "actualSha256": "eb633affb0bf66242ee1ff3256a14fa1a7c96f380a8f39769a12e514ab6e749b",
+      "candidateBytes": 808,
+      "actualBytes": 808
+    },
+    {
+      "path": "package/lib/types/config.d.ts",
+      "status": "identical",
+      "candidateSha256": "b838d0739e10b69af746b3dda1868697daa7fd39d9208a78db07a77d97d618a4",
+      "actualSha256": "b838d0739e10b69af746b3dda1868697daa7fd39d9208a78db07a77d97d618a4",
+      "candidateBytes": 1807,
+      "actualBytes": 1807
+    },
+    {
+      "path": "package/lib/types/configuration-service.d.ts",
+      "status": "identical",
+      "candidateSha256": "0b12d8766d76000e92dbd0ec978eabda0b67096c0425411e880b7d2471c2e9c2",
+      "actualSha256": "0b12d8766d76000e92dbd0ec978eabda0b67096c0425411e880b7d2471c2e9c2",
+      "candidateBytes": 1491,
+      "actualBytes": 1491
+    },
+    {
+      "path": "package/lib/types/diagnostics-contract.d.ts",
+      "status": "identical",
+      "candidateSha256": "08dda8327e54a4158e47e84fefe9baf4c1f085d43244a3b2809b0fe79d0dbf6b",
+      "actualSha256": "08dda8327e54a4158e47e84fefe9baf4c1f085d43244a3b2809b0fe79d0dbf6b",
+      "candidateBytes": 8476,
+      "actualBytes": 8476
+    },
+    {
+      "path": "package/lib/types/diagnostics-host-adapter.d.ts",
+      "status": "identical",
+      "candidateSha256": "6b2f6c4b194fc3f909942f836580cdbae0b551d49682f1519ea7c1e21262aee9",
+      "actualSha256": "6b2f6c4b194fc3f909942f836580cdbae0b551d49682f1519ea7c1e21262aee9",
+      "candidateBytes": 4506,
+      "actualBytes": 4506
+    },
+    {
+      "path": "package/lib/types/diagnostics-observer.d.ts",
+      "status": "identical",
+      "candidateSha256": "ae7744ca90fe14a30d0ad7e11ba322a5ee47b10c81a15db9eec2cee70488fe72",
+      "actualSha256": "ae7744ca90fe14a30d0ad7e11ba322a5ee47b10c81a15db9eec2cee70488fe72",
+      "candidateBytes": 5013,
+      "actualBytes": 5013
+    },
+    {
+      "path": "package/lib/types/diagnostics-service.d.ts",
+      "status": "identical",
+      "candidateSha256": "314fb2708f38ddab1277bc19bc2f2e239e85279d527986be421787caae74bca6",
+      "actualSha256": "314fb2708f38ddab1277bc19bc2f2e239e85279d527986be421787caae74bca6",
+      "candidateBytes": 1853,
+      "actualBytes": 1853
+    },
+    {
+      "path": "package/lib/types/diagnostics.d.ts",
+      "status": "identical",
+      "candidateSha256": "e3a8bc8585993374eb0772aeefa207e5868c69780e1f2880b3d14db385cb3373",
+      "actualSha256": "e3a8bc8585993374eb0772aeefa207e5868c69780e1f2880b3d14db385cb3373",
+      "candidateBytes": 1223,
+      "actualBytes": 1223
+    },
+    {
+      "path": "package/lib/types/dsh-session-binding.d.ts",
+      "status": "identical",
+      "candidateSha256": "7314da6ebbe8557425e6adb77dc6880d027454ad629a5507bffc9d81fa0eeb68",
+      "actualSha256": "7314da6ebbe8557425e6adb77dc6880d027454ad629a5507bffc9d81fa0eeb68",
+      "candidateBytes": 2627,
+      "actualBytes": 2627
+    },
+    {
+      "path": "package/lib/types/dsh-session-provenance.d.ts",
+      "status": "identical",
+      "candidateSha256": "edf7040012d1750f0f6a00ea0572df2833e97f3da5008de89c15aab904c38b85",
+      "actualSha256": "edf7040012d1750f0f6a00ea0572df2833e97f3da5008de89c15aab904c38b85",
+      "candidateBytes": 1240,
+      "actualBytes": 1240
+    },
+    {
+      "path": "package/lib/types/index.d.ts",
+      "status": "identical",
+      "candidateSha256": "2a842cd366b800b8c50f86a0e29024616ae8985172553c83e2b2d001c2e02478",
+      "actualSha256": "2a842cd366b800b8c50f86a0e29024616ae8985172553c83e2b2d001c2e02478",
+      "candidateBytes": 1474,
+      "actualBytes": 1474
+    },
+    {
+      "path": "package/lib/types/interaction-lifecycle.d.ts",
+      "status": "identical",
+      "candidateSha256": "032942766f8d88c6417aa7d350af38f45587134408d75639a378f2b0b7215784",
+      "actualSha256": "032942766f8d88c6417aa7d350af38f45587134408d75639a378f2b0b7215784",
+      "candidateBytes": 7611,
+      "actualBytes": 7611
+    },
+    {
+      "path": "package/lib/types/interaction-references.d.ts",
+      "status": "identical",
+      "candidateSha256": "bef249332959baa3f77b8d5f61ab1d4112a91d474fccb8dda7a48b64cd7aeda0",
+      "actualSha256": "bef249332959baa3f77b8d5f61ab1d4112a91d474fccb8dda7a48b64cd7aeda0",
+      "candidateBytes": 787,
+      "actualBytes": 787
+    },
+    {
+      "path": "package/lib/types/managed-session-policy.d.ts",
+      "status": "identical",
+      "candidateSha256": "99ce1b9500b077c737bf668160d02328dc7dc925073094cba96aab7d6f2ee163",
+      "actualSha256": "99ce1b9500b077c737bf668160d02328dc7dc925073094cba96aab7d6f2ee163",
+      "candidateBytes": 1754,
+      "actualBytes": 1754
+    },
+    {
+      "path": "package/lib/types/native-mcp-provenance.d.ts",
+      "status": "identical",
+      "candidateSha256": "4c6dcf2937ad7d2c7cc4caa6dcef77da38af8d745d08364170ce27ccaa920351",
+      "actualSha256": "4c6dcf2937ad7d2c7cc4caa6dcef77da38af8d745d08364170ce27ccaa920351",
+      "candidateBytes": 675,
+      "actualBytes": 675
+    },
+    {
+      "path": "package/lib/types/network-capability-profile.d.ts",
+      "status": "identical",
+      "candidateSha256": "e730e047f1c1210c1164c4c45fe69b21d04c288888d9e16b7fae6e15c36617e2",
+      "actualSha256": "e730e047f1c1210c1164c4c45fe69b21d04c288888d9e16b7fae6e15c36617e2",
+      "candidateBytes": 1058,
+      "actualBytes": 1058
+    },
+    {
+      "path": "package/lib/types/openbkn-cli-subprocess.d.ts",
+      "status": "identical",
+      "candidateSha256": "1c9699d90f4b48c1c87accea09f601ad3b3061fd29bf211fc0c6fb7e88ce3dce",
+      "actualSha256": "1c9699d90f4b48c1c87accea09f601ad3b3061fd29bf211fc0c6fb7e88ce3dce",
+      "candidateBytes": 2455,
+      "actualBytes": 2455
+    },
+    {
+      "path": "package/lib/types/openbkn-mcp-manager.d.ts",
+      "status": "identical",
+      "candidateSha256": "261b2911b68584fb0e23d731934ad746e4fcc7b893c153395cc6d35626611e89",
+      "actualSha256": "261b2911b68584fb0e23d731934ad746e4fcc7b893c153395cc6d35626611e89",
+      "candidateBytes": 3077,
+      "actualBytes": 3077
+    },
+    {
+      "path": "package/lib/types/platform-reader.d.ts",
+      "status": "identical",
+      "candidateSha256": "57fa003f54fe1c7bd4590a2cffb62850ece2ae5101754550f7867c1ff98914f6",
+      "actualSha256": "57fa003f54fe1c7bd4590a2cffb62850ece2ae5101754550f7867c1ff98914f6",
+      "candidateBytes": 3799,
+      "actualBytes": 3799
+    },
+    {
+      "path": "package/lib/types/provenance-handle.d.ts",
+      "status": "identical",
+      "candidateSha256": "a5f9f84828bf5f6f3918f0c58697e390127c0cb13eb548c3549b980ea5ce4e52",
+      "actualSha256": "a5f9f84828bf5f6f3918f0c58697e390127c0cb13eb548c3549b980ea5ce4e52",
+      "candidateBytes": 929,
+      "actualBytes": 929
+    },
+    {
+      "path": "package/lib/types/provenance-view.d.ts",
+      "status": "identical",
+      "candidateSha256": "bed493bf5672501a5198a0ca3cfdd49b3058765f219eee181bd614b640c4e16a",
+      "actualSha256": "bed493bf5672501a5198a0ca3cfdd49b3058765f219eee181bd614b640c4e16a",
+      "candidateBytes": 1090,
+      "actualBytes": 1090
+    },
+    {
+      "path": "package/lib/types/scoped-business-context.d.ts",
+      "status": "identical",
+      "candidateSha256": "da9cf2a7355e910ca6fb2f78f6a3d2864ebfc67f33b91273ec54f515df4cb70a",
+      "actualSha256": "da9cf2a7355e910ca6fb2f78f6a3d2864ebfc67f33b91273ec54f515df4cb70a",
+      "candidateBytes": 3712,
+      "actualBytes": 3712
+    },
+    {
+      "path": "package/lib/types/session-binding-store.d.ts",
+      "status": "identical",
+      "candidateSha256": "83904ea6070f4c5f8dffd1699ad2d15b0d98d26486f4de6f97c2195034d144c0",
+      "actualSha256": "83904ea6070f4c5f8dffd1699ad2d15b0d98d26486f4de6f97c2195034d144c0",
+      "candidateBytes": 2387,
+      "actualBytes": 2387
+    },
+    {
+      "path": "package/lib/types/session-binding.d.ts",
+      "status": "identical",
+      "candidateSha256": "f25525d56b82bee53a1f9797cb918d27c08f6a91b25978cf828b1a068a8388fc",
+      "actualSha256": "f25525d56b82bee53a1f9797cb918d27c08f6a91b25978cf828b1a068a8388fc",
+      "candidateBytes": 2420,
+      "actualBytes": 2420
+    },
+    {
+      "path": "package/lib/types/suggested-prompts.d.ts",
+      "status": "identical",
+      "candidateSha256": "8d9e3f08022253cda24fe783f9a9f55eb907cd539fb5228c1925599ba9d2b7fa",
+      "actualSha256": "8d9e3f08022253cda24fe783f9a9f55eb907cd539fb5228c1925599ba9d2b7fa",
+      "candidateBytes": 213,
+      "actualBytes": 213
+    },
+    {
+      "path": "package/lib/types/timeline-fold.d.ts",
+      "status": "identical",
+      "candidateSha256": "76c2db2de38642a8f58a93148b29777ed70c6929b000d6af2e6663bf465e504d",
+      "actualSha256": "76c2db2de38642a8f58a93148b29777ed70c6929b000d6af2e6663bf465e504d",
+      "candidateBytes": 738,
+      "actualBytes": 738
+    },
+    {
+      "path": "package/lib/types/tool-result-message.d.ts",
+      "status": "identical",
+      "candidateSha256": "6e55da8a63bf08a9ad2011cb4385d0668c059b36bfa79130e046b6951de4ccf4",
+      "actualSha256": "6e55da8a63bf08a9ad2011cb4385d0668c059b36bfa79130e046b6951de4ccf4",
+      "candidateBytes": 828,
+      "actualBytes": 828
+    },
+    {
+      "path": "package/lib/types/trailing-slashes.d.ts",
+      "status": "identical",
+      "candidateSha256": "c001a16c2de58f21b1ef49e6e8d473545b4ea40239d16c48cc3da64751127742",
+      "actualSha256": "c001a16c2de58f21b1ef49e6e8d473545b4ea40239d16c48cc3da64751127742",
+      "candidateBytes": 378,
+      "actualBytes": 378
+    },
+    {
+      "path": "package/lib/types/turn-provenance.d.ts",
+      "status": "identical",
+      "candidateSha256": "7cd5cb900a8516e880eb66a30936e8b7473d2d24221402d4f4f21e54a414c4c1",
+      "actualSha256": "7cd5cb900a8516e880eb66a30936e8b7473d2d24221402d4f4f21e54a414c4c1",
+      "candidateBytes": 1314,
+      "actualBytes": 1314
+    },
+    {
+      "path": "package/lib/types/turn-timeline.d.ts",
+      "status": "identical",
+      "candidateSha256": "eb90b0871add78ba00b08ea743329c3a40c609c0a4e1ac972b3867adf08fb937",
+      "actualSha256": "eb90b0871add78ba00b08ea743329c3a40c609c0a4e1ac972b3867adf08fb937",
+      "candidateBytes": 1252,
+      "actualBytes": 1252
+    },
+    {
+      "path": "package/lib/types/types.d.ts",
+      "status": "identical",
+      "candidateSha256": "b06cac7bb6a6d979481122b4620673bcc93bdc32b29d54c3d6ccbbdd8ad92028",
+      "actualSha256": "b06cac7bb6a6d979481122b4620673bcc93bdc32b29d54c3d6ccbbdd8ad92028",
+      "candidateBytes": 9453,
+      "actualBytes": 9453
+    },
+    {
+      "path": "package/lib/types/workspace-binding-registry.d.ts",
+      "status": "identical",
+      "candidateSha256": "56499a16199296f15fa6b088924b2d21d75356a8f4c931af60c83b81ead81d96",
+      "actualSha256": "56499a16199296f15fa6b088924b2d21d75356a8f4c931af60c83b81ead81d96",
+      "candidateBytes": 1957,
+      "actualBytes": 1957
+    },
+    {
+      "path": "package/package.json",
+      "status": "identical",
+      "candidateSha256": "1bb5bfec0267d0255f7b3807683e17e855cbb80a119695bbc9f73cdc76351a99",
+      "actualSha256": "1bb5bfec0267d0255f7b3807683e17e855cbb80a119695bbc9f73cdc76351a99",
+      "candidateBytes": 4669,
+      "actualBytes": 4669
+    }
+  ],
+  "candidateSourceRole": "historical acceptance input; long-term reproduction uses the release commit and tag below",
+  "durableReleaseTag": "v0.2.0-rc.2-openbkn.0.2.0-8",
+  "acceptedPackageTree": "d93f8f2e257e7cebd65ca75185c5b022fdde8c24",
+  "releasePackageTree": "d93f8f2e257e7cebd65ca75185c5b022fdde8c24"
+}
