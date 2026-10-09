@@ -37,3 +37,13 @@ Let the CLI token expire while Host runs -> product re-login -> immediately use 
 ## Not yet established
 - Whether Host restart clears it (next step, also needed for F7 restart-resume).
 - Whether the stale token is the pre-expiry access token (likely) — not inspected to avoid handling secrets.
+
+## 2026-10-10 update (C5, B1 handoff 8e3707f) — original failure records above are unchanged
+- Title wording: "running Host's business MCP calls still rejected after re-login; restart recovers". The stale-token
+  explanation is a root-cause CANDIDATE, not established.
+- `Public.Unauthorized` / "token is invalid" is the TOOL-level return content; there is no direct evidence of the
+  transport HTTP status, so it is not written as HTTP 401.
+- Stale token, SDK, client reuse and server-side MCP session are all still to be determined.
+- "Not yet established: whether Host restart clears it" is superseded: f6-f7-notes.md records that after restart
+  (Host 1544 -> 30928, 06:30) the same session's tools worked (06:31 "Interaction 已建立").
+- A fresh minimal reproduction is reported separately in ../WINDOWS-B1-RESULTS.md and windows/b1-minimal/.

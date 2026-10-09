@@ -1,0 +1,5 @@
+R1 product login button clicked at 2026-10-09T17:29:53Z on Host 13480
+click#1 17:29:53Z did not start a login (no process, token unchanged at 17:30:58Z). click#2 at ~2026-10-09T17:31:17Z; login procs: 22956@2026-10-09T17:31:14.6256280+00:00
+31276@2026-10-09T17:31:14.6996130+00:00
+10880@2026-10-09T17:31:14.7341380+00:00
+R1 timeline: re-login login proc started 17:31:14Z; CLI token written 17:31:35Z; vault 17:31:37Z; login procs exited by 17:31:46Z; directory readable (panel 2 networks) ~17:32Z; new session question ~17:33:20Z; call1 OK 17:33:26.910Z

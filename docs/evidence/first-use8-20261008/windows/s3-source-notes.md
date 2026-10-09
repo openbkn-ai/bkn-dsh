@@ -41,3 +41,6 @@
   identical content (f8-source-profile-package.before/after.json). This explains the same byte delta on desktop/npm.
 - Restart (29380): panel reads back https://192.168.50.28 (pending login: token expired 20:41).
 - CLI-path F8 not required for source minimal chain; not run.
+
+## 2026-10-10 (C6): B3 further evidence deferred by the user in the B1 handoff. Phenomenon and evidence boundary above
+## unchanged — neither excluded nor confirmed that the browser was killed; no new B3 test was run.

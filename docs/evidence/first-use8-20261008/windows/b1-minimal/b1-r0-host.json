@@ -1,0 +1,48 @@
+{
+    "label":  "b1-r0",
+    "pid":  13480,
+    "createdUtc":  "2026-10-09T16:19:11.2097290+00:00",
+    "exe":  "C:\\Users\\kalia\\AppData\\Local\\Programs\\DeepSeek Harness\\DeepSeek Harness.exe",
+    "fileVersion":  "0.2.0.0",
+    "DSH_HOME":  "C:\\bkn-verify\\first-use8-desktop\\dsh-home",
+    "BKN_CONFIG_DIR":  "C:\\bkn-verify\\first-use8-desktop\\bkn-config",
+    "NODE_EXTRA_CA_CERTS":  "C:\\bkn-verify\\unified7-c91fe09-authentication-recovery\\windows-kit\\certificates\\openbkn-dev-ca.pem",
+    "profile":  "desktop",
+    "children":  [
+                     {
+                         "pid":  19344,
+                         "ppid":  13480,
+                         "name":  "DeepSeek Harness.exe",
+                         "createdUtc":  "2026-10-09T16:19:11.3735070+00:00",
+                         "type":  "gpu-process"
+                     },
+                     {
+                         "pid":  13060,
+                         "ppid":  13480,
+                         "name":  "DeepSeek Harness.exe",
+                         "createdUtc":  "2026-10-09T16:19:11.3757530+00:00",
+                         "type":  "utility"
+                     },
+                     {
+                         "pid":  35876,
+                         "ppid":  13480,
+                         "name":  "DeepSeek Harness.exe",
+                         "createdUtc":  "2026-10-09T16:19:11.3831550+00:00",
+                         "type":  "renderer"
+                     },
+                     {
+                         "pid":  35060,
+                         "ppid":  13480,
+                         "name":  "DeepSeek Harness.exe",
+                         "createdUtc":  "2026-10-09T16:19:11.5499560+00:00",
+                         "type":  ""
+                     }
+                 ],
+    "listeners":  [
+                      {
+                          "address":  "127.0.0.1",
+                          "port":  19387,
+                          "owner":  35060
+                      }
+                  ]
+}

@@ -30,3 +30,11 @@ cleanup.ps1 NOT used. No setup re-run between steps.
   profile package.json == UI re-enabled bytes (76957e2b); verify-install 66/66 OK.
 - Host 33376 after CLI reinstall: 3 components 运行中, sidebar entry present (f8-cli-7).
 - CLI credentials never logged out; token.json SHA identical across the whole chain.
+
+## 2026-10-10 correction (C1, B1 handoff 8e3707f) — history above kept as written
+- before -> after-remove over the union of paths is **6 SAME / 2 DIFF** (storages/workspace.json changed;
+  openbkn/session-bindings/session-922de6f6-….json added). "8/8 unchanged across uninstall" is NOT supported.
+- The 15:04:41 mtimes are only an ordering clue; the claim "mtimes prove the uninstall did not touch them" is WITHDRAWN.
+  Preservation of these two items immediately around the uninstall = insufficient-evidence.
+- after-remove -> pre-enable -> after-enable is 8/8 SAME. The 6 originally tracked items (patch, workspace bindings,
+  old session binding, CLI store x3) are SAME before -> after-remove. The Desktop CLI round (8/8) stands on its own originals.

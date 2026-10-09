@@ -60,3 +60,8 @@ Setup logs: f7-badimport-<v>-setup.txt. Host PIDs: f7-badimport-*-host.pid; stop
   inputs are disabled=true in the DOM; panel generic "暂时无法验证…". Same PARTIAL finding as desktop (config RPC lives
   in the diagnostics entry). Restored package.json -> 1bb5bfec…
 - Both npm fault Hosts stopped identity-checked (s3-stop-f7-npm-*.txt).
+
+## 2026-10-10 wording update (C6, B1 handoff 8e3707f)
+- B2 is recorded as a known limitation: the configuration service shares its owner with the diagnostics entry (already
+  disclosed on macOS). With the diagnostics export broken, first-time configuration is unavailable; an already-configured
+  profile falls back to the business login entry; the full business chain in this fault state was not tested.

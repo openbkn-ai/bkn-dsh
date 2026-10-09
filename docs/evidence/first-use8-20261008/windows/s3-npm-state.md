@@ -70,3 +70,6 @@
   result not recorded into the new state), login-state not-logged-in (token expired 20:27, accurate).
   (OpenBKN-diagnostic-npm-f5c-fe1f0cc4.json SHA 01cc15b9…)
 - A first F5a attempt with normal clicks missed the window (login already failed) — not counted.
+
+## 2026-10-10 correction (C2) — npm F4 "Unreachable 192.0.2.1" above proves the fence/CLI behaviour only; MCP
+## network-unreachable classification is unverified. F5 synthetic clicks remain as recorded (D4).

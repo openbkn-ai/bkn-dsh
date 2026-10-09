@@ -47,3 +47,8 @@
 ## Deviations
 - None product-related this round. (One earlier duplicate-file confirm dialog on export;
   both copies are the same report id, archived once.)
+
+## 2026-10-10 correction (C2, B1 handoff 8e3707f)
+- TLS classification and CA recovery: pass (unchanged).
+- The 192.0.2.1 round only shows the platform-mismatch fence and CLI login failure (cli-execution-failed). It is NOT
+  evidence of MCP network-unreachable classification; that classification is UNVERIFIED. No offline matrix added.
