@@ -96,5 +96,14 @@
 - F4 403（无真实 403 条件，未创建/修改账号）；F2 高优先级 override（未构造）；npm F1 独立故障 root（规范只要求 desktop 侧已完成，npm 未另做）；source F3 缺 CLI（规范 source 最小链不含）；F6 Token 网络层隔离（无抓包，insufficient-evidence）；npm 改回原地址后带有效 token 的重连（token 已过期，desktop 已验证）。
 - 192.168.50.129（无 license、不同 CA）补充探索未做，需用户提供该 CA。
 
+### 补充探索（规范外，不计入任何 F 项）：无 license 平台 192.168.50.129
+- 时间 2026-10-09 23:10–23:45；npm/web 形态（computer-use 不可用，未做 desktop）；独立 root `C:\bkn-verify\first-use8-nolicense-npm`，端口 18537，固定 tgz 66/66。
+- CA：用户提供 `openbkn-test-015-ca.crt`（PEM，`CN=OpenBKN Test 015 Local CA`，CA:TRUE，无私钥，SHA-256 `fd6d4aaa860cb744c170df65a24478211895129ec09b3fa302e768b2f7a4a97f`），openssl 校验 `.129` 服务器证书通过；仅经 `NODE_EXTRA_CA_CERTS` 传入。
+- 平台确为未授权：`GET /api/safe/v1/capabilities` → `{"licensed":false,"edition":"community","state":"trial",...}`。
+- 结果：登录、列网（2 个网络）、MCP 工具、Standard 真实问答、溯源三标签（平台执行事实 Request/Trace/Receipt、业务上下文图、回执清单）全部正常；诊断 5151f034（仅 UI 查看）/ c99eb04b（已导出）全部通过（含 platform-operations、platform-business-graph）。**未观察到任何 license 降级。**
+- 插件 `LICENSE_REQUIRED` → "domain-not-authorized" 分支在此部署上不可达（溯源接口未被 license 限制），**该分支在真实平台上仍未验证**；需要一个对溯源接口返回 `403 {code:"permission_denied"}` 的部署。
+- 执行失误如实记录：早期用 `openbkn call` 探测这些路径得到 nginx 404，并据此推断"溯源会降级为 platform-unavailable"；改用与插件相同的直连 HTTPS+Bearer 后均为 200，该推断已撤回。
+- 原件：`windows/nolicense-129/`（notes、报告 c99eb04b、安装与停止记录）；脚本 `windows/scripts/nolicense-root.ps1`。Host 已身份核验停止，18537 无 listener。
+
 ### 边界
 未改候选源码、helper、main；未发布/打 tag/dist-tag；仅在本证据分支新增文件。
