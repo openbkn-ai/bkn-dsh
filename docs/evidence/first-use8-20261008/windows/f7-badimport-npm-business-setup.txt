@@ -1,0 +1,29 @@
+2026-10-09T20:39:49.0215325+08:00 variant=business root=C:\bkn-verify\first-use8-npm-f7-business tgz=6a946030a6152d2899609fac95c66cd246e36cca5a8ce4e5f87ed379cbe706ea cli=C:\bkn-verify\diag6-tools\node_modules\.bin\dsh.cmd
+2026-10-09T20:39:54.3907676+08:00 install exit=0
+  | Progress: resolved 0, reused 1, downloaded 0, added 0
+  | Progress: resolved 1, reused 1, downloaded 0, added 0
+  | Progress: resolved 2, reused 1, downloaded 0, added 0
+  | 
+  |    ╭──────────────────────────────────────────╮
+  |    │                                          │
+  |    │   Update available! 11.7.0 → 12.10.1.    │
+  |    │   Changelog: https://pnpm.io/v/12.10.1   │
+  |    │     To update, run: pnpm add -g pnpm     │
+  |    │                                          │
+  |    ╰──────────────────────────────────────────╯
+  | 
+  | Progress: resolved 3, reused 1, downloaded 0, added 0
+  | [WARN] Issues with peer dependencies found. Run "pnpm peers check" to list them.
+  | 
+  | dependencies:
+  | + @openbkn/dsh-business-context file:C:/bkn-verify/first-use8-download/openbkn-dsh-business-context-0.2.0-rc.2-openbkn.0.2.0-8.tgz
+  | 
+  | Packages: +5
+  | +++++
+  | Progress: resolved 5, reused 5, downloaded 0, added 4
+  | Progress: resolved 5, reused 5, downloaded 0, added 5, done
+  | Done in 4.5s using pnpm v11.7.0
+2026-10-09T20:39:54.4048163+08:00 installed dir=C:\bkn-verify\first-use8-npm-f7-business\dsh-home\profiles\web\node_modules\@openbkn\dsh-business-context linkType= package.json base sha=1bb5bfec0267d0255f7b3807683e17e855cbb80a119695bbc9f73cdc76351a99
+2026-10-09T20:39:54.4178616+08:00 variant edit: "default": "./lib/business.js" -> "default": "./lib/business.fu8-missing.js" ; variant sha=5525a153fb719359940722f2cf352fc517b72d8d0f00f6a9673b232b62c185df
+2026-10-09T20:39:56.4073397+08:00 fault host pid=32804 port=18517 ticks=639271463944914600
+restored package.json: 1bb5bfec0267d0255f7b3807683e17e855cbb80a119695bbc9f73cdc76351a99

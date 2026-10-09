@@ -1,0 +1,46 @@
+{
+    "label":  "source-ui-after-reinstall-preenable",
+    "at":  "2026-10-09T20:57:22.4136307+08:00",
+    "root":  "C:\\bkn-verify\\first-use8-source",
+    "profile":  "web",
+    "files":  [
+                  {
+                      "path":  "C:\\bkn-verify\\first-use8-source\\dsh-home\\profiles\\web\\cordis.patch.yml",
+                      "sha256":  "84500334637fdf9ef91b24af287d88a17971fc26d45bf14eb9ea9f1bb4cf7ba9",
+                      "bytes":  537
+                  },
+                  {
+                      "path":  "C:\\bkn-verify\\first-use8-source\\dsh-home\\storages\\openbkn_workspace_bindings.json",
+                      "sha256":  null,
+                      "bytes":  null
+                  },
+                  {
+                      "path":  "C:\\bkn-verify\\first-use8-source\\dsh-home\\storages\\workspace.json",
+                      "sha256":  "f979bb7f0f722a9561f106ec3505b093afdf594ac1b69049021fc9b2dadacd8e",
+                      "bytes":  709
+                  },
+                  {
+                      "path":  "C:\\bkn-verify\\first-use8-source\\bkn-config\\state.json",
+                      "sha256":  "e133281161841df22c8c5d200c1a5e016b864ae7b8c203bf9153b44c022b73c5",
+                      "bytes":  141
+                  },
+                  {
+                      "path":  "C:\\bkn-verify\\first-use8-source\\bkn-config\\platforms\\aHR0cHM6Ly8xOTIuMTY4LjUwLjI4\\version-check.json",
+                      "sha256":  "c5fab5f4ebfc54554d0b062d7f9e9dde2b76366581a070444fbabfeb386a30f6",
+                      "bytes":  74
+                  },
+                  {
+                      "path":  "C:\\bkn-verify\\first-use8-source\\bkn-config\\platforms\\aHR0cHM6Ly8xOTIuMTY4LjUwLjI4\\users\\266c6a42-6131-4d62-8f39-853e7093701c\\token.json",
+                      "sha256":  "6acb935211a8746395233b28502a48971b16e4009a3648b40e1167510c3be352",
+                      "bytes":  1532
+                  }
+              ],
+    "profilePackageJsonSha":  "24208452f6f94e08d1754b9d507eb97cd4e816665ab4d0cba0a2d8cff0d6beb5",
+    "dependencies":  {
+                         "@openbkn/dsh-business-context":  "file:C:/bkn-verify/first-use8-download/openbkn-dsh-business-context-0.2.0-rc.2-openbkn.0.2.0-8.tgz"
+                     },
+    "pluginDirPresent":  true,
+    "pnpmOpenbknEntries":  [
+
+                           ]
+}

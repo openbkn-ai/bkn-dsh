@@ -1,0 +1,54 @@
+{
+    "label":  "desktop-cli-after-remove",
+    "at":  "2026-10-09T15:14:56.1626108+08:00",
+    "root":  "C:\\bkn-verify\\first-use8-desktop",
+    "profile":  "desktop",
+    "files":  [
+                  {
+                      "path":  "C:\\bkn-verify\\first-use8-desktop\\dsh-home\\profiles\\desktop\\cordis.patch.yml",
+                      "sha256":  "c762692112e44062c34411ab5e05a08ed0c889d7dcb8ff3162c3f5b3268e7cc2",
+                      "bytes":  855
+                  },
+                  {
+                      "path":  "C:\\bkn-verify\\first-use8-desktop\\dsh-home\\storages\\openbkn_workspace_bindings.json",
+                      "sha256":  "03fb4eccea2153118008c580eee56ab1834ee09fbf08bb5976096270c06b0451",
+                      "bytes":  513
+                  },
+                  {
+                      "path":  "C:\\bkn-verify\\first-use8-desktop\\dsh-home\\storages\\workspace.json",
+                      "sha256":  "8fd2fc461c4e2b1e6c3cdfc78c1c2cf3158feee41f835aa372696bb3a48b0c37",
+                      "bytes":  1178
+                  },
+                  {
+                      "path":  "C:\\bkn-verify\\first-use8-desktop\\dsh-home\\openbkn\\session-bindings\\session-58973674-89a4-43ae-a2b7-9f32e86032e3.json",
+                      "sha256":  "008b60ef33f7842b580c16b6bc15eb8148a7330118cfd8f4e55cc802e8e27a7f",
+                      "bytes":  286
+                  },
+                  {
+                      "path":  "C:\\bkn-verify\\first-use8-desktop\\dsh-home\\openbkn\\session-bindings\\session-922de6f6-f47f-4e04-8c56-e2059d974910.json",
+                      "sha256":  "69456d8d0ba7f7c0811864a22b7be705cd323023995e99283397094a6289326a",
+                      "bytes":  286
+                  },
+                  {
+                      "path":  "C:\\bkn-verify\\first-use8-desktop\\bkn-config\\state.json",
+                      "sha256":  "e133281161841df22c8c5d200c1a5e016b864ae7b8c203bf9153b44c022b73c5",
+                      "bytes":  141
+                  },
+                  {
+                      "path":  "C:\\bkn-verify\\first-use8-desktop\\bkn-config\\platforms\\aHR0cHM6Ly8xOTIuMTY4LjUwLjI4\\version-check.json",
+                      "sha256":  "8a54db7e1fabc2092250fae1e82997bc06bc781beaa05f7b4531b5fe9d06f136",
+                      "bytes":  74
+                  },
+                  {
+                      "path":  "C:\\bkn-verify\\first-use8-desktop\\bkn-config\\platforms\\aHR0cHM6Ly8xOTIuMTY4LjUwLjI4\\users\\266c6a42-6131-4d62-8f39-853e7093701c\\token.json",
+                      "sha256":  "68bc9524877228ab0e4c6eb61dde042fbad37a718f6e1f2a440738b5ccee8bfe",
+                      "bytes":  1532
+                  }
+              ],
+    "profilePackageJsonSha":  "341507284435555d5f58626a352918d7bb90b273a8c048d7805e06a881167319",
+    "dependencies":  null,
+    "pluginDirPresent":  false,
+    "pnpmOpenbknEntries":  [
+
+                           ]
+}

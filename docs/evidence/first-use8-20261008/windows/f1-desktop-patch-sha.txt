@@ -1,0 +1,6 @@
+desktop patch after F1: EF189A8C27DB6D63930AA3046A3040482E952EAFCB7487C644D508E8D461F027
+content = pristine comments + [] (unchanged from F0 initial state; four invalid submits wrote nothing)
+note: earlier line compared against npm-root SHA CDC61A08 by mistake — different files; correctness basis is the content shown above
+patch-after-invalid-submit: c762692112e44062c34411ab5e05a08ed0c889d7dcb8ff3162c3f5b3268e7cc2
+s3-restore (192.0.2.1 -> 192.168.50.28 via UI): c762692112e44062c34411ab5e05a08ed0c889d7dcb8ff3162c3f5b3268e7cc2
+s3-after-F5c (save back to 192.168.50.28 during in-flight login): c762692112e44062c34411ab5e05a08ed0c889d7dcb8ff3162c3f5b3268e7cc2
