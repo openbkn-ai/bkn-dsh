@@ -1,0 +1,109 @@
+{
+  "schemaVersion": 1,
+  "reportId": "9713534c",
+  "createdAt": "2026-10-08T08:41:37.066Z",
+  "target": {
+    "hostForm": "unknown",
+    "platform": "win32",
+    "dshVersion": null,
+    "pluginDiskVersion": "0.2.0-rc.2-openbkn.0.2.0-8",
+    "pluginLoadedVersion": null
+  },
+  "mode": "passive",
+  "checks": [
+    {
+      "id": "bootstrap-entry",
+      "stage": "installation",
+      "status": "pass",
+      "source": "host-runtime",
+      "code": "component-loaded",
+      "evidence": {
+        "entryPresent": true
+      },
+      "nextAction": null
+    },
+    {
+      "id": "business-entry",
+      "stage": "component",
+      "status": "pass",
+      "source": "host-runtime",
+      "code": "component-loaded",
+      "evidence": {
+        "entryPresent": true
+      },
+      "nextAction": null
+    },
+    {
+      "id": "diagnostics-entry",
+      "stage": "diagnostics",
+      "status": "pass",
+      "source": "host-runtime",
+      "code": "component-loaded",
+      "evidence": {
+        "schemaVersion": 1
+      },
+      "nextAction": null
+    },
+    {
+      "id": "configuration",
+      "stage": "configuration",
+      "status": "not-run",
+      "source": "host-runtime",
+      "code": "configuration-required",
+      "evidence": {
+        "configured": false
+      },
+      "nextAction": "Open OpenBKN settings, save the platform URL, then sign in with the OpenBKN CLI."
+    },
+    {
+      "id": "pending:cli",
+      "stage": "cli",
+      "status": "not-run",
+      "source": "host-runtime",
+      "code": "configuration-required",
+      "evidence": {
+        "configured": false
+      },
+      "nextAction": "Open OpenBKN settings, save the platform URL, then sign in with the OpenBKN CLI."
+    },
+    {
+      "id": "pending:authentication",
+      "stage": "authentication",
+      "status": "not-run",
+      "source": "host-runtime",
+      "code": "configuration-required",
+      "evidence": {
+        "configured": false
+      },
+      "nextAction": "Open OpenBKN settings, save the platform URL, then sign in with the OpenBKN CLI."
+    },
+    {
+      "id": "pending:context-loader",
+      "stage": "context-loader",
+      "status": "not-run",
+      "source": "host-runtime",
+      "code": "configuration-required",
+      "evidence": {
+        "configured": false
+      },
+      "nextAction": "Open OpenBKN settings, save the platform URL, then sign in with the OpenBKN CLI."
+    },
+    {
+      "id": "pending:platform-directory",
+      "stage": "platform-directory",
+      "status": "not-run",
+      "source": "host-runtime",
+      "code": "configuration-required",
+      "evidence": {
+        "configured": false
+      },
+      "nextAction": "Open OpenBKN settings, save the platform URL, then sign in with the OpenBKN CLI."
+    }
+  ],
+  "coverage": {
+    "executedChecks": 3,
+    "notRunChecks": 5,
+    "insufficientEvidenceChecks": 0,
+    "notes": []
+  }
+}

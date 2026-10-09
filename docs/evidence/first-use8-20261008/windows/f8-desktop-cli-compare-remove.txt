@@ -1,0 +1,12 @@
+SAME profiles/desktop/cordis.patch.yml c762692112e4 -> c762692112e4
+SAME dsh-home/storages/openbkn_workspace_bindings.json 03fb4eccea21 -> 03fb4eccea21
+SAME dsh-home/storages/workspace.json 8fd2fc461c4e -> 8fd2fc461c4e
+SAME openbkn/session-bindings/session-58973674-89a4-43ae-a2b7-9f32e86032e3.json 008b60ef33f7 -> 008b60ef33f7
+SAME openbkn/session-bindings/session-922de6f6-f47f-4e04-8c56-e2059d974910.json 69456d8d0ba7 -> 69456d8d0ba7
+SAME first-use8-desktop/bkn-config/state.json e13328116184 -> e13328116184
+SAME platforms/aHR0cHM6Ly8xOTIuMTY4LjUwLjI4/version-check.json 8a54db7e1fab -> 8a54db7e1fab
+SAME users/266c6a42-6131-4d62-8f39-853e7093701c/token.json 68bc95248772 -> 68bc95248772
+files same=8 diff=0
+profile package.json 76957e2b3a98 -> 341507284435
+dependencies {"@openbkn/dsh-business-context":"file:C:/bkn-verify/first-use8-download/openbkn-dsh-business-context-0.2.0-rc.2-openbkn.0.2.0-8.tgz"} -> null
+pluginDirPresent true -> false

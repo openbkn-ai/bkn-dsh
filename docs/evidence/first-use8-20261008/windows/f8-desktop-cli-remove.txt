@@ -1,0 +1,11 @@
+argv: dsh.cmd plugin --profile desktop remove @openbkn/dsh-business-context
+start: 2026-10-09T15:14:54+08:00
+✓ Lockfile passes supply-chain policies (verified 4m ago)
+
+dependencies:
+- @openbkn/dsh-business-context file:C:/bkn-verify/first-use8-download/openbkn-dsh-business-context-0.2.0-rc.2-openbkn.0.2.0-8.tgz
+
+Already up to date
+Done in 350ms using pnpm v11.7.0
+exit=0
+end: 2026-10-09T15:14:54+08:00

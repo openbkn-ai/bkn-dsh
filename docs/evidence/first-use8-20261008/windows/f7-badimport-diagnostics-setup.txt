@@ -1,0 +1,20 @@
+2026-10-09T14:49:52.2730715+08:00 variant=diagnostics root=C:\bkn-verify\first-use8-desktop-f7-diagnostics tgz=6a946030a6152d2899609fac95c66cd246e36cca5a8ce4e5f87ed379cbe706ea
+2026-10-09T14:50:18.4227434+08:00 profile initialized by real app pid=2328
+2026-10-09T14:50:20.5851807+08:00 install exit=0
+  | Progress: resolved 0, reused 1, downloaded 0, added 0
+  | [WARN] Issues with peer dependencies found. Run "pnpm peers check" to list them.
+  | 
+  | dependencies:
+  | + @openbkn/dsh-business-context file:C:/bkn-verify/first-use8-download/openbkn-dsh-business-context-0.2.0-rc.2-openbkn.0.2.0-8.tgz
+  | 
+  | Packages: +5
+  | +++++
+  | Progress: resolved 5, reused 5, downloaded 0, added 5, done
+  | Done in 1s using pnpm v11.7.0
+2026-10-09T14:50:20.6027407+08:00 installed package dir=C:\bkn-verify\first-use8-desktop-f7-diagnostics\dsh-home\profiles\desktop\node_modules\@openbkn\dsh-business-context realpath= package.json base sha=1bb5bfec0267d0255f7b3807683e17e855cbb80a119695bbc9f73cdc76351a99
+2026-10-09T14:50:20.6218068+08:00 variant edit: "default": "./lib/diagnostics.js" -> "default": "./lib/diagnostics.fu8-missing.js" ; package.json variant sha=35af8f7b6f82b3d8021158ba4f97f577d2081416b8ff62ed3c1617d0bb9ac6e9
+2026-10-09T14:50:20.6228103+08:00 profile patch sha (untouched by this script)=ef189a8c27db6d63930aa3046a3040482e952eafcb7487c644d508e8d461f027
+2026-10-09T14:50:35.8470682+08:00 fault host pid=23340 ticks=639271254206350390
+1bdcb0b27d6214ea3c64a9a746db3e66549ebe856e74491168c84de9340da1a7 *C:/bkn-verify/first-use8-desktop-f7-diagnostics/dsh-home/profiles/desktop/cordis.patch.yml
+prewrite (fault root, deliberate) sha: d8db193a43ffe335b061dd53d26bea35edf8686febc3278ce6ea17c6ce6018a9
+restored package.json: 1bb5bfec0267d0255f7b3807683e17e855cbb80a119695bbc9f73cdc76351a99

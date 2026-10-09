@@ -2,7 +2,7 @@
 
 All notable changes to this project are documented here.
 
-## 0.2.0-rc.2-openbkn.0.2.0-8 (unreleased)
+## 0.2.0-rc.2-openbkn.0.2.0-8 (2026-10-10)
 
 First-use setup for the existing DSH `0.2.0-rc.2` plugin. No runtime or upstream pin change.
 
@@ -13,7 +13,13 @@ First-use setup for the existing DSH `0.2.0-rc.2` plugin. No runtime or upstream
 - Scope passive diagnostics to the configured platform: changing addresses invalidates old observations, while recovery on the same address retains its history.
 - Align installation, configuration and uninstall instructions. Ordinary installation uses `@latest`; uninstall removes the plugin contribution while retaining user configuration and data.
 
-Candidate identity and actual Host acceptance are recorded separately before publication. Existing platform, restricted-account and historical evidence limitations are not resolved by this first-use change.
+- Acceptance: the fixed build-only candidate (source `23ac2daa6d3538235f33a9627a8178a48f3e1ebf`, CI [37725960498](https://github.com/openbkn-ai/bkn-dsh/actions/runs/37725960498), SHA-256 `6a946030a6152d2899609fac95c66cd246e36cca5a8ce4e5f87ed379cbe706ea`, 66 files) was exercised on macOS official Desktop/npm and Windows official Desktop/npm, plus the Windows source-built web first-use chain. The records distinguish UI, Host API, controlled-runtime and live-platform evidence; unrun subcases remain explicit. See [macOS results](docs/evidence/first-use8-20261008/RESULTS.md), [Windows results](docs/evidence/first-use8-20261008/WINDOWS-RESULTS.md) and [Windows B1 follow-up](docs/evidence/first-use8-20261008/WINDOWS-B1-RESULTS.md).
+- Known authentication anomaly (B1): a long-running Windows Desktop Host once rejected business MCP calls after a successful product re-login; restarting that Host restored the same session. One natural-expiry/same-Host re-login follow-up succeeded on the first business call. The earlier failure and its root cause remain unresolved; no stale-token or transport HTTP-status cause is asserted. If the same refusal persists after a completed re-login, restart DSH and retry the existing session.
+- Known fault-isolation boundary (B2): the configuration service belongs to the diagnostics component. A broken diagnostics import also prevents first-time configuration. An already-configured business panel can expose its fallback login entry; the complete business chain in that fault state was not accepted. Reinstall an intact plugin package before first-time setup.
+- Known cancellation observation (B3): closing the panel cancels its CLI login operation. One Windows source-build run also reported the CLI-opened browser closing; browser process ownership and the cause were not established, and further evidence was deferred by the user. Keep the panel open until CLI authorization completes.
+- Other retained limitations: Chrome on the tested Mac did not produce a diagnostic download with “ask where to save” enabled; the unchanged candidate downloaded when that option was temporarily disabled, then the option was restored. The precise browser/OS/operation-channel cause is unknown. Independent npm model evaluation remains 6/8: the no-match answer included unrelated numerical facts, the full BOM/inventory turn was cancelled at the evaluator's 300-second deadline, and an additional procurement distinct-code count differed from its oracle (406 vs 407). No answer arbitration or corrective turns were added. Tool-call timeouts, platform large-result persistence, restricted-account cases, token-refusal root causes and historical evidence gaps remain outside this first-use update.
+
+The main-branch rehearsal, payload reconciliation and retained limitations are documented in [release readiness](docs/evidence/first-use8-20261008/RELEASE-READINESS.md). No DSH alpha-version compatibility or complete G6 acceptance is claimed.
 
 ## 0.2.0-rc.2-openbkn.0.2.0-7 (2026-10-06)
 

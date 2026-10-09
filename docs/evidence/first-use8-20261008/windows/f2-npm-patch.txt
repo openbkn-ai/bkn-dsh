@@ -1,0 +1,28 @@
+# npm F2 before save 2026-10-09 06:42:51
+cdc61a089a65c7445ae206ff2686c38cddfa51085da0a7593103b3cd1ee531fb *cordis.patch.yml
+# Your patch layer for this dsh profile, applied after every bundle layer:
+# a top-level YAML array of loader patch entries (id-targeted config
+# overrides, disables, and insert lists; `!!js` expressions allowed).
+- id: ui-settings-general
+  name: "@deepseek-ai/dsh-client-ui-settings-general"
+  config:
+    welcomeNoticeVersion: 2026-09-28.1
+# npm F2 after save 2026-10-09 06:44:23
+84500334637fdf9ef91b24af287d88a17971fc26d45bf14eb9ea9f1bb4cf7ba9 *cordis.patch.yml
+# Your patch layer for this dsh profile, applied after every bundle layer:
+# a top-level YAML array of loader patch entries (id-targeted config
+# overrides, disables, and insert lists; `!!js` expressions allowed).
+- id: ui-settings-general
+  name: "@deepseek-ai/dsh-client-ui-settings-general"
+  config:
+    welcomeNoticeVersion: 2026-09-28.1
+- id: openbkn-business-context
+  name: "@openbkn/dsh-business-context/business"
+  config:
+    baseUrl: https://192.168.50.28
+    cliPath: C:\bkn-verify\diag6-tools\node_modules\.bin\openbkn.cmd
+# npm F3 missing-cli saved 2026-10-09 06:47:34
+7475ac06a7c7551bd502cf678d09968ee37e079c5874ec02df6683120f45b085 *cordis.patch.yml
+    cliPath: C:\bkn-verify\first-use8-npm\no-such-cli\openbkn.cmd
+# npm F3 real cli restored 2026-10-09 06:48:26
+84500334637fdf9ef91b24af287d88a17971fc26d45bf14eb9ea9f1bb4cf7ba9 *cordis.patch.yml

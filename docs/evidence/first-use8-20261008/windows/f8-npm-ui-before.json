@@ -1,0 +1,51 @@
+{
+    "label":  "npm-ui-before",
+    "at":  "2026-10-09T20:47:32.1342368+08:00",
+    "root":  "C:\\bkn-verify\\first-use8-npm",
+    "profile":  "web",
+    "files":  [
+                  {
+                      "path":  "C:\\bkn-verify\\first-use8-npm\\dsh-home\\profiles\\web\\cordis.patch.yml",
+                      "sha256":  "84500334637fdf9ef91b24af287d88a17971fc26d45bf14eb9ea9f1bb4cf7ba9",
+                      "bytes":  537
+                  },
+                  {
+                      "path":  "C:\\bkn-verify\\first-use8-npm\\dsh-home\\storages\\openbkn_workspace_bindings.json",
+                      "sha256":  "f70292a9368d2e9b6565be1ddfcf26ee098a5186f7a2d08cc339cdf53c258773",
+                      "bytes":  509
+                  },
+                  {
+                      "path":  "C:\\bkn-verify\\first-use8-npm\\dsh-home\\storages\\workspace.json",
+                      "sha256":  "29eef53afef590bcb7a881029d374db9ce7f1b85cbb34b9bab6342adb7c2ca44",
+                      "bytes":  1116
+                  },
+                  {
+                      "path":  "C:\\bkn-verify\\first-use8-npm\\dsh-home\\openbkn\\session-bindings\\session-266df4c3-d0f4-4592-b64c-fc9b472f7e78.json",
+                      "sha256":  "d79a4bb7155b49fe132972b28decd1c39bb8f0aaadc491b5eadc552d002869b2",
+                      "bytes":  286
+                  },
+                  {
+                      "path":  "C:\\bkn-verify\\first-use8-npm\\bkn-config\\state.json",
+                      "sha256":  "e133281161841df22c8c5d200c1a5e016b864ae7b8c203bf9153b44c022b73c5",
+                      "bytes":  141
+                  },
+                  {
+                      "path":  "C:\\bkn-verify\\first-use8-npm\\bkn-config\\platforms\\aHR0cHM6Ly8xOTIuMTY4LjUwLjI4\\version-check.json",
+                      "sha256":  "f19bb6ed0860388d016b98ee698bcb5172d34c0c174fcb8d1fafad504f9898f7",
+                      "bytes":  74
+                  },
+                  {
+                      "path":  "C:\\bkn-verify\\first-use8-npm\\bkn-config\\platforms\\aHR0cHM6Ly8xOTIuMTY4LjUwLjI4\\users\\266c6a42-6131-4d62-8f39-853e7093701c\\token.json",
+                      "sha256":  "fd8358f2c9fb6282262185c8e5fe95147fd2806b96a545db9ba674db768b0a74",
+                      "bytes":  1532
+                  }
+              ],
+    "profilePackageJsonSha":  "eef36333829487d3ec47bd52528a267eae242a10bff7f654333401a5c2d29d40",
+    "dependencies":  {
+                         "@openbkn/dsh-business-context":  "file:C:/bkn-verify/first-use8-download/openbkn-dsh-business-context-0.2.0-rc.2-openbkn.0.2.0-8.tgz"
+                     },
+    "pluginDirPresent":  true,
+    "pnpmOpenbknEntries":  [
+
+                           ]
+}
