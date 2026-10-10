@@ -1,14 +1,14 @@
 {
-  "at": "2026-10-10T17:02:18.053023+00:00",
-  "comparedCommit": "b191809f0baa3c1383d08ca1f4409439d5c62f0d",
+  "at": "2026-10-10T17:15:06.593616+00:00",
+  "comparedCommit": "81472999a138d942dd3f6e8dba3c10ef5f9258a9",
   "scope": "Current checkout raw bytes against Git blobs at comparedCommit for every root EVIDENCE-MANIFEST.json entry. Only the root inventory and this proof are excluded. Windows local-source reads were performed by the Windows agent; this main review verifies the submitted provenance ledger without claiming a second local-source read.",
-  "compared": 333,
-  "byteIdentical": 333,
+  "compared": 336,
+  "byteIdentical": 336,
   "different": 0,
   "files": [
     {
       "path": "RELEASE-READINESS.md",
-      "gitBlobSha256": "b5264a6c31c6b91b440683d63f8f9c5c2730985076047d10a71ec6cf9729fb47",
+      "gitBlobSha256": "9b5b2167a148e9ed21ca26d07d815b4c7e4c10a8ea567a54b6398790b4b6711c",
       "bytesIdentical": true
     },
     {
@@ -73,7 +73,7 @@
     },
     {
       "path": "followup/closeout-upstream-after-windows.json",
-      "gitBlobSha256": "ae7d2d8614f5e33a2be54df264fa5042e109fef208de4c88c8066038ab25b74b",
+      "gitBlobSha256": "d9ae65abd0587726283675c1031331bbb2ebfc49dff77bb1d3c9f8ecd7a67d26",
       "bytesIdentical": true
     },
     {
@@ -277,6 +277,16 @@
       "bytesIdentical": true
     },
     {
+      "path": "followup/main-tests-native-summary.txt",
+      "gitBlobSha256": "076eb63ed788a69cc4d954b351b6d63210c3f04b3f9a649324bd34d6ed401df0",
+      "bytesIdentical": true
+    },
+    {
+      "path": "followup/main-tests-summary-provenance.json",
+      "gitBlobSha256": "cf79e95c21d440b759ccf78321e6159bb35676a167feafedae0077b82bac40b4",
+      "bytesIdentical": true
+    },
+    {
       "path": "followup/npm-directory-no-install.json",
       "gitBlobSha256": "b92ddfe701f7e1d67210ee259dc3f37113f6c902d9723ec9ee4f3417a000fa57",
       "bytesIdentical": true
@@ -409,6 +419,11 @@
     {
       "path": "followup/repo-tests.txt",
       "gitBlobSha256": "7e47e9789371fa979d3da3defb17842cdc3086d827a06bbcb360a9c5710021d6",
+      "bytesIdentical": true
+    },
+    {
+      "path": "followup/sdk-npm-after-windows.json",
+      "gitBlobSha256": "bd65681113019195f772c74a0ee4426be82b4e7170a08270e4fdd3856cd2e1b3",
       "bytesIdentical": true
     },
     {
