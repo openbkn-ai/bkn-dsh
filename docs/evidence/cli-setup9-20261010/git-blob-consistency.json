@@ -1,29 +1,944 @@
 {
-  "at": "2026-10-10T06:28:06.034395+00:00",
-  "comparedCommit": "fd97a3ab9d7d1829540b1ffe3f6541cc9caeaf5d",
-  "scope": "Current files in EVIDENCE-MANIFEST.json; excludes the root inventory and this proof to avoid self-reference. Git blobs were read with git cat-file blob. Historical inventories under review/prior retain their old scope.",
-  "compared": 141,
-  "byteIdentical": 141,
+  "at": "2026-10-10T16:12:21.088319+00:00",
+  "comparedCommit": "1e807b076d5c95bdea82131ead84b21c494d3f4b",
+  "scope": "Current checkout bytes against Git blobs at comparedCommit for every root EVIDENCE-MANIFEST.json entry. Only the root inventory and this proof are excluded. This does not extend Windows local-source provenance beyond the separately supported originals.",
+  "compared": 324,
+  "byteIdentical": 324,
   "different": 0,
   "files": [
     {
       "path": "RESULTS.md",
-      "gitBlobSha256": "3a144f4ae7c7488b2b50fed13134cff4fc7c7e1cdb0622995db3599163ee4f47",
+      "gitBlobSha256": "eb89f5e09a76436fe10e67e48c33d4814427c9682fc009c22ea0751249d095d7",
       "bytesIdentical": true
     },
     {
       "path": "candidate-files.json",
-      "gitBlobSha256": "f97a4310fb9396f268daa10acd8f4aad051c0d745b4280dcf6f79da123acc33a",
+      "gitBlobSha256": "30948677a13a8bc8b2bd62ffcf60c270e85cc6a379844ddd5ac0a55e656ecdd3",
       "bytesIdentical": true
     },
     {
       "path": "candidate-manifest.json",
-      "gitBlobSha256": "3315cf3fe44682665b2224526db1463834e95700dfbca9b279bc541e6e646026",
+      "gitBlobSha256": "3f4f790e276c31fc6d031925480911610756ece2014def682abf3c894891ec60",
       "bytesIdentical": true
     },
     {
       "path": "final-ci-run.json",
       "gitBlobSha256": "bc68ed2e6ce3e7efb5fc560ccfdbab78816aa59480bbbeed457a2f29f4c8fa6d",
+      "bytesIdentical": true
+    },
+    {
+      "path": "followup/CLOSEOUT.md",
+      "gitBlobSha256": "cd679a6b42bed27b1a97354d80246d85eaa3c49aaa628938d17e1b523eea53bb",
+      "bytesIdentical": true
+    },
+    {
+      "path": "followup/RESULTS.md",
+      "gitBlobSha256": "cfcfe9dd3969cf73c8fe441e9b77845ab427920c21833b02384861d9194dd50c",
+      "bytesIdentical": true
+    },
+    {
+      "path": "followup/UI-OBSERVATIONS-transcribed.md",
+      "gitBlobSha256": "dbc30cfc65bb90875f22588915923451fe339f04fc81749469f4b06f8678c7f9",
+      "bytesIdentical": true
+    },
+    {
+      "path": "followup/WINDOWS-REVIEW.md",
+      "gitBlobSha256": "7119f044d7111fb690585eea0470b0d07dfa7cf163efa832a00b39756d147111",
+      "bytesIdentical": true
+    },
+    {
+      "path": "followup/candidate-download.json",
+      "gitBlobSha256": "aa3f77d1915be2211e35d87d769035b480ce350e11d45a7eb18ebb5114028a45",
+      "bytesIdentical": true
+    },
+    {
+      "path": "followup/ci-run.json",
+      "gitBlobSha256": "000da2e86703aae87ee4f922e14492b852fb4f1d247d3a79be4cce4724f3d312",
+      "bytesIdentical": true
+    },
+    {
+      "path": "followup/closeout-checks.json",
+      "gitBlobSha256": "f313667a4cdecd4a9f6cb0baf7ebc5b2e473da7e21465e772fca7bacc1d5d815",
+      "bytesIdentical": true
+    },
+    {
+      "path": "followup/closeout-release-notes-tests.txt",
+      "gitBlobSha256": "a3ef8deb98721a2a01d5b743221115e4c4ce81ca96489447e8d7ceb813b88d0a",
+      "bytesIdentical": true
+    },
+    {
+      "path": "followup/closeout-upstream-refresh.json",
+      "gitBlobSha256": "12fdb5cddd581152005fdf26bb898fc15aab43b6c5ab189c9beaaa05b98b6e6f",
+      "bytesIdentical": true
+    },
+    {
+      "path": "followup/credential-scan.json",
+      "gitBlobSha256": "ec3971bda6ffa64d9ce6b9fbc56293f2659bf8bdd854d7cf80b6f883057c4219",
+      "bytesIdentical": true
+    },
+    {
+      "path": "followup/crlf-checkout-oracle.json",
+      "gitBlobSha256": "4767ec66b73c732b101196f0abdf6a87b91711472809668c3b172a42c84e63b3",
+      "bytesIdentical": true
+    },
+    {
+      "path": "followup/daily-after.json",
+      "gitBlobSha256": "f92abc9b9726ea6f97ae9dfe872a76d74e2357d86c205b6a73a4f87ea244052c",
+      "bytesIdentical": true
+    },
+    {
+      "path": "followup/daily-before.json",
+      "gitBlobSha256": "e0798aa75e4339c8393e17397ed34926fcf4c4fa0b165741e17b1864920cebef",
+      "bytesIdentical": true
+    },
+    {
+      "path": "followup/desktop-cli-managed-profile-retry-plugin-install-exit.json",
+      "gitBlobSha256": "c477d8989c377e2b8efc445a5b46ff48b89e82c33f0f39671daed413e47a4157",
+      "bytesIdentical": true
+    },
+    {
+      "path": "followup/desktop-cli-managed-profile-retry-plugin-install.txt",
+      "gitBlobSha256": "295cb987723b687c375e3cdf2736f98e87a9b46a78c3f1e9feecaf6b84d5bf15",
+      "bytesIdentical": true
+    },
+    {
+      "path": "followup/desktop-directory-full-ax.txt",
+      "gitBlobSha256": "160bc4c8a277e8bea06306de9b06d025ab301f97ad49c8f38bc389e2e06aa8d5",
+      "bytesIdentical": true
+    },
+    {
+      "path": "followup/desktop-directory-no-install.json",
+      "gitBlobSha256": "2900456dc836fad89e38a9a973d98d5b57a97414d39d3bd328c59bd0fb99783c",
+      "bytesIdentical": true
+    },
+    {
+      "path": "followup/desktop-directory.txt",
+      "gitBlobSha256": "4775b9412cafb87e3ad9208b903b3357ad7fd67af178002ad0314f78aa0ac047",
+      "bytesIdentical": true
+    },
+    {
+      "path": "followup/desktop-final-cli-check.json",
+      "gitBlobSha256": "3f7e795b91fee3e06f55d16b1c14f1a9ab697f9be739643d33f8d83c1d065cf3",
+      "bytesIdentical": true
+    },
+    {
+      "path": "followup/desktop-host.json",
+      "gitBlobSha256": "62047f8f744ac7115e06b5890104d45ce3714c29dafa1e7ba4379f43fa810302",
+      "bytesIdentical": true
+    },
+    {
+      "path": "followup/desktop-initial-plugin-install-exit.json",
+      "gitBlobSha256": "3120f6a073c902724cf325acffeac06b4119b1e7355fb483c6a1cfcbb9644317",
+      "bytesIdentical": true
+    },
+    {
+      "path": "followup/desktop-initial-plugin-install.txt",
+      "gitBlobSha256": "295cb987723b687c375e3cdf2736f98e87a9b46a78c3f1e9feecaf6b84d5bf15",
+      "bytesIdentical": true
+    },
+    {
+      "path": "followup/desktop-initialization-host.json",
+      "gitBlobSha256": "2a85bdf0eecd3a62ca8680d27e52986f937318747c577bbf1e4ecea6b6c6d203",
+      "bytesIdentical": true
+    },
+    {
+      "path": "followup/desktop-initialization-stop.json",
+      "gitBlobSha256": "858d860f7ccd8edc0f6b6724dcfc6f3e1c5a837aa63c3796aef533153b767771",
+      "bytesIdentical": true
+    },
+    {
+      "path": "followup/desktop-installed-identity.json",
+      "gitBlobSha256": "dc873c658504e7101cad3f2387936ee846f3e6149bafab2878c03f72463a2fd9",
+      "bytesIdentical": true
+    },
+    {
+      "path": "followup/desktop-installing-return-main.txt",
+      "gitBlobSha256": "9052dba01d636cd0d4248b3e4a6fdc8d64bb46159ef78907764da739cbaf6c83",
+      "bytesIdentical": true
+    },
+    {
+      "path": "followup/desktop-installing.txt",
+      "gitBlobSha256": "6ffb62112394ac56d7190e3a88da714d548be81954672023e43dc1fbc3fe30c4",
+      "bytesIdentical": true
+    },
+    {
+      "path": "followup/desktop-missing-guidance.txt",
+      "gitBlobSha256": "6ffb62112394ac56d7190e3a88da714d548be81954672023e43dc1fbc3fe30c4",
+      "bytesIdentical": true
+    },
+    {
+      "path": "followup/desktop-missing.txt",
+      "gitBlobSha256": "888843f8e6036c27715366d8b3d91cb9f8d2a853bb0bd31dd107b15e3260aab5",
+      "bytesIdentical": true
+    },
+    {
+      "path": "followup/desktop-npm-wrapper.py",
+      "gitBlobSha256": "af45cb618b9aa7830544e26169ae049ced26ffe9129138bea04b3d37be4b398c",
+      "bytesIdentical": true
+    },
+    {
+      "path": "followup/desktop-owned-stop.json",
+      "gitBlobSha256": "46041d77e1c2c5c63609fdc46dd361fa650592c9f79a8992b163c000191d6ab9",
+      "bytesIdentical": true
+    },
+    {
+      "path": "followup/desktop-process-history.jsonl",
+      "gitBlobSha256": "d5f3ac4f1ab161df5080b3ba0ac007169684a9a3064bc448dd6565febb3ba66c",
+      "bytesIdentical": true
+    },
+    {
+      "path": "followup/desktop-ready-saved-full-ax.txt",
+      "gitBlobSha256": "94ead1143b9362d7b944984175f7337b083d90cb6179e5591b3cb367d396c9e3",
+      "bytesIdentical": true
+    },
+    {
+      "path": "followup/desktop-ready-saved.txt",
+      "gitBlobSha256": "7be152d7e2e50563b8a4e15e5d0c8cf6243d14b4baeddca94b34b0c8d5b7f30c",
+      "bytesIdentical": true
+    },
+    {
+      "path": "followup/desktop-ready-unsaved.txt",
+      "gitBlobSha256": "7be152d7e2e50563b8a4e15e5d0c8cf6243d14b4baeddca94b34b0c8d5b7f30c",
+      "bytesIdentical": true
+    },
+    {
+      "path": "followup/desktop-recapture-check.json",
+      "gitBlobSha256": "54d8fd04eb33b241710db3ee75d97e39d688a05118c1a47bd6a8580b708006c3",
+      "bytesIdentical": true
+    },
+    {
+      "path": "followup/desktop-recapture-host.json",
+      "gitBlobSha256": "442cfffbc4f8f953ff6ba7d39f50d79e6ba3e8c70c17bde694c0c8c238e86874",
+      "bytesIdentical": true
+    },
+    {
+      "path": "followup/desktop-recapture-stop.json",
+      "gitBlobSha256": "8783909f356d8d5acbaafe1a478bd54f2d6281a70eef1571ac91062e2c75a32e",
+      "bytesIdentical": true
+    },
+    {
+      "path": "followup/desktop-reopened-installing.txt",
+      "gitBlobSha256": "7be152d7e2e50563b8a4e15e5d0c8cf6243d14b4baeddca94b34b0c8d5b7f30c",
+      "bytesIdentical": true
+    },
+    {
+      "path": "followup/desktop-saved-login-boundary.txt",
+      "gitBlobSha256": "6ffb62112394ac56d7190e3a88da714d548be81954672023e43dc1fbc3fe30c4",
+      "bytesIdentical": true
+    },
+    {
+      "path": "followup/diff-check.txt",
+      "gitBlobSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "bytesIdentical": true
+    },
+    {
+      "path": "followup/git-blob-consistency.json",
+      "gitBlobSha256": "00d2d9aef1d92aef24d70aa7c136d37c3f1eda8cffb805f67c6c7d05b0da6d26",
+      "bytesIdentical": true
+    },
+    {
+      "path": "followup/helpers/host-control.py",
+      "gitBlobSha256": "e0c8516d1fd7732687538c059aa057a14d5cdf62f9b9f81052c5ff1579c57883",
+      "bytesIdentical": true
+    },
+    {
+      "path": "followup/helpers/owned-stop.py",
+      "gitBlobSha256": "f477a98c3e4027e45ef9d463fae1e7f86c5429cf8ff1c2d53772e833da83f8b0",
+      "bytesIdentical": true
+    },
+    {
+      "path": "followup/local-checks.json",
+      "gitBlobSha256": "74308e9a36fe36cebf19b39b38d2efec132f91eaa3dc0d997331c73c4510bdc9",
+      "bytesIdentical": true
+    },
+    {
+      "path": "followup/mac-environment.json",
+      "gitBlobSha256": "364caee4be8a990790a946488187a82ff4b53214a6eec415e7da771523ade623",
+      "bytesIdentical": true
+    },
+    {
+      "path": "followup/npm-directory-no-install.json",
+      "gitBlobSha256": "b92ddfe701f7e1d67210ee259dc3f37113f6c902d9723ec9ee4f3417a000fa57",
+      "bytesIdentical": true
+    },
+    {
+      "path": "followup/npm-directory-typing.json",
+      "gitBlobSha256": "bd8dbbfb374806f7275a7b001da5482ce527f1ea3983089e39accccf02b7dc23",
+      "bytesIdentical": true
+    },
+    {
+      "path": "followup/npm-directory.png",
+      "gitBlobSha256": "0f1f6bc6b604cb067c6ca1bf8588294c3c01d9624c3da177b90fcbff0b41f142",
+      "bytesIdentical": true
+    },
+    {
+      "path": "followup/npm-directory.txt",
+      "gitBlobSha256": "f1ab748f224e6db2523b866f98d1e7ec8a60b276b999c648239460fd2714ae22",
+      "bytesIdentical": true
+    },
+    {
+      "path": "followup/npm-final-cli-check.json",
+      "gitBlobSha256": "36ebdead00caa3fc4a98a4a11e893b4ba7b1d4186dea17cf12595145786b6847",
+      "bytesIdentical": true
+    },
+    {
+      "path": "followup/npm-host.json",
+      "gitBlobSha256": "dbfcec1cc669cbc804893a2e32fed9ee01d4a28e66bd5f0377684269cf10ecd1",
+      "bytesIdentical": true
+    },
+    {
+      "path": "followup/npm-installed-identity.json",
+      "gitBlobSha256": "bc01ab0a2cd58aa4a6c321e39f127dc4c2616d32c7db8f47aa0afa1137ea704c",
+      "bytesIdentical": true
+    },
+    {
+      "path": "followup/npm-installing.txt",
+      "gitBlobSha256": "478ad8bedf757a75fd8661264c7eedd0df2e197290c63c41e771540b1280685f",
+      "bytesIdentical": true
+    },
+    {
+      "path": "followup/npm-missing-guidance.txt",
+      "gitBlobSha256": "ad8cf8793120e2e207f6bdeafbc5310483d8e6be42b585dc640dc94ea37603a3",
+      "bytesIdentical": true
+    },
+    {
+      "path": "followup/npm-npm-wrapper.py",
+      "gitBlobSha256": "4fbad33003307b09e20041ccca6aaf4a39fd30b88d31dc49bb7518169b93825b",
+      "bytesIdentical": true
+    },
+    {
+      "path": "followup/npm-owned-stop.json",
+      "gitBlobSha256": "a9c7febc921f6a07dff32d72eee05e8f93f38a0ea62507eb32b1355857e85f18",
+      "bytesIdentical": true
+    },
+    {
+      "path": "followup/npm-process-history.jsonl",
+      "gitBlobSha256": "b5069743f6e1eda3f9522a4108f93a48ce538c840e67bbb74d0dad8e99b56ea2",
+      "bytesIdentical": true
+    },
+    {
+      "path": "followup/npm-ready-saved.png",
+      "gitBlobSha256": "d6d391b539653ed836d9fbde3b5beabbab0acfabe773def9adcb1b7e265ac146",
+      "bytesIdentical": true
+    },
+    {
+      "path": "followup/npm-ready-saved.txt",
+      "gitBlobSha256": "ac6baff55a72ab220a3c4023ead1ecac9a3cd6dbc07fca82ac0071cc54f2f65e",
+      "bytesIdentical": true
+    },
+    {
+      "path": "followup/npm-ready-unsaved.txt",
+      "gitBlobSha256": "846fbdd121a94a3e60db69b8bd12529a6d4ee41e8cffe14268377cd6b2a99aee",
+      "bytesIdentical": true
+    },
+    {
+      "path": "followup/npm-returned-main.txt",
+      "gitBlobSha256": "d3e533a93ff4c3de0777385aff9b2db9f7795e6417c6a0cedd1a64d513ffb9be",
+      "bytesIdentical": true
+    },
+    {
+      "path": "followup/npm-sdk-install-check.json",
+      "gitBlobSha256": "e522f728e7f317907508eab7e2b3aa13cd1e88407ac0ef948a335e54e2f72350",
+      "bytesIdentical": true
+    },
+    {
+      "path": "followup/pack.txt",
+      "gitBlobSha256": "6b07ac7627e702aa6649d5a6626d8ed9dcb14a82f46352276b4702bdb1f593f9",
+      "bytesIdentical": true
+    },
+    {
+      "path": "followup/package-check.txt",
+      "gitBlobSha256": "1c8b6d51b945b6a5b7713b5281224c3c6ddc19befd223e2984f824daa7fd61e6",
+      "bytesIdentical": true
+    },
+    {
+      "path": "followup/plugin-tests.txt",
+      "gitBlobSha256": "5065db4ea8fbeb3956812086d901013c06c6bf0d0ae93e83e4d121c9c2871980",
+      "bytesIdentical": true
+    },
+    {
+      "path": "followup/prior/EVIDENCE-MANIFEST-pre-closeout.json",
+      "gitBlobSha256": "f1113ee63fe70dc106f05dadcc9f9fad3feeb85826a2f9292d8fafa34c6f1095",
+      "bytesIdentical": true
+    },
+    {
+      "path": "followup/prior/candidate-files.json",
+      "gitBlobSha256": "f97a4310fb9396f268daa10acd8f4aad051c0d745b4280dcf6f79da123acc33a",
+      "bytesIdentical": true
+    },
+    {
+      "path": "followup/prior/candidate-manifest.json",
+      "gitBlobSha256": "3315cf3fe44682665b2224526db1463834e95700dfbca9b279bc541e6e646026",
+      "bytesIdentical": true
+    },
+    {
+      "path": "followup/prior/git-blob-consistency-pre-closeout.json",
+      "gitBlobSha256": "3e735194816ebe92c47d18def0b724dff91765f6ceac58ba2d93391e907f5d99",
+      "bytesIdentical": true
+    },
+    {
+      "path": "followup/release-notes-tests.txt",
+      "gitBlobSha256": "2960c4b281483415055a15098516f5e213f884ace7ba2e78fb8e84eaa177a9ed",
+      "bytesIdentical": true
+    },
+    {
+      "path": "followup/repo-tests.txt",
+      "gitBlobSha256": "7e47e9789371fa979d3da3defb17842cdc3086d827a06bbcb360a9c5710021d6",
+      "bytesIdentical": true
+    },
+    {
+      "path": "followup/typecheck.txt",
+      "gitBlobSha256": "e9bde1b9c430b1f263cf72baa9160a680b8c6a2046c94728f535c5a45341fd3b",
+      "bytesIdentical": true
+    },
+    {
+      "path": "followup/upstream-refresh.json",
+      "gitBlobSha256": "76a90498268b8b798bc1df4517c1b506244f194454e1caa1be09f2aad158b8e8",
+      "bytesIdentical": true
+    },
+    {
+      "path": "followup/windows-evidence-review.json",
+      "gitBlobSha256": "5c6de4ac7e971a91e0a85e43621f80b2c44167fdceb851a4cc3d81ab9a5b39fb",
+      "bytesIdentical": true
+    },
+    {
+      "path": "followup/windows/GIT-SNAPSHOT-MANIFEST.json",
+      "gitBlobSha256": "1a3a65f71168aa6550bece23a1e567e2a82e6c9214298e5f60de6ed5f4f0653a",
+      "bytesIdentical": true
+    },
+    {
+      "path": "followup/windows/RESULTS.md",
+      "gitBlobSha256": "bfc3d8bda3d86218b26f1f6bd652e6a51b710c8b03758ccac71f95184f8bbc4d",
+      "bytesIdentical": true
+    },
+    {
+      "path": "followup/windows/evidence/OpenBKN-diagnostic-desktop-f95-1cb34f50.json",
+      "gitBlobSha256": "22f71ca96cf081c12b7ad942c4ed8d6458e7d0afbf4df2fe663e10dbf1831da2",
+      "bytesIdentical": true
+    },
+    {
+      "path": "followup/windows/evidence/OpenBKN-diagnostic-npm-f95-fb55a24c.json",
+      "gitBlobSha256": "48a8abd4541d8c65e3399ba44549f128121cd02caa50a0625054ab47e834e38d",
+      "bytesIdentical": true
+    },
+    {
+      "path": "followup/windows/evidence/daily-after.json",
+      "gitBlobSha256": "1c0cd8fd9c00715a3aa330af8cea5a348cdc79f5583afffa037a23a26252358b",
+      "bytesIdentical": true
+    },
+    {
+      "path": "followup/windows/evidence/daily-before.json",
+      "gitBlobSha256": "3ffd88eb8eabb76ee09c3eebdd095d73f4b376859b11447aa0ed49705e5b5250",
+      "bytesIdentical": true
+    },
+    {
+      "path": "followup/windows/evidence/desktop-f93-version.txt",
+      "gitBlobSha256": "6eb3c009feaae1095e667ff06cd1b3af8bf2680bb41893968115c99925eb8614",
+      "bytesIdentical": true
+    },
+    {
+      "path": "followup/windows/evidence/desktop-installed-verify-exit.txt",
+      "gitBlobSha256": "9a271f2a916b0b6ee6cecb2426f0b3206ef074578be55d9bc94f6f3fe3ab86aa",
+      "bytesIdentical": true
+    },
+    {
+      "path": "followup/windows/evidence/desktop-installed-verify.txt",
+      "gitBlobSha256": "39ad603663633f95bb47bcb925a790f59b060be789205a78f222856dd94beb07",
+      "bytesIdentical": true
+    },
+    {
+      "path": "followup/windows/evidence/desktop-patch-after-f92.yml",
+      "gitBlobSha256": "365d0e980a2d2253165ee3ac396e1278bf23e01968a12f019f7b92218ff5e745",
+      "bytesIdentical": true
+    },
+    {
+      "path": "followup/windows/evidence/desktop-patch-after-f94.yml",
+      "gitBlobSha256": "d4f0bfe5968a128e54a140a542cdc68bf8f98bacd2ce21f6f6047ba26026b09c",
+      "bytesIdentical": true
+    },
+    {
+      "path": "followup/windows/evidence/desktop-patch-before-f94.yml",
+      "gitBlobSha256": "365d0e980a2d2253165ee3ac396e1278bf23e01968a12f019f7b92218ff5e745",
+      "bytesIdentical": true
+    },
+    {
+      "path": "followup/windows/evidence/desktop-preflight.txt",
+      "gitBlobSha256": "e358a6d6622178e8bdc1b7f48f9d8fceffd1d43236927f418ceb7b42cd6d9d52",
+      "bytesIdentical": true
+    },
+    {
+      "path": "followup/windows/evidence/f9-desk-r0-plugin-install-host.json",
+      "gitBlobSha256": "96f6c0030996be93ce261f720c8bb0763ca8f19ded8e595fbcccfdf6a3d32acd",
+      "bytesIdentical": true
+    },
+    {
+      "path": "followup/windows/evidence/f9-desk-r1-host.json",
+      "gitBlobSha256": "acda438b9b3f588a07501c60cad3bd8d00d48abd67fb45649c0b07292f9e14c4",
+      "bytesIdentical": true
+    },
+    {
+      "path": "followup/windows/evidence/f9-desk-r2-uninstall-host.json",
+      "gitBlobSha256": "a3ce3ca451aa8040ff7f28bc82b430f89a7d8a040a7ec0169b817b07d03d2048",
+      "bytesIdentical": true
+    },
+    {
+      "path": "followup/windows/evidence/f9-npm-r1-host.json",
+      "gitBlobSha256": "a055629516ef3a7006d447e52a0fed3910c31f5ad44e8e6ff0956ffceb39d66b",
+      "bytesIdentical": true
+    },
+    {
+      "path": "followup/windows/evidence/f9-npm-r2-after-uninstall-host.json",
+      "gitBlobSha256": "b1ba4c7f9eef6d79134a41cd2b62b7081105d567b2f60c6a23548a64e8fddcae",
+      "bytesIdentical": true
+    },
+    {
+      "path": "followup/windows/evidence/f91-npm.txt",
+      "gitBlobSha256": "9a8a043bb42c2904bb7c217c262acfbe303d8df5cba353b538b7fa9d50e5d857",
+      "bytesIdentical": true
+    },
+    {
+      "path": "followup/windows/evidence/f92-npm.txt",
+      "gitBlobSha256": "702dc622e0177586bc7cc3a64c0ae0c7158038583931a1b40c6ffffcf21c8b14",
+      "bytesIdentical": true
+    },
+    {
+      "path": "followup/windows/evidence/f93-npm.txt",
+      "gitBlobSha256": "44468c393b424dea9748705618f8a54d8c0f24978ceb8e3f943692edbcc1be9e",
+      "bytesIdentical": true
+    },
+    {
+      "path": "followup/windows/evidence/f94-npm.txt",
+      "gitBlobSha256": "ae609375702ec760d9e2932cc466a2c4eb5681b5cef41b698ee6a54486d4a526",
+      "bytesIdentical": true
+    },
+    {
+      "path": "followup/windows/evidence/f95-desktop-attempt1/operation-lDwjSz/pnpm.log",
+      "gitBlobSha256": "047d6c3c39459241951eabcea6e83e4ba23fb4b10da8f6942243baa146d8373a",
+      "bytesIdentical": true
+    },
+    {
+      "path": "followup/windows/evidence/f95-desktop-attempt1/package.json",
+      "gitBlobSha256": "daa2ebf12470bee0f9ac205d0bedca1a19f16b852f64e2f3e05054ef875f3ede",
+      "bytesIdentical": true
+    },
+    {
+      "path": "followup/windows/evidence/f95-desktop-attempt1/pnpm-lock.yaml",
+      "gitBlobSha256": "421e14d7b39c4f9cdbe31eef24cc95f4ce4484017a162e681b0077407f46f0d1",
+      "bytesIdentical": true
+    },
+    {
+      "path": "followup/windows/evidence/f95-desktop-attempt2-operation-BIihHW/pnpm.log",
+      "gitBlobSha256": "b6e1c6fe7fafab1b9675a51a52d427205cd34033df41fa05b9dd62ba49a63892",
+      "bytesIdentical": true
+    },
+    {
+      "path": "followup/windows/evidence/f95-desktop-uninstall-after-retry.txt",
+      "gitBlobSha256": "86d5f3015e695716c6ee70a42f731498325cc039ce6c1c6ae063e280500ae55a",
+      "bytesIdentical": true
+    },
+    {
+      "path": "followup/windows/evidence/f95-desktop-uninstall-after.txt",
+      "gitBlobSha256": "722fc984f4bd10b0738124ee67335acd16d14095c44884f91f9e7a37e2b87523",
+      "bytesIdentical": true
+    },
+    {
+      "path": "followup/windows/evidence/f95-desktop-uninstall-before.txt",
+      "gitBlobSha256": "c6cb79f3d64110b3c7d08aaaf3b7ada87ea2611dfd3402155bac9f1616c5fe22",
+      "bytesIdentical": true
+    },
+    {
+      "path": "followup/windows/evidence/f95-npm-uninstall-after.txt",
+      "gitBlobSha256": "e3252d8e560b1c0aeb106956dcabdc237ae3b481976a6e3f7190e1b4b1b1f498",
+      "bytesIdentical": true
+    },
+    {
+      "path": "followup/windows/evidence/f95-npm-uninstall-before.txt",
+      "gitBlobSha256": "f079e19979e29ddbb2b7e3d36218012e24d2e3c2299fee323b8aec605705f20e",
+      "bytesIdentical": true
+    },
+    {
+      "path": "followup/windows/evidence/f95-npm.txt",
+      "gitBlobSha256": "ebbe51422dd0c90287f229b3c001be0139e17d03372ba4693d4de81555e4938f",
+      "bytesIdentical": true
+    },
+    {
+      "path": "followup/windows/evidence/fixture-validation.txt",
+      "gitBlobSha256": "b47ea35dec53a8e37cee881c7e7dc570a87ebf6d835117a414152daf985d6b95",
+      "bytesIdentical": true
+    },
+    {
+      "path": "followup/windows/evidence/git-blob-compare.txt",
+      "gitBlobSha256": "8340bf94ae7772a481ce3f914165289ab259086663bc76417d4b4133722b3ed0",
+      "bytesIdentical": true
+    },
+    {
+      "path": "followup/windows/evidence/npm-f93-version.txt",
+      "gitBlobSha256": "6eb3c009feaae1095e667ff06cd1b3af8bf2680bb41893968115c99925eb8614",
+      "bytesIdentical": true
+    },
+    {
+      "path": "followup/windows/evidence/npm-installed-verify-exit.txt",
+      "gitBlobSha256": "9a271f2a916b0b6ee6cecb2426f0b3206ef074578be55d9bc94f6f3fe3ab86aa",
+      "bytesIdentical": true
+    },
+    {
+      "path": "followup/windows/evidence/npm-installed-verify.txt",
+      "gitBlobSha256": "940413f37e0c458da8d474bc6ec4db10ad7b93a2944fe7a6aa64ab7bff169a7d",
+      "bytesIdentical": true
+    },
+    {
+      "path": "followup/windows/evidence/npm-patch-after-f92.yml",
+      "gitBlobSha256": "70365aed52a5f8a345977d66430d9395a8ef46484051c3bf9c8734fff8f6622a",
+      "bytesIdentical": true
+    },
+    {
+      "path": "followup/windows/evidence/npm-patch-after-f94.yml",
+      "gitBlobSha256": "97adb450bdb47c475e586d6e8ebb430b58afe106c4ad08439186f35767e023d7",
+      "bytesIdentical": true
+    },
+    {
+      "path": "followup/windows/evidence/npm-patch-before-f94.yml",
+      "gitBlobSha256": "70365aed52a5f8a345977d66430d9395a8ef46484051c3bf9c8734fff8f6622a",
+      "bytesIdentical": true
+    },
+    {
+      "path": "followup/windows/evidence/npm-plugin-install.txt",
+      "gitBlobSha256": "bd1056f4e52d8e52cbdab35752e45bde2d43d4946a9a2dcd51a90afc9e704bd8",
+      "bytesIdentical": true
+    },
+    {
+      "path": "followup/windows/evidence/npm-plugin-uninstall.txt",
+      "gitBlobSha256": "8644d00f093b2ddf1255f4af7363c208bd169d8c3a2163121607065f7116a049",
+      "bytesIdentical": true
+    },
+    {
+      "path": "followup/windows/evidence/npm-preflight.txt",
+      "gitBlobSha256": "853c5309aab736ccd01190856f1af372141bf3b6d2a0e312bd9d4de3dcf82850",
+      "bytesIdentical": true
+    },
+    {
+      "path": "followup/windows/evidence/observer-desktop-r1.json",
+      "gitBlobSha256": "8a9e718c7296cfa18921abb694ef972363713f6dde270c0d6f92f717f4fbf874",
+      "bytesIdentical": true
+    },
+    {
+      "path": "followup/windows/evidence/observer-npm-r1.json",
+      "gitBlobSha256": "4c9c65d011434ff6d2227c4c7470145a7d1cc757cb18156ed183dd984e7c3f01",
+      "bytesIdentical": true
+    },
+    {
+      "path": "followup/windows/evidence/reports.txt",
+      "gitBlobSha256": "2138d9914c0d169cdffe50905f1273b07202f5c91274c96c9d5e76d25588a2d9",
+      "bytesIdentical": true
+    },
+    {
+      "path": "followup/windows/f97/desk-empty-listeners-exit.txt",
+      "gitBlobSha256": "4355a46b19d348dc2f57c046f8ef63d4538ebb936000f3c9ee954a27460dd865",
+      "bytesIdentical": true
+    },
+    {
+      "path": "followup/windows/f97/desk-empty-listeners-internal-log.txt",
+      "gitBlobSha256": "ae3b8fd1ed1c0589e35061841e69fb1a6a6412940eecebf60f3338d114f25868",
+      "bytesIdentical": true
+    },
+    {
+      "path": "followup/windows/f97/desk-empty-listeners-outer.txt",
+      "gitBlobSha256": "12c05b7f39f333c19223543827c19aec3e5290615755b1f3a30ebf1cd4d44c34",
+      "bytesIdentical": true
+    },
+    {
+      "path": "followup/windows/f97/desk-empty-listeners-proc-snap.txt",
+      "gitBlobSha256": "224a9e99470179dc7c6138ba6fc3f929f3dc31844029b550a39a852ba4bf1464",
+      "bytesIdentical": true
+    },
+    {
+      "path": "followup/windows/f97/desk-original-exit.txt",
+      "gitBlobSha256": "9a271f2a916b0b6ee6cecb2426f0b3206ef074578be55d9bc94f6f3fe3ab86aa",
+      "bytesIdentical": true
+    },
+    {
+      "path": "followup/windows/f97/desk-original-internal-log.txt",
+      "gitBlobSha256": "32a4dcd4d17b9678676e66be6299095ab8e5f76ff5a834339907ab676eb98c4a",
+      "bytesIdentical": true
+    },
+    {
+      "path": "followup/windows/f97/desk-original-outer.txt",
+      "gitBlobSha256": "9dcaf1260c577164c7c3f922579b9fcbac3bbe864abaf6b032a1f6a37318fc6d",
+      "bytesIdentical": true
+    },
+    {
+      "path": "followup/windows/f97/desk-original-proc-snap.txt",
+      "gitBlobSha256": "74cc9fbeeab01252e662e25e502e9339cc1d9b7fb387d1b342dc9f90a785a742",
+      "bytesIdentical": true
+    },
+    {
+      "path": "followup/windows/f97/desk-r0-original-exit.txt",
+      "gitBlobSha256": "9a271f2a916b0b6ee6cecb2426f0b3206ef074578be55d9bc94f6f3fe3ab86aa",
+      "bytesIdentical": true
+    },
+    {
+      "path": "followup/windows/f97/desk-r0-original-internal-log.txt",
+      "gitBlobSha256": "7e066807ac83fd0c24fe146e63226dbad394f09ee9377a32989e3e9411a4d3bd",
+      "bytesIdentical": true
+    },
+    {
+      "path": "followup/windows/f97/desk-r0-original-outer.txt",
+      "gitBlobSha256": "092c3370330704538d7daac87ec660d504fab23f3147daf649db2bd50cc696c0",
+      "bytesIdentical": true
+    },
+    {
+      "path": "followup/windows/f97/desk-r0-original-proc-snap.txt",
+      "gitBlobSha256": "4f147163ee94cd3a8e0669b914606774ba983f2a8a05c2b7df514ff8eb871c89",
+      "bytesIdentical": true
+    },
+    {
+      "path": "followup/windows/f97/desk-r0-record-original.json",
+      "gitBlobSha256": "96f6c0030996be93ce261f720c8bb0763ca8f19ded8e595fbcccfdf6a3d32acd",
+      "bytesIdentical": true
+    },
+    {
+      "path": "followup/windows/f97/desk-r2-original-exit.txt",
+      "gitBlobSha256": "9a271f2a916b0b6ee6cecb2426f0b3206ef074578be55d9bc94f6f3fe3ab86aa",
+      "bytesIdentical": true
+    },
+    {
+      "path": "followup/windows/f97/desk-r2-original-internal-log.txt",
+      "gitBlobSha256": "64e8b9734b0819ea04e8fa6d5439fb129eae77b4af658b0880d004110c62e992",
+      "bytesIdentical": true
+    },
+    {
+      "path": "followup/windows/f97/desk-r2-original-outer.txt",
+      "gitBlobSha256": "6fd1867211063d0fc0f5eb72e915cbafd267ba32c11e576d2e9de88d7abf975c",
+      "bytesIdentical": true
+    },
+    {
+      "path": "followup/windows/f97/desk-r2-original-proc-snap.txt",
+      "gitBlobSha256": "36eb389595b968260e60a21b477a1c18dbb965415cfc54a63782f6c288e6f84f",
+      "bytesIdentical": true
+    },
+    {
+      "path": "followup/windows/f97/desk-r2-record-original.json",
+      "gitBlobSha256": "a3ce3ca451aa8040ff7f28bc82b430f89a7d8a040a7ec0169b817b07d03d2048",
+      "bytesIdentical": true
+    },
+    {
+      "path": "followup/windows/f97/desk-record-empty-listeners.json",
+      "gitBlobSha256": "12c31c8bddc55e89da15731b97372291449a3ca4fb9f91e700b758844fc3f57c",
+      "bytesIdentical": true
+    },
+    {
+      "path": "followup/windows/f97/desk-record-original.json",
+      "gitBlobSha256": "acda438b9b3f588a07501c60cad3bd8d00d48abd67fb45649c0b07292f9e14c4",
+      "bytesIdentical": true
+    },
+    {
+      "path": "followup/windows/f97/desk-record-wrong-port.json",
+      "gitBlobSha256": "d026da2e4a1f468c0a6f3d728a7946d419d5ab718315a1069014f98bd8a80475",
+      "bytesIdentical": true
+    },
+    {
+      "path": "followup/windows/f97/desk-wrong-port-exit.txt",
+      "gitBlobSha256": "4355a46b19d348dc2f57c046f8ef63d4538ebb936000f3c9ee954a27460dd865",
+      "bytesIdentical": true
+    },
+    {
+      "path": "followup/windows/f97/desk-wrong-port-internal-log.txt",
+      "gitBlobSha256": "0b01c838d239ad22c8d87004ba6438193c7c4e2321bf802508acf903a5d98a13",
+      "bytesIdentical": true
+    },
+    {
+      "path": "followup/windows/f97/desk-wrong-port-outer.txt",
+      "gitBlobSha256": "5d2d114bdf63a543786dc8f49a5f23c5b1814ea8d053cfe99be590430d3e8c57",
+      "bytesIdentical": true
+    },
+    {
+      "path": "followup/windows/f97/desk-wrong-port-proc-snap.txt",
+      "gitBlobSha256": "08daa8483d85230a9abd4b82017742c2476936ff37b6058fa09bd4bcf60e646b",
+      "bytesIdentical": true
+    },
+    {
+      "path": "followup/windows/f97/npm-empty-listeners-exit.txt",
+      "gitBlobSha256": "4355a46b19d348dc2f57c046f8ef63d4538ebb936000f3c9ee954a27460dd865",
+      "bytesIdentical": true
+    },
+    {
+      "path": "followup/windows/f97/npm-empty-listeners-internal-log.txt",
+      "gitBlobSha256": "d5dab0176d479236fe927bdd32c2582c76de40df7fd9e14de366dd6495ceb8cb",
+      "bytesIdentical": true
+    },
+    {
+      "path": "followup/windows/f97/npm-empty-listeners-outer.txt",
+      "gitBlobSha256": "fefeecd8a9db3bf611dc6272315c2fa24e899ef85c62e855aff73e7780df71a1",
+      "bytesIdentical": true
+    },
+    {
+      "path": "followup/windows/f97/npm-empty-listeners-proc-snap.txt",
+      "gitBlobSha256": "75b39efe9188d05764a7c86bed52418d3848d2787268a3be3e6aa59e888fedc2",
+      "bytesIdentical": true
+    },
+    {
+      "path": "followup/windows/f97/npm-original-exit.txt",
+      "gitBlobSha256": "9a271f2a916b0b6ee6cecb2426f0b3206ef074578be55d9bc94f6f3fe3ab86aa",
+      "bytesIdentical": true
+    },
+    {
+      "path": "followup/windows/f97/npm-original-internal-log.txt",
+      "gitBlobSha256": "006ac6ddca2b5b998dbfcf39d9abc66df60d931faaa913996e341817abd845de",
+      "bytesIdentical": true
+    },
+    {
+      "path": "followup/windows/f97/npm-original-outer.txt",
+      "gitBlobSha256": "a6d50e2f664288814e08098405b32e85d3ff93a2dd3e1606ed4450ef4f570846",
+      "bytesIdentical": true
+    },
+    {
+      "path": "followup/windows/f97/npm-original-proc-snap.txt",
+      "gitBlobSha256": "ca106d7d59d65cd8f6b61c90052620cb857b3a76366e5d49b77eaf909368fc2c",
+      "bytesIdentical": true
+    },
+    {
+      "path": "followup/windows/f97/npm-r2-original-exit.txt",
+      "gitBlobSha256": "9a271f2a916b0b6ee6cecb2426f0b3206ef074578be55d9bc94f6f3fe3ab86aa",
+      "bytesIdentical": true
+    },
+    {
+      "path": "followup/windows/f97/npm-r2-original-internal-log.txt",
+      "gitBlobSha256": "c7dc458d92e89b7aa52b0fe49f96f61a61eae10e05417ba6b0347c33d43e58f8",
+      "bytesIdentical": true
+    },
+    {
+      "path": "followup/windows/f97/npm-r2-original-outer.txt",
+      "gitBlobSha256": "6e2218a424861aff5fc730e57bd6b4a17186017c9fb7c0352c10c03e4ecf42ad",
+      "bytesIdentical": true
+    },
+    {
+      "path": "followup/windows/f97/npm-r2-original-proc-snap.txt",
+      "gitBlobSha256": "560d9a206e7a7625cf67d66819148a173e368a9d1ec5d365a4547262b574024d",
+      "bytesIdentical": true
+    },
+    {
+      "path": "followup/windows/f97/npm-r2-record-original.json",
+      "gitBlobSha256": "b1ba4c7f9eef6d79134a41cd2b62b7081105d567b2f60c6a23548a64e8fddcae",
+      "bytesIdentical": true
+    },
+    {
+      "path": "followup/windows/f97/npm-record-empty-listeners.json",
+      "gitBlobSha256": "19d8a16f64cba02209af5811faf763327d45b8acd65b84ffd19dc3c6a14fd3e6",
+      "bytesIdentical": true
+    },
+    {
+      "path": "followup/windows/f97/npm-record-original.json",
+      "gitBlobSha256": "a055629516ef3a7006d447e52a0fed3910c31f5ad44e8e6ff0956ffceb39d66b",
+      "bytesIdentical": true
+    },
+    {
+      "path": "followup/windows/f97/npm-record-wrong-port.json",
+      "gitBlobSha256": "49d8b069d9144d1691924a054a2de43397bd24442b7d3ed722f5058a49c7817c",
+      "bytesIdentical": true
+    },
+    {
+      "path": "followup/windows/f97/npm-wrong-port-exit.txt",
+      "gitBlobSha256": "4355a46b19d348dc2f57c046f8ef63d4538ebb936000f3c9ee954a27460dd865",
+      "bytesIdentical": true
+    },
+    {
+      "path": "followup/windows/f97/npm-wrong-port-internal-log.txt",
+      "gitBlobSha256": "85e57180a27b82b3a96a53158e4c1ad37cab4a63385ed7286f0b3a948a8fa92d",
+      "bytesIdentical": true
+    },
+    {
+      "path": "followup/windows/f97/npm-wrong-port-outer.txt",
+      "gitBlobSha256": "99998ca86779e6d46453bd50a689971119e7610f28a34f61c3f11f07a7cf9a81",
+      "bytesIdentical": true
+    },
+    {
+      "path": "followup/windows/f97/npm-wrong-port-proc-snap.txt",
+      "gitBlobSha256": "548515df42bf5566264e12cc17deab69018a9a4b82a2676089d5e741d70ef4e7",
+      "bytesIdentical": true
+    },
+    {
+      "path": "followup/windows/fixtures/calls.log",
+      "gitBlobSha256": "7c7090c2bef1a9b51c01afc41effc62224609beedf36c4b26c91d54c04cea17f",
+      "bytesIdentical": true
+    },
+    {
+      "path": "followup/windows/fixtures/node.cmd",
+      "gitBlobSha256": "98672b9fc4f871aefc1d17e6b43104edf5e651b75d726825f2683cfe13784287",
+      "bytesIdentical": true
+    },
+    {
+      "path": "followup/windows/fixtures/npm.cmd",
+      "gitBlobSha256": "19657a9beafea2b41a8b8ce4c051a0fa5b5b2954b59b0c2a8118adc792a8ddf6",
+      "bytesIdentical": true
+    },
+    {
+      "path": "followup/windows/scripts/cli9f-setup.py",
+      "gitBlobSha256": "7c5e7cbdcf1b5ca169dcae8dbb351c74d8475722b1b4a39ec81ea803d65101f9",
+      "bytesIdentical": true
+    },
+    {
+      "path": "followup/windows/scripts/daily-snapshot.ps1",
+      "gitBlobSha256": "61b69f0da661f660e1b5930b10e895c551e7deab0fcdad4941efdb5ae15ff845",
+      "bytesIdentical": true
+    },
+    {
+      "path": "followup/windows/scripts/dsh-plugin.ps1",
+      "gitBlobSha256": "b4f05b4f10aa9824ed9aa7b7e557029154d7072a0c823e7461e6f58d6fedbe35",
+      "bytesIdentical": true
+    },
+    {
+      "path": "followup/windows/scripts/env-npm.ps1",
+      "gitBlobSha256": "a8721021093c518295cc51f7627c8845d8add5b511636bdf9340d5c690607c29",
+      "bytesIdentical": true
+    },
+    {
+      "path": "followup/windows/scripts/f97-run.ps1",
+      "gitBlobSha256": "76e0c99617d253370a78a604c9df3f93785576ae2febfc2478e0be944f3c07b3",
+      "bytesIdentical": true
+    },
+    {
+      "path": "followup/windows/scripts/prefix-fingerprint.sh",
+      "gitBlobSha256": "0186eedf42540a842ec081adf2a1fdff4b164feda7bb595d2c1fbffd439d78b9",
+      "bytesIdentical": true
+    },
+    {
+      "path": "followup/windows/scripts/preflight.ps1",
+      "gitBlobSha256": "41fd33cbd9a296a7a3a645ffb828c801d946e0f3b4782d3b530ab2389548bed1",
+      "bytesIdentical": true
+    },
+    {
+      "path": "followup/windows/scripts/start-desktop-host.ps1",
+      "gitBlobSha256": "c7d9f8952be8bcb096f16b406eca97baaabc0207ff5c7eb6575dec4b8c525b44",
+      "bytesIdentical": true
+    },
+    {
+      "path": "followup/windows/scripts/start-npm-host.ps1",
+      "gitBlobSha256": "c5a3075478002ca356524bbf5e4a60b08a873c8b4a3de935d4c70eefde69c2b5",
+      "bytesIdentical": true
+    },
+    {
+      "path": "followup/windows/scripts/stop-host-4check.ps1",
+      "gitBlobSha256": "c0ee113eef135dfa93a568bc9209e561a7d55ba7e9d5f80ecfca40d26282d21d",
+      "bytesIdentical": true
+    },
+    {
+      "path": "followup/windows/scripts/validate-fixtures.ps1",
+      "gitBlobSha256": "f813454403d677424956c7daab79ff92412e83b079e06aea6a2e9a23b517ab66",
+      "bytesIdentical": true
+    },
+    {
+      "path": "followup/windows/verifier/run-canonical-verify.ps1",
+      "gitBlobSha256": "da25fdffdeb22350019fb62befc6e24e834967f8a8fe8efb162c7405924923c2",
+      "bytesIdentical": true
+    },
+    {
+      "path": "followup/windows/verifier/verify-native-exit.txt",
+      "gitBlobSha256": "9a271f2a916b0b6ee6cecb2426f0b3206ef074578be55d9bc94f6f3fe3ab86aa",
+      "bytesIdentical": true
+    },
+    {
+      "path": "followup/windows/verifier/verify-native.txt",
+      "gitBlobSha256": "209bcb57a7a9be60b1817e2b0bd9278a61c65f97d58243c785efdaa7cb959f2c",
       "bytesIdentical": true
     },
     {
