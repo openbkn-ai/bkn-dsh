@@ -1,0 +1,27 @@
+{
+  "checkedAt": "2026-10-10T16:10:21.242056+00:00",
+  "sourceCommit": "6b372ff703d773a4c47ff3cf13972a047fa81ebd",
+  "candidateSha256": "dd2d50a2fdda8e55f1ff355b6121113fc6106aeeb6664463bc218cb9b366c887",
+  "candidateBytes": 183344,
+  "candidateFilesMatched": 69,
+  "packageSourceChanged": false,
+  "candidateMetadataAndCanonicalHelpersUnchangedFrom": "9f77446ff4a70731773ab96535cb6f892db3b84a",
+  "windowsGitSnapshotCommit": "b5e5875b53bfd0edccbd881f1069e746dc722b1b",
+  "windowsSnapshotFiles": 107,
+  "unchangedWindowsOriginals": 106,
+  "windowsAuthoredDocCorrected": "RESULTS.md",
+  "diffCheckExit": 0,
+  "localLinksValid": true,
+  "credentialScan": {
+    "files": 116,
+    "patterns": [
+      "model-key",
+      "bearer-value",
+      "launch-url",
+      "credential-url"
+    ],
+    "hits": [],
+    "doesNotProve": "All possible secrets absent or Windows local source-file provenance."
+  },
+  "scope": "Evidence and release-note closeout only; no installation/Host/model/platform rerun, no replacement candidate."
+}

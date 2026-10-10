@@ -9,3 +9,17 @@ docs/evidence/cli-setup9-20261010/candidate-files.json -text
 docs/evidence/cli-setup9-20261010/followup/prior/candidate-files.json -text
 # Preserve tsdown's native trailing spaces in the archived test output.
 docs/evidence/cli-setup9-20261010/followup/plugin-tests.txt whitespace=-blank-at-eol
+# Keep the accepted Windows archive bytes on every checkout; canonical helpers remain outside this archive.
+docs/evidence/cli-setup9-20261010/followup/windows/** -text
+# Scope native-output whitespace exceptions to the recorded files; do not rewrite historical evidence.
+docs/evidence/cli-setup9-20261010/followup/windows/evidence/desktop-preflight.txt whitespace=-blank-at-eol
+docs/evidence/cli-setup9-20261010/followup/windows/evidence/f93-npm.txt whitespace=-blank-at-eol
+docs/evidence/cli-setup9-20261010/followup/windows/evidence/f95-desktop-attempt1/operation-lDwjSz/pnpm.log whitespace=-blank-at-eof
+docs/evidence/cli-setup9-20261010/followup/windows/evidence/f95-desktop-uninstall-after-retry.txt whitespace=-blank-at-eol
+docs/evidence/cli-setup9-20261010/followup/windows/evidence/f95-desktop-uninstall-after.txt whitespace=-blank-at-eol
+docs/evidence/cli-setup9-20261010/followup/windows/evidence/f95-desktop-uninstall-before.txt whitespace=-blank-at-eol
+docs/evidence/cli-setup9-20261010/followup/windows/evidence/f95-npm-uninstall-after.txt whitespace=-blank-at-eol
+docs/evidence/cli-setup9-20261010/followup/windows/evidence/f95-npm-uninstall-before.txt whitespace=-blank-at-eol
+docs/evidence/cli-setup9-20261010/followup/windows/evidence/fixture-validation.txt whitespace=-blank-at-eol
+docs/evidence/cli-setup9-20261010/followup/windows/evidence/npm-plugin-install.txt whitespace=-blank-at-eol
+docs/evidence/cli-setup9-20261010/followup/windows/evidence/npm-preflight.txt whitespace=-blank-at-eol

@@ -4,7 +4,11 @@
 
 目录路径分类、主面板设置/安装进度引导、已保存路径提示已修复；Mac 官方 npm/Desktop 受影响实测完成，新包两安装件各 69/69，一次真实 SDK 0.1.5 安装及保存提示均通过。Desktop 捕获了安装中关闭/重开后仍安装与锁定。插件 414（413 pass / 0 fail / 1 skip），仓库 60/60；六类验证成功。详情、证据边界和执行偏差见 [本轮 RESULTS](followup/RESULTS.md)。
 
-旧 Windows `a2504c5` 的 C90–C99 回传已复核，原件留在独立分支，措辞修正见 [WINDOWS-REVIEW](followup/WINDOWS-REVIEW.md)。新候选的 Windows F90–F97 和 canonical verifier/stop helper 原生验收尚待执行：[固定复测 handoff](../../handoff/2026-10-10-cli-setup9/WINDOWS-FOLLOWUP.md)。不合并、不发布、不迁移 latest；宿主测试 Key 来源调查与撤销不进入 -9 插件实现。
+旧 Windows `a2504c5` 的 C90–C99 是历史基线，措辞修正见 [WINDOWS-REVIEW](followup/WINDOWS-REVIEW.md)。当前候选的 Windows Desktop/npm F90–F97 已由 `b5e5875b53bfd0edccbd881f1069e746dc722b1b` 回传并复核，原件与修正后的结论见 [Windows RESULTS](followup/windows/RESULTS.md)：安装件各 69/69，canonical verifier 在 PS5.1 原生通过，停止 helper 拒绝错误及空 listener，真实 SDK 安装与保存提示通过。
+
+2026-10-11 收尾只调整证据与发布说明，不改变候选。C98 实机仅证明恢复后保留失败历史；只读检测不清除当前 CLI/auth 失败仍只有单测，现场未单独构造。Desktop 首次卸载的 pnpm `EPERM` 按用户决定保留为已知限制，根因未知。根清单和 Git 对照将绑定本轮明确的证据提交；旧清单归档而不改写。Windows 全部原件的来源/字节补证任务见 [独立收尾 handoff](../../handoff/2026-10-10-cli-setup9/WINDOWS-EVIDENCE-CLOSEOUT.md)。补证不要求重跑矩阵或借用凭据。
+
+PR #86 合并与主线 build-only 逐文件比对已获授权；正式发布/tag/dist-tag 尚未执行。宿主测试 Key 来源调查与撤销不进入 -9 插件实现。
 
 ---
 

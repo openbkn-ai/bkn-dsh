@@ -1,0 +1,25 @@
+{
+  "checkedAt": "2026-10-10T16:11:13.203598+00:00",
+  "scope": "Read-only upstream comparison since accepted -9 baseline. No dependency/pin/deployment changes; no live platform compatibility or model claim.",
+  "dsh": {
+    "repository": "deepseek-ai/deepseek-harness",
+    "branch": "master",
+    "baseline": "d743267388641bc76f17c45ce8b4c231aed1d32c",
+    "newCommits": 0,
+    "changedFiles": []
+  },
+  "foundry": {
+    "repository": "openbkn-ai/bkn-foundry",
+    "branch": "main",
+    "baseline": "1343eb4776a1aeadd300eb033b0399355f16521f",
+    "newCommits": 0,
+    "changedFiles": []
+  },
+  "sdk": {
+    "repository": "openbkn-ai/bkn-sdk",
+    "branch": "main",
+    "baseline": "c404354793146edab944b7e5a79908bf41ddd591",
+    "newCommits": 0,
+    "changedFiles": []
+  }
+}

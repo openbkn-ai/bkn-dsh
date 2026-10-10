@@ -1,0 +1,649 @@
+{
+  "generatedAt": "2026-10-10T16:08:44.508837+00:00",
+  "comparedCommit": "b5e5875b53bfd0edccbd881f1069e746dc722b1b",
+  "scope": "All 107 Windows files at the original return commit; Git blob bytes only, not evidence of local source-file provenance. Later authored corrections to RESULTS.md are outside this historical snapshot. This inventory excludes itself.",
+  "files": [
+    {
+      "path": "RESULTS.md",
+      "repositoryPath": "docs/evidence/cli-setup9-20261010/followup/windows/RESULTS.md",
+      "bytes": 13314,
+      "sha256": "e7c85332c7d54791dc048b88b9b1f28468c900b430d869eadf791f1faa632145"
+    },
+    {
+      "path": "evidence/OpenBKN-diagnostic-desktop-f95-1cb34f50.json",
+      "repositoryPath": "docs/evidence/cli-setup9-20261010/followup/windows/evidence/OpenBKN-diagnostic-desktop-f95-1cb34f50.json",
+      "bytes": 1923,
+      "sha256": "22f71ca96cf081c12b7ad942c4ed8d6458e7d0afbf4df2fe663e10dbf1831da2"
+    },
+    {
+      "path": "evidence/OpenBKN-diagnostic-npm-f95-fb55a24c.json",
+      "repositoryPath": "docs/evidence/cli-setup9-20261010/followup/windows/evidence/OpenBKN-diagnostic-npm-f95-fb55a24c.json",
+      "bytes": 1921,
+      "sha256": "48a8abd4541d8c65e3399ba44549f128121cd02caa50a0625054ab47e834e38d"
+    },
+    {
+      "path": "evidence/daily-after.json",
+      "repositoryPath": "docs/evidence/cli-setup9-20261010/followup/windows/evidence/daily-after.json",
+      "bytes": 415890,
+      "sha256": "1c0cd8fd9c00715a3aa330af8cea5a348cdc79f5583afffa037a23a26252358b"
+    },
+    {
+      "path": "evidence/daily-before.json",
+      "repositoryPath": "docs/evidence/cli-setup9-20261010/followup/windows/evidence/daily-before.json",
+      "bytes": 415891,
+      "sha256": "3ffd88eb8eabb76ee09c3eebdd095d73f4b376859b11447aa0ed49705e5b5250"
+    },
+    {
+      "path": "evidence/desktop-f93-version.txt",
+      "repositoryPath": "docs/evidence/cli-setup9-20261010/followup/windows/evidence/desktop-f93-version.txt",
+      "bytes": 13,
+      "sha256": "6eb3c009feaae1095e667ff06cd1b3af8bf2680bb41893968115c99925eb8614"
+    },
+    {
+      "path": "evidence/desktop-installed-verify-exit.txt",
+      "repositoryPath": "docs/evidence/cli-setup9-20261010/followup/windows/evidence/desktop-installed-verify-exit.txt",
+      "bytes": 2,
+      "sha256": "9a271f2a916b0b6ee6cecb2426f0b3206ef074578be55d9bc94f6f3fe3ab86aa"
+    },
+    {
+      "path": "evidence/desktop-installed-verify.txt",
+      "repositoryPath": "docs/evidence/cli-setup9-20261010/followup/windows/evidence/desktop-installed-verify.txt",
+      "bytes": 2326,
+      "sha256": "39ad603663633f95bb47bcb925a790f59b060be789205a78f222856dd94beb07"
+    },
+    {
+      "path": "evidence/desktop-patch-after-f92.yml",
+      "repositoryPath": "docs/evidence/cli-setup9-20261010/followup/windows/evidence/desktop-patch-after-f92.yml",
+      "bytes": 360,
+      "sha256": "365d0e980a2d2253165ee3ac396e1278bf23e01968a12f019f7b92218ff5e745"
+    },
+    {
+      "path": "evidence/desktop-patch-after-f94.yml",
+      "repositoryPath": "docs/evidence/cli-setup9-20261010/followup/windows/evidence/desktop-patch-after-f94.yml",
+      "bytes": 403,
+      "sha256": "d4f0bfe5968a128e54a140a542cdc68bf8f98bacd2ce21f6f6047ba26026b09c"
+    },
+    {
+      "path": "evidence/desktop-patch-before-f94.yml",
+      "repositoryPath": "docs/evidence/cli-setup9-20261010/followup/windows/evidence/desktop-patch-before-f94.yml",
+      "bytes": 360,
+      "sha256": "365d0e980a2d2253165ee3ac396e1278bf23e01968a12f019f7b92218ff5e745"
+    },
+    {
+      "path": "evidence/desktop-preflight.txt",
+      "repositoryPath": "docs/evidence/cli-setup9-20261010/followup/windows/evidence/desktop-preflight.txt",
+      "bytes": 1212,
+      "sha256": "e358a6d6622178e8bdc1b7f48f9d8fceffd1d43236927f418ceb7b42cd6d9d52"
+    },
+    {
+      "path": "evidence/f9-desk-r0-plugin-install-host.json",
+      "repositoryPath": "docs/evidence/cli-setup9-20261010/followup/windows/evidence/f9-desk-r0-plugin-install-host.json",
+      "bytes": 1585,
+      "sha256": "96f6c0030996be93ce261f720c8bb0763ca8f19ded8e595fbcccfdf6a3d32acd"
+    },
+    {
+      "path": "evidence/f9-desk-r1-host.json",
+      "repositoryPath": "docs/evidence/cli-setup9-20261010/followup/windows/evidence/f9-desk-r1-host.json",
+      "bytes": 1672,
+      "sha256": "acda438b9b3f588a07501c60cad3bd8d00d48abd67fb45649c0b07292f9e14c4"
+    },
+    {
+      "path": "evidence/f9-desk-r2-uninstall-host.json",
+      "repositoryPath": "docs/evidence/cli-setup9-20261010/followup/windows/evidence/f9-desk-r2-uninstall-host.json",
+      "bytes": 1578,
+      "sha256": "a3ce3ca451aa8040ff7f28bc82b430f89a7d8a040a7ec0169b817b07d03d2048"
+    },
+    {
+      "path": "evidence/f9-npm-r1-host.json",
+      "repositoryPath": "docs/evidence/cli-setup9-20261010/followup/windows/evidence/f9-npm-r1-host.json",
+      "bytes": 1246,
+      "sha256": "a055629516ef3a7006d447e52a0fed3910c31f5ad44e8e6ff0956ffceb39d66b"
+    },
+    {
+      "path": "evidence/f9-npm-r2-after-uninstall-host.json",
+      "repositoryPath": "docs/evidence/cli-setup9-20261010/followup/windows/evidence/f9-npm-r2-after-uninstall-host.json",
+      "bytes": 1189,
+      "sha256": "b1ba4c7f9eef6d79134a41cd2b62b7081105d567b2f60c6a23548a64e8fddcae"
+    },
+    {
+      "path": "evidence/f91-npm.txt",
+      "repositoryPath": "docs/evidence/cli-setup9-20261010/followup/windows/evidence/f91-npm.txt",
+      "bytes": 699,
+      "sha256": "9a8a043bb42c2904bb7c217c262acfbe303d8df5cba353b538b7fa9d50e5d857"
+    },
+    {
+      "path": "evidence/f92-npm.txt",
+      "repositoryPath": "docs/evidence/cli-setup9-20261010/followup/windows/evidence/f92-npm.txt",
+      "bytes": 1154,
+      "sha256": "702dc622e0177586bc7cc3a64c0ae0c7158038583931a1b40c6ffffcf21c8b14"
+    },
+    {
+      "path": "evidence/f93-npm.txt",
+      "repositoryPath": "docs/evidence/cli-setup9-20261010/followup/windows/evidence/f93-npm.txt",
+      "bytes": 3542,
+      "sha256": "44468c393b424dea9748705618f8a54d8c0f24978ceb8e3f943692edbcc1be9e"
+    },
+    {
+      "path": "evidence/f94-npm.txt",
+      "repositoryPath": "docs/evidence/cli-setup9-20261010/followup/windows/evidence/f94-npm.txt",
+      "bytes": 516,
+      "sha256": "ae609375702ec760d9e2932cc466a2c4eb5681b5cef41b698ee6a54486d4a526"
+    },
+    {
+      "path": "evidence/f95-desktop-attempt1/operation-lDwjSz/pnpm.log",
+      "repositoryPath": "docs/evidence/cli-setup9-20261010/followup/windows/evidence/f95-desktop-attempt1/operation-lDwjSz/pnpm.log",
+      "bytes": 266,
+      "sha256": "047d6c3c39459241951eabcea6e83e4ba23fb4b10da8f6942243baa146d8373a"
+    },
+    {
+      "path": "evidence/f95-desktop-attempt1/package.json",
+      "repositoryPath": "docs/evidence/cli-setup9-20261010/followup/windows/evidence/f95-desktop-attempt1/package.json",
+      "bytes": 356,
+      "sha256": "daa2ebf12470bee0f9ac205d0bedca1a19f16b852f64e2f3e05054ef875f3ede"
+    },
+    {
+      "path": "evidence/f95-desktop-attempt1/pnpm-lock.yaml",
+      "repositoryPath": "docs/evidence/cli-setup9-20261010/followup/windows/evidence/f95-desktop-attempt1/pnpm-lock.yaml",
+      "bytes": 2585,
+      "sha256": "421e14d7b39c4f9cdbe31eef24cc95f4ce4484017a162e681b0077407f46f0d1"
+    },
+    {
+      "path": "evidence/f95-desktop-attempt2-operation-BIihHW/pnpm.log",
+      "repositoryPath": "docs/evidence/cli-setup9-20261010/followup/windows/evidence/f95-desktop-attempt2-operation-BIihHW/pnpm.log",
+      "bytes": 264,
+      "sha256": "b6e1c6fe7fafab1b9675a51a52d427205cd34033df41fa05b9dd62ba49a63892"
+    },
+    {
+      "path": "evidence/f95-desktop-uninstall-after-retry.txt",
+      "repositoryPath": "docs/evidence/cli-setup9-20261010/followup/windows/evidence/f95-desktop-uninstall-after-retry.txt",
+      "bytes": 657,
+      "sha256": "86d5f3015e695716c6ee70a42f731498325cc039ce6c1c6ae063e280500ae55a"
+    },
+    {
+      "path": "evidence/f95-desktop-uninstall-after.txt",
+      "repositoryPath": "docs/evidence/cli-setup9-20261010/followup/windows/evidence/f95-desktop-uninstall-after.txt",
+      "bytes": 666,
+      "sha256": "722fc984f4bd10b0738124ee67335acd16d14095c44884f91f9e7a37e2b87523"
+    },
+    {
+      "path": "evidence/f95-desktop-uninstall-before.txt",
+      "repositoryPath": "docs/evidence/cli-setup9-20261010/followup/windows/evidence/f95-desktop-uninstall-before.txt",
+      "bytes": 668,
+      "sha256": "c6cb79f3d64110b3c7d08aaaf3b7ada87ea2611dfd3402155bac9f1616c5fe22"
+    },
+    {
+      "path": "evidence/f95-npm-uninstall-after.txt",
+      "repositoryPath": "docs/evidence/cli-setup9-20261010/followup/windows/evidence/f95-npm-uninstall-after.txt",
+      "bytes": 628,
+      "sha256": "e3252d8e560b1c0aeb106956dcabdc237ae3b481976a6e3f7190e1b4b1b1f498"
+    },
+    {
+      "path": "evidence/f95-npm-uninstall-before.txt",
+      "repositoryPath": "docs/evidence/cli-setup9-20261010/followup/windows/evidence/f95-npm-uninstall-before.txt",
+      "bytes": 651,
+      "sha256": "f079e19979e29ddbb2b7e3d36218012e24d2e3c2299fee323b8aec605705f20e"
+    },
+    {
+      "path": "evidence/f95-npm.txt",
+      "repositoryPath": "docs/evidence/cli-setup9-20261010/followup/windows/evidence/f95-npm.txt",
+      "bytes": 523,
+      "sha256": "ebbe51422dd0c90287f229b3c001be0139e17d03372ba4693d4de81555e4938f"
+    },
+    {
+      "path": "evidence/fixture-validation.txt",
+      "repositoryPath": "docs/evidence/cli-setup9-20261010/followup/windows/evidence/fixture-validation.txt",
+      "bytes": 1300,
+      "sha256": "b47ea35dec53a8e37cee881c7e7dc570a87ebf6d835117a414152daf985d6b95"
+    },
+    {
+      "path": "evidence/git-blob-compare.txt",
+      "repositoryPath": "docs/evidence/cli-setup9-20261010/followup/windows/evidence/git-blob-compare.txt",
+      "bytes": 1136,
+      "sha256": "8340bf94ae7772a481ce3f914165289ab259086663bc76417d4b4133722b3ed0"
+    },
+    {
+      "path": "evidence/npm-f93-version.txt",
+      "repositoryPath": "docs/evidence/cli-setup9-20261010/followup/windows/evidence/npm-f93-version.txt",
+      "bytes": 13,
+      "sha256": "6eb3c009feaae1095e667ff06cd1b3af8bf2680bb41893968115c99925eb8614"
+    },
+    {
+      "path": "evidence/npm-installed-verify-exit.txt",
+      "repositoryPath": "docs/evidence/cli-setup9-20261010/followup/windows/evidence/npm-installed-verify-exit.txt",
+      "bytes": 2,
+      "sha256": "9a271f2a916b0b6ee6cecb2426f0b3206ef074578be55d9bc94f6f3fe3ab86aa"
+    },
+    {
+      "path": "evidence/npm-installed-verify.txt",
+      "repositoryPath": "docs/evidence/cli-setup9-20261010/followup/windows/evidence/npm-installed-verify.txt",
+      "bytes": 2310,
+      "sha256": "940413f37e0c458da8d474bc6ec4db10ad7b93a2944fe7a6aa64ab7bff169a7d"
+    },
+    {
+      "path": "evidence/npm-patch-after-f92.yml",
+      "repositoryPath": "docs/evidence/cli-setup9-20261010/followup/windows/evidence/npm-patch-after-f92.yml",
+      "bytes": 489,
+      "sha256": "70365aed52a5f8a345977d66430d9395a8ef46484051c3bf9c8734fff8f6622a"
+    },
+    {
+      "path": "evidence/npm-patch-after-f94.yml",
+      "repositoryPath": "docs/evidence/cli-setup9-20261010/followup/windows/evidence/npm-patch-after-f94.yml",
+      "bytes": 528,
+      "sha256": "97adb450bdb47c475e586d6e8ebb430b58afe106c4ad08439186f35767e023d7"
+    },
+    {
+      "path": "evidence/npm-patch-before-f94.yml",
+      "repositoryPath": "docs/evidence/cli-setup9-20261010/followup/windows/evidence/npm-patch-before-f94.yml",
+      "bytes": 489,
+      "sha256": "70365aed52a5f8a345977d66430d9395a8ef46484051c3bf9c8734fff8f6622a"
+    },
+    {
+      "path": "evidence/npm-plugin-install.txt",
+      "repositoryPath": "docs/evidence/cli-setup9-20261010/followup/windows/evidence/npm-plugin-install.txt",
+      "bytes": 1891,
+      "sha256": "bd1056f4e52d8e52cbdab35752e45bde2d43d4946a9a2dcd51a90afc9e704bd8"
+    },
+    {
+      "path": "evidence/npm-plugin-uninstall.txt",
+      "repositoryPath": "docs/evidence/cli-setup9-20261010/followup/windows/evidence/npm-plugin-uninstall.txt",
+      "bytes": 607,
+      "sha256": "8644d00f093b2ddf1255f4af7363c208bd169d8c3a2163121607065f7116a049"
+    },
+    {
+      "path": "evidence/npm-preflight.txt",
+      "repositoryPath": "docs/evidence/cli-setup9-20261010/followup/windows/evidence/npm-preflight.txt",
+      "bytes": 1192,
+      "sha256": "853c5309aab736ccd01190856f1af372141bf3b6d2a0e312bd9d4de3dcf82850"
+    },
+    {
+      "path": "evidence/observer-desktop-r1.json",
+      "repositoryPath": "docs/evidence/cli-setup9-20261010/followup/windows/evidence/observer-desktop-r1.json",
+      "bytes": 57278,
+      "sha256": "8a9e718c7296cfa18921abb694ef972363713f6dde270c0d6f92f717f4fbf874"
+    },
+    {
+      "path": "evidence/observer-npm-r1.json",
+      "repositoryPath": "docs/evidence/cli-setup9-20261010/followup/windows/evidence/observer-npm-r1.json",
+      "bytes": 33615,
+      "sha256": "4c9c65d011434ff6d2227c4c7470145a7d1cc757cb18156ed183dd984e7c3f01"
+    },
+    {
+      "path": "evidence/reports.txt",
+      "repositoryPath": "docs/evidence/cli-setup9-20261010/followup/windows/evidence/reports.txt",
+      "bytes": 670,
+      "sha256": "2138d9914c0d169cdffe50905f1273b07202f5c91274c96c9d5e76d25588a2d9"
+    },
+    {
+      "path": "f97/desk-empty-listeners-exit.txt",
+      "repositoryPath": "docs/evidence/cli-setup9-20261010/followup/windows/f97/desk-empty-listeners-exit.txt",
+      "bytes": 2,
+      "sha256": "4355a46b19d348dc2f57c046f8ef63d4538ebb936000f3c9ee954a27460dd865"
+    },
+    {
+      "path": "f97/desk-empty-listeners-internal-log.txt",
+      "repositoryPath": "docs/evidence/cli-setup9-20261010/followup/windows/f97/desk-empty-listeners-internal-log.txt",
+      "bytes": 1094,
+      "sha256": "ae3b8fd1ed1c0589e35061841e69fb1a6a6412940eecebf60f3338d114f25868"
+    },
+    {
+      "path": "f97/desk-empty-listeners-outer.txt",
+      "repositoryPath": "docs/evidence/cli-setup9-20261010/followup/windows/f97/desk-empty-listeners-outer.txt",
+      "bytes": 3350,
+      "sha256": "12c05b7f39f333c19223543827c19aec3e5290615755b1f3a30ebf1cd4d44c34"
+    },
+    {
+      "path": "f97/desk-empty-listeners-proc-snap.txt",
+      "repositoryPath": "docs/evidence/cli-setup9-20261010/followup/windows/f97/desk-empty-listeners-proc-snap.txt",
+      "bytes": 165,
+      "sha256": "224a9e99470179dc7c6138ba6fc3f929f3dc31844029b550a39a852ba4bf1464"
+    },
+    {
+      "path": "f97/desk-original-exit.txt",
+      "repositoryPath": "docs/evidence/cli-setup9-20261010/followup/windows/f97/desk-original-exit.txt",
+      "bytes": 2,
+      "sha256": "9a271f2a916b0b6ee6cecb2426f0b3206ef074578be55d9bc94f6f3fe3ab86aa"
+    },
+    {
+      "path": "f97/desk-original-internal-log.txt",
+      "repositoryPath": "docs/evidence/cli-setup9-20261010/followup/windows/f97/desk-original-internal-log.txt",
+      "bytes": 1121,
+      "sha256": "32a4dcd4d17b9678676e66be6299095ab8e5f76ff5a834339907ab676eb98c4a"
+    },
+    {
+      "path": "f97/desk-original-outer.txt",
+      "repositoryPath": "docs/evidence/cli-setup9-20261010/followup/windows/f97/desk-original-outer.txt",
+      "bytes": 1796,
+      "sha256": "9dcaf1260c577164c7c3f922579b9fcbac3bbe864abaf6b032a1f6a37318fc6d"
+    },
+    {
+      "path": "f97/desk-original-proc-snap.txt",
+      "repositoryPath": "docs/evidence/cli-setup9-20261010/followup/windows/f97/desk-original-proc-snap.txt",
+      "bytes": 145,
+      "sha256": "74cc9fbeeab01252e662e25e502e9339cc1d9b7fb387d1b342dc9f90a785a742"
+    },
+    {
+      "path": "f97/desk-r0-original-exit.txt",
+      "repositoryPath": "docs/evidence/cli-setup9-20261010/followup/windows/f97/desk-r0-original-exit.txt",
+      "bytes": 2,
+      "sha256": "9a271f2a916b0b6ee6cecb2426f0b3206ef074578be55d9bc94f6f3fe3ab86aa"
+    },
+    {
+      "path": "f97/desk-r0-original-internal-log.txt",
+      "repositoryPath": "docs/evidence/cli-setup9-20261010/followup/windows/f97/desk-r0-original-internal-log.txt",
+      "bytes": 992,
+      "sha256": "7e066807ac83fd0c24fe146e63226dbad394f09ee9377a32989e3e9411a4d3bd"
+    },
+    {
+      "path": "f97/desk-r0-original-outer.txt",
+      "repositoryPath": "docs/evidence/cli-setup9-20261010/followup/windows/f97/desk-r0-original-outer.txt",
+      "bytes": 1594,
+      "sha256": "092c3370330704538d7daac87ec660d504fab23f3147daf649db2bd50cc696c0"
+    },
+    {
+      "path": "f97/desk-r0-original-proc-snap.txt",
+      "repositoryPath": "docs/evidence/cli-setup9-20261010/followup/windows/f97/desk-r0-original-proc-snap.txt",
+      "bytes": 145,
+      "sha256": "4f147163ee94cd3a8e0669b914606774ba983f2a8a05c2b7df514ff8eb871c89"
+    },
+    {
+      "path": "f97/desk-r0-record-original.json",
+      "repositoryPath": "docs/evidence/cli-setup9-20261010/followup/windows/f97/desk-r0-record-original.json",
+      "bytes": 1585,
+      "sha256": "96f6c0030996be93ce261f720c8bb0763ca8f19ded8e595fbcccfdf6a3d32acd"
+    },
+    {
+      "path": "f97/desk-r2-original-exit.txt",
+      "repositoryPath": "docs/evidence/cli-setup9-20261010/followup/windows/f97/desk-r2-original-exit.txt",
+      "bytes": 2,
+      "sha256": "9a271f2a916b0b6ee6cecb2426f0b3206ef074578be55d9bc94f6f3fe3ab86aa"
+    },
+    {
+      "path": "f97/desk-r2-original-internal-log.txt",
+      "repositoryPath": "docs/evidence/cli-setup9-20261010/followup/windows/f97/desk-r2-original-internal-log.txt",
+      "bytes": 992,
+      "sha256": "64e8b9734b0819ea04e8fa6d5439fb129eae77b4af658b0880d004110c62e992"
+    },
+    {
+      "path": "f97/desk-r2-original-outer.txt",
+      "repositoryPath": "docs/evidence/cli-setup9-20261010/followup/windows/f97/desk-r2-original-outer.txt",
+      "bytes": 1594,
+      "sha256": "6fd1867211063d0fc0f5eb72e915cbafd267ba32c11e576d2e9de88d7abf975c"
+    },
+    {
+      "path": "f97/desk-r2-original-proc-snap.txt",
+      "repositoryPath": "docs/evidence/cli-setup9-20261010/followup/windows/f97/desk-r2-original-proc-snap.txt",
+      "bytes": 144,
+      "sha256": "36eb389595b968260e60a21b477a1c18dbb965415cfc54a63782f6c288e6f84f"
+    },
+    {
+      "path": "f97/desk-r2-record-original.json",
+      "repositoryPath": "docs/evidence/cli-setup9-20261010/followup/windows/f97/desk-r2-record-original.json",
+      "bytes": 1578,
+      "sha256": "a3ce3ca451aa8040ff7f28bc82b430f89a7d8a040a7ec0169b817b07d03d2048"
+    },
+    {
+      "path": "f97/desk-record-empty-listeners.json",
+      "repositoryPath": "docs/evidence/cli-setup9-20261010/followup/windows/f97/desk-record-empty-listeners.json",
+      "bytes": 1245,
+      "sha256": "12c31c8bddc55e89da15731b97372291449a3ca4fb9f91e700b758844fc3f57c"
+    },
+    {
+      "path": "f97/desk-record-original.json",
+      "repositoryPath": "docs/evidence/cli-setup9-20261010/followup/windows/f97/desk-record-original.json",
+      "bytes": 1672,
+      "sha256": "acda438b9b3f588a07501c60cad3bd8d00d48abd67fb45649c0b07292f9e14c4"
+    },
+    {
+      "path": "f97/desk-record-wrong-port.json",
+      "repositoryPath": "docs/evidence/cli-setup9-20261010/followup/windows/f97/desk-record-wrong-port.json",
+      "bytes": 1332,
+      "sha256": "d026da2e4a1f468c0a6f3d728a7946d419d5ab718315a1069014f98bd8a80475"
+    },
+    {
+      "path": "f97/desk-wrong-port-exit.txt",
+      "repositoryPath": "docs/evidence/cli-setup9-20261010/followup/windows/f97/desk-wrong-port-exit.txt",
+      "bytes": 2,
+      "sha256": "4355a46b19d348dc2f57c046f8ef63d4538ebb936000f3c9ee954a27460dd865"
+    },
+    {
+      "path": "f97/desk-wrong-port-internal-log.txt",
+      "repositoryPath": "docs/evidence/cli-setup9-20261010/followup/windows/f97/desk-wrong-port-internal-log.txt",
+      "bytes": 1099,
+      "sha256": "0b01c838d239ad22c8d87004ba6438193c7c4e2321bf802508acf903a5d98a13"
+    },
+    {
+      "path": "f97/desk-wrong-port-outer.txt",
+      "repositoryPath": "docs/evidence/cli-setup9-20261010/followup/windows/f97/desk-wrong-port-outer.txt",
+      "bytes": 3360,
+      "sha256": "5d2d114bdf63a543786dc8f49a5f23c5b1814ea8d053cfe99be590430d3e8c57"
+    },
+    {
+      "path": "f97/desk-wrong-port-proc-snap.txt",
+      "repositoryPath": "docs/evidence/cli-setup9-20261010/followup/windows/f97/desk-wrong-port-proc-snap.txt",
+      "bytes": 165,
+      "sha256": "08daa8483d85230a9abd4b82017742c2476936ff37b6058fa09bd4bcf60e646b"
+    },
+    {
+      "path": "f97/npm-empty-listeners-exit.txt",
+      "repositoryPath": "docs/evidence/cli-setup9-20261010/followup/windows/f97/npm-empty-listeners-exit.txt",
+      "bytes": 2,
+      "sha256": "4355a46b19d348dc2f57c046f8ef63d4538ebb936000f3c9ee954a27460dd865"
+    },
+    {
+      "path": "f97/npm-empty-listeners-internal-log.txt",
+      "repositoryPath": "docs/evidence/cli-setup9-20261010/followup/windows/f97/npm-empty-listeners-internal-log.txt",
+      "bytes": 539,
+      "sha256": "d5dab0176d479236fe927bdd32c2582c76de40df7fd9e14de366dd6495ceb8cb"
+    },
+    {
+      "path": "f97/npm-empty-listeners-outer.txt",
+      "repositoryPath": "docs/evidence/cli-setup9-20261010/followup/windows/f97/npm-empty-listeners-outer.txt",
+      "bytes": 2464,
+      "sha256": "fefeecd8a9db3bf611dc6272315c2fa24e899ef85c62e855aff73e7780df71a1"
+    },
+    {
+      "path": "f97/npm-empty-listeners-proc-snap.txt",
+      "repositoryPath": "docs/evidence/cli-setup9-20261010/followup/windows/f97/npm-empty-listeners-proc-snap.txt",
+      "bytes": 165,
+      "sha256": "75b39efe9188d05764a7c86bed52418d3848d2787268a3be3e6aa59e888fedc2"
+    },
+    {
+      "path": "f97/npm-original-exit.txt",
+      "repositoryPath": "docs/evidence/cli-setup9-20261010/followup/windows/f97/npm-original-exit.txt",
+      "bytes": 2,
+      "sha256": "9a271f2a916b0b6ee6cecb2426f0b3206ef074578be55d9bc94f6f3fe3ab86aa"
+    },
+    {
+      "path": "f97/npm-original-internal-log.txt",
+      "repositoryPath": "docs/evidence/cli-setup9-20261010/followup/windows/f97/npm-original-internal-log.txt",
+      "bytes": 566,
+      "sha256": "006ac6ddca2b5b998dbfcf39d9abc66df60d931faaa913996e341817abd845de"
+    },
+    {
+      "path": "f97/npm-original-outer.txt",
+      "repositoryPath": "docs/evidence/cli-setup9-20261010/followup/windows/f97/npm-original-outer.txt",
+      "bytes": 910,
+      "sha256": "a6d50e2f664288814e08098405b32e85d3ff93a2dd3e1606ed4450ef4f570846"
+    },
+    {
+      "path": "f97/npm-original-proc-snap.txt",
+      "repositoryPath": "docs/evidence/cli-setup9-20261010/followup/windows/f97/npm-original-proc-snap.txt",
+      "bytes": 145,
+      "sha256": "ca106d7d59d65cd8f6b61c90052620cb857b3a76366e5d49b77eaf909368fc2c"
+    },
+    {
+      "path": "f97/npm-r2-original-exit.txt",
+      "repositoryPath": "docs/evidence/cli-setup9-20261010/followup/windows/f97/npm-r2-original-exit.txt",
+      "bytes": 2,
+      "sha256": "9a271f2a916b0b6ee6cecb2426f0b3206ef074578be55d9bc94f6f3fe3ab86aa"
+    },
+    {
+      "path": "f97/npm-r2-original-internal-log.txt",
+      "repositoryPath": "docs/evidence/cli-setup9-20261010/followup/windows/f97/npm-r2-original-internal-log.txt",
+      "bytes": 565,
+      "sha256": "c7dc458d92e89b7aa52b0fe49f96f61a61eae10e05417ba6b0347c33d43e58f8"
+    },
+    {
+      "path": "f97/npm-r2-original-outer.txt",
+      "repositoryPath": "docs/evidence/cli-setup9-20261010/followup/windows/f97/npm-r2-original-outer.txt",
+      "bytes": 908,
+      "sha256": "6e2218a424861aff5fc730e57bd6b4a17186017c9fb7c0352c10c03e4ecf42ad"
+    },
+    {
+      "path": "f97/npm-r2-original-proc-snap.txt",
+      "repositoryPath": "docs/evidence/cli-setup9-20261010/followup/windows/f97/npm-r2-original-proc-snap.txt",
+      "bytes": 145,
+      "sha256": "560d9a206e7a7625cf67d66819148a173e368a9d1ec5d365a4547262b574024d"
+    },
+    {
+      "path": "f97/npm-r2-record-original.json",
+      "repositoryPath": "docs/evidence/cli-setup9-20261010/followup/windows/f97/npm-r2-record-original.json",
+      "bytes": 1189,
+      "sha256": "b1ba4c7f9eef6d79134a41cd2b62b7081105d567b2f60c6a23548a64e8fddcae"
+    },
+    {
+      "path": "f97/npm-record-empty-listeners.json",
+      "repositoryPath": "docs/evidence/cli-setup9-20261010/followup/windows/f97/npm-record-empty-listeners.json",
+      "bytes": 996,
+      "sha256": "19d8a16f64cba02209af5811faf763327d45b8acd65b84ffd19dc3c6a14fd3e6"
+    },
+    {
+      "path": "f97/npm-record-original.json",
+      "repositoryPath": "docs/evidence/cli-setup9-20261010/followup/windows/f97/npm-record-original.json",
+      "bytes": 1246,
+      "sha256": "a055629516ef3a7006d447e52a0fed3910c31f5ad44e8e6ff0956ffceb39d66b"
+    },
+    {
+      "path": "f97/npm-record-wrong-port.json",
+      "repositoryPath": "docs/evidence/cli-setup9-20261010/followup/windows/f97/npm-record-wrong-port.json",
+      "bytes": 1083,
+      "sha256": "49d8b069d9144d1691924a054a2de43397bd24442b7d3ed722f5058a49c7817c"
+    },
+    {
+      "path": "f97/npm-wrong-port-exit.txt",
+      "repositoryPath": "docs/evidence/cli-setup9-20261010/followup/windows/f97/npm-wrong-port-exit.txt",
+      "bytes": 2,
+      "sha256": "4355a46b19d348dc2f57c046f8ef63d4538ebb936000f3c9ee954a27460dd865"
+    },
+    {
+      "path": "f97/npm-wrong-port-internal-log.txt",
+      "repositoryPath": "docs/evidence/cli-setup9-20261010/followup/windows/f97/npm-wrong-port-internal-log.txt",
+      "bytes": 544,
+      "sha256": "85e57180a27b82b3a96a53158e4c1ad37cab4a63385ed7286f0b3a948a8fa92d"
+    },
+    {
+      "path": "f97/npm-wrong-port-outer.txt",
+      "repositoryPath": "docs/evidence/cli-setup9-20261010/followup/windows/f97/npm-wrong-port-outer.txt",
+      "bytes": 2474,
+      "sha256": "99998ca86779e6d46453bd50a689971119e7610f28a34f61c3f11f07a7cf9a81"
+    },
+    {
+      "path": "f97/npm-wrong-port-proc-snap.txt",
+      "repositoryPath": "docs/evidence/cli-setup9-20261010/followup/windows/f97/npm-wrong-port-proc-snap.txt",
+      "bytes": 165,
+      "sha256": "548515df42bf5566264e12cc17deab69018a9a4b82a2676089d5e741d70ef4e7"
+    },
+    {
+      "path": "fixtures/calls.log",
+      "repositoryPath": "docs/evidence/cli-setup9-20261010/followup/windows/fixtures/calls.log",
+      "bytes": 5341,
+      "sha256": "7c7090c2bef1a9b51c01afc41effc62224609beedf36c4b26c91d54c04cea17f"
+    },
+    {
+      "path": "fixtures/node.cmd",
+      "repositoryPath": "docs/evidence/cli-setup9-20261010/followup/windows/fixtures/node.cmd",
+      "bytes": 629,
+      "sha256": "98672b9fc4f871aefc1d17e6b43104edf5e651b75d726825f2683cfe13784287"
+    },
+    {
+      "path": "fixtures/npm.cmd",
+      "repositoryPath": "docs/evidence/cli-setup9-20261010/followup/windows/fixtures/npm.cmd",
+      "bytes": 2008,
+      "sha256": "19657a9beafea2b41a8b8ce4c051a0fa5b5b2954b59b0c2a8118adc792a8ddf6"
+    },
+    {
+      "path": "scripts/cli9f-setup.py",
+      "repositoryPath": "docs/evidence/cli-setup9-20261010/followup/windows/scripts/cli9f-setup.py",
+      "bytes": 887,
+      "sha256": "7c5e7cbdcf1b5ca169dcae8dbb351c74d8475722b1b4a39ec81ea803d65101f9"
+    },
+    {
+      "path": "scripts/daily-snapshot.ps1",
+      "repositoryPath": "docs/evidence/cli-setup9-20261010/followup/windows/scripts/daily-snapshot.ps1",
+      "bytes": 1957,
+      "sha256": "61b69f0da661f660e1b5930b10e895c551e7deab0fcdad4941efdb5ae15ff845"
+    },
+    {
+      "path": "scripts/dsh-plugin.ps1",
+      "repositoryPath": "docs/evidence/cli-setup9-20261010/followup/windows/scripts/dsh-plugin.ps1",
+      "bytes": 779,
+      "sha256": "b4f05b4f10aa9824ed9aa7b7e557029154d7072a0c823e7461e6f58d6fedbe35"
+    },
+    {
+      "path": "scripts/env-npm.ps1",
+      "repositoryPath": "docs/evidence/cli-setup9-20261010/followup/windows/scripts/env-npm.ps1",
+      "bytes": 1103,
+      "sha256": "a8721021093c518295cc51f7627c8845d8add5b511636bdf9340d5c690607c29"
+    },
+    {
+      "path": "scripts/f97-run.ps1",
+      "repositoryPath": "docs/evidence/cli-setup9-20261010/followup/windows/scripts/f97-run.ps1",
+      "bytes": 1326,
+      "sha256": "76e0c99617d253370a78a604c9df3f93785576ae2febfc2478e0be944f3c07b3"
+    },
+    {
+      "path": "scripts/prefix-fingerprint.sh",
+      "repositoryPath": "docs/evidence/cli-setup9-20261010/followup/windows/scripts/prefix-fingerprint.sh",
+      "bytes": 451,
+      "sha256": "0186eedf42540a842ec081adf2a1fdff4b164feda7bb595d2c1fbffd439d78b9"
+    },
+    {
+      "path": "scripts/preflight.ps1",
+      "repositoryPath": "docs/evidence/cli-setup9-20261010/followup/windows/scripts/preflight.ps1",
+      "bytes": 939,
+      "sha256": "41fd33cbd9a296a7a3a645ffb828c801d946e0f3b4782d3b530ab2389548bed1"
+    },
+    {
+      "path": "scripts/start-desktop-host.ps1",
+      "repositoryPath": "docs/evidence/cli-setup9-20261010/followup/windows/scripts/start-desktop-host.ps1",
+      "bytes": 2427,
+      "sha256": "c7d9f8952be8bcb096f16b406eca97baaabc0207ff5c7eb6575dec4b8c525b44"
+    },
+    {
+      "path": "scripts/start-npm-host.ps1",
+      "repositoryPath": "docs/evidence/cli-setup9-20261010/followup/windows/scripts/start-npm-host.ps1",
+      "bytes": 1944,
+      "sha256": "c5a3075478002ca356524bbf5e4a60b08a873c8b4a3de935d4c70eefde69c2b5"
+    },
+    {
+      "path": "scripts/stop-host-4check.ps1",
+      "repositoryPath": "docs/evidence/cli-setup9-20261010/followup/windows/scripts/stop-host-4check.ps1",
+      "bytes": 2441,
+      "sha256": "c0ee113eef135dfa93a568bc9209e561a7d55ba7e9d5f80ecfca40d26282d21d"
+    },
+    {
+      "path": "scripts/validate-fixtures.ps1",
+      "repositoryPath": "docs/evidence/cli-setup9-20261010/followup/windows/scripts/validate-fixtures.ps1",
+      "bytes": 1411,
+      "sha256": "f813454403d677424956c7daab79ff92412e83b079e06aea6a2e9a23b517ab66"
+    },
+    {
+      "path": "verifier/run-canonical-verify.ps1",
+      "repositoryPath": "docs/evidence/cli-setup9-20261010/followup/windows/verifier/run-canonical-verify.ps1",
+      "bytes": 876,
+      "sha256": "da25fdffdeb22350019fb62befc6e24e834967f8a8fe8efb162c7405924923c2"
+    },
+    {
+      "path": "verifier/verify-native-exit.txt",
+      "repositoryPath": "docs/evidence/cli-setup9-20261010/followup/windows/verifier/verify-native-exit.txt",
+      "bytes": 2,
+      "sha256": "9a271f2a916b0b6ee6cecb2426f0b3206ef074578be55d9bc94f6f3fe3ab86aa"
+    },
+    {
+      "path": "verifier/verify-native.txt",
+      "repositoryPath": "docs/evidence/cli-setup9-20261010/followup/windows/verifier/verify-native.txt",
+      "bytes": 1644,
+      "sha256": "209bcb57a7a9be60b1817e2b0bd9278a61c65f97d58243c785efdaa7cb959f2c"
+    }
+  ]
+}

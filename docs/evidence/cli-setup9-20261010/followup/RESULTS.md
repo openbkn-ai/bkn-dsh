@@ -1,6 +1,6 @@
 # -9 CLI 体验与验收工具收尾：Mac 实测结果
 
-结论：目录路径提示、主面板设置/安装引导、已保存 CLI 路径提示均已修复。在下载的新 CI 候选上，macOS 官方 npm 与 Desktop 两形态受影响检查通过：安装件各 69/69，一次产品按钮安装真实 SDK 0.1.5，保存并重开提示正确。Desktop 还捕获了安装中关闭并重开后仍安装、持续锁定的状态。Windows 新包与 canonical PowerShell 工具原生复测尚未执行；不合并、不发布、不打 tag、不迁移 latest。
+结论：目录路径提示、主面板设置/安装引导、已保存 CLI 路径提示均已修复。在下载的新 CI 候选上，macOS 官方 npm 与 Desktop 两形态受影响检查通过：安装件各 69/69，一次产品按钮安装真实 SDK 0.1.5，保存并重开提示正确。Desktop 还捕获了安装中关闭并重开后仍安装、持续锁定的状态。本文件保留 Mac 采集窗口及其限制；之后 Windows 已回传同候选的 F90–F97，见 [Windows RESULTS](windows/RESULTS.md)。2026-10-11 证据收尾不改包，PR 合并与主线 build-only 比对已获授权，尚未发布/tag/latest。
 
 ## 固定身份与环境
 
@@ -45,7 +45,7 @@
 ## 验收工具与旧 Windows 证据
 
 - canonical verifier 的 PS5.1 数组计数补括号；候选清单用 `.gitattributes -text` 保存不可转换字节。`crlf-checkout-oracle.json` 实际启用 `core.autocrlf=true`、提交、删除、checkout，输入/checkout/Git blob 均为当前清单 `30948677…`。这不能替代 Windows 原生 PowerShell 执行。
-- canonical `stop-owned-host.ps1` 对 PID、创建时间、exe、非空已记录 listener 全匹配才停止，停止后仍有记录内进程/监听也报失败。Windows 需原生验证错误/空 listener 拒绝与有效记录停止。
+- canonical `stop-owned-host.ps1` 对 PID、创建时间、exe、非空已记录 listener 全匹配才停止，停止后仍有记录内进程/监听也报失败。后续 Windows F97 已原生验证错误/空 listener 拒绝与有效记录停止，不能将其归入此前 Mac 采集窗口。
 - [旧 Windows 回传复核](WINDOWS-REVIEW.md) 固定 `a2504c54dbd3855b53dd2e13c568f565ba4c04aa`。它是旧候选 C90–C99 的历史基线，不是新包结果。1157 条选定文件记录与列出的摘要前后一致；环境变量名称摘要不证明全部值。observer 原件 CRLF 与 Git LF 分列，不写成逐字节一致。历史停止 helper 的 listener 告警不当作拒绝证明。
 - Windows C98 既有鉴权失败保持未构造，单测不替代现场；本轮无需平台/模型凭据。Desktop 旧测试 Key 来源未定责，持有人表示会撤销，未收到完成确认；属于宿主/持有人处理，不扩大 -9。
 
@@ -62,4 +62,4 @@
 
 本轮新增/更新文件的凭据模式扫描见 `credential-scan.json`，两张产品截图已查看。提交后实际读 Git blob 与当前原件字节比对，结果见 `git-blob-consistency.json`；证明文件不自引用，目标为首个交付提交，随后只增加该证明文件。
 
-下一步由 Windows agent 执行 [WINDOWS-FOLLOWUP.md](../../../handoff/2026-10-10-cli-setup9/WINDOWS-FOLLOWUP.md) 的 F90–F97，回传独立证据分支。Mac 本轮测试 Host 已停止，私有 launch 日志留在本机；隔离 SDK/prefix/cache/profile 保留复核。10/10 仅指列明文件，不延伸到整个用户目录或全机器状态。
+Windows 已按 [WINDOWS-FOLLOWUP.md](../../../handoff/2026-10-10-cli-setup9/WINDOWS-FOLLOWUP.md) 完成 F90–F97；剩余任务仅为 [来源/字节补证](../../../handoff/2026-10-10-cli-setup9/WINDOWS-EVIDENCE-CLOSEOUT.md)，不再重跑矩阵。Mac 本轮测试 Host 已停止，私有 launch 日志留在本机；隔离 SDK/prefix/cache/profile 保留复核。10/10 仅指列明文件，不延伸到整个用户目录或全机器状态。
