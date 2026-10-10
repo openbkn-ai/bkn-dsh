@@ -1,0 +1,32 @@
+{
+  "checkedAt": "2026-10-10T02:02:21.891796+00:00",
+  "package": "@openbkn/dsh-business-context",
+  "version": "0.2.0-rc.2-openbkn.0.2.0-8",
+  "registry": "https://registry.npmjs.org",
+  "registryTags": {
+    "latest": "0.2.0-rc.2-openbkn.0.2.0-8",
+    "rc": "0.2.0-rc.2-openbkn.0.2.0-8"
+  },
+  "latestSpecifier": "@openbkn/dsh-business-context@latest",
+  "latestMetadata": {
+    "version": "0.2.0-rc.2-openbkn.0.2.0-8",
+    "dist.integrity": "sha512-6Ay6JnHEWWREv0Fdis/C5N9k37qapxOMy44IFBOPWsaU2IIlzuM37zCVuSiHFHKkrJbb1DR6KK98EAoCYfwS+w==",
+    "dist.shasum": "701e8577b9bc62e4d7d8e34edff5dd779e437729",
+    "dist.tarball": "https://registry.npmjs.org/@openbkn/dsh-business-context/-/dsh-business-context-0.2.0-rc.2-openbkn.0.2.0-8.tgz",
+    "gitHead": "fc4f2c49cdfdff8a50a2a4880072cd8db1a2b7f8"
+  },
+  "latestPromotionVerified": true,
+  "maintainerConfirmation": "The user confirmed local npm login and latest promotion. The promotion timestamp was not independently captured.",
+  "tarballBytes": 175186,
+  "tarballSha256": "fc577a852ab0fcd2124dd94a80a654eae22155a222f9629987e98c88148752bc",
+  "integrityMatchesPreviouslyDownloadedPublicTarball": true,
+  "sha1MatchesPreviouslyDownloadedPublicTarball": true,
+  "releaseCommitMatches": true,
+  "previousPublicationSnapshot": "publication-assets-verification.json",
+  "scope": "Fresh public registry metadata reads and digest comparison with the previously downloaded public tarball; no new host installation or acceptance run.",
+  "commands": [
+    "npm view @openbkn/dsh-business-context dist-tags --registry=https://registry.npmjs.org --prefer-online --cache /private/tmp/bkn-firstuse8-final-registry-cache --json",
+    "npm view @openbkn/dsh-business-context@latest version dist.integrity dist.shasum dist.tarball gitHead --registry=https://registry.npmjs.org --prefer-online --cache /private/tmp/bkn-firstuse8-final-latest-cache --json",
+    "Compare SHA-1, SHA-256, SHA-512 integrity and size of the previously downloaded public tarball with the registry metadata and prior publication snapshot."
+  ]
+}

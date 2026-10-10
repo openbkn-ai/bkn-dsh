@@ -1,8 +1,8 @@
 # -8 发布核验
 
-日期：2026-10-10（Asia/Taipei）。本记录截至公开发行物核验完成、首次 latest 写入返回 E401 的时点。用户已授权发布，剩余认证步骤不代表再次等待发布批准。
+日期：2026-10-10（Asia/Taipei）。本记录已补齐维护者完成 latest 迁移后的公开注册表实读结果；首次 E401 与迁移前的注册表快照仍保留在原核验文件中。
 
-**npm rc 和 GitHub Release 已发布，公开包核验通过；本记录时 npm latest 仍为 -7，尚未完成最终迁移。** 本机维护者登录失效，已请用户在自己的终端完成登录及 npm 二次验证；不在聊天或证据中收集 Token/验证码。
+**-8 发布完成：npm latest、rc 均为 `0.2.0-rc.2-openbkn.0.2.0-8`，GitHub Release 与公开包核验通过。** 用户已在自己的终端完成登录和 latest 迁移；随后独立读取官方注册表，确认 `@latest` 的版本、源码提交、下载地址及 integrity 对应已核验的公开发行包。见 [latest-promotion-verification.json](latest-promotion-verification.json)。
 
 ## 固定发行身份
 
@@ -13,7 +13,7 @@
 | main / 发布 tag 指向 | `fc4f2c49cdfdff8a50a2a4880072cd8db1a2b7f8` / `v0.2.0-rc.2-openbkn.0.2.0-8` |
 | main build-only | [37973006719](https://github.com/openbkn-ai/bkn-dsh/actions/runs/37973006719)，success |
 | 正式发布 | [37973935334](https://github.com/openbkn-ai/bkn-dsh/actions/runs/37973935334)，build/test/publish 和 GitHub Release 均 success；npm OIDC + provenance |
-| 公开 npm 版本 | `@openbkn/dsh-business-context@0.2.0-rc.2-openbkn.0.2.0-8`；普通 `npm view …@rc version` 实读为 -8 |
+| 公开 npm 版本 | `@openbkn/dsh-business-context@0.2.0-rc.2-openbkn.0.2.0-8`；latest、rc 与 `@latest` 实读均为 -8 |
 | 公开发行页 | [GitHub Release](https://github.com/openbkn-ai/bkn-dsh/releases/tag/v0.2.0-rc.2-openbkn.0.2.0-8) |
 | 公开 tgz | 175186 字节、66 文件；SHA-256 `fc577a852ab0fcd2124dd94a80a654eae22155a222f9629987e98c88148752bc` |
 | 验收/主线 build-only tgz | 175800 字节；SHA-256 `6a946030a6152d2899609fac95c66cd246e36cca5a8ce4e5f87ed379cbe706ea` |
@@ -38,9 +38,11 @@ PR #83 的非阻塞意见是旧索引的范围不明确。本次为 [EVIDENCE-FI
 
 推送提示的既有 [MCP SDK OAuth 依赖告警](https://github.com/advisories/GHSA-6qxp-vccf-f47h) 已只读核对。固定插件的 `openbkn-mcp-manager.ts` 连接通过 CLI Token 的 Bearer header，rc.2 的 `dsh-mcp-client` 仅传 `requestInit.headers`，没有配置 SDK `authProvider`。因此该插件连接路径未使用告警涉及的 OAuth provider 凭据流程；不将此扩大为整个 DSH 无漏洞结论，宿主依赖告警保留后续跟进。
 
-## 剩余步骤与下载位置
+## latest 迁移完成与下载位置
 
-首次执行 `npm dist-tag add … latest` 实际返回 E401。此记录的注册表快照为 `rc=-8 / latest=-7`；latest 的最终状态应以实时注册表为准。验证先后顺序已满足，最后只剩维护者在本机完成认证后迁移并实读确认。
+首次执行 `npm dist-tag add … latest` 实际返回 E401；[publication-assets-verification.json](publication-assets-verification.json) 保留该时点的 `rc=-8 / latest=-7`，不追溯改写。用户确认完成迁移后，本次重新实读官方注册表，得到 `latest=-8 / rc=-8`；`@latest` 的 SHA-1 与 SHA-512 integrity 均匹配此前下载的公开包，源码仍为发布 tag 指向的 `fc4f2c49cdfdff8a50a2a4880072cd8db1a2b7f8`。新记录的 checkedAt 是复核时间，不冒充维护者执行迁移的时间。
+
+用户可在 DSH 的“添加插件”中填写 `@openbkn/dsh-business-context@latest`。本次仅核对公共注册表和发行包身份，没有新增 Host 安装或验收轮次；原验收范围与已知限制不变。
 
 本机已核验的**公开发行包**：
 
