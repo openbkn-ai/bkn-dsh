@@ -15,6 +15,8 @@ function fixture(platform: NodeJS.Platform = 'darwin') {
   let installCode = 0, installError = '', versionCode = 0, version = '0.1.5', nodeVersion = 'v24.19.0', postVerify = true
   let release: (() => void) | undefined
   let held = false
+  let hangCommand: string | undefined
+  const aborts: { argv: readonly string[]; reason: unknown }[] = []
   const subprocess: CliSubprocess = {
     async resolveExecutable(command, _env, signal) {
       signal?.throwIfAborted()
@@ -27,9 +29,24 @@ function fixture(platform: NodeJS.Platform = 'darwin') {
       assert.equal(spec.stdio.stdin.data, '')
       let stdout = '', stderr = '', code = 0
       const done = (async () => {
+        spec.signal?.throwIfAborted()
+        if ((held && spec.argv[1] === 'install') || spec.argv[1] === hangCommand) {
+          await new Promise<void>((resolve, reject) => {
+            // Like a real child, a pending fixture keeps the event loop alive.
+            const alive = setInterval(() => {}, 1000)
+            const finish = () => { clearInterval(alive); spec.signal?.removeEventListener('abort', abort); resolve() }
+            const abort = () => {
+              clearInterval(alive)
+              aborts.push({ argv: spec.argv, reason: spec.signal?.reason })
+              reject(spec.signal?.reason)
+            }
+            release = finish
+            spec.signal?.addEventListener('abort', abort, { once: true })
+          })
+        }
+        spec.signal?.throwIfAborted()
         if (spec.argv[0] === npm && spec.argv[1] === 'prefix') stdout = prefix
         else if (spec.argv[0] === npm && spec.argv[1] === 'install') {
-          if (held) await new Promise<void>(resolve => { release = resolve })
           code = installCode; stderr = installError
           if (code === 0 && postVerify) available.set(binary, binary)
         } else if (spec.argv[0] === node) stdout = nodeVersion
@@ -43,11 +60,12 @@ function fixture(platform: NodeJS.Platform = 'darwin') {
     },
   }
   const setup = new OpenBknCliSetup(subprocess, '/work', { platform, home: platform === 'win32' ? 'C:\\Users\\tester' : '/user', env: {}, exists: async file => files.has(file) })
-  return { setup, available, files, commands, prefix, npm, node, binary,
+  return { setup, available, files, commands, aborts, prefix, npm, node, binary,
     setInstall: (code: number, error: string) => { installCode = code; installError = error },
     setVersion: (code: number, value: string) => { versionCode = code; version = value },
     setNode: (value: string) => { nodeVersion = value },
     hold: () => { held = true }, release: () => release?.(), noVerification: () => { postVerify = false },
+    hang: (command: string) => { hangCommand = command },
   }
 }
 
@@ -83,6 +101,24 @@ test('Windows lookup uses the real .cmd path including spaces', async () => {
   const f = fixture('win32')
   assert.equal((await f.setup.install('openbkn')).resolvedPath, 'C:\\CLI Folder\\openbkn.cmd')
   assert.deepEqual(f.commands.at(-1), [f.binary, '--version'])
+})
+
+test('the Windows default openbkn.cmd alias uses fallback discovery and explicit install', async () => {
+  for (const command of ['openbkn.cmd', 'OPENBKN.CMD']) {
+    const f = fixture('win32')
+    assert.deepEqual(await f.setup.check(command), { state: 'missing', canInstall: true })
+    assert.equal(f.commands.some(argv => argv[1] === 'install'), false)
+    assert.equal((await f.setup.install(command)).resolvedPath, f.binary)
+    assert.equal(f.commands.filter(argv => argv[1] === 'install').length, 1)
+    assert.equal((await f.setup.check(command)).resolvedPath, f.binary)
+  }
+})
+
+test('a missing absolute Windows .cmd path stays custom and cannot install', async () => {
+  const f = fixture('win32')
+  assert.equal((await f.setup.install('C:\\custom\\openbkn.cmd')).reason, 'custom-path-missing')
+  assert.equal(f.commands.some(argv => argv[1] === 'install'), false)
+  assert.equal((await fixture().setup.install('openbkn.cmd')).reason, 'custom-path-missing')
 })
 
 test('missing custom paths and invalid path input cannot trigger installation', async () => {
@@ -181,6 +217,57 @@ test('aborted read-only detection does not install or project a success', async 
   controller.abort()
   await assert.rejects(f.setup.check('openbkn', controller.signal), { name: 'AbortError' })
   assert.equal(f.commands.length, 0)
+})
+
+test('a hung CLI version command receives the 5-second abort and reports timeout', async t => {
+  const original = AbortSignal.timeout.bind(AbortSignal)
+  const requested: number[] = []
+  // Accelerate real abort delivery, while asserting the production budget.
+  t.mock.method(AbortSignal, 'timeout', (ms: number) => {
+    requested.push(ms)
+    return original(ms === 5_000 ? 10 : ms)
+  })
+  const f = fixture()
+  f.available.set('openbkn', '/existing/openbkn')
+  f.hang('--version')
+  assert.deepEqual(await f.setup.check('openbkn'), { state: 'blocked', canInstall: false, reason: 'timeout' })
+  assert.ok(requested.includes(5_000))
+  assert.equal(f.aborts.length, 1)
+  assert.equal((f.aborts[0]!.reason as Error).name, 'TimeoutError')
+  assert.equal(f.commands.some(argv => argv[1] === 'install'), false)
+})
+
+test('a hung install receives the 180-second abort, clears busy and never verifies success', async t => {
+  const original = AbortSignal.timeout.bind(AbortSignal)
+  const requested: number[] = []
+  t.mock.method(AbortSignal, 'timeout', (ms: number) => {
+    requested.push(ms)
+    return original(ms === 180_000 ? 10 : ms)
+  })
+  const f = fixture()
+  f.hang('install')
+  const operation = f.setup.install('openbkn')
+  assert.equal(f.setup.isInstalling, true)
+  assert.deepEqual(await operation, { state: 'failed', canInstall: false, reason: 'timeout' })
+  assert.ok(requested.includes(180_000))
+  assert.equal(f.aborts.length, 1)
+  assert.equal((f.aborts[0]!.reason as Error).name, 'TimeoutError')
+  assert.equal(f.setup.isInstalling, false)
+  assert.equal(f.available.has(f.binary), false)
+  assert.deepEqual(await f.setup.check('openbkn'), { state: 'missing', canInstall: true })
+})
+
+test('Host disposal aborts an in-flight installer without leaving busy or reporting ready', async () => {
+  const f = fixture()
+  f.hold()
+  const operation = f.setup.install('openbkn')
+  while (!f.commands.some(argv => argv[1] === 'install')) await new Promise(resolve => setImmediate(resolve))
+  f.setup.dispose()
+  assert.deepEqual(await operation, { state: 'failed', canInstall: false, reason: 'installation-failed' })
+  assert.equal(f.aborts.length, 1)
+  assert.equal((f.aborts[0]!.reason as Error).name, 'AbortError')
+  assert.equal(f.setup.isInstalling, false)
+  assert.equal(f.available.has(f.binary), false)
 })
 
 test('version availability cannot clear earlier CLI/authentication diagnostic failures', async () => {

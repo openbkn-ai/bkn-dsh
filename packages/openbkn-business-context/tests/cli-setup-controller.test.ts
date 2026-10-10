@@ -62,6 +62,21 @@ test('an older detection response cannot replace a new edited path result', asyn
   assert.equal(resolved, '')
   controller.dispose()
 })
+test('polling a Host installation keeps the installing state while awaiting the check', async () => {
+  const result = deferred<OpenBknCliSetupView>()
+  let calls = 0
+  const controller = new CliSetupController({
+    checkCli: async () => ++calls === 1 ? { state: 'installing', canInstall: false } : await result.promise,
+    installCli: async () => ready,
+  }, () => {})
+  await controller.check('openbkn')
+  const poll = controller.check('openbkn')
+  assert.equal(controller.snapshot().phase, 'installing')
+  result.resolve(ready)
+  await poll
+  assert.equal(controller.snapshot().phase, 'ready')
+  controller.dispose()
+})
 test('blocked and failure reasons never claim installed or require a restart as proven', async () => {
   let installs = 0
   const controller = new CliSetupController({ checkCli: async () => ({ state: 'blocked', canInstall: false, reason: 'npm-missing' }), installCli: async () => { installs++; return ready } }, () => {})

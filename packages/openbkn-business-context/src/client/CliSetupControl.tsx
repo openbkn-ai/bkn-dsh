@@ -6,7 +6,7 @@ export function CliSetupControl({ cliPath, disabled, port, onResolved, onBusy }:
   disabled: boolean
   port: CliSetupPort
   onResolved(path: string): void
-  onBusy(busy: boolean): void
+  onBusy(busy: boolean, installing: boolean): void
 }) {
   const current = useRef({ port, onResolved, onBusy })
   current.current = { port, onResolved, onBusy }
@@ -17,11 +17,13 @@ export function CliSetupControl({ cliPath, disabled, port, onResolved, onBusy }:
   const [state, setState] = useState<CliSetupState>(controller.snapshot())
   useEffect(() => {
     const disconnect = controller.subscribe(() => setState(controller.snapshot()))
-    return () => { disconnect(); controller.dispose(); current.current.onBusy(false) }
+    return () => { disconnect(); controller.dispose(); current.current.onBusy(false, false) }
   }, [controller])
   useEffect(() => { if (!disabled) void controller.check(cliPath) }, [controller, cliPath, disabled])
   const busy = state.phase === 'checking' || state.phase === 'installing'
-  useEffect(() => { current.current.onBusy(busy) }, [busy])
+  const installing = state.phase === 'installing'
+  // A read-only check must not disable the path field and steal typing focus.
+  useEffect(() => { current.current.onBusy(busy, installing) }, [busy, installing])
   return <div>
     <p role="status" aria-live="polite" style={{ margin: '10px 0', fontSize: 13, color: '#64748b', lineHeight: 1.6 }}>{cliSetupMessage(state)}</p>
     {state.phase !== 'ready' ? <>

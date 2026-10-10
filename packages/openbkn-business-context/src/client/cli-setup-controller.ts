@@ -52,7 +52,8 @@ export class CliSetupController {
     clearTimeout(this.timer)
     const revision = ++this.revision
     const controller = this.reading = new AbortController()
-    this.publish({ phase: 'checking' })
+    // Polling a Host-owned install must keep its input lock until it settles.
+    if (this.state.phase !== 'installing') this.publish({ phase: 'checking' })
     try {
       const result = await this.port.checkCli(cliPath, controller.signal)
       if (!this.current(revision)) return undefined

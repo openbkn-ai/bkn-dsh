@@ -73,7 +73,9 @@ export class OpenBknCliSetup {
     try {
       const direct = await this.verify(cliPath, signalWithLimit)
       if (direct !== undefined) return { view: direct }
-      if (cliPath !== 'openbkn') return { view: blocked('custom-path-missing') }
+      const defaultCommand = cliPath === 'openbkn'
+        || (this.environment.platform === 'win32' && cliPath.toLowerCase() === 'openbkn.cmd')
+      if (!defaultCommand) return { view: blocked('custom-path-missing') }
 
       for (const candidate of this.standardCandidates()) {
         const found = await this.verify(candidate, signalWithLimit)
