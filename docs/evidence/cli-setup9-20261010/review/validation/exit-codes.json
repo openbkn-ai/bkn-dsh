@@ -1,0 +1,76 @@
+[
+  {
+    "check": "repo-tests",
+    "command": [
+      "node",
+      "--test",
+      "/Users/kalias/Documents/project/app/openBKN/bkn-dsh-first-use8-b1-handoff/compat/dsh-0.2.0-rc.2/tests/verify.test.mjs",
+      "/Users/kalias/Documents/project/app/openBKN/bkn-dsh-first-use8-b1-handoff/compat/dsh-0.2.0-rc.2/tests/apply.test.mjs",
+      "/Users/kalias/Documents/project/app/openBKN/bkn-dsh-first-use8-b1-handoff/tests/launcher-node-guard.test.mjs",
+      "/Users/kalias/Documents/project/app/openBKN/bkn-dsh-first-use8-b1-handoff/tests/prepare-compatible-runtime-profile-cli.test.mjs",
+      "/Users/kalias/Documents/project/app/openBKN/bkn-dsh-first-use8-b1-handoff/tests/build-compatible-runtime-cli.test.mjs",
+      "/Users/kalias/Documents/project/app/openBKN/bkn-dsh-first-use8-b1-handoff/tests/build-script-manifest-errors.test.mjs",
+      "/Users/kalias/Documents/project/app/openBKN/bkn-dsh-first-use8-b1-handoff/tests/compatible-runtime-build.test.mjs",
+      "/Users/kalias/Documents/project/app/openBKN/bkn-dsh-first-use8-b1-handoff/tests/claude-review-plan.test.mjs",
+      "/Users/kalias/Documents/project/app/openBKN/bkn-dsh-first-use8-b1-handoff/tests/configure-pinned-dsh-generator.test.mjs",
+      "/Users/kalias/Documents/project/app/openBKN/bkn-dsh-first-use8-b1-handoff/tests/prepare-runtime-profile.test.mjs",
+      "/Users/kalias/Documents/project/app/openBKN/bkn-dsh-first-use8-b1-handoff/tests/compatible-runtime-bundle.test.mjs",
+      "/Users/kalias/Documents/project/app/openBKN/bkn-dsh-first-use8-b1-handoff/tests/plugin-release-notes.test.mjs",
+      "/Users/kalias/Documents/project/app/openBKN/bkn-dsh-first-use8-b1-handoff/tests/package-compatible-runtime.test.mjs",
+      "/Users/kalias/Documents/project/app/openBKN/bkn-dsh-first-use8-b1-handoff/tests/bundle-portability.test.mjs",
+      "/Users/kalias/Documents/project/app/openBKN/bkn-dsh-first-use8-b1-handoff/tests/runtime-plugin-bootstrap.test.mjs",
+      "/Users/kalias/Documents/project/app/openBKN/bkn-dsh-first-use8-b1-handoff/runtime/tests/runtime-manifest.test.mjs"
+    ],
+    "exitCode": 0
+  },
+  {
+    "check": "plugin-tests",
+    "command": [
+      "pnpm",
+      "--filter",
+      "@openbkn/dsh-business-context",
+      "test"
+    ],
+    "exitCode": 0
+  },
+  {
+    "check": "typecheck",
+    "command": [
+      "pnpm",
+      "--filter",
+      "@openbkn/dsh-business-context",
+      "typecheck"
+    ],
+    "exitCode": 0
+  },
+  {
+    "check": "package-check",
+    "command": [
+      "pnpm",
+      "run",
+      "package:check"
+    ],
+    "exitCode": 0
+  },
+  {
+    "check": "diff-check",
+    "command": [
+      "git",
+      "diff",
+      "--check"
+    ],
+    "exitCode": 0
+  },
+  {
+    "check": "pack",
+    "command": [
+      "pnpm",
+      "--filter",
+      "@openbkn/dsh-business-context",
+      "pack",
+      "--pack-destination",
+      "/Users/kalias/Documents/project/app/openBKN/bkn-dsh-first-use8-b1-handoff/release/cli-setup9-review-local"
+    ],
+    "exitCode": 0
+  }
+]

@@ -1,64 +1,76 @@
-# -9 CLI setup：Mac 实测与固定候选
+# -9 CLI setup：评审修复与固定候选
 
-结论：本轮仅实现 CLI 检测、显式自动安装、状态提示。在 macOS 官方 npm DSH 与官方 Desktop `0.2.0-rc.2` 上，最终 CI 包的安装件均 **69/69 一致**，产品按钮均完成真实 SDK 0.1.5 安装及路径保存。Windows 原生验收、PR 评审、发布仍待完成；不据此宣称完整 G6、平台或鉴权验收。
+结论：PR #86 的输入失焦阻塞项及两项非阻塞项均已修复，源码 `cf591d7` 已获独立 APPROVED。评审后重新产出 CI 包，并在 macOS 官方 npm DSH 与官方 Desktop `0.2.0-rc.2` 上完成受影响验收：两种安装件均 **69/69 一致**，产品按钮各安装一次真实 SDK 0.1.5，路径保存并重开正确。Windows 原生复测、合并及发布仍未完成；本轮仅涉及 CLI 检测、显式安装和状态提示。
 
-## 身份与环境
+## 当前候选身份
 
 | 项 | 值 |
 |---|---|
-| 最终源码 | `e669bd6a1d51083f6b7f6c753b87d72c236a3193` |
-| build-only CI | [38023447204](https://github.com/openbkn-ai/bkn-dsh/actions/runs/38023447204)，success，publish=false |
-| 版本 | `0.2.0-rc.2-openbkn.0.2.0-9` |
-| CI tgz SHA-256 | `006f74349f7ef1c059032dd76a89ebc6626b6fce78eab330b35c073a91c098f6` |
-| tgz | 183068 bytes / 69 files；[manifest](candidate-manifest.json) / [逐文件清单](candidate-files.json) |
-| npm Host | `/Users/kalias/Documents/project/app/openBKN/dsh-npm-020/node_modules/@deepseek-ai/dsh/lib/bin.js` |
-| Desktop | `/Applications/DeepSeek Harness.app/Contents/MacOS/DeepSeek Harness`，bundle `0.2.0-rc.2` |
-| 环境 | macOS，真实 Node 24.19.0 / npm 11.17.0；registry 保持本机配置 `https://registry.npmmirror.com` |
-| 隔离 | `/private/tmp/bkn-cli9-mac/{npm,desktop}`；各自 DSH_HOME、BKN_CONFIG_DIR、npm prefix/cache、Electron user-data-dir |
-| 最终安装 prefix | 各自 `sdk-prefix-final`；此前的 `sdk-prefix` 留作首轮证据，不覆盖日常全局 CLI |
+| 源码 | `cf591d7cbd4af202d0bd893aab57202a72ec1644` |
+| build-only CI | [38028568470](https://github.com/openbkn-ai/bkn-dsh/actions/runs/38028568470)，success，publish=false |
+| 版本 | `0.2.0-rc.2-openbkn.0.2.0-9`，未发布 |
+| tgz SHA-256 | `de8d216049b160f92c46d22ab1db37b4225b4424923e7efc3db404b116327630` |
+| tgz | 183195 bytes / 69 files；[manifest](candidate-manifest.json) / [逐文件清单](candidate-files.json) |
+| npm Host | `/Users/kalias/Documents/project/app/openBKN/dsh-npm-020/node_modules/@deepseek-ai/dsh/lib/bin.js`，官方 rc.2 |
+| Desktop | `/Applications/DeepSeek Harness.app/Contents/MacOS/DeepSeek Harness`，官方 rc.2 |
+| Node / npm / registry | 24.19.0 / 11.17.0；保持本机 `https://registry.npmmirror.com` |
+| 隔离 | `/private/tmp/bkn-cli9-mac/{npm,desktop}`，独立 DSH_HOME、空 BKN_CONFIG_DIR、prefix/cache、Electron user-data-dir |
+| 本轮 SDK prefix | 各自 `sdk-prefix-review`；此前 prefix 留作历史，不覆盖日常 CLI |
+| 平台/鉴权 | `https://cli9-no-platform.invalid`；没有平台登录、模型请求或凭据借用 |
 
-[上游基线](upstream-baseline.json) 对照支持的 DSH rc.2 与当日 DSH/Foundry/SDK 上游。SDK 固定为已发布 0.1.5，不追随 SDK main。Node 前置条件遵循本项目 `^22.19.0 || >=24.0.0`，比 SDK 的最低版本条件更严格。
+[上游基线](upstream-baseline.json) 与 [本轮刷新](review/upstream-refresh.json) 均已核对 DSH/Foundry/SDK；未改变支持的 DSH rc.2 或已发布 SDK 0.1.5。Node 安装前置条件为 `^22.19.0 || >=24.0.0`，明确拒绝 Node 23。
 
-本地最终 pack 与 CI 的 69 个解包文件逐项一致，压缩 tgz 字节不同；接受对象是 **CI 下载包**，不是本地 pack。CI 不发布 npm，不生成 tag；root CHANGELOG/本报告/交接后的提交不进入 tgz。
+本地 pack 与 CI **69 个解包文件逐项一致**，压缩字节不同。接受对象为下载的 CI tgz；CI 的 npm 发布和 latest 步骤均跳过。此后文档提交不进入 tgz，无须仅为文档再次出包。
 
-## 实测与证据层级
+## PR #86 评审修复
 
-| 项 | 结果与范围 | 原件 |
+| 发现 | 修复 | 验证 |
 |---|---|---|
-| 最终安装身份 | npm + Desktop 各 69/69，缺失/差异/额外文件全空；Desktop 原生管理器重装后重启 Host | `mac/*-final-installed-identity.json` |
-| 只读检测 | 首轮两形态缺失提示，无自动安装；最终 Desktop 新 prefix 再次显示未检测到 | `mac/preflight/desktop-missing-ax.txt`、`mac/desktop-final-missing-ax.txt`、首轮 API |
-| 真实安装 | 最终两形态产品按钮安装真实 SDK；独立实际 bin `--version` 均 exit 0 / 0.1.5；每个最终 prefix 恰好一次 install | `mac/*-final-cli-verification.json`、`mac/*-final-ready*` |
-| 路径与复用 | 不在 Host PATH 的 npm prefix 中找到 CLI，填入绝对路径；两形态均由“保存并继续”持久化。npm 再检测不触发 install | `mac/npm-final-reuse-api.json`、`mac/*-final-saved-patch.json`、设置 UI 原件 |
-| 权限/网络失败 | 首轮官方 npm Host 上，仅 npm install 子命令受控注入 EACCES/ECONNRESET；UI 明确失败，可重试，SECRET_CANARY 未进入状态/UI | `mac/preflight/npm-{permission,network}-failure-dom.txt`；是 **受控故障**，不是实际权限/网络事故 |
-| 自定义路径 | 首轮 npm UI 填不存在路径并点击按钮：提示修正路径，安装次数保持 3（两次受控失败+一次真实安装），未覆盖自定义路径 | `mac/preflight/npm-custom-path-{dom.txt,api.json}` |
-| npm 缺失 | 首轮临时隐藏测试 npm 后，真实 Host API 返回 blocked/npm-missing，恢复 wrapper | `mac/preflight/npm-no-npm-api.json`；API 证据，未冒充 UI 点击 |
-| Node 23 拒绝 | 源码收尾核对发现原条件可放行 23；修正并补回归。最终 npm Host 上仅 `node --version` 注入 v23.11.0，UI/API 均拒绝、SDK prefix 仍空、没有 install；随后恢复真实 Node 24 安装成功 | `mac/npm-node23-{fixture.json,dom.txt,api.json}`；**版本 fixture**，未声称实际安装 Node 23 |
-| 关闭面板 | 首轮两形态均在安装中关闭，再打开时取得可用终态。最终 npm 轮同样关闭安装中面板，真实 install 持续完成；重开后恢复默认命令检测新 prefix 并保存 | `mac/preflight/*installing*`、`mac/npm-final-installing-dom.txt`、最终安装记录 |
-| 状态语义 | 安装/检测不等于登录：隔离 BKN store 未新增文件，保存后产品仍显示 CLI 登录入口；最终 npm 诊断保留 not-logged-in | `mac/*-final-cli-verification.json`、`mac/npm-final-{saved-dom.txt,diagnostic-api.json}` |
+| 阻塞：输入首个字符就启动只读检测，继而禁用同一个路径输入框并失焦 | 将只读检测的 busy 与路径锁分开；仅显式设置及 Host 安装锁定路径。轮询保持 installing，显式预检查也保持锁 | 旧包 npm 输入 xx 只留 x 且焦点丢失；新包 npm 两字符及完整路径逐字输入均保持焦点。Desktop 两字符输入保留且聚焦。controller 测试覆盖轮询/预检查锁 |
+| 非阻塞：Windows bare openbkn.cmd 被错误归为自定义路径 | 仅在 win32 将大小写不敏感的 bare openbkn.cmd 作为默认别名；不存在的绝对路径仍拒绝自动安装 | Windows 分支、别名复用/安装及绝对路径拒绝由单测覆盖；原生 Windows 交接增加 C99，尚未运行 |
+| 非阻塞：超时 fixture 不响应 AbortSignal | 测试子进程 fixture 真实响应信号；加速实际 timeout，同时断言生产预算 5000/180000 ms | 检测超时、安装超时和 dispose 取消均有显式断言；未声称真实 OS 进程等待了完整 180 秒 |
+| 复审非阻塞：验收仍绑定旧包 | 新 build-only CI、新 manifest，重跑受影响 Mac 验收；旧记录保留为历史 | 当前身份见上表，当前证据位于 review/；旧包不用于新的 Windows 复测 |
 
-安装延迟 fixture 只在 exec 真实 npm 前等待（首轮 npm 8 秒/Desktop 25 秒、最终 npm 15 秒），不伪造成功或生成 bin。最终 Desktop 使用正常真实 npm，无延迟。安装参数均为固定版本、独立 prefix、ignore-scripts/no-audit/no-fund；没有原生 npm install 的独立 stdout/exit 原档，成功依据是产品 Host 的实际执行/版本验证、调用记录与另外独立 bin 执行，不能把 UI 文字当独立安装器输出。
+修复提交为 `7afbdcb`、`cf591d7`；源码复审 [38028570934](https://github.com/openbkn-ai/bkn-dsh/actions/runs/38028570934) 成功，APPROVED 的提交为 `cf591d7`。PR 文档更新后的检查与评审以 GitHub 当前记录为准。
 
-关闭/重开过程捕获了安装中与可用终态；**未单独捕获重开高级设置后仍在 installing 的瞬间**。同一安装共享、重开轮询、重复点击、被关闭操作的迟到回调由 Host/controller 测试覆盖；Windows C97 再做现场补充，不把单测写成实机证明。
+## 评审后 Mac 实测
 
-## 验证
+| 项 | 结果与证据边界 | 原件（相对于本目录） |
+|---|---|---|
+| 安装身份 | npm / Desktop 各 69/69，missing/different/extra 全空；Desktop 原生管理器重新安装并重启，再启用 | `review/mac/*-final-installed-identity.json`；`verify-installed-native.txt` + `verify-installed-exit.json` |
+| 输入失焦复现及修复 | 旧候选真实 npm UI 复现失焦；新 npm 用 pressSequentially 输入 xx 及完整不存在路径，focused=true/disabled=false。Desktop 原生分别输入两个 x，完整保留且 AX 焦点仍在输入框 | `old-candidate-typing*`、`npm-two-character-typing.json`、`npm-full-path-typing.json`、`desktop-two-character-typing-ax.txt`，均在 `review/mac/` |
+| 自定义路径 / 只读检测 | 两形态使用不存在的 `/tmp/cli9-not-installed/openbkn`，明确提示修正；随后默认命令缺失只读检测，不触发安装；review prefix 初始 bin 不存在、install=0 | `review/mac/*-custom-path-*`、`*-before-install.json`、`*-missing-*` |
+| 显式安装与路径锁 | npm 显式预检查期间路径禁用；Desktop 捕获 installing，路径/安装/保存控件禁用 | `review/mac/npm-explicit-preflight-lock.json`、`desktop-installing-ax.txt` |
+| 真实安装 | 两形态均点击产品按钮，真实 npm 安装已发布 SDK 0.1.5；独立 bin --version 各 exit 0 / 0.1.5；review prefix 各仅一次 install | `review/mac/*-final-cli-verification.json` |
+| 关闭 / 重开 | Desktop 安装中关闭，安装持续并真实完成。重新打开的回读已到可用终态，先显示原保存路径；改回默认检测找到新 prefix。未捕获重开后仍 installing 的瞬间 | `review/mac/desktop-installing-ax.txt`、`desktop-reopened-ready-ax.txt`、`desktop-ready-ax.txt`；不把 controller 单测当实机瞬间证明 |
+| 保存与复用 | 两形态均由“保存并继续”持久化新绝对路径；重开高级设置路径正确；只读 Host API 复用默认命令得到新 prefix ready，install 次数仍为 1 | `review/mac/*-saved-patch.json`、`npm-reopened-saved-dom.txt`、`desktop-reopened-saved-ax.txt`、`*-reuse-api.json` |
+| 状态边界 | SDK 可用不等于已登录；两隔离 BKN store 没有新增文件；保存后仍显示正常 CLI 登录入口 | `review/mac/*-final-cli-verification.json`、`desktop-saved-ax.txt` |
+| 收尾 | 每个本轮 Host 停止前核验 PID/创建时间/exe/listener，保存原生输出；相关父子与 18420/18421 均清空；选定日常文件 10/10 内容哈希一致 | `review/mac/*-owned-stop.json`、`daily-before.json` / `daily-after.json` |
 
-- 插件 **405（404 pass / 0 fail / 1 既有 skip）**；仓库 **60/60**；typecheck/package:check/diff-check/pack 通过。[本地原生输出](validation/)
-- `final-ci-run.json` 为最终构建身份/结论；CI 也执行构建、测试和打包检查。
-- 本地 pnpm 依赖核验因 sandbox/escalated 环境的 global virtual store 设置差异给出警告，本轮仅将 run 前检查设为 warn；未修改锁文件、依赖或用户全局配置。干净 CI 没有依赖该本地措施。
-- 原始 UI 与 Host API 分开命名；本轮 API 诊断件**不是 UI 下载件**。截图仅包含隔离测试窗口，未借用模型 Key、登录或平台凭据。
+延迟 fixture 仅在 exec 真实 npm 前等待：本轮 npm 8 秒、Desktop 45 秒；保留 wrapper 原件。它不伪造成功或生成 bin。没有独立原生 npm install stdout/exit 原档；安装成功由产品实际执行、调用记录及独立 bin 验证共同证明，不能把 UI 文字当独立安装器输出。
 
-## 首轮与最终轮
+本轮 npm 未捕获 installing/关闭重开瞬间，不延伸历史 npm 生命周期证据至新包；Desktop 捕获安装中关闭，但重开回读时已完成。轮询不暂时解锁由本轮 controller 测试覆盖，Windows C97 继续取现场证据。
 
-首轮源码 `0a2278d09a6d9528ba2d95bc27da109245424d98` / CI `38020188895` / tgz `6c48bd2b955359be35b43b321f9d507309e0532fbeab04d1999faa6ff49263e9`（69 文件），资料保存在 `mac/preflight/`。收尾修正只有 Node 安装前置条件与其提示/测试；其后重建最终 CI，两个实际安装件均切换最终包、重新使用新 prefix 真实安装。未将首轮身份混作最终候选。
+Desktop CUA 曾出现 AX 回读延后/上下文不一致；一次完整逐字符操作的即时回读没有反映完整输入（`desktop-full-path-typing-attempt-ax.txt`），不计为完整字符串输入通过。该项完整字符串证明来自 npm；Desktop 自定义路径拒绝使用 setValue 设置输入，单独标注。未据此认定产品根因，也未将操作尝试写成验收通过。
 
-执行偏差均在隔离环境处理：IAB/初始浏览器操作通道不可用，后使用可用 Chrome CUA 操作；Desktop CLI 拒绝管理专属 desktop profile，改走原生插件管理器。并行 Desktop 的默认端口与日常 app 冲突，第一轮只写 port 的 patch 又缺 required host；修成完整 `host=127.0.0.1,port=18421` 后运行。未改 DSH 运行时、证书、日常 PATH 或日常 profile。失败启动未留下可恢复的历史原生停止输出，不据此声称全程原生停止日志完整。
+日常 Desktop 不在停止范围。10/10 仅指选定 daily profile/CLI 文件，不是整个用户目录或所有进程。测试 SDK/prefix/cache/profile 留在隔离目录供复核，不随插件卸载。private launch-token 日志未提交。
 
-最终 npm/桌面停止及包更换重启的证据含 PID、创建时间、exe、listener 和原生 ps/lsof 输出：`mac/*-owned-stop.json`、`mac/desktop-after-package-restart.json`。本轮相关父子进程、18420/18421 端口均清空；日常 Desktop 不在停止范围。选定 **10/10 日常配置/CLI 文件内容哈希** before/after 一致，覆盖仅限 [同一清单](mac/daily-after.json)，不是整个用户目录。
+## 验证与历史证据
 
-CLI/prefix/cache/测试 profile 留在本轮独立临时目录供复核，Host 已停止。独立 SDK 不随插件卸载，属于本次设计。真实 launch-token 日志不提交；代码/证据凭据模式扫描零命中。
+插件 **412（411 pass / 0 fail / 1 既有 skip）**，仓库 **60/60**；typecheck/package:check/diff-check/pack 均成功。[本轮输出及退出码](review/validation/)；[CI 完整 job/step 记录](review/final-ci-run.json)。本地 pnpm run 前依赖核验仅设 warn，未修改依赖、锁文件或全局配置；干净 CI 不依赖这项本地措施。
 
-## 剩余边界
+| 阶段 | 身份与证据范围 |
+|---|---|
+| 首轮 | source `0a2278d` / CI `38020188895` / SHA `6c48bd2b…`；`mac/preflight/`，包含受控 EACCES/ECONNRESET、首轮关闭面板等 |
+| 评审前 | source `e669bd6` / CI `38023447204` / SHA `006f7434…`；`mac/`、`validation/`，含 Node 23 受控版本拒绝；[历史报告及绑定](review/prior/) |
+| 评审后当前 | source `cf591d7` / CI `38028568470` / SHA `de8d2160…`；`review/mac/`、`review/validation/`，当前受影响验收 |
 
-Windows `.cmd`、含空格 prefix 与原生子进程行为尚未验证，交由 [独立 handoff](../../handoff/2026-10-10-cli-setup9/HANDOFF.md)。权限/证书/超时、重复点击与安装退出 0 但验证失败的完整边界由单测覆盖，Windows 受控矩阵补充现场验证。原生 PowerShell verifier 尚未运行。
+首轮权限/网络、npm 缺失、Node 23 和未修改业务面的旧记录仅证明对应历史输入。评审修复不改变这些 Host 分支；最新源码单测继续覆盖它们，不将未重跑项写成新包实机证明。UI / Host API / 受控故障 / 独立 bin 输出分列；API 件不是 UI 下载件。
 
-本轮不跑平台登录、模型/G6、Token 生命周期、真实平台故障、Node 安装或升级迁移；这些没有源码行为改动，也不在用户限定范围。-8 的已知限制沿用。PR/Windows复核及发布批准是后续步骤，当前 **-9 未发布**。
+此前启动/操作偏差详见保留的历史报告；本轮 Desktop 原生管理器重装后重启避免沿用已缓存模块。没有修改 DSH 运行时、证书、用户日常 PATH/profile。
+
+## 仍待完成
+
+- Windows 原生 Desktop/npm：`.cmd` 默认别名、含空格 prefix、真实 subprocess、各受控故障及生命周期。执行 [新版独立 handoff](../../handoff/2026-10-10-cli-setup9/HANDOFF.md)，必须用当前 CI 包。PowerShell verifier 在 Mac 仅检查文本/算法，尚未原生运行。
+- 新文档提交的 PR 检查、Windows 结果复核；其后才讨论合并和发布，本轮不打 tag、不发布、不迁移 latest。
+- 平台登录、模型/G6、Token 生命周期、历史用户机器故障、Node 安装和旧版升级没有本轮行为改动，不在 -9 授权范围；-8 已知限制沿用。

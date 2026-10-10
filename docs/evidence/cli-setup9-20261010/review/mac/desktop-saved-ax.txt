@@ -1,0 +1,96 @@
+Window: "DeepSeek Harness", App: DeepSeek Harness.
+0 standard window DeepSeek Harness, Secondary Actions: Raise
+	1 container DeepSeek Harness
+		2 container
+			3 HTML content DeepSeek Harness, URL: dsh-app://app/
+				4 container
+					5 button 收起侧边栏
+					6 button 新建会话
+					7 container 全局面板
+						8 button 插件
+					9 text 工作区
+					10 button 搜索会话
+					11 text field (settable) 搜索会话名称
+					12 button 视图选项
+					13 button 添加工作区
+					14 outline 会话
+						15 container
+							16 row 默认工作区
+								17 text 默认工作区
+							18 row 新会话
+								19 text 新会话
+					20 button OpenBKN business knowledge networks
+					21 pop up button 账号菜单
+					22 container
+						23 heading 插件, Value: 1
+							24 text 插件
+						25 text 安装、启用和配置插件
+						26 button 插件说明
+						27 button 刷新
+						28 button 添加插件
+					29 container
+						30 heading 官方, Value: 3
+							31 text 官方
+						32 text 8
+						33 content list
+							34 container
+								35 button 查看 智能体团队
+								36 text 实验性 启用团队协作、团队工具、成员列表和共享任务看板。
+								37 switch Description: 启用 智能体团队, Value: off
+							38 container
+								39 button 查看 自动授权审查
+								40 text 实验性 提供自动审查权限模式，由模型在每次工具调用前判断是否授权。
+								41 switch Description: 启用 自动授权审查, Value: off
+							42 container
+								43 button 查看 自动化任务
+								44 text 实验性 按设定的时间或周期，在会话中自动执行任务。
+								45 switch Description: 启用 自动化任务, Value: off
+							46 container
+								47 button 查看 语音输入
+								48 text 实验性 在本机使用 SenseVoice 转写录音，首次使用需安装依赖。
+								49 switch Description: 启用 语音输入, Value: off
+							50 container
+								51 button 查看 终端
+								52 text 限制每条命令最多能跑多久、最多输出多少内容。
+							53 container
+								54 button 查看 Agent 循环
+								55 text 控制 Agent 派发工具调用的方式。
+							56 container
+								57 button 查看 子智能体
+								58 text 设置子智能体的递归层级、数量和模型。
+							59 container
+								60 button 查看 网页搜索
+								61 text 设置 DeepSeek 的搜索提供方。
+					62 container
+						63 heading 已安装, Value: 3
+							64 text 已安装
+						65 text 1
+						66 content list
+							67 container
+								68 button 查看 @openbkn/dsh-business-context
+								69 text OpenBKN business knowledge-network context for DeepSeek Harness
+								70 switch Description: 启用 @openbkn/dsh-business-context, Value: on
+					71 container OpenBKN business knowledge networks
+						72 container
+							73 text OPENBKN
+							74 heading 业务知识网络, Value: 2
+								75 text 业务知识网络
+							76 button 设置
+							77 button 诊断
+							78 button Close
+						79 text 使用本机 OpenBKN CLI 登录。登录完成后，插件会在 Host 内同步凭据、连接 Context Loader MCP，并加载你有权限访问的业务知识网络。
+						80 container
+							81 text 平台地址： https://cli9-no-platform.invalid
+						82 text 设置已保存，请使用 OpenBKN CLI 登录并同步。
+						83 button 使用 OpenBKN CLI 登录并同步
+						84 button 刷新状态
+	85 close button
+	86 full screen button Help: this button also has an action to zoom the window, Secondary Actions: zoom the window
+	87 minimize button
+88 menu bar
+	89 DeepSeek Harness
+	90 文件
+	91 Edit
+	92 Window
+
+The focused UI element is 3 HTML content DeepSeek Harness, URL: dsh-app://app/

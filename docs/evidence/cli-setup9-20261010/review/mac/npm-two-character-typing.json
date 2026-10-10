@@ -1,0 +1,10 @@
+{
+  "candidateSha256": "de8d216049b160f92c46d22ab1db37b4225b4424923e7efc3db404b116327630",
+  "action": "press End then pressSequentially xx",
+  "expected": "/private/tmp/bkn-cli9-mac/npm/sdk-prefix-final/bin/openbknxx",
+  "observed": {
+    "disabled": false,
+    "focused": true,
+    "value": "/private/tmp/bkn-cli9-mac/npm/sdk-prefix-final/bin/openbknxx"
+  }
+}

@@ -7,23 +7,23 @@
 | 项 | 固定值 |
 |---|---|
 | 仓库/分支 | `openbkn-ai/bkn-dsh` / `feat/cli-setup-9` |
-| 源码 | `e669bd6a1d51083f6b7f6c753b87d72c236a3193` |
+| 源码 | `cf591d7cbd4af202d0bd893aab57202a72ec1644` |
 | 插件 | `0.2.0-rc.2-openbkn.0.2.0-9` |
-| build-only CI | [38023447204](https://github.com/openbkn-ai/bkn-dsh/actions/runs/38023447204)，`publish=false` |
+| build-only CI | [38028568470](https://github.com/openbkn-ai/bkn-dsh/actions/runs/38028568470)，`publish=false` |
 | tgz/完整 SHA/字节/文件数 | 以本交接提交的 [candidate-manifest.json](../../evidence/cli-setup9-20261010/candidate-manifest.json) 为准 |
 | 逐文件清单 | [candidate-files.json](../../evidence/cli-setup9-20261010/candidate-files.json)，清单 SHA 同上 |
 | Host | 官方 Desktop + 官方 npm DSH `0.2.0-rc.2`；记录实际可执行文件与版本 |
 | 安装目标 | 已发布的 `@openbkn/bkn-sdk@0.1.5`，不是 SDK main 或 latest |
 | Node | `^22.19.0 || >=24.0.0`；Node 23 明确拒绝自动安装 |
 
-以通知给出的完整**交接 commit**创建独立 worktree。源码 commit 与交接 commit 不同：后者只增加验收/交接文件，不改变包内容。不要把首轮 `0a2278d` / CI `38020188895` 当最终候选。
+以通知给出的完整**交接 commit**创建独立 worktree。源码 commit 与交接 commit 不同：后者只增加验收/交接文件，不改变包内容。首轮 `0a2278d` / CI `38020188895` 和评审前 `e669bd6` / CI `38023447204` 均为历史候选，不能用于本轮终验。评审修复改了包内源码，必须下载本表的新 CI 包；沿用旧包的结果需标为历史。
 
 ```powershell
 git fetch origin
 git worktree add -b docs/cli-setup9-windows-results C:\bkn-verify\cli9-results-wt <handoff-commit>
 Set-Location C:\bkn-verify\cli9-results-wt
 New-Item -ItemType Directory -Force C:\bkn-verify\cli9-candidate | Out-Null
-gh run download 38023447204 --repo openbkn-ai/bkn-dsh --name plugin-tarball --dir C:\bkn-verify\cli9-candidate
+gh run download 38028568470 --repo openbkn-ai/bkn-dsh --name plugin-tarball --dir C:\bkn-verify\cli9-candidate
 $taskTgz = 'C:\bkn-verify\cli9-candidate\openbkn-dsh-business-context-0.2.0-rc.2-openbkn.0.2.0-9.tgz'
 # 独立子进程，保存全流与独立退出码；避免外层 Stop 吞掉 native stderr。
 & powershell -NoProfile -ExecutionPolicy Bypass -File .\docs\handoff\2026-10-10-cli-setup9\verify-candidate.ps1 -Tarball $taskTgz *> C:\bkn-verify\cli9-candidate\verify-native.txt
@@ -50,7 +50,7 @@ if ($taskVerifyExit -ne 0) { throw 'Candidate verification failed' }
 
 插件安装沿用 DSH 原生能力：npm 形态 `dsh plugin install --profile web <tgz>`；Desktop 用隔离窗口的插件管理器安装同一 tgz 并启用。不要用 CLI 强行管理 desktop profile。可使用已有**经四项身份核验**的启动/停止 helper，但需记录本轮执行文件路径、SHA、参数和版本；旧 helper 里的候选版本/故障变体不能照搬。
 
-每次安装后对实际 `node_modules\@openbkn\dsh-business-context` 再调用 verifier 的 `-InstalledPackagePath`，应为 **69/69 + missing/different/extra 全空**（文件数以最终 manifest 为准）。默认不要求登录、平台或模型 Key。
+每次安装后对实际 `node_modules\@openbkn\dsh-business-context` 再调用 verifier 的 `-InstalledPackagePath`，应为 **69/69 + missing/different/extra 全空**（文件数以最终 manifest 为准）。默认不要求登录、平台或模型 Key。C99 与 C91/C92/C93 共用同一安装轮，避免为别名额外安装一份 SDK。
 
 ## 必测矩阵（Desktop / npm 各跑一遍）
 
@@ -60,11 +60,12 @@ if ($taskVerifyExit -ne 0) { throw 'Candidate verification failed' }
 | C91 缺失只读 | `cliPath=openbkn`；打开高级设置，等待检测终态，不点安装 | 明确“未检测到”；没有 SDK 文件产生、没有 npm install；不直接判定为“用户从未安装” |
 | C92 真实安装 | 点击“检测并安装 CLI” | 固定 SDK 0.1.5 安装至隔离 prefix；显示检测/安装/可用；实际 `<prefix>\openbkn.cmd --version` exit 0 / 0.1.5；路径填入草稿，**保存后**持久化；无假进度或假成功 |
 | C93 PATH 之外与复用 | 先保持 prefix 不在 Host PATH 再检测；再重启测试 Host，把已有 prefix 加入其 PATH | 两轮都找到并使用已有 CLI，不再安装、不升级；若能直接执行，填入路径并保存即可，不强制重启 |
-| C94 自定义路径 | 填不存在的绝对路径、点击检测；再恢复真实 cmd 路径 | 自定义失败提示明确，绝不自动安装/覆盖该路径；恢复可用，无旧提示残留；空格路径真实执行成功 |
+| C94 自定义路径与逐字输入 | 用真实逐字键盘输入不存在的绝对路径（不可只用 fill/setValue 整串），保留前两个字符和完整路径的焦点/值；点击检测；再逐字恢复真实 cmd 路径 | 自动只读检测期间不禁用路径框、不失焦、不吞字；自定义失败提示明确，绝不安装/覆盖；恢复可用，无旧提示残留；空格路径真实执行成功 |
 | C95 前置条件 | 独立 fixture：找不到 npm；不支持的 Node（含 23） | 明确环境提示，安装未启动；不自行安装 Node，不提权，不改 PATH。Node 版本 fixture 可只拦截 `--version`，不得冒充真实安装 |
 | C96 安装失败 | 独立新 prefix，npm 安装子命令受控返回 EACCES、ECONNRESET、证书码；退出 0 但不生成可用 bin | 权限/网络/证书/验证失败各有明确提示；没有 ready 假成功；raw stderr canary 不进 UI/JSON。这是受控故障，不计为真实 OS/network 失效 |
-| C97 面板生命周期 | 真实 npm 安装前加可记录的短延迟；连续点击、关面板、重开高级设置 | 每 Host 只有一次 install；关面板不杀 npm；重开看到已有安装/终态；最后真实 CLI 验证。若错过 installing 阶段，记未捕获，不补造 |
+| C97 面板生命周期与输入锁定 | 真实 npm 安装前加可记录的短延迟；检查显式安装前检测及安装中路径框/保存按钮锁定；连续点击、关面板、重开高级设置 | 每 Host 只有一次 install；显式操作期间不能改写草稿路径，轮询不暂时解锁；关面板不杀 npm；重开看到已有安装/终态；最后真实 CLI 验证。若错过 installing 阶段，记未捕获，不补造 |
 | C98 状态/配置边界 | 保存路径、关面板重开；查看诊断；卸载插件 | 保存仍由 DSH ConfigEditor；CLI 可执行≠已登录；检测不清除旧 auth/CLI 失败；不发起授权、模型请求。插件卸载不卸载独立 SDK；本轮 prefix 保留作证，不动日常 CLI |
+| C99 Windows 默认命令别名 | C91 先确认 openbkn 缺失，再逐字改为 openbkn.cmd 并检查；C92 使用该别名点击安装；已安装后再检测别名 | 缺失时是 missing/canInstall=true，显式安装成功；安装后复用同一 prefix，不增加 install；不存在的绝对 .cmd 路径仍不可自动安装 |
 
 CLI 安装耗时限 180 秒（加 subprocess 清理余量），只读单命令限 5 秒/整体检测 25 秒。失败输出由 Host 投影到受控原因，Client 不接收 npm 原文。不要把“重启后可能可用”写成已证实 PATH 根因。
 

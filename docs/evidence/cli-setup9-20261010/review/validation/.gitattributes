@@ -1,0 +1,2 @@
+# Preserve trailing spaces emitted by the native build/test output.
+plugin-tests.log -whitespace

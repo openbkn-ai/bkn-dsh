@@ -18,11 +18,12 @@
 | C91 Missing, read-only | pending | pending | |
 | C92 Real installation / save | pending | pending | |
 | C93 Outside PATH / reuse | pending | pending | |
-| C94 Custom / space path | pending | pending | |
+| C94 Per-character typing / custom / space path | pending | pending | |
 | C95 Prerequisites | pending | pending | |
 | C96 Controlled failures | pending | pending | |
-| C97 Close / reopen / duplicate | pending | pending | |
+| C97 Explicit setup lock / close / reopen / duplicate | pending | pending | |
 | C98 Boundaries / uninstall | pending | pending | |
+| C99 Default openbkn.cmd alias / reuse | pending | pending | |
 
 Separate unit fixtures, controlled Host failures, real npm registry installation, UI, filesystem, API, and independent native CLI execution. State not-run/insufficient-evidence at the subcase level. No platform/model acceptance is claimed.
 
