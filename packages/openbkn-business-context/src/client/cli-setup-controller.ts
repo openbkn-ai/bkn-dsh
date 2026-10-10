@@ -7,6 +7,7 @@ export interface CliSetupPort {
 export interface CliSetupState {
   readonly phase: 'idle' | 'checking' | OpenBknCliSetupView['state']
   readonly result?: OpenBknCliSetupView
+  readonly setupRequested?: boolean
 }
 
 /** Read-only checks are cancellable; an accepted Host installation survives panel closure. */
@@ -38,7 +39,10 @@ export class CliSetupController {
       if (this.current(checked.revision)) this.accept(result, cliPath, checked.revision)
     } catch {
       if (!this.disposed) this.publish({ phase: 'failed', result: { state: 'failed', canInstall: false, reason: 'host-unavailable' } })
-    } finally { this.clicking = false }
+    } finally {
+      this.clicking = false
+      if (!this.disposed) this.publish(this.state)
+    }
   }
   dispose(): void {
     this.disposed = true
@@ -72,7 +76,10 @@ export class CliSetupController {
     }, 1000)
   }
   private current(revision: number): boolean { return !this.disposed && this.revision === revision }
-  private publish(state: CliSetupState): void { this.state = state; for (const listener of this.listeners) listener() }
+  private publish(state: CliSetupState): void {
+    this.state = { ...state, setupRequested: this.clicking }
+    for (const listener of this.listeners) listener()
+  }
 }
 
 /** Only controlled reasons become user-facing text; raw installer output stays on Host. */

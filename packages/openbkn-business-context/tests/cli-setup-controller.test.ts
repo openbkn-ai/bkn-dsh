@@ -77,6 +77,28 @@ test('polling a Host installation keeps the installing state while awaiting the 
   assert.equal(controller.snapshot().phase, 'ready')
   controller.dispose()
 })
+test('only explicit setup locks the draft during preflight and releases it on refusal', async () => {
+  const first = deferred<OpenBknCliSetupView>()
+  const second = deferred<OpenBknCliSetupView>()
+  let calls = 0, installs = 0
+  const controller = new CliSetupController({
+    checkCli: async () => ++calls === 1 ? await first.promise : await second.promise,
+    installCli: async () => { installs++; return ready },
+  }, () => {})
+  const read = controller.check('openbkn')
+  assert.equal(controller.snapshot().setupRequested, false)
+  first.resolve(missing)
+  await read
+  const setup = controller.detectAndInstall('openbkn')
+  assert.equal(controller.snapshot().phase, 'checking')
+  assert.equal(controller.snapshot().setupRequested, true)
+  second.resolve({ state: 'blocked', canInstall: false, reason: 'npm-missing' })
+  await setup
+  assert.equal(controller.snapshot().setupRequested, false)
+  assert.equal(controller.snapshot().phase, 'blocked')
+  assert.equal(installs, 0)
+  controller.dispose()
+})
 test('blocked and failure reasons never claim installed or require a restart as proven', async () => {
   let installs = 0
   const controller = new CliSetupController({ checkCli: async () => ({ state: 'blocked', canInstall: false, reason: 'npm-missing' }), installCli: async () => { installs++; return ready } }, () => {})
