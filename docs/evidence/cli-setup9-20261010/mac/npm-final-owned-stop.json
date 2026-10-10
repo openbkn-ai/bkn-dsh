@@ -1,0 +1,91 @@
+{
+  "at": "2026-10-10T04:32:22.612941+00:00",
+  "form": "npm",
+  "record": {
+    "pid": 93269,
+    "created": "Sat Oct 10 12:22:35 2026",
+    "argv": [
+      "/Users/kalias/.nvm/versions/node/v24.19.0/bin/node",
+      "/Users/kalias/Documents/project/app/openBKN/dsh-npm-020/node_modules/@deepseek-ai/dsh/lib/bin.js",
+      "web",
+      "--port",
+      "18420",
+      "--no-open"
+    ],
+    "form": "npm",
+    "root": "/private/tmp/bkn-cli9-mac/npm",
+    "port": 18420,
+    "startedAt": "2026-10-10T04:22:36.631739+00:00"
+  },
+  "ownedProcesses": [
+    {
+      "pid": 93269,
+      "native": {
+        "command": [
+          "ps",
+          "-p",
+          "93269",
+          "-o",
+          "lstart=",
+          "-o",
+          "comm=",
+          "-o",
+          "args="
+        ],
+        "exitCode": 0,
+        "stdout": "Sat Oct 10 12:22:35 2026     /Users/kalias/.n /Users/kalias/.nvm/versions/node/v24.19.0/bin/node /Users/kalias/Documents/project/app/openBKN/dsh-npm-020/node_modules/@deepseek-ai/dsh/lib/bin.js web --port 18420 --no-open\n",
+        "stderr": ""
+      }
+    }
+  ],
+  "creation": {
+    "command": [
+      "ps",
+      "-p",
+      "93269",
+      "-o",
+      "lstart="
+    ],
+    "exitCode": 0,
+    "stdout": "Sat Oct 10 12:22:35 2026    \n",
+    "stderr": ""
+  },
+  "executable": {
+    "command": [
+      "ps",
+      "-p",
+      "93269",
+      "-o",
+      "comm="
+    ],
+    "exitCode": 0,
+    "stdout": "/Users/kalias/.nvm/versions/node/v24.19.0/bin/node\n",
+    "stderr": ""
+  },
+  "listener": {
+    "command": [
+      "lsof",
+      "-nP",
+      "-t",
+      "-iTCP:18420",
+      "-sTCP:LISTEN"
+    ],
+    "exitCode": 0,
+    "stdout": "93269\n",
+    "stderr": ""
+  },
+  "identityVerified": true,
+  "stop": "SIGTERM",
+  "remainingOwnedPids": [],
+  "afterListener": {
+    "command": [
+      "lsof",
+      "-nP",
+      "-iTCP:18420",
+      "-sTCP:LISTEN"
+    ],
+    "exitCode": 1,
+    "stdout": "",
+    "stderr": ""
+  }
+}

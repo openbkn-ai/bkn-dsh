@@ -1,0 +1,552 @@
+{
+  "at": "2026-10-10T15:00:08.580233+00:00",
+  "comparedCommit": "9ecda7946cc0a71fd1ef75ad8b463a63f09c3acb",
+  "baseCommit": "6b372ff703d773a4c47ff3cf13972a047fa81ebd",
+  "scope": "all 77 changed/new follow-up delivery files; source commit already fixed separately",
+  "files": [
+    {
+      "path": ".gitattributes",
+      "bytes": 806,
+      "localSha256": "8b9fff9bfe754ef2c571f649a28e2c735b652be017604fc5ce842325d98fb246",
+      "gitBlobSha256": "8b9fff9bfe754ef2c571f649a28e2c735b652be017604fc5ce842325d98fb246",
+      "byteIdentical": true
+    },
+    {
+      "path": "CHANGELOG.md",
+      "bytes": 41661,
+      "localSha256": "a008140eb06654e5304d78961239d4343ebb1a287457cd9f653b0939ce082a1a",
+      "gitBlobSha256": "a008140eb06654e5304d78961239d4343ebb1a287457cd9f653b0939ce082a1a",
+      "byteIdentical": true
+    },
+    {
+      "path": "docs/evidence/cli-setup9-20261010/RESULTS.md",
+      "bytes": 11065,
+      "localSha256": "dd64a0383497569f098dbfaa270adb8f2d21ebc8782dfc62c13a8c065b022343",
+      "gitBlobSha256": "dd64a0383497569f098dbfaa270adb8f2d21ebc8782dfc62c13a8c065b022343",
+      "byteIdentical": true
+    },
+    {
+      "path": "docs/evidence/cli-setup9-20261010/candidate-files.json",
+      "bytes": 10778,
+      "localSha256": "30948677a13a8bc8b2bd62ffcf60c270e85cc6a379844ddd5ac0a55e656ecdd3",
+      "gitBlobSha256": "30948677a13a8bc8b2bd62ffcf60c270e85cc6a379844ddd5ac0a55e656ecdd3",
+      "byteIdentical": true
+    },
+    {
+      "path": "docs/evidence/cli-setup9-20261010/candidate-manifest.json",
+      "bytes": 697,
+      "localSha256": "3f4f790e276c31fc6d031925480911610756ece2014def682abf3c894891ec60",
+      "gitBlobSha256": "3f4f790e276c31fc6d031925480911610756ece2014def682abf3c894891ec60",
+      "byteIdentical": true
+    },
+    {
+      "path": "docs/evidence/cli-setup9-20261010/followup/RESULTS.md",
+      "bytes": 9044,
+      "localSha256": "b80b61245012c782a666be5d07871cadae63bc1e4bed492ee40d26c31c5e8378",
+      "gitBlobSha256": "b80b61245012c782a666be5d07871cadae63bc1e4bed492ee40d26c31c5e8378",
+      "byteIdentical": true
+    },
+    {
+      "path": "docs/evidence/cli-setup9-20261010/followup/UI-OBSERVATIONS-transcribed.md",
+      "bytes": 3140,
+      "localSha256": "dbc30cfc65bb90875f22588915923451fe339f04fc81749469f4b06f8678c7f9",
+      "gitBlobSha256": "dbc30cfc65bb90875f22588915923451fe339f04fc81749469f4b06f8678c7f9",
+      "byteIdentical": true
+    },
+    {
+      "path": "docs/evidence/cli-setup9-20261010/followup/WINDOWS-REVIEW.md",
+      "bytes": 2301,
+      "localSha256": "7119f044d7111fb690585eea0470b0d07dfa7cf163efa832a00b39756d147111",
+      "gitBlobSha256": "7119f044d7111fb690585eea0470b0d07dfa7cf163efa832a00b39756d147111",
+      "byteIdentical": true
+    },
+    {
+      "path": "docs/evidence/cli-setup9-20261010/followup/candidate-download.json",
+      "bytes": 894,
+      "localSha256": "aa3f77d1915be2211e35d87d769035b480ce350e11d45a7eb18ebb5114028a45",
+      "gitBlobSha256": "aa3f77d1915be2211e35d87d769035b480ce350e11d45a7eb18ebb5114028a45",
+      "byteIdentical": true
+    },
+    {
+      "path": "docs/evidence/cli-setup9-20261010/followup/ci-run.json",
+      "bytes": 5028,
+      "localSha256": "000da2e86703aae87ee4f922e14492b852fb4f1d247d3a79be4cce4724f3d312",
+      "gitBlobSha256": "000da2e86703aae87ee4f922e14492b852fb4f1d247d3a79be4cce4724f3d312",
+      "byteIdentical": true
+    },
+    {
+      "path": "docs/evidence/cli-setup9-20261010/followup/credential-scan.json",
+      "bytes": 5990,
+      "localSha256": "ec3971bda6ffa64d9ce6b9fbc56293f2659bf8bdd854d7cf80b6f883057c4219",
+      "gitBlobSha256": "ec3971bda6ffa64d9ce6b9fbc56293f2659bf8bdd854d7cf80b6f883057c4219",
+      "byteIdentical": true
+    },
+    {
+      "path": "docs/evidence/cli-setup9-20261010/followup/crlf-checkout-oracle.json",
+      "bytes": 472,
+      "localSha256": "4767ec66b73c732b101196f0abdf6a87b91711472809668c3b172a42c84e63b3",
+      "gitBlobSha256": "4767ec66b73c732b101196f0abdf6a87b91711472809668c3b172a42c84e63b3",
+      "byteIdentical": true
+    },
+    {
+      "path": "docs/evidence/cli-setup9-20261010/followup/daily-after.json",
+      "bytes": 2100,
+      "localSha256": "f92abc9b9726ea6f97ae9dfe872a76d74e2357d86c205b6a73a4f87ea244052c",
+      "gitBlobSha256": "f92abc9b9726ea6f97ae9dfe872a76d74e2357d86c205b6a73a4f87ea244052c",
+      "byteIdentical": true
+    },
+    {
+      "path": "docs/evidence/cli-setup9-20261010/followup/daily-before.json",
+      "bytes": 2047,
+      "localSha256": "e0798aa75e4339c8393e17397ed34926fcf4c4fa0b165741e17b1864920cebef",
+      "gitBlobSha256": "e0798aa75e4339c8393e17397ed34926fcf4c4fa0b165741e17b1864920cebef",
+      "byteIdentical": true
+    },
+    {
+      "path": "docs/evidence/cli-setup9-20261010/followup/desktop-cli-managed-profile-retry-plugin-install-exit.json",
+      "bytes": 426,
+      "localSha256": "c477d8989c377e2b8efc445a5b46ff48b89e82c33f0f39671daed413e47a4157",
+      "gitBlobSha256": "c477d8989c377e2b8efc445a5b46ff48b89e82c33f0f39671daed413e47a4157",
+      "byteIdentical": true
+    },
+    {
+      "path": "docs/evidence/cli-setup9-20261010/followup/desktop-cli-managed-profile-retry-plugin-install.txt",
+      "bytes": 76,
+      "localSha256": "295cb987723b687c375e3cdf2736f98e87a9b46a78c3f1e9feecaf6b84d5bf15",
+      "gitBlobSha256": "295cb987723b687c375e3cdf2736f98e87a9b46a78c3f1e9feecaf6b84d5bf15",
+      "byteIdentical": true
+    },
+    {
+      "path": "docs/evidence/cli-setup9-20261010/followup/desktop-directory-full-ax.txt",
+      "bytes": 1784,
+      "localSha256": "160bc4c8a277e8bea06306de9b06d025ab301f97ad49c8f38bc389e2e06aa8d5",
+      "gitBlobSha256": "160bc4c8a277e8bea06306de9b06d025ab301f97ad49c8f38bc389e2e06aa8d5",
+      "byteIdentical": true
+    },
+    {
+      "path": "docs/evidence/cli-setup9-20261010/followup/desktop-directory-no-install.json",
+      "bytes": 253,
+      "localSha256": "2900456dc836fad89e38a9a973d98d5b57a97414d39d3bd328c59bd0fb99783c",
+      "gitBlobSha256": "2900456dc836fad89e38a9a973d98d5b57a97414d39d3bd328c59bd0fb99783c",
+      "byteIdentical": true
+    },
+    {
+      "path": "docs/evidence/cli-setup9-20261010/followup/desktop-directory.txt",
+      "bytes": 222,
+      "localSha256": "4775b9412cafb87e3ad9208b903b3357ad7fd67af178002ad0314f78aa0ac047",
+      "gitBlobSha256": "4775b9412cafb87e3ad9208b903b3357ad7fd67af178002ad0314f78aa0ac047",
+      "byteIdentical": true
+    },
+    {
+      "path": "docs/evidence/cli-setup9-20261010/followup/desktop-final-cli-check.json",
+      "bytes": 1128,
+      "localSha256": "3f7e795b91fee3e06f55d16b1c14f1a9ab697f9be739643d33f8d83c1d065cf3",
+      "gitBlobSha256": "3f7e795b91fee3e06f55d16b1c14f1a9ab697f9be739643d33f8d83c1d065cf3",
+      "byteIdentical": true
+    },
+    {
+      "path": "docs/evidence/cli-setup9-20261010/followup/desktop-host.json",
+      "bytes": 416,
+      "localSha256": "62047f8f744ac7115e06b5890104d45ce3714c29dafa1e7ba4379f43fa810302",
+      "gitBlobSha256": "62047f8f744ac7115e06b5890104d45ce3714c29dafa1e7ba4379f43fa810302",
+      "byteIdentical": true
+    },
+    {
+      "path": "docs/evidence/cli-setup9-20261010/followup/desktop-initial-plugin-install-exit.json",
+      "bytes": 426,
+      "localSha256": "3120f6a073c902724cf325acffeac06b4119b1e7355fb483c6a1cfcbb9644317",
+      "gitBlobSha256": "3120f6a073c902724cf325acffeac06b4119b1e7355fb483c6a1cfcbb9644317",
+      "byteIdentical": true
+    },
+    {
+      "path": "docs/evidence/cli-setup9-20261010/followup/desktop-initial-plugin-install.txt",
+      "bytes": 76,
+      "localSha256": "295cb987723b687c375e3cdf2736f98e87a9b46a78c3f1e9feecaf6b84d5bf15",
+      "gitBlobSha256": "295cb987723b687c375e3cdf2736f98e87a9b46a78c3f1e9feecaf6b84d5bf15",
+      "byteIdentical": true
+    },
+    {
+      "path": "docs/evidence/cli-setup9-20261010/followup/desktop-initialization-host.json",
+      "bytes": 416,
+      "localSha256": "2a85bdf0eecd3a62ca8680d27e52986f937318747c577bbf1e4ecea6b6c6d203",
+      "gitBlobSha256": "2a85bdf0eecd3a62ca8680d27e52986f937318747c577bbf1e4ecea6b6c6d203",
+      "byteIdentical": true
+    },
+    {
+      "path": "docs/evidence/cli-setup9-20261010/followup/desktop-initialization-stop.json",
+      "bytes": 8851,
+      "localSha256": "858d860f7ccd8edc0f6b6724dcfc6f3e1c5a837aa63c3796aef533153b767771",
+      "gitBlobSha256": "858d860f7ccd8edc0f6b6724dcfc6f3e1c5a837aa63c3796aef533153b767771",
+      "byteIdentical": true
+    },
+    {
+      "path": "docs/evidence/cli-setup9-20261010/followup/desktop-installed-identity.json",
+      "bytes": 379,
+      "localSha256": "dc873c658504e7101cad3f2387936ee846f3e6149bafab2878c03f72463a2fd9",
+      "gitBlobSha256": "dc873c658504e7101cad3f2387936ee846f3e6149bafab2878c03f72463a2fd9",
+      "byteIdentical": true
+    },
+    {
+      "path": "docs/evidence/cli-setup9-20261010/followup/desktop-installing-return-main.txt",
+      "bytes": 154,
+      "localSha256": "9052dba01d636cd0d4248b3e4a6fdc8d64bb46159ef78907764da739cbaf6c83",
+      "gitBlobSha256": "9052dba01d636cd0d4248b3e4a6fdc8d64bb46159ef78907764da739cbaf6c83",
+      "byteIdentical": true
+    },
+    {
+      "path": "docs/evidence/cli-setup9-20261010/followup/desktop-installing.txt",
+      "bytes": 162,
+      "localSha256": "6ffb62112394ac56d7190e3a88da714d548be81954672023e43dc1fbc3fe30c4",
+      "gitBlobSha256": "6ffb62112394ac56d7190e3a88da714d548be81954672023e43dc1fbc3fe30c4",
+      "byteIdentical": true
+    },
+    {
+      "path": "docs/evidence/cli-setup9-20261010/followup/desktop-missing-guidance.txt",
+      "bytes": 162,
+      "localSha256": "6ffb62112394ac56d7190e3a88da714d548be81954672023e43dc1fbc3fe30c4",
+      "gitBlobSha256": "6ffb62112394ac56d7190e3a88da714d548be81954672023e43dc1fbc3fe30c4",
+      "byteIdentical": true
+    },
+    {
+      "path": "docs/evidence/cli-setup9-20261010/followup/desktop-missing.txt",
+      "bytes": 187,
+      "localSha256": "888843f8e6036c27715366d8b3d91cb9f8d2a853bb0bd31dd107b15e3260aab5",
+      "gitBlobSha256": "888843f8e6036c27715366d8b3d91cb9f8d2a853bb0bd31dd107b15e3260aab5",
+      "byteIdentical": true
+    },
+    {
+      "path": "docs/evidence/cli-setup9-20261010/followup/desktop-npm-wrapper.py",
+      "bytes": 711,
+      "localSha256": "af45cb618b9aa7830544e26169ae049ced26ffe9129138bea04b3d37be4b398c",
+      "gitBlobSha256": "af45cb618b9aa7830544e26169ae049ced26ffe9129138bea04b3d37be4b398c",
+      "byteIdentical": true
+    },
+    {
+      "path": "docs/evidence/cli-setup9-20261010/followup/desktop-owned-stop.json",
+      "bytes": 7206,
+      "localSha256": "46041d77e1c2c5c63609fdc46dd361fa650592c9f79a8992b163c000191d6ab9",
+      "gitBlobSha256": "46041d77e1c2c5c63609fdc46dd361fa650592c9f79a8992b163c000191d6ab9",
+      "byteIdentical": true
+    },
+    {
+      "path": "docs/evidence/cli-setup9-20261010/followup/desktop-process-history.jsonl",
+      "bytes": 1038,
+      "localSha256": "d5f3ac4f1ab161df5080b3ba0ac007169684a9a3064bc448dd6565febb3ba66c",
+      "gitBlobSha256": "d5f3ac4f1ab161df5080b3ba0ac007169684a9a3064bc448dd6565febb3ba66c",
+      "byteIdentical": true
+    },
+    {
+      "path": "docs/evidence/cli-setup9-20261010/followup/desktop-ready-saved-full-ax.txt",
+      "bytes": 1577,
+      "localSha256": "94ead1143b9362d7b944984175f7337b083d90cb6179e5591b3cb367d396c9e3",
+      "gitBlobSha256": "94ead1143b9362d7b944984175f7337b083d90cb6179e5591b3cb367d396c9e3",
+      "byteIdentical": true
+    },
+    {
+      "path": "docs/evidence/cli-setup9-20261010/followup/desktop-ready-saved.txt",
+      "bytes": 144,
+      "localSha256": "7be152d7e2e50563b8a4e15e5d0c8cf6243d14b4baeddca94b34b0c8d5b7f30c",
+      "gitBlobSha256": "7be152d7e2e50563b8a4e15e5d0c8cf6243d14b4baeddca94b34b0c8d5b7f30c",
+      "byteIdentical": true
+    },
+    {
+      "path": "docs/evidence/cli-setup9-20261010/followup/desktop-ready-unsaved.txt",
+      "bytes": 144,
+      "localSha256": "7be152d7e2e50563b8a4e15e5d0c8cf6243d14b4baeddca94b34b0c8d5b7f30c",
+      "gitBlobSha256": "7be152d7e2e50563b8a4e15e5d0c8cf6243d14b4baeddca94b34b0c8d5b7f30c",
+      "byteIdentical": true
+    },
+    {
+      "path": "docs/evidence/cli-setup9-20261010/followup/desktop-recapture-check.json",
+      "bytes": 395,
+      "localSha256": "54d8fd04eb33b241710db3ee75d97e39d688a05118c1a47bd6a8580b708006c3",
+      "gitBlobSha256": "54d8fd04eb33b241710db3ee75d97e39d688a05118c1a47bd6a8580b708006c3",
+      "byteIdentical": true
+    },
+    {
+      "path": "docs/evidence/cli-setup9-20261010/followup/desktop-recapture-host.json",
+      "bytes": 416,
+      "localSha256": "442cfffbc4f8f953ff6ba7d39f50d79e6ba3e8c70c17bde694c0c8c238e86874",
+      "gitBlobSha256": "442cfffbc4f8f953ff6ba7d39f50d79e6ba3e8c70c17bde694c0c8c238e86874",
+      "byteIdentical": true
+    },
+    {
+      "path": "docs/evidence/cli-setup9-20261010/followup/desktop-recapture-stop.json",
+      "bytes": 7218,
+      "localSha256": "8783909f356d8d5acbaafe1a478bd54f2d6281a70eef1571ac91062e2c75a32e",
+      "gitBlobSha256": "8783909f356d8d5acbaafe1a478bd54f2d6281a70eef1571ac91062e2c75a32e",
+      "byteIdentical": true
+    },
+    {
+      "path": "docs/evidence/cli-setup9-20261010/followup/desktop-reopened-installing.txt",
+      "bytes": 144,
+      "localSha256": "7be152d7e2e50563b8a4e15e5d0c8cf6243d14b4baeddca94b34b0c8d5b7f30c",
+      "gitBlobSha256": "7be152d7e2e50563b8a4e15e5d0c8cf6243d14b4baeddca94b34b0c8d5b7f30c",
+      "byteIdentical": true
+    },
+    {
+      "path": "docs/evidence/cli-setup9-20261010/followup/desktop-saved-login-boundary.txt",
+      "bytes": 162,
+      "localSha256": "6ffb62112394ac56d7190e3a88da714d548be81954672023e43dc1fbc3fe30c4",
+      "gitBlobSha256": "6ffb62112394ac56d7190e3a88da714d548be81954672023e43dc1fbc3fe30c4",
+      "byteIdentical": true
+    },
+    {
+      "path": "docs/evidence/cli-setup9-20261010/followup/diff-check.txt",
+      "bytes": 0,
+      "localSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "gitBlobSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "byteIdentical": true
+    },
+    {
+      "path": "docs/evidence/cli-setup9-20261010/followup/helpers/host-control.py",
+      "bytes": 5622,
+      "localSha256": "e0c8516d1fd7732687538c059aa057a14d5cdf62f9b9f81052c5ff1579c57883",
+      "gitBlobSha256": "e0c8516d1fd7732687538c059aa057a14d5cdf62f9b9f81052c5ff1579c57883",
+      "byteIdentical": true
+    },
+    {
+      "path": "docs/evidence/cli-setup9-20261010/followup/helpers/owned-stop.py",
+      "bytes": 2994,
+      "localSha256": "f477a98c3e4027e45ef9d463fae1e7f86c5429cf8ff1c2d53772e833da83f8b0",
+      "gitBlobSha256": "f477a98c3e4027e45ef9d463fae1e7f86c5429cf8ff1c2d53772e833da83f8b0",
+      "byteIdentical": true
+    },
+    {
+      "path": "docs/evidence/cli-setup9-20261010/followup/local-checks.json",
+      "bytes": 2933,
+      "localSha256": "74308e9a36fe36cebf19b39b38d2efec132f91eaa3dc0d997331c73c4510bdc9",
+      "gitBlobSha256": "74308e9a36fe36cebf19b39b38d2efec132f91eaa3dc0d997331c73c4510bdc9",
+      "byteIdentical": true
+    },
+    {
+      "path": "docs/evidence/cli-setup9-20261010/followup/mac-environment.json",
+      "bytes": 1093,
+      "localSha256": "364caee4be8a990790a946488187a82ff4b53214a6eec415e7da771523ade623",
+      "gitBlobSha256": "364caee4be8a990790a946488187a82ff4b53214a6eec415e7da771523ade623",
+      "byteIdentical": true
+    },
+    {
+      "path": "docs/evidence/cli-setup9-20261010/followup/npm-directory-no-install.json",
+      "bytes": 201,
+      "localSha256": "b92ddfe701f7e1d67210ee259dc3f37113f6c902d9723ec9ee4f3417a000fa57",
+      "gitBlobSha256": "b92ddfe701f7e1d67210ee259dc3f37113f6c902d9723ec9ee4f3417a000fa57",
+      "byteIdentical": true
+    },
+    {
+      "path": "docs/evidence/cli-setup9-20261010/followup/npm-directory-typing.json",
+      "bytes": 3366,
+      "localSha256": "bd8dbbfb374806f7275a7b001da5482ce527f1ea3983089e39accccf02b7dc23",
+      "gitBlobSha256": "bd8dbbfb374806f7275a7b001da5482ce527f1ea3983089e39accccf02b7dc23",
+      "byteIdentical": true
+    },
+    {
+      "path": "docs/evidence/cli-setup9-20261010/followup/npm-directory.png",
+      "bytes": 56764,
+      "localSha256": "0f1f6bc6b604cb067c6ca1bf8588294c3c01d9624c3da177b90fcbff0b41f142",
+      "gitBlobSha256": "0f1f6bc6b604cb067c6ca1bf8588294c3c01d9624c3da177b90fcbff0b41f142",
+      "byteIdentical": true
+    },
+    {
+      "path": "docs/evidence/cli-setup9-20261010/followup/npm-directory.txt",
+      "bytes": 212,
+      "localSha256": "f1ab748f224e6db2523b866f98d1e7ec8a60b276b999c648239460fd2714ae22",
+      "gitBlobSha256": "f1ab748f224e6db2523b866f98d1e7ec8a60b276b999c648239460fd2714ae22",
+      "byteIdentical": true
+    },
+    {
+      "path": "docs/evidence/cli-setup9-20261010/followup/npm-final-cli-check.json",
+      "bytes": 1104,
+      "localSha256": "36ebdead00caa3fc4a98a4a11e893b4ba7b1d4186dea17cf12595145786b6847",
+      "gitBlobSha256": "36ebdead00caa3fc4a98a4a11e893b4ba7b1d4186dea17cf12595145786b6847",
+      "byteIdentical": true
+    },
+    {
+      "path": "docs/evidence/cli-setup9-20261010/followup/npm-host.json",
+      "bytes": 413,
+      "localSha256": "dbfcec1cc669cbc804893a2e32fed9ee01d4a28e66bd5f0377684269cf10ecd1",
+      "gitBlobSha256": "dbfcec1cc669cbc804893a2e32fed9ee01d4a28e66bd5f0377684269cf10ecd1",
+      "byteIdentical": true
+    },
+    {
+      "path": "docs/evidence/cli-setup9-20261010/followup/npm-installed-identity.json",
+      "bytes": 296,
+      "localSha256": "bc01ab0a2cd58aa4a6c321e39f127dc4c2616d32c7db8f47aa0afa1137ea704c",
+      "gitBlobSha256": "bc01ab0a2cd58aa4a6c321e39f127dc4c2616d32c7db8f47aa0afa1137ea704c",
+      "byteIdentical": true
+    },
+    {
+      "path": "docs/evidence/cli-setup9-20261010/followup/npm-installing.txt",
+      "bytes": 1369,
+      "localSha256": "478ad8bedf757a75fd8661264c7eedd0df2e197290c63c41e771540b1280685f",
+      "gitBlobSha256": "478ad8bedf757a75fd8661264c7eedd0df2e197290c63c41e771540b1280685f",
+      "byteIdentical": true
+    },
+    {
+      "path": "docs/evidence/cli-setup9-20261010/followup/npm-missing-guidance.txt",
+      "bytes": 831,
+      "localSha256": "ad8cf8793120e2e207f6bdeafbc5310483d8e6be42b585dc640dc94ea37603a3",
+      "gitBlobSha256": "ad8cf8793120e2e207f6bdeafbc5310483d8e6be42b585dc640dc94ea37603a3",
+      "byteIdentical": true
+    },
+    {
+      "path": "docs/evidence/cli-setup9-20261010/followup/npm-npm-wrapper.py",
+      "bytes": 706,
+      "localSha256": "4fbad33003307b09e20041ccca6aaf4a39fd30b88d31dc49bb7518169b93825b",
+      "gitBlobSha256": "4fbad33003307b09e20041ccca6aaf4a39fd30b88d31dc49bb7518169b93825b",
+      "byteIdentical": true
+    },
+    {
+      "path": "docs/evidence/cli-setup9-20261010/followup/npm-owned-stop.json",
+      "bytes": 1921,
+      "localSha256": "a9c7febc921f6a07dff32d72eee05e8f93f38a0ea62507eb32b1355857e85f18",
+      "gitBlobSha256": "a9c7febc921f6a07dff32d72eee05e8f93f38a0ea62507eb32b1355857e85f18",
+      "byteIdentical": true
+    },
+    {
+      "path": "docs/evidence/cli-setup9-20261010/followup/npm-process-history.jsonl",
+      "bytes": 373,
+      "localSha256": "b5069743f6e1eda3f9522a4108f93a48ce538c840e67bbb74d0dad8e99b56ea2",
+      "gitBlobSha256": "b5069743f6e1eda3f9522a4108f93a48ce538c840e67bbb74d0dad8e99b56ea2",
+      "byteIdentical": true
+    },
+    {
+      "path": "docs/evidence/cli-setup9-20261010/followup/npm-ready-saved.png",
+      "bytes": 49963,
+      "localSha256": "d6d391b539653ed836d9fbde3b5beabbab0acfabe773def9adcb1b7e265ac146",
+      "gitBlobSha256": "d6d391b539653ed836d9fbde3b5beabbab0acfabe773def9adcb1b7e265ac146",
+      "byteIdentical": true
+    },
+    {
+      "path": "docs/evidence/cli-setup9-20261010/followup/npm-ready-saved.txt",
+      "bytes": 1131,
+      "localSha256": "ac6baff55a72ab220a3c4023ead1ecac9a3cd6dbc07fca82ac0071cc54f2f65e",
+      "gitBlobSha256": "ac6baff55a72ab220a3c4023ead1ecac9a3cd6dbc07fca82ac0071cc54f2f65e",
+      "byteIdentical": true
+    },
+    {
+      "path": "docs/evidence/cli-setup9-20261010/followup/npm-ready-unsaved.txt",
+      "bytes": 1188,
+      "localSha256": "846fbdd121a94a3e60db69b8bd12529a6d4ee41e8cffe14268377cd6b2a99aee",
+      "gitBlobSha256": "846fbdd121a94a3e60db69b8bd12529a6d4ee41e8cffe14268377cd6b2a99aee",
+      "byteIdentical": true
+    },
+    {
+      "path": "docs/evidence/cli-setup9-20261010/followup/npm-returned-main.txt",
+      "bytes": 1905,
+      "localSha256": "d3e533a93ff4c3de0777385aff9b2db9f7795e6417c6a0cedd1a64d513ffb9be",
+      "gitBlobSha256": "d3e533a93ff4c3de0777385aff9b2db9f7795e6417c6a0cedd1a64d513ffb9be",
+      "byteIdentical": true
+    },
+    {
+      "path": "docs/evidence/cli-setup9-20261010/followup/npm-sdk-install-check.json",
+      "bytes": 805,
+      "localSha256": "e522f728e7f317907508eab7e2b3aa13cd1e88407ac0ef948a335e54e2f72350",
+      "gitBlobSha256": "e522f728e7f317907508eab7e2b3aa13cd1e88407ac0ef948a335e54e2f72350",
+      "byteIdentical": true
+    },
+    {
+      "path": "docs/evidence/cli-setup9-20261010/followup/pack.txt",
+      "bytes": 2421,
+      "localSha256": "6b07ac7627e702aa6649d5a6626d8ed9dcb14a82f46352276b4702bdb1f593f9",
+      "gitBlobSha256": "6b07ac7627e702aa6649d5a6626d8ed9dcb14a82f46352276b4702bdb1f593f9",
+      "byteIdentical": true
+    },
+    {
+      "path": "docs/evidence/cli-setup9-20261010/followup/package-check.txt",
+      "bytes": 258,
+      "localSha256": "1c8b6d51b945b6a5b7713b5281224c3c6ddc19befd223e2984f824daa7fd61e6",
+      "gitBlobSha256": "1c8b6d51b945b6a5b7713b5281224c3c6ddc19befd223e2984f824daa7fd61e6",
+      "byteIdentical": true
+    },
+    {
+      "path": "docs/evidence/cli-setup9-20261010/followup/plugin-tests.txt",
+      "bytes": 40019,
+      "localSha256": "5065db4ea8fbeb3956812086d901013c06c6bf0d0ae93e83e4d121c9c2871980",
+      "gitBlobSha256": "5065db4ea8fbeb3956812086d901013c06c6bf0d0ae93e83e4d121c9c2871980",
+      "byteIdentical": true
+    },
+    {
+      "path": "docs/evidence/cli-setup9-20261010/followup/prior/candidate-files.json",
+      "bytes": 10778,
+      "localSha256": "f97a4310fb9396f268daa10acd8f4aad051c0d745b4280dcf6f79da123acc33a",
+      "gitBlobSha256": "f97a4310fb9396f268daa10acd8f4aad051c0d745b4280dcf6f79da123acc33a",
+      "byteIdentical": true
+    },
+    {
+      "path": "docs/evidence/cli-setup9-20261010/followup/prior/candidate-manifest.json",
+      "bytes": 737,
+      "localSha256": "3315cf3fe44682665b2224526db1463834e95700dfbca9b279bc541e6e646026",
+      "gitBlobSha256": "3315cf3fe44682665b2224526db1463834e95700dfbca9b279bc541e6e646026",
+      "byteIdentical": true
+    },
+    {
+      "path": "docs/evidence/cli-setup9-20261010/followup/release-notes-tests.txt",
+      "bytes": 651,
+      "localSha256": "2960c4b281483415055a15098516f5e213f884ace7ba2e78fb8e84eaa177a9ed",
+      "gitBlobSha256": "2960c4b281483415055a15098516f5e213f884ace7ba2e78fb8e84eaa177a9ed",
+      "byteIdentical": true
+    },
+    {
+      "path": "docs/evidence/cli-setup9-20261010/followup/repo-tests.txt",
+      "bytes": 9055,
+      "localSha256": "7e47e9789371fa979d3da3defb17842cdc3086d827a06bbcb360a9c5710021d6",
+      "gitBlobSha256": "7e47e9789371fa979d3da3defb17842cdc3086d827a06bbcb360a9c5710021d6",
+      "byteIdentical": true
+    },
+    {
+      "path": "docs/evidence/cli-setup9-20261010/followup/typecheck.txt",
+      "bytes": 75,
+      "localSha256": "e9bde1b9c430b1f263cf72baa9160a680b8c6a2046c94728f535c5a45341fd3b",
+      "gitBlobSha256": "e9bde1b9c430b1f263cf72baa9160a680b8c6a2046c94728f535c5a45341fd3b",
+      "byteIdentical": true
+    },
+    {
+      "path": "docs/evidence/cli-setup9-20261010/followup/upstream-refresh.json",
+      "bytes": 6319,
+      "localSha256": "76a90498268b8b798bc1df4517c1b506244f194454e1caa1be09f2aad158b8e8",
+      "gitBlobSha256": "76a90498268b8b798bc1df4517c1b506244f194454e1caa1be09f2aad158b8e8",
+      "byteIdentical": true
+    },
+    {
+      "path": "docs/evidence/cli-setup9-20261010/followup/windows-evidence-review.json",
+      "bytes": 2166,
+      "localSha256": "5c6de4ac7e971a91e0a85e43621f80b2c44167fdceb851a4cc3d81ab9a5b39fb",
+      "gitBlobSha256": "5c6de4ac7e971a91e0a85e43621f80b2c44167fdceb851a4cc3d81ab9a5b39fb",
+      "byteIdentical": true
+    },
+    {
+      "path": "docs/handoff/2026-10-10-cli-setup9/FOLLOWUP-RESULTS-template.md",
+      "bytes": 2469,
+      "localSha256": "4af2afde64348f66454c85513092067d51cc1cefc458031e5e3581a18b18b498",
+      "gitBlobSha256": "4af2afde64348f66454c85513092067d51cc1cefc458031e5e3581a18b18b498",
+      "byteIdentical": true
+    },
+    {
+      "path": "docs/handoff/2026-10-10-cli-setup9/HANDOFF.md",
+      "bytes": 11080,
+      "localSha256": "02f6feb11a82f0b2ae2ce2b3a3718a2fb073781d5f4eaf3239821f25da82022f",
+      "gitBlobSha256": "02f6feb11a82f0b2ae2ce2b3a3718a2fb073781d5f4eaf3239821f25da82022f",
+      "byteIdentical": true
+    },
+    {
+      "path": "docs/handoff/2026-10-10-cli-setup9/WINDOWS-FOLLOWUP.md",
+      "bytes": 7672,
+      "localSha256": "79a83ddf2f521d7c808a168f80702514d40494fd1f3291762822576021b155b2",
+      "gitBlobSha256": "79a83ddf2f521d7c808a168f80702514d40494fd1f3291762822576021b155b2",
+      "byteIdentical": true
+    },
+    {
+      "path": "docs/handoff/2026-10-10-cli-setup9/stop-owned-host.ps1",
+      "bytes": 2466,
+      "localSha256": "9fd7b9aa2d0b2a95a422ae1818d832e5d633192645cd569aa9e940ec37198aa4",
+      "gitBlobSha256": "9fd7b9aa2d0b2a95a422ae1818d832e5d633192645cd569aa9e940ec37198aa4",
+      "byteIdentical": true
+    }
+  ],
+  "identical": 77,
+  "different": 0,
+  "excluded": [
+    "docs/evidence/cli-setup9-20261010/followup/git-blob-consistency.json (added after comparison; no self-reference)"
+  ]
+}

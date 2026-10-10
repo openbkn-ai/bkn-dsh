@@ -1,0 +1,31 @@
+{
+  "label": "f9-desk-r1",
+  "form": "desktop",
+  "pid": 26272,
+  "createdUtc": "2026-10-10T15:21:59.1042370+00:00",
+  "exe": "C:\\Users\\kalia\\AppData\\Local\\Programs\\DeepSeek Harness\\DeepSeek Harness.exe",
+  "exeVersion": "0.2.0-rc.2",
+  "argv": "C:\\Users\\kalia\\AppData\\Local\\Programs\\DeepSeek Harness\\DeepSeek Harness.exe --user-data-dir=\"C:\\bkn-verify\\cli9f\\desktop\\electron-user-data\"",
+  "listeners": [],
+  "treePids": [
+    26272,
+    25648,
+    23656,
+    24732,
+    24928,
+    25696,
+    12520,
+    23924,
+    null
+  ],
+  "PATH": "C:\\bkn-verify\\cli9f\\fixtures\\bin;C:\\Windows\\system32;C:\\Windows;C:\\Windows\\System32\\Wbem;C:\\Windows\\System32\\WindowsPowerShell\\v1.0;C:\\Users\\kalia\\scoop\\apps\\nodejs-lts\\current",
+  "DSH_HOME": "C:\\bkn-verify\\cli9f\\desktop\\dsh-home",
+  "BKN_CONFIG_DIR": "C:\\bkn-verify\\cli9f\\desktop\\bkn-config",
+  "npm_config_prefix": "C:\\bkn-verify\\cli9f\\desktop\\CLI Prefix",
+  "npm_config_cache": "C:\\bkn-verify\\cli9f\\desktop\\npm-cache",
+  "APPDATA": "C:\\bkn-verify\\cli9f\\desktop\\AppData",
+  "userDataDir": "C:\\bkn-verify\\cli9f\\desktop\\electron-user-data",
+  "PathMode": "fixture",
+  "FixtureDir": "C:\\bkn-verify\\cli9f\\fixtures\\bin",
+  "WithPnpm": false
+}

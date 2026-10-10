@@ -1,0 +1,13 @@
+{
+  "startedAt": "2026-10-10T14:22:08.297356+00:00",
+  "command": [
+    "/Users/kalias/.nvm/versions/node/v24.19.0/bin/node",
+    "/Users/kalias/Documents/project/app/openBKN/dsh-npm-020/node_modules/@deepseek-ai/dsh/lib/bin.js",
+    "plugin",
+    "install",
+    "--profile",
+    "desktop",
+    "/private/tmp/bkn-cli9-followup-ci-38058120767/openbkn-dsh-business-context-0.2.0-rc.2-openbkn.0.2.0-9.tgz"
+  ],
+  "exitCode": 1
+}

@@ -1,0 +1,6 @@
+F94 npm: patch before save sha 70365aed… 489 B (cliPath openbkn); Save 15:12:5xZ -> patch 97adb450bdb47c475e586d6e8ebb430b58afe106c4ad08439186f35767e023d7 528 B; diff = only line 12 cliPath: openbkn -> C:\bkn-verify\cli9f\npm\CLI Prefix\openbkn.cmd (judgement limited to cliPath).
+Closed panel, reopened settings/advanced 15:14:33Z: 检测中 -> 15:14:33.766Z [role=status] 'CLI 0.1.5 可用。' only (no save prompt).
+12c12
+<     cliPath: openbkn
+---
+>     cliPath: C:\bkn-verify\cli9f\npm\CLI Prefix\openbkn.cmd

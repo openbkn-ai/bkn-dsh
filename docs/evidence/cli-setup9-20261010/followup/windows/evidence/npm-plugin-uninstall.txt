@@ -1,0 +1,12 @@
+argv: dsh.cmd plugin --profile web remove @openbkn/dsh-business-context
+PATH (+ scoop current\bin for pnpm): C:\Windows\system32;C:\Windows;C:\Windows\System32\Wbem;C:\Windows\System32\WindowsPowerShell\v1.0;C:\Users\kalia\scoop\apps\nodejs-lts\current;C:\Users\kalia\scoop\apps\nodejs-lts\current\bin
+utc: 2026-10-10T15:18:04.5948772Z
+✓ Lockfile passes supply-chain policies (verified 9m ago)
+
+dependencies:
+- @openbkn/dsh-business-context file:C:/bkn-verify/cli9-followup-candidate/openbkn-dsh-business-context-0.2.0-rc.2-openbkn.0.2.0-9.tgz
+
+Already up to date
+Done in 372ms using pnpm v11.7.0
+
+exit=0

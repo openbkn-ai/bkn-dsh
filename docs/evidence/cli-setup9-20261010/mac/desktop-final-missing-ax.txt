@@ -1,0 +1,64 @@
+Window: "DeepSeek Harness", App: DeepSeek Harness.
+0 standard window DeepSeek Harness, Secondary Actions: Raise
+	1 container DeepSeek Harness
+		2 container
+			3 HTML content DeepSeek Harness, URL: dsh-app://app/
+				4 container
+					5 button 收起侧边栏
+					6 button 新建会话
+					7 container 全局面板
+						8 button 插件
+					9 text 工作区
+					10 button 搜索会话
+					11 text field (settable) 搜索会话名称
+					12 button 视图选项
+					13 button 添加工作区
+					14 outline 会话
+						15 container
+							16 row 默认工作区
+								17 text 默认工作区
+							18 row (selected) 新会话
+								19 text 新会话
+					20 button OpenBKN business knowledge networks
+					21 pop up button 账号菜单
+					22 button 打开右侧边栏
+					23 container
+						24 text 探索未至之境 预览版
+						25 pop up button 选择工作区
+						26 pop up button 标准模式, Help: 选择新任务使用的 Agent 预设
+						27 text entry area (settable) 描述你想要构建的内容, / 调用指令, @ 文件或对话
+						28 pop up button 添加文件或调用指令
+						29 button 访问模式，当前：工作区内修改
+						30 pop up button Description: 选择模型，当前 DeepSeek-V41-Flash，推理等级 High, Help: DeepSeek-V41-Flash · High
+						31 button (disabled) 发送消息
+					32 container OpenBKN business knowledge networks
+						33 container
+							34 text OPENBKN
+							35 heading 业务知识网络, Value: 2
+								36 text 业务知识网络
+							37 button 设置
+							38 button 诊断
+							39 button Close
+						40 container
+							41 text 修改当前 DSH profile 的 OpenBKN 设置。已有业务会话保持原平台和网络绑定。 OpenBKN 平台地址
+							42 text field (settable) Description: OpenBKN 平台地址, Value: https://cli9-no-platform.invalid, Placeholder: https://openbkn.example.com
+							43 disclosure triangle 高级设置
+								44 text 高级设置
+							45 container
+								46 text OpenBKN CLI 执行路径（cliPath）
+								47 text field (settable) Description: OpenBKN CLI 执行路径, Value: openbkn
+							48 text 默认 openbkn。若 DSH 找不到命令，可填写绝对路径；Windows 上填写 openbkn.cmd。
+							49 text 未在当前环境和常见安装位置检测到 CLI。点击下方按钮可安装 0.1.5。
+							50 button 检测并安装 CLI
+							51 text 优先使用已有 CLI；未检测到时，通过本机 npm 安装 OpenBKN CLI 0.1.5（适用于 0.1.5 平台）。使用 npm 当前安装源和全局目录。
+							52 button 保存并继续
+	53 close button
+	54 full screen button Help: this button also has an action to zoom the window, Secondary Actions: zoom the window
+	55 minimize button
+56 menu bar
+	57 DeepSeek Harness
+	58 文件
+	59 Edit
+	60 Window
+
+The focused UI element is 3 HTML content DeepSeek Harness, URL: dsh-app://app/

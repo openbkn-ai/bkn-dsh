@@ -1,0 +1,41 @@
+{
+  "checkedAt": "2026-10-10T14:05:43.355237+00:00",
+  "sourceCommit": "a2504c54dbd3855b53dd2e13c568f565ba4c04aa",
+  "rows": [
+    {
+      "path": "docs/evidence/cli-setup9-20261010/windows/evidence/OpenBKN-diagnostic-npm-c98-7d60b5ca.json",
+      "gitBlobBytes": 1852,
+      "gitBlobSha256": "d86c8de1e1f82fd37c1e303b67799fba0d78a523c9a1804aa4f3744628c738b2",
+      "comparison": "Git blob digest equals the original digest recorded in reports.txt"
+    },
+    {
+      "path": "docs/evidence/cli-setup9-20261010/windows/evidence/OpenBKN-diagnostic-npm-c96-ba61d2f2.json",
+      "gitBlobBytes": 1854,
+      "gitBlobSha256": "e59475aad7ae5d8f74ac22d5079137c03108294f5f2b125788fe655272233150",
+      "comparison": "Git blob digest equals the original digest recorded in reports.txt"
+    },
+    {
+      "path": "docs/evidence/cli-setup9-20261010/windows/evidence/OpenBKN-diagnostic-desktop-c98-d18c2ec8.json",
+      "gitBlobBytes": 1852,
+      "gitBlobSha256": "4dc841da774de477c92fdadf922b45c7be147ba504873c0e181eb881ac8a4ab4",
+      "comparison": "Git blob digest equals the original digest recorded in reports.txt"
+    },
+    {
+      "path": "docs/evidence/cli-setup9-20261010/windows/evidence/OpenBKN-diagnostic-desktop-c96-69099527.json",
+      "gitBlobBytes": 1914,
+      "gitBlobSha256": "8205640c96057da45a2e0a03d70b272d7775d41c31555838d0c8dd613b3e4010",
+      "comparison": "Git blob digest equals the original digest recorded in reports.txt"
+    },
+    {
+      "path": "docs/evidence/cli-setup9-20261010/windows/evidence/observer-desktop-r1.json",
+      "gitBlobBytes": 125920,
+      "gitBlobSha256": "09c7c723f0f013be337743454c61c42cd4f8411646ced1f83be25929feb96cc0",
+      "crlfOriginalBytes": 128641,
+      "crlfOriginalSha256": "b9337f9cf759880bbdaf6d63e2d8c389a7835de3b51faf49ed824f17e0221ac4",
+      "comparison": "normalized-only: CRLF download and LF Git blob differ in bytes; conversion recreates the archived final digest",
+      "earlierSnapshotSha256": "860755d2183394804611c551987bdc53e0cbce43298d4a0e47d7f063419d9c99",
+      "earlierSnapshotStatus": "historical pre-final capture; not the final Git blob"
+    }
+  ],
+  "rawFilesModified": false
+}

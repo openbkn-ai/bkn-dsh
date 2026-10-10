@@ -1,0 +1,8 @@
+2026-10-10T15:30:33.0262188Z identity pid=26272 createdUtc=2026-10-10T15:21:59.1042370+00:00 [match=True] exe=C:\Users\kalia\AppData\Local\Programs\DeepSeek Harness\DeepSeek Harness.exe [match=True] recordedPorts= currentPorts=19387 [recordedStillOwned=False]
+2026-10-10T15:30:33.0472923Z   tree pid=26272 ppid=26344 name=DeepSeek Harness.exe createdUtc=2026-10-10T15:21:59.1042370+00:00
+2026-10-10T15:30:33.0482959Z   tree pid=25648 ppid=26272 name=DeepSeek Harness.exe createdUtc=2026-10-10T15:21:59.3026630+00:00
+2026-10-10T15:30:33.0492993Z   tree pid=23656 ppid=26272 name=DeepSeek Harness.exe createdUtc=2026-10-10T15:21:59.3059540+00:00
+2026-10-10T15:30:33.0503029Z   tree pid=24732 ppid=26272 name=DeepSeek Harness.exe createdUtc=2026-10-10T15:21:59.3206070+00:00
+2026-10-10T15:30:33.0503029Z   tree pid=24928 ppid=26272 name=DeepSeek Harness.exe createdUtc=2026-10-10T15:21:59.5316350+00:00
+2026-10-10T15:30:33.0513065Z   tree pid=22928 ppid=26272 name=DeepSeek Harness.exe createdUtc=2026-10-10T15:22:46.9045910+00:00
+2026-10-10T15:30:33.0523099Z IDENTITY MISMATCH - refusing to stop

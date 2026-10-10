@@ -2,6 +2,19 @@
 
 All notable changes to this project are documented here.
 
+## 0.2.0-rc.2-openbkn.0.2.0-9 (unreleased)
+
+CLI setup inside the existing advanced settings. Same DSH `0.2.0-rc.2` pin and authentication flow.
+
+- Detect an executable CLI on the current Host PATH or in bounded common locations and npm's global prefix; display its version and put its resolved path into the settings draft. Existing usable versions are retained.
+- Add an explicit **检测并安装 CLI** action. Only when the default `openbkn` is not detected and prerequisites are usable does it install `@openbkn/bkn-sdk@0.1.5` through the user's npm source/global prefix. No automatic install on render, existing-install upgrade, Node/npm installation, PATH editing or privilege escalation.
+- Show detection, installation, verification and bounded failures. An installer exit of zero does not count as availability: the resulting executable must pass `--version`. Closing the panel leaves an accepted installation running on the Host; reopening checks its current state.
+- Persist a discovered CLI path only through the existing **保存并继续** action. CLI setup does not read tokens, sign in or reconcile authentication diagnostics. Uninstalling the plugin retains the independently installed CLI.
+- Keep the path field editable during automatic read-only detection; lock it only for an explicit setup action or an active Host installation, including polling. Treat bare `openbkn.cmd` as the Windows default command, while absent custom paths still prevent installation. Exercise command/install timeouts with signal-aware tests.
+- Reject directory CLI paths before executable resolution with a clear path-is-directory message. Point missing-CLI recovery to advanced settings and its install progress; request saving only when the resolved CLI path is not already persisted.
+- The current build-only candidate (source `6b372ff703d773a4c47ff3cf13972a047fa81ebd`, CI [38058120767](https://github.com/openbkn-ai/bkn-dsh/actions/runs/38058120767), SHA-256 `dd2d50a2fdda8e55f1ff355b6121113fc6106aeeb6664463bc218cb9b366c887`, 69 files) passed the affected macOS npm/Desktop checks and Windows Desktop/npm F90–F97, including actual SDK installation and persisted-path messaging. Windows PS5.1 accepted the canonical verifier with its normal checkout, and the canonical stop helper rejected wrong and empty listener records. The previous full Windows matrix applies to source cf591d7; the current round repeats the affected checks only. Windows source-file provenance supplements remain explicitly pending. See [CLI setup evidence](docs/evidence/cli-setup9-20261010/RESULTS.md). All retained -8 platform, model, diagnostics and authentication limitations still apply.
+- Known Windows uninstall limitation, retained with the user's approval: one official Desktop removal failed when pnpm could not rename `pnpm-lock.yaml` (`EPERM`). The plugin was disabled but its dependency/files remained; retrying the same UI action completed removal and retained the user patch and independent SDK. The failure is located in the host's pnpm removal path; the lock owner and root cause are unknown. If removal fails, retry and verify the package is gone. No host repair is included in -9.
+
 ## 0.2.0-rc.2-openbkn.0.2.0-8 (2026-10-10)
 
 First-use setup for the existing DSH `0.2.0-rc.2` plugin. No runtime or upstream pin change.

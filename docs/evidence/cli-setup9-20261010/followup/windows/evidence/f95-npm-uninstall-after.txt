@@ -1,0 +1,11 @@
+after 2026-10-10T15:18:05Z
+97adb450bdb47c475e586d6e8ebb430b58afe106c4ad08439186f35767e023d7 *npm/dsh-home/profiles/web/cordis.patch.yml
+207430228a8315c78dd73ee35c0f4ca6a2092121880031863ac15b38ed3ce5a8 *npm/dsh-home/profiles/web/package.json
+528
+8:- id: openbkn-business-context
+9-  name: "@openbkn/dsh-business-context/business"
+10-  config:
+11-    baseUrl: https://192.168.50.28
+12-    cliPath: C:\bkn-verify\cli9f\npm\CLI Prefix\openbkn.cmd
+node_modules/@openbkn: 
+after-sdk utc=2026-10-10T15:18:06Z files=1120 newestMtimeEpoch=1791645129.1669255000 treeSha256=5204d50caf6ceab164de044dc0ffdd54410512e6f1c9d990be9ed34e9beaba0b

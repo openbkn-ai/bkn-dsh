@@ -1,0 +1,22 @@
+{
+  "checkedAt": "2026-10-10T06:24:47.404714+00:00",
+  "url": "https://github.com/openbkn-ai/bkn-dsh/pull/86",
+  "headRefOid": "cf591d7cbd4af202d0bd893aab57202a72ec1644",
+  "reviewDecision": "APPROVED",
+  "reviews": [
+    {
+      "state": "CHANGES_REQUESTED",
+      "submittedAt": "2026-10-10T04:47:55Z",
+      "commit": "bc6ee26def6ae19a73cdab1724a96687799944d7",
+      "author": "github-actions",
+      "body": "## Blocking issues\n\nEach item was independently checked and retained only when confirmed.\n\n- **packages/openbkn-business-context/src/client/CliSetupControl.tsx:22** — A detection is started on every change of cliPath, and the resulting 'checking' state is propagated through onBusy into cliBusy, which disables the cliPath input the user is typing into.\n  Failure scenario: The user opens 高级设置 and types an absolute path such as /opt/openbkn/bin/openbkn. The first character triggers controller.check, which publishes phase 'checking' synchronously before awaiting the Host call; cliBusy becomes true and the input is committed with disabled=true, so the browser drops focu…\n\nThe host-side CLI setup (bounded views, fail-closed install gating, fixed SDK version, no raw installer output crossing the boundary) is solid and well covered by tests. The client wiring regresses the existing cliPath field: every keystroke starts a detection whose 'checking' state disables that same input.\n\n\n<details><summary>Impact and review coverage</summary>\n\n- Impact: Manual entry of a custom cliPath in 高级设置 becomes unusable, which is the documented recovery path when DSH cannot find the CLI.\n- Not covered: Of docs/evidence/cli-setup9-20261010 I read RESULTS.md, EVIDENCE-MANIFEST-adjacent manifests, final-pack.log and the custom-path DOM capture; the remaining per-run JSON/txt/png artifacts were not ope…\n\n</details>\n\n## Items to confirm (nonblocking)\n\n- **packages/openbkn-business-context/src/cli-setup.ts** — Any command other than the literal openbkn is classified custom-path-missing with canInstall:false, including the bare openbkn.cmd that the in-UI hint at OpenBknOverlay.tsx:201 and README tell Windows users to enter, so…\n- **packages/openbkn-business-context/tests/cli-setup.test.ts** — The fixture's spawn ignores spec.signal and always settles, so the 5s per-command and 180s install timeouts and the resulting reason 'timeout' have no coverage.\n\nPush fixes or reply `/review` to request another round."
+    },
+    {
+      "state": "APPROVED",
+      "submittedAt": "2026-10-10T05:52:36Z",
+      "commit": "cf591d7cbd4af202d0bd893aab57202a72ec1644",
+      "author": "github-actions",
+      "body": "The prior blocker is resolved: a read-only detection now only reports busy, while the cliPath input is locked solely by an explicit setup click or a Host-owned install, and the controller keeps that lock across install polling (CliSetupControl.tsx:23-26, cli-setup-controller.ts:60,80, OpenBknOverlay.tsx:201). Both prior nonblocking items — the win32 openbkn.cmd default alias (cli-setup.ts:76-78)…\n\n\n<details><summary>Impact and review coverage</summary>\n\n- Not covered: Of docs/evidence/cli-setup9-20261010 I opened RESULTS.md, both candidate-manifest.json files, git-blob-consistency.json and the custom-path DOM capture; the remaining per-run JSON/txt/jsonl/png artif…\n\n</details>\n\n## Items to confirm (nonblocking)\n\n- **docs/evidence/cli-setup9-20261010/RESULTS.md** — The recorded acceptance candidate is source e669bd6 / sha256 006f7434… (candidate-manifest.json:2, RESULTS.md:9, CHANGELOG.md:13), but 7afbdcb and cf591d7 then changed the path-locking behaviour the macOS npm and Deskto…\n\nReply `/review` to discuss findings or request another round; ordinary replies do not trigger a review. The requester must be an OWNER, MEMBER or COLLABORATOR."
+    }
+  ]
+}

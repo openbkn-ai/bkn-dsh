@@ -1,0 +1,9 @@
+{
+  "action": "select all, Backspace, then per-character pressSequentially full custom path",
+  "expected": "/tmp/cli9-not-installed/openbkn",
+  "observed": {
+    "disabled": false,
+    "focused": true,
+    "value": "/tmp/cli9-not-installed/openbkn"
+  }
+}

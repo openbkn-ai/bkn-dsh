@@ -1,0 +1,58 @@
+{
+  "at": "2026-10-10T14:56:42.474854+00:00",
+  "scope": "10 selected daily DSH config and CLI files only",
+  "files": [
+    {
+      "path": "/Users/kalias/.dsh/profiles/desktop/cordis.patch.yml",
+      "exists": true,
+      "sha256": "de9bc7623edaa12efac39cf438ffcdee906ac8f55a9832d5b5ded64aa71ef8a3"
+    },
+    {
+      "path": "/Users/kalias/.dsh/profiles/desktop/cordis.yml",
+      "exists": true,
+      "sha256": "c300dcf2ebc5f02062d6591268d29d3db6fe45e0cb138f5467276fe2ba06076e"
+    },
+    {
+      "path": "/Users/kalias/.dsh/profiles/desktop/package.json",
+      "exists": true,
+      "sha256": "eafc5b4ebc3e702e8aaee00f6012ae1d76ef8ea24b8bbe03a003f369c5d2934f"
+    },
+    {
+      "path": "/Users/kalias/.dsh/profiles/desktop/pnpm-workspace.yaml",
+      "exists": true,
+      "sha256": "ae7c5b68e2f157528e62885804e69e88583897b775e03c86fcbe52feaf498aba"
+    },
+    {
+      "path": "/Users/kalias/.dsh/profiles/web/cordis.patch.yml",
+      "exists": true,
+      "sha256": "ef189a8c27db6d63930aa3046a3040482e952eafcb7487c644d508e8d461f027"
+    },
+    {
+      "path": "/Users/kalias/.dsh/profiles/web/cordis.yml",
+      "exists": true,
+      "sha256": "c300dcf2ebc5f02062d6591268d29d3db6fe45e0cb138f5467276fe2ba06076e"
+    },
+    {
+      "path": "/Users/kalias/.dsh/profiles/web/package.json",
+      "exists": true,
+      "sha256": "210068ddb9ebc4cdf395ebb53020be6ccaaedb917e74dae16296d62394626398"
+    },
+    {
+      "path": "/Users/kalias/.dsh/profiles/web/pnpm-workspace.yaml",
+      "exists": true,
+      "sha256": "ae7c5b68e2f157528e62885804e69e88583897b775e03c86fcbe52feaf498aba"
+    },
+    {
+      "path": "/Users/kalias/.nvm/versions/node/v24.19.0/lib/node_modules/@openbkn/bkn-sdk/package.json",
+      "exists": true,
+      "sha256": "44a82bbf70a2a354b424e83c8604729e313d618b6fcf2689d858ea5961d4e5ae"
+    },
+    {
+      "path": "/Users/kalias/.nvm/versions/node/v24.19.0/lib/node_modules/@openbkn/bkn-sdk/dist/cli.js",
+      "exists": true,
+      "sha256": "a8fc2975bd081b6a7e786a7970f028bee29f8e415e3272237b02ba7dd53d8c10"
+    }
+  ],
+  "different": [],
+  "selectedFilesUnchanged": true
+}

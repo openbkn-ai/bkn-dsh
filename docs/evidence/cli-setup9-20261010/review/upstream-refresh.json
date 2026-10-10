@@ -1,0 +1,16 @@
+{
+  "checkedAt": "2026-10-10T05:40:13.649113+00:00",
+  "scope": "PR 86 CLI setup review only; no upstream pin or platform/tool changes",
+  "dsh": {
+    "master": "d743267388641bc76f17c45ce8b4c231aed1d32c",
+    "latestAvailableRelease": "dsh-v0.2.1-alpha.2"
+  },
+  "foundry": {
+    "main": "a1920efe00d18c7d4aabfa3d8435c3055ebfbe4d",
+    "latestStableRelease": "v0.1.5"
+  },
+  "sdk": {
+    "main": "fe5cda78c3441554cef625c3867dc35af9823b3c",
+    "supported": "0.1.5"
+  }
+}

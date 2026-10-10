@@ -1,0 +1,13 @@
+{
+  "type": "server-response",
+  "rpcId": "e08790ee-9a64-437c-80a2-6c4971b35cde",
+  "result": {
+    "ok": true,
+    "value": {
+      "state": "ready",
+      "canInstall": false,
+      "resolvedPath": "/private/tmp/bkn-cli9-mac/npm/sdk-prefix-review/bin/openbkn",
+      "version": "0.1.5"
+    }
+  }
+}

@@ -1,0 +1,100 @@
+{
+  "node": "v24.19.0",
+  "pnpm": "11.7.0",
+  "dependencyStatus": "automatic dependency reinstall disabled; existing installed dependencies used; workspace override and lock unchanged",
+  "checks": [
+    {
+      "name": "typecheck",
+      "argv": [
+        "pnpm",
+        "--config.verify-deps-before-run=false",
+        "run",
+        "typecheck"
+      ],
+      "exitCode": 0,
+      "log": "typecheck.txt"
+    },
+    {
+      "name": "plugin-tests",
+      "argv": [
+        "pnpm",
+        "--config.verify-deps-before-run=false",
+        "--filter",
+        "@openbkn/dsh-business-context",
+        "test"
+      ],
+      "startedAt": "2026-10-10T14:00:48.102820+00:00",
+      "finishedAt": "2026-10-10T14:00:52.452931+00:00",
+      "exitCode": 0,
+      "log": "plugin-tests.txt"
+    },
+    {
+      "name": "repo-tests",
+      "argv": [
+        "node",
+        "--test",
+        "compat/dsh-0.2.0-rc.2/tests/verify.test.mjs",
+        "compat/dsh-0.2.0-rc.2/tests/apply.test.mjs",
+        "tests/launcher-node-guard.test.mjs",
+        "tests/prepare-compatible-runtime-profile-cli.test.mjs",
+        "tests/build-compatible-runtime-cli.test.mjs",
+        "tests/build-script-manifest-errors.test.mjs",
+        "tests/compatible-runtime-build.test.mjs",
+        "tests/claude-review-plan.test.mjs",
+        "tests/configure-pinned-dsh-generator.test.mjs",
+        "tests/prepare-runtime-profile.test.mjs",
+        "tests/compatible-runtime-bundle.test.mjs",
+        "tests/plugin-release-notes.test.mjs",
+        "tests/package-compatible-runtime.test.mjs",
+        "tests/bundle-portability.test.mjs",
+        "tests/runtime-plugin-bootstrap.test.mjs",
+        "runtime/tests/runtime-manifest.test.mjs"
+      ],
+      "startedAt": "2026-10-10T14:00:52.464348+00:00",
+      "finishedAt": "2026-10-10T14:00:52.914372+00:00",
+      "exitCode": 0,
+      "log": "repo-tests.txt"
+    },
+    {
+      "name": "package-check",
+      "argv": [
+        "pnpm",
+        "--config.verify-deps-before-run=false",
+        "run",
+        "package:check"
+      ],
+      "startedAt": "2026-10-10T14:00:52.925268+00:00",
+      "finishedAt": "2026-10-10T14:00:53.308305+00:00",
+      "exitCode": 0,
+      "log": "package-check.txt"
+    },
+    {
+      "name": "diff-check",
+      "argv": [
+        "git",
+        "diff",
+        "--check"
+      ],
+      "startedAt": "2026-10-10T14:00:53.322029+00:00",
+      "finishedAt": "2026-10-10T14:00:53.340811+00:00",
+      "exitCode": 0,
+      "log": "diff-check.txt"
+    },
+    {
+      "name": "pack",
+      "argv": [
+        "pnpm",
+        "--config.verify-deps-before-run=false",
+        "--filter",
+        "@openbkn/dsh-business-context",
+        "pack",
+        "--pack-destination",
+        "/tmp/bkn-cli9-followup-local-pack"
+      ],
+      "startedAt": "2026-10-10T14:00:53.351545+00:00",
+      "finishedAt": "2026-10-10T14:00:53.568725+00:00",
+      "exitCode": 0,
+      "log": "pack.txt"
+    }
+  ]
+}

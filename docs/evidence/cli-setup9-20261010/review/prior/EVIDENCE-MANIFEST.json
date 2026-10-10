@@ -1,0 +1,396 @@
+{
+  "generatedAt": "2026-10-10T04:35:18.875724+00:00",
+  "scope": "Files under this evidence directory, excluding this inventory and git-blob-consistency.json; no private Host logs or launch URL",
+  "files": [
+    {
+      "path": "RESULTS.md",
+      "bytes": 8235,
+      "sha256": "93a221eeb7266bca76cf6dc8654425f73d2a4b313bf89f0e4125002254719239"
+    },
+    {
+      "path": "candidate-files.json",
+      "bytes": 10778,
+      "sha256": "4b70a47ceb5cfc8de4c201780fe347c06496a99d867f450f6200ee646f7466d7"
+    },
+    {
+      "path": "candidate-manifest.json",
+      "bytes": 647,
+      "sha256": "0fa4ca7a25d6f9a6f7cc908c118775e0ce764c90dac82b1c234516dfa1e94cf1"
+    },
+    {
+      "path": "final-ci-run.json",
+      "bytes": 170,
+      "sha256": "b6045240bac2deebd352d19efdd56f3ee6759c56771d620fe4c05541245a15ec"
+    },
+    {
+      "path": "mac/daily-after.json",
+      "bytes": 2295,
+      "sha256": "498d42800c9108110844ea6698132587094737a99a52e89fe9f20d9add069bcb"
+    },
+    {
+      "path": "mac/daily-before.json",
+      "bytes": 2065,
+      "sha256": "bf5f4c93d3c1cab8d4706399766f42c08b70ae3701787c3d0403d49030e0766d"
+    },
+    {
+      "path": "mac/daily-intermediate.json",
+      "bytes": 2295,
+      "sha256": "e136e089415e962d841d943ce1c5d18d857ac2936288256063ea8cb2f13c1305"
+    },
+    {
+      "path": "mac/desktop-after-package-restart.json",
+      "bytes": 7098,
+      "sha256": "7167a6b3e551e72a5e2e64c3f2665eaa19dfeb396bb725ffb445cfa881f3a5be"
+    },
+    {
+      "path": "mac/desktop-final-cli-verification.json",
+      "bytes": 841,
+      "sha256": "0cc58c6ae5a229d0b095b34ac86db8e2e5bda5fa5d35abb576e2d0d56b99b190"
+    },
+    {
+      "path": "mac/desktop-final-installed-identity.json",
+      "bytes": 295,
+      "sha256": "1cdce4d4459231a53477074b0840afa4a767d08990a83406cc7af1f55bf10424"
+    },
+    {
+      "path": "mac/desktop-final-missing-ax.txt",
+      "bytes": 2891,
+      "sha256": "dccfca7ae7e737a454f678907352bc2018505771dd797ffe06fa490fe55e6ad0"
+    },
+    {
+      "path": "mac/desktop-final-owned-stop.json",
+      "bytes": 7101,
+      "sha256": "c20f63de9936203ee5bc224d42ffc3c5a32ac6a4eb8cafcffb38c3d2b2d7bcad"
+    },
+    {
+      "path": "mac/desktop-final-ready-ax.txt",
+      "bytes": 2719,
+      "sha256": "3cb77d219e5d9aacd096c82c8713a97da0b3af669d97e426d8a2513cd3350e76"
+    },
+    {
+      "path": "mac/desktop-final-ready.png",
+      "bytes": 248209,
+      "sha256": "553b07fecdea5ac8e643e1da55efcdf6f7a0bf863e195dc8a5c341becd7e3be6"
+    },
+    {
+      "path": "mac/desktop-final-saved-patch.json",
+      "bytes": 373,
+      "sha256": "74cdaaeb2dfcb47546f0f244c5319558c30fc5f317baa3d6d54f4c106cd0541a"
+    },
+    {
+      "path": "mac/desktop-sdk-fixture.py",
+      "bytes": 702,
+      "sha256": "5e907215d20f0bc93c0a8a644e3304b3cfda4d38260ee1d80e1f1cf3c8ea2f30"
+    },
+    {
+      "path": "mac/desktop-test-start-history.jsonl",
+      "bytes": 1640,
+      "sha256": "261b343d988be0f1a77d7b4399f571f11297ead7bcb2185bf484b753482be78c"
+    },
+    {
+      "path": "mac/final-environment.json",
+      "bytes": 2297,
+      "sha256": "2ed48dcc547c7f4999b7e3968cabf1cdf925c1b62bbc7e7307e6aa77a7716d36"
+    },
+    {
+      "path": "mac/helpers/host-api.py",
+      "bytes": 1034,
+      "sha256": "b9d48009ae554ce2d022a051b3f3979cf6670c858ef63750695f8f806c2ae4e5"
+    },
+    {
+      "path": "mac/helpers/host-control.py",
+      "bytes": 5455,
+      "sha256": "1184f51ff1751a6cfc429ce7257c41da1fd39f19d82e0f42d9d7aebe2976f614"
+    },
+    {
+      "path": "mac/helpers/owned-stop.py",
+      "bytes": 3006,
+      "sha256": "9ec5f9f10bd3cba96a0798b00c55ceff0b8e38dca02adb7b0a70789b19f88551"
+    },
+    {
+      "path": "mac/helpers/verify-installed.py",
+      "bytes": 3220,
+      "sha256": "6a0af418f587efc27d837e4dd5c5736466b07a4ba83203509d87251e1c74f267"
+    },
+    {
+      "path": "mac/npm-final-cli-verification.json",
+      "bytes": 829,
+      "sha256": "ab5a81d261c4a788008f9d61e1cd012692dcd356c76a6c6f06adfb29a545b8cd"
+    },
+    {
+      "path": "mac/npm-final-diagnostic-api.json",
+      "bytes": 2302,
+      "sha256": "c90e08cd5b2a221ef40270c610164a44524d5d47187145445c331e9dd73eb533"
+    },
+    {
+      "path": "mac/npm-final-initial-configuration-api.json",
+      "bytes": 314,
+      "sha256": "867e198c7780e0360a328f57db6259161b13821aac33802f24f3b7311d5ca571"
+    },
+    {
+      "path": "mac/npm-final-installed-identity.json",
+      "bytes": 287,
+      "sha256": "0f5fe29069639437f133b869b0e75cf3af3934fe8d3e78f26c1771e6ba436486"
+    },
+    {
+      "path": "mac/npm-final-installing-dom.txt",
+      "bytes": 2360,
+      "sha256": "f89b81b9b7103d21191dddaa1cdf21e41de74950f2f202d036bdf2a350bfee4e"
+    },
+    {
+      "path": "mac/npm-final-owned-stop.json",
+      "bytes": 1941,
+      "sha256": "cdabbb6b2521c160d94aa689548b54c999665272b990028e3883419a50507b4f"
+    },
+    {
+      "path": "mac/npm-final-ready-dom.txt",
+      "bytes": 2150,
+      "sha256": "6698a68519e429151a5e63819b7acac00254becd429d0f48a4da3ab967ce705c"
+    },
+    {
+      "path": "mac/npm-final-ready.png",
+      "bytes": 52588,
+      "sha256": "1b0646c23a262fb2cb8d2ab4c2b6480d867372f1233091a512159f18d51dda9d"
+    },
+    {
+      "path": "mac/npm-final-reopen-dom.txt",
+      "bytes": 2330,
+      "sha256": "596dd02c9935e6dbb46bc6a880f6511abf05a05387b7e264c2acdcf174c07f39"
+    },
+    {
+      "path": "mac/npm-final-reuse-api.json",
+      "bytes": 299,
+      "sha256": "896257db4baf9cf6f8d0137c8d5fffeadeb75452ea3d71ed0f346963258d9ffb"
+    },
+    {
+      "path": "mac/npm-final-saved-configuration-api.json",
+      "bytes": 320,
+      "sha256": "ff3b80a50c6839b2c946eb29486704bca9bd8e8631257dbea2929e4523ee6422"
+    },
+    {
+      "path": "mac/npm-final-saved-dom.txt",
+      "bytes": 1878,
+      "sha256": "8fc191471aa4e79110b2a0a985d9d69f9c20ba816cd315a7108b2c940b7c4fb1"
+    },
+    {
+      "path": "mac/npm-final-saved-patch.json",
+      "bytes": 361,
+      "sha256": "b0d662862a22226a4d5e9c350e6e27c26e613c75949ad05ac834666313a20e38"
+    },
+    {
+      "path": "mac/npm-node23-api.json",
+      "bytes": 227,
+      "sha256": "640b1b2d9d2bb71ddf0dc0fe2598bd75ec122bed607b89ab43c9a44ea2609a38"
+    },
+    {
+      "path": "mac/npm-node23-dom.txt",
+      "bytes": 2394,
+      "sha256": "05c2abc97a9112b3f6c55737bd0cbd0f0471836b4b43194a184fff68358598ed"
+    },
+    {
+      "path": "mac/npm-node23-fixture.json",
+      "bytes": 311,
+      "sha256": "e080421ec2299e3729bea0d8edee2bf7f3ea5842a1998fd8c9a6e1dcc41be09e"
+    },
+    {
+      "path": "mac/npm-sdk-fixture.py",
+      "bytes": 698,
+      "sha256": "3206b077c141c99e485491ff7bac1018ec4a23f4a5be223e862034dee142ac90"
+    },
+    {
+      "path": "mac/npm-test-start-history.jsonl",
+      "bytes": 1131,
+      "sha256": "439b2b80087952f35307988f58ec6ce354fa1a60b002bd7474ded337e06642dc"
+    },
+    {
+      "path": "mac/preflight/candidate-files.json",
+      "bytes": 10778,
+      "sha256": "2e645de10866e6b3847aa1c7e4acaa4b85cff15df8a8fcac8576598395c12c48"
+    },
+    {
+      "path": "mac/preflight/candidate-manifest.json",
+      "bytes": 606,
+      "sha256": "5b06412828bc33c56934950ab75c8d657426288c490f6d940f53698b168246c3"
+    },
+    {
+      "path": "mac/preflight/desktop-ci-installed-identity.json",
+      "bytes": 295,
+      "sha256": "ac6ec7e0218ad6215be84825c5850bd863d506a1432f9116dc338fec8b1c7867"
+    },
+    {
+      "path": "mac/preflight/desktop-installed-cli-verification.json",
+      "bytes": 254,
+      "sha256": "861bf339f7bedc2b4a9442bd038537071b698c87942a4e1c6d7c50565d4c99fc"
+    },
+    {
+      "path": "mac/preflight/desktop-installing-ax.txt",
+      "bytes": 448,
+      "sha256": "7a7805fc394c15d3c0fd381bfbcda7d874fedebcb4cb3b7abf600df7ded769b3"
+    },
+    {
+      "path": "mac/preflight/desktop-missing-ax.txt",
+      "bytes": 1683,
+      "sha256": "6a0abb9cf2add352970a3d9bc398ab2101e122f584154f88b13cf42988b97728"
+    },
+    {
+      "path": "mac/preflight/desktop-npm-install-invocations.jsonl",
+      "bytes": 225,
+      "sha256": "75521f844321d7c793650c63375c555f9e1ab459f8bdef215822ec38fd04324e"
+    },
+    {
+      "path": "mac/preflight/desktop-owned-stop.json",
+      "bytes": 7101,
+      "sha256": "f65a6e0b99d01239395df40a4ee511c1a44728565f2b6e765c7b550e615cd0d9"
+    },
+    {
+      "path": "mac/preflight/desktop-ready-ax.txt",
+      "bytes": 1507,
+      "sha256": "6b8a88b8f45b3a6bca93e73b57dc47a2e5837ce994487e3c9d410cd7b02380d4"
+    },
+    {
+      "path": "mac/preflight/desktop-ready.png",
+      "bytes": 290914,
+      "sha256": "7a20fa2c0722216e8a2b88d203ef486001867d56dc7c467551c991b46e2fadd1"
+    },
+    {
+      "path": "mac/preflight/desktop-reopen-ax.txt",
+      "bytes": 1507,
+      "sha256": "6b8a88b8f45b3a6bca93e73b57dc47a2e5837ce994487e3c9d410cd7b02380d4"
+    },
+    {
+      "path": "mac/preflight/desktop-saved-configuration.json",
+      "bytes": 369,
+      "sha256": "6485085b68517576e252182cfa1c88e40219d6b9f81fa0ffc99d8606e1ac54ad"
+    },
+    {
+      "path": "mac/preflight/npm-after-setup-diagnostic-api.json",
+      "bytes": 2302,
+      "sha256": "18970ce294494f7e5d172513e4ca4cb4338846bc7b4803b9829290f880357d3c"
+    },
+    {
+      "path": "mac/preflight/npm-ci-initial-check-api.json",
+      "bytes": 190,
+      "sha256": "2feb19f36911c7afd0b2f45841ed9ec0e96520153a1f71f6f1e68543e1745f23"
+    },
+    {
+      "path": "mac/preflight/npm-ci-installed-identity.json",
+      "bytes": 287,
+      "sha256": "d7f2b809b5257e2c090e344c07310b4f01c4e7c2bc6391ad5ca387ca627c48d7"
+    },
+    {
+      "path": "mac/preflight/npm-ci-reuse-api.json",
+      "bytes": 293,
+      "sha256": "9035839e0ef62a1366c9a7880a7f160b20b4666c105ed59a57946f93c6c8226b"
+    },
+    {
+      "path": "mac/preflight/npm-cli-detection-dom.txt",
+      "bytes": 2249,
+      "sha256": "a0d71fadbe5cc1f6fe0630a9473ea41f295bd125b2db52b80875152392dffb52"
+    },
+    {
+      "path": "mac/preflight/npm-custom-path-api.json",
+      "bytes": 230,
+      "sha256": "0cab6d6cd6c9c687ff4704d5c038085fea2dc26ca74a1b4294e307efcbff7e63"
+    },
+    {
+      "path": "mac/preflight/npm-custom-path-dom.txt",
+      "bytes": 2346,
+      "sha256": "1e4b91849778204c5ad34f3ed54a166d8d7b6cdf650f80bd6e5852c961d55b46"
+    },
+    {
+      "path": "mac/preflight/npm-initial-check-api.json",
+      "bytes": 190,
+      "sha256": "476ee4de419e4b792650014b85c63a74ef90ef54e0b0112e3eaca343933dc4c2"
+    },
+    {
+      "path": "mac/preflight/npm-initial-configuration-api.json",
+      "bytes": 238,
+      "sha256": "0f00f39ebcf5c1e8921d57cf1cddb03cdb78c08c2d5f5f5af7c5d93e007be3d5"
+    },
+    {
+      "path": "mac/preflight/npm-installed-cli-verification.json",
+      "bytes": 250,
+      "sha256": "baf4210ca6c358acee47ab872d61129d0a515eca21e95fd90483ceeb121b3c04"
+    },
+    {
+      "path": "mac/preflight/npm-installing-dom.txt",
+      "bytes": 2324,
+      "sha256": "3a3370b51b3a73e3d9bfc2a67cd3b323dbc00819a62d7977108c4059209de65b"
+    },
+    {
+      "path": "mac/preflight/npm-network-failure-dom.txt",
+      "bytes": 2270,
+      "sha256": "eddb2825e7add0a686c8cb47a3d8115b8e6313b59ccf3559c8da20725701033f"
+    },
+    {
+      "path": "mac/preflight/npm-no-npm-api.json",
+      "bytes": 222,
+      "sha256": "4b8ba3e21005a4f9e62bc791fc8d9bf7f4763e8ef513bc169f2d7f84cc68bbcf"
+    },
+    {
+      "path": "mac/preflight/npm-npm-install-invocations.jsonl",
+      "bytes": 666,
+      "sha256": "9ada4ceb053752c1597ad9f33f3de45e4faeb388c0624608e7d7536a0a39d870"
+    },
+    {
+      "path": "mac/preflight/npm-owned-stop.json",
+      "bytes": 1941,
+      "sha256": "fdcf5bc1568bd60a29d4db2791245291da416840b1d610a47392c1b39a26898e"
+    },
+    {
+      "path": "mac/preflight/npm-permission-failure-dom.txt",
+      "bytes": 2284,
+      "sha256": "1a1fa9ece96e8476cde1bd8c356bc48a18192acf5a1f085ba463ef570ff6f866"
+    },
+    {
+      "path": "mac/preflight/npm-ready-dom.txt",
+      "bytes": 2117,
+      "sha256": "6cc896bb0122d4065957f91a59f3783bdd4cf29e65ccbdd7f4bc010a5b56dfce"
+    },
+    {
+      "path": "mac/preflight/npm-saved-configuration-api.json",
+      "bytes": 314,
+      "sha256": "687e02badf38234ed17bd0f3abffa8b633c4827e9036e06661531c61be10ad48"
+    },
+    {
+      "path": "mac/preflight/npm-saved-dom.txt",
+      "bytes": 1878,
+      "sha256": "8fc191471aa4e79110b2a0a985d9d69f9c20ba816cd315a7108b2c940b7c4fb1"
+    },
+    {
+      "path": "mac/preflight/preflight-ci-reconciliation.json",
+      "bytes": 92,
+      "sha256": "d79372fb006f14d9cc716c62c1e748213f75c63bc4b1f7e7469ae680c915e26d"
+    },
+    {
+      "path": "upstream-baseline.json",
+      "bytes": 4429,
+      "sha256": "856c743dae2cace73eb85d5691844b0ff953966493c433f2f59b4e3ff4cc71d0"
+    },
+    {
+      "path": "validation/final-pack.log",
+      "bytes": 2454,
+      "sha256": "29a17e6359956f24ab6545683632bf6f2677b54d8f9ed3069b0f63bda076369a"
+    },
+    {
+      "path": "validation/final-package-check.log",
+      "bytes": 381,
+      "sha256": "7583d7ffc3db3160b033319ff037a41f58b457941bfac48a628210d71f55fc64"
+    },
+    {
+      "path": "validation/final-repo-tests.log",
+      "bytes": 9060,
+      "sha256": "0a3b1c033e336ed504592a7b0320492fa7ee1b1997256febb805063b65d61145"
+    },
+    {
+      "path": "validation/final-tests.log",
+      "bytes": 39295,
+      "sha256": "06b0ef7d52516ba7141d411a5248a59c6a64aacce2745e7c87290dfc8c81b146"
+    },
+    {
+      "path": "validation/final-typecheck.log",
+      "bytes": 198,
+      "sha256": "49557e173c58f94ea0cb9ed2ddf1c797a9a3700fc05e4e5a03874c4f2963be67"
+    }
+  ]
+}

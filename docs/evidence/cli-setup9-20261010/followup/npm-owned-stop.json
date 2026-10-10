@@ -1,0 +1,90 @@
+{
+  "at": "2026-10-10T14:41:00.263992+00:00",
+  "form": "npm",
+  "record": {
+    "pid": 19515,
+    "created": "Sat Oct 10 22:16:46 2026",
+    "argv": [
+      "/Users/kalias/.nvm/versions/node/v24.19.0/bin/node",
+      "/Users/kalias/Documents/project/app/openBKN/dsh-npm-020/node_modules/@deepseek-ai/dsh/lib/bin.js",
+      "web",
+      "--port",
+      "18430"
+    ],
+    "form": "npm",
+    "root": "/private/tmp/bkn-cli9-followup-mac/npm",
+    "port": 18430,
+    "startedAt": "2026-10-10T14:16:47.449855+00:00"
+  },
+  "ownedProcesses": [
+    {
+      "pid": 19515,
+      "native": {
+        "command": [
+          "ps",
+          "-p",
+          "19515",
+          "-o",
+          "lstart=",
+          "-o",
+          "comm=",
+          "-o",
+          "args="
+        ],
+        "exitCode": 0,
+        "stdout": "Sat Oct 10 22:16:46 2026     /Users/kalias/.n /Users/kalias/.nvm/versions/node/v24.19.0/bin/node /Users/kalias/Documents/project/app/openBKN/dsh-npm-020/node_modules/@deepseek-ai/dsh/lib/bin.js web --port 18430\n",
+        "stderr": ""
+      }
+    }
+  ],
+  "creation": {
+    "command": [
+      "ps",
+      "-p",
+      "19515",
+      "-o",
+      "lstart="
+    ],
+    "exitCode": 0,
+    "stdout": "Sat Oct 10 22:16:46 2026    \n",
+    "stderr": ""
+  },
+  "executable": {
+    "command": [
+      "ps",
+      "-p",
+      "19515",
+      "-o",
+      "comm="
+    ],
+    "exitCode": 0,
+    "stdout": "/Users/kalias/.nvm/versions/node/v24.19.0/bin/node\n",
+    "stderr": ""
+  },
+  "listener": {
+    "command": [
+      "lsof",
+      "-nP",
+      "-t",
+      "-iTCP:18430",
+      "-sTCP:LISTEN"
+    ],
+    "exitCode": 0,
+    "stdout": "19515\n",
+    "stderr": ""
+  },
+  "identityVerified": true,
+  "stop": "SIGTERM",
+  "remainingOwnedPids": [],
+  "afterListener": {
+    "command": [
+      "lsof",
+      "-nP",
+      "-iTCP:18430",
+      "-sTCP:LISTEN"
+    ],
+    "exitCode": 1,
+    "stdout": "",
+    "stderr": ""
+  }
+}

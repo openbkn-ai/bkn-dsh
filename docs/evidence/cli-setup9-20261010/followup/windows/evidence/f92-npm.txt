@@ -1,0 +1,5 @@
+F92 npm (Host 23764, fixture PATH, prefix 'CLI Prefix' empty, cliPath default openbkn). Saved settings with baseUrl https://192.168.50.28 at 2026-10-10T15:10:08Z-ish (observer mark 'F92 save missing').
+Main panel after save (DOM text): 设置已保存。当前 DSH 尚无法使用 OpenBKN CLI。请点击右上角“设置”→“高级设置”，使用“检测并安装 CLI”。若安装已启动，可在该处查看进度；安装完成后保存路径，再点击“使用 OpenBKN CLI 登录并同步”。已有 CLI 也可直接填写其可执行文件的绝对路径（Windows 上通常为 openbkn.cmd）。 button 重试
+After 重试 (DOM text): 当前 DSH 尚无法使用 OpenBKN CLI。请点击右上角“设置”→“高级设置”，使用“检测并安装 CLI”。若安装已启动，可在该处查看进度；…（同上，无“设置已保存”前缀）
+No longer only manual npm guidance. Failure was local (CLI missing); no platform credential used; no login clicked.
+patch after save: sha256 70365aed52a5f8a345977d66430d9395a8ef46484051c3bf9c8734fff8f6622a, 489 bytes, config baseUrl https://192.168.50.28, cliPath openbkn

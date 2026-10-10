@@ -1,0 +1,11 @@
+{
+  "candidateSha256": "006f74349f7ef1c059032dd76a89ebc6626b6fce78eab330b35c073a91c098f6",
+  "action": "press End then pressSequentially xx",
+  "expected": "/private/tmp/bkn-cli9-mac/npm/sdk-prefix-final/bin/openbknxx",
+  "operationError": "pressSequentially target changed or lost focus while typing",
+  "observed": {
+    "disabled": false,
+    "focused": false,
+    "value": "/private/tmp/bkn-cli9-mac/npm/sdk-prefix-final/bin/openbknx"
+  }
+}

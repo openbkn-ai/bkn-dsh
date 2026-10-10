@@ -1,0 +1,2 @@
+F95 npm: after CLI uninstall, Host 25012 (PATH missing) page at 15:18:37Z: OpenBKN buttons 0, body contains 'OpenBKN' false (sidebar entry gone; component rows not present).
+Diagnostics UI export fb55a24c (before uninstall, Host 23764): observed:cli pass (recovered:true, lastFailureCode cli-missing, failureCount 3) + observed:login-state fail not-logged-in -> CLI executable != logged in; natural earlier CLI-missing failure history retained after success (C98 natural evidence). No authorization/model action initiated.

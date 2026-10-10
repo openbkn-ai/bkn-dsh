@@ -1,0 +1,31 @@
+{
+  "at": "2026-10-10T14:34:59.925056+00:00",
+  "version": "0.1.5",
+  "command": [
+    "/Users/kalias/.nvm/versions/node/v24.19.0/bin/node",
+    "/private/tmp/bkn-cli9-followup-mac/npm/CLI Prefix/bin/openbkn",
+    "--version"
+  ],
+  "exitCode": 0,
+  "stdout": "0.1.5\n",
+  "stderr": "",
+  "installInvocations": [
+    {
+      "at": 1791642417.912595,
+      "pid": 22731,
+      "args": [
+        "install",
+        "--global",
+        "@openbkn/bkn-sdk@0.1.5",
+        "--prefix",
+        "/private/tmp/bkn-cli9-followup-mac/npm/CLI Prefix",
+        "--ignore-scripts",
+        "--no-audit",
+        "--no-fund",
+        "--loglevel=error"
+      ]
+    }
+  ],
+  "installInvocationCount": 1,
+  "sdkPackage": "/private/tmp/bkn-cli9-followup-mac/npm/CLI Prefix/lib/node_modules/@openbkn/bkn-sdk/package.json"
+}

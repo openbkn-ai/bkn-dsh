@@ -1,0 +1,34 @@
+Window: "DeepSeek Harness", App: DeepSeek Harness.
+0 standard window DeepSeek Harness, Secondary Actions: Raise
+	1 container DeepSeek Harness
+		2 container
+			3 HTML content DeepSeek Harness, URL: dsh-app://app/
+				4 container OpenBKN business knowledge networks
+					5 container
+						6 text OPENBKN
+						7 heading 业务知识网络, Value: 2
+							8 text 业务知识网络
+						9 button 设置
+						10 button 诊断
+						11 button Close
+					12 container
+						13 text 先填写 OpenBKN 平台地址，再使用本机 OpenBKN CLI 登录。尚未配置时不会连接平台。 OpenBKN 平台地址
+						14 text field (settable) Description: OpenBKN 平台地址, Placeholder: https://openbkn.example.com
+						15 disclosure triangle 高级设置
+							16 text 高级设置
+						17 container
+							18 text OpenBKN CLI 执行路径（cliPath）
+							19 text field (settable) Description: OpenBKN CLI 执行路径, Value: /private/tmp/bkn-cli9-mac/desktop/sdk-prefix/bin/openbkn
+						20 text 默认 openbkn。若 DSH 找不到命令，可填写绝对路径；Windows 上填写 openbkn.cmd。
+						21 text CLI 0.1.5 可用。路径已填入，请点击“保存并继续”应用。
+						22 button 保存并继续
+	23 close button
+	24 full screen button Help: this button also has an action to zoom the window, Secondary Actions: zoom the window
+	25 minimize button
+26 menu bar
+	27 DeepSeek Harness
+	28 文件
+	29 Edit
+	30 Window
+
+The focused UI element is 15 disclosure triangle 高级设置

@@ -1,0 +1,37 @@
+{
+  "at": "2026-10-10T14:40:22.301614+00:00",
+  "form": "npm",
+  "sdkVersion": "0.1.5",
+  "versionCommand": [
+    "/Users/kalias/.nvm/versions/node/v24.19.0/bin/node",
+    "/private/tmp/bkn-cli9-followup-mac/npm/CLI Prefix/bin/openbkn",
+    "--version"
+  ],
+  "versionExitCode": 0,
+  "versionStdout": "0.1.5\n",
+  "versionStderr": "",
+  "installInvocationCount": 1,
+  "installInvocations": [
+    {
+      "at": 1791642417.912595,
+      "pid": 22731,
+      "args": [
+        "install",
+        "--global",
+        "@openbkn/bkn-sdk@0.1.5",
+        "--prefix",
+        "/private/tmp/bkn-cli9-followup-mac/npm/CLI Prefix",
+        "--ignore-scripts",
+        "--no-audit",
+        "--no-fund",
+        "--loglevel=error"
+      ]
+    }
+  ],
+  "patchPath": "/private/tmp/bkn-cli9-followup-mac/npm/home/profiles/web/cordis.patch.yml",
+  "patchSha256": "b185d7298be306f59a320d4c39dcc7f25c599e2f3ddab2c5e58b293fe416338c",
+  "savedCliPath": "/private/tmp/bkn-cli9-followup-mac/npm/CLI Prefix/bin/openbkn",
+  "savedCliPathPresentInPatch": true,
+  "bknStoreFiles": [],
+  "installerNativeStdoutExitArchived": false
+}

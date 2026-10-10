@@ -1,0 +1,32 @@
+F93 npm (Host 23764, fixture npm.cmd delay 60 s then real npm, empty 'CLI Prefix', saved cliPath=openbkn). Machine log observer-npm-r1.json.
+15:10:54.937Z double-click 检测并安装 CLI -> 15:10:55.020Z 检测中…[input dis, save dis] -> 15:10:55.560Z 正在安装 CLI 0.1.5 并验证是否可用…可以关闭面板，安装将在当前 DSH 中继续。 安装中…[dis]; typed 'x' not inserted.
+15:11:08.913Z panel closed; 15:11:11.059Z main panel: 当前 DSH 尚无法使用 OpenBKN CLI。请点击右上角“设置”→“高级设置”，使用“检测并安装 CLI”。若安装已启动，可在该处查看进度；…
+15:11:38.239Z advanced reopened: 安装中…, input dis, save dis (actual installing captured). No observer state change 15:11:38.239Z -> 15:12:11.360Z (lock continuous through polling).
+Fixture cmd.exe 25560 alive at 15:11:40Z after panel close.
+15:12:11.721Z auto-fill C:\bkn-verify\cli9f\npm\CLI Prefix\openbkn.cmd + CLI 0.1.5 可用。路径已填入，请点击“保存并继续”应用。 (unsaved prompt)
+install count: 1; independent: 0.1.5 exit=0 
+--- F93 npm start 2026-10-10T15:10:08Z
+周六 2026/10/10 23:10:38.61 npm-fixture mode=delay argv=prefix --global
+周六 2026/10/10 23:10:38.87 npm-fixture passthrough exit=0
+周六 2026/10/10 23:10:39.03 node-fixture mode=real argv=--version
+周六 2026/10/10 23:10:55.09 npm-fixture mode=delay argv=prefix --global
+周六 2026/10/10 23:10:55.36 npm-fixture passthrough exit=0
+周六 2026/10/10 23:10:55.48 node-fixture mode=real argv=--version
+周六 2026/10/10 23:10:55.67 npm-fixture mode=delay argv=prefix --global
+周六 2026/10/10 23:10:55.93 npm-fixture passthrough exit=0
+周六 2026/10/10 23:10:56.07 node-fixture mode=real argv=--version
+周六 2026/10/10 23:10:56.25 npm-fixture mode=delay argv=install --global @openbkn/bkn-sdk@0.1.5 --prefix "C:\bkn-verify\cli9f\npm\CLI Prefix" --ignore-scripts --no-audit --no-fund --loglevel=error
+周六 2026/10/10 23:10:56.25 npm-fixture delay start seconds=60
+周六 2026/10/10 23:11:56.76 npm-fixture delay end, handing to real npm
+周六 2026/10/10 23:12:09.18 npm-fixture passthrough exit=0
+周六 2026/10/10 23:12:09.34 node-fixture mode=real argv="C:\bkn-verify\cli9f\npm\CLI Prefix\\node_modules\@openbkn\bkn-sdk\dist\cli.js" --version
+周六 2026/10/10 23:12:10.70 npm-fixture mode=delay argv=prefix --global
+周六 2026/10/10 23:12:10.97 npm-fixture passthrough exit=0
+周六 2026/10/10 23:12:11.10 node-fixture mode=real argv="C:\bkn-verify\cli9f\npm\CLI Prefix\\node_modules\@openbkn\bkn-sdk\dist\cli.js" --version
+周六 2026/10/10 23:12:11.47 node-fixture mode=real argv="C:\bkn-verify\cli9f\npm\CLI Prefix\\node_modules\@openbkn\bkn-sdk\dist\cli.js" --version
+周六 2026/10/10 23:13:06.30 node-fixture mode=real argv="C:\bkn-verify\cli9f\npm\CLI Prefix\\node_modules\@openbkn\bkn-sdk\dist\cli.js" auth status --json
+周六 2026/10/10 23:13:33.37 node-fixture mode=real argv="C:\bkn-verify\cli9f\npm\CLI Prefix\\node_modules\@openbkn\bkn-sdk\dist\cli.js" auth status --json
+周六 2026/10/10 23:14:10.53 node-fixture mode=real argv="C:\bkn-verify\cli9f\npm\CLI Prefix\\node_modules\@openbkn\bkn-sdk\dist\cli.js" auth status --json
+周六 2026/10/10 23:14:33.50 node-fixture mode=real argv="C:\bkn-verify\cli9f\npm\CLI Prefix\\node_modules\@openbkn\bkn-sdk\dist\cli.js" --version
+--- F91 dir click (C:\) 2026-10-10T15:15:18Z
+f93 utc=2026-10-10T15:19:12Z files=1120 newestMtimeEpoch=1791645129.1669255000 treeSha256=5204d50caf6ceab164de044dc0ffdd54410512e6f1c9d990be9ed34e9beaba0b

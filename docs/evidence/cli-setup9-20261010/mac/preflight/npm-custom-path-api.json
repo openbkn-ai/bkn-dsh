@@ -1,0 +1,12 @@
+{
+  "type": "server-response",
+  "rpcId": "e5b27561-fc3b-4f8f-bd48-c92953f7f2f8",
+  "result": {
+    "ok": true,
+    "value": {
+      "state": "blocked",
+      "canInstall": false,
+      "reason": "custom-path-missing"
+    }
+  }
+}

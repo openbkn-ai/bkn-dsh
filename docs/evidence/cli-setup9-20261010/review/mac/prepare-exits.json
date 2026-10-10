@@ -1,0 +1,26 @@
+[
+  {
+    "form": "npm",
+    "command": [
+      "python3",
+      "docs/evidence/cli-setup9-20261010/review/mac/helpers/host-control.py",
+      "prepare",
+      "--form",
+      "npm",
+      "--fixture-only"
+    ],
+    "exitCode": 0
+  },
+  {
+    "form": "desktop",
+    "command": [
+      "python3",
+      "docs/evidence/cli-setup9-20261010/review/mac/helpers/host-control.py",
+      "prepare",
+      "--form",
+      "desktop",
+      "--fixture-only"
+    ],
+    "exitCode": 0
+  }
+]

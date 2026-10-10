@@ -1,0 +1,10 @@
+[WARN] Your node_modules are out of sync with your lockfile. The value of the enableGlobalVirtualStore setting has changed
+$ node scripts/package-bundle.mjs --check
+Package audit passed: @openbkn/dsh-business-context@0.2.0-rc.2-openbkn.0.2.0-9 (69 files)
+cordis.patch.yml
+lib/client.js
+lib/index.js
+lib/business.js
+lib/diagnostics.js
+lib/typert.host.js
+lib/typert.remote-client.js

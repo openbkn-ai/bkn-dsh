@@ -317,7 +317,7 @@ function connectionFailureMessage(error: unknown): string {
       return 'OpenBKN 业务组件尚未就绪或启动失败。请点击右上角“诊断”查看原因并导出报告。'
     }
     if (candidate.code === 'openbkn/cli-unavailable') {
-      return 'DSH 找不到 OpenBKN CLI（openbkn）。请先安装与平台版本一致的 CLI（`npm install -g @openbkn/bkn-sdk@<平台版本>`），确认启动 DSH 的环境 PATH 里能找到它；也可以点击右上角“设置”，在高级设置的 cliPath 中填写它的绝对路径（Windows 上填写 openbkn.cmd）。保存后点击“使用 OpenBKN CLI 登录并同步”。'
+      return '当前 DSH 尚无法使用 OpenBKN CLI。请点击右上角“设置”→“高级设置”，使用“检测并安装 CLI”。若安装已启动，可在该处查看进度；安装完成后保存路径，再点击“使用 OpenBKN CLI 登录并同步”。已有 CLI 也可直接填写其可执行文件的绝对路径（Windows 上通常为 openbkn.cmd）。'
     }
     if (candidate.code === 'openbkn/connection-failed' && typeof candidate.details === 'object' && candidate.details !== null) {
       const layer = (candidate.details as { layer?: unknown }).layer
