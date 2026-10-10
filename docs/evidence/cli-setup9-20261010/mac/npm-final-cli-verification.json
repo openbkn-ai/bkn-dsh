@@ -1,0 +1,31 @@
+{
+  "at": "2026-10-10T04:30:36.498271+00:00",
+  "command": [
+    "/private/tmp/bkn-cli9-mac/npm/sdk-prefix-final/bin/openbkn",
+    "--version"
+  ],
+  "exitCode": 0,
+  "stdout": "0.1.5\n",
+  "stderr": "",
+  "sdkPackage": "/private/tmp/bkn-cli9-mac/npm/sdk-prefix-final/lib/node_modules/@openbkn/bkn-sdk/package.json",
+  "sdkVersion": "0.1.5",
+  "sdkPackageSha256": "44a82bbf70a2a354b424e83c8604729e313d618b6fcf2689d858ea5961d4e5ae",
+  "bknConfigFiles": [],
+  "finalInstallInvocations": [
+    {
+      "at": 1791606313.419921,
+      "pid": 94127,
+      "args": [
+        "install",
+        "--global",
+        "@openbkn/bkn-sdk@0.1.5",
+        "--prefix",
+        "/private/tmp/bkn-cli9-mac/npm/sdk-prefix-final",
+        "--ignore-scripts",
+        "--no-audit",
+        "--no-fund",
+        "--loglevel=error"
+      ]
+    }
+  ]
+}

@@ -1,0 +1,12 @@
+{
+  "type": "server-response",
+  "rpcId": "e447482c-c9eb-47f0-a00e-58d50a870d54",
+  "result": {
+    "ok": true,
+    "value": {
+      "state": "blocked",
+      "canInstall": false,
+      "reason": "node-unavailable"
+    }
+  }
+}

@@ -1,0 +1,62 @@
+- button "新建会话":
+- button "收起侧边栏":
+- button "新建会话":
+  - generic: 新会话
+  - generic: ⌥
+  - generic: ⌘
+  - generic: "N"
+- navigation "全局面板":
+  - button "插件":
+    - generic: 插件
+- generic: 工作区
+- button "搜索会话":
+- textbox "搜索会话名称"
+- button "视图选项":
+- button "添加工作区":
+- tree "会话":
+  - treeitem "默认工作区" [expanded]:
+    - generic: 默认工作区
+  - treeitem "新会话" [selected]:
+    - generic: 新会话
+- button "OpenBKN business knowledge networks":
+  - generic: B
+  - generic: OpenBKN
+- button "设置":
+  - generic: 设置
+- banner:
+  - button "打开右侧边栏":
+- generic: 探索未至之境
+- generic: 预览版
+- button "选择工作区":
+  - generic: 默认工作区
+- button "标准模式":
+  - generic: 标准模式
+- textbox "描述你想要构建的内容, / 调用指令, @ 文件或对话"
+- generic: 描述你想要构建的内容, / 调用指令, @ 文件或对话
+- button "添加文件或调用指令":
+- button "访问模式，当前：工作区内修改":
+  - generic: 工作区内修改
+- button "选择模型，当前 DeepSeek-V41-Flash，推理等级 High":
+  - generic: DeepSeek-V41-Flash
+  - generic: High
+- button "发送消息" [disabled]:
+- dialog "OpenBKN business knowledge networks":
+  - banner:
+    - generic: OPENBKN
+    - heading "业务知识网络" [level=2]
+    - button "设置"
+    - button "诊断"
+    - button "Close": ×
+  - paragraph: 修改当前 DSH profile 的 OpenBKN 设置。已有业务会话保持原平台和网络绑定。
+  - text: OpenBKN 平台地址
+  - textbox "OpenBKN 平台地址":
+    - /placeholder: https://openbkn.example.com
+    - text: https://cli9-no-platform.invalid
+  - generic "高级设置"
+  - text: OpenBKN CLI 执行路径（cliPath）
+  - textbox "OpenBKN CLI 执行路径": /private/tmp/bkn-cli9-mac/npm/does-not-exist
+  - paragraph: 默认 openbkn。若 DSH 找不到命令，可填写绝对路径；Windows 上填写 openbkn.cmd。
+  - status: 未找到此路径。请修正路径，或改回 openbkn 后检测并安装。
+  - button "检测并安装 CLI"
+  - paragraph: 优先使用已有 CLI；未检测到时，通过本机 npm 安装 OpenBKN CLI 0.1.5（适用于 0.1.5 平台）。使用 npm 当前安装源和全局目录。
+  - button "保存并继续"

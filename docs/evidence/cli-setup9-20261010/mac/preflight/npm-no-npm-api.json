@@ -1,0 +1,12 @@
+{
+  "type": "server-response",
+  "rpcId": "3bcd70d1-cfaa-4db0-bb8d-acee50a4b6c0",
+  "result": {
+    "ok": true,
+    "value": {
+      "state": "blocked",
+      "canInstall": false,
+      "reason": "npm-missing"
+    }
+  }
+}

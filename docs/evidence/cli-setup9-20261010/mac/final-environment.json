@@ -1,0 +1,96 @@
+{
+  "at": "2026-10-10T04:32:22.033438+00:00",
+  "desktopBundleVersion": "0.2.0-rc.2",
+  "npmHostVersion": "0.2.0-rc.2",
+  "forms": [
+    {
+      "form": "npm",
+      "commands": [
+        {
+          "command": [
+            "/private/tmp/bkn-cli9-mac/npm/bin/node",
+            "--version"
+          ],
+          "exitCode": 0,
+          "stdout": "v24.19.0\n",
+          "stderr": ""
+        },
+        {
+          "command": [
+            "/private/tmp/bkn-cli9-mac/npm/bin/npm",
+            "--version"
+          ],
+          "exitCode": 0,
+          "stdout": "11.17.0\n",
+          "stderr": ""
+        },
+        {
+          "command": [
+            "/private/tmp/bkn-cli9-mac/npm/bin/npm",
+            "prefix",
+            "--global"
+          ],
+          "exitCode": 0,
+          "stdout": "/private/tmp/bkn-cli9-mac/npm/sdk-prefix-final\n",
+          "stderr": ""
+        },
+        {
+          "command": [
+            "/private/tmp/bkn-cli9-mac/npm/bin/npm",
+            "config",
+            "get",
+            "registry"
+          ],
+          "exitCode": 0,
+          "stdout": "https://registry.npmmirror.com\n",
+          "stderr": ""
+        }
+      ]
+    },
+    {
+      "form": "desktop",
+      "commands": [
+        {
+          "command": [
+            "/private/tmp/bkn-cli9-mac/desktop/bin/node",
+            "--version"
+          ],
+          "exitCode": 0,
+          "stdout": "v24.19.0\n",
+          "stderr": ""
+        },
+        {
+          "command": [
+            "/private/tmp/bkn-cli9-mac/desktop/bin/npm",
+            "--version"
+          ],
+          "exitCode": 0,
+          "stdout": "11.17.0\n",
+          "stderr": ""
+        },
+        {
+          "command": [
+            "/private/tmp/bkn-cli9-mac/desktop/bin/npm",
+            "prefix",
+            "--global"
+          ],
+          "exitCode": 0,
+          "stdout": "/private/tmp/bkn-cli9-mac/desktop/sdk-prefix-final\n",
+          "stderr": ""
+        },
+        {
+          "command": [
+            "/private/tmp/bkn-cli9-mac/desktop/bin/npm",
+            "config",
+            "get",
+            "registry"
+          ],
+          "exitCode": 0,
+          "stdout": "https://registry.npmmirror.com\n",
+          "stderr": ""
+        }
+      ]
+    }
+  ],
+  "noModelOrPlatformLoginRequested": true
+}

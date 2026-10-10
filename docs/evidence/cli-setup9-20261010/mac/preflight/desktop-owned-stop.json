@@ -1,0 +1,163 @@
+{
+  "at": "2026-10-10T04:16:44.322374+00:00",
+  "form": "desktop",
+  "record": {
+    "pid": 85815,
+    "created": "Sat Oct 10 12:03:55 2026",
+    "argv": [
+      "/Applications/DeepSeek Harness.app/Contents/MacOS/DeepSeek Harness",
+      "--user-data-dir=/private/tmp/bkn-cli9-mac/desktop/electron-data"
+    ],
+    "form": "desktop",
+    "root": "/private/tmp/bkn-cli9-mac/desktop",
+    "port": null,
+    "startedAt": "2026-10-10T04:03:56.066230+00:00"
+  },
+  "ownedProcesses": [
+    {
+      "pid": 85815,
+      "native": {
+        "command": [
+          "ps",
+          "-p",
+          "85815",
+          "-o",
+          "lstart=",
+          "-o",
+          "comm=",
+          "-o",
+          "args="
+        ],
+        "exitCode": 0,
+        "stdout": "Sat Oct 10 12:03:55 2026     /Applications/De /Applications/DeepSeek Harness.app/Contents/MacOS/DeepSeek Harness --user-data-dir=/private/tmp/bkn-cli9-mac/desktop/electron-data\n",
+        "stderr": ""
+      }
+    },
+    {
+      "pid": 85822,
+      "native": {
+        "command": [
+          "ps",
+          "-p",
+          "85822",
+          "-o",
+          "lstart=",
+          "-o",
+          "comm=",
+          "-o",
+          "args="
+        ],
+        "exitCode": 0,
+        "stdout": "Sat Oct 10 12:03:55 2026     /Applications/De /Applications/DeepSeek Harness.app/Contents/Frameworks/DeepSeek Harness Helper.app/Contents/MacOS/DeepSeek Harness Helper --type=gpu-process --user-data-dir=/private/tmp/bkn-cli9-mac/desktop/electron-data --gpu-preferences=WAAAAAAAAAAgAQAEAAAAAAAAAAAAAGAAQAAAAAAAAAADAAAAAAAAADgAAAAAAAAAAAAAAAAAAAACAAAAAAAAAAAAAAAAAAAAKAAAAAAAAAAoAAAAAAAAAAgAAAAAAAAADAAAAAEAAAAAAAAAAAAAAAgAAAAAAAAACAAAAAAAAAA= --shared-files --field-trial-handle=1718379636,r,4753918476972809018,15175034932895145423,262144 --enable-features=PdfUseShowSaveFilePicker,ScreenCaptureKitPickerScreen,ScreenCaptureKitStreamPickerSonoma --disable-features=DropInputEventsWhilePaintHolding,LocalNetworkAccessChecks,ScreenAIOCREnabled,SpareRendererForSitePerProcess,TimeoutHangingVideoCaptureStarts,TraceSiteInstanceGetProcessCreation --variations-seed-version --pseudonymization-salt-handle=1935764596,r,6457801106363071937,16492838346912544597,4 --trace-process-track-uuid=3190708988185955192 --seatbelt-client=31\n",
+        "stderr": ""
+      }
+    },
+    {
+      "pid": 85823,
+      "native": {
+        "command": [
+          "ps",
+          "-p",
+          "85823",
+          "-o",
+          "lstart=",
+          "-o",
+          "comm=",
+          "-o",
+          "args="
+        ],
+        "exitCode": 0,
+        "stdout": "Sat Oct 10 12:03:55 2026     /Applications/De /Applications/DeepSeek Harness.app/Contents/Frameworks/DeepSeek Harness Helper.app/Contents/MacOS/DeepSeek Harness Helper --type=utility --utility-sub-type=network.mojom.NetworkService --lang=en-US --service-sandbox-type=network --user-data-dir=/private/tmp/bkn-cli9-mac/desktop/electron-data --standard-schemes=dsh-app --secure-schemes=dsh-app --cors-schemes=dsh-app --fetch-schemes=dsh-app --streaming-schemes=dsh-app --code-cache-schemes=dsh-app --shared-files --field-trial-handle=1718379636,r,4753918476972809018,15175034932895145423,262144 --enable-features=PdfUseShowSaveFilePicker,ScreenCaptureKitPickerScreen,ScreenCaptureKitStreamPickerSonoma --disable-features=DropInputEventsWhilePaintHolding,LocalNetworkAccessChecks,ScreenAIOCREnabled,SpareRendererForSitePerProcess,TimeoutHangingVideoCaptureStarts,TraceSiteInstanceGetProcessCreation --variations-seed-version --pseudonymization-salt-handle=1935764596,r,6457801106363071937,16492838346912544597,4 --trace-process-track-uuid=3190708989122997041 --seatbelt-client=31\n",
+        "stderr": ""
+      }
+    },
+    {
+      "pid": 85833,
+      "native": {
+        "command": [
+          "ps",
+          "-p",
+          "85833",
+          "-o",
+          "lstart=",
+          "-o",
+          "comm=",
+          "-o",
+          "args="
+        ],
+        "exitCode": 0,
+        "stdout": "Sat Oct 10 12:03:55 2026     /Applications/De /Applications/DeepSeek Harness.app/Contents/Frameworks/DeepSeek Harness Helper (Renderer).app/Contents/MacOS/DeepSeek Harness Helper (Renderer) --type=renderer --user-data-dir=/private/tmp/bkn-cli9-mac/desktop/electron-data --standard-schemes=dsh-app --secure-schemes=dsh-app --cors-schemes=dsh-app --fetch-schemes=dsh-app --streaming-schemes=dsh-app --code-cache-schemes=dsh-app --app-path=/Applications/DeepSeek Harness.app/Contents/Resources/app.asar --enable-sandbox --lang=en-US --num-raster-threads=4 --enable-zero-copy --enable-gpu-memory-buffer-compositor-resources --enable-main-frame-before-activation --renderer-client-id=4 --launch-time-ticks=2917093783525 --shared-files --field-trial-handle=1718379636,r,4753918476972809018,15175034932895145423,262144 --enable-features=PdfUseShowSaveFilePicker,ScreenCaptureKitPickerScreen,ScreenCaptureKitStreamPickerSonoma --disable-features=DropInputEventsWhilePaintHolding,LocalNetworkAccessChecks,ScreenAIOCREnabled,SpareRendererForSitePerProcess,TimeoutHangingVideoCaptureStarts,TraceSiteInstanceGetProcessCreation --variations-seed-version --pseudonymization-salt-handle=1935764596,r,6457801106363071937,16492838346912544597,4 --trace-process-track-uuid=3190708990060038890 --seatbelt-client=55\n",
+        "stderr": ""
+      }
+    },
+    {
+      "pid": 85838,
+      "native": {
+        "command": [
+          "ps",
+          "-p",
+          "85838",
+          "-o",
+          "lstart=",
+          "-o",
+          "comm=",
+          "-o",
+          "args="
+        ],
+        "exitCode": 0,
+        "stdout": "Sat Oct 10 12:03:56 2026     /Applications/De /Applications/DeepSeek Harness.app/Contents/MacOS/DeepSeek Harness --expose-internals /Applications/DeepSeek Harness.app/Contents/Resources/app.asar/dsh/node_modules/@deepseek-ai/dsh-desktop-host/lib/index.js /Applications/DeepSeek Harness.app/Contents/Resources/app.asar/dsh /private/tmp/bkn-cli9-mac/desktop/home/profiles/desktop /Applications/DeepSeek Harness.app/Contents/Resources/runtime/primary-runtime /Applications/DeepSeek Harness.app/Contents/Resources/runtime/pnpm/bin/pnpm.mjs /Applications/DeepSeek Harness.app/Contents/Resources/runtime/bin\n",
+        "stderr": ""
+      }
+    }
+  ],
+  "creation": {
+    "command": [
+      "ps",
+      "-p",
+      "85815",
+      "-o",
+      "lstart="
+    ],
+    "exitCode": 0,
+    "stdout": "Sat Oct 10 12:03:55 2026    \n",
+    "stderr": ""
+  },
+  "executable": {
+    "command": [
+      "ps",
+      "-p",
+      "85815",
+      "-o",
+      "comm="
+    ],
+    "exitCode": 0,
+    "stdout": "/Applications/DeepSeek Harness.app/Contents/MacOS/DeepSeek Harness\n",
+    "stderr": ""
+  },
+  "listener": {
+    "command": [
+      "lsof",
+      "-nP",
+      "-t",
+      "-iTCP:18421",
+      "-sTCP:LISTEN"
+    ],
+    "exitCode": 0,
+    "stdout": "85838\n",
+    "stderr": ""
+  },
+  "identityVerified": true,
+  "stop": "SIGTERM",
+  "remainingOwnedPids": [],
+  "afterListener": {
+    "command": [
+      "lsof",
+      "-nP",
+      "-iTCP:18421",
+      "-sTCP:LISTEN"
+    ],
+    "exitCode": 1,
+    "stdout": "",
+    "stderr": ""
+  }
+}
