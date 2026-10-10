@@ -113,6 +113,10 @@ function registerPanels(ctx: Context, bridge: OpenBknPanelBridge): void {
     beginLogin: () => panel.beginLogin(),
     showSettings: () => panel.showSettings(),
     saveConfiguration: (input: import('../types.ts').OpenBknConfigurationInput) => panel.saveConfiguration(input),
+    cliSetup: {
+      checkCli: async (cliPath: string, signal?: AbortSignal) => unwrap(await ctx.remote.openbknConfiguration.checkCli(cliPath, signal)),
+      installCli: async (cliPath: string) => unwrap(await ctx.remote.openbknConfiguration.installCli(cliPath)),
+    },
     openNetwork: (networkId: string, mode: NetworkSessionMode) => panel.openNetwork(networkId, mode),
     openDiagnostics: () => {
       panel.close()

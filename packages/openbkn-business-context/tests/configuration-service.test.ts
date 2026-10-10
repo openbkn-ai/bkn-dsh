@@ -26,6 +26,28 @@ function fixture(config: Record<string, unknown> = {}) {
   return { entry, service, calls: () => calls, setRunning: (value: boolean) => { running = value }, setFailure: (value: Error) => { failure = value } }
 }
 
+test('CLI setup is optional and does not prevent configuration or diagnostics', async () => {
+  const f = fixture()
+  assert.deepEqual(await f.service.checkCli('openbkn'), { state: 'blocked', canInstall: false, reason: 'host-unavailable' })
+  assert.deepEqual(await f.service.installCli('openbkn'), { state: 'blocked', canInstall: false, reason: 'host-unavailable' })
+  assert.equal((await f.service.getConfiguration()).editable, true)
+  assert.equal(f.calls(), 0)
+})
+
+test('running turns block CLI installation before touching subprocess', async () => {
+  const f = fixture()
+  f.setRunning(true)
+  assert.deepEqual(await f.service.installCli('openbkn'), { state: 'blocked', canInstall: false, reason: 'busy' })
+  assert.equal(f.calls(), 0)
+})
+
+test('a Host installation cannot race a settings write', async () => {
+  const f = fixture()
+  Object.defineProperty(f.service, 'cliSetup', { value: { isInstalling: true } })
+  await assert.rejects(f.service.saveConfiguration({ baseUrl: 'https://platform.example', cliPath: 'openbkn' }), { code: 'openbkn/configuration-busy' })
+  assert.equal(f.calls(), 0)
+})
+
 test('fresh default config activates without mounting registry, CLI, MCP or business service', async () => {
   const config = Config['~standard'].validate({})
   assert.ok(!('then' in config) && config.value)

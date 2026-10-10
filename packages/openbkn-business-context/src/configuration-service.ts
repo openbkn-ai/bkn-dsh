@@ -3,7 +3,9 @@ import { Context } from '@deepseek-ai/cordis'
 import { Remote, RemoteError, TypertRemoteService } from '@deepseek-ai/dsh-typert-protocol'
 import { Config } from './config.js'
 import { BUSINESS_ENTRY_ID } from './diagnostics-contract.js'
-import type { OpenBknConfigurationInput, OpenBknConfigurationView } from './types.js'
+import type { OpenBknCliSetupView, OpenBknConfigurationInput, OpenBknConfigurationView } from './types.js'
+import { OpenBknCliSetup } from './cli-setup.js'
+import type { CliSubprocess } from './openbkn-cli-subprocess.js'
 
 interface ConfigurationEntry {
   readonly options: { readonly id: string; readonly name: string; readonly config?: unknown }
@@ -30,9 +32,31 @@ declare module '@deepseek-ai/dsh-typert-protocol' {
 /** Keep all writes in the host's editor; never write YAML or credentials here. */
 export class OpenBknConfigurationService extends TypertRemoteService {
   private saving = false
+  private cliSetup?: OpenBknCliSetup
   /** A short admission fence while the native editor writes/reloads. */
   get isChanging(): boolean { return this.saving }
   constructor(ctx: Context) { super(ctx, 'openbknConfiguration') }
+
+  private setup(): OpenBknCliSetup | undefined {
+    if (this.cliSetup !== undefined) return this.cliSetup
+    const subprocess = this.ctx.get('subprocess') as CliSubprocess | undefined
+    if (subprocess === undefined || typeof subprocess.resolveExecutable !== 'function' || typeof subprocess.spawn !== 'function') return undefined
+    const setup = new OpenBknCliSetup(subprocess, process.cwd())
+    this.ctx.effect(() => () => setup.dispose(), 'openbkn CLI setup lifetime')
+    return this.cliSetup = setup
+  }
+
+  @Remote('checkCli')
+  async checkCli(cliPath: string, signal?: AbortSignal): Promise<OpenBknCliSetupView> {
+    return await this.setup()?.check(cliPath, signal) ?? { state: 'blocked', canInstall: false, reason: 'host-unavailable' }
+  }
+
+  @Remote('installCli')
+  async installCli(cliPath: string): Promise<OpenBknCliSetupView> {
+    const configuration = await this.getConfiguration()
+    if (!configuration.editable) return { state: 'blocked', canInstall: false, reason: configuration.unavailableReason === 'busy' ? 'busy' : 'host-unavailable' }
+    return await this.setup()?.install(cliPath) ?? { state: 'blocked', canInstall: false, reason: 'host-unavailable' }
+  }
 
   private editor(): ConfigurationEditor | undefined {
     const editor = this.ctx.get('configEditor') as ConfigurationEditor | undefined
@@ -91,7 +115,7 @@ export class OpenBknConfigurationService extends TypertRemoteService {
     }
     const validation = await Config['~standard'].validate({ baseUrl: input.baseUrl, cliPath: input.cliPath })
     if (validation.issues !== undefined) throw new RemoteError('openbkn/configuration-invalid', 'Enter an absolute HTTP(S) platform URL.', { configField: 'baseUrl' })
-    if (this.saving || this.busy()) throw new RemoteError('openbkn/configuration-busy', 'Wait for the current session to finish before changing settings.', {})
+    if (this.saving || this.busy() || this.cliSetup?.isInstalling) throw new RemoteError('openbkn/configuration-busy', 'Wait for the current session or CLI installation to finish before changing settings.', {})
     const editor = this.editor()
     const entry = this.entry(editor)
     if (editor === undefined || entry === undefined || entry.fiber?.state !== 2) {

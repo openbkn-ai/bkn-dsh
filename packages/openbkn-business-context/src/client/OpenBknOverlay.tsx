@@ -3,6 +3,8 @@ import type { InjectFace, PropsRuntime } from '@deepseek-ai/dsh-client-ui-slots'
 import type { OpenBknUiController, OpenBknOverlayState } from './openbkn-ui-controller.ts'
 import { INITIAL_NETWORK_DIRECTORY_LIMIT, selectNetworkDirectory } from './network-directory.ts'
 import type { BusinessNetworkSummary, OpenBknConfigurationInput } from '../types.ts'
+import { CliSetupControl } from './CliSetupControl.tsx'
+import type { CliSetupPort } from './cli-setup-controller.ts'
 
 export interface OpenBknOverlayInjected {
   hooks: { ui: OpenBknUiController }
@@ -11,6 +13,7 @@ export interface OpenBknOverlayInjected {
   beginLogin(): Promise<void>
   showSettings(): Promise<void>
   saveConfiguration(input: OpenBknConfigurationInput): Promise<void>
+  cliSetup: CliSetupPort
   openNetwork(networkId: string, mode: 'continue' | 'new' | 'create-workspace'): Promise<void>
   openDiagnostics(): void
 }
@@ -18,7 +21,7 @@ export interface OpenBknOverlayInjected {
 export type OpenBknOverlayProps = PropsRuntime<'shell.overlay'> & InjectFace<OpenBknOverlayInjected>
 
 /** Frame-wide, additive OpenBKN control plane. It is intentionally outside DSH chat scroll containers. */
-export function OpenBknOverlay({ useUi, close, refresh, beginLogin, showSettings, saveConfiguration, openNetwork, openDiagnostics }: OpenBknOverlayProps) {
+export function OpenBknOverlay({ useUi, close, refresh, beginLogin, showSettings, saveConfiguration, cliSetup, openNetwork, openDiagnostics }: OpenBknOverlayProps) {
   const state = useUi((value: OpenBknOverlayState) => value)
 
   useEffect(() => {
@@ -48,17 +51,18 @@ export function OpenBknOverlay({ useUi, close, refresh, beginLogin, showSettings
           </div>
         </header>
         <div style={{ padding: 20 }}>
-          <OverlayBody state={state} beginLogin={beginLogin} saveConfiguration={saveConfiguration} refresh={refresh} openNetwork={openNetwork} />
+          <OverlayBody state={state} beginLogin={beginLogin} saveConfiguration={saveConfiguration} cliSetup={cliSetup} refresh={refresh} openNetwork={openNetwork} />
         </div>
       </section>
     </div>
   )
 }
 
-function OverlayBody({ state, beginLogin, saveConfiguration, refresh, openNetwork }: {
+function OverlayBody({ state, beginLogin, saveConfiguration, cliSetup, refresh, openNetwork }: {
   state: OpenBknOverlayState
   beginLogin(): Promise<void>
   saveConfiguration(input: OpenBknConfigurationInput): Promise<void>
+  cliSetup: CliSetupPort
   refresh(): Promise<void>
   openNetwork(networkId: string, mode: 'continue' | 'new' | 'create-workspace'): Promise<void>
 }) {
@@ -80,7 +84,7 @@ function OverlayBody({ state, beginLogin, saveConfiguration, refresh, openNetwor
   }
 
   if (state.phase === 'configuration') {
-    return <ConfigurationForm state={state} saveConfiguration={saveConfiguration} />
+    return <ConfigurationForm state={state} saveConfiguration={saveConfiguration} cliSetup={cliSetup} />
   }
 
   if (state.phase === 'authentication-required') {
@@ -165,13 +169,15 @@ function NetworkRow({ network, expanded, onToggle, openNetwork }: {
   </article>
 }
 
-function ConfigurationForm({ state, saveConfiguration }: {
+function ConfigurationForm({ state, saveConfiguration, cliSetup }: {
   state: OpenBknOverlayState
   saveConfiguration(input: OpenBknConfigurationInput): Promise<void>
+  cliSetup: CliSetupPort
 }) {
   const [baseUrl, setBaseUrl] = useState(state.configuration?.baseUrl ?? '')
   const [cliPath, setCliPath] = useState(state.configuration?.cliPath ?? 'openbkn')
   const [advanced, setAdvanced] = useState(false)
+  const [cliBusy, setCliBusy] = useState(false)
   useEffect(() => {
     if (state.configuration === undefined) return
     setBaseUrl(state.configuration.baseUrl)
@@ -179,7 +185,7 @@ function ConfigurationForm({ state, saveConfiguration }: {
   }, [state.configuration])
   const editable = state.configuration?.editable === true && state.loadingConfiguration !== true
   const saving = state.savingConfiguration === true
-  return <form onSubmit={event => { event.preventDefault(); void saveConfiguration({ baseUrl, cliPath }) }} style={{ display: 'grid', gap: 14 }}>
+  return <form onSubmit={event => { event.preventDefault(); if (!cliBusy) void saveConfiguration({ baseUrl, cliPath }) }} style={{ display: 'grid', gap: 14 }}>
     <p style={{ margin: 0, ...mutedStyle, lineHeight: 1.6 }}>
       {state.configuration?.configured ? '修改当前 DSH profile 的 OpenBKN 设置。已有业务会话保持原平台和网络绑定。' : '先填写 OpenBKN 平台地址，再使用本机 OpenBKN CLI 登录。尚未配置时不会连接平台。'}
     </p>
@@ -191,14 +197,15 @@ function ConfigurationForm({ state, saveConfiguration }: {
       <summary style={loginLinkStyle}>高级设置</summary>
       <label style={{ ...searchLabelStyle, marginTop: 10 }}>
         OpenBKN CLI 执行路径（cliPath）
-        <input aria-label="OpenBKN CLI 执行路径" type="text" autoComplete="off" value={cliPath} onChange={event => setCliPath(event.target.value)} disabled={!editable || saving} style={searchInputStyle} />
+        <input aria-label="OpenBKN CLI 执行路径" type="text" autoComplete="off" value={cliPath} onChange={event => setCliPath(event.target.value)} disabled={!editable || saving || cliBusy} style={searchInputStyle} />
       </label>
       <p style={{ ...mutedStyle, marginBottom: 0 }}>默认 openbkn。若 DSH 找不到命令，可填写绝对路径；Windows 上填写 openbkn.cmd。</p>
+      {advanced ? <CliSetupControl cliPath={cliPath} disabled={!editable || saving} port={cliSetup} onResolved={setCliPath} onBusy={setCliBusy} /> : null}
     </details>
     {!editable && state.configuration !== undefined && state.loadingConfiguration !== true ? <p role="status" style={authenticationNoticeStyle}>{configurationUnavailableMessage(state.configuration.unavailableReason)}</p> : null}
     {state.loadingConfiguration ? <p style={mutedStyle}>正在读取设置…</p> : null}
     {state.configurationMessage ? <p role="status" style={authenticationNoticeStyle}>{state.configurationMessage}</p> : null}
-    <div><button type="submit" style={primaryStyle} disabled={!editable || saving}>{saving ? '正在保存…' : '保存并继续'}</button></div>
+    <div><button type="submit" style={primaryStyle} disabled={!editable || saving || cliBusy}>{saving ? '正在保存…' : '保存并继续'}</button></div>
   </form>
 }
 

@@ -57,7 +57,7 @@ Windows 上使用 `dsh.cmd`。源码构建从 DSH 源码根目录执行 `node ap
 
 1. 启动 DSH，点击侧栏底部的 **OpenBKN**。未设置地址是正常的**待配置**状态，诊断仍可打开。配置前，插件不会连接 OpenBKN，也不会读取它的 CLI 凭据。
 2. 填写绝对 `http://` 或 `https://` 平台地址，点击**保存并继续**。非法输入会被拒绝，不改动已保存配置。地址通过 DSH 配置编辑器保存到当前 profile，按正常组件重载应用；保存地址不代表连接或授权已经成功。
-3. 若 DSH 找不到 CLI，在**高级设置**里填写 `cliPath`，默认是 `openbkn`。Windows 上的绝对路径必须包含 shim 文件名，例如 `C:/Users/<你>/AppData/Roaming/npm/openbkn.cmd`。以后可以从右上角的**设置**编辑同一表单；业务回合运行时，请等它结束再改地址。
+3. 展开**高级设置**检测 CLI，默认命令是 `openbkn`。检测到可用 CLI 后会显示版本并填入实际路径，点击**保存并继续**应用。未检测到时，**检测并安装 CLI**会先复查，再通过本机 npm 的安装源和全局目录安装 SDK **0.1.5**；本机需已有 Node.js 22.19+ 和 npm。已有可用 CLI 保留，不自动升级；损坏安装或自定义路径错误需先修正，不自动覆盖。Windows 上的绝对路径包含 shim 文件名，如 `C:/Users/<你>/AppData/Roaming/npm/openbkn.cmd`。以后可从右上角**设置**编辑；业务回合运行时先等它结束。
 4. 点击**使用 OpenBKN CLI 登录并同步**，在浏览器完成授权，再回到 DSH。已有凭据被拒绝时，也使用这个入口重新登录。403 可能需要管理员授予权限，同账号重新登录不能保证恢复。
 5. 选择有权限的知识网络，新建或继续其工作区，在新会话中保持**标准模式**再提问。暂不支持 PTC 模式。完成的回答提供**查看业务溯源**。
 
@@ -73,7 +73,7 @@ Windows 上使用 `dsh.cmd`。源码构建从 DSH 源码根目录执行 `node ap
 dsh plugin --profile <desktop|web> remove @openbkn/dsh-business-context
 ```
 
-卸载会卸载包组件、移除 profile 包依赖，保留用户 profile 配置、DSH/OpenBKN 凭据、CLI 登录状态、会话、网络/工作区绑定和工作区文件。它不会退出账号或清空数据。不要删除整个 `node_modules/@openbkn` 目录，其中可能还有其他包。重装后可复用保留的配置与绑定。
+卸载会卸载包组件、移除 profile 包依赖，保留用户 profile 配置、DSH/OpenBKN 凭据、CLI 安装与登录状态、会话、网络/工作区绑定和工作区文件。CLI 是独立安装的工具，卸载插件不会移除它，也不会退出账号或清空数据。不要删除整个 `node_modules/@openbkn` 目录，其中可能还有其他包。重装后可复用保留的配置与绑定。
 
 当前版本不向 DSH 会话日志添加插件事件，因此卸载后会话仍可读。最早的 `0.2.0-rc.2-openbkn.0.2.0` 版本另有会话日志限制，见[仓库历史说明](https://github.com/openbkn-ai/bkn-dsh/blob/main/README.zh.md#从-020-rc2-openbkn020-升级)。插件安装期间可能清理对应会话已不存在且记录至少七天的绑定；卸载不会执行全量清理。
 

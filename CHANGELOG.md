@@ -2,6 +2,16 @@
 
 All notable changes to this project are documented here.
 
+## 0.2.0-rc.2-openbkn.0.2.0-9 (unreleased)
+
+CLI setup inside the existing advanced settings. Same DSH `0.2.0-rc.2` pin and authentication flow.
+
+- Detect an executable CLI on the current Host PATH or in bounded common locations and npm's global prefix; display its version and put its resolved path into the settings draft. Existing usable versions are retained.
+- Add an explicit **检测并安装 CLI** action. Only when the default `openbkn` is not detected and prerequisites are usable does it install `@openbkn/bkn-sdk@0.1.5` through the user's npm source/global prefix. No automatic install on render, existing-install upgrade, Node/npm installation, PATH editing or privilege escalation.
+- Show detection, installation, verification and bounded failures. An installer exit of zero does not count as availability: the resulting executable must pass `--version`. Closing the panel leaves an accepted installation running on the Host; reopening checks its current state.
+- Persist a discovered CLI path only through the existing **保存并继续** action. CLI setup does not read tokens, sign in or reconcile authentication diagnostics. Uninstalling the plugin retains the independently installed CLI.
+- Acceptance is pending the fixed candidate's macOS and Windows checks. All retained -8 platform, model, diagnostics and authentication limitations still apply.
+
 ## 0.2.0-rc.2-openbkn.0.2.0-8 (2026-10-10)
 
 First-use setup for the existing DSH `0.2.0-rc.2` plugin. No runtime or upstream pin change.

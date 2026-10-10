@@ -13,6 +13,17 @@ export interface OpenBknConfigurationInput {
   readonly cliPath: string
 }
 
+/** Bounded CLI setup result; installer output and credentials never cross this boundary. */
+export interface OpenBknCliSetupView {
+  readonly state: 'ready' | 'missing' | 'blocked' | 'installing' | 'failed'
+  readonly canInstall: boolean
+  readonly resolvedPath?: string
+  readonly version?: string
+  readonly reason?: 'custom-path-missing' | 'execution-failed' | 'npm-missing' | 'node-unavailable'
+    | 'prefix-unavailable' | 'existing-installation' | 'permission-denied' | 'network-failed'
+    | 'tls-failed' | 'timeout' | 'installation-failed' | 'verification-failed' | 'host-unavailable' | 'busy'
+}
+
 /** Safe, UI-ready representation of OpenBKN authentication state. */
 export type AuthSnapshot =
   | { readonly kind: 'authenticated'; readonly baseUrl: string; readonly userId?: string; readonly username?: string }
