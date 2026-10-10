@@ -6,9 +6,11 @@
 
 旧 Windows `a2504c5` 的 C90–C99 是历史基线，措辞修正见 [WINDOWS-REVIEW](followup/WINDOWS-REVIEW.md)。当前候选的 Windows Desktop/npm F90–F97 已由 `b5e5875b53bfd0edccbd881f1069e746dc722b1b` 回传并复核，原件与修正后的结论见 [Windows RESULTS](followup/windows/RESULTS.md)：安装件各 69/69，canonical verifier 在 PS5.1 原生通过，停止 helper 拒绝错误及空 listener，真实 SDK 安装与保存提示通过。
 
-2026-10-11 收尾只调整证据与发布说明，不改变候选。C98 实机仅证明恢复后保留失败历史；只读检测不清除当前 CLI/auth 失败仍只有单测，现场未单独构造。Desktop 首次卸载的 pnpm `EPERM` 按用户决定保留为已知限制，根因未知。根清单和 Git 对照将绑定本轮明确的证据提交；旧清单归档而不改写。Windows 全部原件的来源/字节补证任务见 [独立收尾 handoff](../../handoff/2026-10-10-cli-setup9/WINDOWS-EVIDENCE-CLOSEOUT.md)。补证不要求重跑矩阵或借用凭据。
+2026-10-11 收尾只调整证据与发布说明，不改变候选。C98 实机仅证明恢复后保留失败历史；只读检测不清除当前 CLI/auth 失败仍只有单测，现场未单独构造。Desktop 首次卸载的 pnpm `EPERM` 按用户决定保留为已知限制，根因未知。根清单和 Git 对照绑定明确的证据提交；旧清单保留历史身份。
 
-PR #86 合并与主线 build-only 逐文件比对已获授权；正式发布/tag/dist-tag 尚未执行。宿主测试 Key 来源调查与撤销不进入 -9 插件实现。
+Windows 的 [107 件来源补证](followup/windows/closeout/RESULTS.md) 已回传并由主开发复核，固定提交 `a7f94bf4bc7fa973b19e07196820c64eb69cd70a`：53 件逐字节一致、54 件仅 CRLF→LF 差异，缺失/未验证均 0；快照副本与合成 observer 分列。主开发独立核到 107 件 Git 基准及记录哈希、54 件换行还原和两份补证的提交字节证明，未冒充再次读取 Windows 本地文件。详见 [主开发复核](followup/windows-provenance-review.json)。没有重跑矩阵或借用凭据。
+
+PR #86 已合并至 `df454e7eaa4b58ecdbb4c3355a297aaba02d5437`；主线 build-only CI `38067339595` 成功，69/69 解包文件及 tgz SHA 与验收候选完全一致。正式发布/tag/dist-tag 尚未执行；当前待维护者确认发布。完整身份与保留限制见 [发布准备](RELEASE-READINESS.md)。宿主测试 Key 来源调查与撤销不进入 -9 插件实现。
 
 ---
 
