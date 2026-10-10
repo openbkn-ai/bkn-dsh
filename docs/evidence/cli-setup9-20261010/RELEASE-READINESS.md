@@ -15,7 +15,7 @@ CLI 检测、显式 SDK 安装和状态提示的验收与 Windows 来源补证�
 | 主线合并 | `df454e7eaa4b58ecdbb4c3355a297aaba02d5437` |
 | 主线 build-only | [38067339595](https://github.com/openbkn-ai/bkn-dsh/actions/runs/38067339595)，success；publish 步骤及 GitHub Release job 均 skipped |
 | 主线比对 | 69/69，missing/extra/different 均空；tgz SHA 完全相同，未使用 package.json 键序豁免；[完整比对](followup/main-payload-reconciliation.json) |
-| 主线检查 | 插件 414（413 pass / 0 fail / 1 skip）、仓库 60/60、package:check 通过；[CI 身份与步骤](followup/main-rehearsal-run.json) |
+| 主线检查 | 插件 414（413 pass / 0 fail / 1 skip）、仓库 60/60，数量来自[原生测试摘要](followup/main-tests-native-summary.txt)及[行范围/来源 SHA](followup/main-tests-summary-provenance.json)；package:check/job 结论另见 [CI 身份与步骤](followup/main-rehearsal-run.json) |
 
 ## Windows 补证复核
 
@@ -37,7 +37,7 @@ CLI 检测、显式 SDK 安装和状态提示的验收与 Windows 来源补证�
 | 既有 -8 平台/模型/鉴权问题 | 功能面未改变，仍按 -8 CHANGELOG 的限制处理；本轮没有扩大 G6、平台部署、Token 生命周期或诊断完整验收。 |
 | Desktop 测试 Key 来源与撤销 | 属用户凭据处置和宿主隔离问题；未收到新的完成确认。不在插件中新增凭据管理，本轮补证没有使用模型 Key。 |
 
-[最新上游只读核对](followup/closeout-upstream-after-windows.json) 中 DSH、Foundry、SDK 头部均与已验收基线相同；记录了最新可见 Release，但没有升级支持的 DSH rc.2 或 SDK 0.1.5，也不替代 live 契约检查。
+[最新上游只读核对](followup/closeout-upstream-after-windows.json) 中 DSH、Foundry、SDK 头部均与已验收基线相同；GitHub Release 列表只作该渠道元数据，SDK 的 v0.1.3/untagged 记录不能说明 npm 包版本。[独立官方 npm 查询](followup/sdk-npm-after-windows.json) 确认 `@openbkn/bkn-sdk` latest 与本轮显式安装版本均为 0.1.5，并记录发布时间及 integrity。没有升级支持的 DSH rc.2 或 SDK 0.1.5，也不替代 live 契约检查。
 
 ## 未执行的发布动作
 
