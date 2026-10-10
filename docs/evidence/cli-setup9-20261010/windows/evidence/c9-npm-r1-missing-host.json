@@ -1,0 +1,24 @@
+{
+    "label":  "c9-npm-r1-missing",
+    "form":  "npm",
+    "pid":  1248,
+    "createdUtc":  "2026-10-10T06:55:47.8989820+00:00",
+    "exe":  "C:\\Users\\kalia\\scoop\\apps\\nodejs-lts\\current\\node.exe",
+    "argv":  "C:\\Users\\kalia\\scoop\\apps\\nodejs-lts\\current\\node.exe \"C:\\bkn-verify\\diag6-tools\\node_modules\\@deepseek-ai\\dsh\\lib\\bin.js\" web --port 18607 --no-open",
+    "listenerOwner":  1248,
+    "listeners":  [
+                      {
+                          "address":  "127.0.0.1",
+                          "port":  18607,
+                          "owner":  1248
+                      }
+                  ],
+    "PATH":  "C:\\Windows\\system32;C:\\Windows;C:\\Windows\\System32\\Wbem;C:\\Windows\\System32\\WindowsPowerShell\\v1.0;C:\\Users\\kalia\\scoop\\apps\\nodejs-lts\\current",
+    "DSH_HOME":  "C:\\bkn-verify\\cli9\\npm\\dsh-home",
+    "BKN_CONFIG_DIR":  "C:\\bkn-verify\\cli9\\npm\\bkn-config",
+    "npm_config_prefix":  "C:\\bkn-verify\\cli9\\npm\\CLI Prefix",
+    "npm_config_cache":  "C:\\bkn-verify\\cli9\\npm\\npm-cache",
+    "APPDATA":  "C:\\bkn-verify\\cli9\\npm\\AppData",
+    "PathMode":  "missing",
+    "FixtureDir":  ""
+}

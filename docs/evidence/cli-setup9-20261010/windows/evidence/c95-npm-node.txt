@@ -1,0 +1,18 @@
+C95 npm node fixtures (Host 8556, PATH fixture-first, npm_config_prefix=FX Prefix (empty)). Draft per-char 'openbkn' (focus kept).
+v23: 07:08:32.247Z auto-detect and 07:08:51.947Z after click 检测并安装 CLI: 当前 DSH 无法使用受支持的 Node.js（22 系列需 22.19 或以上，或使用 24 及更新版本）。请检查 Node.js，或重启 DSH 后重新检测。
+v22.18: 07:09:10.687Z after click: same message.
+No npm install invoked in either mode, FX Prefix empty, no Node install, no PATH change, no elevation prompt.
+calls.log:
+--- C95 v23 start 2026-10-10T07:08:02Z
+周六 2026/10/10 15:08:03.91 node-fixture mode=v23 argv="C:\bkn-verify\cli9\npm\CLI Prefix\\node_modules\@openbkn\bkn-sdk\dist\cli.js" --version
+周六 2026/10/10 15:08:31.80 npm-fixture mode=real argv=prefix --global
+周六 2026/10/10 15:08:32.06 npm-fixture passthrough exit=0
+周六 2026/10/10 15:08:32.21 node-fixture mode=v23 argv=--version
+周六 2026/10/10 15:08:51.54 npm-fixture mode=real argv=prefix --global
+周六 2026/10/10 15:08:51.80 npm-fixture passthrough exit=0
+周六 2026/10/10 15:08:51.93 node-fixture mode=v23 argv=--version
+--- C95 v22-18 start 2026-10-10T07:09:00Z
+周六 2026/10/10 15:09:10.27 npm-fixture mode=real argv=prefix --global
+周六 2026/10/10 15:09:10.53 npm-fixture passthrough exit=0
+周六 2026/10/10 15:09:10.67 node-fixture mode=v22-18 argv=--version
+FX Prefix entries: 0

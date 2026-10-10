@@ -1,0 +1,3 @@
+C95 npm no-npm (Host 13524, PATH=System32;Windows;Wbem;WindowsPowerShell only — Host itself launched by absolute node.exe; npm_config_prefix=NoNpm Prefix; saved cliPath=openbkn)
+07:15:44.904Z auto-detect and 07:15:58.579Z after click 检测并安装 CLI: 当前 DSH 找不到 npm，无法自动安装。请先安装 Node.js/npm；已安装时可重启 DSH 后重新检测。
+Host children after click: conhost.exe only; NoNpm Prefix entries: 0. No Node install, no PATH change, no elevation prompt. (Observer not attached in this round; values read via DOM [role=status].)

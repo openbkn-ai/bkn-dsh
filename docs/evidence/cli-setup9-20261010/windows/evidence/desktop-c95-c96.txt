@@ -1,0 +1,57 @@
+Desktop C95 node fixtures (Host 1352, fixture PATH, prefix desktop\FX Prefix, saved cliPath=openbkn; per-key openbkn typed then saved).
+v23 07:40Z: auto-detect + click -> 当前 DSH 无法使用受支持的 Node.js（22 系列需 22.19 或以上，或使用 24 及更新版本）。请检查 Node.js，或重启 DSH 后重新检测。 (screenshot zoom transcription)
+v22.18 07:40:47Z click -> same message. No install call; FX Prefix empty.
+--- Desktop C95 v23 start 2026-10-10T07:40:07Z
+周六 2026/10/10 15:40:10.04 npm-fixture mode=real argv=prefix --global
+周六 2026/10/10 15:40:10.27 npm-fixture passthrough exit=0
+周六 2026/10/10 15:40:10.41 node-fixture mode=v23 argv=--version
+周六 2026/10/10 15:40:31.22 npm-fixture mode=real argv=prefix --global
+周六 2026/10/10 15:40:31.45 npm-fixture passthrough exit=0
+周六 2026/10/10 15:40:31.59 node-fixture mode=v23 argv=--version
+--- Desktop C95 v22-18 start 2026-10-10T07:40:46Z
+周六 2026/10/10 15:40:47.21 npm-fixture mode=real argv=prefix --global
+周六 2026/10/10 15:40:47.45 npm-fixture passthrough exit=0
+周六 2026/10/10 15:40:47.59 node-fixture mode=v22-18 argv=--version
+--- Desktop C96 eacces start 2026-10-10T07:41:03Z
+
+Desktop C96 (same Host): eacces -> npm 安装目录没有写入权限。请手动安装 CLI 或修正 npm 目录后重试。; econnreset -> CLI 安装遇到网络错误。请检查 npm 安装源和网络后重试。; cert -> CLI 安装遇到证书错误。请检查 npm 安装源的证书设置后重试。; exit0-nobin -> 安装命令已完成，但当前 DSH 尚无法使用 CLI。请重启 DSH 后重新检测，或手动检查安装。 (UI text transcribed from screenshot zoom, not machine-extracted). Diagnostics UI export 69099527: CANARY 0, raw codes 0, observed:cli fail cli-missing.
+--- Desktop C96 eacces start 2026-10-10T07:41:03Z
+周六 2026/10/10 15:41:04.26 npm-fixture mode=eacces argv=prefix --global
+周六 2026/10/10 15:41:04.50 npm-fixture passthrough exit=0
+周六 2026/10/10 15:41:04.64 node-fixture mode=real argv=--version
+周六 2026/10/10 15:41:04.84 npm-fixture mode=eacces argv=prefix --global
+周六 2026/10/10 15:41:05.05 npm-fixture passthrough exit=0
+周六 2026/10/10 15:41:05.18 node-fixture mode=real argv=--version
+周六 2026/10/10 15:41:05.35 npm-fixture mode=eacces argv=install --global @openbkn/bkn-sdk@0.1.5 --prefix "C:\bkn-verify\cli9\desktop\FX Prefix" --ignore-scripts --no-audit --no-fund --loglevel=error
+周六 2026/10/10 15:41:05.35 npm-fixture eacces exit=243
+--- Desktop C96 econnreset start 2026-10-10T07:41:15Z
+周六 2026/10/10 15:41:16.54 npm-fixture mode=econnreset argv=prefix --global
+周六 2026/10/10 15:41:16.77 npm-fixture passthrough exit=0
+周六 2026/10/10 15:41:16.92 node-fixture mode=real argv=--version
+周六 2026/10/10 15:41:17.11 npm-fixture mode=econnreset argv=prefix --global
+周六 2026/10/10 15:41:17.33 npm-fixture passthrough exit=0
+周六 2026/10/10 15:41:17.46 node-fixture mode=real argv=--version
+周六 2026/10/10 15:41:17.63 npm-fixture mode=econnreset argv=install --global @openbkn/bkn-sdk@0.1.5 --prefix "C:\bkn-verify\cli9\desktop\FX Prefix" --ignore-scripts --no-audit --no-fund --loglevel=error
+周六 2026/10/10 15:41:17.63 npm-fixture econnreset exit=1
+--- Desktop C96 cert start 2026-10-10T07:41:28Z
+周六 2026/10/10 15:41:29.01 npm-fixture mode=cert argv=prefix --global
+周六 2026/10/10 15:41:29.25 npm-fixture passthrough exit=0
+周六 2026/10/10 15:41:29.38 node-fixture mode=real argv=--version
+周六 2026/10/10 15:41:29.57 npm-fixture mode=cert argv=prefix --global
+周六 2026/10/10 15:41:29.79 npm-fixture passthrough exit=0
+周六 2026/10/10 15:41:29.92 node-fixture mode=real argv=--version
+周六 2026/10/10 15:41:30.09 npm-fixture mode=cert argv=install --global @openbkn/bkn-sdk@0.1.5 --prefix "C:\bkn-verify\cli9\desktop\FX Prefix" --ignore-scripts --no-audit --no-fund --loglevel=error
+周六 2026/10/10 15:41:30.09 npm-fixture cert exit=1
+--- Desktop C96 exit0-nobin start 2026-10-10T07:41:40Z
+周六 2026/10/10 15:41:40.87 npm-fixture mode=exit0-nobin argv=prefix --global
+周六 2026/10/10 15:41:41.10 npm-fixture passthrough exit=0
+周六 2026/10/10 15:41:41.24 node-fixture mode=real argv=--version
+周六 2026/10/10 15:41:41.43 npm-fixture mode=exit0-nobin argv=prefix --global
+周六 2026/10/10 15:41:41.65 npm-fixture passthrough exit=0
+周六 2026/10/10 15:41:41.78 node-fixture mode=real argv=--version
+周六 2026/10/10 15:41:41.95 npm-fixture mode=exit0-nobin argv=install --global @openbkn/bkn-sdk@0.1.5 --prefix "C:\bkn-verify\cli9\desktop\FX Prefix" --ignore-scripts --no-audit --no-fund --loglevel=error
+周六 2026/10/10 15:41:41.96 npm-fixture exit0-nobin exit=0
+--- Desktop C97 start 2026-10-10T07:42:46Z
+FX Prefix entries: 0
+
+10:31:56Z: Desktop Host 1352 tree found NOT running (no DeepSeek Harness.exe, no :19387 listener); exited during the operator usage-limit pause (~07:43Z–10:31Z), not stopped by the 4-item helper. Desktop C97 had not started (delay fixture armed, no install call logged).

@@ -1,0 +1,34 @@
+{
+    "label":  "c9-desk-r6-uninstall",
+    "form":  "desktop",
+    "pid":  10712,
+    "createdUtc":  "2026-10-10T12:35:54.7139350+00:00",
+    "exe":  "C:\\Users\\kalia\\AppData\\Local\\Programs\\DeepSeek Harness\\DeepSeek Harness.exe",
+    "exeVersion":  "0.2.0-rc.2",
+    "argv":  "C:\\Users\\kalia\\AppData\\Local\\Programs\\DeepSeek Harness\\DeepSeek Harness.exe --user-data-dir=\"C:\\bkn-verify\\cli9\\desktop\\electron-user-data\"",
+    "listeners":  [
+                      {
+                          "address":  "127.0.0.1",
+                          "port":  19387,
+                          "owner":  15076
+                      }
+                  ],
+    "treePids":  [
+                     10712,
+                     2172,
+                     23064,
+                     15464,
+                     15076,
+                     null
+                 ],
+    "PATH":  "C:\\Windows\\system32;C:\\Windows;C:\\Windows\\System32\\Wbem;C:\\Windows\\System32\\WindowsPowerShell\\v1.0;C:\\Users\\kalia\\scoop\\apps\\nodejs-lts\\current;C:\\Users\\kalia\\scoop\\apps\\nodejs-lts\\current\\bin",
+    "DSH_HOME":  "C:\\bkn-verify\\cli9\\desktop\\dsh-home",
+    "BKN_CONFIG_DIR":  "C:\\bkn-verify\\cli9\\desktop\\bkn-config",
+    "npm_config_prefix":  "C:\\bkn-verify\\cli9\\desktop\\CLI Prefix",
+    "npm_config_cache":  "C:\\bkn-verify\\cli9\\desktop\\npm-cache",
+    "APPDATA":  "C:\\bkn-verify\\cli9\\desktop\\AppData",
+    "userDataDir":  "C:\\bkn-verify\\cli9\\desktop\\electron-user-data",
+    "PathMode":  "missing",
+    "FixtureDir":  "",
+    "WithPnpm":  true
+}

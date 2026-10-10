@@ -1,0 +1,23 @@
+label=desktop-preflight utc=2026-10-10T07:17:19.4125172Z PATH=C:\Windows\system32;C:\Windows;C:\Windows\System32\Wbem;C:\Windows\System32\WindowsPowerShell\v1.0;C:\Users\kalia\scoop\apps\nodejs-lts\current
+npm_config_prefix=C:\bkn-verify\cli9\desktop\CLI Prefix npm_config_cache=C:\bkn-verify\cli9\desktop\npm-cache APPDATA=C:\bkn-verify\cli9\desktop\AppData
+> node --version  exit=0
+v24.21.0
+> npm --version  exit=0
+11.19.0
+> npm prefix --global  exit=0
+C:\bkn-verify\cli9\desktop\CLI Prefix
+> npm config get registry  exit=0
+https://registry.npmjs.org/
+> where.exe openbkn  exit=1
+where.exe : INFO: Could not find files for the given pattern(s).
+At C:\bkn-verify\cli9\evidence\scripts\preflight.ps1:7 char:8
++   $o = & $c[0] $c[1..($c.Count-1)] 2>&1 | Out-String; $e=$LASTEXITCOD ...
++        ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    + CategoryInfo          : NotSpecified: (INFO: Could not...ven pattern(s).:String) [], RemoteException
+    + FullyQualifiedErrorId : NativeCommandError
+> where.exe npm  exit=0
+C:\Users\kalia\scoop\apps\nodejs-lts\current\npm
+C:\Users\kalia\scoop\apps\nodejs-lts\current\npm.cmd
+> where.exe node  exit=0
+C:\Users\kalia\scoop\apps\nodejs-lts\current\node.exe
+prefix contents: 

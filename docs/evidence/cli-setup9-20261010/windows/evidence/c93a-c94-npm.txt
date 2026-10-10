@@ -1,0 +1,10 @@
+C93a+C94 npm (Host 1248, CLI Prefix not on Host PATH). Machine log: observer-npm-r1.json (synthetic 20 ms DOM poll).
+C93a 07:00:39Z per-char 'openbkn' (focus true throughout, 0 lost chars) -> 07:00:39.972Z auto-fill C:\bkn-verify\cli9\npm\CLI Prefix\openbkn.cmd -> 07:00:40.252Z CLI 0.1.5 可用。 No install (prefix newestMtime unchanged 1791615512.896).
+C94 bad path per-char 'C:\bkn-verify\cli9\npm\no such dir\openbkn.cmd' 07:01:22.8Z–07:01:31.5Z (3 type batches): after 2 chars focus=true value='C:'; final focus=true value exact; 21 state changes, focFalse=0, inputDisabled=0 (auto read-only detection never disables/defocuses the field).
+  final 07:01:31.512Z: 未找到此路径。请修正路径，或改回 openbkn 后检测并安装。 button=检测并安装 CLI
+  click 07:01:51.941Z -> 检测中 (16 ms; input not disabled, save enabled) -> 未找到此路径… ; no install, 'no such dir' not created, CLI Prefix fingerprint unchanged; Host children: conhost only
+  operator error 07:02:13Z: click missed the field after layout shift; ctrl+a selected page text, typed chars went to no editable element (field value + baseUrl unchanged). Redone 07:02:52Z.
+C94 restore per-char 'C:\bkn-verify\cli9\npm\CLI Prefix\openbkn.cmd' 07:02:52.5Z–07:03:03.0Z: after 2 chars focus=true 'C:'; 24 state changes, focFalse=0, disabled=0 -> 07:03:03.372Z CLI 0.1.5 可用。路径已填入… (old 未找到 message gone). Space path executed by Host detection successfully.
+Observation: intermediate values that are existing directories (C:\bkn-verify\, C:\bkn-verify\cli9\, ...\CLI Prefix) show 已找到 CLI，但当前 DSH 无法执行。请检查 Node.js 和路径；若刚安装，可重启 DSH 后重新检测。 — a directory is reported as a found CLI.
+Observation: custom-path explicit detect does not lock input/save (C92 default-command explicit path does).
+c94-end utc=2026-10-10T07:03:57Z files=1120 newestMtimeEpoch=1791615512.8960711000 treeSha256=5204d50caf6ceab164de044dc0ffdd54410512e6f1c9d990be9ed34e9beaba0b

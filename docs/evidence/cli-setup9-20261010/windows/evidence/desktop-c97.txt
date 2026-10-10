@@ -1,0 +1,27 @@
+Desktop C97 (Host 12836, restarted after Host 1352 exited during pause; fixture npm delay 60 s; fresh desktop\FX Prefix; saved cliPath=openbkn). Evidence: screenshot zoom transcriptions (no DOM observer this round).
+12:31:50Z double-click 检测并安装 CLI -> 正在安装 CLI 0.1.5 并验证是否可用…可以关闭面板，安装将在当前 DSH 中继续。 button 安装中…, path box greyed; key 'x' in path box not inserted (value openbkn).
+~12:31:55Z panel closed (×); main panel reopened: generic DSH 找不到 OpenBKN CLI… text (no installing hint, same as npm).
+~12:32:05Z settings/advanced reopened: 正在安装…/安装中…, path box greyed (installing state captured); zooms at +10 s, +20 s, +30 s still locked/installing.
+12:32:13Z fixture cmd.exe 7052 alive (install continued after panel close).
+~12:33:03Z: auto-fill C:\bkn-verify\cli9\desktop\FX Prefix\openbkn.cmd + CLI 0.1.5 可用。路径已填入，请点击“保存并继续”应用。 (not saved)
+install count: 1; independent FX Prefix openbkn.cmd --version 0.1.5 exit 0
+--- Desktop r4 fixture restart (C97) 2026-10-10T12:30:50Z
+周六 2026/10/10 20:31:31.46 npm-fixture mode=delay argv=prefix --global
+周六 2026/10/10 20:31:31.72 npm-fixture passthrough exit=0
+周六 2026/10/10 20:31:31.85 node-fixture mode=real argv=--version
+周六 2026/10/10 20:31:50.87 npm-fixture mode=delay argv=prefix --global
+周六 2026/10/10 20:31:51.11 npm-fixture passthrough exit=0
+周六 2026/10/10 20:31:51.25 node-fixture mode=real argv=--version
+周六 2026/10/10 20:31:51.45 npm-fixture mode=delay argv=prefix --global
+周六 2026/10/10 20:31:51.66 npm-fixture passthrough exit=0
+周六 2026/10/10 20:31:51.80 node-fixture mode=real argv=--version
+周六 2026/10/10 20:31:51.97 npm-fixture mode=delay argv=install --global @openbkn/bkn-sdk@0.1.5 --prefix "C:\bkn-verify\cli9\desktop\FX Prefix" --ignore-scripts --no-audit --no-fund --loglevel=error
+周六 2026/10/10 20:31:51.97 npm-fixture delay start seconds=60
+周六 2026/10/10 20:32:52.51 npm-fixture delay end, handing to real npm
+周六 2026/10/10 20:33:01.53 npm-fixture passthrough exit=0
+周六 2026/10/10 20:33:01.68 node-fixture mode=real argv="C:\bkn-verify\cli9\desktop\FX Prefix\\node_modules\@openbkn\bkn-sdk\dist\cli.js" --version
+周六 2026/10/10 20:33:02.68 npm-fixture mode=delay argv=prefix --global
+周六 2026/10/10 20:33:02.89 npm-fixture passthrough exit=0
+周六 2026/10/10 20:33:03.03 node-fixture mode=real argv="C:\bkn-verify\cli9\desktop\FX Prefix\\node_modules\@openbkn\bkn-sdk\dist\cli.js" --version
+周六 2026/10/10 20:33:03.39 node-fixture mode=real argv="C:\bkn-verify\cli9\desktop\FX Prefix\\node_modules\@openbkn\bkn-sdk\dist\cli.js" --version
+desk-c97-fx utc=2026-10-10T12:34:28Z files=1120 newestMtimeEpoch=1791635581.5176035000 treeSha256=5204d50caf6ceab164de044dc0ffdd54410512e6f1c9d990be9ed34e9beaba0b

@@ -1,0 +1,7 @@
+C93b npm (Host 11072, PATH includes C:\bkn-verify\cli9\npm\CLI Prefix). Machine log observer-npm-r2.json.
+Settings reopened after restart 07:05:12Z: saved cliPath C:\bkn-verify\cli9\npm\CLI Prefix\openbkn.cmd -> CLI 0.1.5 可用。路径已填入，请点击“保存并继续”应用。 (message shown for already-saved path — observation)
+07:05:31Z per-char 'openbkn' (focus true, 0 lost chars) -> 07:05:31.369Z auto-fill C:\bkn-verify\cli9\npm\CLI Prefix\openbkn.CMD (uppercase extension from PATHEXT resolution) -> 07:05:31.729Z 可用. No install. Not saved (not required).
+C98 07:05:47Z closed panel without saving, reopened settings/advanced 07:06:31Z: draft = saved C:\bkn-verify\cli9\npm\CLI Prefix\openbkn.cmd (unsaved .CMD draft discarded) -> 可用.
+C98 diagnostics UI export 7d60b5ca (OpenBKN-diagnostic-npm-c98-7d60b5ca.json): observed:cli pass exitCode 0; observed:login-state fail not-logged-in (CLI executable != logged in). Browser network list: only 127.0.0.1:18607 Host APIs (checkCli/getConfiguration/status/getReport…), no authorization or model request initiated.
+C98 old auth failure not cleared: not constructed (no pre-existing failure input; unit-test coverage per handoff).
+c93b-c98 utc=2026-10-10T07:07:14Z files=1120 newestMtimeEpoch=1791615512.8960711000 treeSha256=5204d50caf6ceab164de044dc0ffdd54410512e6f1c9d990be9ed34e9beaba0b

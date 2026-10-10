@@ -1,0 +1,24 @@
+{
+    "label":  "c9-npm-r2-prefix-on-path",
+    "form":  "npm",
+    "pid":  11072,
+    "createdUtc":  "2026-10-10T07:04:04.5402890+00:00",
+    "exe":  "C:\\Users\\kalia\\scoop\\apps\\nodejs-lts\\current\\node.exe",
+    "argv":  "C:\\Users\\kalia\\scoop\\apps\\nodejs-lts\\current\\node.exe \"C:\\bkn-verify\\diag6-tools\\node_modules\\@deepseek-ai\\dsh\\lib\\bin.js\" web --port 18607 --no-open",
+    "listenerOwner":  11072,
+    "listeners":  [
+                      {
+                          "address":  "127.0.0.1",
+                          "port":  18607,
+                          "owner":  11072
+                      }
+                  ],
+    "PATH":  "C:\\Windows\\system32;C:\\Windows;C:\\Windows\\System32\\Wbem;C:\\Windows\\System32\\WindowsPowerShell\\v1.0;C:\\Users\\kalia\\scoop\\apps\\nodejs-lts\\current;C:\\bkn-verify\\cli9\\npm\\CLI Prefix",
+    "DSH_HOME":  "C:\\bkn-verify\\cli9\\npm\\dsh-home",
+    "BKN_CONFIG_DIR":  "C:\\bkn-verify\\cli9\\npm\\bkn-config",
+    "npm_config_prefix":  "C:\\bkn-verify\\cli9\\npm\\CLI Prefix",
+    "npm_config_cache":  "C:\\bkn-verify\\cli9\\npm\\npm-cache",
+    "APPDATA":  "C:\\bkn-verify\\cli9\\npm\\AppData",
+    "PathMode":  "prefix-on-path",
+    "FixtureDir":  ""
+}

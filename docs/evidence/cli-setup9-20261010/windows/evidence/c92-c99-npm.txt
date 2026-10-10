@@ -1,0 +1,17 @@
+C92+C99 npm (Host 1248, PATH missing mode, CLI Prefix not on PATH)
+C99-1 06:57:49Z per-char type '.','c','m','d' after 'openbkn' (separate type actions): focus kept (true) after 2 chars and at end, value openbkn.c -> openbkn.cmd, no lost chars, input never disabled. Final 06:57:50.231Z: 未在当前环境和常见安装位置检测到 CLI。点击下方按钮可安装 0.1.5。 button=检测并安装 CLI (missing/canInstall).
+  observation: intermediate value 'openbkn.c' showed 未找到此路径。请修正路径，或改回 openbkn 后检测并安装。 (bare non-default name treated as custom path)
+C92 06:58:20.244Z click 检测并安装 CLI with draft openbkn.cmd -> 06:58:20.290Z 检测中…[input disabled, save disabled] -> 06:58:20.771Z 正在安装 CLI 0.1.5 并验证是否可用…可以关闭面板，安装将在当前 DSH 中继续。 安装中…[input disabled, save disabled]
+  06:58:21.8Z typed 'x' into path box during install: not inserted (input disabled), value stays openbkn.cmd
+  06:58:33.291Z draft auto-filled C:\bkn-verify\cli9\npm\CLI Prefix\openbkn.cmd, 检测中 -> 06:58:33.651Z CLI 0.1.5 可用。路径已填入，请点击“保存并继续”应用。
+  independent: CLI Prefix\openbkn.cmd --version -> 0.1.5 exit 0
+  patch before save unchanged cdc61a08… (no cliPath line)
+C99-3 06:59:12Z cleared and per-char typed o,p,e,n,b,k,n,.,c,m,d: focus true, after 2 chars 'op', final 'openbkn.cmd', no lost chars -> 06:59:12.772Z auto-fill CLI Prefix\openbkn.cmd -> 06:59:13.052Z 可用; no install (prefix newestMtime unchanged)
+Save 06:59:3xZ (baseUrl https://192.168.50.28 entered, required on first save) -> main panel: 设置已保存，请使用 OpenBKN CLI 登录并同步。 Login button not clicked.
+patch after save sha 57ef4a6b…:
+8:- id: openbkn-business-context
+9-  name: "@openbkn/dsh-business-context/business"
+10-  config:
+11-    baseUrl: https://192.168.50.28
+12-    cliPath: C:\bkn-verify\cli9\npm\CLI Prefix\openbkn.cmd
+c92-c99 utc=2026-10-10T07:00:08Z files=1120 newestMtimeEpoch=1791615512.8960711000 treeSha256=5204d50caf6ceab164de044dc0ffdd54410512e6f1c9d990be9ed34e9beaba0b

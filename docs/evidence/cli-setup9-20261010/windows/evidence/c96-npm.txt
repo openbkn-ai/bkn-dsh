@@ -1,0 +1,44 @@
+C96 npm controlled install failures (Host 8556, fixture npm.cmd first on Host PATH, real node, FX Prefix). Each: click 检测并安装 CLI with draft 'openbkn' -> 检测中[locked] -> 安装中[locked] -> result; document.body contains 'CANARY' = false after each.
+eacces 07:09:34.707Z: npm 安装目录没有写入权限。请手动安装 CLI 或修正 npm 目录后重试。
+econnreset 07:09:50.067Z: CLI 安装遇到网络错误。请检查 npm 安装源和网络后重试。
+cert 07:10:08.367Z: CLI 安装遇到证书错误。请检查 npm 安装源的证书设置后重试。
+exit0-nobin 07:10:23.327Z: 安装命令已完成，但当前 DSH 尚无法使用 CLI。请重启 DSH 后重新检测，或手动检查安装。
+No ready/可用 state in any mode. Controlled faults — not counted as real OS/network failures.
+calls.log:
+--- C96 eacces start 2026-10-10T07:09:27Z
+周六 2026/10/10 15:09:33.54 npm-fixture mode=eacces argv=prefix --global
+周六 2026/10/10 15:09:33.80 npm-fixture passthrough exit=0
+周六 2026/10/10 15:09:33.93 node-fixture mode=real argv=--version
+周六 2026/10/10 15:09:34.12 npm-fixture mode=eacces argv=prefix --global
+周六 2026/10/10 15:09:34.38 npm-fixture passthrough exit=0
+周六 2026/10/10 15:09:34.52 node-fixture mode=real argv=--version
+周六 2026/10/10 15:09:34.69 npm-fixture mode=eacces argv=install --global @openbkn/bkn-sdk@0.1.5 --prefix "C:\bkn-verify\cli9\npm\FX Prefix" --ignore-scripts --no-audit --no-fund --loglevel=error
+周六 2026/10/10 15:09:34.69 npm-fixture eacces exit=243
+--- C96 econnreset start 2026-10-10T07:09:44Z
+周六 2026/10/10 15:09:48.91 npm-fixture mode=econnreset argv=prefix --global
+周六 2026/10/10 15:09:49.17 npm-fixture passthrough exit=0
+周六 2026/10/10 15:09:49.30 node-fixture mode=real argv=--version
+周六 2026/10/10 15:09:49.49 npm-fixture mode=econnreset argv=prefix --global
+周六 2026/10/10 15:09:49.75 npm-fixture passthrough exit=0
+周六 2026/10/10 15:09:49.89 node-fixture mode=real argv=--version
+周六 2026/10/10 15:09:50.05 npm-fixture mode=econnreset argv=install --global @openbkn/bkn-sdk@0.1.5 --prefix "C:\bkn-verify\cli9\npm\FX Prefix" --ignore-scripts --no-audit --no-fund --loglevel=error
+周六 2026/10/10 15:09:50.05 npm-fixture econnreset exit=1
+--- C96 cert start 2026-10-10T07:09:59Z
+周六 2026/10/10 15:10:07.21 npm-fixture mode=cert argv=prefix --global
+周六 2026/10/10 15:10:07.47 npm-fixture passthrough exit=0
+周六 2026/10/10 15:10:07.61 node-fixture mode=real argv=--version
+周六 2026/10/10 15:10:07.80 npm-fixture mode=cert argv=prefix --global
+周六 2026/10/10 15:10:08.06 npm-fixture passthrough exit=0
+周六 2026/10/10 15:10:08.18 node-fixture mode=real argv=--version
+周六 2026/10/10 15:10:08.35 npm-fixture mode=cert argv=install --global @openbkn/bkn-sdk@0.1.5 --prefix "C:\bkn-verify\cli9\npm\FX Prefix" --ignore-scripts --no-audit --no-fund --loglevel=error
+周六 2026/10/10 15:10:08.35 npm-fixture cert exit=1
+--- C96 exit0-nobin start 2026-10-10T07:10:16Z
+周六 2026/10/10 15:10:22.18 npm-fixture mode=exit0-nobin argv=prefix --global
+周六 2026/10/10 15:10:22.45 npm-fixture passthrough exit=0
+周六 2026/10/10 15:10:22.57 node-fixture mode=real argv=--version
+周六 2026/10/10 15:10:22.75 npm-fixture mode=exit0-nobin argv=prefix --global
+周六 2026/10/10 15:10:23.01 npm-fixture passthrough exit=0
+周六 2026/10/10 15:10:23.13 node-fixture mode=real argv=--version
+周六 2026/10/10 15:10:23.31 npm-fixture mode=exit0-nobin argv=install --global @openbkn/bkn-sdk@0.1.5 --prefix "C:\bkn-verify\cli9\npm\FX Prefix" --ignore-scripts --no-audit --no-fund --loglevel=error
+周六 2026/10/10 15:10:23.31 npm-fixture exit0-nobin exit=0
+FX Prefix entries: 0

@@ -1,0 +1,699 @@
+{
+ "note": "synthetic DOM observer (20ms poll), npm fixture Host 8556; C95/C96/C97",
+ "log": [
+  [
+   "2026-10-10T07:07:39.807Z",
+   {
+    "v": null,
+    "dis": null,
+    "foc": null,
+    "msg": "添加一个 API Key 开始使用 配置 DeepSeek 官方模型，即可开始使用。 API 密钥 稍后配置 保存并继续",
+    "btn": "",
+    "save": "dis"
+   }
+  ],
+  [
+   "2026-10-10T07:07:53.428Z",
+   {
+    "v": null,
+    "dis": null,
+    "foc": null,
+    "msg": "新会话 Ctrl + Alt + N 插件 工作区 默认工作区 新会话 B OpenBKN 设置 探索未至之境 预览版 默认工作区 标准模式 描述你想要构建的内容, / 调用指令, @ 文件或对话 工作区内修改 DeepSeek-V41-Flash High",
+    "btn": "",
+    "save": ""
+   }
+  ],
+  [
+   "2026-10-10T07:07:54.447Z",
+   {
+    "v": null,
+    "dis": null,
+    "foc": null,
+    "msg": "OPENBKN 业务知识网络 设置 诊断 × 正在连接 OpenBKN…",
+    "btn": "",
+    "save": ""
+   }
+  ],
+  [
+   "2026-10-10T07:07:54.826Z",
+   {
+    "v": null,
+    "dis": null,
+    "foc": null,
+    "msg": "OPENBKN 业务知识网络 设置 诊断 × 使用本机 OpenBKN CLI 登录。登录完成后，插件会在 Host 内同步凭据、连接 Context Loader MCP，并加载你有权限访问的业务知识网络。 平台地址：https://192.168.50.28 使用 OpenBKN CLI 登录并同步 刷新状态",
+    "btn": "",
+    "save": ""
+   }
+  ],
+  [
+   "2026-10-10T07:07:57.487Z",
+   {
+    "v": null,
+    "dis": null,
+    "foc": null,
+    "msg": "OPENBKN 业务知识网络 设置 诊断 × 修改当前 DSH profile 的 OpenBKN 设置。已有业务会话保持原平台和网络绑定。 OpenBKN 平台地址 高级设置 保存并继续",
+    "btn": "",
+    "save": "en"
+   }
+  ],
+  [
+   "2026-10-10T07:08:03.807Z",
+   {
+    "v": "C:\\bkn-verify\\cli9\\npm\\CLI Prefix\\openbkn.cmd",
+    "dis": false,
+    "foc": false,
+    "msg": " 默认 openbkn。若 DSH 找不到命令，可填写绝对路径；Windows 上填写 openbkn.cmd。 正在检测 CLI… 检测中… 优先使用已有 CLI；未检测到时，通过本机 npm 安装 OpenBKN CLI 0.1.5（适用于 0.1.5 平台）。使用 npm 当前安装源和全局目录。 ",
+    "btn": "检测中…[dis]",
+    "save": "dis"
+   }
+  ],
+  [
+   "2026-10-10T07:08:04.167Z",
+   {
+    "v": "C:\\bkn-verify\\cli9\\npm\\CLI Prefix\\openbkn.cmd",
+    "dis": false,
+    "foc": false,
+    "msg": " 默认 openbkn。若 DSH 找不到命令，可填写绝对路径；Windows 上填写 openbkn.cmd。 CLI 0.1.5 可用。路径已填入，请点击“",
+    "btn": "",
+    "save": "en"
+   }
+  ],
+  [
+   "2026-10-10T07:08:31.567Z",
+   {
+    "v": "C:\\bkn-verify\\cli9\\npm\\CLI Prefix\\openbkn.cmd",
+    "dis": false,
+    "foc": true,
+    "msg": " 默认 openbkn。若 DSH 找不到命令，可填写绝对路径；Windows 上填写 openbkn.cmd。 CLI 0.1.5 可用。路径已填入，请点击“",
+    "btn": "",
+    "save": "en"
+   }
+  ],
+  [
+   "2026-10-10T07:08:31.587Z",
+   {
+    "v": "",
+    "dis": false,
+    "foc": true,
+    "msg": " 默认 openbkn。若 DSH 找不到命令，可填写绝对路径；Windows 上填写 openbkn.cmd。 正在检测 CLI… 检测中… 优先使用已有 CLI；未检测到时，通过本机 npm 安装 OpenBKN CLI 0.1.5（适用于 0.1.5 平台）。使用 npm 当前安装源和全局目录。 ",
+    "btn": "检测中…[dis]",
+    "save": "dis"
+   }
+  ],
+  [
+   "2026-10-10T07:08:31.591Z",
+   "--- C95 v23 type foc=true []"
+  ],
+  [
+   "2026-10-10T07:08:31.607Z",
+   {
+    "v": "ope",
+    "dis": false,
+    "foc": true,
+    "msg": " 默认 openbkn。若 DSH 找不到命令，可填写绝对路径；Windows 上填写 openbkn.cmd。 正在检测 CLI… 检测中… 优先使用已有 CLI；未检测到时，通过本机 npm 安装 OpenBKN CLI 0.1.5（适用于 0.1.5 平台）。使用 npm 当前安装源和全局目录。 ",
+    "btn": "检测中…[dis]",
+    "save": "dis"
+   }
+  ],
+  [
+   "2026-10-10T07:08:31.626Z",
+   {
+    "v": "open",
+    "dis": false,
+    "foc": true,
+    "msg": " 默认 openbkn。若 DSH 找不到命令，可填写绝对路径；Windows 上填写 openbkn.cmd。 正在检测 CLI… 检测中… 优先使用已有 CLI；未检测到时，通过本机 npm 安装 OpenBKN CLI 0.1.5（适用于 0.1.5 平台）。使用 npm 当前安装源和全局目录。 ",
+    "btn": "检测中…[dis]",
+    "save": "dis"
+   }
+  ],
+  [
+   "2026-10-10T07:08:31.646Z",
+   {
+    "v": "openbk",
+    "dis": false,
+    "foc": true,
+    "msg": " 默认 openbkn。若 DSH 找不到命令，可填写绝对路径；Windows 上填写 openbkn.cmd。 正在检测 CLI… 检测中… 优先使用已有 CLI；未检测到时，通过本机 npm 安装 OpenBKN CLI 0.1.5（适用于 0.1.5 平台）。使用 npm 当前安装源和全局目录。 ",
+    "btn": "检测中…[dis]",
+    "save": "dis"
+   }
+  ],
+  [
+   "2026-10-10T07:08:31.651Z",
+   "--- C95 v23 typed foc=true [openbkn]"
+  ],
+  [
+   "2026-10-10T07:08:31.666Z",
+   {
+    "v": "openbkn",
+    "dis": false,
+    "foc": true,
+    "msg": " 默认 openbkn。若 DSH 找不到命令，可填写绝对路径；Windows 上填写 openbkn.cmd。 正在检测 CLI… 检测中… 优先使用已有 CLI；未检测到时，通过本机 npm 安装 OpenBKN CLI 0.1.5（适用于 0.1.5 平台）。使用 npm 当前安装源和全局目录。 ",
+    "btn": "检测中…[dis]",
+    "save": "dis"
+   }
+  ],
+  [
+   "2026-10-10T07:08:32.247Z",
+   {
+    "v": "openbkn",
+    "dis": false,
+    "foc": true,
+    "msg": " 默认 openbkn。若 DSH 找不到命令，可填写绝对路径；Windows 上填写 openbkn.cmd。 当前 DSH 无法使用受支持的 Node.js（22 系列需 22.19 或以上，或使用 24 及更新版本）。请检查 Node.js，或重启 DSH 后重新检测。 检测并安装 CLI 优先使用已有 CLI；未检测到时，通过本机 npm 安装 OpenBKN CLI 0.1.5（适用于 0.1.5 平台）。使用 npm 当前安",
+    "btn": "检测并安装 CLI",
+    "save": "en"
+   }
+  ],
+  [
+   "2026-10-10T07:08:51.382Z",
+   "--- C95 v23 click foc=true [openbkn]"
+  ],
+  [
+   "2026-10-10T07:08:51.410Z",
+   {
+    "v": "openbkn",
+    "dis": false,
+    "foc": false,
+    "msg": " 默认 openbkn。若 DSH 找不到命令，可填写绝对路径；Windows 上填写 openbkn.cmd。 正在检测 CLI… 检测中… 优先使用已有 CLI；未检测到时，通过本机 npm 安装 OpenBKN CLI 0.1.5（适用于 0.1.5 平台）。使用 npm 当前安装源和全局目录。 ",
+    "btn": "检测中…[dis]",
+    "save": "en"
+   }
+  ],
+  [
+   "2026-10-10T07:08:51.426Z",
+   {
+    "v": "openbkn",
+    "dis": true,
+    "foc": false,
+    "msg": " 默认 openbkn。若 DSH 找不到命令，可填写绝对路径；Windows 上填写 openbkn.cmd。 正在检测 CLI… 检测中… 优先使用已有 CLI；未检测到时，通过本机 npm 安装 OpenBKN CLI 0.1.5（适用于 0.1.5 平台）。使用 npm 当前安装源和全局目录。 ",
+    "btn": "检测中…[dis]",
+    "save": "dis"
+   }
+  ],
+  [
+   "2026-10-10T07:08:51.947Z",
+   {
+    "v": "openbkn",
+    "dis": false,
+    "foc": false,
+    "msg": " 默认 openbkn。若 DSH 找不到命令，可填写绝对路径；Windows 上填写 openbkn.cmd。 当前 DSH 无法使用受支持的 Node.js（22 系列需 22.19 或以上，或使用 24 及更新版本）。请检查 Node.js，或重启 DSH 后重新检测。 检测并安装 CLI 优先使用已有 CLI；未检测到时，通过本机 npm 安装 OpenBKN CLI 0.1.5（适用于 0.1.5 平台）。使用 npm 当前安",
+    "btn": "检测并安装 CLI",
+    "save": "en"
+   }
+  ],
+  [
+   "2026-10-10T07:09:10.118Z",
+   "--- C95 v22-18 click foc=false [openbkn]"
+  ],
+  [
+   "2026-10-10T07:09:10.147Z",
+   {
+    "v": "openbkn",
+    "dis": true,
+    "foc": false,
+    "msg": " 默认 openbkn。若 DSH 找不到命令，可填写绝对路径；Windows 上填写 openbkn.cmd。 正在检测 CLI… 检测中… 优先使用已有 CLI；未检测到时，通过本机 npm 安装 OpenBKN CLI 0.1.5（适用于 0.1.5 平台）。使用 npm 当前安装源和全局目录。 ",
+    "btn": "检测中…[dis]",
+    "save": "dis"
+   }
+  ],
+  [
+   "2026-10-10T07:09:10.687Z",
+   {
+    "v": "openbkn",
+    "dis": false,
+    "foc": false,
+    "msg": " 默认 openbkn。若 DSH 找不到命令，可填写绝对路径；Windows 上填写 openbkn.cmd。 当前 DSH 无法使用受支持的 Node.js（22 系列需 22.19 或以上，或使用 24 及更新版本）。请检查 Node.js，或重启 DSH 后重新检测。 检测并安装 CLI 优先使用已有 CLI；未检测到时，通过本机 npm 安装 OpenBKN CLI 0.1.5（适用于 0.1.5 平台）。使用 npm 当前安",
+    "btn": "检测并安装 CLI",
+    "save": "en"
+   }
+  ],
+  [
+   "2026-10-10T07:09:33.385Z",
+   "--- C96 eacces click foc=false [openbkn]"
+  ],
+  [
+   "2026-10-10T07:09:33.427Z",
+   {
+    "v": "openbkn",
+    "dis": true,
+    "foc": false,
+    "msg": " 默认 openbkn。若 DSH 找不到命令，可填写绝对路径；Windows 上填写 openbkn.cmd。 正在检测 CLI… 检测中… 优先使用已有 CLI；未检测到时，通过本机 npm 安装 OpenBKN CLI 0.1.5（适用于 0.1.5 平台）。使用 npm 当前安装源和全局目录。 ",
+    "btn": "检测中…[dis]",
+    "save": "dis"
+   }
+  ],
+  [
+   "2026-10-10T07:09:34.007Z",
+   {
+    "v": "openbkn",
+    "dis": true,
+    "foc": false,
+    "msg": " 默认 openbkn。若 DSH 找不到命令，可填写绝对路径；Windows 上填写 openbkn.cmd。 正在安装 CLI 0.1.5 并验证是否可用…可以关闭面板，安装将在当前 DSH 中继续。 安装中… 优先使用已有 CLI；未检测到时，通过本机 npm 安装 OpenBKN CLI 0.1.5（适用于 0.1.5 平台）。使用 npm 当前安装源和全局目录。 ",
+    "btn": "安装中…[dis]",
+    "save": "dis"
+   }
+  ],
+  [
+   "2026-10-10T07:09:34.707Z",
+   {
+    "v": "openbkn",
+    "dis": false,
+    "foc": false,
+    "msg": " 默认 openbkn。若 DSH 找不到命令，可填写绝对路径；Windows 上填写 openbkn.cmd。 npm 安装目录没有写入权限。请手动安装 CLI 或修正 npm 目录后重试。 检测并安装 CLI 优先使用已有 CLI；未检测到时，通过本机 npm 安装 OpenBKN CLI 0.1.5（适用于 0.1.5 平台）。使用 npm 当前安装源和全局目录。 ",
+    "btn": "检测并安装 CLI",
+    "save": "en"
+   }
+  ],
+  [
+   "2026-10-10T07:09:48.749Z",
+   "--- C96 econnreset click foc=false [openbkn]"
+  ],
+  [
+   "2026-10-10T07:09:48.788Z",
+   {
+    "v": "openbkn",
+    "dis": true,
+    "foc": false,
+    "msg": " 默认 openbkn。若 DSH 找不到命令，可填写绝对路径；Windows 上填写 openbkn.cmd。 正在检测 CLI… 检测中… 优先使用已有 CLI；未检测到时，通过本机 npm 安装 OpenBKN CLI 0.1.5（适用于 0.1.5 平台）。使用 npm 当前安装源和全局目录。 ",
+    "btn": "检测中…[dis]",
+    "save": "dis"
+   }
+  ],
+  [
+   "2026-10-10T07:09:49.367Z",
+   {
+    "v": "openbkn",
+    "dis": true,
+    "foc": false,
+    "msg": " 默认 openbkn。若 DSH 找不到命令，可填写绝对路径；Windows 上填写 openbkn.cmd。 正在安装 CLI 0.1.5 并验证是否可用…可以关闭面板，安装将在当前 DSH 中继续。 安装中… 优先使用已有 CLI；未检测到时，通过本机 npm 安装 OpenBKN CLI 0.1.5（适用于 0.1.5 平台）。使用 npm 当前安装源和全局目录。 ",
+    "btn": "安装中…[dis]",
+    "save": "dis"
+   }
+  ],
+  [
+   "2026-10-10T07:09:50.067Z",
+   {
+    "v": "openbkn",
+    "dis": false,
+    "foc": false,
+    "msg": " 默认 openbkn。若 DSH 找不到命令，可填写绝对路径；Windows 上填写 openbkn.cmd。 CLI 安装遇到网络错误。请检查 npm 安装源和网络后重试。 检测并安装 CLI 优先使用已有 CLI；未检测到时，通过本机 npm 安装 OpenBKN CLI 0.1.5（适用于 0.1.5 平台）。使用 npm 当前安装源和全局目录。 ",
+    "btn": "检测并安装 CLI",
+    "save": "en"
+   }
+  ],
+  [
+   "2026-10-10T07:10:07.057Z",
+   "--- C96 cert click foc=false [openbkn]"
+  ],
+  [
+   "2026-10-10T07:10:07.087Z",
+   {
+    "v": "openbkn",
+    "dis": true,
+    "foc": false,
+    "msg": " 默认 openbkn。若 DSH 找不到命令，可填写绝对路径；Windows 上填写 openbkn.cmd。 正在检测 CLI… 检测中… 优先使用已有 CLI；未检测到时，通过本机 npm 安装 OpenBKN CLI 0.1.5（适用于 0.1.5 平台）。使用 npm 当前安装源和全局目录。 ",
+    "btn": "检测中…[dis]",
+    "save": "dis"
+   }
+  ],
+  [
+   "2026-10-10T07:10:07.687Z",
+   {
+    "v": "openbkn",
+    "dis": true,
+    "foc": false,
+    "msg": " 默认 openbkn。若 DSH 找不到命令，可填写绝对路径；Windows 上填写 openbkn.cmd。 正在安装 CLI 0.1.5 并验证是否可用…可以关闭面板，安装将在当前 DSH 中继续。 安装中… 优先使用已有 CLI；未检测到时，通过本机 npm 安装 OpenBKN CLI 0.1.5（适用于 0.1.5 平台）。使用 npm 当前安装源和全局目录。 ",
+    "btn": "安装中…[dis]",
+    "save": "dis"
+   }
+  ],
+  [
+   "2026-10-10T07:10:08.367Z",
+   {
+    "v": "openbkn",
+    "dis": false,
+    "foc": false,
+    "msg": " 默认 openbkn。若 DSH 找不到命令，可填写绝对路径；Windows 上填写 openbkn.cmd。 CLI 安装遇到证书错误。请检查 npm 安装源的证书设置后重试。 检测并安装 CLI 优先使用已有 CLI；未检测到时，通过本机 npm 安装 OpenBKN CLI 0.1.5（适用于 0.1.5 平台）。使用 npm 当前安装源和全局目录。 ",
+    "btn": "检测并安装 CLI",
+    "save": "en"
+   }
+  ],
+  [
+   "2026-10-10T07:10:22.026Z",
+   "--- C96 exit0 click foc=false [openbkn]"
+  ],
+  [
+   "2026-10-10T07:10:22.067Z",
+   {
+    "v": "openbkn",
+    "dis": true,
+    "foc": false,
+    "msg": " 默认 openbkn。若 DSH 找不到命令，可填写绝对路径；Windows 上填写 openbkn.cmd。 正在检测 CLI… 检测中… 优先使用已有 CLI；未检测到时，通过本机 npm 安装 OpenBKN CLI 0.1.5（适用于 0.1.5 平台）。使用 npm 当前安装源和全局目录。 ",
+    "btn": "检测中…[dis]",
+    "save": "dis"
+   }
+  ],
+  [
+   "2026-10-10T07:10:22.628Z",
+   {
+    "v": "openbkn",
+    "dis": true,
+    "foc": false,
+    "msg": " 默认 openbkn。若 DSH 找不到命令，可填写绝对路径；Windows 上填写 openbkn.cmd。 正在安装 CLI 0.1.5 并验证是否可用…可以关闭面板，安装将在当前 DSH 中继续。 安装中… 优先使用已有 CLI；未检测到时，通过本机 npm 安装 OpenBKN CLI 0.1.5（适用于 0.1.5 平台）。使用 npm 当前安装源和全局目录。 ",
+    "btn": "安装中…[dis]",
+    "save": "dis"
+   }
+  ],
+  [
+   "2026-10-10T07:10:23.327Z",
+   {
+    "v": "openbkn",
+    "dis": false,
+    "foc": false,
+    "msg": " 默认 openbkn。若 DSH 找不到命令，可填写绝对路径；Windows 上填写 openbkn.cmd。 安装命令已完成，但当前 DSH 尚无法使用 CLI。请重启 DSH 后重新检测，或手动检查安装。 检测并安装 CLI 优先使用已有 CLI；未检测到时，通过本机 npm 安装 OpenBKN CLI 0.1.5（适用于 0.1.5 平台）。使用 npm 当前安装源和全局目录。 ",
+    "btn": "检测并安装 CLI",
+    "save": "en"
+   }
+  ],
+  [
+   "2026-10-10T07:10:50.788Z",
+   {
+    "v": null,
+    "dis": null,
+    "foc": null,
+    "msg": "OPENBKN 诊断 × 报告编号 ba61d2f2 · 生成于 2026/10/10 15:10:50 · 模式 被动采集 Host 形态 unknown 平台 win32 DSH 版本 未知 插件（磁盘） 0.2.0-rc.2-openbkn.0.2.0-9 插件（已加载） 未知 ● 通过 bootstrap-en",
+    "btn": "",
+    "save": ""
+   }
+  ],
+  [
+   "2026-10-10T07:11:28.168Z",
+   {
+    "v": null,
+    "dis": null,
+    "foc": null,
+    "msg": "新会话 Ctrl + Alt + N 插件 工作区 默认工作区 新会话 B OpenBKN 设置 探索未至之境 预览版 默认工作区 标准模式 描述你想要构建的内容, / 调用指令, @ 文件或对话 工作区内修改 DeepSeek-V41-Flash High",
+    "btn": "",
+    "save": ""
+   }
+  ],
+  [
+   "2026-10-10T07:11:29.188Z",
+   {
+    "v": null,
+    "dis": null,
+    "foc": null,
+    "msg": "OPENBKN 业务知识网络 设置 诊断 × 正在连接 OpenBKN…",
+    "btn": "",
+    "save": ""
+   }
+  ],
+  [
+   "2026-10-10T07:11:29.567Z",
+   {
+    "v": null,
+    "dis": null,
+    "foc": null,
+    "msg": "OPENBKN 业务知识网络 设置 诊断 × 使用本机 OpenBKN CLI 登录。登录完成后，插件会在 Host 内同步凭据、连接 Context Loader MCP，并加载你有权限访问的业务知识网络。 平台地址：https://192.168.50.28 使用 OpenBKN CLI 登录并同步 刷新状态",
+    "btn": "",
+    "save": ""
+   }
+  ],
+  [
+   "2026-10-10T07:11:32.208Z",
+   {
+    "v": null,
+    "dis": null,
+    "foc": null,
+    "msg": "OPENBKN 业务知识网络 设置 诊断 × 修改当前 DSH profile 的 OpenBKN 设置。已有业务会话保持原平台和网络绑定。 OpenBKN 平台地址 高级设置 保存并继续",
+    "btn": "",
+    "save": "en"
+   }
+  ],
+  [
+   "2026-10-10T07:11:40.089Z",
+   {
+    "v": "C:\\bkn-verify\\cli9\\npm\\CLI Prefix\\openbkn.cmd",
+    "dis": false,
+    "foc": false,
+    "msg": " 默认 openbkn。若 DSH 找不到命令，可填写绝对路径；Windows 上填写 openbkn.cmd。 正在检测 CLI… 检测中… 优先使用已有 CLI；未检测到时，通过本机 npm 安装 OpenBKN CLI 0.1.5（适用于 0.1.5 平台）。使用 npm 当前安装源和全局目录。 ",
+    "btn": "检测中…[dis]",
+    "save": "dis"
+   }
+  ],
+  [
+   "2026-10-10T07:11:40.468Z",
+   {
+    "v": "C:\\bkn-verify\\cli9\\npm\\CLI Prefix\\openbkn.cmd",
+    "dis": false,
+    "foc": false,
+    "msg": " 默认 openbkn。若 DSH 找不到命令，可填写绝对路径；Windows 上填写 openbkn.cmd。 CLI 0.1.5 可用。路径已填入，请点击“",
+    "btn": "",
+    "save": "en"
+   }
+  ],
+  [
+   "2026-10-10T07:11:53.175Z",
+   {
+    "v": "C:\\bkn-verify\\cli9\\npm\\CLI Prefix\\openbkn.cmd",
+    "dis": false,
+    "foc": true,
+    "msg": " 默认 openbkn。若 DSH 找不到命令，可填写绝对路径；Windows 上填写 openbkn.cmd。 CLI 0.1.5 可用。路径已填入，请点击“",
+    "btn": "",
+    "save": "en"
+   }
+  ],
+  [
+   "2026-10-10T07:11:53.188Z",
+   {
+    "v": "",
+    "dis": false,
+    "foc": true,
+    "msg": " 默认 openbkn。若 DSH 找不到命令，可填写绝对路径；Windows 上填写 openbkn.cmd。 未找到此路径。请修正路径，或改回 openbkn 后检测并安装。 检测并安装 CLI 优先使用已有 CLI；未检测到时，通过本机 npm 安装 OpenBKN CLI 0.1.5（适用于 0.1.5 平台）。使用 npm 当前安装源和全局目录。 ",
+    "btn": "检测并安装 CLI",
+    "save": "en"
+   }
+  ],
+  [
+   "2026-10-10T07:11:53.207Z",
+   {
+    "v": "open",
+    "dis": false,
+    "foc": true,
+    "msg": " 默认 openbkn。若 DSH 找不到命令，可填写绝对路径；Windows 上填写 openbkn.cmd。 正在检测 CLI… 检测中… 优先使用已有 CLI；未检测到时，通过本机 npm 安装 OpenBKN CLI 0.1.5（适用于 0.1.5 平台）。使用 npm 当前安装源和全局目录。 ",
+    "btn": "检测中…[dis]",
+    "save": "dis"
+   }
+  ],
+  [
+   "2026-10-10T07:11:53.228Z",
+   {
+    "v": "openbk",
+    "dis": false,
+    "foc": true,
+    "msg": " 默认 openbkn。若 DSH 找不到命令，可填写绝对路径；Windows 上填写 openbkn.cmd。 正在检测 CLI… 检测中… 优先使用已有 CLI；未检测到时，通过本机 npm 安装 OpenBKN CLI 0.1.5（适用于 0.1.5 平台）。使用 npm 当前安装源和全局目录。 ",
+    "btn": "检测中…[dis]",
+    "save": "dis"
+   }
+  ],
+  [
+   "2026-10-10T07:11:53.248Z",
+   {
+    "v": "openbkn",
+    "dis": false,
+    "foc": true,
+    "msg": " 默认 openbkn。若 DSH 找不到命令，可填写绝对路径；Windows 上填写 openbkn.cmd。 正在检测 CLI… 检测中… 优先使用已有 CLI；未检测到时，通过本机 npm 安装 OpenBKN CLI 0.1.5（适用于 0.1.5 平台）。使用 npm 当前安装源和全局目录。 ",
+    "btn": "检测中…[dis]",
+    "save": "dis"
+   }
+  ],
+  [
+   "2026-10-10T07:11:53.828Z",
+   {
+    "v": "openbkn",
+    "dis": false,
+    "foc": true,
+    "msg": " 默认 openbkn。若 DSH 找不到命令，可填写绝对路径；Windows 上填写 openbkn.cmd。 未在当前环境和常见安装位置检测到 CLI。点击下方按钮可安装 0.1.5。 检测并安装 CLI 优先使用已有 CLI；未检测到时，通过本机 npm 安装 OpenBKN CLI 0.1.5（适用于 0.1.5 平台）。使用 npm 当前安装源和全局目录。 ",
+    "btn": "检测并安装 CLI",
+    "save": "en"
+   }
+  ],
+  [
+   "2026-10-10T07:11:56.259Z",
+   "--- C97 save openbkn foc=true [openbkn]"
+  ],
+  [
+   "2026-10-10T07:11:56.307Z",
+   {
+    "v": "openbkn",
+    "dis": true,
+    "foc": false,
+    "msg": " 默认 openbkn。若 DSH 找不到命令，可填写绝对路径；Windows 上填写 openbkn.cmd。 未在当前环境和常见安装位置检测到 CLI。点击下方按钮可安装 0.1.5。 检测并安装 CLI 优先使用已有 CLI；未检测到时，通过本机 npm 安装 OpenBKN CLI 0.1.5（适用于 0.1.5 平台）。使用 npm 当前安装源和全局目录。 正在保存…",
+    "btn": "检测并安装 CLI[dis]",
+    "save": "dis"
+   }
+  ],
+  [
+   "2026-10-10T07:11:56.428Z",
+   {
+    "v": null,
+    "dis": null,
+    "foc": null,
+    "msg": "OPENBKN 业务知识网络 设置 诊断 × 设置已保存，正在检查连接…",
+    "btn": "",
+    "save": ""
+   }
+  ],
+  [
+   "2026-10-10T07:11:56.448Z",
+   {
+    "v": null,
+    "dis": null,
+    "foc": null,
+    "msg": "OPENBKN 业务知识网络 设置 诊断 × 设置已保存。DSH 找不到 OpenBKN CLI（openbkn）。请先安装与平台版本一致的 CLI（`npm install -g @openbkn/bkn-sdk@<平台版本>`），确认启动 DSH 的环境 PATH 里能找到它；也可以点击右上角“设置”，在高级设置的",
+    "btn": "",
+    "save": ""
+   }
+  ],
+  [
+   "2026-10-10T07:12:10.128Z",
+   {
+    "v": null,
+    "dis": null,
+    "foc": null,
+    "msg": "OPENBKN 业务知识网络 设置 诊断 × 修改当前 DSH profile 的 OpenBKN 设置。已有业务会话保持原平台和网络绑定。 OpenBKN 平台地址 高级设置 保存并继续",
+    "btn": "",
+    "save": "en"
+   }
+  ],
+  [
+   "2026-10-10T07:12:19.447Z",
+   {
+    "v": "openbkn",
+    "dis": false,
+    "foc": false,
+    "msg": " 默认 openbkn。若 DSH 找不到命令，可填写绝对路径；Windows 上填写 openbkn.cmd。 正在检测 CLI… 检测中… 优先使用已有 CLI；未检测到时，通过本机 npm 安装 OpenBKN CLI 0.1.5（适用于 0.1.5 平台）。使用 npm 当前安装源和全局目录。 ",
+    "btn": "检测中…[dis]",
+    "save": "dis"
+   }
+  ],
+  [
+   "2026-10-10T07:12:20.028Z",
+   {
+    "v": "openbkn",
+    "dis": false,
+    "foc": false,
+    "msg": " 默认 openbkn。若 DSH 找不到命令，可填写绝对路径；Windows 上填写 openbkn.cmd。 未在当前环境和常见安装位置检测到 CLI。点击下方按钮可安装 0.1.5。 检测并安装 CLI 优先使用已有 CLI；未检测到时，通过本机 npm 安装 OpenBKN CLI 0.1.5（适用于 0.1.5 平台）。使用 npm 当前安装源和全局目录。 ",
+    "btn": "检测并安装 CLI",
+    "save": "en"
+   }
+  ],
+  [
+   "2026-10-10T07:12:55.511Z",
+   "--- C97 dblclick foc=false [openbkn]"
+  ],
+  [
+   "2026-10-10T07:12:55.551Z",
+   {
+    "v": "openbkn",
+    "dis": true,
+    "foc": false,
+    "msg": " 默认 openbkn。若 DSH 找不到命令，可填写绝对路径；Windows 上填写 openbkn.cmd。 正在检测 CLI… 检测中… 优先使用已有 CLI；未检测到时，通过本机 npm 安装 OpenBKN CLI 0.1.5（适用于 0.1.5 平台）。使用 npm 当前安装源和全局目录。 ",
+    "btn": "检测中…[dis]",
+    "save": "dis"
+   }
+  ],
+  [
+   "2026-10-10T07:12:56.149Z",
+   {
+    "v": "openbkn",
+    "dis": true,
+    "foc": false,
+    "msg": " 默认 openbkn。若 DSH 找不到命令，可填写绝对路径；Windows 上填写 openbkn.cmd。 正在安装 CLI 0.1.5 并验证是否可用…可以关闭面板，安装将在当前 DSH 中继续。 安装中… 优先使用已有 CLI；未检测到时，通过本机 npm 安装 OpenBKN CLI 0.1.5（适用于 0.1.5 平台）。使用 npm 当前安装源和全局目录。 ",
+    "btn": "安装中…[dis]",
+    "save": "dis"
+   }
+  ],
+  [
+   "2026-10-10T07:12:57.094Z",
+   "--- C97 typed x during install foc=false [openbkn]"
+  ],
+  [
+   "2026-10-10T07:13:09.181Z",
+   "--- C97 close panel foc=false [openbkn]"
+  ],
+  [
+   "2026-10-10T07:13:09.189Z",
+   {
+    "v": null,
+    "dis": null,
+    "foc": null,
+    "msg": "新会话 Ctrl + Alt + N 插件 工作区 默认工作区 新会话 B OpenBKN 设置 探索未至之境 预览版 默认工作区 标准模式 描述你想要构建的内容, / 调用指令, @ 文件或对话 工作区内修改 DeepSeek-V41-Flash High",
+    "btn": "",
+    "save": ""
+   }
+  ],
+  [
+   "2026-10-10T07:13:11.228Z",
+   {
+    "v": null,
+    "dis": null,
+    "foc": null,
+    "msg": "OPENBKN 业务知识网络 设置 诊断 × DSH 找不到 OpenBKN CLI（openbkn）。请先安装与平台版本一致的 CLI（`npm install -g @openbkn/bkn-sdk@<平台版本>`），确认启动 DSH 的环境 PATH 里能找到它；也可以点击右上角“设置”，在高级设置的 cliPa",
+    "btn": "",
+    "save": ""
+   }
+  ],
+  [
+   "2026-10-10T07:13:13.232Z",
+   "--- C97 main panel reopened foc=false [null]"
+  ],
+  [
+   "2026-10-10T07:13:13.268Z",
+   {
+    "v": null,
+    "dis": null,
+    "foc": null,
+    "msg": "OPENBKN 业务知识网络 设置 诊断 × 修改当前 DSH profile 的 OpenBKN 设置。已有业务会话保持原平台和网络绑定。 OpenBKN 平台地址 高级设置 保存并继续",
+    "btn": "",
+    "save": "en"
+   }
+  ],
+  [
+   "2026-10-10T07:13:28.029Z",
+   {
+    "v": "openbkn",
+    "dis": true,
+    "foc": false,
+    "msg": " 默认 openbkn。若 DSH 找不到命令，可填写绝对路径；Windows 上填写 openbkn.cmd。 正在安装 CLI 0.1.5 并验证是否可用…可以关闭面板，安装将在当前 DSH 中继续。 安装中… 优先使用已有 CLI；未检测到时，通过本机 npm 安装 OpenBKN CLI 0.1.5（适用于 0.1.5 平台）。使用 npm 当前安装源和全局目录。 ",
+    "btn": "安装中…[dis]",
+    "save": "dis"
+   }
+  ],
+  [
+   "2026-10-10T07:13:30.030Z",
+   "--- C97 settings reopened foc=false [openbkn]"
+  ],
+  [
+   "2026-10-10T07:14:07.208Z",
+   {
+    "v": "C:\\bkn-verify\\cli9\\npm\\FX Prefix\\openbkn.cmd",
+    "dis": false,
+    "foc": false,
+    "msg": " 默认 openbkn。若 DSH 找不到命令，可填写绝对路径；Windows 上填写 openbkn.cmd。 正在检测 CLI… 检测中… 优先使用已有 CLI；未检测到时，通过本机 npm 安装 OpenBKN CLI 0.1.5（适用于 0.1.5 平台）。使用 npm 当前安装源和全局目录。 ",
+    "btn": "检测中…[dis]",
+    "save": "dis"
+   }
+  ],
+  [
+   "2026-10-10T07:14:07.569Z",
+   {
+    "v": "C:\\bkn-verify\\cli9\\npm\\FX Prefix\\openbkn.cmd",
+    "dis": false,
+    "foc": false,
+    "msg": " 默认 openbkn。若 DSH 找不到命令，可填写绝对路径；Windows 上填写 openbkn.cmd。 CLI 0.1.5 可用。路径已填入，请点击“",
+    "btn": "",
+    "save": "en"
+   }
+  ]
+ ]
+}

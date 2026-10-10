@@ -1,0 +1,13 @@
+after uninstall 2026-10-10T12:37:21Z (Desktop plugin manager 卸载 + confirm, Host 10712)
+package.json: no @openbkn entry
+node_modules/@openbkn entries: 0
+2f3967438f94e3299d87d62eb05e27bb414d26b72f9cd19b49548fc799c7f72a *desktop/dsh-home/profiles/desktop/cordis.patch.yml
+341507284435555d5f58626a352918d7bb90b273a8c048d7805e06a881167319 *desktop/dsh-home/profiles/desktop/package.json
+23:- id: openbkn-business-context
+24-  name: "@openbkn/dsh-business-context/business"
+25-  config:
+26-    baseUrl: https://192.168.50.28
+27-    cliPath: openbkn
+desktop/CLI Prefix utc=2026-10-10T12:37:22Z files=1120 newestMtimeEpoch=1791617386.9028741000 treeSha256=5204d50caf6ceab164de044dc0ffdd54410512e6f1c9d990be9ed34e9beaba0b
+desktop/FX Prefix utc=2026-10-10T12:37:22Z files=1120 newestMtimeEpoch=1791635581.5176035000 treeSha256=5204d50caf6ceab164de044dc0ffdd54410512e6f1c9d990be9ed34e9beaba0b
+CLI Prefix openbkn.cmd --version: 0.1.5
