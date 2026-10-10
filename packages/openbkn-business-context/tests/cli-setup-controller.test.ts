@@ -7,6 +7,12 @@ function deferred<T>() { let resolve!: (value: T) => void; const promise = new P
 const missing: OpenBknCliSetupView = { state: 'missing', canInstall: true }
 const ready: OpenBknCliSetupView = { state: 'ready', canInstall: false, resolvedPath: '/tools/openbkn', version: '0.1.5' }
 
+test('availability only requests saving when the resolved CLI path is not persisted', () => {
+  const state = { phase: 'ready' as const, result: ready }
+  assert.doesNotMatch(cliSetupMessage(state, '/tools/openbkn'), /保存/)
+  assert.match(cliSetupMessage(state, 'openbkn'), /保存/)
+})
+
 test('opening advanced settings checks availability without installing', async () => {
   let installs = 0
   const controller = new CliSetupController({ checkCli: async () => missing, installCli: async () => { installs++; return ready } }, () => {})

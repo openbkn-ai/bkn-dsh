@@ -1,5 +1,5 @@
 /** Explicit, bounded CLI setup. Authentication continues to use its existing adapter. */
-import { access } from 'node:fs/promises'
+import { access, stat } from 'node:fs/promises'
 import { homedir } from 'node:os'
 import path from 'node:path'
 import type { CliSubprocess } from './openbkn-cli-subprocess.js'
@@ -15,6 +15,7 @@ interface SetupEnvironment {
   readonly home: string
   readonly env: Readonly<Record<string, string | undefined>>
   readonly exists: (file: string) => Promise<boolean>
+  readonly isDirectory: (file: string) => Promise<boolean>
 }
 interface CommandResult { readonly code: number | null; readonly stdout: string; readonly stderr: string; readonly lossy: boolean }
 interface Inspection { readonly view: OpenBknCliSetupView; readonly npm?: string; readonly prefix?: string }
@@ -27,6 +28,10 @@ export class OpenBknCliSetup {
     private readonly environment: SetupEnvironment = {
       platform: process.platform, home: homedir(), env: process.env,
       exists: async file => { try { await access(file); return true } catch (error) {
+        if (['ENOENT', 'ENOTDIR'].includes((error as NodeJS.ErrnoException).code ?? '')) return false
+        throw error
+      } },
+      isDirectory: async file => { try { return (await stat(file)).isDirectory() } catch (error) {
         if (['ENOENT', 'ENOTDIR'].includes((error as NodeJS.ErrnoException).code ?? '')) return false
         throw error
       } },
@@ -113,6 +118,7 @@ export class OpenBknCliSetup {
   }
 
   private async verify(command: string, signal: AbortSignal): Promise<OpenBknCliSetupView | undefined> {
+    if (this.paths().isAbsolute(command) && await this.environment.isDirectory(command)) return blocked('path-is-directory')
     let executable: string
     try { executable = await this.subprocess.resolveExecutable(command, undefined, signal) }
     catch {

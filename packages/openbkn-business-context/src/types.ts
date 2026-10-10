@@ -19,7 +19,7 @@ export interface OpenBknCliSetupView {
   readonly canInstall: boolean
   readonly resolvedPath?: string
   readonly version?: string
-  readonly reason?: 'custom-path-missing' | 'execution-failed' | 'npm-missing' | 'node-unavailable'
+  readonly reason?: 'custom-path-missing' | 'path-is-directory' | 'execution-failed' | 'npm-missing' | 'node-unavailable'
     | 'prefix-unavailable' | 'existing-installation' | 'permission-denied' | 'network-failed'
     | 'tls-failed' | 'timeout' | 'installation-failed' | 'verification-failed' | 'host-unavailable' | 'busy'
 }

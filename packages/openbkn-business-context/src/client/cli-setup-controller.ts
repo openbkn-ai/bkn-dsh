@@ -83,13 +83,14 @@ export class CliSetupController {
 }
 
 /** Only controlled reasons become user-facing text; raw installer output stays on Host. */
-export function cliSetupMessage(state: CliSetupState): string {
+export function cliSetupMessage(state: CliSetupState, savedCliPath?: string): string {
   if (state.phase === 'checking') return '正在检测 CLI…'
   if (state.phase === 'installing') return '正在安装 CLI 0.1.5 并验证是否可用…可以关闭面板，安装将在当前 DSH 中继续。'
-  if (state.phase === 'ready') return `CLI ${state.result?.version ?? ''} 可用。路径已填入，请点击“保存并继续”应用。`
+  if (state.phase === 'ready') return `CLI ${state.result?.version ?? ''} 可用。${state.result?.resolvedPath !== undefined && state.result.resolvedPath === savedCliPath ? '' : '路径已填入，请点击“保存并继续”应用。'}`
   if (state.phase === 'missing') return '未在当前环境和常见安装位置检测到 CLI。点击下方按钮可安装 0.1.5。'
   switch (state.result?.reason) {
     case 'custom-path-missing': return '未找到此路径。请修正路径，或改回 openbkn 后检测并安装。'
+    case 'path-is-directory': return '此路径是目录，请填写 CLI 可执行文件的路径。'
     case 'execution-failed': return '已找到 CLI，但当前 DSH 无法执行。请检查 Node.js 和路径；若刚安装，可重启 DSH 后重新检测。'
     case 'existing-installation': return 'npm 目录中已有 SDK，但 CLI 不可用。请修复现有安装；插件不会覆盖或升级它。'
     case 'npm-missing': return '当前 DSH 找不到 npm，无法自动安装。请先安装 Node.js/npm；已安装时可重启 DSH 后重新检测。'

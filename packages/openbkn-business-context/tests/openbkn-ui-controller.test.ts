@@ -276,9 +276,9 @@ test('tells the user how to make the OpenBKN CLI available instead of blaming th
   controller.open()
   await controller.refresh()
   assert.equal(controller.snapshot().phase, 'error')
-  assert.match(controller.snapshot().message ?? '', /找不到 OpenBKN CLI/)
-  assert.match(controller.snapshot().message ?? '', /与平台版本一致/)
-  assert.match(controller.snapshot().message ?? '', /cliPath/)
+  assert.match(controller.snapshot().message ?? '', /设置.*高级设置.*检测并安装 CLI/)
+  assert.match(controller.snapshot().message ?? '', /查看进度/)
+  assert.match(controller.snapshot().message ?? '', /绝对路径/)
   assert.doesNotMatch(controller.snapshot().message ?? '', /检查 Token/)
 })
 

@@ -11,6 +11,7 @@ function fixture(platform: NodeJS.Platform = 'darwin') {
   const binary = platform === 'win32' ? `${prefix}\\openbkn.cmd` : `${prefix}/bin/openbkn`
   const available = new Map<string, string>([['npm', npm], ['node', node]])
   const files = new Set<string>()
+  const directories = new Set<string>()
   const commands: (readonly string[])[] = []
   let installCode = 0, installError = '', versionCode = 0, version = '0.1.5', nodeVersion = 'v24.19.0', postVerify = true
   let release: (() => void) | undefined
@@ -59,8 +60,9 @@ function fixture(platform: NodeJS.Platform = 'darwin') {
       } }
     },
   }
-  const setup = new OpenBknCliSetup(subprocess, '/work', { platform, home: platform === 'win32' ? 'C:\\Users\\tester' : '/user', env: {}, exists: async file => files.has(file) })
-  return { setup, available, files, commands, aborts, prefix, npm, node, binary,
+  const setup = new OpenBknCliSetup(subprocess, '/work', { platform, home: platform === 'win32' ? 'C:\\Users\\tester' : '/user', env: {},
+    exists: async file => files.has(file), isDirectory: async file => directories.has(file) })
+  return { setup, available, files, directories, commands, aborts, prefix, npm, node, binary,
     setInstall: (code: number, error: string) => { installCode = code; installError = error },
     setVersion: (code: number, value: string) => { versionCode = code; version = value },
     setNode: (value: string) => { nodeVersion = value },
@@ -127,6 +129,20 @@ test('missing custom paths and invalid path input cannot trigger installation', 
     assert.equal((await f.setup.install(value)).reason, 'custom-path-missing')
   }
   assert.equal(f.commands.length, 0)
+})
+
+test('existing directories are rejected as CLI paths without executing or installing', async () => {
+  for (const platform of ['darwin', 'win32'] as const) {
+    const f = fixture(platform)
+    const directory = platform === 'win32' ? 'C:\\bkn-verify\\CLI Prefix' : '/isolated npm'
+    f.files.add(directory)
+    f.directories.add(directory)
+    assert.deepEqual(await f.setup.check(directory), { state: 'blocked', canInstall: false, reason: 'path-is-directory' })
+    // Even a resolver that returns this directory cannot turn it into a CLI.
+    f.available.set(directory, directory)
+    assert.equal((await f.setup.install(directory)).reason, 'path-is-directory')
+    assert.equal(f.commands.length, 0)
+  }
 })
 
 test('found but broken CLI and broken existing SDK are never overwritten', async () => {

@@ -1,8 +1,9 @@
 import { useEffect, useMemo, useRef, useState } from 'react'
 import { CliSetupController, cliSetupMessage, type CliSetupPort, type CliSetupState } from './cli-setup-controller.ts'
 
-export function CliSetupControl({ cliPath, disabled, port, onResolved, onBusy }: {
+export function CliSetupControl({ cliPath, savedCliPath, disabled, port, onResolved, onBusy }: {
   cliPath: string
+  savedCliPath: string
   disabled: boolean
   port: CliSetupPort
   onResolved(path: string): void
@@ -25,7 +26,7 @@ export function CliSetupControl({ cliPath, disabled, port, onResolved, onBusy }:
   // A read-only check must not disable the path field and steal typing focus.
   useEffect(() => { current.current.onBusy(busy, lockPath) }, [busy, lockPath])
   return <div>
-    <p role="status" aria-live="polite" style={{ margin: '10px 0', fontSize: 13, color: '#64748b', lineHeight: 1.6 }}>{cliSetupMessage(state)}</p>
+    <p role="status" aria-live="polite" style={{ margin: '10px 0', fontSize: 13, color: '#64748b', lineHeight: 1.6 }}>{cliSetupMessage(state, savedCliPath)}</p>
     {state.phase !== 'ready' ? <>
       <button type="button" disabled={disabled || busy} onClick={() => void controller.detectAndInstall(cliPath)} style={{ border: '1px solid #cbd5e1', borderRadius: 8, padding: '8px 12px', background: '#fff', color: '#172033', cursor: 'pointer' }}>
         {state.phase === 'checking' ? '检测中…' : state.phase === 'installing' ? '安装中…' : '检测并安装 CLI'}

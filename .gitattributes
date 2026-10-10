@@ -4,3 +4,5 @@ docs/handoff/2026-10-07-authentication-recovery/windows-results/** -text
 docs/handoff/2026-10-07-authentication-recovery/windows-results/prepare-npm.txt whitespace=-blank-at-eol
 # The compatibility manifest validates these immutable patch bytes by SHA-256.
 compat/dsh-0.2.0-rc.2/patches/** -text
+# Candidate file inventories are immutable hash inputs, including on CRLF checkouts.
+docs/evidence/cli-setup9-20261010/candidate-files.json -text

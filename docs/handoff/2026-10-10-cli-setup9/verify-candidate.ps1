@@ -6,7 +6,7 @@ $ErrorActionPreference = 'Stop'
 $taskEvidence = Join-Path $PSScriptRoot '..\..\evidence\cli-setup9-20261010'
 $taskManifest = Get-Content (Join-Path $taskEvidence 'candidate-manifest.json') -Raw | ConvertFrom-Json
 $taskFilesPath = Join-Path $taskEvidence 'candidate-files.json'
-$taskFiles = @(Get-Content $taskFilesPath -Raw | ConvertFrom-Json)
+$taskFiles = @((Get-Content $taskFilesPath -Raw | ConvertFrom-Json))
 if ((Get-FileHash $taskFilesPath -Algorithm SHA256).Hash.ToLowerInvariant() -ne $taskManifest.filesManifestSha256) { throw 'File manifest SHA mismatch' }
 if ($taskFiles.Count -ne $taskManifest.files) { throw 'File count mismatch' }
 $taskTarball = (Resolve-Path $Tarball).Path

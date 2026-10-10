@@ -201,7 +201,7 @@ function ConfigurationForm({ state, saveConfiguration, cliSetup }: {
         <input aria-label="OpenBKN CLI 执行路径" type="text" autoComplete="off" value={cliPath} onChange={event => setCliPath(event.target.value)} disabled={!editable || saving || cliSetupPending} style={searchInputStyle} />
       </label>
       <p style={{ ...mutedStyle, marginBottom: 0 }}>默认 openbkn。若 DSH 找不到命令，可填写绝对路径；Windows 上填写 openbkn.cmd。</p>
-      {advanced ? <CliSetupControl cliPath={cliPath} disabled={!editable || saving} port={cliSetup} onResolved={setCliPath} onBusy={(busy, lockPath) => { setCliBusy(busy); setCliSetupPending(lockPath) }} /> : null}
+      {advanced ? <CliSetupControl cliPath={cliPath} savedCliPath={state.configuration?.cliPath ?? 'openbkn'} disabled={!editable || saving} port={cliSetup} onResolved={setCliPath} onBusy={(busy, lockPath) => { setCliBusy(busy); setCliSetupPending(lockPath) }} /> : null}
     </details>
     {!editable && state.configuration !== undefined && state.loadingConfiguration !== true ? <p role="status" style={authenticationNoticeStyle}>{configurationUnavailableMessage(state.configuration.unavailableReason)}</p> : null}
     {state.loadingConfiguration ? <p style={mutedStyle}>正在读取设置…</p> : null}
