@@ -100,7 +100,7 @@ export class OpenBknCliSetup {
       const nodeResult = await this.run(node, ['--version'], INSPECT_MS, signalWithLimit)
       const match = /^v(\d+)\.(\d+)\.(\d+)$/u.exec(nodeResult.stdout.trim())
       if (nodeResult.code !== 0 || nodeResult.lossy || match === null
-        || Number(match[1]) < 22 || (Number(match[1]) === 22 && Number(match[2]) < 19)) {
+        || !(Number(match[1]) >= 24 || (Number(match[1]) === 22 && Number(match[2]) >= 19))) {
         return { view: blocked('node-unavailable') }
       }
       return { view: { state: 'missing', canInstall: true }, npm, prefix }

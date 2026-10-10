@@ -85,7 +85,7 @@ export function cliSetupMessage(state: CliSetupState): string {
     case 'execution-failed': return '已找到 CLI，但当前 DSH 无法执行。请检查 Node.js 和路径；若刚安装，可重启 DSH 后重新检测。'
     case 'existing-installation': return 'npm 目录中已有 SDK，但 CLI 不可用。请修复现有安装；插件不会覆盖或升级它。'
     case 'npm-missing': return '当前 DSH 找不到 npm，无法自动安装。请先安装 Node.js/npm；已安装时可重启 DSH 后重新检测。'
-    case 'node-unavailable': return '当前 DSH 无法使用 Node.js 22.19 或更新版本。请检查 Node.js，或重启 DSH 后重新检测。'
+    case 'node-unavailable': return '当前 DSH 无法使用受支持的 Node.js（22 系列需 22.19 或以上，或使用 24 及更新版本）。请检查 Node.js，或重启 DSH 后重新检测。'
     case 'prefix-unavailable': return '无法确认 npm 的安装目录。请检查本机 npm 设置后重试。'
     case 'permission-denied': return 'npm 安装目录没有写入权限。请手动安装 CLI 或修正 npm 目录后重试。'
     case 'network-failed': return 'CLI 安装遇到网络错误。请检查 npm 安装源和网络后重试。'

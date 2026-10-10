@@ -130,6 +130,20 @@ test('install exit zero without executable verification is not ready', async () 
   assert.deepEqual(await f.setup.install('openbkn'), { state: 'failed', canInstall: false, reason: 'verification-failed' })
 })
 
+test('installation prerequisites follow the supported Node range and reject Node 23', async () => {
+  for (const version of ['v20.20.0', 'v22.18.0', 'v23.11.0']) {
+    const f = fixture()
+    f.setNode(version)
+    assert.equal((await f.setup.install('openbkn')).reason, 'node-unavailable')
+    assert.equal(f.commands.some(command => command[1] === 'install'), false)
+  }
+  for (const version of ['v22.19.0', 'v22.20.0', 'v24.0.0', 'v25.0.0']) {
+    const f = fixture()
+    f.setNode(version)
+    assert.deepEqual(await f.setup.check('openbkn'), { state: 'missing', canInstall: true })
+  }
+})
+
 test('installed CLI must report the requested version before setup claims success', async () => {
   const f = fixture()
   f.setVersion(0, '0.1.4')
