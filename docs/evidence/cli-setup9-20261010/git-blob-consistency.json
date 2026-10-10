@@ -1,29 +1,29 @@
 {
-  "at": "2026-10-10T04:36:07.033877+00:00",
-  "comparedCommit": "9d25073587bcb1bbfec33a6fd82b698bfd483ebd",
-  "scope": "Files in EVIDENCE-MANIFEST.json; excludes inventory and this proof file",
-  "compared": 78,
-  "byteIdentical": 78,
+  "at": "2026-10-10T06:28:06.034395+00:00",
+  "comparedCommit": "fd97a3ab9d7d1829540b1ffe3f6541cc9caeaf5d",
+  "scope": "Current files in EVIDENCE-MANIFEST.json; excludes the root inventory and this proof to avoid self-reference. Git blobs were read with git cat-file blob. Historical inventories under review/prior retain their old scope.",
+  "compared": 141,
+  "byteIdentical": 141,
   "different": 0,
   "files": [
     {
       "path": "RESULTS.md",
-      "gitBlobSha256": "93a221eeb7266bca76cf6dc8654425f73d2a4b313bf89f0e4125002254719239",
+      "gitBlobSha256": "3a144f4ae7c7488b2b50fed13134cff4fc7c7e1cdb0622995db3599163ee4f47",
       "bytesIdentical": true
     },
     {
       "path": "candidate-files.json",
-      "gitBlobSha256": "4b70a47ceb5cfc8de4c201780fe347c06496a99d867f450f6200ee646f7466d7",
+      "gitBlobSha256": "f97a4310fb9396f268daa10acd8f4aad051c0d745b4280dcf6f79da123acc33a",
       "bytesIdentical": true
     },
     {
       "path": "candidate-manifest.json",
-      "gitBlobSha256": "0fa4ca7a25d6f9a6f7cc908c118775e0ce764c90dac82b1c234516dfa1e94cf1",
+      "gitBlobSha256": "3315cf3fe44682665b2224526db1463834e95700dfbca9b279bc541e6e646026",
       "bytesIdentical": true
     },
     {
       "path": "final-ci-run.json",
-      "gitBlobSha256": "b6045240bac2deebd352d19efdd56f3ee6759c56771d620fe4c05541245a15ec",
+      "gitBlobSha256": "bc68ed2e6ce3e7efb5fc560ccfdbab78816aa59480bbbeed457a2f29f4c8fa6d",
       "bytesIdentical": true
     },
     {
@@ -364,6 +364,321 @@
     {
       "path": "mac/preflight/preflight-ci-reconciliation.json",
       "gitBlobSha256": "d79372fb006f14d9cc716c62c1e748213f75c63bc4b1f7e7469ae680c915e26d",
+      "bytesIdentical": true
+    },
+    {
+      "path": "review/final-ci-run.json",
+      "gitBlobSha256": "dd6265b75b254f0a6327eea23a2d28de9769dfec7b36328bc994d2a390c95f14",
+      "bytesIdentical": true
+    },
+    {
+      "path": "review/mac/daily-after.json",
+      "gitBlobSha256": "5eb0f2d78d1dcf7288ec9460815f5a1fc425346b757d23616af6d4bca855ca1b",
+      "bytesIdentical": true
+    },
+    {
+      "path": "review/mac/daily-before.json",
+      "gitBlobSha256": "2c6fa3b35ddbe447dd9323bf1e0505001c7580ca4430cda9309aee1fe5c69f71",
+      "bytesIdentical": true
+    },
+    {
+      "path": "review/mac/desktop-before-install.json",
+      "gitBlobSha256": "d6020b4bcdf62aad7825187cf8c0f935102ce890a6341ec873cdd79a2b365f2f",
+      "bytesIdentical": true
+    },
+    {
+      "path": "review/mac/desktop-custom-path-ax.txt",
+      "gitBlobSha256": "b6c5d5d1bc33cc2279de3a36e601eea7b929cf325377e4e5c3c1d3442d78bb3c",
+      "bytesIdentical": true
+    },
+    {
+      "path": "review/mac/desktop-final-cli-verification.json",
+      "gitBlobSha256": "862c4e7e30a168715df40dfdb42fa44b62e16b69ba7c6ee07c066354aff5a6eb",
+      "bytesIdentical": true
+    },
+    {
+      "path": "review/mac/desktop-final-installed-identity.json",
+      "gitBlobSha256": "6146f67632ecf758983181c3aa374263afda0438e096af6ed1aa083ae54b11b4",
+      "bytesIdentical": true
+    },
+    {
+      "path": "review/mac/desktop-full-path-typing-attempt-ax.txt",
+      "gitBlobSha256": "8193809c07e448bda4728603fff31eed5cbdea5aeedd86ae3b165ca7e61e208a",
+      "bytesIdentical": true
+    },
+    {
+      "path": "review/mac/desktop-installing-ax.txt",
+      "gitBlobSha256": "ff8c215d669ea930498ea88b39a6b7c50aae40205b5b55ec05f01254e295d48d",
+      "bytesIdentical": true
+    },
+    {
+      "path": "review/mac/desktop-missing-ax.txt",
+      "gitBlobSha256": "b24ace91e876b8109bc79e57e95e7fc871728a0671c17705df0d68e4becc431f",
+      "bytesIdentical": true
+    },
+    {
+      "path": "review/mac/desktop-npm-fixture.py",
+      "gitBlobSha256": "1440f42c38a1a3a4fc99bef605ce0c8831831b4c20d3d2e4aa0220bf62f6e234",
+      "bytesIdentical": true
+    },
+    {
+      "path": "review/mac/desktop-owned-stop.json",
+      "gitBlobSha256": "61776f7d00976abfa6101be691fe0b1b2c1e32c0f71d8acd6167daf55a66dbcb",
+      "bytesIdentical": true
+    },
+    {
+      "path": "review/mac/desktop-package-restart-stop.json",
+      "gitBlobSha256": "31eb85f3a5854230916c8fcccc3a958ae2f01c76276db7e4b100a42a70e2fbeb",
+      "bytesIdentical": true
+    },
+    {
+      "path": "review/mac/desktop-prepare.txt",
+      "gitBlobSha256": "5ed4bcf0d9817fbd7ac552b130169976dfde1326ac89d9cd28379c43a305a7ac",
+      "bytesIdentical": true
+    },
+    {
+      "path": "review/mac/desktop-ready-ax.txt",
+      "gitBlobSha256": "fc4785e21736e7f9b3274945810f47f9034d35d224b99dafaa93dac88a495869",
+      "bytesIdentical": true
+    },
+    {
+      "path": "review/mac/desktop-ready.png",
+      "gitBlobSha256": "4c424106200dbee160a9b964837dd35fa6352d6a8f032561837c68a5c177f9ee",
+      "bytesIdentical": true
+    },
+    {
+      "path": "review/mac/desktop-reopened-ready-ax.txt",
+      "gitBlobSha256": "a3a9841c1a8fa3ab0dbf7fc2ff66eab5043266432a376f822d641b5b4e7067e6",
+      "bytesIdentical": true
+    },
+    {
+      "path": "review/mac/desktop-reopened-saved-ax.txt",
+      "gitBlobSha256": "0d11c93ce7495ebe1ebd6f86b6fcee2ad79260cb6f81d8bb6056c266ad4b3d75",
+      "bytesIdentical": true
+    },
+    {
+      "path": "review/mac/desktop-reuse-api.json",
+      "gitBlobSha256": "47b1ffa181788da92a1fd93e9ffb9213a30a41585b27a3473836c01dfff972de",
+      "bytesIdentical": true
+    },
+    {
+      "path": "review/mac/desktop-saved-ax.txt",
+      "gitBlobSha256": "625a9149a7fddc4617dc07ca3acf593443d2f93fef57433adbc3186298d2468b",
+      "bytesIdentical": true
+    },
+    {
+      "path": "review/mac/desktop-saved-patch.json",
+      "gitBlobSha256": "1e817abd2aadddb6c9892412ec43ccbdebcd6005aa937037b8a6f609c6db7384",
+      "bytesIdentical": true
+    },
+    {
+      "path": "review/mac/desktop-two-character-typing-ax.txt",
+      "gitBlobSha256": "8756bc2fa7723b73cf9909d9b5671d61ddb7edde90cc07709aaed6a5a605c0b4",
+      "bytesIdentical": true
+    },
+    {
+      "path": "review/mac/helpers/host-control.py",
+      "gitBlobSha256": "12bfaf9d6b0388cd6caac99c9d2724290b7b91c0bb871d46579ba111d6c82c3d",
+      "bytesIdentical": true
+    },
+    {
+      "path": "review/mac/helpers/verify-installed.py",
+      "gitBlobSha256": "b2f47a69ebed469d89a4613f08b92ac7d16661b8516975f33a7ecfd8dd2250f2",
+      "bytesIdentical": true
+    },
+    {
+      "path": "review/mac/npm-before-install.json",
+      "gitBlobSha256": "4bfe83c6bc5a5cc399a2b543262b8be9c5cf8f27f7faba22d8d6f35365c61dc3",
+      "bytesIdentical": true
+    },
+    {
+      "path": "review/mac/npm-custom-path-dom.txt",
+      "gitBlobSha256": "ab5311d14157bed49bbd8d8286b8ce436101d53184410dca936449ba13a27745",
+      "bytesIdentical": true
+    },
+    {
+      "path": "review/mac/npm-explicit-preflight-lock.json",
+      "gitBlobSha256": "8d2009d53b53632b436ddc452892e373241807a2961cd1af1e226e5093761b12",
+      "bytesIdentical": true
+    },
+    {
+      "path": "review/mac/npm-final-cli-verification.json",
+      "gitBlobSha256": "ebf619535521bb5a158fd8bd7d98c5c0160736b951caa15b07487fb1cd894dbb",
+      "bytesIdentical": true
+    },
+    {
+      "path": "review/mac/npm-final-installed-identity.json",
+      "gitBlobSha256": "3027af48fae805f02b4b24f5a2e9222b2bab38918bf53c8c4caa28f0f53db85f",
+      "bytesIdentical": true
+    },
+    {
+      "path": "review/mac/npm-full-path-typing.json",
+      "gitBlobSha256": "5e6fba8a18f281c2f67878a2bbc9be9683cb06ceb1c8c687442e8a3b497aa00d",
+      "bytesIdentical": true
+    },
+    {
+      "path": "review/mac/npm-missing-dom.txt",
+      "gitBlobSha256": "c799843fff0d34b9763aecd286db1a09d546ba476aa7399c3df47f6f76d80e3d",
+      "bytesIdentical": true
+    },
+    {
+      "path": "review/mac/npm-npm-fixture.py",
+      "gitBlobSha256": "2b806d7a29ebaae8106c3e8752935566398657a7344c2ebe2cc454d9b1ddbb87",
+      "bytesIdentical": true
+    },
+    {
+      "path": "review/mac/npm-owned-stop.json",
+      "gitBlobSha256": "588d6c7ad93980c2b534806105f2eff418f9d91db7d7091224fb4d3e0e25c5ac",
+      "bytesIdentical": true
+    },
+    {
+      "path": "review/mac/npm-prepare.txt",
+      "gitBlobSha256": "410f18e8317c5a2648f00ffbd26dbdc056bbc719f1aa00edb714521e17c82b43",
+      "bytesIdentical": true
+    },
+    {
+      "path": "review/mac/npm-ready-dom.txt",
+      "gitBlobSha256": "360ee4618048d9c655204554be9c95b530e16fa3a196231a94b65c92fd532af5",
+      "bytesIdentical": true
+    },
+    {
+      "path": "review/mac/npm-ready-saved.png",
+      "gitBlobSha256": "50d056a8bb126e5ccb54e1e8491a3b6bec52370a31978f99df5951824c425426",
+      "bytesIdentical": true
+    },
+    {
+      "path": "review/mac/npm-reopened-saved-dom.txt",
+      "gitBlobSha256": "1748e2230b90039f60fc9125301e51ffe1e478479e6d46cabcae0200bd3ffc9d",
+      "bytesIdentical": true
+    },
+    {
+      "path": "review/mac/npm-reuse-api.json",
+      "gitBlobSha256": "88d22d4d8c197516ea91ac0ca63a25d80cd495347e04506c7e6966237fa60a00",
+      "bytesIdentical": true
+    },
+    {
+      "path": "review/mac/npm-saved-patch.json",
+      "gitBlobSha256": "a91272072fb37bef2b2b2bba04187b8f9f57bc845ae8111eab5a2e1aaa62d976",
+      "bytesIdentical": true
+    },
+    {
+      "path": "review/mac/npm-two-character-typing.json",
+      "gitBlobSha256": "0e6ed62429aa7bb234e37b75506aa500aeedde986bd7b228dc7ccd0a64e17cc4",
+      "bytesIdentical": true
+    },
+    {
+      "path": "review/mac/old-candidate-owned-stop.json",
+      "gitBlobSha256": "d65a763f70219f9609d4d6d42f9af13586a2c1f23edc85a6d3a1f00b259d332b",
+      "bytesIdentical": true
+    },
+    {
+      "path": "review/mac/old-candidate-typing-dom.txt",
+      "gitBlobSha256": "0a5d7052ed1a1d143b8cab30a6aa042bee53145d4d5049a1703aca7a1106a72e",
+      "bytesIdentical": true
+    },
+    {
+      "path": "review/mac/old-candidate-typing.json",
+      "gitBlobSha256": "05e7a22bce848ba40cea73dc8883f2c597f3d3ed947752f0e4cf8147f6bda9b5",
+      "bytesIdentical": true
+    },
+    {
+      "path": "review/mac/prepare-exits.json",
+      "gitBlobSha256": "78f7c79006cb19baafa540cd82626349a7f586bf65e5bff866839af20d473fa8",
+      "bytesIdentical": true
+    },
+    {
+      "path": "review/mac/verify-installed-exit.json",
+      "gitBlobSha256": "3ef392f820c7a26e353c0e580a1f1b00a9c308341f6c75a0567512966c051b00",
+      "bytesIdentical": true
+    },
+    {
+      "path": "review/mac/verify-installed-native.txt",
+      "gitBlobSha256": "55e439c781f47e242eae81d9320e1a11044209c39307ed410a62c5d7f25c5e7c",
+      "bytesIdentical": true
+    },
+    {
+      "path": "review/pr86-source-review.json",
+      "gitBlobSha256": "1b3e35fc6e8f317fa65e10fc96c2ff2827135ac2f0b1044f126bd5ec875c32d8",
+      "bytesIdentical": true
+    },
+    {
+      "path": "review/prior/EVIDENCE-MANIFEST.json",
+      "gitBlobSha256": "25a0c41815c9410d750dae6c1a15c838fd5c93d83704d387e748f30ba87b000e",
+      "bytesIdentical": true
+    },
+    {
+      "path": "review/prior/README.md",
+      "gitBlobSha256": "da810d3549475339b82924a0ea6f14e4873492fb36957ab00e4c2bfbb22841a7",
+      "bytesIdentical": true
+    },
+    {
+      "path": "review/prior/RESULTS.md",
+      "gitBlobSha256": "93a221eeb7266bca76cf6dc8654425f73d2a4b313bf89f0e4125002254719239",
+      "bytesIdentical": true
+    },
+    {
+      "path": "review/prior/candidate-files.json",
+      "gitBlobSha256": "4b70a47ceb5cfc8de4c201780fe347c06496a99d867f450f6200ee646f7466d7",
+      "bytesIdentical": true
+    },
+    {
+      "path": "review/prior/candidate-manifest.json",
+      "gitBlobSha256": "0fa4ca7a25d6f9a6f7cc908c118775e0ce764c90dac82b1c234516dfa1e94cf1",
+      "bytesIdentical": true
+    },
+    {
+      "path": "review/prior/final-ci-run.json",
+      "gitBlobSha256": "b6045240bac2deebd352d19efdd56f3ee6759c56771d620fe4c05541245a15ec",
+      "bytesIdentical": true
+    },
+    {
+      "path": "review/prior/git-blob-consistency.json",
+      "gitBlobSha256": "3bb619935a3fa4d17b898ade1f1c4d094055e154671a03417d070131ed4c210e",
+      "bytesIdentical": true
+    },
+    {
+      "path": "review/upstream-refresh.json",
+      "gitBlobSha256": "ab484847351c422f8d8b93130ff69a706908cb31a905d8d2a9a00d5cd980fa15",
+      "bytesIdentical": true
+    },
+    {
+      "path": "review/validation/.gitattributes",
+      "gitBlobSha256": "5c1b662e30f93f7f59551ce227705e597e88617b27322adf54860319384e013c",
+      "bytesIdentical": true
+    },
+    {
+      "path": "review/validation/diff-check.log",
+      "gitBlobSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "bytesIdentical": true
+    },
+    {
+      "path": "review/validation/exit-codes.json",
+      "gitBlobSha256": "d049bbeef2cf5aab00896c13acda68b5ba733f167c46fd26a32248bcf3648ef0",
+      "bytesIdentical": true
+    },
+    {
+      "path": "review/validation/pack.log",
+      "gitBlobSha256": "d36a8118bba5c18f6d1d5dcbda8e473e54e05165107988ba1c186fb317e5846c",
+      "bytesIdentical": true
+    },
+    {
+      "path": "review/validation/package-check.log",
+      "gitBlobSha256": "7583d7ffc3db3160b033319ff037a41f58b457941bfac48a628210d71f55fc64",
+      "bytesIdentical": true
+    },
+    {
+      "path": "review/validation/plugin-tests.log",
+      "gitBlobSha256": "740640c0b810e4b1f3b111f02711e0fa4e83920766bf220b5cd46a335534c3a9",
+      "bytesIdentical": true
+    },
+    {
+      "path": "review/validation/repo-tests.log",
+      "gitBlobSha256": "708b66bb31d4181d8a18d9d60e09a315b8008a65e1fef4e2e84c213c1513ffc4",
+      "bytesIdentical": true
+    },
+    {
+      "path": "review/validation/typecheck.log",
+      "gitBlobSha256": "062872319732698c54adc63fb02fb6ec26506aae36343ad2d8a5fedebdd3928d",
       "bytesIdentical": true
     },
     {
