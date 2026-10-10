@@ -6,3 +6,6 @@ docs/handoff/2026-10-07-authentication-recovery/windows-results/prepare-npm.txt 
 compat/dsh-0.2.0-rc.2/patches/** -text
 # Candidate file inventories are immutable hash inputs, including on CRLF checkouts.
 docs/evidence/cli-setup9-20261010/candidate-files.json -text
+docs/evidence/cli-setup9-20261010/followup/prior/candidate-files.json -text
+# Preserve tsdown's native trailing spaces in the archived test output.
+docs/evidence/cli-setup9-20261010/followup/plugin-tests.txt whitespace=-blank-at-eol

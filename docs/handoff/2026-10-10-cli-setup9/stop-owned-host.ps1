@@ -23,3 +23,4 @@ $left=@(Get-CimInstance Win32_Process | ? { $ids -contains $_.ProcessId })
 $leftPorts=@(Get-NetTCPConnection -State Listen -ErrorAction SilentlyContinue | ? { $recPorts -contains $_.LocalPort })
 L "stopped; remainingTreeProcs=$($left.Count) recordedPortsStillListening=$($leftPorts.Count)"
 [IO.File]::WriteAllLines($Log,$lines)
+if($left.Count -gt 0 -or $leftPorts.Count -gt 0){ throw 'owned processes or recorded listener ports remain after stop' }

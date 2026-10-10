@@ -1,5 +1,7 @@
 # -9 CLI 检测与安装：Windows 独立复测交接
 
+当前固定输入已切换至 Windows 反馈收尾后的新候选。Windows 本轮执行 [WINDOWS-FOLLOWUP.md](WINDOWS-FOLLOWUP.md) 的 F90–F97；下方 C90–C99 是完整基线协议，已在旧 `cf591d7` 候选上完成，不要求本轮无条件全矩阵重跑。
+
 只验证本轮 CLI 检测、显式安装和状态提示。不要扩展到平台语义、模型答复、Token 续期、历史故障或旧版升级；不发布、不打 tag、不改 main。候选尚未发布，因此复测必须使用固定 CI tgz，不能用 npm latest 替代。
 
 ## 固定输入
@@ -7,32 +9,32 @@
 | 项 | 固定值 |
 |---|---|
 | 仓库/分支 | `openbkn-ai/bkn-dsh` / `feat/cli-setup-9` |
-| 源码 | `cf591d7cbd4af202d0bd893aab57202a72ec1644` |
+| 源码 | `6b372ff703d773a4c47ff3cf13972a047fa81ebd` |
 | 插件 | `0.2.0-rc.2-openbkn.0.2.0-9` |
-| build-only CI | [38028568470](https://github.com/openbkn-ai/bkn-dsh/actions/runs/38028568470)，`publish=false` |
+| build-only CI | [38058120767](https://github.com/openbkn-ai/bkn-dsh/actions/runs/38058120767)，`publish=false` |
 | tgz/完整 SHA/字节/文件数 | 以本交接提交的 [candidate-manifest.json](../../evidence/cli-setup9-20261010/candidate-manifest.json) 为准 |
 | 逐文件清单 | [candidate-files.json](../../evidence/cli-setup9-20261010/candidate-files.json)，清单 SHA 同上 |
 | Host | 官方 Desktop + 官方 npm DSH `0.2.0-rc.2`；记录实际可执行文件与版本 |
 | 安装目标 | 已发布的 `@openbkn/bkn-sdk@0.1.5`，不是 SDK main 或 latest |
 | Node | `^22.19.0 || >=24.0.0`；Node 23 明确拒绝自动安装 |
 
-以通知给出的完整**交接 commit**创建独立 worktree。源码 commit 与交接 commit 不同：后者只增加验收/交接文件，不改变包内容。首轮 `0a2278d` / CI `38020188895` 和评审前 `e669bd6` / CI `38023447204` 均为历史候选，不能用于本轮终验。评审修复改了包内源码，必须下载本表的新 CI 包；沿用旧包的结果需标为历史。
+以通知给出的完整**交接 commit**创建独立 worktree。源码 commit 与交接 commit 不同：后者只增加验收/交接文件，不改变包内容。首轮 `0a2278d` / CI `38020188895`、评审前 `e669bd6` / CI `38023447204` 与首次评审后 `cf591d7` / CI `38028568470` 均为历史候选，不能用于本轮终验。评审修复改了包内源码，必须下载本表的新 CI 包；沿用旧包的结果需标为历史。
 
 ```powershell
 git fetch origin
-git worktree add -b docs/cli-setup9-windows-results C:\bkn-verify\cli9-results-wt <handoff-commit>
-Set-Location C:\bkn-verify\cli9-results-wt
-New-Item -ItemType Directory -Force C:\bkn-verify\cli9-candidate | Out-Null
-gh run download 38028568470 --repo openbkn-ai/bkn-dsh --name plugin-tarball --dir C:\bkn-verify\cli9-candidate
-$taskTgz = 'C:\bkn-verify\cli9-candidate\openbkn-dsh-business-context-0.2.0-rc.2-openbkn.0.2.0-9.tgz'
+git worktree add -b docs/cli-setup9-followup-windows-results C:\bkn-verify\cli9-followup-results-wt <handoff-commit>
+Set-Location C:\bkn-verify\cli9-followup-results-wt
+New-Item -ItemType Directory -Force C:\bkn-verify\cli9-followup-candidate | Out-Null
+gh run download 38058120767 --repo openbkn-ai/bkn-dsh --name plugin-tarball --dir C:\bkn-verify\cli9-followup-candidate
+$taskTgz = 'C:\bkn-verify\cli9-followup-candidate\openbkn-dsh-business-context-0.2.0-rc.2-openbkn.0.2.0-9.tgz'
 # 独立子进程，保存全流与独立退出码；避免外层 Stop 吞掉 native stderr。
-& powershell -NoProfile -ExecutionPolicy Bypass -File .\docs\handoff\2026-10-10-cli-setup9\verify-candidate.ps1 -Tarball $taskTgz *> C:\bkn-verify\cli9-candidate\verify-native.txt
+& powershell -NoProfile -ExecutionPolicy Bypass -File .\docs\handoff\2026-10-10-cli-setup9\verify-candidate.ps1 -Tarball $taskTgz *> C:\bkn-verify\cli9-followup-candidate\verify-native.txt
 $taskVerifyExit = $LASTEXITCODE
-$taskVerifyExit | Set-Content C:\bkn-verify\cli9-candidate\verify-exit.txt
+$taskVerifyExit | Set-Content C:\bkn-verify\cli9-followup-candidate\verify-exit.txt
 if ($taskVerifyExit -ne 0) { throw 'Candidate verification failed' }
 ```
 
-`verify-candidate.ps1` 在 Mac 仅检查文本和算法；**未宣称原生 PowerShell 已执行**。Windows 有脚本错误时保留原件、失败输出和最小修正 diff，不修改候选、身份或清单来让检查通过。
+`verify-candidate.ps1` 已纳入 PS5.1 数组计数括号修正，清单 -text 的 CRLF checkout oracle 已在 Mac 执行；**本轮 canonical verifier 尚未在 Windows 原生执行**。Windows 有脚本错误时保留原件、失败输出和最小修正 diff，不修改候选、身份或清单来让检查通过。
 
 ## 隔离与启动
 
@@ -75,7 +77,7 @@ C98 鉴权失败“不被清除”已由单测覆盖；现场没有既有失败�
 
 ## 证据与收尾
 
-用 [RESULTS-template.md](RESULTS-template.md)，结果放 `docs/evidence/cli-setup9-20261010/windows/`。每轮记录 UTC 时间、Host PID/创建时间/exe/listener、启动/fixture完整参数、场景/输入、产品 UI 原文或截图、实际安装 prefix、CLI/SDK 版本、原生输出与独立退出码。诊断 UI 导出件和 Host API 件分开标注；不得把人工转录写成机器原件。
+本轮用 [FOLLOWUP-RESULTS-template.md](FOLLOWUP-RESULTS-template.md)，结果放 `docs/evidence/cli-setup9-20261010/followup/windows/`；旧轮模板和结果保持历史。每轮记录 UTC 时间、Host PID/创建时间/exe/listener、启动/fixture完整参数、场景/输入、产品 UI 原文或截图、实际安装 prefix、CLI/SDK 版本、原生输出与独立退出码。诊断 UI 导出件和 Host API 件分开标注；不得把人工转录写成机器原件。
 
 停止前归档 parent/child PID 原件及四项核验输出，不能消费后删除唯一记录。只停止本轮身份匹配的 PID；复用或创建时间/exe/listener 不符时拒绝停止，重新人工核验。收尾检查本轮进程/端口为零，日常状态按同一路径清单作 after 哈希；不宣称整个机器零进程。SDK 保留在独立 prefix 属预期，不随插件卸载。
 

@@ -1,0 +1,37 @@
+{
+  "at": "2026-10-10T14:42:19.556479+00:00",
+  "dshNpmVersion": "0.2.0-rc.2",
+  "desktopBundleVersion": "0.2.0-rc.2",
+  "checks": [
+    {
+      "command": [
+        "/Users/kalias/.nvm/versions/node/v24.19.0/bin/node",
+        "--version"
+      ],
+      "exitCode": 0,
+      "stdout": "v24.19.0\n",
+      "stderr": ""
+    },
+    {
+      "command": [
+        "/Users/kalias/.nvm/versions/node/v24.19.0/bin/node",
+        "/Users/kalias/.nvm/versions/node/v24.19.0/lib/node_modules/npm/bin/npm-cli.js",
+        "--version"
+      ],
+      "exitCode": 0,
+      "stdout": "11.17.0\n",
+      "stderr": ""
+    }
+  ],
+  "registry": "https://registry.npmjs.org/",
+  "root": "/private/tmp/bkn-cli9-followup-mac",
+  "environmentFixture": "per-Host PATH/ZDOTDIR, isolated DSH_HOME/BKN_CONFIG_DIR/npm prefix/cache, Desktop user-data-dir",
+  "pnpmHomeInherited": true,
+  "pnpmHomeDidNotProvideCli": "missing UI and installInvocationCount=0 verified before explicit install",
+  "modelKeyUsed": false,
+  "platformLoginPerformed": false,
+  "delayBeforeRealNpmSeconds": {
+    "npm": 8,
+    "desktop": 60
+  }
+}

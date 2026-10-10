@@ -1,8 +1,18 @@
-# -9 CLI setup：评审修复与固定候选
+# -9 CLI setup：Windows 反馈后的收尾候选
+
+当前源码 `6b372ff703d773a4c47ff3cf13972a047fa81ebd` / build-only CI [38058120767](https://github.com/openbkn-ai/bkn-dsh/actions/runs/38058120767) / tgz SHA-256 `dd2d50a2fdda8e55f1ff355b6121113fc6106aeeb6664463bc218cb9b366c887`（183344 bytes / 69 files）。[manifest](candidate-manifest.json) 与 [逐文件清单](candidate-files.json) 绑定当前输入；以下首次评审报告仅作历史，不延伸为新包全矩阵。
+
+目录路径分类、主面板设置/安装进度引导、已保存路径提示已修复；Mac 官方 npm/Desktop 受影响实测完成，新包两安装件各 69/69，一次真实 SDK 0.1.5 安装及保存提示均通过。Desktop 捕获了安装中关闭/重开后仍安装与锁定。插件 414（413 pass / 0 fail / 1 skip），仓库 60/60；六类验证成功。详情、证据边界和执行偏差见 [本轮 RESULTS](followup/RESULTS.md)。
+
+旧 Windows `a2504c5` 的 C90–C99 回传已复核，原件留在独立分支，措辞修正见 [WINDOWS-REVIEW](followup/WINDOWS-REVIEW.md)。新候选的 Windows F90–F97 和 canonical verifier/stop helper 原生验收尚待执行：[固定复测 handoff](../../handoff/2026-10-10-cli-setup9/WINDOWS-FOLLOWUP.md)。不合并、不发布、不迁移 latest；宿主测试 Key 来源调查与撤销不进入 -9 插件实现。
+
+---
+
+# 历史：首次评审修复与固定候选
 
 结论：PR #86 的输入失焦阻塞项及两项非阻塞项均已修复，源码 `cf591d7` 已获独立 APPROVED。评审后重新产出 CI 包，并在 macOS 官方 npm DSH 与官方 Desktop `0.2.0-rc.2` 上完成受影响验收：两种安装件均 **69/69 一致**，产品按钮各安装一次真实 SDK 0.1.5，路径保存并重开正确。Windows 原生复测、合并及发布仍未完成；本轮仅涉及 CLI 检测、显式安装和状态提示。
 
-## 当前候选身份
+## 首次评审后候选身份（历史）
 
 | 项 | 值 |
 |---|---|
@@ -10,7 +20,7 @@
 | build-only CI | [38028568470](https://github.com/openbkn-ai/bkn-dsh/actions/runs/38028568470)，success，publish=false |
 | 版本 | `0.2.0-rc.2-openbkn.0.2.0-9`，未发布 |
 | tgz SHA-256 | `de8d216049b160f92c46d22ab1db37b4225b4424923e7efc3db404b116327630` |
-| tgz | 183195 bytes / 69 files；[manifest](candidate-manifest.json) / [逐文件清单](candidate-files.json) |
+| tgz | 183195 bytes / 69 files；[历史 manifest](followup/prior/candidate-manifest.json) / [历史逐文件清单](followup/prior/candidate-files.json) |
 | npm Host | `/Users/kalias/Documents/project/app/openBKN/dsh-npm-020/node_modules/@deepseek-ai/dsh/lib/bin.js`，官方 rc.2 |
 | Desktop | `/Applications/DeepSeek Harness.app/Contents/MacOS/DeepSeek Harness`，官方 rc.2 |
 | Node / npm / registry | 24.19.0 / 11.17.0；保持本机 `https://registry.npmmirror.com` |

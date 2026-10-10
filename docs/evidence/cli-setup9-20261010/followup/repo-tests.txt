@@ -1,0 +1,148 @@
+hint: Using 'master' as the name for the initial branch. This default branch name
+hint: is subject to change. To configure the initial branch name to use in all
+hint: of your new repositories, which will suppress this warning, call:
+hint:
+hint: 	git config --global init.defaultBranch <name>
+hint:
+hint: Names commonly chosen instead of 'master' are 'main', 'trunk' and
+hint: 'development'. The just-created branch can be renamed via this command:
+hint:
+hint: 	git branch -m <name>
+hint: Using 'master' as the name for the initial branch. This default branch name
+hint: is subject to change. To configure the initial branch name to use in all
+hint: of your new repositories, which will suppress this warning, call:
+hint:
+hint: 	git config --global init.defaultBranch <name>
+hint:
+hint: Names commonly chosen instead of 'master' are 'main', 'trunk' and
+hint: 'development'. The just-created branch can be renamed via this command:
+hint:
+hint: 	git branch -m <name>
+hint: Using 'master' as the name for the initial branch. This default branch name
+hint: is subject to change. To configure the initial branch name to use in all
+hint: of your new repositories, which will suppress this warning, call:
+hint:
+hint: 	git config --global init.defaultBranch <name>
+hint:
+hint: Names commonly chosen instead of 'master' are 'main', 'trunk' and
+hint: 'development'. The just-created branch can be renamed via this command:
+hint:
+hint: 	git branch -m <name>
+✔ rejects a non-matching DSH revision before running a patch command (0.442583ms)
+✔ applies an exact manifest once and reverts it without touching unrelated state (222.675375ms)
+✔ rejects a dirty target before a compatibility patch can be applied (64.808666ms)
+✔ rejects a patch whose recorded digest was tampered with (38.017208ms)
+hint: Using 'master' as the name for the initial branch. This default branch name
+hint: is subject to change. To configure the initial branch name to use in all
+hint: of your new repositories, which will suppress this warning, call:
+hint:
+hint: 	git config --global init.defaultBranch <name>
+hint:
+hint: Names commonly chosen instead of 'master' are 'main', 'trunk' and
+hint: 'development'. The just-created branch can be renamed via this command:
+hint:
+hint: 	git branch -m <name>
+✔ reports the compatibility version only when the full patch series is present (192.563916ms)
+✔ loads one fully pinned compatible-runtime release manifest (1.241417ms)
+✔ rejects a plugin version that does not carry the pinned DSH version (0.640375ms)
+✔ keeps the JSON schema in sync with the pinned manifest (0.295708ms)
+✔ rejects a release manifest without a pinned upstream commit (0.069167ms)
+✔ rejects a plugin artifact from a different release (0.114625ms)
+✔ requires explicit source and output paths (0.460833ms)
+✔ passes the pinned release and compatibility manifests to the builder (1.032375ms)
+✔ a corrupted compatibility manifest fails with the file path and cause (2.474958ms)
+✔ non-JSON pnpm pack output fails with instructions instead of a bare SyntaxError (0.084458ms)
+✔ valid inputs still parse through both helpers (0.283625ms)
+✔ flags build-machine paths in hidden and multi-dot text files (native separators) (2.543833ms)
+✔ flags build-time file: references across YAML, JSON, and Windows forms (2.893625ms)
+✔ removes pnpm install metadata from the bundle (1.881167ms)
+✔ keeps stored-relative in-bundle links and rejects escaping and absolute-stored ones (2.945625ms)
+✔ rebases absolute-stored in-bundle links to relative ones (2.003125ms)
+✔ re-points source-tree links to mirrored bundle paths and copies external ones (5.922416ms)
+✔ a mirrored .bin entry keeps resolving modules relative to its real file (42.83375ms)
+✔ maps links through a bundle subdirectory prefix (runtime shape) (53.079875ms)
+✔ mirror matching follows platform identity rules (pure) (0.13775ms)
+✔ in-bundle directory links pass scanning without EISDIR and keep their contents scanned (2.799166ms)
+✔ prefixForms covers windows-native, forward-slash, and escaped serializations (0.084792ms)
+✔ scrubs serialized build roots (native JSON, escaped, and forward forms) and keeps payloads valid (1.978958ms)
+✔ review planner includes every file beyond the first 100 and retains late auth changes (47.644209ms)
+✔ review planner rejects an incomplete paginated list instead of claiming full review (61.691416ms)
+hint: Using 'master' as the name for the initial branch. This default branch name
+hint: is subject to change. To configure the initial branch name to use in all
+hint: of your new repositories, which will suppress this warning, call:
+hint:
+hint: 	git config --global init.defaultBranch <name>
+hint:
+hint: Names commonly chosen instead of 'master' are 'main', 'trunk' and
+hint: 'development'. The just-created branch can be renamed via this command:
+hint:
+hint: 	git branch -m <name>
+hint: Using 'master' as the name for the initial branch. This default branch name
+hint: is subject to change. To configure the initial branch name to use in all
+hint: of your new repositories, which will suppress this warning, call:
+hint:
+hint: 	git config --global init.defaultBranch <name>
+hint:
+hint: Names commonly chosen instead of 'master' are 'main', 'trunk' and
+hint: 'development'. The just-created branch can be renamed via this command:
+hint:
+hint: 	git branch -m <name>
+hint: Using 'master' as the name for the initial branch. This default branch name
+hint: is subject to change. To configure the initial branch name to use in all
+hint: of your new repositories, which will suppress this warning, call:
+hint:
+hint: 	git config --global init.defaultBranch <name>
+hint:
+hint: Names commonly chosen instead of 'master' are 'main', 'trunk' and
+hint: 'development'. The just-created branch can be renamed via this command:
+hint:
+hint: 	git branch -m <name>
+hint: Using 'master' as the name for the initial branch. This default branch name
+hint: is subject to change. To configure the initial branch name to use in all
+hint: of your new repositories, which will suppress this warning, call:
+hint:
+hint: 	git config --global init.defaultBranch <name>
+hint:
+hint: Names commonly chosen instead of 'master' are 'main', 'trunk' and
+hint: 'development'. The just-created branch can be renamed via this command:
+hint:
+hint: 	git branch -m <name>
+✔ refuses a dirty runtime source before applying compatibility patches (148.093583ms)
+✔ applies and verifies one release-matched compatibility series (95.180791ms)
+✔ builds an explicit patched source into a separate deployed runtime directory (88.488167ms)
+✔ refuses to deploy a runtime into its DSH source checkout (30.110416ms)
+✔ restores direct runtime-closure dependencies omitted by legacy deploy without copying nested node_modules (1.158208ms)
+✔ assembles a self-contained runtime with the patched dependency closure and embedded plugin (10.46725ms)
+✔ rejects a runtime directory without the patched dependency closure (1.357667ms)
+✔ writes a Windows launcher for a Windows bundle (10.959041ms)
+✔ replaces the pristine placeholder override (0.404792ms)
+✔ replaces an already-configured local override and is idempotent (0.092208ms)
+✔ refuses a missing, duplicated, or non-link override (1.62275ms)
+✔ configures the real repository workspace file (0.608333ms)
+✔ posix launcher guard enforces ^22.19.0 || >=24.0.0 on the generated script (2.126125ms)
+✔ windows launcher guard enforces ^22.19.0 || >=24.0.0 on the generated script (0.145833ms)
+✔ windows launcher aborts on guard and bootstrap failure (0.068375ms)
+✔ builds Windows built-in tar arguments for a ZIP archive (0.546ms)
+✔ assembles, archives, and writes a checksum for one declared target (3.79575ms)
+✔ rejects archive work for an undeclared platform (0.386541ms)
+✔ extracts exactly one version section, not a version it is a prefix of (2.107167ms)
+✔ refuses a version with no or an empty CHANGELOG section (0.260833ms)
+✔ renders the install command for the exact package version, then the changes (0.398041ms)
+✔ the committed CHANGELOG has a section for the committed plugin version (1.330417ms)
+✔ relative links resolve against the released ref; absolute, anchor and rooted links stay (0.217958ms)
+✔ rendered notes carry no relative link and no unconditional provenance claim (0.138667ms)
+✔ requires every release profile input (0.492667ms)
+✔ passes explicit paths to the native-profile preparer (0.316291ms)
+✔ delegates release profile creation to DSH native plugin management (3.557334ms)
+✔ recognizes only an exact bundled plugin installed as a web profile layer (2.334416ms)
+✔ copies the release-built, native-plugin-managed profile without network access (2.091833ms)
+✔ a corrupted home profile manifest fails closed with context and is never overwritten (1.983958ms)
+✔ a corrupted template manifest fails closed before any home directory is created (0.9485ms)
+ℹ tests 60
+ℹ suites 0
+ℹ pass 60
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 428.364625

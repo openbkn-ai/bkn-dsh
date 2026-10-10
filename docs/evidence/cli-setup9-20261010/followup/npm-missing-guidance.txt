@@ -1,0 +1,14 @@
+Browser tab: 170231047, Title: "DeepSeek Harness", URL: "http://127.0.0.1:18430/".
+0 AXWebArea DeepSeek Harness, URL: 127.0.0.1:18430/
+	1 container OpenBKN business knowledge networks
+		2 container
+			3 text OPENBKN
+			4 heading 业务知识网络, Value: 2
+				5 text 业务知识网络
+			6 button 设置
+			7 button 诊断
+			8 button Close
+		9 text 设置已保存。当前 DSH 尚无法使用 OpenBKN CLI。请点击右上角“设置”→“高级设置”，使用“检测并安装 CLI”。若安装已启动，可在该处查看进度；安装完成后保存路径，再点击“使用 OpenBKN CLI 登录并同步”。已有 CLI 也可直接填写其可执行文件的绝对路径（Windows 上通常为 openbkn.cmd）。
+		10 button 重试
+
+The focused UI element is 0 AXWebArea DeepSeek Harness, URL: 127.0.0.1:18430/
