@@ -1,0 +1,27 @@
+PATH=C:\bkn-verify\cli9f\fixtures\bin;C:\Windows\system32;C:\Windows;C:\Windows\System32\Wbem;C:\Windows\System32\WindowsPowerShell\v1.0;C:\Users\kalia\scoop\apps\nodejs-lts\current
+> where npm exit=0
+C:\bkn-verify\cli9f\fixtures\bin\npm.cmd
+C:\Users\kalia\scoop\apps\nodejs-lts\current\npm
+C:\Users\kalia\scoop\apps\nodejs-lts\current\npm.cmd
+> where node exit=0
+C:\bkn-verify\cli9f\fixtures\bin\node.cmd
+C:\Users\kalia\scoop\apps\nodejs-lts\current\node.exe
+> npm --version (mode eacces, passthrough expected) exit=0
+11.19.0
+> npm install x (mode eacces, intercept expected) exit=243
+cmd : npm error code EACCES
+At C:\bkn-verify\cli9f\evidence\scripts\validate-fixtures.ps1:11 char:57
++ ... xpected)' { cmd /c npm install --global left-pad --prefix "C:\bkn-ver ...
++                 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    + CategoryInfo          : NotSpecified: (npm error code EACCES:String) [], RemoteException
+    + FullyQualifiedErrorId : NativeCommandError
+ 
+npm error syscall mkdir
+npm error Error: EACCES: permission denied, mkdir CANARY-C96-RAW-STDERR-EACCES
+> node --version (mode v23, intercept expected) exit=0
+v23.11.0
+> node -e (mode v23, real expected) exit=0
+v24.21.0
+> real npm-cli via node.exe (bypasses fixture) exit=0
+11.19.0
+Validate Prefix exists: False

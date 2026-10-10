@@ -1,0 +1,24 @@
+{
+    "label":  "f9-npm-r2-after-uninstall",
+    "form":  "npm",
+    "pid":  25012,
+    "createdUtc":  "2026-10-10T15:18:18.9134210+00:00",
+    "exe":  "C:\\Users\\kalia\\scoop\\apps\\nodejs-lts\\current\\node.exe",
+    "argv":  "C:\\Users\\kalia\\scoop\\apps\\nodejs-lts\\current\\node.exe \"C:\\bkn-verify\\diag6-tools\\node_modules\\@deepseek-ai\\dsh\\lib\\bin.js\" web --port 18607 --no-open",
+    "listenerOwner":  25012,
+    "listeners":  [
+                      {
+                          "address":  "127.0.0.1",
+                          "port":  18607,
+                          "owner":  25012
+                      }
+                  ],
+    "PATH":  "C:\\Windows\\system32;C:\\Windows;C:\\Windows\\System32\\Wbem;C:\\Windows\\System32\\WindowsPowerShell\\v1.0;C:\\Users\\kalia\\scoop\\apps\\nodejs-lts\\current",
+    "DSH_HOME":  "C:\\bkn-verify\\cli9f\\npm\\dsh-home",
+    "BKN_CONFIG_DIR":  "C:\\bkn-verify\\cli9f\\npm\\bkn-config",
+    "npm_config_prefix":  "C:\\bkn-verify\\cli9f\\npm\\CLI Prefix",
+    "npm_config_cache":  "C:\\bkn-verify\\cli9f\\npm\\npm-cache",
+    "APPDATA":  "C:\\bkn-verify\\cli9f\\npm\\AppData",
+    "PathMode":  "missing",
+    "FixtureDir":  ""
+}

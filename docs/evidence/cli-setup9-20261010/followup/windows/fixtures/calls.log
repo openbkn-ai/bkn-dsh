@@ -1,0 +1,57 @@
+周六 2026/10/10 23:07:45.86 npm-fixture mode=eacces argv=--version
+周六 2026/10/10 23:07:46.07 npm-fixture passthrough exit=0
+周六 2026/10/10 23:07:46.09 npm-fixture mode=eacces argv=install --global left-pad --prefix "C:\bkn-verify\cli9f\npm\Validate Prefix"
+周六 2026/10/10 23:07:46.09 npm-fixture eacces exit=243
+周六 2026/10/10 23:07:46.14 node-fixture mode=v23 argv=--version
+周六 2026/10/10 23:07:46.17 node-fixture mode=v23 argv=-e console.log(process.version)
+--- npm r1 fixture Host start 2026-10-10T15:08:19Z
+--- F93 npm start 2026-10-10T15:10:08Z
+周六 2026/10/10 23:10:38.61 npm-fixture mode=delay argv=prefix --global
+周六 2026/10/10 23:10:38.87 npm-fixture passthrough exit=0
+周六 2026/10/10 23:10:39.03 node-fixture mode=real argv=--version
+周六 2026/10/10 23:10:55.09 npm-fixture mode=delay argv=prefix --global
+周六 2026/10/10 23:10:55.36 npm-fixture passthrough exit=0
+周六 2026/10/10 23:10:55.48 node-fixture mode=real argv=--version
+周六 2026/10/10 23:10:55.67 npm-fixture mode=delay argv=prefix --global
+周六 2026/10/10 23:10:55.93 npm-fixture passthrough exit=0
+周六 2026/10/10 23:10:56.07 node-fixture mode=real argv=--version
+周六 2026/10/10 23:10:56.25 npm-fixture mode=delay argv=install --global @openbkn/bkn-sdk@0.1.5 --prefix "C:\bkn-verify\cli9f\npm\CLI Prefix" --ignore-scripts --no-audit --no-fund --loglevel=error
+周六 2026/10/10 23:10:56.25 npm-fixture delay start seconds=60
+周六 2026/10/10 23:11:56.76 npm-fixture delay end, handing to real npm
+周六 2026/10/10 23:12:09.18 npm-fixture passthrough exit=0
+周六 2026/10/10 23:12:09.34 node-fixture mode=real argv="C:\bkn-verify\cli9f\npm\CLI Prefix\\node_modules\@openbkn\bkn-sdk\dist\cli.js" --version
+周六 2026/10/10 23:12:10.70 npm-fixture mode=delay argv=prefix --global
+周六 2026/10/10 23:12:10.97 npm-fixture passthrough exit=0
+周六 2026/10/10 23:12:11.10 node-fixture mode=real argv="C:\bkn-verify\cli9f\npm\CLI Prefix\\node_modules\@openbkn\bkn-sdk\dist\cli.js" --version
+周六 2026/10/10 23:12:11.47 node-fixture mode=real argv="C:\bkn-verify\cli9f\npm\CLI Prefix\\node_modules\@openbkn\bkn-sdk\dist\cli.js" --version
+周六 2026/10/10 23:13:06.30 node-fixture mode=real argv="C:\bkn-verify\cli9f\npm\CLI Prefix\\node_modules\@openbkn\bkn-sdk\dist\cli.js" auth status --json
+周六 2026/10/10 23:13:33.37 node-fixture mode=real argv="C:\bkn-verify\cli9f\npm\CLI Prefix\\node_modules\@openbkn\bkn-sdk\dist\cli.js" auth status --json
+周六 2026/10/10 23:14:10.53 node-fixture mode=real argv="C:\bkn-verify\cli9f\npm\CLI Prefix\\node_modules\@openbkn\bkn-sdk\dist\cli.js" auth status --json
+周六 2026/10/10 23:14:33.50 node-fixture mode=real argv="C:\bkn-verify\cli9f\npm\CLI Prefix\\node_modules\@openbkn\bkn-sdk\dist\cli.js" --version
+--- F91 dir click (C:\) 2026-10-10T15:15:18Z
+周六 2026/10/10 23:16:17.05 node-fixture mode=real argv="C:\bkn-verify\cli9f\npm\CLI Prefix\\node_modules\@openbkn\bkn-sdk\dist\cli.js" --version
+--- desktop r1 fixture Host start 2026-10-10T15:21:57Z
+--- F93 desktop start 2026-10-10T15:24:13Z
+周六 2026/10/10 23:24:15.76 npm-fixture mode=delay argv=prefix --global
+周六 2026/10/10 23:24:15.99 npm-fixture passthrough exit=0
+周六 2026/10/10 23:24:16.13 node-fixture mode=real argv=--version
+周六 2026/10/10 23:24:30.41 npm-fixture mode=delay argv=prefix --global
+周六 2026/10/10 23:24:30.65 npm-fixture passthrough exit=0
+周六 2026/10/10 23:24:30.78 node-fixture mode=real argv=--version
+周六 2026/10/10 23:24:30.98 npm-fixture mode=delay argv=prefix --global
+周六 2026/10/10 23:24:31.19 npm-fixture passthrough exit=0
+周六 2026/10/10 23:24:31.33 node-fixture mode=real argv=--version
+周六 2026/10/10 23:24:31.51 npm-fixture mode=delay argv=install --global @openbkn/bkn-sdk@0.1.5 --prefix "C:\bkn-verify\cli9f\desktop\CLI Prefix" --ignore-scripts --no-audit --no-fund --loglevel=error
+周六 2026/10/10 23:24:31.51 npm-fixture delay start seconds=60
+周六 2026/10/10 23:25:32.00 npm-fixture delay end, handing to real npm
+周六 2026/10/10 23:25:45.32 npm-fixture passthrough exit=0
+周六 2026/10/10 23:25:45.48 node-fixture mode=real argv="C:\bkn-verify\cli9f\desktop\CLI Prefix\\node_modules\@openbkn\bkn-sdk\dist\cli.js" --version
+周六 2026/10/10 23:25:46.50 npm-fixture mode=delay argv=prefix --global
+周六 2026/10/10 23:25:46.71 npm-fixture passthrough exit=0
+周六 2026/10/10 23:25:46.86 node-fixture mode=real argv="C:\bkn-verify\cli9f\desktop\CLI Prefix\\node_modules\@openbkn\bkn-sdk\dist\cli.js" --version
+周六 2026/10/10 23:25:47.20 node-fixture mode=real argv="C:\bkn-verify\cli9f\desktop\CLI Prefix\\node_modules\@openbkn\bkn-sdk\dist\cli.js" --version
+周六 2026/10/10 23:26:23.29 node-fixture mode=real argv="C:\bkn-verify\cli9f\desktop\CLI Prefix\\node_modules\@openbkn\bkn-sdk\dist\cli.js" auth status --json
+周六 2026/10/10 23:26:43.20 node-fixture mode=real argv="C:\bkn-verify\cli9f\desktop\CLI Prefix\\node_modules\@openbkn\bkn-sdk\dist\cli.js" auth status --json
+周六 2026/10/10 23:27:01.28 node-fixture mode=real argv="C:\bkn-verify\cli9f\desktop\CLI Prefix\\node_modules\@openbkn\bkn-sdk\dist\cli.js" --version
+--- F91 desktop dir click 2026-10-10T15:27:54Z
+周六 2026/10/10 23:28:26.45 node-fixture mode=real argv="C:\bkn-verify\cli9f\desktop\CLI Prefix\\node_modules\@openbkn\bkn-sdk\dist\cli.js" --version

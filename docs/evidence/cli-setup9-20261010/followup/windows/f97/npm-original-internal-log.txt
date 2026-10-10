@@ -1,0 +1,4 @@
+2026-10-10T15:17:47.6818935Z identity pid=23764 createdUtc=2026-10-10T15:08:21.2083930+00:00 [match=True] exe=C:\Users\kalia\scoop\apps\nodejs-lts\current\node.exe [match=True] recordedPorts=18607 currentPorts=18607 [recordedStillOwned=True]
+2026-10-10T15:17:47.7039707Z   tree pid=23764 ppid=23596 name=node.exe createdUtc=2026-10-10T15:08:21.2083930+00:00
+2026-10-10T15:17:47.7039707Z   tree pid=23700 ppid=23764 name=conhost.exe createdUtc=2026-10-10T15:08:21.2258590+00:00
+2026-10-10T15:17:49.9806844Z stopped; remainingTreeProcs=0 recordedPortsStillListening=0

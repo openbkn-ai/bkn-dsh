@@ -1,0 +1,7 @@
+2026-10-10T15:21:55.3295218Z identity pid=14852 createdUtc=2026-10-10T15:19:23.6875020+00:00 [match=True] exe=C:\Users\kalia\AppData\Local\Programs\DeepSeek Harness\DeepSeek Harness.exe [match=True] recordedPorts=19387 currentPorts=19387 [recordedStillOwned=True]
+2026-10-10T15:21:55.3528924Z   tree pid=14852 ppid=8448 name=DeepSeek Harness.exe createdUtc=2026-10-10T15:19:23.6875020+00:00
+2026-10-10T15:21:55.3538956Z   tree pid=10924 ppid=14852 name=DeepSeek Harness.exe createdUtc=2026-10-10T15:19:23.8892710+00:00
+2026-10-10T15:21:55.3538956Z   tree pid=23792 ppid=14852 name=DeepSeek Harness.exe createdUtc=2026-10-10T15:19:23.8923670+00:00
+2026-10-10T15:21:55.3548994Z   tree pid=13852 ppid=14852 name=DeepSeek Harness.exe createdUtc=2026-10-10T15:19:23.9073240+00:00
+2026-10-10T15:21:55.3559028Z   tree pid=23756 ppid=14852 name=DeepSeek Harness.exe createdUtc=2026-10-10T15:19:24.1196890+00:00
+2026-10-10T15:21:57.6524167Z stopped; remainingTreeProcs=0 recordedPortsStillListening=0

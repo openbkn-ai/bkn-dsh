@@ -1,0 +1,4 @@
+2026-10-10T15:17:31.7055792Z identity pid=23764 createdUtc=2026-10-10T15:08:21.2083930+00:00 [match=True] exe=C:\Users\kalia\scoop\apps\nodejs-lts\current\node.exe [match=True] recordedPorts=18699 currentPorts=18607 [recordedStillOwned=False]
+2026-10-10T15:17:31.7296630Z   tree pid=23764 ppid=23596 name=node.exe createdUtc=2026-10-10T15:08:21.2083930+00:00
+2026-10-10T15:17:31.7306664Z   tree pid=23700 ppid=23764 name=conhost.exe createdUtc=2026-10-10T15:08:21.2258590+00:00
+2026-10-10T15:17:31.7306664Z IDENTITY MISMATCH - refusing to stop

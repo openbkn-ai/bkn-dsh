@@ -1,0 +1,24 @@
+{
+  "label": "f9-npm-r1",
+  "form": "npm",
+  "pid": 23764,
+  "createdUtc": "2026-10-10T15:08:21.2083930+00:00",
+  "exe": "C:\\Users\\kalia\\scoop\\apps\\nodejs-lts\\current\\node.exe",
+  "argv": "C:\\Users\\kalia\\scoop\\apps\\nodejs-lts\\current\\node.exe \"C:\\bkn-verify\\diag6-tools\\node_modules\\@deepseek-ai\\dsh\\lib\\bin.js\" web --port 18607 --no-open",
+  "listenerOwner": 23764,
+  "listeners": [
+    {
+      "address": "127.0.0.1",
+      "port": 18699,
+      "owner": 23764
+    }
+  ],
+  "PATH": "C:\\bkn-verify\\cli9f\\fixtures\\bin;C:\\Windows\\system32;C:\\Windows;C:\\Windows\\System32\\Wbem;C:\\Windows\\System32\\WindowsPowerShell\\v1.0;C:\\Users\\kalia\\scoop\\apps\\nodejs-lts\\current",
+  "DSH_HOME": "C:\\bkn-verify\\cli9f\\npm\\dsh-home",
+  "BKN_CONFIG_DIR": "C:\\bkn-verify\\cli9f\\npm\\bkn-config",
+  "npm_config_prefix": "C:\\bkn-verify\\cli9f\\npm\\CLI Prefix",
+  "npm_config_cache": "C:\\bkn-verify\\cli9f\\npm\\npm-cache",
+  "APPDATA": "C:\\bkn-verify\\cli9f\\npm\\AppData",
+  "PathMode": "fixture",
+  "FixtureDir": "C:\\bkn-verify\\cli9f\\fixtures\\bin"
+}
