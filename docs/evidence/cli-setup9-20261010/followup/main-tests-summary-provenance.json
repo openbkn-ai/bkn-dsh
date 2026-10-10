@@ -1,0 +1,35 @@
+{
+  "generatedAt": "2026-10-10T17:14:29.126521+00:00",
+  "sourceRun": "https://github.com/openbkn-ai/bkn-dsh/actions/runs/38067339595",
+  "sourceHead": "df454e7eaa4b58ecdbb4c3355a297aaba02d5437",
+  "sourceFile": "release/cli-setup9-release-preparation/checks/main-ci-native.log",
+  "sourceBytes": 1497204,
+  "sourceSha256": "a9fb5711904de2b22aeb747ecc383e65f83c7aa3cc6bdc2f8f0b8f231d9cc9c7",
+  "method": "Raw contiguous line ranges from the archived gh run view --log output, preserving each original timestamp and job/step prefix; a single LF separator is inserted between the two ranges. No test was rerun.",
+  "sourceRanges": [
+    {
+      "firstLine": 8084,
+      "lastLine": 8092
+    },
+    {
+      "firstLine": 8558,
+      "lastLine": 8566
+    }
+  ],
+  "excerpt": "main-tests-native-summary.txt",
+  "excerptBytes": 1858,
+  "excerptSha256": "076eb63ed788a69cc4d954b351b6d63210c3f04b3f9a649324bd34d6ed401df0",
+  "plugin": {
+    "tests": 414,
+    "pass": 413,
+    "fail": 0,
+    "skipped": 1
+  },
+  "repository": {
+    "tests": 60,
+    "pass": 60,
+    "fail": 0,
+    "skipped": 0
+  },
+  "scope": "Native output establishes test counts; main-rehearsal-run.json separately establishes job and step conclusions."
+}

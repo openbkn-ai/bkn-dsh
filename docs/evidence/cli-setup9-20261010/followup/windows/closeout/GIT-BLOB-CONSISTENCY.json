@@ -1,0 +1,27 @@
+{
+  "comparedCommit": "881af0b28fd46da2c5fb7f4c93d425484897952a",
+  "method": "Local working file raw bytes vs execFileSync('git', ['show', comparedCommit + ':' + path]) Buffer; SHA-256 over raw bytes. closeout/ is -text so committed bytes equal working bytes.",
+  "selfReference": "This file (GIT-BLOB-CONSISTENCY.json) is not part of comparedCommit and is excluded from its own comparison; it is committed separately afterwards.",
+  "generatedUtc": "2026-10-10T16:22:12.169Z",
+  "files": [
+    {
+      "repositoryPath": "docs/evidence/cli-setup9-20261010/followup/windows/closeout/LOCAL-PROVENANCE.json",
+      "localPath": "C:\\bkn-verify\\cli9-closeout-wt\\docs\\evidence\\cli-setup9-20261010\\followup\\windows\\closeout\\LOCAL-PROVENANCE.json",
+      "localBytes": 81538,
+      "localSha256": "673ec9b4a2823f46b5929b2aa7afe4769cc74cc91c75259b5dd5a2bbe1cc6f1c",
+      "gitBytes": 81538,
+      "gitSha256": "673ec9b4a2823f46b5929b2aa7afe4769cc74cc91c75259b5dd5a2bbe1cc6f1c",
+      "byteIdentical": true
+    },
+    {
+      "repositoryPath": "docs/evidence/cli-setup9-20261010/followup/windows/closeout/RESULTS.md",
+      "localPath": "C:\\bkn-verify\\cli9-closeout-wt\\docs\\evidence\\cli-setup9-20261010\\followup\\windows\\closeout\\RESULTS.md",
+      "localBytes": 4589,
+      "localSha256": "0b6458c3bb6e8a25fb658a42c7204f66af48ea030db9dab01a5b2d8a9512a1b5",
+      "gitBytes": 4589,
+      "gitSha256": "0b6458c3bb6e8a25fb658a42c7204f66af48ea030db9dab01a5b2d8a9512a1b5",
+      "byteIdentical": true
+    }
+  ],
+  "allByteIdentical": true
+}

@@ -1,0 +1,50 @@
+{
+  "checkedAt": "2026-10-10T16:59:07.428728+00:00",
+  "scope": "Read-only upstream refresh for evidence closeout; no dependency/pin/deployment changes, no new live platform or model compatibility claim",
+  "dsh": {
+    "repository": "deepseek-ai/deepseek-harness",
+    "branch": "master",
+    "baseline": "d743267388641bc76f17c45ce8b4c231aed1d32c",
+    "current": "d743267388641bc76f17c45ce8b4c231aed1d32c",
+    "unchanged": true,
+    "latestListedRelease": [
+      {
+        "tag_name": "dsh-v0.2.1-alpha.2",
+        "prerelease": true,
+        "published_at": "2026-10-09T11:09:26Z",
+        "html_url": "https://github.com/deepseek-ai/deepseek-harness/releases/tag/dsh-v0.2.1-alpha.2"
+      }
+    ]
+  },
+  "foundry": {
+    "repository": "openbkn-ai/bkn-foundry",
+    "branch": "main",
+    "baseline": "1343eb4776a1aeadd300eb033b0399355f16521f",
+    "current": "1343eb4776a1aeadd300eb033b0399355f16521f",
+    "unchanged": true,
+    "latestListedRelease": [
+      {
+        "tag_name": "v0.1.4",
+        "prerelease": false,
+        "published_at": "2026-08-31T07:31:22Z",
+        "html_url": "https://github.com/openbkn-ai/bkn-foundry/releases/tag/v0.1.4"
+      }
+    ]
+  },
+  "sdk": {
+    "repository": "openbkn-ai/bkn-sdk",
+    "branch": "main",
+    "baseline": "c404354793146edab944b7e5a79908bf41ddd591",
+    "current": "c404354793146edab944b7e5a79908bf41ddd591",
+    "unchanged": true,
+    "latestListedRelease": [
+      {
+        "tag_name": "v0.1.3",
+        "prerelease": false,
+        "published_at": "2026-08-10T05:24:18Z",
+        "html_url": "https://github.com/openbkn-ai/bkn-sdk/releases/tag/untagged-ec23e517df287be26a01"
+      }
+    ],
+    "releaseMetadataScope": "GitHub Release listing only; this tag/name and untagged URL do not establish npm SDK freshness. See sdk-npm-after-windows.json for the independently checked official npm identity (latest 0.1.5)."
+  }
+}

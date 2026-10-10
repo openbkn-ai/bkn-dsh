@@ -1,16 +1,21 @@
 {
-  "generatedAt": "2026-10-10T16:12:21.088319+00:00",
-  "comparedCommit": "1e807b076d5c95bdea82131ead84b21c494d3f4b",
-  "scope": "All tracked files under this evidence directory at comparedCommit, excluding only the root inventory and root git-blob-consistency.json to avoid self-reference. Nested historical inventories are archived bytes for their explicitly stated old commits. This is a Git snapshot, not a claim that all Windows local originals were verified.",
+  "generatedAt": "2026-10-10T17:15:06.593616+00:00",
+  "comparedCommit": "81472999a138d942dd3f6e8dba3c10ef5f9258a9",
+  "scope": "All tracked files under this evidence directory at comparedCommit, excluding only the root inventory and root git-blob-consistency.json to avoid self-reference. Nested historical inventories and Windows closeout proofs retain their original fixed commits. This is the current Git snapshot; Windows local-source provenance is separately recorded for the 107 files at b5e5875.",
   "excluded": [
     "EVIDENCE-MANIFEST.json",
     "git-blob-consistency.json"
   ],
   "files": [
     {
+      "path": "RELEASE-READINESS.md",
+      "bytes": 4911,
+      "sha256": "9b5b2167a148e9ed21ca26d07d815b4c7e4c10a8ea567a54b6398790b4b6711c"
+    },
+    {
       "path": "RESULTS.md",
-      "bytes": 11846,
-      "sha256": "eb89f5e09a76436fe10e67e48c33d4814427c9682fc009c22ea0751249d095d7"
+      "bytes": 12403,
+      "sha256": "910fa793e6acd96e554c8ed0ecb953f3703f7817f31d4bd4f89a1a6334fad877"
     },
     {
       "path": "candidate-files.json",
@@ -29,8 +34,8 @@
     },
     {
       "path": "followup/CLOSEOUT.md",
-      "bytes": 3091,
-      "sha256": "cd679a6b42bed27b1a97354d80246d85eaa3c49aaa628938d17e1b523eea53bb"
+      "bytes": 4248,
+      "sha256": "d76138a4f3f2d9b5e01f6baeb93e727fbd62e705f513202bea70797f32f723c7"
     },
     {
       "path": "followup/RESULTS.md",
@@ -66,6 +71,11 @@
       "path": "followup/closeout-release-notes-tests.txt",
       "bytes": 652,
       "sha256": "a3ef8deb98721a2a01d5b743221115e4c4ce81ca96489447e8d7ceb813b88d0a"
+    },
+    {
+      "path": "followup/closeout-upstream-after-windows.json",
+      "bytes": 1886,
+      "sha256": "d9ae65abd0587726283675c1031331bbb2ebfc49dff77bb1d3c9f8ecd7a67d26"
     },
     {
       "path": "followup/closeout-upstream-refresh.json",
@@ -258,6 +268,26 @@
       "sha256": "364caee4be8a990790a946488187a82ff4b53214a6eec415e7da771523ade623"
     },
     {
+      "path": "followup/main-payload-reconciliation.json",
+      "bytes": 13743,
+      "sha256": "ecc24d4f24bcb402f23556e03f134c64943ba283d295c88b331d7db27b5ffa66"
+    },
+    {
+      "path": "followup/main-rehearsal-run.json",
+      "bytes": 5126,
+      "sha256": "3aeb3acad0aaa5f411628f9cc6e196a3c4ad16c2dc14db23a26d307ce569566b"
+    },
+    {
+      "path": "followup/main-tests-native-summary.txt",
+      "bytes": 1858,
+      "sha256": "076eb63ed788a69cc4d954b351b6d63210c3f04b3f9a649324bd34d6ed401df0"
+    },
+    {
+      "path": "followup/main-tests-summary-provenance.json",
+      "bytes": 1215,
+      "sha256": "cf79e95c21d440b759ccf78321e6159bb35676a167feafedae0077b82bac40b4"
+    },
+    {
       "path": "followup/npm-directory-no-install.json",
       "bytes": 201,
       "sha256": "b92ddfe701f7e1d67210ee259dc3f37113f6c902d9723ec9ee4f3417a000fa57"
@@ -378,6 +408,11 @@
       "sha256": "3e735194816ebe92c47d18def0b724dff91765f6ceac58ba2d93391e907f5d99"
     },
     {
+      "path": "followup/registry-after-windows.json",
+      "bytes": 232,
+      "sha256": "18fa73c0a6aa561118cb738e4013bacb5ea3636a6125f1d09ad277471af90444"
+    },
+    {
       "path": "followup/release-notes-tests.txt",
       "bytes": 651,
       "sha256": "2960c4b281483415055a15098516f5e213f884ace7ba2e78fb8e84eaa177a9ed"
@@ -386,6 +421,11 @@
       "path": "followup/repo-tests.txt",
       "bytes": 9055,
       "sha256": "7e47e9789371fa979d3da3defb17842cdc3086d827a06bbcb360a9c5710021d6"
+    },
+    {
+      "path": "followup/sdk-npm-after-windows.json",
+      "bytes": 635,
+      "sha256": "bd65681113019195f772c74a0ee4426be82b4e7170a08270e4fdd3856cd2e1b3"
     },
     {
       "path": "followup/typecheck.txt",
@@ -403,6 +443,11 @@
       "sha256": "5c6de4ac7e971a91e0a85e43621f80b2c44167fdceb851a4cc3d81ab9a5b39fb"
     },
     {
+      "path": "followup/windows-provenance-review.json",
+      "bytes": 39527,
+      "sha256": "f739724dcba67357e9830c78b5e038e3c8d8b5503321df17994847dc18e3f044"
+    },
+    {
       "path": "followup/windows/GIT-SNAPSHOT-MANIFEST.json",
       "bytes": 29946,
       "sha256": "1a3a65f71168aa6550bece23a1e567e2a82e6c9214298e5f60de6ed5f4f0653a"
@@ -411,6 +456,21 @@
       "path": "followup/windows/RESULTS.md",
       "bytes": 14525,
       "sha256": "bfc3d8bda3d86218b26f1f6bd652e6a51b710c8b03758ccac71f95184f8bbc4d"
+    },
+    {
+      "path": "followup/windows/closeout/GIT-BLOB-CONSISTENCY.json",
+      "bytes": 1545,
+      "sha256": "70e1d4a8453c15162bb4bb99875ec2c96cc6c90d96f8266901a44102c898e493"
+    },
+    {
+      "path": "followup/windows/closeout/LOCAL-PROVENANCE.json",
+      "bytes": 81538,
+      "sha256": "673ec9b4a2823f46b5929b2aa7afe4769cc74cc91c75259b5dd5a2bbe1cc6f1c"
+    },
+    {
+      "path": "followup/windows/closeout/RESULTS.md",
+      "bytes": 4589,
+      "sha256": "0b6458c3bb6e8a25fb658a42c7204f66af48ea030db9dab01a5b2d8a9512a1b5"
     },
     {
       "path": "followup/windows/evidence/OpenBKN-diagnostic-desktop-f95-1cb34f50.json",
