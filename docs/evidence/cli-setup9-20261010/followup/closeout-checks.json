@@ -23,5 +23,8 @@
     "hits": [],
     "doesNotProve": "All possible secrets absent or Windows local source-file provenance."
   },
-  "scope": "Evidence and release-note closeout only; no installation/Host/model/platform rerun, no replacement candidate."
+  "scope": "Evidence and release-note closeout only; no installation/Host/model/platform rerun, no replacement candidate.",
+  "fullPrDiffBase": "6936b81920c307ae49504824f4c0522a660d71ca",
+  "fullPrDiffCheckExit": 0,
+  "nativeWhitespacePolicy": "File-specific blank-at-eol exceptions; one native pnpm log also permits its recorded EOF blank lines. Original bytes unchanged."
 }
