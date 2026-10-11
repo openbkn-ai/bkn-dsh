@@ -25,3 +25,5 @@ docs/evidence/cli-setup9-20261010/followup/windows/evidence/f95-npm-uninstall-be
 docs/evidence/cli-setup9-20261010/followup/windows/evidence/fixture-validation.txt whitespace=-blank-at-eol
 docs/evidence/cli-setup9-20261010/followup/windows/evidence/npm-plugin-install.txt whitespace=-blank-at-eol
 docs/evidence/cli-setup9-20261010/followup/windows/evidence/npm-preflight.txt whitespace=-blank-at-eol
+# Preserve the -10 fixed candidate inventory on Windows CRLF checkouts.
+docs/evidence/diagnostics10-20261011/candidate-files.json -text

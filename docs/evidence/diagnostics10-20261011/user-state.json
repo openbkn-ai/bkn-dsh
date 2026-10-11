@@ -1,0 +1,88 @@
+{
+  "scope": "Only these 8 preselected paths; not a whole-profile or whole-machine guarantee",
+  "before": [
+    {
+      "path": "/Users/kalias/.dsh/.credentials.yaml",
+      "exists": true,
+      "sha256": "f582357fa04d46daf252508c83123c6975aa102c484b03a20a488a3d05753242"
+    },
+    {
+      "path": "/Users/kalias/.dsh/.env",
+      "exists": false,
+      "sha256": null
+    },
+    {
+      "path": "/Users/kalias/.dsh/profiles/desktop/package.json",
+      "exists": true,
+      "sha256": "eafc5b4ebc3e702e8aaee00f6012ae1d76ef8ea24b8bbe03a003f369c5d2934f"
+    },
+    {
+      "path": "/Users/kalias/.dsh/profiles/web/package.json",
+      "exists": true,
+      "sha256": "210068ddb9ebc4cdf395ebb53020be6ccaaedb917e74dae16296d62394626398"
+    },
+    {
+      "path": "/Users/kalias/.dsh/profiles/desktop/cordis.patch.yml",
+      "exists": true,
+      "sha256": "de9bc7623edaa12efac39cf438ffcdee906ac8f55a9832d5b5ded64aa71ef8a3"
+    },
+    {
+      "path": "/Users/kalias/.dsh/profiles/desktop/cordis.yml",
+      "exists": true,
+      "sha256": "c300dcf2ebc5f02062d6591268d29d3db6fe45e0cb138f5467276fe2ba06076e"
+    },
+    {
+      "path": "/Users/kalias/.dsh/profiles/web/cordis.patch.yml",
+      "exists": true,
+      "sha256": "ef189a8c27db6d63930aa3046a3040482e952eafcb7487c644d508e8d461f027"
+    },
+    {
+      "path": "/Users/kalias/.dsh/profiles/web/cordis.yml",
+      "exists": true,
+      "sha256": "c300dcf2ebc5f02062d6591268d29d3db6fe45e0cb138f5467276fe2ba06076e"
+    }
+  ],
+  "after": [
+    {
+      "path": "/Users/kalias/.dsh/.credentials.yaml",
+      "exists": true,
+      "sha256": "f582357fa04d46daf252508c83123c6975aa102c484b03a20a488a3d05753242"
+    },
+    {
+      "path": "/Users/kalias/.dsh/.env",
+      "exists": false,
+      "sha256": null
+    },
+    {
+      "path": "/Users/kalias/.dsh/profiles/desktop/package.json",
+      "exists": true,
+      "sha256": "eafc5b4ebc3e702e8aaee00f6012ae1d76ef8ea24b8bbe03a003f369c5d2934f"
+    },
+    {
+      "path": "/Users/kalias/.dsh/profiles/web/package.json",
+      "exists": true,
+      "sha256": "210068ddb9ebc4cdf395ebb53020be6ccaaedb917e74dae16296d62394626398"
+    },
+    {
+      "path": "/Users/kalias/.dsh/profiles/desktop/cordis.patch.yml",
+      "exists": true,
+      "sha256": "de9bc7623edaa12efac39cf438ffcdee906ac8f55a9832d5b5ded64aa71ef8a3"
+    },
+    {
+      "path": "/Users/kalias/.dsh/profiles/desktop/cordis.yml",
+      "exists": true,
+      "sha256": "c300dcf2ebc5f02062d6591268d29d3db6fe45e0cb138f5467276fe2ba06076e"
+    },
+    {
+      "path": "/Users/kalias/.dsh/profiles/web/cordis.patch.yml",
+      "exists": true,
+      "sha256": "ef189a8c27db6d63930aa3046a3040482e952eafcb7487c644d508e8d461f027"
+    },
+    {
+      "path": "/Users/kalias/.dsh/profiles/web/cordis.yml",
+      "exists": true,
+      "sha256": "c300dcf2ebc5f02062d6591268d29d3db6fe45e0cb138f5467276fe2ba06076e"
+    }
+  ],
+  "identical": true
+}

@@ -2,6 +2,7 @@ import { useEffect } from 'react'
 import type { InjectFace, PropsRuntime } from '@deepseek-ai/dsh-client-ui-slots'
 import type { DiagnosticsPanelController, DiagnosticsPanelState } from './diagnostics-controller.ts'
 import { exportDiagnosticsReport } from './diagnostics-export.ts'
+import { diagnosticsTargetRows } from './diagnostics-target.ts'
 import type { DiagnosticsCheck, DiagnosticsReport } from '../diagnostics-contract.ts'
 
 export interface OpenBknDiagnosticsInjected {
@@ -87,7 +88,6 @@ function DiagnosticsBody({ state, refresh }: { state: DiagnosticsPanelState; ref
 }
 
 function TargetSummary({ report }: { report: DiagnosticsReport }) {
-  const target = report.target
   const row = (label: string, value: string) => (
     <div key={label} style={{ display: 'flex', gap: 8, fontSize: 13 }}>
       <span style={{ minWidth: 96, color: '#6b7280' }}>{label}</span>
@@ -96,11 +96,10 @@ function TargetSummary({ report }: { report: DiagnosticsReport }) {
   )
   return (
     <section style={{ border: '1px solid #e5e7eb', borderRadius: 10, padding: '10px 12px', marginBottom: 12 }}>
-      {row('Host 形态', target.hostForm)}
-      {row('平台', target.platform ?? '未知')}
-      {row('DSH 版本', target.dshVersion ?? '未知')}
-      {row('插件（磁盘）', target.pluginDiskVersion ?? '未知')}
-      {row('插件（已加载）', target.pluginLoadedVersion ?? '未知')}
+      {diagnosticsTargetRows(report.target).map(({ label, value }) => row(label, value))}
+      <p style={{ margin: '8px 0 0', fontSize: 12, color: '#6b7280', lineHeight: 1.5 }}>
+        未采集的基础信息不代表故障，请查看下方检查结果。磁盘版本不代表当前已加载版本。
+      </p>
     </section>
   )
 }

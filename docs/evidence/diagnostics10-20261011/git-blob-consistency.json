@@ -1,0 +1,224 @@
+{
+  "verifiedCommit": "e1819acf00f1684a00cb5ab79f20490927fa36a9",
+  "count": 36,
+  "allByteIdentical": true,
+  "selfComparison": false,
+  "files": [
+    {
+      "path": ".gitattributes",
+      "bytes": 2613,
+      "sha256": "3457f4f889c3627a94bf91784192ba0a79d0b5a64f796a94c9a6f0554b186d7a",
+      "localVsGit": "byte-identical"
+    },
+    {
+      "path": "docs/evidence/diagnostics10-20261011/B1-REPRODUCTION.md",
+      "bytes": 3472,
+      "sha256": "0da0423260a86807b617dff7897b250f38394949480a39750de7804c580e23ea",
+      "localVsGit": "byte-identical"
+    },
+    {
+      "path": "docs/evidence/diagnostics10-20261011/MAC-RESULTS.md",
+      "bytes": 5121,
+      "sha256": "e91db04646595e42a49b62337e07874df9b8ecc5e1468a8e597947d6a6440278",
+      "localVsGit": "byte-identical"
+    },
+    {
+      "path": "docs/evidence/diagnostics10-20261011/b1-native-boundary.jsonl",
+      "bytes": 1919,
+      "sha256": "4bbff68e81be5b595af0f2f45ef70bda724689396cb6b48766ab214189bd359a",
+      "localVsGit": "byte-identical"
+    },
+    {
+      "path": "docs/evidence/diagnostics10-20261011/b1-native-boundary.probe.mjs",
+      "bytes": 5748,
+      "sha256": "27c8594e7dbc3ee29e2f5c2ead8c8bb31fa6b176b6cd1938ff0f7e1f84d5c2d5",
+      "localVsGit": "byte-identical"
+    },
+    {
+      "path": "docs/evidence/diagnostics10-20261011/b1-preparation-cleanup.json",
+      "bytes": 629,
+      "sha256": "59dbf35215dea191ce977b4fa03c9cf86251a9e52055c44f861c1dcdb2221413",
+      "localVsGit": "byte-identical"
+    },
+    {
+      "path": "docs/evidence/diagnostics10-20261011/candidate-files.json",
+      "bytes": 10942,
+      "sha256": "3f5f8f03c2d549a2d5a9252a558a979b2921a5630055c801933ec83fa50d019f",
+      "localVsGit": "byte-identical"
+    },
+    {
+      "path": "docs/evidence/diagnostics10-20261011/candidate-manifest.json",
+      "bytes": 553,
+      "sha256": "64c2e7dceee2641d00bd0f4078b875f21de2f59421d7de615b3a1b592efbb2a2",
+      "localVsGit": "byte-identical"
+    },
+    {
+      "path": "docs/evidence/diagnostics10-20261011/desktop-fault-identity.json",
+      "bytes": 214,
+      "sha256": "dbe22369fd11cad373797c0932334ac8b2a9a4e9cf28d3b83df564bff4e368ef",
+      "localVsGit": "byte-identical"
+    },
+    {
+      "path": "docs/evidence/diagnostics10-20261011/desktop-identity.json",
+      "bytes": 282,
+      "sha256": "e23058b37aab91f520f6b169c4eea4d24ff81f0ba9ff0001b48d0fa101bec1b4",
+      "localVsGit": "byte-identical"
+    },
+    {
+      "path": "docs/evidence/diagnostics10-20261011/desktop-process-history.jsonl",
+      "bytes": 594,
+      "sha256": "95d49b98263140539843cc6f41f36c2ae84c1023f2b94d176ecb8684dc83c7a7",
+      "localVsGit": "byte-identical"
+    },
+    {
+      "path": "docs/evidence/diagnostics10-20261011/desktop-stops.jsonl",
+      "bytes": 214,
+      "sha256": "24c53e5a88de3e2f1f447c6392e7f701630adff5a3d5edbb7787cecf03ebfdfa",
+      "localVsGit": "byte-identical"
+    },
+    {
+      "path": "docs/evidence/diagnostics10-20261011/mac-desktop-business-fault-report.json",
+      "bytes": 1290,
+      "sha256": "09988c2bf3323779c53ad64e41b68c4b2791927d2ca11b2d8ed004b370a8eed5",
+      "localVsGit": "byte-identical"
+    },
+    {
+      "path": "docs/evidence/diagnostics10-20261011/mac-desktop-business-fault-ui.txt",
+      "bytes": 2715,
+      "sha256": "bf982836440bf487317e83e0a1ed03408bed48ca6f0c91cbd611a82574342aef",
+      "localVsGit": "byte-identical"
+    },
+    {
+      "path": "docs/evidence/diagnostics10-20261011/mac-desktop-business-fault.png",
+      "bytes": 279055,
+      "sha256": "c5c3f7e20450988f12e1528e5029460c122a021e12fc31ad76e40c7ec352f644",
+      "localVsGit": "byte-identical"
+    },
+    {
+      "path": "docs/evidence/diagnostics10-20261011/mac-desktop-normal-report.json",
+      "bytes": 2869,
+      "sha256": "84f43eb4c793601d92cc8209e532c33fdf58599482f33736f4a59635c0d4a480",
+      "localVsGit": "byte-identical"
+    },
+    {
+      "path": "docs/evidence/diagnostics10-20261011/mac-desktop-normal-ui.txt",
+      "bytes": 5200,
+      "sha256": "e1807fbb1c81744b84e5b54c197e423078e2a70f9509648cb11babbb8b01c824",
+      "localVsGit": "byte-identical"
+    },
+    {
+      "path": "docs/evidence/diagnostics10-20261011/mac-desktop-normal.png",
+      "bytes": 357289,
+      "sha256": "4d0e05ced8f4c29986900387447bf092352a27cb51e0d8b66a9ba0106657767d",
+      "localVsGit": "byte-identical"
+    },
+    {
+      "path": "docs/evidence/diagnostics10-20261011/mac-npm-business-fault-report.json",
+      "bytes": 1290,
+      "sha256": "715b32bcc0d7237e9351c40eedb84e3bc0268eefe01fe44e3f5fef66d69869d4",
+      "localVsGit": "byte-identical"
+    },
+    {
+      "path": "docs/evidence/diagnostics10-20261011/mac-npm-business-fault-ui.txt",
+      "bytes": 2548,
+      "sha256": "99b00fbfee69d200d6dc937f44ad531bbe2e3fd16a487b00592d962bce319dc6",
+      "localVsGit": "byte-identical"
+    },
+    {
+      "path": "docs/evidence/diagnostics10-20261011/mac-npm-business-fault.png",
+      "bytes": 64564,
+      "sha256": "509082ecba88776f023d53744b463a9519dd2b05fe9863588133e92e7e6b22a1",
+      "localVsGit": "byte-identical"
+    },
+    {
+      "path": "docs/evidence/diagnostics10-20261011/mac-npm-normal-report.json",
+      "bytes": 2869,
+      "sha256": "9e39c96bef381a325032c7db910f7f01285a7c7a22a3c981994f6d9fca03acb1",
+      "localVsGit": "byte-identical"
+    },
+    {
+      "path": "docs/evidence/diagnostics10-20261011/mac-npm-normal-ui.txt",
+      "bytes": 3596,
+      "sha256": "71f198679ba2bbb95e3cf8a9c6745b3883f083b18e05c8eada115ace0ac80933",
+      "localVsGit": "byte-identical"
+    },
+    {
+      "path": "docs/evidence/diagnostics10-20261011/mac-npm-normal.png",
+      "bytes": 63786,
+      "sha256": "311ae7254904ca7421bd620092d944f4015acfa5b9c99f2c961223425e5d0d7b",
+      "localVsGit": "byte-identical"
+    },
+    {
+      "path": "docs/evidence/diagnostics10-20261011/npm-fault-identity.json",
+      "bytes": 341,
+      "sha256": "0b8d90afc17f315768df1e631cd35e940cffa72fd1f2988924adb2ec5d4f4205",
+      "localVsGit": "byte-identical"
+    },
+    {
+      "path": "docs/evidence/diagnostics10-20261011/npm-identity.json",
+      "bytes": 270,
+      "sha256": "b7f99ed260fb335fab8c2764ff6df85ca6b9fb9f72e1e6345125ba886b7ac700",
+      "localVsGit": "byte-identical"
+    },
+    {
+      "path": "docs/evidence/diagnostics10-20261011/npm-process-history.jsonl",
+      "bytes": 674,
+      "sha256": "5585f28e7e306545b86096ac9c1d7ba314aef2dbd88351d63bef89dd7101dfba",
+      "localVsGit": "byte-identical"
+    },
+    {
+      "path": "docs/evidence/diagnostics10-20261011/npm-stops.jsonl",
+      "bytes": 212,
+      "sha256": "0ce5eb81705c62fac96c92c2e55593e533370c1e86ec12d11966e00acf0f45e6",
+      "localVsGit": "byte-identical"
+    },
+    {
+      "path": "docs/evidence/diagnostics10-20261011/report-provenance.json",
+      "bytes": 2055,
+      "sha256": "99ab6dbcbb5d904b50233d220e33e96ef597a5c0360a74d385239d52e4072f44",
+      "localVsGit": "byte-identical"
+    },
+    {
+      "path": "docs/evidence/diagnostics10-20261011/residual-check.json",
+      "bytes": 219,
+      "sha256": "66701db395f44705f7f8c5dc33c48d67ee28b085100c7b43f21f427576e38626",
+      "localVsGit": "byte-identical"
+    },
+    {
+      "path": "docs/evidence/diagnostics10-20261011/user-state.json",
+      "bytes": 2884,
+      "sha256": "d712249016607da059b6e2f2ef9df39f1f80d32ae852548b92aea73d98e68d91",
+      "localVsGit": "byte-identical"
+    },
+    {
+      "path": "docs/evidence/diagnostics10-20261011/validation-summary.json",
+      "bytes": 4382,
+      "sha256": "b43c907b18efc7dd13292fe5428e73e23816d8f8eaf869da00df2e3b28eb5228",
+      "localVsGit": "byte-identical"
+    },
+    {
+      "path": "docs/handoff/2026-10-11-diagnostics10-windows/HANDOFF.md",
+      "bytes": 8347,
+      "sha256": "5c9a5cee09fb9452a1867cb7738032f3529408a8cab6945feb7eeb07251e83c8",
+      "localVsGit": "byte-identical"
+    },
+    {
+      "path": "docs/handoff/2026-10-11-diagnostics10-windows/RESULTS-TEMPLATE.md",
+      "bytes": 1572,
+      "sha256": "b8b31f96808853be9e84619c97499fcd4f9fe1f59dbd65603f72f1ce0e80ab8d",
+      "localVsGit": "byte-identical"
+    },
+    {
+      "path": "docs/handoff/2026-10-11-diagnostics10-windows/stop-owned-host.ps1",
+      "bytes": 2466,
+      "sha256": "9fd7b9aa2d0b2a95a422ae1818d832e5d633192645cd569aa9e940ec37198aa4",
+      "localVsGit": "byte-identical"
+    },
+    {
+      "path": "docs/handoff/2026-10-11-diagnostics10-windows/verify-candidate.ps1",
+      "bytes": 3037,
+      "sha256": "a2b39f8dd0947074067c8d85d7453fbd7d76b4948db62325a99680700c97fbd8",
+      "localVsGit": "byte-identical"
+    }
+  ]
+}
