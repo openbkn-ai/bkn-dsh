@@ -45,7 +45,7 @@ class GeneratorTests(unittest.TestCase):
     def setUp(self):
         self.temp = tempfile.TemporaryDirectory(prefix='guide-')
         self.addCleanup(self.temp.cleanup)
-        self.root = Path(self.temp.name)/'手册 fixture'
+        self.root = Path(self.temp.name)/('手册 fixture' if os.name=='nt' else 'guide fixture')
         self.root.mkdir()
         (self.root/'images').mkdir()
         self.env = dict(os.environ, PYTHONUTF8='0', PYTHONCOERCECLOCALE='0',
