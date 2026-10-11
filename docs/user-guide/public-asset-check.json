@@ -1,0 +1,26 @@
+{
+  "sample_repository": "https://github.com/openbkn-ai/bkn-samples",
+  "visibility": "PUBLIC",
+  "sample_commit": "7b5b59ca106d4d563cfcc03ffc85b2e3c3b7d9f6",
+  "purchase_order_blob_sha": "4f0691db5caa2bf70bccf0a241fd1f8773fa0550",
+  "matched_order_lines": [
+    "31604",
+    "31606"
+  ],
+  "matched_material": "725-000274",
+  "presentation_replacements": [
+    "account label",
+    "platform address",
+    "local CLI and workspace paths",
+    "Interaction/Operation/Request/Trace/Receipt identifiers",
+    "diagnostic report ID"
+  ],
+  "original_captures_included": false,
+  "diagnostic_json_included": false,
+  "public_sample_authorized": true,
+  "image_ocr_check": {
+    "images_checked": 19,
+    "identifier_pattern_findings": 0,
+    "scope": "private address, account label, local paths and live execution ID patterns"
+  }
+}

@@ -1,0 +1,661 @@
+[
+  {
+    "id": "start",
+    "title": "Start here: three entry points",
+    "intro": "bkn-dsh connects an OpenBKN business knowledge network to DSH. Ask in natural language: the plugin connects the platform, scopes network access, and records business operations. OpenBKN supplies business data and calculations; the model writes the answer.",
+    "steps": [
+      "Plugins (插件): install, enable, and check the plugin version.",
+      "OpenBKN: configure the platform, sign in, select a knowledge network, and open diagnostics.",
+      "Conversation: use Standard mode (标准模式), ask a business question, then inspect business provenance."
+    ],
+    "figures": [
+      [
+        "01-home.png",
+        "The DSH desktop home screen. Red numbers identify controls to use.",
+        [
+          [
+            1,
+            5,
+            21,
+            "Plugins"
+          ],
+          [
+            2,
+            9,
+            91,
+            "OpenBKN panel"
+          ],
+          [
+            3,
+            48,
+            47,
+            "Standard mode"
+          ]
+        ]
+      ]
+    ],
+    "note": ""
+  },
+  {
+    "id": "install",
+    "title": "01 · Install and verify the plugin",
+    "intro": "Install and sign in to the DSH desktop app first. This guide targets DSH 0.2.0-rc.2 and plugin 0.2.0-rc.2-openbkn.0.2.0-9. Screenshots were captured in an isolated macOS environment.",
+    "steps": [
+      "Open Plugins (插件), then choose Add plugin (添加插件) at the top right.",
+      "Enter the pinned package <code>@openbkn/dsh-business-context@0.2.0-rc.2-openbkn.0.2.0-9</code> in the package/address field. Alternatively, enter the absolute path of the .tgz downloaded from the official release.",
+      "Select an accessible registry and choose Install (安装). If already installed, check that the package is enabled.",
+      "Open the installed @openbkn/dsh-business-context entry. Confirm the version ends in -9 and all three components are running."
+    ],
+    "figures": [
+      [
+        "02-plugins.png",
+        "Plugin management: add the package and inspect its installed entry.",
+        [
+          [
+            1,
+            5,
+            21,
+            "Open Plugins"
+          ],
+          [
+            2,
+            92,
+            11,
+            "Add plugin"
+          ]
+        ]
+      ],
+      [
+        "03-install-form.png",
+        "Installation form example; no installation was submitted for this screenshot.",
+        [
+          [
+            1,
+            31,
+            42,
+            "Package spec or absolute .tgz path"
+          ],
+          [
+            2,
+            67,
+            47,
+            "Registry"
+          ],
+          [
+            3,
+            50,
+            68,
+            "Install"
+          ]
+        ]
+      ],
+      [
+        "04-version.png",
+        "The installed plugin version and running component states.",
+        [
+          [
+            1,
+            63,
+            25.5,
+            "Version ends in -9"
+          ],
+          [
+            2,
+            95,
+            18.3,
+            "Package enabled"
+          ],
+          [
+            3,
+            95,
+            55.5,
+            "Component states"
+          ]
+        ]
+      ]
+    ],
+    "note": "-9 is published. Get the pinned package from the <a href=\"https://github.com/openbkn-ai/bkn-dsh/releases/tag/v0.2.0-rc.2-openbkn.0.2.0-9\">official release</a>. The filled installation form demonstrates the controls; the plugin was not reinstalled during screenshot collection. You do not need a source build or a discontinued Runtime archive."
+  },
+  {
+    "id": "config",
+    "title": "02 · Configure the platform address",
+    "intro": "Ask your administrator for the full platform URL. Use HTTPS for remote platforms; HTTP is suitable only for loopback addresses. The example deployment is https://openbkn.example.com; replace it with your own address.",
+    "steps": [
+      "Choose OpenBKN at the bottom left, then Settings (设置) at the top right of its panel.",
+      "Enter the complete URL in OpenBKN platform address (OpenBKN 平台地址), including the scheme.",
+      "Choose Save and continue (保存并继续). A saved setting confirms configuration, not successful connectivity or authorization. Sign in next."
+    ],
+    "figures": [
+      [
+        "05-config.png",
+        "The platform settings form.",
+        [
+          [
+            1,
+            60,
+            36,
+            "Settings"
+          ],
+          [
+            2,
+            30,
+            53.5,
+            "HTTPS platform URL"
+          ],
+          [
+            3,
+            33,
+            64,
+            "Save and continue"
+          ]
+        ]
+      ]
+    ],
+    "note": "The example uses a development certificate. DSH was started with NODE_EXTRA_CA_CERTS pointing to an administrator-provided certificate, with TLS verification enabled. Ask your administrator to prepare trust for a private CA. Existing conversations keep their original platform/network binding; changing the address does not rebind them. Wait for an active business turn to finish before changing settings."
+  },
+  {
+    "id": "cli",
+    "title": "03 · Check OpenBKN CLI availability",
+    "intro": "The OpenBKN CLI is the local program used for platform sign-in. Version -9 provides detection and an explicit install action.",
+    "steps": [
+      "Expand Advanced settings (高级设置) in Settings.",
+      "If CLI 0.1.5 is available (可用), continue. The example environment already had a working CLI.",
+      "If the CLI is missing, choose Detect and install CLI (检测并安装 CLI). The plugin looks for an existing executable first. It installs fixed SDK 0.1.5 through local npm only when eligible and missing.",
+      "Wait for an available result. Discovery fills the path draft; if it is not saved, choose Save and continue (保存并继续).",
+      "If you already have a CLI but DSH cannot find it, enter its absolute executable path. On Windows, point to openbkn.cmd, not its directory."
+    ],
+    "figures": [
+      [
+        "06-cli-ready.png",
+        "Advanced settings: CLI 0.1.5 was actually detected as available.",
+        [
+          [
+            1,
+            33,
+            48.5,
+            "Expand Advanced settings"
+          ],
+          [
+            2,
+            30,
+            56,
+            "CLI executable path"
+          ],
+          [
+            3,
+            34,
+            67.5,
+            "Available state"
+          ],
+          [
+            4,
+            33,
+            74,
+            "Save and continue"
+          ]
+        ]
+      ]
+    ],
+    "note": "Automatic installation requires usable Node/npm and a writable global npm directory. Supported Node versions are the 22 series at 22.19+ or versions 24+; Node 23 is excluded. The automatic installer pins SDK 0.1.5 for a 0.1.5 platform. Follow network, certificate, or permission messages if installation fails. Closing the panel does not cancel an accepted installation; reopen Advanced settings to inspect progress."
+  },
+  {
+    "id": "login",
+    "title": "04 · Sign in to OpenBKN",
+    "intro": "DSH sign-in and OpenBKN sign-in are separate. DSH gives you model access; OpenBKN determines which business knowledge networks you may use.",
+    "steps": [
+      "Choose Sign in with OpenBKN CLI and sync (使用 OpenBKN CLI 登录并同步).",
+      "Complete normal platform sign-in and authorization in the browser that opens. Enter passwords only on the platform sign-in page.",
+      "Return to DSH and wait for the business knowledge network list. Use Refresh state (刷新状态) if needed."
+    ],
+    "figures": [
+      [
+        "07-login.png",
+        "Start OpenBKN browser sign-in from DSH.",
+        [
+          [
+            1,
+            32,
+            49.5,
+            "Check the platform address"
+          ],
+          [
+            2,
+            38,
+            61,
+            "Start browser sign-in"
+          ],
+          [
+            3,
+            33,
+            67.5,
+            "Refresh after returning"
+          ]
+        ]
+      ]
+    ],
+    "note": "You do not need to paste a token into YAML, a conversation, or this guide. Signing in again can recover expired authentication, but insufficient permissions require administrator access."
+  },
+  {
+    "id": "network",
+    "title": "05 · Select a network and create its workspace",
+    "intro": "The selected network defines the business scope of the conversation. Bind the supply-chain sample through the panel before asking questions.",
+    "steps": [
+      "In OpenBKN, search by name, ID, or description. Search for the supply-chain network (供应链).",
+      "Choose View (查看) and check its name, ID, and description. The sample ID is <code>supply_ontology_hand</code>.",
+      "If it has no workspace, choose New workspace (新建工作区) and select a dedicated local folder in the system picker, for example <code>/path/to/supply-workspace</code>.",
+      "Before the first message, select Standard mode (标准模式). A recommended question helps you start: click it, check the draft, then send."
+    ],
+    "figures": [
+      [
+        "09-network-detail.png",
+        "Inspect the supply-chain network, then create its dedicated workspace.",
+        [
+          [
+            1,
+            31,
+            44,
+            "Search networks"
+          ],
+          [
+            2,
+            31,
+            55,
+            "Confirm the network name and ID"
+          ],
+          [
+            3,
+            65.5,
+            75.8,
+            "New workspace"
+          ]
+        ]
+      ],
+      [
+        "10-bound-session.png",
+        "The new bound conversation: workspace, Standard mode, and recommended question.",
+        [
+          [
+            1,
+            44,
+            43.5,
+            "Dedicated workspace"
+          ],
+          [
+            2,
+            59,
+            43.5,
+            "Standard mode"
+          ],
+          [
+            3,
+            42,
+            48,
+            "Recommended question"
+          ]
+        ]
+      ]
+    ],
+    "note": "Business conversations in this version do not support PTC. Once a PTC conversation has messages, its mode cannot be switched; create a new Standard conversation in the bound workspace. The workspace is a local folder, while business knowledge stays on the platform."
+  },
+  {
+    "id": "ask",
+    "title": "06 · Ask a business question and read the answer",
+    "intro": "Start with business objects, fields, and relationships. Check that the model accesses the selected network before asking more specific questions.",
+    "steps": [
+      "Enter a question. The real demonstration used the Chinese equivalent of:<pre>Using the current supply-chain knowledge network, explain the key fields of purchase orders and their relationships to suppliers and materials. Query the network before answering, and explain in plain language for business users.</pre>",
+      "Confirm Standard mode, choose the upward arrow at the bottom right, and wait for completion.",
+      "Check object definitions, field meanings, relationship directions, and data scope. Ask for query evidence, sample counts, and aggregation rules when needed.",
+      "Read the limitations at the end, then choose View business provenance (查看业务溯源)."
+    ],
+    "figures": [
+      [
+        "11-question.png",
+        "The business question before it was sent.",
+        [
+          [
+            1,
+            59,
+            43.5,
+            "Confirm Standard mode"
+          ],
+          [
+            2,
+            47,
+            55,
+            "Enter a business question"
+          ],
+          [
+            3,
+            86.5,
+            63,
+            "Send"
+          ]
+        ]
+      ],
+      [
+        "12b-answer-top.png",
+        "The real answer explains purchase-order fields and business meaning.",
+        [
+          [
+            1,
+            51,
+            3,
+            "Bound knowledge network"
+          ],
+          [
+            2,
+            39,
+            29.5,
+            "Turn completed"
+          ],
+          [
+            3,
+            45,
+            62.5,
+            "Read field explanations"
+          ]
+        ]
+      ],
+      [
+        "12-answer-provenance-entry.png",
+        "Limitations and the provenance entry at the end of the answer.",
+        [
+          [
+            1,
+            36,
+            43.5,
+            "Read data and capability limits"
+          ],
+          [
+            2,
+            45.5,
+            80.8,
+            "View business provenance"
+          ]
+        ]
+      ]
+    ],
+    "note": "The real turn completed in 26 seconds using network definitions and a small instance sample. One run_cypher call was refused by the plugin, after which managed instance queries succeeded. The answer described 3 order lines, 3 purchase requests, 2 suppliers, and 2 materials. This is not a full-population statistic; completed does not mean the business conclusion has passed human acceptance."
+  },
+  {
+    "id": "execution",
+    "title": "07 · Execution provenance: what happened in this turn",
+    "intro": "After opening business provenance, start with Execution provenance (执行溯源). Local execution events and platform execution facts appear separately.",
+    "steps": [
+      "Choose Execution provenance and check the Interaction ID and terminal state, such as completed.",
+      "Scroll through the local timeline to inspect call order, successes, failures, and subsequent recovery.",
+      "Scroll further to platform execution facts. Each Operation can show request, Trace, and Receipt references.",
+      "Distinguish local failures from platform failures. A completed final state does not erase a failed intermediate call."
+    ],
+    "figures": [
+      [
+        "13-execution.png",
+        "The local execution timeline; scroll to read all nodes.",
+        [
+          [
+            1,
+            6.8,
+            18,
+            "Execution provenance tab"
+          ],
+          [
+            2,
+            54,
+            31,
+            "Terminal state"
+          ],
+          [
+            3,
+            6,
+            43.5,
+            "Inspect the timeline"
+          ]
+        ]
+      ],
+      [
+        "13b-platform-operations.png",
+        "Platform execution facts further down in the same pane.",
+        [
+          [
+            1,
+            92,
+            7.5,
+            "Operation state"
+          ],
+          [
+            2,
+            12,
+            14.5,
+            "Request reference"
+          ],
+          [
+            3,
+            45,
+            14.5,
+            "Trace reference"
+          ],
+          [
+            4,
+            70,
+            14.5,
+            "Receipt reference"
+          ]
+        ]
+      ]
+    ],
+    "note": "The demonstration has 10 local timeline nodes and 6 platform operations. The Interaction associates business access with this answer. Operation, Trace, and Receipt references support further investigation and serve different purposes."
+  },
+  {
+    "id": "graph",
+    "title": "08 · Business context graph: referenced business elements",
+    "intro": "Choose Business context graph (业务上下文图) to inspect the elements the platform disclosed for this answer. They help explain which business objects and relation types the answer used.",
+    "steps": [
+      "Switch to Business context graph.",
+      "Choose an element such as Purchase order (采购订单) to view details on the right.",
+      "Check the knowledge network, source Operation, and resolving tool to connect the element to this turn.",
+      "Read the graph alongside the answer. No drawn edges does not mean the whole network has no relationships."
+    ],
+    "figures": [
+      [
+        "14-graph.png",
+        "Select Purchase order to inspect its source and disclosed scope.",
+        [
+          [
+            1,
+            16.5,
+            20.5,
+            "Business context graph tab"
+          ],
+          [
+            2,
+            36,
+            48,
+            "Choose Purchase order"
+          ],
+          [
+            3,
+            82,
+            36,
+            "Element details"
+          ],
+          [
+            4,
+            82,
+            78.5,
+            "Projection scope"
+          ]
+        ]
+      ]
+    ],
+    "note": "This turn shows 12 formally referenced elements and 0 visual relationships. It is the disclosed projection for this turn, not the complete network graph. A relation-type element is also different from an edge drawn between nodes."
+  },
+  {
+    "id": "evidence",
+    "title": "09 · Evidence chain: locate platform receipts",
+    "intro": "Choose Evidence chain (证据链) to identify platform receipts associated with the answer. Use their IDs when further verification is needed.",
+    "steps": [
+      "Switch to Evidence chain and check each receipt source and state.",
+      "Record or copy the Receipt ID you need to inspect.",
+      "For independent verification, ask an administrator or use the command shown in a correctly configured platform CLI environment.",
+      "If receipts are absent, undisclosed, or unauthorized, follow the specific pane message. Do not assume execution failed or data does not exist."
+    ],
+    "figures": [
+      [
+        "15-evidence.png",
+        "Six platform receipt references with further query instructions.",
+        [
+          [
+            1,
+            25.5,
+            18,
+            "Evidence chain tab"
+          ],
+          [
+            2,
+            12,
+            32.5,
+            "Receipt ID"
+          ],
+          [
+            3,
+            12,
+            38.5,
+            "CLI query instruction"
+          ],
+          [
+            4,
+            48,
+            35.7,
+            "Check the source"
+          ],
+          [
+            5,
+            92,
+            32.5,
+            "Check the state"
+          ]
+        ]
+      ]
+    ],
+    "note": "The pane displays receipt references; it does not run openbkn trace receipts get automatically. The demonstration opened the pane but did not independently verify every receipt through CLI. completed is not proof of answer correctness."
+  },
+  {
+    "id": "continue",
+    "title": "10 · Continue a conversation or start a new one",
+    "intro": "Continue the same conversation for the same business topic. Start a new conversation for a different topic while retaining the supply-chain workspace binding.",
+    "steps": [
+      "Open OpenBKN and expand the associated supply-chain network.",
+      "Choose Continue conversation (继续会话) to return to the existing conversation, or New conversation (新建会话) for another question.",
+      "Specify objects, conditions, dates, and desired output. Example: “Which field links purchase orders to suppliers? Show the evidence for the modeled relationship.”",
+      "For counts or amounts, specify deduplication, order headers versus order lines, and date range. Ask the model to state missing capabilities or missing data explicitly."
+    ],
+    "figures": [
+      [
+        "16-continue.png",
+        "An associated network offers Continue and New conversation.",
+        [
+          [
+            1,
+            43,
+            53.5,
+            "Confirm the associated workspace"
+          ],
+          [
+            2,
+            59,
+            69.5,
+            "Continue conversation"
+          ],
+          [
+            3,
+            66,
+            69.5,
+            "New conversation"
+          ]
+        ]
+      ]
+    ],
+    "note": "To switch networks, use OpenBKN and enter the other network’s dedicated workspace before creating a conversation. Merely mentioning a different network in the question does not reliably change the binding."
+  },
+  {
+    "id": "diagnostics",
+    "title": "11 · Diagnostics and export",
+    "intro": "For configuration, connection, sign-in, network-list, or provenance problems, choose Diagnostics (诊断) at the top right of the OpenBKN panel.",
+    "steps": [
+      "Check the report ID, collection time, and recorded versions.",
+      "Read passed, failed, and unknown results together with the current error to locate CLI, authentication, network directory, or provenance problems.",
+      "After recovery, choose Collect again (重新采集). This summarizes observations already made; it is not a new full end-to-end business test.",
+      "Choose Export diagnostic report (导出诊断报告), select a location and filename in the save dialog, and provide the report together with steps, time, and the error when asking for help."
+    ],
+    "figures": [
+      [
+        "17-diagnostics-top.png",
+        "Report information, disk plugin version, and recorded observations.",
+        [
+          [
+            1,
+            40,
+            23.5,
+            "Report ID and collection time"
+          ],
+          [
+            2,
+            45,
+            35.5,
+            "Plugin version on disk"
+          ],
+          [
+            3,
+            38,
+            72,
+            "Authentication history and recovery"
+          ]
+        ]
+      ],
+      [
+        "18-diagnostics-export.png",
+        "At the bottom: export the JSON report or collect observations again.",
+        [
+          [
+            1,
+            29.5,
+            84.5,
+            "Export diagnostic report"
+          ],
+          [
+            2,
+            37.5,
+            84.5,
+            "Collect again"
+          ]
+        ]
+      ]
+    ],
+    "note": "All 10 checks in this exported report passed. Collection is passive. Authentication history has failureCount=1 and recovered=true, showing a recovered earlier failure. Unknown DSH or loaded-plugin versions mean the collector did not obtain them; the demonstration confirmed versions separately through the app metadata and plugin details."
+  },
+  {
+    "id": "faq",
+    "title": "12 · Troubleshooting quick reference",
+    "intro": "<table><thead><tr><th>What you see</th><th>What to do</th></tr></thead><tbody><tr><td>OpenBKN entry is missing</td><td>Check installation, the enabled switch, and running components in Plugins. Restart if DSH requests it, then export diagnostics if still missing.</td></tr><tr><td>CLI missing or installation fails</td><td>Use Advanced settings. For an existing CLI, enter its absolute executable path. Check Node/npm, network, certificates, and global-directory permissions.</td></tr><tr><td>No networks after sign-in / platform-mismatch</td><td>Check HTTPS, port, and the intended platform. Save, sign in again, and refresh. Confirm the account has network permissions.</td></tr><tr><td>Certificate error</td><td>Ask the administrator to configure trusted platform certificates or CA trust. Use the administrator-provided startup method for development certificates.</td></tr><tr><td>Cannot switch an existing PTC conversation</td><td>Create a new conversation in the network workspace and choose Standard mode before the first message.</td></tr><tr><td>Answer finds no data</td><td>Check the network badge, object names, filters, and permissions. Ask the model to explain the empty result and query scope.</td></tr><tr><td>Platform capability is unsupported</td><td>Keep the error and provenance, then use available managed capabilities. Do not replace platform statistics with local guesses.</td></tr><tr><td>Provenance is not ready / turn unfinished</td><td>Wait until the turn ends. Cancellation or a missing finish can affect terminal state and completeness.</td></tr><tr><td>Unauthorized / undisclosed / platform unavailable</td><td>These are different causes. Follow the pane message: ask the administrator about access or check platform URL/service for connection problems.</td></tr><tr><td>No graph edges or no receipts</td><td>Only the displayable content for this turn is limited. Compare execution facts; do not infer that the entire network has no relationships or data.</td></tr><tr><td>Unknown versions or historical failures in diagnostics</td><td>Check time and recovered state. Unknown means missing collected evidence; Collect again is not an active test.</td></tr></tbody></table>",
+    "steps": [
+      "First-success checklist: running plugin → available CLI → correct platform URL → successful sign-in → bound network → Standard mode → real question → inspect provenance.",
+      "For help, provide reproduction steps, time, the error, and the diagnostic report. Passwords and tokens are not needed in a conversation."
+    ],
+    "figures": [],
+    "note": ""
+  },
+  {
+    "id": "scope",
+    "title": "Appendix · What this guide verifies",
+    "intro": "This guide records an actual isolated macOS desktop workflow captured on 2026-10-11. The sample is supply_ontology_hand. Substitute your own platform and local workspace.",
+    "steps": [
+      "Actually completed: installed-version checks, CLI detection, HTTPS platform sign-in, supply-chain network selection, folder binding, a real business question, all three provenance tabs, and diagnostic export.",
+      "The installation form demonstrates control locations. The plugin and CLI were not reinstalled during capture. Windows UI, full-population statistics, and independent CLI verification of every receipt were not tested for this guide.",
+      "Example platform: https://openbkn.example.com. Network: 供应链本体知识网络-手工版 (Supply-chain ontology knowledge network, manual edition) / supply_ontology_hand.",
+      "Answer screenshots contain real model output from this turn. Verify fields, filters, sample scope, and platform results before treating a conclusion as a business fact.",
+      "Read Markdown directly on GitHub and click images for larger views. Download HTML for offline reading, image enlargement, and printing."
+    ],
+    "figures": [],
+    "note": ""
+  }
+]

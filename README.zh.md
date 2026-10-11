@@ -1,5 +1,7 @@
 # bkn-dsh
 
+**图文使用手册：** [中文](docs/user-guide/README.zh.md) · [English](docs/user-guide/README.en.md) · [PDF（中文）](docs/user-guide/bkn-dsh-9-user-guide.zh.pdf)。覆盖安装配置、CLI、登录、供应链问答、溯源与诊断，配有带点击编号的实机截图。
+
 已发布 -7 的历史记录：[GitHub Release](https://github.com/openbkn-ai/bkn-dsh/releases/tag/v0.2.0-rc.2-openbkn.0.2.0-7)、[累计更新说明](docs/releases/2026-10-06-unified-7-notes.md)与[公开包核验凭证](https://github.com/openbkn-ai/bkn-dsh/releases/download/v0.2.0-rc.2-openbkn.0.2.0-7/PUBLICATION-VERIFICATION.json)。历史 -5/-6 包及较早的 -7 候选保留原身份，验收结论仍限定于记录的包和场景。
 
 [English](README.md)
