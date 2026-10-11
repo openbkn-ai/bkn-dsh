@@ -1,5 +1,7 @@
 # bkn-dsh
 
+**Illustrated user guide:** [English](docs/user-guide/README.en.md) · [中文](docs/user-guide/README.zh.md) · [PDF (中文)](docs/user-guide/bkn-dsh-9-user-guide.zh.pdf). Includes installation, CLI setup, sign-in, supply-chain Q&A, provenance, and diagnostics with numbered screenshots.
+
 Published -7 history: [GitHub Release](https://github.com/openbkn-ai/bkn-dsh/releases/tag/v0.2.0-rc.2-openbkn.0.2.0-7), [cumulative update notes](docs/releases/2026-10-06-unified-7-notes.md), and [publication verification](https://github.com/openbkn-ai/bkn-dsh/releases/download/v0.2.0-rc.2-openbkn.0.2.0-7/PUBLICATION-VERIFICATION.json). Historical -5/-6 packages and earlier -7 candidates retain their original identities; acceptance remains limited to the recorded artifacts and scenarios.
 
 [中文](README.zh.md)
