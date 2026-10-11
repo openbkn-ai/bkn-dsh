@@ -104,6 +104,8 @@ unchanged.
 
 When something does not work, click **OpenBKN** in the sidebar footer, then **诊断** at the top right of the panel and export the report. There is only one OpenBKN sidebar entry. The panel frame and diagnostics action remain available when the business component cannot import or its services are not ready. The diagnostics service runs as an independent plugin row; if its implementation cannot start, the panel explicitly reports that diagnostics is unavailable. The exported JSON contains only whitelisted facts — stages, classification codes, bounded evidence such as HTTP statuses and exit codes, and coverage notes. It never contains tokens, raw error text, URLs, or file contents. Send the exported file to support.
 
+Diagnostics displays the Node platform identifier `win32` as Windows; it does not imply a 32-bit OS. Unavailable host-form and version fields explain why they were not identified or collected. Missing metadata is not a failed check. Disk and loaded versions remain independent, and exported JSON retains raw platform identifiers and null values.
+
 ## License
 
 [Apache License 2.0](LICENSE)

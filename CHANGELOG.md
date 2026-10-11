@@ -2,6 +2,11 @@
 
 All notable changes to this project are documented here.
 
+## 0.2.0-rc.2-openbkn.0.2.0-10 (unreleased)
+
+- Diagnostics now displays Windows/macOS/Linux names and explains unavailable host-form and version fields. Exported identifiers and nulls remain unchanged; disk and loaded versions are kept separate.
+- B1 authentication recovery remains under investigation; no unproven credential or MCP lifecycle fix is included.
+
 ## 0.2.0-rc.2-openbkn.0.2.0-9 (unreleased)
 
 CLI setup inside the existing advanced settings. Same DSH `0.2.0-rc.2` pin and authentication flow.
