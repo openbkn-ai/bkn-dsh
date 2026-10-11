@@ -1,0 +1,114 @@
+Window: "DeepSeek Harness", App: DeepSeek Harness.
+0 standard window DeepSeek Harness, Secondary Actions: Raise
+	1 container DeepSeek Harness
+		2 container
+			3 HTML content DeepSeek Harness, URL: dsh-app://app/
+				4 container
+					5 button 收起侧边栏
+					6 button 新建会话
+					7 container 全局面板
+						8 button 插件
+					9 text 工作区
+					10 button 搜索会话
+					11 text field (settable) 搜索会话名称
+					12 button 视图选项
+					13 button 添加工作区
+					14 outline 会话
+						15 container
+							16 row 默认工作区
+								17 text 默认工作区
+							18 row 新会话
+								19 text 新会话
+					20 button OpenBKN business knowledge networks
+					21 pop up button 账号菜单
+					22 container
+						23 heading 插件, Value: 1
+							24 text 插件
+						25 text 安装、启用和配置插件
+						26 button 插件说明
+						27 button 刷新
+						28 button 添加插件
+					29 container
+						30 heading 官方, Value: 3
+							31 text 官方
+						32 text 8
+						33 content list
+							34 container
+								35 button 查看 智能体团队
+								36 text 实验性 启用团队协作、团队工具、成员列表和共享任务看板。
+								37 switch Description: 启用 智能体团队, Value: off
+							38 container
+								39 button 查看 自动授权审查
+								40 text 实验性 提供自动审查权限模式，由模型在每次工具调用前判断是否授权。
+								41 switch Description: 启用 自动授权审查, Value: off
+							42 container
+								43 button 查看 自动化任务
+								44 text 实验性 按设定的时间或周期，在会话中自动执行任务。
+								45 switch Description: 启用 自动化任务, Value: off
+							46 container
+								47 button 查看 语音输入
+								48 text 实验性 在本机使用 SenseVoice 转写录音，首次使用需安装依赖。
+								49 switch Description: 启用 语音输入, Value: off
+							50 container
+								51 button 查看 终端
+								52 text 限制每条命令最多能跑多久、最多输出多少内容。
+							53 container
+								54 button 查看 Agent 循环
+								55 text 控制 Agent 派发工具调用的方式。
+							56 container
+								57 button 查看 子智能体
+								58 text 设置子智能体的递归层级、数量和模型。
+							59 container
+								60 button 查看 网页搜索
+								61 text 设置 DeepSeek 的搜索提供方。
+					62 container
+						63 heading 已安装, Value: 3
+							64 text 已安装
+						65 text 1
+						66 content list
+							67 container
+								68 button 查看 @openbkn/dsh-business-context
+								69 text OpenBKN business knowledge-network context for DeepSeek Harness
+								70 switch Description: 启用 @openbkn/dsh-business-context, Value: on
+					71 container OpenBKN 诊断
+						72 container
+							73 text OPENBKN
+							74 heading 诊断, Value: 2
+								75 text 诊断
+							76 button Close
+						77 container
+							78 text 报告编号  896a1443  · 生成于  10/11/2026, 11:17:50 AM  · 模式  被动采集 运行形态 桌面版 操作系统 macOS DSH 版本 未采集（宿主未提供版本） 插件（磁盘） 0.2.0-rc.2-openbkn.0.2.0-10 插件（已加载） 未采集（无法确认运行版本）
+							79 text 未采集的基础信息不代表故障，请查看下方检查结果。磁盘版本不代表当前已加载版本。
+							80 text ●  通过 bootstrap-entry installation  /  component-loaded
+							81 text entryPresent=true
+							82 text ●  通过 business-entry component  /  component-loaded
+							83 text entryPresent=true
+							84 text ●  通过 diagnostics-entry diagnostics  /  component-loaded
+							85 text schemaVersion=1
+							86 text ●  未执行 configuration configuration  /  configuration-required
+							87 text configured=false
+							88 text Open OpenBKN settings, save the platform URL, then sign in with the OpenBKN CLI.
+							89 text ●  未执行 pending:cli cli  /  configuration-required
+							90 text configured=false
+							91 text Open OpenBKN settings, save the platform URL, then sign in with the OpenBKN CLI.
+							92 text ●  未执行 pending:authentication authentication  /  configuration-required
+							93 text configured=false
+							94 text Open OpenBKN settings, save the platform URL, then sign in with the OpenBKN CLI.
+							95 text ●  未执行 pending:context-loader context-loader  /  configuration-required
+							96 text configured=false
+							97 text Open OpenBKN settings, save the platform URL, then sign in with the OpenBKN CLI.
+							98 text ●  未执行 pending:platform-directory platform-directory  /  configuration-required
+							99 text configured=false
+							100 text Open OpenBKN settings, save the platform URL, then sign in with the OpenBKN CLI.
+							101 button 导出诊断报告
+							102 button 重新采集
+	103 close button
+	104 full screen button Help: this button also has an action to zoom the window, Secondary Actions: zoom the window
+	105 minimize button
+106 menu bar
+	107 DeepSeek Harness
+	108 文件
+	109 Edit
+	110 Window
+
+The focused UI element is 3 HTML content DeepSeek Harness, URL: dsh-app://app/

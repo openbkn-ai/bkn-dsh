@@ -1,0 +1,105 @@
+{
+  "sourceCommit": "4daccf6b794ee7e9d55b9c7a45f29f5403c6d2a0",
+  "logsRemainLocal": true,
+  "checks": [
+    {
+      "check": "build",
+      "localLogPath": "/Users/kalias/Documents/project/app/openBKN/bkn-dsh-diagnostics10/release/diagnostics10/build.log",
+      "bytes": 1862,
+      "sha256": "39769bec716357590300bb636337901be4de51955f5efad526c9251e6721e98c",
+      "tail": [
+        "The ESM format is compatible with modern platforms and runtimes, and most new libraries are now distributed only in ESM format.",
+        "Learn more at https://nodejs.org/en/learn/modules/publishing-a-package#how-did-we-get-here",
+        "",
+        "\u2139 Hint: consider adding deps.onlyBundle option to avoid unintended bundling of dependencies, or set deps.onlyBundle: false to disable this hint.",
+        "See more at https://tsdown.dev/options/dependencies#deps-onlybundle",
+        "Detected dependencies in bundle:",
+        "- zod",
+        "\u2139 lib/client.js  342.64 kB \u2502 gzip: 70.43 kB",
+        "\u2139 1 files, total: 342.64 kB",
+        "\u2714 Build complete in 27ms"
+      ]
+    },
+    {
+      "check": "typecheck",
+      "localLogPath": "/Users/kalias/Documents/project/app/openBKN/bkn-dsh-diagnostics10/release/diagnostics10/typecheck.log",
+      "bytes": 75,
+      "sha256": "e9bde1b9c430b1f263cf72baa9160a680b8c6a2046c94728f535c5a45341fd3b",
+      "tail": [
+        "$ pnpm --filter @openbkn/dsh-business-context run typecheck",
+        "$ tsc -b ../.."
+      ]
+    },
+    {
+      "check": "plugin-tests",
+      "localLogPath": "/Users/kalias/Documents/project/app/openBKN/bkn-dsh-diagnostics10/release/diagnostics10/plugin-tests.log",
+      "bytes": 40321,
+      "sha256": "f365327c4f859585562a8ffe050b89c6ef566c94abcd631f14155a2f0c6bc714",
+      "tail": [
+        "\u2714 fails closed when a workspace has no association or more than one association (0.062958ms)",
+        "\u2714 refuses to associate a second knowledge network with the same workspace (0.317167ms)",
+        "\u2139 tests 417",
+        "\u2139 suites 0",
+        "\u2139 pass 416",
+        "\u2139 fail 0",
+        "\u2139 cancelled 0",
+        "\u2139 skipped 1",
+        "\u2139 todo 0",
+        "\u2139 duration_ms 2266.154166"
+      ]
+    },
+    {
+      "check": "repo-tests",
+      "localLogPath": "/Users/kalias/Documents/project/app/openBKN/bkn-dsh-diagnostics10/release/diagnostics10/repo-tests.log",
+      "bytes": 9045,
+      "sha256": "080e29f223c58b6b386f738668d922ec1cdbd1bfafc5997cc1314c5300fee717",
+      "tail": [
+        "\u2714 a corrupted home profile manifest fails closed with context and is never overwritten (2.04925ms)",
+        "\u2714 a corrupted template manifest fails closed before any home directory is created (1.501375ms)",
+        "\u2139 tests 60",
+        "\u2139 suites 0",
+        "\u2139 pass 60",
+        "\u2139 fail 0",
+        "\u2139 cancelled 0",
+        "\u2139 skipped 0",
+        "\u2139 todo 0",
+        "\u2139 duration_ms 462.520875"
+      ]
+    },
+    {
+      "check": "package-check",
+      "localLogPath": "/Users/kalias/Documents/project/app/openBKN/bkn-dsh-diagnostics10/release/diagnostics10/package-check.log",
+      "bytes": 259,
+      "sha256": "caa26860116f076a1b2011deb0839eb4be6046d2d385acf6df1bbd1500c4d107",
+      "tail": [
+        "$ node scripts/package-bundle.mjs --check",
+        "Package audit passed: @openbkn/dsh-business-context@0.2.0-rc.2-openbkn.0.2.0-10 (70 files)",
+        "cordis.patch.yml",
+        "lib/client.js",
+        "lib/index.js",
+        "lib/business.js",
+        "lib/diagnostics.js",
+        "lib/typert.host.js",
+        "lib/typert.remote-client.js"
+      ]
+    },
+    {
+      "check": "pack",
+      "localLogPath": "/Users/kalias/Documents/project/app/openBKN/bkn-dsh-diagnostics10/release/diagnostics10/pack.log",
+      "bytes": 2518,
+      "sha256": "58a3c92b9d4992d9cb2432e5d5e66ad473c5551c89ab856cb5358875d10ef340",
+      "tail": [
+        "lib/types/turn-provenance.d.ts",
+        "lib/types/turn-timeline.d.ts",
+        "lib/types/types.d.ts",
+        "lib/types/workspace-binding-registry.d.ts",
+        "LICENSE",
+        "package.json",
+        "README.md",
+        "README.zh.md",
+        "Tarball Details",
+        "/Users/kalias/Documents/project/app/openBKN/bkn-dsh-diagnostics10/release/diagnostics10/openbkn-dsh-business-context-0.2.0-rc.2-openbkn.0.2.0-10.tgz"
+      ]
+    }
+  ]
+}
