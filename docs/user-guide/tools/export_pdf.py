@@ -36,6 +36,7 @@ def render(previous_toc=()):
  def para(t,st=S):
   nonlocal y
   p,h=pobj(t,st)
+  if h>TOP-BOTTOM:raise ValueError('Text block is too tall for one page; split it into shorter steps')
   if y-h<BOTTOM:new()
   p.drawOn(c,M,y-h);y-=h+7;limits.append(y)
  def ensure(h,label):

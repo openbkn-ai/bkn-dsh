@@ -112,6 +112,16 @@ class GeneratorTests(unittest.TestCase):
             self.assertIn(b'cover every step exactly once', result.stderr)
         for name in outputs:self.assertEqual((self.root/name).read_bytes(), b'existing output')
 
+    def test_oversized_step_fails_without_publishing_clipped_output(self):
+        ss=self.fixture(0, 1)
+        ss[0]['steps']=['LongStep ' * 4000]
+        self.write_sources(ss)
+        destination=self.root/'bkn-dsh-9-user-guide.zh.pdf'
+        destination.write_bytes(b'existing PDF')
+        result=self.run_tool('export_pdf.py', '--font', os.environ['GUIDE_TEST_FONT'], success=False)
+        self.assertIn(b'split it into shorter steps', result.stderr)
+        self.assertEqual(destination.read_bytes(), b'existing PDF')
+
     def test_current_guide_stays_21_pages_with_all_images_and_bookmarks(self):
         from pypdf import PdfReader
         for lang in ['zh', 'en']:
