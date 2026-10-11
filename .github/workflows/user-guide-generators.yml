@@ -18,7 +18,7 @@ jobs:
         os: [ubuntu-latest, windows-latest]
     runs-on: ${{ matrix.os }}
     env:
-      GUIDE_TEST_FONT: ${{ runner.temp }}/NotoSansSC.ttf
+      GUIDE_TEST_FONT: ${{ github.workspace }}/NotoSansSC.ttf
       PYTHONUTF8: '0'
       PYTHONCOERCECLOCALE: '0'
       PYTHONIOENCODING: utf-8
