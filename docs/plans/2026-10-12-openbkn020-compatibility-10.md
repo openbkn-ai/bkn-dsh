@@ -2,7 +2,7 @@
 
 状态：源码改动及受控测试已实施；正式 0.2.0 实机验收待发布后执行。2026-10-12 用户决定将 0.2.0 兼容适配纳入 -10；正式平台/SDK 包发布后再做实机验收。
 
-实现源码 `a06ef53979e4b5cb6b84da3619d64529929577cf` 已通过 build-only CI `38197960456`，新候选为 70 文件、tgz SHA `a0d633ad6526940c5672fad99592b878619ea968b2ca7bda047020de05a4036a`。受控结果及完整身份见 `docs/evidence/openbkn020-compatibility10-20261012/RESULTS.md`；此候选尚未实机验收，旧 Mac 结果不延伸到本轮新增兼容。
+评审收尾源码 `9a35c0d9d1263b5f39b24d596f07dbcedbf25d04` 已获源码复评 Approved 并通过 build-only CI `38209375894`。当前候选为 70 文件、tgz SHA `a91adc9e342faa4f763d73487cd56d2f4ead8bb21bf755ca11426f77d90c9bae`，受控结果及完整身份见 `docs/evidence/openbkn020-compatibility10-20261012/review/RESULTS.md`。首轮 `a06ef53` / CI `38197960456` 的记录保留在父目录；旧 Mac 结果不延伸到新增兼容或后续修正，当前候选尚未实机验收。
 
 ## 范围与基线
 

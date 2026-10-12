@@ -5,11 +5,11 @@ All notable changes to this project are documented here.
 ## 0.2.0-rc.2-openbkn.0.2.0-10 (unreleased)
 
 - Diagnostics now displays Windows/macOS/Linux names and explains unavailable host-form and version fields. Exported identifiers and nulls remain unchanged; disk and loaded versions are kept separate.
-- CLI setup accepts only the fixed 0.1.5 / 0.2.0 installation targets and verifies the selected version. Existing CLIs are retained; mismatches require an explicit path change or user-managed update.
+- CLI setup accepts only the fixed 0.1.5 / 0.2.0 installation targets and verifies the selected version. Existing CLIs are retained; mismatch hints appear only after an explicit version choice and require an explicit path change or user-managed update.
 - Accept documented large-network navigation shells in the optional profile without presenting omitted indices as zero concepts; malformed responses and network mismatches remain failures.
-- Recognize explicitly unrecorded Trace lifecycle results while retaining tool/network/single-turn guards. No stale Interaction IDs or fabricated receipts; provenance preserves the local timeline and labels Trace disabled/unavailable.
+- Recognize explicitly unrecorded Trace lifecycle results while retaining tool/network/single-turn guards. A successful finish ends governed access even when its result provides no usable provenance ID. No stale Interaction IDs or fabricated receipts; provenance preserves the local timeline and labels Trace disabled/unavailable.
 - Add a pinned 0.2.0 preparation-source contract including dynamically built lifecycle/context schemas. Formal 0.2.0 Mac/Windows acceptance remains pending. The upstream nullable output-schema discrepancy is tracked in Foundry #2106.
-- B1 authentication recovery remains under investigation; no unproven credential or MCP lifecycle fix is included.
+- B1 authentication recovery remains under investigation; no credential rotation or MCP authentication reconnect fix is claimed.
 
 ## 0.2.0-rc.2-openbkn.0.2.0-9 (unreleased)
 

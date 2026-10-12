@@ -1,0 +1,81 @@
+{
+  "scope": "19 controlled-review and CI-candidate evidence files; excludes this manifest and narrative report",
+  "files": {
+    "after-fix.log": {
+      "bytes": 8450,
+      "sha256": "927a20d79e6a7a82770f676c861cd8c356930740ad0da334f1b8142e4cf698a2"
+    },
+    "after-initial-fix.log": {
+      "bytes": 8429,
+      "sha256": "1c56ea0d4da7053155f7c276bcb4918b3a2afd1201189145396ab66ec8ef48ad"
+    },
+    "before-fix.log": {
+      "bytes": 11490,
+      "sha256": "5d0b4f96c56899625a68bcb5adb1b9762bd19139bfa570193380a5d32d7635fe"
+    },
+    "candidate-files.json": {
+      "bytes": 7382,
+      "sha256": "8534860d50d700c68fbc2e5e7f486a21e12a4a52de9af9ea1ad5f3c29401d690"
+    },
+    "candidate-manifest.json": {
+      "bytes": 1090,
+      "sha256": "b217c7b473ffdabcea46183d9bb77d4d45fc8f2cde99ab430d20383fff0c6f7c"
+    },
+    "ci-artifacts.json": {
+      "bytes": 730,
+      "sha256": "e602a1d272095499784962ff1899b7ea760b6bb3dbb8ae2cb2f35348c5ac0fa4"
+    },
+    "ci-run.json": {
+      "bytes": 5166,
+      "sha256": "8cfef2af89fe4471f72e016206dc9fafc44aebf3e5772816aeac3162d7adf9ab"
+    },
+    "ci-validation-excerpt.log": {
+      "bytes": 429635,
+      "sha256": "7520e24be9a59f5eb60f47e342f93ee251bc1e8c713a70547bced985188f79d1"
+    },
+    "followup-findings.json": {
+      "bytes": 1210,
+      "sha256": "a5c165ad1e412e96c3e508c12493b4409fd7be4158b62e3e9d46883765c4e8b6"
+    },
+    "initial-ci.json": {
+      "bytes": 170,
+      "sha256": "9a58017064330500dc166e60827982b24c5ae66198658f002b3b933e61b89a8b"
+    },
+    "pack-check.json": {
+      "bytes": 7904,
+      "sha256": "30a97369204970909fc46579039acd5f2a56b3e451b222ad72f27e927069915e"
+    },
+    "pack.log": {
+      "bytes": 2413,
+      "sha256": "483a0f76cfd9f3d7fd71b4ce50fa87eb4ae02f97c2087c34bd4a6fe3de4d2e41"
+    },
+    "package-check.log": {
+      "bytes": 259,
+      "sha256": "caa26860116f076a1b2011deb0839eb4be6046d2d385acf6df1bbd1500c4d107"
+    },
+    "plugin-tests.log": {
+      "bytes": 42562,
+      "sha256": "3babdc4632cf39d74a3b4fa3cf86dac2aff01ff6b4723930613420d59683f68c"
+    },
+    "repo-tests.log": {
+      "bytes": 9052,
+      "sha256": "581a31ae71cb4dba54ae57e0083baba7e25a84cdb6c7d594faa5c7ca6829a869"
+    },
+    "review-comments.json": {
+      "bytes": 8748,
+      "sha256": "28011bbe391c709736f692641b0d51e3b4ced92564da78ce7716d0b54816a193"
+    },
+    "review-findings.json": {
+      "bytes": 1591,
+      "sha256": "9300b6d39656c185d8eedc1910ab2b10579c2c04c40446405fd0cdab4c6083e2"
+    },
+    "source-review.json": {
+      "bytes": 5512,
+      "sha256": "9ba947afa6b68e17fb53cbe38f4920266e6f88abf9c195018bd2456132bdc678"
+    },
+    "typecheck.log": {
+      "bytes": 75,
+      "sha256": "e9bde1b9c430b1f263cf72baa9160a680b8c6a2046c94728f535c5a45341fd3b"
+    }
+  }
+}

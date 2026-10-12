@@ -1,0 +1,25 @@
+{
+  "version": "0.2.0-rc.2-openbkn.0.2.0-10",
+  "sourceCommit": "9a35c0d9d1263b5f39b24d596f07dbcedbf25d04",
+  "ciRun": 38209375894,
+  "ciRunUrl": "https://github.com/openbkn-ai/bkn-dsh/actions/runs/38209375894",
+  "artifactName": "plugin-tarball",
+  "artifactId": 11728158282,
+  "file": "openbkn-dsh-business-context-0.2.0-rc.2-openbkn.0.2.0-10.tgz",
+  "bytes": 188215,
+  "sha256": "a91adc9e342faa4f763d73487cd56d2f4ead8bb21bf755ca11426f77d90c9bae",
+  "fileCount": 70,
+  "filesManifestSha256": "8534860d50d700c68fbc2e5e7f486a21e12a4a52de9af9ea1ad5f3c29401d690",
+  "artifactZip": {
+    "bytes": 188509,
+    "sha256": "f89cee3dad434c16eeefdbe8996ee8331195a9026758cbe72c787222be3f813a",
+    "expiresAt": "2027-01-10T05:45:57Z"
+  },
+  "localDevelopmentPackComparison": {
+    "sha256": "0cfb36ab20384f0b9acae98b08c3a81f0fa80061fb7e86a832ec047a20536404",
+    "tgzByteIdentical": false,
+    "uncompressedTarByteIdentical": true,
+    "fileBytesIdentical": 70
+  },
+  "scope": "PR #89 review corrections within -10; controlled validation only; not live-accepted; B1 not claimed fixed; unpublished"
+}

@@ -33,3 +33,8 @@ docs/evidence/openbkn020-compatibility10-20261012/*.json -text
 # tsdown emits intentional trailing spaces in its native build output.
 docs/evidence/openbkn020-compatibility10-20261012/plugin-tests.log whitespace=-blank-at-eol
 docs/evidence/openbkn020-compatibility10-20261012/ci-validation-excerpt.log whitespace=-blank-at-eol
+# Preserve the PR #89 review reproduction and validation bytes independently.
+docs/evidence/openbkn020-compatibility10-20261012/review/*.log -text
+docs/evidence/openbkn020-compatibility10-20261012/review/*.json -text
+docs/evidence/openbkn020-compatibility10-20261012/review/plugin-tests.log whitespace=-blank-at-eol
+docs/evidence/openbkn020-compatibility10-20261012/review/ci-validation-excerpt.log whitespace=-blank-at-eol
