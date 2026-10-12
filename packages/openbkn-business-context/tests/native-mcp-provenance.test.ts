@@ -81,3 +81,27 @@ test('rejects an uncompleted or ambiguous OpenBKN interaction', () => {
   assert.equal(findCompletedNativeMcpProvenance(events('failed', 'int-failed'), 9), undefined)
   assert.equal(findCompletedNativeMcpProvenance([...events('completed', 'int-a'), ...events('completed', 'int-b')], 9), undefined)
 })
+
+test('explicit unrecorded finish is associated only with its own final answer and has no invented IDs', async () => {
+  for (const reply of [
+    { trace_recorded: false, capture_enabled: false, code: 'capture_disabled', required_action: 'continue_without_bkn_context' },
+    { trace_recorded: false, trace_available: false, stage: 'finish_interaction', code: 'trace_core_unavailable', required_action: 'continue_without_bkn_context' },
+  ]) {
+    const events = [
+      { type: 'tool/call', data: { turn: 2, callId: finishCallId, name: 'mcp__openbkn__bkn_finish_interaction' } },
+      { type: 'tool/result', data: { turn: 2, message: { source: { kind: 'tool', callId: finishCallId }, content: [{ type: 'text', text: JSON.stringify(reply) }] } } },
+      { type: 'assistant/message', data: { turn: 2, message: { id: 'answer', content: [{ type: 'text', text: 'Native answer' }] } } },
+    ]
+    const result = findCompletedNativeMcpProvenance(events, 2)
+    assert.equal(result?.messageId, 'answer')
+    assert.equal(result?.handle.interactionId, undefined)
+    assert.equal(result?.handle.conversationId, undefined)
+    assert.equal(result?.handle.recording, reply.capture_enabled === false ? 'disabled' : 'unavailable')
+    assert.deepEqual(result?.handle.receiptIds, [])
+    const { normalizeProvenanceHandle } = await import('../src/provenance-handle.ts')
+    assert.deepEqual(normalizeProvenanceHandle(result?.handle), result?.handle)
+    assert.throws(() => normalizeProvenanceHandle({ ...result?.handle, interactionId: 'old-int' }))
+    assert.throws(() => normalizeProvenanceHandle({ ...result?.handle, receiptIds: ['fake'] }))
+    assert.equal(findCompletedNativeMcpProvenance(events, 1), undefined)
+  }
+})

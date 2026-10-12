@@ -42,12 +42,12 @@ export function buildProvenanceView(
   const evidence = projectEvidence(operations, handle, degradations.operations)
   const sources = projectSources(operationsResponse, business, evidence, degradations)
   return {
-    interactionId: handle.interactionId,
+    ...(handle.interactionId === undefined ? {} : { interactionId: handle.interactionId }),
     ...(handle.conversationId === undefined ? {} : { conversationId: handle.conversationId }),
     sources,
     timeline: attachPlatformFacts(timeline, operations),
     execution: {
-      status: handle.status,
+      status: handle.recording === undefined ? handle.status : '未记录',
       operations,
     },
     business,
@@ -57,6 +57,7 @@ export function buildProvenanceView(
 
 /** Only retryable platform failures keep the unavailable wording; authorization and missing-record causes read differently. */
 function evidenceReasonFor(reason: ProvenanceDegradation['reason']): EvidenceUnavailableReason {
+  if (reason === 'trace-disabled' || reason === 'trace-unavailable') return reason
   if (reason === 'platform-unavailable') return 'platform-unavailable'
   if (reason === 'record-not-disclosed') return 'record-not-disclosed'
   if (reason === 'result-too-large') return 'result-too-large'

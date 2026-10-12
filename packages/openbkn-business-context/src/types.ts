@@ -14,14 +14,17 @@ export interface OpenBknConfigurationInput {
 }
 
 /** Bounded CLI setup result; installer output and credentials never cross this boundary. */
+export type OpenBknCliInstallVersion = '0.1.5' | '0.2.0'
+
 export interface OpenBknCliSetupView {
   readonly state: 'ready' | 'missing' | 'blocked' | 'installing' | 'failed'
   readonly canInstall: boolean
   readonly resolvedPath?: string
   readonly version?: string
+  readonly targetVersion?: OpenBknCliInstallVersion
   readonly reason?: 'custom-path-missing' | 'path-is-directory' | 'execution-failed' | 'npm-missing' | 'node-unavailable'
     | 'prefix-unavailable' | 'existing-installation' | 'permission-denied' | 'network-failed'
-    | 'tls-failed' | 'timeout' | 'installation-failed' | 'verification-failed' | 'host-unavailable' | 'busy'
+    | 'tls-failed' | 'timeout' | 'installation-failed' | 'verification-failed' | 'host-unavailable' | 'busy' | 'unsupported-version'
 }
 
 /** Safe, UI-ready representation of OpenBKN authentication state. */
@@ -55,10 +58,14 @@ export interface BusinessNetworkBinding {
  * designated home once the platform discloses them, but the verified contract
  * (2026-09-20) puts them only in the platform operations read model, never in
  * MCP tool results, so they stay empty for now and `partial` stays true.
+ * An explicit 0.2.0 unrecorded finish carries `recording` instead of IDs;
+ * this is a local association to that answer, not a fabricated platform record.
  */
 export interface ProvenanceHandle {
   readonly schemaVersion: 2
-  readonly interactionId: string
+  /** Absent only for an explicitly unrecorded lifecycle result. */
+  readonly interactionId?: string
+  readonly recording?: 'disabled' | 'unavailable'
   readonly requestIds: readonly string[]
   readonly traceIds: readonly string[]
   readonly receiptIds: readonly string[]
@@ -170,6 +177,8 @@ export interface ProvenanceTimelineNode {
 
 /** Why the evidence pane cannot show receipts for this turn. */
 export type EvidenceUnavailableReason =
+  | 'trace-disabled'
+  | 'trace-unavailable'
   | /** This turn produced no receipts at all (e.g. a schema-only query). */
   'no-receipts'
   | /** The business domain or deployment license does not authorize the read. */
@@ -199,6 +208,8 @@ export type ProvenanceEvidenceView =
   | { readonly kind: 'ready'; readonly receipts: readonly ProvenanceReceiptRef[] }
 
 export type ProvenanceDegradationReason =
+  | 'trace-disabled'
+  | 'trace-unavailable'
   | 'license-required'
   | 'domain-not-authorized'
   | 'authentication-required'
@@ -226,7 +237,7 @@ export interface ProvenanceSources {
 }
 
 export interface ProvenanceView {
-  readonly interactionId: string
+  readonly interactionId?: string
   readonly conversationId?: string
   readonly sources: ProvenanceSources
   /** Layer 0: rebuilt from local session events; always non-empty for a recorded turn. */

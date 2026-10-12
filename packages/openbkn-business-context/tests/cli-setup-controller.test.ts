@@ -114,3 +114,15 @@ test('blocked and failure reasons never claim installed or require a restart as 
   assert.match(cliSetupMessage({ phase: 'failed', result: { state: 'failed', canInstall: false, reason: 'verification-failed' } }), /尚无法使用/)
   controller.dispose()
 })
+
+test('fixed version choice reaches Host and mismatch text never suggests overwriting existing CLI', async () => {
+  const received: string[] = []
+  const controller = new CliSetupController({ checkCli: async () => missing, installCli: async (_path, target) => {
+    received.push(target); return { ...ready, version: target }
+  } }, () => {})
+  await controller.detectAndInstall('openbkn', '0.2.0')
+  assert.deepEqual(received, ['0.2.0'])
+  assert.match(cliSetupMessage({ phase: 'ready', result: ready }, '/tools/openbkn', '0.2.0'), /平台版本为 0.2.0.*不会覆盖/)
+  assert.match(cliSetupMessage({ phase: 'installing', result: { state: 'installing', canInstall: false, targetVersion: '0.2.0' } }), /CLI 0.2.0/)
+  controller.dispose()
+})

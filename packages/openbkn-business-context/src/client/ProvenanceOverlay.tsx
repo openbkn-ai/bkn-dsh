@@ -94,7 +94,7 @@ export function ProvenanceOverlay({ useProvenanceOverlay, load, close }: Provena
 function Execution({ handle, view }: { handle: ProvenanceHandle; view: ProvenanceView }) {
   const operationsDegradation = view.sources.degraded.find(entry => entry.pane === 'operations')
   return <div style={{ display: 'grid', gap: 20 }}>
-    <section style={summaryStyle}><Metric label="Interaction ID" value={handle.interactionId} mono /><Metric label="执行状态" value={view.execution.status ?? handle.status} /><Metric label="时间链节点" value={String(view.timeline.length)} /></section>
+    <section style={summaryStyle}><Metric label="Interaction ID" value={handle.interactionId ?? '未记录'} mono /><Metric label="执行状态" value={view.execution.status ?? handle.status} /><Metric label="时间链节点" value={String(view.timeline.length)} /></section>
     <section style={{ display: 'grid', gap: 10 }}>
       <PaneHeading badge={<SourceBadge label="本地会话" mark={handle.partial ? 'partial' : undefined} />} title="执行时间链" note="由本机会话事件重建，不依赖平台授权；耗时为本机口径。" />
       {view.timeline.length === 0 ? <Empty text="本轮会话事件不足以重建时间链（旧版本记录的会话可能缺少事件时间戳）。" /> : <Timeline nodes={view.timeline} />}
@@ -196,6 +196,14 @@ function DegradedPane({ degradation }: { degradation: ProvenanceDegradation }) {
 
 function degradationCopy(degradation: ProvenanceDegradation): { title: string; detail: string; action?: string } {
   switch (degradation.reason) {
+    case 'trace-disabled': return {
+      title: '本轮溯源未记录：Trace 未启用',
+      detail: '平台明确关闭了 Trace 采集。本轮没有 Interaction ID 或平台证据记录；本地时间链仍可查看。业务结果不因此被重试。',
+    }
+    case 'trace-unavailable': return {
+      title: '本轮溯源未记录：Trace 暂不可用',
+      detail: '平台明确返回 Trace 不可用。本轮没有 Interaction ID 或平台证据记录；本地时间链仍可查看。不会重复业务查询补造溯源。',
+    }
     case 'license-required':
       return {
         title: '此面板需要企业版 License',
@@ -250,6 +258,8 @@ function SourceBadge({ label, mark }: { label: string; mark?: string }) {
 
 function degradationMark(reason: string): string {
   switch (reason) {
+    case 'trace-disabled': return 'Trace 未启用'
+    case 'trace-unavailable': return 'Trace 未记录'
     case 'license-required': return '需企业版'
     case 'domain-not-authorized': return '域未授权'
     case 'authentication-required': return '需重新认证'

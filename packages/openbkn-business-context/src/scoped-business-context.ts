@@ -228,7 +228,7 @@ const scopedPolicyPlugin = (
         // open platform-side — a documented known limitation (plan §11). The
         // stable code token plus turn and interaction id make the residue
         // countable and locatable without carrying any business payload.
-        if (lifecycle.open) {
+        if (lifecycle.open && lifecycle.interactionId !== undefined) {
           ctx.logger.warn(
             'openbkn-business-context: interaction left open at turn end (code=interaction-left-open, turn=%d, interactionId=%s)',
             payload.turn,
@@ -257,7 +257,7 @@ const scopedPolicyPlugin = (
       disposers.push(systemPrompt.section({
         name: 'openbkn:managed-session',
         order: 520,
-        text: () => `${policy.governance}\n${capabilityRoutingText(availability())}`,
+        text: () => `${policy.governance}\n${capabilityRoutingText(availability())}${lifecycle.recording === undefined ? '' : '\nTrace explicitly did not record this turn. There is no current Interaction ID. Continue governed business calls without bkn_context and finish without interaction_id. The prior Conversation identity, if any, remains only for a future start.'}`,
       }))
       if (policy.capabilities.length > 0) {
         disposers.push(systemPrompt.section({ name: 'openbkn:network-capabilities', order: 521, text: policy.capabilities }))

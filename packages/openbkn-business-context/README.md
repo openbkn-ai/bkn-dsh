@@ -6,6 +6,12 @@ OpenBKN business knowledge, network-scoped access, diagnostics, and provenance f
 
 Bring governed enterprise business knowledge into DeepSeek Harness conversations.
 
+## -10 compatibility preparation (unreleased)
+
+The 0.2.0 adaptation is source-tested against fixed preparation commits, not accepted on a released 0.2.0 platform/SDK. Existing 0.1.5 support remains. Advanced settings selects only the fixed CLI installation target 0.1.5 or 0.2.0; detection shows the actual existing version and never upgrades it automatically. Obtain and verify the formal 0.2.0 SDK before choosing that target.
+
+Large-network navigation summaries retain groups and disclosed counts; omitted indices do not mean zero concepts. Explicit Trace-disabled/unavailable lifecycle results permit the same scoped business work without invented IDs; provenance shows the unrecorded state and local timeline. Authentication, network and unknown-tool refusals remain unchanged. The nullable MCP output-schema mismatch is tracked separately in [Foundry #2106](https://github.com/openbkn-ai/bkn-foundry/issues/2106); the plugin does not rewrite platform MCP results. Native model answers are preserved.
+
 ## Why bkn-dsh
 
 General-purpose AI can reason fluently but often lacks the trusted business context required for real decisions. Enterprise knowledge is distributed across systems, rules, processes, metrics, and relationships, while access must remain consistent with the user's identity and permissions.
@@ -57,7 +63,7 @@ Install an OpenBKN CLI version that matches the platform. For OpenBKN 0.1.5, use
 
 1. Start DSH and click **OpenBKN** in the sidebar footer. An unset address is a normal **待配置** (not configured) state, with diagnostics available. Before configuration, the plugin does not contact OpenBKN or read its CLI credentials.
 2. Enter an absolute `http://` or `https://` platform address and click **保存并继续** (Save and continue). Invalid input is rejected without changing the saved configuration. The address is saved through DSH's configuration editor in the current profile and applied by normal component reload. Saving it does not prove that a connection or authorization succeeded.
-3. Open **高级设置** (Advanced settings) to detect the CLI; the default command is `openbkn`. A usable CLI's resolved path and version are displayed; choose **保存并继续** to apply its path. If it is not detected, **检测并安装 CLI** first rechecks, then installs SDK **0.1.5** using your npm registry and global directory. Node.js 22.19+ and npm must already be available. Existing usable CLIs are retained, not upgraded; a broken/custom path requires correction rather than automatic replacement. On Windows, an absolute path must include the shim filename, for example `C:/Users/<you>/AppData/Roaming/npm/openbkn.cmd`. Use **设置** (Settings) to edit this form later. Wait for an active business turn to finish before changing settings.
+3. Open **高级设置** (Advanced settings) to detect the CLI; the default command is `openbkn`. A usable CLI's resolved path and version are displayed; choose **保存并继续** to apply its path. If it is not detected, **检测并安装 CLI** first rechecks, then installs the selected fixed SDK version (**0.1.5** or **0.2.0**) using your npm registry and global directory. Select the version matching your platform; existing CLIs are never overwritten on a mismatch. Node.js 22.19+ and npm must already be available. Existing usable CLIs are retained, not upgraded; a broken/custom path requires correction rather than automatic replacement. On Windows, an absolute path must include the shim filename, for example `C:/Users/<you>/AppData/Roaming/npm/openbkn.cmd`. Use **设置** (Settings) to edit this form later. Wait for an active business turn to finish before changing settings.
 4. Choose **使用 OpenBKN CLI 登录并同步** (Sign in with OpenBKN CLI and sync), complete browser authorization, and return to DSH. If an existing credential is rejected, use the same action to sign in again. A 403 may require an administrator to grant access; another sign-in with the same account does not guarantee recovery.
 5. Select an authorized knowledge network, create or continue its workspace, and ask in a new **标准模式** (Standard mode) session. PTC mode is not supported. Completed answers offer **查看业务溯源** (View business provenance).
 

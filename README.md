@@ -6,6 +6,12 @@ Published -7 history: [GitHub Release](https://github.com/openbkn-ai/bkn-dsh/rel
 
 Bring governed OpenBKN business knowledge into DeepSeek Harness conversations.
 
+## -10 compatibility preparation (unreleased)
+
+The 0.2.0 adaptation is source-tested against fixed preparation commits, not accepted on a released 0.2.0 platform/SDK. Existing 0.1.5 support remains. Advanced settings selects only the fixed CLI installation target 0.1.5 or 0.2.0; detection shows the actual existing version and never upgrades it automatically. Obtain and verify the formal 0.2.0 SDK before choosing that target.
+
+Large-network navigation summaries retain groups and disclosed counts; omitted indices do not mean zero concepts. Explicit Trace-disabled/unavailable lifecycle results permit the same scoped business work without invented IDs; provenance shows the unrecorded state and local timeline. Authentication, network and unknown-tool refusals remain unchanged. The nullable MCP output-schema mismatch is tracked separately in [Foundry #2106](https://github.com/openbkn-ai/bkn-foundry/issues/2106); the plugin does not rewrite platform MCP results. Native model answers are preserved.
+
 ## Why
 
 Enterprise decisions need trusted business objects, metrics, rules, relationships, and permission-aware evidence. General-purpose chat alone does not provide that governed context.

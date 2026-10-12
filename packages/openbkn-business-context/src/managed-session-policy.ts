@@ -69,6 +69,8 @@ export function buildManagedSessionPolicy(
       'An Interaction is the boundary for every OpenBKN access, not only for data retrieval: when this turn needs OpenBKN, call mcp__openbkn__bkn_start_interaction first, perform all OpenBKN work inside it — schema, skills, tool discovery, queries, metrics, execution — and close it with mcp__openbkn__bkn_finish_interaction using the final outcome, including when the work failed. Exactly one Interaction per turn that touches OpenBKN; a turn that touches nothing creates none.',
       'Never inspect schema or skills to decide whether you need OpenBKN — reading them is already an OpenBKN access.',
       'bkn_start_interaction manages only the conversation and interaction lifecycle; its response does not replace or unset the bound knowledge network.',
+      'If a successful lifecycle response explicitly declares trace_recorded=false with capture_enabled=false or trace_available=false and required_action="continue_without_bkn_context", Trace is disabled or unavailable: continue the same governed business work without bkn_context. Do not invent or reuse an Interaction ID, start a second interaction, or repeat a successful business call to repair Trace. Finish once using the offered lifecycle schema; disclose that this turn was not recorded.',
+      'If the platform discloses partial_reasons for unrecorded calls, pass only those disclosed values to finish when its schema accepts them. Never infer reasons from an answer or retry business requests to create provenance.',
       'bkn_start_interaction only accepts its documented lifecycle fields: conversation_mode, question, and agent_name; never pass kn_id or query to it.',
       `For every bkn_start_interaction call, pass agent_name exactly ${JSON.stringify(OPENBKN_DSH_INTERACTION_AGENT_NAME)}. Keep this stable when continuing the Conversation.`,
       'Use conversation_mode "new" only when the managed conversation notice in this prompt says no prior OpenBKN conversation is available; otherwise use "continue" with exactly the conversation_id it gives. Never invent or recall a conversation_id from earlier tool output.',
@@ -82,7 +84,7 @@ export function buildManagedSessionPolicy(
       'Use search_schema then targeted get_object_types or get_relation_types when the needed schema is unknown. If get_kn_detail returns a rendering, structured-output or validation error, do not repeat it with another format or detail_level. Use search_schema at most once and only for the actual question; its search hits cannot establish an exact exhaustive count or list. If targeted schema tools cannot answer the question, state the unavailable schema detail.',
       'Prefer documented pagination and bounded requests for large results. Do not repeatedly issue the same timed-out capability request. A read-only fallback must preserve the published business scope and field definitions; if those cannot be established, disclose the gap instead of substituting a different calculation.',
       'run_code fallback uses the platform-injected Python functions such as query_object_instance, get_object_types and execute_tool directly. Do not infer their availability from dir(), rebuild an MCP client with raw HTTP, inspect or print event credentials, or guess SDK imports. Follow the published function docstrings; bkn_context is injected into nested calls automatically. Keep the bound kn_id on each nested business call.',
-      'Use run_code only as a read-only fallback when no matching published capability is available or its result cannot be obtained. Keep the bound kn_id and managed interaction context in every OpenBKN call made by the script. Do not use run_shell, run_sql, resources or action execution unless the deployment explicitly enables them.',
+      'Use run_code only as a read-only fallback when no matching published capability is available or its result cannot be obtained. Keep the bound kn_id in every OpenBKN call made by the script, and use managed interaction context only when Trace disclosed the current IDs; omit it on the explicitly unrecorded path. Do not use run_shell, run_sql, resources or action execution unless the deployment explicitly enables them.',
     ].join('\n'),
     capabilities: profile === undefined ? '' : capabilitySection(profile),
   }
@@ -94,9 +96,14 @@ function capabilitySection(profile: NetworkCapabilityProfile): string {
   return [
     `OpenBKN network capability index for ${profile.knowledgeNetworkId} (profile ${profile.profileVersion}; authoritative schema remains MCP):`,
     `Concept groups: ${named(profile.conceptGroups)}.`,
-    `Object types: ${named(profile.objectTypes)}.`,
-    `Relations: ${relations}.`,
-    `Action types: ${named(profile.actionTypes)}.`,
+    ...(profile.navigation === undefined ? [
+      `Object types: ${named(profile.objectTypes)}.`,
+      `Relations: ${relations}.`,
+      `Action types: ${named(profile.actionTypes)}.`,
+    ] : [
+      'The platform returned a navigation shell: concept indices were not returned, which does not mean zero concepts. Use targeted schema tools for the actual question; do not enumerate the whole network to reconstruct this index.',
+      `Disclosed counts: object types ${profile.navigation.objectTypeCount ?? 'not provided'}, relations ${profile.navigation.relationTypeCount ?? 'not provided'}, action types ${profile.navigation.actionTypeCount ?? 'not provided'}.`,
+    ]),
     'For a business function, follow the capability routing rule and obey the returned use_rule and input schema before executing it.',
   ].join('\n')
 }

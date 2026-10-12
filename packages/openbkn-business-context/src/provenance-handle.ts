@@ -16,9 +16,14 @@ export function normalizeProvenanceHandle(value: unknown): ProvenanceHandle {
   if (typeof value.partial !== 'boolean') throw new TypeError('Provenance handle partial state is invalid.')
   const conversationId = value.schemaVersion === 2 ? optionalIdentifier(value.conversationId) : undefined
   const turn = value.schemaVersion === 2 && typeof value.turn === 'number' && Number.isSafeInteger(value.turn) && value.turn >= 0 ? value.turn : undefined
+  const recording = value.schemaVersion === 2 && (value.recording === 'disabled' || value.recording === 'unavailable') ? value.recording : undefined
+  if (recording !== undefined && (value.interactionId !== undefined || value.conversationId !== undefined
+    || value.partial !== true || [value.requestIds, value.traceIds, value.receiptIds].some(ids => !Array.isArray(ids) || ids.length !== 0))) {
+    throw new TypeError('Unrecorded provenance must not disclose lifecycle or evidence identifiers.')
+  }
   return {
     schemaVersion: 2,
-    interactionId: identifier(value.interactionId, 'interaction id'),
+    ...(recording === undefined ? { interactionId: identifier(value.interactionId, 'interaction id') } : { recording }),
     requestIds: identifiers(value.requestIds, 'request ids'),
     traceIds: identifiers(value.traceIds, 'trace ids'),
     receiptIds: identifiers(value.receiptIds, 'receipt ids'),
@@ -37,7 +42,7 @@ export function normalizeProvenanceHandle(value: unknown): ProvenanceHandle {
  * equal instead of raising a conflict.
  */
 export function sameProvenanceHandle(left: ProvenanceHandle, right: ProvenanceHandle): boolean {
-  return left.interactionId === right.interactionId && left.status === right.status
+  return left.interactionId === right.interactionId && left.recording === right.recording && left.status === right.status
 }
 
 function identifiers(value: unknown, label: string): readonly string[] {

@@ -12,6 +12,12 @@ export interface NetworkCapabilityProfile {
   readonly objectTypes: readonly NamedCapability[]
   readonly relationTypes: readonly RelationCapability[]
   readonly actionTypes: readonly NamedCapability[]
+  /** Indices were deliberately omitted by the platform, rather than empty. */
+  readonly navigation?: {
+    readonly objectTypeCount?: number
+    readonly relationTypeCount?: number
+    readonly actionTypeCount?: number
+  }
 }
 
 export interface NamedCapability {
@@ -39,7 +45,10 @@ export function buildNetworkCapabilityProfile(
   if (networkId === undefined || networkId !== binding.knowledgeNetworkId) {
     throw new Error('OpenBKN knowledge-network detail does not match the selected network.')
   }
-  if (!Array.isArray(detail.object_types) || !Array.isArray(detail.concept_groups) || !Array.isArray(detail.relation_types)) {
+  const navigation = navigationOf(detail)
+  if (!Array.isArray(detail.concept_groups) || (navigation === undefined
+    && (!Array.isArray(detail.object_types) || !Array.isArray(detail.relation_types)
+      || (detail.action_types !== undefined && !Array.isArray(detail.action_types))))) {
     throw new Error('OpenBKN knowledge-network detail is not a summary response.')
   }
 
@@ -47,13 +56,29 @@ export function buildNetworkCapabilityProfile(
     schemaVersion: 1 as const,
     knowledgeNetworkId: networkId,
     conceptGroups: named(detail.concept_groups),
-    objectTypes: named(detail.object_types),
-    relationTypes: relations(detail.relation_types),
+    objectTypes: named(Array.isArray(detail.object_types) ? detail.object_types : []),
+    relationTypes: relations(Array.isArray(detail.relation_types) ? detail.relation_types : []),
     actionTypes: named(Array.isArray(detail.action_types) ? detail.action_types : []),
+    ...(navigation === undefined ? {} : { navigation }),
   }
   return {
     ...profile,
     profileVersion: createHash('sha256').update(JSON.stringify(profile)).digest('hex').slice(0, 16),
+  }
+}
+
+function navigationOf(detail: Record<string, unknown>): NetworkCapabilityProfile['navigation'] {
+  if (detail.object_types !== null || detail.relation_types !== null || detail.action_types !== null) return undefined
+  const fields = ['object_type_count', 'relation_type_count', 'action_type_count'] as const
+  // Go omitempty can omit zero counts. Preserve absence rather than inventing a count.
+  if (fields.some(field => detail[field] !== undefined
+    && (typeof detail[field] !== 'number' || !Number.isSafeInteger(detail[field]) || (detail[field] as number) < 0))) return undefined
+  if (!((detail.object_type_count as number) > 200 || (detail.relation_type_count as number) > 600)
+    || typeof detail.notice !== 'string' || detail.notice.trim() === '') return undefined
+  return {
+    ...(detail.object_type_count === undefined ? {} : { objectTypeCount: detail.object_type_count as number }),
+    ...(detail.relation_type_count === undefined ? {} : { relationTypeCount: detail.relation_type_count as number }),
+    ...(detail.action_type_count === undefined ? {} : { actionTypeCount: detail.action_type_count as number }),
   }
 }
 
