@@ -688,3 +688,45 @@ test('Trace-unavailable lifecycle survives official DSH coalescing of JSON and B
     assert.equal(onToolResult(initialState(), START, true, projection).open, true)
   } finally { await ctx.fiber.dispose() }
 })
+
+test('successful finish without usable IDs closes the native governed window and denies further dispatch', async () => {
+  const { createMcpToolDefinition } = await import('@deepseek-ai/dsh-mcp-client')
+  const fixture = contract('v0.2.0-preparation')
+  for (const finishReply of [{}, { trace_recorded: false, interaction_id: 'controlled-int' }]) {
+    const { ctx, agent, owner } = await nativePolicyFixture()
+    const dispatched: string[] = []
+    let finishes = 0, sequence = 0
+    try {
+      for (const short of ['bkn_start_interaction', 'bkn_finish_interaction', 'search_schema']) {
+        const tool = fixture.tools[short]!
+        ctx.tools.register(createMcpToolDefinition(ctx, {
+          name: `mcp__openbkn__${short}`, rawName: short, inputSchema: tool.inputSchema!,
+          ...(short === 'search_schema' ? {} : { outputSchema: tool.outputSchema }),
+          call: async () => {
+            dispatched.push(short)
+            if (short === 'bkn_finish_interaction' && finishes++ === 0) throw new Error('Controlled finish failure')
+            const value = short === 'bkn_start_interaction' ? { interaction_id: 'controlled-int', conversation_id: 'controlled-conv' }
+              : short === 'bkn_finish_interaction' ? finishReply : { object_types: [] }
+            return { structuredContent: value, content: [{ type: 'text', text: JSON.stringify(value) }] }
+          },
+        }))
+      }
+      const business = await owner()
+      assert.equal(mountBoundBusinessNetworkTool(agent as never, config, BOUND_EVENT.data, undefined, business.context), true)
+      const run = (short: string, args: Record<string, unknown>) => ctx.tools.execute({
+        signal: new AbortController().signal, callId: ToolCallId(`finish-review-${++sequence}`),
+        name: `mcp__openbkn__${short}`, arguments: args, agent: agent as never,
+      })
+      const start = { conversation_mode: 'new', question: 'controlled question', agent_name: 'controlled-agent' }
+      assert.equal((await run('bkn_start_interaction', start)).isError, false)
+      assert.equal((await run('bkn_finish_interaction', { outcome: 'completed' })).isError, true)
+      assert.equal((await run('search_schema', { kn_id: 'kn-supply', query: 'controlled' })).isError, false)
+      assert.equal((await run('bkn_finish_interaction', { outcome: 'completed' })).isError, false)
+      const count = dispatched.length
+      assert.equal((await run('search_schema', { kn_id: 'kn-supply', query: 'after finish' })).isError, true)
+      assert.equal((await run('bkn_finish_interaction', { outcome: 'completed' })).isError, true)
+      assert.equal((await run('bkn_start_interaction', start)).isError, true)
+      assert.equal(dispatched.length, count, 'denied calls never reach the controlled platform')
+    } finally { await ctx.fiber.dispose() }
+  }
+})

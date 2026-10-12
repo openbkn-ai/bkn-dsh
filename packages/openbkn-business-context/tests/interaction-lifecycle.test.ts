@@ -50,6 +50,21 @@ test('a failed finish keeps the interaction open so the model may retry', () => 
   assert.equal(state.interactionId, 'int-1')
 })
 
+test('a successful finish closes access even when its result cannot disclose usable provenance IDs', () => {
+  const active = onToolResult(initialState(), START_INTERACTION_TOOL, true, { interactionId: 'int-1', conversationId: 'conv-1' })
+  for (const reply of [{}, { trace_recorded: false, interaction_id: 'int-1' }]) {
+    const projection = projectLifecycleOutcome({ isError: false, content: [{ type: 'text', text: JSON.stringify(reply) }] })
+    assert.deepEqual(projection, {})
+    const finished = onToolResult(active, FINISH_INTERACTION_TOOL, true, projection)
+    assert.equal(finished.open, false)
+    assert.equal(finished.interactionId, undefined)
+    assert.equal(finished.conversationId, 'conv-1')
+    assert.ok(denialFor(finished, 'mcp__openbkn__search_schema', { kn_id: 'kn-supply' }))
+    assert.ok(denialFor(finished, START_INTERACTION_TOOL, {}))
+    assert.ok(denialFor(finished, FINISH_INTERACTION_TOOL, {}))
+  }
+})
+
 test('onTurnStart resets per-turn flags and preserves whatever conversation the state holds', () => {
   let state = onToolResult(initialState(), START_INTERACTION_TOOL, true, { interactionId: 'int-1', conversationId: 'conv-1' })
   state = onTurnStart(state)

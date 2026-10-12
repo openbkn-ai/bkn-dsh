@@ -126,3 +126,11 @@ test('fixed version choice reaches Host and mismatch text never suggests overwri
   assert.match(cliSetupMessage({ phase: 'installing', result: { state: 'installing', canInstall: false, targetVersion: '0.2.0' } }), /CLI 0.2.0/)
   controller.dispose()
 })
+
+test('an automatically detected CLI is not mismatched until a platform version is explicitly chosen', () => {
+  const state = { phase: 'ready' as const, result: { ...ready, version: '0.2.0' } }
+  assert.doesNotMatch(cliSetupMessage(state, '/tools/openbkn'), /所选平台版本|自行更新/)
+  assert.match(cliSetupMessage(state, '/tools/openbkn', '0.1.5'), /所选平台版本为 0.1.5/)
+  assert.doesNotMatch(cliSetupMessage(state, '/tools/openbkn', '0.2.0'), /所选平台版本|自行更新/)
+  assert.match(cliSetupMessage({ phase: 'missing', result: missing }), /安装 0.1.5/)
+})

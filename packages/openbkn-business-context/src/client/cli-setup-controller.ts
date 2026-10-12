@@ -83,16 +83,17 @@ export class CliSetupController {
 }
 
 /** Only controlled reasons become user-facing text; raw installer output stays on Host. */
-export function cliSetupMessage(state: CliSetupState, savedCliPath?: string, targetVersion: OpenBknCliInstallVersion = '0.1.5'): string {
+export function cliSetupMessage(state: CliSetupState, savedCliPath?: string, targetVersion?: OpenBknCliInstallVersion): string {
+  const installVersion = state.result?.targetVersion ?? targetVersion ?? '0.1.5'
   if (state.phase === 'checking') return '正在检测 CLI…'
-  if (state.phase === 'installing') return `正在安装 CLI ${state.result?.targetVersion ?? targetVersion} 并验证是否可用…可以关闭面板，安装将在当前 DSH 中继续。`
+  if (state.phase === 'installing') return `正在安装 CLI ${installVersion} 并验证是否可用…可以关闭面板，安装将在当前 DSH 中继续。`
   if (state.phase === 'ready') {
     const version = state.result?.version
-    const mismatch = version !== undefined && version !== targetVersion
+    const mismatch = version !== undefined && targetVersion !== undefined && version !== targetVersion
       ? `所选平台版本为 ${targetVersion}，请配置匹配 CLI 的路径或自行更新已有 CLI；插件不会覆盖它。` : ''
     return `CLI ${version ?? ''} 可用。${mismatch}${state.result?.resolvedPath !== undefined && state.result.resolvedPath === savedCliPath ? '' : '路径已填入，请点击“保存并继续”应用。'}`
   }
-  if (state.phase === 'missing') return `未在当前环境和常见安装位置检测到 CLI。点击下方按钮可安装 ${targetVersion}。`
+  if (state.phase === 'missing') return `未在当前环境和常见安装位置检测到 CLI。点击下方按钮可安装 ${installVersion}。`
   switch (state.result?.reason) {
     case 'custom-path-missing': return '未找到此路径。请修正路径，或改回 openbkn 后检测并安装。'
     case 'path-is-directory': return '此路径是目录，请填写 CLI 可执行文件的路径。'

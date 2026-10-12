@@ -291,7 +291,8 @@ export function onToolResult(
   }
   if (name === FINISH_INTERACTION_TOOL) {
     if (!ok) return state
-    if (payload.recording === undefined && payload.interactionId === undefined) return state
+    // A successful finish closes access even when provenance cannot be recovered.
+    // Missing or contradictory IDs never justify more business calls in this turn.
     const conversationId = payload.conversationId === undefined ? state.conversationId : payload.conversationId
     return {
       open: false,
