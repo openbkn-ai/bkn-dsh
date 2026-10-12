@@ -42,3 +42,5 @@ docs/evidence/openbkn020-compatibility10-20261012/review/ci-validation-excerpt.l
 docs/evidence/openbkn020-compatibility10-20261012/review/before-fix.log whitespace=-blank-at-eol
 # Preserve fixed handoff inputs on Windows; do not normalize hash manifests or source-build SDK bytes.
 docs/handoff/2026-10-12-compatibility10-minimal-windows/** -text
+# Preserve Mac minimum-acceptance snapshots and their recorded digests.
+docs/evidence/openbkn020-compatibility10-20261012/mac-minimal/** -text

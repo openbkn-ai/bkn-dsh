@@ -1,6 +1,6 @@
 # -10 最小开发与测试计划：诊断展示 + OpenBKN 0.2.0 兼容
 
-状态：源码改动及受控测试已实施；正式 0.2.0 实机验收待发布后执行。2026-10-12 用户决定将 0.2.0 兼容适配纳入 -10；正式平台/SDK 包发布后再做实机验收。
+状态：源码改动及受控测试已实施。2026-10-12 用户允许使用另一会话的 0.2.0 CLI 源码构建包，并收窄为两端最小变化验收；Mac 结果见 `../evidence/openbkn020-compatibility10-20261012/mac-minimal/RESULTS.md`，Windows 最小 handoff 已推送（固定交接 `4d66a6bf222180c43b2946d8e0e79523c140f4e5`）。完整正式发布验收与 npm SDK 发布仍分别记录，不与当前源码包验收混称。
 
 评审收尾源码 `9a35c0d9d1263b5f39b24d596f07dbcedbf25d04` 已获源码复评 Approved 并通过 build-only CI `38209375894`。当前候选为 70 文件、tgz SHA `a91adc9e342faa4f763d73487cd56d2f4ead8bb21bf755ca11426f77d90c9bae`，受控结果及完整身份见 `docs/evidence/openbkn020-compatibility10-20261012/review/RESULTS.md`。首轮 `a06ef53` / CI `38197960456` 的记录保留在父目录；旧 Mac 结果不延伸到新增兼容或后续修正，当前候选尚未实机验收。
 

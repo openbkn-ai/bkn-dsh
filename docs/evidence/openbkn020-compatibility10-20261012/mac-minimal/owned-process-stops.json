@@ -1,0 +1,78 @@
+[
+  {
+    "at": "2026-10-12T16:00:24.775567+00:00",
+    "form": "desktop",
+    "pid": 77419,
+    "creationMatches": true,
+    "executableMatches": true,
+    "isolatedRootMatches": true,
+    "created": "Mon Oct 12 23:30:02 2026",
+    "exe": "/Applications/DeepSeek Harness.app/Contents/MacOS/DeepSeek Harness",
+    "argv": "/Applications/DeepSeek Harness.app/Contents/MacOS/DeepSeek Harness --user-data-dir=/private/tmp/bkn-compat10-minimal-mac-20261012/desktop/electron-data",
+    "tree": [
+      {
+        "pid": 77419,
+        "ppid": 1,
+        "exe": "/Applications/DeepSeek Harness.app/Contents/MacOS/DeepSeek Harness"
+      },
+      {
+        "pid": 77424,
+        "ppid": 77419,
+        "exe": "/Applications/DeepSeek Harness.app/Contents/Frameworks/DeepSeek Harness Helper.app/Contents/MacOS/DeepSeek Harness Helper"
+      },
+      {
+        "pid": 77425,
+        "ppid": 77419,
+        "exe": "/Applications/DeepSeek Harness.app/Contents/Frameworks/DeepSeek Harness Helper.app/Contents/MacOS/DeepSeek Harness Helper"
+      },
+      {
+        "pid": 77435,
+        "ppid": 77419,
+        "exe": "/Applications/DeepSeek Harness.app/Contents/Frameworks/DeepSeek Harness Helper (Renderer).app/Contents/MacOS/DeepSeek Harness Helper (Renderer)"
+      },
+      {
+        "pid": 77798,
+        "ppid": 77419,
+        "exe": "/Applications/DeepSeek Harness.app/Contents/MacOS/DeepSeek Harness"
+      }
+    ],
+    "listenerNativeBefore": "p77798\ncDeepSeek Harness\nf19\nn127.0.0.1:19387\n",
+    "listenerCheck": "recorded listeners for the owned tree; npm expected 18340",
+    "afterCollectedAt": "2026-10-12T16:02:38.604265+00:00",
+    "rootAlreadyExited": true,
+    "remainingOwnedPids": [],
+    "collectionNote": "Desktop was stopped in the preceding cleanup call; final file write was interrupted by an overly strict npm argv-root assertion. This after snapshot is collected now, not backdated."
+  },
+  {
+    "at": "2026-10-12T16:02:38.708785+00:00",
+    "form": "npm",
+    "pid": 76006,
+    "creationMatches": true,
+    "executableMatches": true,
+    "created": "Mon Oct 12 23:25:04 2026",
+    "exe": "/Users/kalias/.nvm/versions/node/v24.19.0/bin/node",
+    "argv": "/Users/kalias/.nvm/versions/node/v24.19.0/bin/node /Users/kalias/Documents/project/app/openBKN/dsh-npm-020/node_modules/@deepseek-ai/dsh/lib/bin.js web --port 18340 --no-open",
+    "ownedRootOpenFiles": [
+      "n/private/tmp/bkn-compat10-minimal-mac-20261012/npm/host-private.log",
+      "n/private/tmp/bkn-compat10-minimal-mac-20261012/npm/host-private.log",
+      "n/private/tmp/bkn-compat10-minimal-mac-20261012/npm/home/.anonymous-user-id",
+      "n/private/tmp/bkn-compat10-minimal-mac-20261012/npm/home/profiles/web/cordis.patch.yml",
+      "n/private/tmp/bkn-compat10-minimal-mac-20261012/npm/home/profiles/web/cordis.yml",
+      "n/private/tmp/bkn-compat10-minimal-mac-20261012/npm/home/profiles/web/package.json",
+      "n/private/tmp/bkn-compat10-minimal-mac-20261012/npm/home/profiles/web/pnpm-lock.yaml",
+      "n/private/tmp/bkn-compat10-minimal-mac-20261012/npm/home/profiles/web/pnpm-workspace.yaml",
+      "n/private/tmp/bkn-compat10-minimal-mac-20261012/npm/home/.credentials.yaml",
+      "n/private/tmp/bkn-compat10-minimal-mac-20261012/npm/home/sessions/--Users-kalias-Documents-deepseek-harness-default-workspace--/session-a367d076-805e-4924-8ba0-680013df6e2e/session.lock"
+    ],
+    "tree": [
+      {
+        "pid": 76006,
+        "ppid": 1,
+        "exe": "/Users/kalias/.nvm/versions/node/v24.19.0/bin/node"
+      }
+    ],
+    "listenerNativeBefore": "p76006\ncnode\nf14\nn127.0.0.1:18340\n",
+    "remainingOwnedPids": [],
+    "listenerNativeAfter": ""
+  }
+]

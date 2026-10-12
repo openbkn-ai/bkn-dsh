@@ -1,0 +1,17 @@
+{"at": "2026-10-12T15:45:50.893Z", "phase": "before-status", "evidence": "CLI/MCP/native-tool boundary probe; not full UI Host", "kind": "authenticated"}
+{"at": "2026-10-12T15:45:51.305Z", "phase": "baseline", "evidence": "CLI/MCP/native-tool boundary probe; not full UI Host", "startIsError": false, "publicUnauthorized": false, "hasInteractionId": true}
+{"at": "2026-10-12T15:45:51.588Z", "phase": "baseline-read-only-query", "evidence": "CLI/MCP/native-tool boundary probe; not full UI Host", "isError": false, "tool": "query_object_instance"}
+{"at": "2026-10-12T15:45:51.589Z", "phase": "controlled-navigation", "evidence": "CLI/MCP/native-tool boundary probe; not full UI Host", "pass": true, "indicesInvented": false}
+{"at": "2026-10-12T15:45:51.612Z", "phase": "baseline-finish", "evidence": "CLI/MCP/native-tool boundary probe; not full UI Host", "isError": false}
+{"at": "2026-10-12T15:45:51.678Z", "phase": "real-reader-profile", "evidence": "CLI/MCP/native-tool boundary probe; not full UI Host", "pass": true, "navigation": false, "objectTypes": 15, "groups": 1}
+{"at": "2026-10-12T15:45:51.686Z", "phase": "real-provenance-getInteractionOperations", "evidence": "CLI/MCP/native-tool boundary probe; not full UI Host", "pass": true, "topLevelKeys": ["entries", "total"], "entriesCount": 0}
+{"at": "2026-10-12T15:45:51.692Z", "phase": "real-provenance-getInteractionBusinessGraph", "evidence": "CLI/MCP/native-tool boundary probe; not full UI Host", "pass": true, "topLevelKeys": ["interaction_id", "conversation_id", "execution_status", "evidence_status", "assembly", "events"]}
+{"at": "2026-10-12T15:45:51.692Z", "phase": "baseline-closed-after-finish", "evidence": "CLI/MCP/native-tool boundary probe; not full UI Host", "refused": true}
+{"at": "2026-10-12T15:45:51.991Z", "phase": "same-owner-reconcile", "evidence": "CLI/MCP/native-tool boundary probe; not full UI Host", "startIsError": false, "publicUnauthorized": false, "hasInteractionId": true}
+{"at": "2026-10-12T15:45:52.032Z", "phase": "same-owner-reconcile-read-only-query", "evidence": "CLI/MCP/native-tool boundary probe; not full UI Host", "isError": false, "tool": "search_schema"}
+{"at": "2026-10-12T15:45:52.048Z", "phase": "same-owner-reconcile-finish", "evidence": "CLI/MCP/native-tool boundary probe; not full UI Host", "isError": false}
+{"at": "2026-10-12T15:45:52.048Z", "phase": "same-owner-reconcile-closed-after-finish", "evidence": "CLI/MCP/native-tool boundary probe; not full UI Host", "refused": true}
+{"at": "2026-10-12T15:45:52.049Z", "phase": "diagnostic-context-loader", "evidence": "CLI/MCP/native-tool boundary probe; not full UI Host", "checks": [{"status": "pass", "code": "context-loader"}]}
+{"at": "2026-10-12T15:45:52.052Z", "phase": "controlled-trace-disabled", "evidence": "Controlled fixture on official DSH tool runtime + fixed candidate; not live Trace disablement", "pass": true, "noInventedIds": true, "noContextInjected": true, "crossNetworkDenied": true, "closedAfterFinish": true}
+{"at": "2026-10-12T15:45:52.054Z", "phase": "controlled-trace-unavailable", "evidence": "Controlled fixture on official DSH tool runtime + fixed candidate; not live Trace disablement", "pass": true, "noInventedIds": true, "noContextInjected": true, "crossNetworkDenied": true, "closedAfterFinish": true}
+{"at": "2026-10-12T15:45:52.054Z", "phase": "complete", "evidence": "CLI/MCP/native-tool boundary probe; not full UI Host", "passed": true}

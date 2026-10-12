@@ -1,0 +1,2 @@
+{"at":"2026-10-12T15:59:28.402Z","phase":"settled-getInteractionOperations","scope":"Read of the completed one-row query; no new business calls","keys":["entries","total"],"entriesCount":0,"total":0}
+{"at":"2026-10-12T15:59:28.421Z","phase":"settled-getInteractionBusinessGraph","scope":"Read of the completed one-row query; no new business calls","keys":["interaction_id","conversation_id","execution_status","evidence_status","assembly","events"],"eventsCount":0,"assemblyKeys":["business_refs","operation_business_edges"]}
