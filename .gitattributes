@@ -27,3 +27,8 @@ docs/evidence/cli-setup9-20261010/followup/windows/evidence/npm-plugin-install.t
 docs/evidence/cli-setup9-20261010/followup/windows/evidence/npm-preflight.txt whitespace=-blank-at-eol
 # Preserve the -10 fixed candidate inventory on Windows CRLF checkouts.
 docs/evidence/diagnostics10-20261011/candidate-files.json -text
+# Preserve the recorded -10 controlled-validation bytes on every checkout.
+docs/evidence/openbkn020-compatibility10-20261012/*.log -text
+docs/evidence/openbkn020-compatibility10-20261012/*.json -text
+# tsdown emits intentional trailing spaces in its native build output.
+docs/evidence/openbkn020-compatibility10-20261012/plugin-tests.log whitespace=-blank-at-eol

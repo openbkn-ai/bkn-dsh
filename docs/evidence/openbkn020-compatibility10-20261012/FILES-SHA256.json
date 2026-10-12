@@ -1,0 +1,33 @@
+{
+  "scope": "seven recorded controlled-validation files; excludes this manifest and narrative report",
+  "files": {
+    "plugin-tests.log": {
+      "sha256": "65b2bdf1101694a3ae32effd8a6aee6371fe7faad09d39db4add14c09110840f",
+      "bytes": 42188
+    },
+    "repo-tests.log": {
+      "sha256": "81a8b297c70885abeda024ea2b0754e10d94987c24e5224e06ef47dd6c3b8a69",
+      "bytes": 9062
+    },
+    "typecheck.log": {
+      "sha256": "e9bde1b9c430b1f263cf72baa9160a680b8c6a2046c94728f535c5a45341fd3b",
+      "bytes": 75
+    },
+    "package-check.log": {
+      "sha256": "caa26860116f076a1b2011deb0839eb4be6046d2d385acf6df1bbd1500c4d107",
+      "bytes": 259
+    },
+    "pack.log": {
+      "sha256": "5c4eb3b99f52a8167ead5d50d4b592c4eb0595ecf123572d3f583bac70be16b7",
+      "bytes": 2440
+    },
+    "before-after.json": {
+      "sha256": "83677875d39a0e09e6a850413f5dc5736ef89103ad1acbe51016718393ff2e6a",
+      "bytes": 689
+    },
+    "pack-check.json": {
+      "sha256": "d4866e8e1cc08a8709f5a41b17ec1e27af938d9edefd70fb618e514ecd2a51fe",
+      "bytes": 8073
+    }
+  }
+}
