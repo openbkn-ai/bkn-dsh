@@ -11,13 +11,13 @@ const target: DiagnosticsTarget = {
 test('Windows platform name is friendly without claiming OS bitness or host form', () => {
   const rows = diagnosticsTargetRows(target)
   assert.equal(rows.find(row => row.label === '操作系统')?.value, 'Windows')
-  assert.match(rows[0]!.value, /未识别.*宿主未提供/)
+  assert.match(rows[0]!.value, /未识别.*当前报告无法确认/)
   assert.equal(target.platform, 'win32')
 })
 
 test('missing runtime versions remain missing even when a disk version is known', () => {
   const rows = diagnosticsTargetRows(target)
-  assert.match(rows.find(row => row.label === 'DSH 版本')!.value, /未采集.*宿主未提供/)
+  assert.match(rows.find(row => row.label === 'DSH 版本')!.value, /未采集.*当前报告无版本信息/)
   assert.match(rows.find(row => row.label === '插件（已加载）')!.value, /未采集.*无法确认/)
   assert.equal(target.pluginLoadedVersion, null)
   assert.equal(target.dshVersion, null)
