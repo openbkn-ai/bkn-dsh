@@ -42,3 +42,7 @@ docs/evidence/openbkn020-compatibility10-20261012/review/ci-validation-excerpt.l
 docs/evidence/openbkn020-compatibility10-20261012/review/before-fix.log whitespace=-blank-at-eol
 # Preserve fixed handoff inputs on Windows; do not normalize hash manifests or source-build SDK bytes.
 docs/handoff/2026-10-12-compatibility10-minimal-windows/** -text
+# Preserve the Windows -10 minimal retest original bytes (native UTF-16/CRLF outputs) on every checkout.
+docs/evidence/openbkn020-compatibility10-20261012/windows-minimal/** -text
+# Native PowerShell/cmd outputs keep CRLF and trailing blanks byte-for-byte.
+docs/evidence/openbkn020-compatibility10-20261012/windows-minimal/** whitespace=cr-at-eol,-blank-at-eol,-blank-at-eof

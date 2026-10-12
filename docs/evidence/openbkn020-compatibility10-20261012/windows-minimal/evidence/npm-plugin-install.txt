@@ -1,0 +1,35 @@
+argv: dsh.cmd plugin install --profile web C:\bkn-verify\compat10-minimal\candidate\openbkn-dsh-business-context-0.2.0-rc.2-openbkn.0.2.0-10.tgz
+PATH (+ scoop current\bin for pnpm): C:\Windows\system32;C:\Windows;C:\Windows\System32\Wbem;C:\Windows\System32\WindowsPowerShell\v1.0;C:\Users\kalia\scoop\apps\nodejs-lts\current;C:\Users\kalia\scoop\apps\nodejs-lts\current\bin
+utc: 2026-10-12T16:01:36.3758957Z
+dsh.cmd : dsh: initialized profile web at C:\bkn-verify\compat10-minimal\npm\dsh-home\profiles\web
+At C:\bkn-verify\compat10-minimal\scripts\dsh-plugin.ps1:7 char:8
++ $out = & $dsh @DshArgs 2>&1 | Out-String
++        ~~~~~~~~~~~~~~~~~~~~
+    + CategoryInfo          : NotSpecified: (dsh: initialize...me\profiles\web:String) [], RemoteException
+    + FullyQualifiedErrorId : NativeCommandError
+ 
+Progress: resolved 0, reused 0, downloaded 1, added 0
+Progress: resolved 1, reused 0, downloaded 1, added 0
+Progress: resolved 2, reused 0, downloaded 1, added 0
+Progress: resolved 3, reused 0, downloaded 1, added 0
+[WARN] Issues with peer dependencies found. Run "pnpm peers check" to list them.
+
+dependencies:
++ @openbkn/dsh-business-context file:C:/bkn-verify/compat10-minimal/candidate/openbkn-dsh-business-context-0.2.0-rc.2-openbkn.0.2.0-10.tgz
+
+Packages: +5
++++++
+
+   ╭──────────────────────────────────────────╮
+   │                                          │
+   │   Update available! 11.7.0 → 12.11.2.    │
+   │   Changelog: https://pnpm.io/v/12.11.2   │
+   │     To update, run: pnpm add -g pnpm     │
+   │                                          │
+   ╰──────────────────────────────────────────╯
+
+Progress: resolved 5, reused 4, downloaded 1, added 4
+Progress: resolved 5, reused 4, downloaded 1, added 5, done
+Done in 5.9s using pnpm v11.7.0
+
+exit=0
