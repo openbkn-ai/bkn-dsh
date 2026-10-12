@@ -1,0 +1,6 @@
+V1/V2 npm (Host 25492, PATH missing, isolated DSH_HOME/BKN_CONFIG_DIR under C:\bkn-verify\compat10-minimal\npm). DOM text records.
+V1 16:06:11Z diagnostics UI: 运行形态 未识别（当前报告无法确认形态）/ 操作系统 Windows / DSH 版本 未采集（当前报告无版本信息）/ 插件（磁盘）0.2.0-rc.2-openbkn.0.2.0-10 / 插件（已加载）未采集（无法确认运行版本）/ 未采集的基础信息不代表故障，请查看下方检查结果。磁盘版本不代表当前已加载版本。 Export e6071fd1: target.platform=win32, hostForm=unknown, pluginLoadedVersion=null.
+V2 advanced settings first open: select 'CLI 安装版本' options [请选择版本(selected),0.1.5,0.2.0]; 检测并安装 CLI disabled; message 未在当前环境和常见安装位置检测到 CLI。请选择与平台一致的版本后，再点击下方按钮安装。
+Selected 0.2.0; baseUrl https://192.168.50.28; cliPath C:\bkn-verify\compat10-minimal\sdk\node_modules\.bin\openbkn.cmd -> [role=status] CLI 0.2.0 可用。路径已填入，请点击“保存并继续”应用。
+Saved -> patch sha 153bf65b… (baseUrl + cliPath; selected install version not persisted). Main panel: 设置已保存，请使用 OpenBKN CLI 登录并同步。
+16:16Z clicked 使用 OpenBKN CLI 登录并同步 -> Host child: openbkn.cmd auth login https://192.168.50.28 (browser flow, user authorized) -> 16:17:18Z 找到 2 个网络: worldcup_vega_catalog_bkn, supply_ontology_hand.
