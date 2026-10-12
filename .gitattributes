@@ -38,3 +38,5 @@ docs/evidence/openbkn020-compatibility10-20261012/review/*.log -text
 docs/evidence/openbkn020-compatibility10-20261012/review/*.json -text
 docs/evidence/openbkn020-compatibility10-20261012/review/plugin-tests.log whitespace=-blank-at-eol
 docs/evidence/openbkn020-compatibility10-20261012/review/ci-validation-excerpt.log whitespace=-blank-at-eol
+# Node's native failed-assertion output contains intentional space-only lines.
+docs/evidence/openbkn020-compatibility10-20261012/review/before-fix.log whitespace=-blank-at-eol
