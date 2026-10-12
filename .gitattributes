@@ -40,3 +40,5 @@ docs/evidence/openbkn020-compatibility10-20261012/review/plugin-tests.log whites
 docs/evidence/openbkn020-compatibility10-20261012/review/ci-validation-excerpt.log whitespace=-blank-at-eol
 # Node's native failed-assertion output contains intentional space-only lines.
 docs/evidence/openbkn020-compatibility10-20261012/review/before-fix.log whitespace=-blank-at-eol
+# Preserve fixed handoff inputs on Windows; do not normalize hash manifests or source-build SDK bytes.
+docs/handoff/2026-10-12-compatibility10-minimal-windows/** -text
