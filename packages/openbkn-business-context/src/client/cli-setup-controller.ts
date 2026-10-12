@@ -93,7 +93,9 @@ export function cliSetupMessage(state: CliSetupState, savedCliPath?: string, tar
       ? `所选平台版本为 ${targetVersion}，请配置匹配 CLI 的路径或自行更新已有 CLI；插件不会覆盖它。` : ''
     return `CLI ${version ?? ''} 可用。${mismatch}${state.result?.resolvedPath !== undefined && state.result.resolvedPath === savedCliPath ? '' : '路径已填入，请点击“保存并继续”应用。'}`
   }
-  if (state.phase === 'missing') return `未在当前环境和常见安装位置检测到 CLI。点击下方按钮可安装 ${installVersion}。`
+  if (state.phase === 'missing') return targetVersion === undefined
+    ? '未在当前环境和常见安装位置检测到 CLI。请选择与平台一致的版本后，再点击下方按钮安装。'
+    : `未在当前环境和常见安装位置检测到 CLI。点击下方按钮可安装 ${targetVersion}。`
   switch (state.result?.reason) {
     case 'custom-path-missing': return '未找到此路径。请修正路径，或改回 openbkn 后检测并安装。'
     case 'path-is-directory': return '此路径是目录，请填写 CLI 可执行文件的路径。'
