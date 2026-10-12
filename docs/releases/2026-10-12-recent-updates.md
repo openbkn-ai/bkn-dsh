@@ -2,8 +2,10 @@
 
 [中文](2026-10-12-recent-updates.zh.md)
 
-**Period: September 21–October 12, 2026**  
-**Current published plugin: -9** (`@openbkn/dsh-business-context@0.2.0-rc.2-openbkn.0.2.0-9`)  
+**Period: September 21–October 12, 2026**
+
+**Current published plugin: -9** (`@openbkn/dsh-business-context@0.2.0-rc.2-openbkn.0.2.0-9`)
+
 **Currently supported DSH version: 0.2.0-rc.2**, including the official desktop app, npm CLI, and source-built hosts.
 
 This summary covers updates merged into main over the past three weeks, across multiple plugin releases.
