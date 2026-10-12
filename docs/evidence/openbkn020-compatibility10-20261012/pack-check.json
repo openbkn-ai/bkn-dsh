@@ -1,15 +1,16 @@
 {
   "kind": "local-development-pack-not-CI-or-live-acceptance",
-  "sourceCommit": "0309102e592f8ce52ec7d4640a0bdf5a26812903",
+  "sourceCommit": "a06ef53979e4b5cb6b84da3619d64529929577cf",
   "version": "0.2.0-rc.2-openbkn.0.2.0-10",
-  "sha256": "4931f27fe3b93e3b5b1c420e5c8d6ed336ad6473504f276bcc9ec0fc94c5cb4e",
-  "bytes": 188156,
+  "sha256": "1344a0202b6a8ff3a0f9683b097946fbda6cc3c0fa91627a0dd5a08d984ceec7",
+  "bytes": 188139,
   "files": 70,
   "contentChecks": {
     "fixed-cli-targets": true,
     "navigation-marker": true,
     "explicit-trace-fallback": true,
     "trace-client-labels": true,
+    "neutral-missing-metadata-text": true,
     "remote-install-version-type": true,
     "packed-builds-equal-current-builds": true
   },
@@ -19,7 +20,7 @@
     "README.zh.md": "521665f2ebd7c5fe270e61926d5727c186cc5e6bcd53c9cdbff39f9b594aa337",
     "cordis.patch.yml": "3d7d06832b9c335147ed8680da71a0e0b8afb19c80b9ed1d3e7a0e138e72a3cb",
     "lib/business.js": "5bbe284568af55597ab2ae16ce90e1dbdf22a59118de4abf96a37faac67a07e2",
-    "lib/client.js": "d3669782f9dee5c5f9fe6257ac2cea94ed12825f7c9cb8f00001addaa26b5e2b",
+    "lib/client.js": "f9c96cf07c5bb64267cfd98a15f4d96859df19f6e4e8ac7a77f8c9727c3c98d0",
     "lib/diagnostics-observer-vRub4cgb.js": "69270547ec90067cc32af9386da6900dafaf558ef303af795ea8b4a9a8a2e4f5",
     "lib/diagnostics.js": "4993f1f7538ea58ed2bb1fdca8010d298162977960ae067ead99b542ef491777",
     "lib/index.js": "bbed4784d42d49d32cad4889dde1441f12f2556ef828cd27903e9d5c5d8c0b44",

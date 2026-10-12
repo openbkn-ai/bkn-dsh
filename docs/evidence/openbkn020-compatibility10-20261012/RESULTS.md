@@ -9,6 +9,7 @@
 | 插件分支 | `feat/diagnostics-info-10`，PR #89 |
 | 本轮基线 | `b3946a6da269008a0d4a979e9ebaeb480509e4a7` |
 | 兼容源码提交 | `0309102e592f8ce52ec7d4640a0bdf5a26812903` |
+| 最终源码提交（含中性缺失文案） | `a06ef53979e4b5cb6b84da3619d64529929577cf` |
 | 插件版本 | `0.2.0-rc.2-openbkn.0.2.0-10`，未发布 |
 | DSH 目标 | 官方 `dsh-v0.2.0-rc.2`，未升级宿主 pin |
 | Foundry 0.2.0 准备源码 | `06c5a8786a81f3ef4601f00b1e3ba4f3b9f6988a` |
@@ -50,18 +51,36 @@
 | `node --test compat/dsh-0.2.0-rc.2/tests/*.test.mjs tests/*.test.mjs runtime/tests/*.test.mjs` | 60/60 pass | 仓库工具回归 |
 | `pnpm run typecheck` | exit 0 | 静态检查 |
 | `pnpm run package:check` | exit 0，70 文件 | 本地打包审计 |
-| `pnpm pack --out /tmp/bkn-contract020-20261012/pack/openbkn-dsh-business-context-10.tgz` | exit 0，70 文件 | 本地开发包 |
+| `pnpm --filter @openbkn/dsh-business-context pack --out /tmp/bkn-contract020-20261012/pack/openbkn-dsh-business-context-10.tgz` | exit 0，70 文件 | 本地开发包 |
 | 打包后内容检查 | 固定 CLI 版本、导航分支、Trace 分支、客户端提示和 Remote 类型均存在；打包的 lib 字节与当前构建一致 | 产物内容检查 |
 
-命令使用本机 Node 24 的 PATH；原生输出见同目录五份 `.log`。`FILES-SHA256.json` 仅覆盖五份日志、`before-after.json` 和 `pack-check.json`，不包含自身或本报告。日志和 JSON 保留原始字节，不为了 diff-check 改写输出。
+命令使用本机 Node 24 的 PATH；本地原生输出见同目录五份 `.log`。`FILES-SHA256.json` 覆盖 12 件受控验证和 CI 身份文件，不包含自身、本报告或凭据扫描说明。日志和 JSON 保留原始字节，不为了 diff-check 改写输出。
+
+最终诊断缺失文案已按旧 PR 评审改为“当前报告无法确认形态 / 当前报告无版本信息”，不把未采集原因归给未经探测的宿主。此文案提交之后重新执行插件构建/434 项测试、typecheck、审计和 pack；本地仓库 60 项日志来自兼容源码 `0309102`。最终源码 `a06ef53` 的完整 CI 再次验证插件 433 pass / 0 fail / 1 skip 及仓库 60/60，原生输出选段见 `ci-validation-excerpt.log`。
 
 ## 本地开发包与旧候选
 
 本地 tgz：`/tmp/bkn-contract020-20261012/pack/openbkn-dsh-business-context-10.tgz`。
 
-- SHA-256：`4931f27fe3b93e3b5b1c420e5c8d6ed336ad6473504f276bcc9ec0fc94c5cb4e`
-- 188156 字节、70 文件；逐文件 SHA 在 `pack-check.json`。
-- 这是源码 `0309102` 的本地开发包，不是 CI 候选或实机验收包。后续 build-only CI 产物身份另行归档。
+- SHA-256：`1344a0202b6a8ff3a0f9683b097946fbda6cc3c0fa91627a0dd5a08d984ceec7`
+- 188139 字节、70 文件；逐文件 SHA 在 `pack-check.json`。
+- 这是源码 `a06ef53` 的本地开发包，不是 CI 候选或实机验收包。build-only CI `38197960456` 的产物身份另行归档。此前 `38197715225` 因文案修正主动取消，未产生候选。
+
+## 新 CI 候选（未实机验收）
+
+[CI 38197960456](https://github.com/openbkn-ai/bkn-dsh/actions/runs/38197960456) 在 `a06ef53979e4b5cb6b84da3619d64529929577cf` 成功完成；`publish=false`，发布步骤及 GitHub Release job 均跳过。Node 22.19.0 构建、插件和仓库测试、打包审计及 16 个声明目标检查均通过。`ci-run.json` 记录提交及各步骤状态；`ci-validation-excerpt.log` 仅为原生 CI 日志中测试、pack 审计和发布决定三个步骤的逐行选段，不称为完整 CI 日志。
+
+| 候选字段 | 固定值 |
+|---|---|
+| artifact | `plugin-tarball`，ID `11724461959` |
+| tgz | `openbkn-dsh-business-context-0.2.0-rc.2-openbkn.0.2.0-10.tgz` |
+| tgz SHA-256 | `a0d633ad6526940c5672fad99592b878619ea968b2ca7bda047020de05a4036a` |
+| tgz 大小 / 文件数 | 188139 字节 / 70 文件 |
+| ZIP SHA-256 | `b2a2eeb7301433c0915fbc22582f82ef38072e9616af3bd92c89e2a27d3eec32`，实际下载验证通过 |
+| 逐文件清单 SHA-256 | `36e33924e09d135e120757c8184c3c310c7f12e241009b7ea4218a6d68f107c7` |
+| 本机下载目录 | `/tmp/bkn-contract020-20261012/ci-38197960456/` |
+
+完整身份见 `candidate-manifest.json`，70 件清单见 `candidate-files.json`。CI 与本地 tgz 的 SHA 不同，但 gzip 解压后的 tar 逐字节相同，70 件文件字节也全部相同；没有把两个 tgz 称为字节一致。正式验收使用此 CI artifact，并在正式上游包发布后先复核契约差异；如差异需要改源码，重新构建候选。artifact 到期日为 2027-01-10，过期后不能继续声称原下载可用。
 
 旧诊断展示候选 CI `38106903958` / 源码 `4daccf6b794ee7e9d55b9c7a45f29f5403c6d2a0` / tgz `b2d90c19…` 的 Mac 结果保持历史原样，仅证明旧候选的诊断展示；不覆盖本轮新增兼容。旧 Windows handoff 同理，不能直接作为本轮兼容复测通知。
 

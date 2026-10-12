@@ -1,9 +1,9 @@
 {
-  "scope": "seven recorded controlled-validation files; excludes this manifest and narrative report",
+  "scope": "12 controlled-validation and CI-candidate files; excludes this manifest and narrative report",
   "files": {
     "plugin-tests.log": {
-      "sha256": "65b2bdf1101694a3ae32effd8a6aee6371fe7faad09d39db4add14c09110840f",
-      "bytes": 42188
+      "sha256": "7c28ed166ed8b4c8f9246834fbca4faec2875f52304ccb8585dab6e29b200d0f",
+      "bytes": 42196
     },
     "repo-tests.log": {
       "sha256": "81a8b297c70885abeda024ea2b0754e10d94987c24e5224e06ef47dd6c3b8a69",
@@ -22,12 +22,32 @@
       "bytes": 2440
     },
     "before-after.json": {
-      "sha256": "83677875d39a0e09e6a850413f5dc5736ef89103ad1acbe51016718393ff2e6a",
+      "sha256": "fb43d50895a90c176f734d5a899a65d5a7f62ce3e93942d0b7d54abfd30de472",
       "bytes": 689
     },
     "pack-check.json": {
-      "sha256": "d4866e8e1cc08a8709f5a41b17ec1e27af938d9edefd70fb618e514ecd2a51fe",
-      "bytes": 8073
+      "sha256": "e5a6ba68c0a5898bf57689f50455777beb93c41556161629e9f1db36915c0555",
+      "bytes": 8116
+    },
+    "ci-run.json": {
+      "sha256": "9e600a33f1952fe6c2d77fd76c0f51fc5aae50543974ebde2dd0c05deedee151",
+      "bytes": 5166
+    },
+    "ci-artifacts.json": {
+      "sha256": "a01c604528cb46b517cf484b546e04a84504d1c050d248a36be71bf76401938d",
+      "bytes": 730
+    },
+    "ci-validation-excerpt.log": {
+      "sha256": "5f7e5244fe08ef6a467169768d2ba5a85ceedbc73314ae7096b2ec284c6bdb82",
+      "bytes": 427217
+    },
+    "candidate-files.json": {
+      "sha256": "36e33924e09d135e120757c8184c3c310c7f12e241009b7ea4218a6d68f107c7",
+      "bytes": 7382
+    },
+    "candidate-manifest.json": {
+      "sha256": "4a0b0469c13c82457cc783bddffb1f2a65de9b6d35888cfbd3a4c430df0abf62",
+      "bytes": 1183
     }
   }
 }
