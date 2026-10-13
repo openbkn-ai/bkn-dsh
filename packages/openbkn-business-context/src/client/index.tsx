@@ -1,7 +1,7 @@
 import type { Context } from '@deepseek-ai/cordis'
 import type { RemoteResult } from '@deepseek-ai/dsh-api-remotes/client'
 import type { SessionId } from '@deepseek-ai/dsh-api-remotes/client'
-import type { BusinessNetworkBinding, ProvenanceHandle } from '../types.ts'
+import type { BusinessNetworkBinding, OpenBknCliInstallVersion, ProvenanceHandle } from '../types.ts'
 import type { HostObservable } from '@deepseek-ai/dsh-client-ui-slots'
 import type {} from '@deepseek-ai/dsh-api-remotes/client'
 import type {} from '@deepseek-ai/dsh-api-session-controller/client'
@@ -115,7 +115,7 @@ function registerPanels(ctx: Context, bridge: OpenBknPanelBridge): void {
     saveConfiguration: (input: import('../types.ts').OpenBknConfigurationInput) => panel.saveConfiguration(input),
     cliSetup: {
       checkCli: async (cliPath: string, signal?: AbortSignal) => unwrap(await ctx.remote.openbknConfiguration.checkCli(cliPath, signal)),
-      installCli: async (cliPath: string) => unwrap(await ctx.remote.openbknConfiguration.installCli(cliPath)),
+      installCli: async (cliPath: string, targetVersion: OpenBknCliInstallVersion) => unwrap(await ctx.remote.openbknConfiguration.installCli(cliPath, targetVersion)),
     },
     openNetwork: (networkId: string, mode: NetworkSessionMode) => panel.openNetwork(networkId, mode),
     openDiagnostics: () => {

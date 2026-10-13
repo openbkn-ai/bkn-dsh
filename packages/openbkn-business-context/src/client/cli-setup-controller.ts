@@ -1,8 +1,8 @@
-import type { OpenBknCliSetupView } from '../types.ts'
+import type { OpenBknCliInstallVersion, OpenBknCliSetupView } from '../types.ts'
 
 export interface CliSetupPort {
   checkCli(cliPath: string, signal?: AbortSignal): Promise<OpenBknCliSetupView>
-  installCli(cliPath: string): Promise<OpenBknCliSetupView>
+  installCli(cliPath: string, targetVersion: OpenBknCliInstallVersion): Promise<OpenBknCliSetupView>
 }
 export interface CliSetupState {
   readonly phase: 'idle' | 'checking' | OpenBknCliSetupView['state']
@@ -27,7 +27,7 @@ export class CliSetupController {
     if (this.disposed || this.clicking) return
     await this.inspect(cliPath)
   }
-  async detectAndInstall(cliPath: string): Promise<void> {
+  async detectAndInstall(cliPath: string, targetVersion: OpenBknCliInstallVersion = '0.1.5'): Promise<void> {
     if (this.disposed || this.clicking) return
     this.clicking = true
     try {
@@ -35,7 +35,7 @@ export class CliSetupController {
       if (checked === undefined || !checked.result.canInstall || !this.current(checked.revision)) return
       this.publish({ phase: 'installing' })
       // Do not pass a panel AbortSignal: npm is owned and bounded by the Host.
-      const result = await this.port.installCli(cliPath)
+      const result = await this.port.installCli(cliPath, targetVersion)
       if (this.current(checked.revision)) this.accept(result, cliPath, checked.revision)
     } catch {
       if (!this.disposed) this.publish({ phase: 'failed', result: { state: 'failed', canInstall: false, reason: 'host-unavailable' } })
@@ -83,11 +83,19 @@ export class CliSetupController {
 }
 
 /** Only controlled reasons become user-facing text; raw installer output stays on Host. */
-export function cliSetupMessage(state: CliSetupState, savedCliPath?: string): string {
+export function cliSetupMessage(state: CliSetupState, savedCliPath?: string, targetVersion?: OpenBknCliInstallVersion): string {
+  const installVersion = state.result?.targetVersion ?? targetVersion ?? '0.1.5'
   if (state.phase === 'checking') return '正在检测 CLI…'
-  if (state.phase === 'installing') return '正在安装 CLI 0.1.5 并验证是否可用…可以关闭面板，安装将在当前 DSH 中继续。'
-  if (state.phase === 'ready') return `CLI ${state.result?.version ?? ''} 可用。${state.result?.resolvedPath !== undefined && state.result.resolvedPath === savedCliPath ? '' : '路径已填入，请点击“保存并继续”应用。'}`
-  if (state.phase === 'missing') return '未在当前环境和常见安装位置检测到 CLI。点击下方按钮可安装 0.1.5。'
+  if (state.phase === 'installing') return `正在安装 CLI ${installVersion} 并验证是否可用…可以关闭面板，安装将在当前 DSH 中继续。`
+  if (state.phase === 'ready') {
+    const version = state.result?.version
+    const mismatch = version !== undefined && targetVersion !== undefined && version !== targetVersion
+      ? `所选平台版本为 ${targetVersion}，请配置匹配 CLI 的路径或自行更新已有 CLI；插件不会覆盖它。` : ''
+    return `CLI ${version ?? ''} 可用。${mismatch}${state.result?.resolvedPath !== undefined && state.result.resolvedPath === savedCliPath ? '' : '路径已填入，请点击“保存并继续”应用。'}`
+  }
+  if (state.phase === 'missing') return targetVersion === undefined
+    ? '未在当前环境和常见安装位置检测到 CLI。请选择与平台一致的版本后，再点击下方按钮安装。'
+    : `未在当前环境和常见安装位置检测到 CLI。点击下方按钮可安装 ${targetVersion}。`
   switch (state.result?.reason) {
     case 'custom-path-missing': return '未找到此路径。请修正路径，或改回 openbkn 后检测并安装。'
     case 'path-is-directory': return '此路径是目录，请填写 CLI 可执行文件的路径。'
@@ -102,6 +110,7 @@ export function cliSetupMessage(state: CliSetupState, savedCliPath?: string): st
     case 'timeout': return 'CLI 操作超时。请检查本机安装状态和网络后重新检测。'
     case 'verification-failed': return '安装命令已完成，但当前 DSH 尚无法使用 CLI。请重启 DSH 后重新检测，或手动检查安装。'
     case 'busy': return '业务回合或设置保存仍在进行，请稍后重新检测。'
+    case 'unsupported-version': return '请选择受支持的 CLI 版本：0.1.5 或 0.2.0。'
     case 'host-unavailable': return '当前无法调用 CLI 设置服务。请检查插件组件和 DSH 后重试。'
     case 'installation-failed': return 'CLI 安装未成功。请检查本机 npm 安装环境后重试，或手动安装。'
     default: return ''

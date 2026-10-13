@@ -1,0 +1,98 @@
+[
+  {
+    "pod": "agent-observability-fcfdc97d4-9dqbh",
+    "phase": "Running",
+    "containers": [
+      {
+        "name": "agent-observability",
+        "image": "swr.cn-east-3.myhuaweicloud.com/openbkn-ai/agent-observability-ee:0.2.0-local-attribution-batches-v2",
+        "imageID": "docker.io/library/import-2026-10-12@sha256:09956940f84a582457a486b56cac00530c8e5aeaed64f73ee4659e01df26345c",
+        "ready": true
+      }
+    ]
+  },
+  {
+    "pod": "agent-operator-integration-558ffb8c94-xsn4h",
+    "phase": "Running",
+    "containers": [
+      {
+        "name": "agent-operator-integration",
+        "image": "swr.cn-east-3.myhuaweicloud.com/openbkn-ai/agent-operator-integration:0.2.0-release.20261011115044.sha06c5a87",
+        "imageID": "swr.cn-east-3.myhuaweicloud.com/openbkn-ai/agent-operator-integration@sha256:bc6c3a150d30107b3de74a33cd748ba79427963f445e52fa98b71200649de294",
+        "ready": true
+      }
+    ]
+  },
+  {
+    "pod": "agent-retrieval-6c4948bcc7-tkgr9",
+    "phase": "Running",
+    "containers": [
+      {
+        "name": "agent-retrieval",
+        "image": "swr.cn-east-3.myhuaweicloud.com/openbkn-ai/agent-retrieval-ee:0.2.0-local-aa6b382-core06c5a87",
+        "imageID": "docker.io/library/import-2026-10-12@sha256:6feabd5a5f1b777b698692004d63794b7c94fd0d7688699cbdd95e23d691df1c",
+        "ready": true
+      }
+    ]
+  },
+  {
+    "pod": "bkn-backend-69f9d557b-4x62k",
+    "phase": "Running",
+    "containers": [
+      {
+        "name": "bkn-backend",
+        "image": "swr.cn-east-3.myhuaweicloud.com/openbkn-ai/bkn-backend:0.2.0-release.20261011115044.sha06c5a87",
+        "imageID": "swr.cn-east-3.myhuaweicloud.com/openbkn-ai/bkn-backend@sha256:7c9de4cf790abfcd1bfb3bc6027e1997ab1ba8b7ebf36ed40f99b45cbf9619d7",
+        "ready": true
+      }
+    ]
+  },
+  {
+    "pod": "bkn-safe-5c9776645f-qwl8x",
+    "phase": "Running",
+    "containers": [
+      {
+        "name": "bkn-safe",
+        "image": "docker.io/openbkn-local/bkn-safe-ee:0.2.0-aa6b382-core06c5a87",
+        "imageID": "docker.io/library/import-2026-10-12@sha256:4ff89f7333d3807fc27b313e4cbd206e67ffb8c1eb87b2b754084aa6db511160",
+        "ready": true
+      }
+    ]
+  },
+  {
+    "pod": "bkn-studio-69b67fb797-75rsx",
+    "phase": "Running",
+    "containers": [
+      {
+        "name": "bkn-studio",
+        "image": "swr.cn-east-3.myhuaweicloud.com/openbkn-ai/bkn-studio-ee:0.2.0-local-attribution-batches-v3",
+        "imageID": "docker.io/library/import-2026-10-12@sha256:d3fe2aa0e0cf958a8a1f66d4be222d1217955383819c6fc2bc2e1597cf0f668f",
+        "ready": true
+      }
+    ]
+  },
+  {
+    "pod": "sandbox-control-plane-7ccdcd9dd8-dwgqt",
+    "phase": "Running",
+    "containers": [
+      {
+        "name": "control-plane",
+        "image": "swr.cn-east-3.myhuaweicloud.com/openbkn-ai/sandbox-control-plane:0.2.0-release.20261011115044.sha06c5a87",
+        "imageID": "swr.cn-east-3.myhuaweicloud.com/openbkn-ai/sandbox-control-plane@sha256:377b04a57dd4e53e7856c66b7ba7cfe7e61d7dc1e7455ae4f0c1be7c328e75ec",
+        "ready": true
+      }
+    ]
+  },
+  {
+    "pod": "vega-backend-8598cdc4bc-wmgg2",
+    "phase": "Running",
+    "containers": [
+      {
+        "name": "vega-backend",
+        "image": "swr.cn-east-3.myhuaweicloud.com/openbkn-ai/vega-backend-ee:0.2.0-local-aa6b382-core06c5a87",
+        "imageID": "sha256:0be7ff572bb4095ac5f603ae945eb887f968c8bc489df0248e5cee3d84e82a7a",
+        "ready": true
+      }
+    ]
+  }
+]

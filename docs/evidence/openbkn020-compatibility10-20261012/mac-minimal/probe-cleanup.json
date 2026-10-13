@@ -1,0 +1,6 @@
+{
+  "at": "2026-10-12T15:58:08.550573+00:00",
+  "scope": "Only the Interaction created by the first failed manual probe; no business data deleted",
+  "exitCode": 1,
+  "outcome": "Platform rejected the late finish with terminal_conflict/current_status=abandoned; the failed probe Interaction was already terminal. No overwrite or deletion attempted."
+}

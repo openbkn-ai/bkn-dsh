@@ -3,9 +3,12 @@ import { access, stat } from 'node:fs/promises'
 import { homedir } from 'node:os'
 import path from 'node:path'
 import type { CliSubprocess } from './openbkn-cli-subprocess.js'
-import type { OpenBknCliSetupView } from './types.js'
+import type { OpenBknCliInstallVersion, OpenBknCliSetupView } from './types.js'
 
 export const CLI_INSTALL_VERSION = '0.1.5'
+export function isCliInstallVersion(value: unknown): value is OpenBknCliInstallVersion {
+  return value === '0.1.5' || value === '0.2.0'
+}
 const OUTPUT_LIMIT = 16 * 1024
 const INSPECT_MS = 5_000
 const INSTALL_MS = 180_000
@@ -23,6 +26,7 @@ interface Inspection { readonly view: OpenBknCliSetupView; readonly npm?: string
 /** One Host-owned installation at a time; closing a browser panel cannot kill npm halfway. */
 export class OpenBknCliSetup {
   private installation?: Promise<OpenBknCliSetupView>
+  private targetVersion?: OpenBknCliInstallVersion
   private readonly lifetime = new AbortController()
   constructor(private readonly subprocess: CliSubprocess, private readonly cwd: string,
     private readonly environment: SetupEnvironment = {
@@ -41,30 +45,32 @@ export class OpenBknCliSetup {
   get isInstalling(): boolean { return this.installation !== undefined }
 
   async check(cliPath: string, signal?: AbortSignal): Promise<OpenBknCliSetupView> {
-    if (this.installation !== undefined) return { state: 'installing', canInstall: false }
+    if (this.installation !== undefined) return { state: 'installing', canInstall: false, targetVersion: this.targetVersion }
     return (await this.inspect(cliPath, signal)).view
   }
 
   /** Called only from the explicit product button, never during initial detection. */
-  install(cliPath: string): Promise<OpenBknCliSetupView> {
+  install(cliPath: string, targetVersion: OpenBknCliInstallVersion = CLI_INSTALL_VERSION): Promise<OpenBknCliSetupView> {
+    if (!isCliInstallVersion(targetVersion)) return Promise.resolve(blocked('unsupported-version'))
     if (this.installation !== undefined) return this.installation
-    const operation = this.performInstall(cliPath)
+    this.targetVersion = targetVersion
+    const operation = this.performInstall(cliPath, targetVersion)
     this.installation = operation
     void operation.finally(() => { if (this.installation === operation) this.installation = undefined })
     return operation
   }
 
-  private async performInstall(cliPath: string): Promise<OpenBknCliSetupView> {
+  private async performInstall(cliPath: string, targetVersion: OpenBknCliInstallVersion): Promise<OpenBknCliSetupView> {
     try {
       // Recheck on the Host: a stale/malicious Client cannot overwrite an existing CLI.
       const inspected = await this.inspect(cliPath, this.lifetime.signal)
       if (!inspected.view.canInstall || inspected.npm === undefined || inspected.prefix === undefined) return inspected.view
-      const result = await this.run(inspected.npm, ['install', '--global', `@openbkn/bkn-sdk@${CLI_INSTALL_VERSION}`,
+      const result = await this.run(inspected.npm, ['install', '--global', `@openbkn/bkn-sdk@${targetVersion}`,
         '--prefix', inspected.prefix, '--ignore-scripts', '--no-audit', '--no-fund', '--loglevel=error'], INSTALL_MS, this.lifetime.signal)
       if (result.code !== 0) return { state: 'failed', canInstall: false, reason: installationFailure(result.stderr) }
       const candidate = this.binaryAt(inspected.prefix)
       const verified = await this.verify(candidate, this.lifetime.signal)
-      return verified?.state === 'ready' && verified.version === CLI_INSTALL_VERSION
+      return verified?.state === 'ready' && verified.version === targetVersion
         ? verified : { state: 'failed', canInstall: false, reason: 'verification-failed' }
     } catch (error) {
       return { state: 'failed', canInstall: false, reason: isTimeout(error) ? 'timeout' : 'installation-failed' }

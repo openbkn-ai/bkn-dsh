@@ -1,0 +1,14 @@
+{
+  "shard": "All files",
+  "status": "completed",
+  "summary": "The new commit resolves both prior items: a successful finish now closes the governed window regardless of the IDs it discloses, and the CLI mismatch hint no longer fires against an untouched dropdown. The lifecycle change moves in the fail-closed direction and preserves conversation restore, with the only residual being which mismatch cases the hint can still reach.",
+  "impact": "Advanced-settings CLI panel wording for an auto-detected CLI; the lifecycle and provenance paths behave as before or more conservatively.",
+  "blockers": [],
+  "unconfirmed": [
+    {
+      "file": "packages/openbkn-business-context/src/client/CliSetupControl.tsx",
+      "what": "With `targetVersion` left `undefined` and the select rendering `'0.1.5'`, picking the already-displayed `0.1.5` option fires no `change` event, so the mismatch hint can only ever reach the `0.2.0` selection. A user on a 0.1.5 platform whose detected CLI is 0.2.0 now reads \"CLI 0.2.0 可用\" with no mismatch text."
+    }
+  ],
+  "not_covered": "The plugin test suite was not executed (no node_modules in this workspace), so the three new tests were reviewed by reading only."
+}

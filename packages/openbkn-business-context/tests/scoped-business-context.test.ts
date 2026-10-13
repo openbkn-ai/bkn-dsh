@@ -15,7 +15,7 @@ const config = {
   maxResultBytes: 1_024, allowInsecureTls: false,
 }
 
-interface Contract { readonly tools: Record<string, { readonly knId: 'required' | 'optional' | 'absent' | 'unknown' }> }
+interface Contract { readonly tools: Record<string, { readonly inputSchema?: { readonly properties: Record<string, unknown> }; readonly outputSchema?: Record<string, unknown>; readonly knId: 'required' | 'optional' | 'absent' | 'unknown' }> }
 
 /** A Context Loader catalogue captured from an upstream release tag (provenance in the file). */
 function contract(tag: string): Contract {
@@ -31,7 +31,7 @@ function definition(takesKnId: boolean): ToolDefinitions[string] {
 /** Definitions as the MCP client registers them from that release's `tools/list`. */
 function definitionsOf(tag: string): ToolDefinitions {
   return Object.fromEntries(Object.entries(contract(tag).tools)
-    .map(([name, tool]) => [`mcp__openbkn__${name}`, definition(tool.knId === 'required' || tool.knId === 'optional')]))
+    .map(([name, tool]) => [`mcp__openbkn__${name}`, tool.inputSchema === undefined ? definition(tool.knId === 'required' || tool.knId === 'optional') : { parameters: tool.inputSchema }]))
 }
 
 function without(tools: ToolDefinitions, name: string): ToolDefinitions {
@@ -437,7 +437,7 @@ test('every Context Loader tool of the supported releases is classified: managed
   const managed: readonly string[] = [...LIFECYCLE_TOOLS, ...MANAGED_IN_INTERACTION_TOOLS]
   assert.equal(new Set(managed).size, managed.length, 'no duplicate managed tool')
   assert.deepEqual(managed.filter(name => EXCLUDED_OPENBKN_TOOLS.includes(name)), [], 'managed and excluded are disjoint')
-  for (const [tag, tools] of [['v0.1.5', V015_TOOLS], ['v0.1.4', V014_TOOLS]] as const) {
+  for (const [tag, tools] of [['v0.1.5', V015_TOOLS], ['v0.1.4', V014_TOOLS], ['v0.2.0-preparation', definitionsOf('v0.2.0-preparation')]] as const) {
     assert.deepEqual(Object.keys(tools).filter(name => !managed.includes(name) && !EXCLUDED_OPENBKN_TOOLS.includes(name)), [], `unclassified ${tag} tool`)
   }
   const current = Object.keys(V015_TOOLS)
@@ -569,4 +569,164 @@ test('network scope: kn_id must be the bound network, as a string, and cannot be
   // Tools without kn_id keep their own contract.
   assert.equal(call('mcp__openbkn__run_code', { code: 'x' }), undefined)
   assert.equal(call('mcp__openbkn__list_skills', {}), undefined)
+})
+
+test('0.2.0 full schemas and explicit Trace degradation keep the production ToolRuntime guard fail closed', async () => {
+  const { createMcpToolDefinition } = await import('@deepseek-ai/dsh-mcp-client')
+  const { ctx, agent, owner, policyText } = await nativePolicyFixture()
+  const calls: Array<{ name: string; args: unknown }> = []
+  const fixture = contract('v0.2.0-preparation')
+  let unrecorded = false
+  const disabled = { trace_recorded: false, capture_enabled: false, code: 'capture_disabled', required_action: 'continue_without_bkn_context' }
+  try {
+    for (const [short, tool] of Object.entries(fixture.tools)) {
+      if (tool.inputSchema === undefined) continue
+      const name = `mcp__openbkn__${short}`
+      const definition = createMcpToolDefinition(ctx, {
+        name, rawName: short, description: 'Controlled upstream contract', inputSchema: tool.inputSchema,
+        ...(short === 'bkn_start_interaction' || short === 'bkn_finish_interaction' ? { outputSchema: tool.outputSchema } : {}),
+        call: async args => {
+          calls.push({ name, args })
+          const value = short === 'bkn_start_interaction' ? unrecorded ? disabled : { interaction_id: 'current-int', conversation_id: 'current-conv', execution_status: 'active' }
+            : short === 'bkn_finish_interaction' ? disabled : { capabilities: [{ owner_id: 'owner', capability_id: 'fn', call: { toolbox_id: 'owner', tool_id: 'fn' } }] }
+          return { content: [{ type: 'text', text: JSON.stringify(value) }],
+            ...(short === 'bkn_start_interaction' || short === 'bkn_finish_interaction' ? { structuredContent: value } : {}) }
+        },
+      })
+      ctx.tools.register(definition)
+    }
+    for (const name of ['execute_native_tool', 'describe_native_tool', 'search_native_tools', 'added_later']) ctx.tools.register({
+      name: `mcp__openbkn__${name}`, parameters: { type: 'object', properties: {} },
+      output: { schema: { type: 'string' }, render: (_args: unknown, value: unknown) => [{ type: 'text', text: String(value) }] },
+      execute: async () => { calls.push({ name, args: {} }); return 'UNEXPECTED_DISPATCH' },
+    })
+    const business = await owner()
+    assert.equal(mountBoundBusinessNetworkTool(agent as never, config, BOUND_EVENT.data, undefined, business.context), true)
+    let sequence = 0
+    const run = (name: string, args: Record<string, unknown>) => ctx.tools.execute({
+      signal: new AbortController().signal, callId: ToolCallId(`compat020-${++sequence}`), name: `mcp__openbkn__${name}`, arguments: args, agent: agent as never,
+    })
+    const blocked = await run('search_schema', { kn_id: 'kn-supply', query: 'materials' })
+    assert.equal(blocked.isError, true)
+    assert.equal(calls.length, 0)
+    unrecorded = true
+    assert.equal((await run('bkn_start_interaction', { conversation_mode: 'new', question: 'materials', agent_name: 'bkn-agent-dsh-business-context' })).isError, false)
+    assert.match(await policyText(), /There is no current Interaction ID/)
+    assert.equal((await run('search_schema', { kn_id: 'kn-supply', query: 'materials' })).isError, false)
+    const before = calls.length
+    for (const args of [{ query: 'x' }, { kn_id: 42, query: 'x' }, { kn_id: 'other', query: 'x' }, { kn_id: 'kn-supply', query: 'x', bkn_context: { conversation_id: 'old', interaction_id: 'old' } }]) {
+      assert.equal((await run('search_schema', args)).isError, true)
+    }
+    for (const tool of ['execute_native_tool', 'describe_native_tool', 'search_native_tools', 'added_later', 'execute_action', 'run_cypher']) assert.equal((await run(tool, {})).isError, true)
+    assert.equal(calls.length, before, 'all denied calls stop before upstream dispatch')
+    assert.equal((await run('search_capabilities', { kn_id: 'kn-supply', query: 'function' })).isError, false)
+    assert.equal((await run('execute_tool', { kn_id: 'kn-supply', toolbox_id: 'owner', tool_id: 'fn', parameters: {} })).isError, false)
+    assert.deepEqual(calls.at(-1)?.args, { kn_id: 'kn-supply', toolbox_id: 'owner', tool_id: 'fn', parameters: {} })
+    assert.equal((await run('bkn_finish_interaction', { outcome: 'completed', answer: 'Native model answer' })).isError, false)
+    const finished = calls.length
+    assert.equal((await run('search_schema', { kn_id: 'kn-supply', query: 'repeat' })).isError, true)
+    assert.equal((await run('bkn_start_interaction', { conversation_mode: 'new', question: 'repeat', agent_name: 'a' })).isError, true)
+    assert.equal(calls.length, finished)
+  } finally { await ctx.fiber.dispose() }
+})
+
+test('0.2.0 schemas include dynamic lifecycle/context rules and do not turn Trace degradation into cross-network access', () => {
+  const fixture = contract('v0.2.0-preparation') as { tools: Record<string, { inputSchema?: { required?: string[]; properties: Record<string, unknown> }; outputSchema?: { properties: Record<string, unknown>; required?: string[] } }> }
+  assert.deepEqual(fixture.tools.bkn_start_interaction?.inputSchema?.required, ['conversation_mode', 'question', 'agent_name'])
+  assert.deepEqual(fixture.tools.bkn_finish_interaction?.inputSchema?.required, ['outcome'])
+  assert.ok(fixture.tools.bkn_finish_interaction?.inputSchema?.properties.partial_reasons)
+  assert.ok(fixture.tools.bkn_start_interaction?.outputSchema?.properties.trace_recorded)
+  assert.ok(fixture.tools.search_instance?.inputSchema?.required?.includes('kn_id'))
+  assert.equal(fixture.tools.get_object_types?.inputSchema?.required?.includes('ids'), false)
+  assert.equal(fixture.tools.search_schema?.inputSchema?.required?.includes('bkn_context'), false)
+  const fake = fakeAgent(heldConversation('old-conv'), definitionsOf('v0.2.0-preparation'))
+  mount(fake)
+  fake.listeners['tools/result']![0]!({ name: START }, { isError: false, content: [{ type: 'text', text: JSON.stringify({ trace_recorded: false, trace_available: false, stage: 'start_interaction', code: 'trace_core_unavailable', required_action: 'continue_without_bkn_context' }) }] })
+  for (const [name, tool] of Object.entries(fixture.tools)) {
+    if (tool.inputSchema?.properties.kn_id === undefined) continue
+    const full = `mcp__openbkn__${name}`
+    for (const kn_id of [undefined, 123, 'other']) assert.ok(fake.guards[0]!({ name: full, arguments: { kn_id } }), name)
+  }
+  assert.match(governanceOf(fake), /There is no current Interaction ID/)
+  assert.equal(fake.appended.length, 0)
+})
+
+test('official DSH MCP projection preserves disclosed partial reasons as text but drops raw _meta', async () => {
+  const { createMcpToolDefinition } = await import('@deepseek-ai/dsh-mcp-client')
+  const { ctx, agent } = await nativePolicyFixture()
+  const reason = 'trace_call_unrecorded:finish_operation:trace_finish_unconfirmed'
+  const text = `[BKN_TRACE]${JSON.stringify({ bkn_trace: { trace_available: false, partial_reasons: [reason] } })}`
+  try {
+    ctx.tools.register(createMcpToolDefinition(ctx, {
+      name: 'controlled_meta', rawName: 'controlled_meta', inputSchema: { type: 'object', properties: {} },
+      call: async () => ({ content: [{ type: 'text', text: 'Business result' }, { type: 'text', text }], _meta: { 'openbkn.ai/trace': { partial_reasons: [reason] } } }),
+    }))
+    const result = await ctx.tools.execute({ signal: new AbortController().signal, callId: ToolCallId('meta-contract'), name: 'controlled_meta', arguments: {}, agent: agent as never })
+    assert.equal(result.isError, false)
+    assert.match(JSON.stringify(result.content), /trace_call_unrecorded:finish_operation:trace_finish_unconfirmed/)
+    assert.equal((result.value as Record<string, unknown>)._meta, undefined)
+  } finally { await ctx.fiber.dispose() }
+})
+
+test('Trace-unavailable lifecycle survives official DSH coalescing of JSON and BKN_TRACE diagnostic', async () => {
+  const { createMcpToolDefinition } = await import('@deepseek-ai/dsh-mcp-client')
+  const { projectLifecycleOutcome, onToolResult, initialState } = await import('../src/interaction-lifecycle.ts')
+  const { ctx, agent } = await nativePolicyFixture()
+  const reply = { trace_recorded: false, trace_available: false, stage: 'start_interaction', code: 'trace_core_unavailable', required_action: 'continue_without_bkn_context' }
+  try {
+    ctx.tools.register(createMcpToolDefinition(ctx, {
+      name: START, rawName: 'bkn_start_interaction', inputSchema: { type: 'object', properties: {} },
+      call: async () => ({ content: [
+        { type: 'text', text: JSON.stringify(reply) },
+        { type: 'text', text: `[BKN_TRACE]${JSON.stringify({ bkn_trace: { available: false, recorded: false, stage: 'start_interaction', code: 'trace_core_unavailable' } })}` },
+      ] }),
+    }))
+    const result = await ctx.tools.execute({ signal: new AbortController().signal, callId: ToolCallId('unavailable-bridge'), name: START, arguments: {}, agent: agent as never })
+    assert.equal(result.isError, false)
+    const projection = projectLifecycleOutcome(result)
+    assert.deepEqual(projection, { recording: 'unavailable' })
+    assert.equal(onToolResult(initialState(), START, true, projection).open, true)
+  } finally { await ctx.fiber.dispose() }
+})
+
+test('successful finish without usable IDs closes the native governed window and denies further dispatch', async () => {
+  const { createMcpToolDefinition } = await import('@deepseek-ai/dsh-mcp-client')
+  const fixture = contract('v0.2.0-preparation')
+  for (const finishReply of [{}, { trace_recorded: false, interaction_id: 'controlled-int' }]) {
+    const { ctx, agent, owner } = await nativePolicyFixture()
+    const dispatched: string[] = []
+    let finishes = 0, sequence = 0
+    try {
+      for (const short of ['bkn_start_interaction', 'bkn_finish_interaction', 'search_schema']) {
+        const tool = fixture.tools[short]!
+        ctx.tools.register(createMcpToolDefinition(ctx, {
+          name: `mcp__openbkn__${short}`, rawName: short, inputSchema: tool.inputSchema!,
+          ...(short === 'search_schema' ? {} : { outputSchema: tool.outputSchema }),
+          call: async () => {
+            dispatched.push(short)
+            if (short === 'bkn_finish_interaction' && finishes++ === 0) throw new Error('Controlled finish failure')
+            const value = short === 'bkn_start_interaction' ? { interaction_id: 'controlled-int', conversation_id: 'controlled-conv' }
+              : short === 'bkn_finish_interaction' ? finishReply : { object_types: [] }
+            return { structuredContent: value, content: [{ type: 'text', text: JSON.stringify(value) }] }
+          },
+        }))
+      }
+      const business = await owner()
+      assert.equal(mountBoundBusinessNetworkTool(agent as never, config, BOUND_EVENT.data, undefined, business.context), true)
+      const run = (short: string, args: Record<string, unknown>) => ctx.tools.execute({
+        signal: new AbortController().signal, callId: ToolCallId(`finish-review-${++sequence}`),
+        name: `mcp__openbkn__${short}`, arguments: args, agent: agent as never,
+      })
+      const start = { conversation_mode: 'new', question: 'controlled question', agent_name: 'controlled-agent' }
+      assert.equal((await run('bkn_start_interaction', start)).isError, false)
+      assert.equal((await run('bkn_finish_interaction', { outcome: 'completed' })).isError, true)
+      assert.equal((await run('search_schema', { kn_id: 'kn-supply', query: 'controlled' })).isError, false)
+      assert.equal((await run('bkn_finish_interaction', { outcome: 'completed' })).isError, false)
+      const count = dispatched.length
+      assert.equal((await run('search_schema', { kn_id: 'kn-supply', query: 'after finish' })).isError, true)
+      assert.equal((await run('bkn_finish_interaction', { outcome: 'completed' })).isError, true)
+      assert.equal((await run('bkn_start_interaction', start)).isError, true)
+      assert.equal(dispatched.length, count, 'denied calls never reach the controlled platform')
+    } finally { await ctx.fiber.dispose() }
+  }
 })

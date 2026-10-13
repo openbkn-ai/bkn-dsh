@@ -1,0 +1,11 @@
+{"at": "2026-10-11T03:34:51.758Z", "phase": "before-status", "evidence": "CLI/MCP/native-tool boundary probe; not full UI Host", "kind": "authenticated"}
+{"at": "2026-10-11T03:34:52.484Z", "phase": "baseline", "evidence": "CLI/MCP/native-tool boundary probe; not full UI Host", "startIsError": false, "publicUnauthorized": false, "hasInteractionId": true}
+{"at": "2026-10-11T03:34:52.509Z", "phase": "baseline-finish", "evidence": "CLI/MCP/native-tool boundary probe; not full UI Host", "isError": false}
+{"at": "2026-10-11T03:34:52.805Z", "phase": "same-owner-reconcile", "evidence": "CLI/MCP/native-tool boundary probe; not full UI Host", "startIsError": false, "publicUnauthorized": false, "hasInteractionId": true}
+{"at": "2026-10-11T03:34:52.825Z", "phase": "same-owner-reconcile-finish", "evidence": "CLI/MCP/native-tool boundary probe; not full UI Host", "isError": false}
+{"at": "2026-10-11T03:34:52.941Z", "phase": "address-mismatch", "evidence": "CLI/MCP/native-tool boundary probe; not full UI Host", "kind": "platform-mismatch"}
+{"at": "2026-10-11T03:34:53.232Z", "phase": "replacement-owner", "evidence": "CLI/MCP/native-tool boundary probe; not full UI Host", "tokenSameAsBaseline": true}
+{"at": "2026-10-11T03:34:53.259Z", "phase": "after-address-restore", "evidence": "CLI/MCP/native-tool boundary probe; not full UI Host", "startIsError": false, "publicUnauthorized": false, "hasInteractionId": true}
+{"at": "2026-10-11T03:34:53.286Z", "phase": "after-address-restore-finish", "evidence": "CLI/MCP/native-tool boundary probe; not full UI Host", "isError": false}
+{"at": "2026-10-11T03:34:53.287Z", "phase": "diagnostic-context-loader", "evidence": "CLI/MCP/native-tool boundary probe; not full UI Host", "checks": [{"status": "pass", "code": "context-loader"}]}
+{"at": "2026-10-11T03:34:53.287Z", "phase": "complete", "evidence": "CLI/MCP/native-tool boundary probe; not full UI Host", "passed": true}

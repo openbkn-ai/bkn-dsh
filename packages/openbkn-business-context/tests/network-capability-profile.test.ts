@@ -69,3 +69,33 @@ test('ignores optional object metadata that is irrelevant to the bounded capabil
   ])
   assert.equal(JSON.stringify(profile).includes('data_source'), false)
 })
+
+test('navigation shells preserve counts and groups without implying zero concept indices', async () => {
+  const { buildManagedSessionPolicy } = await import('../src/managed-session-policy.ts')
+  for (const counts of [{ object_type_count: 201, relation_type_count: 2, action_type_count: 1 }, { object_type_count: 1, relation_type_count: 601 }]) {
+    const payload = { id: binding.knowledgeNetworkId, concept_groups: [], object_types: null, relation_types: null, action_types: null, notice: 'UNTRUSTED_NOTICE', ...counts }
+    const profile = buildNetworkCapabilityProfile(binding, payload)
+    assert.ok(profile.navigation)
+    const text = buildManagedSessionPolicy(binding, profile).capabilities
+    assert.match(text, /not returned, which does not mean zero/)
+    assert.doesNotMatch(text, /Object types: none|Relations: none|UNTRUSTED_NOTICE/)
+    assert.equal(payload.object_types, null, 'source payload is not rewritten')
+  }
+  const profile = buildNetworkCapabilityProfile(binding, { id: binding.knowledgeNetworkId, concept_groups: [{ id: 'g' }], object_types: null, relation_types: null, action_types: null, object_type_count: 201, notice: 'navigation' })
+  assert.deepEqual(profile.conceptGroups, [{ id: 'g' }])
+  assert.equal(profile.navigation?.relationTypeCount, undefined, 'omitempty counts are not invented')
+})
+
+test('navigation nulls fail closed below thresholds, with malformed counts, mixed arrays or missing notice/groups', () => {
+  const shell = { id: binding.knowledgeNetworkId, concept_groups: [], object_types: null, relation_types: null, action_types: null, object_type_count: 201, notice: 'navigation' }
+  for (const delta of [
+    { object_type_count: 200, relation_type_count: 600 }, { object_type_count: -1 }, { object_type_count: '201' },
+    { object_type_count: 201.5 }, { relation_type_count: NaN }, { action_type_count: -1 },
+    { notice: undefined }, { concept_groups: undefined }, { concept_groups: null },
+    { object_types: [] }, { action_types: undefined }, { id: 'wrong-network' },
+  ]) assert.throws(() => buildNetworkCapabilityProfile(binding, { ...shell, ...delta }))
+  for (const [objects, relations] of [[200, 600], [201, 600], [200, 601]]) {
+    const profile = buildNetworkCapabilityProfile(binding, { id: binding.knowledgeNetworkId, concept_groups: [], object_types: Array.from({ length: objects }, (_, n) => ({ id: `o${n}` })), relation_types: Array.from({ length: relations }, (_, n) => ({ id: `r${n}`, source_object_type_id: 'o1', target_object_type_id: 'o2' })), action_types: [] })
+    assert.equal(profile.navigation, undefined, 'ordinary arrays still parse independently of the size threshold')
+  }
+})

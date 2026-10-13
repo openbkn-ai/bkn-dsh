@@ -50,6 +50,21 @@ test('a failed finish keeps the interaction open so the model may retry', () => 
   assert.equal(state.interactionId, 'int-1')
 })
 
+test('a successful finish closes access even when its result cannot disclose usable provenance IDs', () => {
+  const active = onToolResult(initialState(), START_INTERACTION_TOOL, true, { interactionId: 'int-1', conversationId: 'conv-1' })
+  for (const reply of [{}, { trace_recorded: false, interaction_id: 'int-1' }]) {
+    const projection = projectLifecycleOutcome({ isError: false, content: [{ type: 'text', text: JSON.stringify(reply) }] })
+    assert.deepEqual(projection, {})
+    const finished = onToolResult(active, FINISH_INTERACTION_TOOL, true, projection)
+    assert.equal(finished.open, false)
+    assert.equal(finished.interactionId, undefined)
+    assert.equal(finished.conversationId, 'conv-1')
+    assert.ok(denialFor(finished, 'mcp__openbkn__search_schema', { kn_id: 'kn-supply' }))
+    assert.ok(denialFor(finished, START_INTERACTION_TOOL, {}))
+    assert.ok(denialFor(finished, FINISH_INTERACTION_TOOL, {}))
+  }
+})
+
 test('onTurnStart resets per-turn flags and preserves whatever conversation the state holds', () => {
   let state = onToolResult(initialState(), START_INTERACTION_TOOL, true, { interactionId: 'int-1', conversationId: 'conv-1' })
   state = onTurnStart(state)
@@ -289,4 +304,55 @@ test('retrying a failed start in the same turn stays allowed', () => {
 test('an unmatched or absent conversation_mode is left to platform validation', () => {
   const state: InteractionLifecycleState = { ...initialState(), conversationId: 'conv-1' }
   assert.equal(denialFor(state, START_INTERACTION_TOOL, {}), undefined)
+})
+
+test('0.2.0 explicit unrecorded start opens governed access without stale interaction identity', () => {
+  const outcome = projectLifecycleOutcome({ isError: false, content: [{ type: 'text', text: JSON.stringify({
+    trace_recorded: false, trace_available: false, stage: 'start_interaction', code: 'trace_core_unavailable',
+    required_action: 'continue_without_bkn_context',
+  }) }] })
+  assert.deepEqual(outcome, { recording: 'unavailable' })
+  const state = onToolResult({ ...initialState(), conversationId: 'prior-conversation', interactionId: 'prior-interaction' }, START_INTERACTION_TOOL, true, outcome)
+  assert.equal(state.open, true)
+  assert.equal(state.interactionId, undefined)
+  assert.equal(state.conversationId, 'prior-conversation')
+  assert.equal(state.recording, 'unavailable')
+  assert.equal(denialFor(state, 'mcp__openbkn__query_object_instance', {}), undefined)
+  assert.equal(state.startsThisTurn, 1)
+  assert.match(denialFor(state, START_INTERACTION_TOOL, {}) ?? '', /already open/)
+  const finished = onToolResult(state, FINISH_INTERACTION_TOOL, true, outcome)
+  assert.equal(finished.open, false)
+  assert.equal(finished.conversationId, 'prior-conversation')
+  assert.match(denialFor(finished, START_INTERACTION_TOOL, {}) ?? '', /one OpenBKN interaction/)
+})
+
+test('disabled Trace preserves Conversation across turns; errors and unknown missing IDs never open access', () => {
+  const reply = { trace_recorded: false, capture_enabled: false, code: 'capture_disabled', required_action: 'continue_without_bkn_context' }
+  const project = (value: unknown, isError = false) => projectLifecycleOutcome({ isError, content: [{ type: 'text', text: JSON.stringify(value) }], error: { message: JSON.stringify(value) } })
+  const prior = { ...initialState(), conversationId: 'prior-conversation' }
+  const disabled = project(reply)
+  assert.deepEqual(disabled, { recording: 'disabled' })
+  const active = onToolResult(prior, START_INTERACTION_TOOL, true, disabled)
+  assert.match(denialFor(active, 'mcp__openbkn__search_schema', { bkn_context: { interaction_id: 'old' } }) ?? '', /do not reuse/)
+  assert.match(denialFor(active, FINISH_INTERACTION_TOOL, { interaction_id: 'old' }) ?? '', /Omit/)
+  assert.equal(denialFor(active, FINISH_INTERACTION_TOOL, { outcome: 'completed', answer: 'native answer' }), undefined)
+  assert.equal(onTurnStart(active).recording, undefined)
+  assert.equal(onTurnStart(active).conversationId, 'prior-conversation')
+  for (const invalid of [{}, { code: 'Unauthorized' }, { ...reply, required_action: 'unknown' }, { ...reply, trace_recorded: undefined }, { ...reply, interaction_id: 'stale' }, { ...reply, capture_enabled: true }]) {
+    const state = onToolResult(prior, START_INTERACTION_TOOL, true, project(invalid))
+    assert.equal(state.open, false)
+    assert.equal(state.conversationId, 'prior-conversation')
+    assert.ok(denialFor(state, 'mcp__openbkn__query_object_instance', {}))
+  }
+  for (const value of [reply, { error: { code: 'auth_rejected' } }]) {
+    assert.equal(onToolResult(prior, START_INTERACTION_TOOL, false, project(value, true)).open, false)
+  }
+})
+
+test('lifecycle projection accepts only a valid platform diagnostic suffix, not arbitrary appended text', () => {
+  const reply = JSON.stringify({ interaction_id: 'i', conversation_id: 'c' })
+  for (const suffix of ['\n[BKN_TRACE]bad', '\n[BKN_TRACE]{"other":true}', '\nany prose', '\n[BKN_TRACE]{"bkn_trace":{}}\nmore']) {
+    assert.deepEqual(projectLifecycleOutcome({ isError: false, content: [{ type: 'text', text: reply + suffix }] }), {})
+  }
+  assert.deepEqual(projectLifecycleOutcome({ isError: false, content: [{ type: 'text', text: reply + '\n[BKN_TRACE]{"bkn_trace":{}}' }] }), { interactionId: 'i', conversationId: 'c' })
 })

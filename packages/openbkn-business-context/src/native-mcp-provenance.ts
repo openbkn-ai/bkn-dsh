@@ -1,4 +1,5 @@
 import { toolResultIsError, toolResultTexts } from './tool-result-message.js'
+import { parseLifecycleRecord, unrecordedLifecycleReason } from './interaction-lifecycle.js'
 import type { ProvenanceHandle } from './types.js'
 
 const OPENBKN_FINISH_INTERACTION_TOOL = 'mcp__openbkn__bkn_finish_interaction'
@@ -14,7 +15,7 @@ export interface NativeMcpTurnProvenance {
 }
 
 /**
- * Recover provenance only from a completed interaction explicitly returned by
+ * Recover a completed interaction or explicit unrecorded state returned by
  * the OpenBKN MCP finish call in the same DSH turn. No model text, tool args,
  * or unrelated MCP output participates in this association.
  */
@@ -30,7 +31,7 @@ export function findCompletedNativeMcpProvenance(
     calls.set(data.callId, data.name)
   }
 
-  const completed = new Map<string, { interactionId: string; conversationId?: string; resultIndex: number }>()
+  const completed = new Map<string, { interactionId?: string; conversationId?: string; recording?: 'disabled' | 'unavailable'; resultIndex: number }>()
   for (const [index, event] of events.entries()) {
     if (event.type !== 'tool/result') continue
     const data = record(event.data)
@@ -40,7 +41,9 @@ export function findCompletedNativeMcpProvenance(
     const callId = source?.kind === 'tool' && typeof source.callId === 'string' ? source.callId : undefined
     if (callId === undefined || calls.get(callId) !== OPENBKN_FINISH_INTERACTION_TOOL) continue
     const interactionId = completedInteractionId(message)
-    if (interactionId !== undefined) completed.set(callId, { interactionId, conversationId: lifecycleConversationId(message), resultIndex: index })
+    const recording = toolResultIsError(message) ? undefined : firstUnrecordedReason(message)
+    if (recording !== undefined) completed.set(callId, { recording, resultIndex: index })
+    else if (interactionId !== undefined) completed.set(callId, { interactionId, conversationId: lifecycleConversationId(message), resultIndex: index })
   }
   if (completed.size !== 1) return undefined
 
@@ -51,7 +54,8 @@ export function findCompletedNativeMcpProvenance(
     messageId: answer,
     handle: {
       schemaVersion: 2,
-      interactionId: completedInteraction.interactionId,
+      ...(completedInteraction.interactionId === undefined ? {} : { interactionId: completedInteraction.interactionId }),
+      ...(completedInteraction.recording === undefined ? {} : { recording: completedInteraction.recording }),
       requestIds: [],
       traceIds: [],
       receiptIds: [],
@@ -64,6 +68,16 @@ export function findCompletedNativeMcpProvenance(
       turn,
     },
   }
+}
+
+function firstUnrecordedReason(message: Record<string, unknown> | undefined): 'disabled' | 'unavailable' | undefined {
+  for (const text of toolResultTexts(message)) {
+    const parsed = jsonRecord(text)
+    if (parsed === undefined) continue
+    const reason = unrecordedLifecycleReason(parsed)
+    if (reason !== undefined) return reason
+  }
+  return undefined
 }
 
 function finalAssistantMessageAfter(events: readonly EventLike[], turn: number, afterIndex: number): string | undefined {
@@ -83,6 +97,7 @@ function completedInteractionId(message: Record<string, unknown> | undefined): s
   // A failed finish call never yields a completed interaction, whatever its text says.
   if (toolResultIsError(message)) return undefined
   const parsed = firstLifecycleRecord(message)
+  if (parsed?.trace_recorded === false) return undefined
   if (parsed?.execution_status !== 'completed') return undefined
   return identifier(parsed.interaction_id)
 }
@@ -102,7 +117,7 @@ function firstLifecycleRecord(message: Record<string, unknown> | undefined): Rec
 }
 
 function jsonRecord(value: string): Record<string, unknown> | undefined {
-  try { return record(JSON.parse(value)) } catch { return undefined }
+  return parseLifecycleRecord(value)
 }
 
 function identifier(value: unknown): string | undefined {

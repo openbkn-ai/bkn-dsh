@@ -170,3 +170,11 @@ test('native editing preserves raw expression nodes outside the two submitted fi
   assert.deepEqual(f.entry.options.config.mcpUrl, expression)
   assert.equal(f.entry.options.config.requestTimeoutMs, 45_000)
 })
+
+test('Host rejects arbitrary install versions before querying configuration or subprocess', async () => {
+  const f = fixture()
+  for (const target of ['latest', '0.2.1', '0.2.0\n--other', null, {}]) {
+    assert.equal((await f.service.installCli('openbkn', target as never)).reason, 'unsupported-version')
+  }
+  assert.equal(f.calls(), 0)
+})

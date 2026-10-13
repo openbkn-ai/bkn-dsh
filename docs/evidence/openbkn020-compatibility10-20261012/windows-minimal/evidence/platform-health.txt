@@ -1,0 +1,2 @@
+utc=2026-10-12T16:27:21Z GET https://192.168.50.28/api/bkn-backend/v1/health (no credentials, --cacert kit CA)
+{"ServerName":"bkn-backend","ServerVersion":"0.2.0-release.20261011115044.sha06c5a87","Language":"go","GoVersion":"go1.25.14","GoArch":"arm64"}

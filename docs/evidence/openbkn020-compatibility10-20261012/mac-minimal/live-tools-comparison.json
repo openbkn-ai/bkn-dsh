@@ -1,0 +1,149 @@
+{
+  "liveCount": 25,
+  "fixtureCount": 26,
+  "added": [],
+  "absent": [
+    "execute_skill"
+  ],
+  "structuralChanges": [],
+  "rawDifferencesCount": 48,
+  "notCapturedInSourceFixture": [
+    {
+      "name": "run_code",
+      "schema": "inputSchema",
+      "live": {
+        "properties": {
+          "bkn_context": {
+            "description": "BKN Trace managed context. Copy both IDs from bkn_start_interaction.",
+            "properties": {
+              "conversation_id": {
+                "description": "conversation_id returned by bkn_start_interaction.",
+                "type": "string"
+              },
+              "interaction_id": {
+                "description": "interaction_id returned by bkn_start_interaction.",
+                "type": "string"
+              }
+            },
+            "required": [
+              "conversation_id",
+              "interaction_id"
+            ],
+            "type": "object"
+          },
+          "code": {
+            "description": "\u8981\u6267\u884c\u7684 Python \u4ee3\u7801\u3002\u53ea\u6709 print \u7684\u5185\u5bb9\u4f1a\u8fd4\u56de\u3002",
+            "type": "string"
+          },
+          "timeout": {
+            "default": 60,
+            "description": "\u6267\u884c\u8d85\u65f6\u79d2\u6570",
+            "type": "integer"
+          }
+        },
+        "required": [
+          "code"
+        ],
+        "type": "object"
+      },
+      "fixture": null
+    },
+    {
+      "name": "run_code",
+      "schema": "outputSchema",
+      "live": {
+        "type": "object",
+        "properties": {
+          "stdout": {
+            "type": "string",
+            "description": "\u6807\u51c6\u8f93\u51fa\u3002\u53ea\u6709 print \u7684\u5185\u5bb9\u4f1a\u56de\u5230\u8fd9\u91cc\u3002"
+          },
+          "stderr": {
+            "type": "string",
+            "description": "\u6807\u51c6\u9519\u8bef\u3002\u9000\u51fa\u7801\u4e3a 0 \u65f6\u4e5f\u53ef\u80fd\u975e\u7a7a\uff08\u5e93\u544a\u8b66\u7b49\uff09\u3002"
+          },
+          "exit_code": {
+            "type": "integer",
+            "description": "\u9000\u51fa\u7801\u3002\u975e 0 \u8868\u793a\u811a\u672c\u81ea\u8eab\u5931\u8d25\uff0c\u62a5\u6587\u5728 stderr \u91cc\u3002"
+          }
+        },
+        "required": [
+          "stdout",
+          "exit_code"
+        ]
+      },
+      "fixture": null
+    },
+    {
+      "name": "run_shell",
+      "schema": "inputSchema",
+      "live": {
+        "properties": {
+          "bkn_context": {
+            "description": "BKN Trace managed context. Copy both IDs from bkn_start_interaction.",
+            "properties": {
+              "conversation_id": {
+                "description": "conversation_id returned by bkn_start_interaction.",
+                "type": "string"
+              },
+              "interaction_id": {
+                "description": "interaction_id returned by bkn_start_interaction.",
+                "type": "string"
+              }
+            },
+            "required": [
+              "conversation_id",
+              "interaction_id"
+            ],
+            "type": "object"
+          },
+          "command": {
+            "description": "\u8981\u6267\u884c\u7684 shell \u547d\u4ee4\uff0c\u4ea4\u7ed9 sh -c \u6267\u884c\uff0c\u53ef\u4ee5\u7528\u7ba1\u9053\u548c &&\u3002",
+            "type": "string"
+          },
+          "timeout": {
+            "default": 60,
+            "description": "\u6267\u884c\u8d85\u65f6\u79d2\u6570",
+            "type": "integer"
+          }
+        },
+        "required": [
+          "command"
+        ],
+        "type": "object"
+      },
+      "fixture": null
+    },
+    {
+      "name": "run_shell",
+      "schema": "outputSchema",
+      "live": {
+        "type": "object",
+        "properties": {
+          "stdout": {
+            "type": "string",
+            "description": "\u6807\u51c6\u8f93\u51fa\u3002\u53ea\u6709 print \u7684\u5185\u5bb9\u4f1a\u56de\u5230\u8fd9\u91cc\u3002"
+          },
+          "stderr": {
+            "type": "string",
+            "description": "\u6807\u51c6\u9519\u8bef\u3002\u9000\u51fa\u7801\u4e3a 0 \u65f6\u4e5f\u53ef\u80fd\u975e\u7a7a\uff08\u5e93\u544a\u8b66\u7b49\uff09\u3002"
+          },
+          "exit_code": {
+            "type": "integer",
+            "description": "\u9000\u51fa\u7801\u3002\u975e 0 \u8868\u793a\u811a\u672c\u81ea\u8eab\u5931\u8d25\uff0c\u62a5\u6587\u5728 stderr \u91cc\u3002"
+          }
+        },
+        "required": [
+          "stdout",
+          "exit_code"
+        ]
+      },
+      "fixture": null
+    }
+  ],
+  "notes": [
+    "execute_skill is disabled on this deployment; routing must use offered tools, not invent it.",
+    "run_code and run_shell inline PTC schemas were not independently captured in the preparation fixture. Their live schemas are archived; missing fixture data is not a structural-drift claim.",
+    "Descriptions/titles/examples/comments are excluded only from the structural comparison."
+  ]
+}

@@ -3,8 +3,8 @@ import { Context } from '@deepseek-ai/cordis'
 import { Remote, RemoteError, TypertRemoteService } from '@deepseek-ai/dsh-typert-protocol'
 import { Config } from './config.js'
 import { BUSINESS_ENTRY_ID } from './diagnostics-contract.js'
-import type { OpenBknCliSetupView, OpenBknConfigurationInput, OpenBknConfigurationView } from './types.js'
-import { OpenBknCliSetup } from './cli-setup.js'
+import type { OpenBknCliInstallVersion, OpenBknCliSetupView, OpenBknConfigurationInput, OpenBknConfigurationView } from './types.js'
+import { isCliInstallVersion, OpenBknCliSetup } from './cli-setup.js'
 import type { CliSubprocess } from './openbkn-cli-subprocess.js'
 
 interface ConfigurationEntry {
@@ -52,10 +52,12 @@ export class OpenBknConfigurationService extends TypertRemoteService {
   }
 
   @Remote('installCli')
-  async installCli(cliPath: string): Promise<OpenBknCliSetupView> {
+  async installCli(cliPath: string, targetVersion?: OpenBknCliInstallVersion): Promise<OpenBknCliSetupView> {
+    const selected = targetVersion === undefined ? '0.1.5' : targetVersion
+    if (!isCliInstallVersion(selected)) return { state: 'blocked', canInstall: false, reason: 'unsupported-version' }
     const configuration = await this.getConfiguration()
     if (!configuration.editable) return { state: 'blocked', canInstall: false, reason: configuration.unavailableReason === 'busy' ? 'busy' : 'host-unavailable' }
-    return await this.setup()?.install(cliPath) ?? { state: 'blocked', canInstall: false, reason: 'host-unavailable' }
+    return await this.setup()?.install(cliPath, selected) ?? { state: 'blocked', canInstall: false, reason: 'host-unavailable' }
   }
 
   private editor(): ConfigurationEditor | undefined {

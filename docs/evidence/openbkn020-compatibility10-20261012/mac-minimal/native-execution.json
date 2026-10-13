@@ -1,0 +1,19 @@
+{
+  "command": [
+    "node",
+    "/private/tmp/bkn-compat10-minimal-mac-20261012/minimal-native.probe.mjs",
+    "--runtime",
+    "/Users/kalias/Documents/project/app/openBKN/dsh-npm-020",
+    "--plugin",
+    "/private/tmp/bkn-compat10-minimal-mac-20261012/candidate/package",
+    "--cli",
+    "/private/tmp/bkn-compat10-minimal-mac-20261012/sdk/node_modules/.bin/openbkn",
+    "--live",
+    "https://192.168.50.28",
+    "--kn",
+    "supply_ontology_hand"
+  ],
+  "started": "2026-10-12T15:45:50.367721+00:00",
+  "finished": "2026-10-12T15:45:52.093360+00:00",
+  "exitCode": 0
+}

@@ -1,0 +1,14 @@
+{
+  "shard": "All files",
+  "status": "completed",
+  "summary": "The 0.2.0 adaptation (explicit Trace degradation, navigation-shell profile, fixed CLI install targets) keeps its fail-closed shape: unrecorded lifecycle results are accepted only on the exact platform contract, no Interaction ID is invented, denied calls are proven not to dispatch, and the recorded evidence hashes match the committed bytes. One lifecycle state transition changed in a direction that needs the author's call.",
+  "impact": "A successful finish whose result does not disclose an Interaction ID now leaves this turn's governed access window open instead of closing it.",
+  "blockers": [],
+  "unconfirmed": [
+    {
+      "file": "packages/openbkn-business-context/src/interaction-lifecycle.ts",
+      "what": "A successful `bkn_finish_interaction` that projects to `{}` — e.g. a result carrying `trace_recorded: false` alongside `interaction_id`, which `projectLifecycleOutcome` drops at line 200 — now returns the unchanged state, so `open` stays true and further managed business calls (and a second finish) keep being allowed after the platform-side interaction closed; before this change every successful finish closed the window. Worth confirming whether the 0.2.0 finish response can report an unrecorded finish while still returning an interaction id, since its output schema declares `required: []`."
+    }
+  ],
+  "not_covered": "Tests and docs were read only (no suite run), and the diagnostics10-20261011 screenshots/JSONL artifacts were accepted as recorded evidence without re-deriving them."
+}

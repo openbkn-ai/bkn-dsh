@@ -263,11 +263,18 @@ export class OpenBknBusinessContextService extends TypertRemoteService {
       throw new RemoteError('openbkn/provenance-platform-mismatch', 'This session belongs to another platform. Restore its original OpenBKN address to read platform provenance.', {})
     }
     const cwd = agent.session.header.cwd ?? '.'
-    const reader = this.platformReader()
     const timeline = buildTurnTimeline(
       agent.session.snapshotEvents(),
       handle.turn === undefined ? { messageId } : { turn: handle.turn },
     )
+    if (handle.recording !== undefined) {
+      const reason = handle.recording === 'disabled' ? 'trace-disabled' : 'trace-unavailable'
+      return buildProvenanceView(handle, timeline, undefined, undefined, {
+        operations: { pane: 'operations', reason }, business: { pane: 'business', reason },
+      }, { maxGraphNodes: this.config.maxGraphNodes, maxGraphEdges: this.config.maxGraphEdges })
+    }
+    if (handle.interactionId === undefined) return undefined
+    const reader = this.platformReader()
     // Trace operations and the authorized assembly are independent read
     // models. Each failure degrades only its own pane; neither hides the
     // local timeline, and the browser receives no raw payload in any case.

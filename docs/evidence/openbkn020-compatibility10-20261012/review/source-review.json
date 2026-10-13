@@ -1,0 +1,108 @@
+{
+  "headRefOid": "9a35c0d9d1263b5f39b24d596f07dbcedbf25d04",
+  "reviewDecision": "APPROVED",
+  "reviews": [
+    {
+      "id": "PRR_kwDOUNu5088AAAABRws5ag",
+      "author": {
+        "login": "github-actions"
+      },
+      "authorAssociation": "NONE",
+      "body": "The new commit resolves both prior items: a successful finish now closes the governed window regardless of the IDs it discloses, and the CLI mismatch hint no longer fires against an untouched dropdown. The lifecycle change moves in the fail-closed direction and preserves conversation restore, with the only residual being which mismatch cases the hint can still reach.\n\n\n<details><summary>Impact and review coverage</summary>\n\n- Impact: Advanced-settings CLI panel wording for an auto-detected CLI; the lifecycle and provenance paths behave as before or more conservatively.\n- Not covered: The plugin test suite was not executed (no node_modules in this workspace), so the three new tests were reviewed by reading only.\n\n</details>\n\n## Items to confirm (nonblocking)\n\n- **packages/openbkn-business-context/src/client/CliSetupControl.tsx** \u2014 With `targetVersion` left `undefined` and the select rendering `'0.1.5'`, picking the already-displayed `0.1.5` option fires no `change` event, so the mismatch hint can only ever reach the `0.2.0` selection. A user on a\u2026\n\nReply `/review` to discuss findings or request another round; ordinary replies do not trigger a review. The requester must be an OWNER, MEMBER or COLLABORATOR.",
+      "submittedAt": "2026-10-12T05:42:13Z",
+      "includesCreatedEdit": false,
+      "reactionGroups": [],
+      "state": "APPROVED",
+      "commit": {
+        "oid": "038416188246f1ee4f9960a855766b58ad9950c7"
+      }
+    },
+    {
+      "id": "PRR_kwDOUNu5088AAAABRwvagQ",
+      "author": {
+        "login": "github-actions"
+      },
+      "authorAssociation": "NONE",
+      "body": "The new commit resolves the prior round's item: the install-version select now starts on a disabled placeholder, and both the install button and the 'missing' message refuse to proceed until a version is explicitly chosen. No new defect found in this round's scope.\n\n\n<details><summary>Impact and review coverage</summary>\n\n- Impact: Advanced-settings CLI panel only; the install target now always comes from an explicit user choice instead of an implicit 0.1.5.\n- Not covered: The plugin test suite was not executed (no installed workspace dependencies here), so the three updated cliSetupMessage assertions were reviewed by reading only.\n\n</details>\n\nReply `/review` to discuss findings or request another round; ordinary replies do not trigger a review. The requester must be an OWNER, MEMBER or COLLABORATOR.",
+      "submittedAt": "2026-10-12T05:49:54Z",
+      "includesCreatedEdit": false,
+      "reactionGroups": [],
+      "state": "APPROVED",
+      "commit": {
+        "oid": "9a35c0d9d1263b5f39b24d596f07dbcedbf25d04"
+      }
+    }
+  ],
+  "statusCheckRollup": [
+    {
+      "__typename": "CheckRun",
+      "completedAt": "2026-10-12T05:46:21Z",
+      "conclusion": "SUCCESS",
+      "detailsUrl": "https://github.com/openbkn-ai/bkn-dsh/actions/runs/38209378307/job/114679898562",
+      "name": "plan",
+      "startedAt": "2026-10-12T05:46:01Z",
+      "status": "COMPLETED",
+      "workflowName": "Claude Code Review"
+    },
+    {
+      "__typename": "CheckRun",
+      "completedAt": "2026-10-12T05:47:01Z",
+      "conclusion": "SUCCESS",
+      "detailsUrl": "https://github.com/openbkn-ai/bkn-dsh/actions/runs/38209375956/job/114679894295",
+      "name": "Analyze (actions)",
+      "startedAt": "2026-10-12T05:46:00Z",
+      "status": "COMPLETED",
+      "workflowName": "CodeQL"
+    },
+    {
+      "__typename": "CheckRun",
+      "completedAt": "2026-10-12T05:46:50Z",
+      "conclusion": "SUCCESS",
+      "detailsUrl": "https://github.com/openbkn-ai/bkn-dsh/actions/runs/38209375956/job/114679894600",
+      "name": "Analyze (javascript-typescript)",
+      "startedAt": "2026-10-12T05:46:00Z",
+      "status": "COMPLETED",
+      "workflowName": "CodeQL"
+    },
+    {
+      "__typename": "CheckRun",
+      "completedAt": "2026-10-12T05:49:37Z",
+      "conclusion": "SUCCESS",
+      "detailsUrl": "https://github.com/openbkn-ai/bkn-dsh/actions/runs/38209378307/job/114679985345",
+      "name": "review (All files)",
+      "startedAt": "2026-10-12T05:46:24Z",
+      "status": "COMPLETED",
+      "workflowName": "Claude Code Review"
+    },
+    {
+      "__typename": "CheckRun",
+      "completedAt": "2026-10-12T05:49:47Z",
+      "conclusion": "SUCCESS",
+      "detailsUrl": "https://github.com/openbkn-ai/bkn-dsh/actions/runs/38209378307/job/114680725151",
+      "name": "verify",
+      "startedAt": "2026-10-12T05:49:40Z",
+      "status": "COMPLETED",
+      "workflowName": "Claude Code Review"
+    },
+    {
+      "__typename": "CheckRun",
+      "completedAt": "2026-10-12T05:49:57Z",
+      "conclusion": "SUCCESS",
+      "detailsUrl": "https://github.com/openbkn-ai/bkn-dsh/actions/runs/38209378307/job/114680762419",
+      "name": "verdict",
+      "startedAt": "2026-10-12T05:49:49Z",
+      "status": "COMPLETED",
+      "workflowName": "Claude Code Review"
+    },
+    {
+      "__typename": "CheckRun",
+      "completedAt": "2026-10-12T05:46:44Z",
+      "conclusion": "SUCCESS",
+      "detailsUrl": "https://github.com/openbkn-ai/bkn-dsh/runs/114680058380",
+      "name": "CodeQL",
+      "startedAt": "2026-10-12T05:46:41Z",
+      "status": "COMPLETED",
+      "workflowName": ""
+    }
+  ]
+}

@@ -1,0 +1,26 @@
+{
+  "kind": "controlled-pure-production-function-reproduction-not-live-MCP",
+  "baseline": "b3946a6da269008a0d4a979e9ebaeb480509e4a7",
+  "source": "a06ef53979e4b5cb6b84da3619d64529929577cf",
+  "before": {
+    "projection": {},
+    "state": {
+      "open": true,
+      "startsThisTurn": 1,
+      "conversationInvalidatedThisTurn": false,
+      "conversationId": "controlled-prior-conversation"
+    }
+  },
+  "after": {
+    "projection": {
+      "recording": "unavailable"
+    },
+    "state": {
+      "open": true,
+      "startsThisTurn": 1,
+      "conversationInvalidatedThisTurn": false,
+      "recording": "unavailable",
+      "conversationId": "controlled-prior-conversation"
+    }
+  }
+}

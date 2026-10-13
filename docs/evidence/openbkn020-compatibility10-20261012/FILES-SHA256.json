@@ -1,0 +1,53 @@
+{
+  "scope": "12 controlled-validation and CI-candidate files; excludes this manifest and narrative report",
+  "files": {
+    "plugin-tests.log": {
+      "sha256": "7c28ed166ed8b4c8f9246834fbca4faec2875f52304ccb8585dab6e29b200d0f",
+      "bytes": 42196
+    },
+    "repo-tests.log": {
+      "sha256": "81a8b297c70885abeda024ea2b0754e10d94987c24e5224e06ef47dd6c3b8a69",
+      "bytes": 9062
+    },
+    "typecheck.log": {
+      "sha256": "e9bde1b9c430b1f263cf72baa9160a680b8c6a2046c94728f535c5a45341fd3b",
+      "bytes": 75
+    },
+    "package-check.log": {
+      "sha256": "caa26860116f076a1b2011deb0839eb4be6046d2d385acf6df1bbd1500c4d107",
+      "bytes": 259
+    },
+    "pack.log": {
+      "sha256": "5c4eb3b99f52a8167ead5d50d4b592c4eb0595ecf123572d3f583bac70be16b7",
+      "bytes": 2440
+    },
+    "before-after.json": {
+      "sha256": "fb43d50895a90c176f734d5a899a65d5a7f62ce3e93942d0b7d54abfd30de472",
+      "bytes": 689
+    },
+    "pack-check.json": {
+      "sha256": "e5a6ba68c0a5898bf57689f50455777beb93c41556161629e9f1db36915c0555",
+      "bytes": 8116
+    },
+    "ci-run.json": {
+      "sha256": "9e600a33f1952fe6c2d77fd76c0f51fc5aae50543974ebde2dd0c05deedee151",
+      "bytes": 5166
+    },
+    "ci-artifacts.json": {
+      "sha256": "a01c604528cb46b517cf484b546e04a84504d1c050d248a36be71bf76401938d",
+      "bytes": 730
+    },
+    "ci-validation-excerpt.log": {
+      "sha256": "5f7e5244fe08ef6a467169768d2ba5a85ceedbc73314ae7096b2ec284c6bdb82",
+      "bytes": 427217
+    },
+    "candidate-files.json": {
+      "sha256": "36e33924e09d135e120757c8184c3c310c7f12e241009b7ea4218a6d68f107c7",
+      "bytes": 7382
+    },
+    "candidate-manifest.json": {
+      "sha256": "4a0b0469c13c82457cc783bddffb1f2a65de9b6d35888cfbd3a4c430df0abf62",
+      "bytes": 1183
+    }
+  }
+}

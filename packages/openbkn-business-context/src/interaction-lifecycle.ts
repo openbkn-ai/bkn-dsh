@@ -47,9 +47,10 @@ declare module '@deepseek-ai/dsh-session/types' {
 export const CONVERSATION_INVALID_ERROR_CODES = ['resource_not_disclosed', 'conversation_owner_mismatch'] as const
 
 export interface InteractionLifecycleState {
-  /** Whether this turn's Interaction is open; never crosses a turn boundary. */
+  /** This turn's governed access window; may be explicitly unrecorded by Trace. */
   readonly open: boolean
   readonly interactionId?: string
+  readonly recording?: 'disabled' | 'unavailable'
   /** Cross-turn platform conversation identity; source of truth is the event log. */
   readonly conversationId?: string
   /** A platform-judged conversation invalidation already happened this turn. */
@@ -62,6 +63,7 @@ export interface LifecycleToolResultProjection {
   readonly interactionId?: string
   readonly conversationId?: string
   readonly errorCode?: string
+  readonly recording?: 'disabled' | 'unavailable'
 }
 
 export interface ManagedConversationEventData {
@@ -191,8 +193,11 @@ export function projectLifecycleOutcome(result: LifecycleOutcomeLike): Lifecycle
   }
   for (const block of result.content ?? []) {
     if (block?.type !== 'text' || typeof block.text !== 'string') continue
-    const parsed = parseJsonRecord(block.text)
+    const parsed = parseLifecycleRecord(block.text)
     if (parsed === undefined) continue
+    const recording = unrecordedLifecycleReason(parsed)
+    if (recording !== undefined) return { recording }
+    if (parsed.trace_recorded === false) return {}
     const interactionId = identifier(parsed.interaction_id)
     const conversationId = identifier(parsed.conversation_id)
     if (interactionId !== undefined || conversationId !== undefined) {
@@ -203,6 +208,25 @@ export function projectLifecycleOutcome(result: LifecycleOutcomeLike): Lifecycle
     }
   }
   return {}
+}
+
+/** DSH coalesces the lifecycle JSON and platform Trace diagnostic into one text block. */
+export function parseLifecycleRecord(text: string): Record<string, unknown> | undefined {
+  if (text.length > 65_536) return undefined
+  const direct = parseJsonRecord(text)
+  if (direct !== undefined) return direct
+  const parts = text.split('\n[BKN_TRACE]')
+  if (parts.length !== 2 || asRecord(parseJsonRecord(parts[1]!)?.bkn_trace) === undefined) return undefined
+  return parseJsonRecord(parts[0]!)
+}
+
+/** Only the successful platform contract can authorize unrecorded access. */
+export function unrecordedLifecycleReason(value: Record<string, unknown>): 'disabled' | 'unavailable' | undefined {
+  if (value.trace_recorded !== false || value.required_action !== 'continue_without_bkn_context'
+    || value.interaction_id !== undefined || value.conversation_id !== undefined) return undefined
+  if (value.capture_enabled === false && value.code === 'capture_disabled') return 'disabled'
+  if (value.trace_available === false && identifier(value.code) !== undefined && identifier(value.stage) !== undefined) return 'unavailable'
+  return undefined
 }
 
 function asRecord(value: unknown): Record<string, unknown> | undefined {
@@ -252,10 +276,13 @@ export function onToolResult(
         startsThisTurn: state.startsThisTurn,
       }
     }
+    // Neither missing IDs nor an unknown/error-shaped success may open access.
+    if (payload.recording === undefined && payload.interactionId === undefined) return state
     return {
       open: true,
       startsThisTurn: state.startsThisTurn + 1,
       conversationInvalidatedThisTurn: state.conversationInvalidatedThisTurn,
+      ...(payload.recording === undefined ? {} : { recording: payload.recording }),
       ...(payload.interactionId === undefined ? {} : { interactionId: payload.interactionId }),
       ...(payload.conversationId === undefined
         ? (state.conversationId === undefined ? {} : { conversationId: state.conversationId })
@@ -264,6 +291,8 @@ export function onToolResult(
   }
   if (name === FINISH_INTERACTION_TOOL) {
     if (!ok) return state
+    // A successful finish closes access even when provenance cannot be recovered.
+    // Missing or contradictory IDs never justify more business calls in this turn.
     const conversationId = payload.conversationId === undefined ? state.conversationId : payload.conversationId
     return {
       open: false,
@@ -319,6 +348,10 @@ export function denialFor(
       }
     }
     return undefined
+  }
+  if (state.recording !== undefined && state.open
+    && (args.bkn_context !== undefined || (toolName === FINISH_INTERACTION_TOOL && args.interaction_id !== undefined))) {
+    return 'Trace did not disclose an Interaction ID for this turn. Omit bkn_context and interaction_id; do not reuse an ID from another turn.'
   }
   if (toolName === FINISH_INTERACTION_TOOL) {
     if (!state.open) {

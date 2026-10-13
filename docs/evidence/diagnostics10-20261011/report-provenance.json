@@ -1,0 +1,62 @@
+[
+  {
+    "archive": "mac-npm-normal-report.json",
+    "originalPath": "/Users/kalias/Downloads/OpenBKN-diagnostic-20261011T030827735Z-393c8968.json",
+    "reportId": "393c8968",
+    "bytes": 2869,
+    "sha256": "9e39c96bef381a325032c7db910f7f01285a7c7a22a3c981994f6d9fca03acb1",
+    "byteIdentical": true,
+    "target": {
+      "hostForm": "unknown",
+      "platform": "darwin",
+      "dshVersion": null,
+      "pluginDiskVersion": "0.2.0-rc.2-openbkn.0.2.0-10",
+      "pluginLoadedVersion": null
+    }
+  },
+  {
+    "archive": "mac-npm-business-fault-report.json",
+    "originalPath": "/Users/kalias/Downloads/OpenBKN-diagnostic-20261011T031103924Z-7ec3a884.json",
+    "reportId": "7ec3a884",
+    "bytes": 1290,
+    "sha256": "715b32bcc0d7237e9351c40eedb84e3bc0268eefe01fe44e3f5fef66d69869d4",
+    "byteIdentical": true,
+    "target": {
+      "hostForm": "unknown",
+      "platform": "darwin",
+      "dshVersion": null,
+      "pluginDiskVersion": "0.2.0-rc.2-openbkn.0.2.0-10",
+      "pluginLoadedVersion": null
+    }
+  },
+  {
+    "archive": "mac-desktop-normal-report.json",
+    "originalPath": "/Users/kalias/Downloads/OpenBKN-diagnostic-20261011T031750027Z-896a1443.json",
+    "reportId": "896a1443",
+    "bytes": 2869,
+    "sha256": "84f43eb4c793601d92cc8209e532c33fdf58599482f33736f4a59635c0d4a480",
+    "byteIdentical": true,
+    "target": {
+      "hostForm": "desktop",
+      "platform": "darwin",
+      "dshVersion": null,
+      "pluginDiskVersion": "0.2.0-rc.2-openbkn.0.2.0-10",
+      "pluginLoadedVersion": null
+    }
+  },
+  {
+    "archive": "mac-desktop-business-fault-report.json",
+    "originalPath": "/Users/kalias/Downloads/OpenBKN-diagnostic-20261011T032816726Z-8af746b2.json",
+    "reportId": "8af746b2",
+    "bytes": 1290,
+    "sha256": "09988c2bf3323779c53ad64e41b68c4b2791927d2ca11b2d8ed004b370a8eed5",
+    "byteIdentical": true,
+    "target": {
+      "hostForm": "desktop",
+      "platform": "darwin",
+      "dshVersion": null,
+      "pluginDiskVersion": "0.2.0-rc.2-openbkn.0.2.0-10",
+      "pluginLoadedVersion": null
+    }
+  }
+]

@@ -1,0 +1,45 @@
+{
+  "scope": "Fixed Windows handoff inputs; excludes this manifest. SDK source build included; CI plugin retrieved separately.",
+  "files": {
+    "openbkn-dev-ca.pem": {
+      "bytes": 1192,
+      "sha256": "89e53b4e7a09305c01c37513a9bdda63698735a33a0df71f725875ec47180453"
+    },
+    "candidate-files.json": {
+      "bytes": 7382,
+      "sha256": "8534860d50d700c68fbc2e5e7f486a21e12a4a52de9af9ea1ad5f3c29401d690"
+    },
+    "minimal-native.probe.mjs": {
+      "bytes": 11780,
+      "sha256": "5696a22e1b930ecc30c228886e68f855735472f00909f8f6682c7c0c034365fd"
+    },
+    "stop-owned-host.ps1": {
+      "bytes": 2466,
+      "sha256": "9fd7b9aa2d0b2a95a422ae1818d832e5d633192645cd569aa9e940ec37198aa4"
+    },
+    "candidate-manifest.json": {
+      "bytes": 1090,
+      "sha256": "b217c7b473ffdabcea46183d9bb77d4d45fc8f2cde99ab430d20383fff0c6f7c"
+    },
+    "RESULTS-TEMPLATE.md": {
+      "bytes": 1667,
+      "sha256": "45bfdb852545197b760fea492b3faf4d029369cf7f31f3305ed0cb3e4971cb35"
+    },
+    "sdk-manifest.json": {
+      "bytes": 455,
+      "sha256": "7c08a56d451de90b3ca909dbb3254e403b7137fec3539d0cc643693e909bdd81"
+    },
+    "verify-candidate.mjs": {
+      "bytes": 3442,
+      "sha256": "59305cbf038fd628c705e104219cb4a5c1c03d2eae31f347cafeb5dd63f9bdf3"
+    },
+    "HANDOFF.md": {
+      "bytes": 10086,
+      "sha256": "3d4d22a5aa8dfb99116fbe49ae074ab906a11f81904954f9ebb246b5e0fdc97b"
+    },
+    "candidate/openbkn-bkn-sdk-0.2.0.tgz": {
+      "bytes": 212707,
+      "sha256": "7391c658e831b9f11bc36fd7fcecfa30e41ecc4123a005bfee811e44b60eb43c"
+    }
+  }
+}

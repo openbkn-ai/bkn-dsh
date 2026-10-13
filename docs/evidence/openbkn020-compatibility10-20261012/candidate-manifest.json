@@ -1,0 +1,26 @@
+{
+  "version": "0.2.0-rc.2-openbkn.0.2.0-10",
+  "sourceCommit": "a06ef53979e4b5cb6b84da3619d64529929577cf",
+  "implementationCommit": "0309102e592f8ce52ec7d4640a0bdf5a26812903",
+  "ciRun": 38197960456,
+  "ciRunUrl": "https://github.com/openbkn-ai/bkn-dsh/actions/runs/38197960456",
+  "artifactName": "plugin-tarball",
+  "artifactId": 11724461959,
+  "file": "openbkn-dsh-business-context-0.2.0-rc.2-openbkn.0.2.0-10.tgz",
+  "bytes": 188139,
+  "sha256": "a0d633ad6526940c5672fad99592b878619ea968b2ca7bda047020de05a4036a",
+  "fileCount": 70,
+  "filesManifestSha256": "36e33924e09d135e120757c8184c3c310c7f12e241009b7ea4218a6d68f107c7",
+  "artifactZip": {
+    "bytes": 188433,
+    "sha256": "b2a2eeb7301433c0915fbc22582f82ef38072e9616af3bd92c89e2a27d3eec32",
+    "expiresAt": "2027-01-10T02:59:24Z"
+  },
+  "localDevelopmentPackComparison": {
+    "sha256": "1344a0202b6a8ff3a0f9683b097946fbda6cc3c0fa91627a0dd5a08d984ceec7",
+    "tgzByteIdentical": false,
+    "uncompressedTarByteIdentical": true,
+    "fileBytesIdentical": 70
+  },
+  "scope": "diagnostic presentation and minimal OpenBKN 0.2.0 compatibility preparation; build-only, unpublished, not live-accepted; B1 not claimed fixed"
+}

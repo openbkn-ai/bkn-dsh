@@ -1135,3 +1135,48 @@ test('a missing OpenBKN CLI surfaces as openbkn/cli-unavailable on every CLI ent
     await assert.rejects(service.remoteBeginLogin(AbortSignal.timeout(1_000)), isCliUnavailable, `beginLogin, stored token: ${configured}`)
   }
 })
+
+test('unrecorded provenance renders a local timeline and explicit degradation without platform reads', async () => {
+  for (const reason of ['disabled', 'unavailable'] as const) {
+    const value = reason === 'disabled'
+      ? { trace_recorded: false, capture_enabled: false, code: 'capture_disabled', required_action: 'continue_without_bkn_context' }
+      : { trace_recorded: false, trace_available: false, code: 'trace_core_unavailable', stage: 'finish_interaction', required_action: 'continue_without_bkn_context' }
+    const agent = { id: 'unrecorded', session: { header: { cwd: '/controlled' }, snapshotEvents: () => [
+      { type: 'user/message', time: 1000, data: { turn: 1, message: { id: 'question', content: [{ type: 'text', text: 'Question' }] } } },
+      { type: 'tool/call', time: 1010, data: { turn: 1, callId: 'finish', name: 'mcp__openbkn__bkn_finish_interaction' } },
+      { type: 'tool/result', time: 1020, data: { turn: 1, message: { source: { kind: 'tool', callId: 'finish' }, content: [{ type: 'text', text: JSON.stringify(value) }] } } },
+      { type: 'assistant/message', time: 1030, data: { turn: 1, message: { id: 'answer', content: [{ type: 'text', text: 'Native answer' }] } } },
+    ] } }
+    const service = Object.create(OpenBknBusinessContextService.prototype)
+    service.config = { ...config, maxGraphNodes: 10, maxGraphEdges: 10 }
+    service.ctx = { agents: { get: () => agent } }
+    service.platformReader = () => { throw new Error('must not query fake/old interaction') }
+    const view = await service.remoteGetTurnProvenanceView(agent.id, 'answer', AbortSignal.timeout(1000))
+    assert.equal(view.interactionId, undefined)
+    assert.ok(view.timeline.length > 0)
+    assert.deepEqual(view.sources.degraded.map((d: { reason: string }) => d.reason), [`trace-${reason}`, `trace-${reason}`, `trace-${reason}`])
+    assert.equal(view.evidence.kind, 'unavailable')
+    assert.equal(view.evidence.reason, `trace-${reason}`)
+  }
+})
+
+test('navigation-shell detail passes the validated binding boundary and clears prior shape failure', async () => {
+  const { PassiveDiagnosticsBuffer } = await import('../src/diagnostics-observer.ts')
+  const observations = new PassiveDiagnosticsBuffer()
+  observations.record({ subject: 'platform-network-detail', stage: 'platform-directory', code: 'platform-response-invalid', status: 'fail' })
+  const agent = { id: 'navigation', session: { header: { cwd: '/controlled' } } }
+  const service = Object.create(OpenBknBusinessContextService.prototype)
+  service.config = config; service.observations = observations
+  service.ctx = { agents: { get: () => agent }, logger: { warn: () => { throw new Error('valid shell must not degrade') } } }
+  service.remoteStatus = async () => ({ kind: 'authenticated', baseUrl: config.baseUrl })
+  service.platformReader = () => ({
+    listKnowledgeNetworks: async () => ({ entries: [{ id: 'kn-supply', name: 'Supply' }] }),
+    getKnowledgeNetworkDetail: async () => ({ id: 'kn-supply', concept_groups: [], object_types: null, relation_types: null, action_types: null, object_type_count: 201, notice: 'navigation' }),
+  })
+  service.bind = async (_agent: unknown, binding: unknown) => ({ kind: 'bound', binding })
+  const binding = await service.remoteBindNetwork(agent.id, 'kn-supply', AbortSignal.timeout(1000))
+  assert.equal(binding.knowledgeNetworkId, 'kn-supply')
+  const detail = observations.snapshot().find(check => check.id === 'observed:platform-network-detail')
+  assert.equal(detail?.status, 'pass')
+  assert.equal(detail?.evidence.recovered, true)
+})

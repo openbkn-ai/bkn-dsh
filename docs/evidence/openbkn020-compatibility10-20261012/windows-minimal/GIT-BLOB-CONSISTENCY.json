@@ -1,0 +1,520 @@
+{
+  "comparedCommit": "5b7aeb98305e13cc68addb02faf5de3187f8de9f",
+  "method": "Git blob via execFileSync('git', ['show', commit + ':' + path]) Buffer vs raw local bytes; SHA-256 over raw bytes; no line-ending normalisation (directory is -text).",
+  "selfReference": "This file is not in comparedCommit and is excluded; committed separately.",
+  "generatedUtc": "2026-10-12T16:29:27.691Z",
+  "total": 63,
+  "workingCopyIdenticalCount": 63,
+  "originalIdenticalCount": 61,
+  "noLocalOriginal": [
+    "LOCAL-PROVENANCE.json",
+    "RESULTS.md"
+  ],
+  "originalDifferent": [],
+  "files": [
+    {
+      "path": "LOCAL-PROVENANCE.json",
+      "gitBytes": 32714,
+      "gitSha256": "9f7296cd86d87a90c2690638c76d8ca8a89484854ed37cb4249e6ec915954e4d",
+      "workingCopyIdentical": true,
+      "localOriginal": null,
+      "originalIdentical": null
+    },
+    {
+      "path": "RESULTS.md",
+      "gitBytes": 9903,
+      "gitSha256": "b02c1d07b40e476adafb1c5eb39f275035534433dcb4a84079c98f7a500c3c50",
+      "workingCopyIdentical": true,
+      "localOriginal": null,
+      "originalIdentical": null
+    },
+    {
+      "path": "evidence/OpenBKN-diagnostic-desktop-v1-2c354224.json",
+      "gitBytes": 2868,
+      "gitSha256": "e6530f4885ce01200698879c105a9a4e71462a63e41f9499b1c4cff01a662282",
+      "workingCopyIdentical": true,
+      "localOriginal": "C:/bkn-verify/compat10-minimal/evidence/OpenBKN-diagnostic-desktop-v1-2c354224.json",
+      "originalIdentical": true
+    },
+    {
+      "path": "evidence/OpenBKN-diagnostic-npm-v1-e6071fd1.json",
+      "gitBytes": 2868,
+      "gitSha256": "6af525d32336deded1b8fbdc507b11fab5f12a41756c030c51982e74a9522e4e",
+      "workingCopyIdentical": true,
+      "localOriginal": "C:/bkn-verify/compat10-minimal/evidence/OpenBKN-diagnostic-npm-v1-e6071fd1.json",
+      "originalIdentical": true
+    },
+    {
+      "path": "evidence/c10-desk-r0-install-host.json",
+      "gitBytes": 1716,
+      "gitSha256": "013aca43ce3518e926f65151b486b19ecd8e339e611e843d43a41a4e11c230c8",
+      "workingCopyIdentical": true,
+      "localOriginal": "C:/bkn-verify/compat10-minimal/evidence/c10-desk-r0-install-host.json",
+      "originalIdentical": true
+    },
+    {
+      "path": "evidence/c10-desk-r1-host.json",
+      "gitBytes": 1712,
+      "gitSha256": "81a98c0d1d498ee45d901df4fe74621407476013858306d3476151c635140afb",
+      "workingCopyIdentical": true,
+      "localOriginal": "C:/bkn-verify/compat10-minimal/evidence/c10-desk-r1-host.json",
+      "originalIdentical": true
+    },
+    {
+      "path": "evidence/c10-npm-r1-host.json",
+      "gitBytes": 1252,
+      "gitSha256": "b5678a1922351091853253417a48e92fea4a4c3f2102143fdd5def9490ba98dc",
+      "workingCopyIdentical": true,
+      "localOriginal": "C:/bkn-verify/compat10-minimal/evidence/c10-npm-r1-host.json",
+      "originalIdentical": true
+    },
+    {
+      "path": "evidence/daily-after.json",
+      "gitBytes": 421712,
+      "gitSha256": "39087b006c85e3c5d1ae99a1752c53945ac08e42f8e015a093319e5ef0f3f896",
+      "workingCopyIdentical": true,
+      "localOriginal": "C:/bkn-verify/compat10-minimal/evidence/daily-after.json",
+      "originalIdentical": true
+    },
+    {
+      "path": "evidence/daily-before.json",
+      "gitBytes": 421713,
+      "gitSha256": "e8e654b8326a8a142e85185382464ee00827a2a861a805a882092cef80c474bf",
+      "workingCopyIdentical": true,
+      "localOriginal": "C:/bkn-verify/compat10-minimal/evidence/daily-before.json",
+      "originalIdentical": true
+    },
+    {
+      "path": "evidence/desktop-installed-verify-exit.txt",
+      "gitBytes": 3,
+      "gitSha256": "13bf7b3039c63bf5a50491fa3cfd8eb4e699d1ba1436315aef9cbe5711530354",
+      "workingCopyIdentical": true,
+      "localOriginal": "C:/bkn-verify/compat10-minimal/evidence/desktop-installed-verify-exit.txt",
+      "originalIdentical": true
+    },
+    {
+      "path": "evidence/desktop-installed-verify.txt",
+      "gitBytes": 2482,
+      "gitSha256": "09ab68cfa8517fa2effd13b2f32c1f4d9ff5897f009eb6e778c0fb75d7cf0f52",
+      "workingCopyIdentical": true,
+      "localOriginal": "C:/bkn-verify/compat10-minimal/evidence/desktop-installed-verify.txt",
+      "originalIdentical": true
+    },
+    {
+      "path": "evidence/f97/c10-desk-r1-record.json",
+      "gitBytes": 1712,
+      "gitSha256": "81a98c0d1d498ee45d901df4fe74621407476013858306d3476151c635140afb",
+      "workingCopyIdentical": true,
+      "localOriginal": "C:/bkn-verify/compat10-minimal/evidence/f97/c10-desk-r1-record.json",
+      "originalIdentical": true
+    },
+    {
+      "path": "evidence/f97/c10-desk-r1-stop-attempt1-badpath-exit.txt",
+      "gitBytes": 3,
+      "gitSha256": "f1b2f662800122bed0ff255693df89c4487fbdcf453d3524a42d4ec20c3d9c04",
+      "workingCopyIdentical": true,
+      "localOriginal": "C:/bkn-verify/compat10-minimal/evidence/f97/c10-desk-r1-stop-attempt1-badpath-exit.txt",
+      "originalIdentical": true
+    },
+    {
+      "path": "evidence/f97/c10-desk-r1-stop-attempt1-badpath-outer.txt",
+      "gitBytes": 1892,
+      "gitSha256": "9657145e84d1aa75fe012a5fe006db6c3ffc17b789e90517619a198e4b636e75",
+      "workingCopyIdentical": true,
+      "localOriginal": "C:/bkn-verify/compat10-minimal/evidence/f97/c10-desk-r1-stop-attempt1-badpath-outer.txt",
+      "originalIdentical": true
+    },
+    {
+      "path": "evidence/f97/c10-desk-r1-stop-attempt1-badpath-proc-snap.txt",
+      "gitBytes": 211,
+      "gitSha256": "4099b56e5fa2aafe2e8da9fb20a1a178e1744cad3891780bb0ed195254c4311d",
+      "workingCopyIdentical": true,
+      "localOriginal": "C:/bkn-verify/compat10-minimal/evidence/f97/c10-desk-r1-stop-attempt1-badpath-proc-snap.txt",
+      "originalIdentical": true
+    },
+    {
+      "path": "evidence/f97/c10-desk-r1-stop-exit.txt",
+      "gitBytes": 3,
+      "gitSha256": "13bf7b3039c63bf5a50491fa3cfd8eb4e699d1ba1436315aef9cbe5711530354",
+      "workingCopyIdentical": true,
+      "localOriginal": "C:/bkn-verify/compat10-minimal/evidence/f97/c10-desk-r1-stop-exit.txt",
+      "originalIdentical": true
+    },
+    {
+      "path": "evidence/f97/c10-desk-r1-stop-internal-log.txt",
+      "gitBytes": 1000,
+      "gitSha256": "1375085d302becf4acb21137f885a1102b9460226f97ac0698d44f5978ead62a",
+      "workingCopyIdentical": true,
+      "localOriginal": "C:/bkn-verify/compat10-minimal/evidence/f97/c10-desk-r1-stop-internal-log.txt",
+      "originalIdentical": true
+    },
+    {
+      "path": "evidence/f97/c10-desk-r1-stop-outer.txt",
+      "gitBytes": 1596,
+      "gitSha256": "718e728003fc7704bcb724a28ea66970dddb6b51f9b9855fa737903f1e1ef6b4",
+      "workingCopyIdentical": true,
+      "localOriginal": "C:/bkn-verify/compat10-minimal/evidence/f97/c10-desk-r1-stop-outer.txt",
+      "originalIdentical": true
+    },
+    {
+      "path": "evidence/f97/c10-desk-r1-stop-proc-snap.txt",
+      "gitBytes": 147,
+      "gitSha256": "936e1dbb9825e619cad9e0f4b847ff41555b84b2f157fb999ed5cee99018be61",
+      "workingCopyIdentical": true,
+      "localOriginal": "C:/bkn-verify/compat10-minimal/evidence/f97/c10-desk-r1-stop-proc-snap.txt",
+      "originalIdentical": true
+    },
+    {
+      "path": "evidence/f97/c10-npm-r1-record.json",
+      "gitBytes": 1252,
+      "gitSha256": "b5678a1922351091853253417a48e92fea4a4c3f2102143fdd5def9490ba98dc",
+      "workingCopyIdentical": true,
+      "localOriginal": "C:/bkn-verify/compat10-minimal/evidence/f97/c10-npm-r1-record.json",
+      "originalIdentical": true
+    },
+    {
+      "path": "evidence/f97/c10-npm-r1-stop-attempt1-badpath-exit.txt",
+      "gitBytes": 3,
+      "gitSha256": "f1b2f662800122bed0ff255693df89c4487fbdcf453d3524a42d4ec20c3d9c04",
+      "workingCopyIdentical": true,
+      "localOriginal": "C:/bkn-verify/compat10-minimal/evidence/f97/c10-npm-r1-stop-attempt1-badpath-exit.txt",
+      "originalIdentical": true
+    },
+    {
+      "path": "evidence/f97/c10-npm-r1-stop-attempt1-badpath-outer.txt",
+      "gitBytes": 1892,
+      "gitSha256": "9657145e84d1aa75fe012a5fe006db6c3ffc17b789e90517619a198e4b636e75",
+      "workingCopyIdentical": true,
+      "localOriginal": "C:/bkn-verify/compat10-minimal/evidence/f97/c10-npm-r1-stop-attempt1-badpath-outer.txt",
+      "originalIdentical": true
+    },
+    {
+      "path": "evidence/f97/c10-npm-r1-stop-attempt1-badpath-proc-snap.txt",
+      "gitBytes": 211,
+      "gitSha256": "dd20160d955f92c044fa4a751d7b6e875317b27836ed8060e1536aaeae12245f",
+      "workingCopyIdentical": true,
+      "localOriginal": "C:/bkn-verify/compat10-minimal/evidence/f97/c10-npm-r1-stop-attempt1-badpath-proc-snap.txt",
+      "originalIdentical": true
+    },
+    {
+      "path": "evidence/f97/c10-npm-r1-stop-exit.txt",
+      "gitBytes": 3,
+      "gitSha256": "13bf7b3039c63bf5a50491fa3cfd8eb4e699d1ba1436315aef9cbe5711530354",
+      "workingCopyIdentical": true,
+      "localOriginal": "C:/bkn-verify/compat10-minimal/evidence/f97/c10-npm-r1-stop-exit.txt",
+      "originalIdentical": true
+    },
+    {
+      "path": "evidence/f97/c10-npm-r1-stop-internal-log.txt",
+      "gitBytes": 568,
+      "gitSha256": "0ec89a53e30afa6f3e40cbf1e7a6570a50dcf8ee4d783d1bf1b84821a7cef313",
+      "workingCopyIdentical": true,
+      "localOriginal": "C:/bkn-verify/compat10-minimal/evidence/f97/c10-npm-r1-stop-internal-log.txt",
+      "originalIdentical": true
+    },
+    {
+      "path": "evidence/f97/c10-npm-r1-stop-outer.txt",
+      "gitBytes": 906,
+      "gitSha256": "6bcd2888ce539bff803289b42e9f7c658017b4e5d6b9bf05e5f60446bfe270d1",
+      "workingCopyIdentical": true,
+      "localOriginal": "C:/bkn-verify/compat10-minimal/evidence/f97/c10-npm-r1-stop-outer.txt",
+      "originalIdentical": true
+    },
+    {
+      "path": "evidence/f97/c10-npm-r1-stop-proc-snap.txt",
+      "gitBytes": 190,
+      "gitSha256": "18efab8957344cd61dab09cfeb24af9d048c791deca1e5a8b76726211cea97f4",
+      "workingCopyIdentical": true,
+      "localOriginal": "C:/bkn-verify/compat10-minimal/evidence/f97/c10-npm-r1-stop-proc-snap.txt",
+      "originalIdentical": true
+    },
+    {
+      "path": "evidence/f97/desk-r0-record.json",
+      "gitBytes": 1716,
+      "gitSha256": "013aca43ce3518e926f65151b486b19ecd8e339e611e843d43a41a4e11c230c8",
+      "workingCopyIdentical": true,
+      "localOriginal": "C:/bkn-verify/compat10-minimal/evidence/f97/desk-r0-record.json",
+      "originalIdentical": true
+    },
+    {
+      "path": "evidence/f97/desk-r0-stop-exit.txt",
+      "gitBytes": 3,
+      "gitSha256": "13bf7b3039c63bf5a50491fa3cfd8eb4e699d1ba1436315aef9cbe5711530354",
+      "workingCopyIdentical": true,
+      "localOriginal": "C:/bkn-verify/compat10-minimal/evidence/f97/desk-r0-stop-exit.txt",
+      "originalIdentical": true
+    },
+    {
+      "path": "evidence/f97/desk-r0-stop-internal-log.txt",
+      "gitBytes": 998,
+      "gitSha256": "8b0d2a1699c1474733211b71f6d822d53e5ed27c9cdcdc87032f6be1aee94d4c",
+      "workingCopyIdentical": true,
+      "localOriginal": "C:/bkn-verify/compat10-minimal/evidence/f97/desk-r0-stop-internal-log.txt",
+      "originalIdentical": true
+    },
+    {
+      "path": "evidence/f97/desk-r0-stop-outer.txt",
+      "gitBytes": 1592,
+      "gitSha256": "308338955aeb1ca4dc7da5eac9aa047b4c48c99322b5c9bb6ba4b2a4b44aaa14",
+      "workingCopyIdentical": true,
+      "localOriginal": "C:/bkn-verify/compat10-minimal/evidence/f97/desk-r0-stop-outer.txt",
+      "originalIdentical": true
+    },
+    {
+      "path": "evidence/f97/desk-r0-stop-proc-snap.txt",
+      "gitBytes": 146,
+      "gitSha256": "e8e4ceeeb858203a31a7968c30f592f8a72203b8aa2134fce806df8216536fdd",
+      "workingCopyIdentical": true,
+      "localOriginal": "C:/bkn-verify/compat10-minimal/evidence/f97/desk-r0-stop-proc-snap.txt",
+      "originalIdentical": true
+    },
+    {
+      "path": "evidence/npm-installed-verify-exit.txt",
+      "gitBytes": 3,
+      "gitSha256": "13bf7b3039c63bf5a50491fa3cfd8eb4e699d1ba1436315aef9cbe5711530354",
+      "workingCopyIdentical": true,
+      "localOriginal": "C:/bkn-verify/compat10-minimal/evidence/npm-installed-verify-exit.txt",
+      "originalIdentical": true
+    },
+    {
+      "path": "evidence/npm-installed-verify.txt",
+      "gitBytes": 2466,
+      "gitSha256": "6739aa9b274456e71bbd75e410588f8e6da7e3711985a92581e257174e185128",
+      "workingCopyIdentical": true,
+      "localOriginal": "C:/bkn-verify/compat10-minimal/evidence/npm-installed-verify.txt",
+      "originalIdentical": true
+    },
+    {
+      "path": "evidence/npm-plugin-install.txt",
+      "gitBytes": 2001,
+      "gitSha256": "047c10b1abb44c58dc868a0a9832d030637d9beaf7e334cc0d49eec6e36132ec",
+      "workingCopyIdentical": true,
+      "localOriginal": "C:/bkn-verify/compat10-minimal/evidence/npm-plugin-install.txt",
+      "originalIdentical": true
+    },
+    {
+      "path": "evidence/platform-health.txt",
+      "gitBytes": 255,
+      "gitSha256": "033e89dd6459436ce45e8419e8bc45e2e95e17d92cd6970c80007a0474ae6516",
+      "workingCopyIdentical": true,
+      "localOriginal": "C:/bkn-verify/compat10-minimal/evidence/platform-health.txt",
+      "originalIdentical": true
+    },
+    {
+      "path": "evidence/probe-meta.txt",
+      "gitBytes": 523,
+      "gitSha256": "5cb0f45541c606c8630c24e8c1342ecd1014ac3646ab648d70f9125117cabbc4",
+      "workingCopyIdentical": true,
+      "localOriginal": "C:/bkn-verify/compat10-minimal/evidence/probe-meta.txt",
+      "originalIdentical": true
+    },
+    {
+      "path": "evidence/probe-phases.jsonl",
+      "gitBytes": 3269,
+      "gitSha256": "e10f368329236a381f0794ffd71704823aeccc4039ac9712f1183e87d1c52097",
+      "workingCopyIdentical": true,
+      "localOriginal": "C:/bkn-verify/compat10-minimal/evidence/probe-phases.jsonl",
+      "originalIdentical": true
+    },
+    {
+      "path": "evidence/reports.txt",
+      "gitBytes": 588,
+      "gitSha256": "c7c3936f3997675381fe820b133dcf05914aaa4ee45d248a679b0b15467e89f2",
+      "workingCopyIdentical": true,
+      "localOriginal": "C:/bkn-verify/compat10-minimal/evidence/reports.txt",
+      "originalIdentical": true
+    },
+    {
+      "path": "evidence/sdk-install-env.txt",
+      "gitBytes": 97,
+      "gitSha256": "bb3717bc6566839251ebba6aa3dced441f01eea7b067fa45d680c52d4a894455",
+      "workingCopyIdentical": true,
+      "localOriginal": "C:/bkn-verify/compat10-minimal/evidence/sdk-install-env.txt",
+      "originalIdentical": true
+    },
+    {
+      "path": "evidence/sdk-install-exit.txt",
+      "gitBytes": 3,
+      "gitSha256": "13bf7b3039c63bf5a50491fa3cfd8eb4e699d1ba1436315aef9cbe5711530354",
+      "workingCopyIdentical": true,
+      "localOriginal": "C:/bkn-verify/compat10-minimal/evidence/sdk-install-exit.txt",
+      "originalIdentical": true
+    },
+    {
+      "path": "evidence/sdk-install.txt",
+      "gitBytes": 1202,
+      "gitSha256": "4713cab15b542847add3923785551392ab28bc4c5fe391d3ef821936d3820fbd",
+      "workingCopyIdentical": true,
+      "localOriginal": "C:/bkn-verify/compat10-minimal/evidence/sdk-install.txt",
+      "originalIdentical": true
+    },
+    {
+      "path": "evidence/sdk-version-exit.txt",
+      "gitBytes": 3,
+      "gitSha256": "13bf7b3039c63bf5a50491fa3cfd8eb4e699d1ba1436315aef9cbe5711530354",
+      "workingCopyIdentical": true,
+      "localOriginal": "C:/bkn-verify/compat10-minimal/evidence/sdk-version-exit.txt",
+      "originalIdentical": true
+    },
+    {
+      "path": "evidence/sdk-version.txt",
+      "gitBytes": 16,
+      "gitSha256": "033be3e28e035968d7da9b5c46f85d6d315d33e1e204d6b24f2b76716d168f28",
+      "workingCopyIdentical": true,
+      "localOriginal": "C:/bkn-verify/compat10-minimal/evidence/sdk-version.txt",
+      "originalIdentical": true
+    },
+    {
+      "path": "evidence/v1-v2-desktop.txt",
+      "gitBytes": 1408,
+      "gitSha256": "15bc67cac8a4c1c317db1a7a304bbc10b992461319052628c8761091cf69646c",
+      "workingCopyIdentical": true,
+      "localOriginal": "C:/bkn-verify/compat10-minimal/evidence/v1-v2-desktop.txt",
+      "originalIdentical": true
+    },
+    {
+      "path": "evidence/v1-v2-npm.txt",
+      "gitBytes": 1482,
+      "gitSha256": "38b604ef09e8d836d33add90652922898922de6ccb0c87c6cb4085dcc65a3347",
+      "workingCopyIdentical": true,
+      "localOriginal": "C:/bkn-verify/compat10-minimal/evidence/v1-v2-npm.txt",
+      "originalIdentical": true
+    },
+    {
+      "path": "patches/desktop-patch-after-v2.yml",
+      "gitBytes": 417,
+      "gitSha256": "5f24fbc4502ff76bb3a8be7b05ba0b71edb08d7b5afc1c1bf4b1010ff0c7697d",
+      "workingCopyIdentical": true,
+      "localOriginal": "C:/bkn-verify/compat10-minimal/desktop/patch-after-v2.yml",
+      "originalIdentical": true
+    },
+    {
+      "path": "patches/npm-patch-after-v2.yml",
+      "gitBytes": 546,
+      "gitSha256": "153bf65b1df73324389d81f6f4d81ab081a0e60913db00a1bd9ff77b9721f7b4",
+      "workingCopyIdentical": true,
+      "localOriginal": "C:/bkn-verify/compat10-minimal/npm/private/patch-after-v2.yml",
+      "originalIdentical": true
+    },
+    {
+      "path": "scripts/daily-snapshot.ps1",
+      "gitBytes": 1968,
+      "gitSha256": "274ea8743d69e6c5477109229213bfe0c3f24346edc66942b330e3ec18a49127",
+      "workingCopyIdentical": true,
+      "localOriginal": "C:/bkn-verify/compat10-minimal/scripts/daily-snapshot.ps1",
+      "originalIdentical": true
+    },
+    {
+      "path": "scripts/dsh-plugin.ps1",
+      "gitBytes": 779,
+      "gitSha256": "b4f05b4f10aa9824ed9aa7b7e557029154d7072a0c823e7461e6f58d6fedbe35",
+      "workingCopyIdentical": true,
+      "localOriginal": "C:/bkn-verify/compat10-minimal/scripts/dsh-plugin.ps1",
+      "originalIdentical": true
+    },
+    {
+      "path": "scripts/env-npm.ps1",
+      "gitBytes": 1234,
+      "gitSha256": "4ac2ceafab69f7325a8a2ed275bb8674fd9daa6c588d4fe7086c65b894368597",
+      "workingCopyIdentical": true,
+      "localOriginal": "C:/bkn-verify/compat10-minimal/scripts/env-npm.ps1",
+      "originalIdentical": true
+    },
+    {
+      "path": "scripts/f97-run.ps1",
+      "gitBytes": 1358,
+      "gitSha256": "6283afd518b62601045db7656651692f6c0d2352e2e19072a57e8935366b6c14",
+      "workingCopyIdentical": true,
+      "localOriginal": "C:/bkn-verify/compat10-minimal/scripts/f97-run.ps1",
+      "originalIdentical": true
+    },
+    {
+      "path": "scripts/prefix-fingerprint.sh",
+      "gitBytes": 451,
+      "gitSha256": "0186eedf42540a842ec081adf2a1fdff4b164feda7bb595d2c1fbffd439d78b9",
+      "workingCopyIdentical": true,
+      "localOriginal": "C:/bkn-verify/compat10-minimal/scripts/prefix-fingerprint.sh",
+      "originalIdentical": true
+    },
+    {
+      "path": "scripts/probe-login.ps1",
+      "gitBytes": 1130,
+      "gitSha256": "9422a437a6f4449eb5cfb01f4737aee91bec9889f113969b5745e6867e358947",
+      "workingCopyIdentical": true,
+      "localOriginal": "C:/bkn-verify/compat10-minimal/scripts/probe-login.ps1",
+      "originalIdentical": true
+    },
+    {
+      "path": "scripts/provenance.js",
+      "gitBytes": 3463,
+      "gitSha256": "df237d4f0a14ee1bd96b2d4a0c2f80e446cdeb5e3704b04ed00dc0f297e10eb9",
+      "workingCopyIdentical": true,
+      "localOriginal": "C:/bkn-verify/compat10-minimal/scripts/provenance.js",
+      "originalIdentical": true
+    },
+    {
+      "path": "scripts/run-probe.ps1",
+      "gitBytes": 2200,
+      "gitSha256": "2a94546ad06ba942ac34eef65f2e4fa959c0aa6b128ec4d063386866681f3041",
+      "workingCopyIdentical": true,
+      "localOriginal": "C:/bkn-verify/compat10-minimal/scripts/run-probe.ps1",
+      "originalIdentical": true
+    },
+    {
+      "path": "scripts/setup.py",
+      "gitBytes": 940,
+      "gitSha256": "25342bd7441cdcbf072797d9d91a3f02c3cea4cef2d716ba2867e8d5944424c5",
+      "workingCopyIdentical": true,
+      "localOriginal": "C:/bkn-verify/compat10-minimal/scripts/setup.py",
+      "originalIdentical": true
+    },
+    {
+      "path": "scripts/start-desktop-host.ps1",
+      "gitBytes": 2449,
+      "gitSha256": "54ea9615d5a15a630b95279e27d1dacbe87bea58f85f11bc82d66527b31e36cc",
+      "workingCopyIdentical": true,
+      "localOriginal": "C:/bkn-verify/compat10-minimal/scripts/start-desktop-host.ps1",
+      "originalIdentical": true
+    },
+    {
+      "path": "scripts/start-npm-host.ps1",
+      "gitBytes": 1966,
+      "gitSha256": "b6ef849725f5d01a0090e26853ca81b465ec95e6f67daa774c25e99e0fdb05ed",
+      "workingCopyIdentical": true,
+      "localOriginal": "C:/bkn-verify/compat10-minimal/scripts/start-npm-host.ps1",
+      "originalIdentical": true
+    },
+    {
+      "path": "verifier/install-sdk.ps1",
+      "gitBytes": 1146,
+      "gitSha256": "6241fef674e05f7b9a9b71f4e4ddd1505b1a872d2537c0205de6fbd1b78db611",
+      "workingCopyIdentical": true,
+      "localOriginal": "C:/bkn-verify/compat10-minimal/install-sdk.ps1",
+      "originalIdentical": true
+    },
+    {
+      "path": "verifier/run-verify.ps1",
+      "gitBytes": 784,
+      "gitSha256": "7dfb7a80e4b1b458b899eb0c2498a9e90844e0615288037bb0cf025205890b68",
+      "workingCopyIdentical": true,
+      "localOriginal": "C:/bkn-verify/compat10-minimal/run-verify.ps1",
+      "originalIdentical": true
+    },
+    {
+      "path": "verifier/verify-native-exit.txt",
+      "gitBytes": 3,
+      "gitSha256": "13bf7b3039c63bf5a50491fa3cfd8eb4e699d1ba1436315aef9cbe5711530354",
+      "workingCopyIdentical": true,
+      "localOriginal": "C:/bkn-verify/compat10-minimal/verify-native-exit.txt",
+      "originalIdentical": true
+    },
+    {
+      "path": "verifier/verify-native.txt",
+      "gitBytes": 1874,
+      "gitSha256": "42c5329eb1060deca8336dd6325f1a2009b499c80a7c293e9f447b3a021900d6",
+      "workingCopyIdentical": true,
+      "localOriginal": "C:/bkn-verify/compat10-minimal/verify-native.txt",
+      "originalIdentical": true
+    }
+  ]
+}

@@ -25,3 +25,26 @@ docs/evidence/cli-setup9-20261010/followup/windows/evidence/f95-npm-uninstall-be
 docs/evidence/cli-setup9-20261010/followup/windows/evidence/fixture-validation.txt whitespace=-blank-at-eol
 docs/evidence/cli-setup9-20261010/followup/windows/evidence/npm-plugin-install.txt whitespace=-blank-at-eol
 docs/evidence/cli-setup9-20261010/followup/windows/evidence/npm-preflight.txt whitespace=-blank-at-eol
+# Preserve the -10 fixed candidate inventory on Windows CRLF checkouts.
+docs/evidence/diagnostics10-20261011/candidate-files.json -text
+# Preserve the recorded -10 controlled-validation bytes on every checkout.
+docs/evidence/openbkn020-compatibility10-20261012/*.log -text
+docs/evidence/openbkn020-compatibility10-20261012/*.json -text
+# tsdown emits intentional trailing spaces in its native build output.
+docs/evidence/openbkn020-compatibility10-20261012/plugin-tests.log whitespace=-blank-at-eol
+docs/evidence/openbkn020-compatibility10-20261012/ci-validation-excerpt.log whitespace=-blank-at-eol
+# Preserve the PR #89 review reproduction and validation bytes independently.
+docs/evidence/openbkn020-compatibility10-20261012/review/*.log -text
+docs/evidence/openbkn020-compatibility10-20261012/review/*.json -text
+docs/evidence/openbkn020-compatibility10-20261012/review/plugin-tests.log whitespace=-blank-at-eol
+docs/evidence/openbkn020-compatibility10-20261012/review/ci-validation-excerpt.log whitespace=-blank-at-eol
+# Node's native failed-assertion output contains intentional space-only lines.
+docs/evidence/openbkn020-compatibility10-20261012/review/before-fix.log whitespace=-blank-at-eol
+# Preserve fixed handoff inputs on Windows; do not normalize hash manifests or source-build SDK bytes.
+docs/handoff/2026-10-12-compatibility10-minimal-windows/** -text
+# Preserve Mac minimum-acceptance snapshots and their recorded digests.
+docs/evidence/openbkn020-compatibility10-20261012/mac-minimal/** -text
+# Preserve the Windows -10 minimal retest original bytes (native UTF-16/CRLF outputs) on every checkout.
+docs/evidence/openbkn020-compatibility10-20261012/windows-minimal/** -text
+# Native PowerShell/cmd outputs keep CRLF and trailing blanks byte-for-byte.
+docs/evidence/openbkn020-compatibility10-20261012/windows-minimal/** whitespace=cr-at-eol,-blank-at-eol,-blank-at-eof

@@ -1,0 +1,109 @@
+{
+  "scope": "Final Mac minimal-acceptance snapshots; excludes this manifest; private auth/raw failures/interactions are not in Git",
+  "files": {
+    "desktop-cli020-ui.txt": {
+      "bytes": 169,
+      "sha256": "f73483eb3365940899bff3ab89da781d5e640a3e434805dd281fe817a715f260"
+    },
+    "live-tools.json": {
+      "bytes": 182608,
+      "sha256": "fa9a8cf4b90172ced4aa7180270ee05ad42eca2eec9513164ceb1baab5a56e92"
+    },
+    "protected-after.json": {
+      "bytes": 3254,
+      "sha256": "5f169473b9394932b78cebb429fbf73ffb7cc45009eb6d84b74eedf4f1c17ee3"
+    },
+    "cli-ui-observations.transcribed.json": {
+      "bytes": 853,
+      "sha256": "6969c1aa34807a419090e5e97ed841d0f240a09b34e4173cd7d21d0126d8714b"
+    },
+    "live-tools-comparison.json": {
+      "bytes": 4922,
+      "sha256": "73b98a1017748e27c4fed216b40d7f877a653c126bd910750e434eecd2871e14"
+    },
+    "npm-diagnostics-ui.txt": {
+      "bytes": 204,
+      "sha256": "a48fe3591d017adfc670b8f02a40b4d5013c2f400e5737f84742caaf57634352"
+    },
+    "native-runtime.jsonl": {
+      "bytes": 3439,
+      "sha256": "095e780aca499cf1718437c34d51d13c56cd0271fa30dfa101a0fa8cebca1af9"
+    },
+    "download-provenance.json": {
+      "bytes": 711,
+      "sha256": "43cc3d1a575ffdf70e668785c7ecaaf410b46d665162480c86c8850e4a3e7a33"
+    },
+    "native-execution.json": {
+      "bytes": 577,
+      "sha256": "aa52d3e838f1dfcdf03625361fe7c6fd3c07000866ab0d3684d3b93985d14d7a"
+    },
+    "desktop-installed-identity.json": {
+      "bytes": 233,
+      "sha256": "a850354af1a0be73e14bb647f68dd988a2d89b8b8edc80d217cd6ffe157092d0"
+    },
+    "npm-installed-identity.json": {
+      "bytes": 225,
+      "sha256": "36f1ed6a93167bea5ee0e76d46029bbba2bcd9c82dbd3e65383b8207e1f5594b"
+    },
+    "verify-kit-mac.json": {
+      "bytes": 1208,
+      "sha256": "88cb3f39077a62cd84a99beffe561a290962072360b5da48d09ba75f39f16d1b"
+    },
+    "settled-provenance.jsonl": {
+      "bytes": 526,
+      "sha256": "d9195126f843f80401b161803173d62b01967a306aad783934d430e39f610dad"
+    },
+    "npm-diagnostics.png": {
+      "bytes": 85239,
+      "sha256": "b2807087eebaee20b3457192096e76cdce08e3d59581a36c4aa9826e91153d8f"
+    },
+    "baseline.json": {
+      "bytes": 566,
+      "sha256": "1251f25acab8ac4c6826f0ce85658c7461acaa84b15ca5d26696c250aeb6b620"
+    },
+    "npm-diagnostic.json": {
+      "bytes": 2441,
+      "sha256": "e3f0c7bb2178dd8e3044bebfa7a2c107968ca41fefb19d20863eccbdc075181d"
+    },
+    "RESULTS.md": {
+      "bytes": 8200,
+      "sha256": "0e0eaca79d3d753738777ed17f13674c648b4f5a9cc54dd6ad687bff8ee141e7"
+    },
+    "platform-images.json": {
+      "bytes": 3425,
+      "sha256": "09c6fb9f1957b5842697799af0530801e4ed902f1ad13a7a6fac008d1b5cc409"
+    },
+    "protected-state-summary.json": {
+      "bytes": 428,
+      "sha256": "18914464e43429d19c4941a584227b3bb460f4e9b8660c7f23877a8cef425720"
+    },
+    "probe-cleanup.json": {
+      "bytes": 352,
+      "sha256": "04df6371c2a4c9392306759e34101469af36fa2306406937dc085d560064a764"
+    },
+    "owned-process-stops.json": {
+      "bytes": 3658,
+      "sha256": "2c230576c6afa5b69c843257caae5b1dfea8703843a661cc8af103c34df20ba5"
+    },
+    "desktop-diagnostics-ui.txt": {
+      "bytes": 161,
+      "sha256": "1eac922fe2b095f315dde694a476fb236f5d66b66a3254da1259f7411756a539"
+    },
+    "desktop-diagnostic.json": {
+      "bytes": 2441,
+      "sha256": "31e7c55d601557bf03f550f1d01d7e743fb2365a8a942a6550767826068a26a3"
+    },
+    "desktop-diagnostics.png": {
+      "bytes": 341912,
+      "sha256": "44fcbc351fd677c738d41236cce0c6c2937c2a8694e1734df01fb79a6e80517d"
+    },
+    "npm-cli020-ui.txt": {
+      "bytes": 300,
+      "sha256": "4f4f66886840a89349fb8850df142307a5ea3976fe5993e6f8f900372c1d0e2e"
+    },
+    "protected-before.json": {
+      "bytes": 3254,
+      "sha256": "5f169473b9394932b78cebb429fbf73ffb7cc45009eb6d84b74eedf4f1c17ee3"
+    }
+  }
+}
