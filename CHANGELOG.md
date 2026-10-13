@@ -2,14 +2,17 @@
 
 All notable changes to this project are documented here.
 
-## 0.2.0-rc.2-openbkn.0.2.0-10 (unreleased)
+## 0.2.0-rc.2-openbkn.0.2.0-10 (2026-10-13)
 
 - Diagnostics now displays Windows/macOS/Linux names and explains unavailable host-form and version fields. Exported identifiers and nulls remain unchanged; disk and loaded versions are kept separate.
 - CLI setup accepts only the fixed 0.1.5 / 0.2.0 installation targets and verifies the selected version. Existing CLIs are retained; mismatch hints appear only after an explicit version choice and require an explicit path change or user-managed update.
 - Accept documented large-network navigation shells in the optional profile without presenting omitted indices as zero concepts; malformed responses and network mismatches remain failures.
 - Recognize explicitly unrecorded Trace lifecycle results while retaining tool/network/single-turn guards. A successful finish ends governed access even when its result provides no usable provenance ID. No stale Interaction IDs or fabricated receipts; provenance preserves the local timeline and labels Trace disabled/unavailable.
-- Add a pinned 0.2.0 preparation-source contract including dynamically built lifecycle/context schemas. Formal 0.2.0 Mac/Windows acceptance remains pending. The upstream nullable output-schema discrepancy is tracked in Foundry #2106.
-- B1 authentication recovery remains under investigation; no credential rotation or MCP authentication reconnect fix is claimed.
+- Add a pinned 0.2.0 preparation-source contract including dynamically built lifecycle/context schemas. The upstream nullable output-schema discrepancy is tracked separately in [Foundry #2106](https://github.com/openbkn-ai/bkn-foundry/issues/2106).
+- Acceptance: the unchanged 70-file CI candidate from source `9a35c0d9d1263b5f39b24d596f07dbcedbf25d04`, CI [38209375894](https://github.com/openbkn-ai/bkn-dsh/actions/runs/38209375894), SHA-256 `a91adc9e342faa4f763d73487cd56d2f4ead8bb21bf755ca11426f77d90c9bae`, passed the user-approved minimum on official DSH `0.2.0-rc.2` Desktop/npm on Mac and Windows. Diagnostics display/export, explicit CLI 0.2.0 selection/detection, sign-in and listing were exercised in the UI; one official tool-runtime probe per OS exercised real scoped CLI/MCP start/read/finish and post-finish refusal. Navigation and Trace-disabled/unavailable cases used controlled fixtures. See [Mac results](docs/evidence/openbkn020-compatibility10-20261012/mac-minimal/RESULTS.md), [Windows results](docs/evidence/openbkn020-compatibility10-20261012/windows-minimal/RESULTS.md), and [release readiness](docs/evidence/openbkn020-compatibility10-20261012/RELEASE-READINESS.md).
+- SDK acceptance used the user-authorized `release/0.2.0` source build `c404354793146edab944b7e5a79908bf41ddd591`, SHA-256 `7391c658e831b9f11bc36fd7fcecfa30e41ecc4123a005bfee811e44b60eb43c`. This is not registry automatic-install acceptance. The platform backend reported `0.2.0-release.20261011115044.sha06c5a87`; actual local EE image variants and live tool schemas are recorded in the Mac evidence, without claiming every service is an official release binary.
+- Retained limits: no live large-network or natural Trace-switch scenario, fresh 0.1.5 real-host run, model/G6 rerun, or non-empty receipt-chain acceptance was performed. Successful empty operations/business-graph reads establish availability of those reads, not complete provenance. On Windows Desktop, the panel closed when starting CLI login; browser authorization and reopening/network listing succeeded, but in-panel progress was not observed. This observation remains unresolved.
+- B1 remains an unresolved historical long-running authentication anomaly; short same-owner synchronization passed, without proving natural-expiry recovery or a root cause. No credential rotation or MCP reconnect fix is claimed. If business access remains refused after a completed sign-in, restart DSH and retry. B1 is not a mandatory long-running reproduction for every unchanged release.
 
 ## 0.2.0-rc.2-openbkn.0.2.0-9 (unreleased)
 
