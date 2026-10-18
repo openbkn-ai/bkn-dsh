@@ -106,6 +106,14 @@ test('ready projections enforce exact UTF-8 byte budgets rather than character c
   }
 })
 
+test('raising the configured cap cannot raise the native reader ceiling above one million bytes', async () => {
+  const input=fixture();input.view.notices=Array.from({length:64},()=> 'x'.repeat(16_384))
+  assert.equal(projectNativeExplanation(input,'int-fixture',2_000_000).kind,'ready')
+  assert.throws(()=>projectNativeExplanation(input,'int-fixture'),(error:any)=>error.reason==='result-too-large')
+  const reader=new OpenBknPlatformReader({...config,maxResultBytes:2_000_000},async()=>new Response(JSON.stringify(input)))
+  await assert.rejects(reader.getNativeInteractionExplanation('int-fixture',signal()),(error:any)=>error.code==='OUTPUT_OVERFLOW')
+})
+
 test('individual display text accepts 16384 UTF-16 units and refuses the next unit', () => {
   const x = fixture(); x.view.answer = '🙂'.repeat(8192)
   assert.equal(projectNativeExplanation(x, 'int-fixture').kind, 'ready')

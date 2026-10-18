@@ -44,6 +44,18 @@ test('an exact aggregate byte budget is admitted; one byte below degrades only t
   assert.ok(Buffer.byteLength(JSON.stringify(reduced.native)) <= bytes - 1)
 })
 
+test('aggregate native data never exceeds the frozen ceiling even when configuration permits more', async () => {
+  const {service,reader}=serviceCase(2_000_000)
+  const input=JSON.parse(readFileSync(new URL('./fixtures/native-provenance-schema1.json',import.meta.url),'utf8'))
+  input.view.notices=Array.from({length:64},()=> 'x'.repeat(16_384))
+  reader.getNativeInteractionExplanation=async()=>projectNativeExplanation(input,'int-fixture',2_000_000)
+  const view=(await service.remoteGetTurnProvenanceView('s1' as never,'m1',AbortSignal.timeout(1000)))!
+  assert.equal(view.native?.detail.kind,'ready')
+  assert.deepEqual(view.native?.explanation,{kind:'unavailable',reason:'result-too-large'})
+  assert.ok(Buffer.byteLength(JSON.stringify(view.native))<=1_000_000)
+  assert.ok(view.timeline.length>0)
+})
+
 for (const limit of [1, 100, 125, 126]) {
   test(`the final native payload respects a ${limit}-byte cap without losing the local timeline`, async () => {
     const { service } = serviceCase(limit)
