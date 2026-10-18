@@ -93,7 +93,7 @@ export function ProvenanceOverlay({ useProvenanceOverlay, load, close }: Provena
       <header style={headerStyle}><div><div style={eyebrowStyle}>{t('provenanceEyebrow')}</div><h2 style={{ margin: '4px 0 0', fontSize: 28 }}>{t('businessProvenance')}</h2></div><button type="button" aria-label={t('close')} onClick={close} style={closeStyle}>×</button></header>
       <nav aria-label={t('provenanceViews')} style={tabBarStyle}><TabButton active={tab === 'events'} onClick={() => setTab('events')}>{t('nativeEvents')}</TabButton><TabButton active={tab === 'evidence'} onClick={() => setTab('evidence')}>{t('evidenceChain')}</TabButton></nav>
       <main style={{ padding: 24 }}>{loading ? <Loading /> : failed || view === undefined ? <LoadFailed /> : <>
-        <NativeProvenancePanel key={view.interactionId ?? state.messageId} view={view} tab={tab} />
+        <NativeProvenancePanel key={view.interactionId ?? state.messageId} view={view} tab={tab} onTabChange={setTab} />
         <details style={{ marginTop: 24 }}><summary>{t('nativeHistoricalRecords')}</summary>
           <Execution handle={state.handle} view={view} /><BusinessGraph view={view} /><EvidenceChain view={view} />
         </details>

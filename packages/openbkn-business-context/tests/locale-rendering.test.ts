@@ -59,7 +59,8 @@ test('native evidence selection survives language changes and never links equal-
   const nodes = renderer.root.findAllByType('button'); const linked = nodes.find(node => node.findAllByType('strong').some(label => label.children.includes('来源原文')))!;const unrelated = nodes.find(node => node.findAllByType('strong').some(label => label.children.includes('同值非关联')))!
   assert.equal(linked.props.style.borderColor,'#087d72');assert.equal(unrelated.props.style.borderColor,'#dce4ec')
   act(() => unrelated.props.onClick());assert.equal(renderer.root.findAllByType('button').find(node => node.findAllByType('strong').some(label => label.children.includes('同值非关联')))!.props['aria-pressed'],true)
-  act(() => harness.set('en'));assert.match(text(),/Business inputs/);assert.match(text(),/业务原文 Answer/);assert.match(text(),/平台缺口原文/)
+  act(() => harness.set('en'));assert.match(text(),/Business evidence and sources/);assert.match(text(),/业务原文 Answer/);assert.match(text(),/平台缺口原文/)
+  assert.match(text(),/has not disclosed a business-function link/)
   assert.equal(renderer.root.findAllByType('button').find(node => node.findAllByType('strong').some(label => label.children.includes('同值非关联')))!.props['aria-pressed'],true)
   act(() => renderer.unmount())
 })
@@ -108,13 +109,13 @@ function selectionView(): ProvenanceView {
   const first = raw.view.selectedPairGraphs.p1
   first.claims.push({id:'c2',label:'第二结论',status:'candidate',nodeIds:['n2']})
   raw.view.questionPairs[0].claimIds.push('c2')
-  first.businessFunctions.push({...structuredClone(first.businessFunctions[0]),id:'fn2',displayName:'第二业务函数',supportsClaimIds:['c2'],operationIds:['op2'],logicSummary:'第二处理过程'})
+  first.businessFunctions.push({...structuredClone(first.businessFunctions[0]),id:'fn2',displayName:'第二业务函数',supportsClaimIds:['c2'],operationIds:['op2'],logicSummary:'第二处理过程',businessOutputs:[{summary:'第二输出',evidenceRefs:['n2'],adoptedRowRefs:[]}]})
   raw.view.timeRail.push({...raw.view.timeRail[0],id:'t2',operation_id:'op2',order:2})
   raw.view.questionPairs.push({id:'p2',question:'Q2',answer:'A2',summary:'第二问答对',status:'partial',claimIds:['c3']})
   raw.view.selectedPairGraphs.p2 = {
     claims:[{id:'c3',label:'第三结论',status:'candidate',nodeIds:['n3']}],
     evidenceNodes:[{id:'n3',label:'第二问答来源',kind:'source',value:'42'}],schemaNodes:[],executionSteps:[],edges:[],
-    businessFunctions:[{...structuredClone(first.businessFunctions[0]),id:'fn3',displayName:'第二问答业务函数',supportsClaimIds:['c3'],operationIds:['op3']}],
+    businessFunctions:[{...structuredClone(first.businessFunctions[0]),id:'fn3',displayName:'第二问答业务函数',supportsClaimIds:['c3'],operationIds:['op3'],businessOutputs:[{summary:'第三输出',evidenceRefs:['n3'],adoptedRowRefs:[]}]}],
   }
   raw.view.questionPairs.push({id:'p3',question:'Q3',answer:'A3',summary:'无关系问答对',status:'partial',claimIds:[]})
   return viewFromRaw(raw)
@@ -155,8 +156,8 @@ test('event selection filters business details by disclosed operation IDs and su
   const sections=()=>renderer.root.findAllByType('h4').map(node=>node.children.join(''))
   assert.deepEqual(sections(),['第二业务函数'])
   act(()=>renderer.update(createElement(Component,{view,tab:'evidence'})))
-  act(()=>namedButton(renderer,'第二结论').props.onClick())
-  assert.equal(namedButton(renderer,'第二结论').props['aria-pressed'],true)
+  assert.equal(namedButton(renderer,'第二结论').props['data-related'],true)
+  assert.equal(namedButton(renderer,'结论原文').props['data-related'],false)
   assert.deepEqual(sections(),['第二业务函数'])
   act(()=>renderer.update(createElement(Component,{view,tab:'events'})))
   assert.equal(namedButton(renderer,'第二业务函数').props['aria-pressed'],true)
