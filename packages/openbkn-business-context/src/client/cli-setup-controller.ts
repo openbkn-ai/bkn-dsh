@@ -1,3 +1,4 @@
+import { translateChinese, type OpenBknTranslate } from './messages.ts'
 import type { OpenBknCliInstallVersion, OpenBknCliSetupView } from '../types.ts'
 
 export interface CliSetupPort {
@@ -83,36 +84,36 @@ export class CliSetupController {
 }
 
 /** Only controlled reasons become user-facing text; raw installer output stays on Host. */
-export function cliSetupMessage(state: CliSetupState, savedCliPath?: string, targetVersion?: OpenBknCliInstallVersion): string {
+export function cliSetupMessage(state: CliSetupState, savedCliPath?: string, targetVersion?: OpenBknCliInstallVersion, t: OpenBknTranslate = translateChinese): string {
   const installVersion = state.result?.targetVersion ?? targetVersion ?? '0.1.5'
-  if (state.phase === 'checking') return '正在检测 CLI…'
-  if (state.phase === 'installing') return `正在安装 CLI ${installVersion} 并验证是否可用…可以关闭面板，安装将在当前 DSH 中继续。`
+  if (state.phase === 'checking') return t('checkingCLI')
+  if (state.phase === 'installing') return t('cliInstalling', { p0: installVersion })
   if (state.phase === 'ready') {
     const version = state.result?.version
     const mismatch = version !== undefined && targetVersion !== undefined && version !== targetVersion
-      ? `所选平台版本为 ${targetVersion}，请配置匹配 CLI 的路径或自行更新已有 CLI；插件不会覆盖它。` : ''
-    return `CLI ${version ?? ''} 可用。${mismatch}${state.result?.resolvedPath !== undefined && state.result.resolvedPath === savedCliPath ? '' : '路径已填入，请点击“保存并继续”应用。'}`
+      ? t('cliVersionMismatch', { p0: targetVersion }) : ''
+    return t('cliReady', { p0: version ?? '', p1: mismatch, p2: state.result?.resolvedPath !== undefined && state.result.resolvedPath === savedCliPath ? '' : t('thePathHasBeenFilledInClickSave') })
   }
   if (state.phase === 'missing') return targetVersion === undefined
-    ? '未在当前环境和常见安装位置检测到 CLI。请选择与平台一致的版本后，再点击下方按钮安装。'
-    : `未在当前环境和常见安装位置检测到 CLI。点击下方按钮可安装 ${targetVersion}。`
+    ? t('cLIWasNotFoundInTheCurrentEnvironment')
+    : t('cliMissingVersion', { p0: targetVersion })
   switch (state.result?.reason) {
-    case 'custom-path-missing': return '未找到此路径。请修正路径，或改回 openbkn 后检测并安装。'
-    case 'path-is-directory': return '此路径是目录，请填写 CLI 可执行文件的路径。'
-    case 'execution-failed': return '已找到 CLI，但当前 DSH 无法执行。请检查 Node.js 和路径；若刚安装，可重启 DSH 后重新检测。'
-    case 'existing-installation': return 'npm 目录中已有 SDK，但 CLI 不可用。请修复现有安装；插件不会覆盖或升级它。'
-    case 'npm-missing': return '当前 DSH 找不到 npm，无法自动安装。请先安装 Node.js/npm；已安装时可重启 DSH 后重新检测。'
-    case 'node-unavailable': return '当前 DSH 无法使用受支持的 Node.js（22 系列需 22.19 或以上，或使用 24 及更新版本）。请检查 Node.js，或重启 DSH 后重新检测。'
-    case 'prefix-unavailable': return '无法确认 npm 的安装目录。请检查本机 npm 设置后重试。'
-    case 'permission-denied': return 'npm 安装目录没有写入权限。请手动安装 CLI 或修正 npm 目录后重试。'
-    case 'network-failed': return 'CLI 安装遇到网络错误。请检查 npm 安装源和网络后重试。'
-    case 'tls-failed': return 'CLI 安装遇到证书错误。请检查 npm 安装源的证书设置后重试。'
-    case 'timeout': return 'CLI 操作超时。请检查本机安装状态和网络后重新检测。'
-    case 'verification-failed': return '安装命令已完成，但当前 DSH 尚无法使用 CLI。请重启 DSH 后重新检测，或手动检查安装。'
-    case 'busy': return '业务回合或设置保存仍在进行，请稍后重新检测。'
-    case 'unsupported-version': return '请选择受支持的 CLI 版本：0.1.5 或 0.2.0。'
-    case 'host-unavailable': return '当前无法调用 CLI 设置服务。请检查插件组件和 DSH 后重试。'
-    case 'installation-failed': return 'CLI 安装未成功。请检查本机 npm 安装环境后重试，或手动安装。'
+    case 'custom-path-missing': return t('thisPathWasNotFoundCorrectItOr')
+    case 'path-is-directory': return t('thisPathIsADirectoryEnterThePath')
+    case 'execution-failed': return t('cLIWasFoundButThisDSHHostCannot')
+    case 'existing-installation': return t('anSDKExistsInTheNpmDirectoryBut')
+    case 'npm-missing': return t('thisDSHHostCannotFindNpmInstallNode')
+    case 'node-unavailable': return t('thisDSHHostCannotUseASupportedNode')
+    case 'prefix-unavailable': return t('theNpmInstallationDirectoryCouldNotBeDetermined')
+    case 'permission-denied': return t('theNpmInstallationDirectoryIsNotWritableInstall')
+    case 'network-failed': return t('cLIInstallationEncounteredANetworkErrorCheckThe')
+    case 'tls-failed': return t('cLIInstallationEncounteredACertificateErrorCheckThe')
+    case 'timeout': return t('theCLIOperationTimedOutCheckLocalInstallation')
+    case 'verification-failed': return t('theInstallationCommandCompletedButCLIIsNot')
+    case 'busy': return t('aBusinessTurnOrSettingsSaveIsStill')
+    case 'unsupported-version': return t('selectASupportedCLIVersion015')
+    case 'host-unavailable': return t('theCLISetupServiceIsUnavailableCheckThe')
+    case 'installation-failed': return t('cLIInstallationFailedCheckTheLocalNpmEnvironment')
     default: return ''
   }
 }

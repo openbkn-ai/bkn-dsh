@@ -237,6 +237,7 @@ export interface ProvenanceSources {
 }
 
 export interface ProvenanceView {
+  readonly native?: import('./native-provenance-types.js').NativeProvenance
   readonly interactionId?: string
   readonly conversationId?: string
   readonly sources: ProvenanceSources

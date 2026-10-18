@@ -1,3 +1,4 @@
+import { renderUiMessage } from '../src/client/messages.ts'
 import assert from 'node:assert/strict'
 import test from 'node:test'
 import { DiagnosticsPanelController, type DiagnosticsUiPort } from '../src/client/diagnostics-controller.ts'
@@ -47,7 +48,7 @@ test('a failing getReport degrades to the unavailable phase without guessing a c
   assert.equal(state.phase, 'unavailable')
   assert.equal(state.report, undefined)
   assert.ok(state.message !== undefined)
-  assert.ok(!state.message.includes('gateway'), 'the transport detail must not surface verbatim')
+  assert.ok(!renderUiMessage(state.message).includes('gateway'), 'the transport detail must not surface verbatim')
 })
 
 test('a stale in-flight load never overwrites a newer one', async () => {

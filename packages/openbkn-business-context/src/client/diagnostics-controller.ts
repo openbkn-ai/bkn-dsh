@@ -1,3 +1,4 @@
+import { uiMessage, type UiMessage } from './messages.ts'
 import type { DiagnosticsReport } from '../diagnostics-contract.ts'
 
 /** Minimal browser port over the generated diagnostics Remote contract. */
@@ -14,7 +15,7 @@ export interface DiagnosticsPanelState {
   readonly phase: DiagnosticsPanelPhase
   readonly report?: DiagnosticsReport
   /** Bounded, non-sensitive note when the diagnostics service itself is unreachable. */
-  readonly message?: string
+  readonly message?: UiMessage
 }
 
 type Listener = () => void
@@ -83,10 +84,10 @@ export class DiagnosticsPanelController {
 }
 
 /** Classify transport failures into one bounded, non-sensitive sentence. */
-function describeUnavailable(error: unknown): string {
+function describeUnavailable(error: unknown): UiMessage {
   const code = (error as { code?: unknown } | null)?.code
   if (typeof code === 'string' && code.includes('no active Connection')) {
-    return '无法连接 DSH Host；请确认 DSH 正在运行后重试。'
+    return uiMessage('couldNotConnectToTheDSHHostConfirm')
   }
-  return '诊断服务不可用（诊断入口未随插件启动或连接中断）。请截图或复制此提示发给支持人员。'
+  return uiMessage('diagnosticsServiceUnavailableTheDiagnosticsEntryDidNot')
 }

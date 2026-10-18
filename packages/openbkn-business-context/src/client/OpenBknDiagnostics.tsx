@@ -1,3 +1,6 @@
+import { diagnosticAction } from './diagnostics-copy.ts'
+import { useOpenBknTranslation } from './locale.tsx'
+import { renderUiMessage } from './messages.ts'
 import { useEffect } from 'react'
 import type { InjectFace, PropsRuntime } from '@deepseek-ai/dsh-client-ui-slots'
 import type { DiagnosticsPanelController, DiagnosticsPanelState } from './diagnostics-controller.ts'
@@ -20,6 +23,8 @@ export type OpenBknDiagnosticsProps = PropsRuntime<'shell.overlay'> & InjectFace
  * business panel is not.
  */
 export function OpenBknDiagnostics({ useDiagnostics, close, refresh }: OpenBknDiagnosticsProps) {
+  const t = useOpenBknTranslation()
+
   const state = useDiagnostics((value: DiagnosticsPanelState) => value)
 
   useEffect(() => {
@@ -33,16 +38,16 @@ export function OpenBknDiagnostics({ useDiagnostics, close, refresh }: OpenBknDi
       <section
         role="dialog"
         aria-modal="true"
-        aria-label="OpenBKN 诊断"
+        aria-label={t('openBKNDiagnostics')}
         style={dialogStyle}
         onMouseDown={event => event.stopPropagation()}
       >
         <header style={headerStyle}>
           <div>
             <div style={eyebrowStyle}>OPENBKN</div>
-            <h2 style={{ margin: '4px 0 0', fontSize: 20 }}>诊断</h2>
+            <h2 style={{ margin: '4px 0 0', fontSize: 20 }}>{t('diagnostics')}</h2>
           </div>
-          <button type="button" onClick={close} aria-label="Close" style={closeStyle}>×</button>
+          <button type="button" onClick={close} aria-label={t('close')} style={closeStyle}>×</button>
         </header>
         <div style={{ padding: 20, overflowY: 'auto' }}>
           <DiagnosticsBody state={state} refresh={refresh} />
@@ -53,15 +58,17 @@ export function OpenBknDiagnostics({ useDiagnostics, close, refresh }: OpenBknDi
 }
 
 function DiagnosticsBody({ state, refresh }: { state: DiagnosticsPanelState; refresh(): Promise<void> }) {
+  const t = useOpenBknTranslation()
+
   if (state.phase === 'loading' || state.phase === 'idle') {
-    return <p style={mutedStyle}>正在读取诊断信息…</p>
+    return <p style={mutedStyle}>{t('readingDiagnostics')}</p>
   }
   if (state.phase === 'unavailable' || state.report === undefined) {
     return (
       <div>
-        <p style={{ marginTop: 0, lineHeight: 1.6 }}>{state.message ?? '诊断服务不可用。'}</p>
-        <p style={mutedStyle}>诊断入口未随插件启动或连接已中断。请截图或复制此提示发给支持人员。</p>
-        <button type="button" style={buttonStyle} onClick={() => void refresh()}>重试</button>
+        <p style={{ marginTop: 0, lineHeight: 1.6 }}>{(state.message === undefined ? t('diagnosticsServiceUnavailable') : renderUiMessage(state.message, t))}</p>
+        <p style={mutedStyle}>{t('theDiagnosticsEntryDidNotStartWithThe')}</p>
+        <button type="button" style={buttonStyle} onClick={() => void refresh()}>{t('retry')}</button>
       </div>
     )
   }
@@ -69,7 +76,7 @@ function DiagnosticsBody({ state, refresh }: { state: DiagnosticsPanelState; ref
   return (
     <div>
       <p style={{ marginTop: 0, color: '#4b5563', fontSize: 13 }}>
-        报告编号 {report.reportId} · 生成于 {new Date(report.createdAt).toLocaleString()} · 模式 {report.mode === 'passive' ? '被动采集' : '主动复测'}
+        {t('report')}{report.reportId} {t('created')}{new Date(report.createdAt).toLocaleString()} {t('mode')}{report.mode === 'passive' ? t('passiveCollection') : t('activeRetest')}
       </p>
       <TargetSummary report={report} />
       <CheckList checks={report.checks} />
@@ -79,15 +86,16 @@ function DiagnosticsBody({ state, refresh }: { state: DiagnosticsPanelState; ref
           style={buttonStyle}
           onClick={() => exportDiagnosticsReport(report)}
         >
-          导出诊断报告
-        </button>
-        <button type="button" style={secondaryButtonStyle} onClick={() => void refresh()}>重新采集</button>
+          {t('exportDiagnosticsReport')}</button>
+        <button type="button" style={secondaryButtonStyle} onClick={() => void refresh()}>{t('collectAgain')}</button>
       </div>
     </div>
   )
 }
 
 function TargetSummary({ report }: { report: DiagnosticsReport }) {
+  const t = useOpenBknTranslation()
+
   const row = (label: string, value: string) => (
     <div key={label} style={{ display: 'flex', gap: 8, fontSize: 13 }}>
       <span style={{ minWidth: 96, color: '#6b7280' }}>{label}</span>
@@ -96,17 +104,18 @@ function TargetSummary({ report }: { report: DiagnosticsReport }) {
   )
   return (
     <section style={{ border: '1px solid #e5e7eb', borderRadius: 10, padding: '10px 12px', marginBottom: 12 }}>
-      {diagnosticsTargetRows(report.target).map(({ label, value }) => row(label, value))}
+      {diagnosticsTargetRows(report.target, t).map(({ label, value }) => row(label, value))}
       <p style={{ margin: '8px 0 0', fontSize: 12, color: '#6b7280', lineHeight: 1.5 }}>
-        未采集的基础信息不代表故障，请查看下方检查结果。磁盘版本不代表当前已加载版本。
-      </p>
+        {t('missingBasicInformationDoesNotImplyAFailure')}</p>
     </section>
   )
 }
 
 function CheckList({ checks }: { checks: readonly DiagnosticsCheck[] }) {
+  const t = useOpenBknTranslation()
+
   if (checks.length === 0) {
-    return <p style={mutedStyle}>本次未执行任何检查。</p>
+    return <p style={mutedStyle}>{t('noChecksWereRun')}</p>
   }
   return (
     <section style={{ border: '1px solid #e5e7eb', borderRadius: 10, overflow: 'hidden' }}>
@@ -115,8 +124,8 @@ function CheckList({ checks }: { checks: readonly DiagnosticsCheck[] }) {
   )
 }
 
-const STATUS_LABEL: Record<string, string> = {
-  pass: '通过', fail: '失败', 'not-run': '未执行', 'insufficient-evidence': '证据不足',
+const STATUS_LABEL: Record<string, import('./locales.ts').OpenBknMessageKey> = {
+  pass: 'passed', fail: 'failed', 'not-run': 'notRun', 'insufficient-evidence': 'insufficientEvidence',
 }
 
 const STATUS_COLOR: Record<string, string> = {
@@ -124,12 +133,13 @@ const STATUS_COLOR: Record<string, string> = {
 }
 
 function CheckRow({ check, zebra }: { check: DiagnosticsCheck; zebra: boolean }) {
+  const t = useOpenBknTranslation()
   const evidence = Object.entries(check.evidence)
   return (
     <div style={{ padding: '10px 12px', background: zebra ? '#f9fafb' : '#fff', borderBottom: '1px solid #e5e7eb' }}>
       <div style={{ display: 'flex', alignItems: 'center', gap: 8 }}>
         <span style={{ fontSize: 12, color: STATUS_COLOR[check.status] ?? '#374151', fontWeight: 650 }}>
-          ● {STATUS_LABEL[check.status] ?? check.status}
+          ● {t(STATUS_LABEL[check.status] ?? 'insufficientEvidence')}
         </span>
         <span style={{ fontSize: 13, fontWeight: 600 }}>{check.id}</span>
         <span style={{ fontSize: 12, color: '#6b7280' }}>{check.stage} / {check.code}</span>
@@ -140,7 +150,7 @@ function CheckRow({ check, zebra }: { check: DiagnosticsCheck; zebra: boolean })
         </div>
       ) : null}
       {check.nextAction !== null ? (
-        <div style={{ marginTop: 4, fontSize: 12, color: '#374151', lineHeight: 1.5 }}>{check.nextAction}</div>
+        <div style={{ marginTop: 4, fontSize: 12, color: '#374151', lineHeight: 1.5 }}>{diagnosticAction(check.nextAction, t)}</div>
       ) : null}
     </div>
   )

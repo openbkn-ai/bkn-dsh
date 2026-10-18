@@ -1,0 +1,3692 @@
+{
+  "source": {
+    "repository": "openbkn-ai/bkn-foundry",
+    "captured": "2026-10-18",
+    "method": "Live MCP initialize, notifications/initialized, tools/list only; no tools/call. TLS certificate verified using existing local development CA. Descriptions omitted; no token/session identifiers retained.",
+    "profile": "/api/agent-retrieval/v1/mcp/",
+    "deployedImage": "swr.cn-east-3.myhuaweicloud.com/openbkn-ai/agent-retrieval-ee:0.2.0-local-aa6b382-core06c5a87",
+    "condition": "Current CLI owner scope; execute_skill not offered"
+  },
+  "tools": {
+    "bkn_finish_interaction": {
+      "inputSchema": {
+        "additionalProperties": false,
+        "properties": {
+          "answer": {
+            "description": "Provide the final answer when outcome is completed.",
+            "minLength": 1,
+            "type": "string"
+          },
+          "interaction_id": {
+            "description": "Use the exact interaction_id returned by start.",
+            "minLength": 1,
+            "type": "string"
+          },
+          "outcome": {
+            "description": "Set the final outcome for this turn.",
+            "enum": [
+              "completed",
+              "failed",
+              "cancelled",
+              "handed_off"
+            ],
+            "type": "string"
+          },
+          "partial_reasons": {
+            "description": "Copy all trace_call_unrecorded reasons returned in tool Trace metadata during this turn. They preserve known unrecorded calls; never invent reasons or retry completed business calls for Trace.",
+            "items": {
+              "maxLength": 256,
+              "pattern": "^trace_call_unrecorded:[a-zA-Z0-9_-]+:[a-zA-Z0-9][a-zA-Z0-9._:-]{0,127}$",
+              "type": "string"
+            },
+            "maxItems": 64,
+            "type": "array",
+            "uniqueItems": true
+          },
+          "reason": {
+            "description": "Briefly explain a non-completed outcome.",
+            "type": "string"
+          }
+        },
+        "required": [
+          "outcome"
+        ],
+        "type": "object"
+      },
+      "outputSchema": {
+        "additionalProperties": false,
+        "properties": {
+          "capture_enabled": {
+            "type": "boolean"
+          },
+          "code": {
+            "type": "string"
+          },
+          "conversation_id": {
+            "type": "string"
+          },
+          "evidence_status": {
+            "enum": [
+              "not_applicable",
+              "assembling",
+              "complete",
+              "partial",
+              "failed"
+            ],
+            "type": "string"
+          },
+          "execution_status": {
+            "enum": [
+              "completed",
+              "failed",
+              "canceled",
+              "handed_off",
+              "abandoned"
+            ],
+            "type": "string"
+          },
+          "interaction_id": {
+            "type": "string"
+          },
+          "required_action": {
+            "type": "string"
+          },
+          "stage": {
+            "type": "string"
+          },
+          "trace_available": {
+            "type": "boolean"
+          },
+          "trace_recorded": {
+            "type": "boolean"
+          }
+        },
+        "required": [],
+        "type": "object"
+      }
+    },
+    "bkn_start_interaction": {
+      "inputSchema": {
+        "additionalProperties": false,
+        "properties": {
+          "agent_name": {
+            "description": "The current Agent's stable name. Provide the same value on every call in the same conversation_id.",
+            "maxLength": 128,
+            "minLength": 1,
+            "type": "string"
+          },
+          "conversation_id": {
+            "description": "For continue, copy the conversation_id returned by start. Omit for new. A host mapping is authoritative.",
+            "minLength": 1,
+            "type": "string"
+          },
+          "conversation_mode": {
+            "description": "Use new without conversation_id if no managed Conversation exists; otherwise continue with the ID returned by start.",
+            "enum": [
+              "continue",
+              "new"
+            ],
+            "type": "string"
+          },
+          "question": {
+            "description": "Use the user's question for this turn.",
+            "minLength": 1,
+            "type": "string"
+          }
+        },
+        "required": [
+          "conversation_mode",
+          "question",
+          "agent_name"
+        ],
+        "type": "object"
+      },
+      "outputSchema": {
+        "additionalProperties": false,
+        "properties": {
+          "capture_enabled": {
+            "type": "boolean"
+          },
+          "code": {
+            "type": "string"
+          },
+          "conversation_id": {
+            "type": "string"
+          },
+          "execution_status": {
+            "enum": [
+              "active"
+            ],
+            "type": "string"
+          },
+          "interaction_id": {
+            "type": "string"
+          },
+          "owner": {
+            "additionalProperties": false,
+            "properties": {
+              "application_principal_id": {
+                "type": "string"
+              },
+              "delegation_id": {
+                "type": "string"
+              },
+              "effective_subject_id": {
+                "type": "string"
+              },
+              "effective_subject_type": {
+                "enum": [
+                  "user",
+                  "service"
+                ],
+                "type": "string"
+              }
+            },
+            "required": [
+              "application_principal_id",
+              "effective_subject_type",
+              "effective_subject_id"
+            ],
+            "type": "object"
+          },
+          "required_action": {
+            "type": "string"
+          },
+          "stage": {
+            "type": "string"
+          },
+          "trace_available": {
+            "type": "boolean"
+          },
+          "trace_recorded": {
+            "type": "boolean"
+          }
+        },
+        "required": [],
+        "type": "object"
+      }
+    },
+    "execute_action": {
+      "inputSchema": {
+        "properties": {
+          "_instance_identities": {
+            "description": "\u76ee\u6807\u5b9e\u4f8b\u5217\u8868\uff1b\u4e3a\u7a7a\u65f6\u7531\u884c\u52a8\u9a71\u52a8\u6309\u884c\u52a8\u6761\u4ef6\u626b\u63cf\u5168\u90e8\u5339\u914d\u5b9e\u4f8b\u3002\u6bcf\u4e2a\u5143\u7d20\u9700\u4ece query_object_instance \u6216 query_instance_subgraph \u7684 _instance_identity \u5b57\u6bb5\u63d0\u53d6\uff0c\u4e0d\u53ef\u81c6\u9020\u3002",
+            "items": {
+              "additionalProperties": true,
+              "description": "\u5b9e\u4f8b\u6807\u8bc6\u5bf9\u8c61\uff0c\u5305\u542b\u52a8\u6001\u7684\u5c5e\u6027\u952e\u503c\u5bf9",
+              "type": "object"
+            },
+            "type": "array"
+          },
+          "at_id": {
+            "description": "\u884c\u52a8\u7c7b\u578b ID\uff0c\u7531 search_schema \u6216 get_kn_detail \u8fd4\u56de\u3002",
+            "type": "string"
+          },
+          "bkn_context": {
+            "description": "BKN Trace managed context. Copy both IDs from bkn_start_interaction.",
+            "properties": {
+              "conversation_id": {
+                "description": "conversation_id returned by bkn_start_interaction.",
+                "type": "string"
+              },
+              "interaction_id": {
+                "description": "interaction_id returned by bkn_start_interaction.",
+                "type": "string"
+              }
+            },
+            "required": [
+              "conversation_id",
+              "interaction_id"
+            ],
+            "type": "object"
+          },
+          "dynamic_params": {
+            "additionalProperties": true,
+            "description": "\u884c\u52a8\u7684\u52a8\u6001\u53c2\u6570\u503c\uff08\u5bf9\u5e94\u884c\u52a8\u7c7b\u578b\u4e2d value_from=input \u7684\u53c2\u6570\uff09\u3002\u8bf7\u5148\u8c03\u7528 get_action_info \u83b7\u53d6\u8be5\u884c\u52a8\u7684 dynamic_params schema \u4e0e\u53c2\u6570\u540d\uff0c\u518d\u5728\u6b64\u6309\u540d\u9010\u4e2a\u586b\u5165\u771f\u5b9e\u503c\u3002\u6ce8\u610f\uff1a\u6bcf\u4e2a\u53c2\u6570\u662f\u72ec\u7acb\u7684\u952e\uff0c\u4e0d\u8981\u628a\u591a\u4e2a\u53c2\u6570\u540d\u62fc\u6210\u4e00\u4e2a\u952e\u3002",
+            "type": "object"
+          },
+          "kn_id": {
+            "description": "\u77e5\u8bc6\u7f51\u7edc ID\uff0c\u6765\u81ea list_knowledge_networks \u6216 get_kn_detail\uff0c\u4e0d\u53ef\u51ed\u540d\u79f0\u731c\u6d4b\u3002",
+            "type": "string"
+          }
+        },
+        "required": [
+          "kn_id",
+          "at_id"
+        ],
+        "type": "object"
+      },
+      "outputSchema": {
+        "type": "object",
+        "properties": {
+          "execution_id": {
+            "type": "string",
+            "description": "\u672c\u6b21\u6267\u884c\u7684 ID\uff0c\u53ef\u7528\u4e8e\u67e5\u8be2\u6267\u884c\u72b6\u6001\u4e0e\u7ed3\u679c"
+          },
+          "status": {
+            "type": "string",
+            "description": "\u6267\u884c\u72b6\u6001\uff0c\u63d0\u4ea4\u540e\u901a\u5e38\u4e3a pending"
+          },
+          "message": {
+            "type": "string",
+            "description": "\u63d0\u4ea4\u7ed3\u679c\u8bf4\u660e"
+          },
+          "created_at": {
+            "type": "integer",
+            "description": "\u63d0\u4ea4\u65f6\u95f4\uff08Unix \u6beb\u79d2\uff09"
+          }
+        }
+      }
+    },
+    "execute_tool": {
+      "inputSchema": {
+        "properties": {
+          "arguments": {
+            "description": "\u5de5\u5177\u7684\u4e1a\u52a1\u5165\u53c2\uff0c\u6309 search_capabilities \u8fd4\u56de\u7684 input_schema \u586b\u5199\u3002\u4e0d\u8981\u5728\u8fd9\u91cc\u585e\u4ee4\u724c\u3001\u4f1a\u8bdd id \u7b49\u4f20\u8f93\u4fe1\u606f\uff0c\u5e73\u53f0\u4f1a\u81ea\u884c\u643a\u5e26\u3002",
+            "type": "object"
+          },
+          "bkn_context": {
+            "description": "BKN Trace managed context. Copy both IDs from bkn_start_interaction.",
+            "properties": {
+              "conversation_id": {
+                "description": "conversation_id returned by bkn_start_interaction.",
+                "type": "string"
+              },
+              "interaction_id": {
+                "description": "interaction_id returned by bkn_start_interaction.",
+                "type": "string"
+              }
+            },
+            "required": [
+              "conversation_id",
+              "interaction_id"
+            ],
+            "type": "object"
+          },
+          "kn_id": {
+            "description": "\u5fc5\u586b\u3002\u77e5\u8bc6\u7f51\u7edc ID\uff0c\u987b\u4e0e search_capabilities \u6240\u7528\u4e00\u81f4\u3002\u8c03\u7528\u8005\u987b\u6709\u8be5\u7f51\u7edc\u672c\u8eab\u7684\u6267\u884c\u6743\u9650\uff0c\u5de5\u5177\u5fc5\u987b\u5df2\u6302\u8f7d\u5230\u8be5\u7f51\u7edc\u624d\u53ef\u8c03\u7528\u3002",
+            "type": "string"
+          },
+          "tool_id": {
+            "description": "\u5de5\u5177 ID\uff0c\u53d6\u81ea search_capabilities \u8fd4\u56de\u7684 capability_id\u3002",
+            "type": "string"
+          },
+          "toolbox_id": {
+            "description": "\u5de5\u5177\u7bb1 ID\uff0c\u53d6\u81ea search_capabilities \u8fd4\u56de\u7684 owner_id\u3002",
+            "type": "string"
+          }
+        },
+        "required": [
+          "kn_id",
+          "toolbox_id",
+          "tool_id",
+          "arguments"
+        ],
+        "type": "object"
+      },
+      "outputSchema": {
+        "type": "object",
+        "description": "\u5de5\u5177\u7684\u539f\u59cb\u54cd\u5e94\u3002\u51fd\u6570\u81ea\u8eab\u62a5\u9519\u540c\u6837\u8fd4\u56de 200\uff0c\u9700\u8bfb\u54cd\u5e94\u4f53\u5224\u65ad\u6210\u8d25\uff0c\u4e0d\u80fd\u53ea\u770b\u8c03\u7528\u662f\u5426\u6210\u529f\u3002",
+        "additionalProperties": true
+      }
+    },
+    "explore_subgraph": {
+      "inputSchema": {
+        "properties": {
+          "bkn_context": {
+            "description": "BKN Trace managed context. Copy both IDs from bkn_start_interaction.",
+            "properties": {
+              "conversation_id": {
+                "description": "conversation_id returned by bkn_start_interaction.",
+                "type": "string"
+              },
+              "interaction_id": {
+                "description": "interaction_id returned by bkn_start_interaction.",
+                "type": "string"
+              }
+            },
+            "required": [
+              "conversation_id",
+              "interaction_id"
+            ],
+            "type": "object"
+          },
+          "concept_groups": {
+            "description": "\u6982\u5ff5\u5206\u7ec4 ID \u6570\u7ec4\uff0c\u628a\u63a2\u7d22\u8303\u56f4\u9650\u5b9a\u5728\u8fd9\u4e9b\u5206\u7ec4\u5185\u7684\u6982\u5ff5\u4e0a\u3002\u4e0d\u4f20\u5219\u4e0d\u9650\u8303\u56f4\u3002",
+            "items": {
+              "type": "string"
+            },
+            "type": "array"
+          },
+          "condition": {
+            "additionalProperties": false,
+            "description": "\u8d77\u70b9\u5bf9\u8c61\u7c7b\u7684\u8fc7\u6ee4\u6761\u4ef6\uff0c\u7ed3\u6784\u4e0e query_object_instance \u7684 condition \u5b8c\u5168\u4e00\u81f4\uff08operation \u5fc5\u586b\uff1b\u6bd4\u8f83\u7b97\u5b50\u914d field + value + value_from=const\uff1band/or \u914d sub_conditions \u9012\u5f52\u5d4c\u5957\uff09\u3002\u53ea\u4f5c\u7528\u4e8e**\u8d77\u70b9**\uff0c\u4e0d\u8fc7\u6ee4\u8def\u5f84\u4e0a\u7684\u5176\u4ed6\u5bf9\u8c61\u7c7b\u3002\u4e0d\u4f20\u5219\u4ee5\u8be5\u5bf9\u8c61\u7c7b\u7684\u5168\u90e8\u5b9e\u4f8b\u4e3a\u8d77\u70b9\uff08\u53d7 limit \u9650\u5236\uff09\u3002",
+            "properties": {
+              "field": {
+                "description": "\u5b57\u6bb5\u540d\uff08\u8d77\u70b9\u5bf9\u8c61\u7c7b\u7684\u5c5e\u6027\uff09",
+                "type": "string"
+              },
+              "operation": {
+                "description": "\u6761\u4ef6\u64cd\u4f5c\u7b26\uff0c\u53d6\u503c\u89c4\u5219\u4e0e query_object_instance \u76f8\u540c\uff1a\u6bd4\u8f83\u7b97\u5b50\u6309\u5c5e\u6027 type \u5224\u65ad\uff0c\u7d22\u5f15\u7b97\u5b50 match / knn \u4ee5\u8be5\u5c5e\u6027\u7684 condition_operations \u4e3a\u51c6\uff08search_schema / search_instance \u628a\u5171\u7528\u7684\u90a3\u4efd\u5217\u8868\u63d0\u5230\u5bf9\u8c61\u7c7b\u7684 index_operations\uff0c\u5c5e\u6027\u4e0a\u53ea\u5199 indexed=true\uff09\u3002",
+                "type": "string"
+              },
+              "sub_conditions": {
+                "description": "\u5b50\u6761\u4ef6\u6570\u7ec4\uff0c\u7528\u4e8e and/or",
+                "items": {
+                  "type": "object"
+                },
+                "type": "array"
+              },
+              "value": {
+                "description": "\u5b57\u6bb5\u503c\uff1b\u5355\u503c\u7b97\u5b50\u7528\u5355\u503c\uff0cin/not_in \u7528\u6570\u7ec4\uff0crange/out_range \u7528 [min, max]\uff0cexist/not_exist \u4e0d\u4f20",
+                "oneOf": [
+                  {
+                    "type": "string"
+                  },
+                  {
+                    "type": "number"
+                  },
+                  {
+                    "type": "boolean"
+                  },
+                  {
+                    "items": {
+                      "oneOf": [
+                        {
+                          "type": "string"
+                        },
+                        {
+                          "type": "number"
+                        },
+                        {
+                          "type": "boolean"
+                        }
+                      ]
+                    },
+                    "type": "array"
+                  }
+                ]
+              },
+              "value_from": {
+                "description": "\u503c\u6765\u6e90\uff0c\u4ec5\u652f\u6301 const",
+                "enum": [
+                  "const"
+                ],
+                "type": "string"
+              }
+            },
+            "required": [
+              "operation"
+            ],
+            "type": "object"
+          },
+          "direction": {
+            "description": "\u63a2\u7d22\u65b9\u5411\u3002forward \u53ea\u6cbf\u5173\u7cfb\u5b9a\u4e49\u7684\u51fa\u8fb9\u8d70\uff0cbackward \u53ea\u6cbf\u5165\u8fb9\u8d70\uff0cbidirectional \u4e24\u4e2a\u65b9\u5411\u90fd\u8d70\u3002\u4e0d\u786e\u5b9a\u5173\u7cfb\u662f\u600e\u4e48\u5b9a\u4e49\u7684\u5c31\u7528 bidirectional\u3002",
+            "enum": [
+              "forward",
+              "backward",
+              "bidirectional"
+            ],
+            "type": "string"
+          },
+          "include_incomplete_path": {
+            "default": false,
+            "description": "\u662f\u5426\u8fd4\u56de\u6b8b\u7f3a\u8def\u5f84\u2014\u2014\u5df2\u8d70\u8fc7\u81f3\u5c11\u4e00\u6761\u8fb9\u3001\u4f46\u6ca1\u8d70\u6ee1 path_length \u5c31\u65e0\u8def\u53ef\u8d70\u7684\u90a3\u4e9b\u3002\u9ed8\u8ba4 false \u53ea\u8fd4\u56de\u5b8c\u6574\u8def\u5f84\u3002\u60f3\u77e5\u9053\u300c\u5230\u5e95\u8fde\u5230\u4e86\u54ea\u513f\u4e3a\u6b62\u300d\u65f6\u6253\u5f00\u3002\u96f6\u8fb9\u8def\u5f84\u4efb\u4f55\u60c5\u51b5\u4e0b\u90fd\u4e0d\u8fd4\u56de\u3002",
+            "type": "boolean"
+          },
+          "include_logic_params": {
+            "description": "\u662f\u5426\u8fd4\u56de\u903b\u8f91\u5c5e\u6027\u7684\u8ba1\u7b97\u53c2\u6570\uff0c\u9ed8\u8ba4 false",
+            "type": "boolean"
+          },
+          "kn_id": {
+            "description": "\u77e5\u8bc6\u7f51\u7edc ID\uff0c\u6765\u81ea list_knowledge_networks \u6216 get_kn_detail\uff0c\u4e0d\u53ef\u51ed\u540d\u79f0\u731c\u6d4b\u3002",
+            "type": "string"
+          },
+          "limit": {
+            "description": "**\u8d77\u70b9\u5bf9\u8c61\u7c7b**\u7684\u5b9e\u4f8b\u6570\u91cf\u4e0a\u9650\uff0c\u9ed8\u8ba4 10\u3002\u4e0d\u662f\u8fd4\u56de\u8def\u5f84\u7684\u6761\u6570\u4e0a\u9650\uff0c\u4e5f\u4e0d\u662f\u5bf9\u8c61\u603b\u6570\u4e0a\u9650\u3002",
+            "type": "integer"
+          },
+          "offset": {
+            "description": "**\u8d77\u70b9\u5bf9\u8c61\u7c7b**\u7684\u504f\u79fb\u7ffb\u9875\uff1a\u8df3\u8fc7\u524d N \u4e2a\u8d77\u70b9\u3002\u4e0e search_after \u4e92\u65a5\u3002",
+            "type": "integer"
+          },
+          "path_length": {
+            "description": "\u6700\u5927\u8df3\u6570\uff0c\u53d6 1-3\uff0c\u8d85\u51fa\u8fd4\u56de 400\u3002\u8def\u5f84\u6570\u968f\u8df3\u6570\u5feb\u901f\u589e\u957f\uff0c\u5148\u4ece 1-2 \u8d77\u6b65\uff0c\u4e0d\u591f\u518d\u52a0\u3002",
+            "maximum": 3,
+            "minimum": 1,
+            "type": "integer"
+          },
+          "response_format": {
+            "default": "toon",
+            "description": "\u6587\u672c\u683c\u5f0f\uff1ajson \u6216 toon\uff0c\u9ed8\u8ba4 toon",
+            "enum": [
+              "json",
+              "toon"
+            ],
+            "type": "string"
+          },
+          "search_after": {
+            "description": "**\u8d77\u70b9\u5bf9\u8c61\u7c7b**\u7684\u6e38\u6807\u7ffb\u9875\uff1a\u4f20\u4e0a\u4e00\u6b21\u54cd\u5e94\u8fd4\u56de\u7684 search_after \u53d6\u4e0b\u4e00\u6279\u8d77\u70b9\uff1b\u9996\u6b21\u4e0d\u4f20\u3002\u4e0e offset \u4e92\u65a5\u3002",
+            "items": {},
+            "type": "array"
+          },
+          "sort": {
+            "description": "**\u8d77\u70b9\u5bf9\u8c61\u7c7b**\u7684\u6392\u5e8f\u5b57\u6bb5\uff0c\u6309\u6570\u7ec4\u987a\u5e8f\u4f9d\u6b21\u6bd4\u8f83\u3002\u4e0e limit \u914d\u5408\u51b3\u5b9a\u300c\u4ece\u54ea\u4e9b\u8d77\u70b9\u51fa\u53d1\u300d\uff0c\u4e0d\u5f71\u54cd\u8def\u5f84\u672c\u8eab\u7684\u987a\u5e8f\u3002",
+            "items": {
+              "additionalProperties": false,
+              "properties": {
+                "direction": {
+                  "description": "\u6392\u5e8f\u65b9\u5411",
+                  "enum": [
+                    "asc",
+                    "desc"
+                  ],
+                  "type": "string"
+                },
+                "field": {
+                  "description": "\u6392\u5e8f\u5b57\u6bb5\uff08\u8d77\u70b9\u5bf9\u8c61\u7c7b\u7684\u5c5e\u6027\u540d\uff09",
+                  "type": "string"
+                }
+              },
+              "required": [
+                "field",
+                "direction"
+              ],
+              "type": "object"
+            },
+            "type": "array"
+          },
+          "source_object_type_id": {
+            "description": "\u63a2\u7d22\u8d77\u70b9\u7684\u5bf9\u8c61\u7c7b ID\u3002\u7528 search_schema \u6216 get_object_types \u5148\u786e\u8ba4\u3002",
+            "type": "string"
+          }
+        },
+        "required": [
+          "kn_id",
+          "source_object_type_id",
+          "direction",
+          "path_length"
+        ],
+        "type": "object"
+      },
+      "outputSchema": {
+        "type": "object",
+        "properties": {
+          "objects": {
+            "type": "object",
+            "additionalProperties": true,
+            "description": "\u53c2\u4e0e\u4e86\u5173\u7cfb\u7684\u5bf9\u8c61\uff0ckey \u662f\u5bf9\u8c61 id\uff0cvalue \u542b object_type_id / _instance_identity / _display / properties\u3002"
+          },
+          "isolated_objects": {
+            "type": "object",
+            "additionalProperties": true,
+            "description": "\u6ca1\u6709\u5efa\u7acb\u4efb\u4f55\u5173\u7cfb\u7684\u5b64\u7acb\u5bf9\u8c61\u3002**\u8fd9\u662f\u6709\u6548\u7ed3\u8bba\u4e0d\u662f\u5931\u8d25**\uff1a\u5b83\u660e\u786e\u56de\u7b54\u4e86\u300c\u8fd9\u4e9b\u8d77\u70b9\u5728\u7ed9\u5b9a\u65b9\u5411\u4e0e\u8df3\u6570\u5185\u6ca1\u6709\u5173\u8054\u300d\uff0c\u4e0d\u8981\u56e0\u4e3a\u8fd9\u91cc\u6709\u503c\u5c31\u91cd\u8bd5\u6216\u6539\u95ee\u6cd5\u3002"
+          },
+          "relation_paths": {
+            "type": "array",
+            "description": "\u5177\u4f53\u7684\u5173\u7cfb\u8def\u5f84\u3002\u6bcf\u6761\u542b relations \u6570\u7ec4\uff08relation_type_id / source_object_id / target_object_id\uff09\u4e0e length\uff08\u8fb9\u6570\uff09\u3002\u5bf9\u8c61\u8be6\u60c5\u53bb objects \u91cc\u6309 id \u67e5\u3002",
+            "items": {
+              "type": "object",
+              "additionalProperties": true
+            }
+          },
+          "total_count": {
+            "type": "integer",
+            "description": "**\u8d77\u70b9\u5bf9\u8c61\u7c7b**\u7684\u547d\u4e2d\u603b\u6570\uff0c\u4e0d\u53d7 limit \u9650\u5236\uff0c\u4e0e\u8def\u5f84\u6761\u6570\u6216\u5bf9\u8c61\u603b\u6570\u65e0\u5173\u3002\u96f6\u547d\u4e2d\u65f6\u662f 0\uff08\u6709\u503c\uff09\u3002\u5b57\u6bb5\u7f3a\u5931\u8868\u793a\u672c\u6b21\u6ca1\u6709\u8ba1\u7b97\u603b\u6570\u2014\u2014\u7528 search_after \u7ffb\u9875\u65f6\u7b2c\u4e8c\u9875\u8d77\u5373\u5982\u6b64\u2014\u2014\u4e0d\u80fd\u63a8\u65ad\u4e3a 0\u3002"
+          },
+          "search_after": {
+            "type": "array",
+            "items": {},
+            "description": "\u8d77\u70b9\u5bf9\u8c61\u7c7b\u7684\u4e0b\u4e00\u9875\u6e38\u6807\uff1a\u975e\u7a7a\u65f6\u4f5c\u4e3a\u4e0b\u6b21\u8bf7\u6c42\u7684 search_after \u4f20\u5165\u4ee5\u53d6\u4e0b\u4e00\u6279\u8d77\u70b9\uff1b\u4e3a\u7a7a\u8868\u793a\u8d77\u70b9\u5df2\u53d6\u5b8c\u3002"
+          }
+        }
+      }
+    },
+    "get_action_execution": {
+      "inputSchema": {
+        "properties": {
+          "bkn_context": {
+            "description": "BKN Trace managed context. Copy both IDs from bkn_start_interaction.",
+            "properties": {
+              "conversation_id": {
+                "description": "conversation_id returned by bkn_start_interaction.",
+                "type": "string"
+              },
+              "interaction_id": {
+                "description": "interaction_id returned by bkn_start_interaction.",
+                "type": "string"
+              }
+            },
+            "required": [
+              "conversation_id",
+              "interaction_id"
+            ],
+            "type": "object"
+          },
+          "execution_id": {
+            "description": "\u884c\u52a8\u6267\u884c ID\uff0c\u7531 execute_action \u8fd4\u56de\u3002",
+            "type": "string"
+          },
+          "kn_id": {
+            "description": "\u77e5\u8bc6\u7f51\u7edc ID\uff0c\u6765\u81ea list_knowledge_networks \u6216 get_kn_detail\uff0c\u4e0d\u53ef\u51ed\u540d\u79f0\u731c\u6d4b\u3002",
+            "type": "string"
+          },
+          "response_format": {
+            "default": "toon",
+            "description": "\u54cd\u5e94\u683c\u5f0f\uff1ajson \u6216 toon\uff0c\u9ed8\u8ba4 toon\uff08\u66f4\u7701 token\uff09\u3002",
+            "enum": [
+              "json",
+              "toon"
+            ],
+            "type": "string"
+          },
+          "results_limit": {
+            "description": "\u9010\u6761\u7ed3\u679c\u6bcf\u9875\u6761\u6570\uff1b\u4f20 0 \u65f6\u9ed8\u8ba4 100\uff0c\u8d85\u8fc7 1000 \u65f6\u94b3\u5236\u4e3a 1000\u3002\u4f20\u5165\u4efb\u4e00\u5206\u9875\u53c2\u6570\u5373\u542f\u7528\u5206\u9875\u67e5\u8be2\u3002",
+            "minimum": 0,
+            "type": "integer"
+          },
+          "results_offset": {
+            "description": "\u9010\u6761\u7ed3\u679c\u504f\u79fb\u91cf\uff0c\u9ed8\u8ba4 0\u3002results_offset + \u5b9e\u9645 results_limit \u4e0d\u5f97\u8d85\u8fc7 10000\u3002",
+            "minimum": 0,
+            "type": "integer"
+          }
+        },
+        "required": [
+          "kn_id",
+          "execution_id"
+        ],
+        "type": "object"
+      },
+      "outputSchema": {
+        "type": "object",
+        "description": "\u5355\u6b21\u884c\u52a8\u6267\u884c\u7684\u8be6\u60c5\uff0c\u542b\u6574\u4f53\u72b6\u6001\u4e0e\u9010\u5bf9\u8c61\u7ed3\u679c\u3002",
+        "properties": {
+          "id": {
+            "type": "string",
+            "description": "\u6267\u884c ID"
+          },
+          "status": {
+            "type": "string",
+            "description": "\u6574\u4f53\u72b6\u6001\uff1apending/running/completed/failed/cancelled"
+          },
+          "total_count": {
+            "type": "integer",
+            "description": "\u8ba1\u5212\u6267\u884c\u7684\u5de5\u5177\u8c03\u7528\u603b\u6570\uff1bonce \u6a21\u5f0f\u4e0b\u4e0d\u7b49\u4e8e\u76ee\u6807\u5bf9\u8c61\u6570\u3002"
+          },
+          "success_count": {
+            "type": "integer",
+            "description": "\u6210\u529f\u7684\u5de5\u5177\u8c03\u7528\u6570"
+          },
+          "failed_count": {
+            "type": "integer",
+            "description": "\u5931\u8d25\u7684\u5de5\u5177\u8c03\u7528\u6570"
+          },
+          "results_total": {
+            "type": "integer",
+            "description": "\u672c\u6b21\u6267\u884c\u5df2\u5b58\u50a8\u7684\u9010\u6761\u7ed3\u679c\u603b\u6570\uff1b\u7ed3\u5408 results_offset \u548c\u672c\u9875 results \u6570\u91cf\u5224\u65ad\u662f\u5426\u8fd8\u6709\u4e0b\u4e00\u9875\u3002"
+          },
+          "results_offset": {
+            "type": "integer",
+            "description": "\u672c\u9875\u9010\u6761\u7ed3\u679c\u7684\u8d77\u59cb\u504f\u79fb\u91cf\u3002"
+          },
+          "results_limit": {
+            "type": "integer",
+            "description": "\u672c\u9875\u5b9e\u9645\u4f7f\u7528\u7684\u9010\u6761\u7ed3\u679c\u6761\u6570\u4e0a\u9650\u3002"
+          },
+          "results": {
+            "type": "array",
+            "description": "\u9010\u5bf9\u8c61\u6267\u884c\u7ed3\u679c\uff08\u542b status\u3001parameters\u3001result/error \u7b49\uff09",
+            "items": {
+              "type": "object",
+              "additionalProperties": true
+            }
+          }
+        },
+        "additionalProperties": true
+      }
+    },
+    "get_action_info": {
+      "inputSchema": {
+        "properties": {
+          "_instance_identities": {
+            "description": "\u5bf9\u8c61\u5b9e\u4f8b\u6807\u8bc6\u5217\u8868\uff08\u53ef\u9009\uff09\u3002\u6bcf\u4e2a\u5143\u7d20\u5fc5\u987b\u4ece query_object_instance \u6216 query_instance_subgraph \u7684 _instance_identity \u5b57\u6bb5\u63d0\u53d6\uff0c\u4e0d\u53ef\u81c6\u9020\u3002",
+            "items": {
+              "additionalProperties": true,
+              "type": "object"
+            },
+            "type": "array"
+          },
+          "at_id": {
+            "description": "\u884c\u52a8\u7c7b\u578bID",
+            "type": "string"
+          },
+          "bkn_context": {
+            "description": "BKN Trace managed context. Copy both IDs from bkn_start_interaction.",
+            "properties": {
+              "conversation_id": {
+                "description": "conversation_id returned by bkn_start_interaction.",
+                "type": "string"
+              },
+              "interaction_id": {
+                "description": "interaction_id returned by bkn_start_interaction.",
+                "type": "string"
+              }
+            },
+            "required": [
+              "conversation_id",
+              "interaction_id"
+            ],
+            "type": "object"
+          },
+          "kn_id": {
+            "description": "\u77e5\u8bc6\u7f51\u7edc ID\uff0c\u6765\u81ea list_knowledge_networks \u6216 get_kn_detail\uff0c\u4e0d\u53ef\u51ed\u540d\u79f0\u731c\u6d4b\u3002",
+            "type": "string"
+          },
+          "response_format": {
+            "default": "toon",
+            "description": "\u6587\u672c\u683c\u5f0f\uff1ajson \u6216 toon\uff0c\u9ed8\u8ba4 toon",
+            "enum": [
+              "json",
+              "toon"
+            ],
+            "type": "string"
+          }
+        },
+        "required": [
+          "kn_id",
+          "at_id"
+        ],
+        "type": "object"
+      },
+      "outputSchema": {
+        "type": "object",
+        "properties": {
+          "headers": {
+            "type": "object",
+            "description": "\u8fd4\u56de\u7684 Header \u4fe1\u606f",
+            "additionalProperties": true
+          },
+          "_dynamic_tools": {
+            "type": "array",
+            "description": "\u52a8\u6001\u5de5\u5177\u5b9a\u4e49\u5217\u8868\u3002\u6bcf\u9879\u542b parameters\uff08\u5165\u53c2 schema\uff0c\u52a8\u6001\u53c2\u6570\u5728 parameters.properties.dynamic_params \u4e0b\uff09\uff1b\u5de5\u5177\u58f0\u660e\u4e86\u8f93\u51fa\u5951\u7ea6\u65f6\u8fd8\u542b output_schema\uff0c\u5373\u6267\u884c\u6210\u529f\u540e result \u5b57\u6bb5\u7684\u5f62\u72b6\uff0c\u7528\u5b83\u628a\u6267\u884c\u7ed3\u679c\u590d\u8ff0\u6210\u81ea\u7136\u8bed\u8a00\u3002",
+            "items": {
+              "type": "object",
+              "additionalProperties": true
+            }
+          }
+        }
+      }
+    },
+    "get_kn_detail": {
+      "inputSchema": {
+        "properties": {
+          "bkn_context": {
+            "description": "BKN Trace managed context. Copy both IDs from bkn_start_interaction.",
+            "properties": {
+              "conversation_id": {
+                "description": "conversation_id returned by bkn_start_interaction.",
+                "type": "string"
+              },
+              "interaction_id": {
+                "description": "interaction_id returned by bkn_start_interaction.",
+                "type": "string"
+              }
+            },
+            "required": [
+              "conversation_id",
+              "interaction_id"
+            ],
+            "type": "object"
+          },
+          "detail_level": {
+            "default": "summary",
+            "description": "\u8be6\u60c5\u7ea7\u522b\u3002summary\uff08\u9ed8\u8ba4\uff09\uff1a\u5bf9\u8c61\u7c7b/\u5173\u7cfb\u7c7b/\u884c\u52a8\u7c7b\u9aa8\u67b6 + \u6bcf\u4e2a\u5c5e\u6027\u4ec5 name+type\uff08\u6241\u5e73\u540c\u6784\uff0cTOON \u6e32\u67d3\u6210\u7d27\u51d1\u8868\u683c\uff09\uff0c\u4e0d\u542b\u5bf9\u8c61\u7c7b/\u5173\u7cfb\u7c7b/\u884c\u52a8\u7c7b\u7684 comment\uff0c\u4e5f\u4e0d\u542b\u5c5e\u6027\u7684 display_name/comment\u3001\u5b57\u6bb5\u6620\u5c04\u3001\u67e5\u8be2\u7b97\u5b50\u3001\u6620\u5c04\u89c4\u5219\u4e0e module_type\uff08\u6982\u5ff5\u7ec4\u7684 name/tags/comment \u5168\u90e8\u4fdd\u7559\uff0c\u9009\u7c07\u5c31\u9760\u5b83\u4eec\uff09\uff0c\u8db3\u591f\u7406\u89e3 schema \u4e0e\u89c4\u5212\u67e5\u8be2\uff1b\u9700\u8981\u67d0\u5bf9\u8c61\u5b8c\u6574\u5b57\u6bb5\u6620\u5c04\uff08\u542b comment\uff09\u6539\u8c03 get_object_types\uff0c\u8981\u5173\u7cfb mapping_rules \u6539\u8c03 get_relation_types\uff0c\u8981\u884c\u52a8\u7c7b\u8bf4\u660e\u6539\u8c03 get_action_info\u3002full\uff1a\u4e00\u6b21\u8fd4\u56de\u5168\u91cf\uff08\u4f53\u79ef\u5927\uff0c\u614e\u7528\uff09\u3002",
+            "enum": [
+              "summary",
+              "full"
+            ],
+            "type": "string"
+          },
+          "kn_id": {
+            "description": "\u77e5\u8bc6\u7f51\u7edc ID\uff0c\u6765\u81ea list_knowledge_networks \u6216 get_kn_detail\uff0c\u4e0d\u53ef\u51ed\u540d\u79f0\u731c\u6d4b\u3002",
+            "type": "string"
+          },
+          "response_format": {
+            "default": "toon",
+            "description": "\u6587\u672c\u683c\u5f0f\uff1ajson \u6216 toon\uff0c\u9ed8\u8ba4 toon",
+            "enum": [
+              "json",
+              "toon"
+            ],
+            "type": "string"
+          }
+        },
+        "required": [
+          "kn_id"
+        ],
+        "type": "object"
+      },
+      "outputSchema": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string",
+            "description": "\u77e5\u8bc6\u7f51\u7edc ID"
+          },
+          "name": {
+            "type": "string",
+            "description": "\u77e5\u8bc6\u7f51\u7edc\u540d\u79f0"
+          },
+          "comment": {
+            "type": "string",
+            "description": "\u63cf\u8ff0"
+          },
+          "concept_groups": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "properties": {
+                "id": {
+                  "type": "string",
+                  "description": "\u6982\u5ff5\u5206\u7ec4 ID\uff0c\u53ef\u4f20\u7ed9 search_schema \u7684 search_scope.concept_groups\u3001search_instance \u4e0e explore_subgraph \u7684 concept_groups"
+                },
+                "name": {
+                  "type": "string",
+                  "description": "\u5206\u7ec4\u540d"
+                },
+                "tags": {
+                  "type": "array",
+                  "items": {
+                    "type": "string"
+                  },
+                  "description": "\u5206\u7ec4\u6807\u7b7e\u3002\u4e0e name/comment \u4e00\u8d77\u4f5c\u4e3a\u9009\u7c07\u4f9d\u636e\u3002"
+                },
+                "comment": {
+                  "type": "string",
+                  "description": "\u5206\u7ec4\u8bed\u4e49\u8bf4\u660e\u3002\u5224\u65ad\u8be5\u5206\u7ec4\u4e0e\u5f53\u524d\u95ee\u9898\u662f\u5426\u76f8\u5173\uff0c\u5c31\u770b\u8fd9\u91cc\uff1b\u4e0d\u5fc5\u5c55\u5f00 object_type_ids\u3002"
+                },
+                "object_type_ids": {
+                  "type": "array",
+                  "items": {
+                    "type": "string"
+                  },
+                  "description": "\u7ec4\u5185\u5bf9\u8c61\u7c7b ID"
+                }
+              },
+              "additionalProperties": true
+            },
+            "description": "\u6982\u5ff5\u7ec4\u3002\u6bcf\u7ec4\u5e26 name/tags/comment \u8bed\u4e49\u8bf4\u660e\uff0c\u636e\u6b64\u9009\u51fa 1-3 \u4e2a\u76f8\u5173\u5206\u7ec4\uff0c\u518d\u4f20\u7ed9 search_schema \u7684 search_scope.concept_groups \u6536\u655b Schema \u53ec\u56de\u8303\u56f4\u3002"
+          },
+          "object_types": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "properties": {
+                "id": {
+                  "type": "string",
+                  "description": "\u5bf9\u8c61\u7c7b ID\u3002\u6ce8\u610f search_schema \u540c\u7c7b\u8fd4\u56de\u91cc\u53eb concept_id\u3002"
+                },
+                "name": {
+                  "type": "string",
+                  "description": "\u5bf9\u8c61\u7c7b\u540d\u3002\u540c\u4e0a\uff0csearch_schema \u90a3\u8fb9\u53eb concept_name\u3002"
+                },
+                "comment": {
+                  "type": "string",
+                  "description": "\u8bf4\u660e\uff1b\u4ec5 detail_level=full \u65f6\u51fa\u73b0\u2014\u2014\u9ed8\u8ba4\u7684 summary \u53ea\u7ed9\u9aa8\u67b6\u4e0e name+type \u7684\u5c5e\u6027\u8868\uff0c\u7167\u8fd9\u4e00\u6761\u53bb\u53d6\u4f1a\u62ff\u5230 None\uff0c\u8981\u5b8c\u6574\u5b57\u6bb5\u6620\u5c04\u6539\u8c03 get_object_types"
+                },
+                "data_source": {
+                  "type": [
+                    "object",
+                    "null"
+                  ],
+                  "additionalProperties": true,
+                  "description": "\u7ed1\u5b9a\u7684\u6570\u636e\u8d44\u6e90 {type, id, name}\uff1b\u672a\u7ed1\u5b9a\u6570\u636e\u6e90\u65f6\u4e3a null\u3002summary \u548c full \u5747\u8fd4\u56de\u6b64\u5b57\u6bb5\u3002"
+                },
+                "data_properties": {
+                  "type": "array",
+                  "items": {
+                    "type": "object",
+                    "additionalProperties": true
+                  },
+                  "description": "\u6570\u636e\u5c5e\u6027 [{name, type, condition_operations}]\uff1b\u4ec5 detail_level=full \u65f6\u51fa\u73b0\u2014\u2014\u9ed8\u8ba4\u7684 summary \u53ea\u7ed9\u9aa8\u67b6\u4e0e name+type \u7684\u5c5e\u6027\u8868\uff0c\u7167\u8fd9\u4e00\u6761\u53bb\u53d6\u4f1a\u62ff\u5230 None\uff0c\u8981\u5b8c\u6574\u5b57\u6bb5\u6620\u5c04\u6539\u8c03 get_object_types"
+                },
+                "primary_keys": {
+                  "type": "array",
+                  "items": {
+                    "type": "string"
+                  },
+                  "description": "\u4e3b\u952e\u5c5e\u6027\u540d\uff1b\u4ec5 detail_level=full \u65f6\u51fa\u73b0\u2014\u2014\u9ed8\u8ba4\u7684 summary \u53ea\u7ed9\u9aa8\u67b6\u4e0e name+type \u7684\u5c5e\u6027\u8868\uff0c\u7167\u8fd9\u4e00\u6761\u53bb\u53d6\u4f1a\u62ff\u5230 None\uff0c\u8981\u5b8c\u6574\u5b57\u6bb5\u6620\u5c04\u6539\u8c03 get_object_types"
+                },
+                "effective_permissions": {
+                  "type": "object",
+                  "description": "\u5f53\u524d\u8d26\u6237\u5bf9\u5404\u5c5e\u6027\u7684\u6709\u6548\u6743\u9650\uff1afull \u53ef\u8bfb\u539f\u503c\uff0cmasked \u8bfb\u5230\u8131\u654f\u503c\uff0cschema \u53ea\u89c1\u5b57\u6bb5\u4e0d\u89c1\u503c\u3002\u9ed8\u8ba4 summary \u4e0b\uff0c\u6240\u6709\u5c5e\u6027\u90fd\u662f full \u65f6\u7701\u7565\u6b64\u5b57\u6bb5\uff1b\u53ea\u8981\u6709\u4e00\u4e2a\u53d7\u9650\u5c5e\u6027\u5c31\u5b8c\u6574\u5217\u51fa",
+                  "additionalProperties": {
+                    "type": "string",
+                    "enum": [
+                      "schema",
+                      "masked",
+                      "full"
+                    ]
+                  }
+                }
+              },
+              "additionalProperties": true
+            },
+            "description": "\u5bf9\u8c61\u7c7b\u578b\uff08\u542b data_source \u7b49\uff09\u3002related_metric_count \u4e3a\u8be5\u5bf9\u8c61\u7c7b\u4e0b\u5df2\u5efa\u6a21\u6307\u6807\u6570\uff0c>0 \u65f6\u53ef\u7528 get_object_types \u4e0b\u94bb\u62ff related_metrics \u660e\u7ec6\u3002logic_properties \u53ea\u7ed9\u540d\u79f0\u4e0e\u7c7b\u578b\uff0c\u8981\u770b\u53d6\u6570\u6765\u6e90\u4e0e\u53c2\u6570\u5b9a\u4e49\uff08\u8c01\u6765\u586b\uff09\u7528 get_object_types \u6216 search_schema \u77e5\u8bc6\u7f51\u7edc\u8d85\u8fc7 200 \u4e2a\u5bf9\u8c61\u7c7b\u6216 600 \u4e2a\u5173\u7cfb\u7c7b\u65f6\uff0c\u8be5\u5b57\u6bb5\u56de null\uff08notice \u4f1a\u8bf4\u660e\uff09\uff0c\u8bf7\u6309 concept_groups \u4e0b\u94bb\u3002"
+          },
+          "relation_types": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "properties": {
+                "id": {
+                  "type": "string",
+                  "description": "\u5173\u7cfb\u7c7b ID"
+                },
+                "name": {
+                  "type": "string",
+                  "description": "\u5173\u7cfb\u540d"
+                },
+                "comment": {
+                  "type": "string",
+                  "description": "\u8bf4\u660e\uff1b\u4ec5 detail_level=full \u65f6\u51fa\u73b0\u2014\u2014\u9ed8\u8ba4\u7684 summary \u53ea\u7ed9\u9aa8\u67b6\u4e0e name+type \u7684\u5c5e\u6027\u8868\uff0c\u7167\u8fd9\u4e00\u6761\u53bb\u53d6\u4f1a\u62ff\u5230 None\uff0c\u8981\u5b8c\u6574\u5b57\u6bb5\u6620\u5c04\u6539\u8c03 get_object_types"
+                },
+                "source_object_type_id": {
+                  "type": "string",
+                  "description": "\u8d77\u70b9\u5bf9\u8c61\u7c7b ID"
+                },
+                "target_object_type_id": {
+                  "type": "string",
+                  "description": "\u7ec8\u70b9\u5bf9\u8c61\u7c7b ID"
+                }
+              },
+              "additionalProperties": true
+            },
+            "description": "\u5173\u7cfb\u7c7b\u578b \u77e5\u8bc6\u7f51\u7edc\u8d85\u8fc7 200 \u4e2a\u5bf9\u8c61\u7c7b\u6216 600 \u4e2a\u5173\u7cfb\u7c7b\u65f6\uff0c\u8be5\u5b57\u6bb5\u56de null\uff08notice \u4f1a\u8bf4\u660e\uff09\uff0c\u8bf7\u6309 concept_groups \u4e0b\u94bb\u3002"
+          },
+          "action_types": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "properties": {
+                "id": {
+                  "type": "string",
+                  "description": "\u884c\u52a8\u7c7b ID"
+                },
+                "name": {
+                  "type": "string",
+                  "description": "\u884c\u52a8\u540d"
+                },
+                "comment": {
+                  "type": "string",
+                  "description": "\u8bf4\u660e\uff1b\u4ec5 detail_level=full \u65f6\u51fa\u73b0\u2014\u2014\u9ed8\u8ba4\u7684 summary \u53ea\u7ed9\u9aa8\u67b6\uff0c\u7167\u8fd9\u4e00\u6761\u53bb\u53d6\u4f1a\u62ff\u5230 None\uff0c\u8981\u77e5\u9053\u8fd9\u4e2a\u884c\u52a8\u505a\u4ec0\u4e48\u6539\u8c03 get_action_info"
+                },
+                "object_type_id": {
+                  "type": "string",
+                  "description": "\u6240\u5c5e\u5bf9\u8c61\u7c7b ID"
+                }
+              },
+              "additionalProperties": true
+            },
+            "description": "\u884c\u52a8\u7c7b\u578b \u77e5\u8bc6\u7f51\u7edc\u8d85\u8fc7 200 \u4e2a\u5bf9\u8c61\u7c7b\u6216 600 \u4e2a\u5173\u7cfb\u7c7b\u65f6\uff0c\u8be5\u5b57\u6bb5\u56de null\uff08notice \u4f1a\u8bf4\u660e\uff09\uff0c\u8bf7\u6309 concept_groups \u4e0b\u94bb\u3002"
+          },
+          "mounted_capabilities": {
+            "type": "object",
+            "description": "\u8be5\u77e5\u8bc6\u7f51\u7edc\u5df2\u6302\u8f7d\u7684\u80fd\u529b\u6570\u91cf\uff0c\u6309\u7c7b\u578b\u5206\u3002\u53ea\u56de\u7b54\u6709\u6ca1\u6709\u3001\u6709\u591a\u5c11\uff1b\u8981\u5177\u4f53\u80fd\u529b\u7528 search_capabilities\u3002\u5b57\u6bb5\u7f3a\u5e2d\u8868\u793a\u8fd9\u6b21\u6ca1\u8bfb\u5230\u7ed1\u5b9a\u6216\u65e0\u6743\u8bfb\u8be5\u7f51\u7edc\uff0c\u4e0d\u7b49\u4e8e\u6ca1\u6302\u3002\u6570\u7684\u662f\u6302\u8f7d\u800c\u975e\u4f60\u53ef\u8c03\u7528\u7684\u6570\u91cf\u2014\u2014\u770b\u4e0d\u5230\u7684\u5de5\u5177\u7bb1\u4f1a\u8ba9 search_capabilities \u5c11\u8fd4\u56de\u51e0\u6761\uff0c\u4e24\u4e2a\u6570\u5b57\u5bf9\u4e0d\u4e0a\u662f\u6b63\u5e38\u7684\u3002",
+            "properties": {
+              "total": {
+                "type": "integer",
+                "description": "\u5df2\u6302\u8f7d\u80fd\u529b\u603b\u6570"
+              },
+              "skill": {
+                "type": "integer",
+                "description": "Skill \u6570\u91cf\uff0c\u7528 get_skill_content \u8bfb\u3001execute_skill \u6267\u884c"
+              },
+              "function": {
+                "type": "integer",
+                "description": "\u51fd\u6570\u5de5\u5177\u6570\u91cf\uff08\u542b metadata_type=openapi \u7684 API \u5de5\u5177\uff09\uff0c\u7528 execute_tool \u8c03\u7528"
+              },
+              "mcp_tool": {
+                "type": "integer",
+                "description": "MCP \u5de5\u5177\u6570\u91cf\uff0c\u540c\u6837\u7528 execute_tool \u8c03\u7528"
+              }
+            }
+          },
+          "object_type_count": {
+            "type": "integer",
+            "description": "\u8be5\u7f51\u7edc\u7684\u5bf9\u8c61\u7c7b\u603b\u6570\u3002\u4ec5\u5f53\u7f51\u7edc\u8d85\u8fc7\u5355\u6b21\u8fd4\u56de\u4e0a\u9650\u3001\u672c\u6b21\u53ea\u7ed9\u5bfc\u822a\u58f3\u65f6\u51fa\u73b0\uff1b\u5176\u4f59\u60c5\u51b5\u4e0b object_types \u6570\u7ec4\u672c\u8eab\u5c31\u662f\u6570\u91cf\u3002"
+          },
+          "relation_type_count": {
+            "type": "integer",
+            "description": "\u8be5\u7f51\u7edc\u7684\u5173\u7cfb\u7c7b\u603b\u6570\u3002\u51fa\u73b0\u6761\u4ef6\u540c object_type_count\u3002"
+          },
+          "action_type_count": {
+            "type": "integer",
+            "description": "\u8be5\u7f51\u7edc\u7684\u884c\u52a8\u7c7b\u603b\u6570\u3002\u51fa\u73b0\u6761\u4ef6\u540c object_type_count\u3002"
+          },
+          "notice": {
+            "type": "string",
+            "description": "\u672c\u6b21\u8fd4\u56de\u88ab\u6536\u7a84\u7684\u539f\u56e0\u4e0e\u4e0b\u4e00\u6b65\u6307\u5f15\u3002\u51fa\u73b0\u65f6 object_types/relation_types/action_types \u4e09\u4e2a\u5b57\u6bb5\u90fd\u56de null\uff0c\u8fd9\u4e0d\u8868\u793a\u8be5\u7f51\u7edc\u6ca1\u6709\u8fd9\u4e9b\u6982\u5ff5\u2014\u2014\u6570\u91cf\u89c1\u4e09\u4e2a *_count \u5b57\u6bb5\uff0c\u5177\u4f53\u6982\u5ff5\u6309 concept_groups \u9009\u7c07\u540e\u7528 search_schema \u53d6\u3002 \u8be5\u7f51\u7edc\u82e5\u6ca1\u5212\u6982\u5ff5\u7ec4\uff0cnotice \u4f1a\u6539\u4e3a\u6307\u5411 search_schema\u3002"
+          }
+        }
+      }
+    },
+    "get_logic_properties_values": {
+      "inputSchema": {
+        "properties": {
+          "_instance_identities": {
+            "description": "\u5bf9\u8c61\u5b9e\u4f8b\u6807\u8bc6\u6570\u7ec4\u3002\u5fc5\u987b\u4ece query_object_instance \u6216 query_instance_subgraph \u7684 _instance_identity \u5b57\u6bb5\u63d0\u53d6\uff0c\u4e0d\u53ef\u81c6\u9020\u3002\u6309\u539f\u987a\u5e8f\u7ec4\u6210\u6570\u7ec4\u3002",
+            "items": {
+              "additionalProperties": true,
+              "type": "object"
+            },
+            "type": "array"
+          },
+          "additional_context": {
+            "description": "\u53ef\u9009\u3002\u8865\u5145 timezone\u3001instant\u3001step \u7b49\u4e0a\u4e0b\u6587",
+            "type": "string"
+          },
+          "bkn_context": {
+            "description": "BKN Trace managed context. Copy both IDs from bkn_start_interaction.",
+            "properties": {
+              "conversation_id": {
+                "description": "conversation_id returned by bkn_start_interaction.",
+                "type": "string"
+              },
+              "interaction_id": {
+                "description": "interaction_id returned by bkn_start_interaction.",
+                "type": "string"
+              }
+            },
+            "required": [
+              "conversation_id",
+              "interaction_id"
+            ],
+            "type": "object"
+          },
+          "dynamic_params": {
+            "additionalProperties": {
+              "additionalProperties": true,
+              "type": "object"
+            },
+            "description": "\u53ef\u9009\u3002\u6309\u903b\u8f91\u5c5e\u6027\u540d\u7ed9\u51fa\u53c2\u6570\u503c\uff0c\u5f62\u5982 {\"\u5c5e\u6027\u540d\":{\"\u53c2\u6570\u540d\":\u503c}}\u3002\u8981\u586b\u54ea\u4e9b\u53c2\u6570\u770b get_object_types \u6216 search_schema \u8fd4\u56de\u7684 logic_properties[].parameters \u4e2d value_from=input \u7684\u9879\u3002\u7ed9\u4e86\u7684\u503c\u539f\u6837\u4f7f\u7528\uff0c\u53ea\u6709\u7f3a\u7684\u624d\u7531\u670d\u52a1\u7aef\u751f\u6210\uff1b\u67d0\u5c5e\u6027\u7684 input \u53c2\u6570\u5168\u7ed9\u9f50\u65f6\u8be5\u5c5e\u6027\u4e0d\u518d\u8c03\u7528\u5927\u6a21\u578b\uff0c\u540c\u4e00\u95ee\u9898\u56e0\u6b64\u53ef\u590d\u73b0",
+            "type": "object"
+          },
+          "kn_id": {
+            "description": "\u77e5\u8bc6\u7f51\u7edc ID\uff0c\u6765\u81ea list_knowledge_networks \u6216 get_kn_detail\uff0c\u4e0d\u53ef\u51ed\u540d\u79f0\u731c\u6d4b\u3002",
+            "type": "string"
+          },
+          "llm_model": {
+            "description": "\u53ef\u9009\u3002\u8986\u76d6\u52a8\u6001\u53c2\u6570\u751f\u6210\u6240\u7528\u5927\u6a21\u578b\uff1b\u4e3a\u7a7a\u8d70\u7cfb\u7edf\u9ed8\u8ba4\u5927\u6a21\u578b\u3002\u4ec5\u4f9b\u6d4b\u8bd5/\u9a8c\u8bc1\u6307\u5b9a\u6a21\u578b\u3002",
+            "type": "string"
+          },
+          "ot_id": {
+            "description": "\u5bf9\u8c61\u7c7b\u578bID",
+            "type": "string"
+          },
+          "properties": {
+            "description": "\u903b\u8f91\u5c5e\u6027\u540d\u5217\u8868\uff08metric/operator\uff09\u3002\u5fc5\u987b\u4e3a Schema \u4e2d\u5b58\u5728\u7684\u903b\u8f91\u5c5e\u6027",
+            "items": {
+              "type": "string"
+            },
+            "type": "array"
+          },
+          "query": {
+            "description": "\u7528\u6237\u67e5\u8be2\uff0c\u9700\u542b\u65f6\u95f4\u3001\u7edf\u8ba1\u7ef4\u5ea6\u3001\u4e1a\u52a1\u4e0a\u4e0b\u6587\u3002\u670d\u52a1\u7aef\u636e\u6b64\u4e3a\u7f3a\u5931\u7684\u53c2\u6570\u8c03\u4e00\u6b21\u5927\u6a21\u578b\u751f\u6210\uff1bdynamic_params \u5df2\u8986\u76d6\u5168\u90e8\u5c5e\u6027\u7684 input \u53c2\u6570\u65f6\u53ef\u4ee5\u4e0d\u4f20",
+            "type": "string"
+          },
+          "response_format": {
+            "default": "toon",
+            "description": "\u6587\u672c\u683c\u5f0f\uff1ajson \u6216 toon\uff0c\u9ed8\u8ba4 toon",
+            "enum": [
+              "json",
+              "toon"
+            ],
+            "type": "string"
+          }
+        },
+        "required": [
+          "kn_id",
+          "ot_id",
+          "_instance_identities",
+          "properties"
+        ],
+        "type": "object"
+      },
+      "outputSchema": {
+        "type": "object",
+        "properties": {
+          "datas": {
+            "type": "array",
+            "description": "\u903b\u8f91\u5c5e\u6027\u7ed3\u679c\u5217\u8868",
+            "items": {
+              "type": "object",
+              "properties": {
+                "_display": {
+                  "type": [
+                    "string",
+                    "number",
+                    "boolean",
+                    "null"
+                  ],
+                  "description": "\u7ed9\u4eba\u770b\u7684\u5c55\u793a\u540d\uff0c\u7531\u670d\u52a1\u7aef\u6309\u5bf9\u8c61\u7c7b\u7684\u5c55\u793a\u5b57\u6bb5\u6311\u51fa\uff1b\u7c7b\u578b\u968f\u5c55\u793a\u5b57\u6bb5\u800c\u53d8\uff08\u6570\u503c\u3001\u5e03\u5c14\u6216\u65e5\u671f\u7b49\u5b57\u7b26\u4e32\uff09\uff0c\u8be5\u884c\u5c55\u793a\u5b57\u6bb5\u4e3a\u7a7a\u65f6\u4e3a null\u3002"
+                },
+                "_instance_id": {
+                  "type": "string",
+                  "description": "\u5b9e\u4f8b\u5168\u5c40\u552f\u4e00 ID\uff0c\u53ef\u76f4\u63a5\u7528\u4e8e query_instance_subgraph\u3002"
+                },
+                "_instance_identity": {
+                  "type": "object",
+                  "additionalProperties": true,
+                  "description": "\u6784\u6210\u8be5\u5b9e\u4f8b\u4e3b\u952e\u7684\u5b57\u6bb5\u503c"
+                }
+              },
+              "additionalProperties": true,
+              "description": "\u5176\u4f59\u952e\u5373\u8be5\u5bf9\u8c61\u7c7b\u7684\u5c5e\u6027\u540d\uff0c\u968f\u5bf9\u8c61\u7c7b\u800c\u53d8\u2014\u2014\u5148\u770b get_object_types / search_schema \u7684 data_properties\uff0c\u4e0d\u8981\u51ed\u5b57\u6bb5\u8bed\u4e49\u731c\u3002"
+            }
+          },
+          "effective_permissions": {
+            "type": "object",
+            "additionalProperties": {
+              "type": "string",
+              "enum": [
+                "schema",
+                "masked",
+                "full"
+              ]
+            }
+          },
+          "dynamic_params": {
+            "type": "object",
+            "additionalProperties": true,
+            "description": "\u672c\u6b21\u5b9e\u9645\u4f7f\u7528\u7684\u53c2\u6570\uff0c\u6309\u903b\u8f91\u5c5e\u6027\u540d\u5206\u7ec4"
+          },
+          "dynamic_params_source": {
+            "type": "object",
+            "additionalProperties": {
+              "type": "string"
+            },
+            "description": "\u6bcf\u4e2a\u903b\u8f91\u5c5e\u6027\u7684\u53c2\u6570\u6765\u6e90\uff1acaller\uff08\u5168\u90e8\u7531\u8c03\u7528\u65b9\u7ed9\u51fa\uff09\u3001generated\uff08\u5168\u90e8\u7531\u670d\u52a1\u7aef\u751f\u6210\uff09\u3001merged\uff08\u8c03\u7528\u65b9\u7ed9\u4e00\u90e8\u5206\uff0c\u5176\u4f59\u751f\u6210\uff09"
+          },
+          "permission_guidance": {
+            "type": "object",
+            "description": "\u6743\u9650\u8bf4\u660e\u3002\u4ec5\u5f53\u672c\u6b21\u903b\u8f91\u5c5e\u6027\u7ed3\u679c\u5305\u542b\u8131\u654f\u503c\u6216\u53ea\u8fd4\u56de\u5b57\u6bb5\u7ed3\u6784\u65f6\u51fa\u73b0\u3002\u628a message \u539f\u6837\u544a\u8bc9\u7528\u6237\uff0c\u5e76\u63d0\u4f9b\u5bf9\u5e94\u7684\u7533\u8bf7\u6743\u9650\u94fe\u63a5\u3002",
+            "properties": {
+              "message": {
+                "type": "string"
+              },
+              "resource": {
+                "type": "object",
+                "properties": {
+                  "type": {
+                    "type": "string"
+                  },
+                  "id": {
+                    "type": "string"
+                  },
+                  "kn_id": {
+                    "type": "string"
+                  },
+                  "ot_id": {
+                    "type": "string"
+                  },
+                  "name": {
+                    "type": "string"
+                  }
+                }
+              },
+              "shortfalls": {
+                "type": "array",
+                "items": {
+                  "type": "object",
+                  "properties": {
+                    "scope": {
+                      "type": "string",
+                      "enum": [
+                        "grant",
+                        "row_filter",
+                        "property_grants"
+                      ]
+                    },
+                    "operations": {
+                      "type": "array",
+                      "items": {
+                        "type": "string"
+                      }
+                    },
+                    "properties": {
+                      "type": "array",
+                      "items": {
+                        "type": "string"
+                      }
+                    },
+                    "request_permission_url": {
+                      "type": "string"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "get_object_types": {
+      "inputSchema": {
+        "properties": {
+          "bkn_context": {
+            "description": "BKN Trace managed context. Copy both IDs from bkn_start_interaction.",
+            "properties": {
+              "conversation_id": {
+                "description": "conversation_id returned by bkn_start_interaction.",
+                "type": "string"
+              },
+              "interaction_id": {
+                "description": "interaction_id returned by bkn_start_interaction.",
+                "type": "string"
+              }
+            },
+            "required": [
+              "conversation_id",
+              "interaction_id"
+            ],
+            "type": "object"
+          },
+          "ids": {
+            "description": "\u8981\u5c55\u5f00\u7684\u5bf9\u8c61\u7c7b id\uff08\u53d6\u81ea get_kn_detail summary \u7684 object_types[].id\u3001search_schema\uff0c\u6216\u672c\u5de5\u5177\u7684\u5217\u4e3e\u6a21\u5f0f\uff09\u3002\u652f\u6301\u591a\u4e2a\uff0c\u4e00\u6b21\u6279\u91cf\u53d6\u56de\u5b8c\u6574\u5b9a\u4e49\u3002**\u4e0d\u4f20 ids \u5c31\u662f\u6309 offset/limit \u5217\u4e3e\u8be5\u7f51\u7edc\u7684\u5bf9\u8c61\u7c7b\u7d22\u5f15**\u2014\u2014\u53ea\u7ed9 id/name/comment/tags/data_source\uff0c\u4e0d\u542b\u5b57\u6bb5\u4e0e\u6307\u6807\uff1b\u7f51\u7edc\u8d85\u8fc7 get_kn_detail \u7684\u4e0a\u9650\u65f6\u5b83\u53ea\u56de\u5bfc\u822a\u58f3\uff0c\u90a3\u6761\u8def\u62ff\u4e0d\u5230 id\uff0c\u8fd9\u91cc\u662f\u552f\u4e00\u7684\u679a\u4e3e\u5165\u53e3\u3002\u6311\u597d\u4e4b\u540e\u518d\u628a id \u4f20\u56de\u672c\u5de5\u5177\u53d6\u5b8c\u6574\u5b9a\u4e49\u3002\u4f20\u4e86 ids \u5219 offset/limit \u65e0\u6548\u3002",
+            "items": {
+              "type": "string"
+            },
+            "type": "array"
+          },
+          "kn_id": {
+            "description": "\u77e5\u8bc6\u7f51\u7edc ID\uff0c\u6765\u81ea list_knowledge_networks \u6216 get_kn_detail\uff0c\u4e0d\u53ef\u51ed\u540d\u79f0\u731c\u6d4b\u3002",
+            "type": "string"
+          },
+          "limit": {
+            "default": 50,
+            "description": "\u5217\u4e3e\u65f6\u5355\u9875\u6761\u6570\uff0c\u9ed8\u8ba4 50\uff0c\u4e0a\u9650 200\u3002\u53ea\u5728\u4e0d\u4f20 ids \u65f6\u6709\u6548\u3002\u7d22\u5f15\u6761\u76ee\u53ea\u6709\u51e0\u767e\u5b57\u8282\uff0c\u6240\u4ee5\u8fd9\u4e00\u9875\u6bd4\u6309 id \u53d6\u5b9a\u4e49\u65f6\u80fd\u88c5\u5f97\u591a\u3002\u8d85\u8fc7\u4e0a\u9650\u4e0d\u62a5\u9519\uff0c\u6309\u4e0a\u9650\u8fd4\u56de\u5e76\u5728 notice \u91cc\u8bf4\u660e\u3002",
+            "maximum": 200,
+            "minimum": 1,
+            "type": "integer"
+          },
+          "offset": {
+            "default": 0,
+            "description": "\u5217\u4e3e\u65f6\u7684\u8d77\u59cb\u4f4d\u7f6e\u3002\u53ea\u5728\u4e0d\u4f20 ids \u65f6\u6709\u6548\uff1b\u7eed\u9875\u7528\u54cd\u5e94\u91cc\u7684 next_offset\uff0c\u522b\u81ea\u5df1\u7b97\u3002",
+            "minimum": 0,
+            "type": "integer"
+          },
+          "response_format": {
+            "default": "toon",
+            "description": "\u6587\u672c\u683c\u5f0f\uff1ajson \u6216 toon\uff0c\u9ed8\u8ba4 toon",
+            "enum": [
+              "json",
+              "toon"
+            ],
+            "type": "string"
+          }
+        },
+        "required": [
+          "kn_id"
+        ],
+        "type": "object"
+      },
+      "outputSchema": {
+        "type": "object",
+        "properties": {
+          "kn_id": {
+            "type": "string",
+            "description": "\u77e5\u8bc6\u7f51\u7edc ID"
+          },
+          "object_types": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "properties": {
+                "id": {
+                  "type": "string",
+                  "description": "\u5bf9\u8c61\u7c7b ID\u3002\u6ce8\u610f search_schema \u540c\u7c7b\u8fd4\u56de\u91cc\u53eb concept_id\u3002"
+                },
+                "name": {
+                  "type": "string",
+                  "description": "\u5bf9\u8c61\u7c7b\u540d\u3002\u540c\u4e0a\uff0csearch_schema \u90a3\u8fb9\u53eb concept_name\u3002"
+                },
+                "comment": {
+                  "type": "string",
+                  "description": "\u8bf4\u660e"
+                },
+                "data_source": {
+                  "type": [
+                    "object",
+                    "null"
+                  ],
+                  "additionalProperties": true,
+                  "description": "\u7ed1\u5b9a\u7684\u6570\u636e\u8d44\u6e90 {type, id, name}\uff1b\u672a\u7ed1\u5b9a\u6570\u636e\u6e90\u65f6\u4e3a null\u3002"
+                },
+                "data_properties": {
+                  "type": "array",
+                  "items": {
+                    "type": "object",
+                    "additionalProperties": true
+                  },
+                  "description": "\u6570\u636e\u5c5e\u6027 [{name, type, condition_operations}]"
+                },
+                "logic_properties": {
+                  "type": "array",
+                  "items": {
+                    "type": "object",
+                    "properties": {
+                      "name": {
+                        "type": "string",
+                        "description": "\u903b\u8f91\u5c5e\u6027\u540d\u3002\u8c03\u7528 get_logic_properties_values \u65f6\u6309\u6b64\u540d\u586b properties"
+                      },
+                      "type": {
+                        "type": "string",
+                        "description": "metric\uff08\u5df2\u5efa\u6a21\u6307\u6807\uff09\u6216 tool\uff08\u6302\u8f7d\u5de5\u5177\uff09"
+                      },
+                      "data_source": {
+                        "type": "object",
+                        "additionalProperties": true,
+                        "description": "\u53d6\u6570\u6765\u6e90\uff1btool \u7c7b\u578b\u542b box_id / tool_id"
+                      },
+                      "parameters": {
+                        "type": "array",
+                        "items": {
+                          "type": "object",
+                          "additionalProperties": true
+                        },
+                        "description": "\u53c2\u6570\u5b9a\u4e49\u3002value_from=property \u7531\u670d\u52a1\u7aef\u6309\u8be5\u5b9e\u4f8b\u7684\u8fd9\u4e00\u5217\u53d6\u503c\uff0c\u8c03\u7528\u65b9\u4e0d\u586b\uff1bconst \u4e3a\u5efa\u6a21\u65f6\u56fa\u5b9a\u7684\u503c\uff1binput \u9700\u8981\u5916\u90e8\u7ed9\u51fa\uff0c\u5176\u4e2d if_system_generate=true \u7684\uff08instant/start/end/step \u7b49\u65f6\u95f4\u7a97\u53c2\u6570\uff09\u7531\u670d\u52a1\u7aef\u751f\u6210\uff0c\u5176\u4f59\uff08\u5982\u4e1a\u52a1\u53e3\u5f84\u7684\u7b5b\u9009\u9879\uff09\u76ee\u524d\u7531\u670d\u52a1\u7aef\u6a21\u578b\u4ece query \u63a8\u65ad\u3002"
+                      }
+                    },
+                    "additionalProperties": true
+                  },
+                  "description": "\u903b\u8f91\u5c5e\u6027\u5b9a\u4e49 [{name, type, data_source, parameters}]\u3002\u503c\u8981\u7528 get_logic_properties_values \u53d6\uff0c\u672c\u63a5\u53e3\u53ea\u7ed9\u5b9a\u4e49"
+                },
+                "primary_keys": {
+                  "type": "array",
+                  "items": {
+                    "type": "string"
+                  },
+                  "description": "\u4e3b\u952e\u5c5e\u6027\u540d"
+                },
+                "effective_permissions": {
+                  "type": "object",
+                  "additionalProperties": {
+                    "type": "string",
+                    "enum": [
+                      "schema",
+                      "masked",
+                      "full"
+                    ]
+                  }
+                }
+              },
+              "additionalProperties": true
+            },
+            "description": "\u5bf9\u8c61\u7c7b\u5b8c\u6574\u5b9a\u4e49\uff08\u542b data_properties \u7684 mapped_field / condition_operations\u3001logic_properties \u7684 data_source / parameters\uff09\u3002\u5176\u4e2d condition_operations \u53ea\u5217\u7d22\u5f15\u5e26\u6765\u7684\u7b97\u5b50\uff08match / multi_match / knn\uff09\uff0c\u6bd4\u8f83\u7b97\u5b50\u6309\u5c5e\u6027 type \u81ea\u884c\u5224\u65ad\uff1btext \u5b57\u6bb5\u7684\u7cbe\u786e\u6bd4\u8f83\u4f9d\u8d56\u8d44\u6e90\u4fdd\u5b58\u65f6\u81ea\u52a8\u8865\u9f50\u7684 keyword\uff0c\u65e7\u914d\u7f6e\u82e5\u62a5\u7f3a\u5931\u9700\u91cd\u65b0\u4fdd\u5b58\u5e76\u65b0\u5efa\u6784\u5efa\u4efb\u52a1\uff0c\u8be6\u89c1 query_object_instance \u7684 condition \u8bf4\u660e\u3002related_metrics \u4e3a\u8be5\u5bf9\u8c61\u7c7b scope \u4e0b\u7684\u5168\u90e8\u6307\u6807\uff08id/name/comment/unit/metric_type/analysis_dimensions/time_dimension\uff09\uff0c\u542b\u672a\u7ed1\u903b\u8f91\u5c5e\u6027\u7684\uff1a\u5b9e\u4f8b\u7ea7\u4e14\u5df2\u7ed1\u903b\u8f91\u5c5e\u6027\u7528 get_logic_properties_values \u7b97\uff0c\u5176\u4f59\u628a id \u4f20\u7ed9 query_metric \u7b97\u3002 **\u5217\u4e3e\u6a21\u5f0f\u4e0b\u8fd9\u91cc\u662f\u7d22\u5f15\u6761\u76ee**\uff1a\u53ea\u6709 id/name/comment/tags/data_source\uff0c\u6ca1\u6709 data_properties / logic_properties / related_metrics\u2014\u2014\u8981\u5b83\u4eec\u628a id \u4f20\u56de\u672c\u5de5\u5177\u3002"
+          },
+          "missing": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
+            "description": "\u8bf7\u6c42\u4e86\u4f46\u672a\u5339\u914d\u5230\u7684 id"
+          },
+          "total_count": {
+            "type": "integer",
+            "description": "\u8be5\u7f51\u7edc\u4e2d\u5f53\u524d\u8d26\u53f7\u53ef\u89c1\u7684\u5bf9\u8c61\u7c7b\u603b\u6570\u3002\u4ec5\u5217\u4e3e\u65f6\u51fa\u73b0\u3002\u53ef\u636e\u6b64\u5224\u65ad\u300c50 / 1000\u300d\u8d70\u5230\u54ea\u4e86\u3002"
+          },
+          "next_offset": {
+            "type": "integer",
+            "description": "\u7eed\u8d70\u8fd9\u6b21\u5217\u4e3e\u7684\u4e0b\u4e00\u4e2a offset\u3002\u4ec5\u5217\u4e3e\u65f6\u51fa\u73b0\uff0c**\u8d70\u5b8c\u6700\u540e\u4e00\u9875\u5c31\u4e0d\u518d\u51fa\u73b0**\u2014\u2014\u522b\u81ea\u5df1\u7528 offset+len \u63a8\u7b97\u3002"
+          },
+          "notice": {
+            "type": "string",
+            "description": "\u672c\u6b21\u8bf7\u6c42\u6ca1\u6709\u88ab\u539f\u6837\u5151\u73b0\u65f6\u7684\u8bf4\u660e\u2014\u2014\u76ee\u524d\u53ea\u6709\u4e00\u79cd\uff1alimit \u8d85\u8fc7\u4e0a\u9650\uff0c\u6309\u4e0a\u9650\u8fd4\u56de\u4e86\u3002\u5b83\u51fa\u73b0\u65f6\u8fd9\u4e00\u9875\u6bd4\u4f60\u8981\u7684\u77ed\uff0c\u4f46**\u4e0d\u4ee3\u8868\u7f51\u7edc\u5230\u5934\u4e86**\uff0c\u662f\u5426\u8fd8\u6709\u770b next_offset\u3002"
+          }
+        }
+      }
+    },
+    "get_relation_types": {
+      "inputSchema": {
+        "properties": {
+          "bkn_context": {
+            "description": "BKN Trace managed context. Copy both IDs from bkn_start_interaction.",
+            "properties": {
+              "conversation_id": {
+                "description": "conversation_id returned by bkn_start_interaction.",
+                "type": "string"
+              },
+              "interaction_id": {
+                "description": "interaction_id returned by bkn_start_interaction.",
+                "type": "string"
+              }
+            },
+            "required": [
+              "conversation_id",
+              "interaction_id"
+            ],
+            "type": "object"
+          },
+          "ids": {
+            "description": "\u8981\u5c55\u5f00\u7684\u5173\u7cfb\u7c7b id\uff08\u53d6\u81ea get_kn_detail summary \u7684 relation_types[].id\uff0c\u4e5f\u63a5\u53d7 name\uff09\u3002\u652f\u6301\u591a\u4e2a\uff0c\u4e00\u6b21\u6279\u91cf\u53d6\u56de\u3002",
+            "items": {
+              "type": "string"
+            },
+            "type": "array"
+          },
+          "kn_id": {
+            "description": "\u77e5\u8bc6\u7f51\u7edc ID\uff0c\u6765\u81ea list_knowledge_networks \u6216 get_kn_detail\uff0c\u4e0d\u53ef\u51ed\u540d\u79f0\u731c\u6d4b\u3002",
+            "type": "string"
+          },
+          "response_format": {
+            "default": "toon",
+            "description": "\u6587\u672c\u683c\u5f0f\uff1ajson \u6216 toon\uff0c\u9ed8\u8ba4 toon",
+            "enum": [
+              "json",
+              "toon"
+            ],
+            "type": "string"
+          }
+        },
+        "required": [
+          "kn_id",
+          "ids"
+        ],
+        "type": "object"
+      },
+      "outputSchema": {
+        "type": "object",
+        "properties": {
+          "kn_id": {
+            "type": "string",
+            "description": "\u77e5\u8bc6\u7f51\u7edc ID"
+          },
+          "relation_types": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "properties": {
+                "id": {
+                  "type": "string",
+                  "description": "\u5173\u7cfb\u7c7b ID"
+                },
+                "name": {
+                  "type": "string",
+                  "description": "\u5173\u7cfb\u540d"
+                },
+                "comment": {
+                  "type": "string",
+                  "description": "\u8bf4\u660e"
+                },
+                "source_object_type_id": {
+                  "type": "string",
+                  "description": "\u8d77\u70b9\u5bf9\u8c61\u7c7b ID"
+                },
+                "target_object_type_id": {
+                  "type": "string",
+                  "description": "\u7ec8\u70b9\u5bf9\u8c61\u7c7b ID"
+                }
+              },
+              "additionalProperties": true
+            },
+            "description": "\u5173\u7cfb\u7c7b\u5b8c\u6574\u5b9a\u4e49\uff08\u542b mapping_rules\u3001source/target \u5bf9\u8c61\u540d\uff09"
+          },
+          "missing": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
+            "description": "\u8bf7\u6c42\u4e86\u4f46\u672a\u5339\u914d\u5230\u7684 id"
+          }
+        }
+      }
+    },
+    "get_skill_content": {
+      "inputSchema": {
+        "properties": {
+          "bkn_context": {
+            "description": "BKN Trace managed context. Copy both IDs from bkn_start_interaction.",
+            "properties": {
+              "conversation_id": {
+                "description": "conversation_id returned by bkn_start_interaction.",
+                "type": "string"
+              },
+              "interaction_id": {
+                "description": "interaction_id returned by bkn_start_interaction.",
+                "type": "string"
+              }
+            },
+            "required": [
+              "conversation_id",
+              "interaction_id"
+            ],
+            "type": "object"
+          },
+          "kn_id": {
+            "description": "\u5fc5\u586b\u3002\u77e5\u8bc6\u7f51\u7edc ID\u3002\u8c03\u7528\u8005\u987b\u6709\u8be5\u7f51\u7edc\u672c\u8eab\u7684\u67e5\u770b\u6743\u9650\uff0c\u4e14 Skill \u5fc5\u987b\u5df2\u6302\u8f7d\u5230\u8be5\u7f51\u7edc\u624d\u80fd\u8bfb\u53d6/\u6267\u884c\u2014\u2014skill_id \u4f1a\u6d3b\u8fc7\u4ea7\u751f\u5b83\u7684\u90a3\u6b21\u8c03\u7528\uff0c\u4e5f\u53ef\u4ee5\u4ece list_skills \u62ff\u5230\uff0c\u6240\u4ee5\u8303\u56f4\u8981\u5728\u8fd9\u91cc\u6838\u3002",
+            "type": "string"
+          },
+          "response_format": {
+            "default": "toon",
+            "description": "\u6587\u672c\u683c\u5f0f\uff1ajson \u6216 toon\uff0c\u9ed8\u8ba4 toon",
+            "enum": [
+              "json",
+              "toon"
+            ],
+            "type": "string"
+          },
+          "skill_id": {
+            "description": "\u6280\u80fd ID\uff08\u53d6\u81ea list_skills \u6216 search_capabilities \u7684 skill_id\uff09\u3002",
+            "type": "string"
+          }
+        },
+        "required": [
+          "kn_id",
+          "skill_id"
+        ],
+        "type": "object"
+      },
+      "outputSchema": {
+        "type": "object",
+        "properties": {
+          "skill_id": {
+            "type": "string"
+          },
+          "status": {
+            "type": "string",
+            "description": "\u6280\u80fd\u72b6\u6001\uff08published \u7b49\uff09"
+          },
+          "content": {
+            "type": "string",
+            "description": "SKILL.md \u6b63\u6587\uff08\u6280\u80fd\u7684\u4f7f\u7528\u8bf4\u660e\u4e0e\u5165\u53e3\u547d\u4ee4\uff09"
+          },
+          "truncated": {
+            "type": "boolean",
+            "description": "\u6b63\u6587\u662f\u5426\u56e0\u8d85\u957f\u88ab\u622a\u65ad"
+          },
+          "files": {
+            "type": "array",
+            "description": "\u6280\u80fd\u5305\u5185\u7684\u6587\u4ef6\u6e05\u5355\u3002\u9700\u8981\u54ea\u4e2a\u6587\u4ef6\u7684\u5185\u5bb9\u518d\u7528 read_skill_file \u53d6\uff0c\u4e0d\u5fc5\u6574\u5305\u8bfb\u3002",
+            "items": {
+              "type": "object",
+              "properties": {
+                "rel_path": {
+                  "type": "string",
+                  "description": "\u5305\u5185\u76f8\u5bf9\u8def\u5f84\uff0cread_skill_file \u7684 rel_path \u7528\u6b64\u503c"
+                },
+                "file_type": {
+                  "type": "string"
+                },
+                "size": {
+                  "type": "integer",
+                  "description": "\u5b57\u8282\u6570"
+                },
+                "mime_type": {
+                  "type": "string"
+                }
+              },
+              "additionalProperties": true
+            }
+          },
+          "message": {
+            "type": "string",
+            "description": "\u8865\u5145\u8bf4\u660e\uff08\u5982\u622a\u65ad\u63d0\u793a\uff09"
+          }
+        }
+      }
+    },
+    "list_action_executions": {
+      "inputSchema": {
+        "properties": {
+          "action_type_id": {
+            "description": "\u6309\u884c\u52a8\u7c7b\u578b ID \u8fc7\u6ee4\uff08\u53ef\u9009\uff09\u3002",
+            "type": "string"
+          },
+          "bkn_context": {
+            "description": "BKN Trace managed context. Copy both IDs from bkn_start_interaction.",
+            "properties": {
+              "conversation_id": {
+                "description": "conversation_id returned by bkn_start_interaction.",
+                "type": "string"
+              },
+              "interaction_id": {
+                "description": "interaction_id returned by bkn_start_interaction.",
+                "type": "string"
+              }
+            },
+            "required": [
+              "conversation_id",
+              "interaction_id"
+            ],
+            "type": "object"
+          },
+          "kn_id": {
+            "description": "\u77e5\u8bc6\u7f51\u7edc ID\uff0c\u6765\u81ea list_knowledge_networks \u6216 get_kn_detail\uff0c\u4e0d\u53ef\u51ed\u540d\u79f0\u731c\u6d4b\u3002",
+            "type": "string"
+          },
+          "limit": {
+            "description": "\u5206\u9875\u6761\u6570\uff08\u53ef\u9009\uff09\uff0c\u9ed8\u8ba4 20\uff0c\u6700\u5927 1000\u3002",
+            "type": "integer"
+          },
+          "offset": {
+            "description": "\u5206\u9875\u504f\u79fb\uff08\u53ef\u9009\uff09\u3002\u4e0e search_after \u4e92\u65a5\uff0c\u4f20\u5165 search_after \u65f6\u4e0d\u8981\u518d\u4f20 offset\u3002",
+            "type": "integer"
+          },
+          "response_format": {
+            "default": "toon",
+            "description": "\u54cd\u5e94\u683c\u5f0f\uff1ajson \u6216 toon\uff0c\u9ed8\u8ba4 toon\uff08\u66f4\u7701 token\uff09\u3002",
+            "enum": [
+              "json",
+              "toon"
+            ],
+            "type": "string"
+          },
+          "search_after": {
+            "description": "\u6e38\u6807\u5206\u9875\uff08\u53ef\u9009\uff09\uff1a\u5c06\u4e0a\u4e00\u9875\u54cd\u5e94\u8fd4\u56de\u7684 search_after \u539f\u6837\u4f20\u5165\u4ee5\u83b7\u53d6\u4e0b\u4e00\u9875\uff0c\u6bd4 offset \u66f4\u9002\u5408\u6df1\u7ffb\u9875\u3002\u4e0e offset \u4e92\u65a5\u3002",
+            "items": {},
+            "type": "array"
+          },
+          "start_time_from": {
+            "description": "\u8d77\u59cb\u65f6\u95f4\u4e0b\u754c\uff08Unix \u6beb\u79d2\uff0c\u53ef\u9009\uff09\u3002",
+            "type": "integer"
+          },
+          "start_time_to": {
+            "description": "\u8d77\u59cb\u65f6\u95f4\u4e0a\u754c\uff08Unix \u6beb\u79d2\uff0c\u53ef\u9009\uff09\u3002",
+            "type": "integer"
+          },
+          "status": {
+            "description": "\u6309\u6267\u884c\u72b6\u6001\u8fc7\u6ee4\uff08\u53ef\u9009\uff09\uff1apending/running/completed/failed/cancelled\u3002",
+            "type": "string"
+          },
+          "trigger_type": {
+            "description": "\u6309\u89e6\u53d1\u65b9\u5f0f\u8fc7\u6ee4\uff08\u53ef\u9009\uff09\uff1amanual/scheduled\u3002",
+            "type": "string"
+          }
+        },
+        "required": [
+          "kn_id"
+        ],
+        "type": "object"
+      },
+      "outputSchema": {
+        "type": "object",
+        "description": "\u884c\u52a8\u6267\u884c\u5386\u53f2\u5217\u8868\uff08\u5206\u9875\uff09\u3002",
+        "properties": {
+          "total_count": {
+            "type": "integer",
+            "description": "\u5339\u914d\u7684\u6267\u884c\u603b\u6570"
+          },
+          "entries": {
+            "type": "array",
+            "description": "\u6267\u884c\u8bb0\u5f55\u5217\u8868\uff08\u6bcf\u6761\u542b id\u3001action_type_id\u3001status\u3001\u8ba1\u6570\u3001\u65f6\u95f4\u7b49\u6982\u89c8\u5b57\u6bb5\uff1baction_type_snapshot \u7b49\u91cd\u8d27\u5df2\u5254\u9664\u4ee5\u7701 token\uff09",
+            "items": {
+              "type": "object",
+              "additionalProperties": true
+            }
+          },
+          "search_after": {
+            "type": "array",
+            "description": "\u5206\u9875\u6e38\u6807\uff1b\u5c06\u672c\u503c\u4f5c\u4e3a\u4e0b\u4e00\u9875\u8bf7\u6c42\u7684 search_after \u4f20\u5165\u4ee5\u7ee7\u7eed\u7ffb\u9875",
+            "items": {}
+          }
+        },
+        "additionalProperties": true
+      }
+    },
+    "list_knowledge_networks": {
+      "inputSchema": {
+        "properties": {
+          "bkn_context": {
+            "description": "BKN Trace managed context. Copy both IDs from bkn_start_interaction.",
+            "properties": {
+              "conversation_id": {
+                "description": "conversation_id returned by bkn_start_interaction.",
+                "type": "string"
+              },
+              "interaction_id": {
+                "description": "interaction_id returned by bkn_start_interaction.",
+                "type": "string"
+              }
+            },
+            "required": [
+              "conversation_id",
+              "interaction_id"
+            ],
+            "type": "object"
+          },
+          "direction": {
+            "description": "\u6392\u5e8f\u65b9\u5411\uff0c\u9ed8\u8ba4 desc",
+            "enum": [
+              "asc",
+              "desc"
+            ],
+            "type": "string"
+          },
+          "limit": {
+            "description": "\u5355\u9875\u6570\u91cf\uff0c\u9ed8\u8ba4 20",
+            "type": "integer"
+          },
+          "name_pattern": {
+            "description": "\u6309\u77e5\u8bc6\u7f51\u7edc\u540d\u79f0\u6a21\u7cca\u8fc7\u6ee4\uff0c\u53ef\u9009",
+            "type": "string"
+          },
+          "offset": {
+            "description": "\u504f\u79fb\u91cf\uff0c\u7528\u4e8e\u7ffb\u9875\uff0c\u9ed8\u8ba4 0",
+            "type": "integer"
+          },
+          "response_format": {
+            "default": "toon",
+            "description": "\u6587\u672c\u683c\u5f0f\uff1ajson \u6216 toon\uff0c\u9ed8\u8ba4 toon",
+            "enum": [
+              "json",
+              "toon"
+            ],
+            "type": "string"
+          },
+          "sort": {
+            "description": "\u6392\u5e8f\u5b57\u6bb5\uff0c\u9ed8\u8ba4 update_time",
+            "type": "string"
+          }
+        },
+        "required": [],
+        "type": "object"
+      },
+      "outputSchema": {
+        "type": "object",
+        "properties": {
+          "entries": {
+            "type": "array",
+            "description": "\u77e5\u8bc6\u7f51\u7edc\u5217\u8868",
+            "items": {
+              "type": "object",
+              "properties": {
+                "id": {
+                  "type": "string",
+                  "description": "\u77e5\u8bc6\u7f51\u7edc ID\uff08\u5373 kn_id\uff0c\u4f9b\u5176\u4f59\u67e5\u8be2\u5de5\u5177\u4f7f\u7528\uff09"
+                },
+                "name": {
+                  "type": "string",
+                  "description": "\u77e5\u8bc6\u7f51\u7edc\u540d\u79f0"
+                },
+                "description": {
+                  "type": "string",
+                  "description": "\u63cf\u8ff0"
+                },
+                "module_type": {
+                  "type": "string",
+                  "description": "\u6a21\u5757\u7c7b\u578b"
+                }
+              },
+              "additionalProperties": true
+            }
+          },
+          "total_count": {
+            "type": "integer",
+            "description": "\u547d\u4e2d\u603b\u6570"
+          }
+        }
+      }
+    },
+    "list_skills": {
+      "inputSchema": {
+        "properties": {
+          "bkn_context": {
+            "description": "BKN Trace managed context. Copy both IDs from bkn_start_interaction.",
+            "properties": {
+              "conversation_id": {
+                "description": "conversation_id returned by bkn_start_interaction.",
+                "type": "string"
+              },
+              "interaction_id": {
+                "description": "interaction_id returned by bkn_start_interaction.",
+                "type": "string"
+              }
+            },
+            "required": [
+              "conversation_id",
+              "interaction_id"
+            ],
+            "type": "object"
+          },
+          "category": {
+            "description": "\u53ef\u9009\u3002\u6309\u6280\u80fd\u5206\u7c7b\u8fc7\u6ee4\u3002",
+            "type": "string"
+          },
+          "name": {
+            "description": "\u53ef\u9009\u3002\u6309\u6280\u80fd\u540d\u79f0\u6a21\u7cca\u8fc7\u6ee4\u3002",
+            "type": "string"
+          },
+          "page": {
+            "description": "\u53ef\u9009\u3002\u9875\u7801\uff0c\u4ece 1 \u5f00\u59cb\uff0c\u9ed8\u8ba4 1\u3002",
+            "minimum": 1,
+            "type": "integer"
+          },
+          "page_size": {
+            "description": "\u53ef\u9009\u3002\u6bcf\u9875\u5927\u5c0f\uff0c\u9ed8\u8ba4 20\u3002",
+            "maximum": 100,
+            "minimum": 1,
+            "type": "integer"
+          },
+          "response_format": {
+            "default": "toon",
+            "description": "\u6587\u672c\u683c\u5f0f\uff1ajson \u6216 toon\uff0c\u9ed8\u8ba4 toon",
+            "enum": [
+              "json",
+              "toon"
+            ],
+            "type": "string"
+          }
+        },
+        "required": [],
+        "type": "object"
+      },
+      "outputSchema": {
+        "type": "object",
+        "properties": {
+          "entries": {
+            "type": "array",
+            "description": "\u5df2\u53d1\u5e03\u7684\u6280\u80fd\u5217\u8868",
+            "items": {
+              "type": "object",
+              "properties": {
+                "skill_id": {
+                  "type": "string",
+                  "description": "\u6280\u80fd ID\uff0c\u4f9b get_skill_content / read_skill_file / execute_skill \u4f7f\u7528"
+                },
+                "name": {
+                  "type": "string",
+                  "description": "\u6280\u80fd\u540d"
+                },
+                "description": {
+                  "type": "string",
+                  "description": "\u6280\u80fd\u63cf\u8ff0"
+                },
+                "version": {
+                  "type": "string",
+                  "description": "\u5df2\u53d1\u5e03\u7248\u672c"
+                },
+                "category": {
+                  "type": "string",
+                  "description": "\u6280\u80fd\u5206\u7c7b"
+                }
+              },
+              "additionalProperties": true
+            }
+          },
+          "total_count": {
+            "type": "integer",
+            "description": "\u7b26\u5408\u8fc7\u6ee4\u6761\u4ef6\u7684\u6280\u80fd\u603b\u6570"
+          },
+          "page": {
+            "type": "integer"
+          },
+          "page_size": {
+            "type": "integer"
+          },
+          "message": {
+            "type": "string",
+            "description": "\u7a7a\u7ed3\u679c\u8bf4\u660e\uff0c\u4ec5\u5f53 entries \u4e3a\u7a7a\u65f6\u51fa\u73b0"
+          }
+        }
+      }
+    },
+    "query_instance_subgraph": {
+      "inputSchema": {
+        "properties": {
+          "bkn_context": {
+            "description": "BKN Trace managed context. Copy both IDs from bkn_start_interaction.",
+            "properties": {
+              "conversation_id": {
+                "description": "conversation_id returned by bkn_start_interaction.",
+                "type": "string"
+              },
+              "interaction_id": {
+                "description": "interaction_id returned by bkn_start_interaction.",
+                "type": "string"
+              }
+            },
+            "required": [
+              "conversation_id",
+              "interaction_id"
+            ],
+            "type": "object"
+          },
+          "include_logic_params": {
+            "description": "\u662f\u5426\u8fd4\u56de\u903b\u8f91\u5c5e\u6027\u8ba1\u7b97\u53c2\u6570\uff0c\u9ed8\u8ba4 false",
+            "type": "boolean"
+          },
+          "kn_id": {
+            "description": "\u77e5\u8bc6\u7f51\u7edc ID\uff0c\u6765\u81ea list_knowledge_networks \u6216 get_kn_detail\uff0c\u4e0d\u53ef\u51ed\u540d\u79f0\u731c\u6d4b\u3002",
+            "type": "string"
+          },
+          "relation_type_paths": {
+            "description": "\u5173\u7cfb\u8def\u5f84\u6a21\u677f\u3002object_types \u4e0e relation_types \u7684\u987a\u5e8f\u5fc5\u987b\u4e25\u683c\u5bf9\u5e94\uff1an \u8df3\u8def\u5f84 => object_types \u957f\u5ea6\u4e3a n+1\uff0crelation_types \u957f\u5ea6\u4e3a n\uff1brelation_types \u4e0d\u53ef\u4e3a\u7a7a\u3002\u8def\u5f84\u53ef\u4ee5\u9006\u7740\u5173\u7cfb\u7c7b\u5b9a\u4e49\u8d70\uff08\u53cd\u5411\u904d\u5386\uff09\uff0c\u8282\u70b9\u6309\u5b9e\u9645\u8d70\u8fc7\u7684\u987a\u5e8f\u6392\u5217\u5373\u53ef\u3002\u8282\u70b9\u4e0a\u7684\u8fc7\u6ee4\u6761\u4ef6\u53d6\u503c\u89c4\u5219\uff1alike/not_like \u662f\u5b57\u9762\u5b50\u4e32\uff08\u4e0d\u8981\u81ea\u5df1\u62fc %\uff0c\u672a\u8f6c\u4e49\u7684 % \u4f1a\u88ab\u62d2\uff09\uff0cregex \u7684\u951a\u5b9a\u4e0e\u5927\u5c0f\u5199\u654f\u611f\u6027\u968f\u8d44\u6e90\u5b58\u50a8\u800c\u53d8\uff08\u300c\u5305\u542b\u300d\u5199 .*\u8bcd.*\uff09",
+            "items": {
+              "additionalProperties": false,
+              "properties": {
+                "limit": {
+                  "description": "\u5f53\u524d\u8def\u5f84\u8fd4\u56de\u7684\u8def\u5f84\u6570\u91cf\u9650\u5236\uff08\u53ef\u9009\uff09",
+                  "type": "integer"
+                },
+                "object_types": {
+                  "description": "\u8def\u5f84\u4e2d\u7684\u5bf9\u8c61\u7c7b\u96c6\u5408\uff0c\u987a\u5e8f\u5fc5\u987b\u4e25\u683c\u4e0e\u8def\u5f84\u4e00\u81f4\u3002\u5bf9\u4e8e n \u8df3\u8def\u5f84\uff0cobject_types \u957f\u5ea6\u5fc5\u987b\u4e3a n+1\u3002\u5373\u4f7f\u6ca1\u6709\u8fc7\u6ee4\u6761\u4ef6\uff0c\u4e5f\u5fc5\u987b\u63d0\u4f9b condition \u4e0e limit \u5b57\u6bb5",
+                  "items": {
+                    "additionalProperties": false,
+                    "properties": {
+                      "condition": {
+                        "additionalProperties": false,
+                        "description": "\u8fc7\u6ee4\u6761\u4ef6\u3002operation \u5fc5\u586b\uff1bvalue_from \u4ec5\u652f\u6301 const\uff0c\u4e14\u5fc5\u987b\u4e0e value \u540c\u65f6\u51fa\u73b0\u3002\u82e5\u65e0\u8fc7\u6ee4\u6761\u4ef6\uff0c\u53ef\u7528 operation=and \u4e14 sub_conditions=[]",
+                        "properties": {
+                          "field": {
+                            "description": "\u5b57\u6bb5\u540d\uff08\u5bf9\u8c61\u7c7b\u5c5e\u6027\uff09",
+                            "type": "string"
+                          },
+                          "operation": {
+                            "description": "\u6761\u4ef6\u64cd\u4f5c\u7b26\u3002\u6bd4\u8f83\u7b97\u5b50\u6309\u5c5e\u6027 type \u5224\u65ad\uff0c\u4e0d\u4f1a\u51fa\u73b0\u5728 condition_operations \u91cc\uff1a\u5b57\u7b26\u4e32\u7c7b\uff08string/keyword/text\uff09\u53ef\u7528 == != in not_in > >= < <= like not_like regex\uff0c\u6570\u503c/\u65e5\u671f\u65f6\u95f4\u7c7b\u53ef\u7528 == != in not_in > >= < <= range out_range \u4f46\u4e0d\u652f\u6301 like/regex\uff0cexist/not_exist \u4efb\u610f\u7c7b\u578b\u53ef\u7528\u4e14\u4e0d\u5e26 value\uff1b\u7d22\u5f15\u7b97\u5b50 match \u4ee5\u5c5e\u6027\u7684 condition_operations \u4e3a\u51c6\uff08\u542b match \u624d\u5efa\u4e86\u5168\u6587\u7d22\u5f15\uff09\u3002text \u5b57\u6bb5\u8d70\u672c\u5730\u7d22\u5f15\u65f6\uff0c== / != / in / not_in \u4f9d\u8d56 keyword\uff1b\u82e5 400 \u63d0\u793a\u7f3a\u5931\uff0c\u9700\u91cd\u65b0\u4fdd\u5b58\u8d44\u6e90\u914d\u7f6e\u5e76\u65b0\u5efa\u6784\u5efa\u4efb\u52a1\uff0c\u6216\u6539\u7528 match\u3002\u9ed8\u8ba4 keyword \u7684 ignore_above \u4e3a 256\uff0c\u8d85\u957f\u503c\u4e0d\u53ef\u7cbe\u786e\u6bd4\u8f83\u3002search_schema / search_instance \u628a\u5171\u7528\u7684\u90a3\u4efd\u5217\u8868\u63d0\u5230\u5bf9\u8c61\u7c7b\u7684 index_operations\uff0c\u5c5e\u6027\u4e0a\u5199 indexed=true\uff1b\u4e24\u4e2a\u952e\u90fd\u6ca1\u6709\u624d\u8bf4\u660e\u6ca1\u5efa\u7d22\u5f15\uff0c\u800c\u6ca1\u5efa\u7d22\u5f15\u4e0d\u4ee3\u8868\u4e0d\u80fd\u8fc7\u6ee4\u3002like/not_like \u7684\u503c\u662f\u5b57\u9762\u5b50\u4e32\uff08\u4e0d\u662f SQL LIKE \u6a21\u5f0f\uff0c\u4e0d\u8981\u81ea\u5df1\u62fc %\uff0c\u672a\u8f6c\u4e49\u7684 % \u4f1a\u88ab\u62d2\uff09\uff0cregex \u7684\u951a\u5b9a\u4e0e\u5927\u5c0f\u5199\u654f\u611f\u6027\u968f\u8d44\u6e90\u5b58\u50a8\u800c\u53d8\uff08\u300c\u5305\u542b\u300d\u5199 .*\u8bcd.*\uff09",
+                            "enum": [
+                              "and",
+                              "or",
+                              "==",
+                              "!=",
+                              ">",
+                              ">=",
+                              "<",
+                              "<=",
+                              "in",
+                              "not_in",
+                              "like",
+                              "not_like",
+                              "range",
+                              "out_range",
+                              "regex",
+                              "exist",
+                              "not_exist",
+                              "match"
+                            ],
+                            "type": "string"
+                          },
+                          "sub_conditions": {
+                            "description": "\u5b50\u6761\u4ef6\u6570\u7ec4\uff0c\u7528\u4e8e and/or",
+                            "items": {
+                              "type": "object"
+                            },
+                            "type": "array"
+                          },
+                          "value": {
+                            "description": "\u5b57\u6bb5\u503c\uff1b\u4e0e value_from=const \u540c\u65f6\u4f7f\u7528\u3002\u5355\u503c\u7b97\u5b50\u7528\u5355\u503c\uff1bin/not_in \u7528\u6570\u7ec4\uff1brange \u7528 [min, max]\uff08\u4e24\u5143\u7d20\u540c\u7c7b\u578b\uff0c\u4e24\u7aef\u90fd\u95ed\uff09\uff1bout_range \u540c\u6837\u7528 [min, max]\uff0c\u6392\u9664\u8fd9\u4e2a\u95ed\u533a\u95f4\uff1blike/not_like \u7528\u5b57\u9762\u5b50\u4e32\uff08\u4e0d\u662f SQL LIKE \u6a21\u5f0f\uff0c\u4e0d\u8981\u81ea\u5df1\u62fc %\uff0c\u672a\u8f6c\u4e49\u7684 % \u4f1a\u88ab\u62d2\uff0c\\% \u5339\u914d % \u5b57\u7b26\u672c\u8eab\uff09\uff1bregex \u7528\u6b63\u5219\u5b57\u7b26\u4e32\uff08\u951a\u5b9a\u4e0e\u5927\u5c0f\u5199\u654f\u611f\u6027\u968f\u8d44\u6e90\u5b58\u50a8\u800c\u53d8\uff0c\u300c\u5305\u542b\u300d\u5199 .*\u8bcd.*\uff09\uff1bexist/not_exist \u4e0d\u4f20 value",
+                            "oneOf": [
+                              {
+                                "type": "string"
+                              },
+                              {
+                                "type": "number"
+                              },
+                              {
+                                "type": "boolean"
+                              },
+                              {
+                                "items": {
+                                  "oneOf": [
+                                    {
+                                      "type": "string"
+                                    },
+                                    {
+                                      "type": "number"
+                                    },
+                                    {
+                                      "type": "boolean"
+                                    }
+                                  ]
+                                },
+                                "type": "array"
+                              }
+                            ]
+                          },
+                          "value_from": {
+                            "description": "\u503c\u6765\u6e90\uff0c\u4ec5\u652f\u6301 const",
+                            "enum": [
+                              "const"
+                            ],
+                            "type": "string"
+                          }
+                        },
+                        "required": [
+                          "operation"
+                        ],
+                        "type": "object"
+                      },
+                      "id": {
+                        "description": "\u5bf9\u8c61\u7c7b id\uff08ot_id\uff09",
+                        "type": "string"
+                      },
+                      "limit": {
+                        "description": "\u5f53\u524d\u5bf9\u8c61\u7c7b\u8fd4\u56de\u6570\u91cf\u9650\u5236\uff0c\u8303\u56f4\u4ee5\u63a5\u53e3\u5b9a\u4e49\u4e3a\u51c6\uff08\u901a\u5e38 1-10000\uff09",
+                        "type": "integer"
+                      },
+                      "sort": {
+                        "description": "\u6392\u5e8f\u5b57\u6bb5\uff08\u53ef\u9009\uff09",
+                        "items": {
+                          "additionalProperties": false,
+                          "properties": {
+                            "direction": {
+                              "description": "\u6392\u5e8f\u65b9\u5411",
+                              "enum": [
+                                "desc",
+                                "asc"
+                              ],
+                              "type": "string"
+                            },
+                            "field": {
+                              "description": "\u6392\u5e8f\u5b57\u6bb5",
+                              "type": "string"
+                            }
+                          },
+                          "required": [
+                            "field",
+                            "direction"
+                          ],
+                          "type": "object"
+                        },
+                        "type": "array"
+                      }
+                    },
+                    "required": [
+                      "id",
+                      "condition",
+                      "limit"
+                    ],
+                    "type": "object"
+                  },
+                  "minItems": 2,
+                  "type": "array"
+                },
+                "relation_types": {
+                  "description": "\u8def\u5f84\u4e2d\u7684\u8fb9\u96c6\u5408\uff0c\u7b2c i \u6761\u8fb9\u8fde\u63a5 object_types \u7684\u7b2c i \u4e2a\u548c\u7b2c i+1 \u4e2a\u8282\u70b9\u3002\u6bcf\u6761\u8fb9\u53ea\u9700\u7ed9 relation_type_id\uff1a\u4ece\u54ea\u4e2a\u8282\u70b9\u8d70\u5230\u54ea\u4e2a\u8282\u70b9\u7531\u76f8\u90bb\u8282\u70b9\u51b3\u5b9a\uff0c\u6b63\u5411\u8fd8\u662f\u53cd\u5411\u7531\u670d\u52a1\u7aef\u5bf9\u7167\u5173\u7cfb\u7c7b\u5b9a\u4e49\u5224\u65ad\u3002\u4f8b\uff1a\u5173\u7cfb\u7c7b rel_order_user \u5b9a\u4e49\u4e3a order \u2192 user\uff0c\u8981\u8d70 user_address \u2192 user \u2192 order \u65f6\uff0c\u7b2c 2 \u6761\u8fb9\u5199 {\"relation_type_id\": \"rel_order_user\"} \u5373\u53ef\uff0c\u7b49\u4ef7\u4e8e source_object_type_id=user\u3001target_object_type_id=order\uff0c\u4e0e\u5173\u7cfb\u7c7b\u5b9a\u4e49\u76f8\u53cd",
+                  "items": {
+                    "additionalProperties": false,
+                    "properties": {
+                      "direction": {
+                        "description": "\u53ef\u7701\u7565\u3002forward \u6cbf\u5173\u7cfb\u7c7b\u5b9a\u4e49\u4ece\u8d77\u70b9\u8d70\u5411\u7ec8\u70b9\uff0cbackward \u9006\u7740\u8d70\u3002\u670d\u52a1\u7aef\u4f1a\u6309\u76f8\u90bb\u8282\u70b9\u81ea\u52a8\u5224\u65ad\uff1b\u53ea\u6709\u5173\u7cfb\u7c7b\u7684\u8d77\u70b9\u548c\u7ec8\u70b9\u662f\u540c\u4e00\u4e2a\u5bf9\u8c61\u7c7b\uff08\u81ea\u5f15\u7528\uff0c\u5982\u4e0a\u7ea7\u90e8\u95e8\uff09\u65f6\u624d\u9700\u8981\u5199 backward \u6765\u53cd\u5411\u8d70\u3002\u4e0e\u76f8\u90bb\u8282\u70b9\u77db\u76fe\u4f1a\u62a5\u9519",
+                        "enum": [
+                          "forward",
+                          "backward"
+                        ],
+                        "type": "string"
+                      },
+                      "relation_type_id": {
+                        "description": "\u5173\u7cfb\u7c7b id\uff08rt_id\uff09",
+                        "type": "string"
+                      },
+                      "source_object_type_id": {
+                        "description": "\u53ef\u7701\u7565\u3002\u672c\u6761\u8fb9\u5728\u8def\u5f84\u4e2d\u51fa\u53d1\u7684\u8282\u70b9\uff0c\u5373 object_types[i].id\uff0c\u4e0d\u662f\u5173\u7cfb\u7c7b\u5b9a\u4e49\u7684\u8d77\u70b9\uff1a\u53cd\u5411\u904d\u5386\u65f6\u4e0e\u5173\u7cfb\u7c7b\u5b9a\u4e49\u76f8\u53cd\u3002\u586b\u5199\u65f6\u5fc5\u987b\u7b49\u4e8e object_types[i].id",
+                        "type": "string"
+                      },
+                      "target_object_type_id": {
+                        "description": "\u53ef\u7701\u7565\u3002\u672c\u6761\u8fb9\u5728\u8def\u5f84\u4e2d\u5230\u8fbe\u7684\u8282\u70b9\uff0c\u5373 object_types[i+1].id\uff0c\u4e0d\u662f\u5173\u7cfb\u7c7b\u5b9a\u4e49\u7684\u7ec8\u70b9\uff1a\u53cd\u5411\u904d\u5386\u65f6\u4e0e\u5173\u7cfb\u7c7b\u5b9a\u4e49\u76f8\u53cd\u3002\u586b\u5199\u65f6\u5fc5\u987b\u7b49\u4e8e object_types[i+1].id",
+                        "type": "string"
+                      }
+                    },
+                    "required": [
+                      "relation_type_id"
+                    ],
+                    "type": "object"
+                  },
+                  "minItems": 1,
+                  "type": "array"
+                }
+              },
+              "required": [
+                "object_types",
+                "relation_types"
+              ],
+              "type": "object"
+            },
+            "minItems": 1,
+            "type": "array"
+          },
+          "response_format": {
+            "default": "toon",
+            "description": "\u6587\u672c\u683c\u5f0f\uff1ajson \u6216 toon\uff0c\u9ed8\u8ba4 toon",
+            "enum": [
+              "json",
+              "toon"
+            ],
+            "type": "string"
+          }
+        },
+        "required": [
+          "kn_id",
+          "relation_type_paths"
+        ],
+        "type": "object"
+      },
+      "outputSchema": {
+        "type": "object",
+        "properties": {
+          "entries": {
+            "type": "array",
+            "description": "\u8def\u5f84\u5b50\u56fe\u8fd4\u56de\u4f53\u6570\u7ec4\uff08\u6bcf\u6761\u8def\u5f84\u5bf9\u5e94\u4e00\u4e2a\u5b50\u56fe\u54cd\u5e94\uff09",
+            "items": {
+              "type": "object",
+              "properties": {
+                "_display": {
+                  "type": [
+                    "string",
+                    "number",
+                    "boolean",
+                    "null"
+                  ],
+                  "description": "\u7ed9\u4eba\u770b\u7684\u5c55\u793a\u540d\uff0c\u7531\u670d\u52a1\u7aef\u6309\u5bf9\u8c61\u7c7b\u7684\u5c55\u793a\u5b57\u6bb5\u6311\u51fa\uff1b\u7c7b\u578b\u968f\u5c55\u793a\u5b57\u6bb5\u800c\u53d8\uff08\u6570\u503c\u3001\u5e03\u5c14\u6216\u65e5\u671f\u7b49\u5b57\u7b26\u4e32\uff09\uff0c\u8be5\u884c\u5c55\u793a\u5b57\u6bb5\u4e3a\u7a7a\u65f6\u4e3a null\u3002"
+                },
+                "_instance_id": {
+                  "type": "string",
+                  "description": "\u5b9e\u4f8b\u5168\u5c40\u552f\u4e00 ID\uff0c\u53ef\u76f4\u63a5\u7528\u4e8e query_instance_subgraph\u3002"
+                },
+                "_instance_identity": {
+                  "type": "object",
+                  "additionalProperties": true,
+                  "description": "\u6784\u6210\u8be5\u5b9e\u4f8b\u4e3b\u952e\u7684\u5b57\u6bb5\u503c"
+                }
+              },
+              "additionalProperties": true,
+              "description": "\u5176\u4f59\u952e\u5373\u8be5\u5bf9\u8c61\u7c7b\u7684\u5c5e\u6027\u540d\uff0c\u968f\u5bf9\u8c61\u7c7b\u800c\u53d8\u2014\u2014\u5148\u770b get_object_types / search_schema \u7684 data_properties\uff0c\u4e0d\u8981\u51ed\u5b57\u6bb5\u8bed\u4e49\u731c\u3002"
+            }
+          }
+        }
+      }
+    },
+    "query_metric": {
+      "inputSchema": {
+        "properties": {
+          "analysis_dimensions": {
+            "description": "\u5206\u6790\u7ef4\u5ea6\uff08\u6309\u7ef4\u5ea6\u62c6\u5206\u7ed3\u679c\uff09\uff0c\u53d6\u503c\u5fc5\u987b\u6765\u81ea related_metrics[].analysis_dimensions\u3002",
+            "items": {
+              "type": "string"
+            },
+            "type": "array"
+          },
+          "bkn_context": {
+            "description": "BKN Trace managed context. Copy both IDs from bkn_start_interaction.",
+            "properties": {
+              "conversation_id": {
+                "description": "conversation_id returned by bkn_start_interaction.",
+                "type": "string"
+              },
+              "interaction_id": {
+                "description": "interaction_id returned by bkn_start_interaction.",
+                "type": "string"
+              }
+            },
+            "required": [
+              "conversation_id",
+              "interaction_id"
+            ],
+            "type": "object"
+          },
+          "condition": {
+            "additionalProperties": true,
+            "description": "\u8fc7\u6ee4\u6761\u4ef6\uff0c\u7ed3\u6784\u4e0e query_object_instance \u7684 condition \u4e00\u81f4\uff08field / operation / value / value_from\uff0c\u53ef and/or \u5d4c\u5957\uff09\u3002",
+            "type": "object"
+          },
+          "fill_null": {
+            "description": "\u533a\u95f4\u5e8f\u5217\u67e5\u8be2\u65f6\uff0c\u65e0\u6570\u636e\u7684\u6b65\u957f\u70b9\u662f\u5426\u8865\u7a7a\uff0c\u9ed8\u8ba4 false\u3002\u4ec5\u5bf9\u5e8f\u5217\u67e5\u8be2\u6709\u6548\uff0c\u4e14\u5fc5\u987b\u540c\u65f6\u7ed9 time.start \u4e0e time.end\u3002",
+            "type": "boolean"
+          },
+          "having": {
+            "description": "\u5bf9\u805a\u5408\u7ed3\u679c\u8fc7\u6ee4",
+            "properties": {
+              "field": {
+                "type": "string"
+              },
+              "operation": {
+                "type": "string"
+              },
+              "value": {}
+            },
+            "type": "object"
+          },
+          "kn_id": {
+            "description": "\u77e5\u8bc6\u7f51\u7edc ID\uff0c\u6765\u81ea list_knowledge_networks \u6216 get_kn_detail\uff0c\u4e0d\u53ef\u51ed\u540d\u79f0\u731c\u6d4b\u3002",
+            "type": "string"
+          },
+          "limit": {
+            "description": "\u8fd4\u56de\u6761\u6570\u4e0a\u9650",
+            "type": "integer"
+          },
+          "metric_id": {
+            "description": "\u6307\u6807 ID\uff0c\u53d6\u81ea get_object_types \u8fd4\u56de\u7684 related_metrics[].id\u3002\u4e0d\u8981\u81ea\u5df1\u7f16\u9020\u3002",
+            "type": "string"
+          },
+          "order_by": {
+            "description": "\u7ed3\u679c\u6392\u5e8f",
+            "items": {
+              "properties": {
+                "direction": {
+                  "enum": [
+                    "asc",
+                    "desc"
+                  ],
+                  "type": "string"
+                },
+                "property": {
+                  "type": "string"
+                }
+              },
+              "type": "object"
+            },
+            "type": "array"
+          },
+          "response_format": {
+            "default": "toon",
+            "description": "\u6587\u672c\u683c\u5f0f\uff1ajson \u6216 toon\uff0c\u9ed8\u8ba4 toon",
+            "enum": [
+              "json",
+              "toon"
+            ],
+            "type": "string"
+          },
+          "time": {
+            "description": "\u65f6\u95f4\u7a97\u3002\u6307\u6807\u65e0\u65f6\u95f4\u7ef4\u5ea6\uff08related_metrics[].time_dimension \u4e3a\u7a7a\uff09\u65f6\u53ef\u6574\u4f53\u7701\u7565\u3002\u6ce8\u610f\uff1a\u7701\u7565 instant \u7b49\u540c\u4e8e instant=false\uff08\u5e8f\u5217\u67e5\u8be2\uff09\uff0c\u6b64\u65f6\u5fc5\u987b\u4f20 step\u3002start \u4e0e end \u8981\u4e48\u90fd\u4f20\u8981\u4e48\u90fd\u4e0d\u4f20\u3002",
+            "properties": {
+              "end": {
+                "description": "\u7ed3\u675f\u65f6\u95f4\uff0cunix \u79d2",
+                "type": "integer"
+              },
+              "instant": {
+                "description": "true=\u53d6\u5355\u70b9\uff08\u5f53\u524d\u503c\uff09\uff1bfalse \u6216\u7701\u7565=\u53d6\u5e8f\u5217\uff0c\u6b64\u65f6\u5fc5\u987b\u4f20 step\u3002",
+                "type": "boolean"
+              },
+              "start": {
+                "description": "\u8d77\u59cb\u65f6\u95f4\uff0cunix \u79d2",
+                "type": "integer"
+              },
+              "step": {
+                "description": "\u5e8f\u5217\u6b65\u957f\uff08\u5927\u5c0f\u5199\u4e0d\u654f\u611f\uff09\u3002\u5e8f\u5217\u67e5\u8be2\u5fc5\u4f20\uff1binstant=true \u65f6\u4f1a\u88ab\u4e0b\u6e38\u5ffd\u7565\u3002",
+                "enum": [
+                  "day",
+                  "week",
+                  "month",
+                  "quarter",
+                  "year"
+                ],
+                "type": "string"
+              }
+            },
+            "type": "object"
+          }
+        },
+        "required": [
+          "kn_id",
+          "metric_id"
+        ],
+        "type": "object"
+      },
+      "outputSchema": {
+        "type": "object",
+        "properties": {
+          "kn_id": {
+            "type": "string",
+            "description": "\u77e5\u8bc6\u7f51\u7edc ID"
+          },
+          "metric_id": {
+            "type": "string",
+            "description": "\u6307\u6807 ID"
+          },
+          "datas": {
+            "type": "array",
+            "description": "\u6309 labels \u5206\u7ec4\u7684\u7ed3\u679c\u5e8f\u5217\u3002\u672a\u4f20 analysis_dimensions \u65f6\u901a\u5e38\u53ea\u6709\u4e00\u6761\uff0clabels \u4e3a\u7a7a\u3002",
+            "items": {
+              "type": "object",
+              "properties": {
+                "labels": {
+                  "type": "object",
+                  "additionalProperties": true,
+                  "description": "\u8be5\u5e8f\u5217\u5bf9\u5e94\u7684\u7ef4\u5ea6\u53d6\u503c"
+                },
+                "times": {
+                  "type": "array",
+                  "items": {},
+                  "description": "\u65f6\u95f4\u70b9\uff08unix \u79d2\uff09"
+                },
+                "time_strs": {
+                  "type": "array",
+                  "items": {
+                    "type": "string"
+                  },
+                  "description": "\u65f6\u95f4\u70b9\u7684\u53ef\u8bfb\u5f62\u5f0f"
+                },
+                "values": {
+                  "type": "array",
+                  "items": {},
+                  "description": "\u4e0e times \u4e00\u4e00\u5bf9\u5e94\u7684\u6307\u6807\u503c"
+                },
+                "growth_values": {
+                  "type": "array",
+                  "items": {}
+                },
+                "growth_rates": {
+                  "type": "array",
+                  "items": {}
+                },
+                "proportions": {
+                  "type": "array",
+                  "items": {}
+                }
+              }
+            }
+          },
+          "overall_ms": {
+            "type": "integer",
+            "description": "\u8017\u65f6\uff08\u6beb\u79d2\uff09"
+          }
+        }
+      }
+    },
+    "query_object_instance": {
+      "inputSchema": {
+        "properties": {
+          "bkn_context": {
+            "description": "BKN Trace managed context. Copy both IDs from bkn_start_interaction.",
+            "properties": {
+              "conversation_id": {
+                "description": "conversation_id returned by bkn_start_interaction.",
+                "type": "string"
+              },
+              "interaction_id": {
+                "description": "interaction_id returned by bkn_start_interaction.",
+                "type": "string"
+              }
+            },
+            "required": [
+              "conversation_id",
+              "interaction_id"
+            ],
+            "type": "object"
+          },
+          "condition": {
+            "additionalProperties": false,
+            "description": "\u8fc7\u6ee4\u6761\u4ef6\u3002operation \u5fc5\u586b\u3002\u6bd4\u8f83\u7b97\u5b50\u914d field + value + value_from\uff08value \u4e0e value_from \u5fc5\u987b\u540c\u65f6\u51fa\u73b0\uff0cvalue_from \u4ec5\u652f\u6301 const\uff09\uff1b\u903b\u8f91\u7b97\u5b50\uff08and/or\uff09\u914d sub_conditions \u9012\u5f52\u5d4c\u5957\u540c\u7ed3\u6784\u6761\u4ef6\u3002\u65e0\u8fc7\u6ee4\u6761\u4ef6\u65f6\u53ef\u6574\u4f53\u7701\u7565 condition\u3002\n\u7b97\u5b50\u5206\u4e24\u7c7b\uff0c\u5224\u65ad\u4f9d\u636e\u4e0d\u540c\uff1a\n\u2460 \u6bd4\u8f83\u7b97\u5b50\u6309\u5c5e\u6027 type \u81ea\u884c\u5224\u65ad\uff0c\u4e0d\u4f1a\u51fa\u73b0\u5728 condition_operations \u91cc\u3002\u5b57\u7b26\u4e32\u7c7b\uff08string/keyword/text\uff09\uff1a== != in not_in > >= < <= like not_like regex\uff1b\u6570\u503c/\u65e5\u671f\u65f6\u95f4\u7c7b\uff1a== != in not_in > >= < <= range out_range\uff08\u4e0d\u652f\u6301 like/regex\uff09\uff1bexist / not_exist \u4efb\u610f\u7c7b\u578b\u53ef\u7528\uff0c\u4e14\u4e0d\u5e26 value\u3002text \u5b57\u6bb5\u8d70\u672c\u5730\u7d22\u5f15\u65f6\uff0c== / != / in / not_in \u4f7f\u7528 keyword \u5b50\u5b57\u6bb5\uff1b\u65b0\u4fdd\u5b58\u6216\u91cd\u65b0\u4fdd\u5b58\u7684\u8868\u8d44\u6e90\u914d\u7f6e\u4f1a\u81ea\u52a8\u8865\u9f50\u3002\u65e7\u914d\u7f6e\u672a\u91cd\u65b0\u4fdd\u5b58\u65f6\uff0c\u6784\u5efa\u4f1a\u88ab\u62d2\u5e76\u63d0\u793a\u91cd\u65b0\u4fdd\u5b58\uff1b\u65e7\u7d22\u5f15\u67e5\u8be2\u82e5\u7f3a keyword \u4e5f\u4f1a\u8fd4\u56de 400\uff0c\u6309\u63d0\u793a\u91cd\u65b0\u4fdd\u5b58\u914d\u7f6e\u540e\u65b0\u5efa\u6784\u5efa\u4efb\u52a1\uff0c\u6216\u6539\u7528 match\u3002\u9ed8\u8ba4 keyword \u7684 ignore_above \u4e3a 256\uff0c\u8d85\u8fc7\u6b64\u957f\u5ea6\u7684\u7cbe\u786e\u6bd4\u8f83\u4f1a\u8fd4\u56de 400\u3002\n\u2461 \u7d22\u5f15\u7b97\u5b50\u4ee5\u5c5e\u6027\u7684 condition_operations \u4e3a\u51c6\uff1a\u542b match \u624d\u80fd\u5168\u6587\u5339\u914d\uff0c\u542b knn \u624d\u80fd\u5411\u91cf\u68c0\u7d22\u2014\u2014\u5b83\u4eec\u53d6\u51b3\u4e8e\u7ed1\u5b9a\u8d44\u6e90\u4e0a\u8fd9\u4e2a\u5b57\u6bb5\u5efa\u6ca1\u5efa\u5168\u6587/\u5411\u91cf\u7d22\u5f15\uff0c\u4ece type \u63a8\u4e0d\u51fa\u6765\u3002search_schema / search_instance \u628a\u5171\u7528\u7684\u90a3\u4efd\u5217\u8868\u63d0\u5230\u5bf9\u8c61\u7c7b\u7684 index_operations\uff0c\u5c5e\u6027\u4e0a\u5199 indexed=true\uff1b\u80fd\u529b\u4e0e\u5bf9\u8c61\u7c7b\u4e0d\u540c\u7684\u5c5e\u6027\u624d\u81ea\u5e26 condition_operations\uff08get_object_types \u59cb\u7ec8\u9010\u5c5e\u6027\u7ed9\u5168\u91cf\uff09\u3002\u4e24\u4e2a\u952e\u90fd\u6ca1\u6709\u624d\u8bf4\u660e\u8be5\u5b57\u6bb5\u6ca1\u5efa\u7d22\u5f15\uff0c\u800c\u6ca1\u5efa\u7d22\u5f15\u4e0d\u4ee3\u8868\u5b83\u4e0d\u80fd\u8fc7\u6ee4\u3002condition_operations \u91cc\u7684 multi_match \u53ea\u662f\u300c\u5efa\u4e86\u5168\u6587\u7d22\u5f15\u300d\u7684\u6807\u8bb0\uff0c\u672c\u5de5\u5177\u4e0d\u652f\u6301\u8be5\u7b97\u5b50\uff0c\u7528 match\u3002\nvalue \u5f62\u72b6\uff1a\u5355\u503c\u7b97\u5b50\u7528\u5355\u503c\uff1bin / not_in \u7528\u6570\u7ec4\uff1brange \u7528 [min, max]\uff0c\u4e24\u7aef\u90fd\u95ed\uff1bout_range \u540c\u6837\u7528 [min, max]\uff0c\u6392\u9664\u8fd9\u4e2a\u95ed\u533a\u95f4\uff1bexist / not_exist \u4e0d\u4f20 value\u3002knn \u53e6\u9700 limit_key=k + limit_value=<\u8fd1\u90bb\u6570>\u3002\nlike / not_like \u7684 value \u662f\u5b57\u9762\u5b50\u4e32\uff0c\u4e0d\u662f SQL LIKE \u6a21\u5f0f\uff1a\u76f4\u63a5\u7ed9\u8981\u5305\u542b\u7684\u6587\u5b57\uff0c\u4e0d\u8981\u81ea\u5df1\u62fc %\uff1b\u672a\u8f6c\u4e49\u7684 % \u4f1a\u88ab\u62d2\uff08\u8981\u5339\u914d % \u5b57\u7b26\u672c\u8eab\u5199 \\%\uff09\uff0c_ \u6309\u666e\u901a\u5b57\u7b26\u5904\u7406\u3002regex \u7684\u951a\u5b9a\u968f\u8d44\u6e90\u5b58\u50a8\u800c\u53d8\uff1a\u7d22\u5f15\u8def\u5f84\u662f\u6574\u4e32\u5168\u5339\u914d\uff0c\u8868\u7c7b\u8d44\u6e90\u7ffb\u6210\u4e0d\u52a0\u951a\u7684 SQL \u6b63\u5219\uff08MariaDB `REGEXP`\u3001PostgreSQL `~`\uff09\u662f\u641c\u7d22\u8bed\u4e49\uff0c\u6240\u4ee5\u300c\u5305\u542b\u300d\u4e00\u5f8b\u5199 .*\u8bcd.*\uff08\u4e24\u6761\u8def\u90fd\u6210\u7acb\uff09\u3002\u5b57\u7b26\u4e32\u6bd4\u8f83\u662f\u5426\u533a\u5206\u5927\u5c0f\u5199\u540c\u6837\u7531\u5b58\u50a8\u51b3\u5b9a\uff1a\u7d22\u5f15\u8def\u5f84\u533a\u5206\uff0c\u8868\u7c7b\u8d44\u6e90\u968f\u5217\u7684\u6392\u5e8f\u89c4\u5219\uff08\u5e38\u89c1\u7684 utf8mb4_*_ci \u4e0d\u533a\u5206\uff09\uff0c== / like / regex \u90fd\u53d7\u5f71\u54cd\uff0c\u522b\u62ff\u5927\u5c0f\u5199\u5f53\u7b5b\u9009\u6761\u4ef6\u3002",
+            "properties": {
+              "field": {
+                "description": "\u5b57\u6bb5\u540d\uff08\u5bf9\u8c61\u7c7b\u5c5e\u6027\uff09",
+                "type": "string"
+              },
+              "limit_key": {
+                "description": "\u4ec5 knn \u4f7f\u7528\uff1a\u8fd1\u90bb\u6570\u91cf\u7684\u952e\uff0c\u56fa\u5b9a\u4e3a k\u3002\u4e0e limit_value \u540c\u65f6\u51fa\u73b0\u3002",
+                "enum": [
+                  "k"
+                ],
+                "type": "string"
+              },
+              "limit_value": {
+                "description": "\u4ec5 knn \u4f7f\u7528\uff1a\u53d6\u591a\u5c11\u4e2a\u6700\u8fd1\u90bb\u3002\u4e0d\u4f20\u65f6\u7531\u670d\u52a1\u7aef\u53d6\u9ed8\u8ba4\u503c\u3002",
+                "minimum": 1,
+                "type": "integer"
+              },
+              "operation": {
+                "description": "\u6761\u4ef6\u64cd\u4f5c\u7b26\u3002\u6bd4\u8f83\u7b97\u5b50\u6309\u5c5e\u6027 type \u9009\uff08\u89c1 condition \u8bf4\u660e\uff09\uff1b\u7d22\u5f15\u7b97\u5b50 match / knn \u4ee5\u8be5\u5c5e\u6027\u7684 condition_operations \u4e3a\u51c6\uff08search_schema / search_instance \u628a\u5171\u7528\u7684\u90a3\u4efd\u5217\u8868\u63d0\u5230\u5bf9\u8c61\u7c7b\u7684 index_operations\uff0c\u5c5e\u6027\u4e0a\u53ea\u5199 indexed=true\uff09\u3002match \u8d70\u5168\u6587\u7d22\u5f15\uff08\u8bcd\u6cd5\u547d\u4e2d\uff09\uff1bknn \u8d70\u5411\u91cf\u7d22\u5f15\uff08\u8bed\u4e49/\u8de8\u8bed\u8a00\u547d\u4e2d\uff0c\u5b57\u9762\u4e0d\u91cd\u5408\u4e5f\u80fd\u53ec\u56de\uff09\uff0c\u4e24\u8005\u662f\u72ec\u7acb\u7b97\u5b50\uff0c\u8981\u540c\u65f6\u7528\u5c31\u653e\u8fdb or \u7684 sub_conditions\u3002",
+                "enum": [
+                  "and",
+                  "or",
+                  "==",
+                  "!=",
+                  ">",
+                  ">=",
+                  "<",
+                  "<=",
+                  "in",
+                  "not_in",
+                  "like",
+                  "not_like",
+                  "range",
+                  "out_range",
+                  "regex",
+                  "exist",
+                  "not_exist",
+                  "match",
+                  "knn"
+                ],
+                "type": "string"
+              },
+              "sub_conditions": {
+                "description": "\u5b50\u6761\u4ef6\u6570\u7ec4\uff0c\u7528\u4e8e and/or \u7ec4\u5408\uff08\u5143\u7d20\u4e3a\u540c\u7ed3\u6784 condition\uff09",
+                "items": {
+                  "type": "object"
+                },
+                "type": "array"
+              },
+              "value": {
+                "description": "\u5b57\u6bb5\u503c\uff1b\u4e0e value_from=const \u540c\u65f6\u4f7f\u7528\u3002\u5355\u503c\u7b97\u5b50\u7528\u5355\u503c\uff1bin/not_in \u7528\u6570\u7ec4\uff1brange \u7528 [min, max]\uff08\u4e24\u5143\u7d20\u540c\u7c7b\u578b\uff0c\u4e24\u7aef\u90fd\u95ed\uff09\uff1bout_range \u540c\u6837\u7528 [min, max]\uff0c\u6392\u9664\u8fd9\u4e2a\u95ed\u533a\u95f4\uff1blike/not_like \u7528\u5b57\u9762\u5b50\u4e32\uff08\u4e0d\u662f SQL LIKE \u6a21\u5f0f\uff0c\u4e0d\u8981\u81ea\u5df1\u62fc %\uff0c\u672a\u8f6c\u4e49\u7684 % \u4f1a\u88ab\u62d2\uff0c\\% \u5339\u914d % \u5b57\u7b26\u672c\u8eab\uff09\uff1bregex \u7528\u6b63\u5219\u5b57\u7b26\u4e32\uff08\u951a\u5b9a\u4e0e\u5927\u5c0f\u5199\u654f\u611f\u6027\u968f\u8d44\u6e90\u5b58\u50a8\u800c\u53d8\uff0c\u300c\u5305\u542b\u300d\u5199 .*\u8bcd.*\uff09\uff1bexist/not_exist \u4e0d\u4f20 value",
+                "oneOf": [
+                  {
+                    "type": "string"
+                  },
+                  {
+                    "type": "number"
+                  },
+                  {
+                    "type": "boolean"
+                  },
+                  {
+                    "items": {
+                      "oneOf": [
+                        {
+                          "type": "string"
+                        },
+                        {
+                          "type": "number"
+                        },
+                        {
+                          "type": "boolean"
+                        }
+                      ]
+                    },
+                    "type": "array"
+                  }
+                ]
+              },
+              "value_from": {
+                "description": "\u503c\u6765\u6e90\uff0c\u4ec5\u652f\u6301 const\uff1b\u5fc5\u987b\u4e0e value \u540c\u65f6\u4f7f\u7528",
+                "enum": [
+                  "const"
+                ],
+                "type": "string"
+              }
+            },
+            "required": [
+              "operation"
+            ],
+            "type": "object"
+          },
+          "cursor": {
+            "description": "\u4e0d\u900f\u660e\u6e38\u6807\uff1a\u5c06\u4e0a\u4e00\u6b21\u54cd\u5e94\u8fd4\u56de\u7684 cursor \u539f\u6837\u4f20\u5165\u4ee5\u83b7\u53d6\u4e0b\u4e00\u9875\uff1b\u9996\u6b21\u67e5\u8be2\u4e0d\u4f20\u3002\u4ec5\u652f\u6301\u987a\u5e8f\u7ffb\u9875\u3002",
+            "type": "string"
+          },
+          "filters": {
+            "description": "\u6241\u5e73\u8fc7\u6ee4\u7b80\u5199\uff1a\u591a\u4e2a\u6761\u4ef6\u6309 and \u7ec4\u5408\uff0c\u7b49\u4ef7\u4e8e\u624b\u5199 condition \u7684 and \u5d4c\u5957\u3002\u8986\u76d6\u6700\u5e38\u89c1\u7684\u300c\u5b57\u6bb5 op \u503c [AND ...]\u300d\u573a\u666f\u3002\u4e0e condition \u4e92\u65a5\uff08\u540c\u4f20\u65f6 condition \u4f18\u5148\uff09\uff1b\u9700\u8981 or \u6216\u591a\u5c42\u5d4c\u5957\u65f6\u6539\u7528 condition\u3002\u7b97\u5b50\u9009\u62e9\u4e0e\u53d6\u503c\u89c4\u5219\u540c condition\uff1a\u6bd4\u8f83\u7b97\u5b50\u6309\u5c5e\u6027 type \u5224\u65ad\uff0cmatch \u4ee5\u5c5e\u6027\u7684 condition_operations \u4e3a\u51c6\uff08search_schema / search_instance \u628a\u5171\u7528\u7684\u90a3\u4efd\u5217\u8868\u63d0\u5230\u5bf9\u8c61\u7c7b\u7684 index_operations\uff0c\u5c5e\u6027\u4e0a\u53ea\u5199 indexed=true\uff09\uff1blike/not_like \u7684\u503c\u662f\u5b57\u9762\u5b50\u4e32\uff08\u4e0d\u8981\u81ea\u5df1\u62fc %\uff0c\u672a\u8f6c\u4e49\u7684 % \u4f1a\u88ab\u62d2\uff09\uff0cregex \u7684\u951a\u5b9a\u4e0e\u5927\u5c0f\u5199\u654f\u611f\u6027\u968f\u8d44\u6e90\u5b58\u50a8\u800c\u53d8\uff08\u300c\u5305\u542b\u300d\u5199 .*\u8bcd.*\uff09\u3002\u4e0d\u5e26\u503c\u7684 exist/not_exist \u4e0e\u8981\u914d limit_key/limit_value \u7684 knn \u8d70\u4e0d\u901a\u8fd9\u6761\u7b80\u5199\uff0c\u7528 condition \u5199\u3002",
+            "items": {
+              "additionalProperties": false,
+              "properties": {
+                "field": {
+                  "description": "\u5bf9\u8c61\u7c7b\u5c5e\u6027\u540d",
+                  "type": "string"
+                },
+                "op": {
+                  "description": "\u6bd4\u8f83\u7b97\u5b50\uff1a\u6309\u5c5e\u6027 type \u5224\u65ad\uff08\u5b57\u7b26\u4e32\u7c7b\u624d\u6709 like/not_like/regex\uff09\uff1bmatch \u9700\u8be5\u5c5e\u6027\u7684 condition_operations \u542b match\uff0c\u6216\u8be5\u5c5e\u6027 indexed=true \u4e14\u5bf9\u8c61\u7c7b\u7684 index_operations \u542b match\u3002text \u5b57\u6bb5\u7684 == / != / in / not_in \u4f9d\u8d56 keyword\uff1b\u82e5 400 \u63d0\u793a\u7f3a\u5931\uff0c\u9700\u91cd\u65b0\u4fdd\u5b58\u8d44\u6e90\u914d\u7f6e\u5e76\u65b0\u5efa\u6784\u5efa\u4efb\u52a1\uff0c\u6216\u6539\u7528 match\u3002\u9ed8\u8ba4 keyword \u7684 ignore_above \u4e3a 256\uff0c\u8d85\u957f\u503c\u4e0d\u53ef\u7cbe\u786e\u6bd4\u8f83\u3002like/not_like \u7684\u503c\u662f\u5b57\u9762\u5b50\u4e32\uff08\u4e0d\u8981\u81ea\u5df1\u62fc %\uff0c\u672a\u8f6c\u4e49\u7684 % \u4f1a\u88ab\u62d2\uff09\uff0cregex \u7684\u951a\u5b9a\u4e0e\u5927\u5c0f\u5199\u654f\u611f\u6027\u968f\u8d44\u6e90\u5b58\u50a8\u800c\u53d8\uff08\u300c\u5305\u542b\u300d\u5199 .*\u8bcd.*\uff09",
+                  "enum": [
+                    "==",
+                    "!=",
+                    ">",
+                    ">=",
+                    "<",
+                    "<=",
+                    "in",
+                    "not_in",
+                    "like",
+                    "not_like",
+                    "range",
+                    "out_range",
+                    "regex",
+                    "match"
+                  ],
+                  "type": "string"
+                },
+                "value": {
+                  "description": "\u5b57\u6bb5\u503c\uff1bin/not_in \u7528\u6570\u7ec4\uff1brange/out_range \u7528 [min, max]\uff08\u4e24\u7aef\u90fd\u95ed\uff09",
+                  "oneOf": [
+                    {
+                      "type": "string"
+                    },
+                    {
+                      "type": "number"
+                    },
+                    {
+                      "type": "boolean"
+                    },
+                    {
+                      "items": {
+                        "oneOf": [
+                          {
+                            "type": "string"
+                          },
+                          {
+                            "type": "number"
+                          },
+                          {
+                            "type": "boolean"
+                          }
+                        ]
+                      },
+                      "type": "array"
+                    }
+                  ]
+                }
+              },
+              "required": [
+                "field",
+                "op",
+                "value"
+              ],
+              "type": "object"
+            },
+            "type": "array"
+          },
+          "include_logic_params": {
+            "description": "\u662f\u5426\u8fd4\u56de\u903b\u8f91\u5c5e\u6027\u8ba1\u7b97\u53c2\u6570",
+            "type": "boolean"
+          },
+          "kn_id": {
+            "description": "\u77e5\u8bc6\u7f51\u7edc ID\uff0c\u6765\u81ea list_knowledge_networks \u6216 get_kn_detail\uff0c\u4e0d\u53ef\u51ed\u540d\u79f0\u731c\u6d4b\u3002",
+            "type": "string"
+          },
+          "limit": {
+            "description": "\u5355\u9875\u8fd4\u56de\u6570\u91cf\uff0c\u9ed8\u8ba4 10\uff0c\u8303\u56f4 1-10000",
+            "type": "integer"
+          },
+          "offset": {
+            "description": "\u504f\u79fb\u7ffb\u9875\uff08\u8d44\u6e90/vega \u8868\u6e90\u8def\u5f84\uff09\uff1a\u8df3\u8fc7\u524d N \u6761\uff0c\u652f\u6301\u8df3\u5230\u4efb\u610f\u9875\u3002\u4e0e cursor \u4e92\u65a5\u3002",
+            "type": "integer"
+          },
+          "ot_id": {
+            "description": "\u5bf9\u8c61\u7c7b\u578bID",
+            "type": "string"
+          },
+          "properties": {
+            "description": "\u6307\u5b9a\u8fd4\u56de\u7684\u5bf9\u8c61\u5c5e\u6027\u5b57\u6bb5\u5217\u8868\uff0c\u9ed8\u8ba4\u8fd4\u56de\u6240\u6709\u5c5e\u6027",
+            "items": {
+              "type": "string"
+            },
+            "type": "array"
+          },
+          "response_format": {
+            "default": "toon",
+            "description": "\u6587\u672c\u683c\u5f0f\uff1ajson \u6216 toon\uff0c\u9ed8\u8ba4 toon",
+            "enum": [
+              "json",
+              "toon"
+            ],
+            "type": "string"
+          },
+          "sort": {
+            "description": "\u6392\u5e8f\u5b57\u6bb5\uff0c\u6309\u6570\u7ec4\u987a\u5e8f\u4f9d\u6b21\u6bd4\u8f83\uff08\u524d\u4e00\u4e2a\u76f8\u7b49\u624d\u770b\u540e\u4e00\u4e2a\uff09\u3002\u4e0d\u4f20\u5219\u7531\u670d\u52a1\u7aef\u6309\u9ed8\u8ba4\u5e8f\u8fd4\u56de\uff0c\u9ed8\u8ba4\u5e8f\u4e0d\u4fdd\u8bc1\u8bed\u4e49\uff08\u4e0d\u662f\u300c\u6700\u65b0\u300d\u4e5f\u4e0d\u662f\u300c\u6700\u76f8\u5173\u300d\uff09\uff0c\u6240\u4ee5\u300c\u6700\u8fd1\u7684 N \u6761\u300d\u300c\u91d1\u989d\u6700\u9ad8\u7684 N \u4e2a\u300d\u8fd9\u7c7b\u95ee\u9898\u5fc5\u987b\u663e\u5f0f\u4f20 sort\uff0c\u4e0d\u80fd\u9760 limit \u622a\u9ed8\u8ba4\u5e8f\u3002field \u5fc5\u987b\u662f\u8be5\u5bf9\u8c61\u7c7b\u7684\u5c5e\u6027\u540d\uff0c\u7528 search_schema \u6216 get_object_types \u786e\u8ba4\u540e\u518d\u4f20\u3002",
+            "items": {
+              "additionalProperties": false,
+              "properties": {
+                "direction": {
+                  "description": "\u6392\u5e8f\u65b9\u5411",
+                  "enum": [
+                    "asc",
+                    "desc"
+                  ],
+                  "type": "string"
+                },
+                "field": {
+                  "description": "\u6392\u5e8f\u5b57\u6bb5\uff08\u5bf9\u8c61\u7c7b\u5c5e\u6027\u540d\uff09",
+                  "type": "string"
+                }
+              },
+              "required": [
+                "field",
+                "direction"
+              ],
+              "type": "object"
+            },
+            "type": "array"
+          }
+        },
+        "required": [
+          "kn_id",
+          "ot_id"
+        ],
+        "type": "object"
+      },
+      "outputSchema": {
+        "type": "object",
+        "properties": {
+          "query_source": {
+            "type": "string",
+            "enum": [
+              "local_index",
+              "source"
+            ],
+            "description": "Vega \u5b9e\u9645\u67e5\u8be2\u6765\u6e90\uff1alocal_index \u8868\u793a\u8d44\u6e90\u672c\u5730\u7d22\u5f15\uff0csource \u8868\u793a\u6570\u636e\u6e90\uff1b\u672a\u6267\u884c\u8d44\u6e90\u67e5\u8be2\u65f6\u7701\u7565\u3002\u8be5\u5b57\u6bb5\u4e0d\u7528\u4e8e\u51b3\u5b9a\u5206\u9875\uff0c\u7eed\u9875\u5e94\u4f7f\u7528 cursor\u3002"
+          },
+          "datas": {
+            "type": "array",
+            "description": "\u5b9e\u4f8b\u5217\u8868",
+            "items": {
+              "type": "object",
+              "properties": {
+                "_display": {
+                  "type": [
+                    "string",
+                    "number",
+                    "boolean",
+                    "null"
+                  ],
+                  "description": "\u7ed9\u4eba\u770b\u7684\u5c55\u793a\u540d\uff0c\u7531\u670d\u52a1\u7aef\u6309\u5bf9\u8c61\u7c7b\u7684\u5c55\u793a\u5b57\u6bb5\u6311\u51fa\uff1b\u7c7b\u578b\u968f\u5c55\u793a\u5b57\u6bb5\u800c\u53d8\uff08\u6570\u503c\u3001\u5e03\u5c14\u6216\u65e5\u671f\u7b49\u5b57\u7b26\u4e32\uff09\uff0c\u8be5\u884c\u5c55\u793a\u5b57\u6bb5\u4e3a\u7a7a\u65f6\u4e3a null\u3002"
+                },
+                "_instance_id": {
+                  "type": "string",
+                  "description": "\u5b9e\u4f8b\u5168\u5c40\u552f\u4e00 ID\uff0c\u53ef\u76f4\u63a5\u7528\u4e8e query_instance_subgraph\u3002"
+                },
+                "_instance_identity": {
+                  "type": "object",
+                  "additionalProperties": true,
+                  "description": "\u6784\u6210\u8be5\u5b9e\u4f8b\u4e3b\u952e\u7684\u5b57\u6bb5\u503c"
+                }
+              },
+              "additionalProperties": true,
+              "description": "\u5176\u4f59\u952e\u5373\u8be5\u5bf9\u8c61\u7c7b\u7684\u5c5e\u6027\u540d\uff0c\u968f\u5bf9\u8c61\u7c7b\u800c\u53d8\u2014\u2014\u5148\u770b get_object_types / search_schema \u7684 data_properties\uff0c\u4e0d\u8981\u51ed\u5b57\u6bb5\u8bed\u4e49\u731c\u3002"
+            }
+          },
+          "effective_permissions": {
+            "type": "object",
+            "additionalProperties": {
+              "type": "string",
+              "enum": [
+                "schema",
+                "masked",
+                "full"
+              ]
+            }
+          },
+          "total_count": {
+            "type": "integer",
+            "description": "\u6ee1\u8db3\u8fc7\u6ee4\u6761\u4ef6\u7684\u5b9e\u4f8b\u603b\u6570\uff0c\u4e0d\u53d7 limit \u9650\u5236\u3002\u5224\u65ad\u300c\u4e00\u5171\u6709\u591a\u5c11\u6761\u300d\u8bfb\u5b83\uff0c\u4e0d\u8981\u9760\u7ffb\u9875\u7d2f\u52a0\u3002\u96f6\u547d\u4e2d\u65f6\u662f 0\uff08\u6709\u503c\uff09\uff0c\u4e0d\u662f\u5b57\u6bb5\u7f3a\u5931\u3002\u5b57\u6bb5\u7f3a\u5931\u8868\u793a\u670d\u52a1\u7aef\u672c\u6b21\u6ca1\u6709\u8ba1\u7b97\u603b\u6570\u2014\u2014\u7528 cursor \u7ffb\u9875\u65f6\u7b2c\u4e8c\u9875\u8d77\u5373\u5982\u6b64\uff0c\u6b64\u65f6\u4e0d\u80fd\u63a8\u65ad\u4e3a 0\uff0c\u8981\u603b\u6570\u5c31\u56de\u5230\u4e0d\u5e26 cursor \u7684\u9996\u6b21\u67e5\u8be2\u3002"
+          },
+          "cursor": {
+            "type": "string",
+            "description": "\u4e0b\u4e00\u9875\u4e0d\u900f\u660e\u6e38\u6807\uff1a\u975e\u7a7a\u65f6\u4f5c\u4e3a\u4e0b\u6b21\u8bf7\u6c42\u7684 cursor \u539f\u6837\u4f20\u5165\uff1b\u4e3a\u7a7a\u8868\u793a\u5df2\u65e0\u66f4\u591a\u6570\u636e\u3002"
+          },
+          "permission_guidance": {
+            "type": "object",
+            "description": "\u6743\u9650\u8bf4\u660e\u3002\u4ec5\u5f53\u672c\u6b21\u7ed3\u679c\u88ab\u5b57\u6bb5\u8131\u654f/\u9690\u85cf\u6216\u88ab\u884c\u8bbf\u95ee\u8303\u56f4\u6536\u7a84\u65f6\u51fa\u73b0\uff1b\u6ca1\u6709\u6b64\u5b57\u6bb5\u8868\u793a\u7ed3\u679c\u672a\u53d7\u8fd9\u4e24\u7c7b\u9650\u5236\u3002\u636e\u6b64\u5982\u5b9e\u544a\u8bc9\u7528\u6237\u7f3a\u4ec0\u4e48\u6743\u9650\uff0c\u4e0d\u8981\u731c\u6d4b\u6216\u8865\u5168\u88ab\u9690\u85cf\u7684\u6570\u636e\u3002",
+            "properties": {
+              "message": {
+                "type": "string",
+                "description": "\u7ed9\u7528\u6237\u770b\u7684\u8bf4\u660e\uff1a\u7f3a\u4ec0\u4e48\u6743\u9650\u3001\u7ed3\u679c\u53d7\u4ec0\u4e48\u5f71\u54cd\u3001\u4e0b\u4e00\u6b65\u600e\u4e48\u505a\uff08\u63d0\u4ea4\u7533\u8bf7\u540e\u7b49\u5f85\u7ba1\u7406\u5458\u6388\u6743\u518d\u91cd\u65b0\u53d1\u8d77\uff0c\u6216\u8054\u7cfb\u7ba1\u7406\u5458\uff09\u3002\u539f\u6837\u8f6c\u8ff0\u7ed9\u7528\u6237\u3002"
+              },
+              "resource": {
+                "type": "object",
+                "description": "\u53d7\u9650\u7684\u5bf9\u8c61\u7c7b\u3002name \u4ec5\u5728\u5f53\u524d\u8d26\u53f7\u53ef\u67e5\u770b\u8be5\u5bf9\u8c61\u7c7b\u5b9a\u4e49\u65f6\u7ed9\u51fa\u3002",
+                "properties": {
+                  "type": {
+                    "type": "string"
+                  },
+                  "id": {
+                    "type": "string"
+                  },
+                  "kn_id": {
+                    "type": "string"
+                  },
+                  "ot_id": {
+                    "type": "string"
+                  },
+                  "name": {
+                    "type": "string"
+                  }
+                }
+              },
+              "shortfalls": {
+                "type": "array",
+                "description": "\u5f71\u54cd\u672c\u6b21\u7ed3\u679c\u7684\u6bcf\u4e00\u7c7b\u9650\u5236\u3002",
+                "items": {
+                  "type": "object",
+                  "properties": {
+                    "scope": {
+                      "type": "string",
+                      "enum": [
+                        "grant",
+                        "row_filter",
+                        "property_grants"
+                      ],
+                      "description": "property_grants\uff1aproperties \u4e2d\u7684\u5b57\u6bb5\u62ff\u4e0d\u5230\u539f\u59cb\u503c\uff08\u5df2\u8131\u654f\u6216\u53ea\u53ef\u89c1\u5b57\u6bb5\u540d\uff09\uff1brow_filter\uff1a\u884c\u8bbf\u95ee\u8303\u56f4\u6536\u7a84\u4e86\u7ed3\u679c\uff0c\u7ed3\u679c\u53ef\u80fd\u4e0d\u5b8c\u6574\uff0c\u4f46\u4e0d\u4ee3\u8868\u4e00\u5b9a\u7f3a\u6570\u636e\uff1bgrant\uff1a\u7f3a\u5c11\u57fa\u7840\u64cd\u4f5c\u6743\u9650\u3002"
+                    },
+                    "operations": {
+                      "type": "array",
+                      "items": {
+                        "type": "string"
+                      }
+                    },
+                    "properties": {
+                      "type": "array",
+                      "items": {
+                        "type": "string"
+                      }
+                    },
+                    "request_permission_url": {
+                      "type": "string",
+                      "description": "Studio \u6743\u9650\u7533\u8bf7\u5730\u5740\u3002\u4ee5 http \u5f00\u5934\u65f6\u53ef\u76f4\u63a5\u7ed9\u7528\u6237\u70b9\u51fb\uff1b\u4ee5 / \u5f00\u5934\u65f6\u662f\u76f8\u5bf9 Studio \u6240\u5728\u4e3b\u673a\u7684\u8def\u5f84\uff0c\u4e0d\u8981\u81ea\u884c\u62fc\u63a5\u57df\u540d\uff0c\u8bf7\u7528\u6237\u5728 BKN Studio \u4e2d\u6253\u5f00\u3002\u6ca1\u6709\u6b64\u5b57\u6bb5\u65f6\u8bf7\u7528\u6237\u8054\u7cfb\u7ba1\u7406\u5458\u3002"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "read_skill_file": {
+      "inputSchema": {
+        "properties": {
+          "bkn_context": {
+            "description": "BKN Trace managed context. Copy both IDs from bkn_start_interaction.",
+            "properties": {
+              "conversation_id": {
+                "description": "conversation_id returned by bkn_start_interaction.",
+                "type": "string"
+              },
+              "interaction_id": {
+                "description": "interaction_id returned by bkn_start_interaction.",
+                "type": "string"
+              }
+            },
+            "required": [
+              "conversation_id",
+              "interaction_id"
+            ],
+            "type": "object"
+          },
+          "kn_id": {
+            "description": "\u5fc5\u586b\u3002\u77e5\u8bc6\u7f51\u7edc ID\u3002\u8c03\u7528\u8005\u987b\u6709\u8be5\u7f51\u7edc\u672c\u8eab\u7684\u67e5\u770b\u6743\u9650\uff0c\u4e14 Skill \u5fc5\u987b\u5df2\u6302\u8f7d\u5230\u8be5\u7f51\u7edc\u624d\u80fd\u8bfb\u53d6/\u6267\u884c\u2014\u2014skill_id \u4f1a\u6d3b\u8fc7\u4ea7\u751f\u5b83\u7684\u90a3\u6b21\u8c03\u7528\uff0c\u4e5f\u53ef\u4ee5\u4ece list_skills \u62ff\u5230\uff0c\u6240\u4ee5\u8303\u56f4\u8981\u5728\u8fd9\u91cc\u6838\u3002",
+            "type": "string"
+          },
+          "rel_path": {
+            "description": "\u6280\u80fd\u5305\u5185\u76f8\u5bf9\u8def\u5f84\uff0c\u53d6\u81ea get_skill_content \u8fd4\u56de\u7684 files[].rel_path\u3002\u4e0d\u63a5\u53d7\u5305\u5916\u8def\u5f84\uff08../ \u4f1a\u88ab\u62d2\uff09\u3002",
+            "type": "string"
+          },
+          "response_format": {
+            "default": "toon",
+            "description": "\u6587\u672c\u683c\u5f0f\uff1ajson \u6216 toon\uff0c\u9ed8\u8ba4 toon",
+            "enum": [
+              "json",
+              "toon"
+            ],
+            "type": "string"
+          },
+          "skill_id": {
+            "description": "\u6280\u80fd ID\uff08\u53d6\u81ea list_skills \u6216 search_capabilities \u7684 skill_id\uff09\u3002",
+            "type": "string"
+          }
+        },
+        "required": [
+          "kn_id",
+          "skill_id",
+          "rel_path"
+        ],
+        "type": "object"
+      },
+      "outputSchema": {
+        "type": "object",
+        "properties": {
+          "skill_id": {
+            "type": "string"
+          },
+          "rel_path": {
+            "type": "string"
+          },
+          "mime_type": {
+            "type": "string"
+          },
+          "file_type": {
+            "type": "string"
+          },
+          "content": {
+            "type": "string",
+            "description": "\u6587\u4ef6\u6b63\u6587\u3002\u4e8c\u8fdb\u5236\u6587\u4ef6\u4e0d\u8fd4\u56de\u6b64\u5b57\u6bb5\uff0c\u53ea\u56de message \u8bf4\u660e\u3002"
+          },
+          "truncated": {
+            "type": "boolean",
+            "description": "\u6b63\u6587\u662f\u5426\u56e0\u8d85\u957f\u88ab\u622a\u65ad"
+          },
+          "message": {
+            "type": "string",
+            "description": "\u8865\u5145\u8bf4\u660e\uff08\u4e8c\u8fdb\u5236\u672a\u8fd4\u56de\u6b63\u6587 / \u622a\u65ad\u63d0\u793a\uff09"
+          }
+        }
+      }
+    },
+    "run_code": {
+      "inputSchema": {
+        "properties": {
+          "bkn_context": {
+            "description": "BKN Trace managed context. Copy both IDs from bkn_start_interaction.",
+            "properties": {
+              "conversation_id": {
+                "description": "conversation_id returned by bkn_start_interaction.",
+                "type": "string"
+              },
+              "interaction_id": {
+                "description": "interaction_id returned by bkn_start_interaction.",
+                "type": "string"
+              }
+            },
+            "required": [
+              "conversation_id",
+              "interaction_id"
+            ],
+            "type": "object"
+          },
+          "code": {
+            "description": "\u8981\u6267\u884c\u7684 Python \u4ee3\u7801\u3002\u53ea\u6709 print \u7684\u5185\u5bb9\u4f1a\u8fd4\u56de\u3002",
+            "type": "string"
+          },
+          "timeout": {
+            "default": 60,
+            "description": "\u6267\u884c\u8d85\u65f6\u79d2\u6570",
+            "type": "integer"
+          }
+        },
+        "required": [
+          "code"
+        ],
+        "type": "object"
+      },
+      "outputSchema": {
+        "type": "object",
+        "properties": {
+          "stdout": {
+            "type": "string",
+            "description": "\u6807\u51c6\u8f93\u51fa\u3002\u53ea\u6709 print \u7684\u5185\u5bb9\u4f1a\u56de\u5230\u8fd9\u91cc\u3002"
+          },
+          "stderr": {
+            "type": "string",
+            "description": "\u6807\u51c6\u9519\u8bef\u3002\u9000\u51fa\u7801\u4e3a 0 \u65f6\u4e5f\u53ef\u80fd\u975e\u7a7a\uff08\u5e93\u544a\u8b66\u7b49\uff09\u3002"
+          },
+          "exit_code": {
+            "type": "integer",
+            "description": "\u9000\u51fa\u7801\u3002\u975e 0 \u8868\u793a\u811a\u672c\u81ea\u8eab\u5931\u8d25\uff0c\u62a5\u6587\u5728 stderr \u91cc\u3002"
+          }
+        },
+        "required": [
+          "stdout",
+          "exit_code"
+        ]
+      }
+    },
+    "run_cypher": {
+      "inputSchema": {
+        "properties": {
+          "bkn_context": {
+            "description": "BKN Trace managed context. Copy both IDs from bkn_start_interaction.",
+            "properties": {
+              "conversation_id": {
+                "description": "conversation_id returned by bkn_start_interaction.",
+                "type": "string"
+              },
+              "interaction_id": {
+                "description": "interaction_id returned by bkn_start_interaction.",
+                "type": "string"
+              }
+            },
+            "required": [
+              "conversation_id",
+              "interaction_id"
+            ],
+            "type": "object"
+          },
+          "branch": {
+            "description": "\u5206\u652f\u540d\uff0c\u53ef\u9009\uff0c\u9ed8\u8ba4 main\u3002",
+            "type": "string"
+          },
+          "kn_id": {
+            "description": "\u77e5\u8bc6\u7f51\u7edc ID\uff0c\u6765\u81ea list_knowledge_networks\u3002",
+            "type": "string"
+          },
+          "parameters": {
+            "additionalProperties": true,
+            "description": "\u67e5\u8be2\u91cc $name \u7684\u53d6\u503c\u3002\u53ea\u80fd\u662f\u5b57\u7b26\u4e32\u3001\u6570\u5b57\u6216\u5e03\u5c14\u503c\uff1b\u7528\u5728 IN $name \u53f3\u4fa7\u65f6\u53ef\u4ee5\u662f\u8fd9\u7c7b\u503c\u7ec4\u6210\u7684\u975e\u7a7a\u6570\u7ec4\uff08\u5143\u7d20\u540c\u7c7b\uff0c\u6574\u6570\u4e0e\u5c0f\u6570\u90fd\u7b97\u6570\u5b57\uff0c\u4e0d\u80fd\u542b null\uff0c\u6700\u591a 500 \u4e2a\uff1b\u4e00\u6761\u67e5\u8be2\u91cc\u591a\u4e2a\u957f\u5217\u8868\u5408\u8ba1\u8fc7\u5927\u65f6\u4f1a\u8fd4\u56de 400\uff0c\u9700\u62c6\u6210\u591a\u6b21\u67e5\u8be2\uff09\uff0c\u5982 {\"keys\": [6, 7, 8]}\u2014\u2014\u53c2\u6570\u662f\u503c\uff0c\u6c38\u8fdc\u4e0d\u4f1a\u53d8\u6210\u8868\u540d\u6216\u5217\u540d\uff0c\u56e0\u6b64\u4e0d\u80fd\u7528\u5b83\u62fc\u6807\u7b7e\u3001\u5173\u7cfb\u7c7b\u578b\u6216\u5c5e\u6027\u540d\u3002null \u4f1a\u88ab\u62d2\u7edd\uff1a\u8981\u5224\u7a7a\u8bf7\u5728 WHERE \u91cc\u5199 IS NULL\u3002",
+            "type": "object"
+          },
+          "query": {
+            "description": "\u53ea\u8bfb Cypher\u3002\u6807\u7b7e\u7528\u5bf9\u8c61\u7c7b\u7684 id \u6216\u540d\u79f0\uff0c\u5173\u7cfb\u7528\u5173\u7cfb\u7c7b\u7684 id \u6216\u540d\u79f0\uff0c\u5c5e\u6027\u7528\u903b\u8f91\u5c5e\u6027\u540d\uff08\u4e0d\u662f\u7269\u7406\u5217\u540d\uff09\u2014\u2014\u90fd\u6765\u81ea search_schema / get_object_types / get_relation_types\u3002\u652f\u6301\uff1a\u4e00\u4e2a\u6216\u591a\u4e2a MATCH\u3001\u9017\u53f7\u5206\u9694\u7684\u591a\u6761\u8def\u5f84\uff08\u540c\u540d\u53d8\u91cf=\u540c\u4e00\u4e2a\u8282\u70b9\uff0c\u4e0d\u5171\u4eab\u53d8\u91cf=\u7b1b\u5361\u5c14\u79ef\uff09\uff1b\u5173\u7cfb -[:R]->\u3001<-[:R]-\u3001\u65e0\u5411 -[:R]-\uff0c\u6bcf\u6761\u5fc5\u987b\u6307\u540d\u4e00\u4e2a\u5173\u7cfb\u7c7b\uff1b\u8282\u70b9\u5fc5\u987b\u6307\u540d\u4e00\u4e2a\u5bf9\u8c61\u7c7b\uff08\u9996\u6b21\u51fa\u73b0\u5e26\u6807\u7b7e\uff09\uff0c\u53ef\u5e26\u5185\u8054\u5c5e\u6027 {prop: value}\uff1bWHERE \u652f\u6301 = <> < > <= >=\u3001IN [...]\uff08\u6216 IN $list\uff1a\u6574\u4e2a\u5217\u8868\u4f5c\u4e3a\u4e00\u4e2a\u53c2\u6570\u4f20\u5165\uff0c\u987b\u4e3a\u975e\u7a7a\u3001\u540c\u7c7b\u6807\u91cf\u6570\u7ec4\uff0c\u6700\u591a 500 \u4e2a\u5143\u7d20\uff09\u3001IS NULL / IS NOT NULL\u3001STARTS WITH / ENDS WITH / CONTAINS\uff08\u53f3\u4fa7\u4e3a\u5b57\u7b26\u4e32\u5b57\u9762\u91cf\u6216\u5b57\u7b26\u4e32\u53c2\u6570\uff0c\u6309\u5b57\u9762\u5b50\u4e32\u5339\u914d\uff0c% \u548c _ \u4e0d\u662f\u901a\u914d\u7b26\uff1b\u53ea\u80fd\u7528\u4e8e\u5b57\u7b26\u4e32\u5c5e\u6027\uff0c\u5927\u5c0f\u5199\u662f\u5426\u654f\u611f\u53d6\u51b3\u4e8e\u6570\u636e\u6e90\u7684\u6392\u5e8f\u89c4\u5219\uff09\uff0c\u7528 AND / OR / NOT \u7ec4\u5408\u5e76\u53ef\u52a0\u62ec\u53f7\uff1b\u503c\u53ef\u7528 $name \u53c2\u6570\uff08\u5728 parameters \u91cc\u4f20\uff09\uff1bRETURN \u652f\u6301\u5c5e\u6027\u3001AS \u522b\u540d\u3001DISTINCT \u4e0e count/sum/avg/min/max\uff08\u542b count(*)\u3001DISTINCT \u5f62\u5f0f\uff09\uff0c\u805a\u5408\u65f6\u6309 RETURN \u4e2d\u5176\u4f59\u5217\u81ea\u52a8\u5206\u7ec4\uff1bRETURN \u53ef\u505a + - * / % \u7b97\u672f\uff0c\u5982 count(*) * 2\u3001sum(o.price * o.qty)\u3001count(o.x) * 1.0 / count(*)\uff1a\u64cd\u4f5c\u6570\u662f\u6570\u503c\u5c5e\u6027\u3001\u805a\u5408\u3001\u6570\u5b57\u6216\u6570\u503c\u53c2\u6570\uff1b\u4e24\u4e2a\u6574\u6570\u76f8\u9664\u4f1a\u88ab\u62d2\uff08Cypher \u4e22\u4f59\u6570\uff0c\u5404 SQL \u5e93\u4e0d\u4e00\u81f4\uff09\uff0c\u8981\u5c0f\u6570\u7ed3\u679c\u628a\u4e00\u8fb9\u4e58 1.0\uff1b% \u53ea\u7528\u4e8e\u6574\u6570\uff1bWHERE \u6bd4\u8f83\u7684\u4e24\u4fa7\uff08\u5982 o.amount * o.rate > $floor\uff09\u548c ORDER BY\uff08\u5982 count(g.id) * 0.5 + p.rank * 0.3 DESC\uff09\u4e5f\u80fd\u5199\u7b97\u672f\uff0c\u805a\u5408\u540e\u6392\u5e8f\u952e\u91cc\u805a\u5408\u5916\u8bfb\u7684\u5c5e\u6027\u987b\u540c\u65f6\u5728 RETURN \u8fd4\u56de\uff0cDISTINCT \u7ed3\u679c\u8981\u6309\u7b97\u51fa\u6765\u7684\u503c\u6392\u5e8f\u8bf7\u7528\u522b\u540d\uff1bORDER BY \u652f\u6301\u5c5e\u6027\u3001\u8fd4\u56de\u5217\u540d\u6216\u805a\u5408\uff1bSKIP / LIMIT \u5206\u9875\u3002OPTIONAL MATCH \u5199\u4e00\u6761\u5173\u7cfb\uff0c\u628a\u4e00\u4e2a\u65b0\u8282\u70b9\u6302\u5230\u524d\u9762\u5b50\u53e5\u5df2\u7ecf\u627e\u5230\u7684\u8282\u70b9\u4e0a\uff1a\u5339\u914d\u4e0d\u5230\u65f6\u8be5\u884c\u4fdd\u7559\u3001\u65b0\u8282\u70b9\u7684\u5217\u4e3a NULL\uff0c\u6240\u4ee5 count(\u53ef\u9009\u4fa7\u7684\u5c5e\u6027) \u5f97 0 \u800c\u4e0d\u662f\u6574\u884c\u6d88\u5931\uff08count(*) \u4ecd\u7136\u7b97 1 \u884c\uff09\u3002\u5b83\u81ea\u5e26\u7684 WHERE \u4e0e\u5185\u8054\u5c5e\u6027\u51b3\u5b9a\u8fd9\u6761\u5173\u7cfb\u5339\u914d\u5230\u4ec0\u4e48\uff0c\u4e0d\u51b3\u5b9a\u54ea\u4e9b\u884c\u7559\u4e0b\u3002\u9996\u4e2a\u5b50\u53e5\u5fc5\u987b\u662f MATCH\uff1b\u4e00\u6761 OPTIONAL MATCH \u53ea\u80fd\u5199\u4e00\u6761\u5173\u7cfb\u3001\u53ea\u80fd\u5f15\u5165\u4e00\u4e2a\u65b0\u8282\u70b9\uff1b\u5b83\u5f15\u5165\u7684\u8282\u70b9\u4e0d\u80fd\u88ab\u540e\u9762\u7684 MATCH \u6216\u67e5\u8be2\u7684 WHERE \u518d\u8981\u6c42\uff08\u90a3\u4f1a\u628a\u7559\u4e0b\u6765\u7684\u884c\u53c8\u5220\u6389\uff09\u3002\u4e0d\u652f\u6301\uff1aWITH\u3001UNION\u3001\u53d8\u957f\u8def\u5f84 [:R*1..3]\u3001XOR\u3001RETURN \u6574\u4e2a\u8282\u70b9\u3001\u51fd\u6570\u8c03\u7528\u3001\u4e58\u65b9 ^\u3001\u5173\u7cfb\u53d8\u91cf -[r:R]->\u3002\u4e00\u6761\u67e5\u8be2\u6700\u591a 8 \u6761\u5173\u7cfb\u30019 \u4e2a\u8282\u70b9\uff1b\u4e0d\u5199 LIMIT \u9ed8\u8ba4 1000 \u884c\uff0cLIMIT \u4e0d\u5f97\u8d85\u8fc7 10000\uff1b\u88ab\u805a\u5408\u6216 DISTINCT \u6298\u53e0\u7684\u7ed3\u679c\u53ea\u80fd\u6309\u8fd4\u56de\u7684\u503c\u6392\u5e8f\u3002\u793a\u4f8b\uff1aMATCH (o:order)-[:rel_order_item_order]->(i:order_item) WHERE o.status IN ['paid','shipped'] AND o.amount > $floor RETURN o.status AS status, count(*) AS orders ORDER BY orders DESC LIMIT 20",
+            "type": "string"
+          },
+          "response_format": {
+            "default": "toon",
+            "description": "\u6587\u672c\u683c\u5f0f\uff1ajson \u6216 toon\uff0c\u9ed8\u8ba4 toon",
+            "enum": [
+              "json",
+              "toon"
+            ],
+            "type": "string"
+          }
+        },
+        "required": [
+          "kn_id",
+          "query"
+        ],
+        "type": "object"
+      },
+      "outputSchema": {
+        "type": "object",
+        "properties": {
+          "columns": {
+            "type": "array",
+            "description": "\u8f93\u51fa\u5217\uff0c\u987a\u5e8f\u4e0e RETURN \u4e00\u81f4\uff1bname \u662f AS \u522b\u540d\uff0c\u6ca1\u5199\u522b\u540d\u65f6\u662f\u5c5e\u6027\u5f15\u7528\u7684\u539f\u6587\u3002",
+            "items": {
+              "type": "object",
+              "properties": {
+                "name": {
+                  "type": "string"
+                },
+                "type": {
+                  "type": "string"
+                }
+              }
+            }
+          },
+          "entries": {
+            "type": "array",
+            "description": "\u7ed3\u679c\u884c\uff0c\u6309\u5217\u540d\u53d6\u503c\u3002",
+            "items": {
+              "type": "object",
+              "additionalProperties": true
+            }
+          },
+          "permission_guidance": {
+            "type": "array",
+            "description": "\u6743\u9650\u8bf4\u660e\u5217\u8868\u3002\u4ec5\u5f53\u5b57\u6bb5\u6743\u9650\u62d2\u7edd\u4e86\u67e5\u8be2\uff0c\u6216\u884c\u8bbf\u95ee\u8303\u56f4\u6536\u7a84\u4e86\u6210\u529f\u7ed3\u679c\u65f6\u51fa\u73b0\uff1b\u6bcf\u4e2a\u53d7\u5f71\u54cd\u5bf9\u8c61\u7c7b\u4e00\u9879\u3002\u9010\u9879\u628a message \u544a\u8bc9\u7528\u6237\uff0c\u5e76\u63d0\u4f9b\u5bf9\u5e94\u7533\u8bf7\u94fe\u63a5\u3002",
+            "items": {
+              "type": "object",
+              "properties": {
+                "message": {
+                  "type": "string"
+                },
+                "resource": {
+                  "type": "object",
+                  "properties": {
+                    "type": {
+                      "type": "string"
+                    },
+                    "id": {
+                      "type": "string"
+                    },
+                    "kn_id": {
+                      "type": "string"
+                    },
+                    "ot_id": {
+                      "type": "string"
+                    },
+                    "name": {
+                      "type": "string"
+                    }
+                  }
+                },
+                "shortfalls": {
+                  "type": "array",
+                  "items": {
+                    "type": "object",
+                    "properties": {
+                      "scope": {
+                        "type": "string",
+                        "enum": [
+                          "grant",
+                          "row_filter",
+                          "property_grants"
+                        ]
+                      },
+                      "operations": {
+                        "type": "array",
+                        "items": {
+                          "type": "string"
+                        }
+                      },
+                      "properties": {
+                        "type": "array",
+                        "items": {
+                          "type": "string"
+                        }
+                      },
+                      "request_permission_url": {
+                        "type": "string"
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "run_shell": {
+      "inputSchema": {
+        "properties": {
+          "bkn_context": {
+            "description": "BKN Trace managed context. Copy both IDs from bkn_start_interaction.",
+            "properties": {
+              "conversation_id": {
+                "description": "conversation_id returned by bkn_start_interaction.",
+                "type": "string"
+              },
+              "interaction_id": {
+                "description": "interaction_id returned by bkn_start_interaction.",
+                "type": "string"
+              }
+            },
+            "required": [
+              "conversation_id",
+              "interaction_id"
+            ],
+            "type": "object"
+          },
+          "command": {
+            "description": "\u8981\u6267\u884c\u7684 shell \u547d\u4ee4\uff0c\u4ea4\u7ed9 sh -c \u6267\u884c\uff0c\u53ef\u4ee5\u7528\u7ba1\u9053\u548c &&\u3002",
+            "type": "string"
+          },
+          "timeout": {
+            "default": 60,
+            "description": "\u6267\u884c\u8d85\u65f6\u79d2\u6570",
+            "type": "integer"
+          }
+        },
+        "required": [
+          "command"
+        ],
+        "type": "object"
+      },
+      "outputSchema": {
+        "type": "object",
+        "properties": {
+          "stdout": {
+            "type": "string",
+            "description": "\u6807\u51c6\u8f93\u51fa\u3002\u53ea\u6709 print \u7684\u5185\u5bb9\u4f1a\u56de\u5230\u8fd9\u91cc\u3002"
+          },
+          "stderr": {
+            "type": "string",
+            "description": "\u6807\u51c6\u9519\u8bef\u3002\u9000\u51fa\u7801\u4e3a 0 \u65f6\u4e5f\u53ef\u80fd\u975e\u7a7a\uff08\u5e93\u544a\u8b66\u7b49\uff09\u3002"
+          },
+          "exit_code": {
+            "type": "integer",
+            "description": "\u9000\u51fa\u7801\u3002\u975e 0 \u8868\u793a\u811a\u672c\u81ea\u8eab\u5931\u8d25\uff0c\u62a5\u6587\u5728 stderr \u91cc\u3002"
+          }
+        },
+        "required": [
+          "stdout",
+          "exit_code"
+        ]
+      }
+    },
+    "search_capabilities": {
+      "inputSchema": {
+        "properties": {
+          "bkn_context": {
+            "description": "BKN Trace managed context. Copy both IDs from bkn_start_interaction.",
+            "properties": {
+              "conversation_id": {
+                "description": "conversation_id returned by bkn_start_interaction.",
+                "type": "string"
+              },
+              "interaction_id": {
+                "description": "interaction_id returned by bkn_start_interaction.",
+                "type": "string"
+              }
+            },
+            "required": [
+              "conversation_id",
+              "interaction_id"
+            ],
+            "type": "object"
+          },
+          "kn_id": {
+            "description": "\u5fc5\u586b\u3002\u77e5\u8bc6\u7f51\u7edc ID\u3002\u8c03\u7528\u8005\u987b\u6709\u8be5\u7f51\u7edc\u672c\u8eab\u7684\u67e5\u770b\u6743\u9650\uff1b\u8303\u56f4\u53d6\u81ea\u8be5\u7f51\u7edc\u5df2\u6302\u8f7d\u7684\u80fd\u529b\uff0c\u672a\u6302\u8f7d\u5219\u8fd4\u56de\u7a7a\u3002",
+            "type": "string"
+          },
+          "limit": {
+            "description": "\u53ef\u9009\u3002\u6700\u591a\u8fd4\u56de\u591a\u5c11\u6761\uff0c\u9ed8\u8ba4 20\uff0c\u4e0a\u9650 100\u3002\u5de5\u5177\u7c7b\u547d\u4e2d\u5e26\u5165\u53c2 schema\uff0c\u8c03\u5927\u4f1a\u663e\u8457\u5360\u7528\u4e0a\u4e0b\u6587\u3002",
+            "maximum": 100,
+            "minimum": 1,
+            "type": "integer"
+          },
+          "metadata_types": {
+            "description": "\u53ef\u9009\u3002\u4ec5\u5bf9\u51fd\u6570\u5de5\u5177\u751f\u6548\uff1aopenapi \u662f API \u5de5\u5177\uff0cfunction \u662f\u51fd\u6570\u5de5\u5177\u3002\u7559\u7a7a\u5373\u4e24\u8005\u90fd\u8981\u3002",
+            "items": {
+              "enum": [
+                "openapi",
+                "function"
+              ],
+              "type": "string"
+            },
+            "type": "array"
+          },
+          "query": {
+            "description": "\u53ef\u9009\u3002\u68c0\u7d22\u8bcd\uff0c\u5728\u8be5\u7f51\u7edc\u5df2\u6302\u8f7d\u7684\u80fd\u529b\u5185\u6309\u540d\u79f0\u4e0e\u8bf4\u660e\u6392\u5e8f\uff0c\u4e09\u7c7b\u540c\u573a\u7ade\u4e89\u3002\u7559\u7a7a\u5219\u5217\u51fa\u5168\u90e8\u5df2\u6302\u8f7d\u80fd\u529b\u3002",
+            "type": "string"
+          },
+          "response_format": {
+            "default": "toon",
+            "description": "\u6587\u672c\u683c\u5f0f\uff1ajson \u6216 toon\uff0c\u9ed8\u8ba4 toon",
+            "enum": [
+              "json",
+              "toon"
+            ],
+            "type": "string"
+          },
+          "types": {
+            "description": "\u53ef\u9009\u3002\u6536\u7a84\u5230\u67d0\u51e0\u7c7b\u80fd\u529b\u3002\u7559\u7a7a\u5373\u5168\u90e8\u4e09\u7c7b\u3002\u53ea\u80fd\u5728\u5df2\u6302\u8f7d\u8303\u56f4\u5185\u6536\u7a84\uff0c\u4e0d\u4f1a\u8d8a\u51fa\u3002",
+            "items": {
+              "enum": [
+                "skill",
+                "function",
+                "mcp_tool"
+              ],
+              "type": "string"
+            },
+            "type": "array"
+          }
+        },
+        "required": [
+          "kn_id"
+        ],
+        "type": "object"
+      },
+      "outputSchema": {
+        "type": "object",
+        "properties": {
+          "capabilities": {
+            "type": "array",
+            "description": "\u672c\u77e5\u8bc6\u7f51\u7edc\u5df2\u6302\u8f7d\u3001\u4e14\u5f53\u524d\u8d26\u6237\u53ef\u89c1\u7684\u80fd\u529b\uff0c\u6309\u76f8\u5173\u5ea6\u6df7\u6392",
+            "items": {
+              "type": "object",
+              "properties": {
+                "capability_type": {
+                  "type": "string",
+                  "enum": [
+                    "skill",
+                    "function",
+                    "mcp_tool"
+                  ],
+                  "description": "\u51b3\u5b9a\u4e0b\u4e00\u6b65\u600e\u4e48\u7528\uff1afunction / mcp_tool \u7528 execute_tool \u8c03\u7528\uff1bskill \u7528 get_skill_content \u8bfb\u53d6\u3001execute_skill \u6267\u884c"
+                },
+                "owner_id": {
+                  "type": "string",
+                  "description": "\u51fd\u6570\u5de5\u5177\u662f\u6240\u5c5e\u5de5\u5177\u7bb1 ID\uff0cMCP \u5de5\u5177\u662f MCP Server ID\uff0cSkill \u4e3a\u7a7a\u3002\u8c03 execute_tool \u65f6\u4f5c\u4e3a toolbox_id \u4f20\u5165"
+                },
+                "capability_id": {
+                  "type": "string",
+                  "description": "\u51fd\u6570\u5de5\u5177\u662f tool_id\uff0cMCP \u5de5\u5177\u662f\u5de5\u5177\u540d\uff0cSkill \u662f skill_id"
+                },
+                "metadata_type": {
+                  "type": "string",
+                  "description": "\u4ec5\u51fd\u6570\u5de5\u5177\u6709\uff1aopenapi \u8868\u793a API \u5de5\u5177\uff0cfunction \u8868\u793a\u51fd\u6570\u5de5\u5177"
+                },
+                "name": {
+                  "type": "string",
+                  "description": "\u80fd\u529b\u540d"
+                },
+                "description": {
+                  "type": "string",
+                  "description": "\u80fd\u529b\u8bf4\u660e"
+                },
+                "use_rule": {
+                  "type": "string",
+                  "description": "\u4f7f\u7528\u89c4\u5219\uff0c\u4ec5\u5de5\u5177\u7c7b\u6709"
+                },
+                "input_schema": {
+                  "type": "object",
+                  "description": "\u4e1a\u52a1\u5165\u53c2\u5951\u7ea6\uff0c\u4ec5\u5de5\u5177\u7c7b\u6709\uff1bexecute_tool \u7684 arguments \u6309\u5b83\u586b\u3002Skill \u4e0d\u5e26\uff0c\u5b83\u662f\u8bfb\u7684\u4e0d\u662f\u8c03\u7684"
+                },
+                "call": {
+                  "type": "object",
+                  "description": "\u4f7f\u7528\u8fd9\u9879\u80fd\u529b\u7684\u4e0b\u4e00\u6b21\u8c03\u7528\uff0cID \u5df2\u586b\u597d\uff1atool \u662f\u8981\u8c03\u7684\u5de5\u5177\uff0carguments \u662f\u5b83\u7684\u53c2\u6570\u3002\u51fd\u6570\u548c MCP \u5de5\u5177\u53ea\u9700\u6309 input_schema \u8865\u4e0a arguments.arguments\uff1bSkill \u76f4\u63a5\u8c03\u7528\u5373\u53ef\u8bfb\u53d6\u8bf4\u660e"
+                }
+              },
+              "additionalProperties": true
+            }
+          },
+          "total_matched": {
+            "type": "integer",
+            "description": "\u5339\u914d\u5230\u7684\u80fd\u529b\u603b\u6570\uff0c\u53ef\u80fd\u5927\u4e8e capabilities \u957f\u5ea6"
+          },
+          "truncated": {
+            "type": "boolean",
+            "description": "\u4e3a true \u8868\u793a\u547d\u4e2d\u6570\u8d85\u8fc7 limit\uff0c\u53ea\u8fd4\u56de\u4e86\u524d\u82e5\u5e72\u6761"
+          },
+          "message": {
+            "type": "string",
+            "description": "\u7a7a\u7ed3\u679c\u6216\u622a\u65ad\u8bf4\u660e\uff0c\u6309\u6210\u56e0\u7ed9\u8bdd"
+          }
+        }
+      }
+    },
+    "search_instance": {
+      "inputSchema": {
+        "properties": {
+          "bkn_context": {
+            "description": "BKN Trace managed context. Copy both IDs from bkn_start_interaction.",
+            "properties": {
+              "conversation_id": {
+                "description": "conversation_id returned by bkn_start_interaction.",
+                "type": "string"
+              },
+              "interaction_id": {
+                "description": "interaction_id returned by bkn_start_interaction.",
+                "type": "string"
+              }
+            },
+            "required": [
+              "conversation_id",
+              "interaction_id"
+            ],
+            "type": "object"
+          },
+          "concept_groups": {
+            "description": "\u9650\u5b9a\u53ec\u56de\u8303\u56f4\u5230\u6307\u5b9a\u7684 BKN \u6982\u5ff5\u5206\u7ec4\uff1b\u4e0d\u4f20\u5219\u5728\u6574\u4e2a\u77e5\u8bc6\u7f51\u7edc\u5185\u53ec\u56de\u3002",
+            "items": {
+              "type": "string"
+            },
+            "type": "array"
+          },
+          "exclude_object_types": {
+            "description": "\u4ece\u53ec\u56de\u8303\u56f4\u91cc\u6392\u9664\u8fd9\u51e0\u4e2a\u5bf9\u8c61\u7c7b\uff0c\u540c\u6837\u53ea\u53d6\u5bf9\u8c61\u7c7b id\u3002\u9002\u5408\u4e0a\u4e00\u8f6e\u8fd4\u56de\u91cc\u6df7\u8fdb\u4e86\u566a\u97f3\u5bf9\u8c61\u7c7b\u3001\u60f3\u91cd\u8dd1\u4e00\u6b21\u65f6\u7528\uff1b\u4e0e object_types \u540c\u65f6\u7ed9\u4e14\u6709\u91cd\u53e0\u65f6\uff0c\u4ee5\u6392\u9664\u4e3a\u51c6\u3002",
+            "items": {
+              "type": "string"
+            },
+            "type": "array"
+          },
+          "include_object_types": {
+            "default": true,
+            "description": "\u662f\u5426\u9644\u5e26\u547d\u4e2d\u5bf9\u8c61\u7c7b\u7684\u7cbe\u7b80\u5b9a\u4e49\uff08\u5c5e\u6027\u540d\u4e0e\u7c7b\u578b\uff09\uff0c\u9ed8\u8ba4\u9644\u5e26\u3002\u5173\u6389\u53ea\u5728\u4f60\u5df2\u7ecf\u62ff\u7740\u8fd9\u4e9b\u5bf9\u8c61\u7c7b\u7684 Schema \u65f6\u624d\u5212\u7b97\u2014\u2014\u5426\u5219\u8981\u8bfb\u61c2\u8fd4\u56de\u7684\u5b9e\u4f8b\u8fd8\u5f97\u518d\u8c03\u4e00\u6b21 get_object_types\u3002",
+            "type": "boolean"
+          },
+          "kn_id": {
+            "description": "\u77e5\u8bc6\u7f51\u7edc ID\uff0c\u6765\u81ea list_knowledge_networks \u6216 get_kn_detail\uff0c\u4e0d\u53ef\u51ed\u540d\u79f0\u731c\u6d4b\u3002",
+            "type": "string"
+          },
+          "max_instances_per_type": {
+            "default": 5,
+            "description": "\u6bcf\u4e2a\u5bf9\u8c61\u7c7b\u6700\u591a\u8fd4\u56de\u51e0\u6761\u5b9e\u4f8b\u3002",
+            "minimum": 1,
+            "type": "integer"
+          },
+          "max_object_types": {
+            "default": 10,
+            "description": "\u53c2\u4e0e\u5b9e\u4f8b\u53ec\u56de\u7684\u5bf9\u8c61\u7c7b\u6570\u91cf\u4e0a\u9650\u3002\u8c03\u5927\u80fd\u8986\u76d6\u66f4\u591a\u5bf9\u8c61\u7c7b\uff0c\u4ee3\u4ef7\u662f\u6bcf\u591a\u4e00\u4e2a\u5bf9\u8c61\u7c7b\u591a\u4e00\u8f6e\u4e0b\u6e38\u67e5\u8be2\u3002 \u8fd9\u662f**\u4e25\u683c\u4e0a\u9650**\uff1a\u6982\u5ff5\u53ec\u56de\u4e3a\u4fdd\u6301 Schema \u81ea\u6d3d\u4f1a\u591a\u5e26\u56de\u4e00\u4e9b\u5bf9\u8c61\u7c7b\uff08\u5173\u7cfb\u7aef\u70b9\u8865\u9f50\uff09\uff0c\u5b83\u4eec\u4ecd\u4f1a\u51fa\u73b0\u5728 object_types \u91cc\uff0c\u4f46\u4e0d\u4f1a\u88ab\u53d1\u8d77\u5b9e\u4f8b\u67e5\u8be2\u3002",
+            "minimum": 1,
+            "type": "integer"
+          },
+          "object_types": {
+            "description": "\u628a\u53ec\u56de\u8303\u56f4\u9489\u6b7b\u5728\u8fd9\u51e0\u4e2a\u5bf9\u8c61\u7c7b\u4e0a\uff0c\u53ea\u53d6\u5bf9\u8c61\u7c7b id\uff08\u4f8b\u5982 material\uff09\uff0c\u4e0d\u63a5\u53d7\u540d\u79f0\u3002id \u6765\u81ea search_schema \u54cd\u5e94\u7684 concept_id\u3001search_instance \u54cd\u5e94\u7684 object_type_id \u6216 get_kn_detail \u7684 object_types[].id\u3002\u4e0d\u4f20\u5219\u4e0d\u9650\u3002\u8fc7\u6ee4\u53d1\u751f\u5728\u76f8\u5173\u6027\u6392\u5e8f\u4e0e max_object_types \u622a\u65ad\u4e4b\u524d\uff0c\u56e0\u6b64\u70b9\u540d\u7684\u5bf9\u8c61\u7c7b\u4e0d\u4f1a\u56e0\u4e3a\u6392\u540d\u9760\u540e\u88ab\u6324\u6389\u3002",
+            "items": {
+              "type": "string"
+            },
+            "type": "array"
+          },
+          "query": {
+            "description": "\u81ea\u7136\u8bed\u8a00\u95ee\u9898\u6216\u5173\u952e\u8bcd\u3002\u6574\u53e5\u76f4\u63a5\u4f20\uff0c\u4e0d\u5fc5\u62c6\u6210\u5b57\u6bb5\u6761\u4ef6\u2014\u2014\u5411\u91cf\u901a\u9053\u5403\u6574\u53e5\uff0c\u5168\u6587\u901a\u9053\u7531\u5206\u6790\u5668\u5206\u8bcd\u3002",
+            "type": "string"
+          },
+          "rerank": {
+            "default": false,
+            "description": "\u662f\u5426\u5bf9\u53ec\u56de\u7ed3\u679c\u505a\u8bed\u4e49\u7cbe\u6392\u3002\u9ed8\u8ba4\u5173\u3002\u5f00\u542f\u540e\u7531 cross-encoder \u9010\u6761\u5224\u65ad query \u4e0e\u5b9e\u4f8b\u7684\u76f8\u5173\u6027\u5e76**\u91cd\u6392\u8fd4\u56de\u987a\u5e8f**\u2014\u2014\u5b83\u80fd\u5206\u8fa8\u300c\u6b20\u6b3e\u300d\u4e0e\u300c\u8fd8\u6b3e\u300d\u8fd9\u7c7b\u540d\u6b21\u878d\u5408\u5206\u4e0d\u51fa\u7684\u5dee\u5f02\u3002\u4ee3\u4ef7\u662f\u591a\u4e00\u6b21\u6a21\u578b\u8c03\u7528\uff08\u7ea6 100~400ms\uff09\uff0c\u4e14\u8981\u6c42\u90e8\u7f72\u91cc\u6ce8\u518c\u4e86\u7cbe\u6392\u5c0f\u6a21\u578b\uff1b\u6a21\u578b\u4e0d\u53ef\u7528\u65f6\u81ea\u52a8\u9000\u56de\u539f\u987a\u5e8f\uff0c\u4e0d\u62a5\u9519\u3002\u8981\u7cbe\u5ea6\u5c31\u5f00\uff0c\u8981\u5feb\u5c31\u522b\u5f00\u3002",
+            "type": "boolean"
+          },
+          "response_format": {
+            "default": "toon",
+            "description": "\u6587\u672c\u683c\u5f0f\uff1ajson \u6216 toon\uff0c\u9ed8\u8ba4 toon",
+            "enum": [
+              "json",
+              "toon"
+            ],
+            "type": "string"
+          }
+        },
+        "required": [
+          "kn_id",
+          "query"
+        ],
+        "type": "object"
+      },
+      "outputSchema": {
+        "type": "object",
+        "properties": {
+          "nodes": {
+            "type": "array",
+            "description": "\u547d\u4e2d\u7684\u5b9e\u4f8b\uff0c**\u6309\u76f8\u5173\u6027\u5168\u5c40\u964d\u5e8f**\u6392\u5217\uff0c\u8de8\u5bf9\u8c61\u7c7b\u7edf\u4e00\u6392\u5e8f\uff0c\u4e0d\u518d\u6309\u5bf9\u8c61\u7c7b\u5206\u7ec4\u3002\u6d88\u8d39\u65f6\u8bf7\u6309\u8fd4\u56de\u987a\u5e8f\uff08\u6216 rank \u5b57\u6bb5\uff09\uff1b\u5404\u4e2a\u5206\u6570\u5b57\u6bb5\u662f\u89e3\u91ca\u8fd9\u4e2a\u987a\u5e8f\u7684\u8bc1\u636e\uff0c\u91cf\u7eb2\u5f7c\u6b64\u4e0d\u540c\uff0c\u4e0d\u8981\u62ff\u6765\u81ea\u884c\u91cd\u6392\u3002",
+            "items": {
+              "type": "object",
+              "properties": {
+                "object_type_id": {
+                  "type": "string",
+                  "description": "\u8be5\u5b9e\u4f8b\u6240\u5c5e\u5bf9\u8c61\u7c7b ID\uff0c\u53ef\u76f4\u63a5\u5582\u7ed9 get_object_types / query_object_instance\u3002"
+                },
+                "object_type_name": {
+                  "type": "string"
+                },
+                "properties": {
+                  "type": "object",
+                  "additionalProperties": true,
+                  "description": "\u5b9e\u4f8b\u5c5e\u6027\u3002\u5b57\u6bb5\u542b\u4e49\u89c1 search_schema / get_object_types \u8fd4\u56de\u7684\u5bf9\u8c61\u7c7b\u5b9a\u4e49\u3002"
+                },
+                "rank": {
+                  "type": "integer",
+                  "description": "\u672c\u6761\u5728\u8fd4\u56de\u5217\u8868\u4e2d\u7684\u4f4d\u6b21\uff0c\u4ece 1 \u5f00\u59cb\u3002**\u6392\u5e8f\u8bf7\u53ea\u6309 rank**\uff1a\u54ea\u4e00\u4e2a\u5206\u6570\u51b3\u5b9a\u4e86\u8fd9\u4e2a\u4f4d\u6b21\u53d6\u51b3\u4e8e\u8bf7\u6c42\uff08\u878d\u5408\u5206\uff0c\u6216\u8005\u7cbe\u6392\u5f00\u542f\u65f6\u7684\u6a21\u578b\u5206\uff09\uff0c\u6309\u4efb\u4f55\u5355\u4e00\u5206\u6570\u5b57\u6bb5\u81ea\u884c\u91cd\u6392\u90fd\u53ef\u80fd\u5f97\u5230\u4e0e\u670d\u52a1\u7aef\u4e0d\u540c\u7684\u987a\u5e8f\u3002"
+                },
+                "score": {
+                  "type": "number",
+                  "description": "\u76f8\u5173\u6027\u5206\uff0c\u4e5f\u662f\u9ed8\u8ba4\u6392\u5e8f\u4f9d\u636e\u3002\u7d22\u5f15\u53ec\u56de\u8def\u5f84\u4e0a\u5b83\u662f RRF \u878d\u5408\u7684\u540d\u6b21\u5206\uff1a\u300c\u67d0\u4e00\u8def\u6392\u7b2c\u4e00\u300d=1.0\uff0c\u300c\u4e24\u8def\u90fd\u7b2c\u4e00\u300d=2.0\uff0c\u8868\u8fbe\u4e24\u6761\u53ec\u56de\u901a\u9053\u7684\u4e00\u81f4\u7a0b\u5ea6\uff0c**\u4e0d\u662f\u7edd\u5bf9\u76f8\u5173\u5ea6**\u2014\u2014\u67d0\u901a\u9053\u7684\u7b2c\u4e00\u540d\u6052\u5f97 1.0\uff0c\u54ea\u6015\u6574\u4e2a\u5bf9\u8c61\u7c7b\u90fd\u4e0e query \u65e0\u5173\u3002\u6240\u6709\u901a\u9053\u90fd\u62ff\u4e0d\u5230\u7d22\u5f15\u5206\u65f6\u6539\u8d70\u672c\u5730\u515c\u5e95\u6863\u4f4d\uff080/0.3/0.5/0.85\uff09\uff0c\u6b64\u65f6\u540c\u65f6\u5e26 heuristic_score \u4f5c\u6807\u8bb0\uff0c\u4e24\u79cd\u523b\u5ea6\u4e0d\u53ef\u4e92\u76f8\u6bd4\u8f83\u3002 \u8fd0\u7ef4\u9003\u751f\u6863 enable_rrf_fusion=false \u4e0b\u4e0d\u505a\u878d\u5408\uff0cscore \u662f OpenSearch \u539f\u59cb\u7d22\u5f15\u5206\uff08\u65e0\u4e0a\u754c\uff09\uff1a\u8be5\u5bf9\u8c61\u7c7b\u6ca1\u6709\u5411\u91cf\u5b57\u6bb5\u65f6\u5b83\u5c31\u662f\u7eaf BM25\uff0c\u4f1a\u540c\u65f6\u5199\u8fdb bm25_score\uff1b\u4e24\u7c7b\u7b97\u5b50\u8fdb\u4e86\u540c\u4e00\u6761\u67e5\u8be2\u65f6\u5b83\u662f\u4e24\u79cd\u91cf\u7eb2\u76f8\u52a0\uff0c\u5f52\u4e0d\u5230\u4efb\u4f55\u4e00\u8def\uff0c\u6b64\u65f6 bm25_score \u4e0e knn_score \u90fd\u4e0d\u51fa\u73b0\u2014\u2014\u8fd9\u6b63\u662f\u8be5\u6863\u53ea\u4f5c\u9003\u751f\u7528\u7684\u539f\u56e0\u4e4b\u4e00\u3002"
+                },
+                "bm25_score": {
+                  "type": "number",
+                  "description": "\u5168\u6587\u901a\u9053\u7684\u539f\u59cb OpenSearch `_score`\uff08BM25\uff09\u3002**\u65e0\u4e0a\u754c**\uff0c\u4e14\u968f\u8bed\u6599\u89c4\u6a21\u3001\u6587\u6863\u957f\u5ea6\u3001query \u957f\u5ea6\u6f02\u79fb\uff0c\u53ea\u80fd\u7528\u4e8e\u89e3\u8bfb\u5355\u6b21\u7ed3\u679c\uff0c\u4e0d\u80fd\u8de8 query\u3001\u8de8\u77e5\u8bc6\u7f51\u7edc\u6bd4\u8f83\uff0c\u4e5f\u4e0d\u80fd\u5f53\u76f8\u5173\u6027\u9608\u503c\u3002"
+                },
+                "knn_score": {
+                  "type": "number",
+                  "description": "\u5411\u91cf\u901a\u9053\u7684\u76f8\u4f3c\u5ea6\uff0c\u540c\u4e00 embedding \u6a21\u578b\u4e0b\u53d6\u503c 0~1\u3002\u5b83\u662f\u552f\u4e00\u4e00\u4e2a\u8de8 query \u5927\u81f4\u53ef\u6bd4\u7684\u539f\u59cb\u5206\u3002"
+                },
+                "reranker_score": {
+                  "type": "number",
+                  "description": "cross-encoder \u7cbe\u6392\u6a21\u578b\u7ed9\u51fa\u7684\u76f8\u5173\u5ea6\uff0c0~1\u3002\u4ec5\u5f53\u7cbe\u6392\u771f\u7684\u8dd1\u8fc7\u5e76\u7ed9\u8fd9\u4e00\u6761\u6253\u4e86\u5206\u65f6\u624d\u51fa\u73b0\u2014\u2014\u7cbe\u6392\u7a97\u53e3\uff08\u9ed8\u8ba4\u524d 50 \u6761\uff09\u4e4b\u5916\u7684\u884c\u4fdd\u6301\u878d\u5408\u5e8f\u3001\u4e0d\u5e26\u6b64\u5b57\u6bb5\u3002**\u8fd9\u4e2a\u5b57\u6bb5\u662f\u5426\u5b58\u5728\uff0c\u4e5f\u662f\u5224\u65ad\u300c\u7cbe\u6392\u751f\u6548\u300d\u8fd8\u662f\u300c\u6a21\u578b\u4e0d\u53ef\u7528\u9759\u9ed8\u9000\u56de\u878d\u5408\u5e8f\u300d\u7684\u552f\u4e00\u4f9d\u636e\u3002**"
+                },
+                "heuristic_score": {
+                  "type": "number",
+                  "description": "\u672c\u5730\u515c\u5e95\u6253\u5206\uff080/0.3/0.5/0.85 \u6863\uff09\uff0c\u4ec5\u5728\u6240\u6709\u901a\u9053\u90fd\u6ca1\u62ff\u5230\u7d22\u5f15 `_score`\u3001\u540d\u6b21\u65e0\u610f\u4e49\u65f6\u51fa\u73b0\u3002\u51fa\u73b0\u65f6 score \u643a\u5e26\u7684\u5c31\u662f\u8fd9\u4e2a\u6863\u4f4d\u5206\uff0c\u4e0e\u878d\u5408\u5206\u4e0d\u5171\u4eab\u523b\u5ea6\uff0c\u4e0d\u8981\u4e92\u76f8\u6bd4\u8f83\u3002"
+                }
+              },
+              "additionalProperties": true
+            }
+          },
+          "object_types": {
+            "type": "array",
+            "description": "\u8bfb\u61c2 nodes \u6240\u9700\u7684\u5bf9\u8c61\u7c7b\u7cbe\u7b80\u5b9a\u4e49\uff0c**\u53ea\u542b\u771f\u6b63\u51fa\u4e86\u5b9e\u4f8b\u7684\u90a3\u4e9b\u5bf9\u8c61\u7c7b**\uff0c\u4e0d\u662f\u53ec\u56de\u626b\u8fc7\u7684\u5168\u90e8\u3002include_object_types=false \u65f6\u4e0d\u8fd4\u56de\u3002",
+            "items": {
+              "type": "object",
+              "properties": {
+                "concept_id": {
+                  "type": "string",
+                  "description": "\u5bf9\u8c61\u7c7b / \u5173\u7cfb\u7c7b ID\u3002\u6ce8\u610f\u672c\u5de5\u5177\u7684 action_types \u7528\u7684\u662f id \u800c\u975e concept_id\u3002"
+                },
+                "concept_name": {
+                  "type": "string",
+                  "description": "\u540d\u79f0\u3002\u540c\u4e0a\uff0caction_types \u90a3\u4e00\u9879\u53eb name\u3002"
+                },
+                "comment": {
+                  "type": "string",
+                  "description": "\u8bf4\u660e\u6587\u5b57\uff0c\u901a\u5e38\u542b\u8be5\u7c7b\u7684\u5c5e\u6027\u8868\u3002"
+                },
+                "data_source": {
+                  "type": "object",
+                  "additionalProperties": true,
+                  "description": "\u7ed1\u5b9a\u7684\u6570\u636e\u8d44\u6e90 {type, id, name}\u3002"
+                },
+                "data_properties": {
+                  "type": "array",
+                  "items": {
+                    "type": "object",
+                    "additionalProperties": true
+                  },
+                  "description": "\u6570\u636e\u5c5e\u6027 [{name, type, indexed}]\uff1bindexed=true \u8868\u793a\u8be5\u5c5e\u6027\u652f\u6301\u6240\u5728\u5bf9\u8c61\u7c7b index_operations \u91cc\u7684\u7b97\u5b50\uff08match / knn \u7b49\uff09\uff1b\u80fd\u529b\u4e0e\u5bf9\u8c61\u7c7b\u4e0d\u540c\u7684\u5c5e\u6027\u81ea\u5e26 condition_operations\uff1b\u4e24\u8005\u90fd\u6ca1\u6709\u7684\u5c5e\u6027\u6ca1\u5efa\u7d22\u5f15\uff0c\u4e0d\u80fd\u7528 match / knn \u8fc7\u6ee4\u3002"
+                },
+                "index_operations": {
+                  "type": "array",
+                  "items": {
+                    "type": "string"
+                  },
+                  "description": "\u8be5\u5bf9\u8c61\u7c7b\u4e0b\u5e26 indexed=true \u7684\u5c5e\u6027\u5171\u540c\u652f\u6301\u7684\u7d22\u5f15\u7b97\u5b50\uff08match / multi_match / knn\uff09\u3002\u5217\u5728\u5bf9\u8c61\u7c7b\u4e0a\u662f\u4e3a\u4e86\u4e0d\u5728\u6bcf\u4e2a\u5c5e\u6027\u4e0a\u91cd\u590d\u540c\u4e00\u4efd\u5217\u8868\u3002"
+                },
+                "effective_permissions": {
+                  "type": "object",
+                  "additionalProperties": {
+                    "type": "string",
+                    "enum": [
+                      "schema",
+                      "masked",
+                      "full"
+                    ]
+                  },
+                  "description": "\u5f53\u524d\u8d26\u6237\u5bf9\u5404\u5c5e\u6027\u7684\u6709\u6548\u6743\u9650\uff1afull \u53ef\u8bfb\u539f\u503c\uff0cmasked \u8bfb\u5230\u8131\u654f\u503c\uff0cschema \u53ea\u89c1\u5b57\u6bb5\u4e0d\u89c1\u503c\u3002\u6240\u6709\u5c5e\u6027\u90fd\u662f full \u65f6\u7701\u7565\u6b64\u5b57\u6bb5\uff1b\u53ea\u8981\u6709\u4e00\u4e2a\u53d7\u9650\u5c5e\u6027\u5c31\u5b8c\u6574\u5217\u51fa\u3002"
+                }
+              },
+              "additionalProperties": true
+            }
+          },
+          "message": {
+            "type": "string",
+            "description": "\u68c0\u7d22\u5c42\u7684\u8bf4\u660e\uff0c\u4e24\u79cd\u60c5\u51b5\u4e0b\u51fa\u73b0\uff1a\u2460 \u6ca1\u6709\u547d\u4e2d\u65f6\uff0c\u8bf4\u660e\u4e3a\u4ec0\u4e48\u662f\u7a7a\u7684\uff1b\u2461 **\u6709\u7ed3\u679c\u3001\u4f46\u8fd9\u4e9b\u7ed3\u679c\u672c\u8eab\u9700\u8981\u8bf4\u660e**\u65f6\u2014\u2014\u4f8b\u5982\u90e8\u7f72\u914d\u7f6e\u4e86\u76f8\u5173\u6027\u9608\u503c\uff0c\u5374\u56e0\u7cbe\u6392\u6a21\u578b\u4e0d\u53ef\u7528\u800c\u6ca1\u80fd\u6267\u884c\uff0c\u6b64\u65f6\u4e0b\u9762\u7684\u5b9e\u4f8b\u662f\u672a\u7ecf\u76f8\u5173\u6027\u8fc7\u6ee4\u7684\u53ec\u56de\u7ed3\u679c\u3002**\u62ff\u5230\u975e\u7a7a nodes \u4e5f\u8981\u8bfb\u8fd9\u4e2a\u5b57\u6bb5**\uff0c\u5b83\u533a\u5206\u300c\u7b5b\u8fc7\u7684\u7ed3\u679c\u300d\u548c\u300c\u6ca1\u7b5b\u6210\u7684\u7ed3\u679c\u300d\u3002"
+          },
+          "permission_guidance": {
+            "type": "array",
+            "description": "\u6743\u9650\u8bf4\u660e\u5217\u8868\u3002\u4ec5\u5f53\u547d\u4e2d\u5bf9\u8c61\u7c7b\u7684\u5b9e\u4f8b\u5c5e\u6027\u5305\u542b\u8131\u654f\u503c\u6216\u53ea\u8fd4\u56de\u5b57\u6bb5\u7ed3\u6784\u65f6\u51fa\u73b0\uff1b\u6bcf\u4e2a\u53d7\u5f71\u54cd\u5bf9\u8c61\u7c7b\u4e00\u9879\u3002\u9010\u9879\u628a message \u544a\u8bc9\u7528\u6237\uff0c\u5e76\u63d0\u4f9b\u5bf9\u5e94\u7533\u8bf7\u94fe\u63a5\u3002",
+            "items": {
+              "type": "object",
+              "properties": {
+                "message": {
+                  "type": "string"
+                },
+                "resource": {
+                  "type": "object",
+                  "properties": {
+                    "type": {
+                      "type": "string"
+                    },
+                    "id": {
+                      "type": "string"
+                    },
+                    "kn_id": {
+                      "type": "string"
+                    },
+                    "ot_id": {
+                      "type": "string"
+                    },
+                    "name": {
+                      "type": "string"
+                    }
+                  }
+                },
+                "shortfalls": {
+                  "type": "array",
+                  "items": {
+                    "type": "object",
+                    "properties": {
+                      "scope": {
+                        "type": "string",
+                        "enum": [
+                          "grant",
+                          "row_filter",
+                          "property_grants"
+                        ]
+                      },
+                      "operations": {
+                        "type": "array",
+                        "items": {
+                          "type": "string"
+                        }
+                      },
+                      "properties": {
+                        "type": "array",
+                        "items": {
+                          "type": "string"
+                        }
+                      },
+                      "request_permission_url": {
+                        "type": "string"
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        },
+        "required": [
+          "nodes"
+        ]
+      }
+    },
+    "search_schema": {
+      "inputSchema": {
+        "properties": {
+          "bkn_context": {
+            "description": "BKN Trace managed context. Copy both IDs from bkn_start_interaction.",
+            "properties": {
+              "conversation_id": {
+                "description": "conversation_id returned by bkn_start_interaction.",
+                "type": "string"
+              },
+              "interaction_id": {
+                "description": "interaction_id returned by bkn_start_interaction.",
+                "type": "string"
+              }
+            },
+            "required": [
+              "conversation_id",
+              "interaction_id"
+            ],
+            "type": "object"
+          },
+          "enable_rerank": {
+            "default": true,
+            "description": "\u662f\u5426\u5bf9\u5173\u7cfb\u7c7b\u578b\u542f\u7528 Rerank",
+            "type": "boolean"
+          },
+          "include_columns": {
+            "default": false,
+            "description": "\u662f\u5426\u5728\u6bcf\u4e2a\u5bf9\u8c61\u7c7b\u7684 data_property \u4e0a\u989d\u5916\u8fd4\u56de\u7269\u7406\u5217\u540d column\uff08\u53d6\u81ea mapped_field\uff09\u3002\u76f4\u63a5\u8bbf\u95ee\u5e95\u5c42\u6570\u636e\u8d44\u6e90\u65f6\u5217\u540d\u8981\u7528 column\uff08\u7269\u7406\u5217\uff09\uff0c\u800c\u975e name\uff08\u903b\u8f91\u540d\uff09\u2014\u2014\u4e8c\u8005\u53ef\u4e0d\u540c\uff0c\u4e14\u540c\u4e00\u8d44\u6e90\u53ef\u88ab\u591a\u4e2a\u5bf9\u8c61\u7c7b\u7528\u4e0d\u540c\u903b\u8f91\u540d\u6620\u5c04\u3002\u9ed8\u8ba4 false \u4ee5\u4fdd\u6301\u54cd\u5e94\u7cbe\u7b80\u3002",
+            "type": "boolean"
+          },
+          "kn_id": {
+            "description": "\u77e5\u8bc6\u7f51\u7edc ID\uff0c\u6765\u81ea list_knowledge_networks \u6216 get_kn_detail\uff0c\u4e0d\u53ef\u51ed\u540d\u79f0\u731c\u6d4b\u3002",
+            "type": "string"
+          },
+          "max_concepts": {
+            "default": 10,
+            "description": "Schema \u5019\u9009\u89c4\u6a21\u4e0a\u9650",
+            "minimum": 1,
+            "type": "integer"
+          },
+          "query": {
+            "description": "\u7528\u6237\u67e5\u8be2\u95ee\u9898\u6216\u5173\u952e\u8bcd\uff0c\u591a\u4e2a\u5173\u952e\u8bcd\u4e4b\u95f4\u7528\u7a7a\u683c\u9694\u5f00",
+            "type": "string"
+          },
+          "response_format": {
+            "default": "toon",
+            "description": "\u6587\u672c\u683c\u5f0f\uff1ajson \u6216 toon\uff0c\u9ed8\u8ba4 toon",
+            "enum": [
+              "json",
+              "toon"
+            ],
+            "type": "string"
+          },
+          "schema_brief": {
+            "default": true,
+            "description": "\u662f\u5426\u8fd4\u56de\u7cbe\u7b80 Schema\uff08MCP \u9ed8\u8ba4 true\uff09\u3002\u7cbe\u7b80\u7248\u4fdd\u7559\u5199\u67e5\u8be2\u6240\u9700\u7684 data_source.id \u4e0e\u5c5e\u6027 name/type\uff0c\u7701\u53bb\u5c5e\u6027 comment\u3001\u4e3b\u952e\u3001\u6807\u7b7e\uff0c\u4f53\u79ef\u7ea6\u7701 70%\uff1b\u9700\u8981\u5c5e\u6027\u5907\u6ce8\u3001\u4e3b\u952e\u6216\u6807\u7b7e\u65f6\u663e\u5f0f\u4f20 false\u3002\u6ce8\u610f\uff1acondition_operations \u4e0d\u53d7\u672c\u5f00\u5173\u5f71\u54cd\u2014\u2014MCP \u9762\u4e24\u79cd\u6a21\u5f0f\u4e0b\u90fd\u53ea\u5217**\u7d22\u5f15\u5e26\u6765\u7684**\u7b97\u5b50\uff08match / multi_match / knn\uff0c\u53d6\u51b3\u4e8e\u8be5\u5b57\u6bb5\u5efa\u6ca1\u5efa\u5168\u6587/\u5411\u91cf\u7d22\u5f15\uff0c\u4ece\u5c5e\u6027\u7c7b\u578b\u63a8\u4e0d\u51fa\u6765\uff09\uff0c\u540c\u4e00\u4efd\u5217\u8868\u4e0d\u5728\u6bcf\u4e2a\u5c5e\u6027\u4e0a\u91cd\u590d\uff1a\u5171\u7528\u5b83\u7684\u5c5e\u6027\u5e26 indexed=true\uff0c\u5bf9\u8c61\u7c7b\u4e0a\u53ea\u7ed9\u4e00\u6b21 index_operations\uff1b\u80fd\u529b\u4e0d\u540c\u7684\u5c5e\u6027\u624d\u81ea\u5e26 condition_operations\uff1b\u4e24\u8005\u90fd\u6ca1\u6709\u7684\u5b57\u6bb5\u6ca1\u5efa\u7d22\u5f15\u3002\u6bd4\u8f83\u7b97\u5b50\uff08==\u3001!=\u3001in\u3001like\u3001range \u7b49\uff09\u6309\u5c5e\u6027 type \u81ea\u884c\u5224\u65ad\uff0c\u670d\u52a1\u7aef\u4e0d\u4e0b\u53d1\uff0c\u8be6\u89c1 query_object_instance \u7684 condition \u8bf4\u660e\u3002",
+            "type": "boolean"
+          },
+          "search_scope": {
+            "description": "Schema \u63a2\u7d22\u8303\u56f4\u3002\u81f3\u5c11\u9700\u8981\u5f00\u542f\u4e00\u79cd\u6982\u5ff5\u7c7b\u578b\uff1b\u4e0d\u4f20\u65f6\u9ed8\u8ba4\u56db\u7c7b\u5168\u5f00\u3002concept_groups \u7528\u4e8e\u6309 BKN \u6982\u5ff5\u5206\u7ec4\u9650\u5b9a Schema \u53ec\u56de\u8303\u56f4\u3002",
+            "properties": {
+              "concept_groups": {
+                "description": "BKN \u6982\u5ff5\u5206\u7ec4 ID \u5217\u8868\uff0c\u7528\u4e8e\u9650\u5b9a\u5bf9\u8c61\u7c7b\u3001\u5173\u7cfb\u7c7b\u3001\u52a8\u4f5c\u7c7b\u548c\u6307\u6807\u7c7b\u7684 Schema \u53ec\u56de\u8303\u56f4\uff1b\u4e0d\u4f20\u6216\u4e3a\u7a7a\u8868\u793a\u4e0d\u9650\u5b9a\u5206\u7ec4\u3002\u5206\u7ec4\u8bed\u4e49\u7531 BKN \u5b8c\u6210\uff08ContextLoader \u76f4\u63a5\u8c03\u7528 BKN \u5206\u7ec4\u641c\u7d22\u63a5\u53e3\u5e76\u628a\u5217\u8868\u900f\u4f20\u4e0b\u53bb\uff09\u3002\u5f53\u4f20\u5165\u7684\u5206\u7ec4\u5728\u8be5\u77e5\u8bc6\u7f51\u7edc\u4e2d\u4e0d\u5b58\u5728\u65f6\uff0cBKN \u5f53\u524d\u4f1a\u8fd4\u56de 5xx \u9519\u8bef\uff08\u5982 'BknBackend.ObjectType.InternalError' \u542b 'all concept group not found ...'\uff09\uff0c\u672c\u5de5\u5177\u4f1a\u76f4\u63a5\u5411\u4e0a\u900f\u4f20\u8be5\u9519\u8bef\u800c\u4e0d\u662f\u8fd4\u56de\u7a7a\u7ed3\u679c\uff0c\u8c03\u7528\u65b9\u636e\u6b64\u533a\u5206'\u5206\u7ec4\u4e0d\u5b58\u5728'\u4e0e'\u5206\u7ec4\u5408\u6cd5\u4f46\u8303\u56f4\u5185\u65e0\u6982\u5ff5'\u3002",
+                "items": {
+                  "type": "string"
+                },
+                "type": "array"
+              },
+              "include_action_types": {
+                "default": true,
+                "description": "\u662f\u5426\u8fd4\u56de\u52a8\u4f5c\u7c7b",
+                "type": "boolean"
+              },
+              "include_metric_types": {
+                "default": true,
+                "description": "\u662f\u5426\u8fd4\u56de\u6307\u6807\u7c7b",
+                "type": "boolean"
+              },
+              "include_object_types": {
+                "default": true,
+                "description": "\u662f\u5426\u8fd4\u56de\u5bf9\u8c61\u7c7b",
+                "type": "boolean"
+              },
+              "include_relation_types": {
+                "default": true,
+                "description": "\u662f\u5426\u8fd4\u56de\u5173\u7cfb\u7c7b",
+                "type": "boolean"
+              }
+            },
+            "type": "object"
+          }
+        },
+        "required": [
+          "kn_id",
+          "query"
+        ],
+        "type": "object"
+      },
+      "outputSchema": {
+        "type": "object",
+        "properties": {
+          "object_types": {
+            "type": "array",
+            "description": "\u5bf9\u8c61\u7c7b\u578b\u5217\u8868",
+            "items": {
+              "type": "object",
+              "properties": {
+                "concept_id": {
+                  "type": "string",
+                  "description": "\u5bf9\u8c61\u7c7b / \u5173\u7cfb\u7c7b ID\u3002\u6ce8\u610f\u672c\u5de5\u5177\u7684 action_types \u7528\u7684\u662f id \u800c\u975e concept_id\u3002"
+                },
+                "concept_name": {
+                  "type": "string",
+                  "description": "\u540d\u79f0\u3002\u540c\u4e0a\uff0caction_types \u90a3\u4e00\u9879\u53eb name\u3002"
+                },
+                "comment": {
+                  "type": "string",
+                  "description": "\u8bf4\u660e\u6587\u5b57\uff0c\u901a\u5e38\u542b\u8be5\u7c7b\u7684\u5c5e\u6027\u8868\u3002"
+                },
+                "data_source": {
+                  "type": "object",
+                  "additionalProperties": true,
+                  "description": "\u7ed1\u5b9a\u7684\u6570\u636e\u8d44\u6e90 {type, id, name}\u3002"
+                },
+                "data_properties": {
+                  "type": "array",
+                  "items": {
+                    "type": "object",
+                    "additionalProperties": true
+                  },
+                  "description": "\u6570\u636e\u5c5e\u6027 [{name, type, indexed}]\uff1bindexed=true \u8868\u793a\u8be5\u5c5e\u6027\u652f\u6301\u6240\u5728\u5bf9\u8c61\u7c7b index_operations \u91cc\u7684\u7b97\u5b50\uff08match / knn \u7b49\uff09\uff1b\u80fd\u529b\u4e0e\u5bf9\u8c61\u7c7b\u4e0d\u540c\u7684\u5c5e\u6027\u81ea\u5e26 condition_operations\uff1b\u4e24\u8005\u90fd\u6ca1\u6709\u7684\u5c5e\u6027\u6ca1\u5efa\u7d22\u5f15\uff0c\u4e0d\u80fd\u7528 match / knn \u8fc7\u6ee4\u3002"
+                },
+                "index_operations": {
+                  "type": "array",
+                  "items": {
+                    "type": "string"
+                  },
+                  "description": "\u8be5\u5bf9\u8c61\u7c7b\u4e0b\u5e26 indexed=true \u7684\u5c5e\u6027\u5171\u540c\u652f\u6301\u7684\u7d22\u5f15\u7b97\u5b50\uff08match / multi_match / knn\uff09\u3002\u5217\u5728\u5bf9\u8c61\u7c7b\u4e0a\u662f\u4e3a\u4e86\u4e0d\u5728\u6bcf\u4e2a\u5c5e\u6027\u4e0a\u91cd\u590d\u540c\u4e00\u4efd\u5217\u8868\u3002"
+                },
+                "logic_properties": {
+                  "type": "array",
+                  "items": {
+                    "type": "object",
+                    "properties": {
+                      "name": {
+                        "type": "string",
+                        "description": "\u903b\u8f91\u5c5e\u6027\u540d\u3002\u8c03\u7528 get_logic_properties_values \u65f6\u6309\u6b64\u540d\u586b properties"
+                      },
+                      "type": {
+                        "type": "string",
+                        "description": "metric\uff08\u5df2\u5efa\u6a21\u6307\u6807\uff09\u6216 tool\uff08\u6302\u8f7d\u5de5\u5177\uff09"
+                      },
+                      "data_source": {
+                        "type": "object",
+                        "additionalProperties": true,
+                        "description": "\u53d6\u6570\u6765\u6e90\uff1btool \u7c7b\u578b\u542b box_id / tool_id"
+                      },
+                      "parameters": {
+                        "type": "array",
+                        "items": {
+                          "type": "object",
+                          "additionalProperties": true
+                        },
+                        "description": "\u53c2\u6570\u5b9a\u4e49\u3002value_from=property \u7531\u670d\u52a1\u7aef\u6309\u8be5\u5b9e\u4f8b\u7684\u8fd9\u4e00\u5217\u53d6\u503c\uff0c\u8c03\u7528\u65b9\u4e0d\u586b\uff1bconst \u4e3a\u5efa\u6a21\u65f6\u56fa\u5b9a\u7684\u503c\uff1binput \u9700\u8981\u5916\u90e8\u7ed9\u51fa\uff0c\u5176\u4e2d if_system_generate=true \u7684\uff08instant/start/end/step \u7b49\u65f6\u95f4\u7a97\u53c2\u6570\uff09\u7531\u670d\u52a1\u7aef\u751f\u6210\uff0c\u5176\u4f59\uff08\u5982\u4e1a\u52a1\u53e3\u5f84\u7684\u7b5b\u9009\u9879\uff09\u76ee\u524d\u7531\u670d\u52a1\u7aef\u6a21\u578b\u4ece query \u63a8\u65ad\u3002"
+                      }
+                    },
+                    "additionalProperties": true
+                  },
+                  "description": "\u903b\u8f91\u5c5e\u6027\u5b9a\u4e49 [{name, type, data_source, parameters}]\u3002\u503c\u8981\u7528 get_logic_properties_values \u53d6\uff0c\u672c\u63a5\u53e3\u53ea\u7ed9\u5b9a\u4e49"
+                },
+                "effective_permissions": {
+                  "type": "object",
+                  "additionalProperties": {
+                    "type": "string",
+                    "enum": [
+                      "schema",
+                      "masked",
+                      "full"
+                    ]
+                  },
+                  "description": "\u5f53\u524d\u8d26\u6237\u5bf9\u5404\u5c5e\u6027\u7684\u6709\u6548\u6743\u9650\uff1afull \u53ef\u8bfb\u539f\u503c\uff0cmasked \u8bfb\u5230\u8131\u654f\u503c\uff0cschema \u53ea\u89c1\u5b57\u6bb5\u4e0d\u89c1\u503c\u3002\u6240\u6709\u5c5e\u6027\u90fd\u662f full \u65f6\u7701\u7565\u6b64\u5b57\u6bb5\uff1b\u53ea\u8981\u6709\u4e00\u4e2a\u53d7\u9650\u5c5e\u6027\u5c31\u5b8c\u6574\u5217\u51fa\u3002"
+                }
+              },
+              "additionalProperties": true
+            }
+          },
+          "relation_types": {
+            "type": "array",
+            "description": "\u5173\u7cfb\u7c7b\u578b\u5217\u8868",
+            "items": {
+              "type": "object",
+              "properties": {
+                "concept_id": {
+                  "type": "string",
+                  "description": "\u5173\u7cfb\u7c7b ID"
+                },
+                "concept_name": {
+                  "type": "string",
+                  "description": "\u5173\u7cfb\u540d"
+                },
+                "comment": {
+                  "type": "string",
+                  "description": "\u5173\u7cfb\u8bed\u4e49\u8bf4\u660e\u3002\u4e24\u4e2a\u5bf9\u8c61\u7c7b id \u8bf4\u4e0d\u51fa\u8fd9\u6761\u5173\u7cfb\u662f\u4ec0\u4e48\u610f\u601d\uff0c\u5224\u65ad\u8be5\u4e0d\u8be5\u8d70\u5b83\u5c31\u770b\u8fd9\u91cc\u3002schema_brief \u4e0d\u5f71\u54cd\u672c\u5b57\u6bb5\uff1b\u5efa\u6a21\u65f6\u6ca1\u5199\u8bf4\u660e\u7684\u5173\u7cfb\u4e0d\u5e26\u8fd9\u4e2a\u952e\u3002"
+                },
+                "source_object_type_id": {
+                  "type": "string",
+                  "description": "\u8d77\u70b9\u5bf9\u8c61\u7c7b ID"
+                },
+                "target_object_type_id": {
+                  "type": "string",
+                  "description": "\u7ec8\u70b9\u5bf9\u8c61\u7c7b ID"
+                }
+              },
+              "additionalProperties": true
+            }
+          },
+          "action_types": {
+            "type": "array",
+            "description": "\u52a8\u4f5c\u7c7b\u578b\u5217\u8868",
+            "items": {
+              "type": "object",
+              "properties": {
+                "id": {
+                  "type": "string",
+                  "description": "\u884c\u52a8\u7c7b ID\u3002\u6ce8\u610f\u4e0e\u540c\u4e00\u54cd\u5e94\u91cc object_types \u7684 concept_id \u547d\u540d\u4e0d\u4e00\u81f4\u3002"
+                },
+                "name": {
+                  "type": "string",
+                  "description": "\u884c\u52a8\u540d\u3002\u540c\u4e0a\uff0c\u4e0e object_types \u7684 concept_name \u4e0d\u4e00\u81f4\u3002"
+                },
+                "object_type_id": {
+                  "type": "string",
+                  "description": "\u6240\u5c5e\u5bf9\u8c61\u7c7b ID"
+                },
+                "object_type_name": {
+                  "type": "string",
+                  "description": "\u6240\u5c5e\u5bf9\u8c61\u7c7b\u540d"
+                },
+                "comment": {
+                  "type": "string",
+                  "description": "\u8bf4\u660e"
+                }
+              },
+              "additionalProperties": true
+            }
+          },
+          "metric_types": {
+            "type": "array",
+            "description": "\u6307\u6807\u7c7b\u578b\u5217\u8868",
+            "items": {
+              "type": "object",
+              "properties": {
+                "id": {
+                  "type": "string",
+                  "description": "\u6307\u6807 ID\uff0c\u53ef\u4f20\u7ed9 query_metric"
+                },
+                "name": {
+                  "type": "string",
+                  "description": "\u6307\u6807\u540d"
+                }
+              },
+              "additionalProperties": true
+            }
+          },
+          "message": {
+            "type": "string",
+            "description": "\u68c0\u7d22\u5c42\u5bf9\u672c\u6b21\u7ed3\u679c\u7684\u8bf4\u660e\uff0c\u6ca1\u6709\u8981\u8bf4\u7684\u5c31\u4e0d\u51fa\u73b0\u3002\u4f8b\u5982\u67d0\u4e9b\u5bf9\u8c61\u7c7b\u7684\u5c5e\u6027\u4fe1\u606f\u6682\u65f6\u672a\u80fd\u53d6\u5230\uff0c\u672c\u6b21\u53ea\u8fd4\u56de\u5bf9\u8c61\u7c7b\u672c\u8eab\u3001\u4e0d\u542b\u5c5e\u6027\uff1a\u8fd9\u65f6\u5b83\u4eec\u7684 data_properties \u4e3a\u7a7a**\u4e0d\u4ee3\u8868\u6ca1\u6709\u5c5e\u6027**\uff0c\u7a0d\u540e\u91cd\u8bd5\u53ef\u53d6\u5230\u3002"
+          }
+        }
+      }
+    }
+  }
+}

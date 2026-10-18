@@ -50,7 +50,7 @@ test('browser entry registers a lazy module factory for the DSH module table', (
   const requested = []
   const exports = registration.factory((id) => {
     requested.push(id)
-    return {}
+    return id === 'react' ? { createContext: value => ({ Provider: () => null, _currentValue: value }) } : {}
   })
   assert.equal(typeof exports.apply, 'function')
   assert.deepEqual(requested.sort(), ['react', 'react/jsx-runtime'])

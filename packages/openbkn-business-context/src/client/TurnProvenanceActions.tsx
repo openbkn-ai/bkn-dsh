@@ -1,3 +1,5 @@
+import { useOpenBknTranslation } from './locale.tsx'
+
 import { useEffect } from 'react'
 import type { HostObservable, InjectFace, PropsRuntime } from '@deepseek-ai/dsh-client-ui-slots'
 import type { ProvenanceHandle } from '../types.ts'
@@ -13,6 +15,8 @@ export type TurnProvenanceActionsProps = PropsRuntime<'conversation.chat.assista
 
 /** One compact, native action-row entry for a finalized message with real OpenBKN provenance. */
 export function TurnProvenanceActions({ messageId, useProvenance, load, open }: TurnProvenanceActionsProps) {
+  const t = useOpenBknTranslation()
+
   const handle = useProvenance((items: ReadonlyMap<string, ProvenanceHandle>) => items.get(messageId))
   useEffect(() => { void load(messageId) }, [load, messageId])
   if (handle === undefined) return null
@@ -20,11 +24,10 @@ export function TurnProvenanceActions({ messageId, useProvenance, load, open }: 
   return (
     <button
       type="button"
-      title="View OpenBKN provenance for this answer"
+      title={t('answerProvenanceHint')}
       onClick={event => open(messageId, handle, event.currentTarget)}
       style={{ border: '1px solid #bfe6df', borderRadius: 7, background: '#f0faf8', color: '#087d72', padding: '4px 8px', fontSize: 12, fontWeight: 650, cursor: 'pointer' }}
     >
-      查看业务溯源
-    </button>
+      {t('viewBusinessProvenance')}</button>
   )
 }

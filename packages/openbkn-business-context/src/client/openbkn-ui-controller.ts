@@ -1,3 +1,4 @@
+import { uiMessage, joinUiMessages, type UiMessage } from './messages.ts'
 import type { AuthSnapshot, BusinessNetworkBinding, BusinessNetworkSummary, OpenBknConfigurationInput, OpenBknConfigurationView } from '../types.ts'
 
 /** Minimal browser-safe port over the generated OpenBKN Remote contract. */
@@ -25,12 +26,13 @@ export type OpenBknOverlayPhase = 'idle' | 'loading' | 'authentication-required'
 /** Render state for the additive OpenBKN overlay; credentials never enter it. */
 export interface OpenBknOverlayState {
   readonly open: boolean
+  readonly login?: 'waiting' | 'succeeded' | 'failed' | 'timed-out' | 'cancelled'
   readonly phase: OpenBknOverlayPhase
   readonly auth?: AuthSnapshot
   readonly networks: readonly BusinessNetworkSummary[]
-  readonly message?: string
+  readonly message?: UiMessage
   readonly configuration?: OpenBknConfigurationView
-  readonly configurationMessage?: string
+  readonly configurationMessage?: UiMessage
   readonly savingConfiguration?: boolean
   readonly loadingConfiguration?: boolean
 }
@@ -48,12 +50,14 @@ export class OpenBknUiController {
   private readonly listeners = new Set<Listener>()
   private revision = 0
   private operation?: AbortController
+  private loginTimer?: ReturnType<typeof setTimeout>
 
   constructor(
     private readonly port: OpenBknUiPort,
     private readonly openNetworkSession: OpenNetworkSession,
     private readonly refreshBoundSession?: (sessionId: string) => void,
     private readonly configurationPort?: OpenBknConfigurationPort,
+    private readonly loginTimeoutMs = 120_000,
   ) {}
 
   snapshot(): OpenBknOverlayState { return this.state }
@@ -84,7 +88,7 @@ export class OpenBknUiController {
   async refresh(signal?: AbortSignal): Promise<void> {
     if (!this.state.open) return
     const operation = this.start(signal)
-    this.publish({ ...this.state, phase: 'loading', message: undefined, networks: [] })
+    this.publish({ ...this.state, phase: 'loading', login: undefined, message: undefined, networks: [] })
     let configuration = this.state.configuration
     if (this.configurationPort !== undefined) {
       try {
@@ -114,7 +118,7 @@ export class OpenBknUiController {
       this.publish({ open: true, phase: 'configuration', networks: [], configuration })
     } catch {
       if (!this.current(operation)) return
-      this.publish({ ...this.state, configuration: undefined, loadingConfiguration: false, configurationMessage: '当前无法读取插件设置。请查看诊断，确认配置组件已启用后重试。' })
+      this.publish({ ...this.state, configuration: undefined, loadingConfiguration: false, configurationMessage: uiMessage('pluginSettingsCouldNotBeReadCheckDiagnostics') })
     }
   }
 
@@ -135,7 +139,7 @@ export class OpenBknUiController {
         this.publish({ open: true, phase: 'configuration', networks: [], configuration })
         return
       }
-      this.publish({ open: true, phase: 'loading', networks: [], configuration, message: '设置已保存，正在检查连接…' })
+      this.publish({ open: true, phase: 'loading', networks: [], configuration, message: uiMessage('settingsSavedCheckingConnection') })
       await this.loadBusiness(operation, configuration, true)
     } catch (error: unknown) {
       if (!this.current(operation)) return
@@ -160,25 +164,49 @@ export class OpenBknUiController {
   }
 
   async beginLogin(signal?: AbortSignal): Promise<void> {
-    if (!this.state.open) return
+    if (!this.state.open || this.state.login === 'waiting') return
     const operation = this.start(signal)
-    this.publish({ ...this.state, phase: 'loading', message: undefined })
+    this.publish({ ...this.state, phase: 'loading', login: 'waiting', message: undefined })
+    this.loginTimer = setTimeout(() => {
+      if (this.current(operation)) this.finishLoginWait('timed-out')
+    }, this.loginTimeoutMs)
+    const onAbort = () => {
+      if (this.state.open && this.revision === operation.revision) this.finishLoginWait('cancelled')
+    }
+    operation.signal.addEventListener('abort', onAbort, { once: true })
+    if (operation.signal.aborted) onAbort()
     try {
+      operation.signal.throwIfAborted()
       const networks = await this.port.beginLogin(operation.signal)
       if (!this.current(operation)) return
       const auth = await this.port.status(operation.signal)
       if (!this.current(operation)) return
-      this.publish({ open: true, phase: 'ready', auth, networks, ...withConfiguration(this.state.configuration) })
+      this.publish({ open: true, phase: 'ready', login: 'succeeded', auth, networks, ...withConfiguration(this.state.configuration) })
     } catch (error: unknown) {
-      if (this.current(operation)) this.connectionFailed(error, this.state.configuration)
+      if (this.current(operation)) {
+        this.connectionFailed(error, this.state.configuration)
+        this.publish({ ...this.state, login: 'failed' })
+      }
+    } finally {
+      operation.signal.removeEventListener('abort', onAbort)
+      if (this.revision === operation.revision) { clearTimeout(this.loginTimer); this.loginTimer = undefined }
     }
+  }
+
+  cancelLogin(): void {
+    if (this.state.login === 'waiting') this.finishLoginWait('cancelled')
+  }
+
+  private finishLoginWait(login: 'cancelled' | 'timed-out'): void {
+    this.invalidate()
+    this.publish({ ...this.state, phase: 'authentication-required', login, message: undefined })
   }
 
   async openNetwork(networkId: string, mode: NetworkSessionMode, signal?: AbortSignal): Promise<void> {
     if (!this.state.open) return
     const network = this.state.networks.find(candidate => candidate.id === networkId)
     if (network === undefined) {
-      this.publish({ ...this.state, message: '所选业务知识网络已不可用，请刷新后重试。' })
+      this.publish({ ...this.state, message: uiMessage('theSelectedBusinessKnowledgeNetworkIsNoLonger') })
       return
     }
     const operation = this.start(signal)
@@ -202,7 +230,7 @@ export class OpenBknUiController {
       const auth = await this.port.status(operation.signal)
       if (!this.current(operation)) return
       if (auth.kind !== 'authenticated') {
-        this.publish({ open: true, phase: 'authentication-required', auth, networks: [], ...withConfiguration(configuration), ...(saved ? { message: '设置已保存，请使用 OpenBKN CLI 登录并同步。' } : {}) })
+        this.publish({ open: true, phase: 'authentication-required', auth, networks: [], ...withConfiguration(configuration), ...(saved ? { message: uiMessage('settingsSavedSignInAndSyncWithOpenBKN') } : {}) })
         return
       }
       const networks = await this.port.listNetworks(operation.signal)
@@ -214,15 +242,15 @@ export class OpenBknUiController {
   }
 
   private connectionFailed(error: unknown, configuration?: OpenBknConfigurationView, saved = false): void {
-    const prefix = saved ? '设置已保存。' : ''
+    const prefix = saved ? uiMessage('settingsSaved') : ''
     if (isAuthenticationRequiredError(error)) {
-      this.publish({ open: true, phase: 'authentication-required', auth: { kind: 'authentication-required', baseUrl: error.details.baseUrl }, networks: [], ...withConfiguration(configuration), message: prefix + authenticationFailureMessage(error) })
+      this.publish({ open: true, phase: 'authentication-required', auth: { kind: 'authentication-required', baseUrl: error.details.baseUrl }, networks: [], ...withConfiguration(configuration), message: joinUiMessages(prefix, authenticationFailureMessage(error)) })
       return
     }
     const message = isPlatformUnavailableError(error)
-      ? 'OpenBKN 平台的业务知识网络目录暂不可用。已保存的凭据未被修改；请确认服务恢复后重试。'
+      ? uiMessage('theOpenBKNBusinessKnowledgeNetworkDirectoryIsTemporarily')
       : connectionFailureMessage(error)
-    this.publish({ open: true, phase: 'error', networks: [], ...withConfiguration(configuration), message: prefix + message })
+    this.publish({ open: true, phase: 'error', networks: [], ...withConfiguration(configuration), message: joinUiMessages(prefix, message) })
   }
 
   private start(signal?: AbortSignal): UiOperation {
@@ -238,6 +266,8 @@ export class OpenBknUiController {
 
   private invalidate(): void {
     this.revision += 1
+    clearTimeout(this.loginTimer)
+    this.loginTimer = undefined
     this.operation?.abort()
     this.operation = undefined
   }
@@ -260,24 +290,24 @@ function isPendingConfiguration(configuration: OpenBknConfigurationView): boolea
 }
 
 /** Host validation remains authoritative; this prevents pointless invalid submissions. */
-function validateConfigurationInput(input: OpenBknConfigurationInput): string | undefined {
+function validateConfigurationInput(input: OpenBknConfigurationInput): UiMessage | undefined {
   try {
     const url = new URL(input.baseUrl)
     if (!/^https?:\/\/[^/]/i.test(input.baseUrl) || /[\s\\]/u.test(input.baseUrl)
       || !['http:', 'https:'].includes(url.protocol) || url.hostname === '') throw new Error('invalid')
   } catch {
-    return '请输入完整的 HTTP(S) 平台地址，例如 https://openbkn.example.com。'
+    return uiMessage('enterACompleteHTTPSPlatformURLFor')
   }
-  if (input.cliPath.trim() === '') return '请填写 OpenBKN CLI 执行路径；使用默认安装时填写 openbkn。'
+  if (input.cliPath.trim() === '') return uiMessage('enterTheOpenBKNCLIExecutablePathUseOpenbkn')
   return undefined
 }
 
-function configurationFailureMessage(error: unknown): string {
+function configurationFailureMessage(error: unknown): UiMessage {
   switch (errorCode(error)) {
-    case 'openbkn/configuration-invalid': return '平台地址或 CLI 执行路径无效，请检查输入后重试。'
-    case 'openbkn/configuration-busy': return '业务回合仍在运行，请等回合结束后保存设置。'
-    case 'openbkn/configuration-unavailable': return '当前无法修改这项配置。请检查插件条目是否启用、是否存在重复条目或更高层配置覆盖。'
-    default: return '设置未能保存，请重试或查看诊断。当前输入已保留。'
+    case 'openbkn/configuration-invalid': return uiMessage('thePlatformURLOrCLIExecutablePathIs')
+    case 'openbkn/configuration-busy': return uiMessage('aBusinessTurnIsStillRunningSaveSettings')
+    case 'openbkn/configuration-unavailable': return uiMessage('thisConfigurationCannotBeChangedCheckForDisabled')
+    default: return uiMessage('settingsCouldNotBeSavedRetryOrCheck')
   }
 }
 
@@ -291,13 +321,13 @@ function isAuthenticationRequiredError(error: unknown): error is {
   return typeof (candidate.details as { baseUrl?: unknown }).baseUrl === 'string'
 }
 
-function authenticationFailureMessage(error: { readonly details: { readonly layer?: unknown; readonly httpStatus?: unknown } }): string {
-  const source = error.details.layer === 'context-loader-mcp' ? 'Context Loader MCP' : 'OpenBKN 平台'
+function authenticationFailureMessage(error: { readonly details: { readonly layer?: unknown; readonly httpStatus?: unknown } }): UiMessage {
+  const source = error.details.layer === 'context-loader-mcp' ? 'Context Loader MCP' : uiMessage('openBKNPlatform')
   if (error.details.httpStatus === 403) {
-    return `${source} 拒绝了当前账号的访问（HTTP 403）。请联系平台管理员核实访问权限，或使用具有平台访问权限的账号；重新登录同一账号不保证恢复。`
+    return uiMessage('accessDeniedAccount', { p0: source })
   }
-  const status = error.details.httpStatus === 401 ? '（HTTP 401）' : ''
-  return `${source} 拒绝了当前凭据${status}。请使用 OpenBKN CLI 重新登录并同步。`
+  const status = error.details.httpStatus === 401 ? ' (HTTP 401)' : ''
+  return uiMessage('credentialRejected', { p0: source, p1: status })
 }
 
 function isPlatformUnavailableError(error: unknown): error is {
@@ -310,30 +340,30 @@ function isPlatformUnavailableError(error: unknown): error is {
   return typeof (candidate.details as { baseUrl?: unknown }).baseUrl === 'string'
 }
 
-function connectionFailureMessage(error: unknown): string {
+function connectionFailureMessage(error: unknown): UiMessage {
   if (typeof error === 'object' && error !== null) {
     const candidate = error as { code?: unknown, details?: unknown }
     if (candidate.code === 'openbkn/business-unavailable') {
-      return 'OpenBKN 业务组件尚未就绪或启动失败。请点击右上角“诊断”查看原因并导出报告。'
+      return uiMessage('theOpenBKNBusinessComponentIsNotReadyOr')
     }
     if (candidate.code === 'openbkn/cli-unavailable') {
-      return '当前 DSH 尚无法使用 OpenBKN CLI。请点击右上角“设置”→“高级设置”，使用“检测并安装 CLI”。若安装已启动，可在该处查看进度；安装完成后保存路径，再点击“使用 OpenBKN CLI 登录并同步”。已有 CLI 也可直接填写其可执行文件的绝对路径（Windows 上通常为 openbkn.cmd）。'
+      return uiMessage('thisDSHHostCannotUseOpenBKNCLIOpen')
     }
     if (candidate.code === 'openbkn/connection-failed' && typeof candidate.details === 'object' && candidate.details !== null) {
       const layer = (candidate.details as { layer?: unknown }).layer
       if ((candidate.details as { httpStatus?: unknown }).httpStatus === 403) {
-        const source = layer === 'context-loader-mcp' ? 'Context Loader MCP' : 'OpenBKN 平台'
-        return `${source} 拒绝了当前账号的访问（HTTP 403）。请联系平台管理员核实访问权限后重试。`
+        const source = layer === 'context-loader-mcp' ? 'Context Loader MCP' : uiMessage('openBKNPlatform')
+        return uiMessage('accessDenied', { p0: source })
       }
-      if (layer === 'context-loader-mcp') return '无法连接 OpenBKN Context Loader MCP。请检查平台地址、网络连接及账号的 MCP 访问权限。'
-      if (layer === 'platform-api') return 'Context Loader MCP 已连接，但无法读取业务知识网络目录。请确认当前账号具有 OpenBKN 平台访问权限。'
+      if (layer === 'context-loader-mcp') return uiMessage('couldNotConnectToOpenBKNContextLoaderMCP')
+      if (layer === 'platform-api') return uiMessage('contextLoaderMCPIsConnectedButTheBusiness')
     }
   }
-  return '暂时无法验证 OpenBKN 连接，当前原因尚未确定。请点击右上角“诊断”查看检查结果；若问题持续，请导出报告交给支持人员。'
+  return uiMessage('theOpenBKNConnectionCouldNotBeVerifiedThe')
 }
 
 /** Shown while the native chooser is open; on some hosts (Windows `dsh web`) it opens behind other windows. */
-const WORKSPACE_PICKER_HINT = '请在弹出的系统窗口中选择工作区目录（窗口可能被其他窗口挡住，可从任务栏或 Dock 切换过去）。选好后会自动创建工作区并绑定会话。'
+const WORKSPACE_PICKER_HINT = uiMessage('selectAWorkspaceDirectoryInTheSystemWindow')
 
 const DIRECTORY_PICKER_UNAVAILABLE = 'openbkn/directory-picker-unavailable'
 const DIRECTORY_PICKER_FAILED = 'openbkn/directory-picker-failed'
@@ -368,16 +398,11 @@ function errorCode(error: unknown): unknown {
 }
 
 /** Build the overlay's bind-failure text; the cause is never swallowed silently. */
-function bindFailureMessage(error: unknown): string {
+function bindFailureMessage(error: unknown): UiMessage {
   const code = errorCode(error)
   if (code === DIRECTORY_PICKER_UNAVAILABLE) {
-    return '当前连接模式（远程/浏览目录后端）不支持创建新工作区。请先为该知识网络关联一个已存在的本地工作区，或从本地桌面会话操作。'
+    return uiMessage('thisConnectionModeRemoteBrowseBackendCannotCreate')
   }
-  if (code === DIRECTORY_PICKER_FAILED) {
-    const detail = error instanceof Error ? error.message.trim() : ''
-    return `无法打开本机目录选择器${detail === '' ? '' : `：${detail}`}。请处理后重试。`
-  }
-  const detail = error instanceof Error ? error.message.trim() : ''
-  return detail === '' ? 'This network could not be bound to the current conversation. Try again.'
-    : `This network could not be bound to the current conversation: ${detail}`
+  if (code === DIRECTORY_PICKER_FAILED) return uiMessage('pickerFailed')
+  return uiMessage('bindFailed')
 }

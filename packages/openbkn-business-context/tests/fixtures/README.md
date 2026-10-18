@@ -15,3 +15,9 @@ envelopes). Other tool results keep only their `isError` flag. Plugin events kee
 Regenerate a migrated fixture by running the v3 log through the upstream catalog restore of the pinned
 DSH tag, then applying the same allow-list reduction. Never hand-edit event order, sequence numbers, or
 lifecycle result texts; the tests compare re-derived state against the records the plugin wrote at the time.
+
+## 0.2.1 native-provenance contracts
+
+- `native-provenance-schema1.json` is a **synthetic structural fixture**, independently authored from the schema-1 contract in OpenBKN Studio `c778f73bdd50370e792dba9706e0ec95fd074d72` (`evidence-chain.types.ts` and `current-explanation.service.ts`) and EE `aa6b3826ff0ce7150da011121c448ca575cedfa3`. It is not a live response or acceptance result. Equal-valued unrelated nodes, undisclosed endpoints, a candidate claim, a partial view and an inline fake token deliberately exercise the projection boundary. Inline payloads and answer offsets must not reach the Client.
+- `context-loader-tools-20261018-live.json` contains the **live** input/output schemas of 25 tools, read through MCP initialize / initialized / tools/list with the current CLI identity. It contains no tool execution, token, MCP session ID or user rows. The deployed retrieval image and capture conditions are recorded in its `source`; `execute_skill` was not offered. This does not upgrade the supported release pin or establish model / Host acceptance.
+- Current real-sample checks and the frozen projection limits are recorded under `docs/plans/0.2.1/NATIVE-CONTRACT.md`. Real business payloads remain outside the repository; synthetic fixtures must not be described as captured real records.

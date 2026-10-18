@@ -1,3 +1,5 @@
+import { useOpenBknTranslation } from './locale.tsx'
+
 import { useEffect } from 'react'
 import type { InjectFace, PropsRuntime } from '@deepseek-ai/dsh-client-ui-slots'
 import type { BusinessNetworkBinding } from '../types.ts'
@@ -12,11 +14,13 @@ export type BoundNetworkBadgeProps = PropsRuntime<'conversation.session.header.a
 
 /** Read-only session-header label; changing networks requires a new DSH session. */
 export function BoundNetworkBadge({ useBinding, load }: BoundNetworkBadgeProps) {
+  const t = useOpenBknTranslation()
+
   const state = useBinding((value: BoundNetworkBadgeState) => value)
   useEffect(() => { void load() }, [load])
   if (state.kind !== 'bound') return null
   return (
-    <span title="This conversation is permanently bound to this OpenBKN business knowledge network." style={{
+    <span title={t('bindingHint')} style={{
       display: 'inline-flex', alignItems: 'center', gap: 6, maxWidth: 260, overflow: 'hidden',
       border: '1px solid #bfe6df', borderRadius: 9, background: '#effaf7', color: '#087d72', padding: '6px 9px', fontSize: 13, fontWeight: 650,
     }}>

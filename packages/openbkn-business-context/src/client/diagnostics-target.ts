@@ -1,11 +1,12 @@
+import { translateChinese, type OpenBknTranslate } from './messages.ts'
 import type { DiagnosticsTarget } from '../diagnostics-contract.ts'
 
-const HOST_LABELS: Record<DiagnosticsTarget['hostForm'], string> = {
-  desktop: '桌面版',
-  npm: 'npm 浏览器版',
-  source: '源码构建',
-  unknown: '未识别（当前报告无法确认形态）',
-}
+function hostLabels(t: OpenBknTranslate): Record<DiagnosticsTarget['hostForm'], string> { return {
+  desktop: t('desktop'),
+  npm: t('npmBrowserApp'),
+  source: t('sourceBuild'),
+  unknown: t('unknownTheCurrentReportCannotIdentifyTheHost'),
+} }
 
 const PLATFORM_LABELS: Readonly<Record<string, string>> = {
   win32: 'Windows',
@@ -14,12 +15,13 @@ const PLATFORM_LABELS: Readonly<Record<string, string>> = {
 }
 
 /** Presentation only: keep raw report facts and missing values unchanged. */
-export function diagnosticsTargetRows(target: DiagnosticsTarget): readonly { label: string; value: string }[] {
+export function diagnosticsTargetRows(target: DiagnosticsTarget, t: OpenBknTranslate = translateChinese): readonly { label: string; value: string }[] {
+  const HOST_LABELS = hostLabels(t)
   return [
-    { label: '运行形态', value: HOST_LABELS[target.hostForm] ?? HOST_LABELS.unknown },
-    { label: '操作系统', value: target.platform === null ? '未采集' : PLATFORM_LABELS[target.platform] ?? target.platform },
-    { label: 'DSH 版本', value: target.dshVersion ?? '未采集（当前报告无版本信息）' },
-    { label: '插件（磁盘）', value: target.pluginDiskVersion ?? '未采集（无法读取安装信息）' },
-    { label: '插件（已加载）', value: target.pluginLoadedVersion ?? '未采集（无法确认运行版本）' },
+    { label: t('hostForm'), value: HOST_LABELS[target.hostForm] ?? HOST_LABELS.unknown },
+    { label: t('operatingSystem'), value: target.platform === null ? t('notCollected') : PLATFORM_LABELS[target.platform] ?? target.platform },
+    { label: t('dSHVersion'), value: target.dshVersion ?? t('notCollectedNoVersionInformationInThisReport') },
+    { label: t('pluginOnDisk'), value: target.pluginDiskVersion ?? t('notCollectedInstallationInformationUnavailable') },
+    { label: t('pluginLoaded'), value: target.pluginLoadedVersion ?? t('notCollectedRunningVersionCannotBeConfirmed') },
   ]
 }

@@ -1,3 +1,5 @@
+import { useOpenBknTranslation } from './locale.tsx'
+
 import type { SessionId } from '@deepseek-ai/dsh-api-remotes/client'
 import type { InjectFace, PropsRuntime } from '@deepseek-ai/dsh-client-ui-slots'
 
@@ -9,11 +11,13 @@ export type OpenBknEntryProps = PropsRuntime<'sidebar.footer.action'> & InjectFa
 
 /** Additive sidebar-footer entry; the native DSH sidebar continues to own its shell. */
 export function OpenBknEntry({ wide, useSessions, open }: OpenBknEntryProps) {
+  const t = useOpenBknTranslation()
+
   const sessionId = useSessions((state: { readonly current?: SessionId }) => state.current)
   return (
     <button
       type="button"
-      aria-label="OpenBKN business knowledge networks"
+      aria-label={t('networksLabel')}
       onClick={() => open(sessionId)}
       style={{
         width: wide ? '100%' : 36,

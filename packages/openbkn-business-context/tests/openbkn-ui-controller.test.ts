@@ -1,3 +1,4 @@
+import { renderUiMessage } from '../src/client/messages.ts'
 import assert from 'node:assert/strict'
 import test from 'node:test'
 import { OpenBknUiController, directoryPickerFailure, workspaceSelectionCancelled } from '../src/client/openbkn-ui-controller.ts'
@@ -21,11 +22,11 @@ test('directs unavailable RPC and unknown connection failures to diagnostics wit
     controller.open()
     await controller.refresh()
     assert.equal(controller.snapshot().phase, 'error')
-    assert.match(controller.snapshot().message ?? '', /诊断/)
-    assert.doesNotMatch(controller.snapshot().message ?? '', /检查 Token|平台地址|private-error-detail/)
+    assert.match(renderUiMessage(controller.snapshot().message ?? ''), /诊断/)
+    assert.doesNotMatch(renderUiMessage(controller.snapshot().message ?? ''), /检查 Token|平台地址|private-error-detail/)
     await controller.configureToken('test-only-token')
-    assert.match(controller.snapshot().message ?? '', /诊断/)
-    assert.doesNotMatch(controller.snapshot().message ?? '', /检查 Token|平台地址|private-error-detail/)
+    assert.match(renderUiMessage(controller.snapshot().message ?? ''), /诊断/)
+    assert.doesNotMatch(renderUiMessage(controller.snapshot().message ?? ''), /检查 Token|平台地址|private-error-detail/)
   }
 })
 
@@ -83,7 +84,7 @@ test('returns to sign-in when the platform rejects a locally present credential'
   controller.open()
   await controller.refresh()
 
-  assert.deepEqual(controller.snapshot(), {
+  assert.deepEqual({ ...controller.snapshot(), message: renderUiMessage(controller.snapshot().message) }, {
     open: true,
     phase: 'authentication-required',
     auth: authenticationRequired,
@@ -109,7 +110,7 @@ test('explains whether a failed verification came from MCP or the platform catal
   await controller.configureToken('token')
 
   assert.equal(controller.snapshot().phase, 'error')
-  assert.match(controller.snapshot().message ?? '', /Context Loader MCP 已连接/)
+  assert.match(renderUiMessage(controller.snapshot().message ?? ''), /Context Loader MCP 已连接/)
 })
 
 test('offers credential recovery without inferring why the platform catalogue rejected a token', async () => {
@@ -129,8 +130,8 @@ test('offers credential recovery without inferring why the platform catalogue re
   await controller.configureToken('context-loader-only-token')
 
   assert.equal(controller.snapshot().phase, 'authentication-required')
-  assert.match(controller.snapshot().message ?? '', /平台.*拒绝了当前凭据/)
-  assert.match(controller.snapshot().message ?? '', /OpenBKN CLI 重新登录并同步/)
+  assert.match(renderUiMessage(controller.snapshot().message ?? ''), /平台.*拒绝了当前凭据/)
+  assert.match(renderUiMessage(controller.snapshot().message ?? ''), /OpenBKN CLI 重新登录并同步/)
 })
 
 test('keeps the saved token and identifies a temporarily unavailable platform catalogue', async () => {
@@ -150,8 +151,8 @@ test('keeps the saved token and identifies a temporarily unavailable platform ca
   await controller.configureToken('platform-token')
 
   assert.equal(controller.snapshot().phase, 'error')
-  assert.match(controller.snapshot().message ?? '', /目录暂不可用/)
-  assert.match(controller.snapshot().message ?? '', /凭据未被修改/)
+  assert.match(renderUiMessage(controller.snapshot().message ?? ''), /目录暂不可用/)
+  assert.match(renderUiMessage(controller.snapshot().message ?? ''), /凭据未被修改/)
 })
 
 test('creates the selected network session before binding it', async () => {
@@ -230,15 +231,15 @@ test('attributes a browse-only Host refusal to the connection mode', async () =>
   const refusal = new Error('directory picker failed: directoryPicker.pick needs the native capability; the composed picker serves "browse"')
   const snapshot = await createWorkspaceFailing(directoryPickerFailure(refusal))
   assert.equal(snapshot.phase, 'error')
-  assert.match(snapshot.message ?? '', /当前连接模式/)
-  assert.match(snapshot.message ?? '', /关联一个已存在的本地工作区/)
+  assert.match(renderUiMessage(snapshot.message ?? ''), /当前连接模式/)
+  assert.match(renderUiMessage(snapshot.message ?? ''), /关联一个已存在的本地工作区/)
 })
 
-test('reports a failing native chooser with its own cause, not as a connection-mode limit', async () => {
+test('classifies a failing native chooser without exposing raw Host error text', async () => {
   const snapshot = await createWorkspaceFailing(directoryPickerFailure(new Error('directory picker failed: osascript exited with 1')))
   assert.equal(snapshot.phase, 'error')
-  assert.match(snapshot.message ?? '', /无法打开本机目录选择器：directory picker failed: osascript exited with 1/)
-  assert.doesNotMatch(snapshot.message ?? '', /当前连接模式/)
+  assert.match(renderUiMessage(snapshot.message ?? ''), /无法打开本机目录选择器/)
+  assert.doesNotMatch(renderUiMessage(snapshot.message ?? ''), /当前连接模式/)
 })
 
 test('returns to the network list without an error when the chooser is dismissed', async () => {
@@ -248,7 +249,7 @@ test('returns to the network list without an error when the chooser is dismissed
   assert.deepEqual(snapshot.networks.map(network => network.id), ['kn-supply'])
 })
 
-test('includes the underlying cause in the generic bind-failure message', async () => {
+test('keeps raw bind failures out of the displayed message', async () => {
   const controller = new OpenBknUiController({
     status: async () => authenticated,
     configureToken: async () => [],
@@ -262,7 +263,8 @@ test('includes the underlying cause in the generic bind-failure message', async 
   await controller.openNetwork('kn-supply', 'new')
 
   assert.equal(controller.snapshot().phase, 'error')
-  assert.match(controller.snapshot().message ?? '', /bind rejected by host/)
+  assert.doesNotMatch(JSON.stringify(controller.snapshot()), /bind rejected by host/)
+  assert.match(renderUiMessage(controller.snapshot().message), /无法将此网络绑定/)
 })
 
 test('tells the user how to make the OpenBKN CLI available instead of blaming the token', async () => {
@@ -276,10 +278,10 @@ test('tells the user how to make the OpenBKN CLI available instead of blaming th
   controller.open()
   await controller.refresh()
   assert.equal(controller.snapshot().phase, 'error')
-  assert.match(controller.snapshot().message ?? '', /设置.*高级设置.*检测并安装 CLI/)
-  assert.match(controller.snapshot().message ?? '', /查看进度/)
-  assert.match(controller.snapshot().message ?? '', /绝对路径/)
-  assert.doesNotMatch(controller.snapshot().message ?? '', /检查 Token/)
+  assert.match(renderUiMessage(controller.snapshot().message ?? ''), /设置.*高级设置.*检测并安装 CLI/)
+  assert.match(renderUiMessage(controller.snapshot().message ?? ''), /查看进度/)
+  assert.match(renderUiMessage(controller.snapshot().message ?? ''), /绝对路径/)
+  assert.doesNotMatch(renderUiMessage(controller.snapshot().message ?? ''), /检查 Token/)
 })
 
 test('while the workspace chooser is open, the panel says where to look instead of "binding"', async () => {
@@ -295,7 +297,7 @@ test('while the workspace chooser is open, the panel says where to look instead 
   await controller.refresh()
   const pending = controller.openNetwork('kn-supply', 'create-workspace')
   assert.equal(controller.snapshot().phase, 'binding')
-  assert.match(controller.snapshot().message ?? '', /系统窗口中选择工作区目录/)
+  assert.match(renderUiMessage(controller.snapshot().message ?? ''), /系统窗口中选择工作区目录/)
   release('session-1')
   await pending
   assert.equal(controller.snapshot().open, false)
@@ -349,7 +351,7 @@ test('invalid form submissions stay on configuration without saving or connectin
   for (const baseUrl of ['', 'file:///local', 'relative/path', 'https://platform.invalid bad']) {
     await controller.saveConfiguration({ baseUrl, cliPath: 'openbkn' })
     assert.equal(controller.snapshot().phase, 'configuration')
-    assert.match(controller.snapshot().configurationMessage!, /HTTP/)
+    assert.match(renderUiMessage(controller.snapshot().configurationMessage!), /HTTP/)
   }
   assert.equal(saved, 0)
   assert.equal(connected, 0)
@@ -366,9 +368,9 @@ test('a saved URL is distinct from connection failure and retains the saved sett
   await controller.refresh()
   await controller.saveConfiguration({ baseUrl: authenticated.baseUrl, cliPath: '/path/openbkn' })
   assert.equal(controller.snapshot().phase, 'error')
-  assert.match(controller.snapshot().message!, /^设置已保存/)
+  assert.match(renderUiMessage(controller.snapshot().message!), /^设置已保存/)
   assert.equal(controller.snapshot().configuration?.cliPath, '/path/openbkn')
-  assert.doesNotMatch(controller.snapshot().message!, /private detail/)
+  assert.doesNotMatch(renderUiMessage(controller.snapshot().message!), /private detail/)
 })
 
 test('a rejected save remains in the form and does not request authentication', async () => {
@@ -384,8 +386,8 @@ test('a rejected save remains in the form and does not request authentication', 
   await controller.saveConfiguration({ baseUrl: authenticated.baseUrl, cliPath: 'openbkn' })
   assert.equal(controller.snapshot().phase, 'configuration')
   assert.equal(controller.snapshot().savingConfiguration, false)
-  assert.match(controller.snapshot().configurationMessage!, /回合结束/)
-  assert.doesNotMatch(controller.snapshot().configurationMessage!, /private editor text/)
+  assert.match(renderUiMessage(controller.snapshot().configurationMessage!), /回合结束/)
+  assert.doesNotMatch(renderUiMessage(controller.snapshot().configurationMessage!), /private editor text/)
   assert.equal(connected, 0)
 })
 
@@ -487,7 +489,7 @@ test('an unavailable configuration entry preserves the healthy business panel', 
   assert.equal(controller.snapshot().networks[0]?.id, 'network')
   await controller.showSettings()
   assert.equal(controller.snapshot().phase, 'configuration')
-  assert.match(controller.snapshot().configurationMessage!, /无法读取插件设置/)
+  assert.match(renderUiMessage(controller.snapshot().configurationMessage!), /无法读取插件设置/)
 })
 
 test('closing during the configuration read prevents reopening the setup form', async () => {
@@ -552,7 +554,7 @@ test('unknown or inactive entries preserve the business failure and diagnostic g
     controller.open()
     await controller.refresh()
     assert.equal(controller.snapshot().phase, 'error')
-    assert.match(controller.snapshot().message!, /诊断/)
+    assert.match(renderUiMessage(controller.snapshot().message!), /诊断/)
     assert.equal(controller.snapshot().configuration?.unavailableReason, unavailableReason)
   }
 })

@@ -1,3 +1,5 @@
+import { useOpenBknTranslation } from './locale.tsx'
+import { translateChinese, renderUiMessage, type OpenBknTranslate } from './messages.ts'
 import { useEffect, useMemo, useState } from 'react'
 import type { InjectFace, PropsRuntime } from '@deepseek-ai/dsh-client-ui-slots'
 import type { OpenBknUiController, OpenBknOverlayState } from './openbkn-ui-controller.ts'
@@ -10,6 +12,7 @@ export interface OpenBknOverlayInjected {
   hooks: { ui: OpenBknUiController }
   close(): void
   refresh(): Promise<void>
+  cancelLogin(): void
   beginLogin(): Promise<void>
   showSettings(): Promise<void>
   saveConfiguration(input: OpenBknConfigurationInput): Promise<void>
@@ -21,7 +24,9 @@ export interface OpenBknOverlayInjected {
 export type OpenBknOverlayProps = PropsRuntime<'shell.overlay'> & InjectFace<OpenBknOverlayInjected>
 
 /** Frame-wide, additive OpenBKN control plane. It is intentionally outside DSH chat scroll containers. */
-export function OpenBknOverlay({ useUi, close, refresh, beginLogin, showSettings, saveConfiguration, cliSetup, openNetwork, openDiagnostics }: OpenBknOverlayProps) {
+export function OpenBknOverlay({ useUi, close, refresh, beginLogin, cancelLogin, showSettings, saveConfiguration, cliSetup, openNetwork, openDiagnostics }: OpenBknOverlayProps) {
+  const t = useOpenBknTranslation()
+
   const state = useUi((value: OpenBknOverlayState) => value)
 
   useEffect(() => {
@@ -35,37 +40,40 @@ export function OpenBknOverlay({ useUi, close, refresh, beginLogin, showSettings
       <section
         role="dialog"
         aria-modal="true"
-        aria-label="OpenBKN business knowledge networks"
+        aria-label={t('networksLabel')}
         style={dialogStyle}
         onMouseDown={event => event.stopPropagation()}
       >
         <header style={headerStyle}>
           <div>
             <div style={eyebrowStyle}>OPENBKN</div>
-            <h2 style={{ margin: '4px 0 0', fontSize: 20 }}>业务知识网络</h2>
+            <h2 style={{ margin: '4px 0 0', fontSize: 20 }}>{t('businessKnowledgeNetworks')}</h2>
           </div>
           <div style={{ display: 'flex', alignItems: 'center', gap: 12 }}>
-            <button type="button" onClick={() => void showSettings()} disabled={state.savingConfiguration} style={{ ...secondaryStyle, fontSize: 13 }}>设置</button>
-            <button type="button" onClick={openDiagnostics} style={{ ...secondaryStyle, fontSize: 13 }}>诊断</button>
-            <button type="button" onClick={close} aria-label="Close" style={closeStyle}>×</button>
+            <button type="button" onClick={() => void showSettings()} disabled={state.savingConfiguration || state.login === 'waiting'} style={{ ...secondaryStyle, fontSize: 13 }}>{t('settings')}</button>
+            <button type="button" onClick={openDiagnostics} style={{ ...secondaryStyle, fontSize: 13 }}>{t('diagnostics')}</button>
+            <button type="button" onClick={close} aria-label={t('close')} style={closeStyle}>×</button>
           </div>
         </header>
         <div style={{ padding: 20 }}>
-          <OverlayBody state={state} beginLogin={beginLogin} saveConfiguration={saveConfiguration} cliSetup={cliSetup} refresh={refresh} openNetwork={openNetwork} />
+          <OverlayBody state={state} beginLogin={beginLogin} cancelLogin={cancelLogin} saveConfiguration={saveConfiguration} cliSetup={cliSetup} refresh={refresh} openNetwork={openNetwork} />
         </div>
       </section>
     </div>
   )
 }
 
-function OverlayBody({ state, beginLogin, saveConfiguration, cliSetup, refresh, openNetwork }: {
+function OverlayBody({ state, beginLogin, cancelLogin, saveConfiguration, cliSetup, refresh, openNetwork }: {
   state: OpenBknOverlayState
+  cancelLogin(): void
   beginLogin(): Promise<void>
   saveConfiguration(input: OpenBknConfigurationInput): Promise<void>
   cliSetup: CliSetupPort
   refresh(): Promise<void>
   openNetwork(networkId: string, mode: 'continue' | 'new' | 'create-workspace'): Promise<void>
 }) {
+  const t = useOpenBknTranslation()
+
   const [query, setQuery] = useState('')
   const [limit, setLimit] = useState(INITIAL_NETWORK_DIRECTORY_LIMIT)
   const [selectedNetworkId, setSelectedNetworkId] = useState<string | undefined>()
@@ -79,8 +87,14 @@ function OverlayBody({ state, beginLogin, saveConfiguration, cliSetup, refresh, 
     [state.networks, query, limit],
   )
 
+  if (state.login === 'waiting') return <div aria-live="polite" aria-busy="true">
+    <p role="status" style={mutedStyle}>{t('waitingForOpenBKNCLIBrowserAuthorizationAndCredential')}</p>
+    <p style={mutedStyle}>{t('completeSignInInTheBrowserCancellingOr')}</p>
+    <button type="button" style={secondaryStyle} onClick={cancelLogin}>{t('cancelSignIn')}</button>
+  </div>
+
   if (state.phase === 'loading' || state.phase === 'binding') {
-    return <p style={mutedStyle}>{state.phase === 'binding' ? state.message ?? '正在绑定当前会话…' : state.message ?? '正在连接 OpenBKN…'}</p>
+    return <p style={mutedStyle}>{state.phase === 'binding' ? (state.message === undefined ? t('bindingTheCurrentConversation') : renderUiMessage(state.message, t)) : (state.message === undefined ? t('connectingToOpenBKN') : renderUiMessage(state.message, t))}</p>
   }
 
   if (state.phase === 'configuration') {
@@ -90,11 +104,12 @@ function OverlayBody({ state, beginLogin, saveConfiguration, cliSetup, refresh, 
   if (state.phase === 'authentication-required') {
     return (
       <div>
-        <p style={{ marginTop: 0, lineHeight: 1.6 }}>使用本机 OpenBKN CLI 登录。登录完成后，插件会在 Host 内同步凭据、连接 Context Loader MCP，并加载你有权限访问的业务知识网络。</p>
-        <p style={{ ...mutedStyle, marginTop: 0 }}>平台地址：{displayBaseUrl(state.auth)}</p>
-        {state.message ? <p role="status" style={authenticationNoticeStyle}>{state.message}</p> : null}
-        <p style={{ margin: '0 0 12px' }}><button type="button" style={primaryStyle} onClick={() => void beginLogin()}>使用 OpenBKN CLI 登录并同步</button></p>
-        <button type="button" style={secondaryStyle} onClick={() => void refresh()}>刷新状态</button>
+        <p style={{ marginTop: 0, lineHeight: 1.6 }}>{t('signInWithTheLocalOpenBKNCLIThe')}</p>
+        <p style={{ ...mutedStyle, marginTop: 0 }}>{t('platformURL')}{displayBaseUrl(state.auth)}</p>
+        {state.login === 'timed-out' ? <p role="status" style={authenticationNoticeStyle}>{t('signInWaitTimedOutPlatformAuthorizationMay')}</p> : state.login === 'cancelled' ? <p role="status" style={authenticationNoticeStyle}>{t('signInWaitCancelledSignInAgainOr')}</p> : null}
+        {state.message ? <p role="status" style={authenticationNoticeStyle}>{renderUiMessage(state.message, t)}</p> : null}
+        <p style={{ margin: '0 0 12px' }}><button type="button" style={primaryStyle} onClick={() => void beginLogin()}>{t('signInAndSyncWithOpenBKNCLI')}</button></p>
+        <button type="button" style={secondaryStyle} onClick={() => void refresh()}>{t('refreshStatus')}</button>
       </div>
     )
   }
@@ -102,9 +117,10 @@ function OverlayBody({ state, beginLogin, saveConfiguration, cliSetup, refresh, 
   if (state.phase === 'error') {
     return (
       <div>
-        <p style={{ marginTop: 0, lineHeight: 1.6 }}>{state.message}</p>
+        <p style={{ marginTop: 0, lineHeight: 1.6 }}>{renderUiMessage(state.message, t)}</p>
         <div style={{ display: 'flex', gap: 8 }}>
-          <button type="button" style={primaryStyle} onClick={() => void refresh()}>重试</button>
+          {state.login === 'failed' ? <button type="button" style={primaryStyle} onClick={() => void beginLogin()}>{t('retrySignIn')}</button> : null}
+          <button type="button" style={secondaryStyle} onClick={() => void refresh()}>{t('retry')}</button>
         </div>
       </div>
     )
@@ -112,23 +128,21 @@ function OverlayBody({ state, beginLogin, saveConfiguration, cliSetup, refresh, 
 
   return (
     <div>
+      {state.login === 'succeeded' ? <p role="status" style={mutedStyle}>{t('signInAndSynchronizationSucceeded')}</p> : null}
       <p style={{ marginTop: 0, ...mutedStyle }}>
-        选择业务知识网络后，在其专属 DSH 工作区中继续或创建会话。
-        业务会话需使用<strong>标准模式</strong>：请在发送第一条消息前，在模式菜单中选定（暂不支持 PTC 模式，已有的 PTC 会话无法切换）。
-      </p>
-      {state.networks.length === 0 ? <p style={mutedStyle}>当前账号没有可用的业务知识网络。</p> : <>
+        {t('chooseABusinessKnowledgeNetworkToContinueOr')}{' '}<strong>{t('standardMode')}</strong>{t('selectItInTheModeMenuBeforeSending')}</p>
+      {state.networks.length === 0 ? <p style={mutedStyle}>{t('noBusinessKnowledgeNetworksAreAvailableForThis')}</p> : <>
         <label style={searchLabelStyle}>
-          搜索业务知识网络
-          <input
-            aria-label="搜索业务知识网络"
+          {t('searchBusinessKnowledgeNetworks')}<input
+            aria-label={t('searchBusinessKnowledgeNetworks')}
             type="search"
             value={query}
             onChange={event => { setQuery(event.target.value); setLimit(INITIAL_NETWORK_DIRECTORY_LIMIT); setSelectedNetworkId(undefined) }}
-            placeholder="名称、ID 或说明"
+            placeholder={t('nameIDOrDescription')}
             style={searchInputStyle}
           />
         </label>
-        <p style={{ margin: '10px 0', ...mutedStyle }}>找到 {directory.total} 个网络；已关联本地工作区的网络优先显示。</p>
+        <p style={{ margin: '10px 0', ...mutedStyle }}>{t('networkCount', { count: directory.total })}</p>
       </>}
       <div style={{ display: 'grid', gap: 10 }}>
         {directory.networks.map(network => <NetworkRow
@@ -139,8 +153,8 @@ function OverlayBody({ state, beginLogin, saveConfiguration, cliSetup, refresh, 
           openNetwork={openNetwork}
         />)}
       </div>
-      {directory.total > 0 && directory.networks.length === 0 ? <p style={mutedStyle}>没有匹配的业务知识网络。</p> : null}
-      {directory.hasMore ? <p style={{ margin: '12px 0 0' }}><button type="button" style={secondaryStyle} onClick={() => setLimit(current => current + INITIAL_NETWORK_DIRECTORY_LIMIT)}>加载更多</button></p> : null}
+      {directory.total > 0 && directory.networks.length === 0 ? <p style={mutedStyle}>{t('noMatchingBusinessKnowledgeNetworks')}</p> : null}
+      {directory.hasMore ? <p style={{ margin: '12px 0 0' }}><button type="button" style={secondaryStyle} onClick={() => setLimit(current => current + INITIAL_NETWORK_DIRECTORY_LIMIT)}>{t('loadMore')}</button></p> : null}
     </div>
   )
 }
@@ -151,20 +165,22 @@ function NetworkRow({ network, expanded, onToggle, openNetwork }: {
   onToggle(): void
   openNetwork(networkId: string, mode: 'continue' | 'new' | 'create-workspace'): Promise<void>
 }) {
+  const t = useOpenBknTranslation()
+
   return <article style={networkStyle}>
     <div style={networkSummaryStyle}>
       <div><strong>{network.displayName}</strong><div style={networkIdStyle}>{network.id}</div></div>
-      <button type="button" style={secondaryStyle} aria-expanded={expanded} onClick={onToggle}>{expanded ? '收起' : '查看'}</button>
+      <button type="button" style={secondaryStyle} aria-expanded={expanded} onClick={onToggle}>{expanded ? t('collapse') : t('view')}</button>
     </div>
-    <span style={workspaceStyle}>{network.workspacePath ? `已关联工作区 · ${network.workspacePath}` : '尚未关联本地工作区'}</span>
+    <span style={workspaceStyle}>{network.workspacePath ? t('workspaceLinked', { p0: network.workspacePath }) : t('noLocalWorkspaceLinked')}</span>
     {expanded ? <>
       {network.description ? <span style={descriptionStyle}>{network.description}</span> : null}
       {network.workspacePath
         ? <span style={actionsStyle}>
-          <button type="button" style={secondaryStyle} onClick={() => void openNetwork(network.id, 'continue')}>继续会话</button>
-          <button type="button" style={primaryStyle} onClick={() => void openNetwork(network.id, 'new')}>新建会话</button>
+          <button type="button" style={secondaryStyle} onClick={() => void openNetwork(network.id, 'continue')}>{t('continueConversation')}</button>
+          <button type="button" style={primaryStyle} onClick={() => void openNetwork(network.id, 'new')}>{t('newConversation')}</button>
         </span>
-        : <span style={actionsStyle}><button type="button" style={primaryStyle} onClick={() => void openNetwork(network.id, 'create-workspace')}>新建工作区</button></span>}
+        : <span style={actionsStyle}><button type="button" style={primaryStyle} onClick={() => void openNetwork(network.id, 'create-workspace')}>{t('newWorkspace')}</button></span>}
     </> : null}
   </article>
 }
@@ -174,6 +190,8 @@ function ConfigurationForm({ state, saveConfiguration, cliSetup }: {
   saveConfiguration(input: OpenBknConfigurationInput): Promise<void>
   cliSetup: CliSetupPort
 }) {
+  const t = useOpenBknTranslation()
+
   const [baseUrl, setBaseUrl] = useState(state.configuration?.baseUrl ?? '')
   const [cliPath, setCliPath] = useState(state.configuration?.cliPath ?? 'openbkn')
   const [advanced, setAdvanced] = useState(false)
@@ -188,32 +206,30 @@ function ConfigurationForm({ state, saveConfiguration, cliSetup }: {
   const saving = state.savingConfiguration === true
   return <form onSubmit={event => { event.preventDefault(); if (!cliBusy) void saveConfiguration({ baseUrl, cliPath }) }} style={{ display: 'grid', gap: 14 }}>
     <p style={{ margin: 0, ...mutedStyle, lineHeight: 1.6 }}>
-      {state.configuration?.configured ? '修改当前 DSH profile 的 OpenBKN 设置。已有业务会话保持原平台和网络绑定。' : '先填写 OpenBKN 平台地址，再使用本机 OpenBKN CLI 登录。尚未配置时不会连接平台。'}
+      {state.configuration?.configured ? t('editOpenBKNSettingsForTheCurrentDSHProfile') : t('enterTheOpenBKNPlatformURLThenSignIn')}
     </p>
     <label style={searchLabelStyle}>
-      OpenBKN 平台地址
-      <input aria-label="OpenBKN 平台地址" type="text" inputMode="url" autoComplete="url" placeholder="https://openbkn.example.com" value={baseUrl} onChange={event => setBaseUrl(event.target.value)} disabled={!editable || saving} style={searchInputStyle} />
+      {t('openBKNPlatformURL')}<input aria-label={t('openBKNPlatformURL')} type="text" inputMode="url" autoComplete="url" placeholder="https://openbkn.example.com" value={baseUrl} onChange={event => setBaseUrl(event.target.value)} disabled={!editable || saving} style={searchInputStyle} />
     </label>
     <details open={advanced} onToggle={event => setAdvanced(event.currentTarget.open)}>
-      <summary style={loginLinkStyle}>高级设置</summary>
+      <summary style={loginLinkStyle}>{t('advancedSettings')}</summary>
       <label style={{ ...searchLabelStyle, marginTop: 10 }}>
-        OpenBKN CLI 执行路径（cliPath）
-        <input aria-label="OpenBKN CLI 执行路径" type="text" autoComplete="off" value={cliPath} onChange={event => setCliPath(event.target.value)} disabled={!editable || saving || cliSetupPending} style={searchInputStyle} />
+        {t('openBKNCLIExecutablePathCliPath')}<input aria-label={t('openBKNCLIExecutablePath')} type="text" autoComplete="off" value={cliPath} onChange={event => setCliPath(event.target.value)} disabled={!editable || saving || cliSetupPending} style={searchInputStyle} />
       </label>
-      <p style={{ ...mutedStyle, marginBottom: 0 }}>默认 openbkn。若 DSH 找不到命令，可填写绝对路径；Windows 上填写 openbkn.cmd。</p>
+      <p style={{ ...mutedStyle, marginBottom: 0 }}>{t('theDefaultIsOpenbknIfDSHCannotFind')}</p>
       {advanced ? <CliSetupControl cliPath={cliPath} savedCliPath={state.configuration?.cliPath ?? 'openbkn'} disabled={!editable || saving} port={cliSetup} onResolved={setCliPath} onBusy={(busy, lockPath) => { setCliBusy(busy); setCliSetupPending(lockPath) }} /> : null}
     </details>
-    {!editable && state.configuration !== undefined && state.loadingConfiguration !== true ? <p role="status" style={authenticationNoticeStyle}>{configurationUnavailableMessage(state.configuration.unavailableReason)}</p> : null}
-    {state.loadingConfiguration ? <p style={mutedStyle}>正在读取设置…</p> : null}
-    {state.configurationMessage ? <p role="status" style={authenticationNoticeStyle}>{state.configurationMessage}</p> : null}
-    <div><button type="submit" style={primaryStyle} disabled={!editable || saving || cliBusy}>{saving ? '正在保存…' : '保存并继续'}</button></div>
+    {!editable && state.configuration !== undefined && state.loadingConfiguration !== true ? <p role="status" style={authenticationNoticeStyle}>{configurationUnavailableMessage(state.configuration.unavailableReason, t)}</p> : null}
+    {state.loadingConfiguration ? <p style={mutedStyle}>{t('readingSettings')}</p> : null}
+    {state.configurationMessage ? <p role="status" style={authenticationNoticeStyle}>{renderUiMessage(state.configurationMessage, t)}</p> : null}
+    <div><button type="submit" style={primaryStyle} disabled={!editable || saving || cliBusy}>{saving ? t('saving') : t('saveAndContinue')}</button></div>
   </form>
 }
 
-function configurationUnavailableMessage(reason?: string): string {
+function configurationUnavailableMessage(reason?: string, t: OpenBknTranslate = translateChinese): string {
   return reason === 'business-busy' || reason === 'busy'
-    ? '业务回合仍在运行，请等回合结束后重新打开设置。'
-    : '当前无法修改此配置，请检查插件条目是否已启用、是否有重复条目或更高层覆盖。诊断仍可查看。'
+    ? t('aBusinessTurnIsStillRunningReopenSettings')
+    : t('thisConfigurationCannotBeEditedCheckForDisabled')
 }
 
 function displayBaseUrl(auth: OpenBknOverlayState['auth']): string {
