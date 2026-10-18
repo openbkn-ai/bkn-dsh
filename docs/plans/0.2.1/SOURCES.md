@@ -82,3 +82,7 @@ DSH 语言入口：`packages/client/locale/README.md`。复用公共 `ctx.locale
 - 历史测试平台地址、临时回环映射、端口、隔离 home 与 CLI 登录状态均不视为当前可用环境；执行前重新确认，不复用日常 profile，不在计划文件记录凭据。
 
 本轮没有启动 Host、安装 SDK、登录平台、读取真实业务数据、生成解释或调用模型；#93 是后续执行门槛。
+
+## 2026-10-18 执行补充
+
+当前实现分支为 `feat/021-localization-login`，实现提交 `4857c31225576f4f4b083ca26bb9469ab671b363`。新增原生投影 `src/native-provenance.ts` / `src/native-provenance-types.ts`，新视图 `src/client/NativeProvenancePanel.tsx`，语言入口 `src/client/locale.tsx` / `locales.ts` / `messages.ts`。实际 API、镜像身份、受控/真实证据和剩余验收见 [开发执行记录](../../evidence/2026-10-18-021-development.md)。本文件上方的历史基线与临时路径不作当前产物证明。
