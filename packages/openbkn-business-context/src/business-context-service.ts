@@ -348,7 +348,7 @@ export class OpenBknBusinessContextService extends TypertRemoteService {
         business === undefined ? 'ok' : business.reason,
       )
     }
-    return { ...buildProvenanceView(
+    const view = buildProvenanceView(
       handle,
       timeline,
       core.status === 'fulfilled' ? core.value : undefined,
@@ -358,7 +358,14 @@ export class OpenBknBusinessContextService extends TypertRemoteService {
       maxGraphNodes: this.config.maxGraphNodes,
       maxGraphEdges: this.config.maxGraphEdges,
       },
-    ), native }
+    )
+    // Even the two failure envelopes need space. Do not exceed a deliberately
+    // small cap to report overflow; omit native data and retain the reason in
+    // the existing pane-degradation metadata alongside the legacy/local view.
+    if (nativeBytes() > nativeLimit) {
+      return { ...view, sources: { ...view.sources, degraded: [...view.sources.degraded, { pane: 'native', reason: 'result-too-large' }] } }
+    }
+    return { ...view, native }
   }
 
   /** Return the one optional, draft-only introduction for an empty bound session. */

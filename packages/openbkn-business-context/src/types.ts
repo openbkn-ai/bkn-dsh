@@ -220,7 +220,7 @@ export type ProvenanceDegradationReason =
 
 /** One pane that could not be completed, with the platform's own next step. */
 export interface ProvenanceDegradation {
-  readonly pane: 'operations' | 'business' | 'evidence'
+  readonly pane: 'operations' | 'business' | 'evidence' | 'native'
   readonly reason: ProvenanceDegradationReason
   readonly edition?: string
   /** The platform's required_action, passed through truncated. */

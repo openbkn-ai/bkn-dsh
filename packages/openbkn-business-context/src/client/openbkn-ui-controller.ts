@@ -181,6 +181,10 @@ export class OpenBknUiController {
       if (!this.current(operation)) return
       const auth = await this.port.status(operation.signal)
       if (!this.current(operation)) return
+      if (auth.kind !== 'authenticated') {
+        this.publish({ open: true, phase: 'authentication-required', login: 'failed', auth, networks: [], ...withConfiguration(this.state.configuration) })
+        return
+      }
       this.publish({ open: true, phase: 'ready', login: 'succeeded', auth, networks, ...withConfiguration(this.state.configuration) })
     } catch (error: unknown) {
       if (this.current(operation)) {

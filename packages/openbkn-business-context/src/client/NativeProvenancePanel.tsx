@@ -13,6 +13,7 @@ export function NativeProvenancePanel({ view, tab }: { view: ProvenanceView; tab
   const native = view.native
   const traceDisabled = view.sources.degraded.some(item => item.reason === 'trace-disabled')
   const traceUnavailable = view.sources.degraded.some(item => item.reason === 'trace-unavailable')
+  const nativeOverflow = view.sources.degraded.some(item => item.pane === 'native' && item.reason === 'result-too-large')
   const result = native?.explanation
   const explanation = result?.kind === 'ready' ? result.view : undefined
   const pair = explanation?.questionPairs?.find(item => item.id === pairId) ?? explanation?.questionPairs?.[0]
@@ -32,7 +33,7 @@ export function NativeProvenancePanel({ view, tab }: { view: ProvenanceView; tab
       <strong>{t('question')}</strong><p style={textStyle}>{question ?? '—'}</p>
       <strong>{t('answer')}</strong><p style={textStyle}>{answer ?? '—'}</p>
     </section>}
-    {explanation === undefined ? <p role="status" style={noticeStyle}>{traceDisabled ? t('noProvenanceRecordedTraceDisabled') : traceUnavailable ? t('noProvenanceRecordedTraceUnavailable') : result?.kind === 'not-generated' ? t('nativeNotGenerated') : <NativeFailure reason={result?.kind === 'unavailable' ? result.reason : 'unavailable'} />}</p> : <>
+    {explanation === undefined ? <p role="status" style={noticeStyle}>{traceDisabled ? t('noProvenanceRecordedTraceDisabled') : traceUnavailable ? t('noProvenanceRecordedTraceUnavailable') : result?.kind === 'not-generated' ? t('nativeNotGenerated') : <NativeFailure reason={result?.kind === 'unavailable' ? result.reason : nativeOverflow ? 'result-too-large' : 'unavailable'} />}</p> : <>
       <p style={noticeStyle}>{t('nativeStates', { status: explanation.status, evidence: explanation.evidenceStatus ?? '—', generation: explanation.generationStatus ?? '—' })}</p>
       {explanation.notices?.map((notice, index) => <p key={index} role="status" style={noticeStyle}>{notice}</p>)}
       {explanation.questionPairs?.length ? <label>{t('nativeQuestionPair')} <select value={pair?.id ?? ''} onChange={event => { setPairId(event.target.value); setClaimId(undefined); setNodeId(undefined); setOperationId(undefined) }}>

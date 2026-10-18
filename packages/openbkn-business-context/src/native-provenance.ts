@@ -5,7 +5,10 @@ export const NATIVE_PROVENANCE_LIMITS = { wireBytes: 8 * 1024 * 1024, dtoBytes: 
 export class NativeProjectionError extends Error {
   constructor(readonly reason: 'invalid-response' | 'result-too-large') { super('Native provenance projection refused'); this.name = 'NativeProjectionError' }
 }
-const text = z.string().max(16_384), id = z.string().min(1).max(512), optional = text.optional()
+// Zod's string maximum counts code points; the wire contract budgets UTF-16 units.
+const text = z.string().superRefine((value, ctx) => {
+  if (value.length > 16_384) ctx.addIssue({ code: 'too_big', origin: 'string', maximum: 16_384, inclusive: true })
+}), id = z.string().min(1).max(512), optional = text.optional()
 const ids = z.array(id).max(1000)
 const node = z.object({ id, label: text, kind: z.enum(['relation','object','field','query','function','api','result','gap','source','calculation','conclusion']), role: z.enum(['input','output','source','context','process','fact','conclusion','gap']).optional(), executionNodeId: id.optional(), value: optional, status: z.enum(['checked','located','candidate','unbound','missing','running','completed','interrupted','failed','unknown','supported','partial','unsupported','contradicted','recorded_result']).optional(), detail: optional, technical: optional })
 const edge = z.object({ id, source: id, target: id, label: text, kind: optional, role: optional, detail: optional })
@@ -30,7 +33,9 @@ const explanation = z.object({
   requirements: z.array(z.object({ id, label: text, status: z.enum(['supported','partial','unsupported','contradicted','missing']), claimIds: ids })).max(64).optional(),
   claims: z.array(claim).max(256), execution: graph, evidence: graph, notices: z.array(text).max(128).optional(), timeRail: z.array(rail).max(500).optional(),
   questionPairs: z.array(z.object({ id, question: text, answer: text, summary: text, status: text, reasonCode: optional, claimIds: ids })).max(64).optional(),
-  selectedPairGraphs: z.record(id, pairGraph).refine(value => Object.keys(value).length <= 64).optional(),
+  selectedPairGraphs: z.record(id, pairGraph).superRefine((value, ctx) => {
+    if (Object.keys(value).length > 64) ctx.addIssue({ code: 'too_big', origin: 'record', maximum: 64, inclusive: true })
+  }).optional(),
 })
 function parse<T>(schema: z.ZodType<T>, value: unknown): T {
   const parsed = schema.safeParse(value)
@@ -47,7 +52,7 @@ function unique(values: readonly { id: string }[]): void {
 export function projectNativeExplanation(value: unknown, interactionId: string, maxBytes: number = NATIVE_PROVENANCE_LIMITS.dtoBytes): Exclude<NativeExplanationResult, { kind: 'unavailable' }> {
   const row = parse(z.object({ schema_version: z.literal('1'), interaction_id: id, status: z.enum(['ready','not_generated']), generated_at: text.optional(), view: z.unknown().optional() }), value)
   if (row.interaction_id !== interactionId) throw new NativeProjectionError('invalid-response')
-  if (row.status === 'not_generated') return { kind: 'not-generated' }
+  if (row.status === 'not_generated') return admit({ kind: 'not-generated' }, maxBytes)
   if (row.generated_at === undefined) throw new NativeProjectionError('invalid-response')
   const view = parse(explanation, row.view)
   if (view.interactionId !== interactionId) throw new NativeProjectionError('invalid-response')

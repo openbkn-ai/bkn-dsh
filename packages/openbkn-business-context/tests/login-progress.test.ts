@@ -1,6 +1,7 @@
 import assert from 'node:assert/strict'
 import { test } from 'node:test'
 import { OpenBknUiController, type OpenBknUiPort } from '../src/client/openbkn-ui-controller.ts'
+import type { AuthSnapshot } from '../src/types.ts'
 function deferred<T>() { let resolve!: (value: T) => void; let reject!: (reason: unknown) => void; const promise = new Promise<T>((a, b) => { resolve = a; reject = b }); return { promise, resolve, reject } }
 const auth = { kind: 'authenticated' as const, baseUrl: 'https://platform.invalid' }
 const port: OpenBknUiPort = {
@@ -43,4 +44,39 @@ test('failed login exposes a controlled state without raw CLI output', async () 
   const controller = new OpenBknUiController({ ...port, beginLogin: async () => { throw new Error('private-token-value') } }, async () => 's')
   controller.open(); await controller.beginLogin()
   assert.equal(controller.snapshot().login, 'failed'); assert.doesNotMatch(JSON.stringify(controller.snapshot()), /private-token-value/)
+})
+
+for (const status of [
+  { kind: 'authentication-required', baseUrl: auth.baseUrl },
+  { kind: 'platform-mismatch', expectedBaseUrl: auth.baseUrl, actualBaseUrl: 'https://other.invalid' },
+] satisfies AuthSnapshot[]) {
+  test(`login verification returning ${status.kind} never publishes success or the stale catalogue`, async () => {
+    const controller = new OpenBknUiController({ ...port, status: async () => status, beginLogin: async () => [{ id: 'private-network', displayName: 'Stale catalogue' }] }, async () => 's')
+    const outcomes: string[] = []
+    controller.subscribe(() => { if (controller.snapshot().login) outcomes.push(controller.snapshot().login!) })
+    controller.open(); await controller.beginLogin()
+    assert.equal(controller.snapshot().phase, 'authentication-required')
+    assert.equal(controller.snapshot().login, 'failed')
+    assert.deepEqual(controller.snapshot().auth, status)
+    assert.deepEqual(controller.snapshot().networks, [])
+    assert.equal(outcomes.includes('succeeded'), false)
+  })
+}
+
+test('an unsuccessful verification can retry and succeeds only after authenticated verification', async () => {
+  let checks = 0
+  const controller = new OpenBknUiController({ ...port, status: async () => ++checks === 1 ? { kind: 'authentication-required', baseUrl: auth.baseUrl } : auth }, async () => 's')
+  controller.open(); await controller.beginLogin()
+  assert.equal(controller.snapshot().login, 'failed')
+  await controller.beginLogin()
+  assert.equal(controller.snapshot().login, 'succeeded'); assert.equal(checks, 2)
+})
+
+test('cancellation while verifying status discards a late authenticated result', async () => {
+  const pending = deferred<AuthSnapshot>(); let signal: AbortSignal | undefined
+  const controller = new OpenBknUiController({ ...port, status: async s => { signal = s; return pending.promise } }, async () => 's')
+  controller.open(); const first = controller.beginLogin(); await new Promise(resolve => setImmediate(resolve))
+  controller.cancelLogin(); assert.equal(signal?.aborted, true)
+  pending.resolve(auth); await first
+  assert.equal(controller.snapshot().login, 'cancelled'); assert.equal(controller.snapshot().phase, 'authentication-required')
 })
