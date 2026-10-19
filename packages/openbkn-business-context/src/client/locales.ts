@@ -234,6 +234,11 @@ export const zh = {
   "pickerFailed": "无法打开本机目录选择器。请处理后重试。"
 ,
 "nativeRecordedAnswer": "以下为平台记录的问答，可能与 DSH 最终回答不同。",
+"nativeOriginalRecord": "平台原始记录",
+"nativeOriginalTextNotDisclosed": "平台未披露此项原文；无法据此判断未记录、读取失败或访问限制。",
+"nativeExplanationRecord": "查看平台解释记录中的问答",
+"nativeExplanationTextBoundary": "以下文本来自平台已有解释，可能与原始记录或 DSH 最终回答不同；不用于补全缺失原文。",
+"nativeExplanationTextNotDisclosed": "平台解释记录未披露此项文本。",
 "nativeNotGenerated": "尚未生成解释。此面板只读取已有记录；可在 OpenBKN 原生页面中显式生成后重新打开。",
 "nativeStates": "平台状态：{status} · 证据：{evidence} · 归因：{generation}",
 "nativeQuestionPair": "业务问题",
@@ -535,6 +540,11 @@ export const en: Record<OpenBknMessageKey, string> = {
   "pickerFailed": "Could not open the local directory chooser. Check the system dialog and retry."
 ,
 "nativeRecordedAnswer": "The question and answer below are platform records and may differ from the final DSH response.",
+"nativeOriginalRecord": "Platform original record",
+"nativeOriginalTextNotDisclosed": "The platform did not disclose this original text. This does not establish whether it was unrecorded, unreadable, or access restricted.",
+"nativeExplanationRecord": "View the question and answer in the platform explanation record",
+"nativeExplanationTextBoundary": "These texts come from the existing platform explanation and may differ from the original record or DSH final answer. They do not fill missing original text.",
+"nativeExplanationTextNotDisclosed": "The platform explanation record did not disclose this text.",
 "nativeNotGenerated": "No explanation has been generated. This panel reads existing records only. Generate one explicitly in OpenBKN, then reopen this panel.",
 "nativeStates": "Platform status: {status} \u00b7 Evidence: {evidence} \u00b7 Attribution: {generation}",
 "nativeQuestionPair": "Business question",

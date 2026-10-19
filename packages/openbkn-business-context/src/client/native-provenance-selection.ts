@@ -66,8 +66,9 @@ export function nativeSelectionModel(explanation: NativeExplanation | undefined,
     else link(from,to)
   }
   function operations(from: NativeTarget, operationIds: readonly string[]) {
-    // A relation's operation metadata cannot override a step/event's exact attempt identity.
-    if (from.kind==='step' || from.kind==='event') return
+    // Definition context does not execute operations. Relation metadata also cannot
+    // override a step/event's exact attempt identity.
+    if (from.kind==='schema' || from.kind==='step' || from.kind==='event') return
     for (const id of new Set(operationIds)) {
       const matchingSteps = stepsByOperation.get(id) ?? []
       const matchingEvents = eventsByOperation.get(id) ?? []
@@ -103,7 +104,14 @@ export function nativeSelectionModel(explanation: NativeExplanation | undefined,
   const edges = graph?.edges ?? []
   for (const edge of edges) {
     const from = resolve(edge.fromId), to = resolve(edge.toId)
-    if (from && to) { link(to,from); operations(from,edge.operationIds); operations(to,edge.operationIds) }
+    if (from && to) {
+      // The pinned EE emits function → definition for uses_schema, whereas
+      // supports/implements/grounds/describes point toward the dependent record.
+      // Keep unfamiliar uses_schema endpoint roles as raw records, without guessing.
+      if (edge.kind==='uses_schema') {
+        if (from.kind==='function' && to.kind==='schema') { link(from,to); operations(from,edge.operationIds) }
+      } else { link(to,from); operations(from,edge.operationIds); operations(to,edge.operationIds) }
+    }
     else { if (!from) unresolved.add(edge.fromId); if (!to) unresolved.add(edge.toId) }
   }
   // Do not mix top-level evidence edges into a different selected-pair graph.
@@ -143,9 +151,11 @@ export function nativeSelectionModel(explanation: NativeExplanation | undefined,
       // Include the disclosed inputs/outputs of related processing, without traversing
       // another claim or fanning a selected attempt out to its sibling attempts.
       const nodeSelection=['evidence','schema','execution'].includes(active.kind)
+      // Concrete nodes can bridge execution → output → processing. A definition
+      // reached along that path must not pull in its other users as claim support.
       const relatedFunctions=functions.filter(fn => related.has(targetKey({kind:'function',id:fn.id})) || (nodeSelection &&
         [...(dependencies.get(targetKey({kind:'function',id:fn.id})) ?? []),...(dependents.get(targetKey({kind:'function',id:fn.id})) ?? [])]
-          .some(key => related.has(key) && ['evidence','schema','execution'].includes(targets.get(key)!.kind))))
+          .some(key => related.has(key) && ['evidence','execution'].includes(targets.get(key)!.kind))))
       const contextStarts=new Set<string>()
       for (const fn of relatedFunctions) {
         const fnKey=targetKey({kind:'function',id:fn.id}); related.add(fnKey)

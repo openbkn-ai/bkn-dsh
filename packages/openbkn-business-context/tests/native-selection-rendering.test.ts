@@ -9,7 +9,7 @@ import { NativeProvenancePanel } from '../src/client/NativeProvenancePanel.tsx'
 import { NativeRecordList } from '../src/client/NativeRecordList.tsx'
 import type { NativeTargetKind } from '../src/client/native-provenance-selection.ts'
 import { selectionFixture } from './fixtures/native-selection.ts'
-import { denseSelectionFixture } from './fixtures/native-boundaries.ts'
+import { denseSelectionFixture, pagingSelectionFixture, sharedSchemaFixture } from './fixtures/native-boundaries.ts'
 
 function localeHarness() {
   let snapshot={active:'zh',revision:0,locales:[]}; const listeners=new Set<()=>void>()
@@ -39,7 +39,7 @@ function nextPage(renderer:ReturnType<typeof create>,label:string) {
 
 test('record pages construct only visible children, reveal a new focus and reset on a context round trip',()=>{
   const harness=localeHarness();const Component=localized(NativeRecordList<number>,harness.locale);let renderer!:ReturnType<typeof create>
-  const rendered:number[]=[];const props={items:Array.from({length:45},(_,i)=>i),label:'Records',contextKey:'A',focusKey:'initial',renderItem:(item:number)=>{rendered.push(item);return createElement('p',{key:item},String(item))}}
+  const rendered:number[]=[];const props={items:Array.from({length:45},(_,i)=>i),label:'Records',listId:'records',contextKey:'A',focusKey:'initial',renderItem:(item:number)=>{rendered.push(item);return createElement('p',{key:item},String(item))}}
   try {
     act(()=>{renderer=create(createElement(Component,props))})
     assert.deepEqual(rendered,props.items.slice(0,20));rendered.length=0
@@ -51,6 +51,184 @@ test('record pages construct only visible children, reveal a new focus and reset
     act(()=>renderer.update(createElement(Component,props)))
     assert.match(JSON.stringify(renderer.toJSON()),/Showing 1–20 of 45/)
   } finally {act(()=>renderer.unmount())}
+})
+
+test('record pages remember each new focus after manual paging and an A-B-A round trip',()=>{
+  const harness=localeHarness(),Component=localized(NativeRecordList<number>,harness.locale);let renderer!:ReturnType<typeof create>
+  const props={items:Array.from({length:60},(_,i)=>i),label:'Records',listId:'records',contextKey:'A',focusKey:'A21',focusIndex:21,renderItem:(item:number)=>createElement('p',{key:item},String(item))}
+  try {
+    act(()=>{renderer=create(createElement(Component,props))})
+    nextPage(renderer,'Records')
+    act(()=>renderer.update(createElement(Component,{...props,focusKey:'B1',focusIndex:1})))
+    assert.match(JSON.stringify(renderer.toJSON()),/显示 1–20，共 60 条/)
+    act(()=>renderer.update(createElement(Component,props)))
+    assert.match(JSON.stringify(renderer.toJSON()),/显示 21–40，共 60 条/)
+  } finally {act(()=>renderer.unmount())}
+})
+
+test('different list roles never share page state even at the same position and question pair',()=>{
+  const harness=localeHarness(),Component=localized(NativeRecordList<number>,harness.locale);let renderer!:ReturnType<typeof create>
+  const props={items:Array.from({length:60},(_,i)=>i),label:'Records',listId:'events',contextKey:'A',focusKey:'last',focusIndex:44,renderItem:(item:number)=>createElement('p',{key:item},String(item))}
+  try {
+    act(()=>{renderer=create(createElement(Component,props))})
+    assert.match(JSON.stringify(renderer.toJSON()),/显示 41–60，共 60 条/)
+    act(()=>renderer.update(createElement(Component,{...props,listId:'requirements',focusIndex:-1})))
+    assert.match(JSON.stringify(renderer.toJSON()),/显示 1–20，共 60 条/)
+    nextPage(renderer,'Records')
+    harness.set('en');assert.match(JSON.stringify(renderer.toJSON()),/Showing 21–40 of 60/)
+    act(()=>renderer.update(createElement(Component,props)))
+    assert.match(JSON.stringify(renderer.toJSON()),/Showing 41–60 of 60/)
+  } finally {act(()=>renderer.unmount())}
+})
+
+test('repeated reference jumps reveal the same target after manual paging and preserve A-B-A navigation',()=>{
+  const fixture=pagingSelectionFixture(),before=JSON.stringify(fixture.view),ui=renderFixture(fixture)
+  const visible=(id:string)=>ui.renderer.root.findAllByType('button').some(item=>item.props['data-target-kind']==='evidence' && item.props['data-target-id']===id && !item.props['aria-label'])
+  try {
+    ui.show('evidence');ui.click('evidence','n44',true)
+    assert.equal(button(ui.renderer,'evidence','n44').props['aria-pressed'],true)
+    act(()=>recordList(ui.renderer,'业务证据与来源').findAllByType('button').find(item=>item.props['aria-label']==='上一页：业务证据与来源')!.props.onClick())
+    assert.equal(visible('n44'),false)
+    ui.language('en');assert.equal(visible('n44'),false)
+    ui.click('evidence','n44',true)
+    assert.equal(button(ui.renderer,'evidence','n44').props['aria-pressed'],true)
+    ui.click('evidence','n0',true);assert.equal(button(ui.renderer,'evidence','n0').props['aria-pressed'],true)
+    ui.click('evidence','n44',true);assert.equal(button(ui.renderer,'evidence','n44').props['aria-pressed'],true)
+    ui.language('zh');assert.equal(button(ui.renderer,'evidence','n44').props['aria-pressed'],true)
+    assert.equal(JSON.stringify(fixture.view),before)
+  } finally {ui.close()}
+})
+
+test('paging requirements between tabs cannot hide the exact selected retry event',()=>{
+  const ui=renderFixture(pagingSelectionFixture())
+  try {
+    const fnSection=()=>button(ui.renderer,'function','fn1').parent!
+    for(let i=0;i<2;i++)act(()=>fnSection().findAllByType('button').find(item=>item.props['aria-label']==='下一页：业务执行步骤')!.props.onClick())
+    ui.click('step','s44',true)
+    assert.equal(button(ui.renderer,'event','t44').props['data-related'],true)
+    ui.show('evidence')
+    const requirements=()=>ui.renderer.root.findAllByType('section').find(item=>String(item.props['data-native-list']??'').startsWith('关联仅依据平台明确披露的标识'))!
+    act(()=>requirements().findAllByType('button').find(item=>String(item.props['aria-label']??'').startsWith('下一页'))!.props.onClick())
+    ui.language('en');assert.match(JSON.stringify(ui.renderer.toJSON()),/Showing 21–40 of 45/)
+    ui.show('events')
+    assert.equal(button(ui.renderer,'event','t44').props['data-related'],true)
+    assert.equal(button(ui.renderer,'step','s44').props['aria-pressed'],true)
+    assert.equal(button(ui.renderer,'event','t40').props['data-related'],false)
+    ui.language('zh')
+    act(()=>ui.renderer.root.findByType('select').props.onChange({target:{value:'p2'}}))
+    act(()=>ui.renderer.root.findByType('select').props.onChange({target:{value:'p1'}}))
+    assert.ok(button(ui.renderer,'step','s0'))
+    assert.equal(ui.renderer.root.findAllByType('button').some(item=>item.props['aria-pressed']),false)
+  } finally {ui.close()}
+})
+
+test('shared definitions remain navigable without highlighting another processing path or reclassifying invalid',()=>{
+  const fixture=sharedSchemaFixture('invalid'),before=JSON.stringify(fixture.view),ui=renderFixture(fixture)
+  try {
+    assert.equal(button(ui.renderer,'function','fn1').props['data-related'],true)
+    assert.equal(button(ui.renderer,'function','fn2').props['data-related'],false)
+    assert.match(ui.text(),/invalid/);assert.match(ui.text(),/platform_reason_2/)
+    ui.click('schema','schema:object:Order',true)
+    assert.equal(button(ui.renderer,'function','fn2').props['data-related'],true)
+    assert.equal(button(ui.renderer,'claim','c2').props['data-related'],true)
+    ui.click('claim','c1')
+    assert.equal(button(ui.renderer,'function','fn2').props['data-related'],false)
+    ui.click('step','step-t1-retry',true)
+    assert.equal(button(ui.renderer,'event','t1-retry').props['data-related'],true)
+    assert.equal(button(ui.renderer,'event','t1').props['data-related'],false)
+    assert.equal(button(ui.renderer,'event','t2').props['data-related'],false)
+    ui.show('evidence');ui.click('evidence','n1');ui.click('execution','x1',true)
+    assert.equal(button(ui.renderer,'function','fn2').props['data-related'],false)
+    ui.language('en');assert.equal(button(ui.renderer,'function','fn2').props['data-related'],false)
+    assert.equal(JSON.stringify(fixture.view),before)
+  } finally {ui.close()}
+})
+
+for(const missing of ['both','question','answer'] as const) test(`missing ${missing} original fields never get filled from the explanation`,()=>{
+  const fixture=selectionFixture();assert.equal(fixture.view.native!.detail.kind,'ready')
+  if(fixture.view.native!.detail.kind!=='ready')return
+  fixture.view.native!.detail.view.question=missing==='both'||missing==='question'?undefined:'ORIGINAL-Q'
+  fixture.view.native!.detail.view.answer=missing==='both'||missing==='answer'?undefined:'ORIGINAL-A'
+  fixture.explanation.question='EXPLANATION-Q';fixture.explanation.answer='EXPLANATION-A'
+  const before=JSON.stringify(fixture.view),ui=renderFixture(fixture)
+  try {
+    const original=ui.renderer.root.findAllByType('section').find(item=>item.props['data-native-answer-source']==='detail')
+    assert.ok(original)
+    const originalText=original.findAllByType('p').map(item=>item.children.join('')).join(' ')
+    assert.doesNotMatch(originalText,/EXPLANATION-Q|EXPLANATION-A/)
+    assert.match(originalText,/平台未披露此项原文/)
+    const recorded=ui.renderer.root.findAllByType('details').find(item=>item.props['data-native-answer-source']==='explanation')
+    assert.ok(recorded);assert.match(recorded.findAllByType('p').map(item=>item.children.join('')).join(' '),/EXPLANATION-Q.*EXPLANATION-A/)
+    assert.equal(recorded.props.open,undefined)
+    ui.language('en');assert.equal(JSON.stringify(fixture.view),before)
+  } finally {ui.close()}
+})
+
+test('original and explanation question/answer texts keep their distinct sources and exact content',()=>{
+  const fixture=selectionFixture();if(fixture.view.native!.detail.kind!=='ready')throw new Error('ready detail required')
+  fixture.view.native!.detail.view.question='  原始问题\n<literal>  '
+  fixture.view.native!.detail.view.answer='原始回答："platform"\n  unchanged  '
+  fixture.explanation.question='解释中的问题';fixture.explanation.answer='解释中的回答'
+  const before=JSON.stringify(fixture.view),ui=renderFixture(fixture)
+  try {
+    const original=ui.renderer.root.findAllByType('section').find(item=>item.props['data-native-answer-source']==='detail')!
+    const fields=original.findAllByType('p').filter(item=>item.props['data-native-text-field'])
+    assert.deepEqual(fields.map(item=>item.children.join('')),[fixture.view.native!.detail.view.question,fixture.view.native!.detail.view.answer])
+    const explanation=ui.renderer.root.findAllByType('details').find(item=>item.props['data-native-answer-source']==='explanation')!
+    assert.deepEqual(explanation.findAllByType('p').filter(item=>item.props['data-native-text-field']).map(item=>item.children.join('')),['解释中的问题','解释中的回答'])
+    ui.language('en');assert.equal(JSON.stringify(fixture.view),before)
+  } finally {ui.close()}
+})
+
+test('explicit empty original strings stay empty instead of being classified as missing',()=>{
+  const fixture=selectionFixture();if(fixture.view.native!.detail.kind!=='ready')throw new Error('ready detail required')
+  fixture.view.native!.detail.view.question='';fixture.view.native!.detail.view.answer=''
+  fixture.explanation.question='EXPLANATION-Q';fixture.explanation.answer='EXPLANATION-A'
+  const ui=renderFixture(fixture)
+  try {
+    const original=ui.renderer.root.findAllByType('section').find(item=>item.props['data-native-answer-source']==='detail')!
+    assert.deepEqual(original.findAllByType('p').filter(item=>item.props['data-native-text-field']).map(item=>item.children.join('')),['',''])
+    assert.doesNotMatch(original.findAllByType('p').map(item=>item.children.join('')).join(' '),/未披露|EXPLANATION/)
+  } finally {ui.close()}
+})
+
+test('missing explanation text is not filled from an available original record',()=>{
+  const fixture=selectionFixture();if(fixture.view.native!.detail.kind!=='ready')throw new Error('ready detail required')
+  fixture.view.native!.detail.view.question='ORIGINAL-Q';fixture.view.native!.detail.view.answer='ORIGINAL-A'
+  fixture.explanation.question=undefined;fixture.explanation.answer=undefined
+  const ui=renderFixture(fixture)
+  try {
+    const explanation=ui.renderer.root.findAllByType('details').find(item=>item.props['data-native-answer-source']==='explanation')!
+    const fields=explanation.findAllByType('p').filter(item=>item.props['data-native-text-field']).map(item=>item.children.join(''))
+    assert.deepEqual(fields,['平台解释记录未披露此项文本。','平台解释记录未披露此项文本。'])
+    assert.doesNotMatch(fields.join(' '),/ORIGINAL-Q|ORIGINAL-A/)
+  } finally {ui.close()}
+})
+
+for(const reason of ['access-denied','not-disclosed-or-unavailable'] as const) test(`a ${reason} original source never gets replaced by explanation texts`,()=>{
+  const fixture=selectionFixture();fixture.view.native!.detail={kind:'unavailable',reason}
+  fixture.explanation.question='EXPLANATION-Q';fixture.explanation.answer='EXPLANATION-A'
+  const before=JSON.stringify(fixture.view),ui=renderFixture(fixture)
+  try {
+    const original=ui.renderer.root.findAllByType('section').find(item=>item.props['data-native-answer-source']==='detail')!
+    assert.equal(original.findAllByType('p').filter(item=>item.props['data-native-text-field']).length,0)
+    assert.doesNotMatch(original.findAllByType('p').map(item=>item.children.join('')).join(' '),/EXPLANATION-Q|EXPLANATION-A/)
+    const explanation=ui.renderer.root.findAllByType('details').find(item=>item.props['data-native-answer-source']==='explanation')!
+    assert.deepEqual(explanation.findAllByType('p').filter(item=>item.props['data-native-text-field']).map(item=>item.children.join('')),['EXPLANATION-Q','EXPLANATION-A'])
+    assert.equal(JSON.stringify(fixture.view),before)
+  } finally {ui.close()}
+})
+
+for(const state of ['not-generated','unavailable'] as const) test(`a ${state} explanation never hides or changes an available original source`,()=>{
+  const fixture=selectionFixture();if(fixture.view.native!.detail.kind!=='ready')throw new Error('ready detail required')
+  fixture.view.native!.detail.view.question='ORIGINAL-Q';fixture.view.native!.detail.view.answer='ORIGINAL-A'
+  fixture.view.native!.explanation=state==='not-generated'?{kind:state}:{kind:state,reason:'unavailable'}
+  const ui=renderFixture(fixture)
+  try {
+    const original=ui.renderer.root.findAllByType('section').find(item=>item.props['data-native-answer-source']==='detail')!
+    assert.deepEqual(original.findAllByType('p').filter(item=>item.props['data-native-text-field']).map(item=>item.children.join('')),['ORIGINAL-Q','ORIGINAL-A'])
+    assert.equal(ui.renderer.root.findAllByType('details').filter(item=>item.props['data-native-answer-source']==='explanation').length,0)
+  } finally {ui.close()}
 })
 
 test('a reference to an off-page retry reveals both its exact step and event pages',()=>{
