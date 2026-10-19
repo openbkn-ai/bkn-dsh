@@ -14,6 +14,8 @@ The first local implementation is recorded in [the 2026-10-18 development eviden
 
 On 2026-10-19 the user added [DSH-COMPAT](docs/plans/0.2.1/DSH-COMPATIBILITY.md) to the 0.2.1 scope: support DSH `0.2.1-rc.2` while retaining the currently supported `0.2.0-rc.2`, using the same plugin candidate for both. This requirement is pending implementation and acceptance; current pins and prior tests still describe the old baseline. Compare public APIs and build/release constraints, preserve old-version regression coverage, and verify both versions on Mac/Windows Desktop/npm before claiming compatibility. The historical scope exclusion for host upgrades does not exclude this added compatibility work; it still does not authorize upgrading users' installed hosts, changing platform/model outputs, or pushing, running remote CI or releasing.
 
+The user subsequently authorized implementation, pushing `feat/021-localization-login` for synchronization, and delegating the unfinished work to thread `01a15340-6507-7660-a68d-68994e283415`. The [remote handoff](docs/handoff/2026-10-19-021-dsh-compat/README.md) records checkpoint `0a362b3`, passing old-baseline checks, failed new-baseline attempts and next steps. This scoped push authorization supersedes the earlier local-only restriction for this handoff; remote CI, PR creation, merging and publication remain outside the current authorization.
+
 ## Commands
 
 Order matters: the plugin build imports `@deepseek-ai/dsh-typert-generator/tsdown`, whose `lib/` only exists after the pinned DSH source is built. `.github/workflows/compatible-runtime.yml` is the reference sequence.
