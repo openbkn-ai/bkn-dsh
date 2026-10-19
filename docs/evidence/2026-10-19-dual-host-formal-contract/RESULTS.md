@@ -64,5 +64,6 @@
 - B1：同 Host 重新登录的有边界最小复现；未复现保持开放，不宣称根因或凭据轮换修复。
 - G6 正式平台+真实模型；人工焦点/滚动/窄窗口/可读性与异常分诊；无授权、未生成、部分及异常的可得真实场景。
 - 正式候选版本与发布说明复核、PR/审查、合并、tag/npm publish/dist-tag；均保留各自授权和仓库门槛。
+- 同步时核对到现有 [Dependabot #1](https://github.com/openbkn-ai/bkn-dsh/security/dependabot/1)：MCP TypeScript SDK OAuth 客户端可能向 MCP server 指定的授权服务器发送凭据，`GHSA-6qxp-vccf-f47h`，high，修复版本 `2.2.0`。主构建及旧宿主集合实际为 `@modelcontextprotocol/client@2.0.0`，新版集合为 `2.2.0`。这不是本轮新增依赖，但仍须在正式发布前分诊旧宿主实际路径、上游修复或缓解；没有进行利用验证或修改宿主依赖，不能声称插件已暴露或告警已解决。
 
 复跑入口：先按 CLAUDE.md 准备固定旧生成器，再执行插件测试、typecheck、仓库测试、package audit；将本地 pack 交给 `node scripts/test-dsh-hosts.mjs --plugin <tgz> --output <fresh directory>`。该脚本只创建明确的全新隔离目录，设置独立 DSH_HOME，不读 CLI token、启动用户 Host 或调用平台/模型。
