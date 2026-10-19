@@ -36,6 +36,20 @@ export function sharedSchemaFixture(validationStatus='candidate') {
   return admitFixture(fixture)
 }
 
+/** Two disclosed queries consume one input ID; neither output depends on the other query. */
+export function sharedInputFixture(validationStatus='candidate',reference:'sourceRef'|'evidenceRefs'='sourceRef') {
+  const fixture=sharedSchemaFixture(validationStatus),graph=fixture.explanation.selectedPairGraphs!.p1
+  graph.schemaNodes=[];graph.edges=graph.edges.filter(edge=>edge.kind==='supports')
+  graph.evidenceNodes.push({id:'shared-input',label:'Common filter',kind:'source',role:'input',value:'42'})
+  for(const fn of graph.businessFunctions) {
+    fn.schemaRefs=[]
+    fn.businessInputs=[reference==='sourceRef'
+      ? {name:'Common filter',value:'42',sourceKind:'question',sourceRef:'shared-input'}
+      : {name:'Common filter',value:'42',evidenceRefs:['shared-input']}]
+  }
+  return admitFixture(fixture)
+}
+
 /** Long events, requirements and references coexist; all arrays are admitted by the real projector. */
 export function pagingSelectionFixture() {
   const fixture=selectionFixture(),view=fixture.explanation,graph=view.selectedPairGraphs!.p1,base=fixture.rail[0]

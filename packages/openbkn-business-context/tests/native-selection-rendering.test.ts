@@ -9,7 +9,7 @@ import { NativeProvenancePanel } from '../src/client/NativeProvenancePanel.tsx'
 import { NativeRecordList } from '../src/client/NativeRecordList.tsx'
 import type { NativeTargetKind } from '../src/client/native-provenance-selection.ts'
 import { selectionFixture } from './fixtures/native-selection.ts'
-import { denseSelectionFixture, pagingSelectionFixture, sharedSchemaFixture } from './fixtures/native-boundaries.ts'
+import { denseSelectionFixture, pagingSelectionFixture, sharedInputFixture, sharedSchemaFixture } from './fixtures/native-boundaries.ts'
 
 function localeHarness() {
   let snapshot={active:'zh',revision:0,locales:[]}; const listeners=new Set<()=>void>()
@@ -140,6 +140,69 @@ test('shared definitions remain navigable without highlighting another processin
     ui.show('evidence');ui.click('evidence','n1');ui.click('execution','x1',true)
     assert.equal(button(ui.renderer,'function','fn2').props['data-related'],false)
     ui.language('en');assert.equal(button(ui.renderer,'function','fn2').props['data-related'],false)
+    assert.equal(JSON.stringify(fixture.view),before)
+  } finally {ui.close()}
+})
+
+for(const reference of ['sourceRef','evidenceRefs'] as const) for(const status of ['candidate','invalid','future-platform-status']) {
+  test(`shared ${reference} navigation preserves query scope, both input users and ${status} records across views`,()=>{
+    const fixture=sharedInputFixture(status,reference),before=JSON.stringify(fixture.view),ui=renderFixture(fixture)
+    const expectPaths=(path:1|2|'both')=>{
+      for(const i of [1,2]) {
+        const expected=path==='both'||path===i
+        for(const [kind,id] of [['function',`fn${i}`],['claim',`c${i}`],['evidence',`n${i}`]] as const) {
+          assert.equal(button(ui.renderer,kind,id).props['data-related'],expected,`${kind}:${id}`)
+        }
+      }
+      assert.equal(button(ui.renderer,'evidence','shared-input').props['data-related'],true)
+      assert.match(ui.text(),new RegExp(status));assert.match(ui.text(),/platform_reason_2/)
+    }
+    try {
+      ui.show('evidence');ui.click('evidence','n1');expectPaths(1)
+      assert.equal(button(ui.renderer,'evidence','n1').props['aria-pressed'],true)
+      ui.show('events')
+      assert.equal(button(ui.renderer,'event','t1').props['data-related'],true)
+      assert.equal(button(ui.renderer,'event','t1-retry').props['data-related'],true)
+      assert.equal(button(ui.renderer,'event','t2').props['data-related'],false)
+      ui.click('event','t1')
+      assert.equal(button(ui.renderer,'event','t1-retry').props['data-related'],false)
+      ui.show('evidence');expectPaths(1)
+      ui.click('evidence','shared-input',true);expectPaths('both')
+      assert.equal(button(ui.renderer,'evidence','shared-input').props['aria-pressed'],true)
+      ui.show('events')
+      for(const id of ['t1','t1-retry','t2'])assert.equal(button(ui.renderer,'event',id).props['data-related'],true)
+      ui.show('evidence');ui.click('evidence','n1');ui.language('en');expectPaths(1)
+      ui.click('execution','x1',true);assert.equal(ui.tab(),'events')
+      assert.equal(button(ui.renderer,'event','t2').props['data-related'],false)
+      ui.click('step','step-t1-retry')
+      assert.equal(button(ui.renderer,'event','t1-retry').props['data-related'],true)
+      assert.equal(button(ui.renderer,'event','t1').props['data-related'],false)
+      assert.equal(button(ui.renderer,'event','t2').props['data-related'],false)
+      ui.show('evidence');expectPaths(1)
+      ui.click('claim','c2');expectPaths(2)
+      ui.language('zh');expectPaths(2)
+      ui.show('events')
+      assert.equal(button(ui.renderer,'event','t2').props['data-related'],true)
+      assert.equal(button(ui.renderer,'event','t1').props['data-related'],false)
+      ui.show('evidence');ui.click('evidence','shared-input');expectPaths('both')
+      assert.equal(JSON.stringify(fixture.view),before)
+    } finally {ui.close()}
+  })
+}
+
+test('platform-disclosed dependencies between queries remain navigable with raw invalid records',()=>{
+  const fixture=sharedInputFixture('invalid'),graph=fixture.explanation.selectedPairGraphs!.p1
+  graph.businessFunctions[1].businessInputs.push({name:'First result',sourceKind:'result',sourceRef:'n1'})
+  const before=JSON.stringify(fixture.view),ui=renderFixture(fixture)
+  try {
+    ui.show('evidence');ui.click('evidence','n1')
+    for(const id of ['fn1','fn2'])assert.equal(button(ui.renderer,'function',id).props['data-related'],true)
+    assert.equal(button(ui.renderer,'claim','c2').props['data-related'],true)
+    assert.match(ui.text(),/invalid/);assert.match(ui.text(),/platform_reason_2/)
+    ui.click('execution','x1',true)
+    assert.equal(button(ui.renderer,'event','t2').props['data-related'],true)
+    ui.language('en');ui.show('evidence')
+    assert.equal(button(ui.renderer,'function','fn2').props['data-related'],true)
     assert.equal(JSON.stringify(fixture.view),before)
   } finally {ui.close()}
 })

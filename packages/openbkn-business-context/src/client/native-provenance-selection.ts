@@ -144,18 +144,19 @@ export function nativeSelectionModel(explanation: NativeExplanation | undefined,
         seen.add(key); related.add(key)
         for (const next of direction.get(key) ?? []) queue.push(next)
       }
+      return seen
     }
     if (active) {
       const key=targetKey(active)
-      walk([key],dependencies); walk([key],dependents)
+      walk([key],dependencies); const downstream=walk([key],dependents)
       // Include the disclosed inputs/outputs of related processing, without traversing
       // another claim or fanning a selected attempt out to its sibling attempts.
       const nodeSelection=['evidence','schema','execution'].includes(active.kind)
-      // Concrete nodes can bridge execution → output → processing. A definition
-      // reached along that path must not pull in its other users as claim support.
+      // Bridge execution → output → processing only through descendants of the
+      // selection. An upstream shared input or definition is context, not a new root.
       const relatedFunctions=functions.filter(fn => related.has(targetKey({kind:'function',id:fn.id})) || (nodeSelection &&
         [...(dependencies.get(targetKey({kind:'function',id:fn.id})) ?? []),...(dependents.get(targetKey({kind:'function',id:fn.id})) ?? [])]
-          .some(key => related.has(key) && ['evidence','execution'].includes(targets.get(key)!.kind))))
+          .some(key => downstream.has(key) && ['evidence','execution'].includes(targets.get(key)!.kind))))
       const contextStarts=new Set<string>()
       for (const fn of relatedFunctions) {
         const fnKey=targetKey({kind:'function',id:fn.id}); related.add(fnKey)

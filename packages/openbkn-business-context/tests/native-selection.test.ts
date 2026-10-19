@@ -2,7 +2,97 @@ import assert from 'node:assert/strict'
 import test from 'node:test'
 import { nativeSelectionModel, targetKey } from '../src/client/native-provenance-selection.ts'
 import { selectionFixture } from './fixtures/native-selection.ts'
-import { sharedSchemaFixture } from './fixtures/native-boundaries.ts'
+import { sharedInputFixture, sharedSchemaFixture } from './fixtures/native-boundaries.ts'
+
+for(const reference of ['sourceRef','evidenceRefs'] as const) {
+  for(const status of ['candidate','invalid','future-platform-status']) test(`shared ${reference} inputs do not merge output paths with ${status} records`,()=>{
+    const {explanation,rail}=sharedInputFixture(status,reference),before=JSON.stringify(explanation)
+    const freeze=(value:unknown):void=>{if(value && typeof value==='object'){Object.freeze(value);for(const item of Object.values(value))freeze(item)}}
+    freeze(explanation)
+    const model=nativeSelectionModel(explanation,'p1',rail)
+    for(const i of [1,2]) for(const root of [
+      {kind:'claim',id:`c${i}`},{kind:'evidence',id:`n${i}`},{kind:'execution',id:`x${i}`},
+      {kind:'function',id:`fn${i}`},{kind:'event',id:`t${i}`},{kind:'step',id:`step-t${i}`},
+    ] as const) {
+      const selected=model.selection(root),other=i===1?2:1
+      assert.ok(selected.isRelated({kind:'function',id:`fn${i}`}),targetKey(root))
+      assert.ok(selected.isRelated({kind:'evidence',id:'shared-input'}),targetKey(root))
+      for(const target of [
+        {kind:'function',id:`fn${other}`},{kind:'evidence',id:`n${other}`},{kind:'execution',id:`x${other}`},
+        {kind:'claim',id:`c${other}`},{kind:'event',id:`t${other}`},{kind:'step',id:`step-t${other}`},
+      ] as const) assert.equal(selected.isRelated(target),false,`${targetKey(root)} → ${targetKey(target)}`)
+      if(root.kind==='event'||root.kind==='step') {
+        assert.equal(selected.isRelated({kind:'event',id:'t1-retry'}),false)
+        assert.equal(selected.isRelated({kind:'step',id:'step-t1-retry'}),false)
+      }
+    }
+    const retry=model.selection({kind:'step',id:'step-t1-retry'})
+    assert.ok(retry.isRelated({kind:'event',id:'t1-retry'}))
+    assert.equal(retry.isRelated({kind:'event',id:'t1'}),false)
+    assert.equal(retry.isRelated({kind:'function',id:'fn2'}),false)
+    assert.equal(model.functions[1].validationStatus,status)
+    assert.equal(model.functions[1].reasonCode,'platform_reason_2')
+    assert.equal(JSON.stringify(explanation),before)
+  })
+
+  test(`selecting a shared ${reference} input retains every disclosed query and attempt`,()=>{
+    for(const status of ['candidate','invalid','future-platform-status']) {
+      const {explanation,rail}=sharedInputFixture(status,reference),before=JSON.stringify(explanation)
+      const selected=nativeSelectionModel(explanation,'p1',rail).selection({kind:'evidence',id:'shared-input'})
+      for(const i of [1,2]) for(const target of [
+        {kind:'function',id:`fn${i}`},{kind:'claim',id:`c${i}`},{kind:'evidence',id:`n${i}`},
+        {kind:'execution',id:`x${i}`},{kind:'event',id:`t${i}`},{kind:'step',id:`step-t${i}`},
+      ] as const) assert.ok(selected.isRelated(target),targetKey(target))
+      assert.ok(selected.isRelated({kind:'event',id:'t1-retry'}))
+      assert.ok(selected.isRelated({kind:'step',id:'step-t1-retry'}))
+      assert.ok(selected.isSelected({kind:'evidence',id:'shared-input'}))
+      assert.equal(JSON.stringify(explanation),before)
+    }
+  })
+}
+
+test('an upstream shared input does not turn a branch-specific input into a selection of both queries',()=>{
+  const {explanation,rail}=sharedInputFixture('invalid'),graph=explanation.selectedPairGraphs!.p1
+  graph.evidenceNodes.push({id:'branch-input',label:'Branch filter',kind:'source',role:'input'})
+  graph.businessFunctions[0].businessInputs[0].sourceRef='branch-input'
+  graph.edges.push({edgeId:'recorded-input',kind:'reference',fromId:'shared-input',toId:'branch-input',operationIds:[],validationStatus:'candidate'})
+  const before=JSON.stringify(explanation),model=nativeSelectionModel(explanation,'p1',rail)
+  const branch=model.selection({kind:'evidence',id:'branch-input'})
+  assert.ok(branch.isRelated({kind:'evidence',id:'shared-input'}))
+  assert.ok(branch.isRelated({kind:'function',id:'fn1'}))
+  assert.equal(branch.isRelated({kind:'function',id:'fn2'}),false)
+  assert.equal(branch.isRelated({kind:'claim',id:'c2'}),false)
+  const shared=model.selection({kind:'evidence',id:'shared-input'})
+  assert.ok(shared.isRelated({kind:'function',id:'fn1'}));assert.ok(shared.isRelated({kind:'function',id:'fn2'}))
+  assert.equal(JSON.stringify(explanation),before)
+})
+
+test('equal input values with distinct disclosed IDs do not join queries',()=>{
+  const {explanation,rail}=sharedInputFixture(),graph=explanation.selectedPairGraphs!.p1
+  graph.evidenceNodes.push({...graph.evidenceNodes.find(node=>node.id==='shared-input')!,id:'other-input'})
+  graph.businessFunctions[1].businessInputs[0].sourceRef='other-input'
+  const model=nativeSelectionModel(explanation,'p1',rail)
+  for(const root of [{kind:'evidence',id:'shared-input'},{kind:'evidence',id:'n1'}] as const) {
+    const selected=model.selection(root)
+    assert.ok(selected.isRelated({kind:'function',id:'fn1'}))
+    assert.equal(selected.isRelated({kind:'evidence',id:'other-input'}),false)
+    assert.equal(selected.isRelated({kind:'function',id:'fn2'}),false)
+  }
+})
+
+test('a platform-disclosed output used by another query retains that dependency regardless of invalid status',()=>{
+  const {explanation,rail}=sharedInputFixture('invalid'),graph=explanation.selectedPairGraphs!.p1
+  graph.businessFunctions[1].businessInputs.push({name:'First result',sourceKind:'result',sourceRef:'n1'})
+  const before=JSON.stringify(explanation),model=nativeSelectionModel(explanation,'p1',rail)
+  for(const root of [{kind:'evidence',id:'n1'},{kind:'execution',id:'x1'},{kind:'claim',id:'c2'}] as const) {
+    const selected=model.selection(root)
+    for(const id of ['fn1','fn2']) assert.ok(selected.isRelated({kind:'function',id}),targetKey(root))
+    assert.ok(selected.isRelated({kind:'claim',id:'c2'}))
+  }
+  assert.equal(model.functions[1].validationStatus,'invalid')
+  assert.equal(model.functions[1].businessInputs[1].sourceRef,'n1')
+  assert.equal(JSON.stringify(explanation),before)
+})
 
 for(const status of ['candidate','invalid','future-platform-status']) test(`shared definitions never merge independent claim paths with ${status} records`,()=>{
   const {explanation,rail}=sharedSchemaFixture(status),before=JSON.stringify(explanation)
