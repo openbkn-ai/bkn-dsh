@@ -10,11 +10,13 @@ Published -7 history: [GitHub Release](https://github.com/openbkn-ai/bkn-dsh/rel
 
 Bring governed OpenBKN business knowledge into DeepSeek Harness conversations.
 
-## -10 compatibility preparation (unreleased)
+## 0.2.1 development / -11 (unreleased)
 
-The 0.2.0 adaptation is source-tested against fixed preparation commits, not accepted on a released 0.2.0 platform/SDK. Existing 0.1.5 support remains. Advanced settings selects only the fixed CLI installation target 0.1.5 or 0.2.0; detection shows the actual existing version and never upgrades it automatically. Obtain and verify the formal 0.2.0 SDK before choosing that target.
+This branch targets the same plugin tarball on official DSH `0.2.0-rc.2` and `0.2.1-rc.2`, against formal OpenBKN `v0.2.0` and npm CLI `0.2.0`. The `0.2.0-rc.2` prefix in `0.2.0-rc.2-openbkn.0.2.0-11` identifies the retained build baseline; the exact runtime pair is declared in the package peers. This development version has not been published. Public `latest`/`rc` still point to historical `-10` as checked on October 19.
 
-Large-network navigation summaries retain groups and disclosed counts; omitted indices do not mean zero concepts. Explicit Trace-disabled/unavailable lifecycle results permit the same scoped business work without invented IDs; provenance shows the unrecorded state and local timeline. Authentication, network and unknown-tool refusals remain unchanged. The nullable MCP output-schema mismatch is tracked separately in [Foundry #2106](https://github.com/openbkn-ai/bkn-foundry/issues/2106); the plugin does not rewrite platform MCP results. Native model answers are preserved.
+Formal capture-disabled responses retain managed Conversation/Interaction IDs: business calls still send the required `bkn_context`, and finish uses the current Interaction ID. Provenance preserves the disclosed identities, labels the absence of recorded evidence and keeps the local timeline. The earlier explicit no-identity downgrade remains a separate compatibility path. The plugin does not recalculate business results or alter model answers.
+
+Source tests, controlled official npm runtime checks, fixed CI artifacts, real platform calls and human acceptance are separate gates. The eight Desktop/npm and Mac/Windows combinations across both DSH versions remain pending on a fixed CI candidate. Existing installations are not upgraded automatically.
 
 ## Why
 
@@ -155,13 +157,14 @@ The plugin needs a reachable OpenBKN platform with at least one knowledge networ
 
 ## Supported DSH versions
 
-Exactly one upstream DSH revision is supported at a time — currently `dsh-v0.2.0-rc.2`, pinned by [the compatibility manifest](compat/dsh-0.2.0-rc.2/manifest.json). A scheduled workflow (`upstream-dsh-watch`) watches upstream tags and opens a tracking issue whenever a release moves ahead of the pin; until the compatibility series is regenerated for it, newer DSH revisions are out of scope.
+The published -10 release targets `dsh-v0.2.0-rc.2`. The unreleased -11 branch declares the exact pair in [the host matrix](compat/dsh-hosts.json): `0.2.0-rc.2` and `0.2.1-rc.2`, with the old generator retained for building. Acceptance follows the [formal release contract](docs/plans/0.2.1/ACCEPTANCE-CONTRACT.md); declaration or a controlled smoke result does not establish full product acceptance.
 
 Check your version with `dsh --version`, then pair it like this:
 
 | Your DSH version | Compatibility series | Plugin to install | Prebuilt runtime archive |
 | --- | --- | --- | --- |
 | `dsh-v0.2.0-rc.2` (current pin): desktop app, npm CLI, or source build | not needed to use the plugin; [`compat/dsh-0.2.0-rc.2/`](compat/dsh-0.2.0-rc.2/) builds it from source | `@openbkn/dsh-business-context@latest` from npm or a published `.tgz` (Standard mode) | discontinued; last one: [openbkn-dsh-runtime-v0.2.0-rc.2-openbkn.0.2.0](https://github.com/openbkn-ai/bkn-dsh/releases/tag/openbkn-dsh-runtime-v0.2.0-rc.2-openbkn.0.2.0) |
+| `dsh-v0.2.1-rc.2` (development target) | official host; old build generator stays separate | unreleased -11 only after fixed-candidate acceptance; public -10 is not this branch | no new runtime archive |
 | `dsh-v0.1.7-rc.2` (previous series) | [`compat/dsh-0.1.7-rc.2/`](compat/dsh-0.1.7-rc.2/) (archived) | `@openbkn/dsh-business-context@0.1.7-rc.2-openbkn.0.2.0` from npm, or build from git tag [`v0.1.7-rc.2-openbkn.0.2.0`](https://github.com/openbkn-ai/bkn-dsh/tree/v0.1.7-rc.2-openbkn.0.2.0) | [openbkn-dsh-runtime-v0.1.7-rc.2-openbkn.0.2.0](https://github.com/openbkn-ai/bkn-dsh/releases/tag/openbkn-dsh-runtime-v0.1.7-rc.2-openbkn.0.2.0) |
 | `dsh-v0.1.6-alpha.2` (previous series) | [`compat/dsh-0.1.6-alpha.2/`](compat/dsh-0.1.6-alpha.2/) (archived) | `@openbkn/dsh-business-context@0.1.5-rc.2` from npm, or a source build from git tag [`v0.1.5-rc.2`](https://github.com/openbkn-ai/bkn-dsh/tree/v0.1.5-rc.2) | [openbkn-dsh-runtime-v0.1.6-alpha.2-openbkn.1](https://github.com/openbkn-ai/bkn-dsh/releases/tag/openbkn-dsh-runtime-v0.1.6-alpha.2-openbkn.1) |
 

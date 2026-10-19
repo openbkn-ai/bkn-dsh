@@ -137,6 +137,9 @@ jobs:
           cache: pnpm
           registry-url: https://registry.npmjs.org
 
+      - name: Check reviewed dual-host declarations
+        run: node scripts/dsh-host-compatibility.mjs
+
       - name: Checkout pinned DSH source
         run: git clone --depth 1 --branch "${DSH_TAG}" https://github.com/deepseek-ai/deepseek-harness.git release/deepseek-harness
 
@@ -208,6 +211,23 @@ jobs:
           if (missing.length) process.exit(1)
           console.log(`all ${targets.length} export/main/types targets are packed`)
           '
+
+      - name: Check the same tarball on both official npm host runtimes
+        shell: bash
+        run: |
+          set -euo pipefail
+          artifact="release/plugin/${PKG_NAME/@openbkn\//openbkn-}-${PKG_VERSION}.tgz"
+          node scripts/test-dsh-hosts.mjs --plugin "$artifact" --output release/dual-host-checks
+
+      - name: Preserve controlled dual-host evidence
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: dual-host-controlled-evidence
+          path: |
+            release/dual-host-checks/report.json
+            release/dual-host-checks/*/*.log
+            release/dual-host-checks/*/pnpm-lock.yaml
 
       # A prerelease (0.1.5-alpha.0) publishes under its own label, so it never
       # becomes what `npm install @openbkn/dsh-business-context` resolves to; a

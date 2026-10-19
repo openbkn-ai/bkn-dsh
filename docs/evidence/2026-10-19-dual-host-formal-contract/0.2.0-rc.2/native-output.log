@@ -1,0 +1,9 @@
+{"evidence":"official DSH runtime; scripted fixtures only","runtimeVersion":"0.2.0-rc.2"}
+{"scenario":"native-answer-no-arbitration","passed":true,"turnReason":"completed","answerAttempts":1,"correctionNotices":0,"modelCalls":4,"dataCalls":1,"answerTruth":"not evaluated by runtime probe"}
+{"scenario":"headerless-output","passed":true,"turnReason":"completed","answerAttempts":1,"correctionNotices":0,"modelCalls":4,"dataCalls":1,"answerTruth":"not evaluated by runtime probe"}
+{"scenario":"scientific-notation-structure","passed":true,"turnReason":"completed","answerAttempts":1,"correctionNotices":0,"modelCalls":4,"dataCalls":1,"answerTruth":"not evaluated by runtime probe"}
+{"scenario":"native-tool-error","passed":true,"turnReason":"completed","answerAttempts":1,"correctionNotices":0,"modelCalls":4,"dataCalls":1,"answerTruth":"not evaluated by runtime probe"}
+{"scenario":"cross-network-denied","passed":true,"turnReason":"completed","answerAttempts":1,"correctionNotices":0,"modelCalls":4,"dataCalls":0,"answerTruth":"not evaluated by runtime probe"}
+{"scenario":"before-start-denied","passed":true,"turnReason":"completed","answerAttempts":1,"correctionNotices":0,"modelCalls":5,"dataCalls":1,"answerTruth":"not evaluated by runtime probe"}
+{"scenario":"excluded-tool-denied","passed":true,"turnReason":"completed","answerAttempts":1,"correctionNotices":0,"modelCalls":4,"dataCalls":0,"answerTruth":"not evaluated by runtime probe"}
+{"scenario":"unbound-unaffected","passed":true,"turnReason":"completed","answerAttempts":1,"correctionNotices":0,"modelCalls":4,"dataCalls":1,"answerTruth":"not evaluated by runtime probe"}

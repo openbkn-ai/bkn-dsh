@@ -1,0 +1,67 @@
+TAP version 13
+# Subtest: formal release capture-disabled start retains the platform-issued managed identities
+ok 1 - formal release capture-disabled start retains the platform-issued managed identities
+  ---
+  duration_ms: 0.647667
+  type: 'test'
+  ...
+# Subtest: formal release disabled finish preserves identities without fabricating recorded evidence
+ok 2 - formal release disabled finish preserves identities without fabricating recorded evidence
+  ---
+  duration_ms: 0.328458
+  type: 'test'
+  ...
+# Subtest: formal release schemas require managed context on every projected business tool
+ok 3 - formal release schemas require managed context on every projected business tool
+  ---
+  duration_ms: 0.112792
+  type: 'test'
+  ...
+# Subtest: published required context refuses missing, malformed and different-turn identities
+ok 4 - published required context refuses missing, malformed and different-turn identities
+  ---
+  duration_ms: 0.117875
+  type: 'test'
+  ...
+# Subtest: formal unavailable finish degrades honestly and cannot open a new Interaction
+ok 5 - formal unavailable finish degrades honestly and cannot open a new Interaction
+  ---
+  duration_ms: 0.112459
+  type: 'test'
+  ...
+# Subtest: an unrecorded result never borrows identities from a different text record
+not ok 6 - an unrecorded result never borrows identities from a different text record
+  ---
+  duration_ms: 1.035625
+  type: 'test'
+  location: '/Users/dominiczhang/Documents/project/app/openBKN/bkn-dsh/packages/openbkn-business-context/tests/formal-platform-contract.test.ts:1:4898'
+  failureType: 'testCodeFailure'
+  error: |-
+    Expected values to be strictly equal:
+    + actual - expected
+    
+    + 'unrelated'
+    - undefined
+    
+  code: 'ERR_ASSERTION'
+  name: 'AssertionError'
+  actual: 'unrelated'
+  operator: 'strictEqual'
+  stack: |-
+    TestContext.<anonymous> (/Users/dominiczhang/Documents/project/app/openBKN/bkn-dsh/packages/openbkn-business-context/tests/formal-platform-contract.test.ts:88:10)
+    Test.runInAsyncScope (node:async_hooks:214:14)
+    Test.run (node:internal/test_runner/test:1047:25)
+    Test.processPendingSubtests (node:internal/test_runner/test:744:18)
+    Test.postRun (node:internal/test_runner/test:1173:19)
+    Test.run (node:internal/test_runner/test:1101:12)
+    async Test.processPendingSubtests (node:internal/test_runner/test:744:7)
+  ...
+1..6
+# tests 6
+# suites 0
+# pass 5
+# fail 1
+# cancelled 0
+# skipped 0
+# todo 0
+# duration_ms 112.805334

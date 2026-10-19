@@ -437,7 +437,7 @@ test('every Context Loader tool of the supported releases is classified: managed
   const managed: readonly string[] = [...LIFECYCLE_TOOLS, ...MANAGED_IN_INTERACTION_TOOLS]
   assert.equal(new Set(managed).size, managed.length, 'no duplicate managed tool')
   assert.deepEqual(managed.filter(name => EXCLUDED_OPENBKN_TOOLS.includes(name)), [], 'managed and excluded are disjoint')
-  for (const [tag, tools] of [['v0.1.5', V015_TOOLS], ['v0.1.4', V014_TOOLS], ['v0.2.0-preparation', definitionsOf('v0.2.0-preparation')], ['20261018-live', definitionsOf('20261018-live')]] as const) {
+  for (const [tag, tools] of [['v0.1.5', V015_TOOLS], ['v0.1.4', V014_TOOLS], ['v0.2.0-release', definitionsOf('v0.2.0-release')], ['v0.2.0-preparation', definitionsOf('v0.2.0-preparation')], ['20261018-live', definitionsOf('20261018-live')]] as const) {
     assert.deepEqual(Object.keys(tools).filter(name => !managed.includes(name) && !EXCLUDED_OPENBKN_TOOLS.includes(name)), [], `unclassified ${tag} tool`)
   }
   const current = Object.keys(V015_TOOLS)

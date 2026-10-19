@@ -1137,10 +1137,13 @@ test('a missing OpenBKN CLI surfaces as openbkn/cli-unavailable on every CLI ent
 })
 
 test('unrecorded provenance renders a local timeline and explicit degradation without platform reads', async () => {
-  for (const reason of ['disabled', 'unavailable'] as const) {
-    const value = reason === 'disabled'
-      ? { trace_recorded: false, capture_enabled: false, code: 'capture_disabled', required_action: 'continue_without_bkn_context' }
-      : { trace_recorded: false, trace_available: false, code: 'trace_core_unavailable', stage: 'finish_interaction', required_action: 'continue_without_bkn_context' }
+  for (const value of [
+    { trace_recorded: false, capture_enabled: false, code: 'capture_disabled', required_action: 'continue_without_bkn_context' },
+    { trace_recorded: false, trace_available: false, code: 'trace_core_unavailable', stage: 'finish_interaction', required_action: 'continue_without_bkn_context' },
+    { trace_recorded: false, capture_enabled: false, interaction_id: 'formal-int', conversation_id: 'formal-conv', execution_status: 'completed' },
+    { trace_recorded: false, trace_available: false, code: 'trace_core_unavailable', stage: 'finish_interaction' },
+  ]) {
+    const reason = value.capture_enabled === false ? 'disabled' : 'unavailable'
     const agent = { id: 'unrecorded', session: { header: { cwd: '/controlled' }, snapshotEvents: () => [
       { type: 'user/message', time: 1000, data: { turn: 1, message: { id: 'question', content: [{ type: 'text', text: 'Question' }] } } },
       { type: 'tool/call', time: 1010, data: { turn: 1, callId: 'finish', name: 'mcp__openbkn__bkn_finish_interaction' } },
@@ -1152,7 +1155,7 @@ test('unrecorded provenance renders a local timeline and explicit degradation wi
     service.ctx = { agents: { get: () => agent } }
     service.platformReader = () => { throw new Error('must not query fake/old interaction') }
     const view = await service.remoteGetTurnProvenanceView(agent.id, 'answer', AbortSignal.timeout(1000))
-    assert.equal(view.interactionId, undefined)
+    assert.equal(view.interactionId, value.interaction_id)
     assert.ok(view.timeline.length > 0)
     assert.deepEqual(view.sources.degraded.map((d: { reason: string }) => d.reason), [`trace-${reason}`, `trace-${reason}`, `trace-${reason}`])
     assert.equal(view.evidence.kind, 'unavailable')

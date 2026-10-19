@@ -1,5 +1,7 @@
 # Session-log fixtures
 
+`context-loader-tools-v0.2.0-release.json` is the primary formal-platform contract for the 0.2.1 work: official `v0.2.0`, peeled commit `81d5752826f3b3f3f72f3ad4cb1e22d45e99ab4b`. Regenerate with `python3 scripts/capture-context-loader020.py <tag source> <output> --release v0.2.0`. The generator verifies source digests and executes upstream pure Go schema/lifecycle projection functions, with an explicit disabled-capture input. This is source-derived evidence, not a deployed `tools/list`; inline PTC schemas remain explicitly unknown. Formal business tools require `bkn_context` even when capture is disabled. Preparation/live snapshots below remain separate historical regression sources.
+
 Real DSH session logs reduced to structure and identifiers. Every user, assistant, and reasoning text is
 `[redacted]`, tool-call arguments are `{}`, and only the OpenBKN lifecycle tools
 (`bkn_start_interaction` / `bkn_finish_interaction`) keep their result text (ids, status, platform error

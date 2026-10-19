@@ -13,6 +13,8 @@ export function readDshHosts(source = hostSource) {
   for (const host of value.hosts) {
     if (!/^\d+\.\d+\.\d+-rc\.\d+$/.test(host.version) || versions.has(host.version)
       || host.tag !== `dsh-v${host.version}` || !/^[a-f0-9]{40}$/.test(host.commit)
+      || !/^4\.0\.\d+$/.test(host.cordis)
+      || !/^3\.18\.\d+$/.test(host.schemastery)
       || !/^pnpm@\d+\.\d+\.\d+$/.test(host.packageManager)) throw new Error('DSH hosts must have unique versions and pinned tag/commit/toolchain')
     versions.add(host.version)
   }
@@ -26,7 +28,11 @@ export function checkDshHostCompatibility(pkg, build, matrix = readDshHosts()) {
   const range = matrix.hosts.map(host => host.version).join(' || ')
   const peers = Object.entries(pkg.peerDependencies ?? {}).filter(([name]) => name.startsWith('@deepseek-ai/dsh-'))
   if (peers.length === 0 || peers.some(([, value]) => value !== range)) throw new Error(`DSH runtime peers must declare exactly ${range}`)
-  if (pkg.devDependencies?.['@deepseek-ai/dsh-tools'] !== matrix.buildVersion) throw new Error('DSH development dependencies must retain the build baseline')
+  const development = Object.entries(pkg.devDependencies ?? {}).filter(([name]) => name.startsWith('@deepseek-ai/dsh-'))
+  if (development.length === 0 || development.some(([, version]) => version !== matrix.buildVersion)
+    || peers.some(([name]) => pkg.devDependencies?.[name] !== matrix.buildVersion)) {
+    throw new Error('DSH development dependencies must retain the build baseline')
+  }
   const primary = matrix.hosts.find(host => host.version === matrix.buildVersion)
   if (build.dsh?.tag !== primary.tag || build.dsh?.baseCommit !== primary.commit) throw new Error('DSH source build pin disagrees with the host matrix')
   if (pkg.dependencies?.zod !== '4.4.3') throw new Error('Zod must stay pinned to the reviewed DSH storage/Remote schema version')

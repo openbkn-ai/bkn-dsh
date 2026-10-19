@@ -105,6 +105,18 @@ function declaresKnId(definition: unknown): boolean {
   return record(inputSchemaOf(definition)?.properties)?.kn_id !== undefined
 }
 
+/** Honor a platform-published managed-context requirement without altering arguments. */
+export function managedContextDenial(state: InteractionLifecycleState, args: Readonly<Record<string, unknown>>, definition: unknown): string | undefined {
+  const required = inputSchemaOf(definition)?.required
+  if (!Array.isArray(required) || !required.includes('bkn_context')) return undefined
+  const context = record(args.bkn_context)
+  if (state.interactionId === undefined || state.conversationId === undefined
+    || context?.interaction_id !== state.interactionId || context.conversation_id !== state.conversationId) {
+    return 'This platform requires bkn_context with the current conversation_id and interaction_id returned by bkn_start_interaction, including when Trace capture is disabled.'
+  }
+  return undefined
+}
+
 /**
  * Managed tools that run commands or code chosen per call and are admitted
  * only where the platform scopes them to a network: `execute_skill` takes no
@@ -208,6 +220,7 @@ const scopedPolicyPlugin = (
         const args = recordArgs(execution.arguments)
         return denialFor(lifecycle, execution.name, args)
           ?? knScopeDenial(execution.name, args, binding.knowledgeNetworkId, tools.get(execution.name, agent))
+          ?? managedContextDenial(lifecycle, args, tools.get(execution.name, agent))
       }))
       // Constraint C2: this listener must stay synchronous so the state is
       // updated before the next guard judgment (V0-3, probe-verified).
@@ -257,7 +270,10 @@ const scopedPolicyPlugin = (
       disposers.push(systemPrompt.section({
         name: 'openbkn:managed-session',
         order: 520,
-        text: () => `${policy.governance}\n${capabilityRoutingText(availability())}${lifecycle.recording === undefined ? '' : '\nTrace explicitly did not record this turn. There is no current Interaction ID. Continue governed business calls without bkn_context and finish without interaction_id. The prior Conversation identity, if any, remains only for a future start.'}`,
+        text: () => `${policy.governance}\n${capabilityRoutingText(availability())}${lifecycle.recording === undefined ? ''
+          : lifecycle.interactionId !== undefined
+            ? '\nTrace capture is disabled, but this turn has managed session identities. Keep using the conversation_id and interaction_id returned by start in bkn_context and finish with that interaction_id. Do not claim recorded evidence exists.'
+            : '\nTrace explicitly did not record this turn. There is no current Interaction ID. Continue governed business calls without bkn_context and finish without interaction_id. The prior Conversation identity, if any, remains only for a future start.'}`,
       }))
       if (policy.capabilities.length > 0) {
         disposers.push(systemPrompt.section({ name: 'openbkn:network-capabilities', order: 521, text: policy.capabilities }))

@@ -10,11 +10,13 @@
 
 将受治理的 OpenBKN 业务知识带入 DeepSeek Harness 对话。
 
-## -10 兼容准备（未发布）
+## 0.2.1 开发 / -11（未发布）
 
-0.2.0 适配目前仅完成固定准备提交的源码与受控测试，尚未在正式 0.2.0 平台/SDK 上验收；保留 0.1.5 支持。高级设置仅选择 CLI 安装目标 0.1.5 或 0.2.0，检测显示已有 CLI 的实际版本，版本不符时不会自动覆盖。选择 0.2.0 前需确认正式 SDK 已发布。
+本分支目标是让同一插件 tgz 兼容官方 DSH `0.2.0-rc.2` 与 `0.2.1-rc.2`，平台合同采用正式 OpenBKN `v0.2.0` 和 npm CLI `0.2.0`。`0.2.0-rc.2-openbkn.0.2.0-11` 的 DSH 前缀表示保留的构建基线；精确运行版本对由 package peers 声明。此开发版本尚未发布，10 月 19 日核对的公共 `latest`/`rc` 仍是历史 `-10`。
 
-大网络导航摘要保留概念组和平台已给出的数量，未返回索引不等于零对象。平台明确声明 Trace 禁用/不可用时，业务仍按原网络和工具边界继续，不伪造 ID；溯源显示未记录状态及本地时间链。鉴权拒绝、网络隔离和未知工具拒绝保持原边界。MCP 输出 Schema 的 nullable 不一致单独跟踪 [Foundry #2106](https://github.com/openbkn-ai/bkn-foundry/issues/2106)，插件不改写平台 MCP 返回；模型输出仍原样保留。
+正式版关闭采集时仍返回 managed Conversation/Interaction ID：业务调用继续携带所要求的 `bkn_context`，finish 使用当前 Interaction ID。溯源保留已披露身份，明确标注未记录证据并显示本地时间线；旧部署显式无身份降级保留为独立兼容路径。插件不重算业务结果、不改模型回答。
+
+源码测试、官方 npm 包集合受控运行、固定 CI 候选、真实平台调用及人工验收分开记录。两个 DSH × Mac/Windows × Desktop/npm 的八个组合，仍待固定 CI 候选实机验收。不会自动升级现有安装。
 
 ## 为什么
 
@@ -155,13 +157,14 @@ OpenBKN Runtime 归档不再发布：把插件装进 DSH 是唯一受支持的�
 
 ## 支持的 DSH 版本
 
-一次只支持一个上游 DSH 版本——当前为 `dsh-v0.2.0-rc.2`，由[兼容 manifest](compat/dsh-0.2.0-rc.2/manifest.json) 锁定。定时 workflow（`upstream-dsh-watch`）监控上游 tag，一旦有版本超过锁定版本即开出跟踪 issue；在兼容系列针对新版本重新生成之前，更新的 DSH 版本不在支持范围内。
+已发布 -10 面向 `dsh-v0.2.0-rc.2`。未发布 -11 分支按[宿主清单](compat/dsh-hosts.json)声明精确双版本 `0.2.0-rc.2` 与 `0.2.1-rc.2`，构建继续使用旧版生成器。验收遵循[正式版合同](docs/plans/0.2.1/ACCEPTANCE-CONTRACT.md)；版本声明或受控 smoke 通过不等于完整产品验收。
 
 用 `dsh --version` 确认自己的版本后按下表配对：
 
 | 你的 DSH 版本 | 兼容补丁系列 | 应安装的插件 | 预构建 Runtime 归档 |
 | --- | --- | --- | --- |
 | `dsh-v0.2.0-rc.2`（当前锁定）：桌面版、npm 命令行或源码构建 | 使用插件不需要；[`compat/dsh-0.2.0-rc.2/`](compat/dsh-0.2.0-rc.2/) 用于从源码构建 | npm 上的 `@openbkn/dsh-business-context@latest` 或正式 `.tgz`（标准模式） | 已停止发布；最后一个：[openbkn-dsh-runtime-v0.2.0-rc.2-openbkn.0.2.0](https://github.com/openbkn-ai/bkn-dsh/releases/tag/openbkn-dsh-runtime-v0.2.0-rc.2-openbkn.0.2.0) |
+| `dsh-v0.2.1-rc.2`（开发目标） | 使用官方宿主，构建生成器独立保留旧版 | 未发布 -11，须先完成固定候选验收；公共 -10 不是此分支 | 不发布新 Runtime 归档 |
 | `dsh-v0.1.7-rc.2`（上一代系列） | [`compat/dsh-0.1.7-rc.2/`](compat/dsh-0.1.7-rc.2/)（存档） | npm 上的 `@openbkn/dsh-business-context@0.1.7-rc.2-openbkn.0.2.0`，或从 git tag [`v0.1.7-rc.2-openbkn.0.2.0`](https://github.com/openbkn-ai/bkn-dsh/tree/v0.1.7-rc.2-openbkn.0.2.0) 源码构建 | [openbkn-dsh-runtime-v0.1.7-rc.2-openbkn.0.2.0](https://github.com/openbkn-ai/bkn-dsh/releases/tag/openbkn-dsh-runtime-v0.1.7-rc.2-openbkn.0.2.0) |
 | `dsh-v0.1.6-alpha.2`（上一代系列） | [`compat/dsh-0.1.6-alpha.2/`](compat/dsh-0.1.6-alpha.2/)（存档） | npm 上的 `@openbkn/dsh-business-context@0.1.5-rc.2`，或从 git tag [`v0.1.5-rc.2`](https://github.com/openbkn-ai/bkn-dsh/tree/v0.1.5-rc.2) 源码构建 | [openbkn-dsh-runtime-v0.1.6-alpha.2-openbkn.1](https://github.com/openbkn-ai/bkn-dsh/releases/tag/openbkn-dsh-runtime-v0.1.6-alpha.2-openbkn.1) |
 

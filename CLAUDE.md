@@ -4,6 +4,8 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 
 bkn-dsh = OpenBKN business-context plugin for DeepSeek Harness (DSH). Plugin source: `packages/openbkn-business-context` (`@openbkn/dsh-business-context`). Target DSH is pinned to `dsh-v0.2.0-rc.2`. The plugin runs on an unpatched DSH (desktop app, npm CLI, source build) and writes nothing to the DSH session log; `compat/dsh-0.2.0-rc.2/` is the fail-closed patch series needed only to build the plugin and the runtime from source, and `runtime/` + `scripts/` build the self-contained OpenBKN DSH Runtime archive. **Runtime archives are discontinued (decision 2026-09-30)**: the product goal is that installing the plugin alone delivers every feature; do not cut new `openbkn-dsh-runtime-v*` releases, and the runtime tooling is slated for removal.
 
+Development update 2026-10-19: `compat/dsh-hosts.json` now declares the exact `0.2.0-rc.2` / `0.2.1-rc.2` runtime pair, retaining the old source-build pin and generator. The unreleased package is `0.2.0-rc.2-openbkn.0.2.0-11`; public -10 is not this source. Use [the formal acceptance contract](docs/plans/0.2.1/ACCEPTANCE-CONTRACT.md): official OpenBKN `v0.2.0` / peeled commit `81d5752826f3b3f3f72f3ad4cb1e22d45e99ab4b`, npm CLI 0.2.0, and this machine's `https://192.168.50.129` test platform. Do not connect to the historical 50.28 environment. Source-derived fixtures and same-tarball official npm runtime checks pass locally; CI candidate, formal deployment, Desktop/CLI/Windows and human acceptance remain separate open gates. Existing host/platform upgrades and remote CI are still unauthorized.
+
 Functional scope follows the **Plugin functional boundary** in `AGENTS.md`: access governance, integration, diagnostics and provenance. Preserve native model output; factual answer checks belong in independent evaluations.
 
 ## Planned 0.2.1 work and agent takeover
@@ -12,7 +14,7 @@ The saved entry point is [docs/plans/0.2.1/README.md](docs/plans/0.2.1/README.md
 
 The first local implementation is recorded in [the 2026-10-18 development evidence](docs/evidence/2026-10-18-021-development.md) and [the native read contract](docs/plans/0.2.1/NATIVE-CONTRACT.md). Core code and local tests exist; a fixed CI candidate, real DSH/Windows acceptance, B1 reproduction and publication are still pending. Package version/pins remain unchanged; do not equate this development source with the published `-10` package.
 
-On 2026-10-19 the user added [DSH-COMPAT](docs/plans/0.2.1/DSH-COMPATIBILITY.md) to the 0.2.1 scope: support DSH `0.2.1-rc.2` while retaining the currently supported `0.2.0-rc.2`, using the same plugin candidate for both. This requirement is pending implementation and acceptance; current pins and prior tests still describe the old baseline. Compare public APIs and build/release constraints, preserve old-version regression coverage, and verify both versions on Mac/Windows Desktop/npm before claiming compatibility. The historical scope exclusion for host upgrades does not exclude this added compatibility work; it still does not authorize upgrading users' installed hosts, changing platform/model outputs, or pushing, running remote CI or releasing.
+On 2026-10-19 the user added [DSH-COMPAT](docs/plans/0.2.1/DSH-COMPATIBILITY.md) to the 0.2.1 scope: support DSH `0.2.1-rc.2` while retaining the currently supported `0.2.0-rc.2`, using the same plugin candidate for both. The initial handoff contained metadata groundwork; the local implementation and controlled results above supersede that implementation status, while full acceptance remains pending. Preserve old-version regression coverage and verify both versions on Mac/Windows Desktop/npm before claiming full compatibility. The historical scope exclusion for host upgrades does not exclude this added compatibility work; it still does not authorize upgrading users' installed hosts, changing platform/model outputs, running remote CI or releasing. Feature-branch synchronization has the scoped authorization recorded below.
 
 The user subsequently authorized implementation, pushing `feat/021-localization-login` for synchronization, and delegating the unfinished work to thread `01a15340-6507-7660-a68d-68994e283415`. The [remote handoff](docs/handoff/2026-10-19-021-dsh-compat/README.md) records checkpoint `0a362b3`, passing old-baseline checks, failed new-baseline attempts and next steps. This scoped push authorization supersedes the earlier local-only restriction for this handoff; remote CI, PR creation, merging and publication remain outside the current authorization.
 
@@ -29,6 +31,8 @@ pnpm runtime:build -- --dsh <dsh-checkout> --output release/runtime    # builds 
 pnpm --filter @openbkn/dsh-business-context test                      # builds both faces, then runs tests
 node --test compat/dsh-0.2.0-rc.2/tests/*.test.mjs tests/*.test.mjs runtime/tests/*.test.mjs
 pnpm run package:check
+node scripts/dsh-host-compatibility.mjs
+node scripts/test-dsh-hosts.mjs --plugin <local-tgz> --output <fresh-isolated-directory>
 
 pnpm runtime:profile -- --runtime release/runtime --plugin <tgz> --output release/profile
 pnpm runtime:package -- --runtime release/runtime --profile release/profile --plugin <tgz> --output release/artifacts --platform darwin-arm64

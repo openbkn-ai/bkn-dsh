@@ -38,3 +38,13 @@ test('host identities cannot be duplicated, unpinned or replaced by an unreviewe
     assert.throws(() => readDshHosts(matrix))
   }
 })
+
+test('a second DSH version cannot slip into any development dependency', () => {
+  for (const change of [
+    candidate => { candidate.devDependencies['@deepseek-ai/dsh-api-remotes'] = '0.2.1-rc.2' },
+    candidate => { delete candidate.devDependencies['@deepseek-ai/dsh-storage'] },
+  ]) {
+    const candidate = pkg(); change(candidate)
+    assert.throws(() => checkDshHostCompatibility(candidate, build()), /development dependencies/)
+  }
+})

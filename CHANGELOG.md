@@ -2,6 +2,14 @@
 
 All notable changes to this project are documented here.
 
+## 0.2.0-rc.2-openbkn.0.2.0-11 (unreleased)
+
+- Develop the 0.2.1 feature plan: host-driven zh/en copy, visible login states, bounded native event/evidence views and precise cross-view provenance selection. Preserve platform records, disclosed dependencies, invalid states and native model answers.
+- Declare the exact DSH `0.2.0-rc.2` / `0.2.1-rc.2` pair while retaining the old source-build generator. Isolated checks install one packed artifact with each official npm runtime, inspect the resolved closure, and exercise tool guards, native answer delivery and generated Remote dispatch. These controlled checks are separate from Desktop/CLI acceptance.
+- Use formal OpenBKN `v0.2.0` contracts. Capture-disabled lifecycle responses retain their managed identity pair; business calls honor the published `bkn_context` requirement without rewriting arguments. Disabled/unavailable provenance remains explicitly degraded and does not fetch or invent recorded evidence. Retain the previous no-identity deployment contract as a separate regression path.
+- Add source-derived formal schemas and lifecycle examples, with pinned source digests and executable upstream pure Go projections. Source fixtures do not establish live platform compatibility.
+- Release gates remain open: fixed build-only CI artifact, two DSH versions on Mac/Windows Desktop/npm, formal local-platform identity and valid login, B1 reproduction, real-platform/model G6, human review and anomaly triage. No publication or dist-tag change has occurred.
+
 ## 0.2.0-rc.2-openbkn.0.2.0-10 (2026-10-13)
 
 - Diagnostics now displays Windows/macOS/Linux names and explains unavailable host-form and version fields. Exported identifiers and nulls remain unchanged; disk and loaded versions are kept separate.

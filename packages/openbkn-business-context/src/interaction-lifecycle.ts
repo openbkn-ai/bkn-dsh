@@ -196,10 +196,14 @@ export function projectLifecycleOutcome(result: LifecycleOutcomeLike): Lifecycle
     const parsed = parseLifecycleRecord(block.text)
     if (parsed === undefined) continue
     const recording = unrecordedLifecycleReason(parsed)
-    if (recording !== undefined) return { recording }
-    if (parsed.trace_recorded === false) return {}
     const interactionId = identifier(parsed.interaction_id)
     const conversationId = identifier(parsed.conversation_id)
+    if (recording !== undefined) return {
+      recording,
+      ...(interactionId === undefined ? {} : { interactionId }),
+      ...(conversationId === undefined ? {} : { conversationId }),
+    }
+    if (parsed.trace_recorded === false) return {}
     if (interactionId !== undefined || conversationId !== undefined) {
       return {
         ...(interactionId === undefined ? {} : { interactionId }),
@@ -221,9 +225,23 @@ export function parseLifecycleRecord(text: string): Record<string, unknown> | un
 }
 
 /** Only the successful platform contract can authorize unrecorded access. */
-export function unrecordedLifecycleReason(value: Record<string, unknown>): 'disabled' | 'unavailable' | undefined {
-  if (value.trace_recorded !== false || value.required_action !== 'continue_without_bkn_context'
-    || value.interaction_id !== undefined || value.conversation_id !== undefined) return undefined
+export function unrecordedLifecycleReason(value: Record<string, unknown>, phase?: 'finish'): 'disabled' | 'unavailable' | undefined {
+  if (value.trace_recorded !== false) return undefined
+  // Formal v0.2.0 keeps managed identities when evidence capture is disabled.
+  // Capture state does not cancel the platform's session-context requirement.
+  if (value.interaction_id !== undefined || value.conversation_id !== undefined) {
+    return value.capture_enabled === false && identifier(value.interaction_id) !== undefined
+      && identifier(value.conversation_id) !== undefined && value.required_action === undefined
+      && (value.code === undefined || value.code === 'capture_disabled')
+      && (value.execution_status === 'completed' || (phase === undefined && value.execution_status === 'active'))
+      ? 'disabled' : undefined
+  }
+  // The formal unavailable finish no longer instructs the model to omit context.
+  // Never use that finish-only response as permission to open a new turn.
+  if (phase === 'finish' && value.required_action === undefined && value.trace_available === false
+    && value.stage === 'finish_interaction' && identifier(value.code) !== undefined) return 'unavailable'
+  // Explicit compatibility path for the previously supported deployment snapshot.
+  if (value.required_action !== 'continue_without_bkn_context') return undefined
   if (value.capture_enabled === false && value.code === 'capture_disabled') return 'disabled'
   if (value.trace_available === false && identifier(value.code) !== undefined && identifier(value.stage) !== undefined) return 'unavailable'
   return undefined
@@ -349,13 +367,16 @@ export function denialFor(
     }
     return undefined
   }
-  if (state.recording !== undefined && state.open
+  if (state.recording !== undefined && state.interactionId === undefined && state.open
     && (args.bkn_context !== undefined || (toolName === FINISH_INTERACTION_TOOL && args.interaction_id !== undefined))) {
     return 'Trace did not disclose an Interaction ID for this turn. Omit bkn_context and interaction_id; do not reuse an ID from another turn.'
   }
   if (toolName === FINISH_INTERACTION_TOOL) {
     if (!state.open) {
       return 'No OpenBKN interaction is open; do not call bkn_finish_interaction.'
+    }
+    if (state.recording === 'disabled' && state.interactionId !== undefined && args.interaction_id !== state.interactionId) {
+      return 'Finish the current Interaction with the interaction_id returned by bkn_start_interaction, even when Trace capture is disabled.'
     }
     return undefined
   }

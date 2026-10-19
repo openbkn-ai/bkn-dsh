@@ -32,6 +32,7 @@ test('valid live options retain explicit mode, networks and paths with spaces', 
     live: 'https://probe.invalid', boundKn: 'bound', otherKn: 'other', plugin: '/a candidate/package', cli: '/a cli/openbkn',
   })
   assert.equal(parseProbeOptions([]).live, undefined)
+  assert.equal(parseProbeOptions(['--runtime', '/isolated host']).runtime, '/isolated host')
 })
 
 test('CLI failures never expose captured credential-like stdout or stderr', async () => {

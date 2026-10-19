@@ -1,5 +1,7 @@
 # 0.2.1 原生溯源读取合同（2026-10-18）
 
+2026-10-19 补充：后续正式验收按 [ACCEPTANCE-CONTRACT.md](ACCEPTANCE-CONTRACT.md)，仅使用本机 `https://192.168.50.129`。下文 50.28、EE/Studio 快照和既有非空样本保持为历史证据，不是本轮测试目标或正式发布平台验收。正式 `v0.2.0` 的采集关闭状态仍保留 managed 身份；插件 handle 可以保留该身份对及 `recording=disabled`，但不请求或声称已有记录证据。旧版无身份降级独立保留。新正式 schema 与 lifecycle fixture 是源码投影；原生 detail/explanation 在正式本机部署上的非空、权限与 UI 对照仍待执行。
+
 本轮已在现有部署上通过 #93 的最小真实数据门槛：当前 CLI 凭据能读取原生 detail 和既存非空 explanation，并与原生 Studio 中同一会话、问答和业务记录对照。此结论仅适用于下述环境；不等于固定候选包的 DSH 实机验收、受限账号验收或普遍平台兼容性。
 
 实现提交：`4857c31225576f4f4b083ca26bb9469ab671b363`，分支 `feat/021-localization-login`。完整执行结果见 [开发证据](../../evidence/2026-10-18-021-development.md)。旧范围快照和归档身份清单保持原样。
