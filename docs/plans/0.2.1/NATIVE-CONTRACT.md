@@ -8,6 +8,8 @@
 
 跨视图联动提交：`ce8ebcb8c4f396c39e1db77fa8b235efe9cbc921`。只消费既有 DTO 的公开引用，补齐步骤/执行节点/来源/证据/业务定义与处理的选择导航；19 项新增受控测试通过，没有增加 API、DTO 字段或平台写入。
 
+2026-10-19 边界修复提交：`542b3dd9127a7c9d9ba0f263fa2eee3c0e8814e8`。补齐 schema/argument 引用合同、explanation timeRail 唯一性、已加载回答同步隔离、平台 invalid 原状态/原因展示与分页。新增 20 项回归；插件 540 项中 539 pass、1 Windows skip。没有新增真实读取、平台写入或候选实机验收；以下真实数据仍是 2026-10-18 的历史证据。
+
 ## 真实读取及页面对照
 
 - 平台：`https://192.168.50.28`；OpenBKN CLI **0.2.0**，用户自行完成登录后读取现有凭据。
@@ -39,8 +41,10 @@
 - 两个新接口独立记录诊断 subject；解析、结构、身份和投影校验之后才记录读取成功。scope、总体投影另有 subject，其他接口成功不会消除其失败。
 - UI 只使用平台明确披露的 claim.nodeIds、支持结论 ID、Operation ID 和图关系。数值相等、时间相近、名称相似都不补边。缺失端点保留引用记录，不制造节点。candidate / unbound / missing / partial 原样显示，不改为已确认。
 - 选择状态使用实体类型+ID 区分。来源/输出/定义引用与执行节点引用可跨标签导航，只有可唯一解析的公开目标才可点击。步骤与精确事件须同时匹配 timeRailItemId、Operation ID、attempt；操作级引用可保留多尝试关联，具体步骤不串选其他尝试。问答对切换清除选择，不混用顶层和问答对 evidence edges；只改变 Client 状态，不因点击关联重读或生成解释。
+- `schemaRefs` 只按公开合同定位原 ID 或 `schema:` 前缀节点；两者都存在时保留歧义。managed argument 的 `sourceKind: function_argument` / sourceRef 是 Operation 引用，列出已披露步骤，无步骤时显示该操作已有事件；不映射到同 ID 证据，也不任选某次尝试。合同依据为同一 EE 的 `evidencechain/v016_contract.go` 545、711–730 行。
+- 函数及关系的 `validationStatus`、`reasonCode` 原样展示，包括 invalid 和未知状态；同问题未关联记录也保留可查。invalid 不触发删除、重判、改写关系或 invalid-response，关联只用于导航，不代表平台或插件确认结论。平台缺失/歧义的引用仍保持文本。
 - 平台问答明确标注为平台记录；不提供 DSH 最终答案的逐字锚点，不传 answerRange，不改写模型答案。
-- 关闭面板取消本次 Remote/HTTP 读取；旧响应不会写入重开的面板。语言切换只重绘，不重建请求或业务连接。
+- 关闭面板发出本次读取的取消信号；结果按本地请求代际绑定 session/message，在渲染时同步检查，已加载旧内容不会进入新请求首次提交。语言切换只重绘，不重建请求或业务连接。此为受控组件/信号证据，实际 DSH Remote/CLI/HTTP 退出仍待验收。
 
 | 情况 | native 状态 |
 |---|---|
@@ -49,7 +53,8 @@
 | 401 / 缺凭据 | `authentication-required` |
 | 403 | `access-denied`，不推断许可原因 |
 | 404 | `not-disclosed-or-unavailable`，保留路由/记录未披露歧义 |
-| schema、身份、类型、枚举或重复 ID 无效 | `invalid-response` |
+| schema、身份、类型、枚举或重复 ID（含 explanation timeRail）无效 | `invalid-response`；不去重、改名或挑选尝试 |
+| 平台函数/关系明确返回 `validationStatus: invalid` | 合法记录；保留原状态、原因和导航，不由插件重新裁决 |
 | 读取 / 图 / DTO 超预算 | `result-too-large`，不静默截断 |
 | 其他网络或服务故障 | `unavailable` |
 | Trace 显式 disabled/unavailable | 不请求新接口，保留原始原因与本地时间线 |
@@ -65,5 +70,7 @@
 | 图 | top-level 与问答对投影累计最多 500 节点、1000 边；不做隐形截断 |
 | 展示数组 | 最多 64 需求、256 结论、64 问答对/问答对图、500 time rail 项、128 notices；业务函数输入/输出各最多 128 项 |
 | 文字 | 单个展示文本最多 16,384 UTF-16 code units；超限拒绝，不截短冒充完整 |
+
+Client 展示另行分页：默认每页 20 条、业务处理卡片 3 项、输入/输出行各 5 项、节点/schema 引用 10 项。先切片再构建元素，显示总数/范围和翻页控件，跳转显示目标页；完整 DTO 不裁剪。语言切换保留选择/分页，切换问答对或新请求重置。合法密集合成样本的渲染量测试不等同真实浏览器性能验收。
 
 原来的 20 秒业务工具默认超时、历史图 200/400 上限和宿主/平台 pin 没有调整。
