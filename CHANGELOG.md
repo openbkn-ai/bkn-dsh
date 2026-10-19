@@ -2,6 +2,11 @@
 
 All notable changes to this project are documented here.
 
+## 0.2.0-rc.2-openbkn.0.2.0-12 (unreleased)
+
+- Use a neutral empty-node message in the evidence view. An unavailable or not-generated explanation no longer displays a claim that an explanation exists. Reproduced on the formal local platform using the -11 CI candidate; covered by zh/en rendering regression tests.
+- This source fix requires a new build-only CI candidate and affected live acceptance. The -11 candidate's results do not accept -12.
+
 ## 0.2.0-rc.2-openbkn.0.2.0-11 (unreleased)
 
 - Develop the 0.2.1 feature plan: host-driven zh/en copy, visible login states, bounded native event/evidence views and precise cross-view provenance selection. Preserve platform records, disclosed dependencies, invalid states and native model answers.

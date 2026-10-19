@@ -12,7 +12,7 @@ Bring governed OpenBKN business knowledge into DeepSeek Harness conversations.
 
 ## 0.2.1 development / -11 (unreleased)
 
-This branch targets the same plugin tarball on official DSH `0.2.0-rc.2` and `0.2.1-rc.2`, against formal OpenBKN `v0.2.0` and npm CLI `0.2.0`. The `0.2.0-rc.2` prefix in `0.2.0-rc.2-openbkn.0.2.0-11` identifies the retained build baseline; the exact runtime pair is declared in the package peers. This development version has not been published. Public `latest`/`rc` still point to historical `-10` as checked on October 19.
+This branch targets the same plugin tarball on official DSH `0.2.0-rc.2` and `0.2.1-rc.2`, against formal OpenBKN `v0.2.0` and npm CLI `0.2.0`. The `0.2.0-rc.2` prefix in `0.2.0-rc.2-openbkn.0.2.0-12` identifies the retained build baseline; the exact runtime pair is declared in the package peers. This development version has not been published. Public `latest`/`rc` still point to historical `-10` as checked on October 19.
 
 Formal capture-disabled responses retain managed Conversation/Interaction IDs: business calls still send the required `bkn_context`, and finish uses the current Interaction ID. Provenance preserves the disclosed identities, labels the absence of recorded evidence and keeps the local timeline. The earlier explicit no-identity downgrade remains a separate compatibility path. The plugin does not recalculate business results or alter model answers.
 

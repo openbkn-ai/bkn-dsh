@@ -212,6 +212,26 @@ test('truly empty ready evidence, not-generated and an omitted oversized native 
   act(()=>renderer.unmount())
 })
 
+// Reproduced on the fixed CI candidate against the formal local CE platform:
+// both native reads returned 404, yet the empty evidence-node section claimed
+// that an explanation existed. An unreadable record cannot establish existence.
+test('unavailable and not-generated evidence never claim that an explanation exists', () => {
+  const harness=localeHarness();const Component=localized(NativeProvenancePanel,harness.locale)
+  for (const language of ['zh','en']) {
+    act(()=>harness.set(language))
+    for (const explanation of [{kind:'unavailable',reason:'not-disclosed-or-unavailable'},{kind:'not-generated'}] as const) {
+      const view:ProvenanceView={interactionId:'int-live-404',native:{detail:{kind:'unavailable',reason:'not-disclosed-or-unavailable'},explanation},timeline:[],sources:{timeline:'local-session',operations:'unavailable',business:'unavailable',evidence:'unavailable',degraded:[]},execution:{operations:[]},business:{kind:'unavailable'},evidence:{kind:'unavailable',reason:'no-receipts'}}
+      let renderer!:ReturnType<typeof create>
+      try {
+        act(()=>{renderer=create(createElement(Component,{view,tab:'evidence'}))})
+        const text=JSON.stringify(renderer.toJSON())
+        assert.equal(text.includes(translateMessage(language,'nativeNoClaims')),false)
+        assert.equal(text.includes(translateMessage(language,explanation.kind==='not-generated'?'nativeNotGenerated':'nativeNotDisclosed')),true)
+      } finally {act(()=>renderer.unmount())}
+    }
+  }
+})
+
 test('a late response from the closed answer cannot overwrite a newly opened answer', async () => {
   const {ProvenanceOverlay,ProvenanceOverlayController}=await import('../src/client/ProvenanceOverlay.tsx')
   const controller=new ProvenanceOverlayController();const handle={schemaVersion:2 as const,interactionId:'int-fixture',status:'completed' as const,requestIds:[],traceIds:[],receiptIds:[],partial:false}

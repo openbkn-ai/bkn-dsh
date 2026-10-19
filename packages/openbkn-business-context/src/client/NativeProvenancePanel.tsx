@@ -131,7 +131,7 @@ function selectionProps(target: NativeTarget, selection: Selection, select: (tar
 }
 function Nodes({nodes,kind,selection,select,label,listId,contextKey,focusKey}:{nodes:NativeChainNode[];kind:'evidence'|'schema'|'execution';selection:Selection;select:(target:NativeTarget)=>void;label:string;listId:string;contextKey:string;focusKey?:string}) {
   const t=useOpenBknTranslation()
-  return nodes.length ? <NativeRecordList listId={listId} label={label} contextKey={contextKey} focusKey={focusKey} items={nodes} grid focusIndex={nodes.findIndex(node=>selection.isSelected({kind,id:node.id}))} renderItem={node=><button type="button" key={node.id} {...selectionProps({kind,id:node.id},selection,select)}><strong>{node.label}</strong><span style={textStyle}>{node.value}</span><small>{node.status ?? node.role ?? '—'}</small></button>} /> : <p style={noticeStyle}>{t('nativeNoClaims')}</p>
+  return nodes.length ? <NativeRecordList listId={listId} label={label} contextKey={contextKey} focusKey={focusKey} items={nodes} grid focusIndex={nodes.findIndex(node=>selection.isSelected({kind,id:node.id}))} renderItem={node=><button type="button" key={node.id} {...selectionProps({kind,id:node.id},selection,select)}><strong>{node.label}</strong><span style={textStyle}>{node.value}</span><small>{node.status ?? node.role ?? '—'}</small></button>} /> : <p style={noticeStyle}>{t('nativeNoNodes')}</p>
 }
 type ReferenceProps={model:SelectionModel;selection:Selection;jump:(target:NativeTarget)=>void}
 function Reference({id,kinds,schemaRef=false,target:explicitTarget,model,selection,jump}:{id:string;kinds?:readonly NativeTargetKind[];schemaRef?:boolean;target?:NativeTarget|null} & ReferenceProps) {
