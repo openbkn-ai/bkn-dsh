@@ -12,6 +12,8 @@ The saved entry point is [docs/plans/0.2.1/README.md](docs/plans/0.2.1/README.md
 
 The first local implementation is recorded in [the 2026-10-18 development evidence](docs/evidence/2026-10-18-021-development.md) and [the native read contract](docs/plans/0.2.1/NATIVE-CONTRACT.md). Core code and local tests exist; a fixed CI candidate, real DSH/Windows acceptance, B1 reproduction and publication are still pending. Package version/pins remain unchanged; do not equate this development source with the published `-10` package.
 
+On 2026-10-19 the user added [DSH-COMPAT](docs/plans/0.2.1/DSH-COMPATIBILITY.md) to the 0.2.1 scope: support DSH `0.2.1-rc.2` while retaining the currently supported `0.2.0-rc.2`, using the same plugin candidate for both. This requirement is pending implementation and acceptance; current pins and prior tests still describe the old baseline. Compare public APIs and build/release constraints, preserve old-version regression coverage, and verify both versions on Mac/Windows Desktop/npm before claiming compatibility. The historical scope exclusion for host upgrades does not exclude this added compatibility work; it still does not authorize upgrading users' installed hosts, changing platform/model outputs, or pushing, running remote CI or releasing.
+
 ## Commands
 
 Order matters: the plugin build imports `@deepseek-ai/dsh-typert-generator/tsdown`, whose `lib/` only exists after the pinned DSH source is built. `.github/workflows/compatible-runtime.yml` is the reference sequence.
