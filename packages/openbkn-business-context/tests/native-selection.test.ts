@@ -3,6 +3,53 @@ import test from 'node:test'
 import { nativeSelectionModel, targetKey } from '../src/client/native-provenance-selection.ts'
 import { selectionFixture } from './fixtures/native-selection.ts'
 
+test('pinned platform schema references and managed arguments use their disclosed namespaces',()=>{
+  const {explanation,rail}=selectionFixture();const graph=explanation.selectedPairGraphs!.p1
+  graph.schemaNodes=[{id:'schema:object:Order',label:'Order',kind:'object'}]
+  graph.businessFunctions[0].schemaRefs=['object:Order']
+  graph.businessFunctions[0].businessInputs=[{name:'arguments',sourceKind:'function_argument',sourceRef:'op1'}]
+  const model=nativeSelectionModel(explanation,'p1',rail)
+  assert.equal(model.unresolved.has('object:Order'),false)
+  assert.equal(model.unresolved.has('op1'),false)
+  assert.ok(model.selection().isRelated({kind:'schema',id:'schema:object:Order'}))
+  assert.ok(model.selection({kind:'step',id:'s2'}).isRelated({kind:'function',id:'fn1'}))
+  assert.equal(model.selection({kind:'step',id:'s2'}).isRelated({kind:'step',id:'s1'}),false)
+})
+
+test('schema aliases never choose between two records and argument refs never become same-ID evidence',()=>{
+  const {explanation,rail}=selectionFixture();const graph=explanation.selectedPairGraphs!.p1;const fn=graph.businessFunctions[0]
+  graph.schemaNodes=[{id:'object:Order',label:'Exact',kind:'object'},{id:'schema:object:Order',label:'Prefixed',kind:'object'}]
+  graph.evidenceNodes.push({id:'op1',label:'Same ID evidence',kind:'source'})
+  fn.schemaRefs=['object:Order'];fn.businessInputs=[{name:'Arguments',sourceKind:'function_argument',sourceRef:'op1'}]
+  const model=nativeSelectionModel(explanation,'p1',rail)
+  assert.equal(model.resolveSchemaRef('object:Order'),undefined);assert.ok(model.unresolved.has('object:Order'))
+  assert.deepEqual(model.inputSourceTargets(fn.businessInputs[0]),[{kind:'step',id:'s1'},{kind:'step',id:'s2'}])
+  assert.equal(model.selection().isRelated({kind:'evidence',id:'op1'}),false)
+  assert.equal(model.selection().isRelated({kind:'schema',id:'object:Order'}),false)
+})
+
+test('argument refs retain every disclosed event when steps are absent and missing operations stay unresolved',()=>{
+  const {explanation,rail}=selectionFixture();const graph=explanation.selectedPairGraphs!.p1;const fn=graph.businessFunctions[0]
+  graph.executionSteps=[];fn.operationIds=[]
+  fn.businessInputs=[{name:'Arguments',sourceKind:'function_argument',sourceRef:'op1'},{name:'Missing',sourceKind:'function_argument',sourceRef:'input'}]
+  const model=nativeSelectionModel(explanation,'p1',rail)
+  assert.deepEqual(model.inputSourceTargets(fn.businessInputs[0]),[{kind:'event',id:'t1'},{kind:'event',id:'t2'}])
+  assert.deepEqual(model.inputSourceTargets(fn.businessInputs[1]),[]);assert.ok(model.unresolved.has('input'))
+  assert.ok(model.selection().isRelated({kind:'event',id:'t2'}))
+})
+
+test('platform validation changes never rewrite records or turn navigation into a plugin verdict',()=>{
+  const {explanation,rail}=selectionFixture();const original=nativeSelectionModel(explanation,'p1',rail).selection().related
+  const graph=explanation.selectedPairGraphs!.p1
+  graph.businessFunctions[0].validationStatus='invalid';graph.businessFunctions[0].reasonCode='platform_reason'
+  graph.edges[0].validationStatus='invalid';graph.edges[0].reasonCode='platform_edge_reason'
+  const before=JSON.stringify(explanation)
+  const freeze=(value:unknown):void=>{if(value && typeof value==='object'){Object.freeze(value);for(const item of Object.values(value))freeze(item)}}
+  freeze(explanation)
+  assert.deepEqual(nativeSelectionModel(explanation,'p1',rail).selection().related,original)
+  assert.equal(JSON.stringify(explanation),before)
+})
+
 test('claim paths include disclosed processing, sources and execution but never equal-valued unrelated nodes',()=>{
   const {explanation,rail}=selectionFixture();const model=nativeSelectionModel(explanation,'p1',rail)
   const selected=model.selection({kind:'claim',id:'c1'})

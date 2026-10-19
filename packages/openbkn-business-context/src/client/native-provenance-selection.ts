@@ -1,4 +1,4 @@
-import type { NativeChainNode, NativeClaim, NativeExplanation, NativePairGraph, NativeTimeItem } from '../native-provenance-types.ts'
+import type { NativeBusinessFunction, NativeChainNode, NativeClaim, NativeExplanation, NativePairGraph, NativeTimeItem } from '../native-provenance-types.ts'
 
 export type NativeTargetKind = 'claim' | 'evidence' | 'schema' | 'execution' | 'step' | 'event' | 'function'
 export interface NativeTarget { kind: NativeTargetKind; id: string }
@@ -36,6 +36,22 @@ export function nativeSelectionModel(explanation: NativeExplanation | undefined,
     const matches = (ids.get(id) ?? []).filter(target => !kinds || kinds.includes(target.kind))
     return matches.length === 1 ? matches[0] : undefined
   }
+  // Schema-1 emits raw schemaRefs and prefixes the corresponding node IDs with "schema:".
+  // Retain exact IDs used by older records, but never choose between two disclosed targets.
+  function resolveSchemaRef(id: string): NativeTarget | undefined {
+    const matches=schema.filter(node=>node.id===id || node.id===`schema:${id}`)
+    return matches.length===1 ? {kind:'schema',id:matches[0].id} : undefined
+  }
+  function operationTargets(id: string): NativeTarget[] {
+    const matchingSteps=stepsByOperation.get(id) ?? []
+    return matchingSteps.length ? matchingSteps.map(step=>({kind:'step',id:step.id})) : (eventsByOperation.get(id) ?? []).map(event=>({kind:'event',id:event.id}))
+  }
+  function inputSourceTargets(input: NativeBusinessFunction['businessInputs'][number]): NativeTarget[] {
+    if (!input.sourceRef) return []
+    if (input.sourceKind==='function_argument') return operationTargets(input.sourceRef)
+    const target=resolve(input.sourceRef,['evidence','schema'])
+    return target ? [target] : []
+  }
   function link(from: NativeTarget, to: NativeTarget) {
     const a = targetKey(from), b = targetKey(to)
     if (!targets.has(a) || !targets.has(b)) return
@@ -67,10 +83,15 @@ export function nativeSelectionModel(explanation: NativeExplanation | undefined,
     const from: NativeTarget = {kind:'function',id:fn.id}
     for (const id of fn.supportsClaimIds) reference(from,id,['claim'],true)
     for (const input of fn.businessInputs) {
-      for (const id of new Set([...(input.sourceRef ? [input.sourceRef] : []),...(input.evidenceRefs ?? [])])) reference(from,id,['evidence','schema'])
+      if (input.sourceRef && input.sourceKind==='function_argument') operations(from,[input.sourceRef])
+      else if (input.sourceRef) reference(from,input.sourceRef,['evidence','schema'])
+      for (const id of new Set(input.evidenceRefs ?? [])) reference(from,id,['evidence','schema'])
     }
     for (const output of fn.businessOutputs) for (const id of new Set([...output.evidenceRefs,...output.adoptedRowRefs])) reference(from,id,['evidence'],true)
-    for (const id of fn.schemaRefs) reference(from,id,['schema'])
+    for (const id of fn.schemaRefs) {
+      const to=resolveSchemaRef(id)
+      if(to) link(from,to);else unresolved.add(id)
+    }
     operations(from,fn.operationIds)
   }
   for (const step of steps) {
@@ -106,8 +127,8 @@ export function nativeSelectionModel(explanation: NativeExplanation | undefined,
         }
       }
     }
-    function walk(start: string, direction: Map<string,Set<string>>, blocked: readonly NativeTargetKind[] = []) {
-      const seen = new Set<string>(), queue = [start]
+    function walk(starts: Iterable<string>, direction: Map<string,Set<string>>, blocked: readonly NativeTargetKind[] = []) {
+      const seen = new Set<string>(), queue = [...starts]
       for (let index=0;index<queue.length;index++) {
         const key=queue[index]
         const kind=targets.get(key)!.kind
@@ -118,24 +139,26 @@ export function nativeSelectionModel(explanation: NativeExplanation | undefined,
     }
     if (active) {
       const key=targetKey(active)
-      walk(key,dependencies); walk(key,dependents)
+      walk([key],dependencies); walk([key],dependents)
       // Include the disclosed inputs/outputs of related processing, without traversing
       // another claim or fanning a selected attempt out to its sibling attempts.
       const nodeSelection=['evidence','schema','execution'].includes(active.kind)
       const relatedFunctions=functions.filter(fn => related.has(targetKey({kind:'function',id:fn.id})) || (nodeSelection &&
         [...(dependencies.get(targetKey({kind:'function',id:fn.id})) ?? []),...(dependents.get(targetKey({kind:'function',id:fn.id})) ?? [])]
           .some(key => related.has(key) && ['evidence','schema','execution'].includes(targets.get(key)!.kind))))
+      const contextStarts=new Set<string>()
       for (const fn of relatedFunctions) {
         const fnKey=targetKey({kind:'function',id:fn.id}); related.add(fnKey)
         if (nodeSelection) for (const next of dependents.get(fnKey) ?? []) if (targets.get(next)!.kind==='claim') related.add(next)
-        const blocked: NativeTargetKind[]=['claim','function',...(active.kind==='event' || active.kind==='step' ? ['event','step'] as const : [])]
-        for (const next of [...(dependencies.get(fnKey) ?? []),...(dependents.get(fnKey) ?? [])]) walk(next,dependencies,blocked)
+        for (const next of [...(dependencies.get(fnKey) ?? []),...(dependents.get(fnKey) ?? [])]) contextStarts.add(next)
       }
+      const blocked: NativeTargetKind[]=['claim','function',...(active.kind==='event' || active.kind==='step' ? ['event','step'] as const : [])]
+      walk(contextStarts,dependencies,blocked)
     }
     return {active, related, isRelated:(target:NativeTarget)=>related.has(targetKey(target)), isSelected:(target:NativeTarget)=>active!==undefined && targetKey(active)===targetKey(target)}
   }
   function node(target: NativeTarget | undefined): NativeChainNode | undefined {
     return target && ({evidence,schema,execution} as Partial<Record<NativeTargetKind,NativeChainNode[]>>)[target.kind]?.find(node=>node.id===target.id)
   }
-  return {pair,graph,claims,evidence,schema,execution,steps,functions,resolve,selection,node,unresolved}
+  return {pair,graph,claims,evidence,schema,execution,steps,functions,events:rail,resolve,resolveSchemaRef,operationTargets,inputSourceTargets,selection,node,unresolved}
 }

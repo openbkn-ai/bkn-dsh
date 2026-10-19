@@ -56,7 +56,7 @@ export function projectNativeExplanation(value: unknown, interactionId: string, 
   if (row.generated_at === undefined) throw new NativeProjectionError('invalid-response')
   const view = parse(explanation, row.view)
   if (view.interactionId !== interactionId) throw new NativeProjectionError('invalid-response')
-  unique(view.claims); unique(view.requirements ?? []); unique(view.questionPairs ?? [])
+  unique(view.claims); unique(view.requirements ?? []); unique(view.questionPairs ?? []); unique(view.timeRail ?? [])
   const pairs = Object.values(view.selectedPairGraphs ?? {})
   const graphs = [view.execution, view.evidence, ...pairs.map(pair => ({ nodes: [...pair.evidenceNodes, ...pair.schemaNodes], edges: pair.edges }))]
   if (graphs.reduce((n,g) => n + g.nodes.length, 0) > NATIVE_PROVENANCE_LIMITS.nodes || graphs.reduce((n,g) => n + g.edges.length, 0) > NATIVE_PROVENANCE_LIMITS.edges) throw new NativeProjectionError('result-too-large')

@@ -11,6 +11,7 @@ import type {} from '@deepseek-ai/dsh-client-ui-layout/client'
 type Tab = 'events' | 'evidence'
 
 export interface ProvenanceOverlayState {
+  readonly requestId?: number
   readonly sessionId?: string
   readonly messageId?: string
   readonly handle?: ProvenanceHandle
@@ -23,6 +24,7 @@ export class ProvenanceOverlayController implements HostObservable<ProvenanceOve
   private state: ProvenanceOverlayState = {}
   private readonly listeners = new Set<() => void>()
   private restoreFocus: FocusTarget | undefined
+  private requestId = 0
 
   getSnapshot = (): ProvenanceOverlayState => this.state
   subscribe = (listener: () => void): (() => void) => {
@@ -31,7 +33,7 @@ export class ProvenanceOverlayController implements HostObservable<ProvenanceOve
   }
   open(sessionId: string, messageId: string, handle: ProvenanceHandle, restoreFocus?: FocusTarget): void {
     this.restoreFocus = restoreFocus
-    this.publish({ sessionId, messageId, handle })
+    this.publish({ sessionId, messageId, handle, requestId: ++this.requestId })
   }
   close(): void {
     const target = this.restoreFocus
@@ -58,42 +60,44 @@ export function ProvenanceOverlay({ useProvenanceOverlay, load, close }: Provena
   const t = useOpenBknTranslation()
 
   const state = useProvenanceOverlay((value: ProvenanceOverlayState) => value)
-  const [tab, setTab] = useState<Tab>('events')
-  const [view, setView] = useState<ProvenanceView | undefined>()
-  const [loading, setLoading] = useState(false)
-  const [failed, setFailed] = useState(false)
+  const requestKey = JSON.stringify([state.sessionId,state.messageId,state.requestId])
+  const [selectedTab, setTab] = useState<Tab>('events')
+  const [result, setResult] = useState<{key:string;phase:'loading'|'ready'|'failed';view?:ProvenanceView}>()
+  // Ownership is checked during render: an effect cannot hide old content before its first commit.
+  const current = result?.key === requestKey ? result : undefined
+  const view = current?.view
+  const tab = current === undefined ? 'events' : selectedTab
+  const loading = current === undefined || current.phase === 'loading'
   const dialog = useRef<HTMLElement>(null)
   useEffect(() => {
     if (state.handle === undefined || state.sessionId === undefined || state.messageId === undefined) return
     let active = true
     const request = new AbortController()
-    setTab('events'); setView(undefined); setFailed(false); setLoading(true)
+    setTab('events'); setResult({key:requestKey,phase:'loading'})
     void load(state.sessionId, state.messageId, request.signal).then(next => {
-      if (active) setView(next)
+      if (active) setResult({key:requestKey,phase:'ready',view:next})
     }).catch(() => {
       // Platform facts degrade inside the view; reaching here means the turn
       // record itself could not be read, which stays a whole-panel failure.
-      if (active) setFailed(true)
-    }).finally(() => {
-      if (active) setLoading(false)
+      if (active) setResult({key:requestKey,phase:'failed'})
     })
     return () => { active = false; request.abort() }
-  }, [load, state.handle, state.messageId, state.sessionId])
+  }, [load, state.handle, state.messageId, state.sessionId, requestKey])
   useEffect(() => {
     if (state.handle === undefined) return
     dialog.current?.focus()
     const onKeyDown = (event: KeyboardEvent) => { if (event.key === 'Escape') close() }
     window.addEventListener('keydown', onKeyDown)
     return () => window.removeEventListener('keydown', onKeyDown)
-  }, [close, state.handle])
+  }, [close, state.handle, requestKey])
   if (state.handle === undefined) return null
 
   return <div role="presentation" onMouseDown={close} style={backdropStyle}>
     <section ref={dialog} tabIndex={-1} role="dialog" aria-modal="true" aria-label={t('provenanceLabel')} onMouseDown={event => event.stopPropagation()} style={dialogStyle}>
       <header style={headerStyle}><div><div style={eyebrowStyle}>{t('provenanceEyebrow')}</div><h2 style={{ margin: '4px 0 0', fontSize: 28 }}>{t('businessProvenance')}</h2></div><button type="button" aria-label={t('close')} onClick={close} style={closeStyle}>×</button></header>
       <nav aria-label={t('provenanceViews')} style={tabBarStyle}><TabButton active={tab === 'events'} onClick={() => setTab('events')}>{t('nativeEvents')}</TabButton><TabButton active={tab === 'evidence'} onClick={() => setTab('evidence')}>{t('evidenceChain')}</TabButton></nav>
-      <main style={{ padding: 24 }}>{loading ? <Loading /> : failed || view === undefined ? <LoadFailed /> : <>
-        <NativeProvenancePanel key={view.interactionId ?? state.messageId} view={view} tab={tab} onTabChange={setTab} />
+      <main style={{ padding: 24 }}>{loading ? <Loading /> : current?.phase === 'failed' || view === undefined ? <LoadFailed /> : <>
+        <NativeProvenancePanel key={requestKey} view={view} tab={tab} onTabChange={setTab} />
         <details style={{ marginTop: 24 }}><summary>{t('nativeHistoricalRecords')}</summary>
           <Execution handle={state.handle} view={view} /><BusinessGraph view={view} /><EvidenceChain view={view} />
         </details>

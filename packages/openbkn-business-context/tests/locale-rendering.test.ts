@@ -131,38 +131,43 @@ function namedButton(renderer: ReturnType<typeof create>, label: string) {
   return button
 }
 
-test('claim selection updates only explicitly linked evidence and business functions', () => {
+function relatedProcessing(renderer:ReturnType<typeof create>) {
+  return renderer.root.findAllByType('button').filter(node=>node.props['data-target-kind']==='function' && !node.props['aria-label'] && node.props['data-related']).map(node=>node.props['data-target-id'])
+}
+
+test('claim selection marks only explicitly linked functions while retaining the same-pair catalogue', () => {
   const harness = localeHarness();const Component = localized(NativeProvenancePanel,harness.locale);const view = selectionView()
   let renderer!:ReturnType<typeof create>
   act(()=>{renderer=create(createElement(Component,{view,tab:'evidence'}))})
   const text=()=>JSON.stringify(renderer.toJSON())
-  assert.match(text(),/业务函数原文/);assert.doesNotMatch(text(),/第二业务函数/)
+  assert.match(text(),/业务函数原文/);assert.match(text(),/第二业务函数/)
+  assert.deepEqual(relatedProcessing(renderer),['fn1'])
   act(()=>namedButton(renderer,'第二结论').props.onClick())
   assert.equal(namedButton(renderer,'第二结论').props['aria-pressed'],true)
   assert.equal(namedButton(renderer,'来源原文').props.style.borderColor,'#dce4ec')
   assert.equal(namedButton(renderer,'同值非关联').props.style.borderColor,'#087d72')
-  assert.match(text(),/第二业务函数/);assert.match(text(),/第二处理过程/);assert.doesNotMatch(text(),/业务函数原文/)
+  assert.match(text(),/第二业务函数/);assert.match(text(),/第二处理过程/);assert.match(text(),/业务函数原文/)
+  assert.deepEqual(relatedProcessing(renderer),['fn2'])
   act(()=>harness.set('en'));assert.equal(namedButton(renderer,'第二结论').props['aria-pressed'],true)
   assert.match(text(),/Business inputs/);assert.match(text(),/第二业务函数/)
   act(()=>renderer.unmount())
 })
 
-test('event selection filters business details by disclosed operation IDs and survives tab changes', () => {
+test('event selection marks processing by disclosed operation IDs and survives tab changes', () => {
   const harness=localeHarness();const Component=localized(NativeProvenancePanel,harness.locale);const view=selectionView()
   let renderer!:ReturnType<typeof create>
   act(()=>{renderer=create(createElement(Component,{view,tab:'events'}))})
   act(()=>namedButton(renderer,'第二业务函数').props.onClick())
   assert.equal(namedButton(renderer,'第二业务函数').props['aria-pressed'],true)
-  const sections=()=>renderer.root.findAllByType('h4').map(node=>node.children.join(''))
-  assert.deepEqual(sections(),['第二业务函数'])
+  assert.deepEqual(relatedProcessing(renderer),['fn2'])
   act(()=>renderer.update(createElement(Component,{view,tab:'evidence'})))
   assert.equal(namedButton(renderer,'第二结论').props['data-related'],true)
   assert.equal(namedButton(renderer,'结论原文').props['data-related'],false)
-  assert.deepEqual(sections(),['第二业务函数'])
+  assert.deepEqual(relatedProcessing(renderer),['fn2'])
   act(()=>renderer.update(createElement(Component,{view,tab:'events'})))
   assert.equal(namedButton(renderer,'第二业务函数').props['aria-pressed'],true)
-  assert.deepEqual(sections(),['第二业务函数'])
-  act(()=>namedButton(renderer,'业务函数原文').props.onClick());assert.deepEqual(sections(),['业务函数原文'])
+  assert.deepEqual(relatedProcessing(renderer),['fn2'])
+  act(()=>namedButton(renderer,'业务函数原文').props.onClick());assert.deepEqual(relatedProcessing(renderer),['fn1'])
   act(()=>renderer.unmount())
 })
 
@@ -182,7 +187,7 @@ test('changing question pairs resets node, claim and event selections without im
   assert.equal(renderer.root.findAllByType('button').some(node=>node.props['aria-pressed']===true),false)
   act(()=>renderer.update(createElement(Component,{view,tab:'evidence'})))
   act(()=>renderer.root.findByType('select').props.onChange({target:{value:'p3'}}))
-  assert.equal(renderer.root.findAllByType('h4').length,0)
+  assert.equal(renderer.root.findAllByType('button').filter(node=>node.props['data-target-kind']==='function').length,0)
   assert.match(JSON.stringify(renderer.toJSON()),new RegExp(translateMessage('zh','nativeNoClaims')))
   assert.match(JSON.stringify(renderer.toJSON()),new RegExp(translateMessage('zh','nativeNoLinkedFunction')))
   act(()=>renderer.unmount())

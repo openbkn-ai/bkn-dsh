@@ -3,7 +3,7 @@ import test from 'node:test'
 import { readFileSync } from 'node:fs'
 import { OpenBknBusinessContextService } from '../src/business-context-service.ts'
 import { Config } from '../src/config.ts'
-import { PlatformReaderError } from '../src/platform-reader.ts'
+import { OpenBknPlatformReader, PlatformReaderError } from '../src/platform-reader.ts'
 import { projectNativeExplanation } from '../src/native-provenance.ts'
 import type { NativeExplanationResult } from '../src/native-provenance-types.ts'
 const baseUrl='https://platform.invalid'
@@ -78,6 +78,22 @@ test('detail failure does not discard a readable explanation or local history', 
   assert.deepEqual(view.native?.detail, { kind: 'unavailable', reason: 'not-disclosed-or-unavailable' })
   assert.deepEqual(view.native?.explanation, { kind: 'not-generated' })
   assert.ok(view.timeline.length > 0)
+})
+test('duplicate fallback rail degrades the explanation when detail is unavailable, preserving local history',async()=>{
+  const {service,reader}=serviceCase();const raw=JSON.parse(readFileSync(new URL('./fixtures/native-provenance-schema1.json',import.meta.url),'utf8'))
+  raw.view.timeRail=[raw.view.timeRail[0],{...raw.view.timeRail[0],attempt:2}]
+  const requests:string[]=[]
+  const actual=new OpenBknPlatformReader({baseUrl,maxResultBytes:1_000_000,requestTimeoutMs:30_000,allowInsecureTls:false,resolveToken:async()=> 'test-only-token'},async(url,init)=>{
+    requests.push(`${init.method} ${url.pathname}`)
+    return url.pathname.endsWith('/explanations') ? new Response(JSON.stringify(raw)) : new Response('{}',{status:404})
+  })
+  reader.getNativeInteractionDetail=async id=>actual.getNativeInteractionDetail(id,AbortSignal.timeout(1000))
+  reader.getNativeInteractionExplanation=async id=>actual.getNativeInteractionExplanation(id,AbortSignal.timeout(1000))
+  const view=(await service.remoteGetTurnProvenanceView('s1' as never,'m1',AbortSignal.timeout(1000)))!
+  assert.deepEqual(view.native?.detail,{kind:'unavailable',reason:'not-disclosed-or-unavailable'})
+  assert.deepEqual(view.native?.explanation,{kind:'unavailable',reason:'invalid-response'})
+  assert.ok(view.timeline.length>0);assert.ok(view.execution)
+  assert.equal(requests.length,2);assert.ok(requests.every(request=>request.startsWith('GET ')))
 })
 test('native read failure preserves the independently readable detail and local timeline',async () => {
   const {service,reader}=serviceCase()

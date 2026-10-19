@@ -33,6 +33,27 @@ test('byte and aggregate graph budgets refuse overflow rather than silently trun
   const x = fixture();x.view.evidence.nodes = Array.from({ length: 500 }, (_,i) => ({ id: `n${i}`,label: 'N',kind: 'source' }))
   assert.throws(() => projectNativeExplanation(x, 'int-fixture'), (e: any) => e.reason === 'result-too-large')
 })
+test('duplicate explanation rail IDs reject the whole projection without selecting or renaming an attempt',()=>{
+  const input=fixture();const event=input.view.timeRail[0]
+  input.view.timeRail=[event,{...event,attempt:event.attempt+1}]
+  const before=JSON.stringify(input)
+  assert.throws(()=>projectNativeExplanation(input,'int-fixture'),(error:any)=>error instanceof NativeProjectionError && error.reason==='invalid-response')
+  assert.equal(JSON.stringify(input),before)
+})
+test('platform invalid and unfamiliar validation states remain valid read-only records with their raw reasons',()=>{
+  for(const status of ['invalid','candidate','verified','future-platform-status']) {
+    const input=fixture();const graph=input.view.selectedPairGraphs.p1
+    graph.businessFunctions[0].validationStatus=status;graph.businessFunctions[0].reasonCode='raw_function_reason'
+    graph.edges[0].validationStatus=status;graph.edges[0].reasonCode='raw_edge_reason'
+    const before=JSON.stringify(input);const result=projectNativeExplanation(input,'int-fixture')
+    assert.equal(result.kind,'ready');if(result.kind!=='ready')continue
+    assert.equal(result.view.selectedPairGraphs!.p1.businessFunctions[0].validationStatus,status)
+    assert.equal(result.view.selectedPairGraphs!.p1.businessFunctions[0].reasonCode,'raw_function_reason')
+    assert.equal(result.view.selectedPairGraphs!.p1.edges[0].validationStatus,status)
+    assert.equal(result.view.selectedPairGraphs!.p1.edges[0].reasonCode,'raw_edge_reason')
+    assert.equal(JSON.stringify(input),before)
+  }
+})
 test('not_generated and a valid empty explanation are distinct outcomes', () => {
   assert.deepEqual(projectNativeExplanation({ schema_version: '1', interaction_id: 'int-fixture', status: 'not_generated' }, 'int-fixture'), { kind: 'not-generated' })
   const x = fixture();x.view.claims = [];x.view.requirements = [];x.view.questionPairs = [];x.view.selectedPairGraphs = {};x.view.evidence = {nodes:[],edges:[]};x.view.execution = {nodes:[],edges:[]}
