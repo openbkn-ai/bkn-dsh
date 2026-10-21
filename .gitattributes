@@ -1,0 +1,3 @@
+# Immutable handoff inputs must survive Windows checkout byte-for-byte.
+* -text
+*.tgz binary

@@ -1,0 +1,27 @@
+# Track only reviewed transfer inputs; keep runtime and evidence outside this checkout.
+*
+!/candidate/
+!/.gitattributes
+!/.gitignore
+!/G6-BLOCKERS.md
+!/HANDOFF.md
+!/KIT-FILES.json
+!/LICENSE
+!/README.md
+!/RESULTS-TEMPLATE.md
+!/WINDOWS-TASK.md
+!/candidate-files.json
+!/candidate-manifest.json
+!/candidate/openbkn-bkn-sdk-0.2.0.tgz
+!/candidate/openbkn-dsh-business-context-0.2.0-rc.2-openbkn.0.2.0-27.tgz
+!/dsh-hosts.json
+!/npm-runtime-0.2.0-rc.2.json
+!/npm-runtime-0.2.1-rc.2.json
+!/official-host-assets.json
+!/openbkn-local-ca.pem
+!/prepare-npm-runtime.mjs
+!/sdk-manifest.json
+!/source-worktree-identity.json
+!/start-owned-web.ps1
+!/stop-owned-host.ps1
+!/verify-kit.mjs

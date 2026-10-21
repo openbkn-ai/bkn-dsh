@@ -1,0 +1,65 @@
+{
+  "github_releases": [
+    {
+      "tag": "dsh-v0.2.0-rc.2",
+      "release_url": "https://github.com/deepseek-ai/deepseek-harness/releases/tag/dsh-v0.2.0-rc.2",
+      "windows_assets": []
+    },
+    {
+      "tag": "dsh-v0.2.1-rc.2",
+      "release_url": "https://github.com/deepseek-ai/deepseek-harness/releases/tag/dsh-v0.2.1-rc.2",
+      "windows_assets": []
+    }
+  ],
+  "github_asset_note": "These GitHub releases have no Desktop installer assets; use the official download service below.",
+  "official_windows_feeds": {
+    "checked_at": "2026-10-21T15:19:05.957911+00:00",
+    "feeds": [
+      {
+        "feed_url": "https://download.deepseek.com/dsh-desk/feeds/win-x64/nightly.yml",
+        "feed_sha256": "78c14981a8da0659923de0c7710fbb90a675105fa4a1416bdb5b87e56cdfd116",
+        "version": "0.2.1-rc.2",
+        "files": [
+          {
+            "url": "https://download.deepseek.com/dsh-desk/bin/win-x64/deepseek-harness-0.2.1-rc.2-win-x64.exe",
+            "sha512": "39POl5osl9PKMqrPXQA52dh/bCV0Z02vOV9cTjOJDHE6gsJwp5bv7lfgB3mVWAKspX7a/w1iTi+8Listdhq45g==",
+            "size": 289385456
+          }
+        ],
+        "path": "https://download.deepseek.com/dsh-desk/bin/win-x64/deepseek-harness-0.2.1-rc.2-win-x64.exe",
+        "sha512": "39POl5osl9PKMqrPXQA52dh/bCV0Z02vOV9cTjOJDHE6gsJwp5bv7lfgB3mVWAKspX7a/w1iTi+8Listdhq45g==",
+        "releaseDate": "2026-10-17T09:22:23.750Z"
+      },
+      {
+        "feed_url": "https://download.deepseek.com/dsh-desk/feeds/win-x64/latest.yml",
+        "error_type": "HTTPError",
+        "status": 404
+      }
+    ]
+  },
+  "old_fixed_url_head": {
+    "url": "https://download.deepseek.com/dsh-desk/bin/win-x64/deepseek-harness-0.2.0-rc.2-win-x64.exe",
+    "http_status": 200,
+    "content_length": "289313640",
+    "etag": "\"7754925fe3c4542123eca76c0e11076e\"",
+    "last_modified": "Tue, 29 Sep 2026 10:36:09 GMT",
+    "checked_at": "2026-10-21T15:19:51.407152+00:00",
+    "full_binary_downloaded": false,
+    "digest_verified": false,
+    "embedded_version_verified": false
+  },
+  "old_fixed_url_observed_receipt": {
+    "checked_at": "2026-10-21T15:27:34.409546+00:00",
+    "url": "https://download.deepseek.com/dsh-desk/bin/win-x64/deepseek-harness-0.2.0-rc.2-win-x64.exe",
+    "file": "deepseek-harness-0.2.0-rc.2-win-x64.exe",
+    "bytes": 289313640,
+    "sha256": "d61cd8882f8b8a1251144320493ad27920d15139503eba2465b9579eee720cfc",
+    "sha512_hex": "ada225c4c41df44497824b665625bb43054b723051e4922cacd3aef92a5e958f24b24752af61f9d7f7fe7b2d44a8523f78822b2900ae44034c79be52a6d45972",
+    "download_https_verified": true,
+    "digest_source": "Observed complete bytes from the official fixed HTTPS version URL; not an archived vendor feed digest",
+    "official_feed_digest_available": false,
+    "native_authenticode_and_installed_version_verified": false,
+    "download_seconds": 6.58
+  },
+  "native_windows_signatures_and_installed_versions_verified": false
+}
