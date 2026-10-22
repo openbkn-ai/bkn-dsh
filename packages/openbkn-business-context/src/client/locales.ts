@@ -1,5 +1,6 @@
 /** Plugin-owned UI copy. Platform facts, identifiers and model answers stay verbatim. */
 export const zh = {
+  "backToNetworks": "返回网络目录",
   "interactionID": "交互 ID",
   "requestReference": "请求",
   "traceReference": "追踪",
@@ -248,6 +249,7 @@ export const zh = {
 export type OpenBknMessageKey = keyof typeof zh
 
 export const en: Record<OpenBknMessageKey, string> = {
+  "backToNetworks": "Back to networks",
   "interactionID": "Interaction ID",
   "requestReference": "Request",
   "traceReference": "Trace",

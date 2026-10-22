@@ -11,7 +11,7 @@ import { OpenBknOverlay } from '../src/client/OpenBknOverlay.tsx'
 import { ProvenanceOverlay, ProvenanceOverlayController } from '../src/client/ProvenanceOverlay.tsx'
 import { diagnosticAction } from '../src/client/diagnostics-copy.ts'
 import { sessionSuggestionText } from '../src/client/SuggestionDock.tsx'
-import type { ProvenanceView } from '../src/types.ts'
+import type { OpenBknConfigurationInput, ProvenanceView } from '../src/types.ts'
 
 function localeHarness() {
   let snapshot = { active: 'zh', revision: 0, locales: [] }
@@ -258,5 +258,38 @@ test('the English authentication surface separates its platform label from the U
   } as never)) })
   const paragraphs = renderer.root.findAllByType('p').map(row => row.children.join(''))
   assert.ok(paragraphs.some(text => text === 'Platform URL: https://platform.invalid'))
+  act(() => renderer.unmount())
+})
+
+test('a retained settings draft has an explicit path back to networks without saving', async () => {
+  const harness = localeHarness(); harness.set('en')
+  let saves = 0
+  const controller = new OpenBknUiController(port({ listNetworks: async () => [{ id: 'a', displayName: 'Alpha' }] }), async () => 'session', undefined, {
+    getConfiguration: async () => ({ configured: true, editable: true, baseUrl: 'https://platform.invalid', cliPath: 'openbkn' }),
+    saveConfiguration: async () => { saves++; throw new Error('must not save a discarded draft') },
+  })
+  controller.open(); await controller.refresh()
+  const Component = localized(OpenBknOverlay, harness.locale)
+  const noop = () => {}
+  let renderer!: ReturnType<typeof create>
+  await act(async () => { renderer = create(createElement(Component, {
+    useUi: (select: (value: ReturnType<typeof controller.snapshot>) => unknown) => select(useSyncExternalStore(listener => controller.subscribe(listener), () => controller.snapshot())),
+    close: () => controller.close(), refresh: () => controller.refresh(), beginLogin: () => controller.beginLogin(),
+    showSettings: () => controller.showSettings(), saveConfiguration: (input: OpenBknConfigurationInput) => controller.saveConfiguration(input),
+    cliSetup: { checkCli: async () => ({ state: 'ready', canInstall: false }), installCli: async () => ({ state: 'ready', canInstall: false }) },
+    openNetwork: noop, openDiagnostics: noop,
+  } as never)) })
+  await act(async () => { await controller.showSettings() })
+  act(() => renderer.root.findByProps({ 'aria-label': 'OpenBKN platform URL' }).props.onChange({ target: { value: 'not-a-url' } }))
+  act(() => { controller.close(); controller.open() })
+  assert.equal(renderer.root.findByProps({ 'aria-label': 'OpenBKN platform URL' }).props.value, 'not-a-url')
+  await act(async () => {
+    renderer.root.findAllByType('button').find(button => button.children.includes('Back to networks'))!.props.onClick()
+    await new Promise(resolve => setImmediate(resolve))
+  })
+  assert.equal(controller.snapshot().phase, 'ready')
+  assert.equal(saves, 0)
+  assert.match(JSON.stringify(renderer.toJSON()), /Alpha/)
+  assert.equal(renderer.root.findAllByProps({ 'aria-label': 'OpenBKN platform URL' }).length, 0)
   act(() => renderer.unmount())
 })

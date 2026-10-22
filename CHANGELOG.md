@@ -6,7 +6,7 @@ All notable changes to this project are documented here.
 
 Review candidate based on published -11. Supports official DSH 0.2.0-rc.2.
 
-- Preserve unsaved settings, validation messages, network search and expansion when the OpenBKN modal is dismissed to change the Desktop Host language.
+- Preserve unsaved settings, validation messages, network search and expansion when the OpenBKN modal is dismissed to change the Desktop Host language. An explicit Back to networks action discards the draft without saving and returns to the directory.
 - Keep a single pending CLI login across modal dismissal and synchronize its completion without reopening the modal. Service replacement still invalidates old requests; canceled workspace selection and configuration saves retain their existing safety boundaries.
 - Preserve the last diagnostics report and the same turn's provenance tab/graph selection across dismissal; use explicit refresh to collect new diagnostics or reload the network directory.
 - Keep text and the close control readable on white plugin dialogs under a dark Host theme.
