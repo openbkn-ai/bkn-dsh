@@ -9,6 +9,7 @@ Review candidate based on published -11. Supports official DSH 0.2.0-rc.2.
 - Preserve unsaved settings, validation messages, network search and expansion when the OpenBKN modal is dismissed to change the Desktop Host language.
 - Keep a single pending CLI login across modal dismissal and synchronize its completion without reopening the modal. Service replacement still invalidates old requests; canceled workspace selection and configuration saves retain their existing safety boundaries.
 - Preserve the last diagnostics report and the same turn's provenance tab/graph selection across dismissal; use explicit refresh to collect new diagnostics or reload the network directory.
+- Keep text and the close control readable on white plugin dialogs under a dark Host theme.
 - Translate plugin-owned provenance reference labels in Chinese and add the missing English space after “Platform URL:”. Platform facts, IDs, status values and model answers remain verbatim.
 
 This candidate has not been published to npm. Windows review and promotion remain pending. Host/CLI authentication child-process lifetime, npm Host identification metadata, and isolated local-versus-platform tool errors remain observations requiring their own runtime evidence; this release does not claim to fix them. Nonempty graph and counted-timeline coverage from controlled renderer fixtures is distinct from live-platform acceptance.

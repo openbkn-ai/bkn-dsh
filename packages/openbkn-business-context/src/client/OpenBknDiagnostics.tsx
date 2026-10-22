@@ -163,7 +163,7 @@ const backdropStyle: React.CSSProperties = {
 
 const dialogStyle: React.CSSProperties = {
   width: 'min(680px, calc(100vw - 48px))', maxHeight: 'min(78vh, 720px)',
-  display: 'flex', flexDirection: 'column', background: '#fff',
+  display: 'flex', flexDirection: 'column', background: '#fff', color: '#172033',
   borderRadius: 16, boxShadow: '0 24px 64px rgba(15,23,42,0.35)',
 }
 
