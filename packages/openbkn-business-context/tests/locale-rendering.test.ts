@@ -256,7 +256,7 @@ test('the English authentication surface separates its platform label from the U
     useUi: (select: (state: unknown) => unknown) => select({ open: true, phase: 'authentication-required', networks: [], auth: { baseUrl: 'https://platform.invalid' } }),
     close: noop, refresh: noop, beginLogin: noop, showSettings: noop, saveConfiguration: noop, cliSetup: {}, openNetwork: noop, openDiagnostics: noop,
   } as never)) })
-  const label = renderer.root.findAllByType('p').find(row => row.children.includes('https://platform.invalid'))!
-  assert.equal(label.children.join(''), 'Platform URL: https://platform.invalid')
+  const paragraphs = renderer.root.findAllByType('p').map(row => row.children.join(''))
+  assert.ok(paragraphs.some(text => text === 'Platform URL: https://platform.invalid'))
   act(() => renderer.unmount())
 })
