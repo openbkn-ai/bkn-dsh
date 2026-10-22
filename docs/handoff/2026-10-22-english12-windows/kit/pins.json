@@ -1,0 +1,56 @@
+{
+  "schema": 1,
+  "kitVersion": "windows-english12-acceptance-v1",
+  "preparedAt": "2026-10-22",
+  "timezone": "Asia/Taipei",
+  "plugin": {
+    "name": "@openbkn/dsh-business-context",
+    "version": "0.2.0-rc.2-openbkn.0.2.0-12",
+    "file": "artifacts/openbkn-dsh-business-context-0.2.0-rc.2-openbkn.0.2.0-12.tgz",
+    "sha256": "30a94300994296513b8d391acda69933acf1f4a77440e9da53486a0de5bd1a44",
+    "integrity": "sha512-GyyyjgNAMvgCizmOsjk7VvDyesEdC/glXCZ135/D6c+7YjlNw7FIlWaQGs0KNYqPJ7b8HfJDjxQgC24HVe7Y7w==",
+    "tag": "review-english12-20261022",
+    "sourceCommit": "5519645d58a8537c27c73626bc2dae7d90ddc242",
+    "bytes": 209935,
+    "files": 74,
+    "registryTarball": null,
+    "ciRun": 39791127284,
+    "npmPublished": false,
+    "ciUrl": "https://github.com/openbkn-ai/bkn-dsh/actions/runs/39791127284"
+  },
+  "dsh": {
+    "version": "0.2.0-rc.2",
+    "tag": "dsh-v0.2.0-rc.2",
+    "sourceCommit": "639ed015397290b3745d163aafe02ffee4aa3f84",
+    "npm": "@deepseek-ai/dsh@0.2.0-rc.2",
+    "npmIntegrity": "sha512-EAJ3gPNcVt/uv8X19PMm9NkVhWgT7xXNMk0UKCVm+IQ5rpSQOcsMUa0HWlnYYVybKMsccjcRB21vVVsaXQ6IdA=="
+  },
+  "desktopInstaller": {
+    "file": "deepseek-harness-0.2.0-rc.2-win-x64.exe",
+    "url": "https://download.deepseek.com/dsh-desk/bin/win-x64/deepseek-harness-0.2.0-rc.2-win-x64.exe",
+    "sha256": "d61cd8882f8b8a1251144320493ad27920d15139503eba2465b9579eee720cfc",
+    "bytes": 289313640,
+    "digestBasis": "Complete official fixed HTTPS URL download rechecked on 2026-10-22; observed digest, not an archived vendor feed signature",
+    "authenticode": "PENDING_NATIVE_WINDOWS_CHECK"
+  },
+  "platform": {
+    "version": "0.2.0",
+    "cli": "@openbkn/bkn-sdk@0.2.0",
+    "managedTools": 18,
+    "catalogueTools": 25
+  },
+  "upstreamSnapshot": {
+    "checkedAt": "2026-10-22T14:17:54.347777+00:00",
+    "dshLatestAvailable": "dsh-v0.2.1-rc.2",
+    "dshLatestCommit": "687f282e8625c6b8d11ff58211a90524be2e4317",
+    "openbknLatestFormal": "v0.2.0",
+    "pinsUpgraded": false,
+    "toolContractCapturedAt": "2026-10-22T13:22:11.107Z"
+  },
+  "distTagsAtPreparation": {
+    "rc": "0.2.0-rc.2-openbkn.0.2.0-11",
+    "latest": "0.2.0-rc.2-openbkn.0.2.0-10"
+  },
+  "windowsUiAcceptance": "PENDING",
+  "npmLatestPromotion": "HOLD_ALL_NPM_PUBLICATION_AND_TAG_CHANGES"
+}
