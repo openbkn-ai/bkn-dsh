@@ -1,5 +1,12 @@
 /** Plugin-owned UI copy. Platform facts, identifiers and model answers stay verbatim. */
 export const zh = {
+  "interactionID": "交互 ID",
+  "requestReference": "请求",
+  "traceReference": "追踪",
+  "receiptReference": "回执",
+  "operationReference": "操作",
+  "statusReference": "状态",
+  "operationID": "操作 {id}",
   "toolResultCount": "{p0} · {p1} 项",
   "cLIInstallationVersion": "CLI 安装版本：",
   "cLIInstallationVersionText1": "CLI 安装版本",
@@ -241,6 +248,13 @@ export const zh = {
 export type OpenBknMessageKey = keyof typeof zh
 
 export const en: Record<OpenBknMessageKey, string> = {
+  "interactionID": "Interaction ID",
+  "requestReference": "Request",
+  "traceReference": "Trace",
+  "receiptReference": "Receipt",
+  "operationReference": "Op",
+  "statusReference": "Status",
+  "operationID": "operation {id}",
   "toolResultCount": "{p0} · items: {p1}",
   "cLIInstallationVersion": "CLI installation version:",
   "cLIInstallationVersionText1": "CLI installation version",
@@ -277,7 +291,7 @@ export const en: Record<OpenBknMessageKey, string> = {
   "bindingTheCurrentConversation": "Binding the current conversation…",
   "connectingToOpenBKN": "Connecting to OpenBKN…",
   "signInWithTheLocalOpenBKNCLIThe": "Sign in with the local OpenBKN CLI. The plugin then synchronizes credentials within the Host, connects to Context Loader MCP, and lists the business knowledge networks you can access.",
-  "platformURL": "Platform URL:",
+  "platformURL": "Platform URL: ",
   "signInAndSyncWithOpenBKNCLI": "Sign in and sync with OpenBKN CLI",
   "refreshStatus": "Refresh status",
   "chooseABusinessKnowledgeNetworkToContinueOr": "Choose a business knowledge network to continue or create a conversation in its DSH workspace. Business conversations require",

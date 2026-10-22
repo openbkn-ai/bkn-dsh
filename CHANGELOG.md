@@ -2,6 +2,17 @@
 
 All notable changes to this project are documented here.
 
+## 0.2.0-rc.2-openbkn.0.2.0-12
+
+Review candidate based on published -11. Supports official DSH 0.2.0-rc.2.
+
+- Preserve unsaved settings, validation messages, network search and expansion when the OpenBKN modal is dismissed to change the Desktop Host language.
+- Keep a single pending CLI login across modal dismissal and synchronize its completion without reopening the modal. Service replacement still invalidates old requests; canceled workspace selection and configuration saves retain their existing safety boundaries.
+- Preserve the last diagnostics report and the same turn's provenance tab/graph selection across dismissal; use explicit refresh to collect new diagnostics or reload the network directory.
+- Translate plugin-owned provenance reference labels in Chinese and add the missing English space after “Platform URL:”. Platform facts, IDs, status values and model answers remain verbatim.
+
+This candidate has not been published to npm. Windows review and promotion remain pending. Host/CLI authentication child-process lifetime, npm Host identification metadata, and isolated local-versus-platform tool errors remain observations requiring their own runtime evidence; this release does not claim to fix them. Nonempty graph and counted-timeline coverage from controlled renderer fixtures is distinct from live-platform acceptance.
+
 ## 0.2.0-rc.2-openbkn.0.2.0-11 (2026-10-22)
 
 - Add English translations to the existing OpenBKN entry, network directory, settings and CLI setup, diagnostics, context-tool card, session suggestion and all three existing provenance tabs.

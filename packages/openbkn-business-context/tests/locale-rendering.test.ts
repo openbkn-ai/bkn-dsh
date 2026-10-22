@@ -116,7 +116,11 @@ test('switching an open configuration form preserves unsaved URL, CLI path and a
   act(() => renderer.root.findByProps({ 'aria-label': 'OpenBKN 平台地址' }).props.onChange({ target: { value: 'https://unsaved.invalid' } }))
   act(() => renderer.root.findByType('details').props.onToggle({ currentTarget: { open: true } }))
   act(() => renderer.root.findByProps({ 'aria-label': 'OpenBKN CLI 执行路径' }).props.onChange({ target: { value: '/unsaved/openbkn' } }))
+  state.open = false
+  act(() => renderer.update(createElement(Component, props as never)))
   act(() => harness.set('en'))
+  state.open = true
+  act(() => renderer.update(createElement(Component, props as never)))
   assert.equal(renderer.root.findByProps({ 'aria-label': 'OpenBKN platform URL' }).props.value, 'https://unsaved.invalid')
   assert.equal(renderer.root.findByProps({ 'aria-label': 'OpenBKN CLI executable path' }).props.value, '/unsaved/openbkn')
   assert.equal(renderer.root.findByType('details').props.open, true)
@@ -184,7 +188,9 @@ test('all three Latest provenance tabs remain and graph selection survives local
   act(() => renderer.root.findAllByType('button').find(button => button.children.includes('业务上下文图'))!.props.onClick())
   const node = () => renderer.root.findAllByType('button').find(button => button.findAllByType('strong').some(label => label.children.includes('平台原文 B')))!
   act(() => node().props.onClick())
+  act(() => controller.close())
   act(() => harness.set('en'))
+  act(() => controller.open('session-original', 'message-original', { ...handle }))
   const text = JSON.stringify(renderer.toJSON())
   assert.match(text, /Execution provenance/)
   assert.match(text, /Business context graph/)
@@ -207,4 +213,50 @@ test('only plugin-owned diagnostic guidance and suggestion templates are transla
   assert.match(sessionSuggestionText('了解「原始网络」知识网络。', t), /原始网络/)
   assert.doesNotMatch(sessionSuggestionText('了解「原始网络」知识网络。', t), /了解|知识网络/)
   assert.equal(sessionSuggestionText('平台自有建议 unchanged', t), '平台自有建议 unchanged')
+})
+
+
+test('closing the ready directory for a Desktop language change preserves search and expansion', async () => {
+  const harness = localeHarness()
+  const controller = new OpenBknUiController(port({ listNetworks: async () => [
+    { id: 'a', displayName: 'Alpha', description: 'Platform description', workspacePath: '/workspace' },
+    { id: 'b', displayName: 'Beta' },
+  ] }), async () => 'session')
+  controller.open()
+  await controller.refresh()
+  const Component = localized(OpenBknOverlay, harness.locale)
+  const noop = () => {}
+  let renderer!: ReturnType<typeof create>
+  act(() => { renderer = create(createElement(Component, {
+    useUi: (select: (value: ReturnType<typeof controller.snapshot>) => unknown) => select(useSyncExternalStore(listener => controller.subscribe(listener), () => controller.snapshot())),
+    close: () => controller.close(), refresh: () => controller.refresh(), beginLogin: () => controller.beginLogin(),
+    showSettings: noop, saveConfiguration: noop, cliSetup: {}, openNetwork: noop, openDiagnostics: noop,
+  } as never)) })
+  act(() => renderer.root.findByType('input').props.onChange({ target: { value: 'Alpha' } }))
+  act(() => renderer.root.findByProps({ 'aria-expanded': false }).props.onClick())
+  act(() => controller.close())
+  assert.equal(renderer.root.findByProps({ role: 'presentation' }).props.style.display, 'none')
+  act(() => harness.set('en'))
+  act(() => controller.open())
+  assert.equal(renderer.root.findByType('input').props.value, 'Alpha')
+  assert.equal(renderer.root.findByProps({ 'aria-expanded': true }).props['aria-expanded'], true)
+  assert.match(JSON.stringify(renderer.toJSON()), /Platform description/)
+  assert.doesNotMatch(JSON.stringify(renderer.toJSON()), /Beta/)
+  act(() => controller.reset())
+  assert.equal(renderer.toJSON(), null)
+  act(() => renderer.unmount())
+})
+
+test('the English authentication surface separates its platform label from the URL', () => {
+  const harness = localeHarness(); harness.set('en')
+  const Component = localized(OpenBknOverlay, harness.locale)
+  let renderer!: ReturnType<typeof create>
+  const noop = () => {}
+  act(() => { renderer = create(createElement(Component, {
+    useUi: (select: (state: unknown) => unknown) => select({ open: true, phase: 'authentication-required', networks: [], auth: { baseUrl: 'https://platform.invalid' } }),
+    close: noop, refresh: noop, beginLogin: noop, showSettings: noop, saveConfiguration: noop, cliSetup: {}, openNetwork: noop, openDiagnostics: noop,
+  } as never)) })
+  const label = renderer.root.findAllByType('p').find(row => row.children.includes('https://platform.invalid'))!
+  assert.equal(label.children.join(''), 'Platform URL: https://platform.invalid')
+  act(() => renderer.unmount())
 })

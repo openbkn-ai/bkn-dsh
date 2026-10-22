@@ -10,6 +10,7 @@ import type {} from '@deepseek-ai/dsh-client-ui-layout/client'
 type Tab = 'execution' | 'graph' | 'evidence'
 
 export interface ProvenanceOverlayState {
+  readonly open?: boolean
   readonly sessionId?: string
   readonly messageId?: string
   readonly handle?: ProvenanceHandle
@@ -30,12 +31,15 @@ export class ProvenanceOverlayController implements HostObservable<ProvenanceOve
   }
   open(sessionId: string, messageId: string, handle: ProvenanceHandle, restoreFocus?: FocusTarget): void {
     this.restoreFocus = restoreFocus
-    this.publish({ sessionId, messageId, handle })
+    // Reopening the same immutable turn preserves its loaded view and tab.
+    const sameTurn = this.state.sessionId === sessionId && this.state.messageId === messageId
+      && JSON.stringify(this.state.handle) === JSON.stringify(handle)
+    this.publish(sameTurn ? { ...this.state, open: true } : { open: true, sessionId, messageId, handle })
   }
   close(): void {
     const target = this.restoreFocus
     this.restoreFocus = undefined
-    this.publish({})
+    this.publish({ ...this.state, open: false })
     target?.focus()
   }
   private publish(state: ProvenanceOverlayState): void {
@@ -78,15 +82,15 @@ export function ProvenanceOverlay({ useProvenanceOverlay, load, close }: Provena
     return () => { active = false }
   }, [load, state.handle, state.messageId, state.sessionId])
   useEffect(() => {
-    if (state.handle === undefined) return
+    if (!state.open || state.handle === undefined) return
     dialog.current?.focus()
     const onKeyDown = (event: KeyboardEvent) => { if (event.key === 'Escape') close() }
     window.addEventListener('keydown', onKeyDown)
     return () => window.removeEventListener('keydown', onKeyDown)
-  }, [close, state.handle])
+  }, [close, state.handle, state.open])
   if (state.handle === undefined) return null
 
-  return <div role="presentation" onMouseDown={close} style={backdropStyle}>
+  return <div hidden={!state.open} role="presentation" onMouseDown={close} style={{ ...backdropStyle, display: state.open ? 'grid' : 'none' }}>
     <section ref={dialog} tabIndex={-1} role="dialog" aria-modal="true" aria-label={t('provenanceLabel')} onMouseDown={event => event.stopPropagation()} style={dialogStyle}>
       <header style={headerStyle}><div><div style={eyebrowStyle}>{t('provenanceEyebrow')}</div><h2 style={{ margin: '4px 0 0', fontSize: 28 }}>{t('businessProvenance')}</h2></div><button type="button" aria-label={t('close')} onClick={close} style={closeStyle}>×</button></header>
       <nav aria-label={t('provenanceViews')} style={tabBarStyle}><TabButton active={tab === 'execution'} onClick={() => setTab('execution')}>{t('executionProvenance')}</TabButton><TabButton active={tab === 'graph'} onClick={() => setTab('graph')}>{t('businessContextGraph')}</TabButton><TabButton active={tab === 'evidence'} onClick={() => setTab('evidence')}>{t('evidenceChain')}</TabButton></nav>
@@ -100,14 +104,14 @@ function Execution({ handle, view }: { handle: ProvenanceHandle; view: Provenanc
 
   const operationsDegradation = view.sources.degraded.find(entry => entry.pane === 'operations')
   return <div style={{ display: 'grid', gap: 20 }}>
-    <section style={summaryStyle}><Metric label="Interaction ID" value={handle.interactionId ?? t('notRecorded')} mono /><Metric label={t('executionStatus')} value={view.execution.status === '未记录' ? t('notRecorded') : view.execution.status ?? handle.status} /><Metric label={t('timelineNodes')} value={String(view.timeline.length)} /></section>
+    <section style={summaryStyle}><Metric label={t('interactionID')} value={handle.interactionId ?? t('notRecorded')} mono /><Metric label={t('executionStatus')} value={view.execution.status === '未记录' ? t('notRecorded') : view.execution.status ?? handle.status} /><Metric label={t('timelineNodes')} value={String(view.timeline.length)} /></section>
     <section style={{ display: 'grid', gap: 10 }}>
       <PaneHeading badge={<SourceBadge label={t('localSession')} mark={handle.partial ? 'partial' : undefined} />} title={t('executionTimeline')} note={t('reconstructedFromLocalSessionEventsIndependentlyOfPlatform')} />
       {view.timeline.length === 0 ? <Empty text={t('thereAreNotEnoughSessionEventsToReconstruct')} /> : <Timeline nodes={view.timeline} />}
     </section>
     <section style={{ display: 'grid', gap: 10 }}>
       <PaneHeading badge={<SourceBadge label={operationsDegradation === undefined ? t('platform') : operationsDegradation.reason === 'result-too-large' ? t('platformNotDisplayed') : t('platformUnavailable')} mark={operationsDegradation?.reason} />} title={t('platformExecutionFacts')} note={operationsDegradation === undefined ? t('operationStatusDurationAndRequestTraceReceiptReferences') : undefined} />
-      {operationsDegradation !== undefined ? <DegradedPane degradation={operationsDegradation} /> : view.execution.operations.length === 0 ? <Empty text={t('noDisplayableOperationFactsWereRecordedForThis')} /> : <div style={timelineStyle}>{view.execution.operations.map((operation, index) => <article key={operation.id} style={operationStyle}><div style={timelineIndexStyle}>{String(index + 1).padStart(2, '0')}</div><div style={{ display: 'grid', gap: 7 }}><div style={{ display: 'flex', justifyContent: 'space-between', gap: 12 }}><strong>{operation.label}</strong><Status value={operation.status} /></div><span style={mutedStyle}>{[operation.protocol, operation.startedAt, operation.finishedAt].filter(Boolean).join(' · ')}</span><div style={referenceRowStyle}>{operation.requestId === undefined ? null : <Reference label="Request" value={operation.requestId} />}{operation.traceId === undefined ? null : <Reference label="Trace" value={operation.traceId} />}{operation.receiptId === undefined ? null : <Reference label="Receipt" value={operation.receiptId} />}</div></div></article>)}</div>}
+      {operationsDegradation !== undefined ? <DegradedPane degradation={operationsDegradation} /> : view.execution.operations.length === 0 ? <Empty text={t('noDisplayableOperationFactsWereRecordedForThis')} /> : <div style={timelineStyle}>{view.execution.operations.map((operation, index) => <article key={operation.id} style={operationStyle}><div style={timelineIndexStyle}>{String(index + 1).padStart(2, '0')}</div><div style={{ display: 'grid', gap: 7 }}><div style={{ display: 'flex', justifyContent: 'space-between', gap: 12 }}><strong>{operation.label}</strong><Status value={operation.status} /></div><span style={mutedStyle}>{[operation.protocol, operation.startedAt, operation.finishedAt].filter(Boolean).join(' · ')}</span><div style={referenceRowStyle}>{operation.requestId === undefined ? null : <Reference label={t('requestReference')} value={operation.requestId} />}{operation.traceId === undefined ? null : <Reference label={t('traceReference')} value={operation.traceId} />}{operation.receiptId === undefined ? null : <Reference label={t('receiptReference')} value={operation.receiptId} />}</div></div></article>)}</div>}
     </section>
   </div>
 }
@@ -135,7 +139,7 @@ function TimelineRow({ group }: { group: TimelineFoldGroup }) {
       <div style={{ display: 'flex', gap: 10, alignItems: 'baseline', flexWrap: 'wrap' as const }}>
         <strong style={{ overflowWrap: 'anywhere' as const }}>{node.tool}{folded ? ` ×${group.nodes.length}` : ''}</strong>
         {node.outcome === 'error' ? <span style={{ color: '#b42318', fontSize: 13, fontWeight: 700 }}>error</span> : null}
-        {node.platform === undefined ? null : <span style={referenceRowStyle}>{node.platform.operationId === undefined ? null : <Reference label="Op" value={node.platform.operationId} />}{node.platform.receiptId === undefined ? null : <Reference label="Receipt" value={node.platform.receiptId} />}{node.platform.status === undefined ? null : <Reference label="Status" value={node.platform.status} />}</span>}
+        {node.platform === undefined ? null : <span style={referenceRowStyle}>{node.platform.operationId === undefined ? null : <Reference label={t('operationReference')} value={node.platform.operationId} />}{node.platform.receiptId === undefined ? null : <Reference label={t('receiptReference')} value={node.platform.receiptId} />}{node.platform.status === undefined ? null : <Reference label={t('statusReference')} value={node.platform.status} />}</span>}
       </div>
       {summary === undefined ? null : <span style={mutedStyle}>{summary}</span>}
     </div>
@@ -202,7 +206,7 @@ function EvidenceChain({ view }: { view: ProvenanceView }) {
       <div style={timelineIndexStyle}>{String(index + 1).padStart(2, '0')}</div>
       <div style={{ display: 'grid', gap: 7 }}>
         <div style={{ display: 'flex', justifyContent: 'space-between', gap: 12 }}><strong style={{ overflowWrap: 'anywhere' as const }}>{receipt.receiptId}</strong><Status value={receipt.status} /></div>
-        <span style={mutedStyle}>{[receipt.toolLabel, receipt.operationId === undefined ? undefined : `operation ${receipt.operationId}`, receipt.source === 'platform' ? t('sourcePlatform') : t('sourceMCPResult')].filter(Boolean).join(' · ')}</span>
+        <span style={mutedStyle}>{[receipt.toolLabel, receipt.operationId === undefined ? undefined : t('operationID', { id: receipt.operationId }), receipt.source === 'platform' ? t('sourcePlatform') : t('sourceMCPResult')].filter(Boolean).join(' · ')}</span>
         {receipt.verifyHint === undefined ? null : <code style={asideCodeStyle}>{receipt.verifyHint}</code>}
       </div>
     </article>)}</div>

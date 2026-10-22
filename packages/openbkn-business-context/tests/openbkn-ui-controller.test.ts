@@ -408,7 +408,7 @@ test('closing during authentication drops the response and prevents the next req
   assert.equal(listed, 0)
 })
 
-test('close and reopen discard the old login result without replacing the new state', async () => {
+test('Desktop close and reopen retain one pending login and synchronize its result', async () => {
   const login = deferred<readonly []>()
   let checked = 0
   const controller = new OpenBknUiController({ ...safePort,
@@ -421,8 +421,9 @@ test('close and reopen discard the old login result without replacing the new st
   controller.open()
   login.resolve([])
   await pending
-  assert.deepEqual(controller.snapshot(), { open: true, phase: 'idle', networks: [] })
-  assert.equal(checked, 0)
+  assert.equal(controller.snapshot().open, true)
+  assert.equal(controller.snapshot().phase, 'ready')
+  assert.equal(checked, 1)
 })
 
 test('a newer refresh wins when the older catalogue resolves last', async () => {
@@ -556,4 +557,47 @@ test('unknown or inactive entries preserve the business failure and diagnostic g
     assert.match(renderUiMessage(controller.snapshot().message!), /诊断/)
     assert.equal(controller.snapshot().configuration?.unavailableReason, unavailableReason)
   }
+})
+
+
+test('a login that finishes behind a closed overlay never opens it automatically', async () => {
+  const login = deferred<readonly []>()
+  let starts = 0
+  const controller = new OpenBknUiController({ ...safePort,
+    beginLogin: async () => { starts++; return login.promise },
+  }, async () => 'session')
+  controller.open()
+  const pending = controller.beginLogin()
+  controller.close()
+  controller.open()
+  const duplicate = controller.beginLogin()
+  controller.close()
+  login.resolve([])
+  await duplicate
+  await pending
+  assert.equal(starts, 1)
+  assert.equal(controller.snapshot().open, false)
+  assert.equal(controller.snapshot().phase, 'ready')
+  controller.open()
+  assert.equal(controller.snapshot().phase, 'ready')
+})
+
+test('replacing the business connection invalidates a hidden pending login', async () => {
+  const login = deferred<readonly []>()
+  let checked = 0
+  let signal: AbortSignal | undefined
+  const controller = new OpenBknUiController({ ...safePort,
+    beginLogin: async value => { signal = value; return login.promise },
+    status: async () => { checked++; return authenticated },
+  }, async () => 'session')
+  controller.open()
+  const pending = controller.beginLogin()
+  controller.close()
+  controller.businessChanged()
+  login.resolve([])
+  await pending
+  assert.equal(signal?.aborted, true)
+  assert.equal(checked, 0)
+  assert.equal(controller.snapshot().open, false)
+  assert.equal(controller.snapshot().phase, 'idle')
 })

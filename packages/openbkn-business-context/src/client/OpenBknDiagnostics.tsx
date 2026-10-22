@@ -31,10 +31,10 @@ export function OpenBknDiagnostics({ useDiagnostics, close, refresh }: OpenBknDi
     if (state.open && state.phase === 'idle') void refresh()
   }, [refresh, state.open, state.phase])
 
-  if (!state.open) return null
+  if (!state.open && state.phase === 'idle') return null
 
   return (
-    <div style={backdropStyle} role="presentation" onMouseDown={close}>
+    <div hidden={!state.open} style={{ ...backdropStyle, display: state.open ? 'grid' : 'none' }} role="presentation" onMouseDown={close}>
       <section
         role="dialog"
         aria-modal="true"

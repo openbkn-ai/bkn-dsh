@@ -32,10 +32,10 @@ export function OpenBknOverlay({ useUi, close, refresh, beginLogin, showSettings
     if (state.open && state.phase === 'idle') void refresh()
   }, [refresh, state.open, state.phase])
 
-  if (!state.open) return null
+  if (!state.open && state.phase === 'idle') return null
 
   return (
-    <div style={backdropStyle} role="presentation" onMouseDown={close}>
+    <div hidden={!state.open} style={{ ...backdropStyle, display: state.open ? 'grid' : 'none' }} role="presentation" onMouseDown={close}>
       <section
         role="dialog"
         aria-modal="true"
@@ -49,13 +49,14 @@ export function OpenBknOverlay({ useUi, close, refresh, beginLogin, showSettings
             <h2 style={{ margin: '4px 0 0', fontSize: 20 }}>{t('businessKnowledgeNetworks')}</h2>
           </div>
           <div style={{ display: 'flex', alignItems: 'center', gap: 12 }}>
+            {state.phase === 'ready' ? <button type="button" onClick={() => void refresh()} style={{ ...secondaryStyle, fontSize: 13 }}>{t('refreshStatus')}</button> : null}
             <button type="button" onClick={() => void showSettings()} disabled={state.savingConfiguration} style={{ ...secondaryStyle, fontSize: 13 }}>{t('settings')}</button>
             <button type="button" onClick={openDiagnostics} style={{ ...secondaryStyle, fontSize: 13 }}>{t('diagnostics')}</button>
             <button type="button" onClick={close} aria-label={t('close')} style={closeStyle}>×</button>
           </div>
         </header>
         <div style={{ padding: 20 }}>
-          <OverlayBody state={state} beginLogin={beginLogin} saveConfiguration={saveConfiguration} cliSetup={cliSetup} refresh={refresh} openNetwork={openNetwork} />
+          <OverlayBody key={state.contextRevision ?? 0} state={state} beginLogin={beginLogin} saveConfiguration={saveConfiguration} cliSetup={cliSetup} refresh={refresh} openNetwork={openNetwork} />
         </div>
       </section>
     </div>
@@ -75,11 +76,6 @@ function OverlayBody({ state, beginLogin, saveConfiguration, cliSetup, refresh, 
   const [query, setQuery] = useState('')
   const [limit, setLimit] = useState(INITIAL_NETWORK_DIRECTORY_LIMIT)
   const [selectedNetworkId, setSelectedNetworkId] = useState<string | undefined>()
-  useEffect(() => {
-    setQuery('')
-    setLimit(INITIAL_NETWORK_DIRECTORY_LIMIT)
-    setSelectedNetworkId(undefined)
-  }, [state.networks])
   const directory = useMemo(
     () => selectNetworkDirectory(state.networks, query, limit),
     [state.networks, query, limit],
