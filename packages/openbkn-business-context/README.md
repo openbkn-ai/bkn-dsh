@@ -6,11 +6,11 @@ OpenBKN business knowledge, network-scoped access, diagnostics, and provenance f
 
 Bring governed enterprise business knowledge into DeepSeek Harness conversations.
 
-## -10 compatibility preparation (unreleased)
+## -11 English interface
 
-The 0.2.0 adaptation is source-tested against fixed preparation commits, not accepted on a released 0.2.0 platform/SDK. Existing 0.1.5 support remains. Advanced settings selects only the fixed CLI installation target 0.1.5 or 0.2.0; detection shows the actual existing version and never upgrades it automatically. Obtain and verify the formal 0.2.0 SDK before choosing that target.
+Based on published -10, this release adds English UI localization. The plugin follows DSH **Settings → General → Language**. Open network, settings, diagnostics and the original three provenance tabs update immediately when switching between Chinese and English, while preserving unsaved fields, the selected view and pending requests. Network names, platform text, business data and model answers remain verbatim.
 
-Large-network navigation summaries retain groups and disclosed counts; omitted indices do not mean zero concepts. Explicit Trace-disabled/unavailable lifecycle results permit the same scoped business work without invented IDs; provenance shows the unrecorded state and local timeline. Authentication, network and unknown-tool refusals remain unchanged. The nullable MCP output-schema mismatch is tracked separately in [Foundry #2106](https://github.com/openbkn-ai/bkn-foundry/issues/2106); the plugin does not rewrite platform MCP results. Native model answers are preserved.
+Install the English release explicitly as `@openbkn/dsh-business-context@0.2.0-rc.2-openbkn.0.2.0-11`. The DSH pairing remains `0.2.0-rc.2`. Development-branch login progress, native provenance, CSV export and dual-host compatibility are outside this release. The limitations of -10 still apply. npm publication starts on `rc`; Windows acceptance of this candidate remains open and `latest` promotion follows the release gates.
 
 ## Why bkn-dsh
 

@@ -1,3 +1,4 @@
+import { renderUiMessage } from '../src/client/messages.ts'
 import assert from 'node:assert/strict'
 import test from 'node:test'
 import { OpenBknBusinessContextService } from '../src/business-context-service.ts'
@@ -82,7 +83,7 @@ test('a locally present CLI token rejected by MCP exposes login and recovers thr
   const { controller, commands } = recoveryCase(rejected(401))
   await controller.refresh()
   assert.equal(controller.snapshot().phase, 'authentication-required')
-  assert.match(controller.snapshot().message ?? '', /Context Loader MCP.*401/)
+  assert.match(renderUiMessage(controller.snapshot().message ?? ''), /Context Loader MCP.*401/)
   assert.doesNotMatch(JSON.stringify(controller.snapshot()), /rejected-test-credential|已连接/)
   assert.equal(commands.some(args => args[1] === 'login'), false, 'login remains an explicit user action')
   await controller.beginLogin()
@@ -110,7 +111,7 @@ test('a completed CLI login whose credential is still rejected keeps the login r
   rejectAfterLogin()
   await controller.beginLogin()
   assert.equal(controller.snapshot().phase, 'authentication-required')
-  assert.match(controller.snapshot().message ?? '', /401/)
+  assert.match(renderUiMessage(controller.snapshot().message ?? ''), /401/)
   assert.deepEqual(controller.snapshot().networks, [])
 })
 
@@ -120,7 +121,7 @@ test('MCP permission denial and transport failures do not offer re-login as thei
     await controller.refresh()
     assert.equal(controller.snapshot().phase, 'error')
     assert.equal(commands.some(args => args[1] === 'login'), false)
-    if (failure.cause !== undefined) assert.match(controller.snapshot().message ?? '', /403.*管理员/)
+    if (failure.cause !== undefined) assert.match(renderUiMessage(controller.snapshot().message ?? ''), /403.*管理员/)
     assert.doesNotMatch(JSON.stringify(controller.snapshot()), /private upstream detail|rejected-test-credential/)
   }
 })
@@ -131,7 +132,7 @@ test('catalogue 401 and 403 retain credential recovery with distinct refusal mes
     allowHandshake()
     await controller.refresh()
     assert.equal(controller.snapshot().phase, 'authentication-required', 'the CLI login recovery must remain available')
-    assert.match(controller.snapshot().message ?? '', new RegExp(`平台.*${status}`))
-    if (status === 403) assert.match(controller.snapshot().message ?? '', /管理员.*权限.*不保证恢复/)
+    assert.match(renderUiMessage(controller.snapshot().message ?? ''), new RegExp(`平台.*${status}`))
+    if (status === 403) assert.match(renderUiMessage(controller.snapshot().message ?? ''), /管理员.*权限.*不保证恢复/)
   }
 })
