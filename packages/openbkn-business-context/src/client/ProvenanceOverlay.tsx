@@ -1,3 +1,5 @@
+import { useOpenBknTranslation } from './locale.tsx'
+import { translateChinese, type OpenBknTranslate } from './messages.ts'
 import { useEffect, useRef, useState, type ReactNode } from 'react'
 import type { HostObservable, InjectFace, PropsRuntime } from '@deepseek-ai/dsh-client-ui-slots'
 import { buildBusinessGraphModel, businessGraphGeometry } from '../business-graph-model.ts'
@@ -52,6 +54,8 @@ export type ProvenanceOverlayProps = PropsRuntime<'shell.overlay'> & InjectFace<
 
 /** Provenance detail lives in an additive shell overlay, never inline in DSH chat. */
 export function ProvenanceOverlay({ useProvenanceOverlay, load, close }: ProvenanceOverlayProps) {
+  const t = useOpenBknTranslation()
+
   const state = useProvenanceOverlay((value: ProvenanceOverlayState) => value)
   const [tab, setTab] = useState<Tab>('execution')
   const [view, setView] = useState<ProvenanceView | undefined>()
@@ -83,25 +87,27 @@ export function ProvenanceOverlay({ useProvenanceOverlay, load, close }: Provena
   if (state.handle === undefined) return null
 
   return <div role="presentation" onMouseDown={close} style={backdropStyle}>
-    <section ref={dialog} tabIndex={-1} role="dialog" aria-modal="true" aria-label="OpenBKN business provenance" onMouseDown={event => event.stopPropagation()} style={dialogStyle}>
-      <header style={headerStyle}><div><div style={eyebrowStyle}>TRACE-BACKED PROVENANCE</div><h2 style={{ margin: '4px 0 0', fontSize: 28 }}>业务溯源</h2></div><button type="button" aria-label="Close" onClick={close} style={closeStyle}>×</button></header>
-      <nav aria-label="Provenance views" style={tabBarStyle}><TabButton active={tab === 'execution'} onClick={() => setTab('execution')}>执行溯源</TabButton><TabButton active={tab === 'graph'} onClick={() => setTab('graph')}>业务上下文图</TabButton><TabButton active={tab === 'evidence'} onClick={() => setTab('evidence')}>证据链</TabButton></nav>
+    <section ref={dialog} tabIndex={-1} role="dialog" aria-modal="true" aria-label={t('provenanceLabel')} onMouseDown={event => event.stopPropagation()} style={dialogStyle}>
+      <header style={headerStyle}><div><div style={eyebrowStyle}>{t('provenanceEyebrow')}</div><h2 style={{ margin: '4px 0 0', fontSize: 28 }}>{t('businessProvenance')}</h2></div><button type="button" aria-label={t('close')} onClick={close} style={closeStyle}>×</button></header>
+      <nav aria-label={t('provenanceViews')} style={tabBarStyle}><TabButton active={tab === 'execution'} onClick={() => setTab('execution')}>{t('executionProvenance')}</TabButton><TabButton active={tab === 'graph'} onClick={() => setTab('graph')}>{t('businessContextGraph')}</TabButton><TabButton active={tab === 'evidence'} onClick={() => setTab('evidence')}>{t('evidenceChain')}</TabButton></nav>
       <main style={{ padding: 28 }}>{loading ? <Loading /> : failed || view === undefined ? <LoadFailed /> : tab === 'execution' ? <Execution handle={state.handle} view={view} /> : tab === 'graph' ? <BusinessGraph view={view} /> : <EvidenceChain view={view} />}</main>
     </section>
   </div>
 }
 
 function Execution({ handle, view }: { handle: ProvenanceHandle; view: ProvenanceView }) {
+  const t = useOpenBknTranslation()
+
   const operationsDegradation = view.sources.degraded.find(entry => entry.pane === 'operations')
   return <div style={{ display: 'grid', gap: 20 }}>
-    <section style={summaryStyle}><Metric label="Interaction ID" value={handle.interactionId ?? '未记录'} mono /><Metric label="执行状态" value={view.execution.status ?? handle.status} /><Metric label="时间链节点" value={String(view.timeline.length)} /></section>
+    <section style={summaryStyle}><Metric label="Interaction ID" value={handle.interactionId ?? t('notRecorded')} mono /><Metric label={t('executionStatus')} value={view.execution.status === '未记录' ? t('notRecorded') : view.execution.status ?? handle.status} /><Metric label={t('timelineNodes')} value={String(view.timeline.length)} /></section>
     <section style={{ display: 'grid', gap: 10 }}>
-      <PaneHeading badge={<SourceBadge label="本地会话" mark={handle.partial ? 'partial' : undefined} />} title="执行时间链" note="由本机会话事件重建，不依赖平台授权；耗时为本机口径。" />
-      {view.timeline.length === 0 ? <Empty text="本轮会话事件不足以重建时间链（旧版本记录的会话可能缺少事件时间戳）。" /> : <Timeline nodes={view.timeline} />}
+      <PaneHeading badge={<SourceBadge label={t('localSession')} mark={handle.partial ? 'partial' : undefined} />} title={t('executionTimeline')} note={t('reconstructedFromLocalSessionEventsIndependentlyOfPlatform')} />
+      {view.timeline.length === 0 ? <Empty text={t('thereAreNotEnoughSessionEventsToReconstruct')} /> : <Timeline nodes={view.timeline} />}
     </section>
     <section style={{ display: 'grid', gap: 10 }}>
-      <PaneHeading badge={<SourceBadge label={operationsDegradation === undefined ? '平台' : operationsDegradation.reason === 'result-too-large' ? '平台 · 未显示' : '平台 · 不可用'} mark={operationsDegradation?.reason} />} title="平台执行事实" note={operationsDegradation === undefined ? '平台口径的操作状态、耗时与 Request / Trace / Receipt 引用。' : undefined} />
-      {operationsDegradation !== undefined ? <DegradedPane degradation={operationsDegradation} /> : view.execution.operations.length === 0 ? <Empty text="当前交互未记录可展示的操作事实。" /> : <div style={timelineStyle}>{view.execution.operations.map((operation, index) => <article key={operation.id} style={operationStyle}><div style={timelineIndexStyle}>{String(index + 1).padStart(2, '0')}</div><div style={{ display: 'grid', gap: 7 }}><div style={{ display: 'flex', justifyContent: 'space-between', gap: 12 }}><strong>{operation.label}</strong><Status value={operation.status} /></div><span style={mutedStyle}>{[operation.protocol, operation.startedAt, operation.finishedAt].filter(Boolean).join(' · ')}</span><div style={referenceRowStyle}>{operation.requestId === undefined ? null : <Reference label="Request" value={operation.requestId} />}{operation.traceId === undefined ? null : <Reference label="Trace" value={operation.traceId} />}{operation.receiptId === undefined ? null : <Reference label="Receipt" value={operation.receiptId} />}</div></div></article>)}</div>}
+      <PaneHeading badge={<SourceBadge label={operationsDegradation === undefined ? t('platform') : operationsDegradation.reason === 'result-too-large' ? t('platformNotDisplayed') : t('platformUnavailable')} mark={operationsDegradation?.reason} />} title={t('platformExecutionFacts')} note={operationsDegradation === undefined ? t('operationStatusDurationAndRequestTraceReceiptReferences') : undefined} />
+      {operationsDegradation !== undefined ? <DegradedPane degradation={operationsDegradation} /> : view.execution.operations.length === 0 ? <Empty text={t('noDisplayableOperationFactsWereRecordedForThis')} /> : <div style={timelineStyle}>{view.execution.operations.map((operation, index) => <article key={operation.id} style={operationStyle}><div style={timelineIndexStyle}>{String(index + 1).padStart(2, '0')}</div><div style={{ display: 'grid', gap: 7 }}><div style={{ display: 'flex', justifyContent: 'space-between', gap: 12 }}><strong>{operation.label}</strong><Status value={operation.status} /></div><span style={mutedStyle}>{[operation.protocol, operation.startedAt, operation.finishedAt].filter(Boolean).join(' · ')}</span><div style={referenceRowStyle}>{operation.requestId === undefined ? null : <Reference label="Request" value={operation.requestId} />}{operation.traceId === undefined ? null : <Reference label="Trace" value={operation.traceId} />}{operation.receiptId === undefined ? null : <Reference label="Receipt" value={operation.receiptId} />}</div></div></article>)}</div>}
     </section>
   </div>
 }
@@ -111,17 +117,19 @@ function Timeline({ nodes }: { nodes: readonly ProvenanceTimelineNode[] }) {
 }
 
 function TimelineRow({ group }: { group: TimelineFoldGroup }) {
+  const t = useOpenBknTranslation()
+
   const node = group.nodes[0]!
   const folded = group.nodes.length > 1
   if (node.kind === 'question' || node.kind === 'answer') {
     return <article style={{ ...timelineNodeStyle, borderStyle: 'dashed' }}>
-      <span style={kindChipStyle(node.kind)}>{node.kind === 'question' ? '提问' : '回答'}</span>
-      <span style={mutedStyle}>{node.summary ?? (node.kind === 'question' ? '本轮提问' : '本轮回答')}</span>
+      <span style={kindChipStyle(node.kind)}>{node.kind === 'question' ? t('question') : t('answer')}</span>
+      <span style={mutedStyle}>{node.summary ?? (node.kind === 'question' ? t('questionInThisTurn') : t('answerInThisTurn'))}</span>
       <span style={durationStyle}>{formatClock(node.at)}</span>
     </article>
   }
   return <article style={timelineNodeStyle}>
-    <span style={kindChipStyle(node.kind)}>{kindLabel(node.kind)}</span>
+    <span style={kindChipStyle(node.kind)}>{kindLabel(node.kind, t)}</span>
     <div style={{ display: 'grid', gap: 4, minWidth: 0 }}>
       <div style={{ display: 'flex', gap: 10, alignItems: 'baseline', flexWrap: 'wrap' as const }}>
         <strong style={{ overflowWrap: 'anywhere' as const }}>{node.tool}{folded ? ` ×${group.nodes.length}` : ''}</strong>
@@ -130,27 +138,31 @@ function TimelineRow({ group }: { group: TimelineFoldGroup }) {
       </div>
       {node.summary === undefined ? null : <span style={mutedStyle}>{node.summary}</span>}
     </div>
-    <span style={durationStyle}>{node.durationMs === undefined ? '未返回' : formatDuration(node.durationMs)}</span>
+    <span style={durationStyle}>{node.durationMs === undefined ? t('notReturned') : formatDuration(node.durationMs)}</span>
   </article>
 }
 
 function BusinessGraph({ view }: { view: ProvenanceView }) {
+  const t = useOpenBknTranslation()
+
   const degradation = view.sources.degraded.find(entry => entry.pane === 'business')
   if (degradation !== undefined) return <DegradedPane degradation={degradation} />
-  if (view.business.kind === 'unavailable') return <Empty text="当前部署未提供已授权的 Enterprise 业务投影。插件不会从 Community 调用事实、模型文本或 MCP 原始输出推断图谱。" />
+  if (view.business.kind === 'unavailable') return <Empty text={t('thisDeploymentHasNotProvidedAnAuthorizedEnterprise')} />
   return <ReadyBusinessGraph business={view.business} />
 }
 
 function ReadyBusinessGraph({ business }: { business: Extract<ProvenanceBusinessView, { kind: 'ready' }> }) {
+  const t = useOpenBknTranslation()
+
   const model = buildBusinessGraphModel(business.operations, business.contextRelations)
   const [selectedKey, setSelectedKey] = useState(model.nodes[0]?.key)
   const selected = model.nodes.find(node => node.key === selectedKey) ?? model.nodes[0]
   const { nodeWidth, nodeHeight } = businessGraphGeometry
   return <div style={graphShellStyle}>
     <section style={graphCanvasStyle}>
-      <div style={legendStyle}><span><i style={{ ...legendDotStyle, background: '#2563eb' }} />业务对象</span><span><i style={{ ...legendDotStyle, background: '#f59e0b' }} />逻辑 / 指标</span><span><i style={{ ...legendDotStyle, background: '#087d72' }} />本轮正式引用</span></div>
-      {model.nodes.length === 0 ? <div style={graphEmptyStyle}>本轮没有可展示的正式 BKN 元素。</div> : <div style={graphViewportStyle}><div style={{ position: 'relative', width: model.width, height: model.height }}>
-        <svg aria-label="OpenBKN formal business relations" width={model.width} height={model.height} style={edgeLayerStyle}>
+      <div style={legendStyle}><span><i style={{ ...legendDotStyle, background: '#2563eb' }} />{t('businessObjects')}</span><span><i style={{ ...legendDotStyle, background: '#f59e0b' }} />{t('logicMetrics')}</span><span><i style={{ ...legendDotStyle, background: '#087d72' }} />{t('formalReferencesInThisTurn')}</span></div>
+      {model.nodes.length === 0 ? <div style={graphEmptyStyle}>{t('noDisplayableFormalBKNElementsInThisTurn')}</div> : <div style={graphViewportStyle}><div style={{ position: 'relative', width: model.width, height: model.height }}>
+        <svg aria-label={t('formalRelationsLabel')} width={model.width} height={model.height} style={edgeLayerStyle}>
           <defs><marker id="openbkn-business-arrow" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse"><path d="M 0 0 L 10 5 L 0 10 z" fill="#94a3b8" /></marker></defs>
           {model.edges.map(edge => {
             const x1 = edge.source.x + nodeWidth
@@ -163,23 +175,25 @@ function ReadyBusinessGraph({ business }: { business: Extract<ProvenanceBusiness
         {model.nodes.map(node => <button key={node.key} type="button" onClick={() => setSelectedKey(node.key)} aria-pressed={selected?.key === node.key} style={{ ...graphNodeStyle, left: node.x, top: node.y, width: nodeWidth, minHeight: nodeHeight, borderColor: selected?.key === node.key ? '#087d72' : nodeBorderColor(node.element.kind), boxShadow: selected?.key === node.key ? '0 0 0 3px rgb(8 125 114 / 12%)' : '0 5px 14px rgb(15 23 42 / 7%)' }}><span style={{ ...nodeTypeStyle, ...nodeTypeColor(node.element.kind) }}>{node.element.kind}</span><strong>{node.element.name}</strong><small style={nodeSourceStyle}>{node.operation.toolName}</small></button>)}
       </div></div>}
     </section>
-    <aside style={graphAsideStyle}><div style={eyebrowStyle}>BUSINESS REF</div><strong style={{ fontSize: 20 }}>{selected?.element.name ?? '尚未解析业务元素'}</strong><p style={mutedStyle}>{selected === undefined ? '本轮没有可展示的正式 BKN 映射。' : `${selected.element.kind} · ${selected.operation.status}`}</p><hr style={asideDividerStyle} />{selected === undefined ? null : <><span style={asideLabelStyle}>来源知识网络</span><strong>{selected.element.knowledgeNetworkId ?? '未定位'}</strong><span style={asideLabelStyle}>来源 Operation</span><code style={asideCodeStyle}>{selected.operation.id}</code><span style={asideLabelStyle}>解析工具</span><span>{selected.operation.toolName}</span></>}<hr style={asideDividerStyle} /><span style={asideLabelStyle}>本轮正式投影</span><strong>{model.nodes.length} 个元素 · {model.edges.length} 条可视关系</strong>{model.unresolvedRelations.length > 0 ? <><span style={mutedStyle}>另有 {model.unresolvedRelations.length} 条正式关系因端点未在本轮投影中披露，仅保留记录，不补画。</span><details style={detailStyle}><summary>平台关系记录（{model.unresolvedRelations.length}）</summary>{model.unresolvedRelations.map(relation => <span key={relation.id} style={relationRecordStyle}><strong>{relation.name}</strong><code style={asideCodeStyle}>{relation.sourceObjectId} → {relation.targetObjectId}</code></span>)}</details></> : null}{business.derivedFacts.length > 0 ? <details style={detailStyle}><summary>跨 Operation 依据（{business.derivedFacts.length}）</summary>{business.derivedFacts.map(fact => <code key={`${fact.operationId}:${fact.elementId}:${fact.rule}`} style={asideCodeStyle}>{fact.rule} · {fact.sourceOperationId} → {fact.operationId}</code>)}</details> : null}{business.conversationContext.length > 0 ? <span style={mutedStyle}>复用 {business.conversationContext.length} 条前序会话上下文</span> : null}</aside>
+    <aside style={graphAsideStyle}><div style={eyebrowStyle}>{t('businessReference')}</div><strong style={{ fontSize: 20 }}>{selected?.element.name ?? t('businessElementsNotYetResolved')}</strong><p style={mutedStyle}>{selected === undefined ? t('noDisplayableFormalBKNMappingsInThisTurn') : `${selected.element.kind} · ${selected.operation.status}`}</p><hr style={asideDividerStyle} />{selected === undefined ? null : <><span style={asideLabelStyle}>{t('sourceKnowledgeNetwork')}</span><strong>{selected.element.knowledgeNetworkId ?? t('notLocated')}</strong><span style={asideLabelStyle}>{t('sourceOperation')}</span><code style={asideCodeStyle}>{selected.operation.id}</code><span style={asideLabelStyle}>{t('resolutionTool')}</span><span>{selected.operation.toolName}</span></>}<hr style={asideDividerStyle} /><span style={asideLabelStyle}>{t('formalProjectionInThisTurn')}</span><strong>{t('graphCounts', { nodes: model.nodes.length, edges: model.edges.length })}</strong>{model.unresolvedRelations.length > 0 ? <><span style={mutedStyle}>{t('graphUndisclosed', { count: model.unresolvedRelations.length })}</span><details style={detailStyle}><summary>{t('graphRelationCount', { count: model.unresolvedRelations.length })}</summary>{model.unresolvedRelations.map(relation => <span key={relation.id} style={relationRecordStyle}><strong>{relation.name}</strong><code style={asideCodeStyle}>{relation.sourceObjectId} → {relation.targetObjectId}</code></span>)}</details></> : null}{business.derivedFacts.length > 0 ? <details style={detailStyle}><summary>{t('graphFactCount', { count: business.derivedFacts.length })}</summary>{business.derivedFacts.map(fact => <code key={`${fact.operationId}:${fact.elementId}:${fact.rule}`} style={asideCodeStyle}>{fact.rule} · {fact.sourceOperationId} → {fact.operationId}</code>)}</details> : null}{business.conversationContext.length > 0 ? <span style={mutedStyle}>{t('graphContextCount', { count: business.conversationContext.length })}</span> : null}</aside>
   </div>
 }
 
 function EvidenceChain({ view }: { view: ProvenanceView }) {
+  const t = useOpenBknTranslation()
+
   const degradation = view.sources.degraded.find(entry => entry.pane === 'evidence')
   if (degradation !== undefined) return <DegradedPane degradation={degradation} />
   if (view.evidence.kind === 'unavailable') {
-    return <Empty text="本轮没有产生需要回执的业务操作（例如仅做了 schema 或元数据查询），因此没有证据链记录；这与「无权查看」不同。" />
+    return <Empty text={t('noBusinessOperationInThisTurnRequiredA')} />
   }
   return <div style={{ display: 'grid', gap: 14 }}>
-    <PaneHeading badge={<SourceBadge label={view.sources.evidence === 'mcp-result' ? 'MCP 结果' : '平台'} />} title="业务回执清单" note="回执是业务操作落库的耐久凭据；下方指引可在本机 CLI 中核验，面板自身不执行任何命令。" />
+    <PaneHeading badge={<SourceBadge label={view.sources.evidence === 'mcp-result' ? t('mCPResult') : t('platform')} />} title={t('businessReceipts')} note={t('receiptsAreDurableRecordsOfPersistedBusinessOperations')} />
     <div style={timelineStyle}>{view.evidence.receipts.map((receipt, index) => <article key={`${receipt.receiptId}:${index}`} style={operationStyle}>
       <div style={timelineIndexStyle}>{String(index + 1).padStart(2, '0')}</div>
       <div style={{ display: 'grid', gap: 7 }}>
         <div style={{ display: 'flex', justifyContent: 'space-between', gap: 12 }}><strong style={{ overflowWrap: 'anywhere' as const }}>{receipt.receiptId}</strong><Status value={receipt.status} /></div>
-        <span style={mutedStyle}>{[receipt.toolLabel, receipt.operationId === undefined ? undefined : `operation ${receipt.operationId}`, receipt.source === 'platform' ? '来源：平台' : '来源：MCP 结果'].filter(Boolean).join(' · ')}</span>
+        <span style={mutedStyle}>{[receipt.toolLabel, receipt.operationId === undefined ? undefined : `operation ${receipt.operationId}`, receipt.source === 'platform' ? t('sourcePlatform') : t('sourceMCPResult')].filter(Boolean).join(' · ')}</span>
         {receipt.verifyHint === undefined ? null : <code style={asideCodeStyle}>{receipt.verifyHint}</code>}
       </div>
     </article>)}</div>
@@ -190,54 +204,55 @@ function nodeBorderColor(kind: string): string { return kind === 'logic' || kind
 function nodeTypeColor(kind: string) { return kind === 'logic' || kind === 'metric' ? { background: '#fff4e5', color: '#b45309' } : kind === 'object' ? { background: '#eaf1ff', color: '#2563eb' } : { background: '#e7f7f4', color: '#087d72' } }
 
 function DegradedPane({ degradation }: { degradation: ProvenanceDegradation }) {
-  const copy = degradationCopy(degradation)
+  const t = useOpenBknTranslation()
+  const copy = degradationCopy(degradation, t)
   return <div style={emptyStyle}><strong>{copy.title}</strong><span>{copy.detail}</span>{copy.action === undefined ? null : <span style={{ color: '#087d72', fontWeight: 650 }}>{copy.action}</span>}</div>
 }
 
-function degradationCopy(degradation: ProvenanceDegradation): { title: string; detail: string; action?: string } {
+function degradationCopy(degradation: ProvenanceDegradation, t: OpenBknTranslate = translateChinese): { title: string; detail: string; action?: string } {
   switch (degradation.reason) {
     case 'trace-disabled': return {
-      title: '本轮溯源未记录：Trace 未启用',
-      detail: '平台明确关闭了 Trace 采集。本轮没有 Interaction ID 或平台证据记录；本地时间链仍可查看。业务结果不因此被重试。',
+      title: t('noProvenanceRecordedTraceDisabled'),
+      detail: t('thePlatformExplicitlyDisabledTraceCollectionThisTurn'),
     }
     case 'trace-unavailable': return {
-      title: '本轮溯源未记录：Trace 暂不可用',
-      detail: '平台明确返回 Trace 不可用。本轮没有 Interaction ID 或平台证据记录；本地时间链仍可查看。不会重复业务查询补造溯源。',
+      title: t('noProvenanceRecordedTraceUnavailable'),
+      detail: t('thePlatformExplicitlyReportedTraceUnavailableThisTurn'),
     }
     case 'license-required':
       return {
-        title: '此面板需要企业版 License',
-        detail: `当前部署许可（${degradation.edition ?? '社区版'}）未包含该平台能力。时间链不受影响，已有记录不会丢失。`,
-        action: '下一步：升级并激活 OpenBKN 企业版 License。',
+        title: t('thisPaneRequiresAnEnterpriseLicense'),
+        detail: t('licenseDetail', { p0: degradation.edition ?? t('communityEdition') }),
+        action: t('nextUpgradeAndActivateAnOpenBKNEnterpriseLicense'),
       }
     case 'domain-not-authorized':
       return {
-        title: '业务域未获授权',
-        detail: `平台拒绝了本次读取：请求的业务域未列入部署允许清单，或当前账号未被授权（与 License 无关，升级版本不会解决）。${degradation.requiredAction === undefined ? '' : `平台提示：${degradation.requiredAction}。`}`,
-        action: '下一步：核对插件的 businessDomain 配置（默认 bd_public），或联系平台管理员将该业务域加入部署允许清单。',
+        title: t('businessDomainNotAuthorized'),
+        detail: t('domainDetail', { p0: degradation.requiredAction === undefined ? '' : t('platformHint', { p0: degradation.requiredAction }) }),
+        action: t('nextCheckThePluginBusinessDomainSettingBdPublic'),
       }
     case 'authentication-required':
       return {
-        title: '需要重新认证',
-        detail: '平台令牌已失效或未配置，本面板暂时无法读取平台数据。',
-        action: '下一步：重新登录 OpenBKN 后重试。',
+        title: t('signInRequired'),
+        detail: t('thePlatformTokenIsMissingOrExpiredThis'),
+        action: t('nextSignInToOpenBKNAgainAndRetry'),
       }
     case 'record-not-disclosed':
       return {
-        title: '平台未找到此记录',
-        detail: '该 Interaction 在当前平台上不存在或未向当前账号披露（例如平台重建后历史记录已丢失）。重试不会改变结果。时间链不受影响。',
+        title: t('platformRecordNotFound'),
+        detail: t('thisInteractionDoesNotExistOnTheCurrent'),
       }
     case 'result-too-large':
       return {
-        title: '平台记录过大，无法在此显示',
-        detail: '平台已返回这一轮的记录，但超过了插件可安全读取的大小上限，通常是因为这一轮的平台操作很多、返回内容很大。重试不会改变结果。时间链不受影响。',
-        action: '下一步：用 openbkn trace interactions operations <Interaction ID> 查看完整记录。',
+        title: t('platformRecordTooLargeToDisplay'),
+        detail: t('theRecordReturnedByThePlatformExceedsThe'),
+        action: t('nextUseOpenbknTraceInteractionsOperationsInteractionID'),
       }
     default:
       return {
-        title: '平台数据暂时不可用',
-        detail: 'OpenBKN 平台暂时不可达，本面板稍后重试即可。时间链不受影响。',
-        action: '下一步：稍后重试，或检查平台连接。',
+        title: t('platformDataTemporarilyUnavailable'),
+        detail: t('theOpenBKNPlatformIsTemporarilyUnreachableTryAgain'),
+        action: t('nextRetryLaterOrCheckThePlatformConnection'),
       }
   }
 }
@@ -250,29 +265,31 @@ function PaneHeading({ badge, title, note }: { badge: ReactNode; title: string; 
 }
 
 function SourceBadge({ label, mark }: { label: string; mark?: string }) {
+  const t = useOpenBknTranslation()
+
   return <span style={{ display: 'inline-flex', gap: 6, alignItems: 'center' }}>
     <span style={sourceBadgeStyle}>{label}</span>
-    {mark === undefined ? null : <span style={{ ...sourceBadgeStyle, background: '#fff4e5', color: '#b45309' }}>{mark === 'partial' ? '部分标识符' : degradationMark(mark)}</span>}
+    {mark === undefined ? null : <span style={{ ...sourceBadgeStyle, background: '#fff4e5', color: '#b45309' }}>{mark === 'partial' ? t('partialIdentifiers') : degradationMark(mark, t)}</span>}
   </span>
 }
 
-function degradationMark(reason: string): string {
+function degradationMark(reason: string, t: OpenBknTranslate = translateChinese): string {
   switch (reason) {
-    case 'trace-disabled': return 'Trace 未启用'
-    case 'trace-unavailable': return 'Trace 未记录'
-    case 'license-required': return '需企业版'
-    case 'domain-not-authorized': return '域未授权'
-    case 'authentication-required': return '需重新认证'
-    case 'record-not-disclosed': return '记录未披露'
-    case 'result-too-large': return '记录过大'
-    default: return '平台不可用'
+    case 'trace-disabled': return t('traceDisabled')
+    case 'trace-unavailable': return t('traceNotRecorded')
+    case 'license-required': return t('enterpriseRequired')
+    case 'domain-not-authorized': return t('domainUnauthorized')
+    case 'authentication-required': return t('signInRequiredText145')
+    case 'record-not-disclosed': return t('recordNotDisclosed')
+    case 'result-too-large': return t('recordTooLarge')
+    default: return t('platformUnavailableText148')
   }
 }
 
-function kindLabel(kind: ProvenanceTimelineNode['kind']): string {
+function kindLabel(kind: ProvenanceTimelineNode['kind'], t: OpenBknTranslate = translateChinese): string {
   switch (kind) {
-    case 'lifecycle': return '生命周期'
-    case 'managed': return '受管访问'
+    case 'lifecycle': return t('lifecycle')
+    case 'managed': return t('managedAccess')
     default: return kind
   }
 }
@@ -296,10 +313,16 @@ function formatClock(at: number): string {
 
 function Metric({ label, value, mono = false }: { label: string; value: string; mono?: boolean }) { return <div style={{ display: 'grid', gap: 5, padding: 16, background: '#fff' }}><span style={mutedStyle}>{label}</span><strong style={mono ? { fontFamily: 'ui-monospace, SFMono-Regular, Menlo, monospace', overflowWrap: 'anywhere' } : undefined}>{value}</strong></div> }
 function Reference({ label, value }: { label: string; value: string }) { return <span style={referenceStyle}><small>{label}</small><code>{value}</code></span> }
-function Status({ value }: { value?: string }) { return <span style={{ color: value === 'failed' ? '#b42318' : '#087d72', fontSize: 13, fontWeight: 700 }}>{value ?? 'recorded'}</span> }
-function Empty({ text }: { text: string }) { return <div style={emptyStyle}><strong>暂无可展示的受管数据</strong><span>{text}</span></div> }
-function Loading() { return <div style={emptyStyle}><strong>正在读取本轮业务溯源…</strong><span>时间链由本机会话重建；平台数据仅查询该 Interaction 已授权的记录。</span></div> }
-function LoadFailed() { return <div style={emptyStyle}><strong>业务溯源暂时无法读取</strong><span>请检查 OpenBKN 平台连接和当前用户权限后重试。不会使用模型文本替代平台记录。</span></div> }
+function Status({ value }: { value?: string }) { const t = useOpenBknTranslation(); return <span style={{ color: value === 'failed' ? '#b42318' : '#087d72', fontSize: 13, fontWeight: 700 }}>{value ?? t('recorded')}</span> }
+function Empty({ text }: { text: string }) {
+  const t = useOpenBknTranslation()
+ return <div style={emptyStyle}><strong>{t('noManagedDataToDisplay')}</strong><span>{text}</span></div> }
+function Loading() {
+  const t = useOpenBknTranslation()
+ return <div style={emptyStyle}><strong>{t('readingBusinessProvenanceForThisTurn')}</strong><span>{t('theTimelineIsReconstructedFromLocalEventsPlatform')}</span></div> }
+function LoadFailed() {
+  const t = useOpenBknTranslation()
+ return <div style={emptyStyle}><strong>{t('businessProvenanceCouldNotBeRead')}</strong><span>{t('checkTheOpenBKNPlatformConnectionAndYourAccount')}</span></div> }
 function TabButton({ active, onClick, children }: { active: boolean; onClick(): void; children: string }) { return <button type="button" onClick={onClick} style={{ border: 0, borderBottom: active ? '3px solid #087d72' : '3px solid transparent', background: 'transparent', color: active ? '#087d72' : '#64748b', padding: '14px 18px', fontWeight: active ? 750 : 550, cursor: 'pointer', fontSize: 15 }}>{children}</button> }
 
 const backdropStyle = { pointerEvents: 'auto' as const, position: 'fixed' as const, inset: 0, display: 'grid', placeItems: 'center', background: 'rgb(15 23 42 / 38%)', padding: 20 }

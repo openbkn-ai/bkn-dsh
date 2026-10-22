@@ -1,3 +1,6 @@
+import type {} from '@deepseek-ai/dsh-client-locale/client'
+import { zh, en } from './locales.ts'
+import { localized } from './locale.tsx'
 import type { Context } from '@deepseek-ai/cordis'
 import type { RemoteResult } from '@deepseek-ai/dsh-api-remotes/client'
 import type { SessionId } from '@deepseek-ai/dsh-api-remotes/client'
@@ -44,7 +47,7 @@ export const name = 'openbkn-business-context-client'
  * register even while session/workspace services are still starting (or
  * never start), and the business segment waits for its own services below.
  */
-export const inject = ['slots', 'remote']
+export const inject = ['slots', 'remote', 'locale']
 
 /**
  * Mount the generated Remote boundary, then register two independent
@@ -52,6 +55,7 @@ export const inject = ['slots', 'remote']
  * business services), and the business slots after.
  */
 export async function apply(ctx: Context): Promise<() => Promise<void>> {
+  ctx.effect(() => ctx.locale.register('openbkn', { zh, en }), 'openbkn locale dictionaries')
   const disposeRemote = await ctx.remote.$mount(openbknBusinessContextRemote)
   // The diagnostics namespace is installed by the same $mount above, so this
   // inject never waits on the Host; only the business segment below does.
@@ -126,10 +130,10 @@ function registerPanels(ctx: Context, bridge: OpenBknPanelBridge): void {
   ctx.effect(() => () => { panel.close(); controller.close() }, 'openbkn panel lifecycle')
   ctx.slots.inject('sidebar.footer.action', () => ctx.slots.register({
     name: 'sidebar.footer.action', id: 'openbkn-business-context', order: 100, inject,
-  }, OpenBknEntry))
+  }, localized(OpenBknEntry, ctx.locale)))
   ctx.slots.inject('shell.overlay', () => ctx.slots.register({
     name: 'shell.overlay', id: 'openbkn-business-context', order: 100, inject,
-  }, OpenBknOverlay))
+  }, localized(OpenBknOverlay, ctx.locale)))
   ctx.slots.inject('shell.overlay', () => ctx.slots.register({
     name: 'shell.overlay', id: 'openbkn-business-context-diagnostics', order: 120,
     inject: () => ({
@@ -138,7 +142,7 @@ function registerPanels(ctx: Context, bridge: OpenBknPanelBridge): void {
       close: () => controller.close(),
       refresh: () => controller.refresh(),
     }),
-  }, OpenBknDiagnostics))
+  }, localized(OpenBknDiagnostics, ctx.locale)))
 }
 
 /** Register only additive DSH slots; native navigation and conversation surfaces remain untouched. */
@@ -190,7 +194,7 @@ function registerSlots(ctx: Context, panel: OpenBknPanelBridge): void {
       ),
       close: () => provenanceOverlay.close(),
     }),
-  }, ProvenanceOverlay))
+  }, localized(ProvenanceOverlay, ctx.locale)))
   ctx.slots.inject('conversation.session.header.actions', () => ctx.slots.register({
     name: 'conversation.session.header.actions', id: 'openbkn-bound-network', order: 30,
     inject: (sessionId: SessionId) => {
@@ -198,7 +202,7 @@ function registerSlots(ctx: Context, panel: OpenBknPanelBridge): void {
       bindingControllers.set(sessionId, binding)
       return { hooks: { binding }, load: () => binding.load() }
     },
-  }, BoundNetworkBadge))
+  }, localized(BoundNetworkBadge, ctx.locale)))
   ctx.slots.inject('conversation.input.dock', () => ctx.slots.register({
     name: 'conversation.input.dock', id: 'openbkn-suggestions', order: 30,
     inject: (sessionId: SessionId) => {
@@ -214,7 +218,7 @@ function registerSlots(ctx: Context, panel: OpenBknPanelBridge): void {
         setDraft: (prompt: string) => conversation.input.for(actx).setDraft(prompt),
       }
     },
-  }, SuggestionDock))
+  }, localized(SuggestionDock, ctx.locale)))
   ctx.slots.inject('conversation.chat.assistant-actions', () => ctx.slots.register({
     name: 'conversation.chat.assistant-actions', id: 'openbkn-turn-provenance', order: 20,
     inject: (sessionId: SessionId) => {
@@ -225,10 +229,10 @@ function registerSlots(ctx: Context, panel: OpenBknPanelBridge): void {
         open: (messageId: string, handle: ProvenanceHandle, restoreFocus: HTMLElement) => provenanceOverlay.open(sessionId, messageId, handle, restoreFocus),
       }
     },
-  }, TurnProvenanceActions))
+  }, localized(TurnProvenanceActions, ctx.locale)))
   ctx.slots.inject('tool.call.toolview', () => ctx.slots.register({
     name: 'tool.call.toolview', key: 'openbkn_get_business_network_context',
-  }, OpenBknContextToolView))
+  }, localized(OpenBknContextToolView, ctx.locale)))
 }
 
 /** Subscribe inside the native session scope; no polling and no replacement conversation surface. */

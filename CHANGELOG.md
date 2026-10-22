@@ -2,6 +2,14 @@
 
 All notable changes to this project are documented here.
 
+## 0.2.0-rc.2-openbkn.0.2.0-11 (2026-10-22)
+
+- Add English translations to the existing OpenBKN entry, network directory, settings and CLI setup, diagnostics, context-tool card, session suggestion and all three existing provenance tabs.
+- Follow the native DSH language preference through its public locale registry. Switching Chinese/English updates already-open views and displayed errors without new authentication/platform reads, repeated login, lost form input or reset provenance selection.
+- This is a localization-only release based on published `v0.2.0-rc.2-openbkn.0.2.0-10` (`5b885dd7492fd42951b21729984f0d1e99da8b0d`). The six published Host/business/diagnostics/Remote JavaScript files are byte-identical to -10; only the client JavaScript, client declarations, resources, documentation and version metadata change. Runtime dependency and DSH compatibility pins stay unchanged (`0.2.0-rc.2`).
+- Platform-owned text, business facts, identifiers, exported diagnostic JSON and model output remain verbatim. The unfinished development branch's login lifecycle, native provenance, CSV export, access-policy and dual-host changes are not included.
+- Verification and candidate identities are recorded in [the English release evidence](docs/evidence/2026-10-22-english-11/RESULTS.md). npm publishes to `rc` first. Windows acceptance of this exact candidate and promotion of npm `latest` remain separate gates; this release does not claim a fresh full-platform/model G6 run or new Windows runtime acceptance. Existing -10 limitations, including its historical B1 authentication anomaly, remain applicable.
+
 ## 0.2.0-rc.2-openbkn.0.2.0-10 (2026-10-13)
 
 - Diagnostics now displays Windows/macOS/Linux names and explains unavailable host-form and version fields. Exported identifiers and nulls remain unchanged; disk and loaded versions are kept separate.

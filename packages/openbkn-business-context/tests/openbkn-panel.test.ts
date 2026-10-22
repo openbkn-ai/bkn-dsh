@@ -1,3 +1,4 @@
+import { renderUiMessage } from '../src/client/messages.ts'
 import assert from 'node:assert/strict'
 import test from 'node:test'
 import { OpenBknPanelBridge } from '../src/client/openbkn-panel-bridge.ts'
@@ -18,7 +19,7 @@ test('the panel opens without business services and recovers when they become av
   await bridge.controller.refresh()
   assert.equal(bridge.controller.snapshot().open, true)
   assert.equal(bridge.controller.snapshot().phase, 'error')
-  assert.match(bridge.controller.snapshot().message!, /右上角“诊断”/)
+  assert.match(renderUiMessage(bridge.controller.snapshot().message!), /右上角“诊断”/)
 
   const disconnect = bridge.connect(port, async () => 'session', () => undefined)
   await bridge.controller.refresh()
