@@ -6,6 +6,12 @@ OpenBKN business knowledge, network-scoped access, diagnostics, and provenance f
 
 Bring governed enterprise business knowledge into DeepSeek Harness conversations.
 
+## -12 overlay recovery
+
+Version `0.2.0-rc.2-openbkn.0.2.0-12` preserves settings drafts, validation, network search, diagnostics and same-turn provenance state when a Desktop modal is closed to change the Host language. A pending CLI login continues without reopening the panel; **Back to networks** discards a draft without saving. Chinese provenance reference labels and dark-theme dialog readability are also corrected. Authentication, access guards and business semantics remain Host-owned.
+
+For acceptance, install the exact `.tgz` from the versioned review kit and check its `pins.json`; do not install `latest` or another candidate in its place. Run Desktop and npm/Web separately on official DSH `0.2.0-rc.2`. Keep all npm publishing and dist-tag changes on hold during review. Registry availability and dist-tags are separate from this package's version; this text does not assert that -12 has been published or accepted on Windows.
+
 ## -11 English interface
 
 Based on published -10, this release adds English UI localization. The plugin follows DSH **Settings → General → Language**. Open network, settings, diagnostics and the original three provenance tabs update immediately when switching between Chinese and English, while preserving unsaved fields, the selected view and pending requests. Network names, platform text, business data and model answers remain verbatim.
@@ -57,7 +63,7 @@ dsh plugin --profile <desktop|web> add @openbkn/dsh-business-context@latest
 
 On Windows, use `dsh.cmd`. A source build uses `node apps/cli/lib/bin.js plugin --profile web add @openbkn/dsh-business-context@latest` from the DSH checkout root. Choose the actual profile and `DSH_HOME` of the Host you run; `desktop` and `web` are separate profiles. For a downloaded package, replace the package spec with its absolute `.tgz` path.
 
-Install an OpenBKN CLI version that matches the platform. For OpenBKN 0.1.5, use `npm install -g @openbkn/bkn-sdk@0.1.5`; for 0.1.4, use `@openbkn/bkn-sdk@0.1.4` (`0.1.5-rc.1` also works). CLI `0.1.5-rc.2` and later require a platform health/version endpoint absent in 0.1.4. You do not need to sign in before configuring the plugin. The npm DSH CLI also requires pnpm on `PATH` (`npm install -g pnpm@11.7.0`); the desktop app bundles it. For a self-signed platform certificate, configure `NODE_EXTRA_CA_CERTS` for the DSH process and fully restart it; detailed platform-specific instructions are in the [repository README](https://github.com/openbkn-ai/bkn-dsh#before-you-start).
+Install an OpenBKN CLI version that matches the platform. For the supported OpenBKN 0.2.0 platform, use `npm install -g @openbkn/bkn-sdk@0.2.0`. For OpenBKN 0.1.5, use `npm install -g @openbkn/bkn-sdk@0.1.5`; for 0.1.4, use `@openbkn/bkn-sdk@0.1.4` (`0.1.5-rc.1` also works). CLI `0.1.5-rc.2` and later require a platform health/version endpoint absent in 0.1.4. You do not need to sign in before configuring the plugin. The npm DSH CLI also requires pnpm on `PATH` (`npm install -g pnpm@11.7.0`); the desktop app bundles it. For a self-signed platform certificate, configure `NODE_EXTRA_CA_CERTS` for the DSH process and fully restart it; detailed platform-specific instructions are in the [repository README](https://github.com/openbkn-ai/bkn-dsh#before-you-start).
 
 ### Configure, authorize, and ask
 
