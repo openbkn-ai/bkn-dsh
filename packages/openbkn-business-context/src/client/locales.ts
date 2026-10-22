@@ -1,5 +1,6 @@
 /** Plugin-owned UI copy. Platform facts, identifiers and model answers stay verbatim. */
 export const zh = {
+  "toolResultCount": "{p0} · {p1} 项",
   "cLIInstallationVersion": "CLI 安装版本：",
   "cLIInstallationVersionText1": "CLI 安装版本",
   "selectAVersion": "请选择版本",
@@ -240,6 +241,7 @@ export const zh = {
 export type OpenBknMessageKey = keyof typeof zh
 
 export const en: Record<OpenBknMessageKey, string> = {
+  "toolResultCount": "{p0} · items: {p1}",
   "cLIInstallationVersion": "CLI installation version:",
   "cLIInstallationVersionText1": "CLI installation version",
   "selectAVersion": "Select a version",
@@ -453,7 +455,7 @@ export const en: Record<OpenBknMessageKey, string> = {
   "cliMissingVersion": "CLI was not found in the current environment or common installation locations. Use the button below to install {p0}.",
   "accessDeniedAccount": "{p0} refused access for this account (HTTP 403). Ask the platform administrator to check access, or use an authorized account. Signing in again with the same account may not restore access.",
   "accessDenied": "{p0} refused access for this account (HTTP 403). Ask the platform administrator to check access before retrying.",
-  "networkCount": "Found {count} networks; those linked to local workspaces appear first.",
+  "networkCount": "Networks found: {count}; those linked to local workspaces appear first.",
   "diagnosticEntryMissing": "The OpenBKN entry is not registered in this profile; reinstall the plugin or review the profile patch.",
   "diagnosticExportBlocked": "Export this report and send it to support; the OpenBKN panel cannot start until the listed stage is fixed.",
   "diagnosticConfigure": "Open OpenBKN settings, save the platform URL, then sign in with the OpenBKN CLI.",

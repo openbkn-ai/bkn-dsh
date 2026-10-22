@@ -160,7 +160,10 @@ test('all three Latest provenance tabs remain and graph selection survives local
   const harness = localeHarness()
   const controller = new ProvenanceOverlayController()
   const view: ProvenanceView = {
-    interactionId: 'interaction-original', timeline: [],
+    interactionId: 'interaction-original', timeline: [
+      { seq: 0, kind: 'managed', tool: 'query_object_instance', at: 1, outcome: 'ok', summary: 'query_object_instance · 2 项' },
+      { seq: 1, kind: 'question', at: 0, summary: '用户原文：2 项' },
+    ],
     sources: { timeline: 'local-session', operations: 'unavailable', business: 'platform', evidence: 'unavailable', degraded: [] },
     execution: { operations: [] }, evidence: { kind: 'unavailable', reason: 'no-receipts' },
     business: { kind: 'ready', operations: [{ id: 'op-original', attempt: 1, toolName: 'query_object_instance', status: 'resolved', missingFacts: [], elements: [
@@ -189,6 +192,10 @@ test('all three Latest provenance tabs remain and graph selection survives local
   assert.match(text, /平台原文 B/)
   assert.equal(node().props['aria-pressed'], true)
   assert.equal(reads, 1)
+  assert.equal(JSON.stringify(view), original)
+  act(() => renderer.root.findAllByType('button').find(button => button.children.includes('Execution provenance'))!.props.onClick())
+  assert.match(JSON.stringify(renderer.toJSON()), /query_object_instance · items: 2/)
+  assert.match(JSON.stringify(renderer.toJSON()), /用户原文：2 项/)
   assert.equal(JSON.stringify(view), original)
   act(() => renderer.unmount())
 })

@@ -121,6 +121,7 @@ function TimelineRow({ group }: { group: TimelineFoldGroup }) {
 
   const node = group.nodes[0]!
   const folded = group.nodes.length > 1
+  const summary = timelineSummary(node, t)
   if (node.kind === 'question' || node.kind === 'answer') {
     return <article style={{ ...timelineNodeStyle, borderStyle: 'dashed' }}>
       <span style={kindChipStyle(node.kind)}>{node.kind === 'question' ? t('question') : t('answer')}</span>
@@ -136,10 +137,18 @@ function TimelineRow({ group }: { group: TimelineFoldGroup }) {
         {node.outcome === 'error' ? <span style={{ color: '#b42318', fontSize: 13, fontWeight: 700 }}>error</span> : null}
         {node.platform === undefined ? null : <span style={referenceRowStyle}>{node.platform.operationId === undefined ? null : <Reference label="Op" value={node.platform.operationId} />}{node.platform.receiptId === undefined ? null : <Reference label="Receipt" value={node.platform.receiptId} />}{node.platform.status === undefined ? null : <Reference label="Status" value={node.platform.status} />}</span>}
       </div>
-      {node.summary === undefined ? null : <span style={mutedStyle}>{node.summary}</span>}
+      {summary === undefined ? null : <span style={mutedStyle}>{summary}</span>}
     </div>
     <span style={durationStyle}>{node.durationMs === undefined ? t('notReturned') : formatDuration(node.durationMs)}</span>
   </article>
+}
+
+/** Translate the plugin's closed count suffix; question, answer and external text stay verbatim. */
+function timelineSummary(node: ProvenanceTimelineNode, t: OpenBknTranslate): string | undefined {
+  if (node.kind !== 'managed' || node.tool === undefined || node.summary === undefined) return node.summary
+  const prefix = `${node.tool} · `
+  const match = node.summary.startsWith(prefix) ? /^(\d+) 项$/u.exec(node.summary.slice(prefix.length)) : null
+  return match === null ? node.summary : t('toolResultCount', { p0: node.tool, p1: match[1] })
 }
 
 function BusinessGraph({ view }: { view: ProvenanceView }) {
