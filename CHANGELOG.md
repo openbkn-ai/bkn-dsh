@@ -2,6 +2,15 @@
 
 All notable changes to this project are documented here.
 
+## 0.2.0-rc.2-openbkn.0.2.0-13
+
+Copy-only review candidate based on the accepted -12 rehearsal artifact, for official DSH 0.2.0-rc.2. This candidate is not published to npm.
+
+- Include the Chinese provenance explanation correction made after -12 acceptance: use Chinese request/trace/receipt terms throughout the plugin-owned sentence. The English resource, raw platform values, model output, dependencies, compatibility pins and all Host behavior are unchanged.
+- Retain Windows runner lifetime and Ctrl+C as known issues. Missing live counted-timeline and nonempty-graph cases remain BLOCKED; earlier acceptance evidence is reused only for unchanged behavior.
+- Triage the specifically identified npm/Web A7 event as an expected duplicate-start guard denial. A second start was attempted while the first interaction was open; its rejection and the first interaction's later completion are consistent. Keep the raw error event and runtime dispatch value `unknown`. The operator's supplementary archive has not yet been independently received or hash-verified on the maintainer's Mac. No guard change or repeat Windows business run is required for this event.
+- Review only the affected Chinese/English explanation in Desktop and npm/Web on the exact new CI artifact. npm publication, `rc`, `latest` and production tags remain outside this review.
+
 ## 0.2.0-rc.2-openbkn.0.2.0-12
 
 Review candidate based on published -11. Supports official DSH 0.2.0-rc.2.
@@ -14,7 +23,7 @@ Review candidate based on published -11. Supports official DSH 0.2.0-rc.2.
 
 This candidate has not been published to npm. Windows delta evidence supports the tested state/login recovery paths; publication and promotion remain on hold. The Chinese explanatory-sentence follow-up is a source change after the accepted CI artifact, so the original -12 package and its evidence remain unchanged and do not include that follow-up.
 
-Known Windows issues retained at the maintainer's request: the login command's cmd/node children exit, while its carrier process can remain until the Host exits; Ctrl+C can leave the npm/Web Host running even without a Tee-Object pipeline. These behaviors are not fixed or uniquely attributed by this release. Stop only the recorded test Host tree when needed. npm Host identification metadata remains unknown where authoritative data is unavailable. The isolated local start/continue error still needs its original failure event; a completed platform Operation does not resolve it. Nonempty graph and counted-timeline coverage from controlled renderer fixtures remains distinct from live-platform acceptance.
+Known Windows issues retained at the maintainer's request: the login command's cmd/node children exit, while its carrier process can remain until the Host exits; Ctrl+C can leave the npm/Web Host running even without a Tee-Object pipeline. These behaviors are not fixed or uniquely attributed by this release. Stop only the recorded test Host tree when needed. npm Host identification metadata remains unknown where authoritative data is unavailable. The isolated local start/continue error was subsequently triaged as an expected duplicate-start guard denial; see -13 for the evidence limits. Nonempty graph and counted-timeline coverage from controlled renderer fixtures remains distinct from live-platform acceptance.
 
 ## 0.2.0-rc.2-openbkn.0.2.0-11 (2026-10-22)
 
