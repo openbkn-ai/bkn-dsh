@@ -88,7 +88,7 @@ export const zh = {
   "platformNotDisplayed": "平台 · 未显示",
   "platformUnavailable": "平台 · 不可用",
   "platformExecutionFacts": "平台执行事实",
-  "operationStatusDurationAndRequestTraceReceiptReferences": "平台口径的操作状态、耗时与 Request / Trace / Receipt 引用。",
+  "operationStatusDurationAndRequestTraceReceiptReferences": "平台口径的操作状态、耗时与请求 / 追踪 / 回执引用。",
   "noDisplayableOperationFactsWereRecordedForThis": "当前交互未记录可展示的操作事实。",
   "question": "提问",
   "answer": "回答",

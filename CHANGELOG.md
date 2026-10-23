@@ -10,9 +10,11 @@ Review candidate based on published -11. Supports official DSH 0.2.0-rc.2.
 - Keep a single pending CLI login across modal dismissal and synchronize its completion without reopening the modal. Service replacement still invalidates old requests; canceled workspace selection and configuration saves retain their existing safety boundaries.
 - Preserve the last diagnostics report and the same turn's provenance tab/graph selection across dismissal; use explicit refresh to collect new diagnostics or reload the network directory.
 - Keep text and the close control readable on white plugin dialogs under a dark Host theme.
-- Translate plugin-owned provenance reference labels in Chinese and add the missing English space after “Platform URL:”. Platform facts, IDs, status values and model answers remain verbatim.
+- Translate plugin-owned provenance reference labels and their explanatory sentence in Chinese, and add the missing English space after “Platform URL:”. Platform facts, IDs, status values and model answers remain verbatim.
 
-This candidate has not been published to npm. Windows review and promotion remain pending. Host/CLI authentication child-process lifetime, npm Host identification metadata, and isolated local-versus-platform tool errors remain observations requiring their own runtime evidence; this release does not claim to fix them. Nonempty graph and counted-timeline coverage from controlled renderer fixtures is distinct from live-platform acceptance.
+This candidate has not been published to npm. Windows delta evidence supports the tested state/login recovery paths; publication and promotion remain on hold. The Chinese explanatory-sentence follow-up is a source change after the accepted CI artifact, so the original -12 package and its evidence remain unchanged and do not include that follow-up.
+
+Known Windows issues retained at the maintainer's request: the login command's cmd/node children exit, while its carrier process can remain until the Host exits; Ctrl+C can leave the npm/Web Host running even without a Tee-Object pipeline. These behaviors are not fixed or uniquely attributed by this release. Stop only the recorded test Host tree when needed. npm Host identification metadata remains unknown where authoritative data is unavailable. The isolated local start/continue error still needs its original failure event; a completed platform Operation does not resolve it. Nonempty graph and counted-timeline coverage from controlled renderer fixtures remains distinct from live-platform acceptance.
 
 ## 0.2.0-rc.2-openbkn.0.2.0-11 (2026-10-22)
 

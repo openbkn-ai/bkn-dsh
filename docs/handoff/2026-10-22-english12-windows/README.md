@@ -31,3 +31,9 @@ The private-console launcher returns only a console PID to automation; an operat
 ## Publication boundary
 
 Keep **all** npm publication and dist-tag changes on hold, including after a successful Windows run. Expected registry state is `rc=-11`, `latest=-10`; -12 is installed from the embedded exact CI tarball. Do not create a production `v*` tag. The review asset uses a separate `review-*` prerelease tag and is not GitHub Latest. Return evidence for independent maintainer review before any later release or promotion step.
+
+## Follow-up disposition (2026-10-23)
+
+The maintainer retained two Windows observations as known issues: the login cmd/node children exit while their carrier may persist until Host exit, and Ctrl+C can leave the npm/Web Host running without Tee-Object. This follow-up does not change either behavior or claim a unique cause. A7 remains separate: use [the minimal existing-event handoff](../2026-10-23-english12-a7/WINDOWS-A7-MINIMAL.zh.md) to obtain only the failed local start/continue event; do not repeat the Windows suite or question batch.
+
+The remaining Chinese provenance explanation is corrected in source after the accepted artifact. The accepted -12 ZIP/tgz and original evidence stay immutable; they do not contain this follow-up. A later release candidate must incorporate the source change and verify the affected copy before any publication. All npm tags remain on hold.
