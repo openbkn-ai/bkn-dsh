@@ -1,0 +1,92 @@
+{
+  "round": "english13-cli-login-repro-2",
+  "phase": "copy13clirepro2",
+  "form": "npm/Web",
+  "desktop": "NOT_RUN",
+  "browser": "Chrome (user-requested; isolated capture profile, CDP 9335 passive)",
+  "attemptId": "clirepro2-20261024T023338Z",
+  "clickTimeUtc": "2026-10-24T02:33:38.295Z",
+  "beginLoginRequestCount": 1,
+  "beginLogin": {
+    "rpcId": "1be41962-ae18-4a14-a9fc-fe802a86f6b8",
+    "rpcMethod": "openbknBusinessContext/beginLogin",
+    "reqTimeUtc": "2026-10-24T02:33:38.295Z",
+    "respTimeUtc": "2026-10-24T02:33:38.719Z",
+    "durationMs": 424,
+    "httpStatus": 200,
+    "resultOk": true,
+    "errorCode": null,
+    "errorMessageRedacted": null,
+    "redactionUncertain": null,
+    "messageTruncated": null,
+    "captureSource": "browser CDP passive capture, response processed in memory only"
+  },
+  "statusSeparation": {
+    "hostHttpStatus": 200,
+    "rpcErrorCode": null,
+    "cliExitCode": 1,
+    "cliExitCodeSource": "diagnostic-report-f3727485 (passive observed-operation, not direct process observation)",
+    "platformStatusInErrorText": null
+  },
+  "cliOutcomeDerived": {
+    "from": "diagnostic f3727485 observed:cli lastOutcomeAgoMs=85689 at createdAt 2026-10-24T02:35:04.407Z",
+    "cliOutcomeUtc": "2026-10-24T02:33:38.718Z",
+    "afterClickMs": 423
+  },
+  "panelState": {
+    "errorShownAtApprox": "2026-10-24T02:33:44Z",
+    "errorText": "暂时无法验证 OpenBKN 连接，当前原因尚未确定。请点击右上角“诊断”查看检查结果；若问题持续，请导出报告交给支持人员。",
+    "deviceAuthorizationAppeared": false,
+    "postClickRpcRequests": 0
+  },
+  "captureChainValidation": {
+    "statusRequest": { "reqTimeUtc": "2026-10-24T02:33:23.578Z", "respTimeUtc": "2026-10-24T02:33:23.943Z", "httpStatus": 200, "bodySaved": false },
+    "redactionSelfTest": "pass",
+    "validatedBeforeLoginClick": true
+  },
+  "limitation": "per round rules, business content of an ok=true result was not read or saved; if failure detail was embedded inside result.*, it was not retained (rule-based omission, not redaction)",
+  "diagnostic": {
+    "reportId": "f3727485",
+    "createdAt": "2026-10-24T02:35:04.407Z",
+    "file": "OpenBKN-diagnostic-20261024T023504407Z-f3727485.json",
+    "observedCli": { "status": "fail", "code": "cli-execution-failed", "failureCount": 1, "exitCode": 1 },
+    "observedLoginState": { "status": "fail", "code": "not-logged-in", "failureCount": 1, "loggedIn": false }
+  },
+  "standardEntry": {
+    "consoleStartedAt": "2026-10-24T02:31:35Z",
+    "urlOpenedByUser": true,
+    "userInteraction": "user present, pasted startup URL from private console into Chrome capture window",
+    "agentReadConsoleOrToken": false
+  },
+  "cleanup": {
+    "stopHostAt": "2026-10-24T02:36:52Z",
+    "hostNodePidTerminated": 26548,
+    "privateConsoleClosedAfterIdentityCheck": 13064,
+    "captureChromeClosed": true,
+    "listenerStopped": true,
+    "residue": "ports 18411/9335 zero listeners, zero test processes"
+  },
+  "constraints": {
+    "terminalAuthLogin": false,
+    "retryClicked": false,
+    "handcraftedOrReplayedBeginLogin": false,
+    "signingSecretRead": false,
+    "cookieMintedOrInjected": false,
+    "npmTagsQueried": false,
+    "publishOrDistTagWrite": false,
+    "oldPackagesModified": false
+  },
+  "evidence": {
+    "privateConsoleReceipt": "private-console-20261024T023135310Z.json",
+    "launchReceipt": "launch-20261024T023137691Z.json",
+    "packageBeforeStart": "package-before-start-20261024T023137691Z.json",
+    "hostReceipt": "copy13clirepro2-host.json",
+    "packageReceipt": "package-copy13clirepro2-20261024T023319188Z.json",
+    "cleanupReceipt": "cleanup-20261024T023652934Z.json",
+    "launchReturn": "launch-return-20261024T023137691Z.json",
+    "diagnosticReport": "OpenBKN-diagnostic-20261024T023504407Z-f3727485.json",
+    "captureScript": "listener-repro.mjs",
+    "driverScript": "cdp9335.mjs",
+    "captureLog": "repro2-capture-redacted.jsonl"
+  }
+}
