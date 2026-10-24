@@ -1,0 +1,54 @@
+{
+  "id": "windows-english13-cli-capture3-v1",
+  "scope": "npm/Web one-shot standard-entry login capture only",
+  "files": [
+    {
+      "path": "LOCAL-CHECKS.json",
+      "sha256": "8cd69ae38157929e822fb51cb2d205653d7ededf7c1278bc57f546e7ee1bb3b7"
+    },
+    {
+      "path": "README.zh.md",
+      "sha256": "af112d626cf90e97e617f48693de47e61d532271a690cd4a46911d5d2388eb73"
+    },
+    {
+      "path": "capture-core.mjs",
+      "sha256": "326535374117064e5ef89ab15e9bc6d4355db13f8ee2cc649e26964120827d35"
+    },
+    {
+      "path": "collector.mjs",
+      "sha256": "f061029449de348dcc6f6e5047ef59167b22284b76db83e8ff4b11ec05319d0e"
+    },
+    {
+      "path": "control.mjs",
+      "sha256": "a3e88447c3fa844c10d711d332f162cf607241277f440c774ff7850c8c077abf"
+    },
+    {
+      "path": "protocol.mjs",
+      "sha256": "24cc124ec08fc94f0c58f8e4fddec81c7c9c39a63c8ae4e1a83ac094bf820cfe"
+    },
+    {
+      "path": "redact.mjs",
+      "sha256": "a2bdfde4b2ae3a6c8dcaa1fe82261b2f7e06e8c1530e8f50ea543cbd75e0a468"
+    },
+    {
+      "path": "selfcheck.mjs",
+      "sha256": "2a92c56386969012385bc0652259e70c15c2affb73fba2ba82086a5a704ff986"
+    },
+    {
+      "path": "store.mjs",
+      "sha256": "1f1f75186fc94cceb63037364cc49eb00983b27ea62d89240e59e6c84c0cf6da"
+    },
+    {
+      "path": "tests/fake-cdp.mjs",
+      "sha256": "c778038ddb3ea8f6eeadb84cae2c4fe59da33e4211fa7a7f1eb1b3ed35bbbe55"
+    },
+    {
+      "path": "tests/offline.test.mjs",
+      "sha256": "96aa355093240e15a2c3e9d847706f1e1ac912c998b1cb447a11b8bfc7b99b47"
+    },
+    {
+      "path": "verify-kit.mjs",
+      "sha256": "8daae6ddc1b0b1b1f6967e61ea95519b0e6d812d2ef56af04fa94fe7a93d2320"
+    }
+  ]
+}
