@@ -1,6 +1,6 @@
 # English -13 release preparation
 
-Status: acceptance complete; formal `publish=false` build and file-equivalence check pending in this preparation. No npm publication, dist-tag write or production tag is authorized by this record.
+Status: accepted -13 candidate and main formal `publish=false` build are file-for-file and archive-byte identical. Publication remains unexecuted; upstream risks below are retained. No npm publication, dist-tag write or production tag is authorized by this record.
 
 ## Accepted candidate
 
@@ -35,5 +35,17 @@ The release preparation uses the existing `release-plugin.yml` path with `publis
 
 - Public registry readback: `rc=-11`, `latest=-10`, -13 absent. These are observations, not tag writes.
 - CA-verified live MCP `tools/list`: 25 tools; full schemas identical to the accepted -13 baseline (canonical SHA-256 `a679358f8b9a45948ac9f5a11f1044899922fe32487d887bc10c94c76a995be6`). No tools/call, login, deployment or data mutation was performed.
-- Core retrieval, observability and backend deployments remain on `0.2.0` and ready. An unrelated `agent-operator-integration` deployment reports 0/1, `CreateContainerError`; the cluster was not changed and this is not represented as a healthy full-platform run.
+- Core retrieval, observability and backend deployments remain on `0.2.0` and ready. The `agent-operator-integration` deployment reports 0/1, `CreateContainerError`; the cluster was not changed and this is not represented as a healthy full-platform run. Its affected execution paths were not rerun.
 - Open Dependabot alerts concern `@modelcontextprotocol/client@2.0.0` in the pinned DSH MCP peer stack (high OAuth issuer-binding, medium cross-origin redirects). The plugin tarball contains no MCP SDK implementation and mounts DSH's transport with an explicit bearer header, not an SDK OAuth provider. The HTTP transport path remains relevant to redirect hardening; no exploit or absence of exposure is established by this check. The advisories are retained in the release notes and remain an upstream-risk disposition before any production tag.
+
+## Completed main formal build and equality gate
+
+- Main source: `c947287f9cabe4416d969e213c83f3e56d5c7344`, merged by [PR #103](https://github.com/openbkn-ai/bkn-dsh/pull/103) after approval and successful checks.
+- Formal release workflow: [40089689357](https://github.com/openbkn-ai/bkn-dsh/actions/runs/40089689357), `workflow_dispatch` on main with `publish=false`, conclusion SUCCESS.
+- Plugin tests: 450 pass, 0 fail, 1 Windows-only skip on Linux; repo/compat/runtime tests: 60 pass, 0 fail. Build, compatibility series and package/export checks passed. Native Windows acceptance is separate and was completed on the identical candidate.
+- npm publish/setup/check steps and GitHub Release job were SKIPPED. No production tag was created by this preparation.
+- Formal tarball SHA-256: `8290a0b89d9af5118b0aeabc09499c5085114047f469fe631835b808f52d3675`, identical to the accepted candidate's compressed bytes.
+- Exact path sets, all 74 file bytes/sizes/modes and package.json match; zero added, removed or changed files. The [per-file comparison](formal-file-comparison.json) records every digest. No JSON-normalization exception was needed.
+- This final follow-up changes only this evidence record and its comparison JSON. It does not alter the package, dependencies, build scripts, workflow, compatibility patches or pins, so it does not require another runtime acceptance run or formal product build.
+
+Release-preparation conclusion: formal-build/equality and scoped acceptance gates PASS. Retain the documented Windows/coverage limitations, current platform health observation and pinned-host SDK advisories; do not claim security alerts have been resolved. An eventual production tag/publication still needs the explicit maintainer risk disposition and publication instruction, followed by registry-package equivalence checking before a separate latest promotion.
