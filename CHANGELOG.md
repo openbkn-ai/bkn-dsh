@@ -4,12 +4,23 @@ All notable changes to this project are documented here.
 
 ## 0.2.0-rc.2-openbkn.0.2.0-13
 
-Copy-only review candidate based on the accepted -12 rehearsal artifact, for official DSH 0.2.0-rc.2. This candidate is not published to npm.
+Host-adaptive Chinese/English UI and modal-state recovery for official DSH 0.2.0-rc.2 with OpenBKN 0.2.0. This release combines the English UI introduced in -11, the accepted -12 recovery fixes, and the final Chinese provenance-copy correction.
 
-- Include the Chinese provenance explanation correction made after -12 acceptance: use Chinese request/trace/receipt terms throughout the plugin-owned sentence. The English resource, raw platform values, model output, dependencies, compatibility pins and all Host behavior are unchanged.
-- Retain Windows runner lifetime and Ctrl+C as known issues. Missing live counted-timeline and nonempty-graph cases remain BLOCKED; earlier acceptance evidence is reused only for unchanged behavior.
-- Triage the specifically identified npm/Web A7 event as an expected duplicate-start guard denial. A second start was attempted while the first interaction was open; its rejection and the first interaction's later completion are consistent. Keep the raw error event and runtime dispatch value `unknown`. The operator's supplementary archive has not yet been independently received or hash-verified on the maintainer's Mac. No guard change or repeat Windows business run is required for this event.
-- Review only the affected Chinese/English explanation in Desktop and npm/Web on the exact new CI artifact. npm publication, `rc`, `latest` and production tags remain outside this review.
+- Follow the DSH language preference across the plugin entry, network directory, settings/CLI setup, diagnostics, context card, session suggestion and existing provenance tabs. Platform-owned text, business values, IDs and model output remain verbatim.
+- Preserve unsaved settings, validation errors, network search/expansion, the last diagnostics report and the current provenance tab/selection when a Desktop modal is dismissed to change the Host language. Explicit Back and refresh actions retain their documented behavior.
+- Keep one pending CLI login across modal dismissal and synchronize its completion without requiring Refresh status. This does not change the CLI authentication protocol or add automatic login retries.
+- Complete plugin-owned Chinese provenance reference labels and the platform-execution explanation; retain the English explanation and fix the space after “Platform URL:”. Keep text and close controls readable on white dialogs under a dark Host theme.
+- Retain the DSH 0.2.0-rc.2 pin, runtime dependencies and six Host/Remote JavaScript files from -11. The unfinished 0.2.1 compatibility, native provenance and CSV-export work is not included.
+
+Acceptance: the exact -13 CI candidate was checked on macOS and native Windows, Desktop and npm/Web. Windows target-copy evidence is complete; unchanged -11/-12 behavior reuses its reviewed baseline. See the [release acceptance record](docs/evidence/2026-10-24-english13-release-preparation/RESULTS.md) and [release notes](docs/releases/2026-10-24-english13-notes.md). This is not a fresh full business/model G6 run or acceptance of every live-data branch.
+
+Known limitations:
+
+- Windows login command carrier processes may remain until the Host exits; Ctrl+C may leave the npm/Web Host running. These are retained known issues. Stop only the identified test Host tree when needed.
+- Desktop overlays remain modal: close the overlay, change the Host language, then reopen. The release does not claim that Host settings can be changed while a modal stays open.
+- Live counted-timeline and nonempty-graph selection cases remain BLOCKED where the available data does not exercise them. Web diagnostics may report unknown Host form or unavailable loaded-version metadata; exported nulls are preserved.
+- A self-signed platform requires the correct signing CA in the Node trust configuration before starting DSH/CLI. The Windows TLS failure was addressed by correcting the local CA bundle, not by disabling verification or changing plugin code. Device authorization must finish within the platform-provided expiry window.
+- The specifically identified A7 duplicate-start error is an expected guard refusal while an interaction is already open. Keep the original error and dispatch=unknown; no guard relaxation is included. Historical unretained response/process details remain unknown.
 
 ## 0.2.0-rc.2-openbkn.0.2.0-12
 
