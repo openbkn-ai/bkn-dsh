@@ -1,0 +1,88 @@
+{
+  "round": "english13-ca-readonly",
+  "atUtcRange": ["2026-10-24T06:03:15Z", "2026-10-24T06:07:00Z"],
+  "form": "npm/Web-environment-only",
+  "desktop": "NOT_RUN",
+  "nodeExtraCaCerts": {
+    "processScope": "C:\\Users\\kalia\\openbkn-dev-ca.pem",
+    "userScope": "C:\\Users\\kalia\\openbkn-dev-ca.pem",
+    "machineScope": "UNSET",
+    "scopesConsistent": "process==user; machine unset",
+    "childChainInheritance": {
+      "probeAt": "2026-10-24T06:05:17Z",
+      "powershellPid": 24572,
+      "nodePid": 9912,
+      "nodeVersion": "v24.21.0",
+      "nodeExe": "C:\\Users\\kalia\\scoop\\apps\\nodejs-lts\\current\\node.exe",
+      "bothChildrenReadVar": "C:\\Users\\kalia\\openbkn-dev-ca.pem",
+      "inheritedNaturally": true
+    },
+    "round3HistoricalEnv": "UNKNOWN"
+  },
+  "startupChainReadonly": {
+    "startPrivateWebConsolePs1Sha256": "38388999ea1f4944c875c0eacb6d0631aa9978a543ae1c94906505c3b923d550",
+    "startHostPs1Sha256": "cec46ab2dc2f03076ba64bec1c4732bc73b4f8b981d15953b1312d4087818035",
+    "commonPs1Sha256": "c59c80d023422027a0ff173eea4418d4f3a35d87a141efae9415de3a470086a2",
+    "cliPathShim": {
+      "path": "C:\\bkn-verify\\english11-cli\\node_modules\\.bin\\openbkn.cmd",
+      "sha256": "8562fbc4d6f2320c261cfde7da06d2266200eed52fd2dcc524f0842d3183fbf3",
+      "mtimeLocal": "2026-10-22",
+      "setsNodeExtraCaCerts": false,
+      "entry": "node (PATH) + ..\\@openbkn\\bkn-sdk\\dist\\cli.js"
+    },
+    "anyScriptSetsOrClearsVar": false,
+    "noProfileOnConsoleLauncher": true,
+    "pluginConfigBothProfiles": { "baseUrl": "https://192.168.50.129", "allowInsecureTlsConfigured": false }
+  },
+  "caFile": {
+    "path": "C:\\Users\\kalia\\openbkn-dev-ca.pem",
+    "exists": true, "readable": true, "bytes": 1192,
+    "mtimeUtc": "2026-09-29T12:52:20.1921625Z",
+    "fileSha256": "89e53b4e7a09305c01c37513a9bdda63698735a33a0df71f725875ec47180453",
+    "privateKeyMarkers": false,
+    "certificates": [
+      {
+        "subject": "CN=192.168.50.28", "issuer": "CN=192.168.50.28",
+        "sha256Fingerprint": "44:D1:AB:A4:39:17:9F:FC:BE:DD:B6:40:5A:48:48:BE:FE:59:C9:21:A9:A1:4A:E1:34:01:2A:76:4C:AA:17:F7",
+        "validFromUtc": "2026-09-22T17:39:47Z", "validToUtc": "2028-12-25T17:39:47Z", "isCa": true
+      }
+    ]
+  },
+  "platformTls": {
+    "nodeStrictProbe": {
+      "at": "2026-10-24T06:05:35Z", "target": "192.168.50.129:443",
+      "env": "natural inheritance incl. NODE_EXTRA_CA_CERTS",
+      "outcome": "failed", "errorCode": "UNABLE_TO_VERIFY_LEAF_SIGNATURE",
+      "chainObtained": "UNKNOWN-not-obtained", "attempts": 1, "timeoutMs": 10000
+    },
+    "opensslChainProbe": {
+      "openssl": "3.5.8 (pre-existing, Git ucrt64)", "verification": "enabled, error-returning",
+      "opensslOwnVerify": "failed: unable to get local issuer certificate (error 20)",
+      "chainServed": [
+        {
+          "subject": "CN=DominicZhangdeMac-mini.local", "issuer": "CN=OpenBKN Test 015 Local CA",
+          "sha256Fingerprint": "9D:A3:2F:90:48:7A:14:2B:AB:C0:98:3A:54:65:9D:20:4E:20:9A:21:6E:87:FB:09:BA:75:E1:F5:A7:FE:3A:B6",
+          "validFromUtc": "2026-10-09T05:50:30Z", "validToUtc": "2027-10-09T05:50:30Z", "isCa": false,
+          "san": "IP:192.168.50.129, DNS:DominicZhangdeMac-mini.local, DNS:localhost, IP:127.0.0.1",
+          "sanMatchesTargetIp": true
+        }
+      ],
+      "issuingCaServed": false
+    },
+    "offlineVerifyExistingCaVsChain": { "result": "failed", "note": "CN=192.168.50.28 self-signed root does not verify the leaf; issuer CA (OpenBKN Test 015 Local CA) not served and not present in the CA file" }
+  },
+  "conclusions": {
+    "envInheritance": "works in current chain; round-3 actual env UNKNOWN",
+    "caState": "file present/valid/parseable but its single root is CN=192.168.50.28 (old platform IP)",
+    "platformChain": "current leaf issued 2026-10-09 by OpenBKN Test 015 Local CA; SAN matches 192.168.50.129",
+    "nodeStrictTlsNow": "fails with UNABLE_TO_VERIFY_LEAF_SIGNATURE (same code as round-3 CLI failure)",
+    "directEvidence": ["scope values", "child-chain inheritance", "CA file content + fingerprint", "current served chain metadata", "node strict failure code", "offline verify failure"],
+    "cannotDetermine": ["round-3 Host/CLI env", "mechanism of successful Oct-23 logins", "whether the platform chain changed since Oct 23 (no historical chain fingerprint retained)"]
+  },
+  "repro3ZipRecheckSha256": "bb03b4eb30c85c48e3e916ed92d2b21b94874778faff7c406d6168448c06c20a",
+  "constraintsHonored": {
+    "noFixApplied": true, "noLoginOrAuth": true, "noDshStarted": true,
+    "noEnvVarSet": true, "noTrustStoreChange": true, "noInsecureBypass": true,
+    "npmUntouched": true, "historicalPackagesUnchanged": true
+  }
+}
