@@ -31,10 +31,10 @@ export function OpenBknDiagnostics({ useDiagnostics, close, refresh }: OpenBknDi
     if (state.open && state.phase === 'idle') void refresh()
   }, [refresh, state.open, state.phase])
 
-  if (!state.open) return null
+  if (!state.open && state.phase === 'idle') return null
 
   return (
-    <div style={backdropStyle} role="presentation" onMouseDown={close}>
+    <div hidden={!state.open} style={{ ...backdropStyle, display: state.open ? 'flex' : 'none' }} role="presentation" onMouseDown={close}>
       <section
         role="dialog"
         aria-modal="true"
@@ -163,7 +163,7 @@ const backdropStyle: React.CSSProperties = {
 
 const dialogStyle: React.CSSProperties = {
   width: 'min(680px, calc(100vw - 48px))', maxHeight: 'min(78vh, 720px)',
-  display: 'flex', flexDirection: 'column', background: '#fff',
+  display: 'flex', flexDirection: 'column', background: '#fff', color: '#172033',
   borderRadius: 16, boxShadow: '0 24px 64px rgba(15,23,42,0.35)',
 }
 

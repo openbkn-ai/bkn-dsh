@@ -32,10 +32,10 @@ export function OpenBknOverlay({ useUi, close, refresh, beginLogin, showSettings
     if (state.open && state.phase === 'idle') void refresh()
   }, [refresh, state.open, state.phase])
 
-  if (!state.open) return null
+  if (!state.open && state.phase === 'idle') return null
 
   return (
-    <div style={backdropStyle} role="presentation" onMouseDown={close}>
+    <div hidden={!state.open} style={{ ...backdropStyle, display: state.open ? 'grid' : 'none' }} role="presentation" onMouseDown={close}>
       <section
         role="dialog"
         aria-modal="true"
@@ -48,14 +48,16 @@ export function OpenBknOverlay({ useUi, close, refresh, beginLogin, showSettings
             <div style={eyebrowStyle}>OPENBKN</div>
             <h2 style={{ margin: '4px 0 0', fontSize: 20 }}>{t('businessKnowledgeNetworks')}</h2>
           </div>
-          <div style={{ display: 'flex', alignItems: 'center', gap: 12 }}>
+          <div style={{ display: 'flex', flexWrap: 'wrap', alignItems: 'center', gap: 12 }}>
+            {state.phase === 'configuration' ? <button type="button" onClick={() => void refresh()} disabled={state.savingConfiguration} style={{ ...secondaryStyle, fontSize: 13 }}>{t('backToNetworks')}</button> : null}
+            {state.phase === 'ready' ? <button type="button" onClick={() => void refresh()} style={{ ...secondaryStyle, fontSize: 13 }}>{t('refreshStatus')}</button> : null}
             <button type="button" onClick={() => void showSettings()} disabled={state.savingConfiguration} style={{ ...secondaryStyle, fontSize: 13 }}>{t('settings')}</button>
             <button type="button" onClick={openDiagnostics} style={{ ...secondaryStyle, fontSize: 13 }}>{t('diagnostics')}</button>
             <button type="button" onClick={close} aria-label={t('close')} style={closeStyle}>×</button>
           </div>
         </header>
         <div style={{ padding: 20 }}>
-          <OverlayBody state={state} beginLogin={beginLogin} saveConfiguration={saveConfiguration} cliSetup={cliSetup} refresh={refresh} openNetwork={openNetwork} />
+          <OverlayBody key={state.contextRevision ?? 0} state={state} beginLogin={beginLogin} saveConfiguration={saveConfiguration} cliSetup={cliSetup} refresh={refresh} openNetwork={openNetwork} />
         </div>
       </section>
     </div>
@@ -75,11 +77,6 @@ function OverlayBody({ state, beginLogin, saveConfiguration, cliSetup, refresh, 
   const [query, setQuery] = useState('')
   const [limit, setLimit] = useState(INITIAL_NETWORK_DIRECTORY_LIMIT)
   const [selectedNetworkId, setSelectedNetworkId] = useState<string | undefined>()
-  useEffect(() => {
-    setQuery('')
-    setLimit(INITIAL_NETWORK_DIRECTORY_LIMIT)
-    setSelectedNetworkId(undefined)
-  }, [state.networks])
   const directory = useMemo(
     () => selectNetworkDirectory(state.networks, query, limit),
     [state.networks, query, limit],
@@ -228,9 +225,9 @@ function displayBaseUrl(auth: OpenBknOverlayState['auth']): string {
 
 const backdropStyle = { pointerEvents: 'auto' as const, position: 'fixed' as const, inset: 0, display: 'grid', placeItems: 'center', background: 'rgb(15 23 42 / 38%)', padding: 20 }
 const dialogStyle = { width: 'min(560px, 100%)', maxHeight: 'min(720px, calc(100vh - 40px))', overflow: 'auto' as const, borderRadius: 16, background: '#fff', boxShadow: '0 24px 70px rgb(15 23 42 / 28%)', color: '#172033' }
-const headerStyle = { display: 'flex', alignItems: 'start', justifyContent: 'space-between', padding: '20px 20px 16px', borderBottom: '1px solid #e6eaf0' }
+const headerStyle = { display: 'flex', flexWrap: 'wrap' as const, gap: 12, alignItems: 'start', justifyContent: 'space-between', padding: '20px 20px 16px', borderBottom: '1px solid #e6eaf0' }
 const eyebrowStyle = { color: '#078b7f', fontSize: 12, fontWeight: 750, letterSpacing: '0.12em' }
-const closeStyle = { border: '1px solid #d9e0ea', borderRadius: 9, width: 34, height: 34, background: '#fff', fontSize: 24, lineHeight: 1, cursor: 'pointer' }
+const closeStyle = { border: '1px solid #d9e0ea', borderRadius: 9, width: 34, height: 34, background: '#fff', color: '#172033', fontSize: 24, lineHeight: 1, cursor: 'pointer' }
 const primaryStyle = { border: 0, borderRadius: 9, background: '#078b7f', color: '#fff', fontWeight: 650, padding: '10px 14px', cursor: 'pointer' }
 const secondaryStyle = { ...primaryStyle, background: '#eef5f5', color: '#087d72' }
 const mutedStyle = { color: '#64748b', fontSize: 14 }

@@ -127,7 +127,7 @@ function registerPanels(ctx: Context, bridge: OpenBknPanelBridge): void {
       controller.open()
     },
   })
-  ctx.effect(() => () => { panel.close(); controller.close() }, 'openbkn panel lifecycle')
+  ctx.effect(() => () => { panel.reset(); controller.reset() }, 'openbkn panel lifecycle')
   ctx.slots.inject('sidebar.footer.action', () => ctx.slots.register({
     name: 'sidebar.footer.action', id: 'openbkn-business-context', order: 100, inject,
   }, localized(OpenBknEntry, ctx.locale)))

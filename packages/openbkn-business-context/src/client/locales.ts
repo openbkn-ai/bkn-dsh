@@ -1,5 +1,13 @@
 /** Plugin-owned UI copy. Platform facts, identifiers and model answers stay verbatim. */
 export const zh = {
+  "backToNetworks": "返回网络目录",
+  "interactionID": "交互 ID",
+  "requestReference": "请求",
+  "traceReference": "追踪",
+  "receiptReference": "回执",
+  "operationReference": "操作",
+  "statusReference": "状态",
+  "operationID": "操作 {id}",
   "toolResultCount": "{p0} · {p1} 项",
   "cLIInstallationVersion": "CLI 安装版本：",
   "cLIInstallationVersionText1": "CLI 安装版本",
@@ -80,7 +88,7 @@ export const zh = {
   "platformNotDisplayed": "平台 · 未显示",
   "platformUnavailable": "平台 · 不可用",
   "platformExecutionFacts": "平台执行事实",
-  "operationStatusDurationAndRequestTraceReceiptReferences": "平台口径的操作状态、耗时与 Request / Trace / Receipt 引用。",
+  "operationStatusDurationAndRequestTraceReceiptReferences": "平台口径的操作状态、耗时与请求 / 追踪 / 回执引用。",
   "noDisplayableOperationFactsWereRecordedForThis": "当前交互未记录可展示的操作事实。",
   "question": "提问",
   "answer": "回答",
@@ -241,6 +249,14 @@ export const zh = {
 export type OpenBknMessageKey = keyof typeof zh
 
 export const en: Record<OpenBknMessageKey, string> = {
+  "backToNetworks": "Back to networks",
+  "interactionID": "Interaction ID",
+  "requestReference": "Request",
+  "traceReference": "Trace",
+  "receiptReference": "Receipt",
+  "operationReference": "Op",
+  "statusReference": "Status",
+  "operationID": "operation {id}",
   "toolResultCount": "{p0} · items: {p1}",
   "cLIInstallationVersion": "CLI installation version:",
   "cLIInstallationVersionText1": "CLI installation version",
@@ -277,7 +293,7 @@ export const en: Record<OpenBknMessageKey, string> = {
   "bindingTheCurrentConversation": "Binding the current conversation…",
   "connectingToOpenBKN": "Connecting to OpenBKN…",
   "signInWithTheLocalOpenBKNCLIThe": "Sign in with the local OpenBKN CLI. The plugin then synchronizes credentials within the Host, connects to Context Loader MCP, and lists the business knowledge networks you can access.",
-  "platformURL": "Platform URL:",
+  "platformURL": "Platform URL: ",
   "signInAndSyncWithOpenBKNCLI": "Sign in and sync with OpenBKN CLI",
   "refreshStatus": "Refresh status",
   "chooseABusinessKnowledgeNetworkToContinueOr": "Choose a business knowledge network to continue or create a conversation in its DSH workspace. Business conversations require",

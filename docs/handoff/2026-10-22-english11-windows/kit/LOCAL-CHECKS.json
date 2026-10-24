@@ -1,0 +1,26 @@
+{
+  "date": "2026-10-22",
+  "timezone": "Asia/Taipei",
+  "executedOn": "macOS arm64",
+  "nodeVersion": "22.22.3",
+  "powershellVersion": "7.6.7",
+  "nodeToolingTests": { "passed": 8, "failed": 0 },
+  "powershellScriptsParsed": 5,
+  "helperSmoke": {
+    "asciiSource": "PASS",
+    "bomFreeJson": "PASS",
+    "environmentRestorationOnFailure": "PASS",
+    "nativeStderrProgress": "PASS",
+    "nativeNonzeroExitRefused": "PASS"
+  },
+  "officialWindowsInstaller": {
+    "completeHttpsDownloadRechecked": true,
+    "bytes": 289313640,
+    "sha256": "d61cd8882f8b8a1251144320493ad27920d15139503eba2465b9579eee720cfc",
+    "authenticode": "PENDING_NATIVE_WINDOWS"
+  },
+  "windowsPowerShell51Execution": "NOT_RUN",
+  "windowsDesktopUiAcceptance": "NOT_RUN",
+  "windowsNpmWebUiAcceptance": "NOT_RUN",
+  "npmLatestMutation": "NOT_PERFORMED"
+}

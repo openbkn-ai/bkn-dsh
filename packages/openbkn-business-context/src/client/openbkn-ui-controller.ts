@@ -26,6 +26,7 @@ export type OpenBknOverlayPhase = 'idle' | 'loading' | 'authentication-required'
 /** Render state for the additive OpenBKN overlay; credentials never enter it. */
 export interface OpenBknOverlayState {
   readonly open: boolean
+  readonly contextRevision?: number
   readonly phase: OpenBknOverlayPhase
   readonly auth?: AuthSnapshot
   readonly networks: readonly BusinessNetworkSummary[]
@@ -49,6 +50,8 @@ export class OpenBknUiController {
   private readonly listeners = new Set<Listener>()
   private revision = 0
   private operation?: AbortController
+  private loginOperation?: UiOperation
+  private contextRevision = 0
 
   constructor(
     private readonly port: OpenBknUiPort,
@@ -66,20 +69,31 @@ export class OpenBknUiController {
   }
 
   open(): void {
-    this.invalidate()
-    this.publish({ open: true, phase: 'idle', networks: [] })
+    this.publish({ ...this.state, open: true })
   }
 
+  /** Dismissing a modal must not cancel an already launched device login. */
   close(): void {
+    if (this.loginOperation !== undefined) {
+      this.publish({ ...this.state, open: false })
+      return
+    }
     this.invalidate()
-    this.publish({ open: false, phase: 'idle', networks: [] })
+    const phase = this.state.phase === 'loading' || this.state.phase === 'binding' || this.state.loadingConfiguration ? 'idle' : this.state.phase
+    this.publish({ ...this.state, open: false, phase, savingConfiguration: false, loadingConfiguration: false })
+  }
+
+  /** Service replacement/unmount is different from user dismissal. */
+  reset(open = false): void {
+    this.invalidate()
+    this.contextRevision++
+    this.publish({ open, phase: 'idle', networks: [] })
   }
 
   /** A business-row reload must not invalidate its independent configuration save. */
   businessChanged(): void {
-    if (!this.state.open || this.state.phase === 'configuration') return
-    this.invalidate()
-    this.publish({ open: true, phase: 'idle', networks: [] })
+    if (this.state.phase === 'configuration') return
+    this.reset(this.state.open)
   }
 
   async refresh(signal?: AbortSignal): Promise<void> {
@@ -161,17 +175,20 @@ export class OpenBknUiController {
   }
 
   async beginLogin(signal?: AbortSignal): Promise<void> {
-    if (!this.state.open) return
+    if (!this.state.open || this.loginOperation !== undefined) return
     const operation = this.start(signal)
+    this.loginOperation = operation
     this.publish({ ...this.state, phase: 'loading', message: undefined })
     try {
       const networks = await this.port.beginLogin(operation.signal)
       if (!this.current(operation)) return
       const auth = await this.port.status(operation.signal)
       if (!this.current(operation)) return
-      this.publish({ open: true, phase: 'ready', auth, networks, ...withConfiguration(this.state.configuration) })
+      this.publish({ open: this.state.open, phase: 'ready', auth, networks, ...withConfiguration(this.state.configuration) })
     } catch (error: unknown) {
       if (this.current(operation)) this.connectionFailed(error, this.state.configuration)
+    } finally {
+      if (this.loginOperation === operation) this.loginOperation = undefined
     }
   }
 
@@ -217,13 +234,13 @@ export class OpenBknUiController {
   private connectionFailed(error: unknown, configuration?: OpenBknConfigurationView, saved = false): void {
     const prefix = saved ? uiMessage('settingsSaved') : ''
     if (isAuthenticationRequiredError(error)) {
-      this.publish({ open: true, phase: 'authentication-required', auth: { kind: 'authentication-required', baseUrl: error.details.baseUrl }, networks: [], ...withConfiguration(configuration), message: joinUiMessages(prefix, authenticationFailureMessage(error)) })
+      this.publish({ open: this.state.open, phase: 'authentication-required', auth: { kind: 'authentication-required', baseUrl: error.details.baseUrl }, networks: [], ...withConfiguration(configuration), message: joinUiMessages(prefix, authenticationFailureMessage(error)) })
       return
     }
     const message = isPlatformUnavailableError(error)
       ? uiMessage('theOpenBKNBusinessKnowledgeNetworkDirectoryIsTemporarily')
       : connectionFailureMessage(error)
-    this.publish({ open: true, phase: 'error', networks: [], ...withConfiguration(configuration), message: joinUiMessages(prefix, message) })
+    this.publish({ open: this.state.open, phase: 'error', networks: [], ...withConfiguration(configuration), message: joinUiMessages(prefix, message) })
   }
 
   private start(signal?: AbortSignal): UiOperation {
@@ -234,17 +251,18 @@ export class OpenBknUiController {
   }
 
   private current(operation: UiOperation): boolean {
-    return this.state.open && this.revision === operation.revision && !operation.signal.aborted
+    return (this.state.open || this.loginOperation === operation) && this.revision === operation.revision && !operation.signal.aborted
   }
 
   private invalidate(): void {
     this.revision += 1
     this.operation?.abort()
     this.operation = undefined
+    this.loginOperation = undefined
   }
 
   private publish(state: OpenBknOverlayState): void {
-    this.state = state
+    this.state = this.contextRevision === 0 ? state : { ...state, contextRevision: this.contextRevision }
     for (const listener of this.listeners) listener()
   }
 }
