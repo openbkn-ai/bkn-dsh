@@ -1,0 +1,23 @@
+{
+  "branch": "handoff/windows-local31-ui-life30-20261024",
+  "kind": "local-development-preacceptance",
+  "ciRun": null,
+  "formalAcceptanceEligible": false,
+  "frozenR3Commit": "fac4db78a1a974192fa13fdbe62063331cf04ec1",
+  "frozenR3KitSha256": "7daaca61691706ef476ce007eb4c49e8a8f538a30dc73764fea6f6a4281308d0",
+  "unchangedDesktopHelperSha256": "0e3466f3da61bd2cac8f263c03573ad03206dea7cf20ac58d8f94e433b4943a7",
+  "lifecycle30": {
+    "version": "0.2.0-rc.2-openbkn.0.2.0-30",
+    "file": "candidate/openbkn-dsh-business-context-0.2.0-rc.2-openbkn.0.2.0-30.tgz",
+    "sha256": "6d95ff7517dbe409875fd398784fe01049ba26d2b97c43fad65c817d3ea18ee9",
+    "bytes": 231075,
+    "fileCount": 82
+  },
+  "ui31": {
+    "version": "0.2.0-rc.2-openbkn.0.2.0-31",
+    "file": "candidate/openbkn-dsh-business-context-0.2.0-rc.2-openbkn.0.2.0-31.tgz",
+    "sha256": "22ba0e17235ccb3c93d585f2811604f5221375ac9e3496e92e6d8c1756196e4a",
+    "bytes": 231535,
+    "fileCount": 82
+  }
+}

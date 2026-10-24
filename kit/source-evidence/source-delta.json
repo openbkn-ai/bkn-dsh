@@ -1,0 +1,27 @@
+{
+  "base": "933b0ab251c75461ece1ada6145a9487e7eb04d1",
+  "includesPreexistingUncommittedSource": true,
+  "changedThisRound": [
+    "packages/openbkn-business-context/src/client/use-dialog-focus.ts",
+    "packages/openbkn-business-context/tests/dialog-focus.test.ts",
+    "packages/openbkn-business-context/package.json",
+    "packages/openbkn-business-context/src/client/OpenBknDiagnostics.tsx",
+    "packages/openbkn-business-context/src/client/OpenBknOverlay.tsx",
+    "packages/openbkn-business-context/src/client/ProvenanceOverlay.tsx",
+    "packages/openbkn-business-context/src/client/locales.ts",
+    "runtime/openbkn-dsh-runtime.manifest.json",
+    "packages/openbkn-business-context/tests/ui-followup.test.ts"
+  ],
+  "sourceFilesSHA256": {
+    "packages/openbkn-business-context/src/client/use-dialog-focus.ts": "8d9908b694848aa998318e9aa3d868cf9dea7e44e7861cde4cba278c3891d9a8",
+    "packages/openbkn-business-context/tests/dialog-focus.test.ts": "894fbc2f619353db72a7871d9cff5d1ae672ff4af6363a7bd4e30fdf65a6df44",
+    "packages/openbkn-business-context/package.json": "0c9ba1526bb3bc091a62d6c3330c09b18a128b1f444b108c23b23e95631028b0",
+    "packages/openbkn-business-context/src/client/OpenBknDiagnostics.tsx": "67f31d478918b5b5c865623a1ce282e18df03847e307dfbf1f3946a54d89159c",
+    "packages/openbkn-business-context/src/client/OpenBknOverlay.tsx": "7fc04aefaee87e378c24ce05ae83a7b969f7def1e1cffc48b5fe4bf25894374b",
+    "packages/openbkn-business-context/src/client/ProvenanceOverlay.tsx": "4ce1ce36b6541eeb8cc950fb8e2d1bbe747f8b6b7bef9ae094bbdc5631af1f60",
+    "packages/openbkn-business-context/src/client/locales.ts": "0f2261899f9f99f606818664f091c4045feaaa1741939fafe931af4367a8f92c",
+    "runtime/openbkn-dsh-runtime.manifest.json": "641e8c8509cebde75671bd175a330e7eed806edf0d54cc61cc6c1489dcb59d52",
+    "packages/openbkn-business-context/tests/ui-followup.test.ts": "0beb440dd379859982a15957db5c49148bdb2d4fdac2a97403ce6b05b88b535a"
+  },
+  "patchSHA256": "b35514ee5f9b40664b9c0dfa681c45673ee3319833d2db840b06d6318303f119"
+}

@@ -1,0 +1,14 @@
+{
+  "checkedAt": "2026-10-24T15:39:30.037916+00:00",
+  "dshMaster": "22ddee3792402c3e70ec5f86a63c3e3e895a2f60",
+  "latestDshRelease": "dsh-v0.2.1-rc.3",
+  "foundryMain": "4d53f24f3c974745ddd6eb9428787eedffa3982e",
+  "formalPlatform": "v0.2.0",
+  "pinsChanged": false,
+  "deployed": false,
+  "foundryDeltaSince49": {
+    "commits": 2,
+    "files": 37,
+    "review": "knowledge_base authorization registry/creator contract and verified multi-batch log archive with migration038; normal list/detail paths documented unchanged. Not deployed, no full new-platform compatibility claim."
+  }
+}

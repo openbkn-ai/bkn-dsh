@@ -1,0 +1,23 @@
+{
+  "kind": "local-development-preacceptance",
+  "version": "0.2.0-rc.2-openbkn.0.2.0-31",
+  "sha256": "22ba0e17235ccb3c93d585f2811604f5221375ac9e3496e92e6d8c1756196e4a",
+  "bytes": 231535,
+  "fileCount": 82,
+  "ciRun": null,
+  "formalAcceptanceEligible": false,
+  "baselineVersion": "0.2.0-rc.2-openbkn.0.2.0-30",
+  "changedFrom30": [
+    "lib/client.js",
+    "lib/types/client/locales.d.ts",
+    "package.json"
+  ],
+  "added": [],
+  "removed": [],
+  "hostJavaScriptUnchanged": true,
+  "remoteFilesUnchanged": true,
+  "file": "candidate/openbkn-dsh-business-context-0.2.0-rc.2-openbkn.0.2.0-31.tgz",
+  "filesManifestSha256": "084b5de11a3a278735e9c24de8426358ce4dad197fe2ad24fba0428687815793",
+  "sourceBaseCommit": "933b0ab251c75461ece1ada6145a9487e7eb04d1",
+  "sourceHasUncommittedChanges": true
+}

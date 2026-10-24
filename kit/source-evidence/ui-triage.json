@@ -1,0 +1,40 @@
+{
+  "checkedAt": "2026-10-24T14:56:49.016412+00:00",
+  "items": [
+    {
+      "item": "reference labels",
+      "status": "FIXED_LOCAL_31",
+      "evidence": "Five plugin-owned Reference labels use locale descriptors; controlled zh/en/zh render preserves original values and one read."
+    },
+    {
+      "item": "brand and primary-action contrast",
+      "status": "FIXED_LOCAL_31",
+      "evidence": "Two brand captions and green primary action now meet4.5 contrast on actual white/green surfaces; regression reproduced old failure."
+    },
+    {
+      "item": "Escape closes native parent",
+      "status": "FIXED_CONTROLLED_BROWSER_LOCAL_31",
+      "evidence": "Real DOM with pinned native useModalLayer, hook effect seams only: old parent-close before child-close; new closes child only. Full native Windows/Host acceptance remains99."
+    },
+    {
+      "item": "passive historical pass/generic nextAction",
+      "status": "CLARIFIED_LOCAL_31",
+      "evidence": "Localized historical-observation notice explains that report collection does not recheck sign-in/connection. Raw JSON/status/age and generic guidance unchanged; no fabricated active health check."
+    },
+    {
+      "item": "CLI absolute path in advanced settings",
+      "status": "TRIAGED_EXPECTED_WITH_EVIDENCE_LIMIT",
+      "evidence": "Configuration reads profile value; opening Advanced performs availability check and may fill a resolved path into the form draft. Saving is explicit, installation requires the explicit action. No global configuration change was found in this code path; historical Windows exact origin not independently established."
+    },
+    {
+      "item": "npm hostForm unknown",
+      "status": "TRIAGED_KEEP_UNKNOWN",
+      "evidence": "Official Desktop can also run plain Node Host, so Node alone cannot prove npm vsDesktop. Keep unknown with explanatory text until an authoritative public signal exists; do not infer from disk paths."
+    },
+    {
+      "item": "success stream cancel/runner/browser",
+      "status": "OPEN_95",
+      "evidence": "Four new focused cases use actual original UI controller; success versus later close/reopen distinguished. No production lifecycle change; actual Windows Job members and cause remain unknown."
+    }
+  ]
+}
