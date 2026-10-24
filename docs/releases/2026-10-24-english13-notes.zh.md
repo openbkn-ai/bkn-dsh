@@ -20,6 +20,7 @@
 - Desktop 浮层仍为模态，切宿主语言需要先关闭浮层，再重开。
 - 当前数据没有覆盖带条数的时间线摘要和非空图选择，相关实时分支继续 BLOCKED；本版不声称新增全量业务或模型 G6 验收。
 - Web 诊断可能无法识别宿主形态或加载版本，原始 null/unknown 保留。
+- 固定 DSH 的 MCP 依赖栈使用 `@modelcontextprotocol/client@2.0.0`，存在上游 [OAuth 签发者绑定](https://github.com/advisories/GHSA-6qxp-vccf-f47h)和[跨源重定向](https://github.com/advisories/GHSA-6prh-2h8m-c8cw)安全提示。SDK 由宿主提供，没有打入插件包；插件使用显式 Bearer 头，没有配置 SDK OAuth provider，但不能据此宣称 HTTP 重定向风险已修复。宿主/SDK 安全更新需单独评审兼容性，不在本次已验收包中静默升级。
 - 自签平台需要将正确签发 CA 配给 Node，并新启动宿主。保留证书校验；设备授权须在平台给定的有效期内完成。Windows 本次 TLS 问题通过修正本机 CA 集合解决，没有为此修改插件或关闭校验。
 - A7 指定的重复 start 事件属于已有交互未结束时的预期守卫拒绝，保留原 error 和 dispatch=unknown。历史未保留的响应、进程环境继续记为未知。
 

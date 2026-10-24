@@ -30,3 +30,10 @@ Original archives, cropped images, historical FAIL/BLOCKED records and human-con
 ## Formal-build gate
 
 The release preparation uses the existing `release-plugin.yml` path with `publish=false`. Compare unpacked path sets and every file's bytes, including package.json, to the accepted CI artifact. A compressed tarball hash alone is not the equality criterion. Before an eventual registry publication, record the formal source/run and all file digests here; after an authorized publication, compare the registry-served package before a separate latest promotion.
+
+## Current read-only preparation checks (2026-10-24)
+
+- Public registry readback: `rc=-11`, `latest=-10`, -13 absent. These are observations, not tag writes.
+- CA-verified live MCP `tools/list`: 25 tools; full schemas identical to the accepted -13 baseline (canonical SHA-256 `a679358f8b9a45948ac9f5a11f1044899922fe32487d887bc10c94c76a995be6`). No tools/call, login, deployment or data mutation was performed.
+- Core retrieval, observability and backend deployments remain on `0.2.0` and ready. An unrelated `agent-operator-integration` deployment reports 0/1, `CreateContainerError`; the cluster was not changed and this is not represented as a healthy full-platform run.
+- Open Dependabot alerts concern `@modelcontextprotocol/client@2.0.0` in the pinned DSH MCP peer stack (high OAuth issuer-binding, medium cross-origin redirects). The plugin tarball contains no MCP SDK implementation and mounts DSH's transport with an explicit bearer header, not an SDK OAuth provider. The HTTP transport path remains relevant to redirect hardening; no exploit or absence of exposure is established by this check. The advisories are retained in the release notes and remain an upstream-risk disposition before any production tag.

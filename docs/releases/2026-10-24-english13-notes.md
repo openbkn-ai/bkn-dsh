@@ -22,6 +22,7 @@ This release includes the accepted -12 modal recovery fixes: dismissing a Deskto
 - Desktop overlays remain modal; close them before changing the Host language and reopen afterward.
 - Available live data did not cover counted timeline summaries or nonempty graph selection; those branches remain BLOCKED. This release does not claim a new full business/model G6 acceptance run.
 - Web diagnostics may lack authoritative Host-form or loaded-version metadata. Original null/unknown values remain unchanged.
+- The pinned DSH MCP peer stack uses `@modelcontextprotocol/client@2.0.0`, with open upstream [OAuth issuer-binding](https://github.com/advisories/GHSA-6qxp-vccf-f47h) and [cross-origin redirect](https://github.com/advisories/GHSA-6prh-2h8m-c8cw) advisories. The SDK is supplied by DSH, not bundled in this plugin. This plugin uses an explicit bearer header rather than an SDK OAuth provider, but HTTP transport redirect exposure is not claimed to be fixed. Host/SDK remediation requires a separate reviewed compatibility change; do not silently update this accepted artifact.
 - Self-signed platforms need the correct signing CA in the Node trust configuration and a fresh Host process. Preserve certificate verification. Complete device authorization within the platform's expiry window.
 - The identified A7 duplicate-start event is an expected guard refusal, with its raw error and runtime dispatch=unknown preserved. Missing historical response/process evidence is not reconstructed.
 
