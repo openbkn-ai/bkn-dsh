@@ -1,0 +1,39 @@
+{
+    "capturedAt":  "2026-10-23T16:07:55.7828533Z",
+    "phase":  "copy13auth",
+    "form":  "desktop",
+    "profile":  "desktop",
+    "dshVersion":  "0.2.0-rc.2",
+    "pluginVersion":  "0.2.0-rc.2-openbkn.0.2.0-13",
+    "nodeVersion":  "v24.21.0",
+    "os":  "Microsoft Windows NT 10.0.19045.0",
+    "powershellVersion":  "5.1.19041.5848",
+    "dshHome":  "C:\\bkn-verify\\english12-desktop\\dsh-home",
+    "dshCli":  "C:\\Users\\kalia\\AppData\\Local\\Programs\\DeepSeek Harness\\resources\\runtime\\cli\\bin\\dsh.cmd",
+    "port":  18411,
+    "processes":  [
+                      {
+                          "pid":  7548,
+                          "executable":  "C:\\Users\\kalia\\AppData\\Local\\Programs\\DeepSeek Harness\\DeepSeek Harness.exe",
+                          "createdAt":  "2026-10-23T16:07:15.4547240Z"
+                      },
+                      {
+                          "pid":  24776,
+                          "executable":  "C:\\Users\\kalia\\AppData\\Local\\Programs\\DeepSeek Harness\\DeepSeek Harness.exe",
+                          "createdAt":  "2026-10-23T16:07:15.8581380Z"
+                      },
+                      {
+                          "pid":  26576,
+                          "executable":  "C:\\Users\\kalia\\AppData\\Local\\Programs\\DeepSeek Harness\\DeepSeek Harness.exe",
+                          "createdAt":  "2026-10-23T16:07:15.9041750Z"
+                      },
+                      {
+                          "pid":  18476,
+                          "executable":  "C:\\Users\\kalia\\AppData\\Local\\Programs\\DeepSeek Harness\\DeepSeek Harness.exe",
+                          "createdAt":  "2026-10-23T16:07:15.9210130Z"
+                      }
+                  ],
+    "dshCliSha256":  "c6c38be7f9f66a7bfb96d5ac9490618f9713df5ffb552cb7e66b831affb20ab9",
+    "packageReceipt":  "package-copy13auth-20261023T160755699Z.json",
+    "uiAcceptance":  "PENDING_MANUAL_REVIEW"
+}

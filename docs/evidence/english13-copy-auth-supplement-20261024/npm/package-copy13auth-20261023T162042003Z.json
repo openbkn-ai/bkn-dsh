@@ -1,0 +1,308 @@
+{
+  "capturedAt": "2026-10-23T16:20:42.066Z",
+  "packageName": "@openbkn/dsh-business-context",
+  "version": "0.2.0-rc.2-openbkn.0.2.0-13",
+  "candidateTgzSha256": "8290a0b89d9af5118b0aeabc09499c5085114047f469fe631835b808f52d3675",
+  "packageRoot": "C:\\bkn-verify\\english12-npm\\dsh-home\\profiles\\web\\node_modules\\@openbkn\\dsh-business-context",
+  "verifiedFiles": 74,
+  "allFilesMatchCandidatePackage": true,
+  "files": [
+    {
+      "path": "LICENSE",
+      "sha256": "c71d239df91726fc519c6eb72d318ec65820627232b2f796219e87dcf35d0ab4"
+    },
+    {
+      "path": "README.md",
+      "sha256": "377f7728e19e094372de11b1d1c7e2ba4ba767ead62dbad5b68bea8795b74759"
+    },
+    {
+      "path": "README.zh.md",
+      "sha256": "bb1e4365ffe005c338d61618ad0d89b515001375210c023154d9217263361436"
+    },
+    {
+      "path": "cordis.patch.yml",
+      "sha256": "3d7d06832b9c335147ed8680da71a0e0b8afb19c80b9ed1d3e7a0e138e72a3cb"
+    },
+    {
+      "path": "lib/business.js",
+      "sha256": "2c8f3711b71c9d4a7c3dafb98492180ce6ec321ed0c7c4be3a0e37b954289cfc"
+    },
+    {
+      "path": "lib/client.js",
+      "sha256": "a8b0afb72283bb5f5d20a4414aa0f4c36240fb8a88cf3eb9635d32d842e80431"
+    },
+    {
+      "path": "lib/diagnostics-observer-vRub4cgb.js",
+      "sha256": "69270547ec90067cc32af9386da6900dafaf558ef303af795ea8b4a9a8a2e4f5"
+    },
+    {
+      "path": "lib/diagnostics.js",
+      "sha256": "4993f1f7538ea58ed2bb1fdca8010d298162977960ae067ead99b542ef491777"
+    },
+    {
+      "path": "lib/index.js",
+      "sha256": "bbed4784d42d49d32cad4889dde1441f12f2556ef828cd27903e9d5c5d8c0b44"
+    },
+    {
+      "path": "lib/typert.host.d.ts",
+      "sha256": "5e2d26ee86d0fe170dac8cd3f5854e67bdea334c57f40a5766ace57b8304c17d"
+    },
+    {
+      "path": "lib/typert.host.js",
+      "sha256": "f4f477ce3fc6d1635a82c61085ae47260ef48acbf63365c47b5cc8fecccdda47"
+    },
+    {
+      "path": "lib/typert.remote-client.d.ts",
+      "sha256": "be94be6d2978e68822767900feee17f9657a9d54508d9f874a2239d729195c7d"
+    },
+    {
+      "path": "lib/typert.remote-client.js",
+      "sha256": "6a9ecb229f255067a12a0b1a8329bea750a2e8e81c8188b4518c516f98f41401"
+    },
+    {
+      "path": "lib/types/auth.d.ts",
+      "sha256": "7230cba18a8c03e2a7c23d907d30f497a078e478cd45a22cddccd097b44fd25d"
+    },
+    {
+      "path": "lib/types/business-context-service.d.ts",
+      "sha256": "248a37b379e5b746700e59ca62e09226f9e2bad69c4df1a5ff378b66d7303f75"
+    },
+    {
+      "path": "lib/types/business-graph-model.d.ts",
+      "sha256": "4a6cc71b686d9ad79923e7206a01fa3d2688de83a8334de5afa18b05833252bf"
+    },
+    {
+      "path": "lib/types/business-network-catalog.d.ts",
+      "sha256": "a76067557bb935f31eea0d81370f398fa7b979197c64055a8db7808d48bcc07a"
+    },
+    {
+      "path": "lib/types/business.d.ts",
+      "sha256": "7a6daaa57cf72f2584a10e4b05a5b52eeea84d9b7c580c1910210ed28915d56f"
+    },
+    {
+      "path": "lib/types/cli-setup.d.ts",
+      "sha256": "59927842635cdbdef389eb0733eb02ae7c4c14adc8586882ba3ec731c4d361d7"
+    },
+    {
+      "path": "lib/types/client/BoundNetworkBadge.d.ts",
+      "sha256": "87028f24515ac814f7ae0aa90f4bc3d7784031fdeb1bbe56bcb4b95ca2e8de1a"
+    },
+    {
+      "path": "lib/types/client/CliSetupControl.d.ts",
+      "sha256": "3b85229e1dd0284b92ec7c88b5e5fb555eaeb4cd87bf672ca21acfe73ce9a580"
+    },
+    {
+      "path": "lib/types/client/OpenBknContextToolView.d.ts",
+      "sha256": "07ee9643f7d0e56a8281081df56a01350a10587a35d8ffb52fc8abc0cf831275"
+    },
+    {
+      "path": "lib/types/client/OpenBknDiagnostics.d.ts",
+      "sha256": "cee3ea920e607993e5de752355a226bfd06d58db38f120a83d6212580b21df7c"
+    },
+    {
+      "path": "lib/types/client/OpenBknEntry.d.ts",
+      "sha256": "f6f306c7e19edfd5dd937ffc588d91427a0b0ca1b60405dbacb5537973993575"
+    },
+    {
+      "path": "lib/types/client/OpenBknOverlay.d.ts",
+      "sha256": "c9fe391f78b66a53afce8c2b898d9f63bfdf60403f50720f60fb1b50fe69fff6"
+    },
+    {
+      "path": "lib/types/client/ProvenanceOverlay.d.ts",
+      "sha256": "ac8adf9276cede00167f436aec9bc7989781c9b80db04bf2a9a15546a3ff190b"
+    },
+    {
+      "path": "lib/types/client/SuggestionDock.d.ts",
+      "sha256": "bd1f92b4ef748a7469c3d2539282f820e7edad92a3438d575d3d60eb72811c14"
+    },
+    {
+      "path": "lib/types/client/TurnProvenanceActions.d.ts",
+      "sha256": "e5545baac9fd979c28b30bcfde30cd0d9b9c0dacec7fc3ba924d17761a703b83"
+    },
+    {
+      "path": "lib/types/client/cli-setup-controller.d.ts",
+      "sha256": "07f28321145b926426752cf1c1260363d17b54d3fb5d416c634f807458178f1f"
+    },
+    {
+      "path": "lib/types/client/diagnostics-controller.d.ts",
+      "sha256": "57b5c22e7a7fd5d72d1133340d4af56035df61732061e47ff1b8ccfa75bbc0d4"
+    },
+    {
+      "path": "lib/types/client/diagnostics-copy.d.ts",
+      "sha256": "05fc88d509a544350f3f7d14a99057c0ade3cb3ed8b6089180994b7cf3be4040"
+    },
+    {
+      "path": "lib/types/client/diagnostics-export.d.ts",
+      "sha256": "5fc411469408787568bdc4976bc257b4473662a916b931d87ebb84264b12a403"
+    },
+    {
+      "path": "lib/types/client/diagnostics-target.d.ts",
+      "sha256": "3821cd03ceb86213497c9c5a81eafa291d05d6ff5455dbc419a6fe5646c138d2"
+    },
+    {
+      "path": "lib/types/client/index.d.ts",
+      "sha256": "8103984740bfd8e37abecec5dbb2cae4cea226fa28c8aa8498b6d90d0ed33729"
+    },
+    {
+      "path": "lib/types/client/locale.d.ts",
+      "sha256": "f2926a9efa829ef7fefaccdbc81b371e79068cdbc30312618bd125d7960ea1fa"
+    },
+    {
+      "path": "lib/types/client/locales.d.ts",
+      "sha256": "c529a802ea74cdb0a2205b812a391323121ea2af687e55a620afac3b18167e46"
+    },
+    {
+      "path": "lib/types/client/messages.d.ts",
+      "sha256": "e0e38d1c256ee097e67c8dac668f1fe26cba484c33d98c359be4bc8f50b4dd64"
+    },
+    {
+      "path": "lib/types/client/network-directory.d.ts",
+      "sha256": "10bfbab117331d6970c4dd7a386eea47349e7a394661645217c749679d30ab80"
+    },
+    {
+      "path": "lib/types/client/openbkn-panel-bridge.d.ts",
+      "sha256": "fac76999d6056491549658dec0ee2db5f8059be3f7a8f8f1ce44df55e56ef565"
+    },
+    {
+      "path": "lib/types/client/openbkn-ui-controller.d.ts",
+      "sha256": "8d4442c289ba9b6ab74551cdfbd28d79f7ada0eea841634666a672fdd73f9d76"
+    },
+    {
+      "path": "lib/types/client/suggestion-dock-controller.d.ts",
+      "sha256": "0e612bc5beb58e1091de1362ef2f29bf7df426b8b18cfe7d4ae866110ebd9ced"
+    },
+    {
+      "path": "lib/types/client/turn-provenance-controller.d.ts",
+      "sha256": "eb633affb0bf66242ee1ff3256a14fa1a7c96f380a8f39769a12e514ab6e749b"
+    },
+    {
+      "path": "lib/types/config.d.ts",
+      "sha256": "b838d0739e10b69af746b3dda1868697daa7fd39d9208a78db07a77d97d618a4"
+    },
+    {
+      "path": "lib/types/configuration-service.d.ts",
+      "sha256": "8d3581159e0af0975154f16c0fcc95471b64083445000c6c4ace213b113f80ba"
+    },
+    {
+      "path": "lib/types/diagnostics-contract.d.ts",
+      "sha256": "08dda8327e54a4158e47e84fefe9baf4c1f085d43244a3b2809b0fe79d0dbf6b"
+    },
+    {
+      "path": "lib/types/diagnostics-host-adapter.d.ts",
+      "sha256": "6b2f6c4b194fc3f909942f836580cdbae0b551d49682f1519ea7c1e21262aee9"
+    },
+    {
+      "path": "lib/types/diagnostics-observer.d.ts",
+      "sha256": "ae7744ca90fe14a30d0ad7e11ba322a5ee47b10c81a15db9eec2cee70488fe72"
+    },
+    {
+      "path": "lib/types/diagnostics-service.d.ts",
+      "sha256": "314fb2708f38ddab1277bc19bc2f2e239e85279d527986be421787caae74bca6"
+    },
+    {
+      "path": "lib/types/diagnostics.d.ts",
+      "sha256": "e3a8bc8585993374eb0772aeefa207e5868c69780e1f2880b3d14db385cb3373"
+    },
+    {
+      "path": "lib/types/dsh-session-binding.d.ts",
+      "sha256": "7314da6ebbe8557425e6adb77dc6880d027454ad629a5507bffc9d81fa0eeb68"
+    },
+    {
+      "path": "lib/types/dsh-session-provenance.d.ts",
+      "sha256": "edf7040012d1750f0f6a00ea0572df2833e97f3da5008de89c15aab904c38b85"
+    },
+    {
+      "path": "lib/types/index.d.ts",
+      "sha256": "2a842cd366b800b8c50f86a0e29024616ae8985172553c83e2b2d001c2e02478"
+    },
+    {
+      "path": "lib/types/interaction-lifecycle.d.ts",
+      "sha256": "05fa66811bcab922d46653e502e42aa8fd10de53aa6f17c0a60fe0a7d3cf4ff8"
+    },
+    {
+      "path": "lib/types/interaction-references.d.ts",
+      "sha256": "bef249332959baa3f77b8d5f61ab1d4112a91d474fccb8dda7a48b64cd7aeda0"
+    },
+    {
+      "path": "lib/types/managed-session-policy.d.ts",
+      "sha256": "99ce1b9500b077c737bf668160d02328dc7dc925073094cba96aab7d6f2ee163"
+    },
+    {
+      "path": "lib/types/native-mcp-provenance.d.ts",
+      "sha256": "e99173a97b60c5f769261b8d80469f345aa19b90a27699f4e6432dfcc3ffe218"
+    },
+    {
+      "path": "lib/types/network-capability-profile.d.ts",
+      "sha256": "29ffc80f37962baffbaf172d8674fa570365a8ceec8be409fa52aec7fd550272"
+    },
+    {
+      "path": "lib/types/openbkn-cli-subprocess.d.ts",
+      "sha256": "1c9699d90f4b48c1c87accea09f601ad3b3061fd29bf211fc0c6fb7e88ce3dce"
+    },
+    {
+      "path": "lib/types/openbkn-mcp-manager.d.ts",
+      "sha256": "261b2911b68584fb0e23d731934ad746e4fcc7b893c153395cc6d35626611e89"
+    },
+    {
+      "path": "lib/types/platform-reader.d.ts",
+      "sha256": "57fa003f54fe1c7bd4590a2cffb62850ece2ae5101754550f7867c1ff98914f6"
+    },
+    {
+      "path": "lib/types/provenance-handle.d.ts",
+      "sha256": "a5f9f84828bf5f6f3918f0c58697e390127c0cb13eb548c3549b980ea5ce4e52"
+    },
+    {
+      "path": "lib/types/provenance-view.d.ts",
+      "sha256": "bed493bf5672501a5198a0ca3cfdd49b3058765f219eee181bd614b640c4e16a"
+    },
+    {
+      "path": "lib/types/scoped-business-context.d.ts",
+      "sha256": "da9cf2a7355e910ca6fb2f78f6a3d2864ebfc67f33b91273ec54f515df4cb70a"
+    },
+    {
+      "path": "lib/types/session-binding-store.d.ts",
+      "sha256": "83904ea6070f4c5f8dffd1699ad2d15b0d98d26486f4de6f97c2195034d144c0"
+    },
+    {
+      "path": "lib/types/session-binding.d.ts",
+      "sha256": "f25525d56b82bee53a1f9797cb918d27c08f6a91b25978cf828b1a068a8388fc"
+    },
+    {
+      "path": "lib/types/suggested-prompts.d.ts",
+      "sha256": "8d9e3f08022253cda24fe783f9a9f55eb907cd539fb5228c1925599ba9d2b7fa"
+    },
+    {
+      "path": "lib/types/timeline-fold.d.ts",
+      "sha256": "76c2db2de38642a8f58a93148b29777ed70c6929b000d6af2e6663bf465e504d"
+    },
+    {
+      "path": "lib/types/tool-result-message.d.ts",
+      "sha256": "6e55da8a63bf08a9ad2011cb4385d0668c059b36bfa79130e046b6951de4ccf4"
+    },
+    {
+      "path": "lib/types/trailing-slashes.d.ts",
+      "sha256": "c001a16c2de58f21b1ef49e6e8d473545b4ea40239d16c48cc3da64751127742"
+    },
+    {
+      "path": "lib/types/turn-provenance.d.ts",
+      "sha256": "7cd5cb900a8516e880eb66a30936e8b7473d2d24221402d4f4f21e54a414c4c1"
+    },
+    {
+      "path": "lib/types/turn-timeline.d.ts",
+      "sha256": "eb90b0871add78ba00b08ea743329c3a40c609c0a4e1ac972b3867adf08fb937"
+    },
+    {
+      "path": "lib/types/types.d.ts",
+      "sha256": "331d811bfb12e144d452ebc47ddd99b674a073031a42eac43c24b3de42810a83"
+    },
+    {
+      "path": "lib/types/workspace-binding-registry.d.ts",
+      "sha256": "56499a16199296f15fa6b088924b2d21d75356a8f4c931af60c83b81ead81d96"
+    },
+    {
+      "path": "package.json",
+      "sha256": "860f190d2aad878130cb495a46f136a106854e962654a9987fa3d51d828914b6"
+    }
+  ],
+  "uiAcceptance": "PENDING_MANUAL_REVIEW"
+}

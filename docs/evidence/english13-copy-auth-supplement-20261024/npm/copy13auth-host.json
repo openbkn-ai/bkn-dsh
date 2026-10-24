@@ -1,0 +1,24 @@
+{
+    "capturedAt":  "2026-10-23T16:20:42.0783506Z",
+    "phase":  "copy13auth",
+    "form":  "npm",
+    "profile":  "web",
+    "dshVersion":  "0.2.0-rc.2",
+    "pluginVersion":  "0.2.0-rc.2-openbkn.0.2.0-13",
+    "nodeVersion":  "v24.21.0",
+    "os":  "Microsoft Windows NT 10.0.19045.0",
+    "powershellVersion":  "5.1.19041.5848",
+    "dshHome":  "C:\\bkn-verify\\english12-npm\\dsh-home",
+    "dshCli":  "C:\\bkn-verify\\english12-npm\\tools\\node_modules\\.bin\\dsh.cmd",
+    "port":  18411,
+    "processes":  [
+                      {
+                          "pid":  25676,
+                          "executable":  "C:\\Users\\kalia\\scoop\\apps\\nodejs-lts\\current\\node.exe",
+                          "createdAt":  "2026-10-23T16:20:08.2792800Z"
+                      }
+                  ],
+    "dshCliSha256":  "5fb91401a66fc3873a920474696eaf03044158acfa13bc149a5b08d7441f493d",
+    "packageReceipt":  "package-copy13auth-20261023T162042003Z.json",
+    "uiAcceptance":  "PENDING_MANUAL_REVIEW"
+}
