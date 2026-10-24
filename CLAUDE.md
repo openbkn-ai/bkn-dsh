@@ -6,6 +6,10 @@ bkn-dsh = OpenBKN business-context plugin for DeepSeek Harness (DSH). Plugin sou
 
 Functional scope follows the **Plugin functional boundary** in `AGENTS.md`: access governance, integration, diagnostics and provenance. Preserve native model output; factual answer checks belong in independent evaluations.
 
+## Planned 0.2.1 work and agent takeover
+
+The saved entry point is [docs/plans/0.2.1/README.md](docs/plans/0.2.1/README.md), with scope/analysis, source paths, task dependencies and verification boundaries. GitHub issue #92 is the overall plan; #93 is its prerequisite native-provenance contract/sample check. Localization and login-state work can proceed independently. These are planning records, not implementation or acceptance results, and do not by themselves authorize development or publication. Read current issue decisions and check the actual checkout before taking over.
+
 ## Commands
 
 Order matters: the plugin build imports `@deepseek-ai/dsh-typert-generator/tsdown`, whose `lib/` only exists after the pinned DSH source is built. `.github/workflows/compatible-runtime.yml` is the reference sequence.
