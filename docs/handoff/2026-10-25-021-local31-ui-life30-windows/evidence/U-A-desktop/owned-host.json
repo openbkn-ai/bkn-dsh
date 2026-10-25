@@ -1,0 +1,16 @@
+﻿{
+    "pid":  21980,
+    "createdUtc":  "2026-10-24T16:00:11.3523510+00:00",
+    "exe":  "C:\\bkn-verify\\021-local30-r2-run-20261023-133254\\desktop-x\\old\\app\\DeepSeek Harness.exe",
+    "hostVersion":  "0.2.0-rc.2",
+    "hostForm":  "desktop",
+    "initializationOnly":  false,
+    "listeners":  [
+                      {
+                          "port":  19387,
+                          "ownerPid":  25940,
+                          "address":  "127.0.0.1"
+                      }
+                  ],
+    "taskOnly":  true
+}

@@ -1,0 +1,15 @@
+{
+  "home": "C:/bkn-verify/021-local31-ui-life30-run-20261024-235413/ui31-home-A",
+  "matchedCount": 9,
+  "changed": [
+    "profiles/desktop/package.json",
+    "profiles/desktop/pnpm-lock.yaml"
+  ],
+  "installArtifacts": [
+    "profiles/desktop/.plugin-manager/logs/operation-CGEHpH/pnpm.log"
+  ],
+  "missing": 0,
+  "extra": 0,
+  "summary": "non-node_modules files unchanged except allowed profile manifest files (package.json, pnpm-lock.yaml) and the install operation log under .plugin-manager/logs (disclosed install byproduct)",
+  "verdict": "PASS"
+}

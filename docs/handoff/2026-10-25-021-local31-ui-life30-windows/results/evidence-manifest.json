@@ -1,0 +1,81 @@
+{
+  "run": "021-local31-ui-life30-20261024-235413",
+  "generatedUtc": "2026-10-25T00:40:00Z",
+  "fixedInputs": {
+    "branch": "handoff/windows-local31-ui-life30-20261024",
+    "commit": "d20a266fa550dd854c9bd7d30bd04c088de9bbfe",
+    "checkout": "C:\\bkn-verify\\021-local31-ui-life30-20261024-235238",
+    "kitFilesSha256": "61bace60c424eade7904ab1ed592cd5a0a7e1b332a0b768215a8eecba1298996",
+    "ui31TgzSha256": "22ba0e17235ccb3c93d585f2811604f5221375ac9e3496e92e6d8c1756196e4a",
+    "lifecycle30TgzSha256": "6d95ff7517dbe409875fd398784fe01049ba26d2b97c43fad65c817d3ea18ee9",
+    "taskNode": "C:\\bkn-verify\\021-local30-r2-run-20261023-133254\\tools\\node-v24.19.0-win-x64\\node.exe (v24.19.0)"
+  },
+  "kind": "local-development-preacceptance",
+  "ciRun": null,
+  "formalAcceptanceEligible": false,
+  "privateFiles": {
+    "note": "contain machine paths / task config names / logs; never upload",
+    "evidence/E00-A30-closure-stdout-private.txt": "a8b93901ea55fbca27a980bb863392e304236a962b1b7fa71747b568472757de",
+    "evidence/E00-A30-closure-stderr-private.txt": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "evidence/E02-A-auth-status-private.txt": "da90eceeb184746ec5e17d1a43d13cda02afb390182537ab943dddebbd079dcb",
+    "evidence/copy-private-A.json": "05010f8b1e72282a20980bf4adea22d0029552a3d8c9e090b1c22ca0a044a479",
+    "evidence/copy-private-B.json": "4974b7fb5475d345af802189b81d4baa0480db54777d269a71a1b584590e279d",
+    "evidence/install-A-private.log": "8dac37aeb6469ee3b36bbecd857eda6ec0edb2bd29b05b98b0d5f5a5cd5a843c",
+    "evidence/install-B-private.log": "bbe1b0f6ec710d21fc168391736a5c89d25151477898c27490deadcd4dc5d59a",
+    "evidence/U-A-desktop/closure-before-private.txt": "bf36ec9ab03cc7faa1e652780c9f573f78d451d28897968e4ea7f8f222ffbe40",
+    "evidence/U-A-desktop/closure-before-stderr-private.txt": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "evidence/U-A-desktop/desktop-stdout-private.txt": "e76c7d671e73128cef7fef9851859a285c1f03f2fff8bf22edf508ca8904b46a",
+    "evidence/U-A-desktop/desktop-stderr-private.txt": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "evidence/U-B-desktop/closure-before-private.txt": "3dc8f8bb78e0780837130da94cf5e83f35f8c3b74a899fe11be7927576e95944",
+    "evidence/U-B-desktop/closure-before-stderr-private.txt": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "evidence/U-B-desktop/desktop-stdout-private.txt": "b8c18afc421bfa33b38a8752a1e7ee63e6b4071848d03a1e4985b932c431a644",
+    "evidence/U-B-desktop/desktop-stderr-private.txt": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+  },
+  "publicEvidence": {
+    "evidence/E00-ab-identity.txt": "8768f15c981be62e99ac7c313e95636dba6c9752337b20647e133e601303eabc",
+    "evidence/E01-post-install-A.json": "b3806ed8f83ff0477cae4b57a407ee4b88907078a016ca125f276fef16b0063a",
+    "evidence/E01-post-install-B.json": "82d0a5fa4bf2f9bfef3eebc0b9d4e4abbbf3cf3815d2707deeb40181d1e5fe6a",
+    "evidence/U-A-desktop/owned-host.json": "429bfaf7ab2a12a544dada82b9a09d6c45d82ec365815cbbd4b13b7fdf5e8f72",
+    "evidence/U-B-desktop/owned-host.json": "cb989ab87002620fd495b75093e888b059877c4c86c3edf416be150afedae236",
+    "evidence/U-B-launch.txt": "49c580dd8b5de97fc70a03de311734a39a1ebe7017b4051348479afe12cc7ed1",
+    "results/verify-handoff.json": "671d688078773c2e71bec2090b16e013df6e2cc798a57eb81b4384afee44dd83",
+    "results/u3-contrast-sampling.json": "f9735185ce4bb7a577e91ae654b504016ba64a0746bf76a18276965d9b6f8814"
+  },
+  "privateScreenshots": {
+    "evidence/U2-A-escape1-after.png": "e1ee6e78365581333ba70882a126c54ce4dad669f0a5f1101bd1a8c2d7c2080a",
+    "evidence/U2-A-escape2-after-focus-inside.png": "ab350f0ef60c62179dedbb37405c544ba057a0992e10200de430bf006a670841",
+    "evidence/U2-A-escape3-from-settings.png": "3dc92228a18bc254113ae3c85375612123b9c39d9fb7f60a823672c6c248ad4c",
+    "evidence/U2-A-reopen-fresh.png": "c1ff4dea492b3c8e2791683a4f256fcc821a5fbaeac4b20bf3dd30ce41f5077d",
+    "evidence/U2-A-tab0-reopened.png": "41ef66da58221fbde72a39c575511bd4becea07b28a7fcd04263575cdd572292",
+    "evidence/U2-A-tab6-wrap.png": "85ec0f5766b088749aafa1fbbb465416698b0bbcd927d27ae3665c9ad0ad8adb",
+    "evidence/U2-A-shifttab-wrap-last.png": "7cb0eee04e3ccda9cc64c1aeb1a4adc4c5dc0d0b43b818c3b27569a20a46cda9",
+    "evidence/U2-A-escape4-from-refresh-focus.png": "3dc92228a18bc254113ae3c85375612123b9c39d9fb7f60a823672c6c248ad4c",
+    "evidence/U2-A-escape5-diagnostics-close.png": "3dc92228a18bc254113ae3c85375612123b9c39d9fb7f60a823672c6c248ad4c",
+    "evidence/U2-A-nested-select-open.png": "9ab37b20011424df04426b4a41acc8410ffaffea662814a5571b7a4773fdc9dd",
+    "evidence/U2-A-nested-select-escape-once.png": "93abe4e5aba312f880311a74e539bdf0791eb4a97230572fe73c9f2d6fd5777b",
+    "evidence/U2-A-advanced-expand2.png": "230c7d37999af8342ae931003064b7ea5d2d8e2462ecbf8c94624d30222ea6db",
+    "evidence/U4-A-settings-view.png": "fcaec7b8bfd6942e5345d1753ba141398f014415978179f4b528d8cbf9384865",
+    "evidence/U4-A-diagnostics-view.png": "9e0d65552fd50b8aaa2d04216940d5aa3cc8a7b41820ab6757ad7607b529c75e",
+    "evidence/U-B-overlay-open.png": "6e92a362fb7a4bd9732fd4b88821546c206316aea2475b5f7b0bab37f238ab31",
+    "evidence/U-B-escape1.png": "92b8938107a9cabd263c217de64252cbd9a0f710336d3093222fedfe5c64fb74",
+    "evidence/U-B-tab6.png": "6df5e436fd0a08b85449ab5b58f79b416bc1069ccc9c3de1e58a6e26c6bfcb73",
+    "evidence/U-B-shifttab.png": "f0e96b98d213d84da29d2d5392243456c3da2adfd625a78d03e60c46581ec47e",
+    "evidence/U-B-shifttab2.png": "a8aa9401d29b327eab058ff292693dfa8e5bcf2589c37621b6e9b4f050c52e4a",
+    "evidence/U-B-escape2.png": "352b2e23f034ccad6e456cee0b960dee76657561f1a07db0c55bc608b329f49f",
+    "evidence/U-B-escape3-diagnostics-close.png": "352b2e23f034ccad6e456cee0b960dee76657561f1a07db0c55bc608b329f49f",
+    "evidence/U-B-diagnostics.png": "12666eeea2d8f7372719d7f2ab3d05ea71e31fc1550fa8d3f71105f85e6a0881",
+    "evidence/P-A-app-menu-open.png": "45c01d124f044f4551ef28e4669350e780757749f034dcf382d8a3dc33dadcf8",
+    "evidence/P-B-before-exit2.png": "8ac046ffe529b09e2fd01f97a499e898dd012fac963e31ed21dd2a95c7bf9a07"
+  },
+  "ownedLaunches": [
+    { "role": "A-copy", "pid": 21980, "createdUtc": "2026-10-24T16:00:11.3523510Z", "exe": "old Desktop 0.2.0-rc.2", "listener": "127.0.0.1:19387 (ownerPid 25940)", "exit": "menu 应用→退出; processes 0; port released" },
+    { "role": "B-copy", "pid": 26860, "createdUtc": "2026-10-24T16:23:05.3566640Z", "exe": "new Desktop 0.2.1-rc.2", "listener": "127.0.0.1:51811 (ownerPid 6584)", "exit": "menu 应用→退出; processes 0; port released" }
+  ],
+  "notRunOrBlocked": {
+    "L0": "BLOCKED - awaiting user confirmation of current daily Chrome window/root identity",
+    "L1-L3": "NOT_RUN - depend on L0",
+    "L4": "UNKNOWN/BLOCKED - no reliable read-only Job membership entry; no new probes implemented",
+    "U1": "BLOCKED - login-and-sync always requires browser authorization even with valid CLI token; login canceled before any browser window opened; no login authorized this round",
+    "U2-provenance": "NOT_RUN - no existing conversation with provenance records in copies; no business data created"
+  }
+}
