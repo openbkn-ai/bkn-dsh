@@ -1,0 +1,47 @@
+{"ev":"start","t":"2026-10-25T05:54:22.7820241Z","root":3236}
+{"ev":"appear","t":"2026-10-25T05:54:22.9797290Z","pid":3236,"name":"DeepSeek Harness.exe","created":"2026-10-25T05:50:44.9783430+00:00","descOfRoot":true,"newBrowser":false}
+{"ev":"appear","t":"2026-10-25T05:54:22.9797290Z","pid":23848,"name":"DeepSeek Harness.exe","created":"2026-10-25T05:50:45.1428620+00:00","descOfRoot":true,"newBrowser":false}
+{"ev":"appear","t":"2026-10-25T05:54:22.9797290Z","pid":13900,"name":"DeepSeek Harness.exe","created":"2026-10-25T05:50:45.1448790+00:00","descOfRoot":true,"newBrowser":false}
+{"ev":"appear","t":"2026-10-25T05:54:22.9797290Z","pid":26412,"name":"DeepSeek Harness.exe","created":"2026-10-25T05:50:45.1520700+00:00","descOfRoot":true,"newBrowser":false}
+{"ev":"appear","t":"2026-10-25T05:54:22.9797290Z","pid":22324,"name":"DeepSeek Harness.exe","created":"2026-10-25T05:50:45.3010150+00:00","descOfRoot":true,"newBrowser":false}
+{"childCount":12,"t":"2026-10-25T05:54:22.9797290Z","ev":"daily-root","alive":true,"pid":12416}
+{"ev":"appear","t":"2026-10-25T05:54:23.4260733Z","pid":12184,"name":"DeepSeek Harness.exe","created":"2026-10-25T05:54:23.1645630+00:00","descOfRoot":true,"newBrowser":false}
+{"ev":"appear","t":"2026-10-25T05:54:51.6728071Z","pid":29456,"name":"DeepSeek Harness.exe","created":"2026-10-25T05:54:51.3691170+00:00","descOfRoot":true,"newBrowser":false}
+{"ev":"appear","t":"2026-10-25T05:54:51.6728071Z","pid":5396,"name":"cmd.exe","created":"2026-10-25T05:54:51.4407630+00:00","descOfRoot":true,"newBrowser":false}
+{"ev":"appear","t":"2026-10-25T05:54:51.6728071Z","pid":9644,"name":"conhost.exe","created":"2026-10-25T05:54:51.4425010+00:00","descOfRoot":true,"newBrowser":false}
+{"ev":"appear","t":"2026-10-25T05:54:51.6728071Z","pid":29024,"name":"node.exe","created":"2026-10-25T05:54:51.4745270+00:00","descOfRoot":true,"newBrowser":false}
+{"ev":"appear","t":"2026-10-25T05:54:52.0762583Z","pid":24524,"name":"chrome.exe","created":"2026-10-25T05:54:52.0819750+00:00","descOfRoot":false,"newBrowser":true}
+{"ev":"appear","t":"2026-10-25T05:54:52.0762583Z","pid":27944,"name":"chrome.exe","created":"2026-10-25T05:54:52.0977250+00:00","descOfRoot":false,"newBrowser":true}
+{"ev":"appear","t":"2026-10-25T05:54:52.0762583Z","pid":20872,"name":"chrome.exe","created":"2026-10-25T05:54:52.0989670+00:00","descOfRoot":false,"newBrowser":true}
+{"ev":"appear","t":"2026-10-25T05:54:52.4867099Z","pid":27332,"name":"chrome.exe","created":"2026-10-25T05:54:52.3974890+00:00","descOfRoot":false,"newBrowser":true}
+{"ev":"gone","t":"2026-10-25T05:55:22.8311032Z","pid":27332}
+{"ev":"gone","t":"2026-10-25T05:55:25.2076521Z","pid":27944}
+{"ev":"gone","t":"2026-10-25T05:55:28.7715496Z","pid":20872}
+{"ev":"appear","t":"2026-10-25T05:56:31.1085176Z","pid":28528,"name":"chrome.exe","created":"2026-10-25T05:56:30.9852850+00:00","descOfRoot":false,"newBrowser":true}
+{"ev":"gone","t":"2026-10-25T05:56:51.3622324Z","pid":29024}
+{"ev":"gone","t":"2026-10-25T05:56:51.3622324Z","pid":9644}
+{"ev":"gone","t":"2026-10-25T05:56:51.3622324Z","pid":5396}
+{"ev":"gone","t":"2026-10-25T05:56:51.7578599Z","pid":29456}
+{"ev":"appear","t":"2026-10-25T05:57:11.4017069Z","pid":13076,"name":"chrome.exe","created":"2026-10-25T05:57:11.2826750+00:00","descOfRoot":false,"newBrowser":true}
+{"ev":"appear","t":"2026-10-25T05:57:11.4017069Z","pid":8584,"name":"chrome.exe","created":"2026-10-25T05:57:11.2843730+00:00","descOfRoot":false,"newBrowser":true}
+{"ev":"appear","t":"2026-10-25T05:57:11.4017069Z","pid":10536,"name":"chrome.exe","created":"2026-10-25T05:57:11.3414700+00:00","descOfRoot":false,"newBrowser":true}
+{"ev":"gone","t":"2026-10-25T05:58:05.3092729Z","pid":10536}
+{"ev":"gone","t":"2026-10-25T05:58:05.3092729Z","pid":8584}
+{"ev":"appear","t":"2026-10-25T05:58:07.6525682Z","pid":26684,"name":"DeepSeek Harness.exe","created":"2026-10-25T05:58:07.5831410+00:00","descOfRoot":true,"newBrowser":false}
+{"ev":"appear","t":"2026-10-25T05:58:07.6525682Z","pid":28388,"name":"cmd.exe","created":"2026-10-25T05:58:07.6548130+00:00","descOfRoot":true,"newBrowser":false}
+{"ev":"appear","t":"2026-10-25T05:58:07.6525682Z","pid":28532,"name":"conhost.exe","created":"2026-10-25T05:58:07.6564560+00:00","descOfRoot":true,"newBrowser":false}
+{"ev":"gone","t":"2026-10-25T05:58:08.0583206Z","pid":26684}
+{"ev":"gone","t":"2026-10-25T05:58:08.0583206Z","pid":28532}
+{"ev":"gone","t":"2026-10-25T05:58:08.0583206Z","pid":28388}
+{"ev":"gone","t":"2026-10-25T05:58:08.0583206Z","pid":13076}
+{"ev":"appear","t":"2026-10-25T05:58:22.2082038Z","pid":9696,"name":"chrome.exe","created":"2026-10-25T05:58:22.1213440+00:00","descOfRoot":false,"newBrowser":true}
+{"ev":"gone","t":"2026-10-25T05:58:52.5626660Z","pid":9696}
+{"ev":"appear","t":"2026-10-25T06:00:31.4170068Z","pid":28184,"name":"chrome.exe","created":"2026-10-25T06:00:31.2527140+00:00","descOfRoot":false,"newBrowser":true}
+{"ev":"appear","t":"2026-10-25T06:00:33.0030557Z","pid":23904,"name":"chrome.exe","created":"2026-10-25T06:00:32.8892110+00:00","descOfRoot":false,"newBrowser":true}
+{"ev":"appear","t":"2026-10-25T06:00:36.1461946Z","pid":28380,"name":"chrome.exe","created":"2026-10-25T06:00:35.9285250+00:00","descOfRoot":false,"newBrowser":true}
+{"ev":"appear","t":"2026-10-25T06:00:36.1461946Z","pid":8376,"name":"chrome.exe","created":"2026-10-25T06:00:35.9297230+00:00","descOfRoot":false,"newBrowser":true}
+{"ev":"gone","t":"2026-10-25T06:01:05.9570048Z","pid":8376}
+{"ev":"gone","t":"2026-10-25T06:01:05.9570048Z","pid":28184}
+{"ev":"gone","t":"2026-10-25T06:01:06.3482095Z","pid":28380}
+{"ev":"gone","t":"2026-10-25T06:01:07.1282710Z","pid":23904}
+{"ev":"end","t":"2026-10-25T06:01:27.1622173Z"}

@@ -1,0 +1,8 @@
+2026-10-25T06:49:14.9995137Z identity pid=28684 createdUtc=2026-10-25T06:39:18.1794930+00:00 [match=True] exe=C:\bkn-verify\021-local30-r2-run-20261023-133254\desktop-x\old\app\DeepSeek Harness.exe [match=True] recordedPorts=19387 currentPorts=19387 [recordedStillOwned=True]
+2026-10-25T06:49:15.0215903Z   tree pid=28684 ppid=22212 name=DeepSeek Harness.exe createdUtc=2026-10-25T06:39:18.1794930+00:00
+2026-10-25T06:49:15.0225937Z   tree pid=12316 ppid=28684 name=DeepSeek Harness.exe createdUtc=2026-10-25T06:39:18.3446770+00:00
+2026-10-25T06:49:15.0235972Z   tree pid=16656 ppid=28684 name=DeepSeek Harness.exe createdUtc=2026-10-25T06:39:18.3474290+00:00
+2026-10-25T06:49:15.0235972Z   tree pid=16504 ppid=28684 name=DeepSeek Harness.exe createdUtc=2026-10-25T06:39:18.3536360+00:00
+2026-10-25T06:49:15.0246012Z   tree pid=4716 ppid=28684 name=DeepSeek Harness.exe createdUtc=2026-10-25T06:39:18.5170270+00:00
+2026-10-25T06:49:15.0246012Z   tree pid=27872 ppid=28684 name=DeepSeek Harness.exe createdUtc=2026-10-25T06:44:00.4116260+00:00
+2026-10-25T06:49:17.4093226Z stopped; remainingTreeProcs=0 recordedPortsStillListening=0
