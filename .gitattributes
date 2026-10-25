@@ -1,0 +1,4 @@
+# Preserve every fixed handoff byte on Windows.
+** -text
+# Preserve the intentional space-only upstream diff context lines.
+kit/source-patches/*-same-origin-backport.patch whitespace=-blank-at-eol

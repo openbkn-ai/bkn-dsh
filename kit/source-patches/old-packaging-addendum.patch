@@ -1,0 +1,62 @@
+--- a/packages/mcp/mcp-client/package.json
++++ b/packages/mcp/mcp-client/package.json
+@@ -22,11 +22,14 @@
+     "./package.json": "./package.json"
+   },
+   "files": [
++    "DSH-LICENSE.txt",
++    "HOST-BACKPORT.json",
++    "LICENSES.md",
++    "MCP-SDK-LICENSE.txt",
+     "lib/index.js",
+-    "lib/types/**/*.d.ts",
+-    "MCP-SDK-LICENSE.txt"
++    "lib/types/**/*.d.ts"
+   ],
+-  "license": "MIT",
++  "license": "SEE LICENSE IN LICENSES.md",
+   "peerDependencies": {
+     "@deepseek-ai/dsh-attachment": "workspace:*",
+     "@deepseek-ai/dsh-llm": "workspace:*",
+--- /dev/null
++++ b/packages/mcp/mcp-client/DSH-LICENSE.txt
+@@ -0,0 +1,21 @@
++MIT License
++
++Copyright (c) 2026 DeepSeek
++
++Permission is hereby granted, free of charge, to any person obtaining a copy
++of this software and associated documentation files (the "Software"), to deal
++in the Software without restriction, including without limitation the rights
++to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
++copies of the Software, and to permit persons to whom the Software is
++furnished to do so, subject to the following conditions:
++
++The above copyright notice and this permission notice shall be included in all
++copies or substantial portions of the Software.
++
++THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
++IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
++FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
++AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
++LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
++OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
++SOFTWARE.
+--- /dev/null
++++ b/packages/mcp/mcp-client/LICENSES.md
+@@ -0,0 +1 @@
++This is a locally modified DSH MCP package. Original DSH code retains its original MIT license in DSH-LICENSE.txt. The copied MCP redirect helper retains the complete pinned upstream licensing-transition notice and license text in MCP-SDK-LICENSE.txt; it is not relicensed as MIT. See HOST-BACKPORT.json for the fixed source commits and changes.
+--- /dev/null
++++ b/packages/mcp/mcp-client/HOST-BACKPORT.json
+@@ -0,0 +1,11 @@
++{
++  "distributionId": "openbkn-dsh-mcp-source-old-same-origin-r1",
++  "baseHostVersion": "0.2.0-rc.2",
++  "baseHostCommit": "639ed015397290b3745d163aafe02ffee4aa3f84",
++  "sdkVersionUnchanged": "2.0.0",
++  "mcpFixSourceCommit": "433eb413dc305ebeb93b8ebcde0095a8fc0d5fa0",
++  "mcpEntrySha256": "b3cd7156c0b8639656ce117530fec4d006b74cafdc9a78ac426fec084e62972c",
++  "kind": "local-development-preacceptance",
++  "ciRun": null,
++  "formalAcceptanceEligible": false
++}
