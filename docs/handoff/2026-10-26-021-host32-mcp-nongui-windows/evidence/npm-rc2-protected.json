@@ -1,0 +1,133 @@
+{
+  "kind": "local-development-preacceptance",
+  "ciRun": null,
+  "formalAcceptanceEligible": false,
+  "scope": "Actual marked Host native MCP factory + ToolRuntime; synthetic loopback only; not GUI/auth/model/G6 or platform data",
+  "host": "0.2.0-rc.2",
+  "mode": "protected",
+  "node": "24.19.0",
+  "electron": null,
+  "actualMcpSha256": "b3cd7156c0b8639656ce117530fec4d006b74cafdc9a78ac426fec084e62972c",
+  "results": [
+    {
+      "server": "same",
+      "isError": false,
+      "syntheticResult": true
+    },
+    {
+      "server": "cross",
+      "isError": true,
+      "syntheticResult": false
+    }
+  ],
+  "secondOriginRequests": 0,
+  "result": "PASS",
+  "mcpDisposalErrors": [],
+  "fixtureListenersClosed": true,
+  "requests": [
+    {
+      "origin": "A",
+      "method": "POST",
+      "path": "/same",
+      "rpc": "server/discover",
+      "syntheticSession": false,
+      "syntheticQuestion": false
+    },
+    {
+      "origin": "A",
+      "method": "POST",
+      "path": "/same",
+      "rpc": "initialize",
+      "syntheticSession": false,
+      "syntheticQuestion": false
+    },
+    {
+      "origin": "A",
+      "method": "POST",
+      "path": "/same",
+      "rpc": "notifications/initialized",
+      "syntheticSession": true,
+      "syntheticQuestion": false
+    },
+    {
+      "origin": "A",
+      "method": "GET",
+      "path": "/same",
+      "rpc": null,
+      "syntheticSession": true,
+      "syntheticQuestion": false
+    },
+    {
+      "origin": "A",
+      "method": "POST",
+      "path": "/same",
+      "rpc": "tools/list",
+      "syntheticSession": true,
+      "syntheticQuestion": false
+    },
+    {
+      "origin": "A",
+      "method": "POST",
+      "path": "/cross",
+      "rpc": "server/discover",
+      "syntheticSession": false,
+      "syntheticQuestion": false
+    },
+    {
+      "origin": "A",
+      "method": "POST",
+      "path": "/cross",
+      "rpc": "initialize",
+      "syntheticSession": false,
+      "syntheticQuestion": false
+    },
+    {
+      "origin": "A",
+      "method": "POST",
+      "path": "/cross",
+      "rpc": "notifications/initialized",
+      "syntheticSession": true,
+      "syntheticQuestion": false
+    },
+    {
+      "origin": "A",
+      "method": "GET",
+      "path": "/cross",
+      "rpc": null,
+      "syntheticSession": true,
+      "syntheticQuestion": false
+    },
+    {
+      "origin": "A",
+      "method": "POST",
+      "path": "/cross",
+      "rpc": "tools/list",
+      "syntheticSession": true,
+      "syntheticQuestion": false
+    },
+    {
+      "origin": "A",
+      "method": "POST",
+      "path": "/same",
+      "rpc": "tools/call",
+      "syntheticSession": true,
+      "syntheticQuestion": true
+    },
+    {
+      "origin": "A",
+      "method": "POST",
+      "path": "/accepted",
+      "rpc": "tools/call",
+      "syntheticSession": true,
+      "syntheticQuestion": true
+    },
+    {
+      "origin": "A",
+      "method": "POST",
+      "path": "/cross",
+      "rpc": "tools/call",
+      "syntheticSession": true,
+      "syntheticQuestion": true
+    }
+  ]
+}
