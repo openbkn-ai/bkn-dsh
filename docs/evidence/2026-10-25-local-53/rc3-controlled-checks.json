@@ -1,0 +1,38 @@
+[
+  {
+    "check": "guard-formal",
+    "exitCode": 0,
+    "seconds": 0.14,
+    "status": "PASS"
+  },
+  {
+    "check": "guard-capture-disabled",
+    "exitCode": 0,
+    "seconds": 0.11,
+    "status": "PASS"
+  },
+  {
+    "check": "guard-legacy",
+    "exitCode": 0,
+    "seconds": 0.11,
+    "status": "PASS"
+  },
+  {
+    "check": "csv-export",
+    "exitCode": 0,
+    "seconds": 0.12,
+    "status": "PASS"
+  },
+  {
+    "check": "native-output",
+    "exitCode": 0,
+    "seconds": 0.15,
+    "status": "PASS"
+  },
+  {
+    "check": "remote",
+    "exitCode": 0,
+    "seconds": 0.12,
+    "status": "PASS"
+  }
+]

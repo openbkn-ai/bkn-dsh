@@ -1,0 +1,144 @@
+{
+  "checkedAt": "2026-10-23T16:19:33.244746+00:00",
+  "clientDate": "2026-10-24",
+  "viewer": "kalias",
+  "project": {
+    "url": "https://github.com/orgs/openbkn-ai/projects/12",
+    "membershipEvidence": "reported by coordinating chat; project API lacks read:project scope in this CLI, not independently re-read here"
+  },
+  "issues": [
+    {
+      "number": 92,
+      "title": "plan(0.2.1): bkn-dsh 范围冻结、原生溯源分析与执行总览",
+      "url": "https://github.com/openbkn-ai/bkn-dsh/issues/92",
+      "state": "OPEN",
+      "updatedAt": "2026-10-23T14:29:54Z",
+      "closedAt": null,
+      "assignees": [
+        "kalias"
+      ],
+      "bodySha256": "258bf3ebb9ceef577c1718955faabf3d454026629cd08668e3eede72cc149561",
+      "bodyUnchangedSincePriorRead": true,
+      "comments": [
+        {
+          "url": "https://github.com/openbkn-ai/bkn-dsh/issues/92#issuecomment-6139188689",
+          "createdAt": "2026-10-13T05:50:04Z",
+          "bodySha256": "30aca0da930e8ef74f2d50868b8e71d5563ee65c57050daa712c4b45b5724a3a"
+        }
+      ],
+      "olderCommentsOmitted": false
+    },
+    {
+      "number": 93,
+      "title": "plan(0.2.1/P0): 原生业务溯源 API、凭据与非空样本验证",
+      "url": "https://github.com/openbkn-ai/bkn-dsh/issues/93",
+      "state": "OPEN",
+      "updatedAt": "2026-10-23T14:30:03Z",
+      "closedAt": null,
+      "assignees": [
+        "kalias"
+      ],
+      "bodySha256": "e8e09031ba7d7bbec8c6aa2c95f6636210e944a688e0c3f37d8307a871d53899",
+      "bodyUnchangedSincePriorRead": true,
+      "comments": [
+        {
+          "url": "https://github.com/openbkn-ai/bkn-dsh/issues/93#issuecomment-6139189168",
+          "createdAt": "2026-10-13T05:50:07Z",
+          "bodySha256": "30aca0da930e8ef74f2d50868b8e71d5563ee65c57050daa712c4b45b5724a3a"
+        }
+      ],
+      "olderCommentsOmitted": false
+    },
+    {
+      "number": 94,
+      "title": "feat(0.2.1/P1): 插件完整 zh/en 文案随 DSH 语言切换",
+      "url": "https://github.com/openbkn-ai/bkn-dsh/issues/94",
+      "state": "OPEN",
+      "updatedAt": "2026-10-23T14:30:05Z",
+      "closedAt": null,
+      "assignees": [
+        "kalias"
+      ],
+      "bodySha256": "5050d0398ab2451283fb6a949cc617be7853c8f17b9132262a9a940c4193c731",
+      "bodyUnchangedSincePriorRead": true,
+      "comments": [],
+      "olderCommentsOmitted": false
+    },
+    {
+      "number": 95,
+      "title": "feat(0.2.1/P1): 登录等待、结果与重试状态可见",
+      "url": "https://github.com/openbkn-ai/bkn-dsh/issues/95",
+      "state": "OPEN",
+      "updatedAt": "2026-10-23T14:30:06Z",
+      "closedAt": null,
+      "assignees": [
+        "kalias"
+      ],
+      "bodySha256": "f348f557bf2bd5b1e2e4c8c8c99afa30e0b65fbcb02b4c0e13dc0b2c86e69280",
+      "bodyUnchangedSincePriorRead": true,
+      "comments": [],
+      "olderCommentsOmitted": false
+    },
+    {
+      "number": 96,
+      "title": "feat(0.2.1/P1): 原生溯源 Host 接口、有界 DTO 与诚实降级",
+      "url": "https://github.com/openbkn-ai/bkn-dsh/issues/96",
+      "state": "OPEN",
+      "updatedAt": "2026-10-23T14:30:09Z",
+      "closedAt": null,
+      "assignees": [
+        "kalias"
+      ],
+      "bodySha256": "b76043c4dc90c8afa103f63a45d2642a3e74b96d9ae9456e40999412e551f0b8",
+      "bodyUnchangedSincePriorRead": true,
+      "comments": [],
+      "olderCommentsOmitted": false
+    },
+    {
+      "number": 97,
+      "title": "feat(0.2.1/P1): 事件链与证据链双视图、选择联动和业务详情",
+      "url": "https://github.com/openbkn-ai/bkn-dsh/issues/97",
+      "state": "OPEN",
+      "updatedAt": "2026-10-23T14:30:10Z",
+      "closedAt": null,
+      "assignees": [
+        "kalias"
+      ],
+      "bodySha256": "d677dcfe221f4d8010323573b174217bee287e4ed69dce552234ab0385d86147",
+      "bodyUnchangedSincePriorRead": true,
+      "comments": [],
+      "olderCommentsOmitted": false
+    },
+    {
+      "number": 98,
+      "title": "investigate(0.2.1/P1): B1 最小复现；确认插件根因后再修",
+      "url": "https://github.com/openbkn-ai/bkn-dsh/issues/98",
+      "state": "OPEN",
+      "updatedAt": "2026-10-23T14:30:12Z",
+      "closedAt": null,
+      "assignees": [
+        "kalias"
+      ],
+      "bodySha256": "8b048931ac12090b2a3d812704ab05261f8c9c8c1ffa252ec53bfa0f147c0d7b",
+      "bodyUnchangedSincePriorRead": true,
+      "comments": [],
+      "olderCommentsOmitted": false
+    },
+    {
+      "number": 99,
+      "title": "test(0.2.1/P1): 固定候选 Mac/Windows 最小验收与发布准备",
+      "url": "https://github.com/openbkn-ai/bkn-dsh/issues/99",
+      "state": "OPEN",
+      "updatedAt": "2026-10-23T14:30:14Z",
+      "closedAt": null,
+      "assignees": [
+        "kalias"
+      ],
+      "bodySha256": "1df44e7b015493953907acbbf9e545ea87aad2a6f5c4fe967fdddfb1d806287a",
+      "bodyUnchangedSincePriorRead": true,
+      "comments": [],
+      "olderCommentsOmitted": false
+    }
+  ],
+  "mutationsPerformed": []
+}

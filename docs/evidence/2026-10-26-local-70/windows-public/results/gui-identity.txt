@@ -1,0 +1,10 @@
+root pid=31980 createdUtc=2026-10-26T05:03:31.1551270+00:00 exe=C:\bkn-verify\021-host32-mcp-nongui-20261025-run\rc3-app-x\DeepSeek Harness.exe
+tree size: 6
+  pid=31980 ppid=3892 created=2026-10-26T05:03:31.1551270+00:00 name=DeepSeek Harness.exe
+  pid=22972 ppid=31980 created=2026-10-26T05:03:31.3246460+00:00 name=DeepSeek Harness.exe
+  pid=34184 ppid=31980 created=2026-10-26T05:03:31.3269810+00:00 name=DeepSeek Harness.exe
+  pid=32408 ppid=31980 created=2026-10-26T05:03:31.3370720+00:00 name=DeepSeek Harness.exe
+  pid=36564 ppid=31980 created=2026-10-26T05:03:31.5546280+00:00 name=DeepSeek Harness.exe
+  pid=13104 ppid=31980 created=2026-10-26T05:03:33.0134980+00:00 name=DeepSeek Harness.exe
+listeners: 1
+  127.0.0.1:51385 owner=36564

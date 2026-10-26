@@ -1,0 +1,95 @@
+{
+  "checked_at": "2026-10-19T15:51:23.143455+00:00",
+  "mode": "Independent SQL of raw rows; compare completed model answer without modification",
+  "host": "0.2.0-rc.2",
+  "query": "SELECT b.material_code,SUM(b.standard_usage),MIN(b.bom_level),i.qty,i.rows_found FROM supply_demo_hand.erp_material_bom b LEFT JOIN (SELECT material_code,SUM(available_inventory_qty) qty,COUNT(*) rows_found FROM supply_demo_hand.erp_real_time_inventory WHERE stock_status='可用' GROUP BY material_code) i ON i.material_code=b.material_code WHERE b.bom_material_code='382-000005' AND b.alt_priority=0 AND b.bom_level>0 GROUP BY b.material_code,i.qty,i.rows_found ORDER BY b.material_code;",
+  "unique_table_rows": 333,
+  "expected_unique": 333,
+  "inventory_scope": "all warehouses; stock_status=可用; absent rows distinct from measured zero",
+  "usage_scope": "sum standard_usage by material, NOT cumulative finished-product demand; explicitly described in model answer",
+  "missing_materials": [],
+  "extra_materials": [],
+  "differences": [
+    {
+      "material_code": "725-000025",
+      "field": "inventory",
+      "answer": 61950.0,
+      "sql": 61950.0945
+    },
+    {
+      "material_code": "725-000226",
+      "field": "inventory",
+      "answer": 3115902.0,
+      "sql": 3115901.5
+    },
+    {
+      "material_code": "454-000213",
+      "field": "inventory",
+      "answer": 163869.0,
+      "sql": 163869.22999999998
+    },
+    {
+      "material_code": "725-000179",
+      "field": "inventory",
+      "answer": 323236.0,
+      "sql": 323236.1666
+    },
+    {
+      "material_code": "725-000182",
+      "field": "inventory",
+      "answer": 225105.0,
+      "sql": 225105.11
+    },
+    {
+      "material_code": "725-000024",
+      "field": "inventory",
+      "answer": 99155.0,
+      "sql": 99155.0673
+    },
+    {
+      "material_code": "725-000012",
+      "field": "inventory",
+      "answer": 589002.0,
+      "sql": 589001.6240000001
+    },
+    {
+      "material_code": "725-000118",
+      "field": "inventory",
+      "answer": 40533.0,
+      "sql": 40533.34
+    },
+    {
+      "material_code": "725-000070",
+      "field": "inventory",
+      "answer": 124197.0,
+      "sql": 124197.25
+    },
+    {
+      "material_code": "725-000030",
+      "field": "inventory",
+      "answer": 128979.0,
+      "sql": 128978.7
+    },
+    {
+      "material_code": "725-000005",
+      "field": "inventory",
+      "answer": 74615.0,
+      "sql": 74614.9333
+    }
+  ],
+  "compared_fields": [
+    "bom_level(min; slash levels use first)",
+    "standard_usage(sum)",
+    "inventory(sum)"
+  ],
+  "table_pass": false,
+  "scope_limits": [
+    "No claim of cumulative build capacity or kitting accuracy",
+    "Presentation includes trailing model DSML token; not rewritten",
+    "Whole turn has refused run_cypher and remote attempt to read host spill path; keep anomaly triage open"
+  ],
+  "rounding_differences": 11,
+  "all_differences_match_integer_rounding": true,
+  "codes_and_usage_pass": true,
+  "precision_note": "All 11 differences are inventory rounded to integers; answer does not disclose rounding. Exact numeric fidelity remains unaccepted, not a random-value discrepancy."
+}

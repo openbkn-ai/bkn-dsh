@@ -1,0 +1,73 @@
+{
+  "kind": "documentation-and-receipt-validation-only",
+  "documentationChanges": [
+    {
+      "path": "CLAUDE.md",
+      "beforeSha256": "7db1983f838d6984746b848f097233c0c08028a0615b2b64e4d960ef0c3499cc",
+      "afterSha256": "540f2f5d9bef7b4ad6b047f64e3d44d92c6953986bed518146421d5a23337ebd",
+      "addedLines": 2,
+      "removedLines": 0
+    },
+    {
+      "path": "docs/plans/0.2.1/README.md",
+      "beforeSha256": "ead65aab79e8caffb0842651b85a81d89012620b61b4d114ae7996d9ea26c32d",
+      "afterSha256": "687919ba559fdfdf09a4c91ad887e54e85e99188942784e0895429c7df7ff8f3",
+      "addedLines": 7,
+      "removedLines": 1
+    },
+    {
+      "path": "docs/plans/0.2.1/ACCEPTANCE-CONTRACT.md",
+      "beforeSha256": "048abeb8ef530589504d45823562054a8b67bfcc42a430f1f69f17b03a1b6af6",
+      "afterSha256": "392a763daabb3f80a5c35fe9f20d6c73b4775655e344de4617e7499c669b4949",
+      "addedLines": 12,
+      "removedLines": 4
+    },
+    {
+      "path": "docs/plans/0.2.1/REMAINING-WORK.md",
+      "beforeSha256": "d9599ac413b0bea19fc5b5fbc6a11bf1c8e8b12212c04585cf35d7fc3598c3f8",
+      "afterSha256": "8abea0580f7087d7524ebe0afb097585b273d105f4f2ed3436411d7b4ae88ca9",
+      "addedLines": 33,
+      "removedLines": 9
+    },
+    {
+      "path": "docs/plans/0.2.1/DSH-COMPATIBILITY.md",
+      "beforeSha256": "4b8037e8cf969598b54cbae0b969d49181a6d060394fece5e8761f436a5a2cd2",
+      "afterSha256": "b50e4e370a5fbd08898f603ab9d9c353e894d44c8043ce49be97703de01af7e7",
+      "addedLines": 4,
+      "removedLines": 2
+    },
+    {
+      "path": "docs/plans/0.2.1/ISSUE-WORKFLOW.md",
+      "beforeSha256": "e3cb23a1756e01975c57d2a69dbfc1a28c18260fa30f9003193423d5aa6d05fc",
+      "afterSha256": "3badaf649bb1391198c39ff64bdcc5129fd8d89ee6a37eb2232a574fd301c132",
+      "addedLines": 2,
+      "removedLines": 2
+    }
+  ],
+  "localLinksAndAnchorsChecked": 23,
+  "fiveReleaseGates": true,
+  "D1ExplicitlyAccepted": true,
+  "D2toD5StillPending": true,
+  "originalMenuFailureAndUnknownExitCodeRetained": true,
+  "secretPatternsChecked": [
+    "jwt",
+    "privateKey",
+    "githubToken",
+    "openaiKey"
+  ],
+  "secretMatches": 0,
+  "publicGitObjects": 6,
+  "publicManifestEntries": 4,
+  "privateEvidenceRead": false,
+  "frozenCandidatesUnchanged": [
+    "30",
+    "31",
+    "32"
+  ],
+  "handoffE7KitUnchanged": true,
+  "branchHeadOriginIndexAndWorktreesUnchanged": true,
+  "runtimeTestsRerun": 0,
+  "hostPlatformAuthModelSandboxCalls": 0,
+  "pushCiOrIssueWrites": 0,
+  "validationPreparation": "Initialized the referenced validation record before checking its documentation link; no product change or runtime rerun."
+}

@@ -1,0 +1,16 @@
+[
+  {
+    "baseHost": "0.2.0-rc.2",
+    "patchSha256": "36c798f50c69e7951ae18f91e6b2468f3c7e3b6b0b1da9ab0cc1ec5f86a38f0a",
+    "applyAfter": "round53 reviewed four-file source patch",
+    "applyCheck": "PASS",
+    "scope": "package metadata plus original license, attribution notice and derived-source identity; transport JS and declarations unchanged"
+  },
+  {
+    "baseHost": "0.2.1-rc.3",
+    "patchSha256": "2ab72a0cd8864390b374f1bc902e5dc09178d883dcea20efd8894e0f2dfc32ba",
+    "applyAfter": "round53 reviewed four-file source patch",
+    "applyCheck": "PASS",
+    "scope": "package metadata plus original license, attribution notice and derived-source identity; transport JS and declarations unchanged"
+  }
+]

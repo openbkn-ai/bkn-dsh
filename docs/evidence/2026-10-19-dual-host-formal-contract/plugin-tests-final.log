@@ -1,0 +1,3563 @@
+$ pnpm run build && node --import tsx --test tests/*.test.mjs tests/*.test.ts
+
+> @openbkn/dsh-business-context@0.2.0-rc.2-openbkn.0.2.0-11 build /Users/dominiczhang/Documents/project/app/openBKN/bkn-dsh/packages/openbkn-business-context
+> pnpm run build:host && pnpm run build:client
+
+
+> @openbkn/dsh-business-context@0.2.0-rc.2-openbkn.0.2.0-11 build:host /Users/dominiczhang/Documents/project/app/openBKN/bkn-dsh/packages/openbkn-business-context
+> node scripts/clean-host-bundles.mjs && tsc -p tsconfig.package.host.json && tsdown --env.DSH_BUILD_FACE host
+
+ℹ tsdown v0.22.14 powered by rolldown v1.2.7
+ℹ config file: /Users/dominiczhang/Documents/project/app/openBKN/bkn-dsh/packages/openbkn-business-context/tsdown.config.ts 
+ℹ entry: src/index.ts, src/business.ts, src/diagnostics.ts
+ℹ target: es2022
+ℹ tsconfig: tsconfig.json
+ℹ Build start
+ℹ lib/business.js                       175.49 kB │ gzip: 45.75 kB
+ℹ lib/diagnostics.js                     34.79 kB │ gzip:  9.43 kB
+ℹ lib/index.js                            1.42 kB │ gzip:  0.77 kB
+ℹ lib/diagnostics-observer-vRub4cgb.js   12.24 kB │ gzip:  4.85 kB
+ℹ 4 files, total: 223.94 kB
+✔ Build complete in 579ms
+
+> @openbkn/dsh-business-context@0.2.0-rc.2-openbkn.0.2.0-11 build:client /Users/dominiczhang/Documents/project/app/openBKN/bkn-dsh/packages/openbkn-business-context
+> tsc -p tsconfig.package.client.json && tsdown --env.DSH_BUILD_FACE client
+
+ℹ tsdown v0.22.14 powered by rolldown v1.2.7
+ℹ config file: /Users/dominiczhang/Documents/project/app/openBKN/bkn-dsh/packages/openbkn-business-context/tsdown.config.ts 
+ℹ entry: src/client/index.tsx
+ℹ target: node22.19.0
+ℹ tsconfig: tsconfig.json
+ℹ Build start
+
+ WARN  We recommend using the ESM format instead of CommonJS.
+The ESM format is compatible with modern platforms and runtimes, and most new libraries are now distributed only in ESM format.
+Learn more at https://nodejs.org/en/learn/modules/publishing-a-package#how-did-we-get-here
+
+ℹ Hint: consider adding deps.onlyBundle option to avoid unintended bundling of dependencies, or set deps.onlyBundle: false to disable this hint.
+See more at https://tsdown.dev/options/dependencies#deps-onlybundle
+Detected dependencies in bundle:
+- zod
+ℹ lib/client.js  420.74 kB │ gzip: 83.53 kB
+ℹ 1 files, total: 420.74 kB
+✔ Build complete in 28ms
+TAP version 13
+# Subtest: reports the authenticated CLI session without reading a token
+ok 1 - reports the authenticated CLI session without reading a token
+  ---
+  duration_ms: 0.756042
+  type: 'test'
+  ...
+# Subtest: requires an OpenBKN login for missing or expired CLI credentials
+ok 2 - requires an OpenBKN login for missing or expired CLI credentials
+  ---
+  duration_ms: 0.079833
+  type: 'test'
+  ...
+# Subtest: does not accept an authenticated CLI session for another platform
+ok 3 - does not accept an authenticated CLI session for another platform
+  ---
+  duration_ms: 0.062667
+  type: 'test'
+  ...
+# Subtest: starts login for the configured platform without passing or retaining a token
+ok 4 - starts login for the configured platform without passing or retaining a token
+  ---
+  duration_ms: 0.120917
+  type: 'test'
+  ...
+# Subtest: reads one CLI token only after the authenticated platform has been fenced
+ok 5 - reads one CLI token only after the authenticated platform has been fenced
+  ---
+  duration_ms: 0.161833
+  type: 'test'
+  ...
+# Subtest: refuses to request a CLI token for an unauthenticated or foreign platform
+ok 6 - refuses to request a CLI token for an unauthenticated or foreign platform
+  ---
+  duration_ms: 0.208083
+  type: 'test'
+  ...
+# Subtest: CLI 0.1.5 omits `expired` when it cannot tell the token expiry: the session is still authenticated
+ok 7 - CLI 0.1.5 omits `expired` when it cannot tell the token expiry: the session is still authenticated
+  ---
+  duration_ms: 0.128
+  type: 'test'
+  ...
+# Subtest: a CLI that has never logged in prints only { hasToken: false }: the user is asked to log in
+ok 8 - a CLI that has never logged in prints only { hasToken: false }: the user is asked to log in
+  ---
+  duration_ms: 0.089834
+  type: 'test'
+  ...
+# Subtest: an expired token still asks for login, and malformed fields are still refused
+ok 9 - an expired token still asks for login, and malformed fields are still refused
+  ---
+  duration_ms: 0.825041
+  type: 'test'
+  ...
+# Subtest: a locally present CLI token rejected by MCP exposes login and recovers through the existing CLI flow
+ok 10 - a locally present CLI token rejected by MCP exposes login and recovers through the existing CLI flow
+  ---
+  duration_ms: 25.466625
+  type: 'test'
+  ...
+# Subtest: manual-token and login verification retain an MCP 401 as an authentication-required Remote error
+ok 11 - manual-token and login verification retain an MCP 401 as an authentication-required Remote error
+  ---
+  duration_ms: 0.876792
+  type: 'test'
+  ...
+# Subtest: a completed CLI login whose credential is still rejected keeps the login recovery state
+ok 12 - a completed CLI login whose credential is still rejected keeps the login recovery state
+  ---
+  duration_ms: 0.461625
+  type: 'test'
+  ...
+# Subtest: MCP permission denial and transport failures do not offer re-login as their classification
+ok 13 - MCP permission denial and transport failures do not offer re-login as their classification
+  ---
+  duration_ms: 0.982875
+  type: 'test'
+  ...
+# Subtest: catalogue 401 and 403 retain credential recovery with distinct refusal messages
+ok 14 - catalogue 401 and 403 retain credential recovery with distinct refusal messages
+  ---
+  duration_ms: 0.944417
+  type: 'test'
+  ...
+# Subtest: projects an immutable host binding into a read-only header view
+ok 15 - projects an immutable host binding into a read-only header view
+  ---
+  duration_ms: 1.300292
+  type: 'test'
+  ...
+# Subtest: renders no badge when the session has no binding or its read fails
+ok 16 - renders no badge when the session has no binding or its read fails
+  ---
+  duration_ms: 0.298875
+  type: 'test'
+  ...
+# Subtest: retries a not-yet-live session read before settling, then succeeds
+ok 17 - retries a not-yet-live session read before settling, then succeeds
+  ---
+  duration_ms: 5.482042
+  type: 'test'
+  ...
+# Subtest: settles on absent after exhausting not-yet-live retries
+ok 18 - settles on absent after exhausting not-yet-live retries
+  ---
+  duration_ms: 4.329292
+  type: 'test'
+  ...
+# Subtest: ships a DSH bundle with separate host and browser entry points
+ok 19 - ships a DSH bundle with separate host and browser entry points
+  ---
+  duration_ms: 0.464834
+  type: 'test'
+  ...
+# Subtest: activates only its own host row through the bundle patch
+ok 20 - activates only its own host row through the bundle patch
+  ---
+  duration_ms: 0.281292
+  type: 'test'
+  ...
+# Subtest: build output matches the manifest entry points
+ok 21 - build output matches the manifest entry points
+  ---
+  duration_ms: 0.080083
+  type: 'test'
+  ...
+# Subtest: browser entry registers a lazy module factory for the DSH module table
+ok 22 - browser entry registers a lazy module factory for the DSH module table
+  ---
+  duration_ms: 11.975458
+  type: 'test'
+  ...
+# Subtest: does not publish an obsolete Host Python runner
+ok 23 - does not publish an obsolete Host Python runner
+  ---
+  duration_ms: 0.171458
+  type: 'test'
+  ...
+# Subtest: does not retain an overly broad runner directory glob
+ok 24 - does not retain an overly broad runner directory glob
+  ---
+  duration_ms: 0.095125
+  type: 'test'
+  ...
+# Subtest: every declared exports/main/types target exists in the packed tarball
+ok 25 - every declared exports/main/types target exists in the packed tarball
+  ---
+  duration_ms: 414.286375
+  type: 'test'
+  ...
+# Subtest: declaredTargets walks nested conditions and refuses lookalike pointers
+ok 26 - declaredTargets walks nested conditions and refuses lookalike pointers
+  ---
+  duration_ms: 0.516875
+  type: 'test'
+  ...
+# Subtest: a reloaded service cannot resolve a shared token before this platform was verified
+ok 27 - a reloaded service cannot resolve a shared token before this platform was verified
+  ---
+  duration_ms: 0.739334
+  type: 'test'
+  ...
+# Subtest: historical provenance can obtain a verified CLI token before panel status and coalesces parallel reads
+ok 28 - historical provenance can obtain a verified CLI token before panel status and coalesces parallel reads
+  ---
+  duration_ms: 0.309959
+  type: 'test'
+  ...
+# Subtest: historical provenance with an expired or missing CLI degrades as authentication-required before any platform or vault access
+ok 29 - historical provenance with an expired or missing CLI degrades as authentication-required before any platform or vault access
+  ---
+  duration_ms: 25.698042
+  type: 'test'
+  ...
+# Subtest: a disposed historical token read preserves cancellation instead of degrading it as missing authentication
+ok 30 - a disposed historical token read preserves cancellation instead of degrading it as missing authentication
+  ---
+  duration_ms: 0.894042
+  type: 'test'
+  ...
+# Subtest: a delayed CLI token from a disposed configuration is never synchronized
+ok 31 - a delayed CLI token from a disposed configuration is never synchronized
+  ---
+  duration_ms: 0.280458
+  type: 'test'
+  ...
+# Subtest: changing settings affects only current-platform bound turns, never ordinary sessions
+ok 32 - changing settings affects only current-platform bound turns, never ordinary sessions
+  ---
+  duration_ms: 3.208583
+  type: 'test'
+  ...
+# Subtest: does not load the DSH LLM service for a static empty-session entry
+ok 33 - does not load the DSH LLM service for a static empty-session entry
+  ---
+  duration_ms: 0.236375
+  type: 'test'
+  ...
+# Subtest: rejects a mismatched platform before it can persist an immutable session binding
+ok 34 - rejects a mismatched platform before it can persist an immutable session binding
+  ---
+  duration_ms: 0.452458
+  type: 'test'
+  ...
+# Subtest: rejects a stale or foreign Agent before it can bind a DSH session
+ok 35 - rejects a stale or foreign Agent before it can bind a DSH session
+  ---
+  duration_ms: 0.208208
+  type: 'test'
+  ...
+# Subtest: enables the business capability only after the binding record is durable
+ok 36 - enables the business capability only after the binding record is durable
+  ---
+  duration_ms: 0.551166
+  type: 'test'
+  ...
+# Subtest: a durable binding write blocks configuration reload until its policy mounts
+ok 37 - a durable binding write blocks configuration reload until its policy mounts
+  ---
+  duration_ms: 0.801584
+  type: 'test'
+  ...
+# Subtest: settings reload rejects a new binding before its durable write begins
+ok 38 - settings reload rejects a new binding before its durable write begins
+  ---
+  duration_ms: 0.078458
+  type: 'test'
+  ...
+# Subtest: a replacement constructor restores an unbound workspace association inside the native save fence
+ok 39 - a replacement constructor restores an unbound workspace association inside the native save fence
+  ---
+  duration_ms: 12.150292
+  type: 'test'
+  ...
+# Subtest: ordinary agent creation cannot borrow the replacement constructor restoration exemption
+ok 40 - ordinary agent creation cannot borrow the replacement constructor restoration exemption
+  ---
+  duration_ms: 1.743792
+  type: 'test'
+  ...
+# Subtest: a disposed replacement constructor cannot persist its startup association
+ok 41 - a disposed replacement constructor cannot persist its startup association
+  ---
+  duration_ms: 3.810041
+  type: 'test'
+  ...
+# Subtest: ordinary fork inheritance blocks reload throughout its durable write
+ok 42 - ordinary fork inheritance blocks reload throughout its durable write
+  ---
+  duration_ms: 0.480541
+  type: 'test'
+  ...
+# Subtest: reload detects a running bound turn even before its scoped policy restores
+ok 43 - reload detects a running bound turn even before its scoped policy restores
+  ---
+  duration_ms: 0.161666
+  type: 'test'
+  ...
+# Subtest: stores a token through DSH credentials before testing the managed OpenBKN connection
+ok 44 - stores a token through DSH credentials before testing the managed OpenBKN connection
+  ---
+  duration_ms: 0.6605
+  type: 'test'
+  ...
+# Subtest: synchronizes an authenticated CLI token into DSH credentials before reporting ready
+ok 45 - synchronizes an authenticated CLI token into DSH credentials before reporting ready
+  ---
+  duration_ms: 0.244625
+  type: 'test'
+  ...
+# Subtest: refreshes the managed MCP credential before the first step of a bound business turn
+ok 46 - refreshes the managed MCP credential before the first step of a bound business turn
+  ---
+  duration_ms: 0.100917
+  type: 'test'
+  ...
+# Subtest: does not refresh the MCP connection for later steps or unbound sessions
+ok 47 - does not refresh the MCP connection for later steps or unbound sessions
+  ---
+  duration_ms: 0.063583
+  type: 'test'
+  ...
+# Subtest: an unreadable or conflicting binding leaves the turn running as a native, unbound session
+ok 48 - an unreadable or conflicting binding leaves the turn running as a native, unbound session
+  ---
+  duration_ms: 0.59775
+  type: 'test'
+  ...
+# Subtest: auto-binds a new native DSH session when its workspace has one OpenBKN association
+ok 49 - auto-binds a new native DSH session when its workspace has one OpenBKN association
+  ---
+  duration_ms: 0.202416
+  type: 'test'
+  ...
+# Subtest: leaves a native DSH session unbound when its workspace has no unique association
+ok 50 - leaves a native DSH session unbound when its workspace has no unique association
+  ---
+  duration_ms: 0.471833
+  type: 'test'
+  ...
+# Subtest: reads the durable binding for one live session without consulting CLI credentials
+ok 51 - reads the durable binding for one live session without consulting CLI credentials
+  ---
+  duration_ms: 0.13875
+  type: 'test'
+  ...
+# Subtest: reads provenance only from the finalized assistant message in one live session
+ok 52 - reads provenance only from the finalized assistant message in one live session
+  ---
+  duration_ms: 0.193333
+  type: 'test'
+  ...
+# Subtest: retains Community execution facts when the formal Enterprise projection is not disclosed
+ok 53 - retains Community execution facts when the formal Enterprise projection is not disclosed
+  ---
+  duration_ms: 0.99325
+  type: 'test'
+  ...
+# Subtest: retains Community execution facts when an enabled Enterprise projection is temporarily unavailable
+ok 54 - retains Community execution facts when an enabled Enterprise projection is temporarily unavailable
+  ---
+  duration_ms: 0.348458
+  type: 'test'
+  ...
+# Subtest: uses the formal Trace 3 business graph without treating BKN Safe capabilities as its gate
+ok 55 - uses the formal Trace 3 business graph without treating BKN Safe capabilities as its gate
+  ---
+  duration_ms: 0.460417
+  type: 'test'
+  ...
+# Subtest: returns one introduction only before a bound session has an assistant answer
+ok 56 - returns one introduction only before a bound session has an assistant answer
+  ---
+  duration_ms: 0.111458
+  type: 'test'
+  ...
+# Subtest: returns no prompt after a bound business session has an assistant answer
+ok 57 - returns no prompt after a bound business session has an assistant answer
+  ---
+  duration_ms: 0.049167
+  type: 'test'
+  ...
+# Subtest: returns only a safe network catalogue after confirming the CLI identity is authenticated
+ok 58 - returns only a safe network catalogue after confirming the CLI identity is authenticated
+  ---
+  duration_ms: 0.209458
+  type: 'test'
+  ...
+# Subtest: refuses to list networks while OpenBKN authentication is not active
+ok 59 - refuses to list networks while OpenBKN authentication is not active
+  ---
+  duration_ms: 0.107875
+  type: 'test'
+  ...
+# Subtest: binds only a network confirmed in the current identity catalogue
+ok 60 - binds only a network confirmed in the current identity catalogue
+  ---
+  duration_ms: 0.173709
+  type: 'test'
+  ...
+# Subtest: keeps binding available and records a safe diagnostic when the optional capability profile is unavailable
+ok 61 - keeps binding available and records a safe diagnostic when the optional capability profile is unavailable
+  ---
+  duration_ms: 0.162375
+  type: 'test'
+  ...
+# Subtest: refuses a requested network that is not visible to the current identity
+ok 62 - refuses a requested network that is not visible to the current identity
+  ---
+  duration_ms: 0.084833
+  type: 'test'
+  ...
+# Subtest: degrades each platform pane by failure class instead of throwing, and always returns the local timeline
+ok 63 - degrades each platform pane by failure class instead of throwing, and always returns the local timeline
+  ---
+  duration_ms: 3.571875
+  type: 'test'
+  ...
+# Subtest: global guard: OpenBKN tools run only for an Agent carrying the mounted business policy
+ok 64 - global guard: OpenBKN tools run only for an Agent carrying the mounted business policy
+  ---
+  duration_ms: 0.098917
+  type: 'test'
+  ...
+# Subtest: concurrent binds of one session to different networks mount the winner with its own capability profile
+ok 65 - concurrent binds of one session to different networks mount the winner with its own capability profile
+  ---
+  duration_ms: 12.539667
+  type: 'test'
+  ...
+# Subtest: a missing OpenBKN CLI surfaces as openbkn/cli-unavailable on every CLI entry, with or without a stored token
+ok 66 - a missing OpenBKN CLI surfaces as openbkn/cli-unavailable on every CLI entry, with or without a stored token
+  ---
+  duration_ms: 0.307417
+  type: 'test'
+  ...
+# Subtest: unrecorded provenance renders a local timeline and explicit degradation without platform reads
+ok 67 - unrecorded provenance renders a local timeline and explicit degradation without platform reads
+  ---
+  duration_ms: 0.497
+  type: 'test'
+  ...
+# Subtest: navigation-shell detail passes the validated binding boundary and clears prior shape failure
+ok 68 - navigation-shell detail passes the validated binding boundary and clears prior shape failure
+  ---
+  duration_ms: 1.044333
+  type: 'test'
+  ...
+# Subtest: lays out resolved elements and connects only formal relations with visible endpoints
+ok 69 - lays out resolved elements and connects only formal relations with visible endpoints
+  ---
+  duration_ms: 0.659
+  type: 'test'
+  ...
+# Subtest: deduplicates the same resolved element while preserving its first operation source
+ok 70 - deduplicates the same resolved element while preserving its first operation source
+  ---
+  duration_ms: 0.071083
+  type: 'test'
+  ...
+# Subtest: projects the platform network list into a small UI-safe catalogue
+ok 71 - projects the platform network list into a small UI-safe catalogue
+  ---
+  duration_ms: 0.593583
+  type: 'test'
+  ...
+# Subtest: fails closed for malformed or duplicate platform network rows
+ok 72 - fails closed for malformed or duplicate platform network rows
+  ---
+  duration_ms: 0.205375
+  type: 'test'
+  ...
+# Subtest: availability only requests saving when the resolved CLI path is not persisted
+ok 73 - availability only requests saving when the resolved CLI path is not persisted
+  ---
+  duration_ms: 0.486875
+  type: 'test'
+  ...
+# Subtest: opening advanced settings checks availability without installing
+ok 74 - opening advanced settings checks availability without installing
+  ---
+  duration_ms: 0.193625
+  type: 'test'
+  ...
+# Subtest: detected absolute path is returned for the draft without installation
+ok 75 - detected absolute path is returned for the draft without installation
+  ---
+  duration_ms: 0.096458
+  type: 'test'
+  ...
+# Subtest: duplicate clicks install once and show real installing state
+ok 76 - duplicate clicks install once and show real installing state
+  ---
+  duration_ms: 6.220542
+  type: 'test'
+  ...
+# Subtest: closing during installation leaves Host call running and ignores late path/state
+ok 77 - closing during installation leaves Host call running and ignores late path/state
+  ---
+  duration_ms: 4.05025
+  type: 'test'
+  ...
+# Subtest: an older detection response cannot replace a new edited path result
+ok 78 - an older detection response cannot replace a new edited path result
+  ---
+  duration_ms: 0.536208
+  type: 'test'
+  ...
+# Subtest: polling a Host installation keeps the installing state while awaiting the check
+ok 79 - polling a Host installation keeps the installing state while awaiting the check
+  ---
+  duration_ms: 5.384708
+  type: 'test'
+  ...
+# Subtest: only explicit setup locks the draft during preflight and releases it on refusal
+ok 80 - only explicit setup locks the draft during preflight and releases it on refusal
+  ---
+  duration_ms: 0.351209
+  type: 'test'
+  ...
+# Subtest: blocked and failure reasons never claim installed or require a restart as proven
+ok 81 - blocked and failure reasons never claim installed or require a restart as proven
+  ---
+  duration_ms: 0.41225
+  type: 'test'
+  ...
+# Subtest: fixed version choice reaches Host and mismatch text never suggests overwriting existing CLI
+ok 82 - fixed version choice reaches Host and mismatch text never suggests overwriting existing CLI
+  ---
+  duration_ms: 1.125875
+  type: 'test'
+  ...
+# Subtest: an automatically detected CLI is not mismatched until a platform version is explicitly chosen
+ok 83 - an automatically detected CLI is not mismatched until a platform version is explicitly chosen
+  ---
+  duration_ms: 0.192084
+  type: 'test'
+  ...
+# Subtest: a usable existing CLI is resolved and never installed or upgraded
+ok 84 - a usable existing CLI is resolved and never installed or upgraded
+  ---
+  duration_ms: 3.255458
+  type: 'test'
+  ...
+# Subtest: SDK outside PATH is found through npm prefix and can be used without restarting
+ok 85 - SDK outside PATH is found through npm prefix and can be used without restarting
+  ---
+  duration_ms: 0.728333
+  type: 'test'
+  ...
+# Subtest: read-only detection never installs; explicit setup installs only fixed SDK and verifies it
+ok 86 - read-only detection never installs; explicit setup installs only fixed SDK and verifies it
+  ---
+  duration_ms: 3.118334
+  type: 'test'
+  ...
+# Subtest: Windows lookup uses the real .cmd path including spaces
+ok 87 - Windows lookup uses the real .cmd path including spaces
+  ---
+  duration_ms: 0.798208
+  type: 'test'
+  ...
+# Subtest: the Windows default openbkn.cmd alias uses fallback discovery and explicit install
+ok 88 - the Windows default openbkn.cmd alias uses fallback discovery and explicit install
+  ---
+  duration_ms: 1.73625
+  type: 'test'
+  ...
+# Subtest: a missing absolute Windows .cmd path stays custom and cannot install
+ok 89 - a missing absolute Windows .cmd path stays custom and cannot install
+  ---
+  duration_ms: 0.413667
+  type: 'test'
+  ...
+# Subtest: missing custom paths and invalid path input cannot trigger installation
+ok 90 - missing custom paths and invalid path input cannot trigger installation
+  ---
+  duration_ms: 0.32325
+  type: 'test'
+  ...
+# Subtest: existing directories are rejected as CLI paths without executing or installing
+ok 91 - existing directories are rejected as CLI paths without executing or installing
+  ---
+  duration_ms: 0.289041
+  type: 'test'
+  ...
+# Subtest: found but broken CLI and broken existing SDK are never overwritten
+ok 92 - found but broken CLI and broken existing SDK are never overwritten
+  ---
+  duration_ms: 0.497666
+  type: 'test'
+  ...
+# Subtest: file found without execute permission blocks install rather than treating it as absent
+ok 93 - file found without execute permission blocks install rather than treating it as absent
+  ---
+  duration_ms: 0.4045
+  type: 'test'
+  ...
+# Subtest: missing npm, missing Node and old Node return actionable prerequisites
+ok 94 - missing npm, missing Node and old Node return actionable prerequisites
+  ---
+  duration_ms: 0.357208
+  type: 'test'
+  ...
+# Subtest: install exit zero without executable verification is not ready
+ok 95 - install exit zero without executable verification is not ready
+  ---
+  duration_ms: 0.173209
+  type: 'test'
+  ...
+# Subtest: installation prerequisites follow the supported Node range and reject Node 23
+ok 96 - installation prerequisites follow the supported Node range and reject Node 23
+  ---
+  duration_ms: 9.7835
+  type: 'test'
+  ...
+# Subtest: installed CLI must report the requested version before setup claims success
+ok 97 - installed CLI must report the requested version before setup claims success
+  ---
+  duration_ms: 0.173875
+  type: 'test'
+  ...
+# Subtest: npm errors are classified without exporting raw secrets
+ok 98 - npm errors are classified without exporting raw secrets
+  ---
+  duration_ms: 0.643417
+  type: 'test'
+  ...
+# Subtest: simultaneous setup requests share one installation; reopened checks see installing
+ok 99 - simultaneous setup requests share one installation; reopened checks see installing
+  ---
+  duration_ms: 15.181625
+  type: 'test'
+  ...
+# Subtest: aborted read-only detection does not install or project a success
+ok 100 - aborted read-only detection does not install or project a success
+  ---
+  duration_ms: 12.600209
+  type: 'test'
+  ...
+# Subtest: a hung CLI version command receives the 5-second abort and reports timeout
+ok 101 - a hung CLI version command receives the 5-second abort and reports timeout
+  ---
+  duration_ms: 12.378167
+  type: 'test'
+  ...
+# Subtest: a hung install receives the 180-second abort, clears busy and never verifies success
+ok 102 - a hung install receives the 180-second abort, clears busy and never verifies success
+  ---
+  duration_ms: 11.536042
+  type: 'test'
+  ...
+# Subtest: Host disposal aborts an in-flight installer without leaving busy or reporting ready
+ok 103 - Host disposal aborts an in-flight installer without leaving busy or reporting ready
+  ---
+  duration_ms: 1.5565
+  type: 'test'
+  ...
+# Subtest: version availability cannot clear earlier CLI/authentication diagnostic failures
+ok 104 - version availability cannot clear earlier CLI/authentication diagnostic failures
+  ---
+  duration_ms: 1.783958
+  type: 'test'
+  ...
+# Subtest: both fixed SDK targets install and verify the selected version on Mac and Windows
+ok 105 - both fixed SDK targets install and verify the selected version on Mac and Windows
+  ---
+  duration_ms: 3.757167
+  type: 'test'
+  ...
+# Subtest: unsupported install targets do not inspect or spawn, and selecting 0.2.0 cannot overwrite 0.1.5
+ok 106 - unsupported install targets do not inspect or spawn, and selecting 0.2.0 cannot overwrite 0.1.5
+  ---
+  duration_ms: 0.101333
+  type: 'test'
+  ...
+# Subtest: reopened panels report the actual Host-owned 0.2.0 install target
+ok 107 - reopened panels report the actual Host-owned 0.2.0 install target
+  ---
+  duration_ms: 4.183083
+  type: 'test'
+  ...
+# Subtest: OpenBKN UI remains additive and does not replace native DSH surfaces
+ok 108 - OpenBKN UI remains additive and does not replace native DSH surfaces
+  ---
+  duration_ms: 0.473917
+  type: 'test'
+  ...
+# Subtest: OpenBKN client mounts its generated Remote contribution before using its namespace
+ok 109 - OpenBKN client mounts its generated Remote contribution before using its namespace
+  ---
+  duration_ms: 0.126792
+  type: 'test'
+  ...
+# Subtest: OpenBKN client bundles the Remote schema runtime instead of requiring an unmaterialized dependency
+ok 110 - OpenBKN client bundles the Remote schema runtime instead of requiring an unmaterialized dependency
+  ---
+  duration_ms: 3.191959
+  type: 'test'
+  ...
+# Subtest: first-use configuration stays independent and the ordinary login UI uses only CLI
+ok 111 - first-use configuration stays independent and the ordinary login UI uses only CLI
+  ---
+  duration_ms: 2.839417
+  type: 'test'
+  ...
+# Subtest: malformed baseUrl fails configuration validation without echoing its value
+ok 112 - malformed baseUrl fails configuration validation without echoing its value
+  ---
+  duration_ms: 1.35725
+  type: 'test'
+  ...
+# Subtest: valid deployment URLs retain their bytes and existing configuration defaults
+ok 113 - valid deployment URLs retain their bytes and existing configuration defaults
+  ---
+  duration_ms: 0.567
+  type: 'test'
+  ...
+# Subtest: DSH settings schema serialization retains URL validation without module closures
+ok 114 - DSH settings schema serialization retains URL validation without module closures
+  ---
+  duration_ms: 0.283584
+  type: 'test'
+  ...
+# Subtest: real Cordis fiber rejects invalid baseUrl before apply and independent diagnostics remain usable
+ok 115 - real Cordis fiber rejects invalid baseUrl before apply and independent diagnostics remain usable
+  ---
+  duration_ms: 2.704125
+  type: 'test'
+  ...
+# Subtest: CLI setup is optional and does not prevent configuration or diagnostics
+ok 116 - CLI setup is optional and does not prevent configuration or diagnostics
+  ---
+  duration_ms: 2.276292
+  type: 'test'
+  ...
+# Subtest: running turns block CLI installation before touching subprocess
+ok 117 - running turns block CLI installation before touching subprocess
+  ---
+  duration_ms: 0.100916
+  type: 'test'
+  ...
+# Subtest: a Host installation cannot race a settings write
+ok 118 - a Host installation cannot race a settings write
+  ---
+  duration_ms: 2.75825
+  type: 'test'
+  ...
+# Subtest: fresh default config activates without mounting registry, CLI, MCP or business service
+ok 119 - fresh default config activates without mounting registry, CLI, MCP or business service
+  ---
+  duration_ms: 2.704584
+  type: 'test'
+  ...
+# Subtest: pending diagnostics explicitly leave authentication and connection checks not-run
+ok 120 - pending diagnostics explicitly leave authentication and connection checks not-run
+  ---
+  duration_ms: 1.992875
+  type: 'test'
+  ...
+# Subtest: configuration writes only the two owned fields through the native editor
+ok 121 - configuration writes only the two owned fields through the native editor
+  ---
+  duration_ms: 0.211333
+  type: 'test'
+  ...
+# Subtest: invalid submission does not write and does not echo configured values
+ok 122 - invalid submission does not write and does not echo configured values
+  ---
+  duration_ms: 1.13225
+  type: 'test'
+  ...
+# Subtest: running sessions and inactive business rows cannot write configuration
+ok 123 - running sessions and inactive business rows cannot write configuration
+  ---
+  duration_ms: 0.676417
+  type: 'test'
+  ...
+# Subtest: native override/write rejection is sanitized and original values survive
+ok 124 - native override/write rejection is sanitized and original values survive
+  ---
+  duration_ms: 1.113792
+  type: 'test'
+  ...
+# Subtest: a missing editor preserves readable healthy config and never invents a pending state
+ok 125 - a missing editor preserves readable healthy config and never invents a pending state
+  ---
+  duration_ms: 0.959084
+  type: 'test'
+  ...
+# Subtest: active native resolved values expose an expression-configured URL without evaluating raw nodes
+ok 126 - active native resolved values expose an expression-configured URL without evaluating raw nodes
+  ---
+  duration_ms: 0.899708
+  type: 'test'
+  ...
+# Subtest: an expression resolving to the empty native default stays pending in settings and diagnostics
+ok 127 - an expression resolving to the empty native default stays pending in settings and diagnostics
+  ---
+  duration_ms: 2.718958
+  type: 'test'
+  ...
+# Subtest: inactive fibers use current raw values rather than obsolete resolved configuration
+ok 128 - inactive fibers use current raw values rather than obsolete resolved configuration
+  ---
+  duration_ms: 0.127
+  type: 'test'
+  ...
+# Subtest: native editing preserves raw expression nodes outside the two submitted fields
+ok 129 - native editing preserves raw expression nodes outside the two submitted fields
+  ---
+  duration_ms: 0.216875
+  type: 'test'
+  ...
+# Subtest: Host rejects arbitrary install versions before querying configuration or subprocess
+ok 130 - Host rejects arbitrary install versions before querying configuration or subprocess
+  ---
+  duration_ms: 0.079167
+  type: 'test'
+  ...
+# Subtest: configuration changes clear observations and fence writers even when returning to an old address
+ok 131 - configuration changes clear observations and fence writers even when returning to an old address
+  ---
+  duration_ms: 1.835292
+  type: 'test'
+  ...
+# Subtest: late reader failures and successes cannot enter the next platform report
+ok 132 - late reader failures and successes cannot enter the next platform report
+  ---
+  duration_ms: 12.6395
+  type: 'test'
+  ...
+# Subtest: late CLI status and invalid-output classifications stay with the old platform lifetime
+ok 133 - late CLI status and invalid-output classifications stay with the old platform lifetime
+  ---
+  duration_ms: 0.29725
+  type: 'test'
+  ...
+# Subtest: a delayed executable lookup refusal cannot mark the replacement CLI as missing
+ok 134 - a delayed executable lookup refusal cannot mark the replacement CLI as missing
+  ---
+  duration_ms: 0.229917
+  type: 'test'
+  ...
+# Subtest: a delayed subprocess result cannot replace the next platform CLI observation
+ok 135 - a delayed subprocess result cannot replace the next platform CLI observation
+  ---
+  duration_ms: 0.194
+  type: 'test'
+  ...
+# Subtest: late MCP startup success and classified rejection cannot repopulate the new platform report
+ok 136 - late MCP startup success and classified rejection cannot repopulate the new platform report
+  ---
+  duration_ms: 0.994208
+  type: 'test'
+  ...
+# Subtest: same-address reader replacement preserves 401 recovery evidence
+ok 137 - same-address reader replacement preserves 401 recovery evidence
+  ---
+  duration_ms: 0.3925
+  type: 'test'
+  ...
+# Subtest: authentication login forwards only the supplied lifecycle signal
+ok 138 - authentication login forwards only the supplied lifecycle signal
+  ---
+  duration_ms: 0.077292
+  type: 'test'
+  ...
+# Subtest: same-address canceled subprocess output cannot overwrite a newer CLI success
+ok 139 - same-address canceled subprocess output cannot overwrite a newer CLI success
+  ---
+  duration_ms: 0.485041
+  type: 'test'
+  ...
+# Subtest: same-address canceled authentication status cannot overwrite a new authenticated result
+ok 140 - same-address canceled authentication status cannot overwrite a new authenticated result
+  ---
+  duration_ms: 0.703166
+  type: 'test'
+  ...
+# Subtest: same-address canceled token output cannot add a parse failure after a newer CLI success
+ok 141 - same-address canceled token output cannot add a parse failure after a newer CLI success
+  ---
+  duration_ms: 0.412459
+  type: 'test'
+  ...
+# Subtest: same-address canceled response-body completion cannot overwrite a newer reader success
+ok 142 - same-address canceled response-body completion cannot overwrite a newer reader success
+  ---
+  duration_ms: 0.818417
+  type: 'test'
+  ...
+# Subtest: the report schema version and codes are frozen additions
+ok 143 - the report schema version and codes are frozen additions
+  ---
+  duration_ms: 0.390792
+  type: 'test'
+  ...
+# Subtest: report ids are unique, short hex strings
+ok 144 - report ids are unique, short hex strings
+  ---
+  duration_ms: 0.893083
+  type: 'test'
+  ...
+# Subtest: coverage separates executed, not-run, and insufficient-evidence checks
+ok 145 - coverage separates executed, not-run, and insufficient-evidence checks
+  ---
+  duration_ms: 0.320083
+  type: 'test'
+  ...
+# Subtest: evidence sanitization keeps only bounded scalars
+ok 146 - evidence sanitization keeps only bounded scalars
+  ---
+  duration_ms: 0.147333
+  type: 'test'
+  ...
+# Subtest: open loads a report and settles into ready
+ok 147 - open loads a report and settles into ready
+  ---
+  duration_ms: 0.389083
+  type: 'test'
+  ...
+# Subtest: a failing getReport degrades to the unavailable phase without guessing a cause
+ok 148 - a failing getReport degrades to the unavailable phase without guessing a cause
+  ---
+  duration_ms: 0.1705
+  type: 'test'
+  ...
+# Subtest: a stale in-flight load never overwrites a newer one
+ok 149 - a stale in-flight load never overwrites a newer one
+  ---
+  duration_ms: 0.134833
+  type: 'test'
+  ...
+# Subtest: close hides the panel but keeps the last report for reopening
+ok 150 - close hides the panel but keeps the last report for reopening
+  ---
+  duration_ms: 0.061167
+  type: 'test'
+  ...
+# Subtest: the export file name is UTC-stamped and id-suffixed
+ok 151 - the export file name is UTC-stamped and id-suffixed
+  ---
+  duration_ms: 0.727083
+  type: 'test'
+  ...
+# Subtest: export writes the serialized report through the download port
+ok 152 - export writes the serialized report through the download port
+  ---
+  duration_ms: 0.234875
+  type: 'test'
+  ...
+# Subtest: serialization is deterministic and terminates with a newline
+ok 153 - serialization is deterministic and terminates with a newline
+  ---
+  duration_ms: 0.102708
+  type: 'test'
+  ...
+# Subtest: a missing fiber classifies as module resolution failure
+ok 154 - a missing fiber classifies as module resolution failure
+  ---
+  duration_ms: 1.046541
+  type: 'test'
+  ...
+# Subtest: a settled active fiber classifies as loaded
+ok 155 - a settled active fiber classifies as loaded
+  ---
+  duration_ms: 0.388041
+  type: 'test'
+  ...
+# Subtest: a failed fiber rethrows through await() and classifies validation errors
+ok 156 - a failed fiber rethrows through await() and classifies validation errors
+  ---
+  duration_ms: 0.238459
+  type: 'test'
+  ...
+# Subtest: a failed fiber with an unknown error classifies as initialization failure
+ok 157 - a failed fiber with an unknown error classifies as initialization failure
+  ---
+  duration_ms: 0.174875
+  type: 'test'
+  ...
+# Subtest: a fiber that never started resolves await() but still reports waiting
+ok 158 - a fiber that never started resolves await() but still reports waiting
+  ---
+  duration_ms: 0.152167
+  type: 'test'
+  ...
+# Subtest: a stuck lifecycle transition is inconclusive, not healthy
+ok 159 - a stuck lifecycle transition is inconclusive, not healthy
+  ---
+  duration_ms: 21.628375
+  type: 'test'
+  ...
+# Subtest: a disposed fiber is never reported as loaded
+ok 160 - a disposed fiber is never reported as loaded
+  ---
+  duration_ms: 0.768916
+  type: 'test'
+  ...
+# Subtest: a recovered fiber reports active rather than a stale failure
+ok 161 - a recovered fiber reports active rather than a stale failure
+  ---
+  duration_ms: 0.185916
+  type: 'test'
+  ...
+# Subtest: field extraction only whitelists known config field names
+ok 162 - field extraction only whitelists known config field names
+  ---
+  duration_ms: 0.597
+  type: 'test'
+  ...
+# Subtest: findOwnEntries picks this package’s two rows out of a loader tree
+ok 163 - findOwnEntries picks this package’s two rows out of a loader tree
+  ---
+  duration_ms: 0.686042
+  type: 'test'
+  ...
+# Subtest: observations map onto the frozen code table
+ok 164 - observations map onto the frozen code table
+  ---
+  duration_ms: 0.387125
+  type: 'test'
+  ...
+# Subtest: plain Node does not establish npm host form: official Desktop also spawns a Node host
+ok 165 - plain Node does not establish npm host form: official Desktop also spawns a Node host
+  ---
+  duration_ms: 1.577416
+  type: 'test'
+  ...
+# Subtest: the buffer never stores raw errors, messages, or causes
+ok 166 - the buffer never stores raw errors, messages, or causes
+  ---
+  duration_ms: 3.202708
+  type: 'test'
+  ...
+# Subtest: reader failures through the real request path keep status and subjects separate
+ok 167 - reader failures through the real request path keep status and subjects separate
+  ---
+  duration_ms: 52.919083
+  type: 'test'
+  ...
+# Subtest: a TLS cause through the real request path classifies as tls-failed
+ok 168 - a TLS cause through the real request path classifies as tls-failed
+  ---
+  duration_ms: 0.361
+  type: 'test'
+  ...
+# Subtest: a successful directory read does not clear a provenance failure
+ok 169 - a successful directory read does not clear a provenance failure
+  ---
+  duration_ms: 0.993958
+  type: 'test'
+  ...
+# Subtest: canaries never survive the real request path
+ok 170 - canaries never survive the real request path
+  ---
+  duration_ms: 2.114667
+  type: 'test'
+  ...
+# Subtest: a corrected platform address supersedes the earlier mismatch
+ok 171 - a corrected platform address supersedes the earlier mismatch
+  ---
+  duration_ms: 0.253042
+  type: 'test'
+  ...
+# Subtest: CLI stdout that is not valid JSON records cli-output-invalid
+ok 172 - CLI stdout that is not valid JSON records cli-output-invalid
+  ---
+  duration_ms: 0.343583
+  type: 'test'
+  ...
+# Subtest: a later success marks the earlier failure as recovered
+ok 173 - a later success marks the earlier failure as recovered
+  ---
+  duration_ms: 0.069333
+  type: 'test'
+  ...
+# Subtest: the buffer is bounded and reports dropped novel keys
+ok 174 - the buffer is bounded and reports dropped novel keys
+  ---
+  duration_ms: 4.5255
+  type: 'test'
+  ...
+# Subtest: outcome counts accumulate per subject and the newest outcome wins
+ok 175 - outcome counts accumulate per subject and the newest outcome wins
+  ---
+  duration_ms: 0.323541
+  type: 'test'
+  ...
+# Subtest: a clean CLI exit reconciles an earlier CLI failure
+ok 176 - a clean CLI exit reconciles an earlier CLI failure
+  ---
+  duration_ms: 0.274333
+  type: 'test'
+  ...
+# Subtest: a parse refusal is reconciled by the next clean CLI exit
+ok 177 - a parse refusal is reconciled by the next clean CLI exit
+  ---
+  duration_ms: 0.114375
+  type: 'test'
+  ...
+# Subtest: the MCP classifier projects transport causes onto the context-loader stage
+ok 178 - the MCP classifier projects transport causes onto the context-loader stage
+  ---
+  duration_ms: 0.119084
+  type: 'test'
+  ...
+# Subtest: an MCP SDK negotiation failure classifies as the network layer, not TLS
+ok 179 - an MCP SDK negotiation failure classifies as the network layer, not TLS
+  ---
+  duration_ms: 0.051375
+  type: 'test'
+  ...
+# Subtest: an interface failure is reconciled only by the same interface succeeding
+ok 180 - an interface failure is reconciled only by the same interface succeeding
+  ---
+  duration_ms: 0.504667
+  type: 'test'
+  ...
+# Subtest: a list success does not mask a detail failure
+ok 181 - a list success does not mask a detail failure
+  ---
+  duration_ms: 0.748542
+  type: 'test'
+  ...
+# Subtest: an MCP SdkError keeps the certificate code in data.cause
+ok 182 - an MCP SdkError keeps the certificate code in data.cause
+  ---
+  duration_ms: 0.078417
+  type: 'test'
+  ...
+# Subtest: a refused MCP credential is auth-rejected, not not-logged-in
+ok 183 - a refused MCP credential is auth-rejected, not not-logged-in
+  ---
+  duration_ms: 0.064959
+  type: 'test'
+  ...
+# Subtest: a lossy CLI output refusal lands as a failure observation
+ok 184 - a lossy CLI output refusal lands as a failure observation
+  ---
+  duration_ms: 0.128667
+  type: 'test'
+  ...
+# Subtest: a 200 with an invalid catalogue is a failure, not a recovery
+ok 185 - a 200 with an invalid catalogue is a failure, not a recovery
+  ---
+  duration_ms: 9.555042
+  type: 'test'
+  ...
+# Subtest: Windows platform name is friendly without claiming OS bitness or host form
+ok 186 - Windows platform name is friendly without claiming OS bitness or host form
+  ---
+  duration_ms: 1.5945
+  type: 'test'
+  ...
+# Subtest: missing runtime versions remain missing even when a disk version is known
+ok 187 - missing runtime versions remain missing even when a disk version is known
+  ---
+  duration_ms: 0.24075
+  type: 'test'
+  ...
+# Subtest: known runtime and disk versions remain independently visible
+ok 188 - known runtime and disk versions remain independently visible
+  ---
+  duration_ms: 0.253959
+  type: 'test'
+  ...
+# Subtest: persists a new binding as a plugin record and never touches the session log
+ok 189 - persists a new binding as a plugin record and never touches the session log
+  ---
+  duration_ms: 2.09125
+  type: 'test'
+  ...
+# Subtest: a failed write rejects and leaves the session unbound
+ok 190 - a failed write rejects and leaves the session unbound
+  ---
+  duration_ms: 0.274042
+  type: 'test'
+  ...
+# Subtest: reselecting the bound network writes nothing; a different network is a conflict
+ok 191 - reselecting the bound network writes nothing; a different network is a conflict
+  ---
+  duration_ms: 0.146708
+  type: 'test'
+  ...
+# Subtest: reads a binding event an earlier release left in the log, under its original or migrated name
+ok 192 - reads a binding event an earlier release left in the log, under its original or migrated name
+  ---
+  duration_ms: 0.08
+  type: 'test'
+  ...
+# Subtest: a log event and a plugin record that disagree are reported, never silently resolved
+ok 193 - a log event and a plugin record that disagree are reported, never silently resolved
+  ---
+  duration_ms: 0.176125
+  type: 'test'
+  ...
+# Subtest: a fork inherits the parent binding only when its copied prefix reaches the bind point
+ok 194 - a fork inherits the parent binding only when its copied prefix reaches the bind point
+  ---
+  duration_ms: 0.184458
+  type: 'test'
+  ...
+# Subtest: a freshly spawned child (not seeded from the parent log) inherits nothing
+ok 195 - a freshly spawned child (not seeded from the parent log) inherits nothing
+  ---
+  duration_ms: 0.092042
+  type: 'test'
+  ...
+# Subtest: a fork that already has its own binding keeps it
+ok 196 - a fork that already has its own binding keeps it
+  ---
+  duration_ms: 0.054792
+  type: 'test'
+  ...
+# Subtest: the file store round-trips one record per session and leaves no temporary files
+ok 197 - the file store round-trips one record per session and leaves no temporary files
+  ---
+  duration_ms: 26.8435
+  type: 'test'
+  ...
+# Subtest: the file store fails closed on malformed, foreign, or unsafe records
+ok 198 - the file store fails closed on malformed, foreign, or unsafe records
+  ---
+  duration_ms: 9.165125
+  type: 'test'
+  ...
+# Subtest: orphan cleanup removes only old records whose session DSH no longer stores
+ok 199 - orphan cleanup removes only old records whose session DSH no longer stores
+  ---
+  duration_ms: 27.692167
+  type: 'test'
+  ...
+# Subtest: orphan cleanup of a store that was never written is a no-op
+ok 200 - orphan cleanup of a store that was never written is a no-op
+  ---
+  duration_ms: 0.9705
+  type: 'test'
+  ...
+# Subtest: concurrent binds of one session to different networks: exactly one wins, the other conflicts
+ok 201 - concurrent binds of one session to different networks: exactly one wins, the other conflicts
+  ---
+  duration_ms: 10.249042
+  type: 'test'
+  ...
+# Subtest: concurrent binds of one session to the same network are idempotent; other sessions are not blocked
+ok 202 - concurrent binds of one session to the same network are idempotent; other sessions are not blocked
+  ---
+  duration_ms: 0.176584
+  type: 'test'
+  ...
+# Subtest: a failed write does not block the next bind of the same session
+ok 203 - a failed write does not block the next bind of the same session
+  ---
+  duration_ms: 0.096625
+  type: 'test'
+  ...
+# Subtest: formal release capture-disabled start retains the platform-issued managed identities
+ok 204 - formal release capture-disabled start retains the platform-issued managed identities
+  ---
+  duration_ms: 0.799083
+  type: 'test'
+  ...
+# Subtest: formal release disabled finish preserves identities without fabricating recorded evidence
+ok 205 - formal release disabled finish preserves identities without fabricating recorded evidence
+  ---
+  duration_ms: 0.364292
+  type: 'test'
+  ...
+# Subtest: formal release schemas require managed context on every projected business tool
+ok 206 - formal release schemas require managed context on every projected business tool
+  ---
+  duration_ms: 0.13225
+  type: 'test'
+  ...
+# Subtest: published required context refuses missing, malformed and different-turn identities
+ok 207 - published required context refuses missing, malformed and different-turn identities
+  ---
+  duration_ms: 0.12775
+  type: 'test'
+  ...
+# Subtest: formal unavailable finish degrades honestly and cannot open a new Interaction
+ok 208 - formal unavailable finish degrades honestly and cannot open a new Interaction
+  ---
+  duration_ms: 0.079041
+  type: 'test'
+  ...
+# Subtest: an unrecorded result never borrows identities from a different text record
+ok 209 - an unrecorded result never borrows identities from a different text record
+  ---
+  duration_ms: 0.189375
+  type: 'test'
+  ...
+# Subtest: malformed live invocation exits before importing the plugin or taking credentials
+ok 210 - malformed live invocation exits before importing the plugin or taking credentials
+  ---
+  duration_ms: 306.08775
+  type: 'test'
+  ...
+# Subtest: valid live options retain explicit mode, networks and paths with spaces
+ok 211 - valid live options retain explicit mode, networks and paths with spaces
+  ---
+  duration_ms: 1.512583
+  type: 'test'
+  ...
+# Subtest: CLI failures never expose captured credential-like stdout or stderr
+ok 212 - CLI failures never expose captured credential-like stdout or stderr
+  ---
+  duration_ms: 46.631375
+  type: 'test'
+  ...
+# Subtest: Windows CLI lookup runs a PATH .cmd and a shim in a path containing spaces and &
+ok 213 - Windows CLI lookup runs a PATH .cmd and a shim in a path containing spaces and & # SKIP
+  ---
+  duration_ms: 0.168125
+  type: 'test'
+  ...
+# Subtest: release package audit accepts only the install-time bundle assets
+ok 214 - release package audit accepts only the install-time bundle assets
+  ---
+  duration_ms: 480.286709
+  type: 'test'
+  ...
+# Subtest: initial state is closed with no conversation held
+ok 215 - initial state is closed with no conversation held
+  ---
+  duration_ms: 0.700542
+  type: 'test'
+  ...
+# Subtest: a successful start opens the interaction and adopts disclosed ids
+ok 216 - a successful start opens the interaction and adopts disclosed ids
+  ---
+  duration_ms: 0.126834
+  type: 'test'
+  ...
+# Subtest: a failed start leaves the interaction closed
+ok 217 - a failed start leaves the interaction closed
+  ---
+  duration_ms: 0.048458
+  type: 'test'
+  ...
+# Subtest: a successful finish closes the interaction but keeps the conversation
+ok 218 - a successful finish closes the interaction but keeps the conversation
+  ---
+  duration_ms: 0.04825
+  type: 'test'
+  ...
+# Subtest: a failed finish keeps the interaction open so the model may retry
+ok 219 - a failed finish keeps the interaction open so the model may retry
+  ---
+  duration_ms: 0.0935
+  type: 'test'
+  ...
+# Subtest: a successful finish closes access even when its result cannot disclose usable provenance IDs
+ok 220 - a successful finish closes access even when its result cannot disclose usable provenance IDs
+  ---
+  duration_ms: 0.197042
+  type: 'test'
+  ...
+# Subtest: onTurnStart resets per-turn flags and preserves whatever conversation the state holds
+ok 221 - onTurnStart resets per-turn flags and preserves whatever conversation the state holds
+  ---
+  duration_ms: 0.081583
+  type: 'test'
+  ...
+# Subtest: restoreFrom resumes the conversation of the last logged successful start
+ok 222 - restoreFrom resumes the conversation of the last logged successful start
+  ---
+  duration_ms: 0.174167
+  type: 'test'
+  ...
+# Subtest: restoreFrom drops a conversation the platform invalidated, and never resurrects it
+ok 223 - restoreFrom drops a conversation the platform invalidated, and never resurrects it
+  ---
+  duration_ms: 0.3695
+  type: 'test'
+  ...
+# Subtest: restoreFrom keeps the conversation through non-invalidating failures and guard denials
+ok 224 - restoreFrom keeps the conversation through non-invalidating failures and guard denials
+  ---
+  duration_ms: 0.783041
+  type: 'test'
+  ...
+# Subtest: restoreFrom reads legacy tool-result wrappers too
+ok 225 - restoreFrom reads legacy tool-result wrappers too
+  ---
+  duration_ms: 0.279208
+  type: 'test'
+  ...
+# Subtest: restoreFrom ignores recorded plugin events and unrelated tools
+ok 226 - restoreFrom ignores recorded plugin events and unrelated tools
+  ---
+  duration_ms: 0.110584
+  type: 'test'
+  ...
+# Subtest: a fork (a log prefix) resumes the conversation held at its fork point
+ok 227 - a fork (a log prefix) resumes the conversation held at its fork point
+  ---
+  duration_ms: 0.119166
+  type: 'test'
+  ...
+# Subtest: replaying real logs reproduces the conversation state the plugin recorded at the time
+ok 228 - replaying real logs reproduces the conversation state the plugin recorded at the time
+  ---
+  duration_ms: 4.054625
+  type: 'test'
+  ...
+# Subtest: lastConversationEvent returns the durable record verbatim, recordedAt included
+ok 229 - lastConversationEvent returns the durable record verbatim, recordedAt included
+  ---
+  duration_ms: 0.14075
+  type: 'test'
+  ...
+# Subtest: classifyFailure marks only platform invalidation codes as conversation-invalid
+ok 230 - classifyFailure marks only platform invalidation codes as conversation-invalid
+  ---
+  duration_ms: 0.043959
+  type: 'test'
+  ...
+# Subtest: projectLifecycleOutcome extracts the code from the platform nested error envelope
+ok 231 - projectLifecycleOutcome extracts the code from the platform nested error envelope
+  ---
+  duration_ms: 0.039167
+  type: 'test'
+  ...
+# Subtest: projectLifecycleOutcome still reads a legacy flat envelope and known nested variants
+ok 232 - projectLifecycleOutcome still reads a legacy flat envelope and known nested variants
+  ---
+  duration_ms: 0.093708
+  type: 'test'
+  ...
+# Subtest: projectLifecycleOutcome treats unparsable or code-less failures as not determinable
+ok 233 - projectLifecycleOutcome treats unparsable or code-less failures as not determinable
+  ---
+  duration_ms: 0.037167
+  type: 'test'
+  ...
+# Subtest: projectLifecycleOutcome reads ids from a successful lifecycle result
+ok 234 - projectLifecycleOutcome reads ids from a successful lifecycle result
+  ---
+  duration_ms: 0.031125
+  type: 'test'
+  ...
+# Subtest: a non-invalidating failed start never clears the held conversation
+ok 235 - a non-invalidating failed start never clears the held conversation
+  ---
+  duration_ms: 0.029542
+  type: 'test'
+  ...
+# Subtest: a platform-invalidated start drops the held conversation and allows one controlled recovery
+ok 236 - a platform-invalidated start drops the held conversation and allows one controlled recovery
+  ---
+  duration_ms: 0.032042
+  type: 'test'
+  ...
+# Subtest: rule 2: a managed in-interaction tool is denied before any start, with a retryable next step
+ok 237 - rule 2: a managed in-interaction tool is denied before any start, with a retryable next step
+  ---
+  duration_ms: 0.06475
+  type: 'test'
+  ...
+# Subtest: rule 2 after the turn completed: the denial forbids further access instead of sending the model into a start that would be rejected
+ok 238 - rule 2 after the turn completed: the denial forbids further access instead of sending the model into a start that would be rejected
+  ---
+  duration_ms: 0.039208
+  type: 'test'
+  ...
+# Subtest: rule 3: start is denied while an interaction is open
+ok 239 - rule 3: start is denied while an interaction is open
+  ---
+  duration_ms: 0.032792
+  type: 'test'
+  ...
+# Subtest: rule 4: new is denied while a conversation is held, with the exact id in the text
+ok 240 - rule 4: new is denied while a conversation is held, with the exact id in the text
+  ---
+  duration_ms: 0.027917
+  type: 'test'
+  ...
+# Subtest: rule 4: continue with a mismatched id is denied with the correct value
+ok 241 - rule 4: continue with a mismatched id is denied with the correct value
+  ---
+  duration_ms: 0.029625
+  type: 'test'
+  ...
+# Subtest: rule 4: continue without any held conversation is denied towards new
+ok 242 - rule 4: continue without any held conversation is denied towards new
+  ---
+  duration_ms: 0.023625
+  type: 'test'
+  ...
+# Subtest: a matching continue is allowed
+ok 243 - a matching continue is allowed
+  ---
+  duration_ms: 0.068083
+  type: 'test'
+  ...
+# Subtest: rule 5: finish is denied without an open interaction
+ok 244 - rule 5: finish is denied without an open interaction
+  ---
+  duration_ms: 0.024875
+  type: 'test'
+  ...
+# Subtest: after a platform-judged invalidation, exactly one controlled new is allowed
+ok 245 - after a platform-judged invalidation, exactly one controlled new is allowed
+  ---
+  duration_ms: 0.034917
+  type: 'test'
+  ...
+# Subtest: a turn that finished its interaction cannot start a second one
+ok 246 - a turn that finished its interaction cannot start a second one
+  ---
+  duration_ms: 0.029917
+  type: 'test'
+  ...
+# Subtest: retrying a failed start in the same turn stays allowed
+ok 247 - retrying a failed start in the same turn stays allowed
+  ---
+  duration_ms: 0.023792
+  type: 'test'
+  ...
+# Subtest: an unmatched or absent conversation_mode is left to platform validation
+ok 248 - an unmatched or absent conversation_mode is left to platform validation
+  ---
+  duration_ms: 0.022334
+  type: 'test'
+  ...
+# Subtest: 0.2.0 explicit unrecorded start opens governed access without stale interaction identity
+ok 249 - 0.2.0 explicit unrecorded start opens governed access without stale interaction identity
+  ---
+  duration_ms: 0.088125
+  type: 'test'
+  ...
+# Subtest: disabled Trace preserves Conversation across turns; errors and unknown missing IDs never open access
+ok 250 - disabled Trace preserves Conversation across turns; errors and unknown missing IDs never open access
+  ---
+  duration_ms: 0.12025
+  type: 'test'
+  ...
+# Subtest: lifecycle projection accepts only a valid platform diagnostic suffix, not arbitrary appended text
+ok 251 - lifecycle projection accepts only a valid platform diagnostic suffix, not arbitrary appended text
+  ---
+  duration_ms: 0.0905
+  type: 'test'
+  ...
+# Subtest: extracts only explicitly disclosed interaction and operation references
+ok 252 - extracts only explicitly disclosed interaction and operation references
+  ---
+  duration_ms: 0.544958
+  type: 'test'
+  ...
+# Subtest: does not create provenance references from an undisclosed interaction or error response
+ok 253 - does not create provenance references from an undisclosed interaction or error response
+  ---
+  duration_ms: 0.0605
+  type: 'test'
+  ...
+# Subtest: bounds and ignores malformed operation references
+ok 254 - bounds and ignores malformed operation references
+  ---
+  duration_ms: 0.132834
+  type: 'test'
+  ...
+# Subtest: both dictionaries cover the same keys and interpolation contracts
+ok 255 - both dictionaries cover the same keys and interpolation contracts
+  ---
+  duration_ms: 7.171667
+  type: 'test'
+  ...
+# Subtest: an already displayed failure updates zh/en/zh without rereading credentials or reconnecting
+ok 256 - an already displayed failure updates zh/en/zh without rereading credentials or reconnecting
+  ---
+  duration_ms: 35.30725
+  type: 'test'
+  ...
+# Subtest: native evidence selection survives language changes and never links equal-valued unrelated nodes
+ok 257 - native evidence selection survives language changes and never links equal-valued unrelated nodes
+  ---
+  duration_ms: 17.47725
+  type: 'test'
+  ...
+# Subtest: diagnostic next actions translate without mutating exported report facts or unknown text
+ok 258 - diagnostic next actions translate without mutating exported report facts or unknown text
+  ---
+  duration_ms: 0.125708
+  type: 'test'
+  ...
+# Subtest: the open login panel switches language while waiting and cancellation never dispatches a second login
+ok 259 - the open login panel switches language while waiting and cancellation never dispatches a second login
+  ---
+  duration_ms: 5.4355
+  type: 'test'
+  ...
+# Subtest: closing provenance cancels its read and discards the late response
+ok 260 - closing provenance cancels its read and discards the late response
+  ---
+  duration_ms: 69.414208
+  type: 'test'
+  ...
+# Subtest: claim selection marks only explicitly linked functions while retaining the same-pair catalogue
+ok 261 - claim selection marks only explicitly linked functions while retaining the same-pair catalogue
+  ---
+  duration_ms: 18.286541
+  type: 'test'
+  ...
+# Subtest: event selection marks processing by disclosed operation IDs and survives tab changes
+ok 262 - event selection marks processing by disclosed operation IDs and survives tab changes
+  ---
+  duration_ms: 9.367375
+  type: 'test'
+  ...
+# Subtest: changing question pairs resets node, claim and event selections without importing unrelated functions
+ok 263 - changing question pairs resets node, claim and event selections without importing unrelated functions
+  ---
+  duration_ms: 18.053417
+  type: 'test'
+  ...
+# Subtest: truly empty ready evidence, not-generated and an omitted oversized native projection remain distinct
+ok 264 - truly empty ready evidence, not-generated and an omitted oversized native projection remain distinct
+  ---
+  duration_ms: 2.851792
+  type: 'test'
+  ...
+# Subtest: a late response from the closed answer cannot overwrite a newly opened answer
+ok 265 - a late response from the closed answer cannot overwrite a newly opened answer
+  ---
+  duration_ms: 7.60025
+  type: 'test'
+  ...
+# Subtest: login has a dedicated waiting state and repeated clicks dispatch once
+ok 266 - login has a dedicated waiting state and repeated clicks dispatch once
+  ---
+  duration_ms: 0.688709
+  type: 'test'
+  ...
+# Subtest: cancel aborts only the active request and discards a late result; retry is independent
+ok 267 - cancel aborts only the active request and discards a late result; retry is independent
+  ---
+  duration_ms: 0.230042
+  type: 'test'
+  ...
+# Subtest: bounded login timeout cancels the request without accepting a late response
+ok 268 - bounded login timeout cancels the request without accepting a late response
+  ---
+  duration_ms: 20.267916
+  type: 'test'
+  ...
+# Subtest: closing during login aborts its request and reopening has no stale outcome
+ok 269 - closing during login aborts its request and reopening has no stale outcome
+  ---
+  duration_ms: 0.289834
+  type: 'test'
+  ...
+# Subtest: failed login exposes a controlled state without raw CLI output
+ok 270 - failed login exposes a controlled state without raw CLI output
+  ---
+  duration_ms: 0.331167
+  type: 'test'
+  ...
+# Subtest: login verification returning authentication-required never publishes success or the stale catalogue
+ok 271 - login verification returning authentication-required never publishes success or the stale catalogue
+  ---
+  duration_ms: 0.418166
+  type: 'test'
+  ...
+# Subtest: login verification returning platform-mismatch never publishes success or the stale catalogue
+ok 272 - login verification returning platform-mismatch never publishes success or the stale catalogue
+  ---
+  duration_ms: 0.151416
+  type: 'test'
+  ...
+# Subtest: an unsuccessful verification can retry and succeeds only after authenticated verification
+ok 273 - an unsuccessful verification can retry and succeeds only after authenticated verification
+  ---
+  duration_ms: 0.200459
+  type: 'test'
+  ...
+# Subtest: cancellation while verifying status discards a late authenticated result
+ok 274 - cancellation while verifying status discards a late authenticated result
+  ---
+  duration_ms: 1.123125
+  type: 'test'
+  ...
+# Subtest: renders compact managed-session guidance without exposing untrusted platform prose
+ok 275 - renders compact managed-session guidance without exposing untrusted platform prose
+  ---
+  duration_ms: 0.833167
+  type: 'test'
+  ...
+# Subtest: omits the dynamic section until a matching bounded capability profile is available
+ok 276 - omits the dynamic section until a matching bounded capability profile is available
+  ---
+  duration_ms: 0.074875
+  type: 'test'
+  ...
+# Subtest: quotes the selected network identity as data instead of executable prompt text
+ok 277 - quotes the selected network identity as data instead of executable prompt text
+  ---
+  duration_ms: 0.06775
+  type: 'test'
+  ...
+# Subtest: derives the default MCP route from the platform URL
+ok 278 - derives the default MCP route from the platform URL
+  ---
+  duration_ms: 0.412042
+  type: 'test'
+  ...
+# Subtest: accepts an explicit mcpUrl on the same origin over https
+ok 279 - accepts an explicit mcpUrl on the same origin over https
+  ---
+  duration_ms: 0.083
+  type: 'test'
+  ...
+# Subtest: accepts loopback http only when both endpoints are loopback
+ok 280 - accepts loopback http only when both endpoints are loopback
+  ---
+  duration_ms: 0.2085
+  type: 'test'
+  ...
+# Subtest: rejects a plaintext non-loopback mcpUrl even on the same host
+ok 281 - rejects a plaintext non-loopback mcpUrl even on the same host
+  ---
+  duration_ms: 0.070292
+  type: 'test'
+  ...
+# Subtest: rejects a cross-origin mcpUrl regardless of scheme
+ok 282 - rejects a cross-origin mcpUrl regardless of scheme
+  ---
+  duration_ms: 0.107292
+  type: 'test'
+  ...
+# Subtest: allows plaintext non-loopback only through the explicit insecure switch
+ok 283 - allows plaintext non-loopback only through the explicit insecure switch
+  ---
+  duration_ms: 0.051583
+  type: 'test'
+  ...
+# Subtest: inactive owners cannot reuse the published-tool fast path or refresh a client
+ok 284 - inactive owners cannot reuse the published-tool fast path or refresh a client
+  ---
+  duration_ms: 1.546791
+  type: 'test'
+  ...
+# Subtest: a token resolving after owner disposal cannot mount or change the new diagnostic outcome
+ok 285 - a token resolving after owner disposal cannot mount or change the new diagnostic outcome
+  ---
+  duration_ms: 0.378208
+  type: 'test'
+  ...
+# Subtest: a late successful mount is disposed and cannot overwrite the same-platform new owner
+ok 286 - a late successful mount is disposed and cannot overwrite the same-platform new owner
+  ---
+  duration_ms: 0.801
+  type: 'test'
+  ...
+# Subtest: a late failed mount from a disposed owner is not classified as a new TLS failure
+ok 287 - a late failed mount from a disposed owner is not classified as a new TLS failure
+  ---
+  duration_ms: 0.274583
+  type: 'test'
+  ...
+# Subtest: a dead owner after unpublished-client cleanup cannot record a startup failure
+ok 288 - a dead owner after unpublished-client cleanup cannot record a startup failure
+  ---
+  duration_ms: 0.246042
+  type: 'test'
+  ...
+# Subtest: a live owner still mounts, reports success, and refreshes its owned client
+ok 289 - a live owner still mounts, reports success, and refreshes its owned client
+  ---
+  duration_ms: 0.243292
+  type: 'test'
+  ...
+# Subtest: associates an explicitly completed OpenBKN MCP interaction with its final assistant answer
+ok 290 - associates an explicitly completed OpenBKN MCP interaction with its final assistant answer
+  ---
+  duration_ms: 1.645
+  type: 'test'
+  ...
+# Subtest: keeps a handle v2 without a conversation id when the finish response omits one
+ok 291 - keeps a handle v2 without a conversation id when the finish response omits one
+  ---
+  duration_ms: 0.4285
+  type: 'test'
+  ...
+# Subtest: does not fabricate provenance when the current turn has no completed OpenBKN interaction
+ok 292 - does not fabricate provenance when the current turn has no completed OpenBKN interaction
+  ---
+  duration_ms: 0.109583
+  type: 'test'
+  ...
+# Subtest: rejects an uncompleted or ambiguous OpenBKN interaction
+ok 293 - rejects an uncompleted or ambiguous OpenBKN interaction
+  ---
+  duration_ms: 0.433833
+  type: 'test'
+  ...
+# Subtest: explicit unrecorded finish is associated only with its own final answer and has no invented IDs
+ok 294 - explicit unrecorded finish is associated only with its own final answer and has no invented IDs
+  ---
+  duration_ms: 2.167208
+  type: 'test'
+  ...
+# Subtest: stable binding identity survives fresh record objects on each read
+ok 295 - stable binding identity survives fresh record objects on each read
+  ---
+  duration_ms: 1.968625
+  type: 'test'
+  ...
+# Subtest: an exact aggregate byte budget is admitted; one byte below degrades only the explanation
+ok 296 - an exact aggregate byte budget is admitted; one byte below degrades only the explanation
+  ---
+  duration_ms: 4.868542
+  type: 'test'
+  ...
+# Subtest: aggregate native data never exceeds the frozen ceiling even when configuration permits more
+ok 297 - aggregate native data never exceeds the frozen ceiling even when configuration permits more
+  ---
+  duration_ms: 9.743792
+  type: 'test'
+  ...
+# Subtest: the final native payload respects a 1-byte cap without losing the local timeline
+ok 298 - the final native payload respects a 1-byte cap without losing the local timeline
+  ---
+  duration_ms: 0.242334
+  type: 'test'
+  ...
+# Subtest: the final native payload respects a 100-byte cap without losing the local timeline
+ok 299 - the final native payload respects a 100-byte cap without losing the local timeline
+  ---
+  duration_ms: 0.184959
+  type: 'test'
+  ...
+# Subtest: the final native payload respects a 125-byte cap without losing the local timeline
+ok 300 - the final native payload respects a 125-byte cap without losing the local timeline
+  ---
+  duration_ms: 0.098333
+  type: 'test'
+  ...
+# Subtest: the final native payload respects a 126-byte cap without losing the local timeline
+ok 301 - the final native payload respects a 126-byte cap without losing the local timeline
+  ---
+  duration_ms: 0.519292
+  type: 'test'
+  ...
+# Subtest: detail failure does not discard a readable explanation or local history
+ok 302 - detail failure does not discard a readable explanation or local history
+  ---
+  duration_ms: 0.222084
+  type: 'test'
+  ...
+# Subtest: duplicate fallback rail degrades the explanation when detail is unavailable, preserving local history
+ok 303 - duplicate fallback rail degrades the explanation when detail is unavailable, preserving local history
+  ---
+  duration_ms: 73.970542
+  type: 'test'
+  ...
+# Subtest: native read failure preserves the independently readable detail and local timeline
+ok 304 - native read failure preserves the independently readable detail and local timeline
+  ---
+  duration_ms: 0.381166
+  type: 'test'
+  ...
+# Subtest: binding changes discard in-flight native replies
+ok 305 - binding changes discard in-flight native replies
+  ---
+  duration_ms: 28.630125
+  type: 'test'
+  ...
+# Subtest: credential generation changes discard in-flight native replies
+ok 306 - credential generation changes discard in-flight native replies
+  ---
+  duration_ms: 0.893375
+  type: 'test'
+  ...
+# Subtest: missing message handles never dispatch native reads
+ok 307 - missing message handles never dispatch native reads
+  ---
+  duration_ms: 0.338833
+  type: 'test'
+  ...
+# Subtest: explicit primary-operation network mismatch rejects both native projections
+ok 308 - explicit primary-operation network mismatch rejects both native projections
+  ---
+  duration_ms: 0.308667
+  type: 'test'
+  ...
+# Subtest: schema 1 projection retains disclosed gaps and removes payloads, offsets and unknown fields
+ok 309 - schema 1 projection retains disclosed gaps and removes payloads, offsets and unknown fields
+  ---
+  duration_ms: 10.313208
+  type: 'test'
+  ...
+# Subtest: identity/schema/text/enum/duplicate refusals never accept a partial parsed explanation
+ok 310 - identity/schema/text/enum/duplicate refusals never accept a partial parsed explanation
+  ---
+  duration_ms: 10.025167
+  type: 'test'
+  ...
+# Subtest: byte and aggregate graph budgets refuse overflow rather than silently truncating
+ok 311 - byte and aggregate graph budgets refuse overflow rather than silently truncating
+  ---
+  duration_ms: 14.664042
+  type: 'test'
+  ...
+# Subtest: duplicate explanation rail IDs reject the whole projection without selecting or renaming an attempt
+ok 312 - duplicate explanation rail IDs reject the whole projection without selecting or renaming an attempt
+  ---
+  duration_ms: 0.565792
+  type: 'test'
+  ...
+# Subtest: platform invalid and unfamiliar validation states remain valid read-only records with their raw reasons
+ok 313 - platform invalid and unfamiliar validation states remain valid read-only records with their raw reasons
+  ---
+  duration_ms: 8.179084
+  type: 'test'
+  ...
+# Subtest: not_generated and a valid empty explanation are distinct outcomes
+ok 314 - not_generated and a valid empty explanation are distinct outcomes
+  ---
+  duration_ms: 0.918834
+  type: 'test'
+  ...
+# Subtest: not-generated obeys the exact byte cap including tiny budgets
+ok 315 - not-generated obeys the exact byte cap including tiny budgets
+  ---
+  duration_ms: 0.537125
+  type: 'test'
+  ...
+# Subtest: detail identity is validated and inline time-rail payloads are never projected
+ok 316 - detail identity is validated and inline time-rail payloads are never projected
+  ---
+  duration_ms: 0.837958
+  type: 'test'
+  ...
+# Subtest: native reader uses only exact GET routes with Host credentials and never generates explanations
+ok 317 - native reader uses only exact GET routes with Host credentials and never generates explanations
+  ---
+  duration_ms: 15.18325
+  type: 'test'
+  ...
+# Subtest: native 401/403/404 stay distinct and never imply a license cause
+ok 318 - native 401/403/404 stay distinct and never imply a license cause
+  ---
+  duration_ms: 2.049333
+  type: 'test'
+  ...
+# Subtest: invalid native response is observed as failure; success on another subject cannot clear it
+ok 319 - invalid native response is observed as failure; success on another subject cannot clear it
+  ---
+  duration_ms: 1.642959
+  type: 'test'
+  ...
+# Subtest: native reader refuses path-like identifiers and missing credentials before dispatch
+ok 320 - native reader refuses path-like identifiers and missing credentials before dispatch
+  ---
+  duration_ms: 0.160458
+  type: 'test'
+  ...
+# Subtest: record-integrity gaps and failed checks remain explicit in the detail projection
+ok 321 - record-integrity gaps and failed checks remain explicit in the detail projection
+  ---
+  duration_ms: 0.44325
+  type: 'test'
+  ...
+# Subtest: ready projections enforce exact UTF-8 byte budgets rather than character counts
+ok 322 - ready projections enforce exact UTF-8 byte budgets rather than character counts
+  ---
+  duration_ms: 2.382417
+  type: 'test'
+  ...
+# Subtest: raising the configured cap cannot raise the native reader ceiling above one million bytes
+ok 323 - raising the configured cap cannot raise the native reader ceiling above one million bytes
+  ---
+  duration_ms: 40.492541
+  type: 'test'
+  ...
+# Subtest: individual display text accepts 16384 UTF-16 units and refuses the next unit
+ok 324 - individual display text accepts 16384 UTF-16 units and refuses the next unit
+  ---
+  duration_ms: 0.959833
+  type: 'test'
+  ...
+# Subtest: aggregate nodes include top-level and selected-pair graphs at the exact limit
+ok 325 - aggregate nodes include top-level and selected-pair graphs at the exact limit
+  ---
+  duration_ms: 2.350958
+  type: 'test'
+  ...
+# Subtest: aggregate edges include top-level and selected-pair graphs at the exact limit
+ok 326 - aggregate edges include top-level and selected-pair graphs at the exact limit
+  ---
+  duration_ms: 10.344
+  type: 'test'
+  ...
+# Subtest: requirements accepts its array limit and refuses limit plus one
+ok 327 - requirements accepts its array limit and refuses limit plus one
+  ---
+  duration_ms: 6.058625
+  type: 'test'
+  ...
+# Subtest: claims accepts its array limit and refuses limit plus one
+ok 328 - claims accepts its array limit and refuses limit plus one
+  ---
+  duration_ms: 12.069125
+  type: 'test'
+  ...
+# Subtest: question pairs accepts its array limit and refuses limit plus one
+ok 329 - question pairs accepts its array limit and refuses limit plus one
+  ---
+  duration_ms: 0.794708
+  type: 'test'
+  ...
+# Subtest: pair graphs accepts its array limit and refuses limit plus one
+ok 330 - pair graphs accepts its array limit and refuses limit plus one
+  ---
+  duration_ms: 0.768375
+  type: 'test'
+  ...
+# Subtest: time rail accepts its array limit and refuses limit plus one
+ok 331 - time rail accepts its array limit and refuses limit plus one
+  ---
+  duration_ms: 4.087917
+  type: 'test'
+  ...
+# Subtest: notices accepts its array limit and refuses limit plus one
+ok 332 - notices accepts its array limit and refuses limit plus one
+  ---
+  duration_ms: 0.6115
+  type: 'test'
+  ...
+# Subtest: business inputs accepts its array limit and refuses limit plus one
+ok 333 - business inputs accepts its array limit and refuses limit plus one
+  ---
+  duration_ms: 0.665875
+  type: 'test'
+  ...
+# Subtest: business outputs accepts its array limit and refuses limit plus one
+ok 334 - business outputs accepts its array limit and refuses limit plus one
+  ---
+  duration_ms: 0.788833
+  type: 'test'
+  ...
+# Subtest: getNativeInteractionDetail uses the exact fixed GET route and Host credential
+ok 335 - getNativeInteractionDetail uses the exact fixed GET route and Host credential
+  ---
+  duration_ms: 0.6965
+  type: 'test'
+  ...
+# Subtest: getNativeInteractionDetail bounds header-less wire bytes at 8 MiB and cancels an overflowing stream
+ok 336 - getNativeInteractionDetail bounds header-less wire bytes at 8 MiB and cancels an overflowing stream
+  ---
+  duration_ms: 17.468041
+  type: 'test'
+  ...
+# Subtest: getNativeInteractionDetail maps malformed JSON, 5xx and transport failures to controlled errors
+ok 337 - getNativeInteractionDetail maps malformed JSON, 5xx and transport failures to controlled errors
+  ---
+  duration_ms: 1.346334
+  type: 'test'
+  ...
+# Subtest: getNativeInteractionExplanation uses the exact fixed GET route and Host credential
+ok 338 - getNativeInteractionExplanation uses the exact fixed GET route and Host credential
+  ---
+  duration_ms: 1.410125
+  type: 'test'
+  ...
+# Subtest: getNativeInteractionExplanation bounds header-less wire bytes at 8 MiB and cancels an overflowing stream
+ok 339 - getNativeInteractionExplanation bounds header-less wire bytes at 8 MiB and cancels an overflowing stream
+  ---
+  duration_ms: 51.3575
+  type: 'test'
+  ...
+# Subtest: getNativeInteractionExplanation maps malformed JSON, 5xx and transport failures to controlled errors
+ok 340 - getNativeInteractionExplanation maps malformed JSON, 5xx and transport failures to controlled errors
+  ---
+  duration_ms: 0.445208
+  type: 'test'
+  ...
+# Subtest: both native GETs use an independent 30-second timeout and forward explicit cancellation
+ok 341 - both native GETs use an independent 30-second timeout and forward explicit cancellation
+  ---
+  duration_ms: 95.053875
+  type: 'test'
+  ...
+# Subtest: record pages construct only visible children, reveal a new focus and reset on a context round trip
+ok 342 - record pages construct only visible children, reveal a new focus and reset on a context round trip
+  ---
+  duration_ms: 26.058792
+  type: 'test'
+  ...
+# Subtest: record pages remember each new focus after manual paging and an A-B-A round trip
+ok 343 - record pages remember each new focus after manual paging and an A-B-A round trip
+  ---
+  duration_ms: 3.536416
+  type: 'test'
+  ...
+# Subtest: different list roles never share page state even at the same position and question pair
+ok 344 - different list roles never share page state even at the same position and question pair
+  ---
+  duration_ms: 6.98725
+  type: 'test'
+  ...
+# Subtest: repeated reference jumps reveal the same target after manual paging and preserve A-B-A navigation
+ok 345 - repeated reference jumps reveal the same target after manual paging and preserve A-B-A navigation
+  ---
+  duration_ms: 53.70225
+  type: 'test'
+  ...
+# Subtest: paging requirements between tabs cannot hide the exact selected retry event
+ok 346 - paging requirements between tabs cannot hide the exact selected retry event
+  ---
+  duration_ms: 41.196084
+  type: 'test'
+  ...
+# Subtest: shared definitions remain navigable without highlighting another processing path or reclassifying invalid
+ok 347 - shared definitions remain navigable without highlighting another processing path or reclassifying invalid
+  ---
+  duration_ms: 40.2005
+  type: 'test'
+  ...
+# Subtest: shared sourceRef navigation preserves query scope, both input users and candidate records across views
+ok 348 - shared sourceRef navigation preserves query scope, both input users and candidate records across views
+  ---
+  duration_ms: 88.625292
+  type: 'test'
+  ...
+# Subtest: shared sourceRef navigation preserves query scope, both input users and invalid records across views
+ok 349 - shared sourceRef navigation preserves query scope, both input users and invalid records across views
+  ---
+  duration_ms: 58.836958
+  type: 'test'
+  ...
+# Subtest: shared sourceRef navigation preserves query scope, both input users and future-platform-status records across views
+ok 350 - shared sourceRef navigation preserves query scope, both input users and future-platform-status records across views
+  ---
+  duration_ms: 30.888458
+  type: 'test'
+  ...
+# Subtest: shared evidenceRefs navigation preserves query scope, both input users and candidate records across views
+ok 351 - shared evidenceRefs navigation preserves query scope, both input users and candidate records across views
+  ---
+  duration_ms: 34.86375
+  type: 'test'
+  ...
+# Subtest: shared evidenceRefs navigation preserves query scope, both input users and invalid records across views
+ok 352 - shared evidenceRefs navigation preserves query scope, both input users and invalid records across views
+  ---
+  duration_ms: 39.817083
+  type: 'test'
+  ...
+# Subtest: shared evidenceRefs navigation preserves query scope, both input users and future-platform-status records across views
+ok 353 - shared evidenceRefs navigation preserves query scope, both input users and future-platform-status records across views
+  ---
+  duration_ms: 21.095416
+  type: 'test'
+  ...
+# Subtest: platform-disclosed dependencies between queries remain navigable with raw invalid records
+ok 354 - platform-disclosed dependencies between queries remain navigable with raw invalid records
+  ---
+  duration_ms: 10.172959
+  type: 'test'
+  ...
+# Subtest: missing both original fields never get filled from the explanation
+ok 355 - missing both original fields never get filled from the explanation
+  ---
+  duration_ms: 3.922917
+  type: 'test'
+  ...
+# Subtest: missing question original fields never get filled from the explanation
+ok 356 - missing question original fields never get filled from the explanation
+  ---
+  duration_ms: 1.307583
+  type: 'test'
+  ...
+# Subtest: missing answer original fields never get filled from the explanation
+ok 357 - missing answer original fields never get filled from the explanation
+  ---
+  duration_ms: 1.21825
+  type: 'test'
+  ...
+# Subtest: original and explanation question/answer texts keep their distinct sources and exact content
+ok 358 - original and explanation question/answer texts keep their distinct sources and exact content
+  ---
+  duration_ms: 2.211459
+  type: 'test'
+  ...
+# Subtest: explicit empty original strings stay empty instead of being classified as missing
+ok 359 - explicit empty original strings stay empty instead of being classified as missing
+  ---
+  duration_ms: 0.994208
+  type: 'test'
+  ...
+# Subtest: missing explanation text is not filled from an available original record
+ok 360 - missing explanation text is not filled from an available original record
+  ---
+  duration_ms: 0.839792
+  type: 'test'
+  ...
+# Subtest: a access-denied original source never gets replaced by explanation texts
+ok 361 - a access-denied original source never gets replaced by explanation texts
+  ---
+  duration_ms: 0.901
+  type: 'test'
+  ...
+# Subtest: a not-disclosed-or-unavailable original source never gets replaced by explanation texts
+ok 362 - a not-disclosed-or-unavailable original source never gets replaced by explanation texts
+  ---
+  duration_ms: 0.70525
+  type: 'test'
+  ...
+# Subtest: a not-generated explanation never hides or changes an available original source
+ok 363 - a not-generated explanation never hides or changes an available original source
+  ---
+  duration_ms: 0.466209
+  type: 'test'
+  ...
+# Subtest: a unavailable explanation never hides or changes an available original source
+ok 364 - a unavailable explanation never hides or changes an available original source
+  ---
+  duration_ms: 0.34425
+  type: 'test'
+  ...
+# Subtest: a reference to an off-page retry reveals both its exact step and event pages
+ok 365 - a reference to an off-page retry reveals both its exact step and event pages
+  ---
+  duration_ms: 5.678042
+  type: 'test'
+  ...
+# Subtest: real-shaped schema and operation sources navigate without conflating an operation with a node
+ok 366 - real-shaped schema and operation sources navigate without conflating an operation with a node
+  ---
+  duration_ms: 7.028792
+  type: 'test'
+  ...
+# Subtest: retained unlinked processing displays the platform's invalid status and raw reason
+ok 367 - retained unlinked processing displays the platform's invalid status and raw reason
+  ---
+  duration_ms: 3.495834
+  type: 'test'
+  ...
+# Subtest: retained unlinked processing displays the platform's candidate status and raw reason
+ok 368 - retained unlinked processing displays the platform's candidate status and raw reason
+  ---
+  duration_ms: 3.429
+  type: 'test'
+  ...
+# Subtest: retained unlinked processing displays the platform's verified status and raw reason
+ok 369 - retained unlinked processing displays the platform's verified status and raw reason
+  ---
+  duration_ms: 3.972875
+  type: 'test'
+  ...
+# Subtest: retained unlinked processing displays the platform's future-platform-status status and raw reason
+ok 370 - retained unlinked processing displays the platform's future-platform-status status and raw reason
+  ---
+  duration_ms: 1.89925
+  type: 'test'
+  ...
+# Subtest: invalid relationship without a business function retains raw status, reason and endpoint navigation
+ok 371 - invalid relationship without a business function retains raw status, reason and endpoint navigation
+  ---
+  duration_ms: 1.471292
+  type: 'test'
+  ...
+# Subtest: valid dense fanout renders bounded pages while retaining all source and processing records
+ok 372 - valid dense fanout renders bounded pages while retaining all source and processing records
+  ---
+  duration_ms: 279.17975
+  type: 'test'
+  ...
+# Subtest: platform invalid status and reason stay visible on retained business records
+ok 373 - platform invalid status and reason stay visible on retained business records
+  ---
+  duration_ms: 1.595667
+  type: 'test'
+  ...
+# Subtest: loaded answer ownership is synchronous on direct
+ok 374 - loaded answer ownership is synchronous on direct
+  ---
+  duration_ms: 16.833167
+  type: 'test'
+  ...
+# Subtest: loaded answer ownership is synchronous on close-reopen
+ok 375 - loaded answer ownership is synchronous on close-reopen
+  ---
+  duration_ms: 3.145875
+  type: 'test'
+  ...
+# Subtest: loaded answer ownership is synchronous on same-message
+ok 376 - loaded answer ownership is synchronous on same-message
+  ---
+  duration_ms: 2.188042
+  type: 'test'
+  ...
+# Subtest: selecting a step highlights its exact event and related evidence across tabs without confirming candidates
+ok 377 - selecting a step highlights its exact event and related evidence across tabs without confirming candidates
+  ---
+  duration_ms: 2.756833
+  type: 'test'
+  ...
+# Subtest: selecting a retry event never highlights another attempt of the same operation
+ok 378 - selecting a retry event never highlights another attempt of the same operation
+  ---
+  duration_ms: 1.962
+  type: 'test'
+  ...
+# Subtest: source and schema selection reverse-link processing, while references navigate to the exact step or execution node
+ok 379 - source and schema selection reverse-link processing, while references navigate to the exact step or execution node
+  ---
+  duration_ms: 5.343625
+  type: 'test'
+  ...
+# Subtest: input/output references select disclosed nodes, and a node execution reference changes the view
+ok 380 - input/output references select disclosed nodes, and a node execution reference changes the view
+  ---
+  duration_ms: 2.595292
+  type: 'test'
+  ...
+# Subtest: opaque, ambiguous, absent and inconsistent references stay text and do not select a substitute event
+ok 381 - opaque, ambiguous, absent and inconsistent references stay text and do not select a substitute event
+  ---
+  duration_ms: 2.00225
+  type: 'test'
+  ...
+# Subtest: changing pairs clears the old selection even when the next pair reuses a node ID
+ok 382 - changing pairs clears the old selection even when the next pair reuses a node ID
+  ---
+  duration_ms: 2.435208
+  type: 'test'
+  ...
+# Subtest: an event linked to multiple business functions shows all recorded associations without choosing a primary function
+ok 383 - an event linked to multiple business functions shows all recorded associations without choosing a primary function
+  ---
+  duration_ms: 1.520333
+  type: 'test'
+  ...
+# Subtest: the actual overlay changes tabs on reference clicks without rereading and resets after close/reopen
+ok 384 - the actual overlay changes tabs on reference clicks without rereading and resets after close/reopen
+  ---
+  duration_ms: 3.889292
+  type: 'test'
+  ...
+# Subtest: shared sourceRef inputs do not merge output paths with candidate records
+ok 385 - shared sourceRef inputs do not merge output paths with candidate records
+  ---
+  duration_ms: 16.287
+  type: 'test'
+  ...
+# Subtest: shared sourceRef inputs do not merge output paths with invalid records
+ok 386 - shared sourceRef inputs do not merge output paths with invalid records
+  ---
+  duration_ms: 7.410083
+  type: 'test'
+  ...
+# Subtest: shared sourceRef inputs do not merge output paths with future-platform-status records
+ok 387 - shared sourceRef inputs do not merge output paths with future-platform-status records
+  ---
+  duration_ms: 15.869791
+  type: 'test'
+  ...
+# Subtest: selecting a shared sourceRef input retains every disclosed query and attempt
+ok 388 - selecting a shared sourceRef input retains every disclosed query and attempt
+  ---
+  duration_ms: 8.287292
+  type: 'test'
+  ...
+# Subtest: shared evidenceRefs inputs do not merge output paths with candidate records
+ok 389 - shared evidenceRefs inputs do not merge output paths with candidate records
+  ---
+  duration_ms: 0.864167
+  type: 'test'
+  ...
+# Subtest: shared evidenceRefs inputs do not merge output paths with invalid records
+ok 390 - shared evidenceRefs inputs do not merge output paths with invalid records
+  ---
+  duration_ms: 0.9865
+  type: 'test'
+  ...
+# Subtest: shared evidenceRefs inputs do not merge output paths with future-platform-status records
+ok 391 - shared evidenceRefs inputs do not merge output paths with future-platform-status records
+  ---
+  duration_ms: 1.057833
+  type: 'test'
+  ...
+# Subtest: selecting a shared evidenceRefs input retains every disclosed query and attempt
+ok 392 - selecting a shared evidenceRefs input retains every disclosed query and attempt
+  ---
+  duration_ms: 7.764375
+  type: 'test'
+  ...
+# Subtest: an upstream shared input does not turn a branch-specific input into a selection of both queries
+ok 393 - an upstream shared input does not turn a branch-specific input into a selection of both queries
+  ---
+  duration_ms: 0.911875
+  type: 'test'
+  ...
+# Subtest: equal input values with distinct disclosed IDs do not join queries
+ok 394 - equal input values with distinct disclosed IDs do not join queries
+  ---
+  duration_ms: 2.371542
+  type: 'test'
+  ...
+# Subtest: a platform-disclosed output used by another query retains that dependency regardless of invalid status
+ok 395 - a platform-disclosed output used by another query retains that dependency regardless of invalid status
+  ---
+  duration_ms: 0.785666
+  type: 'test'
+  ...
+# Subtest: shared definitions never merge independent claim paths with candidate records
+ok 396 - shared definitions never merge independent claim paths with candidate records
+  ---
+  duration_ms: 2.328542
+  type: 'test'
+  ...
+# Subtest: shared definitions never merge independent claim paths with invalid records
+ok 397 - shared definitions never merge independent claim paths with invalid records
+  ---
+  duration_ms: 0.664833
+  type: 'test'
+  ...
+# Subtest: shared definitions never merge independent claim paths with future-platform-status records
+ok 398 - shared definitions never merge independent claim paths with future-platform-status records
+  ---
+  duration_ms: 0.543625
+  type: 'test'
+  ...
+# Subtest: selecting a shared definition retains both disclosed paths without making it an execution owner
+ok 399 - selecting a shared definition retains both disclosed paths without making it an execution owner
+  ---
+  duration_ms: 0.450417
+  type: 'test'
+  ...
+# Subtest: schema and operation navigation still works when only the disclosed edges provide those references
+ok 400 - schema and operation navigation still works when only the disclosed edges provide those references
+  ---
+  duration_ms: 0.4185
+  type: 'test'
+  ...
+# Subtest: unexpected uses_schema roles remain raw records without being guessed into a processing dependency
+ok 401 - unexpected uses_schema roles remain raw records without being guessed into a processing dependency
+  ---
+  duration_ms: 0.453042
+  type: 'test'
+  ...
+# Subtest: pinned platform schema references and managed arguments use their disclosed namespaces
+ok 402 - pinned platform schema references and managed arguments use their disclosed namespaces
+  ---
+  duration_ms: 0.274417
+  type: 'test'
+  ...
+# Subtest: schema aliases never choose between two records and argument refs never become same-ID evidence
+ok 403 - schema aliases never choose between two records and argument refs never become same-ID evidence
+  ---
+  duration_ms: 0.547
+  type: 'test'
+  ...
+# Subtest: argument refs retain every disclosed event when steps are absent and missing operations stay unresolved
+ok 404 - argument refs retain every disclosed event when steps are absent and missing operations stay unresolved
+  ---
+  duration_ms: 0.308625
+  type: 'test'
+  ...
+# Subtest: platform validation changes never rewrite records or turn navigation into a plugin verdict
+ok 405 - platform validation changes never rewrite records or turn navigation into a plugin verdict
+  ---
+  duration_ms: 0.4435
+  type: 'test'
+  ...
+# Subtest: claim paths include disclosed processing, sources and execution but never equal-valued unrelated nodes
+ok 406 - claim paths include disclosed processing, sources and execution but never equal-valued unrelated nodes
+  ---
+  duration_ms: 0.351167
+  type: 'test'
+  ...
+# Subtest: event selection retains exact attempt identity across shared operation IDs
+ok 407 - event selection retains exact attempt identity across shared operation IDs
+  ---
+  duration_ms: 0.2385
+  type: 'test'
+  ...
+# Subtest: step selection retains exact attempt identity across shared operation IDs
+ok 408 - step selection retains exact attempt identity across shared operation IDs
+  ---
+  duration_ms: 0.209375
+  type: 'test'
+  ...
+# Subtest: source, output and execution selections reverse-link disclosed claims and processing
+ok 409 - source, output and execution selections reverse-link disclosed claims and processing
+  ---
+  duration_ms: 0.2575
+  type: 'test'
+  ...
+# Subtest: missing, ambiguous and conflicting references stay unresolved instead of fabricating a target
+ok 410 - missing, ambiguous and conflicting references stay unresolved instead of fabricating a target
+  ---
+  duration_ms: 2.311292
+  type: 'test'
+  ...
+# Subtest: pair selection and cycles remain scoped, bounded and do not import old references
+ok 411 - pair selection and cycles remain scoped, bounded and do not import old references
+  ---
+  duration_ms: 1.046167
+  type: 'test'
+  ...
+# Subtest: a recorded output reference can link its execution to a supported claim without matching values
+ok 412 - a recorded output reference can link its execution to a supported claim without matching values
+  ---
+  duration_ms: 0.80775
+  type: 'test'
+  ...
+# Subtest: top-level explicit evidence edges work without a pair graph, and never leak into a selected-pair graph
+ok 413 - top-level explicit evidence edges work without a pair graph, and never leak into a selected-pair graph
+  ---
+  duration_ms: 0.8645
+  type: 'test'
+  ...
+# Subtest: IDs reused across entity kinds stay distinct and untyped edges do not guess the endpoint kind
+ok 414 - IDs reused across entity kinds stay distinct and untyped edges do not guess the endpoint kind
+  ---
+  duration_ms: 0.790292
+  type: 'test'
+  ...
+# Subtest: edge operation references link steps and evidence even without a disclosed business function
+ok 415 - edge operation references link steps and evidence even without a disclosed business function
+  ---
+  duration_ms: 0.682584
+  type: 'test'
+  ...
+# Subtest: step/event endpoints and cyclic function relations never broaden an exact attempt selection
+ok 416 - step/event endpoints and cyclic function relations never broaden an exact attempt selection
+  ---
+  duration_ms: 0.674792
+  type: 'test'
+  ...
+# Subtest: builds a deterministic bounded index from a summary knowledge-network detail
+ok 417 - builds a deterministic bounded index from a summary knowledge-network detail
+  ---
+  duration_ms: 1.670292
+  type: 'test'
+  ...
+# Subtest: fails closed on a mismatched or malformed network detail and caps untrusted rows
+ok 418 - fails closed on a mismatched or malformed network detail and caps untrusted rows
+  ---
+  duration_ms: 0.583209
+  type: 'test'
+  ...
+# Subtest: ignores optional object metadata that is irrelevant to the bounded capability index
+ok 419 - ignores optional object metadata that is irrelevant to the bounded capability index
+  ---
+  duration_ms: 0.272917
+  type: 'test'
+  ...
+# Subtest: navigation shells preserve counts and groups without implying zero concept indices
+ok 420 - navigation shells preserve counts and groups without implying zero concept indices
+  ---
+  duration_ms: 2.506208
+  type: 'test'
+  ...
+# Subtest: navigation nulls fail closed below thresholds, with malformed counts, mixed arrays or missing notice/groups
+ok 421 - navigation nulls fail closed below thresholds, with malformed counts, mixed arrays or missing notice/groups
+  ---
+  duration_ms: 1.616875
+  type: 'test'
+  ...
+# Subtest: searches safe catalogue fields and prioritizes associated workspaces
+ok 422 - searches safe catalogue fields and prioritizes associated workspaces
+  ---
+  duration_ms: 0.563125
+  type: 'test'
+  ...
+# Subtest: shows an initial bounded page and reports remaining directory rows
+ok 423 - shows an initial bounded page and reports remaining directory rows
+  ---
+  duration_ms: 0.131875
+  type: 'test'
+  ...
+# Subtest: starts login only for the plugin configured OpenBKN platform
+ok 424 - starts login only for the plugin configured OpenBKN platform
+  ---
+  duration_ms: 0.761125
+  type: 'test'
+  ...
+# Subtest: rejects a login request that attempts to select another OpenBKN platform
+ok 425 - rejects a login request that attempts to select another OpenBKN platform
+  ---
+  duration_ms: 0.221917
+  type: 'test'
+  ...
+# Subtest: allows only the fixed CLI token command for Host credential synchronization
+ok 426 - allows only the fixed CLI token command for Host credential synchronization
+  ---
+  duration_ms: 0.09275
+  type: 'test'
+  ...
+# Subtest: spawns the executable DSH resolves, so a Windows PATHEXT shim like openbkn.cmd is found
+ok 427 - spawns the executable DSH resolves, so a Windows PATHEXT shim like openbkn.cmd is found
+  ---
+  duration_ms: 0.090667
+  type: 'test'
+  ...
+# Subtest: resolves a configured cliPath instead of the default name
+ok 428 - resolves a configured cliPath instead of the default name
+  ---
+  duration_ms: 0.162958
+  type: 'test'
+  ...
+# Subtest: reports a missing CLI as unavailable and never spawns
+ok 429 - reports a missing CLI as unavailable and never spawns
+  ---
+  duration_ms: 0.113083
+  type: 'test'
+  ...
+# Subtest: derives the standard Context Loader endpoint from the configured OpenBKN platform
+ok 430 - derives the standard Context Loader endpoint from the configured OpenBKN platform
+  ---
+  duration_ms: 0.373084
+  type: 'test'
+  ...
+# Subtest: honours an explicitly configured Context Loader endpoint on the same origin
+ok 431 - honours an explicitly configured Context Loader endpoint on the same origin
+  ---
+  duration_ms: 0.071125
+  type: 'test'
+  ...
+# Subtest: mounts the compatible MCP client with an ephemeral bearer header and verifies its managed tool
+ok 432 - mounts the compatible MCP client with an ephemeral bearer header and verifies its managed tool
+  ---
+  duration_ms: 1.148417
+  type: 'test'
+  ...
+# Subtest: turns an MCP handshake rejection into an actionable re-login hint (G6 finding)
+ok 433 - turns an MCP handshake rejection into an actionable re-login hint (G6 finding)
+  ---
+  duration_ms: 0.385708
+  type: 'test'
+  ...
+# Subtest: keeps a plain startup failure in its original shape
+ok 434 - keeps a plain startup failure in its original shape
+  ---
+  duration_ms: 0.221875
+  type: 'test'
+  ...
+# Subtest: keeps the HTTP refusal brand across the SDK data.cause wrapper without retaining private errors
+ok 435 - keeps the HTTP refusal brand across the SDK data.cause wrapper without retaining private errors
+  ---
+  duration_ms: 0.100333
+  type: 'test'
+  ...
+# Subtest: recognizes a 403 brand as an account-authorization hint, not re-login
+ok 436 - recognizes a 403 brand as an account-authorization hint, not re-login
+  ---
+  duration_ms: 0.242208
+  type: 'test'
+  ...
+# Subtest: the tool-call timeout defaults to 20 s and is configurable
+ok 437 - the tool-call timeout defaults to 20 s and is configurable
+  ---
+  duration_ms: 2.15075
+  type: 'test'
+  ...
+# Subtest: the panel opens without business services and recovers when they become available
+ok 438 - the panel opens without business services and recovers when they become available
+  ---
+  duration_ms: 2.303958
+  type: 'test'
+  ...
+# Subtest: disposing an older business connection does not detach its replacement
+ok 439 - disposing an older business connection does not detach its replacement
+  ---
+  duration_ms: 0.265583
+  type: 'test'
+  ...
+# Subtest: configuration is available without business services and survives their reload
+ok 440 - configuration is available without business services and survives their reload
+  ---
+  duration_ms: 0.61625
+  type: 'test'
+  ...
+# Subtest: business replacement rejects an old reply even when its Remote ignores cancellation
+ok 441 - business replacement rejects an old reply even when its Remote ignores cancellation
+  ---
+  duration_ms: 5.019041
+  type: 'test'
+  ...
+# Subtest: directs unavailable RPC and unknown connection failures to diagnostics without guessing credentials
+ok 442 - directs unavailable RPC and unknown connection failures to diagnostics without guessing credentials
+  ---
+  duration_ms: 1.015417
+  type: 'test'
+  ...
+# Subtest: loads only the visible network catalogue after OpenBKN authentication succeeds
+ok 443 - loads only the visible network catalogue after OpenBKN authentication succeeds
+  ---
+  duration_ms: 0.32225
+  type: 'test'
+  ...
+# Subtest: does not request the catalogue while OpenBKN authentication is required
+ok 444 - does not request the catalogue while OpenBKN authentication is required
+  ---
+  duration_ms: 0.071458
+  type: 'test'
+  ...
+# Subtest: returns to sign-in when the platform rejects a locally present credential
+ok 445 - returns to sign-in when the platform rejects a locally present credential
+  ---
+  duration_ms: 0.177584
+  type: 'test'
+  ...
+# Subtest: explains whether a failed verification came from MCP or the platform catalogue
+ok 446 - explains whether a failed verification came from MCP or the platform catalogue
+  ---
+  duration_ms: 0.085
+  type: 'test'
+  ...
+# Subtest: offers credential recovery without inferring why the platform catalogue rejected a token
+ok 447 - offers credential recovery without inferring why the platform catalogue rejected a token
+  ---
+  duration_ms: 0.166042
+  type: 'test'
+  ...
+# Subtest: keeps the saved token and identifies a temporarily unavailable platform catalogue
+ok 448 - keeps the saved token and identifies a temporarily unavailable platform catalogue
+  ---
+  duration_ms: 0.120167
+  type: 'test'
+  ...
+# Subtest: creates the selected network session before binding it
+ok 449 - creates the selected network session before binding it
+  ---
+  duration_ms: 0.132292
+  type: 'test'
+  ...
+# Subtest: binds the selected visible network to the newly opened network session
+ok 450 - binds the selected visible network to the newly opened network session
+  ---
+  duration_ms: 0.272375
+  type: 'test'
+  ...
+# Subtest: refreshes native additive session contributions after binding a new session
+ok 451 - refreshes native additive session contributions after binding a new session
+  ---
+  duration_ms: 0.300583
+  type: 'test'
+  ...
+# Subtest: attributes a browse-only Host refusal to the connection mode
+ok 452 - attributes a browse-only Host refusal to the connection mode
+  ---
+  duration_ms: 0.174625
+  type: 'test'
+  ...
+# Subtest: classifies a failing native chooser without exposing raw Host error text
+ok 453 - classifies a failing native chooser without exposing raw Host error text
+  ---
+  duration_ms: 0.069167
+  type: 'test'
+  ...
+# Subtest: returns to the network list without an error when the chooser is dismissed
+ok 454 - returns to the network list without an error when the chooser is dismissed
+  ---
+  duration_ms: 0.064583
+  type: 'test'
+  ...
+# Subtest: keeps raw bind failures out of the displayed message
+ok 455 - keeps raw bind failures out of the displayed message
+  ---
+  duration_ms: 0.077416
+  type: 'test'
+  ...
+# Subtest: tells the user how to make the OpenBKN CLI available instead of blaming the token
+ok 456 - tells the user how to make the OpenBKN CLI available instead of blaming the token
+  ---
+  duration_ms: 0.087584
+  type: 'test'
+  ...
+# Subtest: while the workspace chooser is open, the panel says where to look instead of "binding"
+ok 457 - while the workspace chooser is open, the panel says where to look instead of "binding"
+  ---
+  duration_ms: 0.077458
+  type: 'test'
+  ...
+# Subtest: first-use shows configuration without dispatching authentication or catalogue calls
+ok 458 - first-use shows configuration without dispatching authentication or catalogue calls
+  ---
+  duration_ms: 0.051625
+  type: 'test'
+  ...
+# Subtest: invalid form submissions stay on configuration without saving or connecting
+ok 459 - invalid form submissions stay on configuration without saving or connecting
+  ---
+  duration_ms: 0.14475
+  type: 'test'
+  ...
+# Subtest: a saved URL is distinct from connection failure and retains the saved settings
+ok 460 - a saved URL is distinct from connection failure and retains the saved settings
+  ---
+  duration_ms: 0.156417
+  type: 'test'
+  ...
+# Subtest: a rejected save remains in the form and does not request authentication
+ok 461 - a rejected save remains in the form and does not request authentication
+  ---
+  duration_ms: 0.094375
+  type: 'test'
+  ...
+# Subtest: closing during authentication drops the response and prevents the next request
+ok 462 - closing during authentication drops the response and prevents the next request
+  ---
+  duration_ms: 0.06675
+  type: 'test'
+  ...
+# Subtest: close and reopen discard the old login result without replacing the new state
+ok 463 - close and reopen discard the old login result without replacing the new state
+  ---
+  duration_ms: 0.15575
+  type: 'test'
+  ...
+# Subtest: a newer refresh wins when the older catalogue resolves last
+ok 464 - a newer refresh wins when the older catalogue resolves last
+  ---
+  duration_ms: 13.628625
+  type: 'test'
+  ...
+# Subtest: closing while a workspace is selected prevents later binding and UI refresh
+ok 465 - closing while a workspace is selected prevents later binding and UI refresh
+  ---
+  duration_ms: 5.339292
+  type: 'test'
+  ...
+# Subtest: closing during a configuration save ignores the result without connecting
+ok 466 - closing during a configuration save ignores the result without connecting
+  ---
+  duration_ms: 0.133708
+  type: 'test'
+  ...
+# Subtest: an unavailable configuration entry preserves the healthy business panel
+ok 467 - an unavailable configuration entry preserves the healthy business panel
+  ---
+  duration_ms: 0.12925
+  type: 'test'
+  ...
+# Subtest: closing during the configuration read prevents reopening the setup form
+ok 468 - closing during the configuration read prevents reopening the setup form
+  ---
+  duration_ms: 0.055875
+  type: 'test'
+  ...
+# Subtest: a readonly configuration view refuses saves until the user retries settings
+ok 469 - a readonly configuration view refuses saves until the user retries settings
+  ---
+  duration_ms: 0.139625
+  type: 'test'
+  ...
+# Subtest: a readonly editor-unavailable view does not block a healthy business connection
+ok 470 - a readonly editor-unavailable view does not block a healthy business connection
+  ---
+  duration_ms: 0.066375
+  type: 'test'
+  ...
+# Subtest: unknown or inactive entries preserve the business failure and diagnostic guidance
+ok 471 - unknown or inactive entries preserve the business failure and diagnostic guidance
+  ---
+  duration_ms: 0.094333
+  type: 'test'
+  ...
+# Subtest: caps a header-less streamed body at the byte limit
+ok 472 - caps a header-less streamed body at the byte limit
+  ---
+  duration_ms: 36.821041
+  type: 'test'
+  ...
+# Subtest: does not follow redirects on fixed control-plane routes
+ok 473 - does not follow redirects on fixed control-plane routes
+  ---
+  duration_ms: 0.531917
+  type: 'test'
+  ...
+# Subtest: rejects a malformed businessDomain before it reaches undici
+ok 474 - rejects a malformed businessDomain before it reaches undici
+  ---
+  duration_ms: 0.46875
+  type: 'test'
+  ...
+# Subtest: reads an operations record whose raw outputs exceed the general cap, and admits only the projection
+ok 475 - reads an operations record whose raw outputs exceed the general cap, and admits only the projection
+  ---
+  duration_ms: 74.412
+  type: 'test'
+  ...
+# Subtest: still caps an operations record beyond the operations limit
+ok 476 - still caps an operations record beyond the operations limit
+  ---
+  duration_ms: 21.276166
+  type: 'test'
+  ...
+# Subtest: uses fixed Host routes and keeps the credential out of payloads
+ok 477 - uses fixed Host routes and keeps the credential out of payloads
+  ---
+  duration_ms: 13.452125
+  type: 'test'
+  ...
+# Subtest: posts only a host-bound network id to the fixed Context Loader detail route
+ok 478 - posts only a host-bound network id to the fixed Context Loader detail route
+  ---
+  duration_ms: 0.268375
+  type: 'test'
+  ...
+# Subtest: projects oversized raw operation records before applying the Host-to-browser size limit
+ok 479 - projects oversized raw operation records before applying the Host-to-browser size limit
+  ---
+  duration_ms: 1.804875
+  type: 'test'
+  ...
+# Subtest: rejects missing credentials and cross-platform bindings before a network request
+ok 480 - rejects missing credentials and cross-platform bindings before a network request
+  ---
+  duration_ms: 0.757208
+  type: 'test'
+  ...
+# Subtest: maps authorization failure without exposing the platform response
+ok 481 - maps authorization failure without exposing the platform response
+  ---
+  duration_ms: 1.029459
+  type: 'test'
+  ...
+# Subtest: maps a 403 permission_denied domain gate to LICENSE_REQUIRED without exposing the response
+ok 482 - maps a 403 permission_denied domain gate to LICENSE_REQUIRED without exposing the response
+  ---
+  duration_ms: 0.423334
+  type: 'test'
+  ...
+# Subtest: maps a 404 resource_not_disclosed to RECORD_NOT_DISCLOSED without exposing the response
+ok 483 - maps a 404 resource_not_disclosed to RECORD_NOT_DISCLOSED without exposing the response
+  ---
+  duration_ms: 2.370375
+  type: 'test'
+  ...
+# Subtest: keeps a 404 resource_not_disclosed on non-observability routes a generic platform unavailability
+ok 484 - keeps a 404 resource_not_disclosed on non-observability routes a generic platform unavailability
+  ---
+  duration_ms: 3.810333
+  type: 'test'
+  ...
+# Subtest: keeps any other 404 a generic platform unavailability
+ok 485 - keeps any other 404 a generic platform unavailability
+  ---
+  duration_ms: 1.5435
+  type: 'test'
+  ...
+# Subtest: keeps an oversized 404 body a generic platform unavailability
+ok 486 - keeps an oversized 404 body a generic platform unavailability
+  ---
+  duration_ms: 3.058084
+  type: 'test'
+  ...
+# Subtest: keeps a non-JSON 404 a generic platform unavailability
+ok 487 - keeps a non-JSON 404 a generic platform unavailability
+  ---
+  duration_ms: 0.445375
+  type: 'test'
+  ...
+# Subtest: keeps a 401 permission_denied on observability routes an authentication failure
+ok 488 - keeps a 401 permission_denied on observability routes an authentication failure
+  ---
+  duration_ms: 0.309
+  type: 'test'
+  ...
+# Subtest: keeps non-permission 401/403 responses on AUTHENTICATION_REQUIRED
+ok 489 - keeps non-permission 401/403 responses on AUTHENTICATION_REQUIRED
+  ---
+  duration_ms: 0.464208
+  type: 'test'
+  ...
+# Subtest: keeps permission_denied on non-observability routes an authentication failure
+ok 490 - keeps permission_denied on non-observability routes an authentication failure
+  ---
+  duration_ms: 0.100167
+  type: 'test'
+  ...
+# Subtest: projects the license edition from bkn-safe capabilities
+ok 491 - projects the license edition from bkn-safe capabilities
+  ---
+  duration_ms: 0.153667
+  type: 'test'
+  ...
+# Subtest: normalizes one bounded, display-safe completed-turn provenance handle
+ok 492 - normalizes one bounded, display-safe completed-turn provenance handle
+  ---
+  duration_ms: 0.600125
+  type: 'test'
+  ...
+# Subtest: reads a schema v1 handle from an older session log and upgrades it in memory without inventing fields
+ok 493 - reads a schema v1 handle from an older session log and upgrades it in memory without inventing fields
+  ---
+  duration_ms: 0.100375
+  type: 'test'
+  ...
+# Subtest: round-trips a v2 handle whose optional identifiers are absent
+ok 494 - round-trips a v2 handle whose optional identifiers are absent
+  ---
+  duration_ms: 0.060667
+  type: 'test'
+  ...
+# Subtest: rejects a malformed, unbounded, non-completed, or future-version handle before it reaches the client
+ok 495 - rejects a malformed, unbounded, non-completed, or future-version handle before it reaches the client
+  ---
+  duration_ms: 0.238417
+  type: 'test'
+  ...
+# Subtest: treats a stored v1 event and its v2 re-capture as the same turn, not a conflict
+ok 496 - treats a stored v1 event and its v2 re-capture as the same turn, not a conflict
+  ---
+  duration_ms: 0.110291
+  type: 'test'
+  ...
+# Subtest: still flags a completed message rewritten to a different interaction
+ok 497 - still flags a completed message rewritten to a different interaction
+  ---
+  duration_ms: 0.04875
+  type: 'test'
+  ...
+# Subtest: restores focus to the native assistant action after closing provenance
+ok 498 - restores focus to the native assistant action after closing provenance
+  ---
+  duration_ms: 0.323416
+  type: 'test'
+  ...
+# Subtest: projects the disclosed network from canonical Trace references, including opaque instance tails
+ok 499 - projects the disclosed network from canonical Trace references, including opaque instance tails
+  ---
+  duration_ms: 0.937542
+  type: 'test'
+  ...
+# Subtest: keeps each disclosed reference network and leaves mixed-operation origin unlocated
+ok 500 - keeps each disclosed reference network and leaves mixed-operation origin unlocated
+  ---
+  duration_ms: 0.300375
+  type: 'test'
+  ...
+# Subtest: does not guess a network from malformed or undocumented references
+ok 501 - does not guess a network from malformed or undocumented references
+  ---
+  duration_ms: 0.078625
+  type: 'test'
+  ...
+# Subtest: keeps the local timeline and projects receipts when only operations are available
+ok 502 - keeps the local timeline and projects receipts when only operations are available
+  ---
+  duration_ms: 0.2275
+  type: 'test'
+  ...
+# Subtest: attaches platform facts to aligned timeline nodes and skips them when alignment is uncertain
+ok 503 - attaches platform facts to aligned timeline nodes and skips them when alignment is uncertain
+  ---
+  duration_ms: 0.181833
+  type: 'test'
+  ...
+# Subtest: reads the documented operations field when the Community endpoint does not use entries
+ok 504 - reads the documented operations field when the Community endpoint does not use entries
+  ---
+  duration_ms: 0.058792
+  type: 'test'
+  ...
+# Subtest: keeps the timeline intact and records pane degradations when the platform is unreachable
+ok 505 - keeps the timeline intact and records pane degradations when the platform is unreachable
+  ---
+  duration_ms: 0.099417
+  type: 'test'
+  ...
+# Subtest: maps a missing-record degradation to its own evidence reason
+ok 506 - maps a missing-record degradation to its own evidence reason
+  ---
+  duration_ms: 0.039
+  type: 'test'
+  ...
+# Subtest: distinguishes an unauthorized evidence read from a turn that produced no receipts
+ok 507 - distinguishes an unauthorized evidence read from a turn that produced no receipts
+  ---
+  duration_ms: 0.223875
+  type: 'test'
+  ...
+# Subtest: prefers platform receipts and keeps mcp-result ids that the platform did not list
+ok 508 - prefers platform receipts and keeps mcp-result ids that the platform did not list
+  ---
+  duration_ms: 0.257666
+  type: 'test'
+  ...
+# Subtest: projects only the authorized Trace 3 interaction business graph into the business pane
+ok 509 - projects only the authorized Trace 3 interaction business graph into the business pane
+  ---
+  duration_ms: 0.130208
+  type: 'test'
+  ...
+# Subtest: bounds official Trace 3 operation-to-reference edges without deriving missing endpoints
+ok 510 - bounds official Trace 3 operation-to-reference edges without deriving missing endpoints
+  ---
+  duration_ms: 0.111917
+  type: 'test'
+  ...
+# Subtest: business reload removes agent policy and permits a duplicate-free remount in the same live session
+ok 511 - business reload removes agent policy and permits a duplicate-free remount in the same live session
+  ---
+  duration_ms: 9.302042
+  type: 'test'
+  ...
+# Subtest: agent disposal cleans the policy before its still-live business owner unloads
+ok 512 - agent disposal cleans the policy before its still-live business owner unloads
+  ---
+  duration_ms: 2.387208
+  type: 'test'
+  ...
+# Subtest: mounts the managed policy, guard, and lifecycle listeners in one Agent scope
+ok 513 - mounts the managed policy, guard, and lifecycle listeners in one Agent scope
+  ---
+  duration_ms: 0.409458
+  type: 'test'
+  ...
+# Subtest: PTC mode: run_code is refused with a switch-to-Standard instruction, and the prompt says so up front
+ok 514 - PTC mode: run_code is refused with a switch-to-Standard instruction, and the prompt says so up front
+  ---
+  duration_ms: 0.39025
+  type: 'test'
+  ...
+# Subtest: guards a non-managed tool out regardless of interaction state
+ok 515 - guards a non-managed tool out regardless of interaction state
+  ---
+  duration_ms: 0.088333
+  type: 'test'
+  ...
+# Subtest: rule 2: schema access is denied before any start, allowed inside an open interaction
+ok 516 - rule 2: schema access is denied before any start, allowed inside an open interaction
+  ---
+  duration_ms: 0.068041
+  type: 'test'
+  ...
+# Subtest: rule 3: a repeat start is denied while the interaction is open
+ok 517 - rule 3: a repeat start is denied while the interaction is open
+  ---
+  duration_ms: 0.169167
+  type: 'test'
+  ...
+# Subtest: rule 5: finish is denied without an open interaction
+ok 518 - rule 5: finish is denied without an open interaction
+  ---
+  duration_ms: 0.056875
+  type: 'test'
+  ...
+# Subtest: a successful start holds the conversation without writing to the session log
+ok 519 - a successful start holds the conversation without writing to the session log
+  ---
+  duration_ms: 0.219709
+  type: 'test'
+  ...
+# Subtest: a conversation held in the log survives a restore; a plugin event alone restores nothing
+ok 520 - a conversation held in the log survives a restore; a plugin event alone restores nothing
+  ---
+  duration_ms: 0.3675
+  type: 'test'
+  ...
+# Subtest: rule 4: new is denied while the session holds a conversation, naming the held id
+ok 521 - rule 4: new is denied while the session holds a conversation, naming the held id
+  ---
+  duration_ms: 0.104417
+  type: 'test'
+  ...
+# Subtest: rule 4: a mismatched continue is denied with the correct id
+ok 522 - rule 4: a mismatched continue is denied with the correct id
+  ---
+  duration_ms: 0.051833
+  type: 'test'
+  ...
+# Subtest: controlled invalidation: the dead id leaves memory and one new is allowed, with no log writes
+ok 523 - controlled invalidation: the dead id leaves memory and one new is allowed, with no log writes
+  ---
+  duration_ms: 0.11425
+  type: 'test'
+  ...
+# Subtest: a turn that finished its interaction cannot open a second one
+ok 524 - a turn that finished its interaction cannot open a second one
+  ---
+  duration_ms: 0.087667
+  type: 'test'
+  ...
+# Subtest: after the turn completed, a managed tool is told the access is over — not sent into a start that would be rejected
+ok 525 - after the turn completed, a managed tool is told the access is over — not sent into a start that would be rejected
+  ---
+  duration_ms: 0.045167
+  type: 'test'
+  ...
+# Subtest: a non-invalidating failure keeps the conversation and denies a careless new
+ok 526 - a non-invalidating failure keeps the conversation and denies a careless new
+  ---
+  duration_ms: 0.064875
+  type: 'test'
+  ...
+# Subtest: the conversation section renders the held identity and refreshes through state changes
+ok 527 - the conversation section renders the held identity and refreshes through state changes
+  ---
+  duration_ms: 0.051417
+  type: 'test'
+  ...
+# Subtest: pre-step resets the per-turn state; turn-stopping warns with a countable, locatable record
+ok 528 - pre-step resets the per-turn state; turn-stopping warns with a countable, locatable record
+  ---
+  duration_ms: 0.11625
+  type: 'test'
+  ...
+# Subtest: does not alter a native or differently configured DSH agent scope
+ok 529 - does not alter a native or differently configured DSH agent scope
+  ---
+  duration_ms: 0.038333
+  type: 'test'
+  ...
+# Subtest: tool results and final answers remain native, including legacy detail markers and mismatches
+ok 530 - tool results and final answers remain native, including legacy detail markers and mismatches
+  ---
+  duration_ms: 0.408333
+  type: 'test'
+  ...
+# Subtest: loads only the host selection service at the root instead of registering a global model tool
+ok 531 - loads only the host selection service at the root instead of registering a global model tool
+  ---
+  duration_ms: 0.067792
+  type: 'test'
+  ...
+# Subtest: every Context Loader tool of the supported releases is classified: managed, or reviewed and excluded
+ok 532 - every Context Loader tool of the supported releases is classified: managed, or reviewed and excluded
+  ---
+  duration_ms: 2.579167
+  type: 'test'
+  ...
+# Subtest: discovery to execution on 0.1.5: search_capabilities, execute_tool, and execute_skill run inside an interaction, for the bound network only
+ok 533 - discovery to execution on 0.1.5: search_capabilities, execute_tool, and execute_skill run inside an interaction, for the bound network only
+  ---
+  duration_ms: 0.158625
+  type: 'test'
+  ...
+# Subtest: every managed tool whose schema takes kn_id refuses another network; excluded tools stay denied and are named
+ok 534 - every managed tool whose schema takes kn_id refuses another network; excluded tools stay denied and are named
+  ---
+  duration_ms: 0.265625
+  type: 'test'
+  ...
+# Subtest: official 0.1.4: find_skills and the skill readers run under that release's own schemas; tools it never published stay refused
+ok 535 - official 0.1.4: find_skills and the skill readers run under that release's own schemas; tools it never published stay refused
+  ---
+  duration_ms: 0.129166
+  type: 'test'
+  ...
+# Subtest: default 0.1.5 deployment: execute_skill is not registered, so it is refused and the prompt says skills cannot be executed
+ok 536 - default 0.1.5 deployment: execute_skill is not registered, so it is refused and the prompt says skills cannot be executed
+  ---
+  duration_ms: 0.102083
+  type: 'test'
+  ...
+# Subtest: the routing rule names only tools the deployment registered, and re-renders once they register
+ok 537 - the routing rule names only tools the deployment registered, and re-renders once they register
+  ---
+  duration_ms: 0.214084
+  type: 'test'
+  ...
+# Subtest: a managed tool whose registered definition cannot be read is refused instead of running unscoped
+ok 538 - a managed tool whose registered definition cannot be read is refused instead of running unscoped
+  ---
+  duration_ms: 0.067042
+  type: 'test'
+  ...
+# Subtest: network scope: kn_id must be the bound network, as a string, and cannot be omitted
+ok 539 - network scope: kn_id must be the bound network, as a string, and cannot be omitted
+  ---
+  duration_ms: 0.075459
+  type: 'test'
+  ...
+# Subtest: 0.2.0 full schemas and explicit Trace degradation keep the production ToolRuntime guard fail closed
+ok 540 - 0.2.0 full schemas and explicit Trace degradation keep the production ToolRuntime guard fail closed
+  ---
+  duration_ms: 10.087375
+  type: 'test'
+  ...
+# Subtest: 0.2.0 schemas include dynamic lifecycle/context rules and do not turn Trace degradation into cross-network access
+ok 541 - 0.2.0 schemas include dynamic lifecycle/context rules and do not turn Trace degradation into cross-network access
+  ---
+  duration_ms: 2.653667
+  type: 'test'
+  ...
+# Subtest: official DSH MCP projection preserves disclosed partial reasons as text but drops raw _meta
+ok 542 - official DSH MCP projection preserves disclosed partial reasons as text but drops raw _meta
+  ---
+  duration_ms: 1.7725
+  type: 'test'
+  ...
+# Subtest: Trace-unavailable lifecycle survives official DSH coalescing of JSON and BKN_TRACE diagnostic
+ok 543 - Trace-unavailable lifecycle survives official DSH coalescing of JSON and BKN_TRACE diagnostic
+  ---
+  duration_ms: 1.510375
+  type: 'test'
+  ...
+# Subtest: successful finish without usable IDs closes the native governed window and denies further dispatch
+ok 544 - successful finish without usable IDs closes the native governed window and denies further dispatch
+  ---
+  duration_ms: 6.487333
+  type: 'test'
+  ...
+# Subtest: decides a first binding and normalizes it for persistence
+ok 545 - decides a first binding and normalizes it for persistence
+  ---
+  duration_ms: 0.543583
+  type: 'test'
+  ...
+# Subtest: reuses the existing binding idempotently instead of writing another one
+ok 546 - reuses the existing binding idempotently instead of writing another one
+  ---
+  duration_ms: 0.091542
+  type: 'test'
+  ...
+# Subtest: rejects binding another business network into the same DSH session
+ok 547 - rejects binding another business network into the same DSH session
+  ---
+  duration_ms: 0.166458
+  type: 'test'
+  ...
+# Subtest: rejects a persisted session history with conflicting business network bindings
+ok 548 - rejects a persisted session history with conflicting business network bindings
+  ---
+  duration_ms: 0.058375
+  type: 'test'
+  ...
+# Subtest: reads tool text and failure from both logged tool-message generations
+ok 549 - reads tool text and failure from both logged tool-message generations
+  ---
+  duration_ms: 0.6545
+  type: 'test'
+  ...
+# Subtest: marks v4 and legacy failed tool results as errors in the turn timeline
+ok 550 - marks v4 and legacy failed tool results as errors in the turn timeline
+  ---
+  duration_ms: 0.318792
+  type: 'test'
+  ...
+# Subtest: a failed finish result never forms a completed provenance, whatever its text says
+ok 551 - a failed finish result never forms a completed provenance, whatever its text says
+  ---
+  duration_ms: 0.2575
+  type: 'test'
+  ...
+# Subtest: recovers the completed interaction from the real official-desktop v4 log
+ok 552 - recovers the completed interaction from the real official-desktop v4 log
+  ---
+  duration_ms: 0.495959
+  type: 'test'
+  ...
+# Subtest: reads plugin records that DSH renamed to plugin:openbkn/* while migrating v3 logs
+ok 553 - reads plugin records that DSH renamed to plugin:openbkn/* while migrating v3 logs
+  ---
+  duration_ms: 3.27225
+  type: 'test'
+  ...
+# Subtest: every provenance recorded in the migrated logs is re-derivable from the logged tool results
+ok 554 - every provenance recorded in the migrated logs is re-derivable from the logged tool results
+  ---
+  duration_ms: 6.72375
+  type: 'test'
+  ...
+# Subtest: creates one network-introduction prompt for an empty business session
+ok 555 - creates one network-introduction prompt for an empty business session
+  ---
+  duration_ms: 0.735291
+  type: 'test'
+  ...
+# Subtest: does not derive a prompt from blank or unbounded network display text
+ok 556 - does not derive a prompt from blank or unbounded network display text
+  ---
+  duration_ms: 0.540625
+  type: 'test'
+  ...
+# Subtest: loads bounded prompt suggestions and retains the last safe result on failure
+ok 557 - loads bounded prompt suggestions and retains the last safe result on failure
+  ---
+  duration_ms: 1.3075
+  type: 'test'
+  ...
+# Subtest: clears the one empty-session entry when a native business turn begins
+ok 558 - clears the one empty-session entry when a native business turn begins
+  ---
+  duration_ms: 0.097792
+  type: 'test'
+  ...
+# Subtest: reacts only to the native turn-start event
+ok 559 - reacts only to the native turn-start event
+  ---
+  duration_ms: 0.083125
+  type: 'test'
+  ...
+# Subtest: strips every trailing slash exactly like the regex it replaces
+ok 560 - strips every trailing slash exactly like the regex it replaces
+  ---
+  duration_ms: 0.393667
+  type: 'test'
+  ...
+# Subtest: stays linear on a long run of slashes followed by a non-slash
+ok 561 - stays linear on a long run of slashes followed by a non-slash
+  ---
+  duration_ms: 2.829667
+  type: 'test'
+  ...
+# Subtest: loads one assistant message provenance without inventing an absent handle
+ok 562 - loads one assistant message provenance without inventing an absent handle
+  ---
+  duration_ms: 0.353666
+  type: 'test'
+  ...
+# Subtest: does not overwrite an established handle when a later read fails
+ok 563 - does not overwrite an established handle when a later read fails
+  ---
+  duration_ms: 0.090541
+  type: 'test'
+  ...
+# Subtest: reads a recorded provenance event under its original or migrated name
+ok 564 - reads a recorded provenance event under its original or migrated name
+  ---
+  duration_ms: 0.674791
+  type: 'test'
+  ...
+# Subtest: a v1 and a v2 record of the same interaction agree; a rewrite to another interaction conflicts
+ok 565 - a v1 and a v2 record of the same interaction agree; a rewrite to another interaction conflicts
+  ---
+  duration_ms: 0.203833
+  type: 'test'
+  ...
+# Subtest: re-derives provenance from the logged finish result when nothing was recorded
+ok 566 - re-derives provenance from the logged finish result when nothing was recorded
+  ---
+  duration_ms: 0.346584
+  type: 'test'
+  ...
+# Subtest: a recorded event must agree with the re-derived provenance of the same answer
+ok 567 - a recorded event must agree with the re-derived provenance of the same answer
+  ---
+  duration_ms: 0.264833
+  type: 'test'
+  ...
+# Subtest: does not fabricate provenance for an answer without a completed interaction
+ok 568 - does not fabricate provenance for an answer without a completed interaction
+  ---
+  duration_ms: 0.055583
+  type: 'test'
+  ...
+# Subtest: rebuilds a typical turn: question, lifecycle, discovery, retrievals, finish, answer
+ok 569 - rebuilds a typical turn: question, lifecycle, discovery, retrievals, finish, answer
+  ---
+  duration_ms: 3.587
+  type: 'test'
+  ...
+# Subtest: marks a failed call and keeps an unanswered call as a node without duration
+ok 570 - marks a failed call and keeps an unanswered call as a node without duration
+  ---
+  duration_ms: 0.164208
+  type: 'test'
+  ...
+# Subtest: excludes non-OpenBKN tools and other turns
+ok 571 - excludes non-OpenBKN tools and other turns
+  ---
+  duration_ms: 0.088917
+  type: 'test'
+  ...
+# Subtest: recovers the turn from the final assistant message for v1 handles
+ok 572 - recovers the turn from the final assistant message for v1 handles
+  ---
+  duration_ms: 0.179542
+  type: 'test'
+  ...
+# Subtest: never projects argument values or response bodies into summaries
+ok 573 - never projects argument values or response bodies into summaries
+  ---
+  duration_ms: 0.150625
+  type: 'test'
+  ...
+# Subtest: foldTimeline collapses consecutive same-tool same-outcome calls into one group
+ok 574 - foldTimeline collapses consecutive same-tool same-outcome calls into one group
+  ---
+  duration_ms: 0.082125
+  type: 'test'
+  ...
+# Subtest: foldTimeline never folds nodes carrying platform facts
+ok 575 - foldTimeline never folds nodes carrying platform facts
+  ---
+  duration_ms: 0.046084
+  type: 'test'
+  ...
+# Subtest: foldTimeline keeps different outcomes and different tools apart
+ok 576 - foldTimeline keeps different outcomes and different tools apart
+  ---
+  duration_ms: 0.050292
+  type: 'test'
+  ...
+# Subtest: discovers every public OpenBKN Remote method from the host aggregate
+ok 577 - discovers every public OpenBKN Remote method from the host aggregate
+  ---
+  duration_ms: 470.328291
+  type: 'test'
+  ...
+# Subtest: generates a strict DSH Remote contract for safe authentication status
+ok 578 - generates a strict DSH Remote contract for safe authentication status
+  ---
+  duration_ms: 1.710875
+  type: 'test'
+  ...
+# Subtest: keeps the repository as a DSH Typert workspace with one publishable bundle package
+ok 579 - keeps the repository as a DSH Typert workspace with one publishable bundle package
+  ---
+  duration_ms: 0.694709
+  type: 'test'
+  ...
+# Subtest: places all plugin runtime assets inside the publishable package
+ok 580 - places all plugin runtime assets inside the publishable package
+  ---
+  duration_ms: 0.263708
+  type: 'test'
+  ...
+# Subtest: keys a workspace binding by normalized platform and knowledge network
+ok 581 - keys a workspace binding by normalized platform and knowledge network
+  ---
+  duration_ms: 0.6995
+  type: 'test'
+  ...
+# Subtest: accepts only a concrete, absolute local workspace mapping
+ok 582 - accepts only a concrete, absolute local workspace mapping
+  ---
+  duration_ms: 1.555834
+  type: 'test'
+  ...
+# Subtest: resolves the one network associated with a normalized workspace path
+ok 583 - resolves the one network associated with a normalized workspace path
+  ---
+  duration_ms: 0.433834
+  type: 'test'
+  ...
+# Subtest: fails closed when a workspace has no association or more than one association
+ok 584 - fails closed when a workspace has no association or more than one association
+  ---
+  duration_ms: 0.078542
+  type: 'test'
+  ...
+# Subtest: refuses to associate a second knowledge network with the same workspace
+ok 585 - refuses to associate a second knowledge network with the same workspace
+  ---
+  duration_ms: 0.461167
+  type: 'test'
+  ...
+1..585
+# tests 585
+# suites 0
+# pass 584
+# fail 0
+# cancelled 0
+# skipped 1
+# todo 0
+# duration_ms 2519.761875

@@ -59,6 +59,9 @@ function recoveryCase(handshakeFailure: unknown, catalogueStatus = 200) {
       ...config, resolveToken: async () => stored,
     }, async () => new Response(JSON.stringify({ entries: [{ id: 'kn-supply', name: 'Supply' }] }), { status: catalogueStatus })),
   })
+  // This narrow fixture bypasses construction; retain the same explicit
+  // component owner that the real native-Service regression exercises.
+  Object.assign(service, { ownerContext: service.ctx })
   const controller = new OpenBknUiController({
     status: () => service.remoteStatus(signal()),
     beginLogin: () => service.remoteBeginLogin(signal()),

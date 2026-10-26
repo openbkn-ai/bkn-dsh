@@ -1,0 +1,34 @@
+{
+  "dsh": {
+    "repo": "deepseek-ai/deepseek-harness",
+    "head": "687f282e8625c6b8d11ff58211a90524be2e4317",
+    "latest_release": [
+      {
+        "tag_name": "dsh-v0.2.1-rc.2",
+        "published_at": "2026-10-17T08:16:33Z",
+        "prerelease": true,
+        "html_url": "https://github.com/deepseek-ai/deepseek-harness/releases/tag/dsh-v0.2.1-rc.2"
+      }
+    ],
+    "compared_from": "687f282e8625c6b8d11ff58211a90524be2e4317",
+    "new_commits": [],
+    "changed_files": []
+  },
+  "foundry": {
+    "repo": "openbkn-ai/bkn-foundry",
+    "head": "2f2da7f4cbf9c7cd76de6aa457629ce1acec6cd5",
+    "latest_release": [
+      {
+        "tag_name": "v0.2.0",
+        "published_at": "2026-10-16T07:21:25Z",
+        "prerelease": false,
+        "html_url": "https://github.com/openbkn-ai/bkn-foundry/releases/tag/v0.2.0"
+      }
+    ],
+    "compared_from": "2f2da7f4cbf9c7cd76de6aa457629ce1acec6cd5",
+    "new_commits": [],
+    "changed_files": []
+  },
+  "checked_at": "2026-10-21T16:39:05.015824+00:00",
+  "deployment_or_pins_changed": false
+}

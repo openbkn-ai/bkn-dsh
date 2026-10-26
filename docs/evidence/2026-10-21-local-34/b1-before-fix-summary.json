@@ -1,0 +1,72 @@
+{
+  "checked_at": "2026-10-21T12:58:05.485634+00:00",
+  "plugin": "0.2.0-rc.2-openbkn.0.2.0-25",
+  "actual_desktop_host": true,
+  "real_model": false,
+  "protocol_driver": true,
+  "sandbox_called": false,
+  "old_before_and_after_scoped_query_total": 40,
+  "new_after_reauth_start_failed": "Public.Unauthorized: token is invalid",
+  "credential_references": [
+    {
+      "desktop": "0.2.0-rc.2",
+      "reference_matches_current_cli": true
+    },
+    {
+      "desktop": "0.2.1-rc.2",
+      "reference_matches_current_cli": true
+    }
+  ],
+  "evidence": [
+    {
+      "at": "2026-10-21T12:38:48.523927+00:00",
+      "phase": "R34_B1:0.2.0-rc.2:before",
+      "emitted_tool": "mcp__openbkn__bkn_finish_interaction",
+      "query_evidence": {
+        "interaction_id": "int_5a680aecacac431d9e47ab554031ab9b",
+        "conversation_id": "conv_46701512f5b7d626fb6ae2576867fa25",
+        "observed_total_counts": [
+          40
+        ],
+        "query_reported_unauthorized": false
+      }
+    },
+    {
+      "at": "2026-10-21T12:39:55.670220+00:00",
+      "phase": "R34_B1:0.2.0-rc.2:before",
+      "emitted_tool": "mcp__openbkn__bkn_finish_interaction",
+      "query_evidence": {
+        "interaction_id": "int_d5ff766198a17dcc2647f85d86d9c219",
+        "conversation_id": "conv_a2a6f76fd417e47bebb410c7f300344e",
+        "observed_total_counts": [
+          40
+        ],
+        "query_reported_unauthorized": false
+      }
+    },
+    {
+      "at": "2026-10-21T12:45:24.424000+00:00",
+      "phase": "R34_B1:0.2.1-rc.2:after",
+      "native_mcp_failure": "Public.Unauthorized",
+      "failed_tool": "mcp__openbkn__bkn_start_interaction",
+      "error_detail": "token is invalid",
+      "business_query_dispatched": false
+    },
+    {
+      "at": "2026-10-21T12:45:25.595737+00:00",
+      "phase": "R34_B1:0.2.0-rc.2:after",
+      "emitted_tool": "mcp__openbkn__bkn_finish_interaction",
+      "query_evidence": {
+        "interaction_id": "int_5996c3c6942c0460c0246d054a4dbc04",
+        "conversation_id": "conv_c77f55742f0957ade2292a5cc64755ef",
+        "observed_total_counts": [
+          40
+        ],
+        "query_reported_unauthorized": false
+      }
+    }
+  ],
+  "original_four_hour_host_pid": 33047,
+  "process_observation": "33047 04:38:58 Wed Oct 21 16:19:07 2026",
+  "root_cause_status": "Native Cordis service caller context leaves an MCP child beyond business owner disposal; exact production regression fails before owner-context fix"
+}

@@ -1,0 +1,46 @@
+{
+  "checkedAt": "2026-10-23T13:48:44.955442+00:00",
+  "candidateSha256": "6d95ff7517dbe409875fd398784fe01049ba26d2b97c43fad65c817d3ea18ee9",
+  "kitSha256": "82d1b74c43728301016928b527742d1cee66e45413412de17fdc76b7735bc936",
+  "helperSha256": "0e3466f3da61bd2cac8f263c03573ad03206dea7cf20ac58d8f94e433b4943a7",
+  "sdkSha256": "d227f6264597d727e7931bef4118f099df20d42402ff32e306f6d65e8a6b273f",
+  "hosts": {
+    "0.2.0-rc.2": {
+      "hostCommit": "639ed015397290b3745d163aafe02ffee4aa3f84",
+      "candidateFilesMatched": 82,
+      "sourceFilesMatchPinnedGitBlobs": {
+        "packages/subprocess/subprocess-local/src/spawn-runner.ts": "d4ba8aeec4427437cf4b7f23d2ea61c3a25becb43ee3944df190eef537a4679d",
+        "packages/subprocess/subprocess-local/src/spawn.ts": "1087f9ed1704167865e1a35cea0604f335cc348ac17da9c83c542fc454d00ae0",
+        "packages/subprocess/subprocess-local/src/windows-job.ts": "220d210e72df9da21a313a70a400e6f5443b17b4a08188f0131bc09167067f63",
+        "packages/subprocess/subprocess-local/src/managed-owner.ts": "c8153bbb1093f2ed69b45170f59ebadc9ac770210fff23e4a99c6228522a286d",
+        "packages/subprocess/subprocess-local/src/runner-protocol.ts": "0ada1f271cede3a0a0f04fa1c7df4fb76a3466dc239315b7332cd4e3630a306c",
+        "packages/subprocess/subprocess-local/src/output.ts": "1151a91d7bc31ffcd6ea3db85af2ef8c19ac4bc2d3a41654da9feac29cae7433"
+      },
+      "registryIntegrity": "sha512-syeclzuoVpGor6JyDHcxg2Iwy9oeM76y4dK8abY19x1s/eMgJMCO3kL/IeKPg+d0Go7aHPTEyWRvCmfkA35U1g==",
+      "archiveSha256": "7eca32ea7b828709a91f4af96e0f2b85abaae353c0116493182cf205f8803557",
+      "registryArchiveExecutableMatches": {
+        "lib/index.js": "12489aafd3be30c606824f52b45f682c42f95448db89f2458bba87fa944a50c0",
+        "lib/client.js": "e09e26fcd4849cd55683b9cc702dca896efce93a5af3968431c1c8a62147b9cf"
+      }
+    },
+    "0.2.1-rc.2": {
+      "hostCommit": "687f282e8625c6b8d11ff58211a90524be2e4317",
+      "candidateFilesMatched": 82,
+      "sourceFilesMatchPinnedGitBlobs": {
+        "packages/subprocess/subprocess-local/src/spawn-runner.ts": "d4ba8aeec4427437cf4b7f23d2ea61c3a25becb43ee3944df190eef537a4679d",
+        "packages/subprocess/subprocess-local/src/spawn.ts": "1087f9ed1704167865e1a35cea0604f335cc348ac17da9c83c542fc454d00ae0",
+        "packages/subprocess/subprocess-local/src/windows-job.ts": "220d210e72df9da21a313a70a400e6f5443b17b4a08188f0131bc09167067f63",
+        "packages/subprocess/subprocess-local/src/managed-owner.ts": "c8153bbb1093f2ed69b45170f59ebadc9ac770210fff23e4a99c6228522a286d",
+        "packages/subprocess/subprocess-local/src/runner-protocol.ts": "0ada1f271cede3a0a0f04fa1c7df4fb76a3466dc239315b7332cd4e3630a306c",
+        "packages/subprocess/subprocess-local/src/output.ts": "1151a91d7bc31ffcd6ea3db85af2ef8c19ac4bc2d3a41654da9feac29cae7433"
+      },
+      "registryIntegrity": "sha512-45bWpB/MFBvYf2a3iQx+BIOkv41yg0Be8nJ844CpiXWte6H+GPVwUYmGMSgjQqRlxNaHEWO9kp01JuMBNVKqFw==",
+      "archiveSha256": "044e67efcbe461de80f0c4eee5aa8cd8917ceafc4b8beda0324c0eb420947928",
+      "registryArchiveExecutableMatches": {
+        "lib/index.js": "4fbe460fec585ebc2cf2887261f6c33f024081a539d9fb5d6557a9002324b23f",
+        "lib/client.node.js": "aca973689c3ee34524c8bd7de9c901f5a839e29bc15d4816a6dc5e2fb0e64e9f"
+      }
+    }
+  },
+  "productionPackageChanged": false
+}

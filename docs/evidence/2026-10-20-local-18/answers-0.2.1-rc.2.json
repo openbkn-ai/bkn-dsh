@@ -1,0 +1,23 @@
+{
+  "orders-count-status": "not-run",
+  "finished-goods-inventory": "not-run",
+  "standard-lead-time": "not-run",
+  "bom-structure": "not-run",
+  "bom-usage-inventory": [
+    false,
+    false,
+    false,
+    false,
+    true,
+    true,
+    false,
+    true,
+    true
+  ],
+  "purchase-flow": "not-run",
+  "sales-order-detail": "not-run",
+  "missing-object": "not-run",
+  "invalid-token": "not-run",
+  "platform-unreachable": "not-run",
+  "unauthorized-network": "not-run"
+}

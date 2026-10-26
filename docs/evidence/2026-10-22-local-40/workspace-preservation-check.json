@@ -1,0 +1,27 @@
+{
+  "at": "2026-10-22T06:11:34.994277+00:00",
+  "head": "933b0ab251c75461ece1ada6145a9487e7eb04d1",
+  "branch": "feat/021-localization-login",
+  "headAndBranchUnchanged": true,
+  "indexBytesUnchanged": true,
+  "preexistingFilesChecked": 628,
+  "preexistingFilesPreserved": 617,
+  "authorizedChangedPreexistingFiles": [
+    "CHANGELOG.md",
+    "CLAUDE.md",
+    "docs/plans/0.2.1/ACCEPTANCE-CONTRACT.md",
+    "docs/plans/0.2.1/DSH-COMPATIBILITY.md",
+    "docs/plans/0.2.1/NATIVE-CONTRACT.md",
+    "docs/plans/0.2.1/README.md",
+    "packages/openbkn-business-context/package.json",
+    "packages/openbkn-business-context/src/client/OpenBknDiagnostics.tsx",
+    "packages/openbkn-business-context/src/client/OpenBknOverlay.tsx",
+    "packages/openbkn-business-context/tests/locale-rendering.test.ts",
+    "runtime/openbkn-dsh-runtime.manifest.json"
+  ],
+  "unexpectedChangedOrDeletedFiles": [],
+  "oldWindowsHandoffPreserved": true,
+  "newCommitCreated": false,
+  "pushPerformed": false,
+  "ciDispatched": false
+}

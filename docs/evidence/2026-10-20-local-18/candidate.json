@@ -1,0 +1,22 @@
+{
+  "created_at": "2026-10-19T16:41:35.898445+00:00",
+  "plugin_version": "0.2.0-rc.2-openbkn.0.2.0-18",
+  "artifact_sha256": "e9ffa895affb40a3b5d5c75d0488d5f148afdd68168145e0d86304d2e96abeca",
+  "artifact_bytes": 227211,
+  "bkn_dsh_head": "933b0ab251c75461ece1ada6145a9487e7eb04d1",
+  "mode": "local only; no remote CI; formal local 0.2.0; existing platform business data/config retained",
+  "servers_before": [
+    {
+      "version": "0.2.0-rc.2",
+      "pid": 99659,
+      "verified_command": "node /Users/dominiczhang/Documents/project/app/openBKN/bkn-dsh/release/ci-41507f9/mac-cli/0.2.0-rc.2/node_modules/@deepseek-ai/dsh/lib/bin.js web --host 127.0.0.1 --port 38420 --no-open",
+      "stopped": true
+    },
+    {
+      "version": "0.2.1-rc.2",
+      "pid": 99658,
+      "verified_command": "node /Users/dominiczhang/Documents/project/app/openBKN/bkn-dsh/release/ci-41507f9/mac-cli/0.2.1-rc.2/node_modules/@deepseek-ai/dsh/lib/bin.js web --host 127.0.0.1 --port 38421 --no-open",
+      "stopped": true
+    }
+  ]
+}

@@ -1,0 +1,62 @@
+{
+  "form": "desktop",
+  "host": "0.2.0-rc.2",
+  "case_id": "recovery",
+  "session_id": "session-ca3f2dbe-9ec6-4ed6-8706-0cb5149ce5ee",
+  "turn": 2,
+  "question": "382-000005 的标准交期？",
+  "started_at": "2026-10-21T15:13:22.258784+00:00",
+  "finished_at": "2026-10-21T15:13:36.746715+00:00",
+  "response_models": [
+    "deepseek-flash"
+  ],
+  "real_model_response_observed": true,
+  "model_configured_real": true,
+  "turn_end_kind": "completed",
+  "error_message": null,
+  "tool_calls": [
+    {
+      "name": "bash",
+      "arguments": "{\"command\":\"echo probe\",\"description\":\"Warm up tool registration\"}",
+      "callId": "call_00_GQ83ppuakQwfCJX9Fx9C9906"
+    },
+    {
+      "name": "mcp__openbkn__bkn_start_interaction",
+      "arguments": "{\"conversation_mode\":\"new\",\"question\":\"382-000005 的标准交期？\",\"agent_name\":\"bkn-agent-dsh-business-context\"}",
+      "callId": "call_00_X3M5jY3l0yX0fZW2Vf7l4576"
+    },
+    {
+      "name": "mcp__openbkn__search_schema",
+      "arguments": "{\"kn_id\":\"supply_ontology_hand\",\"query\":\"标准交期 lead time 产品交期\",\"bkn_context\":{\"conversation_id\":\"conv_d35e5c098a3f466b9336eb6553033cfb\",\"interaction_id\":\"int_21b22255e9aa619772598e648b7affc6\"}}",
+      "callId": "call_00_EoU5or9ySKssK8SOVJmz3955"
+    },
+    {
+      "name": "mcp__openbkn__query_object_instance",
+      "arguments": "{\"bkn_context\":{\"conversation_id\":\"conv_d35e5c098a3f466b9336eb6553033cfb\",\"interaction_id\":\"int_21b22255e9aa619772598e648b7affc6\"},\"kn_id\":\"supply_ontology_hand\",\"ot_id\":\"supply_ontology_hand_material\",\"condition\":{\"field\":\"material_code\",\"operation\":\"==\",\"value\":\"382-000005\",\"value_from\":\"const\"},\"limit\":10}",
+      "callId": "call_00_fAVe5kYpxN3vMbznmvGC2330"
+    },
+    {
+      "name": "mcp__openbkn__bkn_finish_interaction",
+      "arguments": "{\"interaction_id\":\"int_21b22255e9aa619772598e648b7affc6\",\"outcome\":\"completed\",\"answer\":\"382-000005（北斗导航农机驾驶仪）的标准交期 = **1 天**。\\n\\n依据与口径：\\n- 物料主档：material_code = 382-000005，material_name = 北斗导航农机驾驶仪，materialattr（物料属性）= 自制，group_name = 库存商品-产成品。\\n- 按本体规则「标准交期按物料属性取值：自制件采用 product_fixedleadtime（生产固定提前期）」：product_fixedleadtime = 1，单位天。\\n- 该物料另有 purchase_fixedleadtime = 1，但自制件不采用采购口径，故不作为标准交期依据。\\n- 数据来源：对象类「物料」(supply_ontology_hand_material，资源 supply_demo_hand.erp_material)，按 material_code 精确匹配，命中 1 条。\\n\\n范围限制：仅回答该编码物料主档的标准交期；未涉及单据预计到货日期、BOM 子料交期或采购流程（发起 PO 需在交期前 2 天完成）等其它口径。\"}",
+      "callId": "call_00_pWSGsADlLbmkVk3lGSh20357"
+    }
+  ],
+  "failed_tools": [
+    {
+      "name": "bash",
+      "call_id": "call_00_GQ83ppuakQwfCJX9Fx9C9906"
+    }
+  ],
+  "interaction_ids": [
+    "int_21b22255e9aa619772598e648b7affc6"
+  ],
+  "sandbox_hold_triggered": false,
+  "original_answer": "**382-000005（北斗导航农机驾驶仪）的标准交期 = 1 天。**\n\n| 项目 | 值 |\n|---|---|\n| 物料编码 | 382-000005 |\n| 物料名称 | 北斗导航农机驾驶仪 |\n| 物料属性 | 自制（库存商品-产成品，406包装成品） |\n| 生产固定提前期 product_fixedleadtime | 1（天）← 标准交期 |\n| 采购固定提前期 purchase_fixedleadtime | 1（天，自制件不采用此口径） |\n\n依据与口径说明：\n- 本体对「物料」的定义是：标准交期按物料属性取值，自制件（含产成品、半成品）使用 `product_fixedleadtime`，外购件使用 `purchase_fixedleadtime`，单位天。该物料为自制，因此取生产固定提前期 1 天。虽然两个字段恰好都是 1，也不能按采购口径解释。\n- 数据来源：对象类「物料」（`supply_ontology_hand_material`，资源 `supply_demo_hand.erp_material`），按 `material_code = 382-000005` 精确匹配，命中 1 条，字段权限均为 full。\n\n局限：本回答只覆盖该编码物料主档的标准交期，未涉及采购订单中的预计到货日期、BOM 子料交期或采购流程时序等其他口径。",
+  "original_answer_sha256": "36448f9ba26a2dbd55420c78197ebb9c4c0dfa05df5a5903c4229cff78e9e519",
+  "protocol_driver": false,
+  "answer_changed": false,
+  "transport": "Full-catalogue TLS forwarding with execution pre-dispatch hold",
+  "core_lead_time_criteria_passed": true,
+  "additional_field_label_error": false,
+  "status": "pass"
+}

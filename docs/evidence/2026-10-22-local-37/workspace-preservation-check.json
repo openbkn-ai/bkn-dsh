@@ -1,0 +1,36 @@
+{
+  "checkedAt": "2026-10-21T17:44:17.000714+00:00",
+  "protectedPreexistingFiles": 561,
+  "intendedSourceFilesChanged": [
+    "CHANGELOG.md",
+    "packages/openbkn-business-context/package.json",
+    "packages/openbkn-business-context/src/business-context-service.ts",
+    "packages/openbkn-business-context/src/client/OpenBknDiagnostics.tsx",
+    "packages/openbkn-business-context/src/client/index.tsx",
+    "packages/openbkn-business-context/tests/typert-analysis-contract.test.mjs",
+    "packages/openbkn-business-context/tests/typert-remote-contract.test.mjs",
+    "runtime/openbkn-dsh-runtime.manifest.json"
+  ],
+  "unexpectedChanges": [],
+  "missingPreexistingFiles": [],
+  "personalDshFiles": 5,
+  "personalDshAllUnchanged": true,
+  "headUnchanged": true,
+  "indexUnchanged": true,
+  "intendedSourceAndEntrypointFilesChanged": [
+    "CHANGELOG.md",
+    "CLAUDE.md",
+    "docs/plans/0.2.1/ACCEPTANCE-CONTRACT.md",
+    "docs/plans/0.2.1/DSH-COMPATIBILITY.md",
+    "docs/plans/0.2.1/NATIVE-CONTRACT.md",
+    "docs/plans/0.2.1/README.md",
+    "packages/openbkn-business-context/package.json",
+    "packages/openbkn-business-context/src/business-context-service.ts",
+    "packages/openbkn-business-context/src/client/OpenBknDiagnostics.tsx",
+    "packages/openbkn-business-context/src/client/index.tsx",
+    "packages/openbkn-business-context/tests/typert-analysis-contract.test.mjs",
+    "packages/openbkn-business-context/tests/typert-remote-contract.test.mjs",
+    "runtime/openbkn-dsh-runtime.manifest.json"
+  ],
+  "documentationHistoryPreserved": true
+}

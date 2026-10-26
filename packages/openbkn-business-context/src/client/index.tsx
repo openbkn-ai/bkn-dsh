@@ -21,6 +21,7 @@ import type { IWorkspaces, WorkspaceView } from '@deepseek-ai/dsh-api-workspace-
 import type { UiWorkspace } from '@deepseek-ai/dsh-client-ui-workspace/client'
 import openbknBusinessContextRemote from '@openbkn/dsh-business-context/remote'
 import { OpenBknEntry } from './OpenBknEntry.tsx'
+import { pickWorkspaceDirectory } from './pick-workspace-directory.ts'
 import { OpenBknOverlay } from './OpenBknOverlay.tsx'
 import { OpenBknDiagnostics } from './OpenBknDiagnostics.tsx'
 import { DiagnosticsPanelController } from './diagnostics-controller.ts'
@@ -115,6 +116,7 @@ function registerPanels(ctx: Context, bridge: OpenBknPanelBridge): void {
     close: () => panel.close(),
     refresh: () => panel.refresh(),
     beginLogin: () => panel.beginLogin(),
+    cancelLogin: () => panel.cancelLogin(),
     showSettings: () => panel.showSettings(),
     saveConfiguration: (input: import('../types.ts').OpenBknConfigurationInput) => panel.saveConfiguration(input),
     cliSetup: {
@@ -127,7 +129,7 @@ function registerPanels(ctx: Context, bridge: OpenBknPanelBridge): void {
       controller.open()
     },
   })
-  ctx.effect(() => () => { panel.reset(); controller.reset() }, 'openbkn panel lifecycle')
+  ctx.effect(() => () => { panel.close(); controller.close() }, 'openbkn panel lifecycle')
   ctx.slots.inject('sidebar.footer.action', () => ctx.slots.register({
     name: 'sidebar.footer.action', id: 'openbkn-business-context', order: 100, inject,
   }, localized(OpenBknEntry, ctx.locale)))
@@ -189,9 +191,15 @@ function registerSlots(ctx: Context, panel: OpenBknPanelBridge): void {
     name: 'shell.overlay', id: 'openbkn-business-provenance', order: 110,
     inject: () => ({
       hooks: { provenanceOverlay },
-      load: async (sessionId: SessionId, messageId: string) => unwrap(
-        await ctx.remote.openbknBusinessContext.getTurnProvenanceView(sessionId, messageId),
-      ),
+      load: async (sessionId: SessionId, messageId: string, signal?: AbortSignal) => {
+        const read = ctx.remote.openbknBusinessContext.getTurnProvenanceViewStream(sessionId, messageId, signal)
+        try {
+          for await (const view of read) return view
+          return undefined
+        } finally {
+          await read.dispose()
+        }
+      },
       close: () => provenanceOverlay.close(),
     }),
   }, localized(ProvenanceOverlay, ctx.locale)))
@@ -269,7 +277,15 @@ function remotePort(ctx: Context): OpenBknUiPort & {
   const remote = ctx.remote.openbknBusinessContext
   return {
     status: async signal => unwrap(await remote.status(signal)),
-    beginLogin: async signal => unwrap(await remote.beginLogin(signal)),
+    beginLogin: async signal => {
+      const login = remote.beginLoginStream(signal)
+      try {
+        for await (const networks of login) return networks
+        throw new Error('OpenBKN login completed without a verified network list.')
+      } finally {
+        await login.dispose()
+      }
+    },
     configureToken: async (token, signal) => unwrap(await remote.configureToken(token, signal)),
     getNetworkBinding: async (sessionId: SessionId) => unwrap(await remote.getNetworkBinding(sessionId)),
     getTurnProvenance: async (sessionId: SessionId, messageId: string) => unwrap(await remote.getTurnProvenance(sessionId, messageId)),
@@ -293,7 +309,7 @@ function createNetworkSessionOpener(ctx: Context, port: OpenBknUiPort) {
       if (mode !== 'create-workspace') throw new Error('This OpenBKN business knowledge network has no associated local workspace.')
       let path: string | null
       try {
-        path = await uiWorkspace.pickDirectory()
+        path = await pickWorkspaceDirectory(uiWorkspace)
       } catch (error: unknown) {
         throw directoryPickerFailure(error)
       }

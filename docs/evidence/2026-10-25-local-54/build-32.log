@@ -1,0 +1,49 @@
+Scope: all 2 workspace projects
+✓ Lockfile passes supply-chain policies (verified 2d ago)
+Lockfile is up to date, resolution step is skipped
+Already up to date
+
+Done in 299ms using pnpm v11.7.0
+$ pnpm --filter @openbkn/dsh-business-context run build
+
+> @openbkn/dsh-business-context@0.2.0-rc.2-openbkn.0.2.0-32 build /Users/dominiczhang/Documents/project/app/openBKN/bkn-dsh/packages/openbkn-business-context
+> pnpm run build:host && pnpm run build:client
+
+
+> @openbkn/dsh-business-context@0.2.0-rc.2-openbkn.0.2.0-32 build:host /Users/dominiczhang/Documents/project/app/openBKN/bkn-dsh/packages/openbkn-business-context
+> node scripts/clean-host-bundles.mjs && tsc -p tsconfig.package.host.json && tsdown --env.DSH_BUILD_FACE host
+
+ℹ tsdown v0.22.14 powered by rolldown v1.2.7
+ℹ config file: /Users/dominiczhang/Documents/project/app/openBKN/bkn-dsh/packages/openbkn-business-context/tsdown.config.ts 
+ℹ entry: src/index.ts, src/business.ts, src/diagnostics.ts
+ℹ target: es2022
+ℹ tsconfig: tsconfig.json
+ℹ Build start
+ℹ lib/business.js                       192.88 kB │ gzip: 50.88 kB
+ℹ lib/diagnostics.js                     34.79 kB │ gzip:  9.43 kB
+ℹ lib/index.js                            1.42 kB │ gzip:  0.77 kB
+ℹ lib/diagnostics-observer-vRub4cgb.js   12.24 kB │ gzip:  4.85 kB
+ℹ 4 files, total: 241.34 kB
+✔ Build complete in 529ms
+
+> @openbkn/dsh-business-context@0.2.0-rc.2-openbkn.0.2.0-32 build:client /Users/dominiczhang/Documents/project/app/openBKN/bkn-dsh/packages/openbkn-business-context
+> tsc -p tsconfig.package.client.json && tsdown --env.DSH_BUILD_FACE client
+
+ℹ tsdown v0.22.14 powered by rolldown v1.2.7
+ℹ config file: /Users/dominiczhang/Documents/project/app/openBKN/bkn-dsh/packages/openbkn-business-context/tsdown.config.ts 
+ℹ entry: src/client/index.tsx
+ℹ target: node22.19.0
+ℹ tsconfig: tsconfig.json
+ℹ Build start
+
+ WARN  We recommend using the ESM format instead of CommonJS.
+The ESM format is compatible with modern platforms and runtimes, and most new libraries are now distributed only in ESM format.
+Learn more at https://nodejs.org/en/learn/modules/publishing-a-package#how-did-we-get-here
+
+ℹ Hint: consider adding deps.onlyBundle option to avoid unintended bundling of dependencies, or set deps.onlyBundle: false to disable this hint.
+See more at https://tsdown.dev/options/dependencies#deps-onlybundle
+Detected dependencies in bundle:
+- zod
+ℹ lib/client.js  444.78 kB │ gzip: 85.17 kB
+ℹ 1 files, total: 444.78 kB
+✔ Build complete in 29ms

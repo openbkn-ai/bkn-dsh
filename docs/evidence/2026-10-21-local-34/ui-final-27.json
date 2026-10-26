@@ -1,0 +1,51 @@
+{
+  "candidate": "-27",
+  "actual_ui_visual_review": true,
+  "hosts": [
+    {
+      "host": "0.2.0-rc.2",
+      "same_tgz_installed_files": 82,
+      "cold_start_after_install": true,
+      "diagnostics_dark_host_readable_locales": [
+        "en",
+        "zh"
+      ],
+      "narrow_window": [
+        800,
+        600
+      ],
+      "body_scroll_and_footer_reachable": true,
+      "diagnostics_keyboard_wrap_and_native_save": true,
+      "actual_saved_json": "0.2.0-rc.2/OpenBKN-diagnostic-20261021T140507093Z-0962696a.json",
+      "diagnostic_host_version": null,
+      "diagnostic_loaded_version": null,
+      "unaffected_login_directory_and_b1_origin": "-26 real Desktop results; -27 changes only client foreground and package metadata; backend/Remote bytes identical"
+    },
+    {
+      "host": "0.2.1-rc.2",
+      "same_tgz_installed_files": 82,
+      "cold_start_after_install": true,
+      "diagnostics_dark_host_readable_locales": [
+        "en",
+        "zh"
+      ],
+      "narrow_window": [
+        800,
+        600
+      ],
+      "body_scroll_and_footer_reachable": true,
+      "diagnostics_keyboard_wrap_and_native_save": true,
+      "actual_saved_json": "0.2.1-rc.2/OpenBKN-diagnostic-20261021T140828530Z-2833b2a4.json",
+      "diagnostic_host_version": null,
+      "diagnostic_loaded_version": null,
+      "unaffected_login_directory_and_b1_origin": "-26 real Desktop results; -27 changes only client foreground and package metadata; backend/Remote bytes identical"
+    }
+  ],
+  "protocol_server_stopped": true,
+  "user_help_currently_required": false,
+  "limits": [
+    "Real-model G6 not run.",
+    "No nonempty CE native-business provenance exists on this deployment.",
+    "Unknown diagnostic loaded/Host versions remain explicitly not collected."
+  ]
+}

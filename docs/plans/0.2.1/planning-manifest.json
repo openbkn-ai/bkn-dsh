@@ -1,0 +1,29 @@
+{
+  "saved_date": "2026-10-13",
+  "timezone": "Asia/Taipei",
+  "repository": "openbkn-ai/bkn-dsh",
+  "handoff_branch": "docs/021-agent-handoff",
+  "project_url": "https://github.com/orgs/openbkn-ai/projects/12",
+  "project_view_url": "https://github.com/orgs/openbkn-ai/projects/12/views/6",
+  "scope_issue": {
+    "number": 92,
+    "url": "https://github.com/openbkn-ai/bkn-dsh/issues/92",
+    "updated_at": "2026-10-13T03:38:00Z",
+    "body_sha256": "258bf3ebb9ceef577c1718955faabf3d454026629cd08668e3eede72cc149561"
+  },
+  "task_urls": [
+    "https://github.com/openbkn-ai/bkn-dsh/issues/93",
+    "https://github.com/openbkn-ai/bkn-dsh/issues/94",
+    "https://github.com/openbkn-ai/bkn-dsh/issues/95",
+    "https://github.com/openbkn-ai/bkn-dsh/issues/96",
+    "https://github.com/openbkn-ai/bkn-dsh/issues/97",
+    "https://github.com/openbkn-ai/bkn-dsh/issues/98",
+    "https://github.com/openbkn-ai/bkn-dsh/issues/99"
+  ],
+  "issue_relationship": "Issue 92 is the scope and linked task index; issue 93 is the prerequisite provenance check. Native GitHub sub-issue fields were not set.",
+  "planning_base_main_commit": "5b885dd7492fd42951b21729984f0d1e99da8b0d",
+  "dsh_supported_commit": "639ed015397290b3745d163aafe02ffee4aa3f84",
+  "studio_local_analysis_commit": "c778f73bdd50370e792dba9706e0ec95fd074d72",
+  "ee_local_analysis_commit": "aa6b3826ff0ce7150da011121c448ca575cedfa3",
+  "status_at_save": "Planning only; no implementation, live acceptance or release candidate for 0.2.1."
+}

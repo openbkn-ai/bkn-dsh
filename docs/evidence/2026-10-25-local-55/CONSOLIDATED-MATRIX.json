@@ -1,0 +1,101 @@
+{
+  "checkedAt": "2026-10-25T03:42:58.251021+00:00",
+  "kind": "local-development-preacceptance",
+  "ciRun": null,
+  "formalAcceptanceEligible": false,
+  "windowsEvidenceLayer": "Remote public report/objects independently hashed; private Windows runtime/log/screenshot observations are reported evidence, not a main-session rerun.",
+  "identities": {
+    "windowsInputs": {
+      "commit": "d20a266fa550dd854c9bd7d30bd04c088de9bbfe",
+      "ui": "-31",
+      "lifecycle": "-30",
+      "oldHost": "0.2.0-rc.2",
+      "newHost": "0.2.1-rc.2"
+    },
+    "currentTargets": {
+      "oldHost": "0.2.0-rc.2",
+      "newHost": "0.2.1-rc.3",
+      "localCandidate": "-32",
+      "sha256": "46626510825fe9146aef12c27a1724acbb455aeac22aa600358add0fc8e1c9f8"
+    }
+  },
+  "windowsCases": [
+    {
+      "case": "U0",
+      "status": "PASS",
+      "layer": "Windows report plus public install receipts / identity records",
+      "scope": "A/B cloned-home official installation and actual -31 passive notice; closure originals private"
+    },
+    {
+      "case": "U1",
+      "status": "BLOCKED",
+      "reason": "No browser login completed; Reference inaccessible. Current hasToken observation alone does not establish authenticated state or guarantee records after login."
+    },
+    {
+      "case": "U2-keyboard",
+      "status": "PASS",
+      "layer": "Windows report, screenshots private",
+      "scope": "A business/settings/diagnostic Escape focus/tab and nested select; B quick check only"
+    },
+    {
+      "case": "U2-provenance",
+      "status": "NOT_RUN",
+      "reason": "No existing provenance-bearing conversation in task copies"
+    },
+    {
+      "case": "U2-exact-800x600",
+      "status": "NOT_RUN",
+      "reason": "Reported actual 664x538 and expanded settings passed; retain alternate-size result without substituting exact dimensions"
+    },
+    {
+      "case": "U3",
+      "status": "PASS",
+      "layer": "Windows reported pixel measurements; raw artifact hashed and normalized, private screenshots not independently reviewed",
+      "scope": "Reported ratios >=4.5, source colors and previously executed local contrast tests support bounded consistency"
+    },
+    {
+      "case": "U4",
+      "status": "PASS",
+      "layer": "Windows report and private screenshots",
+      "scope": "A/B historical/passive wording; unknown loaded version retained; no new export/refresh acceptance"
+    },
+    {
+      "case": "L0",
+      "status": "BLOCKED",
+      "reason": "Requires current user confirmation of ordinary Chrome window/root PID, UTC creation time and exe; old 11368 cannot be reused"
+    },
+    {
+      "case": "L1-L3",
+      "status": "NOT_RUN",
+      "reason": "Prerequisites unmet; zero stream observations and zero lifecycle logins"
+    },
+    {
+      "case": "L4",
+      "status": "BLOCKED",
+      "reason": "Job membership/terminate/browser cause UNKNOWN without reliable existing read-only source"
+    },
+    {
+      "case": "P",
+      "status": "PASS",
+      "layer": "Windows reported cleanup and preservation; original files private",
+      "scope": "A/B menu exit; zero owned processes/listeners; original homes 11/11 each unchanged; no blanket platform database audit"
+    }
+  ],
+  "macReuse": {
+    "round51": "Frozen -31 four Mac forms affected UI, including existing reference labels/provenance. Original identities retained.",
+    "round54": "-32 actual isolated rc.3 npm/web affected UI and profile; no live nonempty platform references, no real login/B1/model. Preliminary vs final package doc-only difference remains as recorded."
+  },
+  "newLifecycleObservations": 0,
+  "newCandidateRequiredForReceiptReview": false,
+  "doNotRepeat": [
+    "official argv",
+    "original helper initialization/startup acceptance",
+    "tar",
+    "full closure matrix",
+    "full UI",
+    "directory binding",
+    "login cancel/timeout",
+    "B1",
+    "model/G6/Sandbox/Function/run_code/BOM/CSV"
+  ]
+}

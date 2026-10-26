@@ -1,0 +1,13 @@
+✔ code change is exactly OS pass-through; native PS guard stays intact (0.887291ms)
+✔ original controller reproduces the missing OS at an actual child boundary (24.32875ms)
+✔ repaired controller passes parent OS and changes no other environment values (22.750958ms)
+✔ minimal environment still excludes credential/model/Node-mode values (22.351666ms)
+✔ missing or non-Windows OS is not fabricated or allowed through the guard predicate (44.533875ms)
+ℹ tests 5
+ℹ suites 0
+ℹ pass 5
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 147.855375

@@ -1,0 +1,126 @@
+{
+  "scope": "actual official Mac npm/web and Electron Desktop backends; synthetic profile autoload and packed native-reader checks; not GUI/live-platform acceptance",
+  "rows": [
+    {
+      "key": "npm-old",
+      "kind": "npm",
+      "hostVersion": "0.2.0-rc.2",
+      "candidateSha256": "27ccf15c46e4f71ef850ee481e22556b70f4d4795e89d7d587a2e3210fc6b3e3",
+      "businessSha256": "ca9125bd7ce9d017f8c0a9a1fa097ff8165e8943dfbde5dad96f31406b2bd537",
+      "mcpSha256": "b3cd7156c0b8639656ce117530fec4d006b74cafdc9a78ac426fec084e62972c",
+      "originStockSha256": "758d8fc473b700b5d351158d06ce9f9e92c16e8b25497b08bb7bd2122a87f5dd",
+      "componentsActive": 3,
+      "serviceClassIdentity": true,
+      "managerRuntimeIdentity": true,
+      "profileOverrideAutomatic": "PASS",
+      "nativeReaderChecks": [
+        "valid detail unchanged",
+        "operations: oversized controlled refusal",
+        "time_rail: oversized controlled refusal",
+        "valid explanation unchanged",
+        "wrong record container rejected",
+        "pair record oversized refusal"
+      ],
+      "node": "24.19.0",
+      "electron": null,
+      "exit": {
+        "code": 0,
+        "signal": null
+      },
+      "fixtureClosed": true,
+      "realPlatformOrToolsCall": false
+    },
+    {
+      "key": "npm-rc3",
+      "kind": "npm",
+      "hostVersion": "0.2.1-rc.3",
+      "candidateSha256": "27ccf15c46e4f71ef850ee481e22556b70f4d4795e89d7d587a2e3210fc6b3e3",
+      "businessSha256": "ca9125bd7ce9d017f8c0a9a1fa097ff8165e8943dfbde5dad96f31406b2bd537",
+      "mcpSha256": "b3cd7156c0b8639656ce117530fec4d006b74cafdc9a78ac426fec084e62972c",
+      "originStockSha256": "758d8fc473b700b5d351158d06ce9f9e92c16e8b25497b08bb7bd2122a87f5dd",
+      "componentsActive": 3,
+      "serviceClassIdentity": true,
+      "managerRuntimeIdentity": true,
+      "profileOverrideAutomatic": "PASS",
+      "nativeReaderChecks": [
+        "valid detail unchanged",
+        "operations: oversized controlled refusal",
+        "time_rail: oversized controlled refusal",
+        "valid explanation unchanged",
+        "wrong record container rejected",
+        "pair record oversized refusal"
+      ],
+      "node": "24.19.0",
+      "electron": null,
+      "exit": {
+        "code": 0,
+        "signal": null
+      },
+      "fixtureClosed": true,
+      "realPlatformOrToolsCall": false
+    },
+    {
+      "key": "desktop-old",
+      "kind": "desktop",
+      "hostVersion": "0.2.0-rc.2",
+      "candidateSha256": "27ccf15c46e4f71ef850ee481e22556b70f4d4795e89d7d587a2e3210fc6b3e3",
+      "businessSha256": "ca9125bd7ce9d017f8c0a9a1fa097ff8165e8943dfbde5dad96f31406b2bd537",
+      "mcpSha256": "b3cd7156c0b8639656ce117530fec4d006b74cafdc9a78ac426fec084e62972c",
+      "originStockSha256": "758d8fc473b700b5d351158d06ce9f9e92c16e8b25497b08bb7bd2122a87f5dd",
+      "componentsActive": 3,
+      "serviceClassIdentity": true,
+      "managerRuntimeIdentity": true,
+      "profileOverrideAutomatic": "PASS",
+      "nativeReaderChecks": [
+        "valid detail unchanged",
+        "operations: oversized controlled refusal",
+        "time_rail: oversized controlled refusal",
+        "valid explanation unchanged",
+        "wrong record container rejected",
+        "pair record oversized refusal"
+      ],
+      "node": "24.18.1",
+      "electron": "44.0.0",
+      "exit": {
+        "code": 0,
+        "signal": null
+      },
+      "fixtureClosed": true,
+      "realPlatformOrToolsCall": false
+    },
+    {
+      "key": "desktop-rc3",
+      "kind": "desktop",
+      "hostVersion": "0.2.1-rc.3",
+      "candidateSha256": "27ccf15c46e4f71ef850ee481e22556b70f4d4795e89d7d587a2e3210fc6b3e3",
+      "businessSha256": "ca9125bd7ce9d017f8c0a9a1fa097ff8165e8943dfbde5dad96f31406b2bd537",
+      "mcpSha256": "b3cd7156c0b8639656ce117530fec4d006b74cafdc9a78ac426fec084e62972c",
+      "originStockSha256": "758d8fc473b700b5d351158d06ce9f9e92c16e8b25497b08bb7bd2122a87f5dd",
+      "componentsActive": 3,
+      "serviceClassIdentity": true,
+      "managerRuntimeIdentity": true,
+      "profileOverrideAutomatic": "PASS",
+      "nativeReaderChecks": [
+        "valid detail unchanged",
+        "operations: oversized controlled refusal",
+        "time_rail: oversized controlled refusal",
+        "valid explanation unchanged",
+        "wrong record container rejected",
+        "pair record oversized refusal"
+      ],
+      "node": "24.21.0",
+      "electron": "44.7.0",
+      "exit": {
+        "code": 0,
+        "signal": null
+      },
+      "fixtureClosed": true,
+      "realPlatformOrToolsCall": false
+    }
+  ],
+  "csvControlled": {
+    "npm-old": "PASS: existing official ToolRuntime probe plus Windows star-name refusal; capture enabled and disabled",
+    "otherRows": "not completed: direct-import probe lacks Host loader module map; retained setup failures, no candidate or Host code fix",
+    "sourceAndCi": "61 affected tests and two official CI npm ToolRuntime probes passed"
+  }
+}

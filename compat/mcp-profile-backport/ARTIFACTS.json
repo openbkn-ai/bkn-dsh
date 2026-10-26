@@ -1,0 +1,22 @@
+{
+  "format": 1,
+  "protectedEntrySha256": "b3cd7156c0b8639656ce117530fec4d006b74cafdc9a78ac426fec084e62972c",
+  "artifacts": [
+    {
+      "hostVersion": "0.2.0-rc.2",
+      "artifact": "openbkn-mcp-old-same-origin-r1.tgz",
+      "sha256": "0e06001c240fd8dcf73f813ee837c36e978b78066a8637e65740b0dae4542511",
+      "bytes": 21689,
+      "files": 12,
+      "filesManifest": "mcpOld-files.json"
+    },
+    {
+      "hostVersion": "0.2.1-rc.3",
+      "artifact": "openbkn-mcp-rc3-same-origin-r1.tgz",
+      "sha256": "48694ca37f889edbc7c41ed8edd3c08e3dc8c0d9cf87c6c118d96de44556d3e0",
+      "bytes": 21684,
+      "files": 12,
+      "filesManifest": "mcpRc3-files.json"
+    }
+  ]
+}

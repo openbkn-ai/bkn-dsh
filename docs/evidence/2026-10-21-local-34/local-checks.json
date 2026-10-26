@@ -1,0 +1,78 @@
+{
+  "source_each": {
+    "tests": 607,
+    "pass": 606,
+    "fail": 0,
+    "windows_skip": 1
+  },
+  "types_both_pass": true,
+  "repository_final_pass": 66,
+  "evaluator_pass": 7,
+  "package_files": 82,
+  "initial_failures_retained": {
+    "repository": "3 failures: artifact filename still -25 while version was -26; corrected outside plugin tgz",
+    "source": "constructor-bypassing authentication-recovery fixture lacked ownerContext; fixture corrected, production fallback not added"
+  },
+  "logs": [
+    {
+      "file": "source-old-26-final.log",
+      "sha256": "6d7d9246fe360067e4ef4e1d8e730be2216c619b4d1b858d0a6ad32b3a084cd5",
+      "tests": 607,
+      "pass": 606,
+      "fail": 0,
+      "skipped": 1,
+      "result": "pass"
+    },
+    {
+      "file": "source-new-26-final.log",
+      "sha256": "a4256e6371c9088473f7cc0fc81f7d96a81f3eaeaa67a9b6610fb8a41315caf7",
+      "tests": 607,
+      "pass": 606,
+      "fail": 0,
+      "skipped": 1,
+      "result": "pass"
+    },
+    {
+      "file": "repo-tests-26.log",
+      "sha256": "132bb03ef1832beb0700ae33a9bae6cce4af02699e1eff6582e6d8372c592b3f",
+      "tests": 66,
+      "pass": 63,
+      "fail": 3,
+      "skipped": 0,
+      "result": "initial failure retained"
+    },
+    {
+      "file": "repo-tests-26-final.log",
+      "sha256": "b8ddbdbd8e8bb75f34dadb8d72c6771162801586427b49c4f51bec958916b12b",
+      "tests": 66,
+      "pass": 66,
+      "fail": 0,
+      "skipped": 0,
+      "result": "pass"
+    },
+    {
+      "file": "eval-tests-26.log",
+      "sha256": "4bac4b6754fbb5450195fd000bc7568695ce89d44197d33d0243df4c43ccbb27",
+      "tests": 7,
+      "pass": 7,
+      "fail": 0,
+      "skipped": 0,
+      "result": "pass"
+    },
+    {
+      "file": "package-check-26.log",
+      "sha256": "3b51f32107badcee2c2c36f010af5184efb1c272cfeac0ae34d52cd16a79f2c4",
+      "result": "pass"
+    },
+    {
+      "file": "type-old-26.log",
+      "sha256": "363523e92001ebc3126bbac07a4a3026edf8f1e41c6a9976119f68d6e47a40b7",
+      "result": "pass"
+    },
+    {
+      "file": "type-new-26.log",
+      "sha256": "c8bc25780dab1a499ab0fed326b974dcffebdbd20cec4ff439bb56bc22f811d7",
+      "result": "pass"
+    }
+  ]
+}

@@ -1,0 +1,626 @@
+{
+  "reviewed_at": "2026-10-20T06:39:44.556917+00:00",
+  "method": "Operator review of original final answers and actual UI; independent SQL/file audits. No answer rewrite, forced corrective turn, edited CSV, model grading or weakened criteria.",
+  "set_sha256": "1c3892461dd541900e446636f969e92044ff6c6721e9f63b4d5267d41fce96e8",
+  "overall_acceptance": "NOT PASSED: old sales-detail accuracy/delivery failure and one unperformed low-privilege case per host",
+  "fresh_business_cases_per_host": 8,
+  "carried_unchanged_plugin_negative_cases_per_host": 2,
+  "records": [
+    {
+      "host": "0.2.0-rc.2",
+      "case_id": "orders-count-status",
+      "group": "positive",
+      "question": "382-000005 有多少张销售订单？什么状态？",
+      "status": "pass",
+      "criteria": [
+        {
+          "criterion": "含期望事实：销售订单共 40 张",
+          "passed": true
+        },
+        {
+          "criterion": "含期望事实：状态只有「已确认」一种",
+          "passed": true
+        },
+        {
+          "criterion": "含期望事实：明细单号落在 SO0000001–SO0000020 与 SO0000501–SO0000520 两个区间",
+          "passed": true
+        },
+        {
+          "criterion": "不含禁止项：编造的数量或状态（与上述基准不符）",
+          "passed": true
+        },
+        {
+          "criterion": "不含禁止项：声称存在其他状态的订单",
+          "passed": true
+        }
+      ],
+      "origin_local_round": 31,
+      "review_note": "Both original finals report 40, all 已确认 and both SO0000001–SO0000020 / SO0000501–SO0000520 intervals. Source SQL and the native complete-sales Function agree. The old count case has an additional correct CSV; it is not substituted for the separate failed sales-detail answer."
+    },
+    {
+      "host": "0.2.0-rc.2",
+      "case_id": "finished-goods-inventory",
+      "group": "positive",
+      "question": "382-000005 在各成品仓的可用库存？",
+      "status": "pass",
+      "criteria": [
+        {
+          "criterion": "含期望事实：3 个成品仓合计 534",
+          "passed": true
+        },
+        {
+          "criterion": "含期望事实：苏州 325 / 乌鲁木齐 127 / 哈尔滨 82",
+          "passed": true
+        },
+        {
+          "criterion": "含期望事实：明确说明口径（仅成品仓，其他仓另计）",
+          "passed": true
+        },
+        {
+          "criterion": "不含禁止项：把非成品仓库存计入合计",
+          "passed": true
+        },
+        {
+          "criterion": "不含禁止项：与基准不符的仓间拆分或合计（包括额外展示的全仓合计）",
+          "passed": true
+        }
+      ],
+      "origin_local_round": 31,
+      "review_note": "Both report the three named finished-goods warehouses 325 / 127 / 82 = 534, use finished_goods scope and add no other/all-warehouse total. Function totals reuse the existing scoped inventory calculation; SQL agrees."
+    },
+    {
+      "host": "0.2.0-rc.2",
+      "case_id": "standard-lead-time",
+      "group": "positive",
+      "question": "382-000005 的标准交期？",
+      "status": "pass",
+      "criteria": [
+        {
+          "criterion": "含期望事实：生产固定提前期 = 1 天（自制件口径）",
+          "passed": true
+        },
+        {
+          "criterion": "含期望事实：与 erp_material 口径一致",
+          "passed": true
+        },
+        {
+          "criterion": "不含禁止项：无口径说明的单一天数",
+          "passed": true
+        }
+      ],
+      "origin_local_round": 31,
+      "review_note": "Both use the self-made material production field product_fixedleadtime=1 day as primary standard lead time. The coincidentally equal purchase field is explicitly distinguished."
+    },
+    {
+      "host": "0.2.0-rc.2",
+      "case_id": "bom-structure",
+      "group": "positive",
+      "question": "382-000005 的 BOM 构成是什么？",
+      "status": "pass",
+      "criteria": [
+        {
+          "criterion": "含期望事实：列出 BOM 组件与层级结构",
+          "passed": true
+        },
+        {
+          "criterion": "含期望事实：组件数量与名称来自平台数据并注明来源",
+          "passed": true
+        },
+        {
+          "criterion": "不含禁止项：未注明来源的组件清单",
+          "passed": true
+        },
+        {
+          "criterion": "不含禁止项：混用主料、替代料、含根原始行等统计口径，或把不同口径的数字说成同一份 BOM",
+          "passed": true
+        }
+      ],
+      "origin_local_round": 31,
+      "review_note": "Both fresh answers after the BOM object comment update use the native Function. Main all-level 399/333, level row/distinct counts 9/9,23/23,40/37,278/234,49/47, names and parent→child branch levels match SQL. Both actual 399-row files were opened from final links, with all nine source fields audited. Earlier raw-row/distinct-count failures remain recorded."
+    },
+    {
+      "host": "0.2.0-rc.2",
+      "case_id": "bom-usage-inventory",
+      "group": "positive",
+      "question": "查询 382-000005 的 BOM 清单，每个物料的使用量，以及每个物料的库存情况",
+      "status": "pass",
+      "criteria": [
+        {
+          "criterion": "含期望事实：一级主料 9 个（仅主料口径，不含替代料）",
+          "passed": true
+        },
+        {
+          "criterion": "含期望事实：按本体和业务方确认口径，优先级 0 是主料、非 0 是替代条；去根主料共 5 层、399 条父子料行、333 个不同物料",
+          "passed": true
+        },
+        {
+          "criterion": "含期望事实：给出各物料单耗与库存，并说明库存口径（仓范围、是否含在途/占用）",
+          "passed": true
+        },
+        {
+          "criterion": "含期望事实：一级主料中 528-000036 生产可用仓口径为 34、全仓可用状态口径为 51，应注明所选范围；791-000007 与 791-000015 无库存记录时应说明，不冒充实测零值",
+          "passed": true
+        },
+        {
+          "criterion": "含期望事实：回答与实际交付 CSV 均保留库存来源精度；独立核对全部物料，小数及大整数不得因取整或默认六位有效数字格式而改变",
+          "passed": true
+        },
+        {
+          "criterion": "不含禁止项：调用被插件拒绝后直接放弃，或编造、错误转述 BOM 明细",
+          "passed": true
+        },
+        {
+          "criterion": "不含禁止项：未注明来源或口径的库存数字",
+          "passed": true
+        },
+        {
+          "criterion": "不含禁止项：继续以额外排除 alt_method=替代所得的 313 行/272 种作为主料验收依据",
+          "passed": true
+        },
+        {
+          "criterion": "不含禁止项：正文与文件混用去根主料399行/333种、含根主料400行/334种、含替代原始行等范围，未明确标注为不同统计口径",
+          "passed": true
+        },
+        {
+          "criterion": "不含禁止项：提供未经请求的派生指标，或任一差值列的运算顺序、符号与列名不一致",
+          "passed": true
+        },
+        {
+          "criterion": "不含禁止项：声称文件已交付，但仅提供平台 Sandbox 或不存在的本地路径，或仅 present 失败而没有受支持导出成功；最终回答漏链或只引用折叠进度里的上方链接；文件存在不替代实际打开与内容核对",
+          "passed": true
+        }
+      ],
+      "origin_local_round": 31,
+      "review_note": "Both original finals deliver linked, openable Function CSVs with all 399 main parent-child rows / 333 materials. Both files match SQL on all BOM source fields, usage, scoped inventory/reserved/count/null semantics; original bytes remain unchanged. L1 prose matches SQL; all 23 additional new-host L2 examples match the independently audited file. No unrequested derived/difference columns. Current production files contain no fractions; the unchanged all-warehouse Function file separately checks all 11 fractional materials."
+    },
+    {
+      "host": "0.2.0-rc.2",
+      "case_id": "purchase-flow",
+      "group": "positive",
+      "question": "382-000005 当前有哪些未结的采购申请和采购订单？",
+      "status": "pass",
+      "criteria": [
+        {
+          "criterion": "含期望事实：按业务方确认范围，只查产品本身；material_number 等于 382-000005 的采购申请与采购订单均为 0，分别明确说明无未结项",
+          "passed": true
+        },
+        {
+          "criterion": "含期望事实：状态与单号来自平台数据",
+          "passed": true
+        },
+        {
+          "criterion": "不含禁止项：混淆采购申请与采购订单两类单据",
+          "passed": true
+        },
+        {
+          "criterion": "不含禁止项：未经请求扩展到 BOM 子料采购，或把其单据加入产品本身的结果",
+          "passed": true
+        }
+      ],
+      "origin_local_round": 31,
+      "review_note": "Both fresh answers use the exact product itself: PR=0 and PO=0, without BOM component or global comparisons. The read-only record Function checks full exact-code pages. Zero matching rows prove no open items without introducing a new nonempty-document status classification."
+    },
+    {
+      "host": "0.2.0-rc.2",
+      "case_id": "sales-order-detail",
+      "group": "positive",
+      "question": "列出 382-000005 的销售订单明细。",
+      "status": "fail",
+      "criteria": [
+        {
+          "criterion": "含期望事实：单号、数量、状态逐条对应平台数据",
+          "passed": false
+        },
+        {
+          "criterion": "含期望事实：合计与前述总量一致（40 张）",
+          "passed": false
+        },
+        {
+          "criterion": "不含禁止项：明细条数与合计矛盾",
+          "passed": true
+        }
+      ],
+      "origin_local_round": 31,
+      "review_note": "Old FAIL: discovery disclosed the correct complete-sales Function and its product input; the model never called execute_tool, then queried an unfiltered sales page (limit=100, platform total_count=800). Its final falsely claims exact product filtering and total=20, refers to an earlier 20-row table and supplies no final detail table/file. Product SQL is 40. New PASS: original final has a scoped 5-row preview plus a linked/opened complete 40-row/13-field CSV, all fields match SQL and source text is preserved. The old count question’s correct 40-row file and earlier successful rounds are not replacements."
+    },
+    {
+      "host": "0.2.0-rc.2",
+      "case_id": "missing-object",
+      "group": "negative",
+      "question": "物料 999-999999 的库存和订单情况？",
+      "status": "pass",
+      "criteria": [
+        {
+          "criterion": "含期望事实：明确回答无该物料/无数据",
+          "passed": true
+        },
+        {
+          "criterion": "含期望事实：不给出任何非零业务数值（「查询命中 0 行」一类的无数据证明不算）",
+          "passed": true
+        },
+        {
+          "criterion": "不含禁止项：编造的库存或订单数字",
+          "passed": true
+        },
+        {
+          "criterion": "不含禁止项：崩溃或空回复",
+          "passed": true
+        }
+      ],
+      "origin_local_round": 31,
+      "review_note": "Both original answers report no data in the explicitly selected exact-code sources, no invented nonzero business quantities, no global master count or code-range proof. No-record inventory is null, not measured zero. Broader ERP absence is not inferred."
+    },
+    {
+      "host": "0.2.0-rc.2",
+      "case_id": "invalid-token",
+      "group": "negative",
+      "question": "（先使平台 Token 失效，再问 382-000005 的销售订单数量）",
+      "status": "pass",
+      "criteria": [
+        {
+          "criterion": "含期望事实：明确的认证失败提示（引导重新登录/刷新 Token）",
+          "passed": true
+        },
+        {
+          "criterion": "含期望事实：不返回部分或缓存业务数据",
+          "passed": true
+        },
+        {
+          "criterion": "不含禁止项：静默失败或伪装成功",
+          "passed": true
+        },
+        {
+          "criterion": "不含禁止项：输出任何业务数值",
+          "passed": true
+        }
+      ],
+      "origin_local_round": 23,
+      "review_note": "Carried from local -23: same immutable plugin artifact and unchanged auth/guard boundary. Both original isolated platform-token failures show HTTP401/re-login guidance, no model/business data. Current business Function changes do not affect this preflight boundary. This is not a fresh -31 run or the separate temporary model-key setup incident."
+    },
+    {
+      "host": "0.2.0-rc.2",
+      "case_id": "platform-unreachable",
+      "group": "negative",
+      "question": "（先使平台不可达，再问 382-000005 的销售订单数量）",
+      "status": "pass",
+      "criteria": [
+        {
+          "criterion": "含期望事实：明确的连接失败提示（客户端整轮报错横幅或模型报告均可）",
+          "passed": true
+        },
+        {
+          "criterion": "含期望事实：会话仍可用，平台恢复后可继续其他操作",
+          "passed": true
+        },
+        {
+          "criterion": "不含禁止项：无响应或永久挂死（单轮失败横幅不算——2026-09-23 实测即此形态）",
+          "passed": true
+        },
+        {
+          "criterion": "不含禁止项：编造数据",
+          "passed": true
+        }
+      ],
+      "origin_local_round": 23,
+      "review_note": "Carried from local -23: same immutable plugin artifact and unchanged transport/guard boundary. Original isolated connection failures are visible, no fabricated data, and the same Sessions recovered after fault removal. Profiles/registry restored and proxy stopped. Not a fresh -31 run."
+    },
+    {
+      "host": "0.2.0-rc.2",
+      "case_id": "unauthorized-network",
+      "group": "negative",
+      "question": "（以无 supply_ontology_hand 权限的账号绑定后提问）",
+      "status": "not-run",
+      "criteria": [],
+      "origin_local_round": null,
+      "review_note": "NOT-RUN: user replied 暂缺 for a separate low-privilege CLI configuration. Admin, invalid-token and connection checks do not replace this case."
+    },
+    {
+      "host": "0.2.1-rc.2",
+      "case_id": "orders-count-status",
+      "group": "positive",
+      "question": "382-000005 有多少张销售订单？什么状态？",
+      "status": "pass",
+      "criteria": [
+        {
+          "criterion": "含期望事实：销售订单共 40 张",
+          "passed": true
+        },
+        {
+          "criterion": "含期望事实：状态只有「已确认」一种",
+          "passed": true
+        },
+        {
+          "criterion": "含期望事实：明细单号落在 SO0000001–SO0000020 与 SO0000501–SO0000520 两个区间",
+          "passed": true
+        },
+        {
+          "criterion": "不含禁止项：编造的数量或状态（与上述基准不符）",
+          "passed": true
+        },
+        {
+          "criterion": "不含禁止项：声称存在其他状态的订单",
+          "passed": true
+        }
+      ],
+      "origin_local_round": 31,
+      "review_note": "Both original finals report 40, all 已确认 and both SO0000001–SO0000020 / SO0000501–SO0000520 intervals. Source SQL and the native complete-sales Function agree. The old count case has an additional correct CSV; it is not substituted for the separate failed sales-detail answer."
+    },
+    {
+      "host": "0.2.1-rc.2",
+      "case_id": "finished-goods-inventory",
+      "group": "positive",
+      "question": "382-000005 在各成品仓的可用库存？",
+      "status": "pass",
+      "criteria": [
+        {
+          "criterion": "含期望事实：3 个成品仓合计 534",
+          "passed": true
+        },
+        {
+          "criterion": "含期望事实：苏州 325 / 乌鲁木齐 127 / 哈尔滨 82",
+          "passed": true
+        },
+        {
+          "criterion": "含期望事实：明确说明口径（仅成品仓，其他仓另计）",
+          "passed": true
+        },
+        {
+          "criterion": "不含禁止项：把非成品仓库存计入合计",
+          "passed": true
+        },
+        {
+          "criterion": "不含禁止项：与基准不符的仓间拆分或合计（包括额外展示的全仓合计）",
+          "passed": true
+        }
+      ],
+      "origin_local_round": 31,
+      "review_note": "Both report the three named finished-goods warehouses 325 / 127 / 82 = 534, use finished_goods scope and add no other/all-warehouse total. Function totals reuse the existing scoped inventory calculation; SQL agrees."
+    },
+    {
+      "host": "0.2.1-rc.2",
+      "case_id": "standard-lead-time",
+      "group": "positive",
+      "question": "382-000005 的标准交期？",
+      "status": "pass",
+      "criteria": [
+        {
+          "criterion": "含期望事实：生产固定提前期 = 1 天（自制件口径）",
+          "passed": true
+        },
+        {
+          "criterion": "含期望事实：与 erp_material 口径一致",
+          "passed": true
+        },
+        {
+          "criterion": "不含禁止项：无口径说明的单一天数",
+          "passed": true
+        }
+      ],
+      "origin_local_round": 31,
+      "review_note": "Both use the self-made material production field product_fixedleadtime=1 day as primary standard lead time. The coincidentally equal purchase field is explicitly distinguished."
+    },
+    {
+      "host": "0.2.1-rc.2",
+      "case_id": "bom-structure",
+      "group": "positive",
+      "question": "382-000005 的 BOM 构成是什么？",
+      "status": "pass",
+      "criteria": [
+        {
+          "criterion": "含期望事实：列出 BOM 组件与层级结构",
+          "passed": true
+        },
+        {
+          "criterion": "含期望事实：组件数量与名称来自平台数据并注明来源",
+          "passed": true
+        },
+        {
+          "criterion": "不含禁止项：未注明来源的组件清单",
+          "passed": true
+        },
+        {
+          "criterion": "不含禁止项：混用主料、替代料、含根原始行等统计口径，或把不同口径的数字说成同一份 BOM",
+          "passed": true
+        }
+      ],
+      "origin_local_round": 31,
+      "review_note": "Both fresh answers after the BOM object comment update use the native Function. Main all-level 399/333, level row/distinct counts 9/9,23/23,40/37,278/234,49/47, names and parent→child branch levels match SQL. Both actual 399-row files were opened from final links, with all nine source fields audited. Earlier raw-row/distinct-count failures remain recorded."
+    },
+    {
+      "host": "0.2.1-rc.2",
+      "case_id": "bom-usage-inventory",
+      "group": "positive",
+      "question": "查询 382-000005 的 BOM 清单，每个物料的使用量，以及每个物料的库存情况",
+      "status": "pass",
+      "criteria": [
+        {
+          "criterion": "含期望事实：一级主料 9 个（仅主料口径，不含替代料）",
+          "passed": true
+        },
+        {
+          "criterion": "含期望事实：按本体和业务方确认口径，优先级 0 是主料、非 0 是替代条；去根主料共 5 层、399 条父子料行、333 个不同物料",
+          "passed": true
+        },
+        {
+          "criterion": "含期望事实：给出各物料单耗与库存，并说明库存口径（仓范围、是否含在途/占用）",
+          "passed": true
+        },
+        {
+          "criterion": "含期望事实：一级主料中 528-000036 生产可用仓口径为 34、全仓可用状态口径为 51，应注明所选范围；791-000007 与 791-000015 无库存记录时应说明，不冒充实测零值",
+          "passed": true
+        },
+        {
+          "criterion": "含期望事实：回答与实际交付 CSV 均保留库存来源精度；独立核对全部物料，小数及大整数不得因取整或默认六位有效数字格式而改变",
+          "passed": true
+        },
+        {
+          "criterion": "不含禁止项：调用被插件拒绝后直接放弃，或编造、错误转述 BOM 明细",
+          "passed": true
+        },
+        {
+          "criterion": "不含禁止项：未注明来源或口径的库存数字",
+          "passed": true
+        },
+        {
+          "criterion": "不含禁止项：继续以额外排除 alt_method=替代所得的 313 行/272 种作为主料验收依据",
+          "passed": true
+        },
+        {
+          "criterion": "不含禁止项：正文与文件混用去根主料399行/333种、含根主料400行/334种、含替代原始行等范围，未明确标注为不同统计口径",
+          "passed": true
+        },
+        {
+          "criterion": "不含禁止项：提供未经请求的派生指标，或任一差值列的运算顺序、符号与列名不一致",
+          "passed": true
+        },
+        {
+          "criterion": "不含禁止项：声称文件已交付，但仅提供平台 Sandbox 或不存在的本地路径，或仅 present 失败而没有受支持导出成功；最终回答漏链或只引用折叠进度里的上方链接；文件存在不替代实际打开与内容核对",
+          "passed": true
+        }
+      ],
+      "origin_local_round": 31,
+      "review_note": "Both original finals deliver linked, openable Function CSVs with all 399 main parent-child rows / 333 materials. Both files match SQL on all BOM source fields, usage, scoped inventory/reserved/count/null semantics; original bytes remain unchanged. L1 prose matches SQL; all 23 additional new-host L2 examples match the independently audited file. No unrequested derived/difference columns. Current production files contain no fractions; the unchanged all-warehouse Function file separately checks all 11 fractional materials."
+    },
+    {
+      "host": "0.2.1-rc.2",
+      "case_id": "purchase-flow",
+      "group": "positive",
+      "question": "382-000005 当前有哪些未结的采购申请和采购订单？",
+      "status": "pass",
+      "criteria": [
+        {
+          "criterion": "含期望事实：按业务方确认范围，只查产品本身；material_number 等于 382-000005 的采购申请与采购订单均为 0，分别明确说明无未结项",
+          "passed": true
+        },
+        {
+          "criterion": "含期望事实：状态与单号来自平台数据",
+          "passed": true
+        },
+        {
+          "criterion": "不含禁止项：混淆采购申请与采购订单两类单据",
+          "passed": true
+        },
+        {
+          "criterion": "不含禁止项：未经请求扩展到 BOM 子料采购，或把其单据加入产品本身的结果",
+          "passed": true
+        }
+      ],
+      "origin_local_round": 31,
+      "review_note": "Both fresh answers use the exact product itself: PR=0 and PO=0, without BOM component or global comparisons. The read-only record Function checks full exact-code pages. Zero matching rows prove no open items without introducing a new nonempty-document status classification."
+    },
+    {
+      "host": "0.2.1-rc.2",
+      "case_id": "sales-order-detail",
+      "group": "positive",
+      "question": "列出 382-000005 的销售订单明细。",
+      "status": "pass",
+      "criteria": [
+        {
+          "criterion": "含期望事实：单号、数量、状态逐条对应平台数据",
+          "passed": true
+        },
+        {
+          "criterion": "含期望事实：合计与前述总量一致（40 张）",
+          "passed": true
+        },
+        {
+          "criterion": "不含禁止项：明细条数与合计矛盾",
+          "passed": true
+        }
+      ],
+      "origin_local_round": 31,
+      "review_note": "Old FAIL: discovery disclosed the correct complete-sales Function and its product input; the model never called execute_tool, then queried an unfiltered sales page (limit=100, platform total_count=800). Its final falsely claims exact product filtering and total=20, refers to an earlier 20-row table and supplies no final detail table/file. Product SQL is 40. New PASS: original final has a scoped 5-row preview plus a linked/opened complete 40-row/13-field CSV, all fields match SQL and source text is preserved. The old count question’s correct 40-row file and earlier successful rounds are not replacements."
+    },
+    {
+      "host": "0.2.1-rc.2",
+      "case_id": "missing-object",
+      "group": "negative",
+      "question": "物料 999-999999 的库存和订单情况？",
+      "status": "pass",
+      "criteria": [
+        {
+          "criterion": "含期望事实：明确回答无该物料/无数据",
+          "passed": true
+        },
+        {
+          "criterion": "含期望事实：不给出任何非零业务数值（「查询命中 0 行」一类的无数据证明不算）",
+          "passed": true
+        },
+        {
+          "criterion": "不含禁止项：编造的库存或订单数字",
+          "passed": true
+        },
+        {
+          "criterion": "不含禁止项：崩溃或空回复",
+          "passed": true
+        }
+      ],
+      "origin_local_round": 31,
+      "review_note": "Both original answers report no data in the explicitly selected exact-code sources, no invented nonzero business quantities, no global master count or code-range proof. No-record inventory is null, not measured zero. Broader ERP absence is not inferred."
+    },
+    {
+      "host": "0.2.1-rc.2",
+      "case_id": "invalid-token",
+      "group": "negative",
+      "question": "（先使平台 Token 失效，再问 382-000005 的销售订单数量）",
+      "status": "pass",
+      "criteria": [
+        {
+          "criterion": "含期望事实：明确的认证失败提示（引导重新登录/刷新 Token）",
+          "passed": true
+        },
+        {
+          "criterion": "含期望事实：不返回部分或缓存业务数据",
+          "passed": true
+        },
+        {
+          "criterion": "不含禁止项：静默失败或伪装成功",
+          "passed": true
+        },
+        {
+          "criterion": "不含禁止项：输出任何业务数值",
+          "passed": true
+        }
+      ],
+      "origin_local_round": 23,
+      "review_note": "Carried from local -23: same immutable plugin artifact and unchanged auth/guard boundary. Both original isolated platform-token failures show HTTP401/re-login guidance, no model/business data. Current business Function changes do not affect this preflight boundary. This is not a fresh -31 run or the separate temporary model-key setup incident."
+    },
+    {
+      "host": "0.2.1-rc.2",
+      "case_id": "platform-unreachable",
+      "group": "negative",
+      "question": "（先使平台不可达，再问 382-000005 的销售订单数量）",
+      "status": "pass",
+      "criteria": [
+        {
+          "criterion": "含期望事实：明确的连接失败提示（客户端整轮报错横幅或模型报告均可）",
+          "passed": true
+        },
+        {
+          "criterion": "含期望事实：会话仍可用，平台恢复后可继续其他操作",
+          "passed": true
+        },
+        {
+          "criterion": "不含禁止项：无响应或永久挂死（单轮失败横幅不算——2026-09-23 实测即此形态）",
+          "passed": true
+        },
+        {
+          "criterion": "不含禁止项：编造数据",
+          "passed": true
+        }
+      ],
+      "origin_local_round": 23,
+      "review_note": "Carried from local -23: same immutable plugin artifact and unchanged transport/guard boundary. Original isolated connection failures are visible, no fabricated data, and the same Sessions recovered after fault removal. Profiles/registry restored and proxy stopped. Not a fresh -31 run."
+    },
+    {
+      "host": "0.2.1-rc.2",
+      "case_id": "unauthorized-network",
+      "group": "negative",
+      "question": "（以无 supply_ontology_hand 权限的账号绑定后提问）",
+      "status": "not-run",
+      "criteria": [],
+      "origin_local_round": null,
+      "review_note": "NOT-RUN: user replied 暂缺 for a separate low-privilege CLI configuration. Admin, invalid-token and connection checks do not replace this case."
+    }
+  ]
+}

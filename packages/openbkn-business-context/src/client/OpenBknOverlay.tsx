@@ -6,12 +6,14 @@ import type { OpenBknUiController, OpenBknOverlayState } from './openbkn-ui-cont
 import { INITIAL_NETWORK_DIRECTORY_LIMIT, selectNetworkDirectory } from './network-directory.ts'
 import type { BusinessNetworkSummary, OpenBknConfigurationInput } from '../types.ts'
 import { CliSetupControl } from './CliSetupControl.tsx'
+import { useDialogFocus } from './use-dialog-focus.ts'
 import type { CliSetupPort } from './cli-setup-controller.ts'
 
 export interface OpenBknOverlayInjected {
   hooks: { ui: OpenBknUiController }
   close(): void
   refresh(): Promise<void>
+  cancelLogin(): void
   beginLogin(): Promise<void>
   showSettings(): Promise<void>
   saveConfiguration(input: OpenBknConfigurationInput): Promise<void>
@@ -23,20 +25,23 @@ export interface OpenBknOverlayInjected {
 export type OpenBknOverlayProps = PropsRuntime<'shell.overlay'> & InjectFace<OpenBknOverlayInjected>
 
 /** Frame-wide, additive OpenBKN control plane. It is intentionally outside DSH chat scroll containers. */
-export function OpenBknOverlay({ useUi, close, refresh, beginLogin, showSettings, saveConfiguration, cliSetup, openNetwork, openDiagnostics }: OpenBknOverlayProps) {
+export function OpenBknOverlay({ useUi, close, refresh, beginLogin, cancelLogin, showSettings, saveConfiguration, cliSetup, openNetwork, openDiagnostics }: OpenBknOverlayProps) {
   const t = useOpenBknTranslation()
 
   const state = useUi((value: OpenBknOverlayState) => value)
+  const dialog = useDialogFocus(state.open, close)
 
   useEffect(() => {
     if (state.open && state.phase === 'idle') void refresh()
   }, [refresh, state.open, state.phase])
 
-  if (!state.open && state.phase === 'idle') return null
+  if (!state.open) return null
 
   return (
-    <div hidden={!state.open} style={{ ...backdropStyle, display: state.open ? 'grid' : 'none' }} role="presentation" onMouseDown={close}>
+    <div style={backdropStyle} role="presentation" onMouseDown={close}>
       <section
+        ref={dialog}
+        tabIndex={-1}
         role="dialog"
         aria-modal="true"
         aria-label={t('networksLabel')}
@@ -48,24 +53,23 @@ export function OpenBknOverlay({ useUi, close, refresh, beginLogin, showSettings
             <div style={eyebrowStyle}>OPENBKN</div>
             <h2 style={{ margin: '4px 0 0', fontSize: 20 }}>{t('businessKnowledgeNetworks')}</h2>
           </div>
-          <div style={{ display: 'flex', flexWrap: 'wrap', alignItems: 'center', gap: 12 }}>
-            {state.phase === 'configuration' ? <button type="button" onClick={() => void refresh()} disabled={state.savingConfiguration} style={{ ...secondaryStyle, fontSize: 13 }}>{t('backToNetworks')}</button> : null}
-            {state.phase === 'ready' ? <button type="button" onClick={() => void refresh()} style={{ ...secondaryStyle, fontSize: 13 }}>{t('refreshStatus')}</button> : null}
-            <button type="button" onClick={() => void showSettings()} disabled={state.savingConfiguration} style={{ ...secondaryStyle, fontSize: 13 }}>{t('settings')}</button>
+          <div style={{ display: 'flex', alignItems: 'center', gap: 12 }}>
+            <button type="button" onClick={() => void showSettings()} disabled={state.savingConfiguration || state.login === 'waiting'} style={{ ...secondaryStyle, fontSize: 13 }}>{t('settings')}</button>
             <button type="button" onClick={openDiagnostics} style={{ ...secondaryStyle, fontSize: 13 }}>{t('diagnostics')}</button>
             <button type="button" onClick={close} aria-label={t('close')} style={closeStyle}>×</button>
           </div>
         </header>
         <div style={{ padding: 20 }}>
-          <OverlayBody key={state.contextRevision ?? 0} state={state} beginLogin={beginLogin} saveConfiguration={saveConfiguration} cliSetup={cliSetup} refresh={refresh} openNetwork={openNetwork} />
+          <OverlayBody state={state} beginLogin={beginLogin} cancelLogin={cancelLogin} saveConfiguration={saveConfiguration} cliSetup={cliSetup} refresh={refresh} openNetwork={openNetwork} />
         </div>
       </section>
     </div>
   )
 }
 
-function OverlayBody({ state, beginLogin, saveConfiguration, cliSetup, refresh, openNetwork }: {
+function OverlayBody({ state, beginLogin, cancelLogin, saveConfiguration, cliSetup, refresh, openNetwork }: {
   state: OpenBknOverlayState
+  cancelLogin(): void
   beginLogin(): Promise<void>
   saveConfiguration(input: OpenBknConfigurationInput): Promise<void>
   cliSetup: CliSetupPort
@@ -77,10 +81,21 @@ function OverlayBody({ state, beginLogin, saveConfiguration, cliSetup, refresh, 
   const [query, setQuery] = useState('')
   const [limit, setLimit] = useState(INITIAL_NETWORK_DIRECTORY_LIMIT)
   const [selectedNetworkId, setSelectedNetworkId] = useState<string | undefined>()
+  useEffect(() => {
+    setQuery('')
+    setLimit(INITIAL_NETWORK_DIRECTORY_LIMIT)
+    setSelectedNetworkId(undefined)
+  }, [state.networks])
   const directory = useMemo(
     () => selectNetworkDirectory(state.networks, query, limit),
     [state.networks, query, limit],
   )
+
+  if (state.login === 'waiting') return <div aria-live="polite" aria-busy="true">
+    <p role="status" style={mutedStyle}>{t('waitingForOpenBKNCLIBrowserAuthorizationAndCredential')}</p>
+    <p style={mutedStyle}>{t('completeSignInInTheBrowserCancellingOr')}</p>
+    <button type="button" style={secondaryStyle} onClick={cancelLogin}>{t('cancelSignIn')}</button>
+  </div>
 
   if (state.phase === 'loading' || state.phase === 'binding') {
     return <p style={mutedStyle}>{state.phase === 'binding' ? (state.message === undefined ? t('bindingTheCurrentConversation') : renderUiMessage(state.message, t)) : (state.message === undefined ? t('connectingToOpenBKN') : renderUiMessage(state.message, t))}</p>
@@ -94,7 +109,8 @@ function OverlayBody({ state, beginLogin, saveConfiguration, cliSetup, refresh, 
     return (
       <div>
         <p style={{ marginTop: 0, lineHeight: 1.6 }}>{t('signInWithTheLocalOpenBKNCLIThe')}</p>
-        <p style={{ ...mutedStyle, marginTop: 0 }}>{t('platformURL')}{displayBaseUrl(state.auth)}</p>
+        <p style={{ ...mutedStyle, marginTop: 0 }}>{t('platformURL')} {displayBaseUrl(state.auth)}</p>
+        {state.login === 'timed-out' ? <p role="status" style={authenticationNoticeStyle}>{t('signInWaitTimedOutPlatformAuthorizationMay')}</p> : state.login === 'cancelled' ? <p role="status" style={authenticationNoticeStyle}>{t('signInWaitCancelledSignInAgainOr')}</p> : null}
         {state.message ? <p role="status" style={authenticationNoticeStyle}>{renderUiMessage(state.message, t)}</p> : null}
         <p style={{ margin: '0 0 12px' }}><button type="button" style={primaryStyle} onClick={() => void beginLogin()}>{t('signInAndSyncWithOpenBKNCLI')}</button></p>
         <button type="button" style={secondaryStyle} onClick={() => void refresh()}>{t('refreshStatus')}</button>
@@ -107,7 +123,8 @@ function OverlayBody({ state, beginLogin, saveConfiguration, cliSetup, refresh, 
       <div>
         <p style={{ marginTop: 0, lineHeight: 1.6 }}>{renderUiMessage(state.message, t)}</p>
         <div style={{ display: 'flex', gap: 8 }}>
-          <button type="button" style={primaryStyle} onClick={() => void refresh()}>{t('retry')}</button>
+          {state.login === 'failed' ? <button type="button" style={primaryStyle} onClick={() => void beginLogin()}>{t('retrySignIn')}</button> : null}
+          <button type="button" style={secondaryStyle} onClick={() => void refresh()}>{t('retry')}</button>
         </div>
       </div>
     )
@@ -115,6 +132,7 @@ function OverlayBody({ state, beginLogin, saveConfiguration, cliSetup, refresh, 
 
   return (
     <div>
+      {state.login === 'succeeded' ? <p role="status" style={mutedStyle}>{t('signInAndSynchronizationSucceeded')}</p> : null}
       <p style={{ marginTop: 0, ...mutedStyle }}>
         {t('chooseABusinessKnowledgeNetworkToContinueOr')}{' '}<strong>{t('standardMode')}</strong>{t('selectItInTheModeMenuBeforeSending')}</p>
       {state.networks.length === 0 ? <p style={mutedStyle}>{t('noBusinessKnowledgeNetworksAreAvailableForThis')}</p> : <>
@@ -225,10 +243,10 @@ function displayBaseUrl(auth: OpenBknOverlayState['auth']): string {
 
 const backdropStyle = { pointerEvents: 'auto' as const, position: 'fixed' as const, inset: 0, display: 'grid', placeItems: 'center', background: 'rgb(15 23 42 / 38%)', padding: 20 }
 const dialogStyle = { width: 'min(560px, 100%)', maxHeight: 'min(720px, calc(100vh - 40px))', overflow: 'auto' as const, borderRadius: 16, background: '#fff', boxShadow: '0 24px 70px rgb(15 23 42 / 28%)', color: '#172033' }
-const headerStyle = { display: 'flex', flexWrap: 'wrap' as const, gap: 12, alignItems: 'start', justifyContent: 'space-between', padding: '20px 20px 16px', borderBottom: '1px solid #e6eaf0' }
-const eyebrowStyle = { color: '#078b7f', fontSize: 12, fontWeight: 750, letterSpacing: '0.12em' }
-const closeStyle = { border: '1px solid #d9e0ea', borderRadius: 9, width: 34, height: 34, background: '#fff', color: '#172033', fontSize: 24, lineHeight: 1, cursor: 'pointer' }
-const primaryStyle = { border: 0, borderRadius: 9, background: '#078b7f', color: '#fff', fontWeight: 650, padding: '10px 14px', cursor: 'pointer' }
+const headerStyle = { display: 'flex', alignItems: 'start', justifyContent: 'space-between', padding: '20px 20px 16px', borderBottom: '1px solid #e6eaf0' }
+const eyebrowStyle = { color: '#087d72', fontSize: 12, fontWeight: 750, letterSpacing: '0.12em' }
+const closeStyle = { border: '1px solid #d9e0ea', borderRadius: 9, width: 34, height: 34, background: '#fff', color: '#374151', fontSize: 24, lineHeight: 1, cursor: 'pointer' }
+const primaryStyle = { border: 0, borderRadius: 9, background: '#087d72', color: '#fff', fontWeight: 650, padding: '10px 14px', cursor: 'pointer' }
 const secondaryStyle = { ...primaryStyle, background: '#eef5f5', color: '#087d72' }
 const mutedStyle = { color: '#64748b', fontSize: 14 }
 const networkStyle = { textAlign: 'left' as const, display: 'grid', gap: 8, padding: 14, border: '1px solid #d9e4e8', borderRadius: 12, background: '#fff', color: '#172033' }

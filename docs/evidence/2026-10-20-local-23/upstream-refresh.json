@@ -1,0 +1,329 @@
+{
+  "checked_at": "2026-10-20T03:07:22.129955+00:00",
+  "read_only": true,
+  "repositories": {
+    "deepseek-ai/deepseek-harness": {
+      "latest": [
+        {
+          "tag_name": "dsh-v0.2.1-rc.2",
+          "published_at": "2026-10-17T08:16:33Z",
+          "draft": false,
+          "prerelease": true
+        },
+        {
+          "tag_name": "dsh-v0.2.1-rc.1",
+          "published_at": "2026-10-17T05:22:10Z",
+          "draft": false,
+          "prerelease": true
+        },
+        {
+          "tag_name": "dsh-v0.2.1-alpha.5",
+          "published_at": "2026-10-16T12:23:28Z",
+          "draft": false,
+          "prerelease": true
+        }
+      ],
+      "default_branch": "master",
+      "comparison": {
+        "status": "identical",
+        "ahead_by": 0,
+        "behind_by": 0
+      },
+      "commits": [],
+      "relevant_files": []
+    },
+    "openbkn-ai/bkn-foundry": {
+      "latest": [
+        {
+          "tag_name": "v0.2.0",
+          "published_at": "2026-10-16T07:21:25Z",
+          "draft": false,
+          "prerelease": false
+        },
+        {
+          "tag_name": "v0.1.4",
+          "published_at": "2026-08-31T07:31:22Z",
+          "draft": false,
+          "prerelease": false
+        },
+        {
+          "tag_name": "v0.1.5",
+          "published_at": "2026-09-28T10:05:55Z",
+          "draft": false,
+          "prerelease": false
+        }
+      ],
+      "default_branch": "main",
+      "comparison": {
+        "status": "diverged",
+        "ahead_by": 65,
+        "behind_by": 18
+      },
+      "commits": [
+        {
+          "sha": "086545adc10699aba3292a1c32ffa291f907926a",
+          "subject": "fix(context-loader): preserve managed session when capture is disabled (#2105)"
+        },
+        {
+          "sha": "191928e1cda4667ec23c75d7e4aba637e513207f",
+          "subject": "refactor(vega-backend): standardize SQL-ready source identifiers (#2107)"
+        },
+        {
+          "sha": "01bbcbc2397fa36ed4658a034d0be9829e9c3ffc",
+          "subject": "fix(vega-backend): enforce exact discovery scope (#2110)"
+        },
+        {
+          "sha": "cba78f03b6ffecf79d56d45df27069d964e5bd08",
+          "subject": "fix(deploy): wire Safe audit publisher (main) (#2112)"
+        },
+        {
+          "sha": "f985e2d5769a5b2b8a88a7f07545cfe0d9a1bb87",
+          "subject": "docs(api): align current service contracts (#2115)"
+        },
+        {
+          "sha": "c3ea77407b1d6920b4160ec30eab51f0e8b23833",
+          "subject": "chore(deploy): remove in-repo deployment assets (#2117)"
+        },
+        {
+          "sha": "be4b00a44b0877117954abb328885942dc9482b9",
+          "subject": "docs(api): unify API documentation display names (#2120)"
+        },
+        {
+          "sha": "86b2b5a9c042f42c812520c4825513e181299215",
+          "subject": "fix(agent-observability): align audit query role boundaries (#2125)"
+        },
+        {
+          "sha": "9c390ba44985070ac9d16037d02db096b8b9e53a",
+          "subject": "fix(audit): sync readable management audit fixes to main (#2126)"
+        },
+        {
+          "sha": "cc9b10cb46eba35bac50bb1b6908e25790f35c9a",
+          "subject": "fix(bkn-trace): preserve committed audit object scope (#2130)"
+        },
+        {
+          "sha": "9fb36746bfd1d19e96f01db0c2ed345df19bb17d",
+          "subject": "fix(bkn-trace): terminate exhausted log cursors (#2132)"
+        },
+        {
+          "sha": "6d746b7edccf601c9d02c673b653b1a382b7dbe2",
+          "subject": "fix(context-loader): allow null navigation shell arrays (#2135)"
+        },
+        {
+          "sha": "78bee68d2d32c3d22d1ced0a6e8298823d13b08f",
+          "subject": "test(context-loader): verify function finalization after cancellation (#2137)"
+        },
+        {
+          "sha": "366e6b31029805c0f546f7f08c7df707097b393e",
+          "subject": "fix(sandbox-control-plane): persist bounded execution results (#2136)"
+        },
+        {
+          "sha": "2ce122547aa052acf2f888aee705d0e7e6f675d0",
+          "subject": "chore(bkn-backend): align capability binding file headers (#2152)"
+        },
+        {
+          "sha": "810ee43b72dffcfb7b6ab1f5f5a03a8e4cf12d15",
+          "subject": "fix(bkn-trace): forward-port integrity materialization backoff (#2157)"
+        },
+        {
+          "sha": "e93c10f15f94cf30ec00cb84a5c71b8151816735",
+          "subject": "fix(bkn-agent): sync provenance optimizer timeout fix to main (#2156)"
+        },
+        {
+          "sha": "5c7180abf60a074ffa0cf687a190a4a72825950f",
+          "subject": "fix(bkn-trace): sync 020 retry and summary read fixes to main (#2155)"
+        },
+        {
+          "sha": "046a89e3a1860e037e72ef11a31d02e8e52d398d",
+          "subject": "fix(release): build on release branch creation (#2159)"
+        },
+        {
+          "sha": "f03ab88798ad6bb6cf6bc0053b8bb3bf00086df8",
+          "subject": "refactor(bkn-backend): canonicalize module import path (#2164)"
+        },
+        {
+          "sha": "c0c50558b96efe30507b412c8c9ca56ad2db1708",
+          "subject": "feat(bkn): integrate Object Metrics v1 into main (#2172)"
+        },
+        {
+          "sha": "a67fc712735f764e3d063cff0695ca5bf6f031d5",
+          "subject": "fix(bkn): address Object Metrics post-merge review findings (#2175)"
+        },
+        {
+          "sha": "d309fd2b3001b113674e9a9f508ebe6974ba73d8",
+          "subject": "fix(vega): create writable log directory for non-root containers (#2178)"
+        },
+        {
+          "sha": "0018b7ee5d6ecdf37520e28c38f2d72abb375fba",
+          "subject": "chore(bkn-agent): freeze LangGraph 1.2.15 dependency baseline (#2177)"
+        },
+        {
+          "sha": "d11def3f01a787184af24599d3ab2f485398ab4a",
+          "subject": "feat(bkn-agent): initialize shared agent defaults through SQL (#2180)"
+        },
+        {
+          "sha": "9533b354e281cc36f13566fe18400e06304e56f6",
+          "subject": "refactor(object-metrics): retire legacy APIs and standardize V1 (#2185)"
+        },
+        {
+          "sha": "8fe908cae9264a1f91651d2e68910554ecec9d88",
+          "subject": "fix(bkn-agent): preserve provenance fixes across version upgrades (#2187)"
+        },
+        {
+          "sha": "fb5dab446233c130165dc44681207af39d1b4562",
+          "subject": "feat(vega): prepare Doris contracts and validate connector options (#2141)"
+        },
+        {
+          "sha": "798abfaea9a7cfb203b30bbc1b7dc1c0a870fdf7",
+          "subject": "chore(comm-go): upgrade to Go 1.26 and refresh dependencies (#2198)"
+        },
+        {
+          "sha": "e1339f8ea2350b3771157a5d3393da80cac42878",
+          "subject": "chore(foundry): upgrade Go toolchains and comm-go consumers (#2200)"
+        },
+        {
+          "sha": "a5f85e6ffbd9ef12ea162746280579ea6bb51e48",
+          "subject": "feat(bkn-agent): add authenticated public execution interface (#2197)"
+        },
+        {
+          "sha": "37b2b3bedd171d13578e1dcf3f2a6c07d354d391",
+          "subject": "fix(sandbox): restore REST Function credentials and gateway routing (#2195)"
+        },
+        {
+          "sha": "51187e2ad2c29bc963c3fe55b0cc3199839a75ce",
+          "subject": "fix(operator-integration): decouple Skill publication from model indexing (#2205)"
+        },
+        {
+          "sha": "90a4387ce2673f3be0ba01a86dff53173858af91",
+          "subject": "feat(bkn-backend): enforce unique metric property binding and explicit upgrades (#2209)"
+        },
+        {
+          "sha": "64e5b7a3b73db9e5825b511644dd0bf4c9897b16",
+          "subject": "feat(bkn-backend): add a bind-join Cypher executor over the resource data API with SQL fallback (#2203)"
+        },
+        {
+          "sha": "ab9ae6d646b321f46081c7e57861862a6a23cdc9",
+          "subject": "fix(bkn-agent): close public executions with an answer and survive bad tool results (#2206)"
+        },
+        {
+          "sha": "493e1d05f7061dae9a2fc2e3a549717c28644a08",
+          "subject": "Add interactive object metric analysis and MCP drill-through contracts (#2211)"
+        },
+        {
+          "sha": "f1ac20230636dcc45594c45520b31e889f420042",
+          "subject": "fix(bkn-backend): import BKN archives packed as tar.gz or zip (#2218)"
+        },
+        {
+          "sha": "5e167dfa9c3cd92a2a8e2f5315f383a2565f4420",
+          "subject": "feat(bkn-backend): write the BKN specification and version it with bkn_spec (#2219)"
+        },
+        {
+          "sha": "e7a141429802f370f4bb67933278bc5f7c68eda2",
+          "subject": "feat(bkn-agent): layered smart Q&A settings, context budget and clearer failures (#2214)"
+        },
+        {
+          "sha": "395ddca5701252157da9f74a5f6f009b96e60974",
+          "subject": "feat(bkn-agent): seed file-semantic-understanding and business-key-review agents (#2225)"
+        },
+        {
+          "sha": "3ca5931761a3e65e2bf303a639beb62a40d7f46d",
+          "subject": "feat(bkn-agent): list built-in Agents for System Admin (#2221)"
+        },
+        {
+          "sha": "4bca77dad0763725157f86815af15d0000e83ebd",
+          "subject": "fix(context-loader): publish run_cypher and query_instance_subgraph on the compact profile (#2222)"
+        },
+        {
+          "sha": "f771ac5a7c0c008f456368058fa420e4cbc21f46",
+          "subject": "feat(bkn-backend): return Cypher conditions as values (#2228)"
+        },
+        {
+          "sha": "bf97cd1eba61cff8c13f2b58b069c8297bfa1e84",
+          "subject": "feat(bkn-backend): compare properties, count nodes and read date constants in Cypher (#2230)"
+        },
+        {
+          "sha": "db595e664760320c8beba7c36b93ca75a1c613b2",
+          "subject": "Revert \"feat(bkn-agent): seed file-semantic-understanding and business-key-review agents (#2225)\" (#2236)"
+        },
+        {
+          "sha": "5c5860bd167e494d02ef8e260c75eed8bd6392b9",
+          "subject": "fix(bkn-agent): name the model's refusal when it arrives mid-stream (#2235)"
+        },
+        {
+          "sha": "2e0ff117f684f92a956b5a31938acfe8392736ae",
+          "subject": "feat(bkn-backend): read one WITH that filters after aggregating in Cypher (#2234)"
+        },
+        {
+          "sha": "84ea756071bc85480810ef71a76f42e0399aee05",
+          "subject": "feat(bkn-agent): admin-agent:manage and Agent versions (rest of #2221) (#2238)"
+        },
+        {
+          "sha": "eb8290d74a3f0d6800a4e2bf837bed5f1a347ee8",
+          "subject": "feat(bkn-backend): filter a Cypher MATCH by values passed from an earlier WITH (#2241)"
+        },
+        {
+          "sha": "6db411d05077240cae6cb495c0ba5647e443da51",
+          "subject": "fix(vega): preserve permission errors and align task grant prerequisites (#2242)"
+        },
+        {
+          "sha": "2f6e0e5037e44f2f60f6836b260f3018dfdd7502",
+          "subject": "fix(context-loader): omit primary_keys for object types that have none (#2246)"
+        },
+        {
+          "sha": "9c0cf57aba7bcf163a06d2c8833a2adea707736e",
+          "subject": "fix(vega): reject invalid output fields across query channels (#2245)"
+        },
+        {
+          "sha": "f7f24e771f31b8e1a188c81401535bd04469b7c2",
+          "subject": "test(bkn-backend): report openCypher M19 TCK coverage of the Cypher analyzer (#2244)"
+        },
+        {
+          "sha": "08270d04e036cc53e12d50ee8574290861b502cf",
+          "subject": "feat(bkn-backend): hint CONTAINS / STARTS WITH when a Cypher query uses LIKE (#2248)"
+        },
+        {
+          "sha": "2ada75b685e3cf5ff9651801f2daf5cdd3ad91f7",
+          "subject": "refactor(bkn-safe): share immutable authorization registry snapshot (#2250)"
+        },
+        {
+          "sha": "2b2367ce6f5d83249d48e9c7fccb770d1541b9a3",
+          "subject": "fix(vega): unify source preview values and aggregate aliases (#2251)"
+        },
+        {
+          "sha": "a2de2699ab5b25043929a38accf47f8abd2d5e7d",
+          "subject": "feat(bkn-backend): return nodes, relationships and collected evidence from Cypher over SQL (#2249)"
+        },
+        {
+          "sha": "9e6ff88a8f52651c04986b4718291f8e054b0e64",
+          "subject": "feat(context-loader): pass object_properties and return graph values from run_cypher (#2253)"
+        },
+        {
+          "sha": "7066661ca7c4e4ae66f44d09f897335573aa095a",
+          "subject": "fix(vega): return declared JSON query fields as strings (#2252)"
+        },
+        {
+          "sha": "65d6cc0b64d88345e5f19ecb747e09ab7eb24e16",
+          "subject": "fix(bkn-agent): stop public executions from looping on large listings (#2254)"
+        },
+        {
+          "sha": "41f09abc99687ac47d6b64311fb5640cf06ec776",
+          "subject": "fix(bkn-agent): budget the closing call and drop stale cached reads (#2256)"
+        },
+        {
+          "sha": "a6169db577dc506101fd30c3d3152cf6e1b833aa",
+          "subject": "fix(bkn-agent): keep the closing call's newest result and cache across reads (#2264)"
+        },
+        {
+          "sha": "b94583191c95ec054b96d81180abbd55ed1739b4",
+          "subject": "feat(bkn-backend): run WITH chains, constant WITH and totals over groups in Cypher (#2263)"
+        },
+        {
+          "sha": "a93a8c57ea3f770904ca86afa4e1d765e8f14cb7",
+          "subject": "docs(context-loader): describe WITH chains, constant WITH and totals in run_cypher (#2265)"
+        }
+      ],
+      "relevant_files": [
+        ".github/workflows/ci-adp-context-loader.yml"
+      ]
+    }
+  }
+}

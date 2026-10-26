@@ -1,0 +1,19 @@
+{
+  "dshMcpVersion": "0.2.1-rc.3",
+  "dshTransportSha256": "758d8fc473b700b5d351158d06ce9f9e92c16e8b25497b08bb7bd2122a87f5dd",
+  "sdkVersion": "2.2.0",
+  "sdkEntrySha256": "e7f532409081f6bfb1490fdab84a9c12d5fc666b20a1d2d8ea23a530f65dfd3c",
+  "usesStreamableHTTP": true,
+  "hasExplicitFetchOverride": false,
+  "hasExplicitRedirectPolicy": false,
+  "execution": "read-only manifest/source resolution; no SDK import, fetch or network call",
+  "issue105": "OPEN",
+  "backportApplied": false,
+  "newExploitProbeRun": false,
+  "meaning": "Actual signed Desktop contains SDK 2.2.0 and no explicit fetch redirect override in the DSH transport. Prior advisory applicability remains; this is not new exploitation or repair acceptance.",
+  "issue105ReadOnlyState": {
+    "number": 105,
+    "state": "open",
+    "updated_at": "2026-10-24T11:59:07Z"
+  }
+}

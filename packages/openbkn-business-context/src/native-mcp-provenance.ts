@@ -41,8 +41,8 @@ export function findCompletedNativeMcpProvenance(
     const callId = source?.kind === 'tool' && typeof source.callId === 'string' ? source.callId : undefined
     if (callId === undefined || calls.get(callId) !== OPENBKN_FINISH_INTERACTION_TOOL) continue
     const interactionId = completedInteractionId(message)
-    const recording = toolResultIsError(message) ? undefined : firstUnrecordedReason(message)
-    if (recording !== undefined) completed.set(callId, { recording, resultIndex: index })
+    const unrecorded = toolResultIsError(message) ? undefined : firstUnrecordedResult(message)
+    if (unrecorded !== undefined) completed.set(callId, { ...unrecorded, resultIndex: index })
     else if (interactionId !== undefined) completed.set(callId, { interactionId, conversationId: lifecycleConversationId(message), resultIndex: index })
   }
   if (completed.size !== 1) return undefined
@@ -70,12 +70,20 @@ export function findCompletedNativeMcpProvenance(
   }
 }
 
-function firstUnrecordedReason(message: Record<string, unknown> | undefined): 'disabled' | 'unavailable' | undefined {
+function firstUnrecordedResult(message: Record<string, unknown> | undefined): { recording: 'disabled' | 'unavailable'; interactionId?: string; conversationId?: string } | undefined {
   for (const text of toolResultTexts(message)) {
     const parsed = jsonRecord(text)
     if (parsed === undefined) continue
-    const reason = unrecordedLifecycleReason(parsed)
-    if (reason !== undefined) return reason
+    const reason = unrecordedLifecycleReason(parsed, 'finish')
+    if (reason !== undefined) {
+      const interactionId = identifier(parsed.interaction_id)
+      const conversationId = identifier(parsed.conversation_id)
+      return {
+        recording: reason,
+        ...(interactionId === undefined ? {} : { interactionId }),
+        ...(conversationId === undefined ? {} : { conversationId }),
+      }
+    }
   }
   return undefined
 }

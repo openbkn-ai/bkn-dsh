@@ -1,0 +1,17 @@
+✔ one plugin declares both pinned hosts while retaining the old build baseline (2.341584ms)
+✔ an old-only, new-only or broad host range cannot pass the release check (0.623875ms)
+✔ the compatibility gate rejects schema dependency drift and a different source build pin (0.225583ms)
+✔ host identities cannot be duplicated, unpinned or replaced by an unreviewed build version (0.784125ms)
+✔ a second DSH version cannot slip into any development dependency (0.856333ms)
+✔ runtime identity inspection refuses a nested DSH copy even when direct pins agree (12.974209ms)
+✔ 0.2.0-rc.2: a passing Host-root graph cannot hide a private profile Schemastery (8.197583ms)
+✔ 0.2.1-rc.3: a passing Host-root graph cannot hide a private profile Schemastery (2.513ms)
+✔ the official Host Zod range and exact plugin Zod pin are separate requirements (4.801ms)
+ℹ tests 9
+ℹ suites 0
+ℹ pass 9
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 68.159875

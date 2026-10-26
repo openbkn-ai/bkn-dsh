@@ -1,0 +1,46 @@
+[
+  {
+    "key": "desktop-old",
+    "processIdentityUnchanged": {
+      "pid": true,
+      "nativeMainPid": true
+    },
+    "originalNonCredentialFileChecks": {
+      "profiles/desktop/package.json": true,
+      "profiles/desktop/pnpm-lock.yaml": true,
+      "storages/openbkn_workspace_bindings.json": true
+    }
+  },
+  {
+    "key": "desktop-new",
+    "processIdentityUnchanged": {
+      "pid": true,
+      "nativeMainPid": true
+    },
+    "originalNonCredentialFileChecks": {
+      "profiles/desktop/package.json": true,
+      "profiles/desktop/pnpm-lock.yaml": true,
+      "storages/openbkn_workspace_bindings.json": true
+    }
+  },
+  {
+    "key": "npm-old",
+    "processIdentityUnchanged": {
+      "pid": true
+    },
+    "originalNonCredentialFileChecks": {
+      "profiles/web/package.json": true,
+      "profiles/web/pnpm-lock.yaml": true
+    }
+  },
+  {
+    "key": "npm-new",
+    "processIdentityUnchanged": {
+      "pid": true
+    },
+    "originalNonCredentialFileChecks": {
+      "profiles/web/package.json": true,
+      "profiles/web/pnpm-lock.yaml": true
+    }
+  }
+]

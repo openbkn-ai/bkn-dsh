@@ -1,0 +1,30 @@
+{
+  "desktopOld": [
+    {
+      "localeCapture": "en1",
+      "fiveLabelsPresent": true,
+      "sameOriginalIdentifiers": true,
+      "statusValueCompletedPreserved": true
+    },
+    {
+      "localeCapture": "zh1",
+      "fiveLabelsPresent": true,
+      "sameOriginalIdentifiers": true,
+      "statusValueCompletedPreserved": true
+    },
+    {
+      "localeCapture": "en2",
+      "fiveLabelsPresent": true,
+      "sameOriginalIdentifiers": true,
+      "statusValueCompletedPreserved": true
+    },
+    {
+      "localeCapture": "zh2",
+      "fiveLabelsPresent": true,
+      "sameOriginalIdentifiers": true,
+      "statusValueCompletedPreserved": true
+    }
+  ],
+  "platformRecordsCreatedForThisCheck": false,
+  "source": "actual native AX captures of the same pre-existing Interaction"
+}

@@ -1,0 +1,126 @@
+{
+  "evidenceLevel": "Windows execution report supplied in user chat; original Windows report and private evidence not independently read by main session",
+  "receivedDate": "2026-10-23 Asia/Taipei",
+  "sourceCommit": "743eb4a09f1577ba4490f1f6ccbaad834d68a43f",
+  "candidateVersion": "0.2.0-rc.2-openbkn.0.2.0-30",
+  "candidateSHA256": "6d95ff7517dbe409875fd398784fe01049ba26d2b97c43fad65c817d3ea18ee9",
+  "kitInventorySHA256": "7f1505eb85b16d2e345f7d6948292d106a1fb9cc35ac6899b30e76f6c64a0a18",
+  "kind": "local-development-preacceptance",
+  "ciRun": null,
+  "formalAcceptanceEligible": false,
+  "machine": {
+    "os": "Windows 10 Pro 19045 x64",
+    "timezone": "Taipei",
+    "powershell": "5.1.19041.5848",
+    "taskNode": "24.19.0",
+    "npm": "11.17.0",
+    "globalNodeUnchanged": "24.21.0",
+    "desktopOld": {
+      "node": "24.18.1",
+      "electron": "44.0.0",
+      "hostZod": "4.6.5"
+    },
+    "desktopNew": {
+      "node": "24.21.0",
+      "electron": "44.7.0",
+      "hostZod": "4.6.7"
+    }
+  },
+  "combinations": {
+    "A": "old Desktop 0.2.0-rc.2",
+    "B": "new Desktop 0.2.1-rc.2",
+    "C": "old npm/web 0.2.0-rc.2",
+    "D": "new npm/web 0.2.1-rc.2"
+  },
+  "reportedPassesAllFour": [
+    "actual profile same physical Cordis/Schemastery; candidate82/82",
+    "plugin Zod4.4.3; official Host own Zod declared range",
+    "system tar selection with Git tar first on PATH",
+    "English label spacing",
+    "zh/en/800x600/Tab/Escape/scroll and binding retention",
+    "diagnostic refresh focus and saved/reopened JSON",
+    "login cancel/default timeout/direct CLI exit/retry",
+    "directory cancel/retry/select/bind",
+    "standard record 404 empty state and close/reopen",
+    "same Host B1 baseline/reload/real CLI browser re-login/new Session totalCount40",
+    "independent platform readback: eight Interactions completed and one query_object_instance/completed each",
+    "task patch restoration and owned process/listener cleanup"
+  ],
+  "conditionalPasses": {
+    "desktopRuntimeUIAndB1": "A/B used an explicitly patched launcher copy after the frozen helper failed; do not label original-helper startup accepted",
+    "desktopDurableLogs": "A/B launch PowerShell exited and execution-session gap about six hours; same processes/listeners, writable logs, zero EPIPE. Actual RDP disconnect/reconnect not-run",
+    "loginExit": "cancel/timeout runner/cmd/CLI exit; success direct cmd/CLI exit, but Desktop runner remains until Host exits",
+    "platformPreservation": "only bkn list, supply network and object type list compared; no claim for unobserved platform tables/config",
+    "actualLoadedVersions": "plugin page shows -30 and3components; diagnostics DSH/loaded versions not collected remain unknown"
+  },
+  "failures": [
+    {
+      "item": "original start-owned-desktop.ps1 argv construction",
+      "combinations": [
+        "A",
+        "B"
+      ],
+      "reportedRepro": "E10-argv-repro.txt",
+      "workaround": "private launcher copy: two quote-expression parentheses and taskKit redirected to frozen kit; candidate/verifier/Host unchanged"
+    }
+  ],
+  "findings": [
+    {
+      "item": "successful Desktop login runner survives cmd/CLI exit",
+      "A_pid": 43556,
+      "B_pid": 7380,
+      "controls": "cancel/timeout and C/D success do not show same residual; normal Host exit removes runner",
+      "classification": "observed runner survival; Job state and actual root cause unknown"
+    },
+    {
+      "item": "npm launcher visible empty console when invoked without a console",
+      "classification": "reported observation; close window stops Host; not fixed"
+    },
+    {
+      "item": "existing Chrome certificate exception",
+      "classification": "reported existing insecure indicator; origin unknown; no trust accepted"
+    },
+    {
+      "item": "existing global CLI prefill/npm hostForm unknown/parent Escape/eyebrow contrast3.68:1",
+      "classification": "unresolved prior observations"
+    }
+  ],
+  "notAccepted": {
+    "readCancellation": "insufficient-evidence all four: fast close then cached reopen does not prove in-flight cancellation",
+    "browserTrust": "blocked all four; NodeCA and CLI success separate",
+    "rdpDisconnectReconnect": "not-run",
+    "modelG6FunctionRunCodeBOMCSV": "blocked by missing verified pre-execution Sandbox safety conditions",
+    "ceNonemptyProvenance": "blocked; route absent",
+    "lowPrivilege": "blocked; account unavailable",
+    "sdkOAuthSecurity": "open",
+    "historicalSalesDetail": "open",
+    "fixedBuildOnlyCandidateAndFullContract": "open"
+  },
+  "preservationReported": {
+    "personalConfigFiles": 110,
+    "dailyDesktopFiles": 41,
+    "differences": 0,
+    "taskPatchesRestoredByteIdentical": 4,
+    "ownedProcessesRemaining": 0,
+    "ownedListenersRemaining": 0,
+    "newSessionsAndFailuresPreserved": true,
+    "kitCheckoutClean": true,
+    "platformReplaced": false,
+    "pushPerformed": false,
+    "ciRunPerformed": false
+  },
+  "windowsArtifacts": {
+    "root": "C:\\bkn-verify\\021-local30-results-20261022-204047",
+    "report": "RESULTS-redacted.md",
+    "reportSHA256": "9457a236d6a978a6a7547e18970db6041caeb1a40b20c855bab00535cca7f0d9",
+    "manifest": "EVIDENCE-MANIFEST.json",
+    "manifestReportedShortDigest": "3cfe4b46…bb16b45",
+    "manifestFileCount": 739,
+    "privateOnlyFiles": 232,
+    "launcherDiff": "launcher-patch.diff",
+    "launcherDiffReportedShortDigest": "eb138707…90b5",
+    "evidenceRoot": "C:\\bkn-verify\\021-local30-run-20261022-204047\\evidence",
+    "shortDigestsAreNotFullHashes": true,
+    "uploaded": false
+  }
+}

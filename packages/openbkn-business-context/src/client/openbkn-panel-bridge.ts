@@ -43,11 +43,11 @@ export class OpenBknPanelBridge {
 
   connectConfiguration(port: OpenBknConfigurationPort): () => void {
     this.configuration = port
-    this.controller.reset(this.controller.snapshot().open)
+    if (this.controller.snapshot().open) this.controller.open()
     return () => {
       if (this.configuration !== port) return
       this.configuration = undefined
-      this.controller.reset(this.controller.snapshot().open)
+      if (this.controller.snapshot().open) this.controller.open()
     }
   }
 

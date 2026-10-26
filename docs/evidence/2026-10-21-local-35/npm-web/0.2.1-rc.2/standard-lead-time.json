@@ -1,0 +1,57 @@
+{
+  "form": "npm-web",
+  "host": "0.2.1-rc.2",
+  "case_id": "standard-lead-time",
+  "session_id": "session-ddb4f030-6a7a-4db6-8ffd-f0d2d38fb9e9",
+  "turn": 1,
+  "question": "382-000005 的标准交期？",
+  "started_at": "2026-10-21T14:58:33.345955+00:00",
+  "finished_at": "2026-10-21T14:58:45.696125+00:00",
+  "response_models": [
+    "deepseek-flash"
+  ],
+  "real_model_response_observed": true,
+  "model_configured_real": true,
+  "turn_end_kind": "completed",
+  "error_message": null,
+  "tool_calls": [
+    {
+      "name": "mcp__openbkn__bkn_start_interaction",
+      "arguments": "{\"conversation_mode\":\"new\",\"question\":\"382-000005 的标准交期？\",\"agent_name\":\"bkn-agent-dsh-business-context\"}",
+      "callId": "call_00_kwmTpg4qFSXId7SQgLnw8536"
+    },
+    {
+      "name": "mcp__openbkn__search_capabilities",
+      "arguments": "{\"kn_id\":\"supply_ontology_hand\",\"bkn_context\":{\"conversation_id\":\"conv_28a763829c8c35db68b68bf3f799f7c8\",\"interaction_id\":\"int_43082e21d5d4a5b73c09c10191a4d3de\"},\"query\":\"标准交期 交期 lead time 物料\"}",
+      "callId": "call_00_aIfJZ1j1PsGllkqqlsxY6963"
+    },
+    {
+      "name": "mcp__openbkn__get_object_types",
+      "arguments": "{\"kn_id\":\"supply_ontology_hand\",\"bkn_context\":{\"conversation_id\":\"conv_28a763829c8c35db68b68bf3f799f7c8\",\"interaction_id\":\"int_43082e21d5d4a5b73c09c10191a4d3de\"},\"ids\":[\"supply_ontology_hand_material\"],\"response_format\":\"json\"}",
+      "callId": "call_01_Sco99J3uCXXdfMP9yLbg5670"
+    },
+    {
+      "name": "mcp__openbkn__query_object_instance",
+      "arguments": "{\"bkn_context\":{\"conversation_id\":\"conv_28a763829c8c35db68b68bf3f799f7c8\",\"interaction_id\":\"int_43082e21d5d4a5b73c09c10191a4d3de\"},\"kn_id\":\"supply_ontology_hand\",\"ot_id\":\"supply_ontology_hand_material\",\"response_format\":\"json\",\"filters\":[{\"field\":\"material_code\",\"op\":\"==\",\"value\":\"382-000005\"}],\"properties\":[\"material_code\",\"material_name\",\"modelnum\",\"materialattr\",\"group_name\",\"group_type\",\"baseunit_name\",\"product_fixedleadtime\",\"purchase_fixedleadtime\",\"product_status\"],\"limit\":20}",
+      "callId": "call_00_Y0dTtGnsl7UJn3HmI7un8659"
+    },
+    {
+      "name": "mcp__openbkn__bkn_finish_interaction",
+      "arguments": "{\"interaction_id\":\"int_43082e21d5d4a5b73c09c10191a4d3de\",\"outcome\":\"completed\",\"answer\":\"**382-000005（北斗导航农机驾驶仪，规格型号 YN406BDS-2.5GD(YN406拖拉机V2)）的标准交期为 1 天。**\\n\\n口径说明（依据本网络「物料」对象类定义）：\\n- 该物料**物料属性 = 自制**（存货类别：库存商品-产成品，物料分类：406包装成品，产品状态：已上架），因此标准交期取**生产固定提前期 product_fixedleadtime = 1**（单位：天）。\\n- 该物料的采购固定提前期 purchase_fixedleadtime 也为 1，但自制件不采用采购口径，故此处不以其作为标准交期依据。\\n\\n数据范围与限制：\\n- 按确切物料编码 382-000005 等值匹配，命中 1 条物料主档记录，原值精确返回（未做取整或换算）。\\n- 仅查询了物料主档字段；未涉及库存、在途、采购订单或单据预计到货日期——单据预计到货日期是另一个字段，不代表标准交期。\\n- 无权限受限提示。\"}",
+      "callId": "call_00_oNom8FK4AtXmA03B53eV6065"
+    }
+  ],
+  "failed_tools": [],
+  "interaction_ids": [
+    "int_43082e21d5d4a5b73c09c10191a4d3de"
+  ],
+  "sandbox_hold_triggered": false,
+  "original_answer": "**382-000005（北斗导航农机驾驶仪）的标准交期为 1 天。**\n\n| 项目 | 值 |\n|---|---|\n| 物料编码 | 382-000005 |\n| 物料名称 | 北斗导航农机驾驶仪 |\n| 规格型号 | YN406BDS-2.5GD(YN406拖拉机V2) |\n| 物料属性 | 自制 |\n| 存货类别、物料分类 | 库存商品-产成品、406包装成品 |\n| 产品状态 | 已上架 |\n| **标准交期** | **1 天**（生产固定提前期 product_fixedleadtime） |\n| 参考：采购固定提前期 | 1 天（不适用于本件） |\n\n**取值口径（依据本网络的「物料」对象类定义）：** 标准交期按物料属性取值，自制件（含产成品、半成品）采用生产固定提前期 `product_fixedleadtime`，外购件才采用采购固定提前期 `purchase_fixedleadtime`，单位均为天。该物料为自制件，所以标准交期取生产固定提前期字段；采购固定提前期恰好也是 1，但不能因此把自制件归到采购口径。\n\n**数据范围与限制：**\n- 按确切物料编码 382-000005 等值匹配，命中 1 条物料主档记录，数值按源精度原样返回。\n- 本次只查询了物料主档字段，未涉及库存、在途、采购单据；单据上的「预计到货日期」是另一字段，不等于标准交期。\n- 查询没有返回权限受限提示。",
+  "original_answer_sha256": "13fad1c03b8ba7ebf9b9941943460b937be1d072fcc9fdc39c1e69fe3a54be1d",
+  "protocol_driver": false,
+  "answer_changed": false,
+  "transport": "Full-catalogue TLS forwarding with execution pre-dispatch hold",
+  "core_lead_time_criteria_passed": true,
+  "additional_field_label_error": false,
+  "status": "pass"
+}

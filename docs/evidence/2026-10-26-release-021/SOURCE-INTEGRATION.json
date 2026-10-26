@@ -1,0 +1,150 @@
+{
+  "latestMainAtIntegration": "6ba25bed2c5671c7d7370f949f77ff4526f1b1cf",
+  "integrationCommit": "618e59d8f41e78c55c6aada582fa57c0fd47e4a6",
+  "localImplementationCheckpoint": "5a12b4374220074c2b62bbe5558018ad41b197a7",
+  "featureCommitsIncluded": [
+    "c72a38c0409fc489c72ac42f5a5939d21e69227e",
+    "4857c31225576f4f4b083ca26bb9469ab671b363",
+    "b75532875b468aba044cd81123c5463775e26b6d",
+    "1f7bc6bf11a10ac4bc69b125fd451d4afe69887c",
+    "da9bb38096d305b7ac7e256a7b3758d56eebee35",
+    "ce8ebcb8c4f396c39e1db77fa8b235efe9cbc921",
+    "cba0c0d9052e9019b83d269e01cf4a1ff8fd2b83",
+    "542b3dd9127a7c9d9ba0f263fa2eee3c0e8814e8",
+    "8a656f22faed1f3b6990f8e7001600d028d1a40e",
+    "902f337b9e0859ea42f3c76f82161d180edf4f78",
+    "1dd70ab61b06a042226d2ca1471d0815da525d68",
+    "5b5f2f582f60b4fe73399820ba87d612c4fb6dd0",
+    "61f006166dc37ad3a0679a737ecbcbf9064778d4",
+    "b4ce4be79335a5c189eff105376b28503f9ea341",
+    "0a362b32f9ce8cc931fc6878e78acc3985f045a3",
+    "0b7392464168f4dfeead669314b25da940d9c929",
+    "a7c2b2bbe757a54463b6de3c01d58db6ac703d3e",
+    "41507f9918484e76f8198b1dc20b029855915d29",
+    "933b0ab251c75461ece1ada6145a9487e7eb04d1"
+  ],
+  "allFeatureAncestorsPresent": true,
+  "latestMainAncestorPresent": true,
+  "changedAndUntrackedFilesCheckpointed": 1203,
+  "handoffAndResultRefs": [
+    {
+      "ref": "origin/docs/windows-021-host32-mcp-nongui-results-20261026",
+      "sha": "8f94288fd92ab04938decc8ad561aaac2696f2e7",
+      "sharedDevelopmentAncestor": null,
+      "fileCount": 35,
+      "implementationPaths": [],
+      "handling": "retain immutable evidence/handoff identity; no product source changes"
+    },
+    {
+      "ref": "origin/docs/windows-021-local31-ui-life30-results-20261025",
+      "sha": "74c4d731619a036978bc8f11fb796e651a7cc0d8",
+      "sharedDevelopmentAncestor": null,
+      "fileCount": 72,
+      "implementationPaths": [],
+      "handling": "retain immutable evidence/handoff identity; no product source changes"
+    },
+    {
+      "ref": "origin/docs/windows-021-local31-ui-life30-run2-20261025",
+      "sha": "049d9f4654f5a7e925095a94a7c61652ce01014e",
+      "sharedDevelopmentAncestor": null,
+      "fileCount": 78,
+      "implementationPaths": [],
+      "handling": "retain immutable evidence/handoff identity; no product source changes"
+    },
+    {
+      "ref": "origin/docs/windows-021-profile32-gui-r2-results-20261026",
+      "sha": "b7941883077fc101df233d83c6cec3d31254bc46",
+      "sharedDevelopmentAncestor": null,
+      "fileCount": 23,
+      "implementationPaths": [],
+      "handling": "retain immutable evidence/handoff identity; no product source changes"
+    },
+    {
+      "ref": "origin/docs/windows-021-profile32-gui-results-20261026",
+      "sha": "c0fa28d87464a449002cb3fcc633eda1f8283aa0",
+      "sharedDevelopmentAncestor": null,
+      "fileCount": 21,
+      "implementationPaths": [],
+      "handling": "retain immutable evidence/handoff identity; no product source changes"
+    },
+    {
+      "ref": "origin/handoff/windows-local27-20261022",
+      "sha": "fd879740e4292836a24dc1e411ee335619ba4c41",
+      "sharedDevelopmentAncestor": null,
+      "fileCount": 24,
+      "implementationPaths": [],
+      "handling": "retain immutable evidence/handoff identity; no product source changes"
+    },
+    {
+      "ref": "origin/handoff/windows-local30-20261022",
+      "sha": "743eb4a09f1577ba4490f1f6ccbaad834d68a43f",
+      "sharedDevelopmentAncestor": null,
+      "fileCount": 30,
+      "implementationPaths": [],
+      "handling": "retain immutable evidence/handoff identity; no product source changes"
+    },
+    {
+      "ref": "origin/handoff/windows-local30-r2-20261023",
+      "sha": "96f8f7656103e8e066a12ea8d9d05d5e7dd96339",
+      "sharedDevelopmentAncestor": null,
+      "fileCount": 32,
+      "implementationPaths": [],
+      "handling": "retain immutable evidence/handoff identity; no product source changes"
+    },
+    {
+      "ref": "origin/handoff/windows-local30-r3-20261023",
+      "sha": "fac4db78a1a974192fa13fdbe62063331cf04ec1",
+      "sharedDevelopmentAncestor": null,
+      "fileCount": 33,
+      "implementationPaths": [],
+      "handling": "retain immutable evidence/handoff identity; no product source changes"
+    },
+    {
+      "ref": "origin/handoff/windows-local31-ui-life30-20261024",
+      "sha": "d20a266fa550dd854c9bd7d30bd04c088de9bbfe",
+      "sharedDevelopmentAncestor": null,
+      "fileCount": 61,
+      "implementationPaths": [],
+      "handling": "retain immutable evidence/handoff identity; no product source changes"
+    },
+    {
+      "ref": "origin/handoff/windows-local32-mcp-nongui-20261025",
+      "sha": "a362d783d75b8b1ff80b55ba0e497fe1a56c8ade",
+      "sharedDevelopmentAncestor": null,
+      "fileCount": 23,
+      "implementationPaths": [],
+      "handling": "retain immutable evidence/handoff identity; no product source changes"
+    },
+    {
+      "ref": "origin/handoff/windows-local32-profile-gui-20261026",
+      "sha": "5e55d090ee2996fe2a006a59bef012d28f8f278a",
+      "sharedDevelopmentAncestor": null,
+      "fileCount": 17,
+      "implementationPaths": [],
+      "handling": "retain immutable evidence/handoff identity; no product source changes"
+    },
+    {
+      "ref": "origin/handoff/windows-local32-profile-gui-r2-20261026",
+      "sha": "e7b383b96747dbeb3e6897c0e79039f7f3d1711c",
+      "sharedDevelopmentAncestor": null,
+      "fileCount": 17,
+      "implementationPaths": [],
+      "handling": "retain immutable evidence/handoff identity; no product source changes"
+    },
+    {
+      "ref": "origin/results/windows-local27-20261022",
+      "sha": "fb77c07bc283b4f53a55179e43942949e0e1c8ca",
+      "sharedDevelopmentAncestor": null,
+      "fileCount": 25,
+      "implementationPaths": [],
+      "handling": "retain immutable evidence/handoff identity; no product source changes"
+    }
+  ],
+  "parallelReleaseHandling": "Preserve latest-main history and release records; the maintainer-requested, verified -32 product implementation supersedes conflicting -11/-13 modal/localization behavior. No parallel tarball or tag is adopted.",
+  "upstreams": {
+    "dshRc3": "1f81c047fc48fa190a683e469daa699857e9afe8",
+    "foundryMain": "3aa48992814d69f9015effb0d8e56b3d3c4a6870",
+    "foundryLatestOfficialRelease": "v0.2.0",
+    "unreleasedFoundryChanges": "Claim/evidence result linking, relation declarations/lifecycles, knowledge-base edition gating; reviewed but not deployed or claimed as the retained platform."
+  }
+}

@@ -1,0 +1,20 @@
+{
+  "head": "933b0ab251c75461ece1ada6145a9487e7eb04d1",
+  "branch": "feat/021-localization-login",
+  "package_files_from_local_worktree": true,
+  "evalDefinitionSha256": "2fc9225286338ef89bead15d2674173590e3398976dbcebcff0baccde9db821c",
+  "git_diff_sha256": "533495cbcc357b0cae54dc62393e69efb7482e02aa969f93fcf95d4858d04aa2",
+  "note": "A diff hash is provenance, not a complete source archive. Untracked new files are listed separately by content digest.",
+  "untracked_package_source": {
+    "packages/openbkn-business-context/src/client/pick-workspace-directory.ts": "7e343abb5b0be3cde214410bce041ae3c4f6b073fbca44923e7669f1e0b9dd36",
+    "packages/openbkn-business-context/src/client/use-dialog-focus.ts": "50a42f25dfb166cf8a0e87982c9544e2324f3021994191bef2684a66903055e0",
+    "packages/openbkn-business-context/src/platform-csv-export.ts": "e69019a6ff18b890ed9ec619905376eac12c3e744f4db432a10a6f9a4ccc47be",
+    "packages/openbkn-business-context/tests/dialog-focus.test.ts": "daa315e73814e558b749cad9fbc4af13f79c6ef620bd5261a2e917a02f8c0a94",
+    "packages/openbkn-business-context/tests/fixtures/context-loader-run-code-v0.2.0-live.json": "95dcd41a9f817874c01515f51ec28d8644838ce1560860c5766ddfb8df54bed8",
+    "packages/openbkn-business-context/tests/fixtures/function-capabilities-v0.2.0-live.json": "fa4cfd2881808506a36bc3291ecf87a98d3afbaf1d3cedeece3156c1f3b58844",
+    "packages/openbkn-business-context/tests/mcp-native-owner.test.ts": "e981f9fe2002b6992220b1655fa14acdaf7aa5991ae383e27c90746e78462b38",
+    "packages/openbkn-business-context/tests/pick-workspace-directory.test.ts": "2cd5768518b0b395ff65ad131375d64babf8ebe5e8a86fac891757e490d1601a",
+    "packages/openbkn-business-context/tests/platform-csv-export.test.ts": "e254632323f00ad9ba25f9db112125c29e38bfbc0684c57359b59e0e55a707f1",
+    "packages/openbkn-business-context/tests/probes/csv-export-runtime.probe.mjs": "9557094773811bb5bc72654e5d6b86623331a1c8e8a59649ed1864ba4d2e66b4"
+  }
+}

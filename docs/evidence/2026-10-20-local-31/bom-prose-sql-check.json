@@ -1,0 +1,26 @@
+{
+  "checked_at": "2026-10-20T06:17:31.018961+00:00",
+  "oracle": "Independent SQL main BOM row identity/child level/name/usage and exact production inventory Decimal sums; every displayed row, original answers unchanged",
+  "records": [
+    {
+      "host": "0.2.0-rc.2",
+      "native_session_id": "session-9753ff34-d844-4eeb-830c-79d8fe1882b9",
+      "displayed_rows_checked": 9,
+      "rows_by_heading_child_level": {
+        "1": 9
+      },
+      "differences": [],
+      "passed": true
+    },
+    {
+      "host": "0.2.1-rc.2",
+      "native_session_id": "session-9ffa3244-ba6d-4dfc-938b-1ccbbe8d1d7c",
+      "displayed_rows_checked": 9,
+      "rows_by_heading_child_level": {
+        "1": 9
+      },
+      "differences": [],
+      "passed": true
+    }
+  ]
+}

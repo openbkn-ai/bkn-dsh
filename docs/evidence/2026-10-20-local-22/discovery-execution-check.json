@@ -1,0 +1,29 @@
+{
+  "checked_at": "2026-10-20T03:30:14.612Z",
+  "passed": true,
+  "discoveredContracts": [
+    {
+      "name": "BOM清单",
+      "metadata_type": "function",
+      "required_properties": [
+        "product"
+      ],
+      "wrapped_status_code": 200,
+      "wrapped_exit_code": 1,
+      "flat_exit_code": 0,
+      "flat_components": 399
+    },
+    {
+      "name": "子料分层库存",
+      "metadata_type": "function",
+      "required_properties": [
+        "product"
+      ],
+      "wrapped_status_code": 200,
+      "wrapped_exit_code": 1,
+      "flat_exit_code": 0,
+      "flat_components": 399
+    }
+  ],
+  "missing_product_no_query": "Six source regressions assert zero calls; actual wrapped calls now reject missing product rather than scan BOM"
+}

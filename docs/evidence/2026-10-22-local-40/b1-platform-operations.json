@@ -1,0 +1,143 @@
+{
+  "checkedAt": "2026-10-22T05:47:01.754190+00:00",
+  "realModel": false,
+  "localProtocolDriver": true,
+  "directFormalPlatform": true,
+  "checks": [
+    {
+      "phase": "R40_B1:desktop-old:before-reload",
+      "interactionId": "int_eefc0fcfef4c3e006466dd8dd097512e",
+      "platformOperations": [
+        {
+          "tool_name": "query_object_instance",
+          "status": "completed"
+        }
+      ],
+      "executionStatus": "completed",
+      "observedTotalCounts": [
+        40
+      ],
+      "sandboxUsed": false
+    },
+    {
+      "phase": "R40_B1:npm-old:before-reload",
+      "interactionId": "int_efa1b2cbd2b8bdbc2efe1d5bb26f2b94",
+      "platformOperations": [
+        {
+          "tool_name": "query_object_instance",
+          "status": "completed"
+        }
+      ],
+      "executionStatus": "completed",
+      "observedTotalCounts": [
+        40
+      ],
+      "sandboxUsed": false
+    },
+    {
+      "phase": "R40_B1:npm-new:before-reload",
+      "interactionId": "int_9936125e545995c241b0f16e0adf186e",
+      "platformOperations": [
+        {
+          "tool_name": "query_object_instance",
+          "status": "completed"
+        }
+      ],
+      "executionStatus": "completed",
+      "observedTotalCounts": [
+        40
+      ],
+      "sandboxUsed": false
+    },
+    {
+      "phase": "R40_B1:npm-old:after-reload",
+      "interactionId": "int_6b1ddf1ef7740b54e5e1475626df1838",
+      "platformOperations": [
+        {
+          "tool_name": "query_object_instance",
+          "status": "completed"
+        }
+      ],
+      "executionStatus": "completed",
+      "observedTotalCounts": [
+        40
+      ],
+      "sandboxUsed": false
+    },
+    {
+      "phase": "R40_B1:npm-new:after-reload",
+      "interactionId": "int_3a6dc60840ef2fbbb35cf709202d5f9f",
+      "platformOperations": [
+        {
+          "tool_name": "query_object_instance",
+          "status": "completed"
+        }
+      ],
+      "executionStatus": "completed",
+      "observedTotalCounts": [
+        40
+      ],
+      "sandboxUsed": false
+    },
+    {
+      "phase": "R40_B1:desktop-old:after-reload",
+      "interactionId": "int_d28d15c3d6521609b1af3cad00440ebb",
+      "platformOperations": [
+        {
+          "tool_name": "query_object_instance",
+          "status": "completed"
+        }
+      ],
+      "executionStatus": "completed",
+      "observedTotalCounts": [
+        40
+      ],
+      "sandboxUsed": false
+    },
+    {
+      "phase": "R40_B1:desktop-new:before-reload",
+      "interactionId": "int_af38612852cf6915327ee189aae25c7d",
+      "platformOperations": [
+        {
+          "tool_name": "query_object_instance",
+          "status": "completed"
+        }
+      ],
+      "executionStatus": "completed",
+      "observedTotalCounts": [
+        40
+      ],
+      "sandboxUsed": false
+    },
+    {
+      "phase": "R40_B1:desktop-new:after-reload",
+      "interactionId": "int_0d811b12fc75c37549b3235a5b84b54b",
+      "platformOperations": [
+        {
+          "tool_name": "query_object_instance",
+          "status": "completed"
+        }
+      ],
+      "executionStatus": "completed",
+      "observedTotalCounts": [
+        40
+      ],
+      "sandboxUsed": false
+    },
+    {
+      "phase": "portable-node-fixture",
+      "interactionId": "int_246e1a4cf0227d499a96cc39861fc8ca",
+      "platformOperations": [
+        {
+          "tool_name": "query_object_instance",
+          "status": "completed"
+        }
+      ],
+      "executionStatus": "completed",
+      "observedTotalCounts": [
+        40
+      ],
+      "sandboxUsed": false
+    }
+  ]
+}

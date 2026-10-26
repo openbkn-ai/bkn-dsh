@@ -1,0 +1,66 @@
+{
+  "desktop-old-http-close": {
+    "uiClosedAt": "2026-10-21T17:19:13.465Z",
+    "connectionsClosedAt": [
+      "2026-10-21T17:19:34.964Z",
+      "2026-10-21T17:19:34.968Z",
+      "2026-10-21T17:19:34.969Z",
+      "2026-10-21T17:19:34.970Z"
+    ],
+    "secondsAfterUiClose": [
+      21.499,
+      21.503,
+      21.504,
+      21.505
+    ],
+    "terminationBoundary": "30-second per-read deadline on old; later Host quit on new, not immediate panel cancellation"
+  },
+  "desktop-new-http-close": {
+    "uiClosedAt": "2026-10-21T17:20:41.409Z",
+    "connectionsClosedAt": [
+      "2026-10-21T17:20:56.247Z",
+      "2026-10-21T17:20:56.248Z",
+      "2026-10-21T17:20:56.248Z",
+      "2026-10-21T17:20:56.248Z"
+    ],
+    "secondsAfterUiClose": [
+      14.838,
+      14.839,
+      14.839,
+      14.839
+    ],
+    "terminationBoundary": "30-second per-read deadline on old; later Host quit on new, not immediate panel cancellation"
+  },
+  "desktop-old-cli-close": {
+    "uiClosedAt": "2026-10-21T17:21:21.579Z",
+    "delayedCliEvents": [
+      {
+        "at": "2026-10-21T17:21:11.218428+00:00",
+        "host": "0.2.0-rc.2",
+        "scenario": "desktop-old-cli-close",
+        "event": "delayed_status_started",
+        "pid": 86252,
+        "parent_pid": 86220,
+        "command": [
+          "auth",
+          "status"
+        ],
+        "delay_ms": 60000
+      },
+      {
+        "at": "2026-10-21T17:22:11.224011+00:00",
+        "host": "0.2.0-rc.2",
+        "scenario": "desktop-old-cli-close",
+        "event": "delayed_status_released",
+        "pid": 86252,
+        "parent_pid": 86220,
+        "command": [
+          "auth",
+          "status"
+        ]
+      }
+    ],
+    "readRequestsForwarded": 4,
+    "readsAfterUiClose": 4
+  }
+}

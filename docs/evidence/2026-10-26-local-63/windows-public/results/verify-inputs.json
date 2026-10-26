@@ -1,0 +1,39 @@
+{
+  "kitFilesMatched": 19,
+  "packages": [
+    {
+      "role": "plugin32",
+      "filesMatched": 82,
+      "version": "0.2.0-rc.2-openbkn.0.2.0-32"
+    },
+    {
+      "role": "mcpOld",
+      "filesMatched": 12,
+      "version": "0.2.0-rc.2"
+    },
+    {
+      "role": "mcpRc3",
+      "filesMatched": 12,
+      "version": "0.2.1-rc.3"
+    }
+  ],
+  "inputVerification": "PASS",
+  "nonGuiInputsReady": true,
+  "hostStartedByVerifier": false,
+  "prerequisitesRemoved": [
+    "independent GUI",
+    "production signing",
+    "W-LIFE",
+    "daily Chrome identity",
+    "real CLI login"
+  ],
+  "remainingPrerequisites": [
+    "exact supported Windows runtime in a new marked task copy",
+    "empty isolated home and CLI config, frozen -32 and physical MCP owner verified",
+    "owned process identity and cleanup"
+  ],
+  "windowsRuntimeExecution": "NOT_RUN",
+  "guiAcceptance": "OUT_OF_SCOPE",
+  "ciRun": null,
+  "formalAcceptanceEligible": false
+}

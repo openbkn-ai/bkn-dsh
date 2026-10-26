@@ -1,0 +1,23 @@
+{
+  "files": {
+    "RESULTS.md": "fb9aa39ad3116dc212e6f43a73873362068fbad12fa88f3d3438dc4d41d0456f",
+    "input-verification.json": "a8457364af43ccae7a30c41c8df236a7c24cace23dbcad96b1cb841fc83b00be",
+    "native-login-lifecycle-probe.mjs": "939234c8836132a7ffa1ceaf2e1c4b0e472a047e6dcfac2aa7776ee5d5daa80c",
+    "native-login-lifecycle.json": "8b709520ea1f5d55b14373fe6e7023408acae6ca1f0771e46128a09eb721fa64",
+    "preservation.json": "a7226f2eedb2901706ad6729f1684d8ce8f4240a5458b00c85045172ce865578",
+    "source-review.json": "260981cdc9d738c8e8b56d5839ddcca2dd8c670101ba484a9d5ac50901c8b6f3",
+    "upstream-state.json": "efc6b5f0c1a617e7be8048fbba9c1fba16d42c0004804c62f965744bf69b15a1"
+  },
+  "secretScan": {
+    "patterns": [
+      "private-key",
+      "jwt",
+      "github-token",
+      "provider-key",
+      "bearer-value",
+      "credential-url"
+    ],
+    "files": 7,
+    "hits": []
+  }
+}

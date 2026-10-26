@@ -1,0 +1,70 @@
+{
+  "provenance": {
+    "kind": "live formal platform inline-PTC schema capture",
+    "platform": "https://192.168.50.129",
+    "platform_tag": "v0.2.0",
+    "platform_commit": "81d5752826f3b3f3f72f3ad4cb1e22d45e99ab4b",
+    "captured_date": "2026-10-19",
+    "capture": "test-deploy/formal-020/live-20261019/supply-inline-ptc-schemas.json",
+    "capture_sha256": "c13e84f0915d2737a04954944b19a0961255e959f82d97af8302054cb20f3362",
+    "note": "The source-derived catalogue deliberately has no inline-PTC projection. This separate live snapshot fills that gap without inventing a source schema."
+  },
+  "name": "run_code",
+  "inputSchema": {
+    "properties": {
+      "bkn_context": {
+        "description": "Managed session context. Copy both IDs from bkn_start_interaction, even when Trace capture is disabled.",
+        "properties": {
+          "conversation_id": {
+            "description": "conversation_id returned by bkn_start_interaction.",
+            "type": "string"
+          },
+          "interaction_id": {
+            "description": "interaction_id returned by bkn_start_interaction.",
+            "type": "string"
+          }
+        },
+        "required": [
+          "conversation_id",
+          "interaction_id"
+        ],
+        "type": "object"
+      },
+      "code": {
+        "description": "要执行的 Python 代码。只有 print 的内容会返回。",
+        "type": "string"
+      },
+      "timeout": {
+        "default": 60,
+        "description": "执行超时秒数",
+        "type": "integer"
+      }
+    },
+    "required": [
+      "code",
+      "bkn_context"
+    ],
+    "type": "object"
+  },
+  "outputSchema": {
+    "type": "object",
+    "properties": {
+      "stdout": {
+        "type": "string",
+        "description": "标准输出。只有 print 的内容会回到这里。"
+      },
+      "stderr": {
+        "type": "string",
+        "description": "标准错误。退出码为 0 时也可能非空（库告警等）。"
+      },
+      "exit_code": {
+        "type": "integer",
+        "description": "退出码。非 0 表示脚本自身失败，报文在 stderr 里。"
+      }
+    },
+    "required": [
+      "stdout",
+      "exit_code"
+    ]
+  }
+}

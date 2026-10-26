@@ -1,0 +1,25 @@
+{
+  "checked_at": "2026-10-20T04:08:58.973272+00:00",
+  "records": [
+    {
+      "host": "0.2.0-rc.2",
+      "case_id": "invalid-token",
+      "native_session_id": "session-48bdb866-9de7-4930-bc1c-9fc9235aeb18",
+      "turn_end": "error",
+      "model_tool_calls": 0,
+      "response_models": [],
+      "UI": "Explicit HTTP 401 and re-login guidance; no business data read",
+      "UI_screenshot": "old-invalid-token.png"
+    },
+    {
+      "host": "0.2.1-rc.2",
+      "case_id": "invalid-token",
+      "native_session_id": "session-e90ad0d4-bd9f-46b5-9220-b7495754c979",
+      "turn_end": "error",
+      "model_tool_calls": 0,
+      "response_models": [],
+      "UI": "Explicit HTTP 401 and re-login guidance; no business data read",
+      "UI_screenshot": "new-invalid-token.png"
+    }
+  ]
+}

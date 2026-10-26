@@ -1,0 +1,66 @@
+[
+  {
+    "form": "npm-web",
+    "host": "0.2.0-rc.2",
+    "case_id": "recovery",
+    "type": "denied-or-failed-tool-call",
+    "tool": "ask_user_question",
+    "resolution": "Original refusal retained; no allow-list expansion"
+  },
+  {
+    "form": "npm-web",
+    "host": "0.2.1-rc.2",
+    "case_id": "recovery",
+    "type": "denied-or-failed-tool-call",
+    "tool": "bash",
+    "resolution": "Original refusal retained; no allow-list expansion"
+  },
+  {
+    "form": "npm-web",
+    "host": "0.2.1-rc.2",
+    "case_id": "recovery",
+    "type": "denied-or-failed-tool-call",
+    "tool": "mcp__openbkn__run_cypher",
+    "resolution": "Original refusal retained; no allow-list expansion"
+  },
+  {
+    "form": "desktop",
+    "host": "0.2.0-rc.2",
+    "case_id": "standard-lead-time",
+    "type": "model-source-field-label-confusion",
+    "production_plugin_fix_evidence": false,
+    "source": "material-field-sql-oracle.json"
+  },
+  {
+    "form": "desktop",
+    "host": "0.2.0-rc.2",
+    "case_id": "recovery",
+    "type": "denied-or-failed-tool-call",
+    "tool": "bash",
+    "resolution": "Original refusal retained; no allow-list expansion"
+  },
+  {
+    "form": "desktop",
+    "host": "0.2.1-rc.2",
+    "case_id": "standard-lead-time",
+    "type": "denied-or-failed-tool-call",
+    "tool": "mcp__openbkn__bkn_finish_interaction",
+    "resolution": "Original refusal retained; no allow-list expansion"
+  },
+  {
+    "form": "desktop",
+    "host": "0.2.1-rc.2",
+    "case_id": "recovery",
+    "type": "denied-or-failed-tool-call",
+    "tool": "bash",
+    "resolution": "Original refusal retained; no allow-list expansion"
+  },
+  {
+    "form": "desktop",
+    "host": "0.2.1-rc.2",
+    "case_id": "recovery",
+    "type": "denied-or-failed-tool-call",
+    "tool": "mcp__openbkn__run_cypher",
+    "resolution": "Original refusal retained; no allow-list expansion"
+  }
+]

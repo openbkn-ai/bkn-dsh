@@ -1,0 +1,105 @@
+The following is a diff from the previous accessibility tree for Window: "查询产品382-000005标准交期 — DeepSeek Harness" with ~ and + representing changed and added elements, respectively. Removed elements are summarized by ID range.
+Removed element IDs: 65, 76-106
+~0 standard window 查询产品382-000005标准交期 — DeepSeek Harness, Secondary Actions: Raise
+~	1 container 查询产品382-000005标准交期 — DeepSeek Harness
+~			3 HTML content 查询产品382-000005标准交期 — DeepSeek Harness, URL: dsh-app://app/
+~							64 row (selected) 查询产品382-000005标准交期 会话“查询产品382-000005标准交期”的操作 归档会话 置顶会话
++								76 text 查询产品382-000005标准交期
++								77 container
++									78 button 会话“查询产品382-000005标准交期”的操作
++									79 button 归档会话
++									80 button 置顶会话
+~							66 row 未命名 4分钟
+~								75 text 未命名 4分钟
++					81 container
++						82 container 会话层级
++							83 text 查询产品382-000005标准交期
++						84 text 标准模式
++						85 text 供应链本体知识网络-手工版
++						86 button 用 访达 打开
++						87 pop up button 更多打开方式
++						88 pop up button 更多操作
++						89 button 打开右侧边栏
++						90 tab group
++							91 tab (selected) 对话, Value: 1
++							92 tab (settable, integer) 轨迹, Value: 0
++					93 container
++						94 container
++							95 container 轮次导航
++								96 container
++									97 button 跳转到第 1 轮
++									98 button 跳转到第 2 轮
++							99 text 处理失败
++							100 button (disabled) 处理失败
++							101 container
++								102 text 本轮运行失败 mcp-client(openbkn): initial connection or tool synchronization failed: Version negotiation probe failed: fetch failed UNKNOWN
++							103 text 382-000005 的标准交期？
++							104 text 23:13
++							105 button 复制
++							106 text 已完成
++							107 button 已完成，用时 13秒
++								108 text 已完成，用时 
++								109 text 13
++								110 text 秒
++							111 text 382-000005（北斗导航农机驾驶仪）的标准交期 = 1 天。
++							112 table
++								113 row
++									114 column header
++										115 text 项目
++									116 column header
++										117 text 值
++								118 row
++									119 cell
++										120 text 物料编码
++									121 cell
++										122 text 382-000005
++								123 row
++									124 cell
++										125 text 物料名称
++									126 cell
++										127 text 北斗导航农机驾驶仪
++								128 row
++									129 cell
++										130 text 物料属性
++									131 cell
++										132 text 自制（库存商品-产成品，406包装成品）
++								133 row
++									134 cell
++										135 text 生产固定提前期 product_fixedleadtime
++									136 cell
++										137 text 1（天）← 标准交期
++								138 row
++									139 cell
++										140 text 采购固定提前期 purchase_fixedleadtime
++									141 cell
++										142 text 1（天，自制件不采用此口径）
++							143 text 依据与口径说明：
++							144 content list
++								145 container
++									146 AXListMarker • 
++									147 text 本体对「物料」的定义是：标准交期按物料属性取值，自制件（含产成品、半成品）使用  product_fixedleadtime ，外购件使用  purchase_fixedleadtime ，单位天。该物料为自制，因此取生产固定提前期 1 天。虽然两个字段恰好都是 1，也不能按采购口径解释。
++								148 container
++									149 AXListMarker • 
++									150 text 数据来源：对象类「物料」（ supply_ontology_hand_material ，资源  supply_demo_hand.erp_material ），按  material_code = 382-000005  精确匹配，命中 1 条，字段权限均为 full。
++							151 text 局限：本回答只覆盖该编码物料主档的标准交期，未涉及采购订单中的预计到货日期、BOM 子料交期或采购流程时序等其他口径。
++							152 button 复制
++							153 toggle button Description: 好的回答, Value: 0
++							154 toggle button Description: 有问题的回答, Value: 0
++							155 button 查看业务溯源, Help: 查看此回答的 OpenBKN 业务溯源
++							156 button 在新对话中分支
++							157 pop up button 用量 265K tok
++							158 text 23:13
++						159 container
++							160 text entry area (settable) 发消息或创建任务, / 调用指令, @ 文件或对话
++							161 pop up button 添加文件或调用指令
++							162 button 访问模式，当前：工作区内修改
++							163 pop up button 选择模型，当前 deepseek_chat
++							164 button (disabled) 发送消息
++							165 pop up button 1 轮 6 步 · 294 tok/s
++								166 text 1 轮 6 步
++								167 text 294 tok/s
++							168 pop up button 265K tok · 缓存命中 75%
++								169 text 265K tok
++								170 text 缓存命中 75%
++							171 pop up button 上下文已用 5%
+The focused UI element is 160 text entry area (settable) 发消息或创建任务, / 调用指令, @ 文件或对话

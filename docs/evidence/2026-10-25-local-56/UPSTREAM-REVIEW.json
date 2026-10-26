@@ -1,0 +1,55 @@
+{
+  "data": {
+    "dsh": {
+      "defaultBranchRef": {
+        "name": "master",
+        "target": {
+          "oid": "22ddee3792402c3e70ec5f86a63c3e3e895a2f60"
+        }
+      },
+      "releases": {
+        "nodes": [
+          {
+            "tagName": "dsh-v0.2.1-rc.3",
+            "publishedAt": "2026-10-23T15:26:39Z"
+          }
+        ]
+      }
+    },
+    "foundry": {
+      "defaultBranchRef": {
+        "name": "main",
+        "target": {
+          "oid": "6fff80cd66e95c1e00b4fadb893f5d84c356e6f1"
+        }
+      },
+      "releases": {
+        "nodes": [
+          {
+            "tagName": "v0.2.0",
+            "publishedAt": "2026-10-16T07:21:25Z"
+          }
+        ]
+      }
+    }
+  },
+  "checkedAt": "2026-10-25T04:20:42.000343+00:00",
+  "dshUnchangedSince55": true,
+  "foundryDelta": {
+    "from": "743becf2325a9e65a749f91be31aea2888885d38",
+    "to": "6fff80cd66e95c1e00b4fadb893f5d84c356e6f1",
+    "commits": 1,
+    "files": 29,
+    "subject": "fix(bkn-trace): clarify bounded Span display and add continuation browsing (#2481)",
+    "targetedReview": [
+      "technical detail span_display distinguishes loaded/window/estimated totals and preserves truncation uncertainty",
+      "on-demand 100-span live continuation route with per-page canonical authorization",
+      "raw spans restricted to global Trace access; signed cursor binds current identity/grants and expires in 15 minutes",
+      "existing consumer routes checked: Interaction operations, business-graph and business-provenance; this commit does not change those reader routes or MCP managed-tool catalogue"
+    ],
+    "consumerImpact": "No frozen plugin adaptation for undeployed main. This was a targeted source review, not end-to-end integration, broad security audit or new tools/list validation.",
+    "deployed": false
+  },
+  "formalPlatformRelease": "v0.2.0",
+  "frozenCandidatesChanged": false
+}

@@ -1,0 +1,439 @@
+{
+  "method": "Compare clean git tree blobs at each fixed HEAD; applied source-build patches and generated files are excluded. Imports include type-only contracts.",
+  "hosts": [
+    {
+      "commit": "639ed015397290b3745d163aafe02ffee4aa3f84"
+    },
+    {
+      "commit": "687f282e8625c6b8d11ff58211a90524be2e4317"
+    }
+  ],
+  "packages": [
+    {
+      "package": "@deepseek-ai/cordis",
+      "oldVersion": "4.0.4",
+      "newVersion": "4.0.5",
+      "oldPath": "vendor/cordis",
+      "newPath": "vendor/cordis",
+      "changedSourceFiles": []
+    },
+    {
+      "package": "@deepseek-ai/dsh-agent",
+      "oldVersion": "0.2.0-rc.2",
+      "newVersion": "0.2.1-rc.2",
+      "oldPath": "packages/core/agent",
+      "newPath": "packages/core/agent",
+      "changedSourceFiles": [
+        "src/index.ts",
+        "src/invariant.ts",
+        "src/runtime-types.ts"
+      ]
+    },
+    {
+      "package": "@deepseek-ai/dsh-api-remotes",
+      "oldVersion": "0.2.0-rc.2",
+      "newVersion": "0.2.1-rc.2",
+      "oldPath": "packages/api/remotes",
+      "newPath": "packages/api/remotes",
+      "changedSourceFiles": [
+        "src/client/index.ts",
+        "src/index.ts",
+        "src/remote-events.ts"
+      ]
+    },
+    {
+      "package": "@deepseek-ai/dsh-api-session-controller",
+      "oldVersion": "0.2.0-rc.2",
+      "newVersion": "0.2.1-rc.2",
+      "oldPath": "packages/api/session-controller",
+      "newPath": "packages/api/session-controller",
+      "changedSourceFiles": [
+        "src/agent.ts",
+        "src/client/contract/sessions.ts",
+        "src/client/sessions/lineage.ts",
+        "src/client/sessions/manager.ts",
+        "src/client/sessions/projection-store.ts",
+        "src/client/sessions/service.ts",
+        "src/client/sessions/session.ts",
+        "src/commands.ts",
+        "src/index.ts",
+        "src/list.ts",
+        "src/skill-catalog.ts",
+        "src/types.ts"
+      ]
+    },
+    {
+      "package": "@deepseek-ai/dsh-api-workspace-controller",
+      "oldVersion": "0.2.0-rc.2",
+      "newVersion": "0.2.1-rc.2",
+      "oldPath": "packages/api/workspace-controller",
+      "newPath": "packages/api/workspace-controller",
+      "changedSourceFiles": [
+        "src/client/index.ts",
+        "src/feed.ts",
+        "src/index.ts",
+        "src/types.ts"
+      ]
+    },
+    {
+      "package": "@deepseek-ai/dsh-client-locale",
+      "oldVersion": "0.2.0-rc.2",
+      "newVersion": "0.2.1-rc.2",
+      "oldPath": "packages/client/locale",
+      "newPath": "packages/client/locale",
+      "changedSourceFiles": []
+    },
+    {
+      "package": "@deepseek-ai/dsh-client-ui-chat",
+      "oldVersion": "0.2.0-rc.2",
+      "newVersion": "0.2.1-rc.2",
+      "oldPath": "packages/client/ui-chat",
+      "newPath": "packages/client/ui-chat",
+      "changedSourceFiles": [
+        "src/chat-settings.ts",
+        "src/client/apply.ts",
+        "src/client/chat/AssistantMarkdown.tsx",
+        "src/client/chat/AssistantNodeView.tsx",
+        "src/client/chat/ChatFlow.tsx",
+        "src/client/chat/ChatGroupSeat.module.css",
+        "src/client/chat/ChatGroupSeat.tsx",
+        "src/client/chat/ChatNodeSeat.tsx",
+        "src/client/chat/ChatView.module.css",
+        "src/client/chat/ChatView.tsx",
+        "src/client/chat/MessageItem.module.css",
+        "src/client/chat/MessageItem.tsx",
+        "src/client/chat/ReasoningContent.tsx",
+        "src/client/chat/ReasoningRow.module.css",
+        "src/client/chat/ReasoningRow.tsx",
+        "src/client/chat/StatsPills.module.css",
+        "src/client/chat/StatsPills.tsx",
+        "src/client/chat/TurnProcessNodeView.tsx",
+        "src/client/chat/TurnTailNodeView.tsx",
+        "src/client/chat/UserContent.tsx",
+        "src/client/chat/flow-motion.ts",
+        "src/client/chat/register-node-renderers.ts",
+        "src/client/chat/searchable-hidden.ts",
+        "src/client/chat/stat-dialog.module.css",
+        "src/client/chat/stat-dialog.ts",
+        "src/client/chat/turn-trigger.ts",
+        "src/client/chat/use-chat-reading.ts",
+        "src/client/chat/use-chat-scroll.ts",
+        "src/client/chat/use-chat-viewport.ts",
+        "src/client/chat/use-scroll-follow.ts",
+        "src/client/contract/chat-nodes.ts",
+        "src/client/contract/group-tree.ts",
+        "src/client/contract/slots.ts",
+        "src/client/contract/snapshot.ts",
+        "src/client/contract/store.ts",
+        "src/client/contract/turn-process.ts",
+        "src/client/conversation-nodes/README.i18n.yaml",
+        "src/client/conversation-nodes/README.md",
+        "src/client/conversation-nodes/README.zh.md",
+        "src/client/conversation-nodes/assistant.ts",
+        "src/client/conversation-nodes/chat-snapshot-builder.ts",
+        "src/client/conversation-nodes/common.ts",
+        "src/client/conversation-nodes/group-tree-segments.ts",
+        "src/client/conversation-nodes/message.ts",
+        "src/client/conversation-nodes/partial.ts",
+        "src/client/conversation-nodes/process-activity.ts",
+        "src/client/conversation-nodes/process-groups.ts",
+        "src/client/conversation-nodes/retry.ts",
+        "src/client/conversation-nodes/tool.ts",
+        "src/client/conversation-nodes/turn-error.ts",
+        "src/client/conversation-nodes/turn-max-tokens.ts",
+        "src/client/conversation-nodes/turn-process-presentation.ts",
+        "src/client/conversation-nodes/turn-process.ts",
+        "src/client/conversation-nodes/turn-tail.ts",
+        "src/client/index.ts",
+        "src/client/locale.ts",
+        "src/client/model/tool-call-tree.ts",
+        "src/client/performance-usage.ts",
+        "src/client/presentation-policy.ts",
+        "src/client/settings/TranscriptViewRow.tsx",
+        "src/client/stores.ts",
+        "src/client/transcript-view.ts",
+        "src/index.ts"
+      ]
+    },
+    {
+      "package": "@deepseek-ai/dsh-client-ui-conversation",
+      "oldVersion": "0.2.0-rc.2",
+      "newVersion": "0.2.1-rc.2",
+      "oldPath": "packages/client/ui-conversation",
+      "newPath": "packages/client/ui-conversation",
+      "changedSourceFiles": [
+        "src/client/apply.ts",
+        "src/client/contract/conversation.ts",
+        "src/client/contract/draft-editor.ts",
+        "src/client/contract/input.ts",
+        "src/client/contract/records.ts",
+        "src/client/contract/request-inspection.ts",
+        "src/client/contract/slots.ts",
+        "src/client/contract/user-text.ts",
+        "src/client/contract/views.ts",
+        "src/client/conversation/assembler.ts",
+        "src/client/conversation/assembly.ts",
+        "src/client/conversation/event-registry.ts",
+        "src/client/conversation/location-index.ts",
+        "src/client/conversation/user-text-document.ts",
+        "src/client/conversation/user-text-registry.ts",
+        "src/client/draft.ts",
+        "src/client/index.ts",
+        "src/client/input/decorations.ts",
+        "src/client/input/editor/CommandChip.tsx",
+        "src/client/input/editor/claim-decor.ts",
+        "src/client/input/editor/command-chip-node.tsx",
+        "src/client/input/editor/command-chip-selection.ts",
+        "src/client/input/editor/composer-editor.module.css",
+        "src/client/input/editor/keymap.ts",
+        "src/client/input/editor/projection.ts",
+        "src/client/input/editor/runtime.ts",
+        "src/client/input/editor/text-ref.ts",
+        "src/client/input/editor/view-binding.ts",
+        "src/client/input/facade.ts",
+        "src/client/input/hub.ts",
+        "src/client/input/machine.ts",
+        "src/client/locales.ts",
+        "src/client/queue/QueueDock.module.css",
+        "src/client/queue/QueueDock.tsx",
+        "src/client/service.ts",
+        "src/client/skeleton/ContextMeter.module.css",
+        "src/client/skeleton/ConversationContent.tsx",
+        "src/client/skeleton/ConversationRoot.module.css",
+        "src/client/skeleton/DefaultConversationViews.tsx",
+        "src/client/skeleton/InputBar.module.css",
+        "src/client/skeleton/InputBar.tsx",
+        "src/client/stores.ts",
+        "src/client/user-text/UserText.module.css",
+        "src/client/user-text/UserText.tsx",
+        "src/client/user-text/session-reference-rule.ts",
+        "src/client/user-text/whitespace-rules.ts"
+      ]
+    },
+    {
+      "package": "@deepseek-ai/dsh-client-ui-layout",
+      "oldVersion": "0.2.0-rc.2",
+      "newVersion": "0.2.1-rc.2",
+      "oldPath": "packages/client/ui-layout",
+      "newPath": "packages/client/ui-layout",
+      "changedSourceFiles": [
+        "src/client/AppFrame.module.css",
+        "src/client/AppFrame.tsx",
+        "src/client/index.ts",
+        "src/client/theme-presenter.ts"
+      ]
+    },
+    {
+      "package": "@deepseek-ai/dsh-client-ui-renderer",
+      "oldVersion": "0.2.0-rc.2",
+      "newVersion": "0.2.1-rc.2",
+      "oldPath": "packages/client/ui-renderer",
+      "newPath": "packages/client/ui-renderer",
+      "changedSourceFiles": [
+        "src/client/bind.ts",
+        "src/client/bindings.tsx",
+        "src/client/scoped-slots.tsx",
+        "src/client/use-sync-external-store.d.ts",
+        "src/invariant.ts"
+      ]
+    },
+    {
+      "package": "@deepseek-ai/dsh-client-ui-session",
+      "oldVersion": "0.2.0-rc.2",
+      "newVersion": "0.2.1-rc.2",
+      "oldPath": "packages/client/ui-session",
+      "newPath": "packages/client/ui-session",
+      "changedSourceFiles": [
+        "src/client/index.ts"
+      ]
+    },
+    {
+      "package": "@deepseek-ai/dsh-client-ui-sidebar",
+      "oldVersion": "0.2.0-rc.2",
+      "newVersion": "0.2.1-rc.2",
+      "oldPath": "packages/client/ui-sidebar",
+      "newPath": "packages/client/ui-sidebar",
+      "changedSourceFiles": [
+        "src/client/SidebarRoot.module.css"
+      ]
+    },
+    {
+      "package": "@deepseek-ai/dsh-client-ui-slots",
+      "oldVersion": "0.2.0-rc.2",
+      "newVersion": "0.2.1-rc.2",
+      "oldPath": "packages/client/ui-slots",
+      "newPath": "packages/client/ui-slots",
+      "changedSourceFiles": [
+        "src/index.ts",
+        "src/renderer.ts"
+      ]
+    },
+    {
+      "package": "@deepseek-ai/dsh-client-ui-tool",
+      "oldVersion": "0.2.0-rc.2",
+      "newVersion": "0.2.1-rc.2",
+      "oldPath": "packages/client/ui-tool",
+      "newPath": "packages/client/ui-tool",
+      "changedSourceFiles": [
+        "src/client/apply.ts",
+        "src/client/contract/slots.ts",
+        "src/client/index.ts",
+        "src/client/tool/ToolCallTree.tsx",
+        "src/client/tool/components/ExitCodeBadge.module.css",
+        "src/client/tool/components/ExitCodeBadge.tsx",
+        "src/client/tool/components/PreparingToolRow.tsx",
+        "src/client/tool/components/ToolRow.module.css",
+        "src/client/tool/components/ToolRow.tsx",
+        "src/client/tool/models/diff-card-model.ts",
+        "src/client/tool/models/image-card-model.ts",
+        "src/client/tool/models/raw-tool-call.ts",
+        "src/client/tool/models/recorded-path.ts",
+        "src/client/tool/models/terminal-card-model.ts",
+        "src/client/tool/models/tool-call-model.ts",
+        "src/client/tool/tool-call-arguments-partial.ts",
+        "src/client/tool/toolviews/bash-sample.module.css",
+        "src/client/tool/toolviews/bash-sample.tsx",
+        "src/client/tool/toolviews/file-mutation-row.tsx",
+        "src/client/tool/toolviews/read-image-row.tsx"
+      ]
+    },
+    {
+      "package": "@deepseek-ai/dsh-client-ui-workspace",
+      "oldVersion": "0.2.0-rc.2",
+      "newVersion": "0.2.1-rc.2",
+      "oldPath": "packages/client/ui-workspace",
+      "newPath": "packages/client/ui-workspace",
+      "changedSourceFiles": [
+        "src/client/contract/slots.ts",
+        "src/client/contract/toast.ts",
+        "src/client/index.ts",
+        "src/client/locales.ts",
+        "src/client/navigation.ts",
+        "src/client/rows/Rows.module.css",
+        "src/client/rows/Rows.tsx",
+        "src/client/rows/WorkspaceBrowser.tsx",
+        "src/client/session-actions/ArchiveSession.tsx",
+        "src/client/session-actions/ForkSession.tsx",
+        "src/client/session-actions/PinSession.tsx",
+        "src/client/session-actions/RowActionToast.tsx",
+        "src/client/session-actions/SessionId.tsx",
+        "src/client/shortcuts.ts",
+        "src/client/toast/Toast.tsx",
+        "src/client/toast/register.ts"
+      ]
+    },
+    {
+      "package": "@deepseek-ai/dsh-credentials",
+      "oldVersion": "0.2.0-rc.2",
+      "newVersion": "0.2.1-rc.2",
+      "oldPath": "packages/credentials/credentials",
+      "newPath": "packages/credentials/credentials",
+      "changedSourceFiles": [
+        "src/index.ts",
+        "src/invariant.ts",
+        "src/types.ts"
+      ]
+    },
+    {
+      "package": "@deepseek-ai/dsh-home-paths",
+      "oldVersion": "0.2.0-rc.2",
+      "newVersion": "0.2.1-rc.2",
+      "oldPath": "packages/util/home-paths",
+      "newPath": "packages/util/home-paths",
+      "changedSourceFiles": [
+        "src/index.ts"
+      ]
+    },
+    {
+      "package": "@deepseek-ai/dsh-mcp-client",
+      "oldVersion": "0.2.0-rc.2",
+      "newVersion": "0.2.1-rc.2",
+      "oldPath": "packages/mcp/mcp-client",
+      "newPath": "packages/mcp/mcp-client",
+      "changedSourceFiles": []
+    },
+    {
+      "package": "@deepseek-ai/dsh-session",
+      "oldVersion": "0.2.0-rc.2",
+      "newVersion": "0.2.1-rc.2",
+      "oldPath": "packages/core/session",
+      "newPath": "packages/core/session",
+      "changedSourceFiles": [
+        "src/index.ts",
+        "src/invariant.ts",
+        "src/known-event-types.ts",
+        "src/surface.ts",
+        "src/types.ts"
+      ]
+    },
+    {
+      "package": "@deepseek-ai/dsh-storage-domain",
+      "oldVersion": "0.2.0-rc.2",
+      "newVersion": "0.2.1-rc.2",
+      "oldPath": "packages/storage/storage-domain",
+      "newPath": "packages/storage/storage-domain",
+      "changedSourceFiles": [
+        "src/index.ts",
+        "src/invariant.ts"
+      ]
+    },
+    {
+      "package": "@deepseek-ai/dsh-subprocess",
+      "oldVersion": "0.2.0-rc.2",
+      "newVersion": "0.2.1-rc.2",
+      "oldPath": "packages/subprocess/subprocess",
+      "newPath": "packages/subprocess/subprocess",
+      "changedSourceFiles": []
+    },
+    {
+      "package": "@deepseek-ai/dsh-tools",
+      "oldVersion": "0.2.0-rc.2",
+      "newVersion": "0.2.1-rc.2",
+      "oldPath": "packages/core/tools",
+      "newPath": "packages/core/tools",
+      "changedSourceFiles": [
+        "src/index.ts",
+        "src/invariant.ts",
+        "src/ptc-calls.ts",
+        "src/ptc.ts",
+        "src/py-types.ts",
+        "src/schema.ts",
+        "src/ts-types.ts",
+        "src/types.ts"
+      ]
+    },
+    {
+      "package": "@deepseek-ai/dsh-typert-protocol",
+      "oldVersion": "0.2.0-rc.2",
+      "newVersion": "0.2.1-rc.2",
+      "oldPath": "packages/typert/protocol",
+      "newPath": "packages/typert/protocol",
+      "changedSourceFiles": [
+        "src/index.ts",
+        "src/principal.ts",
+        "src/remote-access.ts",
+        "src/remote-info.ts",
+        "src/types.ts"
+      ]
+    },
+    {
+      "package": "@deepseek-ai/dsh-util-values",
+      "oldVersion": "0.2.0-rc.2",
+      "newVersion": "0.2.1-rc.2",
+      "oldPath": "packages/util/values",
+      "newPath": "packages/util/values",
+      "changedSourceFiles": [
+        "src/index.ts",
+        "src/partial-json.ts"
+      ]
+    },
+    {
+      "package": "@deepseek-ai/schemastery",
+      "oldVersion": "3.18.4",
+      "newVersion": "3.18.5",
+      "oldPath": "vendor/schemastery",
+      "newPath": "vendor/schemastery",
+      "changedSourceFiles": []
+    }
+  ]
+}

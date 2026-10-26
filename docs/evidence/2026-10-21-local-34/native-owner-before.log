@@ -1,0 +1,52 @@
+TAP version 13
+# Subtest: a native service call keeps its MCP child inside the business owner across reload
+not ok 1 - a native service call keeps its MCP child inside the business owner across reload
+  ---
+  duration_ms: 51.09175
+  type: 'test'
+  location: '/Users/dominiczhang/Documents/project/app/openBKN/bkn-dsh/packages/openbkn-business-context/tests/mcp-native-owner.test.ts:1:472'
+  failureType: 'testCodeFailure'
+  error: |-
+    the old MCP client must leave with the business configuration owner
+    + actual - expected
+    
+    + {
+    +   description: 'lifetime fixture only',
+    +   execute: [AsyncFunction (anonymous)],
+    +   name: 'mcp__openbkn__bkn_start_interaction',
+    +   output: {
+    +     render: [Function: render],
+    +     schema: {
+    +       additionalProperties: false,
+    +       properties: {
+    +         content: {
+    +           items: {},
+    +           type: 'array'
+    +         },
+    +         structuredContent: {}
+    +       },
+    +       required: [
+    +         'content'
+    +       ],
+    +       type: 'object'
+    +     }
+    +   },
+    +   parameters: {
+    +     properties: {},
+    +     type: 'object'
+    +   },
+    +   projectContent: [Function: projectContent]
+    + }
+    - undefined
+    
+  code: 'ERR_TEST_FAILURE'
+  ...
+1..1
+# tests 1
+# suites 0
+# pass 0
+# fail 1
+# cancelled 0
+# skipped 0
+# todo 0
+# duration_ms 420.177375

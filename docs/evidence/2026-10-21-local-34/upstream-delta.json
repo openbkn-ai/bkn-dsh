@@ -1,0 +1,26 @@
+{
+  "compared_from": "e47ebc0",
+  "compared_to": "d9ae35943ada5e5d11f008388838d5e82269a976",
+  "commits": [
+    {
+      "sha": "8a0f5945f5615bb48b1c7f23567565e47e72937d",
+      "title": "fix(vega): widen discovery error fields to text (#2342)"
+    },
+    {
+      "sha": "d9ae35943ada5e5d11f008388838d5e82269a976",
+      "title": "fix(vega-backend): preserve omitted catalog connection configuration (#2343)"
+    }
+  ],
+  "files": [
+    "docs/api/vega/catalog.yaml",
+    "migrations/vega-backend/mariadb/0.2.1/03-text-error-fields.sql",
+    "migrations/vega-backend/mariadb/0.2.1/init.sql",
+    "vega/vega-backend/server/drivenadapters/catalog/catalog_access.go",
+    "vega/vega-backend/server/drivenadapters/catalog/catalog_access_test.go",
+    "vega/vega-backend/server/interfaces/catalog_access.go",
+    "vega/vega-backend/server/interfaces/mock/mock_catalog_access.go",
+    "vega/vega-backend/server/logics/catalog/catalog_service.go",
+    "vega/vega-backend/server/logics/catalog/catalog_service_test.go"
+  ],
+  "review_result": "Two Vega-only changes; no consumed MCP/CLI/Sandbox contract change found. No supported pin or deployment changed."
+}

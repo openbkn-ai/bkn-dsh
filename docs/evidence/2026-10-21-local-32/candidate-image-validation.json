@@ -1,0 +1,36 @@
+{
+  "checked_at": "2026-10-21T07:48:17.199149+00:00",
+  "images": [
+    {
+      "service": "aoi",
+      "image_config_id": "sha256:44c064fd695eb32dadc4582d9ffe2eb9466ccf15b9cdbc26fe1e934c8866d54c",
+      "runtime_configuration_matches_formal_base": true,
+      "formal_base_layers_preserved": true,
+      "network": "none",
+      "binary_sha256": "a92fe467f2a1eb24d65f6aae06d7302ba0c563d6e5bcc71d03fa0ec03ea5e096",
+      "elf_loader_and_runtime_libraries_passed": true,
+      "runs_as_formal_nonroot_user": true
+    },
+    {
+      "service": "sandbox",
+      "image_config_id": "sha256:8f7ab9a1fc798d6f548a437e89db334aee64287ab156521dcac9ae24ed0b2481",
+      "runtime_configuration_matches_formal_base": true,
+      "formal_base_layers_preserved": true,
+      "network": "none",
+      "actual_image_model_sqlite_write_passed": true,
+      "oversized_utf8_storage_passed": true,
+      "executor_input_unchanged": true,
+      "hide_parameters_enabled": true,
+      "files": {
+        "src/infrastructure/persistence/database.py": "7e6167f6061808e094a1b6cfac2aa1de4ac41633c0bab316655b02d1c6c7ec97",
+        "src/infrastructure/persistence/models/execution_model.py": "9d2104efa3f08817b6d7a6dc7bb25590a1ddc9aeaf12f677f9498e7b4e862fba",
+        "src/infrastructure/persistence/repositories/sql_execution_repository.py": "792da470c25b868724b92529d02edde45764d0fd06adb5f08aeec0de6c800b0b"
+      },
+      "network_used": false,
+      "real_credential_used": false
+    }
+  ],
+  "deployed": false,
+  "pushed": false,
+  "real_platform_runtime_acceptance": "Not performed; explicit platform change approval is still absent"
+}

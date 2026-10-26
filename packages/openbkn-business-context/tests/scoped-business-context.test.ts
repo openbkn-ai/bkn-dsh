@@ -437,7 +437,7 @@ test('every Context Loader tool of the supported releases is classified: managed
   const managed: readonly string[] = [...LIFECYCLE_TOOLS, ...MANAGED_IN_INTERACTION_TOOLS]
   assert.equal(new Set(managed).size, managed.length, 'no duplicate managed tool')
   assert.deepEqual(managed.filter(name => EXCLUDED_OPENBKN_TOOLS.includes(name)), [], 'managed and excluded are disjoint')
-  for (const [tag, tools] of [['v0.1.5', V015_TOOLS], ['v0.1.4', V014_TOOLS], ['v0.2.0-preparation', definitionsOf('v0.2.0-preparation')]] as const) {
+  for (const [tag, tools] of [['v0.1.5', V015_TOOLS], ['v0.1.4', V014_TOOLS], ['v0.2.0-release', definitionsOf('v0.2.0-release')], ['v0.2.0-preparation', definitionsOf('v0.2.0-preparation')], ['20261018-live', definitionsOf('20261018-live')]] as const) {
     assert.deepEqual(Object.keys(tools).filter(name => !managed.includes(name) && !EXCLUDED_OPENBKN_TOOLS.includes(name)), [], `unclassified ${tag} tool`)
   }
   const current = Object.keys(V015_TOOLS)
@@ -513,7 +513,7 @@ test('default 0.1.5 deployment: execute_skill is not registered, so it is refuse
   assert.match(fake.guards[0]!({ name: 'mcp__openbkn__execute_skill', arguments: { kn_id: bound, skill_id: 's', entry_shell: 'python main.py' } }) ?? '', /not registered in this session/)
   assert.equal(fake.guards[0]!({ name: 'mcp__openbkn__get_skill_content', arguments: { kn_id: bound, skill_id: 's' } }), undefined)
   const prompt = governanceOf(fake)
-  assert.match(prompt, /find a published capability with search_capabilities\. Run a function or MCP tool hit with execute_tool/)
+  assert.match(prompt, /find a published capability with search_capabilities before implementing a calculation or a run_code fallback\..*Run a function or MCP tool hit with execute_tool/)
   assert.match(prompt, /Skill execution is not enabled on this deployment \(execute_skill is not offered\)/)
   assert.doesNotMatch(prompt, /pass execute_skill only/)
   assert.doesNotMatch(prompt, /search_tools|find_skills/)

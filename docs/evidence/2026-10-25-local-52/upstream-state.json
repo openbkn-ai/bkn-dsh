@@ -1,0 +1,52 @@
+{
+  "checkedAt": "2026-10-25T01:40:59.916896+00:00",
+  "data": {
+    "dsh": {
+      "defaultBranchRef": {
+        "name": "master",
+        "target": {
+          "oid": "22ddee3792402c3e70ec5f86a63c3e3e895a2f60"
+        }
+      },
+      "releases": {
+        "nodes": [
+          {
+            "tagName": "dsh-v0.2.1-rc.3",
+            "publishedAt": "2026-10-23T15:26:39Z"
+          }
+        ]
+      }
+    },
+    "foundry": {
+      "defaultBranchRef": {
+        "name": "main",
+        "target": {
+          "oid": "a4ed5f9cf8972bb4f2c39e321965819bea7baeb3"
+        }
+      },
+      "releases": {
+        "nodes": [
+          {
+            "tagName": "v0.2.0",
+            "publishedAt": "2026-10-16T07:21:25Z"
+          }
+        ]
+      }
+    }
+  },
+  "dshUnchangedSince51": true,
+  "foundryNewUnreleasedCommits": [
+    {
+      "sha": "745e5a6833013269117e0143f29777d1c3c17f94",
+      "subject": "fix(bkn-trace): bound historical capture compression without changing source bytes (#2477)"
+    },
+    {
+      "sha": "a4ed5f9cf8972bb4f2c39e321965819bea7baeb3",
+      "subject": "fix(bkn-trace): persist bounded record integrity retries (#2479)"
+    }
+  ],
+  "foundryDeltaFiles": 44,
+  "targetedReview": "bounded historical capture gzip and persisted integrity retries, migration039 and an authorized record-integrity-status read API; not MCP redirect remediation, not applied to formal0.2.0; no complete upstream audit claimed",
+  "fixedPinsChanged": false,
+  "deployed": false
+}

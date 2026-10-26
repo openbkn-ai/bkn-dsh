@@ -1,0 +1,23 @@
+{
+  "checkedAt": "2026-10-23T13:21:06.240275+00:00",
+  "environment": "macOS task-local PowerShell7.6.8, task Node24.19.0",
+  "kitFilesVerified": 26,
+  "candidateFilesVerified": 82,
+  "sdkRegistryIntegrityMatched": true,
+  "argvCases": [
+    {
+      "initializeOnly": true,
+      "argumentElements": 6,
+      "nativeArgvMatched": true
+    },
+    {
+      "initializeOnly": false,
+      "argumentElements": 10,
+      "nativeArgvMatched": true
+    }
+  ],
+  "hostStarted": false,
+  "platformAccessed": false,
+  "nativeWindowsRun": false,
+  "unchangedExecutionInputsFromPreparedR3": true
+}

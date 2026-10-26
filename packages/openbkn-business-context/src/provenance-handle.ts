@@ -17,13 +17,16 @@ export function normalizeProvenanceHandle(value: unknown): ProvenanceHandle {
   const conversationId = value.schemaVersion === 2 ? optionalIdentifier(value.conversationId) : undefined
   const turn = value.schemaVersion === 2 && typeof value.turn === 'number' && Number.isSafeInteger(value.turn) && value.turn >= 0 ? value.turn : undefined
   const recording = value.schemaVersion === 2 && (value.recording === 'disabled' || value.recording === 'unavailable') ? value.recording : undefined
-  if (recording !== undefined && (value.interactionId !== undefined || value.conversationId !== undefined
+  const identifiedDisabled = recording === 'disabled' && typeof value.interactionId === 'string'
+    && typeof value.conversationId === 'string' && conversationId !== undefined
+  if (recording !== undefined && (((value.interactionId !== undefined || value.conversationId !== undefined) && !identifiedDisabled)
     || value.partial !== true || [value.requestIds, value.traceIds, value.receiptIds].some(ids => !Array.isArray(ids) || ids.length !== 0))) {
-    throw new TypeError('Unrecorded provenance must not disclose lifecycle or evidence identifiers.')
+    throw new TypeError('Unrecorded provenance may retain a disabled managed identity pair, but must not disclose recorded evidence identifiers.')
   }
   return {
     schemaVersion: 2,
-    ...(recording === undefined ? { interactionId: identifier(value.interactionId, 'interaction id') } : { recording }),
+    ...(recording === undefined || identifiedDisabled ? { interactionId: identifier(value.interactionId, 'interaction id') } : {}),
+    ...(recording === undefined ? {} : { recording }),
     requestIds: identifiers(value.requestIds, 'request ids'),
     traceIds: identifiers(value.traceIds, 'trace ids'),
     receiptIds: identifiers(value.receiptIds, 'receipt ids'),

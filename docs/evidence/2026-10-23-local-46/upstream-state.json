@@ -1,0 +1,306 @@
+{
+  "at": "2026-10-23T13:39:06.327737+00:00",
+  "dshDefaultBranch": "master",
+  "dshHead": "687f282e8625c6b8d11ff58211a90524be2e4317",
+  "foundryHead": "2466c45fb835458db5589e48f8660bc0e26e1756",
+  "foundryChangesSincePrevious": {
+    "commits": [
+      {
+        "sha": "aa872c9a3f356ab43ce69c4b72cbebdf2adebc7d",
+        "subject": "refactor(comm-go): separate error registration from localized rendering (#2453)"
+      },
+      {
+        "sha": "9494e24eb64e791720826b2ebb5affb697878e1c",
+        "subject": "fix(bkn-agent): say UNION draws nothing in the graph explorer prompt (#2443)"
+      },
+      {
+        "sha": "bb675a857d57f74216b7428c061282ec10d3be78",
+        "subject": "fix(bkn-backend): refuse a null enum item in a value type (#2449)"
+      },
+      {
+        "sha": "ae360982966863d16cda359ef902ce457c8d1b89",
+        "subject": "feat(bkn-backend): store and update the aliases of object types, action types and properties (#2454)"
+      },
+      {
+        "sha": "2466c45fb835458db5589e48f8660bc0e26e1756",
+        "subject": "refactor(comm-go): make Language a distinct type (#2462)"
+      }
+    ],
+    "files": [
+      {
+        "name": "adp/bkn/bkn-backend/server/bkn-specification/SPECIFICATION.md",
+        "status": "modified"
+      },
+      {
+        "name": "adp/bkn/bkn-backend/server/common/stored_aliases.go",
+        "status": "added"
+      },
+      {
+        "name": "adp/bkn/bkn-backend/server/common/stored_aliases_test.go",
+        "status": "added"
+      },
+      {
+        "name": "adp/bkn/bkn-backend/server/drivenadapters/action_type/action_type_access.go",
+        "status": "modified"
+      },
+      {
+        "name": "adp/bkn/bkn-backend/server/drivenadapters/action_type/action_type_access_test.go",
+        "status": "modified"
+      },
+      {
+        "name": "adp/bkn/bkn-backend/server/drivenadapters/object_type/object_type_access.go",
+        "status": "modified"
+      },
+      {
+        "name": "adp/bkn/bkn-backend/server/drivenadapters/object_type/object_type_access_test.go",
+        "status": "modified"
+      },
+      {
+        "name": "adp/bkn/bkn-backend/server/driveradapters/validate_value_type.go",
+        "status": "modified"
+      },
+      {
+        "name": "adp/bkn/bkn-backend/server/driveradapters/value_type_handler_test.go",
+        "status": "modified"
+      },
+      {
+        "name": "adp/bkn/bkn-backend/server/errors/action_type.go",
+        "status": "modified"
+      },
+      {
+        "name": "adp/bkn/bkn-backend/server/interfaces/action_type.go",
+        "status": "modified"
+      },
+      {
+        "name": "adp/bkn/bkn-backend/server/interfaces/action_type_access.go",
+        "status": "modified"
+      },
+      {
+        "name": "adp/bkn/bkn-backend/server/interfaces/aliases.go",
+        "status": "added"
+      },
+      {
+        "name": "adp/bkn/bkn-backend/server/interfaces/aliases_test.go",
+        "status": "added"
+      },
+      {
+        "name": "adp/bkn/bkn-backend/server/interfaces/mock/mock_action_type_access.go",
+        "status": "modified"
+      },
+      {
+        "name": "adp/bkn/bkn-backend/server/interfaces/mock/mock_object_type_access.go",
+        "status": "modified"
+      },
+      {
+        "name": "adp/bkn/bkn-backend/server/interfaces/object_type.go",
+        "status": "modified"
+      },
+      {
+        "name": "adp/bkn/bkn-backend/server/interfaces/object_type_access.go",
+        "status": "modified"
+      },
+      {
+        "name": "adp/bkn/bkn-backend/server/locale/action_type.en-US.toml",
+        "status": "modified"
+      },
+      {
+        "name": "adp/bkn/bkn-backend/server/locale/action_type.zh-CN.toml",
+        "status": "modified"
+      },
+      {
+        "name": "adp/bkn/bkn-backend/server/locale/object_type.en-US.toml",
+        "status": "modified"
+      },
+      {
+        "name": "adp/bkn/bkn-backend/server/locale/object_type.zh-CN.toml",
+        "status": "modified"
+      },
+      {
+        "name": "adp/bkn/bkn-backend/server/logics/action_type/action_type_service.go",
+        "status": "modified"
+      },
+      {
+        "name": "adp/bkn/bkn-backend/server/logics/action_type/action_type_service_test.go",
+        "status": "modified"
+      },
+      {
+        "name": "adp/bkn/bkn-backend/server/logics/action_type/declarations.go",
+        "status": "added"
+      },
+      {
+        "name": "adp/bkn/bkn-backend/server/logics/action_type/declarations_test.go",
+        "status": "added"
+      },
+      {
+        "name": "adp/bkn/bkn-backend/server/logics/aliases.go",
+        "status": "added"
+      },
+      {
+        "name": "adp/bkn/bkn-backend/server/logics/aliases_test.go",
+        "status": "added"
+      },
+      {
+        "name": "adp/bkn/bkn-backend/server/logics/bkn/bkn_service_test.go",
+        "status": "modified"
+      },
+      {
+        "name": "adp/bkn/bkn-backend/server/logics/bkn_convert.go",
+        "status": "modified"
+      },
+      {
+        "name": "adp/bkn/bkn-backend/server/logics/object_type/authorization_test.go",
+        "status": "modified"
+      },
+      {
+        "name": "adp/bkn/bkn-backend/server/logics/object_type/declarations.go",
+        "status": "modified"
+      },
+      {
+        "name": "adp/bkn/bkn-backend/server/logics/object_type/declarations_test.go",
+        "status": "modified"
+      },
+      {
+        "name": "adp/bkn/bkn-backend/server/logics/object_type/logic_metric_property_test.go",
+        "status": "modified"
+      },
+      {
+        "name": "adp/bkn/bkn-backend/server/logics/object_type/object_type_service.go",
+        "status": "modified"
+      },
+      {
+        "name": "adp/bkn/bkn-backend/server/logics/object_type/object_type_service_test.go",
+        "status": "modified"
+      },
+      {
+        "name": "adp/bkn/bkn-backend/server/logics/object_type/resource_enrichment_test.go",
+        "status": "modified"
+      },
+      {
+        "name": "adp/bkn/bkn-backend/server/logics/value_type/value_type_service.go",
+        "status": "modified"
+      },
+      {
+        "name": "adp/bkn/bkn-backend/server/logics/value_type/value_type_service_test.go",
+        "status": "modified"
+      },
+      {
+        "name": "adp/bkn/bkn-backend/server/worker/concept_syncer.go",
+        "status": "modified"
+      },
+      {
+        "name": "comm-go/README.md",
+        "status": "modified"
+      },
+      {
+        "name": "comm-go/go.mod",
+        "status": "modified"
+      },
+      {
+        "name": "comm-go/go.sum",
+        "status": "modified"
+      },
+      {
+        "name": "comm-go/i18n/i18n.go",
+        "status": "modified"
+      },
+      {
+        "name": "comm-go/i18n/i18n_test.go",
+        "status": "modified"
+      },
+      {
+        "name": "comm-go/i18n/language.go",
+        "status": "renamed"
+      },
+      {
+        "name": "comm-go/i18n/language_test.go",
+        "status": "renamed"
+      },
+      {
+        "name": "comm-go/i18n/public_errors_en_us.go",
+        "status": "added"
+      },
+      {
+        "name": "comm-go/i18n/public_errors_zh_cn.go",
+        "status": "added"
+      },
+      {
+        "name": "comm-go/rest/common_errors.go",
+        "status": "modified"
+      },
+      {
+        "name": "comm-go/rest/common_errors_test.go",
+        "status": "modified"
+      },
+      {
+        "name": "comm-go/rest/errors.go",
+        "status": "modified"
+      },
+      {
+        "name": "comm-go/rest/errors_test.go",
+        "status": "added"
+      },
+      {
+        "name": "comm-go/rest/http_client.go",
+        "status": "modified"
+      },
+      {
+        "name": "comm-go/rest/http_client_test.go",
+        "status": "modified"
+      },
+      {
+        "name": "comm-go/rest/locales/public-errors.en-US.toml",
+        "status": "removed"
+      },
+      {
+        "name": "comm-go/rest/locales/public-errors.zh-CN.toml",
+        "status": "removed"
+      },
+      {
+        "name": "comm-go/rest/server.go",
+        "status": "modified"
+      },
+      {
+        "name": "comm-go/rest/server_test.go",
+        "status": "modified"
+      },
+      {
+        "name": "docs/api/bkn/action-type.yaml",
+        "status": "modified"
+      },
+      {
+        "name": "docs/api/bkn/bkn.yaml",
+        "status": "modified"
+      },
+      {
+        "name": "docs/api/bkn/business-knowledge-network.yaml",
+        "status": "modified"
+      },
+      {
+        "name": "docs/api/bkn/concept-group.yaml",
+        "status": "modified"
+      },
+      {
+        "name": "docs/api/bkn/object-type.yaml",
+        "status": "modified"
+      },
+      {
+        "name": "migrations/bkn-agent/mariadb/0.2.1/09-seed-graph-explorer.sql",
+        "status": "modified"
+      },
+      {
+        "name": "migrations/bkn-agent/mariadb/0.2.1/init.sql",
+        "status": "modified"
+      }
+    ]
+  },
+  "dshMostRecentRelease": {
+    "tag": "dsh-v0.2.1-rc.2",
+    "publishedAt": "2026-10-17T08:16:33Z",
+    "prerelease": true
+  },
+  "foundryMostRecentRelease": {
+    "tag": "v0.2.0",
+    "publishedAt": "2026-10-16T07:21:25Z",
+    "prerelease": false
+  }
+}

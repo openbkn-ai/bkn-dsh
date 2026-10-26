@@ -1,0 +1,28 @@
+{
+  "stage": "local-preparation-only",
+  "branch": null,
+  "commit": null,
+  "ciRun": null,
+  "formalAcceptanceEligible": false,
+  "handoffFiles": 28,
+  "kitFiles": 25,
+  "kitFilesSha256": "8b3d1a6973637d8a6e2303354019b88d6f849986687fadb599684d15d2940933",
+  "handoffFilesSha256": "881184b66aea74b648e0f89d4c8785b8e9f90585565dc9dc6b38b0984bf4eee4",
+  "archivePath": "release/local-59/windows-host-backport-r1-preparation.tar.gz",
+  "archiveBytes": 526731,
+  "archiveSha256": "3639550bbbbfaf148c13c97567e5a45f71fe592f35537daeb54c17113378e983",
+  "inputVerification": "PASS",
+  "requireGuiExitCode": 2,
+  "guiGate": "BLOCKED as expected; old/rc3 NOT_BUILT",
+  "windowsProbeValidation": "node --check only; native Windows NOT_RUN",
+  "nodeContractTests": {
+    "pass": 5,
+    "fail": 0,
+    "scope": "new plan/receipt guards only; not GUI implementation or Host acceptance"
+  },
+  "sourceFunctionEvaluation": "official pure functions only, no prepare/sign/register/GUI invocation",
+  "newHostOrPlatformCalls": false,
+  "pushOrCI": false,
+  "handoffManifestEntries": 27,
+  "kitManifestEntries": 24
+}

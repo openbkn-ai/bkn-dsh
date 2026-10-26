@@ -1,0 +1,200 @@
+Window: "R34 B1 native Desktop protocol check — DeepSeek Harness", App: DeepSeek Harness.
+0 standard window R34 B1 native Desktop protocol check — DeepSeek Harness, Secondary Actions: Raise
+	1 container R34 B1 native Desktop protocol check — DeepSeek Harness
+		2 container
+			3 HTML content R34 B1 native Desktop protocol check — DeepSeek Harness, URL: dsh-app://app/
+				4 container
+					5 button Collapse sidebar
+					6 button New session
+					7 container Global panels
+						8 button Plugins
+						9 button Automation tasks
+					10 text Workspaces
+					11 button Search sessions
+					12 text field (settable) Search session names
+					13 button View options
+					14 button Add workspace
+					15 outline Sessions
+						16 row desktop-new
+							17 text desktop-new
+						18 row Default workspace
+							19 text Default workspace
+						20 container
+							21 row Ungrouped
+								22 text Ungrouped
+							23 row (selected) R34 B1 native Desktop protocol check now
+								24 text R34 B1 native Desktop protocol check now
+							25 row Completed R34 B1 native Desktop protocol check 6min
+								26 text Completed R34 B1 native Desktop protocol check 6min
+							27 row Completed R34_B1:0.2.1-rc.2:before 原生Desktop B 7min
+								28 text Completed R34_B1:0.2.1-rc.2:before 原生Desktop B 7min
+					29 button OpenBKN business knowledge networks
+					30 pop up button Account menu
+					31 container
+						32 container Session hierarchy
+							33 text R34 B1 native Desktop protocol check
+						34 text Standard mode
+						35 text 供应链本体知识网络-手工版
+						36 button Open in Finder
+						37 pop up button More ways to open
+						38 pop up button More actions
+						39 button Open right sidebar
+						40 tab group
+							41 tab (settable, integer) Chat, Value: 0
+							42 tab (selected) Trajectory, Value: 1
+					43 container
+						44 toolbar Trajectory toolbar
+							45 toggle button Description: Use actual duration, Value: 0
+							46 toggle button Description: Collapse turns, Value: 0
+							47 toggle button Description: Collapse calls, Value: 0
+							48 search text field (settable) Description: Search trajectory, Placeholder: Search
+						49 container Trajectory timeline
+							50 container Timeline overview; drag horizontally to focus events
+						51 container
+							52 table
+								53 row SYSTEM, Initial System Prompt
+									54 cell
+										55 text SYSTEM
+									56 cell
+										57 text Initial System Prompt
+								58 row USER, R34_B1:0.2.1-rc.2:after 原生Desktop B1只读协议检查。由本地测试驱动选择开始、精确产品查询、结束，不是模型G6题。
+									59 cell
+										60 container Turn 1
+										61 text USER
+									62 cell
+										63 text R34_B1:0.2.1-rc.2:after 原生Desktop B1只读协议检查。由本地测试驱动选择开始、精确产品查询、结束，不是模型G6题。
+								64 row CONTEXT, <system-reminder> The following workspace instructions may be relevant to your work. Use them as guidance when applicable. More specific instructions take precedence over broader ones. They do not override system, developer, or direct user instructions. Instructions from: AGENTS.md AGENTS.md 适用于本仓库内的 AI Agent 工作。 开始工作前阅读 CLAUDE.md，遵循其中的构建、兼容性、验证与发布规则；用户在当前会话中的明确指令优先。 插件迭代、问题诊断和发布评审必须执行 CLAUDE.md 的 Upstream contracts and test maintenance 规则，同时检查 DSH 宿主和 OpenBKN 平台的变化。 测试、fixture、评测集及验证脚本必须随上游契约更新；测试
+									65 cell
+										66 text CONTEXT
+									67 cell
+										68 text <system-reminder> The following workspace instructions may be relevant to your work. Use them as guidance when applicable. More specific instructions take precedence over broader ones. They do not override system, developer, or direct user instructions. Instructions from: AGENTS.md AGENTS.md 适用于本仓库内的 AI Agent 工作。 开始工作前阅读 CLAUDE.md，遵循其中的构建、兼容性、验证与发布规则；用户在当前会话中的明确指令优先。 插件迭代、问题诊断和发布评审必须执行 CLAUDE.md 的 Upstream contracts and test maintenance 规则，同时检查 DSH 宿主和 OpenBKN 平台的变化。 测试、fixture、评测集及验证脚本必须随上游契约更新；测试通过不能替代对最新
+								69 row CONTEXT, Current runtime context. This snapshot supersedes earlier runtime-context snapshots. Current working directory: "/Users/dominiczhang/Documents/project/app/openBKN/bkn-dsh/release/local-32/workspaces/desktop-new". Current DSH file policy: workspace-write. Any available operation enforced by the DSH file sandbox may modify files under the session workspace: "/Users/dominiczhang/Documents/project/app/openBKN/bkn-dsh/release/local-32/workspaces/desktop-new". Some platform temporary areas may also be wr
+									70 cell
+										71 text CONTEXT
+									72 cell
+										73 text Current runtime context. This snapshot supersedes earlier runtime-context snapshots. Current working directory: "/Users/dominiczhang/Documents/project/app/openBKN/bkn-dsh/release/local-32/workspaces/desktop-new". Current DSH file policy: workspace-write. Any available operation enforced by the DSH file sandbox may modify files under the session workspace: "/Users/dominiczhang/Documents/project/app/openBKN/bkn-dsh/release/local-32/workspaces/desktop-new". Some platform temporary areas may also be writable. A
+								74 row CONTEXT, <system-reminder> A skill is a reusable set of task-specific instructions. The following skills are available in this session: <available_skills> agent-reach: MUST USE when user wants to 调研/research/搜索/search/查/找/look up anything on the internet — e.g. 全网调研 X / 帮我调研一下 X / 查一下 X / 搜搜 X / 看看大家怎么评价 X / X 上有什么讨论 / research this topic。 Also MUST USE when user mentions any platform or shares any URL/链接: 小红书/xiaohongshu/xhs, Twitter/推特/X, B站/bilibili, Reddit, V2EX, LinkedIn/领英/招聘/求职/jobs, YouTube, GitHub 
+									75 cell
+										76 text CONTEXT
+									77 cell
+										78 text <system-reminder> A skill is a reusable set of task-specific instructions. The following skills are available in this session: <available_skills> agent-reach: MUST USE when user wants to 调研/research/搜索/search/查/找/look up anything on the internet — e.g. 全网调研 X / 帮我调研一下 X / 查一下 X / 搜搜 X / 看看大家怎么评价 X / X 上有什么讨论 / research this topic。 Also MUST USE when user mentions any platform or shares any URL/链接: 小红书/xiaohongshu/xhs, Twitter/推特/X, B站/bilibili, Reddit, V2EX, LinkedIn/领英/招聘/求职/jobs, YouTube, GitHub code sear
+								79 row CONTEXT, Time sampled while preparing turn 1, step 1: 2026-10-21T20:45:24+08:00[Asia/Taipei] Browser time zone for this request: Asia/Taipei. Interpret otherwise-unqualified dates and times in this zone. Elapsed since the preceding model-visible message: unavailable.
+									80 cell
+										81 text CONTEXT
+									82 cell
+										83 text Time sampled while preparing turn 1, step 1: 2026-10-21T20:45:24+08:00[Asia/Taipei] Browser time zone for this request: Asia/Taipei. Interpret otherwise-unqualified dates and times in this zone. Elapsed since the preceding model-visible message: unavailable.
+								84 row Request 1, ASSISTANT, (tool call only)
+									85 cell
+										86 toggle button Description: Request #1, Value: 0
+											87 text Request #1
+										88 text ASSISTANT
+									89 cell
+										90 text (tool call only)
+								91 row TOOL, mcp__openbkn__bkn_start_interaction {"conversation_mode":"new","question":"R34_B1:0.2.1-rc.2:after","agent_name":"bkn-agent-dsh-business-context"}
+									92 cell
+										93 text TOOL
+									94 cell
+										95 container mcp__openbkn__bkn_start_interaction {"conversation_mode":"new","question":"R34_B1:0.2.1-rc.2:after","agent_name":"bkn-agent-dsh-business-context"} → error
+											96 text mcp__openbkn__bkn_start_interaction {"conversation_mode":"new","question":"R34_B1:0.2.1-rc.2:after","agent_name":"bkn-agent-dsh-business-context"} → error
+								97 row Request 2, ASSISTANT, B1 协议检查记录：原生 MCP 开始工具返回 Public.Unauthorized / token is invalid，未执行后续业务查询。
+									98 cell
+										99 toggle button Description: Request #2, Value: 0
+											100 text Request #2
+										101 text ASSISTANT
+									102 cell
+										103 text B1 协议检查记录：原生 MCP 开始工具返回 Public.Unauthorized / token is invalid，未执行后续业务查询。
+							104 container Event details
+								105 splitter Description: Resize event details, Help: Drag to resize. Double-click to reset., Value: 50
+								106 text TOOL Turn 1 · Step 1
+								107 button Close details
+								108 tab group Event details
+									109 tab (selected) Summary, Value: 1
+									110 tab (settable, integer) Payload, Value: 0
+									111 tab (settable, integer) Result, Value: 0
+									112 tab (settable, integer) Schema, Value: 0
+									113 tab (settable, integer) Timing, Value: 0
+								114 container Summary
+									115 definition list
+										116 container Hierarchy
+											117 text Hierarchy
+										118 button Assistant Message
+										119 container Status
+											120 text Status
+										121 text Failed
+									122 container
+										123 heading Payload, Value: 3
+											124 button Payload
+										125 container
+											126 text {
+											127 outline Payload JSON
+												128 row conversation_mode:"new",
+													129 container
+														130 text conversation_mode : "new" ,
+												131 row question:"R34_B1:0.2.1-rc.2:after",
+													132 container
+														133 text question : "R34_B1:0.2.1-rc.2:after" ,
+												134 row agent_name:"bkn-agent-dsh-business-context"
+													135 container
+														136 text agent_name : "bkn-agent-dsh-business-context"
+											137 text }
+									138 container
+										139 heading Result, Value: 3
+											140 button Result
+										141 text error
+										142 text Error: Error POSTing to endpoint: {"code":"Public.Unauthorized","description":"认证失败","solution":"请联系管理员","link":"无","details":"token is invalid"}
+									143 container
+										144 heading Schema, Value: 3
+											145 button Schema
+										146 container
+											147 heading mcp__openbkn__bkn_start_interaction, Value: 3
+												148 text mcp__openbkn__bkn_start_interaction
+											149 text 为当前用户问题开始一次受管 Interaction。传入完整问题、当前 Agent 名称和 conversation_mode：没有当前受管 Conversation 时用 new 且不传 conversation_id；否则用 continue 并传入上次返回的 conversation_id。宿主提供会话映射时，以其为准。返回本轮 bkn_context 所需的两个 ID。
+										150 container
+											151 heading Parameters, Value: 4
+												152 text Parameters
+											153 text {
+											154 outline mcp__openbkn__bkn_start_interaction parameters JSON
+												155 row type:"object",
+													156 container
+														157 text type : "object" ,
+												158 row Expand properties:{agent_name: {description: "The current Agent's stable name. Provide the same value on every call in the same conversation_id.", maxLength: 128, minLength: 1, type: "string"}, conversation_id: {description: "For continue, copy the conversation_id returned by start. Omit for new. A host mapping is authoritative.", minLength: 1, type: "string"}, conversation_mode: {description: "Use new without conversation_id if no managed Conversation exists; otherwise continue with the ID returned by star
+													159 button Expand
+													160 container
+														161 text properties :
+													162 text { agent_name :  { description :  "The current Agent's stable name. Provide the same value on every call in the same conversation_id." ,  maxLength :  128 ,  minLength :  1 ,  type :  "string" } ,  conversation_id :  { description :  "For continue, copy the conversation_id returned by start. Omit for new. A host mapping is authoritative." ,  minLength :  1 ,  type :  "string" } ,  conversation_mode :  { description :  "Use new without conversation_id if no managed Conversation exists; otherwise continue with the ID returned by start." ,  enum :  [ … ] ,  type :  "string" } ,  question :  { description :  "Use the user's question for this turn." ,  minLength :  1 ,  type :  "string" } } ,
+												163 row Expand required:["conversation_mode", "question", "agent_name"],
+													164 button Expand
+													165 container
+														166 text required :
+													167 text [ "conversation_mode" ,  "question" ,  "agent_name" ] ,
+												168 row additionalProperties:false
+													169 text additionalProperties : false
+											170 text }
+									171 container
+										172 heading Timing, Value: 3
+											173 button Timing
+										174 definition list
+											175 container Started
+												176 text Started
+											177 button 2026-10-21 20:45:24.199, Help: Show Unix timestamp
+											178 container Duration
+												179 text Duration
+											180 text 206 ms
+						181 container
+							182 text entry area (settable) Message or run a task, / commands, @ files or sessions
+							183 pop up button Add files or run commands
+							184 button Access mode, current: Workspace Write
+							185 pop up button Select model, current LOCAL B1 PROTOCOL - no Sandbox
+							186 button (disabled) Send message
+						187 pop up button 1 turns 2 steps
+						188 pop up button 0% of context used
+	189 close button
+	190 full screen button Help: this button also has an action to zoom the window, Secondary Actions: zoom the window
+	191 minimize button
+192 menu bar
+	193 DeepSeek Harness
+	194 File
+	195 Edit
+	196 Window
+
+The focused UI element is 91 row TOOL, mcp__openbkn__bkn_start_interaction {"conversation_mode":"new","question":"R34_B1:0.2.1-rc.2:after","agent_name":"bkn-agent-dsh-business-context"}

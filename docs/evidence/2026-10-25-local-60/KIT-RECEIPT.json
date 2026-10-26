@@ -1,0 +1,33 @@
+{
+  "kind": "local-development-preacceptance",
+  "ciRun": null,
+  "formalAcceptanceEligible": false,
+  "newRemoteCommit": null,
+  "newRemoteBranch": null,
+  "localOnly": true,
+  "handoffPath": "docs/handoff/2026-10-25-021-host-backport-windows-r2-nongui",
+  "kitManifestSha256": "19e2715b0a88c2989b845466a49f354dd15fb2e2be69c89f57b50e1f21137de5",
+  "kitManifestEntries": 20,
+  "handoffManifestSha256": "8757981cec9e1524f71c19065d3b0852e7a6b575cb17ff10a9238c0a15162e3c",
+  "handoffManifestEntries": 22,
+  "localArchive": "release/local-60/windows-host-backport-r2-nongui-preparation.tar.gz",
+  "localArchiveSha256": "6f2d94d9d3777bd4c90020ff3ecd778773eda1da5f0e5ee2b33dc8cb8b72835f",
+  "localArchiveBytes": 305593,
+  "frozenPlugin32Sha256": "46626510825fe9146aef12c27a1724acbb455aeac22aa600358add0fc8e1c9f8",
+  "removedPrerequisites": [
+    "independent GUI",
+    "production signing",
+    "W-LIFE",
+    "daily Chrome identity",
+    "real CLI login"
+  ],
+  "windowsRuntimeIncluded": false,
+  "windowsNativeExecution": "NOT_RUN",
+  "localValidation": "New input verifier syntax, no-GUI positive, changed-input refusal and in-kit receipt refusal; no passed semantic suites repeated",
+  "unchangedFilesReused": [
+    "windows-native-mcp-probe.mjs",
+    "portable-tar.mjs",
+    "profile-closure.mjs",
+    "frozen -32 and both MCP payloads"
+  ]
+}

@@ -1,0 +1,68 @@
+{
+  "checked_at": "2026-10-20T04:15:42.526883+00:00",
+  "fault_stage": {
+    "started_at": "2026-10-20T04:12:05.757124+00:00",
+    "healthy_proxy_verified_before_fault": true,
+    "workspace_binding_verified_in_both_UIs": true,
+    "fault": "Destroy only requests at the task-owned HTTPS forwarding endpoint; original platform and model gateway remain running",
+    "counts_before": {
+      "checked_at": "2026-10-20T04:11:39.547Z",
+      "forwarded": 51,
+      "faulted": 0,
+      "upstream_errors": 0
+    },
+    "fault_removed_at": "2026-10-20T04:13:32.254127+00:00",
+    "counts_at_fault_removal": {
+      "checked_at": "2026-10-20T04:12:12.245Z",
+      "forwarded": 51,
+      "faulted": 2,
+      "upstream_errors": 0
+    }
+  },
+  "original_platform_TLS_HTTPS_root": 302,
+  "root_302_means_reachability_only": true,
+  "records": [
+    {
+      "host": "0.2.0-rc.2",
+      "case_id": "platform-unreachable",
+      "native_session_id": "session-f54b2920-9629-4939-8c48-fd0f5f8db5be",
+      "setup_session_created_before_fault": true,
+      "failure_turn_submitted_after_fault_enabled": true,
+      "failure_turn": 1,
+      "failure_end": "error",
+      "failure_model_tool_calls": 0,
+      "connection_error_visible": true,
+      "business_data_returned_in_failure": false,
+      "UI_screenshot": "old-platform-unreachable.png",
+      "network_list_recovered_in_UI_without_server_restart": true,
+      "same_session_recovery_turn": 2,
+      "same_session_recovery_end": "completed",
+      "recovery_tool_calls": 0,
+      "recovery_models": [
+        "deepseek-flash"
+      ],
+      "recovery_answer": "你好！我是当前绑定在「供应链本体知识网络-手工版」（kn_id: `supply_ontology_hand`）上的助手。\n\n我可以帮你做这些事：\n\n- **查数据结构**：这个网络里有哪些对象类、关系、指标、规则和已发布的能力（函数 / 技能）\n- **查数据**：按条件查询对象实例、沿关系拉子图、探索多跳关联\n- **算指标**：按已建模的指标口径取数，支持拆维度和时间序列\n- **读技能 / 调工具**：读取挂载的技能文档，或调用已发布的函数工具\n\n告诉我你想了解什么，比如「供应链网络里有哪些对象类」或者「查一下某个订单相关的上下游信息」，我直接帮你查。"
+    },
+    {
+      "host": "0.2.1-rc.2",
+      "case_id": "platform-unreachable",
+      "native_session_id": "session-5a59f29a-3a12-45e0-8eb4-6bacdcfdd703",
+      "setup_session_created_before_fault": true,
+      "failure_turn_submitted_after_fault_enabled": true,
+      "failure_turn": 1,
+      "failure_end": "error",
+      "failure_model_tool_calls": 0,
+      "connection_error_visible": true,
+      "business_data_returned_in_failure": false,
+      "UI_screenshot": "new-platform-unreachable.png",
+      "network_list_recovered_in_UI_without_server_restart": true,
+      "same_session_recovery_turn": 2,
+      "same_session_recovery_end": "completed",
+      "recovery_tool_calls": 0,
+      "recovery_models": [
+        "deepseek-flash"
+      ],
+      "recovery_answer": "你好！我是 DSH 助手，本次会话已绑定知识网络「供应链本体知识网络-手工版」（kn_id: `supply_ontology_hand`）。\n\n我可以帮你围绕这个知识网络做这些事，比如：\n\n- 查看它包含哪些对象类、关系类、指标和行动\n- 查询具体对象实例（供应商、物料、订单等业务数据）\n- 按已建模的指标口径取数、计算或拆维度\n- 沿关系路径探索实例子图\n- 调用该网络已挂载的已发布能力（函数工具、MCP 工具、技能文档）\n\n你想了解或查询什么？直接告诉我业务问题即可。"
+    }
+  ]
+}

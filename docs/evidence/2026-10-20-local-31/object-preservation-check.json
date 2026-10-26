@@ -1,0 +1,62 @@
+{
+  "checked_at": "2026-10-20T06:15:29.343Z",
+  "checks": [
+    {
+      "id": "supply_ontology_hand_inventory",
+      "only_comment_and_update_time_changes": true,
+      "allowed_property_comments": [],
+      "logic_properties_preserved": true,
+      "logic_property_count": 2,
+      "other_fields_exactly_preserved": true
+    },
+    {
+      "id": "supply_ontology_hand_salesorder",
+      "only_comment_and_update_time_changes": true,
+      "allowed_property_comments": [
+        "customer_name"
+      ],
+      "logic_properties_preserved": true,
+      "logic_property_count": 1,
+      "other_fields_exactly_preserved": true
+    },
+    {
+      "id": "supply_ontology_hand_bom",
+      "only_comment_and_update_time_changes": true,
+      "allowed_property_comments": [
+        "bom_level",
+        "material_code"
+      ],
+      "logic_properties_preserved": true,
+      "logic_property_count": 0,
+      "other_fields_exactly_preserved": true
+    },
+    {
+      "id": "supply_ontology_hand_material",
+      "only_comment_and_update_time_changes": true,
+      "allowed_property_comments": [
+        "product_fixedleadtime",
+        "purchase_fixedleadtime"
+      ],
+      "logic_properties_preserved": true,
+      "logic_property_count": 1,
+      "other_fields_exactly_preserved": true
+    },
+    {
+      "id": "supply_ontology_hand_pr",
+      "only_comment_and_update_time_changes": true,
+      "allowed_property_comments": [],
+      "logic_properties_preserved": true,
+      "logic_property_count": 0,
+      "other_fields_exactly_preserved": true
+    },
+    {
+      "id": "supply_ontology_hand_po",
+      "only_comment_and_update_time_changes": true,
+      "allowed_property_comments": [],
+      "logic_properties_preserved": true,
+      "logic_property_count": 0,
+      "other_fields_exactly_preserved": true
+    }
+  ],
+  "passed": true
+}

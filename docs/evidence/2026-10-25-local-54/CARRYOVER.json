@@ -1,0 +1,75 @@
+{
+  "source31Frozen": true,
+  "copiedFiles": [
+    {
+      "path": "packages/openbkn-business-context/src/client/OpenBknDiagnostics.tsx",
+      "mainBeforeSha256": "30b19ebf3697aa690b344a1f95eea8231609e0d3b73aeb2c4ded2a8cf3f5894c",
+      "source31Sha256": "67f31d478918b5b5c865623a1ce282e18df03847e307dfbf1f3946a54d89159c",
+      "baseline49Value": "30b19ebf3697aa690b344a1f95eea8231609e0d3b73aeb2c4ded2a8cf3f5894c",
+      "matchesBaseline": true,
+      "copiedTo32": true
+    },
+    {
+      "path": "packages/openbkn-business-context/src/client/OpenBknOverlay.tsx",
+      "mainBeforeSha256": "68280330e1e95d6f68f726e1c3b05a72c75b8f1302720fcdfaa1d52968bfb0e1",
+      "source31Sha256": "7fc04aefaee87e378c24ce05ae83a7b969f7def1e1cffc48b5fe4bf25894374b",
+      "baseline49Value": "68280330e1e95d6f68f726e1c3b05a72c75b8f1302720fcdfaa1d52968bfb0e1",
+      "matchesBaseline": true,
+      "copiedTo32": true
+    },
+    {
+      "path": "packages/openbkn-business-context/src/client/ProvenanceOverlay.tsx",
+      "mainBeforeSha256": "4e2e969e9570bdcde457ca088d0a4572d8866bd6d7bd8b9dd18ef779b109c81a",
+      "source31Sha256": "4ce1ce36b6541eeb8cc950fb8e2d1bbe747f8b6b7bef9ae094bbdc5631af1f60",
+      "baseline49Value": "4e2e969e9570bdcde457ca088d0a4572d8866bd6d7bd8b9dd18ef779b109c81a",
+      "matchesBaseline": true,
+      "copiedTo32": true
+    },
+    {
+      "path": "packages/openbkn-business-context/src/client/locales.ts",
+      "mainBeforeSha256": "2421233b5a6b1024e9e707e6b269a06532c087979d355e771386792979f4bdc7",
+      "source31Sha256": "0f2261899f9f99f606818664f091c4045feaaa1741939fafe931af4367a8f92c",
+      "baseline49Value": "2421233b5a6b1024e9e707e6b269a06532c087979d355e771386792979f4bdc7",
+      "matchesBaseline": true,
+      "copiedTo32": true
+    },
+    {
+      "path": "packages/openbkn-business-context/src/client/use-dialog-focus.ts",
+      "mainBeforeSha256": "50a42f25dfb166cf8a0e87982c9544e2324f3021994191bef2684a66903055e0",
+      "source31Sha256": "8d9908b694848aa998318e9aa3d868cf9dea7e44e7861cde4cba278c3891d9a8",
+      "baseline49Value": "50a42f25dfb166cf8a0e87982c9544e2324f3021994191bef2684a66903055e0",
+      "matchesBaseline": true,
+      "copiedTo32": true
+    },
+    {
+      "path": "packages/openbkn-business-context/tests/dialog-focus.test.ts",
+      "mainBeforeSha256": "daa315e73814e558b749cad9fbc4af13f79c6ef620bd5261a2e917a02f8c0a94",
+      "source31Sha256": "894fbc2f619353db72a7871d9cff5d1ae672ff4af6363a7bd4e30fdf65a6df44",
+      "baseline49Value": "daa315e73814e558b749cad9fbc4af13f79c6ef620bd5261a2e917a02f8c0a94",
+      "matchesBaseline": true,
+      "copiedTo32": true
+    },
+    {
+      "path": "packages/openbkn-business-context/tests/ui-followup.test.ts",
+      "mainBeforeSha256": null,
+      "source31Sha256": "0beb440dd379859982a15957db5c49148bdb2d4fdac2a97403ce6b05b88b535a",
+      "baseline49Value": null,
+      "matchesBaseline": null,
+      "copiedTo32": true
+    }
+  ],
+  "allSourceFilesCompared": 68,
+  "allSourceFilesByteIdentical31": true,
+  "rc3ProbeRetained": true,
+  "features": [
+    "five reference-label translations retain original ids and platform status",
+    "passive diagnostic observation-age notice leaves JSON untouched",
+    "caption and sign-in normal-text contrast",
+    "dialog focus and owned Escape propagation"
+  ],
+  "excludedChanges": [
+    "login lifecycle and runner policy",
+    "business calculations and answer arbitration",
+    "Host security backport deployment"
+  ]
+}

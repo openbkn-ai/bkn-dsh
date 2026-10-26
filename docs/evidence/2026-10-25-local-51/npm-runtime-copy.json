@@ -1,0 +1,26 @@
+[
+  {
+    "key": "npm-old",
+    "excludedLegacyRootPlugin": "0.2.0-rc.2-openbkn.0.2.0-27",
+    "changedOnlyTaskRootMetadata": [
+      "package.json",
+      "package-lock.json",
+      "node_modules/.package-lock.json"
+    ],
+    "allOtherExistingRuntimeFilesByteMatched": 27524,
+    "officialHostOrDependencyCodeChanged": false,
+    "priorRuntimeChanged": false
+  },
+  {
+    "key": "npm-new",
+    "excludedLegacyRootPlugin": "0.2.0-rc.2-openbkn.0.2.0-27",
+    "changedOnlyTaskRootMetadata": [
+      "package.json",
+      "package-lock.json",
+      "node_modules/.package-lock.json"
+    ],
+    "allOtherExistingRuntimeFilesByteMatched": 28464,
+    "officialHostOrDependencyCodeChanged": false,
+    "priorRuntimeChanged": false
+  }
+]

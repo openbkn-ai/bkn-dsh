@@ -1,0 +1,18 @@
+ℹ entry: src/index.ts
+
+ WARN  `external` is deprecated. Use `deps.neverBundle` instead.
+
+ℹ Build start
+ℹ Cleaning 1 files
+ℹ lib/index.js  35.88 kB │ gzip: 11.58 kB
+ℹ 1 files, total: 35.88 kB
+✔ Build complete in 12ms
+ℹ entry: src/index.ts
+
+ WARN  `external` is deprecated. Use `deps.neverBundle` instead.
+
+ℹ Build start
+ℹ lib/index.js  35.88 kB │ gzip: 11.58 kB
+ℹ 1 files, total: 35.88 kB
+✔ Build complete in 6ms
+[{"host":"old","originalVersion":"0.2.0-rc.2","sourcePatchAppliedOnlyToNewMiniTree":true,"entrySha256":"b3cd7156c0b8639656ce117530fec4d006b74cafdc9a78ac426fec084e62972c","compilerVersion":"0.22.14","compiledHelperBundled":true,"licenseDeclared":true,"folder":"<REPO>/release/local-53/source-build/old/packages/mcp/mcp-client","fullHostBuilt":false,"officialArtifact":false},{"host":"rc3","originalVersion":"0.2.1-rc.3","sourcePatchAppliedOnlyToNewMiniTree":true,"entrySha256":"b3cd7156c0b8639656ce117530fec4d006b74cafdc9a78ac426fec084e62972c","compilerVersion":"0.22.14","compiledHelperBundled":true,"licenseDeclared":true,"folder":"<REPO>/release/local-53/source-build/rc3/packages/mcp/mcp-client","fullHostBuilt":false,"officialArtifact":false}]

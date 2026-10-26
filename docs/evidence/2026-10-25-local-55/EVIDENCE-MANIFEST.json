@@ -1,0 +1,17 @@
+{
+  "kind": "local-development-preacceptance",
+  "ciRun": null,
+  "formalAcceptanceEligible": false,
+  "files": {
+    "CLIENT-DELTA.patch": "1f6efe3404aadf7761b5a1ce6da639ea95387ca0ec66b096caa79bf09d0916fb",
+    "CONSOLIDATED-MATRIX.json": "5c1ae009962b3621dea7a8967c74dd949bfeb935fe88623ec2b5cc8a116bb03e",
+    "CONTRAST-MEASUREMENTS-NORMALIZED.json": "94f083f1c368967dc0488e506c57059ae136dbd6d6a32ae1ffc43fb1b9a35c58",
+    "PRESERVATION.json": "4284af76bfdf28d1de8d1a1bf80ae99e49456eaac5c58ae4652c2b8bf2e9b44f",
+    "REMOTE-VERIFICATION.json": "d80097acf7ab9d81d41bce693e4a12d6ff607e31af527aae8cb6892efd8137d1",
+    "RESULTS.md": "2a51ec163fea36a567b16ea5315787f5cdfc91a04170ab928a46a4f9f54da4f8",
+    "UPSTREAM-STATE.json": "e4100c56a7b631fa0e44456df4829ee89cd02326124cacc4d60298f1e04546ea",
+    "WINDOWS-GAPS.md": "42a559386b76577f0e94a589c4e2e0e2379492ea3d82a5e077f5e30aa8fc1c6e"
+  },
+  "secretPatternScanMatches": 0,
+  "scanBoundary": "JWT, literal bearer credential and structured token/secret assignments only"
+}

@@ -1,0 +1,118 @@
+{
+  "scope": "isolated copied DSH MCP package and actual Cordis/ToolRuntime; synthetic MCP; no complete Desktop/browser/platform/CLI",
+  "rows": [
+    {
+      "host": "old",
+      "endpoint": "/mcp",
+      "expectedRejection": false,
+      "rejected": false,
+      "toolRegisteredCalledAndDisposed": true,
+      "secondOriginRequests": 0,
+      "result": "PASS"
+    },
+    {
+      "host": "old",
+      "endpoint": "/same/307",
+      "expectedRejection": false,
+      "rejected": false,
+      "toolRegisteredCalledAndDisposed": true,
+      "secondOriginRequests": 0,
+      "result": "PASS"
+    },
+    {
+      "host": "old",
+      "endpoint": "/same/308",
+      "expectedRejection": false,
+      "rejected": false,
+      "toolRegisteredCalledAndDisposed": true,
+      "secondOriginRequests": 0,
+      "result": "PASS"
+    },
+    {
+      "host": "old",
+      "endpoint": "/same/302",
+      "expectedRejection": true,
+      "rejected": true,
+      "toolRegisteredCalledAndDisposed": false,
+      "secondOriginRequests": 0,
+      "result": "PASS"
+    },
+    {
+      "host": "old",
+      "endpoint": "/cross/307",
+      "expectedRejection": true,
+      "rejected": true,
+      "toolRegisteredCalledAndDisposed": false,
+      "secondOriginRequests": 0,
+      "result": "PASS"
+    },
+    {
+      "host": "old",
+      "endpoint": "/unauthorized",
+      "expectedRejection": true,
+      "rejected": true,
+      "toolRegisteredCalledAndDisposed": false,
+      "secondOriginRequests": 0,
+      "result": "PASS"
+    },
+    {
+      "host": "rc3",
+      "endpoint": "/mcp",
+      "expectedRejection": false,
+      "rejected": false,
+      "toolRegisteredCalledAndDisposed": true,
+      "secondOriginRequests": 0,
+      "result": "PASS"
+    },
+    {
+      "host": "rc3",
+      "endpoint": "/same/307",
+      "expectedRejection": false,
+      "rejected": false,
+      "toolRegisteredCalledAndDisposed": true,
+      "secondOriginRequests": 0,
+      "result": "PASS"
+    },
+    {
+      "host": "rc3",
+      "endpoint": "/same/308",
+      "expectedRejection": false,
+      "rejected": false,
+      "toolRegisteredCalledAndDisposed": true,
+      "secondOriginRequests": 0,
+      "result": "PASS"
+    },
+    {
+      "host": "rc3",
+      "endpoint": "/same/302",
+      "expectedRejection": true,
+      "rejected": true,
+      "toolRegisteredCalledAndDisposed": false,
+      "secondOriginRequests": 0,
+      "result": "PASS"
+    },
+    {
+      "host": "rc3",
+      "endpoint": "/cross/307",
+      "expectedRejection": true,
+      "rejected": true,
+      "toolRegisteredCalledAndDisposed": false,
+      "secondOriginRequests": 0,
+      "result": "PASS"
+    },
+    {
+      "host": "rc3",
+      "endpoint": "/unauthorized",
+      "expectedRejection": true,
+      "rejected": true,
+      "toolRegisteredCalledAndDisposed": false,
+      "secondOriginRequests": 0,
+      "result": "PASS"
+    }
+  ],
+  "ports": [
+    "53931",
+    "53932"
+  ],
+  "serversClosed": true
+}

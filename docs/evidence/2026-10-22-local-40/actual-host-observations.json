@@ -1,0 +1,86 @@
+[
+  {
+    "key": "desktop-old",
+    "at": "2026-10-22T05:36:22.320Z",
+    "pid": 70080,
+    "node": "v24.18.1",
+    "pluginVersion": "0.2.0-rc.2-openbkn.0.2.0-30",
+    "packages": [
+      {
+        "name": "@deepseek-ai/cordis",
+        "version": "4.0.4",
+        "samePhysicalPackage": true
+      },
+      {
+        "name": "@deepseek-ai/schemastery",
+        "version": "3.18.4",
+        "samePhysicalPackage": true
+      }
+    ],
+    "officialResolver": true,
+    "readOnlyObserver": true
+  },
+  {
+    "key": "desktop-new",
+    "at": "2026-10-22T05:40:24.251Z",
+    "pid": 70885,
+    "node": "v24.21.0",
+    "pluginVersion": "0.2.0-rc.2-openbkn.0.2.0-30",
+    "packages": [
+      {
+        "name": "@deepseek-ai/cordis",
+        "version": "4.0.5",
+        "samePhysicalPackage": true
+      },
+      {
+        "name": "@deepseek-ai/schemastery",
+        "version": "3.18.5",
+        "samePhysicalPackage": true
+      }
+    ],
+    "officialResolver": true,
+    "readOnlyObserver": true
+  },
+  {
+    "key": "npm-old",
+    "at": "2026-10-22T05:36:22.628Z",
+    "pid": 70082,
+    "node": "v24.19.0",
+    "pluginVersion": "0.2.0-rc.2-openbkn.0.2.0-30",
+    "packages": [
+      {
+        "name": "@deepseek-ai/cordis",
+        "version": "4.0.4",
+        "samePhysicalPackage": true
+      },
+      {
+        "name": "@deepseek-ai/schemastery",
+        "version": "3.18.4",
+        "samePhysicalPackage": true
+      }
+    ],
+    "officialResolver": true,
+    "readOnlyObserver": true
+  },
+  {
+    "key": "npm-new",
+    "at": "2026-10-22T05:36:22.871Z",
+    "pid": 70081,
+    "node": "v24.19.0",
+    "pluginVersion": "0.2.0-rc.2-openbkn.0.2.0-30",
+    "packages": [
+      {
+        "name": "@deepseek-ai/cordis",
+        "version": "4.0.5",
+        "samePhysicalPackage": true
+      },
+      {
+        "name": "@deepseek-ai/schemastery",
+        "version": "3.18.5",
+        "samePhysicalPackage": true
+      }
+    ],
+    "officialResolver": true,
+    "readOnlyObserver": true
+  }
+]

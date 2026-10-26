@@ -6,17 +6,23 @@
 
 把经过治理的企业业务知识带入 DeepSeek Harness 会话。
 
-## -12 浮层关闭后的恢复
+## 0.2.1 版本与兼容范围
 
-`0.2.0-rc.2-openbkn.0.2.0-12` 在 Desktop 关闭浮层、切换宿主语言后，保留设置草稿、校验错误、网络搜索、诊断报告和同一回合的溯源状态。已启动的 CLI 登录继续等待，不会自动弹回面板；“返回网络目录”可不保存草稿就返回。另修正中文溯源引用标签和深色宿主下浮层的文字可读性。认证、访问治理和业务语义仍由 Host 负责。
+本线发布版本为 `0.2.1-rc.3-openbkn.0.2.1`，兼容目标为官方 DSH `0.2.0-rc.2` 与 `0.2.1-rc.3`。版本串中的 OpenBKN `0.2.1` 为维护者指定的版本标识；当前实际平台证据来自保留的正式 OpenBKN `0.2.0` 与 CLI `0.2.0`，不声明已在尚未发布的 OpenBKN `0.2.1` 平台验收。具体测试覆盖和已知限制以对应 GitHub Release 的验收记录为准。
 
-验收使用对应版本复核包内的精确 `.tgz`，核对 `pins.json`；不以 `latest` 或其他候选代替。Desktop 和 npm/Web 分别在官方 DSH `0.2.0-rc.2` 上复核。验收期间不发布 npm、不改任何 dist-tag。注册表是否已发布及标签指向与包内版本是不同事实，本段不宣称 -12 已发布或 Windows 已通过。
+#105 同源保护采用与 Host 匹配的 profile MCP 配套文件；插件单包不会自动安装该回补。保留官方原应用，按 [配套交付与恢复说明](https://github.com/openbkn-ai/bkn-dsh/tree/main/compat/mcp-profile-backport)操作，不替换日常 Host 或平台。冻结 -30/-31/-32 及历史判定保持原样。
 
-## -11 英文界面
+### 历史开发检查点
 
-本版以已发布的 -10 为基础，仅增加英文国际化界面。插件跟随 DSH「设置 → 通用 → 语言」的中英文选项自动切换；已打开的网络、设置、诊断及原有三个溯源页签会即时更新文案，保留表单输入、当前视图和进行中的请求。网络名称、平台原文、业务数据和模型回答保持原文。
+本分支当前兼容目标为官方 DSH `0.2.0-rc.2` 与 `0.2.1-rc.3`，平台仍采用正式 OpenBKN `v0.2.0` 和 CLI `0.2.0`，保留旧构建生成器。当前 -32 为本地开发候选，尚非最终 CI 候选或正式验收结果；冻结的 -30/-31 及其 rc.2 交接证据保持原样，不作为 rc.3 验收。
 
-英文版的固定安装版本为 `@openbkn/dsh-business-context@0.2.0-rc.2-openbkn.0.2.0-11`。DSH 配对仍为 `0.2.0-rc.2`；本版未合入开发分支的登录进度、原生溯源、CSV 导出或双版本兼容功能。-10 已有的限制仍适用。npm 先发布到 `rc`；新候选尚未完成 Windows 实机验收，`latest` 的提升须遵循发布门槛。
+本地开发版在宿主提供文件服务时使用受会话约束的 `openbkn_export_csv` 交付已有平台 CSV：校验后将原始 UTF-8 字节（最多512 KiB）保存为当前 DSH 工作区的新文件。导出要求当前绑定的 Interaction 和工作区写权限；只读会话会拒绝。导出成功后可打开返回的本地文件链接。Host read/grep/present 仍不开放。受管指引要求回答和 CSV 序列化保留来源精度，并避免 Python 默认通用格式的六位有效数字截断；仅按用户或平台明示规则取整。模型回答和文件内容仍须独立验证。
+
+导出结果返回已验证的 `markdown_link`，最终回答须在结束 Interaction 后一并给出答案、口径和该链接，避免折叠进度消息造成漏链。统计范围与所请求计算的符号依平台合同；插件不重算业务结果。
+
+正式版关闭采集时仍返回 managed Conversation/Interaction ID：业务调用继续携带所要求的 `bkn_context`，finish 使用当前 Interaction ID。溯源保留已披露身份，明确标注未记录证据并显示本地时间线；旧部署显式无身份降级保留为独立兼容路径。插件不重算业务结果、不改模型回答。
+
+源码测试、官方 npm 包集合受控运行、固定 CI 候选、真实平台调用及人工验收分开记录。两个 DSH × Mac/Windows × Desktop/npm 的八个组合，仍待固定 CI 候选实机验收。不会自动升级现有安装。
 
 ## 为什么需要 bkn-dsh
 
@@ -63,7 +69,7 @@ dsh plugin --profile <desktop|web> add @openbkn/dsh-business-context@latest
 
 Windows 上使用 `dsh.cmd`。源码构建从 DSH 源码根目录执行 `node apps/cli/lib/bin.js plugin --profile web add @openbkn/dsh-business-context@latest`。请使用实际启动的 Host 的 profile 与 `DSH_HOME`，`desktop` 和 `web` 是独立的 profile。安装下载包时，把包名替换为 `.tgz` 的绝对路径。
 
-安装与平台版本匹配的 OpenBKN CLI：本轮支持的 0.2.0 平台用 `npm install -g @openbkn/bkn-sdk@0.2.0`；0.1.5 平台用 `npm install -g @openbkn/bkn-sdk@0.1.5`；0.1.4 平台用 `@openbkn/bkn-sdk@0.1.4`（`0.1.5-rc.1` 也可以）。CLI 从 `0.1.5-rc.2` 起要求平台提供健康/版本接口，0.1.4 没有该接口。配置插件前不必先登录。npm 版 DSH 还需要 `PATH` 中有 pnpm（`npm install -g pnpm@11.7.0`），桌面版自带。自签证书平台需为 DSH 进程设置 `NODE_EXTRA_CA_CERTS` 并完全重启；各形态的操作见[仓库 README](https://github.com/openbkn-ai/bkn-dsh/blob/main/README.zh.md#开始之前)。
+安装与平台版本匹配的 OpenBKN CLI：0.1.5 平台用 `npm install -g @openbkn/bkn-sdk@0.1.5`；0.1.4 平台用 `@openbkn/bkn-sdk@0.1.4`（`0.1.5-rc.1` 也可以）。CLI 从 `0.1.5-rc.2` 起要求平台提供健康/版本接口，0.1.4 没有该接口。配置插件前不必先登录。npm 版 DSH 还需要 `PATH` 中有 pnpm（`npm install -g pnpm@11.7.0`），桌面版自带。自签证书平台需为 DSH 进程设置 `NODE_EXTRA_CA_CERTS` 并完全重启；各形态的操作见[仓库 README](https://github.com/openbkn-ai/bkn-dsh/blob/main/README.zh.md#开始之前)。
 
 ### 配置、授权、提问
 

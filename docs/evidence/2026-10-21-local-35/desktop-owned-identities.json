@@ -1,0 +1,23 @@
+{
+  "at": "2026-10-21T15:32:20.420364+00:00",
+  "records": [
+    {
+      "host": "0.2.0-rc.2",
+      "form": "desktop",
+      "host_pid": 70872,
+      "port": 19387,
+      "single_launch_for_all_cases_and_recovery": true,
+      "launch_and_ui_checked": true,
+      "pid_sampled_before_normal_quit": true
+    },
+    {
+      "host": "0.2.1-rc.2",
+      "form": "desktop",
+      "host_pid": 70889,
+      "port": 64390,
+      "single_launch_for_all_cases_and_recovery": true,
+      "launch_and_ui_checked": true,
+      "pid_sampled_before_normal_quit": true
+    }
+  ]
+}

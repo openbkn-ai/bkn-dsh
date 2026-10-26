@@ -1,0 +1,110 @@
+{
+  "checked_at": "2026-10-20T06:33:02.381426+00:00",
+  "records": [
+    {
+      "host": "0.2.0-rc.2",
+      "native_session_id": "session-d3094f4e-6b4c-4e6d-a372-bacb36fc1d2a",
+      "prompt_policy_presence": {
+        "system/message": {
+          "count": 2,
+          "data_keys": [
+            "turn",
+            "step",
+            "message"
+          ],
+          "markers": {
+            "self-contained": true,
+            "search_capabilities": true,
+            "execute_tool": true,
+            "openbkn_export_csv": true,
+            "The final answer after finishing the Interaction": true
+          }
+        },
+        "user/message": {
+          "count": 3,
+          "data_keys": [
+            "content",
+            "source",
+            "role",
+            "id"
+          ],
+          "markers": {
+            "self-contained": false,
+            "search_capabilities": false,
+            "execute_tool": false,
+            "openbkn_export_csv": false,
+            "The final answer after finishing the Interaction": false
+          }
+        },
+        "request/context": {
+          "count": 1,
+          "data_keys": [
+            "provider",
+            "model",
+            "contextWindow"
+          ],
+          "markers": {
+            "self-contained": false,
+            "search_capabilities": false,
+            "execute_tool": false,
+            "openbkn_export_csv": false,
+            "The final answer after finishing the Interaction": false
+          }
+        }
+      }
+    },
+    {
+      "host": "0.2.1-rc.2",
+      "native_session_id": "session-667bd486-a539-44e8-a329-5a991d285ed7",
+      "prompt_policy_presence": {
+        "system/message": {
+          "count": 2,
+          "data_keys": [
+            "turn",
+            "step",
+            "message"
+          ],
+          "markers": {
+            "self-contained": true,
+            "search_capabilities": true,
+            "execute_tool": true,
+            "openbkn_export_csv": true,
+            "The final answer after finishing the Interaction": true
+          }
+        },
+        "user/message": {
+          "count": 4,
+          "data_keys": [
+            "content",
+            "source",
+            "role",
+            "id"
+          ],
+          "markers": {
+            "self-contained": false,
+            "search_capabilities": false,
+            "execute_tool": false,
+            "openbkn_export_csv": false,
+            "The final answer after finishing the Interaction": false
+          }
+        },
+        "request/context": {
+          "count": 1,
+          "data_keys": [
+            "provider",
+            "model",
+            "contextWindow"
+          ],
+          "markers": {
+            "self-contained": false,
+            "search_capabilities": false,
+            "execute_tool": false,
+            "openbkn_export_csv": false,
+            "The final answer after finishing the Interaction": false
+          }
+        }
+      }
+    }
+  ],
+  "scope": "Presence in original native context/messages, not a claim that the model follows these instructions. No prompt or secret contents published."
+}

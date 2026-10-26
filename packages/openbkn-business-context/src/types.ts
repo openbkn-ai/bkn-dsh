@@ -58,8 +58,9 @@ export interface BusinessNetworkBinding {
  * designated home once the platform discloses them, but the verified contract
  * (2026-09-20) puts them only in the platform operations read model, never in
  * MCP tool results, so they stay empty for now and `partial` stays true.
- * An explicit 0.2.0 unrecorded finish carries `recording` instead of IDs;
- * this is a local association to that answer, not a fabricated platform record.
+ * A formal 0.2.0 capture-disabled finish retains its managed identity pair
+ * with `recording`; legacy unrecorded finishes have no IDs. Neither implies
+ * recorded evidence exists or authorizes fabricated platform records.
  */
 export interface ProvenanceHandle {
   readonly schemaVersion: 2
@@ -220,7 +221,7 @@ export type ProvenanceDegradationReason =
 
 /** One pane that could not be completed, with the platform's own next step. */
 export interface ProvenanceDegradation {
-  readonly pane: 'operations' | 'business' | 'evidence'
+  readonly pane: 'operations' | 'business' | 'evidence' | 'native'
   readonly reason: ProvenanceDegradationReason
   readonly edition?: string
   /** The platform's required_action, passed through truncated. */
@@ -237,6 +238,7 @@ export interface ProvenanceSources {
 }
 
 export interface ProvenanceView {
+  readonly native?: import('./native-provenance-types.js').NativeProvenance
   readonly interactionId?: string
   readonly conversationId?: string
   readonly sources: ProvenanceSources

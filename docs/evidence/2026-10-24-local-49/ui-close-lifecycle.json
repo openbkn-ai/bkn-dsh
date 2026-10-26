@@ -1,0 +1,655 @@
+{
+  "kind": "controlled official-Desktop carrier selection, native-wire and source-loaded lifecycle probe",
+  "platform": "darwin",
+  "node": "v24.19.0",
+  "plugin": "0.2.0-rc.2-openbkn.0.2.0-30",
+  "platformAccessed": false,
+  "realCliExecuted": false,
+  "browserExecuted": false,
+  "realWindowsJobExecuted": false,
+  "hostUiStarted": false,
+  "hosts": [
+    {
+      "version": "0.2.0-rc.2",
+      "artifactIdentity": {
+        "version": "0.2.0-rc.2",
+        "embeddedNode": "v24.18.1",
+        "asarSHA256": "18d5036bbb58eaff41d351ede99314b8d06505aec06fb2e164c49874ada30f9e",
+        "records": {
+          "connection.js": {
+            "archivePath": "dsh/node_modules/@deepseek-ai/dsh-client-connection/lib/client.js",
+            "sha256": "0fbb93fa2382bb66919767f69c909585c6255486f9536f9232231edaeac8c4e6",
+            "bytes": 59411
+          },
+          "gateway.js": {
+            "archivePath": "dsh/node_modules/@deepseek-ai/dsh-api-gateway/lib/client.js",
+            "sha256": "e09e26fcd4849cd55683b9cc702dca896efce93a5af3968431c1c8a62147b9cf",
+            "bytes": 82186
+          },
+          "web-boot.js": {
+            "archivePath": "dsh/node_modules/@deepseek-ai/dsh-web-frontend/dist/assets/index-5SrrfWpU.js",
+            "sha256": "af3ff948cf3f132edbddebea93e2f9f02233b390a94bd4c9842182300be811bb",
+            "bytes": 633282
+          },
+          "desktop-main.js": {
+            "archivePath": "lib/main.js",
+            "sha256": "10325004a1ddbd8118ed0607ea28d50a7b0d692dcaeb25a67a7d8aea9165019d",
+            "bytes": 490173
+          },
+          "desktop-preload.cjs": {
+            "archivePath": "lib/preload-app.cjs",
+            "sha256": "f323eb67f7ace407d3b1d858f264f7846e436d9ba3e80c02b0454a6da0aed968",
+            "bytes": 41075
+          }
+        }
+      },
+      "code": {
+        "desktopBootCallbackSHA256": "40b2191f706e591330822ddf55e51b011fda4a7e671c8a31c526fbdfdad2e5d1",
+        "connectionClientSHA256": "0fbb93fa2382bb66919767f69c909585c6255486f9536f9232231edaeac8c4e6",
+        "gatewayClientSHA256": "e09e26fcd4849cd55683b9cc702dca896efce93a5af3968431c1c8a62147b9cf",
+        "gatewayServerSHA256": "12489aafd3be30c606824f52b45f682c42f95448db89f2458bba87fa944a50c0",
+        "packedClientSHA256": "7bc6ba13b1c9a82a99a7dcdaa63ebbe02c78f95b2713a416f719340e2138ae7a",
+        "packedConsumerSHA256": "ebddd511f2ff9c56e5c943cd499185180e54f1d8a991304f58e3f777c96da035",
+        "packedLoginStreamSHA256": "c04a0cb1c3e21b3c7142cfdd57cefd735839c5222c6f116e1c3b212ab28562f3",
+        "runnerSourceSHA256": "d4ba8aeec4427437cf4b7f23d2ea61c3a25becb43ee3944df190eef537a4679d",
+        "runnerExtractSHA256": "a7d4af83f472478faf590f04d66eb81fdfd05661900af31e3ebf6d9b9978f973",
+        "parentOwnerSourceSHA256": "220d210e72df9da21a313a70a400e6f5443b17b4a08188f0131bc09167067f63",
+        "parentOwnerExtractSHA256": "241099e25e35df8d7254e1f1aab7ff024e752aa4ecfa0f99807409b9e388c314",
+        "commonLifecycleSourceSHA256": "1087f9ed1704167865e1a35cea0604f335cc348ac17da9c83c542fc454d00ae0",
+        "bindExtractSHA256": "c26ef2ccd87eaa74834656ebba2176eb6f5cf036344666decbc240191ee8b467"
+      },
+      "executionBoundary": {
+        "gateway": "official Desktop ASAR browser bundles, identical to published browser bundles; added private-symbol exports only",
+        "plugin": "unchanged -30 packed consumer and service method",
+        "processLifecycle": "unchanged pinned source functions/classes, TypeScript transform only",
+        "windowsApis": "injected fixture with an intentionally nonempty Job, no actual processes or Job handles",
+        "authAndTarget": "remoteBeginLogin stand-in waits for an injected direct-exit result; no CLI credentials or auth coordinator",
+        "dispatch": "unchanged ASAR boot callback sets the actual transport shape; native installConnection and ClientRemoteService choose the carrier. Deferred loader readiness suppresses unrelated generation/event subscriptions. Generated Typert mount and authorization are not exercised",
+        "timing": "active-send cases deliberately delay only the WebSocket item-send acknowledgement callback; production service generator is unchanged"
+      },
+      "cases": [
+        {
+          "mode": "first-result-active-send",
+          "verdict": "PASS",
+          "observedBeforeFixtureCleanup": {
+            "carrier": "WebSocket",
+            "carrierPath": "/api/remote.mux",
+            "rpcOpenAbsent": true,
+            "callerOperationAborted": false,
+            "cancelSeen": true,
+            "serverAborted": true,
+            "ownerSignals": [
+              "SIGTERM"
+            ],
+            "terminateCalls": 1,
+            "runnerStillConnected": false,
+            "serverStreamRemoved": true,
+            "endFrameSent": false,
+            "directDoneBeforeLoginResult": true
+          },
+          "uiCloseReopen": {
+            "successfulStateBeforeClose": true,
+            "operationAbortedOnlyOnClose": true,
+            "reopenedPhase": "idle",
+            "loginCalls": 1,
+            "statusCalls": 1,
+            "cancelsBeforeClose": 1,
+            "cancelsAfterClose": 1,
+            "extraCancelFromUiClose": false
+          },
+          "wire": [
+            {
+              "direction": "client-to-server",
+              "type": "open"
+            },
+            {
+              "direction": "server-to-client",
+              "type": "item"
+            },
+            {
+              "direction": "client-to-server",
+              "type": "cancel"
+            }
+          ],
+          "events": [
+            {
+              "sequence": 1,
+              "name": "fixture-job-created"
+            },
+            {
+              "sequence": 2,
+              "name": "carrier-upgrade",
+              "path": "/api/remote.mux"
+            },
+            {
+              "sequence": 3,
+              "name": "server-receive-open"
+            },
+            {
+              "sequence": 4,
+              "name": "native-close-handle",
+              "label": "ordinary direct process"
+            },
+            {
+              "sequence": 5,
+              "name": "runner-target-result",
+              "type": "target-exit",
+              "exitCode": 0
+            },
+            {
+              "sequence": 6,
+              "name": "common-direct-done-before-login-result"
+            },
+            {
+              "sequence": 7,
+              "name": "server-send-item"
+            },
+            {
+              "sequence": 8,
+              "name": "fixture-hold-send-callback"
+            },
+            {
+              "sequence": 9,
+              "name": "ui-success-without-operation-abort"
+            },
+            {
+              "sequence": 10,
+              "name": "server-receive-cancel"
+            },
+            {
+              "sequence": 11,
+              "name": "cancel-active-observation",
+              "activeStreams": 1
+            },
+            {
+              "sequence": 12,
+              "name": "server-operation-aborted"
+            },
+            {
+              "sequence": 13,
+              "name": "fixture-release-send-callback"
+            },
+            {
+              "sequence": 14,
+              "name": "common-owner-signal",
+              "signal": "SIGTERM"
+            },
+            {
+              "sequence": 15,
+              "name": "parent-to-runner-terminate"
+            },
+            {
+              "sequence": 16,
+              "name": "injected-terminate-job"
+            },
+            {
+              "sequence": 17,
+              "name": "native-close-handle",
+              "label": "ordinary process Job"
+            },
+            {
+              "sequence": 18,
+              "name": "runner-finished",
+              "exitCode": 0
+            },
+            {
+              "sequence": 19,
+              "name": "ui-close-aborts-retained-operation"
+            },
+            {
+              "sequence": 20,
+              "name": "fixture-natural-job-release-for-cleanup"
+            }
+          ],
+          "cleanup": {
+            "fixtureRunnerDisconnected": true,
+            "httpListenerClosed": true,
+            "serverWebSocketsClosed": true
+          }
+        },
+        {
+          "mode": "first-result-server-finished",
+          "verdict": "PASS",
+          "observedBeforeFixtureCleanup": {
+            "carrier": "WebSocket",
+            "carrierPath": "/api/remote.mux",
+            "rpcOpenAbsent": true,
+            "callerOperationAborted": false,
+            "cancelSeen": true,
+            "serverAborted": false,
+            "ownerSignals": [],
+            "terminateCalls": 0,
+            "runnerStillConnected": true,
+            "serverStreamRemoved": true,
+            "endFrameSent": true,
+            "directDoneBeforeLoginResult": true
+          },
+          "uiCloseReopen": {
+            "successfulStateBeforeClose": true,
+            "operationAbortedOnlyOnClose": true,
+            "reopenedPhase": "idle",
+            "loginCalls": 1,
+            "statusCalls": 1,
+            "cancelsBeforeClose": 1,
+            "cancelsAfterClose": 1,
+            "extraCancelFromUiClose": false
+          },
+          "wire": [
+            {
+              "direction": "client-to-server",
+              "type": "open"
+            },
+            {
+              "direction": "server-to-client",
+              "type": "item"
+            },
+            {
+              "direction": "server-to-client",
+              "type": "end"
+            },
+            {
+              "direction": "client-to-server",
+              "type": "cancel"
+            }
+          ],
+          "events": [
+            {
+              "sequence": 1,
+              "name": "fixture-job-created"
+            },
+            {
+              "sequence": 2,
+              "name": "carrier-upgrade",
+              "path": "/api/remote.mux"
+            },
+            {
+              "sequence": 3,
+              "name": "server-receive-open"
+            },
+            {
+              "sequence": 4,
+              "name": "native-close-handle",
+              "label": "ordinary direct process"
+            },
+            {
+              "sequence": 5,
+              "name": "runner-target-result",
+              "type": "target-exit",
+              "exitCode": 0
+            },
+            {
+              "sequence": 6,
+              "name": "common-direct-done-before-login-result"
+            },
+            {
+              "sequence": 7,
+              "name": "server-send-item"
+            },
+            {
+              "sequence": 8,
+              "name": "server-send-end"
+            },
+            {
+              "sequence": 9,
+              "name": "ui-success-without-operation-abort"
+            },
+            {
+              "sequence": 10,
+              "name": "server-receive-cancel"
+            },
+            {
+              "sequence": 11,
+              "name": "cancel-active-observation",
+              "activeStreams": 0
+            },
+            {
+              "sequence": 12,
+              "name": "ui-close-aborts-retained-operation"
+            },
+            {
+              "sequence": 13,
+              "name": "fixture-natural-job-release-for-cleanup"
+            },
+            {
+              "sequence": 14,
+              "name": "native-close-handle",
+              "label": "ordinary process Job"
+            },
+            {
+              "sequence": 15,
+              "name": "runner-finished",
+              "exitCode": 0
+            }
+          ],
+          "cleanup": {
+            "fixtureRunnerDisconnected": true,
+            "httpListenerClosed": true,
+            "serverWebSocketsClosed": true
+          }
+        }
+      ]
+    },
+    {
+      "version": "0.2.1-rc.2",
+      "artifactIdentity": {
+        "version": "0.2.1-rc.2",
+        "embeddedNode": "v24.21.0",
+        "asarSHA256": "b9ec4c2bbc20c9dbc3e39fa4c961434a943434ab0a803052b26753dd15f3b066",
+        "records": {
+          "connection.js": {
+            "archivePath": "dsh/node_modules/@deepseek-ai/dsh-client-connection/lib/client.browser.js",
+            "sha256": "dfc3544eb894c74b340a4c4c63a8c125fd2e983df9efed5885712574af994e62",
+            "bytes": 60601
+          },
+          "gateway.js": {
+            "archivePath": "dsh/node_modules/@deepseek-ai/dsh-api-gateway/lib/client.browser.js",
+            "sha256": "3043de82334846a3a5654b7317830c5403f90e9aeca692d3c15e30e01d16505d",
+            "bytes": 84127
+          },
+          "web-boot.js": {
+            "archivePath": "dsh/node_modules/@deepseek-ai/dsh-web-frontend/dist/assets/index-CN7NIWNw.js",
+            "sha256": "4bc914bfbb6adbdd63953a29f63835eb7127defd2a973149d64cdab489f1a9a5",
+            "bytes": 939867
+          },
+          "desktop-main.js": {
+            "archivePath": "lib/main.js",
+            "sha256": "6f3d1ddd1106371452c2204be6dfb2e5460a8e8259cdd05cdccb5387b3f9a85a",
+            "bytes": 516716
+          },
+          "desktop-preload.cjs": {
+            "archivePath": "lib/preload-app.cjs",
+            "sha256": "f323eb67f7ace407d3b1d858f264f7846e436d9ba3e80c02b0454a6da0aed968",
+            "bytes": 41075
+          }
+        }
+      },
+      "code": {
+        "desktopBootCallbackSHA256": "c1335001aa7fbfa77ec10bbe1cef8f29217013beac7b52bd3a109996db1cc567",
+        "connectionClientSHA256": "dfc3544eb894c74b340a4c4c63a8c125fd2e983df9efed5885712574af994e62",
+        "gatewayClientSHA256": "3043de82334846a3a5654b7317830c5403f90e9aeca692d3c15e30e01d16505d",
+        "gatewayServerSHA256": "4fbe460fec585ebc2cf2887261f6c33f024081a539d9fb5d6557a9002324b23f",
+        "packedClientSHA256": "7bc6ba13b1c9a82a99a7dcdaa63ebbe02c78f95b2713a416f719340e2138ae7a",
+        "packedConsumerSHA256": "ebddd511f2ff9c56e5c943cd499185180e54f1d8a991304f58e3f777c96da035",
+        "packedLoginStreamSHA256": "c04a0cb1c3e21b3c7142cfdd57cefd735839c5222c6f116e1c3b212ab28562f3",
+        "runnerSourceSHA256": "d4ba8aeec4427437cf4b7f23d2ea61c3a25becb43ee3944df190eef537a4679d",
+        "runnerExtractSHA256": "a7d4af83f472478faf590f04d66eb81fdfd05661900af31e3ebf6d9b9978f973",
+        "parentOwnerSourceSHA256": "220d210e72df9da21a313a70a400e6f5443b17b4a08188f0131bc09167067f63",
+        "parentOwnerExtractSHA256": "241099e25e35df8d7254e1f1aab7ff024e752aa4ecfa0f99807409b9e388c314",
+        "commonLifecycleSourceSHA256": "1087f9ed1704167865e1a35cea0604f335cc348ac17da9c83c542fc454d00ae0",
+        "bindExtractSHA256": "c26ef2ccd87eaa74834656ebba2176eb6f5cf036344666decbc240191ee8b467"
+      },
+      "executionBoundary": {
+        "gateway": "official Desktop ASAR browser bundles, identical to published browser bundles; added private-symbol exports only",
+        "plugin": "unchanged -30 packed consumer and service method",
+        "processLifecycle": "unchanged pinned source functions/classes, TypeScript transform only",
+        "windowsApis": "injected fixture with an intentionally nonempty Job, no actual processes or Job handles",
+        "authAndTarget": "remoteBeginLogin stand-in waits for an injected direct-exit result; no CLI credentials or auth coordinator",
+        "dispatch": "unchanged ASAR boot callback sets the actual transport shape; native installConnection and ClientRemoteService choose the carrier. Deferred loader readiness suppresses unrelated generation/event subscriptions. Generated Typert mount and authorization are not exercised",
+        "timing": "active-send cases deliberately delay only the WebSocket item-send acknowledgement callback; production service generator is unchanged"
+      },
+      "cases": [
+        {
+          "mode": "first-result-active-send",
+          "verdict": "PASS",
+          "observedBeforeFixtureCleanup": {
+            "carrier": "WebSocket",
+            "carrierPath": "/api/remote.mux",
+            "rpcOpenAbsent": true,
+            "callerOperationAborted": false,
+            "cancelSeen": true,
+            "serverAborted": true,
+            "ownerSignals": [
+              "SIGTERM"
+            ],
+            "terminateCalls": 1,
+            "runnerStillConnected": false,
+            "serverStreamRemoved": true,
+            "endFrameSent": false,
+            "directDoneBeforeLoginResult": true
+          },
+          "uiCloseReopen": {
+            "successfulStateBeforeClose": true,
+            "operationAbortedOnlyOnClose": true,
+            "reopenedPhase": "idle",
+            "loginCalls": 1,
+            "statusCalls": 1,
+            "cancelsBeforeClose": 1,
+            "cancelsAfterClose": 1,
+            "extraCancelFromUiClose": false
+          },
+          "wire": [
+            {
+              "direction": "client-to-server",
+              "type": "open"
+            },
+            {
+              "direction": "server-to-client",
+              "type": "item"
+            },
+            {
+              "direction": "client-to-server",
+              "type": "cancel"
+            }
+          ],
+          "events": [
+            {
+              "sequence": 1,
+              "name": "fixture-job-created"
+            },
+            {
+              "sequence": 2,
+              "name": "carrier-upgrade",
+              "path": "/api/remote.mux"
+            },
+            {
+              "sequence": 3,
+              "name": "server-receive-open"
+            },
+            {
+              "sequence": 4,
+              "name": "native-close-handle",
+              "label": "ordinary direct process"
+            },
+            {
+              "sequence": 5,
+              "name": "runner-target-result",
+              "type": "target-exit",
+              "exitCode": 0
+            },
+            {
+              "sequence": 6,
+              "name": "common-direct-done-before-login-result"
+            },
+            {
+              "sequence": 7,
+              "name": "server-send-item"
+            },
+            {
+              "sequence": 8,
+              "name": "fixture-hold-send-callback"
+            },
+            {
+              "sequence": 9,
+              "name": "ui-success-without-operation-abort"
+            },
+            {
+              "sequence": 10,
+              "name": "server-receive-cancel"
+            },
+            {
+              "sequence": 11,
+              "name": "cancel-active-observation",
+              "activeStreams": 1
+            },
+            {
+              "sequence": 12,
+              "name": "server-operation-aborted"
+            },
+            {
+              "sequence": 13,
+              "name": "fixture-release-send-callback"
+            },
+            {
+              "sequence": 14,
+              "name": "common-owner-signal",
+              "signal": "SIGTERM"
+            },
+            {
+              "sequence": 15,
+              "name": "parent-to-runner-terminate"
+            },
+            {
+              "sequence": 16,
+              "name": "injected-terminate-job"
+            },
+            {
+              "sequence": 17,
+              "name": "native-close-handle",
+              "label": "ordinary process Job"
+            },
+            {
+              "sequence": 18,
+              "name": "runner-finished",
+              "exitCode": 0
+            },
+            {
+              "sequence": 19,
+              "name": "ui-close-aborts-retained-operation"
+            },
+            {
+              "sequence": 20,
+              "name": "fixture-natural-job-release-for-cleanup"
+            }
+          ],
+          "cleanup": {
+            "fixtureRunnerDisconnected": true,
+            "httpListenerClosed": true,
+            "serverWebSocketsClosed": true
+          }
+        },
+        {
+          "mode": "first-result-server-finished",
+          "verdict": "PASS",
+          "observedBeforeFixtureCleanup": {
+            "carrier": "WebSocket",
+            "carrierPath": "/api/remote.mux",
+            "rpcOpenAbsent": true,
+            "callerOperationAborted": false,
+            "cancelSeen": true,
+            "serverAborted": false,
+            "ownerSignals": [],
+            "terminateCalls": 0,
+            "runnerStillConnected": true,
+            "serverStreamRemoved": true,
+            "endFrameSent": true,
+            "directDoneBeforeLoginResult": true
+          },
+          "uiCloseReopen": {
+            "successfulStateBeforeClose": true,
+            "operationAbortedOnlyOnClose": true,
+            "reopenedPhase": "idle",
+            "loginCalls": 1,
+            "statusCalls": 1,
+            "cancelsBeforeClose": 1,
+            "cancelsAfterClose": 1,
+            "extraCancelFromUiClose": false
+          },
+          "wire": [
+            {
+              "direction": "client-to-server",
+              "type": "open"
+            },
+            {
+              "direction": "server-to-client",
+              "type": "item"
+            },
+            {
+              "direction": "server-to-client",
+              "type": "end"
+            },
+            {
+              "direction": "client-to-server",
+              "type": "cancel"
+            }
+          ],
+          "events": [
+            {
+              "sequence": 1,
+              "name": "fixture-job-created"
+            },
+            {
+              "sequence": 2,
+              "name": "carrier-upgrade",
+              "path": "/api/remote.mux"
+            },
+            {
+              "sequence": 3,
+              "name": "server-receive-open"
+            },
+            {
+              "sequence": 4,
+              "name": "native-close-handle",
+              "label": "ordinary direct process"
+            },
+            {
+              "sequence": 5,
+              "name": "runner-target-result",
+              "type": "target-exit",
+              "exitCode": 0
+            },
+            {
+              "sequence": 6,
+              "name": "common-direct-done-before-login-result"
+            },
+            {
+              "sequence": 7,
+              "name": "server-send-item"
+            },
+            {
+              "sequence": 8,
+              "name": "server-send-end"
+            },
+            {
+              "sequence": 9,
+              "name": "ui-success-without-operation-abort"
+            },
+            {
+              "sequence": 10,
+              "name": "server-receive-cancel"
+            },
+            {
+              "sequence": 11,
+              "name": "cancel-active-observation",
+              "activeStreams": 0
+            },
+            {
+              "sequence": 12,
+              "name": "ui-close-aborts-retained-operation"
+            },
+            {
+              "sequence": 13,
+              "name": "fixture-natural-job-release-for-cleanup"
+            },
+            {
+              "sequence": 14,
+              "name": "native-close-handle",
+              "label": "ordinary process Job"
+            },
+            {
+              "sequence": 15,
+              "name": "runner-finished",
+              "exitCode": 0
+            }
+          ],
+          "cleanup": {
+            "fixtureRunnerDisconnected": true,
+            "httpListenerClosed": true,
+            "serverWebSocketsClosed": true
+          }
+        }
+      ]
+    }
+  ],
+  "originalProbeConclusion": "The official Desktop boot callback plus native Connection/Gateway select /api/remote.mux WebSocket, with no rpc.open. The unchanged packed first-result consumer sends a real cancel frame. With a controlled delayed item-send acknowledgement while the native server is active, that frame aborts the operation after direct CLI-result settlement; unchanged process binding requests SIGTERM, unchanged WindowsJobOwner sends terminate IPC, and unchanged runner state calls the injected terminateJob. Draining terminal avoids cancel. If the server already removed the stream, the same late cancel is ignored and a fixture nonempty Job keeps the runner pending. No real Windows Job membership, browser closure, or incident causality is established.",
+  "conclusion": "Actual unchanged UI controller succeeds without aborting its operation. The original packed first-result consumer can cancel while the UI is succeeding. Closing later aborts the retained UI operation; after stream disposal/removal it sends no additional wire cancel, and reopening does not start another login. This distinguishes caller invalidation from stream early return; Windows timing/Job membership remain injected and unknown."
+}

@@ -1,0 +1,29 @@
+{
+  "checked_at": "2026-10-20T03:35:41.224179+00:00",
+  "file": "/Users/dominiczhang/Documents/project/app/openBKN/bkn-dsh/release/ci-41507f9/workspaces/supply-new/openbkn-e26116c3-9221-4468-8276-5e0a58cc93d2-382-000005_物料汇总.csv",
+  "sha256": "f181562d23d68011a11aa661ba79fb9c7e5445741a3891fc8cfce6480295e149",
+  "bytes": 18135,
+  "file_total_rows": 333,
+  "main_rows": 333,
+  "unique_main_materials": 333,
+  "headers": [
+    "物料编码",
+    "物料名称",
+    "主料行数",
+    "各父件单耗合计",
+    "库存状态",
+    "可用量(生产可用仓,可用状态)",
+    "库存记录数"
+  ],
+  "inventory_scope": "production_available",
+  "fractional_inventory_materials_checked": 0,
+  "main_rows_without_scoped_inventory_records": 64,
+  "bom_line_identity_checked": false,
+  "missing_materials": [],
+  "unexpected_materials": [],
+  "differences": [],
+  "ordered_difference_columns": [],
+  "passed": true,
+  "scope": "Independent read-only SQL; exact main-row identity and quantities, selected inventory sums and record counts/missingness, literal subtraction labels; original file never rewritten",
+  "tolerance": "1e-8 absolute for DOUBLE sums"
+}

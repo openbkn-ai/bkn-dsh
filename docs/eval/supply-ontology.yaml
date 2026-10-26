@@ -32,7 +32,7 @@ cases:
     expectTools: [query_object_instance, 库存/指标类查询]
     forbidden:
       - 把非成品仓库存计入合计
-      - 与基准不符的仓间拆分
+      - 与基准不符的仓间拆分或合计（包括额外展示的全仓合计）
   - id: standard-lead-time
     group: positive
     baselineVerified: true
@@ -43,6 +43,7 @@ cases:
     expectTools: [query_object_instance, 主数据查询]
     forbidden:
       - 无口径说明的单一天数
+      - 把 group_type 的物料分类值转述为 group_name 的存货类别值，或混用两个来源字段的标签
   - id: bom-structure
     group: positive
     baselineVerified: false
@@ -53,33 +54,45 @@ cases:
     expectTools: [query_object_instance, BOM/关联查询]
     forbidden:
       - 未注明来源的组件清单
+      - 混用主料、替代料、含根原始行等统计口径，或把不同口径的数字说成同一份 BOM
   # Added 2026-10-04 (OpenBKN 0.1.5): the question that exposed the plugin
   # refusing search_capabilities. Facts are the published function "BOM清单"
-  # output on the 0.1.5 test platform (execute_tool via the openbkn CLI and the
-  # recorded session), not an independent MySQL check, so not baseline-verified.
+  # output on the 0.1.5 test platform. Rechecked on formal local 0.2.0 on
+  # 2026-10-19 against actual function results and independent read-only SQL;
+  # keep baselineVerified=false because not every per-material field is
+  # independently reverified for every run. On 2026-10-19 the business owner
+  # confirmed the ontology rule: priority=0 is main, any nonzero priority is
+  # substitute, irrespective of alt_method. This supersedes the former
+  # function's 313/272 baseline; excluding root the main BOM is 399/333.
   - id: bom-usage-inventory
     group: positive
     baselineVerified: false
     question: 查询 382-000005 的 BOM 清单，每个物料的使用量，以及每个物料的库存情况
     expectFacts:
       - 一级主料 9 个（仅主料口径，不含替代料）
-      - 全 BOM 共 5 层、313 条父子料行、272 个不同物料
+      - 按本体和业务方确认口径，优先级 0 是主料、非 0 是替代条；去根主料共 5 层、399 条父子料行、333 个不同物料
       - 给出各物料单耗与库存，并说明库存口径（仓范围、是否含在途/占用）
-      - 一级主料中 528-000036 生产可用库存 34；791-000007 与 791-000015 为 0
+      - 一级主料中 528-000036 生产可用仓口径为 34、全仓可用状态口径为 51，应注明所选范围；791-000007 与 791-000015 无库存记录时应说明，不冒充实测零值
+      - 回答与实际交付 CSV 均保留库存来源精度；独立核对全部物料，小数及大整数不得因取整或默认六位有效数字格式而改变
     expectTools: [search_capabilities, execute_tool]
     forbidden:
-      - 调用被插件拒绝后直接放弃，或编造 BOM 明细
+      - 调用被插件拒绝后直接放弃，或编造、错误转述 BOM 明细
       - 未注明来源或口径的库存数字
+      - 继续以额外排除 alt_method=替代所得的 313 行/272 种作为主料验收依据
+      - 正文与文件混用去根主料399行/333种、含根主料400行/334种、含替代原始行等范围，未明确标注为不同统计口径
+      - 提供未经请求的派生指标，或任一差值列的运算顺序、符号与列名不一致
+      - 声称文件已交付，但仅提供平台 Sandbox 或不存在的本地路径，或仅 present 失败而没有受支持导出成功；最终回答漏链或只引用折叠进度里的上方链接；文件存在不替代实际打开与内容核对
   - id: purchase-flow
     group: positive
-    baselineVerified: false
+    baselineVerified: true
     question: 382-000005 当前有哪些未结的采购申请和采购订单？
     expectFacts:
-      - 分别列出采购申请与采购订单（或明确说明无未结项）
+      - 按业务方确认范围，只查产品本身；material_number 等于 382-000005 的采购申请与采购订单均为 0，分别明确说明无未结项
       - 状态与单号来自平台数据
     expectTools: [query_object_instance, 单据流查询]
     forbidden:
       - 混淆采购申请与采购订单两类单据
+      - 未经请求扩展到 BOM 子料采购，或把其单据加入产品本身的结果
   - id: sales-order-detail
     group: positive
     baselineVerified: false

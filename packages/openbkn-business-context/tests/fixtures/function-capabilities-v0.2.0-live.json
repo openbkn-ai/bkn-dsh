@@ -1,0 +1,107 @@
+{
+  "source": {
+    "repository": "https://github.com/openbkn-ai/bkn-foundry",
+    "tag": "v0.2.0",
+    "commit": "81d5752826f3b3f3f72f3ad4cb1e22d45e99ab4b",
+    "captured_at": "2026-10-20T03:29:40.990072+00:00",
+    "method": "Whitelisted native Function metadata from local formal 0.2.0; same input_schema was observed in MCP search_capabilities on both actual DSH hosts",
+    "execution_source": "adp/context-loader/agent-retrieval/server/logics/kntools/index.go:605 forwards req.Arguments directly as published Function Parameters",
+    "historical_observation": "Both actual models passed arguments.request_body; HTTP 200 / MCP isError=false contained body.exit_code=1 and result=null."
+  },
+  "capabilities": [
+    {
+      "metadata_type": "function",
+      "name": "BOM清单",
+      "input_schema": {
+        "parameters": [],
+        "request_body": {
+          "description": "Function input parameters",
+          "content": {
+            "application/json": {
+              "schema": {
+                "properties": {
+                  "depth": {
+                    "description": "明细最大层级；不传为一层，不表示全层。完整展开须依据 max_level 显式指定。全层统计不受该参数影响。",
+                    "type": "number"
+                  },
+                  "include_substitute": {
+                    "description": "默认 false，仅优先级0主料；true 另含非0替代条。组件明细始终去根。",
+                    "type": "boolean"
+                  },
+                  "offset": {
+                    "description": "full 明细的起始偏移量，默认 0。",
+                    "type": "number"
+                  },
+                  "page_size": {
+                    "description": "full 明细的单页行数，1 到 500。",
+                    "type": "number"
+                  },
+                  "product": {
+                    "description": "产品编码。",
+                    "type": "string"
+                  },
+                  "report_grain": {
+                    "description": "默认 summary 返回统计和一级主料；full 才分页返回所选 depth 明细。count_scopes 披露各统计范围。",
+                    "type": "string"
+                  }
+                },
+                "required": [
+                  "product"
+                ],
+                "type": "object"
+              }
+            }
+          },
+          "required": true
+        }
+      }
+    },
+    {
+      "metadata_type": "function",
+      "name": "子料分层库存",
+      "input_schema": {
+        "parameters": [],
+        "request_body": {
+          "description": "Function input parameters",
+          "content": {
+            "application/json": {
+              "schema": {
+                "properties": {
+                  "depth": {
+                    "description": "明细最大层级；默认1，完整展开须显式指定 max_level。",
+                    "type": "number"
+                  },
+                  "include_substitute": {
+                    "description": "默认false，仅优先级0主料；true包含非0替代条；始终去根。",
+                    "type": "boolean"
+                  },
+                  "offset": {
+                    "description": "按 next_offset 分页，默认0。",
+                    "type": "number"
+                  },
+                  "page_size": {
+                    "description": "单页明细1到500行，默认100。",
+                    "type": "number"
+                  },
+                  "product": {
+                    "description": "产品编码。",
+                    "type": "string"
+                  },
+                  "warehouse_scope": {
+                    "description": "仓范围预设或明确仓库列表。",
+                    "type": "string"
+                  }
+                },
+                "required": [
+                  "product"
+                ],
+                "type": "object"
+              }
+            }
+          },
+          "required": true
+        }
+      }
+    }
+  ]
+}

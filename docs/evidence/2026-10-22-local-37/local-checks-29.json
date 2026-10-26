@@ -1,0 +1,69 @@
+{
+  "sourceEach": {
+    "total": 612,
+    "pass": 611,
+    "fail": 0,
+    "windowsSkip": 1
+  },
+  "typechecksBoth": "pass",
+  "repository": {
+    "total": 66,
+    "pass": 66
+  },
+  "packageFiles": 82,
+  "controlledGroupsEach": 6,
+  "node": "24.19.0",
+  "sourceCommands": {
+    "oldPnpm": "11.7.0",
+    "newPnpm": "11.28.5",
+    "generator": "fixed old host source"
+  },
+  "logs": [
+    {
+      "file": "release/local-37/source-old-29.log",
+      "sha256": "a02fa9d037940a0ee687d355919203793156a6eddbbc5cc9fa7dca3a153e18b7"
+    },
+    {
+      "file": "release/local-37/source-new-29-pinned.log",
+      "sha256": "52f0d84cbed5ac1fd726401b57cd1fbcb02ecfc981c6d06b8551d59c2593c4b9"
+    },
+    {
+      "file": "release/local-37/type-old-29.log",
+      "sha256": "7dca3e30099a048f99584c4d2f14e8b96ae090596bcf49837dc4b869832f0539"
+    },
+    {
+      "file": "release/local-37/type-new-29-pinned.log",
+      "sha256": "7dca3e30099a048f99584c4d2f14e8b96ae090596bcf49837dc4b869832f0539"
+    },
+    {
+      "file": "release/local-37/repo-tests-29.log",
+      "sha256": "c589efa7ddd26d3cca7bd11dedb81a446f36c2423c69205bda1dd4c1f1a5931c"
+    },
+    {
+      "file": "release/local-37/package-check-29.log",
+      "sha256": "fc1c3b81764e832621930ec3eecdcf17c658a50fedbff828c4771c858d8e59a6"
+    },
+    {
+      "file": "release/local-37/diagnostic-focus-before-fix-valid.log",
+      "sha256": "787f837049d7fb40916e6d28225c07fe175730b1003c121f3f05a9b48d609341"
+    },
+    {
+      "file": "release/local-37/diagnostic-focus-after-fix.log",
+      "sha256": "dac85c5f48b43c0197c14d258f1b6842c814e033baee5e9be871f5a24ab029b7"
+    },
+    {
+      "file": "release/local-37/cancellation-before-fix-valid.log",
+      "sha256": "655e55b91f4bdaac480e1ca24b42cb4d449519343284a04d6c58ec07bba9f773"
+    },
+    {
+      "file": "release/local-37/cancellation-after-fix.log",
+      "sha256": "cccbe7a5448e19b05bbcb6ecf061f35b40f5e2b9aee08169ce96140263cb390f"
+    },
+    {
+      "file": "release/local-37/windows-kit-after-verify.log",
+      "sha256": "e197b9f6d4bd2c46d1afce452d4ce0cddcecdd04321b850b82574d0a35cfe32d"
+    }
+  ],
+  "formalAcceptanceEligible": false,
+  "ciRun": null
+}

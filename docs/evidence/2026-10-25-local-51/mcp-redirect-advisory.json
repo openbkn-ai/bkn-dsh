@@ -1,0 +1,26 @@
+{
+  "ghsa_id": "GHSA-6prh-2h8m-c8cw",
+  "published_at": "2026-10-20T18:26:30Z",
+  "summary": "MCP TypeScript client SDK: HTTP client transports and OAuth requests followed cross-origin redirects and re-sent custom headers and request bodies",
+  "updated_at": "2026-10-20T18:26:32Z",
+  "vulnerabilities": [
+    {
+      "first_patched_version": "1.32.0",
+      "package": {
+        "ecosystem": "npm",
+        "name": "@modelcontextprotocol/sdk"
+      },
+      "vulnerable_functions": [],
+      "vulnerable_version_range": "< 1.32.0"
+    },
+    {
+      "first_patched_version": "2.3.0",
+      "package": {
+        "ecosystem": "npm",
+        "name": "@modelcontextprotocol/client"
+      },
+      "vulnerable_functions": [],
+      "vulnerable_version_range": ">= 2.0.0, < 2.3.0"
+    }
+  ]
+}

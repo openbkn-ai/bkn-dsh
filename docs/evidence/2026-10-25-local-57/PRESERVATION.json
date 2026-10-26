@@ -1,0 +1,114 @@
+{
+  "checkedAt": "2026-10-25T06:26:09.187929+00:00",
+  "head": "933b0ab251c75461ece1ada6145a9487e7eb04d1",
+  "headUnchanged": true,
+  "indexUnchanged": true,
+  "worktreeRefsUnchanged": true,
+  "mainExistingFilesCompared": 3813,
+  "allowedChangedExistingFiles": [
+    "docs/plans/0.2.1/ISSUE-WORKFLOW.md",
+    "CLAUDE.md",
+    "docs/plans/0.2.1/ACCEPTANCE-CONTRACT.md",
+    "docs/plans/0.2.1/DSH-COMPATIBILITY.md",
+    "docs/plans/0.2.1/NATIVE-CONTRACT.md",
+    "docs/plans/0.2.1/README.md"
+  ],
+  "unexpectedChanges": [],
+  "protectedGroups": {
+    "handoff": {
+      "filesMatched": 61,
+      "mismatches": 0
+    },
+    "ui31-source": {
+      "filesMatched": 3821,
+      "mismatches": 0
+    },
+    "npm-old": {
+      "filesMatched": 34,
+      "mismatches": 0
+    },
+    "npm-new": {
+      "filesMatched": 34,
+      "mismatches": 0
+    },
+    "round51-desktop-old": {
+      "filesMatched": 81,
+      "mismatches": 0
+    },
+    "round51-desktop-new": {
+      "filesMatched": 81,
+      "mismatches": 0
+    },
+    "round51-npm-old": {
+      "filesMatched": 41,
+      "mismatches": 0
+    },
+    "round51-npm-new": {
+      "filesMatched": 45,
+      "mismatches": 0
+    },
+    "desktop-old": {
+      "filesMatched": 80,
+      "mismatches": 0
+    },
+    "desktop-new": {
+      "filesMatched": 80,
+      "mismatches": 0
+    }
+  },
+  "frozenInputs": {
+    "kit/lifecycle30/candidate/openbkn-bkn-sdk-0.2.0.tgz": "d227f6264597d727e7931bef4118f099df20d42402ff32e306f6d65e8a6b273f",
+    "kit/lifecycle30/candidate/openbkn-dsh-business-context-0.2.0-rc.2-openbkn.0.2.0-30.tgz": "6d95ff7517dbe409875fd398784fe01049ba26d2b97c43fad65c817d3ea18ee9",
+    "kit/ui31/candidate/openbkn-bkn-sdk-0.2.0.tgz": "d227f6264597d727e7931bef4118f099df20d42402ff32e306f6d65e8a6b273f",
+    "kit/ui31/candidate/openbkn-dsh-business-context-0.2.0-rc.2-openbkn.0.2.0-31.tgz": "22ba0e17235ccb3c93d585f2811604f5221375ac9e3496e92e6d8c1756196e4a",
+    "kit/KIT-FILES.json": "61bace60c424eade7904ab1ed592cd5a0a7e1b332a0b768215a8eecba1298996",
+    "release/local-54/final-candidate/openbkn-dsh-business-context-0.2.0-rc.2-openbkn.0.2.0-32.tgz": "46626510825fe9146aef12c27a1724acbb455aeac22aa600358add0fc8e1c9f8"
+  },
+  "originalDesktopAsarHashes": {
+    "old": "18d5036bbb58eaff41d351ede99314b8d06505aec06fb2e164c49874ada30f9e",
+    "new-rc2": "b9ec4c2bbc20c9dbc3e39fa4c961434a943434ab0a803052b26753dd15f3b066",
+    "new-rc3": "848f8437a990ffb88fca6772eb8e0e69af84d066c76087ac973a8d8015b459f4"
+  },
+  "originalNpmMcpStillUnpatched": {
+    "old": "758d8fc473b700b5d351158d06ce9f9e92c16e8b25497b08bb7bd2122a87f5dd",
+    "rc3": "758d8fc473b700b5d351158d06ce9f9e92c16e8b25497b08bb7bd2122a87f5dd"
+  },
+  "reusedSourceBundlesUnchanged": {
+    "old": "b3cd7156c0b8639656ce117530fec4d006b74cafdc9a78ac426fec084e62972c",
+    "rc3": "b3cd7156c0b8639656ce117530fec4d006b74cafdc9a78ac426fec084e62972c"
+  },
+  "ownedRunsCleaned": 11,
+  "ownedPidsRemaining": [],
+  "ownedPortsNoListeners": [
+    19387,
+    61598,
+    61703,
+    61791,
+    61800,
+    61980,
+    62205,
+    62212,
+    62226,
+    62242
+  ],
+  "desktopExit": "official IPC shutdown",
+  "npmExit": "owned child SIGTERM",
+  "extractedBundlePostBootChecks": [
+    {
+      "distributionId": "openbkn-host-old-same-origin-r1-mac-arm64",
+      "postBootIntegrity": "PASS"
+    },
+    {
+      "distributionId": "openbkn-host-rc3-same-origin-r1-mac-arm64",
+      "postBootIntegrity": "PASS"
+    }
+  ],
+  "sourcePlatformOrBusinessDataReadOrChanged": false,
+  "platformRowsReaudited": false,
+  "cliOrBrowserLoginRun": false,
+  "certificateTrustChanged": false,
+  "existingHostChanged": false,
+  "pluginSourceOrFrozenCandidateChanged": false,
+  "pushCIOrRemoteIssueWrite": false,
+  "preservationBoundary": "Existing main files and recorded protected files plus frozen identities and original ASAR hashes; not a full machine or database audit."
+}

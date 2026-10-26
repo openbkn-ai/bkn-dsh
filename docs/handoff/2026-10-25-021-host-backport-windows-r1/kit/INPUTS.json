@@ -1,0 +1,68 @@
+{
+  "schemaVersion": 1,
+  "kind": "local-development-preacceptance",
+  "ciRun": null,
+  "formalAcceptanceEligible": false,
+  "stage": "prepared-inputs-only-not-a-Windows-execution-authorization",
+  "newRemoteCommit": null,
+  "sourceDevelopmentHead": "933b0ab251c75461ece1ada6145a9487e7eb04d1",
+  "existingWindowsSupplementUnchanged": {
+    "commit": "d20a266fa550dd854c9bd7d30bd04c088de9bbfe",
+    "roles": "-31 U1/provenance/exact800x600; -30 W-LIFE only"
+  },
+  "bases": {
+    "old": {
+      "version": "0.2.0-rc.2",
+      "commit": "639ed015397290b3745d163aafe02ffee4aa3f84",
+      "mcpSdk": "2.0.0"
+    },
+    "rc3": {
+      "version": "0.2.1-rc.3",
+      "commit": "1f81c047fc48fa190a683e469daa699857e9afe8",
+      "mcpSdk": "2.2.0"
+    }
+  },
+  "packages": [
+    {
+      "role": "plugin32",
+      "path": "candidate/openbkn-dsh-business-context-0.2.0-rc.2-openbkn.0.2.0-32.tgz",
+      "version": "0.2.0-rc.2-openbkn.0.2.0-32",
+      "bytes": 231465,
+      "sha256": "46626510825fe9146aef12c27a1724acbb455aeac22aa600358add0fc8e1c9f8",
+      "filesManifest": "plugin32-files.json",
+      "fileCount": 82
+    },
+    {
+      "role": "officialCliSdk",
+      "path": "candidate/openbkn-bkn-sdk-0.2.0.tgz",
+      "version": "0.2.0",
+      "bytes": 219091,
+      "sha256": "d227f6264597d727e7931bef4118f099df20d42402ff32e306f6d65e8a6b273f",
+      "filesManifest": "officialCliSdk-files.json",
+      "fileCount": 9
+    },
+    {
+      "role": "mcpOld",
+      "path": "payload/openbkn-mcp-old-same-origin-r1.tgz",
+      "version": "0.2.0-rc.2",
+      "bytes": 21689,
+      "sha256": "0e06001c240fd8dcf73f813ee837c36e978b78066a8637e65740b0dae4542511",
+      "filesManifest": "mcpOld-files.json",
+      "fileCount": 12
+    },
+    {
+      "role": "mcpRc3",
+      "path": "payload/openbkn-mcp-rc3-same-origin-r1.tgz",
+      "version": "0.2.1-rc.3",
+      "bytes": 21684,
+      "sha256": "48694ca37f889edbc7c41ed8edd3c08e3dc8c0d9cf87c6c118d96de44556d3e0",
+      "filesManifest": "mcpRc3-files.json",
+      "fileCount": 12
+    }
+  ],
+  "mcpProtectedEntrySha256": "b3cd7156c0b8639656ce117530fec4d006b74cafdc9a78ac426fec084e62972c",
+  "mcpStockEntrySha256": "758d8fc473b700b5d351158d06ce9f9e92c16e8b25497b08bb7bd2122a87f5dd",
+  "frozenPlugin32Only": true,
+  "guiArtifactReady": false,
+  "autoLaunchHostOrLogin": false
+}

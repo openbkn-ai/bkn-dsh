@@ -78,6 +78,7 @@ jobs:
           const pkg = JSON.parse(fs.readFileSync("packages/openbkn-business-context/package.json", "utf8"))
           const lines = [
             `DSH_TAG=${manifest.dsh.tag}`,
+            `PLUGIN_DSH_VERSION=${manifest.plugin.hostVersion ?? manifest.dsh.tag.replace(/^dsh-v/, "")}`,
             `PKG_NAME=${pkg.name}`,
             `PKG_VERSION=${pkg.version}`,
             `MANIFEST_PLUGIN_VERSION=${manifest.plugin.version}`,
@@ -137,6 +138,9 @@ jobs:
           cache: pnpm
           registry-url: https://registry.npmjs.org
 
+      - name: Check reviewed dual-host declarations
+        run: node scripts/dsh-host-compatibility.mjs
+
       - name: Checkout pinned DSH source
         run: git clone --depth 1 --branch "${DSH_TAG}" https://github.com/deepseek-ai/deepseek-harness.git release/deepseek-harness
 
@@ -174,6 +178,12 @@ jobs:
       - name: Build plugin
         run: pnpm --filter @openbkn/dsh-business-context build
 
+      - name: Preserve the reviewed profile MCP companions
+        run: |
+          node --test tests/mcp-profile-backport.test.mjs
+          mkdir -p release/profile-mcp
+          cp compat/mcp-profile-backport/* release/profile-mcp/
+
       # Packs first and checks the tarball against the package's own export
       # map: every path `exports` (and `main`/`types`) points at must be inside
       # it. `files` is an allowlist and the build decides what exists, so an
@@ -208,6 +218,23 @@ jobs:
           if (missing.length) process.exit(1)
           console.log(`all ${targets.length} export/main/types targets are packed`)
           '
+
+      - name: Check the same tarball on both official npm host runtimes
+        shell: bash
+        run: |
+          set -euo pipefail
+          artifact="release/plugin/${PKG_NAME/@openbkn\//openbkn-}-${PKG_VERSION}.tgz"
+          node scripts/test-dsh-hosts.mjs --plugin "$artifact" --output release/dual-host-checks
+
+      - name: Preserve controlled dual-host evidence
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: dual-host-controlled-evidence
+          path: |
+            release/dual-host-checks/report.json
+            release/dual-host-checks/*/*.log
+            release/dual-host-checks/*/pnpm-lock.yaml
 
       # A prerelease (0.1.5-alpha.0) publishes under its own label, so it never
       # becomes what `npm install @openbkn/dsh-business-context` resolves to; a
@@ -298,6 +325,12 @@ jobs:
           path: release/plugin/*.tgz
           if-no-files-found: warn
 
+      - uses: actions/upload-artifact@v4
+        with:
+          name: profile-mcp-companions
+          path: release/profile-mcp/
+          if-no-files-found: error
+
   # A `v*` tag also gets a GitHub Release, so the repository's Releases page
   # names the current plugin version instead of stopping at the last (now
   # discontinued) runtime archive. Only this job may write to the repository;
@@ -330,6 +363,7 @@ jobs:
             `PKG_NAME=${pkg.name}`,
             `PKG_VERSION=${pkg.version}`,
             `DSH_TAG=${manifest.dsh.tag}`,
+            `PLUGIN_DSH_VERSION=${manifest.plugin.hostVersion ?? manifest.dsh.tag.replace(/^dsh-v/, "")}`,
           ].join("\n") + "\n")
           '
 
@@ -376,7 +410,7 @@ jobs:
         shell: bash
         run: |
           set -euo pipefail
-          node scripts/plugin-release-notes.mjs --version "${PKG_VERSION}" --package "${PKG_NAME}" --dsh-tag "${DSH_TAG}" --ref "${GITHUB_REF_NAME}" > release/notes.md
+          node scripts/plugin-release-notes.mjs --version "${PKG_VERSION}" --package "${PKG_NAME}" --dsh-tag "dsh-v${PLUGIN_DSH_VERSION}" --ref "${GITHUB_REF_NAME}" > release/notes.md
 
       # Marked latest on purpose, not as a prerelease: every plugin version
       # carries the DSH revision it pairs with (`0.2.0-rc.2-openbkn…`), so a
@@ -389,6 +423,8 @@ jobs:
         run: |
           set -euo pipefail
           gh release create "${GITHUB_REF_NAME}" --verify-tag --latest \
-            --title "bkn-dsh plugin ${PKG_VERSION} (DSH ${DSH_TAG})" \
+            --title "bkn-dsh plugin ${PKG_VERSION} (DSH dsh-v${PLUGIN_DSH_VERSION})" \
             --notes-file release/notes.md \
-            release/published/*.tgz release/published/*.tgz.sha256
+            release/published/*.tgz release/published/*.tgz.sha256 \
+            compat/mcp-profile-backport/*.tgz compat/mcp-profile-backport/*.json \
+            compat/mcp-profile-backport/README.md

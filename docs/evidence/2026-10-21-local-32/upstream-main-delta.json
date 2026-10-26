@@ -1,0 +1,134 @@
+{
+  "base": "b36a3c408a04d7d5dc0831b759bab473b22dd829",
+  "head": "e47ebc0563378765cf830981ab56d55bf6b281e6",
+  "status": "ahead",
+  "commits": [
+    {
+      "sha": "d6e478bae12f0bd912b2eda733b9785169544ae2",
+      "subject": "fix(context-loader): name run_cypher's limits on DISTINCT, sorting and collect (#2336)"
+    },
+    {
+      "sha": "94fd7aa1c8d01d834b054c115c01f22727104ae4",
+      "subject": "fix(bkn-agent): steer cypher_generation to drawable answers, and give up sooner (#2337)"
+    },
+    {
+      "sha": "8dc38ba31ee35a324f84f9ad4d35ef9e59fa2b21",
+      "subject": "fix(bkn-backend): check carried values in ORDER BY and type them in graph results (#2335)"
+    },
+    {
+      "sha": "7ef86a1b73ddc020de17f6c11812d36131096df9",
+      "subject": "fix(bkn-backend): check each relation property like an object type property (#2338)"
+    },
+    {
+      "sha": "e47ebc0563378765cf830981ab56d55bf6b281e6",
+      "subject": "docs(bkn): name size() and the aggregates among the functions run_cypher accepts (#2339)"
+    }
+  ],
+  "files": [
+    {
+      "filename": "adp/bkn/AGENTS.md",
+      "status": "modified",
+      "changes": 2
+    },
+    {
+      "filename": "adp/bkn/bkn-backend/server/bkn-specification/bkn/relations_test.go",
+      "status": "modified",
+      "changes": 30
+    },
+    {
+      "filename": "adp/bkn/bkn-backend/server/bkn-specification/bkn/validator.go",
+      "status": "modified",
+      "changes": 67
+    },
+    {
+      "filename": "adp/bkn/bkn-backend/server/logics/cypher/analyze_carried.go",
+      "status": "modified",
+      "changes": 17
+    },
+    {
+      "filename": "adp/bkn/bkn-backend/server/logics/cypher/bindjoin.go",
+      "status": "modified",
+      "changes": 11
+    },
+    {
+      "filename": "adp/bkn/bkn-backend/server/logics/cypher/carried_test.go",
+      "status": "modified",
+      "changes": 11
+    },
+    {
+      "filename": "adp/bkn/bkn-backend/server/logics/cypher/plan.go",
+      "status": "modified",
+      "changes": 7
+    },
+    {
+      "filename": "adp/context-loader/agent-retrieval/server/driveradapters/mcp/schemas/locales/en-US/instructions.txt",
+      "status": "modified",
+      "changes": 2
+    },
+    {
+      "filename": "adp/context-loader/agent-retrieval/server/driveradapters/mcp/schemas/locales/en-US/schema_descriptions.json",
+      "status": "modified",
+      "changes": 2
+    },
+    {
+      "filename": "adp/context-loader/agent-retrieval/server/driveradapters/mcp/schemas/locales/en-US/tools_meta.json",
+      "status": "modified",
+      "changes": 2
+    },
+    {
+      "filename": "adp/context-loader/agent-retrieval/server/driveradapters/mcp/schemas/locales/zh-CN/instructions.txt",
+      "status": "modified",
+      "changes": 2
+    },
+    {
+      "filename": "adp/context-loader/agent-retrieval/server/driveradapters/mcp/schemas/run_cypher.json",
+      "status": "modified",
+      "changes": 2
+    },
+    {
+      "filename": "adp/context-loader/agent-retrieval/server/driveradapters/mcp/schemas/tools_meta.json",
+      "status": "modified",
+      "changes": 2
+    },
+    {
+      "filename": "docs/api/bkn/cypher-queries.yaml",
+      "status": "modified",
+      "changes": 10
+    },
+    {
+      "filename": "docs/api/context-loader/cypher.yaml",
+      "status": "modified",
+      "changes": 2
+    },
+    {
+      "filename": "help/en/manual/cypher.md",
+      "status": "modified",
+      "changes": 5
+    },
+    {
+      "filename": "help/zh/manual/cypher.md",
+      "status": "modified",
+      "changes": 5
+    },
+    {
+      "filename": "infra/bkn-agent/app/test/test_shared_agent_seeds.py",
+      "status": "modified",
+      "changes": 15
+    },
+    {
+      "filename": "infra/sandbox/runtime/sandbox_sdk/_bkn_tools.py",
+      "status": "modified",
+      "changes": 6
+    },
+    {
+      "filename": "migrations/bkn-agent/mariadb/0.2.1/06-seed-cypher-generation.sql",
+      "status": "modified",
+      "changes": 8
+    },
+    {
+      "filename": "migrations/bkn-agent/mariadb/0.2.1/init.sql",
+      "status": "modified",
+      "changes": 8
+    }
+  ]
+}

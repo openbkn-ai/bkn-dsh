@@ -1,0 +1,14 @@
+{
+  "files": 61,
+  "kitInputs": 55,
+  "kitSha256": "61bace60c424eade7904ab1ed592cd5a0a7e1b332a0b768215a8eecba1298996",
+  "secretPatternsChecked": [
+    "private_key",
+    "jwt",
+    "github_token",
+    "bearer_literal"
+  ],
+  "expandedBlobsScanned": 239,
+  "findings": [],
+  "scope": "Pattern scan; not a proof of absence of every possible secret. Frozen SDK/candidate hashes separately verified."
+}

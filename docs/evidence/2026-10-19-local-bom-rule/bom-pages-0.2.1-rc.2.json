@@ -1,0 +1,75 @@
+{
+  "captured_at": "2026-10-19T15:46:12.106Z",
+  "host": "0.2.1-rc.2",
+  "plugin": "0.2.0-rc.2-openbkn.0.2.0-14",
+  "mode": "real official DSH ToolRuntime/McpClient and host spill policy; no model; read-only published capability; no host-tool allowance",
+  "maxInlineTokens": 12500,
+  "checks": [
+    {
+      "check": "large published function result stays canonical while model display spills",
+      "passed": true,
+      "canonical_lines": 399,
+      "canonical_unique": 333,
+      "display_chars": 49930,
+      "display_spilled": true,
+      "full_line_hash": "dae46337d40ffdd8bbcd9a1401686c536cc2e95be6029f10390f7bcb4fc224cf"
+    },
+    {
+      "check": "read remains refused without dispatch",
+      "passed": true
+    },
+    {
+      "check": "present remains refused without dispatch",
+      "passed": true
+    },
+    {
+      "check": "documented pagination recovers all published rows with unchanged scope",
+      "passed": true,
+      "pages": [
+        {
+          "offset": 0,
+          "returned": 100,
+          "next_offset": 100,
+          "display_chars": 27681,
+          "display_spilled": false
+        },
+        {
+          "offset": 100,
+          "returned": 100,
+          "next_offset": 200,
+          "display_chars": 27335,
+          "display_spilled": false
+        },
+        {
+          "offset": 200,
+          "returned": 100,
+          "next_offset": 300,
+          "display_chars": 27083,
+          "display_spilled": false
+        },
+        {
+          "offset": 300,
+          "returned": 99,
+          "next_offset": null,
+          "display_chars": 27103,
+          "display_spilled": false
+        }
+      ],
+      "rows": 399,
+      "line_hash": "dae46337d40ffdd8bbcd9a1401686c536cc2e95be6029f10390f7bcb4fc224cf"
+    },
+    {
+      "check": "inclusive rows and classification match independent SQL; default detail depth stays explicit",
+      "passed": true,
+      "inclusive_rows": 506,
+      "inclusive_unique": 407,
+      "substitute_rows": 107,
+      "default_depth": 1,
+      "default_scoped_rows": 9
+    }
+  ],
+  "interaction_id": "int_530c070e471e4614f0231e0f895ddecd",
+  "finished": true,
+  "local_host_dispatches": 0,
+  "passed": true
+}

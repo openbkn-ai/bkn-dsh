@@ -1,0 +1,165 @@
+--- frozen30/lib/client.js (region comments removed)
++++ frozen31/lib/client.js (region comments removed)
+@@ -8,6 +8,12 @@
+ 		let react_jsx_runtime = require("react/jsx-runtime");
+ 		/** Plugin-owned copy only. Platform text, protocol identifiers and model answers stay verbatim. */
+ 		const zh = {
++			"referenceRequest": "请求",
++			"referenceTrace": "跟踪",
++			"referenceReceipt": "回执",
++			"referenceOperation": "操作",
++			"referenceStatus": "状态",
++			"passiveHistoryNotice": "以下检查是历史观察，不会主动验证当前登录或连接状态。请查看观察时间；如需确认恢复，请先重试相关操作，再重新采集报告。",
+ 			"cLIInstallationVersion": "CLI 安装版本：",
+ 			"cLIInstallationVersionText1": "CLI 安装版本",
+ 			"selectAVersion": "请选择版本",
+@@ -312,6 +318,12 @@
+ 			"nativeIntegrityUnavailable": "平台未能核查调用记录完整性。"
+ 		};
+ 		const en = {
++			"referenceRequest": "Request",
++			"referenceTrace": "Trace",
++			"referenceReceipt": "Receipt",
++			"referenceOperation": "Op",
++			"referenceStatus": "Status",
++			"passiveHistoryNotice": "These checks summarize the last observed operations. Collecting a report does not recheck your current sign-in or connection. Review the observation age; retry the affected action, then collect a report to confirm recovery.",
+ 			"cLIInstallationVersion": "CLI installation version:",
+ 			"cLIInstallationVersionText1": "CLI installation version",
+ 			"selectAVersion": "Select a version",
+@@ -6817,15 +6829,15 @@
+ 				const panel = dialog.current;
+ 				if (!open || panel === null) return;
+ 				const document = panel.ownerDocument;
+-				const window = document.defaultView;
+-				if (window === null) return;
++				if (document.defaultView === null) return;
+ 				const opener = document.activeElement;
+ 				panel.focus();
+ 				const onKeyDown = (event) => {
+-					if (event.key === "Escape") {
++					if (event.defaultPrevented || event.isComposing || event.ctrlKey || event.altKey || event.metaKey) return;
++					if (event.key === "Escape" && !event.shiftKey) {
+ 						event.preventDefault();
+ 						event.stopPropagation();
+-						closeRef.current();
++						if (!event.repeat) closeRef.current();
+ 					} else if (event.key === "Tab") {
+ 						const controls = [...panel.querySelectorAll("button:not([disabled]), a[href], input:not([disabled]):not([type=\"hidden\"]), textarea:not([disabled]), select:not([disabled]), summary, [tabindex]:not([tabindex=\"-1\"])")].filter((control) => control.getClientRects().length > 0 && control.tabIndex >= 0);
+ 						const first = controls[0];
+@@ -6843,9 +6855,9 @@
+ 						}
+ 					}
+ 				};
+-				window.addEventListener("keydown", onKeyDown);
++				panel.addEventListener("keydown", onKeyDown);
+ 				return () => {
+-					window.removeEventListener("keydown", onKeyDown);
++					panel.removeEventListener("keydown", onKeyDown);
+ 					if (opener?.isConnected && typeof opener.focus === "function") opener.focus();
+ 				};
+ 			}, [open]);
+@@ -7322,7 +7334,7 @@
+ 			borderBottom: "1px solid #e6eaf0"
+ 		};
+ 		const eyebrowStyle$2 = {
+-			color: "#078b7f",
++			color: "#087d72",
+ 			fontSize: 12,
+ 			fontWeight: 750,
+ 			letterSpacing: "0.12em"
+@@ -7341,7 +7353,7 @@
+ 		const primaryStyle = {
+ 			border: 0,
+ 			borderRadius: 9,
+-			background: "#078b7f",
++			background: "#087d72",
+ 			color: "#fff",
+ 			fontWeight: 650,
+ 			padding: "10px 14px",
+@@ -7636,6 +7648,10 @@
+ 						report.mode === "passive" ? t("passiveCollection") : t("activeRetest")
+ 					]
+ 				}),
++				report.mode === "passive" ? /* @__PURE__ */ (0, react_jsx_runtime.jsx)("p", {
++					style: mutedStyle$1,
++					children: t("passiveHistoryNotice")
++				}) : null,
+ 				/* @__PURE__ */ (0, react_jsx_runtime.jsx)(TargetSummary, { report }),
+ 				/* @__PURE__ */ (0, react_jsx_runtime.jsx)(CheckList, { checks: report.checks })
+ 			] });
+@@ -7799,7 +7815,7 @@
+ 		const eyebrowStyle$1 = {
+ 			fontSize: 11,
+ 			letterSpacing: 2,
+-			color: "#0891b2",
++			color: "#0e7490",
+ 			fontWeight: 700
+ 		};
+ 		const closeStyle$1 = {
+@@ -9860,7 +9876,7 @@
+ 			const view = current?.view;
+ 			const tab = current === void 0 ? "events" : selectedTab;
+ 			const loading = current === void 0 || current.phase === "loading";
+-			const dialog = (0, react.useRef)(null);
++			const dialog = useDialogFocus(state.handle !== void 0, close);
+ 			(0, react.useEffect)(() => {
+ 				if (state.handle === void 0 || state.sessionId === void 0 || state.messageId === void 0) return;
+ 				let active = true;
+@@ -9891,19 +9907,6 @@
+ 				state.handle,
+ 				state.messageId,
+ 				state.sessionId,
+-				requestKey
+-			]);
+-			(0, react.useEffect)(() => {
+-				if (state.handle === void 0) return;
+-				dialog.current?.focus();
+-				const onKeyDown = (event) => {
+-					if (event.key === "Escape") close();
+-				};
+-				window.addEventListener("keydown", onKeyDown);
+-				return () => window.removeEventListener("keydown", onKeyDown);
+-			}, [
+-				close,
+-				state.handle,
+ 				requestKey
+ 			]);
+ 			if (state.handle === void 0) return null;
+@@ -10061,15 +10064,15 @@
+ 											style: referenceRowStyle,
+ 											children: [
+ 												operation.requestId === void 0 ? null : /* @__PURE__ */ (0, react_jsx_runtime.jsx)(Reference, {
+-													label: "Request",
++													label: t("referenceRequest"),
+ 													value: operation.requestId
+ 												}),
+ 												operation.traceId === void 0 ? null : /* @__PURE__ */ (0, react_jsx_runtime.jsx)(Reference, {
+-													label: "Trace",
++													label: t("referenceTrace"),
+ 													value: operation.traceId
+ 												}),
+ 												operation.receiptId === void 0 ? null : /* @__PURE__ */ (0, react_jsx_runtime.jsx)(Reference, {
+-													label: "Receipt",
++													label: t("referenceReceipt"),
+ 													value: operation.receiptId
+ 												})
+ 											]
+@@ -10149,15 +10152,15 @@
+ 									style: referenceRowStyle,
+ 									children: [
+ 										node.platform.operationId === void 0 ? null : /* @__PURE__ */ (0, react_jsx_runtime.jsx)(Reference, {
+-											label: "Op",
++											label: t("referenceOperation"),
+ 											value: node.platform.operationId
+ 										}),
+ 										node.platform.receiptId === void 0 ? null : /* @__PURE__ */ (0, react_jsx_runtime.jsx)(Reference, {
+-											label: "Receipt",
++											label: t("referenceReceipt"),
+ 											value: node.platform.receiptId
+ 										}),
+ 										node.platform.status === void 0 ? null : /* @__PURE__ */ (0, react_jsx_runtime.jsx)(Reference, {
+-											label: "Status",
++											label: t("referenceStatus"),
+ 											value: node.platform.status
+ 										})
+ 									]

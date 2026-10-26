@@ -1,0 +1,28 @@
+{
+  "checked_at": "2026-10-20T06:01:55.125753+00:00",
+  "file": "/Users/dominiczhang/Documents/project/app/openBKN/bkn-dsh/release/local-30/canonical-function-sales.csv",
+  "sha256": "d9c26b8f8cc23ca064a6ce7e859f8a90fa9417a1e739ce798238910e2e528437",
+  "bytes": 8473,
+  "source_orders": 40,
+  "csv_rows": 40,
+  "headers": [
+    "sales_order_id",
+    "contract_number",
+    "customer_id",
+    "customer_name",
+    "product_code",
+    "product_name",
+    "signing_quantity",
+    "signing_date",
+    "promised_delivery_date",
+    "shipping_quantity",
+    "shipping_date",
+    "order_status",
+    "salesperson"
+  ],
+  "missing_order_ids": [],
+  "duplicate_order_ids": [],
+  "differences": [],
+  "representation_mapping": "Compare numeric representations as Decimal; source business dates use their YYYY-MM-DD part, SQL DATE_FORMAT. Customer names and all other text match exactly. Original file never rewritten.",
+  "passed": true
+}

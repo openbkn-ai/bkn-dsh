@@ -1,0 +1,14 @@
+{
+  "readAt": "2026-10-25T10:45:54.124622+00:00",
+  "url": "https://download.deepseek.com/dsh-desk/feeds/win-x64/nightly.yml",
+  "sha256": "43ec295d0fa570b33bee14e2ce5c103653fd82d6d7f153ffa2566f2a67f06ade",
+  "version": "0.2.1-rc.3",
+  "files": [
+    {
+      "url": "https://download.deepseek.com/dsh-desk/bin/win-x64/deepseek-harness-0.2.1-rc.3-win-x64.exe",
+      "sha512": "q5IGr2Bf+TvvCpagHj49Ypn/ZrqR7kqrYpLjqXP7VfDINmddlqZQmG+YfsdL3q3EdTRMRlKz/a3jDAEzdNdDOw==",
+      "size": 289415960
+    }
+  ],
+  "note": "Feed metadata only; installer not downloaded or executed, native signature/ASAR identity still required."
+}

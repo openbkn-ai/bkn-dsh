@@ -1,0 +1,77 @@
+Window: "DeepSeek Harness", App: DeepSeek Harness.
+0 standard window DeepSeek Harness, Secondary Actions: Raise
+	1 container DeepSeek Harness
+		2 container
+			3 HTML content DeepSeek Harness, URL: dsh-app://app/
+				4 container
+					5 button Collapse sidebar
+					6 button New session
+					7 container Global panels
+						8 button Plugins
+					9 text Workspaces
+					10 button Search sessions
+					11 text field (settable) Search session names
+					12 button View options
+					13 button Add workspace
+					14 outline Sessions
+						15 container
+							16 row native-picker-old
+								17 text native-picker-old
+							18 row (selected) New Session
+								19 text New Session
+						20 row desktop-old
+							21 text desktop-old
+						22 row Default workspace
+							23 text Default workspace
+						24 row Ungrouped
+							25 text Ungrouped
+					26 button OpenBKN business knowledge networks
+					27 pop up button Account menu
+					28 button Update
+					29 button Open right sidebar
+					30 container
+						31 text Into the Unknown Preview
+						32 pop up button Choose workspace
+						33 pop up button Standard mode, Help: Choose the agent preset for your new task
+						34 container OpenBKN business session entry
+							35 button Explore the “Fjelstul 世界杯 · Vega Catalog 绑定（占位符）” knowledge network.
+						36 text entry area (settable) Describe what you want to build, / commands, @ files or sessions
+						37 pop up button Add files or run commands
+						38 button Access mode, current: Workspace Write
+						39 pop up button Select model, current deepseek_chat
+						40 button (disabled) Send message
+					41 container OpenBKN diagnostics
+						42 container
+							43 text OPENBKN
+							44 heading Diagnostics, Value: 2
+								45 text Diagnostics
+							46 button Close
+						47 container
+							48 text Report 0962696a · Created 10/21/2026, 10:05:07 PM · Mode Passive collection Host form Desktop Operating system macOS DSH version Not collected (no version information in this report) Plugin (on disk) 0.2.0-rc.2-openbkn.0.2.0-27 Plugin (loaded) Not collected (running version cannot be confirmed)
+							49 text Missing basic information does not imply a failure. Review the checks below. The version on disk does not identify the version currently loaded.
+							50 text ●  Passed bootstrap-entry installation  /  component-loaded
+							51 text entryPresent=true
+							52 text ●  Passed business-entry component  /  component-loaded
+							53 text entryPresent=true
+							54 text ●  Passed diagnostics-entry diagnostics  /  component-loaded
+							55 text schemaVersion=1
+							56 text ●  Passed observed:cli cli  /  cli
+							57 text failureCount=0 lastOutcomeAgoMs=6007 exitCode=0
+							58 text ●  Passed observed:login-state authentication  /  login-state
+							59 text failureCount=0 lastOutcomeAgoMs=6126 loggedIn=true
+							60 text ●  Passed observed:context-loader context-loader  /  context-loader
+							61 text failureCount=0 lastOutcomeAgoMs=5967 toolsPublished=true
+							62 text ●  Passed observed:platform-network-list platform-directory  /  platform-network-list
+							63 text failureCount=0 lastOutcomeAgoMs=5948 networkCount=2
+							64 button Export diagnostics report
+							65 button Collect again
+	66 close button
+	67 full screen button Help: this button also has an action to zoom the window, Secondary Actions: zoom the window
+	68 minimize button
+69 menu bar
+	70 DeepSeek Harness
+	71 File
+	72 Edit
+	73 Window
+
+The focused UI element is 41 container OpenBKN diagnostics

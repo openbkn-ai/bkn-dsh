@@ -1,0 +1,183 @@
+{
+  "checkedAt": "2026-10-25T04:45:50.171022+00:00",
+  "mainExistingFiles": 3801,
+  "allowedChangedExistingFiles": [
+    "docs/plans/0.2.1/ISSUE-WORKFLOW.md",
+    "CLAUDE.md",
+    "docs/plans/0.2.1/ACCEPTANCE-CONTRACT.md",
+    "docs/plans/0.2.1/DSH-COMPATIBILITY.md",
+    "docs/plans/0.2.1/NATIVE-CONTRACT.md",
+    "docs/plans/0.2.1/README.md"
+  ],
+  "unexpectedChanges": [],
+  "head": "933b0ab251c75461ece1ada6145a9487e7eb04d1",
+  "headUnchanged": true,
+  "indexUnchanged": true,
+  "worktreeRefsUnchanged": true,
+  "protectedGroups": [
+    {
+      "group": "handoff",
+      "checkedFiles": 61,
+      "changedOrMissing": []
+    },
+    {
+      "group": "ui31-source",
+      "checkedFiles": 3821,
+      "changedOrMissing": []
+    },
+    {
+      "group": "npm-old",
+      "checkedFiles": 34,
+      "changedOrMissing": []
+    },
+    {
+      "group": "npm-new",
+      "checkedFiles": 34,
+      "changedOrMissing": []
+    },
+    {
+      "group": "round51-desktop-old",
+      "checkedFiles": 81,
+      "changedOrMissing": []
+    },
+    {
+      "group": "round51-desktop-new",
+      "checkedFiles": 81,
+      "changedOrMissing": []
+    },
+    {
+      "group": "round51-npm-old",
+      "checkedFiles": 41,
+      "changedOrMissing": []
+    },
+    {
+      "group": "round51-npm-new",
+      "checkedFiles": 45,
+      "changedOrMissing": []
+    },
+    {
+      "group": "desktop-old",
+      "checkedFiles": 80,
+      "changedOrMissing": []
+    },
+    {
+      "group": "desktop-new",
+      "checkedFiles": 80,
+      "changedOrMissing": []
+    }
+  ],
+  "homeCopies": [
+    {
+      "form": "desktop",
+      "sourceFilesChecked": 81,
+      "sourceChangedOrMissing": [],
+      "newCopyChangedPaths": [
+        "profiles/desktop/pnpm-lock.yaml",
+        "profiles/desktop/package.json"
+      ],
+      "newCopyExtraPaths": [
+        "profiles/desktop/.plugin-manager/logs/operation-8RUuxf/pnpm.log"
+      ]
+    },
+    {
+      "form": "npm-web",
+      "sourceFilesChecked": 47,
+      "sourceChangedOrMissing": [],
+      "newCopyChangedPaths": [],
+      "newCopyExtraPaths": []
+    }
+  ],
+  "originalDesktopAsarHashes": {
+    "0.2.0-rc.2": "18d5036bbb58eaff41d351ede99314b8d06505aec06fb2e164c49874ada30f9e",
+    "0.2.1-rc.2": "b9ec4c2bbc20c9dbc3e39fa4c961434a943434ab0a803052b26753dd15f3b066"
+  },
+  "newRc3AsarUnchanged": true,
+  "existingRc3RuntimeCodeFilesComparedToOriginalBaseline": 35758,
+  "existingRc3RuntimeBaselineNote": "Round54 root metadata differs from round53 by its previously disclosed three-file private-fixture cleanup; excluded here. Official/dependency files match original baseline.",
+  "frozenInputs": {
+    "kit/lifecycle30/candidate/openbkn-bkn-sdk-0.2.0.tgz": "d227f6264597d727e7931bef4118f099df20d42402ff32e306f6d65e8a6b273f",
+    "kit/lifecycle30/candidate/openbkn-dsh-business-context-0.2.0-rc.2-openbkn.0.2.0-30.tgz": "6d95ff7517dbe409875fd398784fe01049ba26d2b97c43fad65c817d3ea18ee9",
+    "kit/ui31/candidate/openbkn-bkn-sdk-0.2.0.tgz": "d227f6264597d727e7931bef4118f099df20d42402ff32e306f6d65e8a6b273f",
+    "kit/ui31/candidate/openbkn-dsh-business-context-0.2.0-rc.2-openbkn.0.2.0-31.tgz": "22ba0e17235ccb3c93d585f2811604f5221375ac9e3496e92e6d8c1756196e4a",
+    "kit/KIT-FILES.json": "61bace60c424eade7904ab1ed592cd5a0a7e1b332a0b768215a8eecba1298996",
+    "release/local-54/final-candidate/openbkn-dsh-business-context-0.2.0-rc.2-openbkn.0.2.0-32.tgz": "46626510825fe9146aef12c27a1724acbb455aeac22aa600358add0fc8e1c9f8"
+  },
+  "installedCandidate32FilesMatchedPerCopy": 82,
+  "cliCredentialRenewal": {
+    "expected": true,
+    "beforeExpired": true,
+    "afterExpired": false,
+    "oldTokenNotRestored": true,
+    "certificateTrustChanged": false
+  },
+  "platformServiceOrDataConfigChanged": false,
+  "newBusinessQueryOrInteractionRequested": false,
+  "platformRowsReaudited": false,
+  "sourceTestsOrBuildRun": false,
+  "pushOrCI": false,
+  "remoteIssueWrites": false,
+  "ownedCleanup": {
+    "desktopUi": {
+      "pid": 86987,
+      "port": 58007,
+      "exitMethod": "native application menu Quit",
+      "ownedProcessExited": true,
+      "portReleased": true,
+      "ownedPathProcessesRemaining": 0,
+      "windowImages": {
+        "rc3-desktop32-diagnostics-en-private.jpg": [
+          1280,
+          820
+        ],
+        "rc3-desktop32-narrow-private.jpg": [
+          800,
+          600
+        ],
+        "rc3-desktop32-narrow-bottom-private.jpg": [
+          800,
+          600
+        ],
+        "window-restored-private.jpg": [
+          1280,
+          820
+        ]
+      },
+      "at": "2026-10-25T04:17:42Z"
+    },
+    "desktopReferences": {
+      "pid": 87540,
+      "port": 58881,
+      "exitMethod": "native application menu Quit",
+      "ownedProcessExited": true,
+      "portReleased": true,
+      "ownedPathProcessesRemaining": 0,
+      "at": "2026-10-25T04:36:16.418745+00:00"
+    },
+    "npmReferences": {
+      "pid": 87664,
+      "port": 38656,
+      "identityMatchedBeforeStop": true,
+      "exitMethod": "SIGTERM after task tab closed",
+      "ownedProcessExited": true,
+      "portReleased": true,
+      "at": "2026-10-25T04:41:34.982546+00:00"
+    }
+  },
+  "logCounters": {
+    "host-private.log": {
+      "EPIPE": 0
+    },
+    "app-private.log": {
+      "EPIPE": 0
+    },
+    "phase2/host-private.log": {
+      "EPIPE": 0
+    },
+    "phase2/app-private.log": {
+      "EPIPE": 0
+    },
+    "npm/host-private.log": {
+      "EPIPE": 0
+    }
+  }
+}

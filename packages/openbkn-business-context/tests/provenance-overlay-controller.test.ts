@@ -13,7 +13,6 @@ test('restores focus to the native assistant action after closing provenance', (
   assert.equal(controller.getSnapshot().messageId, 'assistant-message-1')
   controller.close()
 
-  assert.equal(controller.getSnapshot().open, false)
-  assert.equal(controller.getSnapshot().handle, handle)
+  assert.equal(controller.getSnapshot().handle, undefined)
   assert.equal(focused, 1)
 })

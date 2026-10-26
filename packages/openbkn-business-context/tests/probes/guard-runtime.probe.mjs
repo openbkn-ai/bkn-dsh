@@ -5,12 +5,15 @@
  * or missing `kn_id`, so these refusals cannot be triggered through chat (seen
  * on macOS and Windows, 2026-10-04); this probe sends the calls directly.
  *
- * Manual only — not part of CI or the published package. Run it against the
- * release candidate before tagging (CLAUDE.md, release gate 7).
+ * Live mode is manual; the dual-host release check also runs stand-in mode.
+ * This probe is not published. Run live mode against the release candidate
+ * before tagging (CLAUDE.md, release gate 7).
  *
  * Usage (from packages/openbkn-business-context):
  *   node tests/probes/guard-runtime.probe.mjs [--plugin <dir>]
  *       Stand-in tools shaped like the v0.1.5 Context Loader catalogue.
+ *   node tests/probes/guard-runtime.probe.mjs --runtime <isolated install> --plugin <dir> --contract formal [--capture disabled]
+ *       Source-derived formal v0.2.0 schemas; no platform requests or credentials.
  *   NODE_EXTRA_CA_CERTS=~/.dsh/openbkn-dev-ca.pem \
  *     node tests/probes/guard-runtime.probe.mjs --live https://<platform> --kn <kn-id> --other-kn <kn-id> [--plugin <dir>] [--cli <path>]
  *       DSH's own MCP client registers the platform's real tools; allowed calls
@@ -42,15 +45,17 @@ try {
   process.exit(2)
 }
 const { live, cli, boundKn, otherKn } = options
+const formal = options.contract === 'formal'
+const captureDisabled = options.capture === 'disabled'
 const pluginDir = resolve(options.plugin)
 
 // Validate arguments before loading DSH, the candidate, or CLI credentials.
-const { Context } = await import('@deepseek-ai/cordis')
-const { ToolRuntime } = await import('@deepseek-ai/dsh-tools')
-const { createMcpToolDefinition } = await import('@deepseek-ai/dsh-mcp-client')
-const { SystemPrompt } = await import('@deepseek-ai/dsh-system-prompt')
-
-const require = createRequire(import.meta.url)
+const require = createRequire(options.runtime === undefined ? import.meta.url : resolve(options.runtime, 'package.json'))
+const fromRuntime = name => import(pathToFileURL(require.resolve(name)).href)
+const { Context } = await fromRuntime('@deepseek-ai/cordis')
+const { ToolRuntime } = await fromRuntime('@deepseek-ai/dsh-tools')
+const { createMcpToolDefinition } = await fromRuntime('@deepseek-ai/dsh-mcp-client')
+const { SystemPrompt } = await fromRuntime('@deepseek-ai/dsh-system-prompt')
 const scopeEntry = require.resolve('@deepseek-ai/dsh-scope', {
   paths: [dirname(require.resolve('@deepseek-ai/dsh-tools/package.json'))],
 })
@@ -79,9 +84,11 @@ await ctx.plugin(ToolRuntime)
 const dispatched = []
 
 if (live === undefined) {
-  const catalogue = JSON.parse(await readFile(new URL('../fixtures/context-loader-tools-v0.1.5.json', import.meta.url), 'utf8')).tools
+  const fixture = JSON.parse(await readFile(new URL(formal ? '../fixtures/context-loader-tools-v0.2.0-release.json' : '../fixtures/context-loader-tools-v0.1.5.json', import.meta.url), 'utf8'))
+  const catalogue = fixture.tools
   for (const [name, tool] of Object.entries(catalogue)) {
     if (name === 'execute_skill') continue // off by default on 0.1.5
+    if (formal && !tool.inputSchema) continue // Inline PTC has no source-projected schema.
     const takesKnId = tool.knId === 'required' || tool.knId === 'optional'
     // Registered through DSH's own MCP tool factory, so `parameters` has the
     // shape the MCP client gives real Context Loader tools.
@@ -89,17 +96,21 @@ if (live === undefined) {
       name: `${PREFIX}${name}`,
       rawName: name,
       description: `stand-in for ${name}`,
-      inputSchema: { type: 'object', properties: takesKnId ? { kn_id: { type: 'string' } } : {} },
+      inputSchema: formal ? tool.inputSchema : { type: 'object', properties: takesKnId ? { kn_id: { type: 'string' } } : {} },
       call: async () => {
         dispatched.push(name)
-        const body = name === 'bkn_start_interaction' ? { interaction_id: 'int-probe', conversation_id: 'conv-probe', execution_status: 'active' } : {}
+        const body = name === 'bkn_start_interaction'
+          ? captureDisabled ? fixture.lifecycleExamples.captureDisabledStart : { interaction_id: 'int-probe', conversation_id: 'conv-probe', execution_status: 'active' }
+          : name === 'bkn_finish_interaction'
+            ? captureDisabled ? fixture.lifecycleExamples.captureDisabledFinish : { interaction_id: 'int-probe', conversation_id: 'conv-probe', execution_status: 'completed' }
+            : {}
         return { content: [{ type: 'text', text: JSON.stringify(body) }] }
       },
     }))
   }
 } else {
   const { stdout } = await runCli(cli, ['auth', 'token'])
-  const McpClient = await import('@deepseek-ai/dsh-mcp-client')
+  const McpClient = await fromRuntime('@deepseek-ai/dsh-mcp-client')
   await ctx.plugin(McpClient, McpClient.Config({
     transport: 'streamable-http',
     serverName: 'openbkn',
@@ -167,11 +178,20 @@ refused('a host tool is refused in a bound session',
 const start = await call('bkn_start_interaction', { conversation_mode: 'new', question: 'guard probe (no model)', agent_name: 'bkn-agent-dsh-business-context' })
 let ids = {}
 try { ids = JSON.parse(start.text) } catch { /* recorded below */ }
-const bknContext = live === undefined ? undefined : { conversation_id: ids.conversation_id, interaction_id: ids.interaction_id }
+const bknContext = live === undefined && !formal ? undefined : { conversation_id: ids.conversation_id, interaction_id: ids.interaction_id }
 record('bkn_start_interaction is allowed and opens the interaction', {
   ok: !start.isError, hasInteractionId: typeof ids.interaction_id === 'string',
 }, !start.isError && typeof ids.interaction_id === 'string')
 const withContext = args => bknContext === undefined ? args : { ...args, bkn_context: bknContext }
+
+if (formal) {
+  refused('formal platform: missing managed context never dispatches',
+    await call('search_capabilities', { kn_id: boundKn, query: 'probe' }), /requires bkn_context/)
+  for (const context of [42, { ...bknContext, interaction_id: 'prior-turn' }, { ...bknContext, conversation_id: 'other-conversation' }]) {
+    refused('formal platform: malformed or different managed identities never dispatch',
+      await call('search_capabilities', { kn_id: boundKn, query: 'probe', bkn_context: context }), /requires bkn_context/)
+  }
+}
 
 refused('cross-network kn_id is refused',
   await call('search_capabilities', withContext({ kn_id: otherKn, query: 'probe' })), /bound to OpenBKN knowledge network .*Other networks cannot be queried/)

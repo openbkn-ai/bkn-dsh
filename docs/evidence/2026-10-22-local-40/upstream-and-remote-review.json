@@ -1,0 +1,40 @@
+{
+  "checkedAt": "2026-10-22T06:10:37.047313+00:00",
+  "dsh": {
+    "head": "687f282e8625c6b8d11ff58211a90524be2e4317",
+    "release": "dsh-v0.2.1-rc.2",
+    "repository": "deepseek-ai/deepseek-harness"
+  },
+  "foundry": {
+    "head": "1635c246f3041b5697e5417a802e9c6847503d33",
+    "formalRelease": "v0.2.0",
+    "repository": "openbkn-ai/bkn-foundry",
+    "platformUpdated": false,
+    "reviewedCommits": [
+      "3b546fb9bdd6eca89924aaa5e2cbe6f8b3217b52",
+      "8373e2fcf82d8fe4643992bffc383ca7f6e56b1d",
+      "db438fb644f0170e660c49ce17ae1f0f60271005",
+      "d822d2d4204fb940405cc0adce3f2814c1f19be6",
+      "1c02bfb976c1370103a9e066d29e99299bb700e5",
+      "78c292b262a0f1799552717aac8547b8ff2bca1a",
+      "1635c246f3041b5697e5417a802e9c6847503d33"
+    ],
+    "impactJudgment": "Unreleased changes are not deployed. New builtin bkn-agent tools are independent of MCP and intentionally excluded; no plugin managed-tool expansion. Trace summary changes do not change the current standard Interaction/operations endpoints. Re-review a future supported release."
+  },
+  "oldWindowsHandoff": "fd879740e4292836a24dc1e411ee335619ba4c41",
+  "windowsResult": "fb77c07bc283b4f53a55179e43942949e0e1c8ca",
+  "newHandoffPushed": false,
+  "ciDispatchedByThisSession": false,
+  "externallyObservedCi": {
+    "id": 39720608436,
+    "actor": "kalias",
+    "event": "push",
+    "headBranch": "v0.2.0-rc.2-openbkn.0.2.0-11",
+    "headSha": "a767c6b3d9b6c383e8c8f7f71bac7d934d1993b0",
+    "createdAt": "2026-10-22T04:07:36Z",
+    "conclusion": "success",
+    "predatesThisRound": true,
+    "adoptedForThisRound": false,
+    "url": "https://github.com/openbkn-ai/bkn-dsh/actions/runs/39720608436"
+  }
+}

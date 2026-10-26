@@ -1,0 +1,144 @@
+{
+  "checkedAt": "2026-10-24T13:27:21.088893+00:00",
+  "issues": [
+    {
+      "number": 92,
+      "title": "plan(0.2.1): bkn-dsh \u8303\u56f4\u51bb\u7ed3\u3001\u539f\u751f\u6eaf\u6e90\u5206\u6790\u4e0e\u6267\u884c\u603b\u89c8",
+      "state": "OPEN",
+      "assignees": [
+        {
+          "id": "MDQ6VXNlcjMyMjU5NDg=",
+          "login": "kalias",
+          "name": ""
+        }
+      ],
+      "url": "https://github.com/openbkn-ai/bkn-dsh/issues/92",
+      "updatedAt": "2026-10-23T14:29:54Z",
+      "bodySHA256": "258bf3ebb9ceef577c1718955faabf3d454026629cd08668e3eede72cc149561",
+      "comments": [
+        {
+          "url": "https://github.com/openbkn-ai/bkn-dsh/issues/92#issuecomment-6139188689",
+          "bodySHA256": "30aca0da930e8ef74f2d50868b8e71d5563ee65c57050daa712c4b45b5724a3a"
+        }
+      ]
+    },
+    {
+      "number": 93,
+      "title": "plan(0.2.1/P0): \u539f\u751f\u4e1a\u52a1\u6eaf\u6e90 API\u3001\u51ed\u636e\u4e0e\u975e\u7a7a\u6837\u672c\u9a8c\u8bc1",
+      "state": "OPEN",
+      "assignees": [
+        {
+          "id": "MDQ6VXNlcjMyMjU5NDg=",
+          "login": "kalias",
+          "name": ""
+        }
+      ],
+      "url": "https://github.com/openbkn-ai/bkn-dsh/issues/93",
+      "updatedAt": "2026-10-23T14:30:03Z",
+      "bodySHA256": "e8e09031ba7d7bbec8c6aa2c95f6636210e944a688e0c3f37d8307a871d53899",
+      "comments": [
+        {
+          "url": "https://github.com/openbkn-ai/bkn-dsh/issues/93#issuecomment-6139189168",
+          "bodySHA256": "30aca0da930e8ef74f2d50868b8e71d5563ee65c57050daa712c4b45b5724a3a"
+        }
+      ]
+    },
+    {
+      "number": 94,
+      "title": "feat(0.2.1/P1): \u63d2\u4ef6\u5b8c\u6574 zh/en \u6587\u6848\u968f DSH \u8bed\u8a00\u5207\u6362",
+      "state": "OPEN",
+      "assignees": [
+        {
+          "id": "MDQ6VXNlcjMyMjU5NDg=",
+          "login": "kalias",
+          "name": ""
+        }
+      ],
+      "url": "https://github.com/openbkn-ai/bkn-dsh/issues/94",
+      "updatedAt": "2026-10-23T14:30:05Z",
+      "bodySHA256": "5050d0398ab2451283fb6a949cc617be7853c8f17b9132262a9a940c4193c731",
+      "comments": []
+    },
+    {
+      "number": 95,
+      "title": "feat(0.2.1/P1): \u767b\u5f55\u7b49\u5f85\u3001\u7ed3\u679c\u4e0e\u91cd\u8bd5\u72b6\u6001\u53ef\u89c1",
+      "state": "OPEN",
+      "assignees": [
+        {
+          "id": "MDQ6VXNlcjMyMjU5NDg=",
+          "login": "kalias",
+          "name": ""
+        }
+      ],
+      "url": "https://github.com/openbkn-ai/bkn-dsh/issues/95",
+      "updatedAt": "2026-10-23T14:30:06Z",
+      "bodySHA256": "f348f557bf2bd5b1e2e4c8c8c99afa30e0b65fbcb02b4c0e13dc0b2c86e69280",
+      "comments": []
+    },
+    {
+      "number": 96,
+      "title": "feat(0.2.1/P1): \u539f\u751f\u6eaf\u6e90 Host \u63a5\u53e3\u3001\u6709\u754c DTO \u4e0e\u8bda\u5b9e\u964d\u7ea7",
+      "state": "OPEN",
+      "assignees": [
+        {
+          "id": "MDQ6VXNlcjMyMjU5NDg=",
+          "login": "kalias",
+          "name": ""
+        }
+      ],
+      "url": "https://github.com/openbkn-ai/bkn-dsh/issues/96",
+      "updatedAt": "2026-10-23T14:30:09Z",
+      "bodySHA256": "b76043c4dc90c8afa103f63a45d2642a3e74b96d9ae9456e40999412e551f0b8",
+      "comments": []
+    },
+    {
+      "number": 97,
+      "title": "feat(0.2.1/P1): \u4e8b\u4ef6\u94fe\u4e0e\u8bc1\u636e\u94fe\u53cc\u89c6\u56fe\u3001\u9009\u62e9\u8054\u52a8\u548c\u4e1a\u52a1\u8be6\u60c5",
+      "state": "OPEN",
+      "assignees": [
+        {
+          "id": "MDQ6VXNlcjMyMjU5NDg=",
+          "login": "kalias",
+          "name": ""
+        }
+      ],
+      "url": "https://github.com/openbkn-ai/bkn-dsh/issues/97",
+      "updatedAt": "2026-10-23T14:30:10Z",
+      "bodySHA256": "d677dcfe221f4d8010323573b174217bee287e4ed69dce552234ab0385d86147",
+      "comments": []
+    },
+    {
+      "number": 98,
+      "title": "investigate(0.2.1/P1): B1 \u6700\u5c0f\u590d\u73b0\uff1b\u786e\u8ba4\u63d2\u4ef6\u6839\u56e0\u540e\u518d\u4fee",
+      "state": "OPEN",
+      "assignees": [
+        {
+          "id": "MDQ6VXNlcjMyMjU5NDg=",
+          "login": "kalias",
+          "name": ""
+        }
+      ],
+      "url": "https://github.com/openbkn-ai/bkn-dsh/issues/98",
+      "updatedAt": "2026-10-23T14:30:12Z",
+      "bodySHA256": "8b048931ac12090b2a3d812704ab05261f8c9c8c1ffa252ec53bfa0f147c0d7b",
+      "comments": []
+    },
+    {
+      "number": 99,
+      "title": "test(0.2.1/P1): \u56fa\u5b9a\u5019\u9009 Mac/Windows \u6700\u5c0f\u9a8c\u6536\u4e0e\u53d1\u5e03\u51c6\u5907",
+      "state": "OPEN",
+      "assignees": [
+        {
+          "id": "MDQ6VXNlcjMyMjU5NDg=",
+          "login": "kalias",
+          "name": ""
+        }
+      ],
+      "url": "https://github.com/openbkn-ai/bkn-dsh/issues/99",
+      "updatedAt": "2026-10-23T14:30:14Z",
+      "bodySHA256": "1df44e7b015493953907acbbf9e545ea87aad2a6f5c4fe967fdddfb1d806287a",
+      "comments": []
+    }
+  ],
+  "mutations": []
+}

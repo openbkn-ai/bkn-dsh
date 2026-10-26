@@ -1,0 +1,53 @@
+Window: "DeepSeek Harness", App: DeepSeek Harness.
+0 standard window DeepSeek Harness, Secondary Actions: Raise
+	1 container DeepSeek Harness
+		2 container
+			3 HTML content DeepSeek Harness, URL: dsh-app://app/
+				4 container
+					5 button Open sidebar
+					6 button New session
+					7 container Global panels
+						8 button Plugins
+						9 button Automation tasks
+					10 container
+						11 button Add workspace
+						12 button Search sessions
+					13 button OpenBKN business knowledge networks
+					14 pop up button Account menu
+					15 button Open right sidebar
+					16 container
+						17 text Into the Unknown Preview
+						18 pop up button Choose workspace
+						19 pop up button Standard mode, Help: Choose the agent preset for your new task
+						20 container OpenBKN business session entry
+							21 button Explore the “Fjelstul 世界杯 · Vega Catalog 绑定（占位符）” knowledge network.
+						22 text entry area (settable) Describe what you want to build, / commands, @ files or sessions
+						23 pop up button Add files or run commands
+						24 button Access mode, current: Workspace Write
+						25 pop up button Select model, current R40 read-only closure protocol
+						26 button (disabled) Send message
+					27 container OpenBKN business knowledge networks
+						28 container
+							29 text OPENBKN
+							30 heading Business knowledge networks, Value: 2
+								31 text Business knowledge networks
+							32 button Settings
+							33 button Diagnostics
+							34 button Close
+						35 text Sign in with the local OpenBKN CLI. The plugin then synchronizes credentials within the Host, connects to Context Loader MCP, and lists the business knowledge networks you can access.
+						36 container
+							37 text Platform URL: https://192.168.50.129
+						38 button Sign in and sync with OpenBKN CLI
+						39 button Refresh status
+					40 button Open sidebar
+					41 button New session
+	42 close button
+	43 full screen button Help: this button also has an action to zoom the window, Secondary Actions: zoom the window
+	44 minimize button
+45 menu bar
+	46 DeepSeek Harness
+	47 File
+	48 Edit
+	49 Window
+
+The focused UI element is 27 container OpenBKN business knowledge networks

@@ -1,0 +1,225 @@
+{
+  "checked_at": "2026-10-21T15:37:36.512987+00:00",
+  "baseline": "formal-020/running-images.json",
+  "containers": [
+    {
+      "pod": "agent-observability-6cd947dc67-svw9j",
+      "container": "agent-observability",
+      "image": "swr.cn-east-3.myhuaweicloud.com/openbkn-ai/agent-observability:0.2.0",
+      "image_id_unchanged": true,
+      "phase": "Running",
+      "ready": true,
+      "exit_code": null
+    },
+    {
+      "pod": "agent-operator-integration-5c96974647-c69vk",
+      "container": "agent-operator-integration",
+      "image": "swr.cn-east-3.myhuaweicloud.com/openbkn-ai/agent-operator-integration:0.2.0",
+      "image_id_unchanged": true,
+      "phase": "Running",
+      "ready": true,
+      "exit_code": null
+    },
+    {
+      "pod": "agent-retrieval-86d4f48944-bg9n6",
+      "container": "agent-retrieval",
+      "image": "swr.cn-east-3.myhuaweicloud.com/openbkn-ai/agent-retrieval:0.2.0",
+      "image_id_unchanged": true,
+      "phase": "Running",
+      "ready": true,
+      "exit_code": null
+    },
+    {
+      "pod": "bkn-agent-5dc96dd94d-tncpg",
+      "container": "bkn-agent",
+      "image": "swr.cn-east-3.myhuaweicloud.com/openbkn-ai/bkn-agent:0.2.0",
+      "image_id_unchanged": true,
+      "phase": "Running",
+      "ready": true,
+      "exit_code": null
+    },
+    {
+      "pod": "bkn-backend-59cb4b9f9-m6jfc",
+      "container": "bkn-backend",
+      "image": "swr.cn-east-3.myhuaweicloud.com/openbkn-ai/bkn-backend:0.2.0",
+      "image_id_unchanged": true,
+      "phase": "Running",
+      "ready": true,
+      "exit_code": null
+    },
+    {
+      "pod": "bkn-safe-585566f7df-htwl2",
+      "container": "bkn-safe",
+      "image": "swr.cn-east-3.myhuaweicloud.com/openbkn-ai/bkn-safe:0.2.0",
+      "image_id_unchanged": true,
+      "phase": "Running",
+      "ready": true,
+      "exit_code": null
+    },
+    {
+      "pod": "bkn-safe-hydra-599bdf86d-grmgh",
+      "container": "hydra",
+      "image": "swr.cn-east-3.myhuaweicloud.com/openbkn-ai/oryd/hydra:v26.2.0",
+      "image_id_unchanged": true,
+      "phase": "Running",
+      "ready": true,
+      "exit_code": null
+    },
+    {
+      "pod": "bkn-safe-postgres-746c88c5d9-bxsgh",
+      "container": "postgres",
+      "image": "swr.cn-east-3.myhuaweicloud.com/openbkn-ai/postgres:16",
+      "image_id_unchanged": true,
+      "phase": "Running",
+      "ready": true,
+      "exit_code": null
+    },
+    {
+      "pod": "bkn-sample-studio-76dd8d5db7-w97zh",
+      "container": "studio",
+      "image": "ghcr.io/openbkn-ai/bkn-sample-studio:0.1.0",
+      "image_id_unchanged": true,
+      "phase": "Running",
+      "ready": true,
+      "exit_code": null
+    },
+    {
+      "pod": "bkn-studio-5b774676d7-zdjmm",
+      "container": "bkn-studio",
+      "image": "swr.cn-east-3.myhuaweicloud.com/openbkn-ai/bkn-studio:0.2.0",
+      "image_id_unchanged": true,
+      "phase": "Running",
+      "ready": true,
+      "exit_code": null
+    },
+    {
+      "pod": "core-data-migrator-job-l8pv6",
+      "container": "core-data-migrator",
+      "image": "swr.cn-east-3.myhuaweicloud.com/openbkn-ai/core-data-migrator:0.2.0",
+      "image_id_unchanged": true,
+      "phase": "Succeeded",
+      "ready": false,
+      "exit_code": 0
+    },
+    {
+      "pod": "fake-embedding-5c94576d95-qm4gb",
+      "container": "embedding",
+      "image": "swr.cn-east-3.myhuaweicloud.com/openbkn-ai/sandbox-template-python-basic:0.1.5",
+      "image_id_unchanged": true,
+      "phase": "Running",
+      "ready": true,
+      "exit_code": null
+    },
+    {
+      "pod": "install-status-6b88b4c957-qzngs",
+      "container": "nginx",
+      "image": "swr.cn-east-3.myhuaweicloud.com/openbkn-ai/library/nginx:1.27-alpine",
+      "image_id_unchanged": true,
+      "phase": "Running",
+      "ready": true,
+      "exit_code": null
+    },
+    {
+      "pod": "install-status-6b88b4c957-qzngs",
+      "container": "refresher",
+      "image": "swr.cn-east-3.myhuaweicloud.com/openbkn-ai/portainer/kubectl-shell:latest",
+      "image_id_unchanged": true,
+      "phase": "Running",
+      "ready": true,
+      "exit_code": null
+    },
+    {
+      "pod": "kafka-connect-74bbcb7446-npfmg",
+      "container": "kafka-connect",
+      "image": "swr.cn-east-3.myhuaweicloud.com/openbkn-ai/kafka-connect:0.2.0",
+      "image_id_unchanged": true,
+      "phase": "Running",
+      "ready": true,
+      "exit_code": null
+    },
+    {
+      "pod": "mf-model-api-5bc77cbcd5-rkf7g",
+      "container": "mf-model-api",
+      "image": "swr.cn-east-3.myhuaweicloud.com/openbkn-ai/mf-model-api:0.2.0",
+      "image_id_unchanged": true,
+      "phase": "Running",
+      "ready": true,
+      "exit_code": null
+    },
+    {
+      "pod": "mf-model-manager-5fd75f8f64-ptm5d",
+      "container": "mf-model-manager",
+      "image": "swr.cn-east-3.myhuaweicloud.com/openbkn-ai/mf-model-manager:0.2.0",
+      "image_id_unchanged": true,
+      "phase": "Running",
+      "ready": true,
+      "exit_code": null
+    },
+    {
+      "pod": "minio-6fc7bf75bb-fkmw9",
+      "container": "minio",
+      "image": "swr.cn-east-3.myhuaweicloud.com/openbkn-ai/minio:RELEASE.2025-09-07T16-13-09Z",
+      "image_id_unchanged": true,
+      "phase": "Running",
+      "ready": true,
+      "exit_code": null
+    },
+    {
+      "pod": "ontology-query-69bd8546fd-g6fpk",
+      "container": "ontology-query",
+      "image": "swr.cn-east-3.myhuaweicloud.com/openbkn-ai/ontology-query:0.2.0",
+      "image_id_unchanged": true,
+      "phase": "Running",
+      "ready": true,
+      "exit_code": null
+    },
+    {
+      "pod": "oss-gateway-backend-7675b4cd65-2w97h",
+      "container": "oss-gateway-backend",
+      "image": "swr.cn-east-3.myhuaweicloud.com/openbkn-ai/oss-gateway-backend:0.2.0",
+      "image_id_unchanged": true,
+      "phase": "Running",
+      "ready": true,
+      "exit_code": null
+    },
+    {
+      "pod": "otelcol-contrib-7777f4944d-s6jkb",
+      "container": "otelcol-contrib",
+      "image": "swr.cn-east-3.myhuaweicloud.com/openbkn-ai/otelcol-openbkn:0.2.0",
+      "image_id_unchanged": true,
+      "phase": "Running",
+      "ready": true,
+      "exit_code": null
+    },
+    {
+      "pod": "sandbox-control-plane-784d9c6b68-5zqpp",
+      "container": "control-plane",
+      "image": "ghcr.io/openbkn-ai/sandbox-control-plane:0.2.0",
+      "image_id_unchanged": true,
+      "phase": "Running",
+      "ready": true,
+      "exit_code": null
+    },
+    {
+      "pod": "sandbox-sandbox-sess-aoi-0",
+      "container": "executor",
+      "image": "ghcr.io/openbkn-ai/sandbox-template-python-basic:0.2.0",
+      "image_id_unchanged": true,
+      "phase": "Running",
+      "ready": true,
+      "exit_code": null
+    },
+    {
+      "pod": "vega-backend-597d98dcf7-h42mv",
+      "container": "vega-backend",
+      "image": "swr.cn-east-3.myhuaweicloud.com/openbkn-ai/vega-backend:0.2.0",
+      "image_id_unchanged": true,
+      "phase": "Running",
+      "ready": true,
+      "exit_code": null
+    }
+  ],
+  "all_24_baseline_images_unchanged": true,
+  "all_running_ready_or_successfully_completed": true,
+  "platform_replaced": false
+}

@@ -1,0 +1,20 @@
+{
+  "checked_at": "2026-10-20T03:31:19.443773+00:00",
+  "artifact_sha256": "894bcb942cb0c68381e3cbe44d699589bef364ddff46f0e1dd870b95d723d7dc",
+  "hosts": [
+    {
+      "host": "0.2.0-rc.2",
+      "installed_version": "0.2.0-rc.2-openbkn.0.2.0-22",
+      "files_verified": 80,
+      "equal_to_tarball": true,
+      "package_json_comparison": "semantic JSON; all other files exact bytes"
+    },
+    {
+      "host": "0.2.1-rc.2",
+      "installed_version": "0.2.0-rc.2-openbkn.0.2.0-22",
+      "files_verified": 80,
+      "equal_to_tarball": true,
+      "package_json_comparison": "semantic JSON; all other files exact bytes"
+    }
+  ]
+}

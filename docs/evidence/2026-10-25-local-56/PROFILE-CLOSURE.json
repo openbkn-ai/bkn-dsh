@@ -1,0 +1,27 @@
+{
+  "host": "0.2.1-rc.3",
+  "scope": "installation-and-profile",
+  "profileCoverage": "pass",
+  "cordis": "4.0.5",
+  "schemastery": "3.18.5",
+  "pluginVersion": "0.2.0-rc.2-openbkn.0.2.0-32",
+  "selected": [
+    {
+      "name": "@deepseek-ai/cordis",
+      "version": "4.0.5",
+      "samePhysicalPackage": true
+    },
+    {
+      "name": "@deepseek-ai/schemastery",
+      "version": "3.18.5",
+      "samePhysicalPackage": true
+    }
+  ],
+  "noMixedDsh": true,
+  "noSplitCordis": true,
+  "noSplitSchemastery": true,
+  "actualRuntime": {
+    "node": "24.21.0",
+    "electron": "44.7.0"
+  }
+}

@@ -1,0 +1,15 @@
+{
+  "checked_at": "2026-10-20T06:12:31.428Z",
+  "checks": [
+    {
+      "id": "supply_ontology_hand_bom",
+      "readback_verified": true,
+      "only_comment_changes": true,
+      "changed_property_comments": [
+        "material_code"
+      ],
+      "logic_properties_preserved": true,
+      "schemas_data_sources_and_identity_preserved": true
+    }
+  ]
+}

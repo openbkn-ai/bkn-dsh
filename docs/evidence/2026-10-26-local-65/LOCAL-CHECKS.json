@@ -1,0 +1,13 @@
+{
+  "inputVerificationLocalAndRemote": "PASS",
+  "frozenPluginFilesMatched": 82,
+  "profileMcpFilesMatched": 12,
+  "mjsSyntaxFilesChecked": 5,
+  "newProfilePreparationOnly": "PASS",
+  "officialMacElectronReadOnlyArtifactInspection": "PASS",
+  "macGuiVectorUiLoginB1Rerun": false,
+  "windowsPowerShell51RegistryBackupRestore": "NOT_RUN",
+  "windowsActualBusinessAutoloadAndGui": "NOT_RUN",
+  "textSecretAndPersonalPathScan": "PASS",
+  "scopeReview": "one existing official rc3 GUI / one new empty profile / one synthetic connection / normal exit / scoped association backup and restore; no additional GUI distribution, matrices or business work"
+}

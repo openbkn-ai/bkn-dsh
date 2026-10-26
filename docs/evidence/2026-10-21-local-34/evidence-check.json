@@ -1,0 +1,174 @@
+{
+  "at": "2026-10-21T14:23:07.636752+00:00",
+  "prior_evidence": [
+    {
+      "directory": "2026-10-21-local-32",
+      "verified_files": 44,
+      "unchanged": true
+    },
+    {
+      "directory": "2026-10-21-local-33",
+      "verified_files": 6,
+      "unchanged": true
+    }
+  ],
+  "local_markdown_targets_checked": 55,
+  "images": [
+    {
+      "path": "0.2.0-rc.2/network-en-26.jpg",
+      "format": "jpeg",
+      "width": 1280,
+      "height": 820
+    },
+    {
+      "path": "0.2.0-rc.2/diagnostics-footer-zh-27.jpg",
+      "format": "jpeg",
+      "width": 800,
+      "height": 600
+    },
+    {
+      "path": "0.2.0-rc.2/diagnostics-contrast-before-27.jpg",
+      "format": "jpeg",
+      "width": 1280,
+      "height": 820
+    },
+    {
+      "path": "0.2.0-rc.2/login-timeout-26.jpg",
+      "format": "jpeg",
+      "width": 1280,
+      "height": 820
+    },
+    {
+      "path": "0.2.0-rc.2/diagnostics-narrow-en-27.jpg",
+      "format": "jpeg",
+      "width": 800,
+      "height": 600
+    },
+    {
+      "path": "0.2.0-rc.2/native-picker-session-26.jpg",
+      "format": "jpeg",
+      "width": 1280,
+      "height": 820
+    },
+    {
+      "path": "0.2.0-rc.2/diagnostics-narrow-zh-27.jpg",
+      "format": "jpeg",
+      "width": 800,
+      "height": 600
+    },
+    {
+      "path": "0.2.0-rc.2/diagnostics-narrow-26.jpg",
+      "format": "jpeg",
+      "width": 800,
+      "height": 600
+    },
+    {
+      "path": "0.2.0-rc.2/diagnostics-en-27.jpg",
+      "format": "jpeg",
+      "width": 1280,
+      "height": 820
+    },
+    {
+      "path": "0.2.0-rc.2/network-narrow-26.jpg",
+      "format": "jpeg",
+      "width": 800,
+      "height": 600
+    },
+    {
+      "path": "0.2.0-rc.2/final-network-26.jpg",
+      "format": "jpeg",
+      "width": 1280,
+      "height": 820
+    },
+    {
+      "path": "0.2.1-rc.2/diagnostics-footer-zh-27.jpg",
+      "format": "jpeg",
+      "width": 800,
+      "height": 600
+    },
+    {
+      "path": "0.2.1-rc.2/login-timeout-26.jpg",
+      "format": "jpeg",
+      "width": 1280,
+      "height": 820
+    },
+    {
+      "path": "0.2.1-rc.2/diagnostics-narrow-en-27.jpg",
+      "format": "jpeg",
+      "width": 800,
+      "height": 600
+    },
+    {
+      "path": "0.2.1-rc.2/native-picker-session-26.jpg",
+      "format": "jpeg",
+      "width": 1280,
+      "height": 820
+    },
+    {
+      "path": "0.2.1-rc.2/diagnostics-narrow-en-26.jpg",
+      "format": "jpeg",
+      "width": 800,
+      "height": 600
+    },
+    {
+      "path": "0.2.1-rc.2/diagnostics-narrow-zh-26.jpg",
+      "format": "jpeg",
+      "width": 800,
+      "height": 600
+    },
+    {
+      "path": "0.2.1-rc.2/diagnostics-narrow-zh-27.jpg",
+      "format": "jpeg",
+      "width": 800,
+      "height": 600
+    },
+    {
+      "path": "0.2.1-rc.2/diagnostics-en-27.jpg",
+      "format": "jpeg",
+      "width": 1280,
+      "height": 820
+    },
+    {
+      "path": "0.2.1-rc.2/network-narrow-en-26.jpg",
+      "format": "jpeg",
+      "width": 800,
+      "height": 600
+    },
+    {
+      "path": "0.2.1-rc.2/network-narrow-zh-26.jpg",
+      "format": "jpeg",
+      "width": 800,
+      "height": 600
+    },
+    {
+      "path": "0.2.1-rc.2/login-real-retry-success-26.jpg",
+      "format": "jpeg",
+      "width": 1280,
+      "height": 820
+    },
+    {
+      "path": "0.2.1-rc.2/ui-input-pending-26.jpg",
+      "format": "jpeg",
+      "width": 1280,
+      "height": 820
+    },
+    {
+      "path": "0.2.1-rc.2/b1-native-unauthorized.jpg",
+      "format": "jpeg",
+      "width": 1280,
+      "height": 820
+    },
+    {
+      "path": "0.2.1-rc.2/login-real-retry-late-26.jpg",
+      "format": "jpeg",
+      "width": 1280,
+      "height": 820
+    }
+  ],
+  "json_parse_pass": true,
+  "sensitive_pattern_scan": "passed before manifest; no actual credentials/launch cookies exported",
+  "implementation_self_review": "Owner context lifetime, native picker adapter and one diagnostics foreground only; business calculations/tool policy unchanged. Source baselines synchronized; frozen -27 changes only lib/client.js and package.json from -26.",
+  "final_dependency_closures": "old 280/new 297 DSH packages; no mixed host or split Cordis",
+  "official_app_signatures": "both codesign deep/strict exit 0",
+  "finalized_at": "2026-10-21T14:25:41.087809+00:00"
+}

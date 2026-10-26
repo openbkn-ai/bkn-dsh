@@ -1,0 +1,31 @@
+{
+  "checked_at": "2026-10-19T16:51:58.837513+00:00",
+  "source": {
+    "old": {
+      "tests": 598,
+      "pass": 597,
+      "fail": 0,
+      "skipped": 1,
+      "typecheck_passed": true
+    },
+    "new": {
+      "tests": 598,
+      "pass": 597,
+      "fail": 0,
+      "skipped": 1,
+      "typecheck_passed": true
+    }
+  },
+  "repository": {
+    "tests": 73,
+    "pass": 73,
+    "fail": 0,
+    "skipped": 0
+  },
+  "package": {
+    "audit_passed": true,
+    "files": 80,
+    "pinned_generator_patch_verify_passed": true,
+    "artifact_sha256": "e9ffa895affb40a3b5d5c75d0488d5f148afdd68168145e0d86304d2e96abeca"
+  }
+}

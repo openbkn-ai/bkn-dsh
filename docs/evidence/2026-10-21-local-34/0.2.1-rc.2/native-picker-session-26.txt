@@ -1,0 +1,63 @@
+Window: "DeepSeek Harness", App: DeepSeek Harness.
+0 standard window DeepSeek Harness, Secondary Actions: Raise
+	1 container DeepSeek Harness
+		2 container
+			3 HTML content DeepSeek Harness, URL: dsh-app://app/
+				4 container
+					5 button Collapse sidebar
+					6 button New session
+					7 container Global panels
+						8 button Plugins
+						9 button Automation tasks
+					10 text Workspaces
+					11 button Search sessions
+					12 text field (settable) Search session names
+					13 button View options
+					14 button Add workspace
+					15 outline Sessions
+						16 container
+							17 row native-picker-new
+								18 text native-picker-new
+							19 row (selected) New Session
+								20 text New Session
+						21 row desktop-new
+							22 text desktop-new
+						23 row Default workspace
+							24 text Default workspace
+						25 container
+							26 row Ungrouped
+								27 text Ungrouped
+							28 row R34 B1 native Desktop protocol check 18min
+								29 text R34 B1 native Desktop protocol check 18min
+							30 row R34 B1 native Desktop protocol check 43min
+								31 text R34 B1 native Desktop protocol check 43min
+							32 row R34 B1 native Desktop protocol check 59min
+								33 text R34 B1 native Desktop protocol check 59min
+							34 row R34 B1 native Desktop protocol check 1h
+								35 text R34 B1 native Desktop protocol check 1h
+							36 row R34_B1:0.2.1-rc.2:before 原生Desktop B 1h
+								37 text R34_B1:0.2.1-rc.2:before 原生Desktop B 1h
+					38 button OpenBKN business knowledge networks
+					39 pop up button Account menu
+					40 button Open right sidebar
+					41 container
+						42 text Into the Unknown Preview
+						43 pop up button Choose workspace
+						44 pop up button Standard mode, Help: Choose the agent preset for your new task
+						45 container OpenBKN business session entry
+							46 button Explore the “Fjelstul 世界杯 · Vega Catalog 绑定（占位符）” knowledge network.
+						47 text entry area (settable) Describe what you want to build, / commands, @ files or sessions
+						48 pop up button Add files or run commands
+						49 button Access mode, current: Workspace Write
+						50 pop up button Select model, current LOCAL B1 PROTOCOL - no Sandbox
+						51 button (disabled) Send message
+	52 close button
+	53 full screen button Help: this button also has an action to zoom the window, Secondary Actions: zoom the window
+	54 minimize button
+55 menu bar
+	56 DeepSeek Harness
+	57 File
+	58 Edit
+	59 Window
+
+The focused UI element is 38 button OpenBKN business knowledge networks

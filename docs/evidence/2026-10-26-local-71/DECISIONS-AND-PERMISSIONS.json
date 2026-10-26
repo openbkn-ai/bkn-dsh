@@ -1,0 +1,159 @@
+{
+  "date": "2026-10-26",
+  "kind": "local-development-preacceptance",
+  "ciRun": null,
+  "formalAcceptanceEligible": false,
+  "decisions": {
+    "D1": "Previously accepted welcome X / whole-tree exit; original menu FAIL and unknown exit code preserved.",
+    "D2": "Explicit user rule: plugin does not interfere with model/OpenBKN business exchanges. Inventory reproducible conditions and file upstream, then continue plugin work; original failures retained.",
+    "D3": "Explicit user rule: report environment/platform native-route question upstream; no global plugin stop waiting for that classification. Nonempty native acceptance remains unverified, not fabricated.",
+    "D4": "User supplied a new permission graph; read-only platform plus actual native rc.3 npm Host scenario passed.",
+    "D5": "User accepts the previously recommended known findings/environment/evidence limits; none are called fixed."
+  },
+  "upstreamIssues": [
+    {
+      "key": "sales",
+      "number": 2515,
+      "url": "https://github.com/openbkn-ai/bkn-foundry/issues/2515",
+      "title": "triage(context-loader): native caller skips a discovered sales Function and claims a filtered total from unfiltered data",
+      "state": "open",
+      "titleAndBodyReadbackMatched": true
+    },
+    {
+      "key": "field-label",
+      "number": 2516,
+      "url": "https://github.com/openbkn-ai/bkn-foundry/issues/2516",
+      "title": "triage(bkn): native caller confuses group_type and group_name in a standard lead-time answer",
+      "state": "open",
+      "titleAndBodyReadbackMatched": true
+    },
+    {
+      "key": "native-provenance",
+      "number": 2517,
+      "url": "https://github.com/openbkn-ai/bkn-foundry/issues/2517",
+      "title": "triage(bkn-trace): clarify native provenance route availability in official v0.2.0 Community",
+      "state": "open",
+      "titleAndBodyReadbackMatched": true
+    }
+  ],
+  "issueReadback": "All three titles/bodies re-read and equal to submitted content; no credentials, real business rows, platform addresses or private IDs included.",
+  "reusedSafetyTracking": {
+    "issue": "https://github.com/openbkn-ai/bkn-foundry/issues/2294",
+    "mergedFixes": [
+      "https://github.com/openbkn-ai/bkn-foundry/pull/2301",
+      "https://github.com/openbkn-ai/bkn-foundry/pull/2303"
+    ],
+    "deployedThisRun": false,
+    "newSafetyIssueCreated": false
+  },
+  "permissionCase": {
+    "account": "isolated user-provided test identity",
+    "positiveNetwork": "supply_ontology_hand",
+    "negativeNetwork": "worldcup_vega_catalog_bkn",
+    "officialCliVersion": "0.2.0",
+    "nodeVersion": "24.19.0",
+    "nativeHostVersion": "0.2.1-rc.3",
+    "pluginVersion": "0.2.0-rc.2-openbkn.0.2.0-32",
+    "candidateSha256": "46626510825fe9146aef12c27a1724acbb455aeac22aa600358add0fc8e1c9f8",
+    "businessSha256": "9901a046cb3274a56ac47cc1734d669e7a012dab25ef7e34fe3643a38b8d1081",
+    "actualProfileMcpSha256": "b3cd7156c0b8639656ce117530fec4d006b74cafdc9a78ac426fec084e62972c",
+    "networkDirectoryOnlyAllowed": true,
+    "directPlatformPermissionChecks": [
+      {
+        "role": "allowed",
+        "httpStatus": 200,
+        "errorCode": null,
+        "matchingNetworkReturned": true,
+        "responseBytes": 964,
+        "responseEntryCount": null
+      },
+      {
+        "role": "denied",
+        "httpStatus": 403,
+        "errorCode": "Public.Forbidden",
+        "matchingNetworkReturned": false,
+        "responseBytes": 173,
+        "responseEntryCount": null
+      }
+    ],
+    "nativeHostChecks": [
+      {
+        "stage": "forbidden-network-bind",
+        "result": "denied",
+        "businessDataReturned": false
+      },
+      {
+        "stage": "forbidden-network-tool",
+        "result": "denied",
+        "businessDataReturned": false
+      },
+      {
+        "stage": "allowed-network-metadata",
+        "result": "success"
+      }
+    ],
+    "actualNativeAgentUsed": true,
+    "platformReadback": [
+      {
+        "kind": "interaction",
+        "httpStatus": 200,
+        "executionStatus": "completed",
+        "entryCount": 0,
+        "toolNames": [],
+        "errorCode": null
+      },
+      {
+        "kind": "operations",
+        "httpStatus": 200,
+        "executionStatus": null,
+        "entryCount": 1,
+        "toolNames": [
+          "search_schema"
+        ],
+        "errorCode": null
+      }
+    ],
+    "deniedNetworkAbsentFromOperations": true,
+    "result": "PASS",
+    "modelCalls": 0,
+    "sandboxCalls": 0,
+    "originalInverseSupplyNegativeExecuted": false,
+    "newNaturalLanguageModelOrUiNegativeExecuted": false,
+    "allFormsPermissionMatrixExecuted": false
+  },
+  "authSetup": {
+    "isolatedConfigUsed": true,
+    "firstPasswordEntryCliTimedOut": true,
+    "firstPasswordChangeCompletedByUser": true,
+    "firstDevice120SecondAttemptTimedOut": true,
+    "finalDeviceWaitSeconds": 600,
+    "finalBrowserAndCliSuccess": true,
+    "manualHandoffWaitNotDefaultTimeoutAcceptance": true,
+    "credentialsKeptPrivate": true,
+    "browserTlsTrustAccepted": false,
+    "certificateWarningBypassedByAgent": false
+  },
+  "closeout": {
+    "nativeHostExit": {
+      "code": 0,
+      "signal": null
+    },
+    "ownedPidSurvives": false,
+    "ownedListenerSurvives": false,
+    "sourceHostEntryUnchanged": true,
+    "sourceRootMcpUnchanged": true,
+    "taskIncognitoClosed": true,
+    "taskIabTabClosed": true,
+    "originalAdminChromeWindowPreserved": true,
+    "originalBusinessDataOrConfigurationWrites": 0,
+    "expectedNewFootprint": "Test auth sessions, private task Session and one read-only diagnostic Interaction; no full database preservation audit claimed."
+  },
+  "remoteActions": {
+    "upstreamIssuesCreated": 3,
+    "codePushes": 0,
+    "ciDispatches": 0,
+    "pluginIssuesClosed": 0,
+    "tagsOrReleases": 0
+  },
+  "remaining": "Final-candidate/companion identity, declared-form affected compatibility, and separately authorized CI/review/release. No pending D2-D5 scope decision or missing account."
+}

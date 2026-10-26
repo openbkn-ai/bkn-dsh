@@ -1,0 +1,50 @@
+{
+  "checked_at": "2026-10-20T04:59:05.723Z",
+  "functions": [
+    {
+      "id": "01a11f4e-fb6a-7d44-8fd4-f1585cb3a016",
+      "name": "bom",
+      "readback_verified": true,
+      "identity_preserved": true
+    },
+    {
+      "id": "01a11f4e-fe5e-795f-a358-5d1d799293c8",
+      "name": "inventory",
+      "readback_verified": true,
+      "identity_preserved": true
+    }
+  ],
+  "objects": [
+    {
+      "id": "supply_ontology_hand_inventory",
+      "readback_verified": true,
+      "only_expected_comment_changes": true,
+      "logic_properties_preserved": true,
+      "logic_property_count": 2,
+      "original_logic_properties_restored_after_request_omission": true,
+      "schemas_keys_data_sources_and_bindings_preserved": true,
+      "new_comment": "实时记录物料在各仓库及仓位的库存数量、状态与批次信息。\n1. 生产可用库存\n定义：仅统计「有效仓库」内、状态为「可用」的库存数量。\n有效仓库范围：苏州半成品仓、苏州成品仓、苏州电子原料仓、苏州无人机原料仓、苏州装配原料仓、乌鲁木齐成品仓、哈尔滨成品仓。\n2. 全仓可用库存\n定义：统计全部仓库内、状态为「可用」的库存数量。\n仓库范围：系统内全部仓库。 3. 成品仓可用库存：仅苏州成品仓、乌鲁木齐成品仓、哈尔滨成品仓，stock_status=可用，按仓分别汇总 available_inventory_qty 并给该范围合计。用户只问成品仓时不附加其它仓或全仓合计；另有明确要求才使用全仓口径。保留来源数值精度，available_inventory_qty已是可用量，不再二次扣减预留。"
+    },
+    {
+      "id": "supply_ontology_hand_salesorder",
+      "readback_verified": true,
+      "only_expected_comment_changes": true,
+      "logic_properties_preserved": true,
+      "logic_property_count": 1,
+      "original_logic_properties_restored_after_request_omission": false,
+      "schemas_keys_data_sources_and_bindings_preserved": true,
+      "new_comment": "记录销售签约与交付信息。产品编码与「产品」对象一致，可直接关联查询；并包含客户、签约数量、承诺交期与交付情况等业务字段，便于体验订单履约分析。 查询范围：按产品查询销售订单时，使用 product_code 等值过滤；sales_order_id 是销售单号，contract_number 是合同号，不能用它们匹配产品编码或截取编码片段替代产品查询。产品编码即使只命中一张相似单号，也不代表该产品仅有一单。按同一 product_code 条件取得全部分页并核对 total_count；数量和状态的回答应披露匹配的单号清单或连续单号区间，明细问题应列全匹配订单的数量、状态与日期，不把第一页或片段检索结果当作完整明细。"
+    },
+    {
+      "id": "supply_ontology_hand_bom",
+      "readback_verified": true,
+      "only_expected_comment_changes": true,
+      "logic_properties_preserved": true,
+      "logic_property_count": 0,
+      "original_logic_properties_restored_after_request_omission": false,
+      "schemas_keys_data_sources_and_bindings_preserved": true,
+      "new_comment": "定义产品的物料清单结构，\n1. BOM结构：多层树形结构：产品 → L1子件 → L2子件 → ... → 最底层原材料；物料类型含自制、委外、外购。 \n2. BOM 组件分析默认去根（bom_level > 0），仅使用 alt_priority == 0 的主料；alt_method 和 alt_part 不参与主料/替代条角色判定。主料父子行数与按物料编码去重的物料种数分别统计；不得把分页行数当作全量。含根或含替代条的原始统计可以另列，但须明确标注该范围，不得称为默认去根主料组件数。\n3. BOM 替代料模型：\n1） BOM 中同一父件下的子件满足以下条件时，判定为同一替代组：\n  - alt_method = '替代'\n  - parent_material_code 相同（为空时使用 bom_material_code）\n  - alt_group_no 相同且非空\n2） 组内角色定义：\n  - alt_priority = 0 → 主料\n  - alt_priority != 0 → 替代条（priority 越小越优先） 4. 层级含义：bom_level表示本行子料相对根产品bom_material_code的层级，不是parent_material_code所在层级；同一物料在不同父子行可处于不同层，以本行bom_level为准。统计或举例须同时保留父件、子料与本行层级，不自行重编号。"
+    }
+  ],
+  "updater_issue": "Inventory logic_properties omission caught before model acceptance and restored from the immutable before-definition; no raw-data change"
+}

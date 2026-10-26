@@ -1,0 +1,39 @@
+{
+  "checkedAt": "2026-10-26T03:31:21.110Z",
+  "issue": {
+    "url": "https://github.com/openbkn-ai/bkn-dsh/issues/105",
+    "state": "open",
+    "comments": 0,
+    "oauthCriterion": "Conditional: re-review if a future integration introduces SDK OAuth providers; not a current full-SDK/OAuth implementation requirement",
+    "otherReleaseRiskAcceptanceInherited": false
+  },
+  "fixedBridge": {
+    "pluginVersion": "0.2.0-rc.2-openbkn.0.2.0-32",
+    "frozenBusinessSha256": "9901a046cb3274a56ac47cc1734d669e7a012dab25ef7e34fe3643a38b8d1081",
+    "manager": "packages/openbkn-business-context/src/openbkn-mcp-manager.ts:107",
+    "configuration": "Streamable HTTP, explicit Authorization header, no SDK authProvider/withOAuth/direct auth or fetchToken integration in this bridge",
+    "protectedFactory": "profile MCP transport passes requestInit.headers and fetchWithinOrigin(fetch); no OAuth provider argument",
+    "scopeConclusion": "The unchanged no-provider 401 evidence is reused. Global SDK version/advisory status is not changed, and unrelated SDK consumers are not audited or declared safe. Conditional OAuth review stays conditional rather than a new engineering gate."
+  },
+  "reusedEvidence": [
+    "docs/evidence/2026-10-25-local-52/MINIMAL-REMEDIATION.md",
+    "docs/evidence/2026-10-25-local-53/SECURITY-BACKPORT.md",
+    "docs/evidence/2026-10-25-local-58/RESULTS.md",
+    "docs/evidence/2026-10-26-local-64/RESULTS.md"
+  ],
+  "upstream": {
+    "dshHead": "22ddee3792402c3e70ec5f86a63c3e3e895a2f60",
+    "dshLatestTag": "dsh-v0.2.1-rc.3",
+    "foundryHead": "081f7fd5591edc990215bf3aea8ef9c1fe393d24",
+    "foundryLatestTag": "v0.2.0",
+    "changedSinceRound64": false,
+    "platformContactedOrDeployed": false,
+    "hostSdkPinsChanged": false,
+    "toolCatalogueChanged": false
+  },
+  "limitations": [
+    "Current fixed bridge static scope only, not a global SDK security clearance",
+    "Windows 5e55d09 result pending",
+    "No formal CI candidate or overall acceptance completion"
+  ]
+}

@@ -21,6 +21,7 @@ import { createInterface } from 'node:readline/promises'
 import { dirname, resolve } from 'node:path'
 import { fileURLToPath } from 'node:url'
 import { createRequire } from 'node:module'
+import { createHash } from 'node:crypto'
 
 const require = createRequire(import.meta.url)
 const { load } = require('js-yaml')
@@ -29,7 +30,8 @@ const here = dirname(fileURLToPath(import.meta.url))
 const SET_PATH = resolve(here, 'supply-ontology.yaml')
 
 function loadSet() {
-  const doc = load(readFileSync(SET_PATH, 'utf8'))
+  const source = readFileSync(SET_PATH, 'utf8')
+  const doc = load(source)
   if (doc?.network === undefined || !Array.isArray(doc.cases) || doc.cases.length === 0) {
     throw new Error(`malformed evaluation set: ${SET_PATH}`)
   }
@@ -38,7 +40,7 @@ function loadSet() {
       throw new Error(`malformed case: ${JSON.stringify(c.id ?? c)}`)
     }
   }
-  return doc
+  return { ...doc, setSha256: createHash('sha256').update(source).digest('hex') }
 }
 
 function criteriaOf(c) {
@@ -49,6 +51,7 @@ function criteriaOf(c) {
 
 function listMode(doc) {
   console.log(`network: ${doc.network}`)
+  console.log(`set_sha256: ${doc.setSha256}`)
   for (const c of doc.cases) {
     const baseline = c.baselineVerified ? ' [baseline-verified]' : ''
     console.log(`\n[${c.group}] ${c.id}${baseline}`)
@@ -94,12 +97,12 @@ function batch(doc, answersPath) {
     if (value === 'not-run') return { id: c.id, group: c.group, marks: [], pass: null }
     const checks = criteriaOf(c)
     let marks
-    if (typeof value === 'string') marks = checks.map(() => value === 'pass')
+    if (value === 'pass' || value === 'fail') marks = checks.map(() => value === 'pass')
     else {
-      if (!Array.isArray(value) || value.length !== checks.length) {
+      if (!Array.isArray(value) || value.length !== checks.length || !value.every(mark => typeof mark === 'boolean')) {
         throw new Error(`case ${c.id}: expected ${checks.length} booleans or "pass"/"fail"`)
       }
-      marks = value.map(Boolean)
+      marks = value
     }
     return { id: c.id, group: c.group, marks, pass: marks.every(Boolean) }
   })
@@ -113,6 +116,7 @@ function summarize(doc, results, outPath) {
     return `${tested.filter(r => r.pass).length}/${tested.length}`
   }
   console.log(`\n== ${doc.network} summary ==`)
+  console.log(`set_sha256: ${doc.setSha256}`)
   console.log(`positive: ${fmt(positives)}   negative: ${fmt(negatives)}   total: ${fmt(results)}`)
   const untested = results.filter(r => r.pass === null)
   if (untested.length > 0) console.log(`not-run: ${untested.map(r => r.id).join(', ')}`)
@@ -124,6 +128,7 @@ function summarize(doc, results, outPath) {
     const lines = [
       `# ${doc.network} eval results`, '',
       `date: ${new Date().toISOString()}`, '',
+      `set_sha256: ${doc.setSha256}`, '',
       `positive: ${fmt(positives)} · negative: ${fmt(negatives)} · total: ${fmt(results)}`, '',
       ...results.flatMap(r => [
         `## ${r.id} — ${r.pass === null ? 'NOT-RUN' : r.pass ? 'PASS' : 'FAIL'}`,

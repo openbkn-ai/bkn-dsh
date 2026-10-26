@@ -26,7 +26,7 @@ export type OpenBknOverlayPhase = 'idle' | 'loading' | 'authentication-required'
 /** Render state for the additive OpenBKN overlay; credentials never enter it. */
 export interface OpenBknOverlayState {
   readonly open: boolean
-  readonly contextRevision?: number
+  readonly login?: 'waiting' | 'succeeded' | 'failed' | 'timed-out' | 'cancelled'
   readonly phase: OpenBknOverlayPhase
   readonly auth?: AuthSnapshot
   readonly networks: readonly BusinessNetworkSummary[]
@@ -50,14 +50,14 @@ export class OpenBknUiController {
   private readonly listeners = new Set<Listener>()
   private revision = 0
   private operation?: AbortController
-  private loginOperation?: UiOperation
-  private contextRevision = 0
+  private loginTimer?: ReturnType<typeof setTimeout>
 
   constructor(
     private readonly port: OpenBknUiPort,
     private readonly openNetworkSession: OpenNetworkSession,
     private readonly refreshBoundSession?: (sessionId: string) => void,
     private readonly configurationPort?: OpenBknConfigurationPort,
+    private readonly loginTimeoutMs = 120_000,
   ) {}
 
   snapshot(): OpenBknOverlayState { return this.state }
@@ -69,37 +69,26 @@ export class OpenBknUiController {
   }
 
   open(): void {
-    this.publish({ ...this.state, open: true })
+    this.invalidate()
+    this.publish({ open: true, phase: 'idle', networks: [] })
   }
 
-  /** Dismissing a modal must not cancel an already launched device login. */
   close(): void {
-    if (this.loginOperation !== undefined) {
-      this.publish({ ...this.state, open: false })
-      return
-    }
     this.invalidate()
-    const phase = this.state.phase === 'loading' || this.state.phase === 'binding' || this.state.loadingConfiguration ? 'idle' : this.state.phase
-    this.publish({ ...this.state, open: false, phase, savingConfiguration: false, loadingConfiguration: false })
-  }
-
-  /** Service replacement/unmount is different from user dismissal. */
-  reset(open = false): void {
-    this.invalidate()
-    this.contextRevision++
-    this.publish({ open, phase: 'idle', networks: [] })
+    this.publish({ open: false, phase: 'idle', networks: [] })
   }
 
   /** A business-row reload must not invalidate its independent configuration save. */
   businessChanged(): void {
-    if (this.state.phase === 'configuration') return
-    this.reset(this.state.open)
+    if (!this.state.open || this.state.phase === 'configuration') return
+    this.invalidate()
+    this.publish({ open: true, phase: 'idle', networks: [] })
   }
 
   async refresh(signal?: AbortSignal): Promise<void> {
     if (!this.state.open) return
     const operation = this.start(signal)
-    this.publish({ ...this.state, phase: 'loading', message: undefined, networks: [] })
+    this.publish({ ...this.state, phase: 'loading', login: undefined, message: undefined, networks: [] })
     let configuration = this.state.configuration
     if (this.configurationPort !== undefined) {
       try {
@@ -175,21 +164,46 @@ export class OpenBknUiController {
   }
 
   async beginLogin(signal?: AbortSignal): Promise<void> {
-    if (!this.state.open || this.loginOperation !== undefined) return
+    if (!this.state.open || this.state.login === 'waiting') return
     const operation = this.start(signal)
-    this.loginOperation = operation
-    this.publish({ ...this.state, phase: 'loading', message: undefined })
+    this.publish({ ...this.state, phase: 'loading', login: 'waiting', message: undefined })
+    this.loginTimer = setTimeout(() => {
+      if (this.current(operation)) this.finishLoginWait('timed-out')
+    }, this.loginTimeoutMs)
+    const onAbort = () => {
+      if (this.state.open && this.revision === operation.revision) this.finishLoginWait('cancelled')
+    }
+    operation.signal.addEventListener('abort', onAbort, { once: true })
+    if (operation.signal.aborted) onAbort()
     try {
+      operation.signal.throwIfAborted()
       const networks = await this.port.beginLogin(operation.signal)
       if (!this.current(operation)) return
       const auth = await this.port.status(operation.signal)
       if (!this.current(operation)) return
-      this.publish({ open: this.state.open, phase: 'ready', auth, networks, ...withConfiguration(this.state.configuration) })
+      if (auth.kind !== 'authenticated') {
+        this.publish({ open: true, phase: 'authentication-required', login: 'failed', auth, networks: [], ...withConfiguration(this.state.configuration) })
+        return
+      }
+      this.publish({ open: true, phase: 'ready', login: 'succeeded', auth, networks, ...withConfiguration(this.state.configuration) })
     } catch (error: unknown) {
-      if (this.current(operation)) this.connectionFailed(error, this.state.configuration)
+      if (this.current(operation)) {
+        this.connectionFailed(error, this.state.configuration)
+        this.publish({ ...this.state, login: 'failed' })
+      }
     } finally {
-      if (this.loginOperation === operation) this.loginOperation = undefined
+      operation.signal.removeEventListener('abort', onAbort)
+      if (this.revision === operation.revision) { clearTimeout(this.loginTimer); this.loginTimer = undefined }
     }
+  }
+
+  cancelLogin(): void {
+    if (this.state.login === 'waiting') this.finishLoginWait('cancelled')
+  }
+
+  private finishLoginWait(login: 'cancelled' | 'timed-out'): void {
+    this.invalidate()
+    this.publish({ ...this.state, phase: 'authentication-required', login, message: undefined })
   }
 
   async openNetwork(networkId: string, mode: NetworkSessionMode, signal?: AbortSignal): Promise<void> {
@@ -234,13 +248,13 @@ export class OpenBknUiController {
   private connectionFailed(error: unknown, configuration?: OpenBknConfigurationView, saved = false): void {
     const prefix = saved ? uiMessage('settingsSaved') : ''
     if (isAuthenticationRequiredError(error)) {
-      this.publish({ open: this.state.open, phase: 'authentication-required', auth: { kind: 'authentication-required', baseUrl: error.details.baseUrl }, networks: [], ...withConfiguration(configuration), message: joinUiMessages(prefix, authenticationFailureMessage(error)) })
+      this.publish({ open: true, phase: 'authentication-required', auth: { kind: 'authentication-required', baseUrl: error.details.baseUrl }, networks: [], ...withConfiguration(configuration), message: joinUiMessages(prefix, authenticationFailureMessage(error)) })
       return
     }
     const message = isPlatformUnavailableError(error)
       ? uiMessage('theOpenBKNBusinessKnowledgeNetworkDirectoryIsTemporarily')
       : connectionFailureMessage(error)
-    this.publish({ open: this.state.open, phase: 'error', networks: [], ...withConfiguration(configuration), message: joinUiMessages(prefix, message) })
+    this.publish({ open: true, phase: 'error', networks: [], ...withConfiguration(configuration), message: joinUiMessages(prefix, message) })
   }
 
   private start(signal?: AbortSignal): UiOperation {
@@ -251,18 +265,19 @@ export class OpenBknUiController {
   }
 
   private current(operation: UiOperation): boolean {
-    return (this.state.open || this.loginOperation === operation) && this.revision === operation.revision && !operation.signal.aborted
+    return this.state.open && this.revision === operation.revision && !operation.signal.aborted
   }
 
   private invalidate(): void {
     this.revision += 1
+    clearTimeout(this.loginTimer)
+    this.loginTimer = undefined
     this.operation?.abort()
     this.operation = undefined
-    this.loginOperation = undefined
   }
 
   private publish(state: OpenBknOverlayState): void {
-    this.state = this.contextRevision === 0 ? state : { ...state, contextRevision: this.contextRevision }
+    this.state = state
     for (const listener of this.listeners) listener()
   }
 }
@@ -315,8 +330,8 @@ function authenticationFailureMessage(error: { readonly details: { readonly laye
   if (error.details.httpStatus === 403) {
     return uiMessage('accessDeniedAccount', { p0: source })
   }
-  const status = error.details.httpStatus === 401 ? uiMessage('http401') : ''
-  return uiMessage('credentialsRefused', { source, status })
+  const status = error.details.httpStatus === 401 ? ' (HTTP 401)' : ''
+  return uiMessage('credentialRejected', { p0: source, p1: status })
 }
 
 function isPlatformUnavailableError(error: unknown): error is {
@@ -392,10 +407,6 @@ function bindFailureMessage(error: unknown): UiMessage {
   if (code === DIRECTORY_PICKER_UNAVAILABLE) {
     return uiMessage('thisConnectionModeRemoteBrowseBackendCannotCreate')
   }
-  if (code === DIRECTORY_PICKER_FAILED) {
-    const detail = error instanceof Error ? error.message.trim() : ''
-    return uiMessage('pickerFailureDetail', { detail: detail === '' ? '' : uiMessage('detailSuffix', { detail }) })
-  }
-  const detail = error instanceof Error ? error.message.trim() : ''
-  return detail === '' ? uiMessage('bindFailure') : uiMessage('bindFailureDetail', { detail })
+  if (code === DIRECTORY_PICKER_FAILED) return uiMessage('pickerFailed')
+  return uiMessage('bindFailed')
 }

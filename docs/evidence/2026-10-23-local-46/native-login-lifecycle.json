@@ -1,0 +1,684 @@
+{
+  "kind": "controlled native-wire and source-loaded lifecycle probe",
+  "platform": "darwin",
+  "node": "v24.19.0",
+  "plugin": "0.2.0-rc.2-openbkn.0.2.0-30",
+  "platformAccessed": false,
+  "realCliExecuted": false,
+  "browserExecuted": false,
+  "realWindowsJobExecuted": false,
+  "hostUiStarted": false,
+  "hosts": [
+    {
+      "version": "0.2.0-rc.2",
+      "code": {
+        "gatewayClientSHA256": "e09e26fcd4849cd55683b9cc702dca896efce93a5af3968431c1c8a62147b9cf",
+        "gatewayServerSHA256": "12489aafd3be30c606824f52b45f682c42f95448db89f2458bba87fa944a50c0",
+        "packedClientSHA256": "7bc6ba13b1c9a82a99a7dcdaa63ebbe02c78f95b2713a416f719340e2138ae7a",
+        "packedConsumerSHA256": "ebddd511f2ff9c56e5c943cd499185180e54f1d8a991304f58e3f777c96da035",
+        "packedLoginStreamSHA256": "c04a0cb1c3e21b3c7142cfdd57cefd735839c5222c6f116e1c3b212ab28562f3",
+        "runnerSourceSHA256": "d4ba8aeec4427437cf4b7f23d2ea61c3a25becb43ee3944df190eef537a4679d",
+        "runnerExtractSHA256": "a7d4af83f472478faf590f04d66eb81fdfd05661900af31e3ebf6d9b9978f973",
+        "parentOwnerSourceSHA256": "220d210e72df9da21a313a70a400e6f5443b17b4a08188f0131bc09167067f63",
+        "parentOwnerExtractSHA256": "241099e25e35df8d7254e1f1aab7ff024e752aa4ecfa0f99807409b9e388c314",
+        "commonLifecycleSourceSHA256": "1087f9ed1704167865e1a35cea0604f335cc348ac17da9c83c542fc454d00ae0",
+        "bindExtractSHA256": "c26ef2ccd87eaa74834656ebba2176eb6f5cf036344666decbc240191ee8b467"
+      },
+      "executionBoundary": {
+        "gateway": "published bundles, added private-symbol exports only",
+        "plugin": "unchanged -30 packed consumer and service method",
+        "processLifecycle": "unchanged pinned source functions/classes, TypeScript transform only",
+        "windowsApis": "injected fixture with an intentionally nonempty Job, no actual processes or Job handles",
+        "authAndTarget": "remoteBeginLogin stand-in waits for an injected direct-exit result; no CLI credentials or auth coordinator",
+        "dispatch": "native mux classes instantiated directly; public Gateway/Typert mount and authorization are not exercised",
+        "timing": "active-send cases deliberately delay only the WebSocket item-send acknowledgement callback; production service generator is unchanged"
+      },
+      "cases": [
+        {
+          "mode": "first-result-active-send",
+          "verdict": "PASS",
+          "observedBeforeFixtureCleanup": {
+            "callerOperationAborted": false,
+            "cancelSeen": true,
+            "serverAborted": true,
+            "ownerSignals": [
+              "SIGTERM"
+            ],
+            "terminateCalls": 1,
+            "runnerStillConnected": false,
+            "serverStreamRemoved": true,
+            "endFrameSent": false,
+            "directDoneBeforeLoginResult": true
+          },
+          "wire": [
+            {
+              "direction": "client-to-server",
+              "type": "open"
+            },
+            {
+              "direction": "server-to-client",
+              "type": "item"
+            },
+            {
+              "direction": "client-to-server",
+              "type": "cancel"
+            }
+          ],
+          "events": [
+            {
+              "sequence": 1,
+              "name": "fixture-job-created"
+            },
+            {
+              "sequence": 2,
+              "name": "server-receive-open"
+            },
+            {
+              "sequence": 3,
+              "name": "native-close-handle",
+              "label": "ordinary direct process"
+            },
+            {
+              "sequence": 4,
+              "name": "runner-target-result",
+              "type": "target-exit",
+              "exitCode": 0
+            },
+            {
+              "sequence": 5,
+              "name": "common-direct-done-before-login-result"
+            },
+            {
+              "sequence": 6,
+              "name": "server-send-item"
+            },
+            {
+              "sequence": 7,
+              "name": "fixture-hold-send-callback"
+            },
+            {
+              "sequence": 8,
+              "name": "packed-consumer-returned"
+            },
+            {
+              "sequence": 9,
+              "name": "server-receive-cancel"
+            },
+            {
+              "sequence": 10,
+              "name": "cancel-active-observation",
+              "activeStreams": 1
+            },
+            {
+              "sequence": 11,
+              "name": "server-operation-aborted"
+            },
+            {
+              "sequence": 12,
+              "name": "fixture-release-send-callback"
+            },
+            {
+              "sequence": 13,
+              "name": "common-owner-signal",
+              "signal": "SIGTERM"
+            },
+            {
+              "sequence": 14,
+              "name": "parent-to-runner-terminate"
+            },
+            {
+              "sequence": 15,
+              "name": "injected-terminate-job"
+            },
+            {
+              "sequence": 16,
+              "name": "native-close-handle",
+              "label": "ordinary process Job"
+            },
+            {
+              "sequence": 17,
+              "name": "runner-finished",
+              "exitCode": 0
+            },
+            {
+              "sequence": 18,
+              "name": "fixture-natural-job-release-for-cleanup"
+            }
+          ],
+          "cleanup": {
+            "fixtureRunnerDisconnected": true,
+            "httpListenerClosed": true,
+            "serverWebSocketsClosed": true
+          }
+        },
+        {
+          "mode": "drain-to-terminal-active-send",
+          "verdict": "PASS",
+          "observedBeforeFixtureCleanup": {
+            "callerOperationAborted": false,
+            "cancelSeen": false,
+            "serverAborted": false,
+            "ownerSignals": [],
+            "terminateCalls": 0,
+            "runnerStillConnected": true,
+            "serverStreamRemoved": true,
+            "endFrameSent": true,
+            "directDoneBeforeLoginResult": true
+          },
+          "wire": [
+            {
+              "direction": "client-to-server",
+              "type": "open"
+            },
+            {
+              "direction": "server-to-client",
+              "type": "item"
+            },
+            {
+              "direction": "server-to-client",
+              "type": "end"
+            }
+          ],
+          "events": [
+            {
+              "sequence": 1,
+              "name": "fixture-job-created"
+            },
+            {
+              "sequence": 2,
+              "name": "server-receive-open"
+            },
+            {
+              "sequence": 3,
+              "name": "native-close-handle",
+              "label": "ordinary direct process"
+            },
+            {
+              "sequence": 4,
+              "name": "runner-target-result",
+              "type": "target-exit",
+              "exitCode": 0
+            },
+            {
+              "sequence": 5,
+              "name": "common-direct-done-before-login-result"
+            },
+            {
+              "sequence": 6,
+              "name": "server-send-item"
+            },
+            {
+              "sequence": 7,
+              "name": "fixture-hold-send-callback"
+            },
+            {
+              "sequence": 8,
+              "name": "fixture-release-send-callback"
+            },
+            {
+              "sequence": 9,
+              "name": "server-send-end"
+            },
+            {
+              "sequence": 10,
+              "name": "drain-consumer-completed"
+            },
+            {
+              "sequence": 11,
+              "name": "fixture-natural-job-release-for-cleanup"
+            },
+            {
+              "sequence": 12,
+              "name": "native-close-handle",
+              "label": "ordinary process Job"
+            },
+            {
+              "sequence": 13,
+              "name": "runner-finished",
+              "exitCode": 0
+            }
+          ],
+          "cleanup": {
+            "fixtureRunnerDisconnected": true,
+            "httpListenerClosed": true,
+            "serverWebSocketsClosed": true
+          }
+        },
+        {
+          "mode": "first-result-server-finished",
+          "verdict": "PASS",
+          "observedBeforeFixtureCleanup": {
+            "callerOperationAborted": false,
+            "cancelSeen": true,
+            "serverAborted": false,
+            "ownerSignals": [],
+            "terminateCalls": 0,
+            "runnerStillConnected": true,
+            "serverStreamRemoved": true,
+            "endFrameSent": true,
+            "directDoneBeforeLoginResult": true
+          },
+          "wire": [
+            {
+              "direction": "client-to-server",
+              "type": "open"
+            },
+            {
+              "direction": "server-to-client",
+              "type": "item"
+            },
+            {
+              "direction": "server-to-client",
+              "type": "end"
+            },
+            {
+              "direction": "client-to-server",
+              "type": "cancel"
+            }
+          ],
+          "events": [
+            {
+              "sequence": 1,
+              "name": "fixture-job-created"
+            },
+            {
+              "sequence": 2,
+              "name": "server-receive-open"
+            },
+            {
+              "sequence": 3,
+              "name": "native-close-handle",
+              "label": "ordinary direct process"
+            },
+            {
+              "sequence": 4,
+              "name": "runner-target-result",
+              "type": "target-exit",
+              "exitCode": 0
+            },
+            {
+              "sequence": 5,
+              "name": "common-direct-done-before-login-result"
+            },
+            {
+              "sequence": 6,
+              "name": "server-send-item"
+            },
+            {
+              "sequence": 7,
+              "name": "server-send-end"
+            },
+            {
+              "sequence": 8,
+              "name": "packed-consumer-returned"
+            },
+            {
+              "sequence": 9,
+              "name": "server-receive-cancel"
+            },
+            {
+              "sequence": 10,
+              "name": "cancel-active-observation",
+              "activeStreams": 0
+            },
+            {
+              "sequence": 11,
+              "name": "fixture-natural-job-release-for-cleanup"
+            },
+            {
+              "sequence": 12,
+              "name": "native-close-handle",
+              "label": "ordinary process Job"
+            },
+            {
+              "sequence": 13,
+              "name": "runner-finished",
+              "exitCode": 0
+            }
+          ],
+          "cleanup": {
+            "fixtureRunnerDisconnected": true,
+            "httpListenerClosed": true,
+            "serverWebSocketsClosed": true
+          }
+        }
+      ]
+    },
+    {
+      "version": "0.2.1-rc.2",
+      "code": {
+        "gatewayClientSHA256": "aca973689c3ee34524c8bd7de9c901f5a839e29bc15d4816a6dc5e2fb0e64e9f",
+        "gatewayServerSHA256": "4fbe460fec585ebc2cf2887261f6c33f024081a539d9fb5d6557a9002324b23f",
+        "packedClientSHA256": "7bc6ba13b1c9a82a99a7dcdaa63ebbe02c78f95b2713a416f719340e2138ae7a",
+        "packedConsumerSHA256": "ebddd511f2ff9c56e5c943cd499185180e54f1d8a991304f58e3f777c96da035",
+        "packedLoginStreamSHA256": "c04a0cb1c3e21b3c7142cfdd57cefd735839c5222c6f116e1c3b212ab28562f3",
+        "runnerSourceSHA256": "d4ba8aeec4427437cf4b7f23d2ea61c3a25becb43ee3944df190eef537a4679d",
+        "runnerExtractSHA256": "a7d4af83f472478faf590f04d66eb81fdfd05661900af31e3ebf6d9b9978f973",
+        "parentOwnerSourceSHA256": "220d210e72df9da21a313a70a400e6f5443b17b4a08188f0131bc09167067f63",
+        "parentOwnerExtractSHA256": "241099e25e35df8d7254e1f1aab7ff024e752aa4ecfa0f99807409b9e388c314",
+        "commonLifecycleSourceSHA256": "1087f9ed1704167865e1a35cea0604f335cc348ac17da9c83c542fc454d00ae0",
+        "bindExtractSHA256": "c26ef2ccd87eaa74834656ebba2176eb6f5cf036344666decbc240191ee8b467"
+      },
+      "executionBoundary": {
+        "gateway": "published bundles, added private-symbol exports only",
+        "plugin": "unchanged -30 packed consumer and service method",
+        "processLifecycle": "unchanged pinned source functions/classes, TypeScript transform only",
+        "windowsApis": "injected fixture with an intentionally nonempty Job, no actual processes or Job handles",
+        "authAndTarget": "remoteBeginLogin stand-in waits for an injected direct-exit result; no CLI credentials or auth coordinator",
+        "dispatch": "native mux classes instantiated directly; public Gateway/Typert mount and authorization are not exercised",
+        "timing": "active-send cases deliberately delay only the WebSocket item-send acknowledgement callback; production service generator is unchanged"
+      },
+      "cases": [
+        {
+          "mode": "first-result-active-send",
+          "verdict": "PASS",
+          "observedBeforeFixtureCleanup": {
+            "callerOperationAborted": false,
+            "cancelSeen": true,
+            "serverAborted": true,
+            "ownerSignals": [
+              "SIGTERM"
+            ],
+            "terminateCalls": 1,
+            "runnerStillConnected": false,
+            "serverStreamRemoved": true,
+            "endFrameSent": false,
+            "directDoneBeforeLoginResult": true
+          },
+          "wire": [
+            {
+              "direction": "client-to-server",
+              "type": "open"
+            },
+            {
+              "direction": "server-to-client",
+              "type": "item"
+            },
+            {
+              "direction": "client-to-server",
+              "type": "cancel"
+            }
+          ],
+          "events": [
+            {
+              "sequence": 1,
+              "name": "fixture-job-created"
+            },
+            {
+              "sequence": 2,
+              "name": "server-receive-open"
+            },
+            {
+              "sequence": 3,
+              "name": "native-close-handle",
+              "label": "ordinary direct process"
+            },
+            {
+              "sequence": 4,
+              "name": "runner-target-result",
+              "type": "target-exit",
+              "exitCode": 0
+            },
+            {
+              "sequence": 5,
+              "name": "common-direct-done-before-login-result"
+            },
+            {
+              "sequence": 6,
+              "name": "server-send-item"
+            },
+            {
+              "sequence": 7,
+              "name": "fixture-hold-send-callback"
+            },
+            {
+              "sequence": 8,
+              "name": "packed-consumer-returned"
+            },
+            {
+              "sequence": 9,
+              "name": "server-receive-cancel"
+            },
+            {
+              "sequence": 10,
+              "name": "cancel-active-observation",
+              "activeStreams": 1
+            },
+            {
+              "sequence": 11,
+              "name": "server-operation-aborted"
+            },
+            {
+              "sequence": 12,
+              "name": "fixture-release-send-callback"
+            },
+            {
+              "sequence": 13,
+              "name": "common-owner-signal",
+              "signal": "SIGTERM"
+            },
+            {
+              "sequence": 14,
+              "name": "parent-to-runner-terminate"
+            },
+            {
+              "sequence": 15,
+              "name": "injected-terminate-job"
+            },
+            {
+              "sequence": 16,
+              "name": "native-close-handle",
+              "label": "ordinary process Job"
+            },
+            {
+              "sequence": 17,
+              "name": "runner-finished",
+              "exitCode": 0
+            },
+            {
+              "sequence": 18,
+              "name": "fixture-natural-job-release-for-cleanup"
+            }
+          ],
+          "cleanup": {
+            "fixtureRunnerDisconnected": true,
+            "httpListenerClosed": true,
+            "serverWebSocketsClosed": true
+          }
+        },
+        {
+          "mode": "drain-to-terminal-active-send",
+          "verdict": "PASS",
+          "observedBeforeFixtureCleanup": {
+            "callerOperationAborted": false,
+            "cancelSeen": false,
+            "serverAborted": false,
+            "ownerSignals": [],
+            "terminateCalls": 0,
+            "runnerStillConnected": true,
+            "serverStreamRemoved": true,
+            "endFrameSent": true,
+            "directDoneBeforeLoginResult": true
+          },
+          "wire": [
+            {
+              "direction": "client-to-server",
+              "type": "open"
+            },
+            {
+              "direction": "server-to-client",
+              "type": "item"
+            },
+            {
+              "direction": "server-to-client",
+              "type": "end"
+            }
+          ],
+          "events": [
+            {
+              "sequence": 1,
+              "name": "fixture-job-created"
+            },
+            {
+              "sequence": 2,
+              "name": "server-receive-open"
+            },
+            {
+              "sequence": 3,
+              "name": "native-close-handle",
+              "label": "ordinary direct process"
+            },
+            {
+              "sequence": 4,
+              "name": "runner-target-result",
+              "type": "target-exit",
+              "exitCode": 0
+            },
+            {
+              "sequence": 5,
+              "name": "common-direct-done-before-login-result"
+            },
+            {
+              "sequence": 6,
+              "name": "server-send-item"
+            },
+            {
+              "sequence": 7,
+              "name": "fixture-hold-send-callback"
+            },
+            {
+              "sequence": 8,
+              "name": "fixture-release-send-callback"
+            },
+            {
+              "sequence": 9,
+              "name": "server-send-end"
+            },
+            {
+              "sequence": 10,
+              "name": "drain-consumer-completed"
+            },
+            {
+              "sequence": 11,
+              "name": "fixture-natural-job-release-for-cleanup"
+            },
+            {
+              "sequence": 12,
+              "name": "native-close-handle",
+              "label": "ordinary process Job"
+            },
+            {
+              "sequence": 13,
+              "name": "runner-finished",
+              "exitCode": 0
+            }
+          ],
+          "cleanup": {
+            "fixtureRunnerDisconnected": true,
+            "httpListenerClosed": true,
+            "serverWebSocketsClosed": true
+          }
+        },
+        {
+          "mode": "first-result-server-finished",
+          "verdict": "PASS",
+          "observedBeforeFixtureCleanup": {
+            "callerOperationAborted": false,
+            "cancelSeen": true,
+            "serverAborted": false,
+            "ownerSignals": [],
+            "terminateCalls": 0,
+            "runnerStillConnected": true,
+            "serverStreamRemoved": true,
+            "endFrameSent": true,
+            "directDoneBeforeLoginResult": true
+          },
+          "wire": [
+            {
+              "direction": "client-to-server",
+              "type": "open"
+            },
+            {
+              "direction": "server-to-client",
+              "type": "item"
+            },
+            {
+              "direction": "server-to-client",
+              "type": "end"
+            },
+            {
+              "direction": "client-to-server",
+              "type": "cancel"
+            }
+          ],
+          "events": [
+            {
+              "sequence": 1,
+              "name": "fixture-job-created"
+            },
+            {
+              "sequence": 2,
+              "name": "server-receive-open"
+            },
+            {
+              "sequence": 3,
+              "name": "native-close-handle",
+              "label": "ordinary direct process"
+            },
+            {
+              "sequence": 4,
+              "name": "runner-target-result",
+              "type": "target-exit",
+              "exitCode": 0
+            },
+            {
+              "sequence": 5,
+              "name": "common-direct-done-before-login-result"
+            },
+            {
+              "sequence": 6,
+              "name": "server-send-item"
+            },
+            {
+              "sequence": 7,
+              "name": "server-send-end"
+            },
+            {
+              "sequence": 8,
+              "name": "packed-consumer-returned"
+            },
+            {
+              "sequence": 9,
+              "name": "server-receive-cancel"
+            },
+            {
+              "sequence": 10,
+              "name": "cancel-active-observation",
+              "activeStreams": 0
+            },
+            {
+              "sequence": 11,
+              "name": "fixture-natural-job-release-for-cleanup"
+            },
+            {
+              "sequence": 12,
+              "name": "native-close-handle",
+              "label": "ordinary process Job"
+            },
+            {
+              "sequence": 13,
+              "name": "runner-finished",
+              "exitCode": 0
+            }
+          ],
+          "cleanup": {
+            "fixtureRunnerDisconnected": true,
+            "httpListenerClosed": true,
+            "serverWebSocketsClosed": true
+          }
+        }
+      ]
+    }
+  ],
+  "conclusion": "The unchanged packed first-result consumer sends a real cancel frame. With a controlled delayed item-send acknowledgement while the native server is active, that frame aborts the operation after direct CLI-result settlement; unchanged process binding requests SIGTERM, unchanged WindowsJobOwner sends terminate IPC, and unchanged runner state calls the injected terminateJob. Draining terminal avoids cancel. If the server already removed the stream, the same late cancel is ignored and a fixture nonempty Job keeps the runner pending. No real Windows Job membership, browser closure, or incident causality is established."
+}

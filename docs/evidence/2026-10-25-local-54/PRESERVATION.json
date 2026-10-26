@@ -1,0 +1,134 @@
+{
+  "checkedAt": "2026-10-25T03:13:21Z",
+  "scope": "Recorded existing files; no fresh full database or all-machine file audit",
+  "mainBeforeFiles": 3777,
+  "allowedChangedExistingFiles": [
+    "docs/plans/0.2.1/ISSUE-WORKFLOW.md",
+    "packages/openbkn-business-context/src/client/use-dialog-focus.ts",
+    "packages/openbkn-business-context/tests/dialog-focus.test.ts",
+    "CHANGELOG.md",
+    "CLAUDE.md",
+    "README.md",
+    "README.zh.md",
+    "docs/plans/0.2.1/ACCEPTANCE-CONTRACT.md",
+    "docs/plans/0.2.1/DSH-COMPATIBILITY.md",
+    "docs/plans/0.2.1/README.md",
+    "packages/openbkn-business-context/README.md",
+    "packages/openbkn-business-context/README.zh.md",
+    "packages/openbkn-business-context/src/client/OpenBknDiagnostics.tsx",
+    "packages/openbkn-business-context/src/client/OpenBknOverlay.tsx",
+    "packages/openbkn-business-context/src/client/ProvenanceOverlay.tsx",
+    "packages/openbkn-business-context/src/client/locales.ts"
+  ],
+  "unexpectedChanges": [],
+  "addedMainFiles": [
+    "docs/evidence/2026-10-25-local-54/BLOCKERS.md",
+    "docs/evidence/2026-10-25-local-54/CANDIDATE-FILES.json",
+    "docs/evidence/2026-10-25-local-54/CANDIDATE.json",
+    "docs/evidence/2026-10-25-local-54/CARRYOVER.json",
+    "docs/evidence/2026-10-25-local-54/EVIDENCE-MANIFEST.json",
+    "docs/evidence/2026-10-25-local-54/PRESERVATION.json",
+    "docs/evidence/2026-10-25-local-54/PRIVATE-EVIDENCE-RECEIPT.json",
+    "docs/evidence/2026-10-25-local-54/PROFILE-CLOSURE.json",
+    "docs/evidence/2026-10-25-local-54/RESULTS.md",
+    "docs/evidence/2026-10-25-local-54/UI-VALIDATION.json",
+    "docs/evidence/2026-10-25-local-54/UPSTREAM-STATE.json",
+    "docs/evidence/2026-10-25-local-54/build-32.log",
+    "docs/evidence/2026-10-25-local-54/carried-tests-final.log",
+    "docs/evidence/2026-10-25-local-54/package-audit.log",
+    "packages/openbkn-business-context/tests/ui-followup.test.ts"
+  ],
+  "protectedGroups": [
+    {
+      "group": "handoff",
+      "checkedFiles": 61,
+      "changedOrMissing": []
+    },
+    {
+      "group": "ui31-source",
+      "checkedFiles": 3821,
+      "changedOrMissing": []
+    },
+    {
+      "group": "npm-old",
+      "checkedFiles": 34,
+      "changedOrMissing": []
+    },
+    {
+      "group": "npm-new",
+      "checkedFiles": 34,
+      "changedOrMissing": []
+    },
+    {
+      "group": "round51-desktop-old",
+      "checkedFiles": 81,
+      "changedOrMissing": []
+    },
+    {
+      "group": "round51-desktop-new",
+      "checkedFiles": 81,
+      "changedOrMissing": []
+    },
+    {
+      "group": "round51-npm-old",
+      "checkedFiles": 41,
+      "changedOrMissing": []
+    },
+    {
+      "group": "round51-npm-new",
+      "checkedFiles": 45,
+      "changedOrMissing": []
+    },
+    {
+      "group": "desktop-old",
+      "checkedFiles": 80,
+      "changedOrMissing": []
+    },
+    {
+      "group": "desktop-new",
+      "checkedFiles": 80,
+      "changedOrMissing": []
+    }
+  ],
+  "round53OriginalRc3Runtime": {
+    "checkedFiles": 35761,
+    "changedOrMissing": []
+  },
+  "frozenArtifacts": {
+    "kit/lifecycle30/candidate/openbkn-bkn-sdk-0.2.0.tgz": "d227f6264597d727e7931bef4118f099df20d42402ff32e306f6d65e8a6b273f",
+    "kit/lifecycle30/candidate/openbkn-dsh-business-context-0.2.0-rc.2-openbkn.0.2.0-30.tgz": "6d95ff7517dbe409875fd398784fe01049ba26d2b97c43fad65c817d3ea18ee9",
+    "kit/ui31/candidate/openbkn-bkn-sdk-0.2.0.tgz": "d227f6264597d727e7931bef4118f099df20d42402ff32e306f6d65e8a6b273f",
+    "kit/ui31/candidate/openbkn-dsh-business-context-0.2.0-rc.2-openbkn.0.2.0-31.tgz": "22ba0e17235ccb3c93d585f2811604f5221375ac9e3496e92e6d8c1756196e4a",
+    "kit/KIT-FILES.json": "61bace60c424eade7904ab1ed592cd5a0a7e1b332a0b768215a8eecba1298996"
+  },
+  "head": "933b0ab251c75461ece1ada6145a9487e7eb04d1",
+  "headUnchanged": true,
+  "indexUnchanged": true,
+  "worktreeRefsUnchanged": true,
+  "noPushNoCI": true,
+  "existingHostsNotChanged": true,
+  "platformReplacement": false,
+  "platformDataWritesRequested": false,
+  "liveDatabaseRowsReaudited": false,
+  "ownedFinalHostCleanup": {
+    "pid": 85469,
+    "identityMatched": true,
+    "signal": "SIGTERM",
+    "processExited": true,
+    "portReleased": true,
+    "at": "2026-10-25T03:08:59Z"
+  },
+  "ownedPreliminaryHostCleanup": {
+    "at": "2026-10-25T02:59:45.474449+00:00",
+    "identityChecked": [
+      "pid",
+      "start",
+      "exe",
+      "port"
+    ],
+    "pid": 85197,
+    "port": 38654,
+    "portReleased": true,
+    "signal": "SIGTERM"
+  }
+}

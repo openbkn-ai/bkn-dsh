@@ -1,0 +1,501 @@
+{
+  "captured_at": "2026-10-19T15:08:39.178214+00:00",
+  "method": "Read original native session/tool content and host spill without modifying them. Record only selected non-secret fields.",
+  "hosts": [
+    {
+      "host": "0.2.0-rc.2",
+      "session": "session-c7a7c780-2465-4ce2-8186-a55c3d7dad2a",
+      "session_sha256": "4a9188384f983f9b98b25fd3824d2b96586e84e9c48c19c85a87f781d8067200",
+      "calls": [
+        {
+          "call_seq": 18,
+          "result_seq": 19,
+          "tool": "mcp__openbkn__bkn_start_interaction",
+          "is_error": false,
+          "result_chars": 288,
+          "result_sha256": "ed48cf035b5f288733a56c5e8ce9726c9a097e2b4f8d736e9ac48aab99092e9b"
+        },
+        {
+          "call_seq": 25,
+          "result_seq": 26,
+          "tool": "mcp__openbkn__get_kn_detail",
+          "is_error": false,
+          "result_chars": 7363,
+          "result_sha256": "40a978c1e98c9b6ac1a49c5d25e04ce808984d0284798115c2ed54103302e4a4"
+        },
+        {
+          "call_seq": 30,
+          "result_seq": 31,
+          "tool": "mcp__openbkn__get_object_types",
+          "is_error": false,
+          "result_chars": 20195,
+          "result_sha256": "c33d10ed552a61be9ff2e06e25dddaccd13376659784857a99f5b46e199a1017"
+        },
+        {
+          "call_seq": 35,
+          "result_seq": 36,
+          "tool": "mcp__openbkn__search_capabilities",
+          "is_error": false,
+          "result_chars": 1473,
+          "result_sha256": "92703005e2bec64f57bf4dce1e9cf1074d4a2cc0ddeeb9939b020f67e27aa7e0"
+        },
+        {
+          "call_seq": 37,
+          "result_seq": 38,
+          "tool": "mcp__openbkn__query_object_instance",
+          "is_error": false,
+          "result_chars": 49931,
+          "result_sha256": "333456763fd84abf5a7ff1ef02aab49b2649686d8fb500e2c6d00e81138870c0"
+        },
+        {
+          "call_seq": 42,
+          "result_seq": 43,
+          "tool": "mcp__openbkn__execute_tool",
+          "is_error": false,
+          "result_chars": 49933,
+          "result_sha256": "c0dafe5c5af19ed19c15883a0afeeb1676356a838f29ae0a0b984263682971af",
+          "published_arguments": {
+            "product": "382-000005",
+            "depth": 8,
+            "report_grain": "full",
+            "page_size": 500,
+            "offset": 0
+          },
+          "has_host_spill": true,
+          "spill_file_exists": true,
+          "canonical_result": {
+            "line_count": 313,
+            "unique_child_count": 272,
+            "rows_incl_root": 507,
+            "l1_main_count": 9,
+            "max_level": 5,
+            "include_substitute": false,
+            "caliber": "main_only",
+            "scoped_line_count": 313,
+            "next_offset": null,
+            "returned_lines": 313,
+            "main_priority_and_method_valid": true
+          },
+          "spill_sha256": "2ee5e6df7b6228bf3ed8a270d644e6f09ff84b5253663bdb8fc22dfbe71cf77e",
+          "omitted_bytes": 30516
+        },
+        {
+          "call_seq": 47,
+          "result_seq": 48,
+          "tool": "mcp__openbkn__run_code",
+          "is_error": false,
+          "result_chars": 248,
+          "result_sha256": "4cd82d2221b80fbdd0a220c4094e7b4b41020c402e47dd12545d6defc7f24708",
+          "code_sha256": "3df2baadc6576cd12001c54c4d21efdc7ba6e6c823260a10f7253e4b686102f5",
+          "nested_calls": [
+            "query_object_instance"
+          ],
+          "bom_filter_lines": [
+            "# main lines only (alt_priority 0) -- exclude substitutes",
+            "main = [x for x in rows if (x.get(\"alt_priority\") or 0) == 0 and x.get(\"bom_level\", 0) > 0]"
+          ],
+          "observed_summary": "fetched507; priority-zero main399; unique333"
+        },
+        {
+          "call_seq": 52,
+          "result_seq": 53,
+          "tool": "mcp__openbkn__run_code",
+          "is_error": false,
+          "result_chars": 599,
+          "result_sha256": "7896726e250bc679e7179a52ba5a5c3bbf0a6eb52ba504cb74f4ea4d22c2c5c0",
+          "code_sha256": "fdb1a702eff7ad040ceb85f39da56dd2f20d946bb1dd176d77870251e092a919",
+          "nested_calls": [
+            "query_object_instance"
+          ]
+        },
+        {
+          "call_seq": 57,
+          "result_seq": 58,
+          "tool": "mcp__openbkn__run_code",
+          "is_error": false,
+          "result_chars": 939,
+          "result_sha256": "a073b6da1c38746ecf6a78142da63b04d80c49e919d12047d86463b247896904",
+          "code_sha256": "caab22cb004b4c76d53a9334be4013671c4c97a8a2eb1776d1a9308b92ebf4fc",
+          "nested_calls": [
+            "query_metric"
+          ]
+        },
+        {
+          "call_seq": 62,
+          "result_seq": 63,
+          "tool": "mcp__openbkn__run_code",
+          "is_error": false,
+          "result_chars": 1858,
+          "result_sha256": "ce088613d575adfdd114c5af2328d3a9e561fe7386822fa55bc428352bc2a71d",
+          "code_sha256": "071c817f10e1a8fbedc7934c26bf794ebe812e11fc5f3cd6ce4844959afbfb32",
+          "nested_calls": []
+        },
+        {
+          "call_seq": 67,
+          "result_seq": 68,
+          "tool": "mcp__openbkn__run_code",
+          "is_error": false,
+          "result_chars": 875,
+          "result_sha256": "4b563f59813fb15e8523c49518c5e85b7299241c678ea748f044d501d4876ada",
+          "code_sha256": "e35ceded2996e9fe8318076e495e98e8d2ef6e8afdb19dc2436e69d2606eda3e",
+          "nested_calls": [],
+          "bom_filter_lines": [
+            "# per BOM line (main only, alt_priority==0), with single-level standard_usage + extension (parent mult)",
+            "subs = [x for x in bom if (x.get(\"alt_priority\") or 0) > 0]",
+            "usage=float(x.get(\"standard_usage\") or 0), sub=bool((x.get(\"alt_priority\") or 0)>0),",
+            "alt_group=x.get(\"alt_group_no\"), alt_priority=x.get(\"alt_priority\"),",
+            "w.writerow([r[\"level\"],r[\"parent\"],r[\"code\"],r[\"name\"],r[\"usage\"],\"是\" if r[\"sub\"] else \"否\",r[\"alt_group\"],r[\"alt_priority\"],first.get(r[\"code\"],\"\"),r[\"avail\"],r[\"inv_qty\"],r[\"uom\"],r[\"whs\"]])"
+          ]
+        },
+        {
+          "call_seq": 72,
+          "result_seq": 73,
+          "tool": "mcp__openbkn__run_code",
+          "is_error": false,
+          "result_chars": 1289,
+          "result_sha256": "a267012a8250914f3b975f9ea9360e70cc39f70db08385cbd349a01c7e9a2290",
+          "code_sha256": "4a61f66a15c6c2ec4808fb7cbfdda9b319a41fa01b86a7c5349c16099d6f0aa5",
+          "nested_calls": [],
+          "bom_filter_lines": [
+            "w.writerow([\"口径：BOM版本 2026-08-05；仅展开主料(alt_priority=0)；单级标准用量取自BOM行；累计单耗=逐层相乘；可用库存=sum(available_inventory_qty)，全仓(22个仓库)、库存状态均为可用；替代料不计入累计单耗\"])",
+            "\"是\" if (x.get(\"alt_priority\") or 0)>0 else \"否\", x.get(\"alt_group_no\"), x.get(\"alt_priority\"),"
+          ]
+        },
+        {
+          "call_seq": 77,
+          "result_seq": 78,
+          "tool": "mcp__openbkn__run_code",
+          "is_error": false,
+          "result_chars": 81,
+          "result_sha256": "0c11853751300ea4e9037b73a51fa7153841daed8a9259ceab410c0eea4e6647",
+          "code_sha256": "f8615299582a33406fc0c55c92b68a7bd17cafbbcf3cc90f2ea2380a134fabac",
+          "nested_calls": [],
+          "remote_workspace_reported": true
+        },
+        {
+          "call_seq": 82,
+          "result_seq": 83,
+          "tool": "mcp__openbkn__run_code",
+          "is_error": false,
+          "result_chars": 129,
+          "result_sha256": "c5625c6adb3b89e148415828d7c9b0d98d946a7590b8a27a018952d609957588",
+          "code_sha256": "40124d94942df63488ce62513cd9a3d733adade246892876b378320f866c51de",
+          "nested_calls": [],
+          "remote_workspace_reported": true
+        },
+        {
+          "call_seq": 87,
+          "result_seq": 88,
+          "tool": "mcp__openbkn__bkn_finish_interaction",
+          "is_error": false,
+          "result_chars": 177,
+          "result_sha256": "02b3c442576ee9ffe7bcb31972f160f918374a8bd169a166800462f4aa412ff9"
+        },
+        {
+          "call_seq": 92,
+          "result_seq": 93,
+          "tool": "present",
+          "is_error": true,
+          "result_chars": 72,
+          "result_sha256": "8af2de49ebc08abce9cd4245d791120cd74a053177bc2484aa7e0bc90e6f8713",
+          "denial": "Error: This OpenBKN business session only permits managed OpenBKN tools.",
+          "host_file_arguments": {
+            "files": [
+              {
+                "path": "382-000005_BOM_库存明细.csv",
+                "description": "382-000005 BOM 与物料库存全量明细（506 行，含汇总页）"
+              }
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "host": "0.2.1-rc.2",
+      "session": "session-9cb6149d-874c-46f7-ab65-4bfee1047323",
+      "session_sha256": "f2a7b950daceaa6cc08eef0a861060bc3ef2826448b43fa28c9da456e61049c7",
+      "calls": [
+        {
+          "call_seq": 19,
+          "result_seq": 20,
+          "tool": "mcp__openbkn__bkn_start_interaction",
+          "is_error": false,
+          "result_chars": 288,
+          "result_sha256": "a1d1d22dc38abe2f769ed46720387ae69f293798f825075349c5cea09cfbc9e7"
+        },
+        {
+          "call_seq": 26,
+          "result_seq": 27,
+          "tool": "mcp__openbkn__get_kn_detail",
+          "is_error": false,
+          "result_chars": 6982,
+          "result_sha256": "a14bd86343181d59f54ef5af18a11e04dcb743aa2bb05918d743b1e5230614e8"
+        },
+        {
+          "call_seq": 31,
+          "result_seq": 32,
+          "tool": "mcp__openbkn__get_object_types",
+          "is_error": false,
+          "result_chars": 16976,
+          "result_sha256": "28a0775587134d5a74d5a89d74dd1969744710b20217855c8ed7acf857b61e93"
+        },
+        {
+          "call_seq": 33,
+          "result_seq": 34,
+          "tool": "mcp__openbkn__search_capabilities",
+          "is_error": false,
+          "result_chars": 1095,
+          "result_sha256": "764dbdb02ae39548aece5d11ec10093561e210058a1405929ee38a4bfb88924b"
+        },
+        {
+          "call_seq": 38,
+          "result_seq": 39,
+          "tool": "mcp__openbkn__execute_tool",
+          "is_error": false,
+          "result_chars": 49933,
+          "result_sha256": "ccccd70365fa4f85638f2bb61014bf9c30c31d3dc9aa763dc187573885c91103",
+          "published_arguments": {
+            "product": "382-000005",
+            "depth": 8,
+            "report_grain": "full",
+            "page_size": 500,
+            "offset": 0
+          },
+          "has_host_spill": true,
+          "spill_file_exists": true,
+          "canonical_result": {
+            "line_count": 313,
+            "unique_child_count": 272,
+            "rows_incl_root": 507,
+            "l1_main_count": 9,
+            "max_level": 5,
+            "include_substitute": false,
+            "caliber": "main_only",
+            "scoped_line_count": 313,
+            "next_offset": null,
+            "returned_lines": 313,
+            "main_priority_and_method_valid": true
+          },
+          "spill_sha256": "de1b9be73e2c24f40de218d860635c802bc576603dba1a818e9e60c5cd145e6c",
+          "omitted_bytes": 30540
+        },
+        {
+          "call_seq": 43,
+          "result_seq": 44,
+          "tool": "mcp__openbkn__run_code",
+          "is_error": false,
+          "result_chars": 650,
+          "result_sha256": "10498219fe7563a5bb8a2228a86e936cb822a7de41fd5c387276e7c9035b1cc1",
+          "code_sha256": "fd99b7d196ee9bbec14487fb6fdf8f96075df110d1bc02e37bff21e64e923297",
+          "nested_calls": [
+            "execute_tool"
+          ]
+        },
+        {
+          "call_seq": 48,
+          "result_seq": 49,
+          "tool": "mcp__openbkn__run_code",
+          "is_error": false,
+          "result_chars": 456,
+          "result_sha256": "86594aa08cb861e1010c8851efd4f110e0e60b87391ff35d8927605b4c313a78",
+          "code_sha256": "bac5b5a6990882b7281287adefdf6ccbbf639ccf268a460aa28f4937e1d528c7",
+          "nested_calls": [
+            "run_cypher"
+          ]
+        },
+        {
+          "call_seq": 53,
+          "result_seq": 54,
+          "tool": "mcp__openbkn__run_code",
+          "is_error": false,
+          "result_chars": 366,
+          "result_sha256": "d03cb950d0017c11d6935aba64f3f9b8c981de1239ad75f7f03ff312c1aceb27",
+          "code_sha256": "c8691a0c75f2d8a7b3ab84b31a858b3e92fd515c1172e1e8f36626280532f7f7",
+          "nested_calls": [
+            "run_cypher"
+          ]
+        },
+        {
+          "call_seq": 58,
+          "result_seq": 59,
+          "tool": "mcp__openbkn__run_code",
+          "is_error": false,
+          "result_chars": 1824,
+          "result_sha256": "4166acac9ebcafc689d7bf4fca9eaadeaec56b90cea4ad461a8d531e03a84c6f",
+          "code_sha256": "3b41901a77d4ad86de98ab80170631f1abd48e9870301a02c20b8569cf94c9e8",
+          "nested_calls": [
+            "run_cypher"
+          ]
+        },
+        {
+          "call_seq": 63,
+          "result_seq": 64,
+          "tool": "mcp__openbkn__run_code",
+          "is_error": false,
+          "result_chars": 411,
+          "result_sha256": "0b86a7f3ed75a2dd0f7d8e1a6c9c9121add04ba04df0e715eba6d6557141de8f",
+          "code_sha256": "7af8ba6d1a3eb40397a3c928c148e044022c905bebc2f44f78b956930a35c151",
+          "nested_calls": [
+            "run_cypher"
+          ]
+        },
+        {
+          "call_seq": 68,
+          "result_seq": 69,
+          "tool": "mcp__openbkn__run_code",
+          "is_error": false,
+          "result_chars": 798,
+          "result_sha256": "5eb37758c8919e8da606a5ade1c7e4391a648218e6186b59ddebb56ec105941e",
+          "code_sha256": "1d0ea3eb57d25f41c5665e8178471c42f40929eb5a633225eeabfa01731bd196",
+          "nested_calls": [
+            "run_cypher"
+          ],
+          "bom_filter_lines": [
+            "\"b.standard_usage AS su, b.alt_priority AS ap, b.alt_part AS apart, b.alt_method AS am, b.seq_no AS seq, b.bom_version AS v \""
+          ]
+        },
+        {
+          "call_seq": 73,
+          "result_seq": 74,
+          "tool": "mcp__openbkn__run_code",
+          "is_error": true,
+          "result_chars": 529,
+          "result_sha256": "6cb294bc99976cdb031e70596dfc7fae67ee22c2126e7aa275f2a820600e1b58",
+          "code_sha256": "d46265d29cc6504450790591698eb5a8d2747d336112f025da66080fc7afd03e",
+          "nested_calls": [
+            "run_cypher"
+          ],
+          "bom_filter_lines": [
+            "query=(\"MATCH (b:supply_ontology_hand_bom) WHERE b.bom_material_code = $p AND b.alt_priority = 0 \""
+          ]
+        },
+        {
+          "call_seq": 78,
+          "result_seq": 79,
+          "tool": "mcp__openbkn__run_code",
+          "is_error": false,
+          "result_chars": 3373,
+          "result_sha256": "b7c0230c1ad9598ce6117db7c9abd0ae8987f473b2c4ae4c4d3f901ae868e7c5",
+          "code_sha256": "989ca2d0153877ada58e9ff4296f17c7828017278ee73db8053d57e0fa18414f",
+          "nested_calls": [
+            "run_cypher"
+          ],
+          "bom_filter_lines": [
+            "query=(\"MATCH (b:supply_ontology_hand_bom) WHERE b.bom_material_code = $p AND b.alt_priority = 0 \""
+          ],
+          "observed_summary": "raw priority-zero query400 including root; unique usage333; compared with published272"
+        },
+        {
+          "call_seq": 83,
+          "result_seq": 84,
+          "tool": "mcp__openbkn__run_code",
+          "is_error": false,
+          "result_chars": 865,
+          "result_sha256": "f4973dae321723a991d6154c81e70fbd14a5c2b2d3884746da7a863f2fffa31a",
+          "code_sha256": "cbe728c30966facff54931c2a1ef1b97ea184a3169d683c94d442ce4ab105b22",
+          "nested_calls": [
+            "run_cypher"
+          ],
+          "bom_filter_lines": [
+            "query=(\"MATCH (b:supply_ontology_hand_bom) WHERE b.bom_material_code = $p AND b.alt_priority = 0 \""
+          ]
+        },
+        {
+          "call_seq": 88,
+          "result_seq": 89,
+          "tool": "mcp__openbkn__run_code",
+          "is_error": false,
+          "result_chars": 989,
+          "result_sha256": "81d177cc8946ec3bb3c1e8da1f521e21885ca8feed6db8b92fa36fe9c5450e1a",
+          "code_sha256": "881f005130dbf2324372609796b4b4be43599dd7661e00544506e2187a605663",
+          "nested_calls": [
+            "run_cypher"
+          ],
+          "bom_filter_lines": [
+            "query=(\"MATCH (b:supply_ontology_hand_bom) WHERE b.bom_material_code = $p AND b.alt_priority = 0 \""
+          ]
+        },
+        {
+          "call_seq": 93,
+          "result_seq": 94,
+          "tool": "mcp__openbkn__run_code",
+          "is_error": false,
+          "result_chars": 2327,
+          "result_sha256": "53865b4b721551b422aab9317b468a03089e0b273c11e2239ddfb8618e9501b7",
+          "code_sha256": "111d8c63a969bb33daf5d31cd594399c02c8ecfd05737d7e6c0ce9f92529ba63",
+          "nested_calls": [
+            "run_cypher"
+          ],
+          "bom_filter_lines": [
+            "query=\"MATCH (b:supply_ontology_hand_bom) WHERE b.material_code IN $codes RETURN b.material_code AS c, b.parent_material_code AS par, b.bom_material_code AS root, b.standard_usage AS su, b.bom_level AS lvl, b.alt_priority AS ap\","
+          ]
+        },
+        {
+          "call_seq": 98,
+          "result_seq": 99,
+          "tool": "mcp__openbkn__run_code",
+          "is_error": false,
+          "result_chars": 1190,
+          "result_sha256": "851154b17158fa7557f66484ffd8e625b953f4ca64d116529cc25e40adbad440",
+          "code_sha256": "ef1ee203604fee84980d3d2094b449d78dfe61cb699eddb86955f58a6527fc7a",
+          "nested_calls": [
+            "run_cypher"
+          ],
+          "bom_filter_lines": [
+            "query=\"MATCH (b:supply_ontology_hand_bom) WHERE b.bom_material_code = $p AND b.alt_priority = 0 RETURN DISTINCT b.parent_material_code AS par\","
+          ]
+        },
+        {
+          "call_seq": 103,
+          "result_seq": 104,
+          "tool": "mcp__openbkn__run_code",
+          "is_error": false,
+          "result_chars": 1237,
+          "result_sha256": "ea33c65c7c1c04805d15f08b32d29477f82f1a27b9e289e50c27aea9fd0b82c2",
+          "code_sha256": "988270d4647f929510529c7d0139165bcfae43073b4da9d5d0ac6fcf5dba414d",
+          "nested_calls": []
+        },
+        {
+          "call_seq": 108,
+          "result_seq": 109,
+          "tool": "bash",
+          "is_error": true,
+          "result_chars": 72,
+          "result_sha256": "8af2de49ebc08abce9cd4245d791120cd74a053177bc2484aa7e0bc90e6f8713",
+          "denial": "Error: This OpenBKN business session only permits managed OpenBKN tools.",
+          "host_file_arguments": null
+        },
+        {
+          "call_seq": 113,
+          "result_seq": 114,
+          "tool": "mcp__openbkn__run_shell",
+          "is_error": true,
+          "result_chars": 175,
+          "result_sha256": "92e55977fd01a449df7270697a0ee830f4cf73620098af2708f2fd46db408377",
+          "denial": "Error: mcp__openbkn__run_shell is not supported in an OpenBKN business session by this version of the bkn-dsh plugin. Do not retry it; continue with the managed OpenBKN tools.",
+          "host_file_arguments": null
+        },
+        {
+          "call_seq": 118,
+          "result_seq": 119,
+          "tool": "mcp__openbkn__run_code",
+          "is_error": false,
+          "result_chars": 513,
+          "result_sha256": "e0671f90efe2cef10850a6847dfd015b2b42dce1849a2a0c27bb1652b7ee4cc3",
+          "code_sha256": "64d01a381adf26682791de8dc8718302f51d777757b82b332db039fc5c125739",
+          "nested_calls": [],
+          "csv_observation": "272 rows in remote /workspace/conv-*; no host delivery",
+          "remote_workspace_reported": true
+        },
+        {
+          "call_seq": 123,
+          "result_seq": 124,
+          "tool": "mcp__openbkn__bkn_finish_interaction",
+          "is_error": false,
+          "result_chars": 177,
+          "result_sha256": "46495fa3129b5874115d9f451eabd288440ccffcd7787b6753e5fe185b97aef9"
+        }
+      ]
+    }
+  ]
+}

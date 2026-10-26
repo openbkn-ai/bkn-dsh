@@ -1,0 +1,12 @@
+{
+  "fixed_operation": "bom_list",
+  "archive_entries": 16,
+  "changed_entries": [
+    "fn/bom.py",
+    "managed_execution.py"
+  ],
+  "before_code_sha256": "ba86aee7f288ddca26f38b91f8c6115f1f3407da8790f6032ea4f93175b99977",
+  "after_code_sha256": "a456382ec3e9dfd636d987474b6efc43e254355b639395f0650779ea42d9a4da",
+  "package": "unchanged plugin -14",
+  "no_data_mutations": true
+}

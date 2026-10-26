@@ -1,3 +1,5 @@
+import { NATIVE_PROVENANCE_LIMITS } from './native-provenance.js'
+import type { NativeProvenance, NativeReadFailure } from './native-provenance-types.js'
 import { Context } from '@deepseek-ai/cordis'
 import type {} from '@deepseek-ai/dsh-subprocess'
 import type {} from '@deepseek-ai/dsh-tools'
@@ -27,7 +29,7 @@ import { mountBoundBusinessNetworkTool } from './scoped-business-context.js'
 import { emptyBusinessSessionPrompt } from './suggested-prompts.js'
 import { buildTurnTimeline } from './turn-timeline.js'
 import { OpenBknWorkspaceBindingRegistry } from './workspace-binding-registry.js'
-import type { BindBusinessNetworkResult, BusinessNetworkBinding } from './session-binding.js'
+import { sameIdentity, type BindBusinessNetworkResult, type BusinessNetworkBinding } from './session-binding.js'
 import type { AuthSnapshot, BusinessNetworkSummary, ProvenanceDegradation, ProvenanceHandle, ProvenanceView } from './types.js'
 import { realpath, stat } from 'node:fs/promises'
 import { trimTrailingSlashes } from './trailing-slashes.js'
@@ -98,17 +100,22 @@ const UNBOUND_OPENBKN_TOOL_DENIAL = 'OpenBKN tools are available only in a sessi
  * model tool only inside that Agent scope.
  */
 export class OpenBknBusinessContextService extends TypertRemoteService {
+  private provenanceRevision = 0
+
   static inject = ['agents', 'credentials', 'subprocess', 'tools', 'openbknWorkspaceBindingRegistry']
   static Config = Config
 
   private readonly mounted = new WeakSet<Agent>()
   private readonly capabilityProfiles = new WeakMap<Agent, NetworkCapabilityProfile>()
   private mcpManagerInstance: OpenBknMcpManager | undefined
+  /** Native Service views rebind this.ctx to the caller; child lifetimes belong here. */
+  private readonly ownerContext: Context
   private readonly lifetime = new AbortController()
   private readonly observations = passiveDiagnostics.writer()
   /** This instance may use only the token verified for its configured platform. */
   private synchronizedToken: string | undefined
-  private tokenRead: Promise<string> | undefined
+  private tokenReads: WeakMap<AbortSignal, Promise<string>> | undefined
+  private tokenReadSignal: AbortSignal | undefined
   private bindingMutations = 0
   /** Per-session binding records under `$DSH_HOME/openbkn/session-bindings`. */
   bindingRecords: SessionBindingRecords = new SessionBindingStore(dshHomePath('openbkn', 'session-bindings'))
@@ -124,6 +131,7 @@ export class OpenBknBusinessContextService extends TypertRemoteService {
 
   constructor(ctx: Context, readonly config: PluginConfig) {
     super(ctx, 'openbknBusinessContext')
+    this.ownerContext = ctx
     ctx.effect(() => () => { this.lifetime.abort(new Error('OpenBKN configuration was reloaded.')) })
     ctx.on('agent/created', async ({ agent }) => {
       await this.restoreBinding(agent)
@@ -189,6 +197,12 @@ export class OpenBknBusinessContextService extends TypertRemoteService {
     return await this.listNetworksAfterAuthentication(signal)
   }
 
+  /** Own browser-login cancellation on the Host's native Remote stream carrier. */
+  @Remote({ mode: 'stream' })
+  async *beginLoginStream(signal: AbortSignal): AsyncIterable<readonly BusinessNetworkSummary[]> {
+    yield await this.remoteBeginLogin(signal)
+  }
+
   /**
    * Save one user-entered token to DSH's credential provider, connect the
    * standard MCP client by reference, then return only visible network DTOs.
@@ -200,6 +214,7 @@ export class OpenBknBusinessContextService extends TypertRemoteService {
     if (value.length === 0) throw new Error('An OpenBKN token is required.')
     await this.ctx.credentials.set(credentialRef(OPENBKN_MCP_TOKEN_REF), value)
     signal.throwIfAborted()
+    this.provenanceRevision = (this.provenanceRevision ?? 0) + 1
     this.synchronizedToken = value
     try {
       await this.refreshMcpConnection()
@@ -245,6 +260,16 @@ export class OpenBknBusinessContextService extends TypertRemoteService {
    * classified into `sources.degraded` instead of failing the whole view, so
    * a partially authorized deployment still sees the local execution chain.
    */
+  /** Desktop cancellation is carried by native streams, including single-result reads. */
+  @Remote({ mode: 'stream' })
+  async *getTurnProvenanceViewStream(
+    sessionId: SessionId,
+    messageId: string,
+    signal: AbortSignal,
+  ): AsyncIterable<ProvenanceView | undefined> {
+    yield await this.remoteGetTurnProvenanceView(sessionId, messageId, signal)
+  }
+
   @Remote('getTurnProvenanceView')
   async remoteGetTurnProvenanceView(
     sessionId: SessionId,
@@ -274,15 +299,47 @@ export class OpenBknBusinessContextService extends TypertRemoteService {
       }, { maxGraphNodes: this.config.maxGraphNodes, maxGraphEdges: this.config.maxGraphEdges })
     }
     if (handle.interactionId === undefined) return undefined
+    const revision = this.provenanceRevision ?? 0
     const reader = this.platformReader()
     // Trace operations and the authorized assembly are independent read
     // models. Each failure degrades only its own pane; neither hides the
     // local timeline, and the browser receives no raw payload in any case.
-    const [core, graph] = await Promise.allSettled([
+    const [core, graph, nativeDetail, nativeExplanation] = await Promise.allSettled([
       reader.getInteractionOperations(handle.interactionId, signal, cwd),
       reader.getInteractionBusinessGraph(handle.interactionId, signal, cwd),
+      Promise.resolve().then(() => reader.getNativeInteractionDetail(handle.interactionId!, signal)),
+      Promise.resolve().then(() => reader.getNativeInteractionExplanation(handle.interactionId!, signal)),
     ])
     if (signal.aborted) throw signal.reason
+    const currentBinding = this.bindingOf(agent)
+    const bindingChanged = binding === undefined ? currentBinding !== undefined : currentBinding === undefined || !sameIdentity(binding, currentBinding)
+    if ((this.provenanceRevision ?? 0) !== revision || bindingChanged) throw new Error('OpenBKN provenance identity changed; reopen the panel.')
+    const nativeFailure = (failure: unknown): NativeReadFailure => {
+      const code = failure instanceof PlatformReaderError ? failure.code : undefined
+      return code === 'AUTHENTICATION_REQUIRED' ? 'authentication-required' : code === 'ACCESS_DENIED' ? 'access-denied'
+        : code === 'NATIVE_NOT_AVAILABLE' ? 'not-disclosed-or-unavailable' : code === 'INVALID_RESPONSE' ? 'invalid-response'
+        : code === 'OUTPUT_OVERFLOW' ? 'result-too-large' : 'unavailable'
+    }
+    const native: NativeProvenance = {
+      detail: nativeDetail.status === 'fulfilled' ? { kind: 'ready', view: nativeDetail.value } : { kind: 'unavailable', reason: nativeFailure(nativeDetail.reason) },
+      explanation: nativeExplanation.status === 'fulfilled' ? nativeExplanation.value : { kind: 'unavailable', reason: nativeFailure(nativeExplanation.reason) },
+    }
+    if (binding !== undefined && native.detail.kind === 'ready' && native.detail.view.knowledgeNetworkIds.some(id => id !== binding.knowledgeNetworkId)) {
+      native.detail = { kind: 'unavailable', reason: 'invalid-response' }
+      native.explanation = { kind: 'unavailable', reason: 'invalid-response' }
+      ;(this.observations ?? passiveDiagnostics).record({ subject: 'platform-native-scope', stage: 'platform-directory', code: 'platform-response-invalid', status: 'fail' })
+    }
+    if (binding !== undefined && native.detail.kind === 'ready' && native.detail.view.knowledgeNetworkIds.length > 0) {
+      ;(this.observations ?? passiveDiagnostics).record({ subject: 'platform-native-scope', stage: 'platform-directory', code: 'platform-native-scope', status: 'pass' })
+    }
+    const nativeBytes = () => new TextEncoder().encode(JSON.stringify(native)).byteLength
+    const nativeLimit = Math.min(this.config.maxResultBytes, NATIVE_PROVENANCE_LIMITS.dtoBytes)
+    const projectionOverflow = nativeBytes() > nativeLimit
+    if (projectionOverflow) native.explanation = { kind: 'unavailable', reason: 'result-too-large' }
+    if (nativeBytes() > nativeLimit) native.detail = { kind: 'unavailable', reason: 'result-too-large' }
+    if (nativeDetail.status === 'fulfilled' || nativeExplanation.status === 'fulfilled') {
+      ;(this.observations ?? passiveDiagnostics).record({ subject: 'platform-native-projection', stage: 'platform-directory', code: projectionOverflow ? 'platform-response-overflow' : 'platform-native-projection', status: projectionOverflow ? 'fail' : 'pass' })
+    }
     // Verified against OpenBKN 0.1.4 (docs/evidence/2026-09-20-provenance-v1-v2.md):
     // the observability read routes have no license gate. A 403
     // permission_denied there always means the request's business domain is
@@ -311,7 +368,7 @@ export class OpenBknBusinessContextService extends TypertRemoteService {
         business === undefined ? 'ok' : business.reason,
       )
     }
-    return buildProvenanceView(
+    const view = buildProvenanceView(
       handle,
       timeline,
       core.status === 'fulfilled' ? core.value : undefined,
@@ -322,6 +379,13 @@ export class OpenBknBusinessContextService extends TypertRemoteService {
       maxGraphEdges: this.config.maxGraphEdges,
       },
     )
+    // Even the two failure envelopes need space. Do not exceed a deliberately
+    // small cap to report overflow; omit native data and retain the reason in
+    // the existing pane-degradation metadata alongside the legacy/local view.
+    if (nativeBytes() > nativeLimit) {
+      return { ...view, sources: { ...view.sources, degraded: [...view.sources.degraded, { pane: 'native', reason: 'result-too-large' }] } }
+    }
+    return { ...view, native }
   }
 
   /** Return the one optional, draft-only introduction for an empty bound session. */
@@ -673,7 +737,7 @@ export class OpenBknBusinessContextService extends TypertRemoteService {
   }
 
   private mcpManager(): OpenBknMcpManager {
-    return this.mcpManagerInstance ??= new OpenBknMcpManager(this.ctx, this.config, () => this.resolveOpenBknToken())
+    return this.mcpManagerInstance ??= new OpenBknMcpManager(this.ownerContext, this.config, () => this.resolveOpenBknToken())
   }
 
   private authCoordinator(): AuthCoordinator {
@@ -686,6 +750,7 @@ export class OpenBknBusinessContextService extends TypertRemoteService {
     signal.throwIfAborted()
     await this.ctx.credentials.set(credentialRef(OPENBKN_MCP_TOKEN_REF), token)
     signal.throwIfAborted()
+    if (this.synchronizedToken !== token) this.provenanceRevision = (this.provenanceRevision ?? 0) + 1
     this.synchronizedToken = token
     await this.refreshMcpConnection()
   }
@@ -694,27 +759,36 @@ export class OpenBknBusinessContextService extends TypertRemoteService {
   private platformReader(): OpenBknPlatformReader {
     return new OpenBknPlatformReader({
       ...this.config,
-      resolveToken: () => this.resolveOpenBknToken(),
+      resolveToken: signal => this.resolveOpenBknToken(signal),
     })
   }
 
   /** Never send a shared credential from another platform before CLI verification. */
-  private async resolveOpenBknToken(): Promise<string | undefined> {
+  private async resolveOpenBknToken(signal?: AbortSignal): Promise<string | undefined> {
+    signal?.throwIfAborted()
     if (this.lifetime?.signal.aborted) return undefined
     if (this.synchronizedToken !== undefined) return this.synchronizedToken
     // Historical provenance may be opened before the panel or a new turn.
     // Verify against the configured-platform CLI rather than borrowing the
-    // global vault. Parallel provenance panes share this one refresh.
-    this.tokenRead ??= (async () => {
-      const token = await this.authCoordinator().readToken(this.lifetime?.signal)
-      this.lifetime?.signal.throwIfAborted()
-      this.synchronizedToken = token
-      return token
-    })().finally(() => { this.tokenRead = undefined })
+    // global vault. Panes of one request share a lookup; independent requests
+    // keep their own cancellation so closing one cannot stop another.
+    const owner = signal ?? this.lifetime?.signal ?? (this.tokenReadSignal ??= new AbortController().signal)
+    const readSignal = this.operationSignal(owner)
+    const reads = this.tokenReads ??= new WeakMap()
+    let pending = reads.get(owner)
+    if (pending === undefined) {
+      pending = (async () => {
+        const token = await this.authCoordinator().readToken(readSignal)
+        readSignal.throwIfAborted()
+        this.synchronizedToken = token
+        return token
+      })().finally(() => { reads.delete(owner) })
+      reads.set(owner, pending)
+    }
     try {
-      return await this.tokenRead
+      return await pending
     } catch (error: unknown) {
-      this.lifetime?.signal.throwIfAborted()
+      readSignal.throwIfAborted()
       // Historical provenance can precede panel login. An unusable CLI
       // session supplies no verified token; let the reader retain its
       // authentication-required boundary rather than invent network failure.

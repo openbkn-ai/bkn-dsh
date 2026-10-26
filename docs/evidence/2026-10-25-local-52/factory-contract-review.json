@@ -1,0 +1,28 @@
+[
+  {
+    "host": "old",
+    "pin": "639ed015397290b3745d163aafe02ffee4aa3f84",
+    "sourceMatchesPin": true,
+    "transportSha256": "6f3fca685af3d5654c476e95db24e1245dc1fa021a0bd7f477ce4ad997e1c8f6",
+    "proposalSha256": "db5c00d9f10c275811890f242eaaf0cdcb22be40bcfe241306ac77b0468d228f",
+    "patchSha256": "1be0051b4b8416af2b7af25083e1046841a02387be554da6ba3ad4fb1beac516",
+    "mcpSdkDeclared": "2.0.0",
+    "publicConfigContainsFetch": false,
+    "publicConfigContainsRedirect": false,
+    "factoryForwardsOnlyHeaders": true,
+    "patchAppliedToHost": false
+  },
+  {
+    "host": "new",
+    "pin": "687f282e8625c6b8d11ff58211a90524be2e4317",
+    "sourceMatchesPin": true,
+    "transportSha256": "6f3fca685af3d5654c476e95db24e1245dc1fa021a0bd7f477ce4ad997e1c8f6",
+    "proposalSha256": "db5c00d9f10c275811890f242eaaf0cdcb22be40bcfe241306ac77b0468d228f",
+    "patchSha256": "1be0051b4b8416af2b7af25083e1046841a02387be554da6ba3ad4fb1beac516",
+    "mcpSdkDeclared": "2.2.0",
+    "publicConfigContainsFetch": false,
+    "publicConfigContainsRedirect": false,
+    "factoryForwardsOnlyHeaders": true,
+    "patchAppliedToHost": false
+  }
+]

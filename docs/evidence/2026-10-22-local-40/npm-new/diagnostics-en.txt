@@ -1,0 +1,30 @@
+Browser tab: 994606767, Title: "DeepSeek Harness", URL: "http://127.0.0.1:38641/".
+The following is a diff from the previous accessibility tree with ~ and + representing changed and added elements, respectively. Removed elements are summarized by ID range.
+Removed element IDs: 41-47
+~		35 container OpenBKN diagnostics
+~				38 heading Diagnostics, Value: 2
+~					39 text Diagnostics
+~				40 button Close
++			41 container
++				42 text Report bbaf3bd4 · Created 2026/10/22 13:42:54 · Mode Passive collection Host form Unknown (the current report cannot identify the host form) Operating system macOS DSH version Not collected (no version information in this report) Plugin (on disk) 0.2.0-rc.2-openbkn.0.2.0-30 Plugin (loaded) Not collected (running version cannot be confirmed)
++				43 text Missing basic information does not imply a failure. Review the checks below. The version on disk does not identify the version currently loaded.
++				44 text ●  Passed bootstrap-entry installation  /  component-loaded
++				45 text entryPresent=true
++				46 text ●  Passed business-entry component  /  component-loaded
++				47 text entryPresent=true
++				48 text ●  Passed diagnostics-entry diagnostics  /  component-loaded
++				49 text schemaVersion=1
++				50 text ●  Passed observed:cli cli  /  cli
++				51 text failureCount=0 lastOutcomeAgoMs=6488 exitCode=0
++				52 text ●  Failed observed:login-state authentication  /  not-logged-in
++				53 text failureCount=1 lastOutcomeAgoMs=6488 loggedIn=false
++				54 text Export this report and send it to support; the failing stage is listed above.
++				55 text ●  Passed observed:context-loader context-loader  /  context-loader
++				56 text failureCount=0 lastOutcomeAgoMs=232388 toolsPublished=true
++				57 text ●  Passed observed:platform-network-list platform-directory  /  platform-network-list
++				58 text failureCount=0 lastOutcomeAgoMs=232773 networkCount=2
++				59 text ●  Passed observed:platform-network-detail platform-directory  /  platform-network-detail
++				60 text failureCount=0 lastOutcomeAgoMs=232707
++				61 button Export diagnostics report
++				62 button Collect again
+The focused UI element is 35 container OpenBKN diagnostics

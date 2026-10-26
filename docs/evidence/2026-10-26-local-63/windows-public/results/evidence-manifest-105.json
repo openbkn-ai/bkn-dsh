@@ -1,0 +1,131 @@
+{
+ "run": "021-host32-mcp-nongui-20261025",
+ "generatedLocal": "2026-10-26 v3 (rc.2 npm row retested via profile-layer patch: ALL 8 probes PASS)",
+ "kind": "local-development-preacceptance",
+ "ciRun": null,
+ "formalAcceptanceEligible": false,
+ "rc3Supplement": {
+  "authorization": "user directive: prioritize rc.3, build environments locally, do not block on missing runtimes",
+  "npmRuntime": {
+   "source": "official npm registry, 13 pinned @deepseek-ai/*@0.2.1-rc.3 packages, isolated cache, 562 packages installed",
+   "stockEntrySha": "758d8fc473b700b5d351158d06ce9f9e92c16e8b25497b08bb7bd2122a87f5dd (identical to rc.2 stock)"
+  },
+  "desktopRuntime": {
+   "installer": "official feed URL; size 289415960 exact; sha512(base64) matches kit snapshot AND current nightly.yml; Authenticode Valid (Hangzhou DeepSeek); NSIS unpacked (installer never run)",
+   "exeSha256": "fd7d298f4ba03ee9bab1719a892afeaef5c09bf50c574a592a64c85f64574c0c",
+   "asarDshVersion": "0.2.1-rc.3",
+   "cordis": "4.0.5",
+   "schemastery": "3.18.5",
+   "bundledNode": "24.21.0",
+   "electron": "44.7.0"
+  },
+  "probeResults": {
+   "npmRc3Stock": {
+    "mcpSha": "758d8fc4...",
+    "sameOrigin": "OK",
+    "secondOrigin": 1,
+    "verdict": "PASS"
+   },
+   "npmRc3Protected": {
+    "mcpSha": "b3cd7156...",
+    "sameOrigin": "OK",
+    "crossRefused": true,
+    "secondOrigin": 0,
+    "verdict": "PASS"
+   },
+   "desktopRc3Stock": {
+    "mcpSha": "758d8fc4...",
+    "sameOrigin": "OK",
+    "secondOrigin": 1,
+    "verdict": "PASS"
+   },
+   "desktopRc3Protected": {
+    "mcpSha": "b3cd7156...",
+    "sameOrigin": "OK",
+    "crossRefused": true,
+    "secondOrigin": 0,
+    "verdict": "PASS"
+   }
+  },
+  "rc2NpmRowNote": "BLOCKED stands per user priority (rc.2 later); unblock path identified: profile-layer cordis.patch.yml instead of --patch overlay"
+ },
+ "publicEvidence": {
+  "out/desktop-protected.json": "8a7dd29ce599df4c56f9613c04f8acb5679b68ef43c72dbe184f6b66cd32bd32",
+  "out/desktop-stock.json": "63c13dfd5e4b0dd43bffa5a4f2234804c37bc2fa44dc012c7644cd857849fd8d",
+  "out/desktop3-protected.json": "5b29b5a2cbe13a90c0b591c77f4c1b26a7f53069af0e036b9d49603e02d7d31e",
+  "out/desktop3-stock.json": "40eb31c049b0f833b492f9355388a4f109641a79f65a2f35efdbce1416fe931c",
+  "out/npm-rc2-protected.json": "698d2c7d5431f9a5186a9d37037025c779ec7e3af619081db9e8f594b0d96b2f",
+  "out/npm-rc2-stock.json": "560de6d2e226f0716eaabff20db5f47194656d2fda81fb2a53172bc9d2ea9579",
+  "out/npm-rc3-protected.json": "fae512afa7a2328346ead27196fee0125a82b322b70bb6818f93f4686e4db56f",
+  "out/npm-rc3-stock.json": "72467cba8b844fbc7eb48530fa7a2b47d4a1a121d27795c7352a073e852676bb",
+  "results/RESULTS-105-nongui-20261026.md": "fd93358d58e150173b33c69599c6053f075917d1dbb7d62e19c3033bf74b2a46",
+  "results/verify-inputs.json": "b30314318ab5134bd6bd5e2a637a4e8ce59c070d35e69498b035ca0fc81eb417"
+ },
+ "privateEvidence": {
+  "note": "private files stay on Windows only",
+  "OPENBKN-VERIFY-OWNERSHIP.json": "6ba313f69100bb0edee4d1f2263465fa237630822a26ff3394a236ded747c0be",
+  "npmrc3": "c4c97572bc64865e8742375aff788fafa0ba09e24a540d5d6a59ce0f8f5702da",
+  "out/bisect1c.log": "18afd515084cc4e8cec9147687a63d61029da1fef7cdcb69757019198fb4ceef",
+  "out/bisect1d.log": "18afd515084cc4e8cec9147687a63d61029da1fef7cdcb69757019198fb4ceef",
+  "out/bisect1e.log": "18afd515084cc4e8cec9147687a63d61029da1fef7cdcb69757019198fb4ceef",
+  "patches/npm-bisect1.patch.yml": "0a241b85b395cddb2a8d14462475c840a1a7fa090558b31e3137b43cf108cb91",
+  "patches/npm-diag.patch.yml": "7cab4d15e166416821a8e8d75e55eea09e80b8787218df9451e7c9be675f75ad",
+  "patches/npm-solo.patch.yml": "34a4c83c377ddad6042b78eb32bdb43499b576cbf42a2d49e09bbddee86e4f45",
+  "patches/npm-stock.patch.yml": "34a4c83c377ddad6042b78eb32bdb43499b576cbf42a2d49e09bbddee86e4f45",
+  "probe/bisect1.mjs": "e50a057f1f9a8c1d5f87678b9ba2c557949813e1a8ce15441bcbe3fec319b5b3",
+  "probe/bisect1b.mjs": "9cac9a70714577955505c7567c23d90ed76801fbf81131956ece6b741259d95d",
+  "probe/bisect1c.mjs": "b7ffff8141bc0fd9ebf6bc3691c0e3eec34025f841c918d791afd788e22d769d",
+  "probe/bisect1d.mjs": "de3a848e319251a66bd9e974305f26613b99c88c58419c4c894060b78956b300",
+  "probe/bisect1e.mjs": "77f265fa2aaa6e8e8133a0bc1f6c10996d3c262aa5f8fa366940e3cd092a8393",
+  "probe/mount-diagnostic.mjs": "98d70a173b34c4c062ac28242caf17ad92b18e7b57f85b7f45dfee945ba77ffb",
+  "probe/windows-native-mcp-probe.mjs": "a8893c64f4e62b914031cca55a730800cefe5d007f064df5677306311587dd1f",
+  "results/evidence-manifest-105.json": "fa8e2ffae5db1f4222769ffff72454dc0a240069befc3929ee3f423de2a5799a",
+  "results/npm-rc3--host-identity.txt": "936d92359cef42f2bb2615a22a11cf147375354395a19f19e4c8cb5cce2ba266",
+  "results/npm-rc3-protected-host-identity.txt": "15952bf0ed1ff68f052c3b361622711dc76ee75bbe5e06cbf435b44dc0bcb0ed",
+  "results/npm-rc3-stock-host-identity.txt": "2eace42b769e3b7ce057ec2a11eaff8d0db925d48c57770380184f9fb84e49b0",
+  "results/rc3-desk-protected-install.txt": "f7a5c18b86c4f85a3d12a43b77482fbe1dad4e00a2ec8949379bf7b63372628b",
+  "results/rc3-desk-stock-install.txt": "a3ae40b6699c34a7c41bc08d613cc7fc4ebd8bfb9b86b6f9541168e7d8dbc2e6",
+  "results/rc3-npm-install.txt": "0a5b7b35de83a07a9299ea9c55d29a21de94659402604e3d7a7fce348ee06eb0",
+  "results/rc3-npm-protected-install.txt": "8baf16ea94224573f2368b5b6108aff2d0cff815d59ea1dc2380999905f8de8e",
+  "results/rc3-npm-stock-install.txt": "a74cc785b4441517466769fb1127da4f49db49db04363645c34fb6a955472190",
+  "results/row1-install2.txt": "78dd9960f2b03a09bd932644b14f3f46f7c2c14f0755073ca46c99b98bf5208b",
+  "results/row1-setup.txt": "664a3b879e55cccb1ed1b81128e3643b4b1e484c4c678a350ea3daeccea2e4e4",
+  "results/row1-stock-closure.json": "9439b62c4eccb96bbcd81407b69a7be600204fab6e03d934d2f844e48cb8fa34",
+  "results/row1-stock-host-identity.txt": "94b32d54368f2c0e187e06dd580e27ba2d64ab416b82014bf3e9e5ed9220354c",
+  "results/row3-protected-install.txt": "c0f253414e0667f489638b1a13e474c5e7d091d2ed58d1e9c01c974de5f8448b",
+  "results/row3-stock-install.txt": "433f4dc8b4866df26a5d29558cda3701c154b6411217befc7a108f3c2a766bf0",
+  "scripts/init-desktop-profile.mjs": "0fd35e033e616493f1dbc79e47f1c64f91893e6587fb9938f9c8c6bb75150253",
+  "scripts/init-desktop-profile3.mjs": "6b8ef231d96f2109438681f69faba8a7352a4515f7d13cfe25623e783def6bb2",
+  "scripts/npm-runtime-0.2.1-rc.3.json": "1ffbb587cc3b8669211d81980928357afb027ea352205dfc532c2f2bbad7dae5",
+  "scripts/rc3-desk-install-protected.cmd": "a8e01f058f0a4e16d169263d8554cec51da03671b5034863880202cf2d5235c9",
+  "scripts/rc3-desk-install-stock.cmd": "d110172bb6a3893515e6586e087277c730272ab7908025ca22e1b1d16d0fe239",
+  "scripts/rc3-desk-probe.mjs": "849739793868ad2e6ea86a70353df44bb5bb3ac1b7bd707e23c17da80702edd6",
+  "scripts/rc3-desk-verify.mjs": "7a33d3faf1ec0dbf21f00743eba3be09d7508ef844a7faa5860c94d752639c12",
+  "scripts/rc3-npm-verify.mjs": "7a76c72a262cf235e76906257df6e69e155b58f555185c377e7c6dc416e9e6a0",
+  "scripts/row1-verify.mjs": "6e0d13b180a105fe5ba7062096372c36ac931c73740f264fe9193a1682897b61",
+  "scripts/row3-probe.mjs": "e410e4429be55ceea5bbf129ff325be1f96a37963c9dced3216aba7997e57c0c",
+  "scripts/row3-verify.mjs": "0e64ad4ae6372de766b695cc09b56b3410f9cf008874c8a68aff294b1d63efe1",
+  "results/npm-rc2-protected-host-identity.txt": "e2a814bea530177a3a68d7f62b75e21d27db0cf5989ff37d72d6eb38d5e25d08",
+  "results/npm-rc2-stock-host-identity.txt": "bcf685f53d0534ea0918ea39025a39e68c85c15b9eb699a69c4a824d587dc761",
+  "results/rc2-npm-protected-install.txt": "6b74838fe04cc43fa0ff5cd096418db576543be5eb9b0735e1b1e03c4b5b5f76"
+ },
+ "blocked": {
+  "npmRc2": "RESOLVED by retest (see report section 7): profile-layer cordis.patch.yml mounts the probe reliably; stock+protected both PASS"
+ },
+ "probeResults": {
+  "npmRc2Stock": {
+   "mcpSha": "758d8fc4...",
+   "sameOrigin": "OK",
+   "secondOrigin": 1,
+   "verdict": "PASS"
+  },
+  "npmRc2Protected": {
+   "mcpSha": "b3cd7156...",
+   "sameOrigin": "OK",
+   "crossRefused": true,
+   "secondOrigin": 0,
+   "verdict": "PASS"
+  }
+ },
+ "summary": "4 paths x stock/protected = 8/8 PASS"
+}

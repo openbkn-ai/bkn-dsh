@@ -235,10 +235,10 @@ test('attributes a browse-only Host refusal to the connection mode', async () =>
   assert.match(renderUiMessage(snapshot.message ?? ''), /关联一个已存在的本地工作区/)
 })
 
-test('reports a failing native chooser with its own cause, not as a connection-mode limit', async () => {
+test('classifies a failing native chooser without exposing raw Host error text', async () => {
   const snapshot = await createWorkspaceFailing(directoryPickerFailure(new Error('directory picker failed: osascript exited with 1')))
   assert.equal(snapshot.phase, 'error')
-  assert.match(renderUiMessage(snapshot.message ?? ''), /无法打开本机目录选择器：directory picker failed: osascript exited with 1/)
+  assert.match(renderUiMessage(snapshot.message ?? ''), /无法打开本机目录选择器/)
   assert.doesNotMatch(renderUiMessage(snapshot.message ?? ''), /当前连接模式/)
 })
 
@@ -249,7 +249,7 @@ test('returns to the network list without an error when the chooser is dismissed
   assert.deepEqual(snapshot.networks.map(network => network.id), ['kn-supply'])
 })
 
-test('includes the underlying cause in the generic bind-failure message', async () => {
+test('keeps raw bind failures out of the displayed message', async () => {
   const controller = new OpenBknUiController({
     status: async () => authenticated,
     configureToken: async () => [],
@@ -263,7 +263,8 @@ test('includes the underlying cause in the generic bind-failure message', async 
   await controller.openNetwork('kn-supply', 'new')
 
   assert.equal(controller.snapshot().phase, 'error')
-  assert.match(renderUiMessage(controller.snapshot().message ?? ''), /bind rejected by host/)
+  assert.doesNotMatch(JSON.stringify(controller.snapshot()), /bind rejected by host/)
+  assert.match(renderUiMessage(controller.snapshot().message), /无法将此网络绑定/)
 })
 
 test('tells the user how to make the OpenBKN CLI available instead of blaming the token', async () => {
@@ -408,7 +409,7 @@ test('closing during authentication drops the response and prevents the next req
   assert.equal(listed, 0)
 })
 
-test('Desktop close and reopen retain one pending login and synchronize its result', async () => {
+test('close and reopen discard the old login result without replacing the new state', async () => {
   const login = deferred<readonly []>()
   let checked = 0
   const controller = new OpenBknUiController({ ...safePort,
@@ -421,9 +422,8 @@ test('Desktop close and reopen retain one pending login and synchronize its resu
   controller.open()
   login.resolve([])
   await pending
-  assert.equal(controller.snapshot().open, true)
-  assert.equal(controller.snapshot().phase, 'ready')
-  assert.equal(checked, 1)
+  assert.deepEqual(controller.snapshot(), { open: true, phase: 'idle', networks: [] })
+  assert.equal(checked, 0)
 })
 
 test('a newer refresh wins when the older catalogue resolves last', async () => {
@@ -557,47 +557,4 @@ test('unknown or inactive entries preserve the business failure and diagnostic g
     assert.match(renderUiMessage(controller.snapshot().message!), /诊断/)
     assert.equal(controller.snapshot().configuration?.unavailableReason, unavailableReason)
   }
-})
-
-
-test('a login that finishes behind a closed overlay never opens it automatically', async () => {
-  const login = deferred<readonly []>()
-  let starts = 0
-  const controller = new OpenBknUiController({ ...safePort,
-    beginLogin: async () => { starts++; return login.promise },
-  }, async () => 'session')
-  controller.open()
-  const pending = controller.beginLogin()
-  controller.close()
-  controller.open()
-  const duplicate = controller.beginLogin()
-  controller.close()
-  login.resolve([])
-  await duplicate
-  await pending
-  assert.equal(starts, 1)
-  assert.equal(controller.snapshot().open, false)
-  assert.equal(controller.snapshot().phase, 'ready')
-  controller.open()
-  assert.equal(controller.snapshot().phase, 'ready')
-})
-
-test('replacing the business connection invalidates a hidden pending login', async () => {
-  const login = deferred<readonly []>()
-  let checked = 0
-  let signal: AbortSignal | undefined
-  const controller = new OpenBknUiController({ ...safePort,
-    beginLogin: async value => { signal = value; return login.promise },
-    status: async () => { checked++; return authenticated },
-  }, async () => 'session')
-  controller.open()
-  const pending = controller.beginLogin()
-  controller.close()
-  controller.businessChanged()
-  login.resolve([])
-  await pending
-  assert.equal(signal?.aborted, true)
-  assert.equal(checked, 0)
-  assert.equal(controller.snapshot().open, false)
-  assert.equal(controller.snapshot().phase, 'idle')
 })

@@ -1,0 +1,90 @@
+{
+  "root": "release/local-59 (local only)",
+  "files": [
+    {
+      "path": "official-function-review.log",
+      "sha256": "1d498e34a72aeeb8044f56ea9b4303952f1c12f203a189b78f203e100bcab62f",
+      "bytes": 1691,
+      "classification": "local-only source review, signing availability or preservation/raw input record; raw files not published"
+    },
+    {
+      "path": "build-tool-requirements.json",
+      "sha256": "3b9206237526e2eec93dbd88bf7426d6c764ed653460053494e91c83b825eb5e",
+      "bytes": 1149,
+      "classification": "local-only source review, signing availability or preservation/raw input record; raw files not published"
+    },
+    {
+      "path": "official-function-review.json",
+      "sha256": "bf9963c2724103b7a01abcbf415c8c859cc59df4d39797a773d789488d6bfbd6",
+      "bytes": 2060,
+      "classification": "local-only source review, signing availability or preservation/raw input record; raw files not published"
+    },
+    {
+      "path": "final-preservation.log",
+      "sha256": "266b97298a8abf6066ba4d6dff4e3bbee80883dc6432087cbe1549f3cbcc3796",
+      "bytes": 155,
+      "classification": "local-only source review, signing availability or preservation/raw input record; raw files not published"
+    },
+    {
+      "path": "kit-verification.log",
+      "sha256": "cc1f82b3d0badcb4c946cd5b5c73a4ff2974b99f65bda844eeca566b90ba29df",
+      "bytes": 718,
+      "classification": "local-only source review, signing availability or preservation/raw input record; raw files not published"
+    },
+    {
+      "path": "foundry-delta-private.json",
+      "sha256": "1437950be7508ac791f79a35b1c535b905234b5c332c321dffd3d4ef193a4aa4",
+      "bytes": 97233,
+      "classification": "local-only source review, signing availability or preservation/raw input record; raw files not published"
+    },
+    {
+      "path": "windows-feed-identity.json",
+      "sha256": "1572dd7987238507f3dc3e722dbd428870cc0c2cd9c5455f65a44e18cbbfd483",
+      "bytes": 622,
+      "classification": "local-only source review, signing availability or preservation/raw input record; raw files not published"
+    },
+    {
+      "path": "foundry-reviewed.patch",
+      "sha256": "7091232342f6f791a432fa39efd4c6d226f9df9f79743ea6ed8930bb5ecf133f",
+      "bytes": 10018,
+      "classification": "local-only source review, signing availability or preservation/raw input record; raw files not published"
+    },
+    {
+      "path": "upstream-current.json",
+      "sha256": "f15db2234aaa5b670c9d71b335184fd423a8d3c0d381147125c16e234ec22317",
+      "bytes": 393,
+      "classification": "local-only source review, signing availability or preservation/raw input record; raw files not published"
+    },
+    {
+      "path": "signing-identities-private.txt",
+      "sha256": "0ad30eb1563c325d77f4dc564c5d96851d5a39205307f5cdd7d762b59688f87a",
+      "bytes": 30,
+      "classification": "local-only source review, signing availability or preservation/raw input record; raw files not published"
+    },
+    {
+      "path": "gui-contract-test.log",
+      "sha256": "d48d067aef712ed7364f3990276f598c228df8749d14d1449f71dbb7aa4cd615",
+      "bytes": 1147,
+      "classification": "local-only source review, signing availability or preservation/raw input record; raw files not published"
+    },
+    {
+      "path": "preservation-before-private.json",
+      "sha256": "eb379f75d446dbc17b7dc739f7ab5f26421db1c629839c6a74daa7443926e9b3",
+      "bytes": 557305,
+      "classification": "local-only source review, signing availability or preservation/raw input record; raw files not published"
+    },
+    {
+      "path": "official-function-review/rc3/official-launcher-review-only.txt",
+      "sha256": "0d16eafd84996f3c0edd2b9e0a0f702caf4f824c3487cb675b70317348d9a527",
+      "bytes": 430,
+      "classification": "local-only source review, signing availability or preservation/raw input record; raw files not published"
+    },
+    {
+      "path": "official-function-review/old/official-launcher-review-only.txt",
+      "sha256": "0d16eafd84996f3c0edd2b9e0a0f702caf4f824c3487cb675b70317348d9a527",
+      "bytes": 430,
+      "classification": "local-only source review, signing availability or preservation/raw input record; raw files not published"
+    }
+  ],
+  "hostOrCredentialStoresCreated": false
+}

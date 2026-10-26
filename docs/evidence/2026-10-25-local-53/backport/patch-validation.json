@@ -1,0 +1,16 @@
+[
+  {
+    "host": "old",
+    "patchSha256": "61a324660a4565cf7dba2701542e3c96000e564cfc94b9b4ce212972a9afcede",
+    "files": 4,
+    "gitApplyCheck": "PASS",
+    "applied": false
+  },
+  {
+    "host": "rc3",
+    "patchSha256": "61a324660a4565cf7dba2701542e3c96000e564cfc94b9b4ce212972a9afcede",
+    "files": 4,
+    "gitApplyCheck": "PASS",
+    "applied": false
+  }
+]

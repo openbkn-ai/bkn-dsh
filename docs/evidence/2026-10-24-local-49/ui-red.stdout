@@ -1,0 +1,66 @@
+✖ historical reference labels switch zh/en/zh without rereading or changing platform facts (12.149084ms)
+✖ passive diagnostics explains observation age without relabeling historical pass or changing JSON (22.958167ms)
+✖ brand captions and the sign-in action have normal-text contrast on their actual surfaces (0.91425ms)
+ℹ tests 3
+ℹ suites 0
+ℹ pass 0
+ℹ fail 3
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 232.70475
+
+✖ failing tests:
+
+test at tests/ui-followup.test.ts:1:1679
+✖ historical reference labels switch zh/en/zh without rereading or changing platform facts (12.149084ms)
+  AssertionError [ERR_ASSERTION]: 请求
+      at TestContext.<anonymous> (/Users/dominiczhang/Documents/project/app/openBKN/bkn-dsh-local49-ui/packages/openbkn-business-context/tests/ui-followup.test.ts:27:220)
+      at async Test.run (node:internal/test_runner/test:1389:7)
+      at async startSubtestAfterBootstrap (node:internal/test_runner/harness:387:3) {
+    generatedMessage: false,
+    code: 'ERR_ASSERTION',
+    actual: false,
+    expected: true,
+    operator: '==',
+    diff: 'simple'
+  }
+
+test at tests/ui-followup.test.ts:1:3570
+✖ passive diagnostics explains observation age without relabeling historical pass or changing JSON (22.958167ms)
+  AssertionError [ERR_ASSERTION]: The input did not match the regular expression /历史观察/. Input:
+  
+  'OPENBKN诊断×报告编号 fixture-report · 生成于 10/24/2026, 8:00:00 AM · 模式 被动采集运行形态未识别（当前报告无法确认形态）操作系统WindowsDSH 版本未采集（当前报告无版本信息）插件（磁盘）未采集（无法读取安装信息）插件（已加载）未采集（无法确认运行版本）未采集的基础信息不代表故障，请查看下方检查结果。磁盘版本不代表当前已加载版本。● 通过observed:clicli / clilastOutcomeAgoMs=3600000导出诊断报告重新采集'
+  
+      at TestContext.<anonymous> (/Users/dominiczhang/Documents/project/app/openBKN/bkn-dsh-local49-ui/packages/openbkn-business-context/tests/ui-followup.test.ts:33:15)
+      at Test.runInAsyncScope (node:async_hooks:227:14)
+      at Test.run (node:internal/test_runner/test:1382:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:960:18)
+      at Test.postRun (node:internal/test_runner/test:1522:19)
+      at Test.run (node:internal/test_runner/test:1447:12)
+      at async startSubtestAfterBootstrap (node:internal/test_runner/harness:387:3) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: 'OPENBKN诊断×报告编号 fixture-report · 生成于 10/24/2026, 8:00:00 AM · 模式 被动采集运行形态未识别（当前报告无法确认形态）操作系统WindowsDSH 版本未采集（当前报告无版本信息）插件（磁盘）未采集（无法读取安装信息）插件（已加载）未采集（无法确认运行版本）未采集的基础信息不代表故障，请查看下方检查结果。磁盘版本不代表当前已加载版本。● 通过observed:clicli / clilastOutcomeAgoMs=3600000导出诊断报告重新采集',
+    expected: /历史观察/,
+    operator: 'match',
+    diff: 'simple'
+  }
+
+test at tests/ui-followup.test.ts:1:4261
+✖ brand captions and the sign-in action have normal-text contrast on their actual surfaces (0.91425ms)
+  AssertionError [ERR_ASSERTION]: brand caption contrast
+      at TestContext.<anonymous> (/Users/dominiczhang/Documents/project/app/openBKN/bkn-dsh-local49-ui/packages/openbkn-business-context/tests/ui-followup.test.ts:41:130)
+      at Test.runInAsyncScope (node:async_hooks:227:14)
+      at Test.run (node:internal/test_runner/test:1382:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:960:18)
+      at Test.postRun (node:internal/test_runner/test:1522:19)
+      at Test.run (node:internal/test_runner/test:1447:12)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:960:7) {
+    generatedMessage: false,
+    code: 'ERR_ASSERTION',
+    actual: false,
+    expected: true,
+    operator: '==',
+    diff: 'simple'
+  }

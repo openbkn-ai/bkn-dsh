@@ -1,10 +1,12 @@
+import type { NativeInteractionDetail, NativeExplanationResult } from './native-provenance-types.js'
+import { projectNativeDetail, projectNativeExplanation, NativeProjectionError, NATIVE_PROVENANCE_LIMITS } from './native-provenance.js'
 import type { JsonValue } from '@deepseek-ai/dsh-util-values'
 import type { BusinessNetworkBinding } from './session-binding.js'
 import { httpStatusEvidence, passiveDiagnostics, transportMarkersOf, type PassiveDiagnosticsWriter } from './diagnostics-observer.js'
 import type { DiagnosticsStage } from './diagnostics-contract.js'
 import { trimTrailingSlashes } from './trailing-slashes.js'
 
-export type PlatformReaderErrorCode =
+export type PlatformReaderErrorCode = 'ACCESS_DENIED' | 'NATIVE_NOT_AVAILABLE'
   | 'AUTHENTICATION_REQUIRED'
   | 'LICENSE_REQUIRED'
   | 'RECORD_NOT_DISCLOSED'
@@ -15,6 +17,8 @@ export type PlatformReaderErrorCode =
   | 'INVALID_RESPONSE'
 
 interface RequestOptions {
+  readonly nativeProvenance?: boolean
+  readonly timeoutMs?: number
   readonly licenseGated?: boolean
   /** Host cap on the raw response body; defaults to `MAX_PLATFORM_RESPONSE_BYTES`. */
   readonly maxResponseBytes?: number
@@ -75,6 +79,14 @@ function observeReaderFailure(subject: string, code: PlatformReaderErrorCode, ca
     })
     return
   }
+  if (code === 'ACCESS_DENIED') {
+    observations.record({ subject, stage: 'authentication', code: 'auth-rejected', status: 'fail', evidence: status })
+    return
+  }
+  if (code === 'NATIVE_NOT_AVAILABLE') {
+    observations.record({ subject, stage: 'platform-directory', code: 'platform-directory-failed', status: 'fail', evidence: status })
+    return
+  }
   if (code === 'PLATFORM_MISMATCH') {
     observations.record({
       subject, stage: 'configuration', code: 'platform-mismatch',
@@ -117,7 +129,7 @@ export interface PlatformReaderConfig {
   readonly allowInsecureTls: boolean
   /** Business domain header sent on platform requests; defaults to the platform default `bd_public`. */
   readonly businessDomain?: string
-  readonly resolveToken?: () => Promise<string | undefined>
+  readonly resolveToken?: (signal: AbortSignal) => Promise<string | undefined>
 }
 
 export type PlatformFetch = (input: URL, init: RequestInit) => Promise<Response>
@@ -191,6 +203,31 @@ export class OpenBknPlatformReader {
     }
   }
 
+  async getNativeInteractionDetail(interactionId: string, signal: AbortSignal): Promise<NativeInteractionDetail> {
+    return this.readNative(interactionId, false, signal, value => projectNativeDetail(value, interactionId, Math.min(this.config.maxResultBytes, NATIVE_PROVENANCE_LIMITS.dtoBytes)))
+  }
+
+  async getNativeInteractionExplanation(interactionId: string, signal: AbortSignal): Promise<Exclude<NativeExplanationResult, { kind: 'unavailable' }>> {
+    return this.readNative(interactionId, true, signal, value => projectNativeExplanation(value, interactionId, Math.min(this.config.maxResultBytes, NATIVE_PROVENANCE_LIMITS.dtoBytes)))
+  }
+
+  private async readNative<T>(interactionId: string, explanations: boolean, signal: AbortSignal, project: (value: unknown) => T): Promise<T> {
+    const subject = explanations ? 'platform-native-explanations' : 'platform-native-detail'
+    try {
+      if (!/^[A-Za-z0-9][A-Za-z0-9_-]{0,511}$/.test(interactionId)) throw new PlatformReaderError('INVALID_RESPONSE', 'Native Interaction identifier is invalid.')
+      const payload = await this.get(`/api/agent-observability/v1/business-provenance/interactions/${encodeURIComponent(interactionId)}${explanations ? '/explanations' : ''}`, signal, {
+        nativeProvenance: true, maxResponseBytes: NATIVE_PROVENANCE_LIMITS.wireBytes, timeoutMs: NATIVE_PROVENANCE_LIMITS.getTimeoutMs,
+      })
+      const result = project(payload)
+      readerSucceeded(subject, 'platform-directory', this.observations)
+      return result
+    } catch (failure) {
+      const error = failure instanceof NativeProjectionError
+        ? new PlatformReaderError(failure.reason === 'result-too-large' ? 'OUTPUT_OVERFLOW' : 'INVALID_RESPONSE', 'Native provenance projection refused.') : failure
+      throw observedAt(error, subject, this.observations)
+    }
+  }
+
   /** Resolve the deployment's license edition so license-gated failures can explain themselves. */
   async getLicenseEdition(signal: AbortSignal): Promise<{ edition?: string; licensed?: boolean } | undefined> {
     try {
@@ -220,12 +257,12 @@ export class OpenBknPlatformReader {
   private async request(path: string, init: RequestInit, signal: AbortSignal, options?: RequestOptions): Promise<JsonValue> {
     if (signal.aborted) throw new PlatformReaderError('REQUEST_ABORTED', 'OpenBKN context request was cancelled.')
     const url = fixedUrl(this.config.baseUrl, path, this.config.allowInsecureTls)
-    const token = await this.config.resolveToken?.()
+    const token = await this.config.resolveToken?.(signal)
     if (signal.aborted) throw new PlatformReaderError('REQUEST_ABORTED', 'OpenBKN context request was cancelled.')
     if (token === undefined || token.trim().length === 0) {
       throw new PlatformReaderError('AUTHENTICATION_REQUIRED', 'OpenBKN authentication is required.')
     }
-    const timeout = AbortSignal.timeout(this.config.requestTimeoutMs)
+    const timeout = AbortSignal.timeout(options?.timeoutMs ?? this.config.requestTimeoutMs)
     const requestSignal = AbortSignal.any([signal, timeout])
     let response: Response
     try {
@@ -251,6 +288,8 @@ export class OpenBknPlatformReader {
       // the deployment-license gate answers 403 below.
       throw new PlatformReaderError('AUTHENTICATION_REQUIRED', 'OpenBKN authentication is required.', { httpStatus: response.status })
     }
+    if (options?.nativeProvenance && response.status === 403) throw new PlatformReaderError('ACCESS_DENIED', 'Native provenance access denied.', { httpStatus: 403 })
+    if (options?.nativeProvenance && response.status === 404) throw new PlatformReaderError('NATIVE_NOT_AVAILABLE', 'Native provenance record not disclosed or route unavailable.', { httpStatus: 404 })
     if (response.status === 403) {
       // Only the observability lifecycle routes answer the deployment
       // license/domain gate with permission_denied; elsewhere that code means

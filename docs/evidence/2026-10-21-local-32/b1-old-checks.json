@@ -1,0 +1,89 @@
+[
+  {
+    "checked_at": "2026-10-21T07:46:09.621Z",
+    "pid": 28116,
+    "phase": "before-reauth-opened",
+    "interaction_id": "int_3094d6ff1eb9d8ed19b15e3457a43e5b",
+    "conversation_id": "conv_4189ac82bacaf5eb32d7c6530aa5e8e2"
+  },
+  {
+    "checked_at": "2026-10-21T07:46:09.683Z",
+    "pid": 28116,
+    "phase": "before-reauth",
+    "interaction_id": "int_3094d6ff1eb9d8ed19b15e3457a43e5b",
+    "conversation_id": "conv_4189ac82bacaf5eb32d7c6530aa5e8e2",
+    "query_succeeded": true,
+    "response_keys": [
+      "query_source",
+      "datas",
+      "effective_permissions",
+      "total_count",
+      "cursor"
+    ],
+    "no_sandbox_call": true
+  },
+  {
+    "checked_at": "2026-10-21T07:46:09.699Z",
+    "pid": 28116,
+    "phase": "baseline-ready",
+    "version": "0.2.0-rc.2",
+    "mode": "login-owner",
+    "real_platform": true,
+    "real_cli": true,
+    "real_dsh_tools_credentials_subprocess_and_business_service": true,
+    "model_used": false,
+    "desktop_process_used": false,
+    "agent_registry_is_minimal_probe_composition": true
+  },
+  {
+    "checked_at": "2026-10-21T07:46:33.731Z",
+    "pid": 28116,
+    "phase": "browser-login-started"
+  },
+  {
+    "checked_at": "2026-10-21T07:47:19.693Z",
+    "pid": 28116,
+    "phase": "reauth-synchronized",
+    "credential_changed": true,
+    "same_authenticated_identity": true,
+    "catalogue_count": 2
+  },
+  {
+    "checked_at": "2026-10-21T07:47:19.728Z",
+    "pid": 28116,
+    "phase": "after-reauth-opened",
+    "interaction_id": "int_09976a670c11a8203e03f8947678924b",
+    "conversation_id": "conv_eb59550471e796b92d784b68e935706f"
+  },
+  {
+    "checked_at": "2026-10-21T07:47:19.761Z",
+    "pid": 28116,
+    "phase": "after-reauth",
+    "interaction_id": "int_09976a670c11a8203e03f8947678924b",
+    "conversation_id": "conv_eb59550471e796b92d784b68e935706f",
+    "query_succeeded": true,
+    "response_keys": [
+      "query_source",
+      "datas",
+      "effective_permissions",
+      "total_count",
+      "cursor"
+    ],
+    "no_sandbox_call": true
+  },
+  {
+    "checked_at": "2026-10-21T07:47:19.776Z",
+    "pid": 28116,
+    "phase": "result",
+    "version": "0.2.0-rc.2",
+    "same_process_and_service": true,
+    "same_mcp_manager_owner": true,
+    "credential_changed": true,
+    "same_authenticated_identity": true,
+    "catalogue_count": 2,
+    "fresh_interaction_query_succeeded": true,
+    "observed_unauthorized": false,
+    "original_long_running_desktop_issue_reproduced": false,
+    "limitation": "Short real-platform service composition; no original long-running Desktop session or model turn"
+  }
+]

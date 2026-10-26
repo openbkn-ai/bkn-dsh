@@ -1,0 +1,33 @@
+{
+  "ports": [
+    {
+      "port": 38429,
+      "released": true
+    },
+    {
+      "port": 38430,
+      "released": true
+    },
+    {
+      "port": 38440,
+      "released": true
+    },
+    {
+      "port": 38441,
+      "released": true
+    }
+  ],
+  "taskNativeDesktopProcessesRemaining": false,
+  "taskProfilesRestored": [
+    {
+      "host": "0.2.0-rc.2",
+      "patch_restored": true
+    },
+    {
+      "host": "0.2.1-rc.2",
+      "patch_restored": true
+    }
+  ],
+  "personalDshUntouched": true,
+  "isolatedHomesAndOriginalEvidenceRetained": true
+}

@@ -1,0 +1,361 @@
+{
+  "root": "release/local-58 (local only)",
+  "files": [
+    {
+      "path": "credential-equality.json",
+      "sha256": "054bf8e4be9f1e86cdb53b259dbf048cc200fc5ed36c7be38908573dfb8010e1",
+      "bytes": 849,
+      "classification": "local-only raw log/proof or preservation receipt; may contain private paths or expired authorization codes; do not publish raw"
+    },
+    {
+      "path": "process-sweep-private.txt",
+      "sha256": "a0ddae78ba153016eac8aa53b9d937ee937527d6dd5def00bbc4efd600fc1878",
+      "bytes": 119092,
+      "classification": "local-only raw log/proof or preservation receipt; may contain private paths or expired authorization codes; do not publish raw"
+    },
+    {
+      "path": "deployments-after-private.json",
+      "sha256": "69e62e47c2513271da5f44079c5662d7ec595d0076886bb6d0240812afcf7bf5",
+      "bytes": 350295,
+      "classification": "local-only raw log/proof or preservation receipt; may contain private paths or expired authorization codes; do not publish raw"
+    },
+    {
+      "path": "desktop-old-auth-ui-private.txt",
+      "sha256": "abdf934d0a38079322ded2aa84161583604421b647dba8ef7b680328d43e4d6a",
+      "bytes": 1354,
+      "classification": "local-only raw log/proof or preservation receipt; may contain private paths or expired authorization codes; do not publish raw"
+    },
+    {
+      "path": "independent-cli-readback.json",
+      "sha256": "c5ca92cbd4677613313938b445801715407b84b3a546dacc8aead03b3a417d2f",
+      "bytes": 1115,
+      "classification": "local-only raw log/proof or preservation receipt; may contain private paths or expired authorization codes; do not publish raw"
+    },
+    {
+      "path": "npm-old-auth-ui-private.txt",
+      "sha256": "abdf934d0a38079322ded2aa84161583604421b647dba8ef7b680328d43e4d6a",
+      "bytes": 1354,
+      "classification": "local-only raw log/proof or preservation receipt; may contain private paths or expired authorization codes; do not publish raw"
+    },
+    {
+      "path": "cleanup-collected.json",
+      "sha256": "1639efe7a81773a985bad635a072db43d8b62d2786f7cd6b816c123a7dea09da",
+      "bytes": 1825,
+      "classification": "local-only raw log/proof or preservation receipt; may contain private paths or expired authorization codes; do not publish raw"
+    },
+    {
+      "path": "foundry-relevant.patch",
+      "sha256": "68a068e719710d57c1040ffefd88454e651ddcb4efdfed87f67313b4ce4f9a5c",
+      "bytes": 11442,
+      "classification": "local-only raw log/proof or preservation receipt; may contain private paths or expired authorization codes; do not publish raw"
+    },
+    {
+      "path": "cli-sdk-comparison.json",
+      "sha256": "54034def9fc2dd2a3ec067035983c828a034b3289b5a17694bcbc7bc13a49145",
+      "bytes": 40,
+      "classification": "local-only raw log/proof or preservation receipt; may contain private paths or expired authorization codes; do not publish raw"
+    },
+    {
+      "path": "final-preservation.log",
+      "sha256": "1d33f295703dedc840554ef98bc6d427662e82759add66f213682299ab9f4e6b",
+      "bytes": 147,
+      "classification": "local-only raw log/proof or preservation receipt; may contain private paths or expired authorization codes; do not publish raw"
+    },
+    {
+      "path": "foundry-reviewed-details.patch",
+      "sha256": "97c67835eb359beb4deda0210a008f1d6599662232de54907b30f65e3d8e51b3",
+      "bytes": 23599,
+      "classification": "local-only raw log/proof or preservation receipt; may contain private paths or expired authorization codes; do not publish raw"
+    },
+    {
+      "path": "platform-service-identity.json",
+      "sha256": "4ab96a1291566d030cbaf631e29ff972407478f41c66a5018e454d5292c975fd",
+      "bytes": 483,
+      "classification": "local-only raw log/proof or preservation receipt; may contain private paths or expired authorization codes; do not publish raw"
+    },
+    {
+      "path": "foundry-delta-private.json",
+      "sha256": "c408cd9cbfe0f5547aaf8a80264e612085a41bd0eaba50ab4c32ce862ed880e5",
+      "bytes": 283112,
+      "classification": "local-only raw log/proof or preservation receipt; may contain private paths or expired authorization codes; do not publish raw"
+    },
+    {
+      "path": "source-homes-before-private.json",
+      "sha256": "d4350e83afa040d167d6eb805fac471dafdbbd743247ab7caf34a262acd944f9",
+      "bytes": 24080,
+      "classification": "local-only raw log/proof or preservation receipt; may contain private paths or expired authorization codes; do not publish raw"
+    },
+    {
+      "path": "desktop-old-harness.log",
+      "sha256": "c5c9ae4c05110ae3899df0ff8a9023c27c699fc16636372178925ff5f19dbcb6",
+      "bytes": 306,
+      "classification": "local-only raw log/proof or preservation receipt; may contain private paths or expired authorization codes; do not publish raw"
+    },
+    {
+      "path": "npm-rc3-retry-auth-ui-private.txt",
+      "sha256": "3f8b7331ece8a8bda0f2cc40b20edb0d794d324386d7f228702943b87dd97f6f",
+      "bytes": 1379,
+      "classification": "local-only raw log/proof or preservation receipt; may contain private paths or expired authorization codes; do not publish raw"
+    },
+    {
+      "path": "process-sweep-summary.json",
+      "sha256": "4802b8f4c75b220722d22fb20b05504bd44d21e3502a938f139bb9eb230e6f5a",
+      "bytes": 91,
+      "classification": "local-only raw log/proof or preservation receipt; may contain private paths or expired authorization codes; do not publish raw"
+    },
+    {
+      "path": "npm-rc3-harness.log",
+      "sha256": "f40f937383678057d8491aa5426d6b4bce6768c0134114fa08a2ec72a8b9e61f",
+      "bytes": 221,
+      "classification": "local-only raw log/proof or preservation receipt; may contain private paths or expired authorization codes; do not publish raw"
+    },
+    {
+      "path": "cli-original-before-private.json",
+      "sha256": "ea6fdd935c3f68188fb97e85af736eca3bc355195f7583915c55cd7efa974abf",
+      "bytes": 449,
+      "classification": "local-only raw log/proof or preservation receipt; may contain private paths or expired authorization codes; do not publish raw"
+    },
+    {
+      "path": "upstream-current.json",
+      "sha256": "faf2e2bc219bb56183d15bf2c7667e8b82cf43a7c385c8f3bfe6a75d115749a9",
+      "bytes": 393,
+      "classification": "local-only raw log/proof or preservation receipt; may contain private paths or expired authorization codes; do not publish raw"
+    },
+    {
+      "path": "desktop-rc3-auth-ui-private.txt",
+      "sha256": "44206a30c1453ee73eed5101a71ce69c92cf2c57959986c11616e2c4d50ac54e",
+      "bytes": 1355,
+      "classification": "local-only raw log/proof or preservation receipt; may contain private paths or expired authorization codes; do not publish raw"
+    },
+    {
+      "path": "npm-rc3-retry-harness.log",
+      "sha256": "365eaf32f80e7eb50ef1893581f4ab41451b177b894a56bc03c6414bdb229139",
+      "bytes": 312,
+      "classification": "local-only raw log/proof or preservation receipt; may contain private paths or expired authorization codes; do not publish raw"
+    },
+    {
+      "path": "prepare.log",
+      "sha256": "f7e2e6e7a8502102be19d1c881432cec5cd7f4763aa790cdd5c3efb08942e556",
+      "bytes": 70,
+      "classification": "local-only raw log/proof or preservation receipt; may contain private paths or expired authorization codes; do not publish raw"
+    },
+    {
+      "path": "home-copy-change-receipt.json",
+      "sha256": "69871bd6fa828c4620292d9c05f500211026786066ede5598768483d1659f8cb",
+      "bytes": 1043,
+      "classification": "local-only raw log/proof or preservation receipt; may contain private paths or expired authorization codes; do not publish raw"
+    },
+    {
+      "path": "desktop-rc3-harness.log",
+      "sha256": "167086d5fac54f41fe436f3c35dc1ad7dacccf5b476bd6b24fdc07030f2223d1",
+      "bytes": 306,
+      "classification": "local-only raw log/proof or preservation receipt; may contain private paths or expired authorization codes; do not publish raw"
+    },
+    {
+      "path": "npm-old-harness.log",
+      "sha256": "d155eefc9a30ed0815fc5f19589e17735358c23068b7f836eb558a2a5e3d697f",
+      "bytes": 294,
+      "classification": "local-only raw log/proof or preservation receipt; may contain private paths or expired authorization codes; do not publish raw"
+    },
+    {
+      "path": "preservation-before-private.json",
+      "sha256": "edf56b96b4955149c80878f0275b8ff02c71421ae16e4f42feb0a30740944947",
+      "bytes": 554704,
+      "classification": "local-only raw log/proof or preservation receipt; may contain private paths or expired authorization codes; do not publish raw"
+    },
+    {
+      "path": "identities-private.json",
+      "sha256": "8f4b276721bbeb269798bceb04ba96213d811a43e7ce680fbdcdf9b9fea106ab",
+      "bytes": 7607,
+      "classification": "local-only raw log/proof or preservation receipt; may contain private paths or expired authorization codes; do not publish raw"
+    },
+    {
+      "path": "cli-preflight-status-private.txt",
+      "sha256": "b49e4d9c8a910b7ac14c4e56e904c3f6f633477db96fa3175f0a5caad1ea9302",
+      "bytes": 156,
+      "classification": "local-only raw log/proof or preservation receipt; may contain private paths or expired authorization codes; do not publish raw"
+    },
+    {
+      "path": "runs/desktop-rc3/profile-closure-after-private.json",
+      "sha256": "4e372ee3033797817f78f0e40b31a6879d1a03622640b3e0b3f78de06b21fb3b",
+      "bytes": 36074,
+      "classification": "local-only raw log/proof or preservation receipt; may contain private paths or expired authorization codes; do not publish raw"
+    },
+    {
+      "path": "runs/desktop-rc3/actual-auth-proof-private.json",
+      "sha256": "d7d3fb4a8d2efae1ecce331bed182304b08e4d0a81d679b1498be803cc1e62ec",
+      "bytes": 3185,
+      "classification": "local-only raw log/proof or preservation receipt; may contain private paths or expired authorization codes; do not publish raw"
+    },
+    {
+      "path": "runs/desktop-rc3/owned-process-private.json",
+      "sha256": "fce9def13492dd271dda2d8da7f4463531f686d9aed656f54c5112432acec7f4",
+      "bytes": 655,
+      "classification": "local-only raw log/proof or preservation receipt; may contain private paths or expired authorization codes; do not publish raw"
+    },
+    {
+      "path": "runs/desktop-rc3/profile-closure-after-private.log",
+      "sha256": "10b85a8cb66b28fe2c9f13d83734dd6e006adea4e80baacffb584540c4ed6c17",
+      "bytes": 117,
+      "classification": "local-only raw log/proof or preservation receipt; may contain private paths or expired authorization codes; do not publish raw"
+    },
+    {
+      "path": "runs/desktop-rc3/host-private.log",
+      "sha256": "f8752bdd1fe104007a65b6bb23a370377b0821650389fe29ea2a22364c953f4d",
+      "bytes": 943,
+      "classification": "local-only raw log/proof or preservation receipt; may contain private paths or expired authorization codes; do not publish raw"
+    },
+    {
+      "path": "runs/desktop-rc3/cleanup.json",
+      "sha256": "a7fc0ab2d615bb3982591aba8ff09ee089c871dad9ee1505361a21ab7869e64c",
+      "bytes": 133,
+      "classification": "local-only raw log/proof or preservation receipt; may contain private paths or expired authorization codes; do not publish raw"
+    },
+    {
+      "path": "runs/desktop-rc3/desktop-ready-private.json",
+      "sha256": "7671f5172cb24417bdd77056c977a31a248ca11e6600df4fb7ca3e74e8966376",
+      "bytes": 38376,
+      "classification": "local-only raw log/proof or preservation receipt; may contain private paths or expired authorization codes; do not publish raw"
+    },
+    {
+      "path": "runs/npm-old/profile-closure-after-private.json",
+      "sha256": "f80460dbc52a9396b7ce457051e4a736a7df74bef765ef699d4ff2fc60af6ebe",
+      "bytes": 34486,
+      "classification": "local-only raw log/proof or preservation receipt; may contain private paths or expired authorization codes; do not publish raw"
+    },
+    {
+      "path": "runs/npm-old/actual-auth-proof-private.json",
+      "sha256": "a63a51efa4e4cd007bccc5c4eb84cc983f219b0b83898d3c670df312dee6c95b",
+      "bytes": 3168,
+      "classification": "local-only raw log/proof or preservation receipt; may contain private paths or expired authorization codes; do not publish raw"
+    },
+    {
+      "path": "runs/npm-old/owned-process-private.json",
+      "sha256": "0e893c5cef6201d8263a2f4bb5f7f4ecc85582bcde54360ae8a89428c606d665",
+      "bytes": 476,
+      "classification": "local-only raw log/proof or preservation receipt; may contain private paths or expired authorization codes; do not publish raw"
+    },
+    {
+      "path": "runs/npm-old/profile-closure-after-private.log",
+      "sha256": "28127e2bc0885bb40a90d01f6d4251eb07d3194139325d597f26a254541b7c61",
+      "bytes": 113,
+      "classification": "local-only raw log/proof or preservation receipt; may contain private paths or expired authorization codes; do not publish raw"
+    },
+    {
+      "path": "runs/npm-old/host-private.log",
+      "sha256": "5025a961a1fd78b3de391ed59853b8f82a5da06e004629f05056f93618f4f109",
+      "bytes": 267,
+      "classification": "local-only raw log/proof or preservation receipt; may contain private paths or expired authorization codes; do not publish raw"
+    },
+    {
+      "path": "runs/npm-old/cleanup.json",
+      "sha256": "d7c4173483f16f04c99cb178e5f0cb8c973ccf47d8282c825e4aee69bd304447",
+      "bytes": 128,
+      "classification": "local-only raw log/proof or preservation receipt; may contain private paths or expired authorization codes; do not publish raw"
+    },
+    {
+      "path": "runs/npm-rc3/actual-auth-proof-private.json",
+      "sha256": "ad39aa304e1919df20b05d493f4a71b6de14b3f5a6e47282d8fef1dc25e45bfe",
+      "bytes": 1227,
+      "classification": "local-only raw log/proof or preservation receipt; may contain private paths or expired authorization codes; do not publish raw"
+    },
+    {
+      "path": "runs/npm-rc3/owned-process-private.json",
+      "sha256": "797ad2194a5b975e45c5984418021c24bd118e59a4c84179a4be03ef14e053aa",
+      "bytes": 476,
+      "classification": "local-only raw log/proof or preservation receipt; may contain private paths or expired authorization codes; do not publish raw"
+    },
+    {
+      "path": "runs/npm-rc3/host-private.log",
+      "sha256": "cf130baa961e058e0d4d2560d64a3e6e7ad36bc365ec49859fbf200eb7ddf504",
+      "bytes": 267,
+      "classification": "local-only raw log/proof or preservation receipt; may contain private paths or expired authorization codes; do not publish raw"
+    },
+    {
+      "path": "runs/npm-rc3/cleanup.json",
+      "sha256": "399fa71a9ce7fb2e4b2d40a1aa82ac911824b3e3c042725394cff313a4704408",
+      "bytes": 128,
+      "classification": "local-only raw log/proof or preservation receipt; may contain private paths or expired authorization codes; do not publish raw"
+    },
+    {
+      "path": "runs/desktop-old/profile-closure-after-private.json",
+      "sha256": "97e102b26d8bbd284e59bb623da9d73cb50abeff1721fb44ad8d97fc9c5353fb",
+      "bytes": 33646,
+      "classification": "local-only raw log/proof or preservation receipt; may contain private paths or expired authorization codes; do not publish raw"
+    },
+    {
+      "path": "runs/desktop-old/actual-auth-proof-private.json",
+      "sha256": "2eaeff3c56bc4f55975a7e474d04c4ff32c93f018e03650fff4a957c21c2591a",
+      "bytes": 3185,
+      "classification": "local-only raw log/proof or preservation receipt; may contain private paths or expired authorization codes; do not publish raw"
+    },
+    {
+      "path": "runs/desktop-old/owned-process-private.json",
+      "sha256": "d62a0387eb7e687c0dc74f7327c363550f256ab97a6c8ae334cad6c2e3109c15",
+      "bytes": 677,
+      "classification": "local-only raw log/proof or preservation receipt; may contain private paths or expired authorization codes; do not publish raw"
+    },
+    {
+      "path": "runs/desktop-old/profile-closure-after-private.log",
+      "sha256": "eee52470dbf27e42444f546ff3821b54bd4022a44097a8633f15a8523ae0b19b",
+      "bytes": 117,
+      "classification": "local-only raw log/proof or preservation receipt; may contain private paths or expired authorization codes; do not publish raw"
+    },
+    {
+      "path": "runs/desktop-old/host-private.log",
+      "sha256": "46c1ca3f284adb911948d1cc692713a7cd67f4398576a3f35ac7f40ec851e89c",
+      "bytes": 943,
+      "classification": "local-only raw log/proof or preservation receipt; may contain private paths or expired authorization codes; do not publish raw"
+    },
+    {
+      "path": "runs/desktop-old/cleanup.json",
+      "sha256": "28232183e3dafb9e63c6127a949ae875846621865085ed46c7548b39c6a126c7",
+      "bytes": 133,
+      "classification": "local-only raw log/proof or preservation receipt; may contain private paths or expired authorization codes; do not publish raw"
+    },
+    {
+      "path": "runs/desktop-old/desktop-ready-private.json",
+      "sha256": "d7c31516685ad0c47c9d8370b96e88999a9e9a50b79e18dff5f647bf960c96e9",
+      "bytes": 35236,
+      "classification": "local-only raw log/proof or preservation receipt; may contain private paths or expired authorization codes; do not publish raw"
+    },
+    {
+      "path": "runs/npm-rc3-retry/profile-closure-after-private.json",
+      "sha256": "6178a9da5bd901c8a5b2ab8d6940258b4974c0b06610eb699a8981bbb7d9d5bd",
+      "bytes": 36150,
+      "classification": "local-only raw log/proof or preservation receipt; may contain private paths or expired authorization codes; do not publish raw"
+    },
+    {
+      "path": "runs/npm-rc3-retry/actual-auth-proof-private.json",
+      "sha256": "cffd75973487739313be41e90c1484c363193868f2df03901760704fa6a524d7",
+      "bytes": 3168,
+      "classification": "local-only raw log/proof or preservation receipt; may contain private paths or expired authorization codes; do not publish raw"
+    },
+    {
+      "path": "runs/npm-rc3-retry/owned-process-private.json",
+      "sha256": "fb6423458ae6c553f5402029499fabfd266599e09288983b54ce505524b79f5a",
+      "bytes": 494,
+      "classification": "local-only raw log/proof or preservation receipt; may contain private paths or expired authorization codes; do not publish raw"
+    },
+    {
+      "path": "runs/npm-rc3-retry/profile-closure-after-private.log",
+      "sha256": "3b64fb95e5958cb72e87c6ff0cc0f253d0e314889d9d0a23091a37a9378ad7cd",
+      "bytes": 119,
+      "classification": "local-only raw log/proof or preservation receipt; may contain private paths or expired authorization codes; do not publish raw"
+    },
+    {
+      "path": "runs/npm-rc3-retry/host-private.log",
+      "sha256": "3e421164c67de2841c977dfe6b4a882e796d5f48602155ea3f7bf731d3689ce2",
+      "bytes": 267,
+      "classification": "local-only raw log/proof or preservation receipt; may contain private paths or expired authorization codes; do not publish raw"
+    },
+    {
+      "path": "runs/npm-rc3-retry/cleanup.json",
+      "sha256": "a080a1e2008ea10ca9ac5eb1eb6f1aba527735bf883ba46a0ab90c032f0fce06",
+      "bytes": 128,
+      "classification": "local-only raw log/proof or preservation receipt; may contain private paths or expired authorization codes; do not publish raw"
+    }
+  ],
+  "excludedFromThisManifest": "All normal credential stores, copied homes, Host code/dependencies and transient password file; private values are not copied here. The password extraction file was removed.",
+  "retainedOriginalFailure": true
+}

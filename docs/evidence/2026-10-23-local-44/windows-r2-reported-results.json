@@ -1,0 +1,80 @@
+{
+  "evidenceLevel": "user-supplied Windows r2 execution report; attachment read, Windows original files not independently read",
+  "receivedDate": "2026-10-23 Asia/Taipei",
+  "pastedAttachmentSHA256": "88dd93804ab87c7fe923ffee301c8fc905b2e7196f950c7c65930a88420568ec",
+  "commit": "96f8f7656103e8e066a12ea8d9d05d5e7dd96339",
+  "candidateSHA256": "6d95ff7517dbe409875fd398784fe01049ba26d2b97c43fad65c817d3ea18ee9",
+  "kitInventorySHA256": "f340d205a6290c9e9eea9cfaef08561a5a596496bdb75a1e30c43ccd71e0e004",
+  "helperSHA256": "0e3466f3da61bd2cac8f263c03573ad03206dea7cf20ac58d8f94e433b4943a7",
+  "candidateVersion": "0.2.0-rc.2-openbkn.0.2.0-30",
+  "reportedMachine": {
+    "os": "Windows10Pro19045x64",
+    "powershell": "5.1.19041.5848",
+    "node": "24.19.0",
+    "npm": "11.17.0"
+  },
+  "reportedPasses": [
+    "A/B unmodified r2 helper InitializeOnly and normal startup",
+    "same82files actual profile shared Cordis/Schemastery",
+    "A/B single normal successful login/network listing",
+    "A/B normal menu exit, ports free, no EPIPE",
+    "personal110/daily41 file digests unchanged; old runs and other session browser logs preserved"
+  ],
+  "reportedFailure": {
+    "item": "official r2 argv regression",
+    "error": "Native argv element count differs",
+    "reportedCause": "PS5.1 ConvertFrom-Json emits one non-enumerated array pipeline object; @(pipeline) wraps it as one element",
+    "privateDiagnosticCopy": "one-line @((pipeline)) passes both branches, helper unchanged",
+    "officialFrozenVerdict": "fail"
+  },
+  "runnerObservations": {
+    "A": {
+      "cliExitUTC": "07:04:16.67Z",
+      "runnerAndNewChromeAbsentSameSampleUTC": "07:04:17.04Z",
+      "newChromeProcessCount": 13
+    },
+    "B": {
+      "cliExitUTC": "08:04:16.6Z",
+      "runnerAndNewChromeAbsentSameSampleUTC": "08:04:18.86Z",
+      "newChromeProcessCountApprox": 16
+    },
+    "sampleIntervalApproxMs": 370,
+    "observationWindowSeconds": "60-80",
+    "runnerResidueObserved": false,
+    "browserWindowDisappeared": true,
+    "agentKilledBrowserOrJob": false,
+    "causalOrder": "unknown within one sample",
+    "inAnyJobDoesNotIdentifySameJob": true,
+    "jobMembers": "insufficient-evidence",
+    "pidReuseNoiseMarked": true,
+    "defaultChromeAlreadyRunningCondition": "not-tested; prior identification of54508 withdrawn, possibly another automation session",
+    "CDControlsAdded": false,
+    "runnerFixedClaimAllowed": false
+  },
+  "scope": {
+    "fullUIB1Rerun": false,
+    "modelOrSandboxRun": false,
+    "platformCompared": false,
+    "platformUse": "login and list networks only",
+    "platformReplaced": false,
+    "pushed": false,
+    "ciRun": null,
+    "formalAcceptanceEligible": false
+  },
+  "windowsArtifacts": {
+    "reportPath": "C:\\bkn-verify\\021-local30-r2-results-20261023-133254\\RESULTS-redacted.md",
+    "reportSHA256": "4060506dbbc2d766e588cebdefac6d90a6d49241f0f1f67e294cd88a2ad549b4",
+    "manifestSHA256": "d0d079827a44dd05543d9db790d17ebab285e6c75497554bc656310ec3cb5535",
+    "files": 354,
+    "privateFiles": 41,
+    "evidenceRoot": "C:\\bkn-verify\\021-local30-r2-run-20261023-133254\\evidence",
+    "originalArgvFailureSHA256": "c2a38508f8ebd1bd649349ce67e48ee7bc2fd283f54c4d46a464443215861d28",
+    "ps51MinimalReproSHA256": "b6a06654b8e302aeaebf4d3f598a905d781f7b967a142ca50f601de189a3c201",
+    "diagnosticFixDiffSHA256": "eb316d18a8386dad41c2d9fbd13b4ca5587c4485d16feb0e5270bbea2a249306",
+    "diagnosticFixResultSHA256": "519a96ffd4b8a1a32d868f5c93c4f488ea90af0220f7ff1079a07fc76e52b0a8",
+    "ATimelineSummarySHA256": "7e2e3622b6fe79932707df97cb2a373d4c9d81c909eabed8d833e56c36a3012b",
+    "BTimelineSummarySHA256": "b4128d7ff0739fb842d565ab19fc7c2c78312de6a989d8aa3c7b706586db79cd",
+    "AOriginalPrivateTimelineSHA256": "1430cf67598730c665b2cad13728fe24aef4b5af10de24fb272397cde757a14a",
+    "BOriginalPrivateTimelineSHA256": "7720039701ae231dbd650181e415d4270e04e283e773b604d78a3d18966ce3bf"
+  }
+}

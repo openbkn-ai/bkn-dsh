@@ -1,0 +1,35 @@
+{
+  "startedAt": "2026-10-21T22:52:02.358688+00:00",
+  "finishedAt": "2026-10-22T02:52:32.432418+00:00",
+  "elapsedSeconds": 14430.33,
+  "wallElapsedSeconds": 14430.07,
+  "samples": 477,
+  "largestSamplingGapSeconds": 30.803,
+  "maxWallMonotonicDifferenceSeconds": 0.5,
+  "firstNaturalExpiryObservedAt": "2026-10-21T23:49:13.298079+00:00",
+  "credentialChangesDuringHold": 0,
+  "allFourBackendsAndTwoNativeMainProcessesUnchanged": true,
+  "hostIdentities": [
+    {
+      "key": "desktop-old",
+      "pid": 15209,
+      "nativeMainPid": 15163
+    },
+    {
+      "key": "desktop-new",
+      "pid": 15210,
+      "nativeMainPid": 15162
+    },
+    {
+      "key": "npm-old",
+      "pid": 15159,
+      "nativeMainPid": null
+    },
+    {
+      "key": "npm-new",
+      "pid": 15160,
+      "nativeMainPid": null
+    }
+  ],
+  "watcherCalledHostOrRefreshed": false
+}

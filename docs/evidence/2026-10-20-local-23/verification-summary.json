@@ -1,0 +1,33 @@
+{
+  "checked_at": "2026-10-20T04:39:36.153964+00:00",
+  "source_tests": {
+    "0.2.0-rc.2": {
+      "tests": 600,
+      "pass": 599,
+      "fail": 0,
+      "skipped": 1
+    },
+    "0.2.1-rc.2": {
+      "tests": 600,
+      "pass": 599,
+      "fail": 0,
+      "skipped": 1
+    }
+  },
+  "repository_and_evaluator_tests": {
+    "tests": 73,
+    "pass": 73,
+    "fail": 0,
+    "skipped": 0
+  },
+  "sample_tests_passed": 200,
+  "latest_purchase_metadata_contract_tests_passed": 12,
+  "latest_evaluator_tests_passed": 7,
+  "both_typechecks_passed": true,
+  "package_audit_files": 80,
+  "retained_generator_verify_passed": true,
+  "actual_business_interactions_read_back": 18,
+  "static_controlled_live_UI_and_answer_acceptance_are_separate": true,
+  "overall_acceptance": "NOT PASSED; G6 answer failures and unperformed gates remain",
+  "no_new_commit_push_CI_PR_tag_or_publication": true
+}

@@ -1,0 +1,30 @@
+The following is a diff from the previous accessibility tree for Window: "DeepSeek Harness" with ~ and + representing changed and added elements, respectively. Removed elements are summarized by ID range.
+Removed element IDs: 51-54, 56-112
+~				49 container OpenBKN diagnostics
+~					50 container
++						51 text OPENBKN
++						52 heading Diagnostics, Value: 2
++							53 text Diagnostics
++						54 button Close
+~					55 container
++						56 text Report fd7d7c38 · Created 10/22/2026, 1:41:17 PM · Mode Passive collection Host form Desktop Operating system macOS DSH version Not collected (no version information in this report) Plugin (on disk) 0.2.0-rc.2-openbkn.0.2.0-30 Plugin (loaded) Not collected (running version cannot be confirmed)
++						57 text Missing basic information does not imply a failure. Review the checks below. The version on disk does not identify the version currently loaded.
++						58 text ●  Passed bootstrap-entry installation  /  component-loaded
++						59 text entryPresent=true
++						60 text ●  Passed business-entry component  /  component-loaded
++						61 text entryPresent=true
++						62 text ●  Passed diagnostics-entry diagnostics  /  component-loaded
++						63 text schemaVersion=1
++						64 text ●  Passed observed:cli cli  /  cli
++						65 text failureCount=0 lastOutcomeAgoMs=14153 exitCode=0
++						66 text ●  Passed observed:login-state authentication  /  login-state
++						67 text failureCount=0 lastOutcomeAgoMs=14240 loggedIn=true
++						68 text ●  Passed observed:context-loader context-loader  /  context-loader
++						69 text failureCount=0 lastOutcomeAgoMs=14101 toolsPublished=true
++						70 text ●  Passed observed:platform-network-list platform-directory  /  platform-network-list
++						71 text failureCount=0 lastOutcomeAgoMs=14089 networkCount=2
++						72 text ●  Passed observed:platform-network-detail platform-directory  /  platform-network-detail
++						73 text failureCount=0 lastOutcomeAgoMs=25068
++						74 button Export diagnostics report
++						75 button Collect again
+The focused UI element is 75 button Collect again

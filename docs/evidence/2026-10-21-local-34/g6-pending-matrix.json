@@ -1,0 +1,414 @@
+{
+  "checked_at": "2026-10-21T14:11:32.095850+00:00",
+  "contract_passed": false,
+  "historical_only_counts": {
+    "old": {
+      "pass": 9,
+      "fail": 1,
+      "not_run": 1
+    },
+    "new": {
+      "pass": 10,
+      "fail": 0,
+      "not_run": 1
+    }
+  },
+  "new_real_model_runs": 0,
+  "platform_replaced": false,
+  "records": [
+    {
+      "host": "0.2.0-rc.2",
+      "case_id": "orders-count-status",
+      "question": "382-000005 有多少张销售订单？什么状态？",
+      "historical_plugin": "-23",
+      "historical_status": "pass",
+      "historical_origin_round": 31,
+      "current_plugin": "-27",
+      "current_real_model_status": "not-run",
+      "dependency_class": "historical_run_code_sandbox_dependency",
+      "reason": "Historical run_code observed; current CSV export also reads the conversation CSV via managed run_code. Held under unchanged formal0.2.0 security baseline.",
+      "observed_operation_names": [
+        "01a157d1-a0c3-71f8-9a9e-05b14198a9c3",
+        "execute_tool",
+        "get_kn_detail",
+        "get_object_types",
+        "query_object_instance",
+        "run_code",
+        "search_capabilities"
+      ]
+    },
+    {
+      "host": "0.2.0-rc.2",
+      "case_id": "finished-goods-inventory",
+      "question": "382-000005 在各成品仓的可用库存？",
+      "historical_plugin": "-23",
+      "historical_status": "pass",
+      "historical_origin_round": 31,
+      "current_plugin": "-27",
+      "current_real_model_status": "not-run",
+      "dependency_class": "published_python_function_sandbox_dependency",
+      "reason": "Historical execute_tool of published Python Function observed; formal source FunctionExecuteProxy calls SessionPool.ExecuteCode. Absence of run_code does not establish a Sandbox-free path.",
+      "observed_operation_names": [
+        "01a157e4-3246-7cec-a7b6-244e4c773fd2",
+        "execute_tool",
+        "get_kn_detail",
+        "get_object_types",
+        "query_object_instance",
+        "search_capabilities"
+      ]
+    },
+    {
+      "host": "0.2.0-rc.2",
+      "case_id": "standard-lead-time",
+      "question": "382-000005 的标准交期？",
+      "historical_plugin": "-23",
+      "historical_status": "pass",
+      "historical_origin_round": 31,
+      "current_plugin": "-27",
+      "current_real_model_status": "not-run",
+      "dependency_class": "observed_query_only_model_not_rerun",
+      "reason": "Both historical paths used only query/schema reads. No universal Sandbox dependency is asserted. No real-model G6 run on -26 this round.",
+      "observed_operation_names": [
+        "get_kn_detail",
+        "query_object_instance",
+        "search_schema"
+      ]
+    },
+    {
+      "host": "0.2.0-rc.2",
+      "case_id": "bom-structure",
+      "question": "382-000005 的 BOM 构成是什么？",
+      "historical_plugin": "-23",
+      "historical_status": "pass",
+      "historical_origin_round": 31,
+      "current_plugin": "-27",
+      "current_real_model_status": "not-run",
+      "dependency_class": "historical_run_code_sandbox_dependency",
+      "reason": "Historical run_code observed; current CSV export also reads the conversation CSV via managed run_code. Held under unchanged formal0.2.0 security baseline.",
+      "observed_operation_names": [
+        "01a11f4e-fb6a-7d44-8fd4-f1585cb3a016",
+        "execute_tool",
+        "query_object_instance",
+        "run_code",
+        "search_capabilities",
+        "search_schema"
+      ]
+    },
+    {
+      "host": "0.2.0-rc.2",
+      "case_id": "bom-usage-inventory",
+      "question": "查询 382-000005 的 BOM 清单，每个物料的使用量，以及每个物料的库存情况",
+      "historical_plugin": "-23",
+      "historical_status": "pass",
+      "historical_origin_round": 31,
+      "current_plugin": "-27",
+      "current_real_model_status": "not-run",
+      "dependency_class": "historical_run_code_sandbox_dependency",
+      "reason": "Historical run_code observed; current CSV export also reads the conversation CSV via managed run_code. Held under unchanged formal0.2.0 security baseline.",
+      "observed_operation_names": [
+        "01a11f4e-fe5e-795f-a358-5d1d799293c8",
+        "execute_tool",
+        "get_kn_detail",
+        "get_object_types",
+        "query_object_instance",
+        "run_code",
+        "search_capabilities"
+      ]
+    },
+    {
+      "host": "0.2.0-rc.2",
+      "case_id": "purchase-flow",
+      "question": "382-000005 当前有哪些未结的采购申请和采购订单？",
+      "historical_plugin": "-23",
+      "historical_status": "pass",
+      "historical_origin_round": 31,
+      "current_plugin": "-27",
+      "current_real_model_status": "not-run",
+      "dependency_class": "published_python_function_sandbox_dependency",
+      "reason": "Historical execute_tool of published Python Function observed; formal source FunctionExecuteProxy calls SessionPool.ExecuteCode. Absence of run_code does not establish a Sandbox-free path.",
+      "observed_operation_names": [
+        "01a157e4-3246-7cec-a7b6-244e4c773fd2",
+        "execute_tool",
+        "get_kn_detail",
+        "get_object_types",
+        "query_object_instance",
+        "search_capabilities",
+        "search_instance"
+      ]
+    },
+    {
+      "host": "0.2.0-rc.2",
+      "case_id": "sales-order-detail",
+      "question": "列出 382-000005 的销售订单明细。",
+      "historical_plugin": "-23",
+      "historical_status": "fail",
+      "historical_origin_round": 31,
+      "current_plugin": "-27",
+      "current_real_model_status": "not-run",
+      "dependency_class": "historical_failed_query_path_intended_function_requires_sandbox",
+      "reason": "Old sales detail failed before invoking its discovered Function. That unfiltered query is not a valid Sandbox-free delivery. Correct complete-sales Function/CSV needs Sandbox; failure remains.",
+      "observed_operation_names": [
+        "get_kn_detail",
+        "get_object_types",
+        "query_object_instance",
+        "search_capabilities"
+      ]
+    },
+    {
+      "host": "0.2.0-rc.2",
+      "case_id": "missing-object",
+      "question": "物料 999-999999 的库存和订单情况？",
+      "historical_plugin": "-23",
+      "historical_status": "pass",
+      "historical_origin_round": 31,
+      "current_plugin": "-27",
+      "current_real_model_status": "not-run",
+      "dependency_class": "published_python_function_sandbox_dependency",
+      "reason": "Historical execute_tool of published Python Function observed; formal source FunctionExecuteProxy calls SessionPool.ExecuteCode. Absence of run_code does not establish a Sandbox-free path.",
+      "observed_operation_names": [
+        "01a157e4-3246-7cec-a7b6-244e4c773fd2",
+        "execute_tool",
+        "get_kn_detail",
+        "get_object_types",
+        "query_object_instance",
+        "search_capabilities"
+      ]
+    },
+    {
+      "host": "0.2.0-rc.2",
+      "case_id": "invalid-token",
+      "question": "（先使平台 Token 失效，再问 382-000005 的销售订单数量）",
+      "historical_plugin": "-23",
+      "historical_status": "pass",
+      "historical_origin_round": 23,
+      "current_plugin": "-27",
+      "current_real_model_status": "not-run",
+      "dependency_class": "sandbox_not_required_preflight",
+      "reason": "Historical -23 only; auth/connection negative must be revalidated on the changed final candidate. This round UI cancel/timeout is a different boundary.",
+      "observed_operation_names": []
+    },
+    {
+      "host": "0.2.0-rc.2",
+      "case_id": "platform-unreachable",
+      "question": "（先使平台不可达，再问 382-000005 的销售订单数量）",
+      "historical_plugin": "-23",
+      "historical_status": "pass",
+      "historical_origin_round": 23,
+      "current_plugin": "-27",
+      "current_real_model_status": "not-run",
+      "dependency_class": "sandbox_not_required_preflight",
+      "reason": "Historical -23 only; auth/connection negative must be revalidated on the changed final candidate. This round UI cancel/timeout is a different boundary.",
+      "observed_operation_names": []
+    },
+    {
+      "host": "0.2.0-rc.2",
+      "case_id": "unauthorized-network",
+      "question": "（以无 supply_ontology_hand 权限的账号绑定后提问）",
+      "historical_plugin": "-23",
+      "historical_status": "not-run",
+      "historical_origin_round": null,
+      "current_plugin": "-27",
+      "current_real_model_status": "not-run",
+      "dependency_class": "independent_low_privilege_account_missing",
+      "reason": "User answered 暂缺. Administrator, invalid token and unreachable checks are not substitutes.",
+      "observed_operation_names": []
+    },
+    {
+      "host": "0.2.1-rc.2",
+      "case_id": "orders-count-status",
+      "question": "382-000005 有多少张销售订单？什么状态？",
+      "historical_plugin": "-23",
+      "historical_status": "pass",
+      "historical_origin_round": 31,
+      "current_plugin": "-27",
+      "current_real_model_status": "not-run",
+      "dependency_class": "published_python_function_sandbox_dependency",
+      "reason": "Historical execute_tool of published Python Function observed; formal source FunctionExecuteProxy calls SessionPool.ExecuteCode. Absence of run_code does not establish a Sandbox-free path.",
+      "observed_operation_names": [
+        "01a157d1-a0c3-71f8-9a9e-05b14198a9c3",
+        "execute_tool",
+        "query_object_instance",
+        "search_capabilities",
+        "search_schema"
+      ]
+    },
+    {
+      "host": "0.2.1-rc.2",
+      "case_id": "finished-goods-inventory",
+      "question": "382-000005 在各成品仓的可用库存？",
+      "historical_plugin": "-23",
+      "historical_status": "pass",
+      "historical_origin_round": 31,
+      "current_plugin": "-27",
+      "current_real_model_status": "not-run",
+      "dependency_class": "published_python_function_sandbox_dependency",
+      "reason": "Historical execute_tool of published Python Function observed; formal source FunctionExecuteProxy calls SessionPool.ExecuteCode. Absence of run_code does not establish a Sandbox-free path.",
+      "observed_operation_names": [
+        "01a157e4-3246-7cec-a7b6-244e4c773fd2",
+        "execute_tool",
+        "get_kn_detail",
+        "query_object_instance",
+        "search_capabilities"
+      ]
+    },
+    {
+      "host": "0.2.1-rc.2",
+      "case_id": "standard-lead-time",
+      "question": "382-000005 的标准交期？",
+      "historical_plugin": "-23",
+      "historical_status": "pass",
+      "historical_origin_round": 31,
+      "current_plugin": "-27",
+      "current_real_model_status": "not-run",
+      "dependency_class": "observed_query_only_model_not_rerun",
+      "reason": "Both historical paths used only query/schema reads. No universal Sandbox dependency is asserted. No real-model G6 run on -26 this round.",
+      "observed_operation_names": [
+        "query_object_instance",
+        "search_schema"
+      ]
+    },
+    {
+      "host": "0.2.1-rc.2",
+      "case_id": "bom-structure",
+      "question": "382-000005 的 BOM 构成是什么？",
+      "historical_plugin": "-23",
+      "historical_status": "pass",
+      "historical_origin_round": 31,
+      "current_plugin": "-27",
+      "current_real_model_status": "not-run",
+      "dependency_class": "historical_run_code_sandbox_dependency",
+      "reason": "Historical run_code observed; current CSV export also reads the conversation CSV via managed run_code. Held under unchanged formal0.2.0 security baseline.",
+      "observed_operation_names": [
+        "01a11f4e-fb6a-7d44-8fd4-f1585cb3a016",
+        "execute_tool",
+        "get_kn_detail",
+        "get_object_types",
+        "query_object_instance",
+        "run_code",
+        "search_capabilities"
+      ]
+    },
+    {
+      "host": "0.2.1-rc.2",
+      "case_id": "bom-usage-inventory",
+      "question": "查询 382-000005 的 BOM 清单，每个物料的使用量，以及每个物料的库存情况",
+      "historical_plugin": "-23",
+      "historical_status": "pass",
+      "historical_origin_round": 31,
+      "current_plugin": "-27",
+      "current_real_model_status": "not-run",
+      "dependency_class": "historical_run_code_sandbox_dependency",
+      "reason": "Historical run_code observed; current CSV export also reads the conversation CSV via managed run_code. Held under unchanged formal0.2.0 security baseline.",
+      "observed_operation_names": [
+        "01a11f4e-fe5e-795f-a358-5d1d799293c8",
+        "execute_tool",
+        "get_kn_detail",
+        "get_object_types",
+        "get_relation_types",
+        "query_object_instance",
+        "run_code",
+        "search_capabilities"
+      ]
+    },
+    {
+      "host": "0.2.1-rc.2",
+      "case_id": "purchase-flow",
+      "question": "382-000005 当前有哪些未结的采购申请和采购订单？",
+      "historical_plugin": "-23",
+      "historical_status": "pass",
+      "historical_origin_round": 31,
+      "current_plugin": "-27",
+      "current_real_model_status": "not-run",
+      "dependency_class": "published_python_function_sandbox_dependency",
+      "reason": "Historical execute_tool of published Python Function observed; formal source FunctionExecuteProxy calls SessionPool.ExecuteCode. Absence of run_code does not establish a Sandbox-free path.",
+      "observed_operation_names": [
+        "01a157e4-3246-7cec-a7b6-244e4c773fd2",
+        "execute_tool",
+        "get_kn_detail",
+        "get_object_types",
+        "query_object_instance",
+        "search_capabilities"
+      ]
+    },
+    {
+      "host": "0.2.1-rc.2",
+      "case_id": "sales-order-detail",
+      "question": "列出 382-000005 的销售订单明细。",
+      "historical_plugin": "-23",
+      "historical_status": "pass",
+      "historical_origin_round": 31,
+      "current_plugin": "-27",
+      "current_real_model_status": "not-run",
+      "dependency_class": "historical_run_code_sandbox_dependency",
+      "reason": "Historical run_code observed; current CSV export also reads the conversation CSV via managed run_code. Held under unchanged formal0.2.0 security baseline.",
+      "observed_operation_names": [
+        "01a157d1-a0c3-71f8-9a9e-05b14198a9c3",
+        "execute_tool",
+        "get_kn_detail",
+        "get_object_types",
+        "query_object_instance",
+        "run_code",
+        "search_capabilities"
+      ]
+    },
+    {
+      "host": "0.2.1-rc.2",
+      "case_id": "missing-object",
+      "question": "物料 999-999999 的库存和订单情况？",
+      "historical_plugin": "-23",
+      "historical_status": "pass",
+      "historical_origin_round": 31,
+      "current_plugin": "-27",
+      "current_real_model_status": "not-run",
+      "dependency_class": "published_python_function_sandbox_dependency",
+      "reason": "Historical execute_tool of published Python Function observed; formal source FunctionExecuteProxy calls SessionPool.ExecuteCode. Absence of run_code does not establish a Sandbox-free path.",
+      "observed_operation_names": [
+        "01a157e4-3246-7cec-a7b6-244e4c773fd2",
+        "execute_tool",
+        "get_kn_detail",
+        "get_object_types",
+        "query_object_instance",
+        "search_capabilities"
+      ]
+    },
+    {
+      "host": "0.2.1-rc.2",
+      "case_id": "invalid-token",
+      "question": "（先使平台 Token 失效，再问 382-000005 的销售订单数量）",
+      "historical_plugin": "-23",
+      "historical_status": "pass",
+      "historical_origin_round": 23,
+      "current_plugin": "-27",
+      "current_real_model_status": "not-run",
+      "dependency_class": "sandbox_not_required_preflight",
+      "reason": "Historical -23 only; auth/connection negative must be revalidated on the changed final candidate. This round UI cancel/timeout is a different boundary.",
+      "observed_operation_names": []
+    },
+    {
+      "host": "0.2.1-rc.2",
+      "case_id": "platform-unreachable",
+      "question": "（先使平台不可达，再问 382-000005 的销售订单数量）",
+      "historical_plugin": "-23",
+      "historical_status": "pass",
+      "historical_origin_round": 23,
+      "current_plugin": "-27",
+      "current_real_model_status": "not-run",
+      "dependency_class": "sandbox_not_required_preflight",
+      "reason": "Historical -23 only; auth/connection negative must be revalidated on the changed final candidate. This round UI cancel/timeout is a different boundary.",
+      "observed_operation_names": []
+    },
+    {
+      "host": "0.2.1-rc.2",
+      "case_id": "unauthorized-network",
+      "question": "（以无 supply_ontology_hand 权限的账号绑定后提问）",
+      "historical_plugin": "-23",
+      "historical_status": "not-run",
+      "historical_origin_round": null,
+      "current_plugin": "-27",
+      "current_real_model_status": "not-run",
+      "dependency_class": "independent_low_privilege_account_missing",
+      "reason": "User answered 暂缺. Administrator, invalid token and unreachable checks are not substitutes.",
+      "observed_operation_names": []
+    }
+  ]
+}

@@ -1,0 +1,21 @@
+{
+  "npm": {
+    "old": {
+      "inDialog": true,
+      "tag": "BUTTON",
+      "text": "Collect again"
+    },
+    "new": {
+      "inDialog": true,
+      "tag": "BUTTON",
+      "text": "Collect again"
+    }
+  },
+  "nativeOldAxFocused": [
+    "The focused UI element is 161 button 重新采集"
+  ],
+  "version": "-29",
+  "nativeNewAxFocused": [
+    "The focused UI element is 189 button Collect again"
+  ]
+}

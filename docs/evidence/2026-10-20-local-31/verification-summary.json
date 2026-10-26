@@ -1,0 +1,47 @@
+{
+  "checked_at": "2026-10-20T06:49:49.319297+00:00",
+  "local_business_round": 31,
+  "plugin_artifact_round": 23,
+  "plugin_version": "0.2.0-rc.2-openbkn.0.2.0-23",
+  "plugin_changed_since_round23": false,
+  "sample_tests": {
+    "passed": 225,
+    "failed": 0,
+    "source_round": 30,
+    "business_code_identical_in_round31": true
+  },
+  "evaluation_runner_tests": {
+    "passed": 7,
+    "failed": 0,
+    "fresh_in_round31": true
+  },
+  "unchanged_plugin_baselines": {
+    "per_host_total": 600,
+    "passed": 599,
+    "windows_only_skip": 1,
+    "types_passed": true,
+    "repository_and_evaluator_tests": 73,
+    "controlled_groups_per_host": 6,
+    "source_round": 23,
+    "rerun_this_round": false
+  },
+  "artifact_files_per_host": 80,
+  "source_rows_preserved": 78635,
+  "raw_tables_preserved": 12,
+  "fresh_original_business_questions_per_host": 8,
+  "carried_same_artifact_auth_connection_negative_cases_per_host": 2,
+  "g6": {
+    "old": {
+      "pass": 9,
+      "fail": 1,
+      "not_run": 1
+    },
+    "new": {
+      "pass": 10,
+      "fail": 0,
+      "not_run": 1
+    }
+  },
+  "overall_contract_passed": false,
+  "commit_push_ci_performed": false
+}

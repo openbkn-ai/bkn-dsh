@@ -1,0 +1,5 @@
+$ pnpm --filter @openbkn/dsh-business-context run typecheck
+
+> @openbkn/dsh-business-context@0.2.0-rc.2-openbkn.0.2.0-11 typecheck /Users/dominiczhang/Documents/project/app/openBKN/bkn-dsh/packages/openbkn-business-context
+> tsc -b ../..
+

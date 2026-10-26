@@ -1,0 +1,52 @@
+{
+  "checkedAt": "2026-10-25T02:45:03.700313+00:00",
+  "data": {
+    "dsh": {
+      "defaultBranchRef": {
+        "name": "master",
+        "target": {
+          "oid": "22ddee3792402c3e70ec5f86a63c3e3e895a2f60"
+        }
+      },
+      "releases": {
+        "nodes": [
+          {
+            "tagName": "dsh-v0.2.1-rc.3",
+            "publishedAt": "2026-10-23T15:26:39Z"
+          }
+        ]
+      }
+    },
+    "foundry": {
+      "defaultBranchRef": {
+        "name": "main",
+        "target": {
+          "oid": "743becf2325a9e65a749f91be31aea2888885d38"
+        }
+      },
+      "releases": {
+        "nodes": [
+          {
+            "tagName": "v0.2.0",
+            "publishedAt": "2026-10-16T07:21:25Z"
+          }
+        ]
+      }
+    }
+  },
+  "unchangedSince53": false,
+  "supportedTargetsUnchanged": true,
+  "deployed": false,
+  "reviewedDelta": {
+    "foundryFrom": "a4ed5f9c (round53 recorded baseline)",
+    "foundryTo": "743becf2325a9e65a749f91be31aea2888885d38",
+    "commits": 1,
+    "files": 29,
+    "subject": "fix(bkn-trace): distinguish audit publisher health from query availability (#2480)",
+    "scope": "Targeted audit publisher health and cached collection status; internal ClusterIP trust boundary like /metrics, no claim of authentication; aggregate publisher health is not proof of complete delivery; historical gaps retained after recovery.",
+    "applied": false
+  },
+  "dshChangesSince53": false,
+  "supportedPinsChangedThisRound": false,
+  "platformReplaced": false
+}

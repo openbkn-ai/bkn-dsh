@@ -1,0 +1,63 @@
+{
+  "checkedAt": "2026-10-26T01:31:29.128Z",
+  "dsh": {
+    "defaultCommit": "22ddee3792402c3e70ec5f86a63c3e3e895a2f60",
+    "latestTag": "dsh-v0.2.1-rc.3",
+    "latestTagUrl": "https://github.com/deepseek-ai/deepseek-harness/releases/tag/dsh-v0.2.1-rc.3",
+    "changedSinceRound60": false,
+    "supportedAndExecuted": [
+      "0.2.0-rc.2",
+      "0.2.1-rc.3"
+    ]
+  },
+  "foundry": {
+    "defaultCommit": "081f7fd5591edc990215bf3aea8ef9c1fe393d24",
+    "latestTag": "v0.2.0",
+    "latestTagUrl": "https://github.com/openbkn-ai/bkn-foundry/releases/tag/v0.2.0",
+    "comparedFrom": "83ddfcf01eb2e73ee5ac09025ffd42ed1c093620",
+    "commits": [
+      {
+        "sha": "be240727d62aa1765ca369213b969c91182b75e4",
+        "subject": "chore(bkn): retire ontology-manager route aliases (#2498)"
+      },
+      {
+        "sha": "5c8b8ee199daa3f4c6c8c389f4cdf5121d5dacd9",
+        "subject": "fix(context-loader): distinguish artifact outages and stop invalid auth retries (#2497)"
+      },
+      {
+        "sha": "101d182db27f324468d9db11ea13068c54ce3bb3",
+        "subject": "feat(bkn-backend): carry value types and aliases through BKN upload and JSON import/export (#2478)"
+      },
+      {
+        "sha": "c46c7e7627118fa3427a13382a770111b9d6179f",
+        "subject": "feat(bkn-agent): draw a value end of a derived edge as a value node (#2500)"
+      },
+      {
+        "sha": "6c1c20296f08d234decad09cfbc78d4056febbe3",
+        "subject": "fix(bkn-agent): skip value nodes when expanding neighbours (#2502)"
+      },
+      {
+        "sha": "e3586be00dcae95b04739bedaa8a4154256951a4",
+        "subject": "chore(ci): stop rebuilding sandbox images on MCP behavior changes (#2504)"
+      },
+      {
+        "sha": "78a53f93fee80833a0b65a2cd8bf426016c91551",
+        "subject": "fix(bkn-trace): restore MCP business links and recover transient finalization (#2426)"
+      },
+      {
+        "sha": "081f7fd5591edc990215bf3aea8ef9c1fe393d24",
+        "subject": "fix(context-loader): require confirmed interaction finish (#2505)"
+      }
+    ],
+    "changedFileCount": 80,
+    "reviewedContracts": [
+      "canonical /api/bkn-backend/v1 routes retained; ontology-manager aliases retired in unreleased main",
+      "finish requires matching Core terminal acknowledgement, bounded replay, unconfirmed isError and retry_same_finish",
+      "artifact outage versus lifecycle Core outage classification",
+      "run_cypher description and generated Sandbox toolkit graph value-node presentation"
+    ],
+    "impact": "Unreleased main not deployed to retained formal v0.2.0. This loopback-only MCP loading proof does not call or claim compatibility with main. No pins, managed allowlist, tools/list fixtures, platform services, or source tests changed. Reassess finish/receipt handling if a future platform baseline is adopted."
+  },
+  "platformContactedOrDeployed": false,
+  "toolCatalogueOrRealModelRun": false
+}

@@ -1,0 +1,193 @@
+{
+  "records": [
+    {
+      "host": "0.2.0-rc.2",
+      "form": "desktop",
+      "artifact": "-28",
+      "cli": {
+        "delayedStatusStart": "2026-10-21T17:26:26.034404+00:00",
+        "uiCancel": {
+          "at": "2026-10-21T17:26:35.833Z",
+          "action": "Clicked provenance Close during delayed CLI status",
+          "host": "0.2.0-rc.2"
+        },
+        "signalReceivedAt": "2026-10-21T17:26:35.835035+00:00",
+        "signal": 15,
+        "pidExited": true,
+        "releasedAfterDelay": false
+      },
+      "http": {
+        "uiCancel": {
+          "at": "2026-10-21T17:26:57.425Z",
+          "action": "Clicked provenance Close during four delayed verified HTTP reads",
+          "host": "0.2.0-rc.2"
+        },
+        "events": {
+          "forwarded": 4,
+          "upstream_headers": 4,
+          "response_delayed": 4,
+          "client_connection_closed": 4,
+          "response_completed": 0,
+          "response_released": 0
+        },
+        "connectionClosedAt": [
+          "2026-10-21T17:26:57.428Z",
+          "2026-10-21T17:26:57.429Z",
+          "2026-10-21T17:26:57.429Z",
+          "2026-10-21T17:26:57.430Z"
+        ],
+        "tlsVerifiedBothHops": true,
+        "onlyOriginalResponsesForwarded": true,
+        "statuses": [
+          200,
+          404
+        ]
+      },
+      "reopen": "actual UI original 404 plus independently readable standard records",
+      "result": "pass"
+    },
+    {
+      "host": "0.2.1-rc.2",
+      "form": "desktop",
+      "artifact": "-28",
+      "cli": {
+        "delayedStatusStart": "2026-10-21T17:28:11.341097+00:00",
+        "uiCancel": {
+          "startedAt": "2026-10-21T17:28:21.851Z",
+          "at": "2026-10-21T17:28:21.863Z",
+          "action": "Escape during delayed CLI status",
+          "host": "0.2.1-rc.2"
+        },
+        "signalReceivedAt": "2026-10-21T17:28:21.886388+00:00",
+        "signal": 15,
+        "pidExited": true,
+        "releasedAfterDelay": false
+      },
+      "http": {
+        "uiCancel": {
+          "startedAt": "2026-10-21T17:28:52.876Z",
+          "at": "2026-10-21T17:28:52.979Z",
+          "action": "Clicked Close during four delayed HTTP reads",
+          "host": "0.2.1-rc.2"
+        },
+        "events": {
+          "forwarded": 4,
+          "upstream_headers": 4,
+          "response_delayed": 4,
+          "client_connection_closed": 4,
+          "response_completed": 0,
+          "response_released": 0
+        },
+        "connectionClosedAt": [
+          "2026-10-21T17:28:52.981Z",
+          "2026-10-21T17:28:52.982Z",
+          "2026-10-21T17:28:52.982Z",
+          "2026-10-21T17:28:52.982Z"
+        ],
+        "tlsVerifiedBothHops": true,
+        "onlyOriginalResponsesForwarded": true,
+        "statuses": [
+          200,
+          404
+        ]
+      },
+      "reopen": "actual UI original 404 plus independently readable standard records",
+      "result": "pass"
+    },
+    {
+      "host": "0.2.0-rc.2",
+      "form": "npm",
+      "artifact": "-28",
+      "cli": {
+        "delayedStatusStart": "2026-10-21T17:30:33.647113+00:00",
+        "uiCancel": {
+          "startedAt": "2026-10-21T17:30:44.445Z",
+          "at": "2026-10-21T17:30:44.478Z",
+          "action": "Click Close during delayed CLI status"
+        },
+        "signalReceivedAt": "2026-10-21T17:30:44.478382+00:00",
+        "signal": 15,
+        "pidExited": true,
+        "releasedAfterDelay": false
+      },
+      "http": {
+        "uiCancel": {
+          "startedAt": "2026-10-21T17:31:14.420Z",
+          "at": "2026-10-21T17:31:14.457Z",
+          "action": "Escape during four delayed HTTP reads"
+        },
+        "events": {
+          "forwarded": 4,
+          "upstream_headers": 4,
+          "response_delayed": 4,
+          "client_connection_closed": 4,
+          "response_completed": 0,
+          "response_released": 0
+        },
+        "connectionClosedAt": [
+          "2026-10-21T17:31:14.454Z",
+          "2026-10-21T17:31:14.455Z",
+          "2026-10-21T17:31:14.456Z",
+          "2026-10-21T17:31:14.456Z"
+        ],
+        "tlsVerifiedBothHops": true,
+        "onlyOriginalResponsesForwarded": true,
+        "statuses": [
+          200,
+          404
+        ]
+      },
+      "reopen": "actual UI original 404 plus independently readable standard records",
+      "result": "pass"
+    },
+    {
+      "host": "0.2.1-rc.2",
+      "form": "npm",
+      "artifact": "-28",
+      "cli": {
+        "delayedStatusStart": "2026-10-21T17:30:33.900737+00:00",
+        "uiCancel": {
+          "startedAt": "2026-10-21T17:30:44.703Z",
+          "at": "2026-10-21T17:30:44.717Z",
+          "action": "Escape during delayed CLI status"
+        },
+        "signalReceivedAt": "2026-10-21T17:30:44.716091+00:00",
+        "signal": 15,
+        "pidExited": true,
+        "releasedAfterDelay": false
+      },
+      "http": {
+        "uiCancel": {
+          "startedAt": "2026-10-21T17:31:14.682Z",
+          "at": "2026-10-21T17:31:14.696Z",
+          "action": "Click Close during four delayed HTTP reads"
+        },
+        "events": {
+          "forwarded": 4,
+          "upstream_headers": 4,
+          "response_delayed": 4,
+          "client_connection_closed": 4,
+          "response_completed": 0,
+          "response_released": 0
+        },
+        "connectionClosedAt": [
+          "2026-10-21T17:31:14.697Z",
+          "2026-10-21T17:31:14.698Z",
+          "2026-10-21T17:31:14.698Z",
+          "2026-10-21T17:31:14.698Z"
+        ],
+        "tlsVerifiedBothHops": true,
+        "onlyOriginalResponsesForwarded": true,
+        "statuses": [
+          200,
+          404
+        ]
+      },
+      "reopen": "actual UI original 404 plus independently readable standard records",
+      "result": "pass"
+    }
+  ],
+  "controlledDelayMs": 60000,
+  "fixtures": "TLS verified read-only forwarding of real platform responses; normal CLI with an owned delay; no business tool dispatch",
+  "switchWithoutClosing": "controlled component coverage only; no real nonempty selection claimed"
+}

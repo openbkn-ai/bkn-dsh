@@ -1,0 +1,263 @@
+[
+  {
+    "base": "old",
+    "path": "apps/desktop/scripts/package-target.ts",
+    "sha256": "5f0ba5cb9dec904097cb3c279b3b34cf8dc1a0de818285cccfaffe01391fefae",
+    "sourceAnchors": [
+      {
+        "line": 237,
+        "classification": "old Mac unsigned rejected"
+      },
+      {
+        "line": 450,
+        "classification": "full GUI pipeline rebuilds source"
+      },
+      {
+        "line": 473,
+        "classification": "prepared runtime may be replaced"
+      }
+    ]
+  },
+  {
+    "base": "old",
+    "path": "apps/desktop/scripts/electron-builder-config.mjs",
+    "sha256": "1402156a2760de1ae1b79727344807ae7be002c62be6dd49ac202efb3c03fd8d",
+    "sourceAnchors": []
+  },
+  {
+    "base": "old",
+    "path": "apps/desktop/scripts/desktop-package-environment.mjs",
+    "sha256": "8d7acbba7e63f0c71b713e259f0c9d0852b336e7b907cd10cbad03b33e836711",
+    "sourceAnchors": []
+  },
+  {
+    "base": "old",
+    "path": "apps/desktop/scripts/development-app.ts",
+    "sha256": "9c2c8fad9979baf099d14d2fa43476f0845ad8202c7fbbdffc50eecf0403b1ef",
+    "sourceAnchors": [
+      {
+        "line": 39,
+        "classification": "official local appId default"
+      },
+      {
+        "line": 43,
+        "classification": "OS scheme association"
+      },
+      {
+        "line": 52,
+        "classification": "global Launch Services mutation"
+      },
+      {
+        "line": 73,
+        "classification": "debug listener"
+      }
+    ]
+  },
+  {
+    "base": "old",
+    "path": "apps/desktop/scripts/desktop-release-environment.mjs",
+    "sha256": "477af1758005c74beabf201b3ca18eaf08945083b4b7fd565cbc170217c613e2",
+    "sourceAnchors": []
+  },
+  {
+    "base": "old",
+    "path": "apps/desktop/scripts/desktop-policy-environment.mjs",
+    "sha256": "720b9c72557779e4c23363068bc984868cc88d00ed98db23b6281cd2602d8105",
+    "sourceAnchors": []
+  },
+  {
+    "base": "old",
+    "path": "apps/desktop/scripts/verify-macos-signature.mjs",
+    "sha256": "32162091de8ed8bbe418ae8aa6101bc7b46c80e55d163568f0231ee5356226de",
+    "sourceAnchors": []
+  },
+  {
+    "base": "old",
+    "path": "apps/desktop/scripts/windows-sign.mjs",
+    "sha256": "3ff56d9a661443021b4d167249e1579a901f8f9b2880293a75da7a24cfc44173",
+    "sourceAnchors": []
+  },
+  {
+    "base": "old",
+    "path": "apps/desktop/scripts/windows-signing-preflight.ts",
+    "sha256": "b98d9e1f18d0e16e09f8889e5d5ecdd4a6ac2785039cad35459f4575305a9803",
+    "sourceAnchors": []
+  },
+  {
+    "base": "old",
+    "path": "apps/desktop/src/main.ts",
+    "sha256": "1fd424f16514d82d79665e0e8a1e2448dd8636126d3a37be7fa888d883b6ea3a",
+    "sourceAnchors": [
+      {
+        "line": 83,
+        "classification": "default logs outside selected userData"
+      },
+      {
+        "line": 166,
+        "classification": "cold-start runtime dependency"
+      },
+      {
+        "line": 389,
+        "classification": "global command integration"
+      },
+      {
+        "line": 1228,
+        "classification": "global protocol registration"
+      }
+    ]
+  },
+  {
+    "base": "old",
+    "path": "apps/desktop/src/paths.ts",
+    "sha256": "2d77c11510fbc539de0f43510d0a772711ac1be461598625d2768080168be639",
+    "sourceAnchors": []
+  },
+  {
+    "base": "old",
+    "path": "apps/desktop/src/release.ts",
+    "sha256": "ab4c40200893effa8e3ea0840c43630ba10403242f90ecccba49ae9a11c82140",
+    "sourceAnchors": []
+  },
+  {
+    "base": "old",
+    "path": "apps/desktop/src/update-coordinator.ts",
+    "sha256": "25af5dccba70f312fa2154fb9a006c9d4820a1e8f5b844b7723a2cfbd74007fe",
+    "sourceAnchors": [
+      {
+        "line": 54,
+        "classification": "OTA enabled from resource file"
+      }
+    ]
+  },
+  {
+    "base": "rc3",
+    "path": "apps/desktop/scripts/package-target.ts",
+    "sha256": "02e00e96e342b376e05e15bcc56030ff7b7f2dd18fdf2ab556a61393ca7ea63e",
+    "sourceAnchors": [
+      {
+        "line": 476,
+        "classification": "full GUI pipeline rebuilds source"
+      },
+      {
+        "line": 499,
+        "classification": "prepared runtime may be replaced"
+      }
+    ]
+  },
+  {
+    "base": "rc3",
+    "path": "apps/desktop/scripts/electron-builder-config.mjs",
+    "sha256": "5f5fe52e0c5d275eac1344eef55ef16448edb4cea74ddd44f421fda9463d6dd0",
+    "sourceAnchors": []
+  },
+  {
+    "base": "rc3",
+    "path": "apps/desktop/scripts/desktop-package-environment.mjs",
+    "sha256": "6b3e4f5fa97a70161c4ea038ef66f66218dd3961fcc348384cbcbb0f470667dd",
+    "sourceAnchors": [
+      {
+        "line": 31,
+        "classification": "official local appId default"
+      }
+    ]
+  },
+  {
+    "base": "rc3",
+    "path": "apps/desktop/scripts/development-app.ts",
+    "sha256": "9c2c8fad9979baf099d14d2fa43476f0845ad8202c7fbbdffc50eecf0403b1ef",
+    "sourceAnchors": [
+      {
+        "line": 39,
+        "classification": "official local appId default"
+      },
+      {
+        "line": 43,
+        "classification": "OS scheme association"
+      },
+      {
+        "line": 52,
+        "classification": "global Launch Services mutation"
+      },
+      {
+        "line": 73,
+        "classification": "debug listener"
+      }
+    ]
+  },
+  {
+    "base": "rc3",
+    "path": "apps/desktop/scripts/desktop-release-environment.mjs",
+    "sha256": "477af1758005c74beabf201b3ca18eaf08945083b4b7fd565cbc170217c613e2",
+    "sourceAnchors": []
+  },
+  {
+    "base": "rc3",
+    "path": "apps/desktop/scripts/desktop-policy-environment.mjs",
+    "sha256": "720b9c72557779e4c23363068bc984868cc88d00ed98db23b6281cd2602d8105",
+    "sourceAnchors": []
+  },
+  {
+    "base": "rc3",
+    "path": "apps/desktop/scripts/verify-macos-signature.mjs",
+    "sha256": "b39245a6d5a53125897e77ca1c7747aa00d0a6fc54d2a794ab99d33b8d895258",
+    "sourceAnchors": []
+  },
+  {
+    "base": "rc3",
+    "path": "apps/desktop/scripts/windows-sign.mjs",
+    "sha256": "3ff56d9a661443021b4d167249e1579a901f8f9b2880293a75da7a24cfc44173",
+    "sourceAnchors": []
+  },
+  {
+    "base": "rc3",
+    "path": "apps/desktop/scripts/windows-signing-preflight.ts",
+    "sha256": "b98d9e1f18d0e16e09f8889e5d5ecdd4a6ac2785039cad35459f4575305a9803",
+    "sourceAnchors": []
+  },
+  {
+    "base": "rc3",
+    "path": "apps/desktop/src/main.ts",
+    "sha256": "e345eda0425f2df795d20413bb87bb9a3ddc46e71ceb1cec0755ad1cca3fb847",
+    "sourceAnchors": [
+      {
+        "line": 85,
+        "classification": "default logs outside selected userData"
+      },
+      {
+        "line": 168,
+        "classification": "cold-start runtime dependency"
+      },
+      {
+        "line": 392,
+        "classification": "global command integration"
+      },
+      {
+        "line": 1235,
+        "classification": "global protocol registration"
+      }
+    ]
+  },
+  {
+    "base": "rc3",
+    "path": "apps/desktop/src/paths.ts",
+    "sha256": "2d77c11510fbc539de0f43510d0a772711ac1be461598625d2768080168be639",
+    "sourceAnchors": []
+  },
+  {
+    "base": "rc3",
+    "path": "apps/desktop/src/release.ts",
+    "sha256": "ab4c40200893effa8e3ea0840c43630ba10403242f90ecccba49ae9a11c82140",
+    "sourceAnchors": []
+  },
+  {
+    "base": "rc3",
+    "path": "apps/desktop/src/update-coordinator.ts",
+    "sha256": "5cf1f239f82b8695afa607f36176cb95792d2b61be12aa3e28f0ee5341a95aa7",
+    "sourceAnchors": [
+      {
+        "line": 55,
+        "classification": "OTA enabled from resource file"
+      }
+    ]
+  }
+]

@@ -1,0 +1,29 @@
+{
+  "method": "WCAG relative luminance of observed web computed CSS colors against white. Native screenshots inspected visually; screenshot pixels are not assumed to equal CSS RGB.",
+  "checks": [
+    {
+      "element": "business caption / primary button colors",
+      "rgb": [
+        8,
+        125,
+        114
+      ],
+      "whiteContrast": 5.0158,
+      "source": "actual npm/web computed color plus unchanged packed style for primary button"
+    },
+    {
+      "element": "diagnostics caption",
+      "rgb": [
+        14,
+        116,
+        144
+      ],
+      "whiteContrast": 5.3578,
+      "source": "actual npm/web computed color"
+    }
+  ],
+  "oldDesktopNarrowScreenshotSize": [
+    800,
+    600
+  ]
+}

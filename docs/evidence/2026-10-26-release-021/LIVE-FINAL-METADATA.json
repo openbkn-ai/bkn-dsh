@@ -1,0 +1,46 @@
+{
+  "ciRun": 40361613728,
+  "candidateSha256": "27ccf15c46e4f71ef850ee481e22556b70f4d4795e89d7d587a2e3210fc6b3e3",
+  "host": "official0.2.1-rc.3 npm/web; new isolated home",
+  "platform": "formal OpenBKN0.2.0",
+  "CLI": "official0.2.0",
+  "account": "isolated restricted test identity",
+  "result": "PASS",
+  "realManagedMetadataRead": true,
+  "platformReadback": [
+    {
+      "kind": "interaction",
+      "httpStatus": 200,
+      "executionStatus": "completed",
+      "entryCount": 0,
+      "toolNames": [],
+      "errorCode": null
+    },
+    {
+      "kind": "operations",
+      "httpStatus": 200,
+      "executionStatus": null,
+      "entryCount": 1,
+      "toolNames": [
+        "search_schema"
+      ],
+      "errorCode": null
+    }
+  ],
+  "hostExit": {
+    "code": 0,
+    "signal": null
+  },
+  "ownedPidSurvives": false,
+  "listenersRemain": false,
+  "sourceHostUnchanged": true,
+  "modelCalls": 0,
+  "sandboxCalls": 0,
+  "priorAttempt": "authentication-required before dispatch; retained; same authorized account renewed only in private task config",
+  "notClaimed": [
+    "full G6",
+    "model answer truth",
+    "nonempty native provenance",
+    "all supported forms or Windows candidate acceptance"
+  ]
+}

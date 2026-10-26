@@ -1,0 +1,94 @@
+{
+  "real_native_desktop": true,
+  "protocol_driver": true,
+  "real_model": false,
+  "sandbox_used": false,
+  "root_cause": "A native Cordis service view rebinds this.ctx to its caller; lazily mounting MCP under that context let the child outlive the business configuration. Constructor owner context now owns the MCP child.",
+  "before_fix_regression_failed": true,
+  "after_fix_regression_passed": true,
+  "hosts": [
+    {
+      "host": "0.2.0-rc.2",
+      "plugin": "-26",
+      "same_host_pid_before_after": 56680,
+      "reloaded_business_configuration_twice": true,
+      "browser_reauthentication_real": true,
+      "ui_configuration_save_and_login": true,
+      "public_native_configuration_and_login_service": false,
+      "checks": [
+        {
+          "phase": "R34_B1:0.2.0-rc.2:fixed-before",
+          "interaction_id": "int_f4ce1d8028464bcd4c4edc0a0c04e2f7",
+          "platform_operations": [
+            {
+              "tool_name": "query_object_instance",
+              "status": "completed"
+            }
+          ],
+          "observed_total_counts": [
+            40
+          ],
+          "sandbox_used": false
+        },
+        {
+          "phase": "R34_B1:0.2.0-rc.2:fixed-after",
+          "interaction_id": "int_7cbad7ef18a422f1546f231fb7e604a5",
+          "platform_operations": [
+            {
+              "tool_name": "query_object_instance",
+              "status": "completed"
+            }
+          ],
+          "observed_total_counts": [
+            40
+          ],
+          "sandbox_used": false
+        }
+      ]
+    },
+    {
+      "host": "0.2.1-rc.2",
+      "plugin": "-26",
+      "same_host_pid_before_after": 56681,
+      "reloaded_business_configuration_twice": true,
+      "browser_reauthentication_real": true,
+      "ui_configuration_save_and_login": false,
+      "public_native_configuration_and_login_service": true,
+      "checks": [
+        {
+          "phase": "R34_B1:0.2.1-rc.2:fixed-before",
+          "interaction_id": "int_9b1cc33087e885d4aa113a550933b466",
+          "platform_operations": [
+            {
+              "tool_name": "query_object_instance",
+              "status": "completed"
+            }
+          ],
+          "observed_total_counts": [
+            40
+          ],
+          "sandbox_used": false
+        },
+        {
+          "phase": "R34_B1:0.2.1-rc.2:fixed-after",
+          "interaction_id": "int_fff4821e76c1bf4c1264aa991eb50f3b",
+          "platform_operations": [
+            {
+              "tool_name": "query_object_instance",
+              "status": "completed"
+            }
+          ],
+          "observed_total_counts": [
+            40
+          ],
+          "sandbox_used": false
+        }
+      ]
+    }
+  ],
+  "limits": [
+    "Does not prove every historical long-running condition has been eliminated.",
+    "New Desktop API/editor calls do not substitute for new Desktop button/keyboard UI acceptance.",
+    "No real-model G6 or business-answer acceptance claimed."
+  ]
+}

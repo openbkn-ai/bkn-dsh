@@ -1,0 +1,24 @@
+{
+  "sample_tests": {
+    "passed": 189,
+    "failed": 0,
+    "log_sha256": "f57389e640031064f2805f5bb78bb52cdc5fdf3fe7422e74a2adb025d675b9b4"
+  },
+  "evaluation_runner_tests": {
+    "passed": 7,
+    "failed": 0,
+    "log_sha256": "fb15e065ea97ec0465aaedab43e663a87fc91ef0479d69253c157ceb91cf7a34"
+  },
+  "plugin_audit": {
+    "version": "0.2.0-rc.2-openbkn.0.2.0-14",
+    "files": 79,
+    "passed": true
+  },
+  "failing_regression_before_fix": {
+    "failed": 5,
+    "passed": 7,
+    "deselected": 36,
+    "log_sha256": "30d110ddff242956256053b60d62890db62d4c2d45c5fa170618a6c1fe9ba024"
+  },
+  "preflight_note": "Existing preflight.py pins CLI 0.1.5 and was preserved byte-for-byte; only stale test fixture adjusted to match it. Formal environment CLI remains 0.2.0."
+}

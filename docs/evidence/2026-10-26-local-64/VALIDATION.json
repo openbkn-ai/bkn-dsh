@@ -1,0 +1,356 @@
+{
+  "kind": "local-development-preacceptance",
+  "ciRun": null,
+  "formalAcceptanceEligible": false,
+  "rows": [
+    {
+      "kind": "local-development-preacceptance",
+      "ciRun": null,
+      "formalAcceptanceEligible": false,
+      "host": "0.2.0-rc.2",
+      "node": "24.18.1",
+      "electron": "44.0.0",
+      "scope": "Frozen32 actual business service public configureToken -> its own MCP manager; synthetic loopback only",
+      "loadedComponents": [
+        {
+          "name": "@openbkn/dsh-business-context",
+          "state": 2
+        },
+        {
+          "name": "@openbkn/dsh-business-context/business",
+          "state": 2
+        },
+        {
+          "name": "@openbkn/dsh-business-context/diagnostics",
+          "state": 2
+        }
+      ],
+      "frozenServiceClassIdentity": true,
+      "businessSha256": "9901a046cb3274a56ac47cc1734d669e7a012dab25ef7e34fe3643a38b8d1081",
+      "publicConfigureNormal": "PASS",
+      "actualPackagePath": "<repo>/release/local-64/business-old/home/profiles/desktop/node_modules/@deepseek-ai/dsh-mcp-client/lib/index.js",
+      "selectedMcpSha256": "b3cd7156c0b8639656ce117530fec4d006b74cafdc9a78ac426fec084e62972c",
+      "selectedModuleAlreadyRegistered": true,
+      "managerFiberUsesSelectedModule": true,
+      "profileOverrideAutomatic": "PASS",
+      "redirectError": {
+        "name": "RemoteError",
+        "code": "openbkn/connection-failed"
+      },
+      "publicConfigureCrossOriginRefused": true,
+      "result": "PASS",
+      "case": "old",
+      "postExitFileCountsMatched": {
+        "frozen32": 82,
+        "profileMcp": 12
+      },
+      "installationMcp": "stock",
+      "installationMcpSha256": "758d8fc473b700b5d351158d06ce9f9e92c16e8b25497b08bb7bd2122a87f5dd",
+      "sourceAsarUnchanged": true,
+      "exit": {
+        "code": 0,
+        "signal": null
+      },
+      "secondOriginRequests": 0,
+      "fixtureListenersClosed": true,
+      "rpcRequests": [
+        {
+          "origin": "A",
+          "path": "/mcp",
+          "method": "POST",
+          "rpc": "server/discover",
+          "phase": "normal",
+          "syntheticAuth": true
+        },
+        {
+          "origin": "A",
+          "path": "/mcp",
+          "method": "POST",
+          "rpc": "initialize",
+          "phase": "normal",
+          "syntheticAuth": true
+        },
+        {
+          "origin": "A",
+          "path": "/mcp",
+          "method": "POST",
+          "rpc": "notifications/initialized",
+          "phase": "normal",
+          "syntheticAuth": true
+        },
+        {
+          "origin": "A",
+          "path": "/mcp",
+          "method": "GET",
+          "rpc": null,
+          "phase": "normal",
+          "syntheticAuth": true
+        },
+        {
+          "origin": "A",
+          "path": "/mcp",
+          "method": "POST",
+          "rpc": "tools/list",
+          "phase": "normal",
+          "syntheticAuth": true
+        },
+        {
+          "origin": "A",
+          "path": "/api/bkn-backend/v1/knowledge-networks",
+          "method": "GET",
+          "rpc": null,
+          "phase": "normal",
+          "syntheticAuth": true
+        },
+        {
+          "origin": "A",
+          "path": "/mcp",
+          "method": "POST",
+          "rpc": "server/discover",
+          "phase": "redirect",
+          "syntheticAuth": true
+        },
+        {
+          "origin": "A",
+          "path": "/mcp",
+          "method": "POST",
+          "rpc": "initialize",
+          "phase": "redirect",
+          "syntheticAuth": true
+        }
+      ]
+    },
+    {
+      "kind": "local-development-preacceptance",
+      "ciRun": null,
+      "formalAcceptanceEligible": false,
+      "host": "0.2.1-rc.3",
+      "node": "24.21.0",
+      "electron": "44.7.0",
+      "scope": "Frozen32 actual business service public configureToken -> its own MCP manager; synthetic loopback only",
+      "loadedComponents": [
+        {
+          "name": "@openbkn/dsh-business-context",
+          "state": 2
+        },
+        {
+          "name": "@openbkn/dsh-business-context/business",
+          "state": 2
+        },
+        {
+          "name": "@openbkn/dsh-business-context/diagnostics",
+          "state": 2
+        }
+      ],
+      "frozenServiceClassIdentity": true,
+      "businessSha256": "9901a046cb3274a56ac47cc1734d669e7a012dab25ef7e34fe3643a38b8d1081",
+      "publicConfigureNormal": "PASS",
+      "actualPackagePath": "<repo>/release/local-64/business-rc3/home/profiles/desktop/node_modules/@deepseek-ai/dsh-mcp-client/lib/index.js",
+      "selectedMcpSha256": "b3cd7156c0b8639656ce117530fec4d006b74cafdc9a78ac426fec084e62972c",
+      "selectedModuleAlreadyRegistered": true,
+      "managerFiberUsesSelectedModule": true,
+      "profileOverrideAutomatic": "PASS",
+      "redirectError": {
+        "name": "RemoteError",
+        "code": "openbkn/connection-failed"
+      },
+      "publicConfigureCrossOriginRefused": true,
+      "result": "PASS",
+      "case": "rc3",
+      "postExitFileCountsMatched": {
+        "frozen32": 82,
+        "profileMcp": 12
+      },
+      "installationMcp": "stock",
+      "installationMcpSha256": "758d8fc473b700b5d351158d06ce9f9e92c16e8b25497b08bb7bd2122a87f5dd",
+      "sourceAsarUnchanged": true,
+      "exit": {
+        "code": 0,
+        "signal": null
+      },
+      "secondOriginRequests": 0,
+      "fixtureListenersClosed": true,
+      "rpcRequests": [
+        {
+          "origin": "A",
+          "path": "/mcp",
+          "method": "POST",
+          "rpc": "server/discover",
+          "phase": "normal",
+          "syntheticAuth": true
+        },
+        {
+          "origin": "A",
+          "path": "/mcp",
+          "method": "POST",
+          "rpc": "initialize",
+          "phase": "normal",
+          "syntheticAuth": true
+        },
+        {
+          "origin": "A",
+          "path": "/mcp",
+          "method": "POST",
+          "rpc": "notifications/initialized",
+          "phase": "normal",
+          "syntheticAuth": true
+        },
+        {
+          "origin": "A",
+          "path": "/mcp",
+          "method": "GET",
+          "rpc": null,
+          "phase": "normal",
+          "syntheticAuth": true
+        },
+        {
+          "origin": "A",
+          "path": "/mcp",
+          "method": "POST",
+          "rpc": "tools/list",
+          "phase": "normal",
+          "syntheticAuth": true
+        },
+        {
+          "origin": "A",
+          "path": "/api/bkn-backend/v1/knowledge-networks",
+          "method": "GET",
+          "rpc": null,
+          "phase": "normal",
+          "syntheticAuth": true
+        },
+        {
+          "origin": "A",
+          "path": "/mcp",
+          "method": "POST",
+          "rpc": "server/discover",
+          "phase": "redirect",
+          "syntheticAuth": true
+        },
+        {
+          "origin": "A",
+          "path": "/mcp",
+          "method": "POST",
+          "rpc": "initialize",
+          "phase": "redirect",
+          "syntheticAuth": true
+        }
+      ]
+    },
+    {
+      "kind": "local-development-preacceptance",
+      "ciRun": null,
+      "formalAcceptanceEligible": false,
+      "host": "0.2.1-rc.3",
+      "node": "24.21.0",
+      "electron": "44.7.0",
+      "scope": "Frozen32 actual business service public configureToken -> its own MCP manager; synthetic loopback only",
+      "loadedComponents": [
+        {
+          "name": "@openbkn/dsh-business-context",
+          "state": 2
+        },
+        {
+          "name": "@openbkn/dsh-business-context/business",
+          "state": 2
+        },
+        {
+          "name": "@openbkn/dsh-business-context/diagnostics",
+          "state": 2
+        }
+      ],
+      "frozenServiceClassIdentity": true,
+      "businessSha256": "9901a046cb3274a56ac47cc1734d669e7a012dab25ef7e34fe3643a38b8d1081",
+      "publicConfigureNormal": "PASS",
+      "actualPackagePath": "<repo>/release/local-64/gui-rc3/home/profiles/desktop/node_modules/@deepseek-ai/dsh-mcp-client/lib/index.js",
+      "selectedMcpSha256": "b3cd7156c0b8639656ce117530fec4d006b74cafdc9a78ac426fec084e62972c",
+      "selectedModuleAlreadyRegistered": true,
+      "managerFiberUsesSelectedModule": true,
+      "profileOverrideAutomatic": "PASS",
+      "guiStartupBoundaryOnly": true,
+      "redirectVectors": "Not repeated",
+      "result": "PASS",
+      "case": "gui",
+      "postExitFileCountsMatched": {
+        "frozen32": 82,
+        "profileMcp": 12
+      },
+      "installationMcp": "stock",
+      "installationMcpSha256": "758d8fc473b700b5d351158d06ce9f9e92c16e8b25497b08bb7bd2122a87f5dd",
+      "sourceAsarUnchanged": true,
+      "exit": {
+        "code": 0,
+        "signal": null
+      },
+      "secondOriginRequests": 0,
+      "fixtureListenersClosed": true,
+      "rpcRequests": [
+        {
+          "origin": "A",
+          "path": "/mcp",
+          "method": "POST",
+          "rpc": "server/discover",
+          "phase": "normal",
+          "syntheticAuth": true
+        },
+        {
+          "origin": "A",
+          "path": "/mcp",
+          "method": "POST",
+          "rpc": "initialize",
+          "phase": "normal",
+          "syntheticAuth": true
+        },
+        {
+          "origin": "A",
+          "path": "/mcp",
+          "method": "POST",
+          "rpc": "notifications/initialized",
+          "phase": "normal",
+          "syntheticAuth": true
+        },
+        {
+          "origin": "A",
+          "path": "/mcp",
+          "method": "GET",
+          "rpc": null,
+          "phase": "normal",
+          "syntheticAuth": true
+        },
+        {
+          "origin": "A",
+          "path": "/mcp",
+          "method": "POST",
+          "rpc": "tools/list",
+          "phase": "normal",
+          "syntheticAuth": true
+        },
+        {
+          "origin": "A",
+          "path": "/api/bkn-backend/v1/knowledge-networks",
+          "method": "GET",
+          "rpc": null,
+          "phase": "normal",
+          "syntheticAuth": true
+        }
+      ],
+      "nativeWelcomeWindowObserved": true,
+      "normalMenuQuitObserved": true,
+      "driverReadyIpcApplicable": false,
+      "postQuitAxRead": "timeoutReached; independently verified main exit 0 and no Desktop processes"
+    }
+  ],
+  "notRepeated": [
+    "Windows 8/8 native factory vectors",
+    "Mac redirect vectors",
+    "UI translations/keyboards/narrow window",
+    "login/B1/lifecycle",
+    "G6/BOM/Sandbox"
+  ],
+  "notClaimed": [
+    "Windows actual business autoload",
+    "old Mac GUI with profile payload",
+    "global SDK/OAuth protection",
+    "formal final-candidate acceptance"
+  ]
+}

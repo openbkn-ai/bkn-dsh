@@ -101,30 +101,3 @@ test('serialization is deterministic and terminates with a newline', () => {
   assert.ok(text.endsWith('\n'))
   assert.equal(JSON.parse(text).reportId, 'abcd1234')
 })
-
-
-test('reopening diagnostics preserves the report until explicit collection', async () => {
-  const port = new FakePort(async () => report())
-  const controller = new DiagnosticsPanelController(port)
-  controller.open()
-  await new Promise(resolve => setImmediate(resolve))
-  const original = controller.snapshot().report
-  controller.close()
-  controller.open()
-  await new Promise(resolve => setImmediate(resolve))
-  assert.equal(port.calls, 1)
-  assert.equal(controller.snapshot().report, original)
-  await controller.refresh()
-  assert.equal(port.calls, 2)
-})
-
-
-test('a diagnostics service reset discards an in-flight report from the old connection', async () => {
-  const pending = settled()
-  const controller = new DiagnosticsPanelController(new FakePort(() => pending.promise.then(() => report())))
-  controller.open()
-  controller.reset()
-  pending.resolve()
-  await new Promise(resolve => setImmediate(resolve))
-  assert.deepEqual(controller.snapshot(), { open: false, phase: 'idle', report: undefined, message: undefined })
-})

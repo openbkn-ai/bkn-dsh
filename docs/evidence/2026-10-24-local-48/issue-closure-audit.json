@@ -1,0 +1,78 @@
+{
+  "checkedAt": "2026-10-24T13:29:39.276876+00:00",
+  "sourceBase": "933b0ab251c75461ece1ada6145a9487e7eb04d1",
+  "sourceIdentity": "Frozen r3 source-worktree-identity.json, all167 source files matched; base commit alone is not reproducible source identity.",
+  "candidate": "0.2.0-rc.2-openbkn.0.2.0-30",
+  "candidateSHA256": "6d95ff7517dbe409875fd398784fe01049ba26d2b97c43fad65c817d3ea18ee9",
+  "candidateFiles": 82,
+  "ciRun": null,
+  "formalAcceptanceEligible": false,
+  "completedAndClosed": [],
+  "mutations": [],
+  "issues": [
+    {
+      "number": 94,
+      "decision": "OPEN",
+      "ownCriteria": [
+        {
+          "criterion": "Complete zh/en inventory, interpolation and controlled fallback",
+          "status": "INCOMPLETE",
+          "evidence": "302 zh/en keys; all28 current client files inventoried; no missing literal t/uiMessage keys; existing dictionary/rendering tests pass. Actual controlled Chinese rendering still contains plugin-owned Request/Trace/Receipt/Op/Status label literals, so dictionary parity is not a complete inventory pass."
+        },
+        {
+          "criterion": "Open panel, pending work and displayed errors update without reconnection/data changes",
+          "status": "PASS_CONTROLLED",
+          "evidence": "Existing fresh locale-focused19/19 includes pending login and displayed failure zh/en/zh, frozen controller snapshot and call counts; native evidence content/selection preserved."
+        },
+        {
+          "criterion": "Affected dictionary/controller/rendering validation",
+          "status": "PASS_WITH_DISCOVERED_COVERAGE_GAP",
+          "evidence": "19/19 existing checks pass; separate label reproduction identifies missing coverage. No full Host readability claim."
+        },
+        {
+          "criterion": "Three-entry isolation and native model/output/no raw Error leakage",
+          "status": "HISTORICAL_CONTROLLED_AND_SOURCE",
+          "evidence": "Existing -30 dual source baseline613 pass/oneWindows skip each, additive-slot checks in fresh19, stable descriptor errors and source separation. This round did not rerun full isolation/secret suites."
+        }
+      ],
+      "separate99Boundary": "Mac/Windows form matrix, human readability, final fixed CI candidate belong to99; those are not why94 stays open.",
+      "requiredNext": "Translate/review plugin-owned reference/status labels and cover actual zh/en rendered text in a future authorized source/candidate change. No -30 edit now."
+    },
+    {
+      "number": 95,
+      "decision": "OPEN",
+      "ownGap": "Carrier selection is now proved for the inspected official Mac Desktop boot bundles and controlled native Connection/Gateway. Real Windows cancel/terminate timing, chosen containment, Job membership and browser ownership remain unobserved; r1/r2/r3 observations do not prove the historical incident fixed."
+    },
+    {
+      "number": 96,
+      "decision": "OPEN",
+      "ownGap": "Issue explicitly depends on01/#93 target native-contract gate. Historical independently checked schema1/read-only samples and controlled guards/budgets remain valid at their recorded identities; current formal0.2.0 target still lacks nonempty native routes/sample. This round has not completed a fresh full96 closure audit and does not reinterpret absence of a POST UI as a tested generation action.",
+      "separate99Boundary": "Not blocked merely by final99 CI; retain the specific native-contract prerequisite and undispatched/conditional generation boundary."
+    },
+    {
+      "number": 93,
+      "decision": "OPEN",
+      "ownGap": "Required real nonempty native sample on the current formal acceptance target is absent. Historical50.28 sample is not current50.129 acceptance."
+    },
+    {
+      "number": 97,
+      "decision": "OPEN",
+      "ownGap": "Required nonempty target native records and corresponding real selection/navigation acceptance remain absent."
+    },
+    {
+      "number": 98,
+      "decision": "OPEN",
+      "ownGap": "Preserve round34 real MCP-owner failure/fix and Mac/Windows bounded B1 evidence; unconfirmed historical long-duration conditions are not all resolved by no-runner-residue observations."
+    },
+    {
+      "number": 99,
+      "decision": "OPEN",
+      "ownGap": "Final fixed CI candidate and complete contract/human/security/model gates are outstanding."
+    },
+    {
+      "number": 92,
+      "decision": "OPEN",
+      "ownGap": "Overall scope and related acceptance are not complete."
+    }
+  ]
+}

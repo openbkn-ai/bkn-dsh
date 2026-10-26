@@ -1,0 +1,13 @@
+✔ one plugin declares both pinned hosts while retaining the old build baseline (1.532ms)
+✔ an old-only, new-only or broad host range cannot pass the release check (0.515292ms)
+✔ the compatibility gate rejects schema dependency drift and a different source build pin (0.167417ms)
+✔ host identities cannot be duplicated, unpinned or replaced by an unreviewed build version (0.189833ms)
+✔ a second DSH version cannot slip into any development dependency (0.179042ms)
+ℹ tests 5
+ℹ suites 0
+ℹ pass 5
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 34.873

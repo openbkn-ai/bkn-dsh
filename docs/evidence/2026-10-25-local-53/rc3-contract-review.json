@@ -1,0 +1,103 @@
+{
+  "checkedAt": "2026-10-25T02:11:33.400712+00:00",
+  "targetTag": "dsh-v0.2.1-rc.3",
+  "targetCommit": "1f81c047fc48fa190a683e469daa699857e9afe8",
+  "previousNewTarget": "687f282e8625c6b8d11ff58211a90524be2e4317",
+  "completeDiffFileCount": 640,
+  "changedExecutableSourceCount": 61,
+  "fullGitDiffAvailable": true,
+  "noApiCompareTruncation": true,
+  "packageManager": "pnpm@11.28.5",
+  "cordis": "4.0.5",
+  "schemastery": "3.18.5",
+  "mcpSdk": "2.2.0",
+  "consumedBlobs": [
+    {
+      "path": "packages/mcp/mcp-client/src/transport.ts",
+      "sha256": "6f3fca685af3d5654c476e95db24e1245dc1fa021a0bd7f477ce4ad997e1c8f6",
+      "unchangedFromRc2": true
+    },
+    {
+      "path": "packages/mcp/mcp-client/src/index.ts",
+      "sha256": "f279bd88743ca73b0d9834915d1bb31e455e21c87f4990808cfd55b273db4d1c",
+      "unchangedFromRc2": true
+    },
+    {
+      "path": "packages/api/gateway/src/index.ts",
+      "sha256": "0a1234ae8400dbadebab5c53c8dfb352e24fa271b767645d5f0275fd620b36eb",
+      "unchangedFromRc2": true
+    },
+    {
+      "path": "packages/client/ui-slots/src/index.ts",
+      "sha256": "43989fb355e1e85316caa70b28de3294f9d6e7b179199a4e429dcd1ef73f2e24",
+      "unchangedFromRc2": true
+    },
+    {
+      "path": "packages/client/locale/src/client/index.ts",
+      "sha256": "eed72407faf8fb3472d19e7f882092dadea43b2a00174ac72f990efd9e6d9f17",
+      "unchangedFromRc2": true
+    }
+  ],
+  "reviewedContractChanges": [
+    "new optional draft initialization whenDraftExists; legacy clearPreviousDraft remains",
+    "new View/sidebar/right Guide More-menu and pin state contracts are additive; plugin footer action/header action/dock/assistant-action/tool-view slots retained",
+    "submission analytics state gains newSession/agentPreset; plugin does not construct that state",
+    "native Menu and Tooltip behavior changes require focused real rc3 UI validation; type/runtime checks do not replace it",
+    "MCP/subprocess/Gateway/Remote/credentials service source paths have no changed executable files in complete delta; no runner/Job or #105 fix inferred",
+    "Official provider/model-listing source changes are classified outside the consumed MCP/Remote contract; no full provider audit claimed, no provider enabled or model turn executed"
+  ],
+  "uiAcceptance": "NOT_RUN on actual rc3 Desktop/npm browser; no automatic transfer from rc2",
+  "windows": "fixed d20a266 remains rc2 scope; pending report not rc3 acceptance",
+  "consumedSourcePackages": [
+    {
+      "package": "@deepseek-ai/dsh-mcp-client",
+      "sourceDirectory": "packages/mcp/mcp-client/src",
+      "changedExecutableSource": []
+    },
+    {
+      "package": "@deepseek-ai/dsh-subprocess",
+      "sourceDirectory": "packages/subprocess/subprocess/src",
+      "changedExecutableSource": []
+    },
+    {
+      "package": "@deepseek-ai/dsh-typert-protocol",
+      "sourceDirectory": "packages/typert/protocol/src",
+      "changedExecutableSource": []
+    },
+    {
+      "package": "@deepseek-ai/dsh-api-gateway",
+      "sourceDirectory": "packages/api/gateway/src",
+      "changedExecutableSource": []
+    },
+    {
+      "package": "@deepseek-ai/dsh-api-remotes",
+      "sourceDirectory": "packages/api/remotes/src",
+      "changedExecutableSource": []
+    },
+    {
+      "package": "@deepseek-ai/dsh-api-remote-access",
+      "sourceDirectory": "packages/api/remote-access/src",
+      "changedExecutableSource": []
+    },
+    {
+      "package": "@deepseek-ai/dsh-credentials",
+      "sourceDirectory": "packages/credentials/credentials/src",
+      "changedExecutableSource": []
+    },
+    {
+      "package": "@deepseek-ai/dsh-client-connection",
+      "sourceDirectory": "packages/client/connection/src",
+      "changedExecutableSource": []
+    },
+    {
+      "package": "@deepseek-ai/dsh-client-ui-slots",
+      "sourceDirectory": "packages/client/ui-slots/src",
+      "changedExecutableSource": []
+    },
+    {
+      "package": "@deepseek-ai/dsh-client-locale",
+      "sourceDirectory": "packages/client/locale/src",
+      "changedExecutableSource": []
+    }
+  ]
+}

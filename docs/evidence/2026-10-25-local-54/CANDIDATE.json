@@ -1,0 +1,38 @@
+{
+  "version": "0.2.0-rc.2-openbkn.0.2.0-32",
+  "sha256": "46626510825fe9146aef12c27a1724acbb455aeac22aa600358add0fc8e1c9f8",
+  "bytes": 231465,
+  "fileCount": 82,
+  "previousUiRunArtifactSha256": "c14c50815ae1b50332aabb6a0a666e000287439fa84bbe8e8187ec9e0c8acff6",
+  "changedFromUiRunArtifact": [
+    "README.md",
+    "README.zh.md"
+  ],
+  "allJavaScriptDeclarationsAndConfigurationByteIdenticalToUiRun": true,
+  "ciRun": null,
+  "formalAcceptanceEligible": false,
+  "artifact": "release/local-54/final-candidate/openbkn-dsh-business-context-0.2.0-rc.2-openbkn.0.2.0-32.tgz",
+  "sourceBranch": "feat/021-localization-login",
+  "sourceHead": "933b0ab251c75461ece1ada6145a9487e7eb04d1",
+  "sourceContainsUncommittedChanges": true,
+  "classification": "local-development-preacceptance",
+  "changedFromFrozen31": [
+    "lib/client.js",
+    "package.json",
+    "README.md",
+    "README.zh.md"
+  ],
+  "addedFromFrozen31": [],
+  "removedFromFrozen31": [],
+  "hostJavaScriptDeclarationsAndRemoteByteIdentical31": true,
+  "clientByteIdentical31": false,
+  "clientDifferenceOnlyRegionPathComments": true,
+  "clientAfterRemovingOnlyRegionCommentLinesIdentical31": true,
+  "installedFinalFilesMatched": 82,
+  "dependencies": {
+    "buildHost": "0.2.0-rc.2",
+    "newRuntimeTarget": "0.2.1-rc.3",
+    "zod": "4.4.3"
+  },
+  "security105BackportIncluded": false
+}

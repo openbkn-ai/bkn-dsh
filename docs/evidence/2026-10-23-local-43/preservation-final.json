@@ -1,0 +1,23 @@
+{
+  "preexistingFilesChecked": 744,
+  "byteIdentical": 739,
+  "authorizedLocalStatusDocsChanged": [
+    "CLAUDE.md",
+    "docs/plans/0.2.1/ACCEPTANCE-CONTRACT.md",
+    "docs/plans/0.2.1/DSH-COMPATIBILITY.md",
+    "docs/plans/0.2.1/NATIVE-CONTRACT.md",
+    "docs/plans/0.2.1/README.md"
+  ],
+  "unexpectedChanges": [],
+  "headUnchanged": true,
+  "branchUnchanged": true,
+  "indexUnchanged": true,
+  "otherWorktreeRefsUnchanged": true,
+  "platformActions": [],
+  "hostLaunches": [],
+  "productionPackageChanged": false,
+  "pushes": [
+    "HEAD:refs/heads/handoff/windows-local30-r2-20261023"
+  ],
+  "ciDispatches": []
+}

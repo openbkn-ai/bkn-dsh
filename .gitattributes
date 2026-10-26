@@ -42,9 +42,18 @@ docs/evidence/openbkn020-compatibility10-20261012/review/ci-validation-excerpt.l
 docs/evidence/openbkn020-compatibility10-20261012/review/before-fix.log whitespace=-blank-at-eol
 # Preserve fixed handoff inputs on Windows; do not normalize hash manifests or source-build SDK bytes.
 docs/handoff/2026-10-12-compatibility10-minimal-windows/** -text
+# Preserve the local 0.2.1 Windows kit, its hash inputs and native evidence bytes.
+docs/handoff/2026-10-21-021-local-27-windows/** -text
+# Preserve the non-GUI #105 Windows r2 kit and its fixed hash inputs.
+docs/handoff/2026-10-25-021-host-backport-windows-r2-nongui/** -text
+docs/evidence/2026-10-21-local-35/** -text
 # Preserve Mac minimum-acceptance snapshots and their recorded digests.
 docs/evidence/openbkn020-compatibility10-20261012/mac-minimal/** -text
 # Preserve the Windows -10 minimal retest original bytes (native UTF-16/CRLF outputs) on every checkout.
 docs/evidence/openbkn020-compatibility10-20261012/windows-minimal/** -text
 # Native PowerShell/cmd outputs keep CRLF and trailing blanks byte-for-byte.
 docs/evidence/openbkn020-compatibility10-20261012/windows-minimal/** whitespace=cr-at-eol,-blank-at-eol,-blank-at-eof
+/compat/mcp-profile-backport/*.tgz -text
+
+# Preserve final CI candidate and its Windows handoff hash inputs.
+docs/handoff/2026-10-27-release-021/** -text

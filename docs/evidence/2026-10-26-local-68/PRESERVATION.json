@@ -1,0 +1,28 @@
+{
+  "checkedAt": "2026-10-26T04:59:20.356885+00:00",
+  "existingMainFilesCompared": 3978,
+  "changedExistingFiles": [
+    "docs/plans/0.2.1/REMAINING-WORK.md",
+    "CLAUDE.md",
+    "docs/plans/0.2.1/ACCEPTANCE-CONTRACT.md"
+  ],
+  "unexpectedChanges": [],
+  "headBranchIndexWorktreeRefsUnchanged": true,
+  "original5e55HandoffFilesMatched": 17,
+  "originalHandoffUnchangedAndClean": true,
+  "frozenInputs": {
+    "kit/lifecycle30/candidate/openbkn-bkn-sdk-0.2.0.tgz": "d227f6264597d727e7931bef4118f099df20d42402ff32e306f6d65e8a6b273f",
+    "kit/lifecycle30/candidate/openbkn-dsh-business-context-0.2.0-rc.2-openbkn.0.2.0-30.tgz": "6d95ff7517dbe409875fd398784fe01049ba26d2b97c43fad65c817d3ea18ee9",
+    "kit/ui31/candidate/openbkn-bkn-sdk-0.2.0.tgz": "d227f6264597d727e7931bef4118f099df20d42402ff32e306f6d65e8a6b273f",
+    "kit/ui31/candidate/openbkn-dsh-business-context-0.2.0-rc.2-openbkn.0.2.0-31.tgz": "22ba0e17235ccb3c93d585f2811604f5221375ac9e3496e92e6d8c1756196e4a",
+    "kit/KIT-FILES.json": "61bace60c424eade7904ab1ed592cd5a0a7e1b332a0b768215a8eecba1298996",
+    "release/local-54/final-candidate/openbkn-dsh-business-context-0.2.0-rc.2-openbkn.0.2.0-32.tgz": "46626510825fe9146aef12c27a1724acbb455aeac22aa600358add0fc8e1c9f8"
+  },
+  "r2HandoffCommit": "e7b383b96747dbeb3e6897c0e79039f7f3d1711c",
+  "authorizedPushOnly": "handoff/windows-local32-profile-gui-r2-20261026",
+  "controllerEqualsTestedRound67": true,
+  "powershellGuardAndTgzBytesUnchanged": true,
+  "guiLoginPlatformModelOrSystemAssociationActionsByMainAgent": false,
+  "CIOrRemoteIssuePRTagReleaseWrite": false,
+  "scope": "Recorded repo/artifact preservation and main-agent action scope; not a full database or machine audit."
+}

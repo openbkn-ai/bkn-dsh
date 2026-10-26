@@ -1,0 +1,26 @@
+{
+  "writtenAt": "2026-10-25T02:27:52.998157+00:00",
+  "writtenAfterExecution": true,
+  "command": [
+    ".test-tools/node_modules/node/bin/node",
+    "bkn-dsh/release/local-53/backport-host-probe.mjs",
+    "/Users/dominiczhang/Documents/project/app/openBKN/bkn-dsh",
+    "all",
+    "source"
+  ],
+  "inputFlavor": "source-built-js",
+  "entryIdentities": [
+    {
+      "host": "old",
+      "sourceCommit": "639ed015397290b3745d163aafe02ffee4aa3f84",
+      "entrySha256": "b3cd7156c0b8639656ce117530fec4d006b74cafdc9a78ac426fec084e62972c"
+    },
+    {
+      "host": "rc3",
+      "sourceCommit": "1f81c047fc48fa190a683e469daa699857e9afe8",
+      "entrySha256": "b3cd7156c0b8639656ce117530fec4d006b74cafdc9a78ac426fec084e62972c"
+    }
+  ],
+  "report": "backport-host-probe-all-source.json",
+  "fullDesktopOrOfficialHostPackage": false
+}

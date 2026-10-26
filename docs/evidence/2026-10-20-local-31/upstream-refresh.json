@@ -1,0 +1,37 @@
+{
+  "checked_at": "2026-10-20T04:55:28.154026+00:00",
+  "read_only": true,
+  "DSH": {
+    "latest_tag": "dsh-v0.2.1-rc.2",
+    "supported_pair": [
+      "0.2.0-rc.2",
+      "0.2.1-rc.2"
+    ],
+    "new_source_changes_since_687f282": 0
+  },
+  "OpenBKN": {
+    "latest_formal_release": "v0.2.0",
+    "deployed_commit": "81d5752826f3b3f3f72f3ad4cb1e22d45e99ab4b",
+    "prior_review_head": "a93a8c57ea3f770904ca86afa4e1d765e8f14cb7",
+    "current_review_head": "d1807e377bbeff50e2d867019c6328ee69a26a3c",
+    "incremental_main_changes": [
+      {
+        "sha": "55083c1858375eb914cbfdb7d72d7a8fca867a16",
+        "subject": "fix(vega): validate HAVING value shapes before query execution (#2266)"
+      },
+      {
+        "sha": "e3f8ac8bb9376d04575e61820863c83b56236414",
+        "subject": "fix(vega): define invalid logical view errors and preserve filter failures (#2267)"
+      },
+      {
+        "sha": "a488d6a973f20492a3604119719ec967c587d0f6",
+        "subject": "fix(vega): reject invalid match field elements without panicking (#2271)"
+      },
+      {
+        "sha": "d1807e377bbeff50e2d867019c6328ee69a26a3c",
+        "subject": "feat(bkn-agent): add a built-in Cypher generation Agent for the graph explorer (#2269)"
+      }
+    ],
+    "review": "Four main-only changes affect Vega invalid filters and bkn-agent Cypher generation. No new DSH/public MCP/Function runtime schema change since previous check. Keep official 0.2.0 deployed; validate exact managed queries on it, no pin upgrades."
+  }
+}

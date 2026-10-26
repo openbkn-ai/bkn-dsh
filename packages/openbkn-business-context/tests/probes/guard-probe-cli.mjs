@@ -8,12 +8,13 @@ export function parseProbeOptions(args) {
     args,
     strict: true,
     allowPositionals: false,
-    options: Object.fromEntries(['live', 'kn', 'other-kn', 'plugin', 'cli'].map(name => [name, { type: 'string' }])),
+    options: Object.fromEntries(['live', 'kn', 'other-kn', 'plugin', 'cli', 'runtime', 'contract', 'capture'].map(name => [name, { type: 'string' }])),
   })
   for (const value of Object.values(values)) {
     if (!value.trim() || value.startsWith('--')) throw new Error('Probe options need non-empty values.')
   }
   if (values.live !== undefined) {
+    if (values.capture !== undefined || values.contract !== undefined) throw new Error('Live contract and capture state must come from the platform.')
     const url = new URL(values.live)
     if (!['https:', 'http:'].includes(url.protocol) || url.username || url.password || url.search || url.hash) {
       throw new Error('--live needs an HTTP(S) platform address without credentials, query or fragment.')
@@ -24,12 +25,18 @@ export function parseProbeOptions(args) {
   } else if (values.kn !== undefined || values['other-kn'] !== undefined) {
     throw new Error('Network options require --live <platform URL>.')
   }
+  if (values.contract !== undefined && !['legacy', 'formal'].includes(values.contract)) throw new Error('Unknown stand-in contract.')
+  if (values.capture !== undefined && !['enabled', 'disabled'].includes(values.capture)) throw new Error('Unknown stand-in capture state.')
+  if (values.capture === 'disabled' && values.contract !== 'formal') throw new Error('Disabled capture probe requires the formal contract.')
   return {
     live: values.live,
     plugin: values.plugin ?? '.',
     cli: values.cli ?? 'openbkn',
     boundKn: values.kn ?? 'kn-bound',
     otherKn: values['other-kn'] ?? 'kn-other',
+    ...(values.runtime === undefined ? {} : { runtime: values.runtime }),
+    ...(values.contract === undefined ? {} : { contract: values.contract }),
+    ...(values.capture === undefined ? {} : { capture: values.capture }),
   }
 }
 

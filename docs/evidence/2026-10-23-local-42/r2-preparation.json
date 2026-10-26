@@ -1,0 +1,18 @@
+{
+  "candidateVersion": "0.2.0-rc.2-openbkn.0.2.0-30",
+  "candidateSHA256": "6d95ff7517dbe409875fd398784fe01049ba26d2b97c43fad65c817d3ea18ee9",
+  "kitRevision": "r2",
+  "kitInputs": 25,
+  "kitInventorySHA256": "35abfbbc00e33b886bd7b7f9e97456058b9f2c2e773f2c908b9a7fc2ba20cbbc",
+  "changesFromFrozenHandoff": {
+    "FOLLOWUP.md": "added",
+    "HANDOFF.md": "changed",
+    "RESULTS-TEMPLATE.md": "changed",
+    "start-owned-desktop.ps1": "changed",
+    "test-desktop-launcher-argv.ps1": "added"
+  },
+  "allOtherKitInputBytesUnchanged": true,
+  "pushed": false,
+  "committed": false,
+  "windowsNativeValidation": "not-run"
+}

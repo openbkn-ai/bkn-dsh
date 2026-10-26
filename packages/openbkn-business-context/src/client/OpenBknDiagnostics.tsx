@@ -6,6 +6,7 @@ import type { InjectFace, PropsRuntime } from '@deepseek-ai/dsh-client-ui-slots'
 import type { DiagnosticsPanelController, DiagnosticsPanelState } from './diagnostics-controller.ts'
 import { exportDiagnosticsReport } from './diagnostics-export.ts'
 import { diagnosticsTargetRows } from './diagnostics-target.ts'
+import { useDialogFocus } from './use-dialog-focus.ts'
 import type { DiagnosticsCheck, DiagnosticsReport } from '../diagnostics-contract.ts'
 
 export interface OpenBknDiagnosticsInjected {
@@ -26,16 +27,19 @@ export function OpenBknDiagnostics({ useDiagnostics, close, refresh }: OpenBknDi
   const t = useOpenBknTranslation()
 
   const state = useDiagnostics((value: DiagnosticsPanelState) => value)
+  const dialog = useDialogFocus(state.open, close)
 
   useEffect(() => {
     if (state.open && state.phase === 'idle') void refresh()
   }, [refresh, state.open, state.phase])
 
-  if (!state.open && state.phase === 'idle') return null
+  if (!state.open) return null
 
   return (
-    <div hidden={!state.open} style={{ ...backdropStyle, display: state.open ? 'flex' : 'none' }} role="presentation" onMouseDown={close}>
+    <div style={backdropStyle} role="presentation" onMouseDown={close}>
       <section
+        ref={dialog}
+        tabIndex={-1}
         role="dialog"
         aria-modal="true"
         aria-label={t('openBKNDiagnostics')}
@@ -59,6 +63,27 @@ export function OpenBknDiagnostics({ useDiagnostics, close, refresh }: OpenBknDi
 
 function DiagnosticsBody({ state, refresh }: { state: DiagnosticsPanelState; refresh(): Promise<void> }) {
   const t = useOpenBknTranslation()
+  const report = state.report
+  return (
+    <div aria-busy={state.phase === 'loading'}>
+      <DiagnosticsContent state={state} />
+      <div style={{ display: 'flex', gap: 8, marginTop: 16 }}>
+        {state.phase === 'ready' && report !== undefined ? (
+          <button key="export" type="button" style={buttonStyle} onClick={() => exportDiagnosticsReport(report)}>
+            {t('exportDiagnosticsReport')}
+          </button>
+        ) : null}
+        {/* Keep this node mounted through loading, failure and retry so keyboard focus stays in the dialog. */}
+        <button key="refresh" type="button" style={secondaryButtonStyle} onClick={() => void refresh()}>
+          {state.phase === 'unavailable' ? t('retry') : t('collectAgain')}
+        </button>
+      </div>
+    </div>
+  )
+}
+
+function DiagnosticsContent({ state }: { state: DiagnosticsPanelState }) {
+  const t = useOpenBknTranslation()
 
   if (state.phase === 'loading' || state.phase === 'idle') {
     return <p style={mutedStyle}>{t('readingDiagnostics')}</p>
@@ -68,7 +93,6 @@ function DiagnosticsBody({ state, refresh }: { state: DiagnosticsPanelState; ref
       <div>
         <p style={{ marginTop: 0, lineHeight: 1.6 }}>{(state.message === undefined ? t('diagnosticsServiceUnavailable') : renderUiMessage(state.message, t))}</p>
         <p style={mutedStyle}>{t('theDiagnosticsEntryDidNotStartWithThe')}</p>
-        <button type="button" style={buttonStyle} onClick={() => void refresh()}>{t('retry')}</button>
       </div>
     )
   }
@@ -76,19 +100,11 @@ function DiagnosticsBody({ state, refresh }: { state: DiagnosticsPanelState; ref
   return (
     <div>
       <p style={{ marginTop: 0, color: '#4b5563', fontSize: 13 }}>
-        {t('report')}{report.reportId} {t('created')}{new Date(report.createdAt).toLocaleString()} {t('mode')}{report.mode === 'passive' ? t('passiveCollection') : t('activeRetest')}
+        {t('report')} {report.reportId} {t('created')} {new Date(report.createdAt).toLocaleString()} {t('mode')} {report.mode === 'passive' ? t('passiveCollection') : t('activeRetest')}
       </p>
+      {report.mode === 'passive' ? <p style={mutedStyle}>{t('passiveHistoryNotice')}</p> : null}
       <TargetSummary report={report} />
       <CheckList checks={report.checks} />
-      <div style={{ display: 'flex', gap: 8, marginTop: 16 }}>
-        <button
-          type="button"
-          style={buttonStyle}
-          onClick={() => exportDiagnosticsReport(report)}
-        >
-          {t('exportDiagnosticsReport')}</button>
-        <button type="button" style={secondaryButtonStyle} onClick={() => void refresh()}>{t('collectAgain')}</button>
-      </div>
     </div>
   )
 }
@@ -139,7 +155,7 @@ function CheckRow({ check, zebra }: { check: DiagnosticsCheck; zebra: boolean })
     <div style={{ padding: '10px 12px', background: zebra ? '#f9fafb' : '#fff', borderBottom: '1px solid #e5e7eb' }}>
       <div style={{ display: 'flex', alignItems: 'center', gap: 8 }}>
         <span style={{ fontSize: 12, color: STATUS_COLOR[check.status] ?? '#374151', fontWeight: 650 }}>
-          ● {STATUS_LABEL[check.status] === undefined ? check.status : t(STATUS_LABEL[check.status]!)}
+          ● {t(STATUS_LABEL[check.status] ?? 'insufficientEvidence')}
         </span>
         <span style={{ fontSize: 13, fontWeight: 600 }}>{check.id}</span>
         <span style={{ fontSize: 12, color: '#6b7280' }}>{check.stage} / {check.code}</span>
@@ -172,7 +188,7 @@ const headerStyle: React.CSSProperties = {
   padding: '16px 20px 12px', borderBottom: '1px solid #e5e7eb',
 }
 
-const eyebrowStyle: React.CSSProperties = { fontSize: 11, letterSpacing: 2, color: '#0891b2', fontWeight: 700 }
+const eyebrowStyle: React.CSSProperties = { fontSize: 11, letterSpacing: 2, color: '#0e7490', fontWeight: 700 }
 
 const closeStyle: React.CSSProperties = {
   border: 'none', background: 'transparent', fontSize: 20, lineHeight: 1,

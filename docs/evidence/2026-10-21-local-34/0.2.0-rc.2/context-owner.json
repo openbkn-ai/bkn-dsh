@@ -1,0 +1,20 @@
+{
+  "node": "v24.18.1",
+  "cordis": "4.0.4",
+  "callerContext": {
+    "explicitOwner": false,
+    "selectedIsRootFiber": true,
+    "serviceCallerIsRootFiber": true,
+    "mountedBefore": 1,
+    "mountedAfterOwnerDispose": 1,
+    "afterRootDispose": 0
+  },
+  "constructorContext": {
+    "explicitOwner": true,
+    "selectedIsRootFiber": false,
+    "serviceCallerIsRootFiber": true,
+    "mountedBefore": 1,
+    "mountedAfterOwnerDispose": 0,
+    "afterRootDispose": 0
+  }
+}

@@ -1,0 +1,25 @@
+{
+  "checked_at": "2026-10-20T06:37:16.892338+00:00",
+  "host": "0.2.0-rc.2",
+  "native_session_id": "session-d3094f4e-6b4c-4e6d-a372-bacb36fc1d2a",
+  "discovery_query": "销售订单明细",
+  "complete_sales_function_disclosed": true,
+  "execute_tool_called": false,
+  "last_query": {
+    "ot_id": "supply_ontology_hand_salesorder",
+    "condition_present": false,
+    "limit": 100
+  },
+  "reported_total_counts_in_original_result": [
+    800
+  ],
+  "datas_header_row_count": null,
+  "final_answer_claims_product_filter_and_total": 20,
+  "independent_product_total": 40,
+  "final_answer_contains_detail_table": false,
+  "policy_presence_evidence": "model-policy-presence-check.json",
+  "source_rows_not_published": true,
+  "intermediate_assistant_table_rows": 20,
+  "final_assistant_table_rows": 0,
+  "criterion_note": "The pre-finish 20-row table and claimed 20 are internally consistent; both are incomplete against the source 40. The final omits the table and misstates the source filter/total."
+}

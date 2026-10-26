@@ -1,0 +1,39 @@
+{
+  "checkedAt": "2026-10-24T15:07:46.490097+00:00",
+  "preexistingFiles": 3638,
+  "unchangedPreexistingFiles": 3632,
+  "authorizedStatusUpdates": [
+    "docs/plans/0.2.1/ISSUE-WORKFLOW.md",
+    "CLAUDE.md",
+    "docs/plans/0.2.1/ACCEPTANCE-CONTRACT.md",
+    "docs/plans/0.2.1/DSH-COMPATIBILITY.md",
+    "docs/plans/0.2.1/NATIVE-CONTRACT.md",
+    "docs/plans/0.2.1/README.md"
+  ],
+  "primaryHead": "933b0ab251c75461ece1ada6145a9487e7eb04d1",
+  "indexUnchanged": true,
+  "existingWorktreeRefsPreserved": true,
+  "newDetachedWorktree": "/Users/dominiczhang/Documents/project/app/openBKN/bkn-dsh-local49-ui",
+  "sourceCommitPerformed": false,
+  "primaryOriginal30Package": "81 byte-identical packaged files; source package.json unchanged from before and semantically identical to packed JSON (key order differs)",
+  "original30InstalledFilesMatchedPerHost": 82,
+  "frozenR3Clean": true,
+  "original30CandidateUnchanged": true,
+  "new31Candidate": "22ba0e17235ccb3c93d585f2811604f5221375ac9e3496e92e6d8c1756196e4a",
+  "productionLoginOrHostChanged": false,
+  "platformDataConfigCredentialActions": false,
+  "completeHostStarted": false,
+  "temporaryIabTabClosed": true,
+  "ownedProbeServerExited": true,
+  "ownedProbePortClosed": 52260,
+  "issueMutations": [
+    {
+      "number": 94,
+      "state": "CLOSED",
+      "receipt": "issue94-closure-receipt.json"
+    }
+  ],
+  "pushPerformed": false,
+  "ciRun": null,
+  "formalAcceptanceEligible": false
+}

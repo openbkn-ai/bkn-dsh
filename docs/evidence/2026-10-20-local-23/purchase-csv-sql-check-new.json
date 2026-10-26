@@ -1,0 +1,25 @@
+{
+  "checked_at": "2026-10-20T04:14:18.342648+00:00",
+  "file": "/Users/dominiczhang/Documents/project/app/openBKN/bkn-dsh/release/ci-41507f9/workspaces/supply-new/openbkn-d7462d89-ea40-489e-8419-2f69faf758e3-382-000005_unsettled_PO_PR.csv",
+  "bytes": 14709,
+  "sha256": "38a26be6c20008832be813396240946eadbefce7b8a5255173e099c6d4f0eb08",
+  "oracle": "Independent read-only source SQL; selected row identities, names, quantities and statuses",
+  "scope_limit": "Does not establish that the 140-material graph selection covers all BOM components. Question scope and 3-hop coverage are separate review points.",
+  "records": [
+    {
+      "kind": "采购申请PR",
+      "rows": 25,
+      "documents": 11,
+      "differences": [],
+      "passed": true
+    },
+    {
+      "kind": "采购订单PO",
+      "rows": 45,
+      "documents": 34,
+      "differences": [],
+      "passed": true
+    }
+  ],
+  "passed": true
+}

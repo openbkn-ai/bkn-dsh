@@ -1,0 +1,101 @@
+{
+  "checked_at": "2026-10-20T04:34:12.365073+00:00",
+  "comparison_baseline": "after user-authorized BOM priority correction, before local -19 through -23",
+  "tables": [
+    {
+      "table": "t_kn_capability_binding",
+      "before_rows": 1,
+      "after_rows": 2,
+      "removed_ids": [],
+      "added_ids": [
+        "01a15750-6f6d-7b7b-8ffc-85a0d81cc89c"
+      ],
+      "only_expected_changes": true
+    },
+    {
+      "table": "t_knowledge_network",
+      "before_rows": 2,
+      "after_rows": 2,
+      "removed_ids": [],
+      "added_ids": [],
+      "only_expected_changes": true
+    },
+    {
+      "table": "t_llm_model",
+      "before_rows": 1,
+      "after_rows": 1,
+      "removed_ids": [],
+      "added_ids": [],
+      "only_expected_changes": true
+    },
+    {
+      "table": "t_object_type",
+      "before_rows": 42,
+      "after_rows": 42,
+      "removed_ids": [
+        "supply_ontology_hand_bom",
+        "supply_ontology_hand_po",
+        "supply_ontology_hand_pr"
+      ],
+      "added_ids": [
+        "supply_ontology_hand_bom",
+        "supply_ontology_hand_po",
+        "supply_ontology_hand_pr"
+      ],
+      "only_expected_changes": true
+    },
+    {
+      "table": "t_relation_type",
+      "before_rows": 48,
+      "after_rows": 48,
+      "removed_ids": [],
+      "added_ids": [],
+      "only_expected_changes": true
+    },
+    {
+      "table": "t_skill_release",
+      "before_rows": 3,
+      "after_rows": 3,
+      "removed_ids": [],
+      "added_ids": [],
+      "only_expected_changes": true
+    },
+    {
+      "table": "t_skill_repository",
+      "before_rows": 3,
+      "after_rows": 3,
+      "removed_ids": [],
+      "added_ids": [],
+      "only_expected_changes": true
+    },
+    {
+      "table": "t_small_model",
+      "before_rows": 1,
+      "after_rows": 1,
+      "removed_ids": [],
+      "added_ids": [],
+      "only_expected_changes": true
+    },
+    {
+      "table": "t_tool",
+      "before_rows": 15,
+      "after_rows": 15,
+      "removed_ids": [
+        "01a11f4e-fb6a-7d44-8fd4-f1585cb3a016",
+        "01a11f4e-fe5e-795f-a358-5d1d799293c8"
+      ],
+      "added_ids": [
+        "01a11f4e-fb6a-7d44-8fd4-f1585cb3a016",
+        "01a11f4e-fe5e-795f-a358-5d1d799293c8"
+      ],
+      "only_expected_changes": true
+    }
+  ],
+  "only_expected_changes": true,
+  "unexpected": [],
+  "expected_change_purpose": {
+    "t_tool": "Same existing BOM/inventory Function bodies and descriptors; IDs preserved",
+    "t_object_type": "BOM/PR/PO comment and update_time only; schemas, keys, data sources and bindings preserved",
+    "t_kn_capability_binding": "One additive read-only layered_inventory binding; existing BOM binding preserved"
+  }
+}

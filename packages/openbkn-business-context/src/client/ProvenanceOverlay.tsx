@@ -1,16 +1,18 @@
+import { useDialogFocus } from './use-dialog-focus.ts'
+import { NativeProvenancePanel } from './NativeProvenancePanel.tsx'
 import { useOpenBknTranslation } from './locale.tsx'
 import { translateChinese, type OpenBknTranslate } from './messages.ts'
-import { useEffect, useRef, useState, type ReactNode } from 'react'
+import { useEffect, useState, type ReactNode } from 'react'
 import type { HostObservable, InjectFace, PropsRuntime } from '@deepseek-ai/dsh-client-ui-slots'
 import { buildBusinessGraphModel, businessGraphGeometry } from '../business-graph-model.ts'
 import { foldTimeline, type TimelineFoldGroup } from '../timeline-fold.ts'
 import type { ProvenanceBusinessView, ProvenanceDegradation, ProvenanceHandle, ProvenanceTimelineNode, ProvenanceView } from '../types.ts'
 import type {} from '@deepseek-ai/dsh-client-ui-layout/client'
 
-type Tab = 'execution' | 'graph' | 'evidence'
+type Tab = 'events' | 'evidence'
 
 export interface ProvenanceOverlayState {
-  readonly open?: boolean
+  readonly requestId?: number
   readonly sessionId?: string
   readonly messageId?: string
   readonly handle?: ProvenanceHandle
@@ -23,6 +25,7 @@ export class ProvenanceOverlayController implements HostObservable<ProvenanceOve
   private state: ProvenanceOverlayState = {}
   private readonly listeners = new Set<() => void>()
   private restoreFocus: FocusTarget | undefined
+  private requestId = 0
 
   getSnapshot = (): ProvenanceOverlayState => this.state
   subscribe = (listener: () => void): (() => void) => {
@@ -31,15 +34,12 @@ export class ProvenanceOverlayController implements HostObservable<ProvenanceOve
   }
   open(sessionId: string, messageId: string, handle: ProvenanceHandle, restoreFocus?: FocusTarget): void {
     this.restoreFocus = restoreFocus
-    // Reopening the same immutable turn preserves its loaded view and tab.
-    const sameTurn = this.state.sessionId === sessionId && this.state.messageId === messageId
-      && JSON.stringify(this.state.handle) === JSON.stringify(handle)
-    this.publish(sameTurn ? { ...this.state, open: true } : { open: true, sessionId, messageId, handle })
+    this.publish({ sessionId, messageId, handle, requestId: ++this.requestId })
   }
   close(): void {
     const target = this.restoreFocus
     this.restoreFocus = undefined
-    this.publish({ ...this.state, open: false })
+    this.publish({})
     target?.focus()
   }
   private publish(state: ProvenanceOverlayState): void {
@@ -50,7 +50,7 @@ export class ProvenanceOverlayController implements HostObservable<ProvenanceOve
 
 export interface ProvenanceOverlayInjected {
   hooks: { provenanceOverlay: ProvenanceOverlayController }
-  load(sessionId: string, messageId: string): Promise<ProvenanceView | undefined>
+  load(sessionId: string, messageId: string, signal?: AbortSignal): Promise<ProvenanceView | undefined>
   close(): void
 }
 
@@ -61,40 +61,41 @@ export function ProvenanceOverlay({ useProvenanceOverlay, load, close }: Provena
   const t = useOpenBknTranslation()
 
   const state = useProvenanceOverlay((value: ProvenanceOverlayState) => value)
-  const [tab, setTab] = useState<Tab>('execution')
-  const [view, setView] = useState<ProvenanceView | undefined>()
-  const [loading, setLoading] = useState(false)
-  const [failed, setFailed] = useState(false)
-  const dialog = useRef<HTMLElement>(null)
+  const requestKey = JSON.stringify([state.sessionId,state.messageId,state.requestId])
+  const [selectedTab, setTab] = useState<Tab>('events')
+  const [result, setResult] = useState<{key:string;phase:'loading'|'ready'|'failed';view?:ProvenanceView}>()
+  // Ownership is checked during render: an effect cannot hide old content before its first commit.
+  const current = result?.key === requestKey ? result : undefined
+  const view = current?.view
+  const tab = current === undefined ? 'events' : selectedTab
+  const loading = current === undefined || current.phase === 'loading'
+  const dialog = useDialogFocus(state.handle !== undefined, close)
   useEffect(() => {
     if (state.handle === undefined || state.sessionId === undefined || state.messageId === undefined) return
     let active = true
-    setTab('execution'); setView(undefined); setFailed(false); setLoading(true)
-    void load(state.sessionId, state.messageId).then(next => {
-      if (active) setView(next)
+    const request = new AbortController()
+    setTab('events'); setResult({key:requestKey,phase:'loading'})
+    void load(state.sessionId, state.messageId, request.signal).then(next => {
+      if (active) setResult({key:requestKey,phase:'ready',view:next})
     }).catch(() => {
       // Platform facts degrade inside the view; reaching here means the turn
       // record itself could not be read, which stays a whole-panel failure.
-      if (active) setFailed(true)
-    }).finally(() => {
-      if (active) setLoading(false)
+      if (active) setResult({key:requestKey,phase:'failed'})
     })
-    return () => { active = false }
-  }, [load, state.handle, state.messageId, state.sessionId])
-  useEffect(() => {
-    if (!state.open || state.handle === undefined) return
-    dialog.current?.focus()
-    const onKeyDown = (event: KeyboardEvent) => { if (event.key === 'Escape') close() }
-    window.addEventListener('keydown', onKeyDown)
-    return () => window.removeEventListener('keydown', onKeyDown)
-  }, [close, state.handle, state.open])
+    return () => { active = false; request.abort() }
+  }, [load, state.handle, state.messageId, state.sessionId, requestKey])
   if (state.handle === undefined) return null
 
-  return <div hidden={!state.open} role="presentation" onMouseDown={close} style={{ ...backdropStyle, display: state.open ? 'grid' : 'none' }}>
+  return <div role="presentation" onMouseDown={close} style={backdropStyle}>
     <section ref={dialog} tabIndex={-1} role="dialog" aria-modal="true" aria-label={t('provenanceLabel')} onMouseDown={event => event.stopPropagation()} style={dialogStyle}>
       <header style={headerStyle}><div><div style={eyebrowStyle}>{t('provenanceEyebrow')}</div><h2 style={{ margin: '4px 0 0', fontSize: 28 }}>{t('businessProvenance')}</h2></div><button type="button" aria-label={t('close')} onClick={close} style={closeStyle}>×</button></header>
-      <nav aria-label={t('provenanceViews')} style={tabBarStyle}><TabButton active={tab === 'execution'} onClick={() => setTab('execution')}>{t('executionProvenance')}</TabButton><TabButton active={tab === 'graph'} onClick={() => setTab('graph')}>{t('businessContextGraph')}</TabButton><TabButton active={tab === 'evidence'} onClick={() => setTab('evidence')}>{t('evidenceChain')}</TabButton></nav>
-      <main style={{ padding: 28 }}>{loading ? <Loading /> : failed || view === undefined ? <LoadFailed /> : tab === 'execution' ? <Execution handle={state.handle} view={view} /> : tab === 'graph' ? <BusinessGraph view={view} /> : <EvidenceChain view={view} />}</main>
+      <nav aria-label={t('provenanceViews')} style={tabBarStyle}><TabButton active={tab === 'events'} onClick={() => setTab('events')}>{t('nativeEvents')}</TabButton><TabButton active={tab === 'evidence'} onClick={() => setTab('evidence')}>{t('evidenceChain')}</TabButton></nav>
+      <main style={{ padding: 24 }}>{loading ? <Loading /> : current?.phase === 'failed' || view === undefined ? <LoadFailed /> : <>
+        <NativeProvenancePanel key={requestKey} view={view} tab={tab} onTabChange={setTab} />
+        <details style={{ marginTop: 24 }}><summary>{t('nativeHistoricalRecords')}</summary>
+          <Execution handle={state.handle} view={view} /><BusinessGraph view={view} /><EvidenceChain view={view} />
+        </details>
+      </>}</main>
     </section>
   </div>
 }
@@ -104,14 +105,14 @@ function Execution({ handle, view }: { handle: ProvenanceHandle; view: Provenanc
 
   const operationsDegradation = view.sources.degraded.find(entry => entry.pane === 'operations')
   return <div style={{ display: 'grid', gap: 20 }}>
-    <section style={summaryStyle}><Metric label={t('interactionID')} value={handle.interactionId ?? t('notRecorded')} mono /><Metric label={t('executionStatus')} value={view.execution.status === '未记录' ? t('notRecorded') : view.execution.status ?? handle.status} /><Metric label={t('timelineNodes')} value={String(view.timeline.length)} /></section>
+    <section style={summaryStyle}><Metric label="Interaction ID" value={handle.interactionId ?? t('notRecorded')} mono /><Metric label={t('executionStatus')} value={view.execution.status === '未记录' ? t('notRecorded') : view.execution.status ?? handle.status} /><Metric label={t('timelineNodes')} value={String(view.timeline.length)} /></section>
     <section style={{ display: 'grid', gap: 10 }}>
       <PaneHeading badge={<SourceBadge label={t('localSession')} mark={handle.partial ? 'partial' : undefined} />} title={t('executionTimeline')} note={t('reconstructedFromLocalSessionEventsIndependentlyOfPlatform')} />
       {view.timeline.length === 0 ? <Empty text={t('thereAreNotEnoughSessionEventsToReconstruct')} /> : <Timeline nodes={view.timeline} />}
     </section>
     <section style={{ display: 'grid', gap: 10 }}>
       <PaneHeading badge={<SourceBadge label={operationsDegradation === undefined ? t('platform') : operationsDegradation.reason === 'result-too-large' ? t('platformNotDisplayed') : t('platformUnavailable')} mark={operationsDegradation?.reason} />} title={t('platformExecutionFacts')} note={operationsDegradation === undefined ? t('operationStatusDurationAndRequestTraceReceiptReferences') : undefined} />
-      {operationsDegradation !== undefined ? <DegradedPane degradation={operationsDegradation} /> : view.execution.operations.length === 0 ? <Empty text={t('noDisplayableOperationFactsWereRecordedForThis')} /> : <div style={timelineStyle}>{view.execution.operations.map((operation, index) => <article key={operation.id} style={operationStyle}><div style={timelineIndexStyle}>{String(index + 1).padStart(2, '0')}</div><div style={{ display: 'grid', gap: 7 }}><div style={{ display: 'flex', justifyContent: 'space-between', gap: 12 }}><strong>{operation.label}</strong><Status value={operation.status} /></div><span style={mutedStyle}>{[operation.protocol, operation.startedAt, operation.finishedAt].filter(Boolean).join(' · ')}</span><div style={referenceRowStyle}>{operation.requestId === undefined ? null : <Reference label={t('requestReference')} value={operation.requestId} />}{operation.traceId === undefined ? null : <Reference label={t('traceReference')} value={operation.traceId} />}{operation.receiptId === undefined ? null : <Reference label={t('receiptReference')} value={operation.receiptId} />}</div></div></article>)}</div>}
+      {operationsDegradation !== undefined ? <DegradedPane degradation={operationsDegradation} /> : view.execution.operations.length === 0 ? <Empty text={t('noDisplayableOperationFactsWereRecordedForThis')} /> : <div style={timelineStyle}>{view.execution.operations.map((operation, index) => <article key={operation.id} style={operationStyle}><div style={timelineIndexStyle}>{String(index + 1).padStart(2, '0')}</div><div style={{ display: 'grid', gap: 7 }}><div style={{ display: 'flex', justifyContent: 'space-between', gap: 12 }}><strong>{operation.label}</strong><Status value={operation.status} /></div><span style={mutedStyle}>{[operation.protocol, operation.startedAt, operation.finishedAt].filter(Boolean).join(' · ')}</span><div style={referenceRowStyle}>{operation.requestId === undefined ? null : <Reference label={t('referenceRequest')} value={operation.requestId} />}{operation.traceId === undefined ? null : <Reference label={t('referenceTrace')} value={operation.traceId} />}{operation.receiptId === undefined ? null : <Reference label={t('referenceReceipt')} value={operation.receiptId} />}</div></div></article>)}</div>}
     </section>
   </div>
 }
@@ -125,7 +126,6 @@ function TimelineRow({ group }: { group: TimelineFoldGroup }) {
 
   const node = group.nodes[0]!
   const folded = group.nodes.length > 1
-  const summary = timelineSummary(node, t)
   if (node.kind === 'question' || node.kind === 'answer') {
     return <article style={{ ...timelineNodeStyle, borderStyle: 'dashed' }}>
       <span style={kindChipStyle(node.kind)}>{node.kind === 'question' ? t('question') : t('answer')}</span>
@@ -139,20 +139,12 @@ function TimelineRow({ group }: { group: TimelineFoldGroup }) {
       <div style={{ display: 'flex', gap: 10, alignItems: 'baseline', flexWrap: 'wrap' as const }}>
         <strong style={{ overflowWrap: 'anywhere' as const }}>{node.tool}{folded ? ` ×${group.nodes.length}` : ''}</strong>
         {node.outcome === 'error' ? <span style={{ color: '#b42318', fontSize: 13, fontWeight: 700 }}>error</span> : null}
-        {node.platform === undefined ? null : <span style={referenceRowStyle}>{node.platform.operationId === undefined ? null : <Reference label={t('operationReference')} value={node.platform.operationId} />}{node.platform.receiptId === undefined ? null : <Reference label={t('receiptReference')} value={node.platform.receiptId} />}{node.platform.status === undefined ? null : <Reference label={t('statusReference')} value={node.platform.status} />}</span>}
+        {node.platform === undefined ? null : <span style={referenceRowStyle}>{node.platform.operationId === undefined ? null : <Reference label={t('referenceOperation')} value={node.platform.operationId} />}{node.platform.receiptId === undefined ? null : <Reference label={t('referenceReceipt')} value={node.platform.receiptId} />}{node.platform.status === undefined ? null : <Reference label={t('referenceStatus')} value={node.platform.status} />}</span>}
       </div>
-      {summary === undefined ? null : <span style={mutedStyle}>{summary}</span>}
+      {node.summary === undefined ? null : <span style={mutedStyle}>{node.summary}</span>}
     </div>
     <span style={durationStyle}>{node.durationMs === undefined ? t('notReturned') : formatDuration(node.durationMs)}</span>
   </article>
-}
-
-/** Translate the plugin's closed count suffix; question, answer and external text stay verbatim. */
-function timelineSummary(node: ProvenanceTimelineNode, t: OpenBknTranslate): string | undefined {
-  if (node.kind !== 'managed' || node.tool === undefined || node.summary === undefined) return node.summary
-  const prefix = `${node.tool} · `
-  const match = node.summary.startsWith(prefix) ? /^(\d+) 项$/u.exec(node.summary.slice(prefix.length)) : null
-  return match === null ? node.summary : t('toolResultCount', { p0: node.tool, p1: match[1] })
 }
 
 function BusinessGraph({ view }: { view: ProvenanceView }) {
@@ -206,7 +198,7 @@ function EvidenceChain({ view }: { view: ProvenanceView }) {
       <div style={timelineIndexStyle}>{String(index + 1).padStart(2, '0')}</div>
       <div style={{ display: 'grid', gap: 7 }}>
         <div style={{ display: 'flex', justifyContent: 'space-between', gap: 12 }}><strong style={{ overflowWrap: 'anywhere' as const }}>{receipt.receiptId}</strong><Status value={receipt.status} /></div>
-        <span style={mutedStyle}>{[receipt.toolLabel, receipt.operationId === undefined ? undefined : t('operationID', { id: receipt.operationId }), receipt.source === 'platform' ? t('sourcePlatform') : t('sourceMCPResult')].filter(Boolean).join(' · ')}</span>
+        <span style={mutedStyle}>{[receipt.toolLabel, receipt.operationId === undefined ? undefined : `operation ${receipt.operationId}`, receipt.source === 'platform' ? t('sourcePlatform') : t('sourceMCPResult')].filter(Boolean).join(' · ')}</span>
         {receipt.verifyHint === undefined ? null : <code style={asideCodeStyle}>{receipt.verifyHint}</code>}
       </div>
     </article>)}</div>
@@ -342,7 +334,7 @@ const backdropStyle = { pointerEvents: 'auto' as const, position: 'fixed' as con
 const dialogStyle = { width: 'min(1280px, 100%)', minHeight: 560, maxHeight: 'min(840px, calc(100vh - 40px))', overflow: 'auto' as const, borderRadius: 16, background: '#fff', boxShadow: '0 24px 70px rgb(15 23 42 / 28%)', color: '#172033' }
 const headerStyle = { display: 'flex', alignItems: 'start', justifyContent: 'space-between', padding: '26px 28px 18px', borderBottom: '1px solid #e6eaf0' }
 const eyebrowStyle = { color: '#087d72', fontSize: 12, fontWeight: 750, letterSpacing: '0.12em' }
-const closeStyle = { border: '1px solid #d9e0ea', borderRadius: 9, width: 42, height: 42, background: '#fff', color: '#172033', fontSize: 30, lineHeight: 1, cursor: 'pointer' }
+const closeStyle = { border: '1px solid #d9e0ea', borderRadius: 9, width: 42, height: 42, background: '#fff', color: '#374151', fontSize: 30, lineHeight: 1, cursor: 'pointer' }
 const tabBarStyle = { display: 'flex', gap: 12, padding: '0 20px', borderBottom: '1px solid #e6eaf0' }
 const mutedStyle = { color: '#64748b', fontSize: 14, margin: 0, lineHeight: 1.55 }
 const summaryStyle = { display: 'grid', gridTemplateColumns: 'minmax(0, 2fr) repeat(2, minmax(0, 1fr))', gap: 1, overflow: 'hidden', border: '1px solid #e1e8ee', borderRadius: 12, background: '#e1e8ee' }
@@ -355,7 +347,7 @@ const sourceBadgeStyle = { padding: '3px 8px', borderRadius: 6, background: '#e7
 const referenceRowStyle = { display: 'flex', flexWrap: 'wrap' as const, gap: 8 }
 const referenceStyle = { display: 'inline-flex', alignItems: 'baseline', gap: 5, padding: '4px 7px', borderRadius: 6, background: '#f1f5f9', color: '#475569', maxWidth: '100%', overflowWrap: 'anywhere' as const }
 const emptyStyle = { display: 'grid', gap: 12, minHeight: 250, placeContent: 'center', padding: 28, border: '1px dashed #cbd5e1', borderRadius: 12, color: '#64748b', textAlign: 'center' as const, lineHeight: 1.65 }
-const graphShellStyle = { display: 'grid', gridTemplateColumns: 'minmax(0, 1fr) 260px', minHeight: 410, border: '1px solid #e1e8ee', borderRadius: 14, overflow: 'hidden' }
+const graphShellStyle = { display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(min(260px, 100%), 1fr))', minHeight: 410, border: '1px solid #e1e8ee', borderRadius: 14, overflow: 'hidden' }
 const graphCanvasStyle = { position: 'relative' as const, padding: 24, backgroundImage: 'radial-gradient(#dce5ee 1px, transparent 1px)', backgroundSize: '20px 20px' }
 const graphAsideStyle = { display: 'grid', alignContent: 'start', gap: 14, padding: 24, borderLeft: '1px solid #e1e8ee', background: '#fff' }
 const legendStyle = { display: 'flex', flexWrap: 'wrap' as const, gap: 14, width: 'fit-content', padding: '8px 10px', borderRadius: 7, background: '#fff', border: '1px solid #e1e8ee', color: '#64748b', fontSize: 12 }

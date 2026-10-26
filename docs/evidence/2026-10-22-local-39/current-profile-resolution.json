@@ -1,0 +1,54 @@
+{
+  "checkedAt": "2026-10-22T03:19:05.304Z",
+  "kind": "read-only package resolution; not a Host runtime test",
+  "rows": [
+    {
+      "key": "desktop-old",
+      "pluginVersion": "0.2.0-rc.2-openbkn.0.2.0-29",
+      "schemasteryDependency": "^3.18.4",
+      "schemasteryPeer": null,
+      "profileSchemaVersion": "3.18.5",
+      "profileSchemaRealpath": "/Users/dominiczhang/Documents/project/app/openBKN/bkn-dsh/release/local-32/desktop/0.2.0-rc.2/home/profiles/desktop/node_modules/@deepseek-ai/schemastery/package.json",
+      "hostRootSchemaVersion": null,
+      "hostRootSchemaRealpath": null,
+      "sameSchemaRealpath": null,
+      "runtimeImportedInThisCheck": false
+    },
+    {
+      "key": "desktop-new",
+      "pluginVersion": "0.2.0-rc.2-openbkn.0.2.0-29",
+      "schemasteryDependency": "^3.18.4",
+      "schemasteryPeer": null,
+      "profileSchemaVersion": "3.18.5",
+      "profileSchemaRealpath": "/Users/dominiczhang/Documents/project/app/openBKN/bkn-dsh/release/local-32/desktop/0.2.1-rc.2/home/profiles/desktop/node_modules/@deepseek-ai/schemastery/package.json",
+      "hostRootSchemaVersion": null,
+      "hostRootSchemaRealpath": null,
+      "sameSchemaRealpath": null,
+      "runtimeImportedInThisCheck": false
+    },
+    {
+      "key": "npm-old",
+      "pluginVersion": "0.2.0-rc.2-openbkn.0.2.0-29",
+      "schemasteryDependency": "^3.18.4",
+      "schemasteryPeer": null,
+      "profileSchemaVersion": "3.18.5",
+      "profileSchemaRealpath": "/Users/dominiczhang/Documents/project/app/openBKN/bkn-dsh/release/local-37/npm-0.2.0-rc.2/home/profiles/web/node_modules/@deepseek-ai/schemastery/package.json",
+      "hostRootSchemaVersion": "3.18.4",
+      "hostRootSchemaRealpath": "/Users/dominiczhang/Documents/project/app/openBKN/bkn-dsh/release/local-37/npm-0.2.0-rc.2/node_modules/@deepseek-ai/schemastery/package.json",
+      "sameSchemaRealpath": false,
+      "runtimeImportedInThisCheck": false
+    },
+    {
+      "key": "npm-new",
+      "pluginVersion": "0.2.0-rc.2-openbkn.0.2.0-29",
+      "schemasteryDependency": "^3.18.4",
+      "schemasteryPeer": null,
+      "profileSchemaVersion": "3.18.5",
+      "profileSchemaRealpath": "/Users/dominiczhang/Documents/project/app/openBKN/bkn-dsh/release/local-37/npm-0.2.1-rc.2/home/profiles/web/node_modules/@deepseek-ai/schemastery/package.json",
+      "hostRootSchemaVersion": "3.18.5",
+      "hostRootSchemaRealpath": "/Users/dominiczhang/Documents/project/app/openBKN/bkn-dsh/release/local-37/npm-0.2.1-rc.2/node_modules/@deepseek-ai/schemastery/package.json",
+      "sameSchemaRealpath": false,
+      "runtimeImportedInThisCheck": false
+    }
+  ]
+}

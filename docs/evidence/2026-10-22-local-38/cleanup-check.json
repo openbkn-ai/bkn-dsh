@@ -1,0 +1,76 @@
+{
+  "checkedAt": "2026-10-22T03:03:02.638356+00:00",
+  "restored": [
+    {
+      "key": "desktop-old",
+      "originalNonCredentialFilesUnchanged": {
+        "profiles/desktop/cordis.patch.yml": true,
+        "profiles/desktop/package.json": true,
+        "profiles/desktop/pnpm-lock.yaml": true,
+        "storages/openbkn_workspace_bindings.json": true
+      },
+      "taskCredentialUpdatedByAuthorizedRefresh": true,
+      "oldCredentialsRolledBack": false,
+      "sessionsOrTracesDeleted": false
+    },
+    {
+      "key": "desktop-new",
+      "originalNonCredentialFilesUnchanged": {
+        "profiles/desktop/cordis.patch.yml": true,
+        "profiles/desktop/package.json": true,
+        "profiles/desktop/pnpm-lock.yaml": true,
+        "storages/openbkn_workspace_bindings.json": true
+      },
+      "taskCredentialUpdatedByAuthorizedRefresh": true,
+      "oldCredentialsRolledBack": false,
+      "sessionsOrTracesDeleted": false
+    },
+    {
+      "key": "npm-old",
+      "originalNonCredentialFilesUnchanged": {
+        "profiles/web/cordis.patch.yml": true,
+        "profiles/web/package.json": true,
+        "profiles/web/pnpm-lock.yaml": true
+      },
+      "taskCredentialUpdatedByAuthorizedRefresh": true,
+      "oldCredentialsRolledBack": false,
+      "sessionsOrTracesDeleted": false
+    },
+    {
+      "key": "npm-new",
+      "originalNonCredentialFilesUnchanged": {
+        "profiles/web/cordis.patch.yml": true,
+        "profiles/web/package.json": true,
+        "profiles/web/pnpm-lock.yaml": true
+      },
+      "taskCredentialUpdatedByAuthorizedRefresh": true,
+      "oldCredentialsRolledBack": false,
+      "sessionsOrTracesDeleted": false
+    }
+  ],
+  "installedCandidateFilesMatchedPerHost": 82,
+  "candidateSha256": "dec3417310b4e50a80f987c69f573e41d78725ae2caabdd6ebfbf00b8a3914f6",
+  "personalDshFilesUnchanged": {
+    "/Users/dominiczhang/.dsh/.credentials.yaml": true,
+    "/Users/dominiczhang/.dsh/profiles/desktop/cordis.patch.yml": true,
+    "/Users/dominiczhang/.dsh/profiles/desktop/cordis.yml": true,
+    "/Users/dominiczhang/.dsh/profiles/desktop/package.json": true,
+    "/Users/dominiczhang/.dsh/profiles/desktop/pnpm-workspace.yaml": true
+  },
+  "ownedNativeAppsAndBackendsExited": true,
+  "ownedNpmAndFixtureExited": true,
+  "soakAndPostCheckWakeGuardsExited": true,
+  "portsReleased": [
+    19387,
+    56348,
+    38540,
+    38541,
+    56196
+  ],
+  "cleanupFirstAttemptPortAssertionFailed": true,
+  "relaunchObservation": "cleanup-relaunch-observation.json",
+  "unexpectedRelaunchClosed": true,
+  "systemSettingsChanged": false,
+  "platformReplaced": false,
+  "deletedSessionsOrEvidence": false
+}

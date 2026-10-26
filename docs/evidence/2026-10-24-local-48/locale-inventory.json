@@ -1,0 +1,2663 @@
+{
+  "scope": "All current plugin client files including new native provenance, controllers and settings. Static inventory; human readability and Host rendering are separate.",
+  "dictionaryKeys": 302,
+  "englishKeys": 302,
+  "files": [
+    {
+      "path": "packages/openbkn-business-context/src/client/BoundNetworkBadge.tsx",
+      "sha256": "bab5ea48f3657d0e76a12d7382c7a282a0f4d432345eec54da2dc2b473662807",
+      "translationKeys": [
+        "bindingHint"
+      ],
+      "translationCalls": [
+        {
+          "line": 23,
+          "key": "bindingHint",
+          "known": true
+        }
+      ],
+      "jsxText": [
+        {
+          "line": 27,
+          "text": "B"
+        }
+      ],
+      "literalAttributes": []
+    },
+    {
+      "path": "packages/openbkn-business-context/src/client/CliSetupControl.tsx",
+      "sha256": "027d55d4ec9740ba7eb9bcf70a8661d2adb6e9940754c36fc31c3fffc1425f00",
+      "translationKeys": [
+        "cLIInstallationVersion",
+        "cLIInstallationVersionText1",
+        "checking",
+        "chooseTheVersionMatchingYourPlatformUseAn",
+        "detectAndInstallCLI",
+        "installing",
+        "selectAVersion"
+      ],
+      "translationCalls": [
+        {
+          "line": 35,
+          "key": "cLIInstallationVersion",
+          "known": true
+        },
+        {
+          "line": 35,
+          "key": "cLIInstallationVersionText1",
+          "known": true
+        },
+        {
+          "line": 36,
+          "key": "selectAVersion",
+          "known": true
+        },
+        {
+          "line": 42,
+          "key": "checking",
+          "known": true
+        },
+        {
+          "line": 42,
+          "key": "installing",
+          "known": true
+        },
+        {
+          "line": 42,
+          "key": "detectAndInstallCLI",
+          "known": true
+        },
+        {
+          "line": 44,
+          "key": "chooseTheVersionMatchingYourPlatformUseAn",
+          "known": true
+        }
+      ],
+      "jsxText": [
+        {
+          "line": 37,
+          "text": "0.1.5"
+        },
+        {
+          "line": 37,
+          "text": "0.2.0"
+        }
+      ],
+      "literalAttributes": []
+    },
+    {
+      "path": "packages/openbkn-business-context/src/client/NativeProvenancePanel.tsx",
+      "sha256": "a7326fbc99571fe264783e7af28a668f1a553214af83e0660dd41de0cfeae486",
+      "translationKeys": [
+        "answer",
+        "nativeAccessDenied",
+        "nativeAllProcessing",
+        "nativeAttempt",
+        "nativeAuthRequired",
+        "nativeBusinessProcessing",
+        "nativeConclusions",
+        "nativeEvents",
+        "nativeEvidenceNodes",
+        "nativeExecutionGraph",
+        "nativeExecutionSteps",
+        "nativeExplanationRecord",
+        "nativeExplanationTextBoundary",
+        "nativeExplanationTextNotDisclosed",
+        "nativeInput",
+        "nativeIntegrityUnavailable",
+        "nativeInvalid",
+        "nativeInvalidRecords",
+        "nativeNoClaims",
+        "nativeNoEvents",
+        "nativeNoLinkedFunction",
+        "nativeNoNodes",
+        "nativeNoSteps",
+        "nativeNotDisclosed",
+        "nativeNotGenerated",
+        "nativeOpenReference",
+        "nativeOriginalRecord",
+        "nativeOriginalTextNotDisclosed",
+        "nativeOutput",
+        "nativePlatformValidation",
+        "nativeProcessing",
+        "nativeQuestionPair",
+        "nativeRecordIntegrity",
+        "nativeRecordedAnswer",
+        "nativeRelatedProcesses",
+        "nativeRelationBoundary",
+        "nativeRelationshipRecords",
+        "nativeSchemaSources",
+        "nativeSelectProcessing",
+        "nativeSelectionBoundary",
+        "nativeStates",
+        "nativeTechnicalDetails",
+        "nativeTooLarge",
+        "nativeUnavailable",
+        "nativeUndisclosedRefs",
+        "nativeUnresolvedReference",
+        "noProvenanceRecordedTraceDisabled",
+        "noProvenanceRecordedTraceUnavailable",
+        "question"
+      ],
+      "translationCalls": [
+        {
+          "line": 41,
+          "key": "nativeRecordedAnswer",
+          "known": true
+        },
+        {
+          "line": 43,
+          "key": "noProvenanceRecordedTraceDisabled",
+          "known": true
+        },
+        {
+          "line": 43,
+          "key": "noProvenanceRecordedTraceUnavailable",
+          "known": true
+        },
+        {
+          "line": 43,
+          "key": "nativeNotGenerated",
+          "known": true
+        },
+        {
+          "line": 44,
+          "key": "nativeStates",
+          "known": true
+        },
+        {
+          "line": 45,
+          "key": "nativeStates",
+          "known": true
+        },
+        {
+          "line": 46,
+          "key": "nativeQuestionPair",
+          "known": true
+        },
+        {
+          "line": 50,
+          "key": "nativeInvalidRecords",
+          "known": true
+        },
+        {
+          "line": 51,
+          "key": "nativeRecordIntegrity",
+          "known": true
+        },
+        {
+          "line": 52,
+          "key": "nativeIntegrityUnavailable",
+          "known": true
+        },
+        {
+          "line": 54,
+          "key": "nativeEvents",
+          "known": true
+        },
+        {
+          "line": 55,
+          "key": "nativeTechnicalDetails",
+          "known": true
+        },
+        {
+          "line": 55,
+          "key": "nativeTechnicalDetails",
+          "known": true
+        },
+        {
+          "line": 56,
+          "key": "nativeNoEvents",
+          "known": true
+        },
+        {
+          "line": 56,
+          "key": "nativeEvents",
+          "known": true
+        },
+        {
+          "line": 60,
+          "key": "nativeRelatedProcesses",
+          "known": true
+        },
+        {
+          "line": 61,
+          "key": "nativeAttempt",
+          "known": true
+        },
+        {
+          "line": 63,
+          "key": "nativeExecutionSteps",
+          "known": true
+        },
+        {
+          "line": 64,
+          "key": "nativeExecutionSteps",
+          "known": true
+        },
+        {
+          "line": 65,
+          "key": "nativeAttempt",
+          "known": true
+        },
+        {
+          "line": 66,
+          "key": "nativeNoSteps",
+          "known": true
+        },
+        {
+          "line": 67,
+          "key": "nativeExecutionGraph",
+          "known": true
+        },
+        {
+          "line": 67,
+          "key": "nativeExecutionGraph",
+          "known": true
+        },
+        {
+          "line": 69,
+          "key": "nativeConclusions",
+          "known": true
+        },
+        {
+          "line": 70,
+          "key": "nativeRelationBoundary",
+          "known": true
+        },
+        {
+          "line": 71,
+          "key": "nativeNoClaims",
+          "known": true
+        },
+        {
+          "line": 71,
+          "key": "nativeConclusions",
+          "known": true
+        },
+        {
+          "line": 74,
+          "key": "nativeRelationBoundary",
+          "known": true
+        },
+        {
+          "line": 75,
+          "key": "nativeProcessing",
+          "known": true
+        },
+        {
+          "line": 77,
+          "key": "nativeProcessing",
+          "known": true
+        },
+        {
+          "line": 80,
+          "key": "nativeEvidenceNodes",
+          "known": true
+        },
+        {
+          "line": 81,
+          "key": "nativeEvidenceNodes",
+          "known": true
+        },
+        {
+          "line": 82,
+          "key": "nativeSchemaSources",
+          "known": true
+        },
+        {
+          "line": 82,
+          "key": "nativeSchemaSources",
+          "known": true
+        },
+        {
+          "line": 83,
+          "key": "nativeRelationshipRecords",
+          "known": true
+        },
+        {
+          "line": 84,
+          "key": "nativeRelationshipRecords",
+          "known": true
+        },
+        {
+          "line": 88,
+          "key": "nativeTechnicalDetails",
+          "known": true
+        },
+        {
+          "line": 88,
+          "key": "nativeExecutionSteps",
+          "known": true
+        },
+        {
+          "line": 90,
+          "key": "nativeRelationshipRecords",
+          "known": true
+        },
+        {
+          "line": 93,
+          "key": "nativeSelectionBoundary",
+          "known": true
+        },
+        {
+          "line": 94,
+          "key": "nativeUndisclosedRefs",
+          "known": true
+        },
+        {
+          "line": 94,
+          "key": "nativeUndisclosedRefs",
+          "known": true
+        },
+        {
+          "line": 94,
+          "key": "nativeUnresolvedReference",
+          "known": true
+        },
+        {
+          "line": 95,
+          "key": "nativeBusinessProcessing",
+          "known": true
+        },
+        {
+          "line": 96,
+          "key": "nativeAllProcessing",
+          "known": true
+        },
+        {
+          "line": 97,
+          "key": "nativeNoLinkedFunction",
+          "known": true
+        },
+        {
+          "line": 98,
+          "key": "nativeAllProcessing",
+          "known": true
+        },
+        {
+          "line": 100,
+          "key": "nativeTechnicalDetails",
+          "known": true
+        },
+        {
+          "line": 110,
+          "key": "nativeOriginalRecord",
+          "known": true
+        },
+        {
+          "line": 111,
+          "key": "nativeOriginalTextNotDisclosed",
+          "known": true
+        },
+        {
+          "line": 114,
+          "key": "nativeExplanationRecord",
+          "known": true
+        },
+        {
+          "line": 114,
+          "key": "nativeExplanationTextBoundary",
+          "known": true
+        },
+        {
+          "line": 115,
+          "key": "nativeExplanationTextNotDisclosed",
+          "known": true
+        },
+        {
+          "line": 121,
+          "key": "question",
+          "known": true
+        },
+        {
+          "line": 122,
+          "key": "answer",
+          "known": true
+        },
+        {
+          "line": 134,
+          "key": "nativeNoNodes",
+          "known": true
+        },
+        {
+          "line": 143,
+          "key": "nativeAttempt",
+          "known": true
+        },
+        {
+          "line": 144,
+          "key": "nativeOpenReference",
+          "known": true
+        },
+        {
+          "line": 145,
+          "key": "nativeUnresolvedReference",
+          "known": true
+        },
+        {
+          "line": 149,
+          "key": "nativePlatformValidation",
+          "known": true
+        },
+        {
+          "line": 157,
+          "key": "nativeSelectProcessing",
+          "known": true
+        },
+        {
+          "line": 158,
+          "key": "nativeInput",
+          "known": true
+        },
+        {
+          "line": 159,
+          "key": "nativeInput",
+          "known": true
+        },
+        {
+          "line": 164,
+          "key": "nativeProcessing",
+          "known": true
+        },
+        {
+          "line": 165,
+          "key": "nativeOutput",
+          "known": true
+        },
+        {
+          "line": 166,
+          "key": "nativeOutput",
+          "known": true
+        },
+        {
+          "line": 170,
+          "key": "nativeSchemaSources",
+          "known": true
+        },
+        {
+          "line": 170,
+          "key": "nativeSchemaSources",
+          "known": true
+        },
+        {
+          "line": 171,
+          "key": "nativeExecutionSteps",
+          "known": true
+        },
+        {
+          "line": 171,
+          "key": "nativeExecutionSteps",
+          "known": true
+        },
+        {
+          "line": 172,
+          "key": "nativeTechnicalDetails",
+          "known": true
+        },
+        {
+          "line": 173,
+          "key": "nativeTechnicalDetails",
+          "known": true
+        },
+        {
+          "line": 180,
+          "key": "nativeTechnicalDetails",
+          "known": true
+        }
+      ],
+      "jsxText": [
+        {
+          "line": 55,
+          "text": "·"
+        },
+        {
+          "line": 55,
+          "text": "·"
+        },
+        {
+          "line": 55,
+          "text": "·"
+        },
+        {
+          "line": 59,
+          "text": "·"
+        },
+        {
+          "line": 61,
+          "text": "·"
+        },
+        {
+          "line": 65,
+          "text": "·"
+        },
+        {
+          "line": 72,
+          "text": "·"
+        },
+        {
+          "line": 72,
+          "text": "·"
+        },
+        {
+          "line": 74,
+          "text": "·"
+        },
+        {
+          "line": 77,
+          "text": ":"
+        },
+        {
+          "line": 78,
+          "text": "·"
+        },
+        {
+          "line": 85,
+          "text": "→"
+        },
+        {
+          "line": 85,
+          "text": "·"
+        },
+        {
+          "line": 88,
+          "text": "Operation:"
+        },
+        {
+          "line": 90,
+          "text": "→"
+        },
+        {
+          "line": 90,
+          "text": "·"
+        },
+        {
+          "line": 101,
+          "text": "Interaction:"
+        },
+        {
+          "line": 160,
+          "text": ":"
+        },
+        {
+          "line": 160,
+          "text": "·"
+        },
+        {
+          "line": 173,
+          "text": "Operation:"
+        },
+        {
+          "line": 180,
+          "text": "·"
+        },
+        {
+          "line": 180,
+          "text": "·"
+        }
+      ],
+      "literalAttributes": []
+    },
+    {
+      "path": "packages/openbkn-business-context/src/client/NativeRecordList.tsx",
+      "sha256": "3db96c99d072817a7d3181940ea1d3147949256198a826c49558ffc7a474e50a",
+      "translationKeys": [
+        "nativeNext",
+        "nativeNextPage",
+        "nativePageRange",
+        "nativePrevious",
+        "nativePreviousPage"
+      ],
+      "translationCalls": [
+        {
+          "line": 24,
+          "key": "nativePageRange",
+          "known": true
+        },
+        {
+          "line": 25,
+          "key": "nativePreviousPage",
+          "known": true
+        },
+        {
+          "line": 25,
+          "key": "nativePrevious",
+          "known": true
+        },
+        {
+          "line": 26,
+          "key": "nativeNextPage",
+          "known": true
+        },
+        {
+          "line": 26,
+          "key": "nativeNext",
+          "known": true
+        }
+      ],
+      "jsxText": [],
+      "literalAttributes": []
+    },
+    {
+      "path": "packages/openbkn-business-context/src/client/OpenBknContextToolView.tsx",
+      "sha256": "247460a5159ad639fb9f42b53dfabc1871cc75be5a1e78909f0db5823ac3bc8b",
+      "translationKeys": [
+        "businessKnowledgeNetworkContextLoaded",
+        "couldNotReadBusinessKnowledgeNetwork",
+        "openBKNBusinessContext",
+        "readingBusinessKnowledgeNetwork"
+      ],
+      "translationCalls": [
+        {
+          "line": 11,
+          "key": "readingBusinessKnowledgeNetwork",
+          "known": true
+        },
+        {
+          "line": 11,
+          "key": "couldNotReadBusinessKnowledgeNetwork",
+          "known": true
+        },
+        {
+          "line": 11,
+          "key": "businessKnowledgeNetworkContextLoaded",
+          "known": true
+        },
+        {
+          "line": 14,
+          "key": "openBKNBusinessContext",
+          "known": true
+        }
+      ],
+      "jsxText": [
+        {
+          "line": 13,
+          "text": "B"
+        }
+      ],
+      "literalAttributes": []
+    },
+    {
+      "path": "packages/openbkn-business-context/src/client/OpenBknDiagnostics.tsx",
+      "sha256": "30b19ebf3697aa690b344a1f95eea8231609e0d3b73aeb2c4ded2a8cf3f5894c",
+      "translationKeys": [
+        "activeRetest",
+        "close",
+        "collectAgain",
+        "created",
+        "diagnostics",
+        "diagnosticsServiceUnavailable",
+        "exportDiagnosticsReport",
+        "failed",
+        "insufficientEvidence",
+        "missingBasicInformationDoesNotImplyAFailure",
+        "mode",
+        "noChecksWereRun",
+        "notRun",
+        "openBKNDiagnostics",
+        "passed",
+        "passiveCollection",
+        "readingDiagnostics",
+        "report",
+        "retry",
+        "theDiagnosticsEntryDidNotStartWithThe"
+      ],
+      "translationCalls": [
+        {
+          "line": 45,
+          "key": "openBKNDiagnostics",
+          "known": true
+        },
+        {
+          "line": 52,
+          "key": "diagnostics",
+          "known": true
+        },
+        {
+          "line": 54,
+          "key": "close",
+          "known": true
+        },
+        {
+          "line": 73,
+          "key": "exportDiagnosticsReport",
+          "known": true
+        },
+        {
+          "line": 78,
+          "key": "retry",
+          "known": true
+        },
+        {
+          "line": 78,
+          "key": "collectAgain",
+          "known": true
+        },
+        {
+          "line": 89,
+          "key": "readingDiagnostics",
+          "known": true
+        },
+        {
+          "line": 94,
+          "key": "diagnosticsServiceUnavailable",
+          "known": true
+        },
+        {
+          "line": 95,
+          "key": "theDiagnosticsEntryDidNotStartWithThe",
+          "known": true
+        },
+        {
+          "line": 103,
+          "key": "report",
+          "known": true
+        },
+        {
+          "line": 103,
+          "key": "created",
+          "known": true
+        },
+        {
+          "line": 103,
+          "key": "mode",
+          "known": true
+        },
+        {
+          "line": 103,
+          "key": "passiveCollection",
+          "known": true
+        },
+        {
+          "line": 103,
+          "key": "activeRetest",
+          "known": true
+        },
+        {
+          "line": 124,
+          "key": "missingBasicInformationDoesNotImplyAFailure",
+          "known": true
+        },
+        {
+          "line": 133,
+          "key": "noChecksWereRun",
+          "known": true
+        }
+      ],
+      "jsxText": [
+        {
+          "line": 51,
+          "text": "OPENBKN"
+        },
+        {
+          "line": 54,
+          "text": "×"
+        },
+        {
+          "line": 157,
+          "text": "●"
+        },
+        {
+          "line": 160,
+          "text": "/"
+        }
+      ],
+      "literalAttributes": []
+    },
+    {
+      "path": "packages/openbkn-business-context/src/client/OpenBknEntry.tsx",
+      "sha256": "1b4a522aaabca617b3f248b65e3eec48a9fa5c5d6285172b61822d17ee32413d",
+      "translationKeys": [
+        "networksLabel"
+      ],
+      "translationCalls": [
+        {
+          "line": 20,
+          "key": "networksLabel",
+          "known": true
+        }
+      ],
+      "jsxText": [
+        {
+          "line": 38,
+          "text": "B"
+        },
+        {
+          "line": 39,
+          "text": "OpenBKN"
+        }
+      ],
+      "literalAttributes": []
+    },
+    {
+      "path": "packages/openbkn-business-context/src/client/OpenBknOverlay.tsx",
+      "sha256": "68280330e1e95d6f68f726e1c3b05a72c75b8f1302720fcdfaa1d52968bfb0e1",
+      "translationKeys": [
+        "aBusinessTurnIsStillRunningReopenSettings",
+        "advancedSettings",
+        "bindingTheCurrentConversation",
+        "businessKnowledgeNetworks",
+        "cancelSignIn",
+        "chooseABusinessKnowledgeNetworkToContinueOr",
+        "close",
+        "collapse",
+        "completeSignInInTheBrowserCancellingOr",
+        "connectingToOpenBKN",
+        "continueConversation",
+        "diagnostics",
+        "editOpenBKNSettingsForTheCurrentDSHProfile",
+        "enterTheOpenBKNPlatformURLThenSignIn",
+        "failed",
+        "loadMore",
+        "nameIDOrDescription",
+        "networkCount",
+        "networksLabel",
+        "newConversation",
+        "newWorkspace",
+        "noBusinessKnowledgeNetworksAreAvailableForThis",
+        "noLocalWorkspaceLinked",
+        "noMatchingBusinessKnowledgeNetworks",
+        "openBKNCLIExecutablePath",
+        "openBKNCLIExecutablePathCliPath",
+        "openBKNPlatformURL",
+        "platformURL",
+        "readingSettings",
+        "refreshStatus",
+        "retry",
+        "retrySignIn",
+        "saveAndContinue",
+        "saving",
+        "searchBusinessKnowledgeNetworks",
+        "selectItInTheModeMenuBeforeSending",
+        "settings",
+        "signInAndSyncWithOpenBKNCLI",
+        "signInAndSynchronizationSucceeded",
+        "signInWaitCancelledSignInAgainOr",
+        "signInWaitTimedOutPlatformAuthorizationMay",
+        "signInWithTheLocalOpenBKNCLIThe",
+        "standardMode",
+        "theDefaultIsOpenbknIfDSHCannotFind",
+        "thisConfigurationCannotBeEditedCheckForDisabled",
+        "view",
+        "waitingForOpenBKNCLIBrowserAuthorizationAndCredential",
+        "workspaceLinked"
+      ],
+      "translationCalls": [
+        {
+          "line": 47,
+          "key": "networksLabel",
+          "known": true
+        },
+        {
+          "line": 54,
+          "key": "businessKnowledgeNetworks",
+          "known": true
+        },
+        {
+          "line": 57,
+          "key": "settings",
+          "known": true
+        },
+        {
+          "line": 58,
+          "key": "diagnostics",
+          "known": true
+        },
+        {
+          "line": 59,
+          "key": "close",
+          "known": true
+        },
+        {
+          "line": 95,
+          "key": "waitingForOpenBKNCLIBrowserAuthorizationAndCredential",
+          "known": true
+        },
+        {
+          "line": 96,
+          "key": "completeSignInInTheBrowserCancellingOr",
+          "known": true
+        },
+        {
+          "line": 97,
+          "key": "cancelSignIn",
+          "known": true
+        },
+        {
+          "line": 101,
+          "key": "bindingTheCurrentConversation",
+          "known": true
+        },
+        {
+          "line": 101,
+          "key": "connectingToOpenBKN",
+          "known": true
+        },
+        {
+          "line": 111,
+          "key": "signInWithTheLocalOpenBKNCLIThe",
+          "known": true
+        },
+        {
+          "line": 112,
+          "key": "platformURL",
+          "known": true
+        },
+        {
+          "line": 113,
+          "key": "signInWaitTimedOutPlatformAuthorizationMay",
+          "known": true
+        },
+        {
+          "line": 113,
+          "key": "signInWaitCancelledSignInAgainOr",
+          "known": true
+        },
+        {
+          "line": 115,
+          "key": "signInAndSyncWithOpenBKNCLI",
+          "known": true
+        },
+        {
+          "line": 116,
+          "key": "refreshStatus",
+          "known": true
+        },
+        {
+          "line": 126,
+          "key": "retrySignIn",
+          "known": true
+        },
+        {
+          "line": 127,
+          "key": "retry",
+          "known": true
+        },
+        {
+          "line": 135,
+          "key": "signInAndSynchronizationSucceeded",
+          "known": true
+        },
+        {
+          "line": 137,
+          "key": "chooseABusinessKnowledgeNetworkToContinueOr",
+          "known": true
+        },
+        {
+          "line": 137,
+          "key": "standardMode",
+          "known": true
+        },
+        {
+          "line": 137,
+          "key": "selectItInTheModeMenuBeforeSending",
+          "known": true
+        },
+        {
+          "line": 138,
+          "key": "noBusinessKnowledgeNetworksAreAvailableForThis",
+          "known": true
+        },
+        {
+          "line": 140,
+          "key": "searchBusinessKnowledgeNetworks",
+          "known": true
+        },
+        {
+          "line": 141,
+          "key": "searchBusinessKnowledgeNetworks",
+          "known": true
+        },
+        {
+          "line": 145,
+          "key": "nameIDOrDescription",
+          "known": true
+        },
+        {
+          "line": 149,
+          "key": "networkCount",
+          "known": true
+        },
+        {
+          "line": 160,
+          "key": "noMatchingBusinessKnowledgeNetworks",
+          "known": true
+        },
+        {
+          "line": 161,
+          "key": "loadMore",
+          "known": true
+        },
+        {
+          "line": 177,
+          "key": "collapse",
+          "known": true
+        },
+        {
+          "line": 177,
+          "key": "view",
+          "known": true
+        },
+        {
+          "line": 179,
+          "key": "workspaceLinked",
+          "known": true
+        },
+        {
+          "line": 179,
+          "key": "noLocalWorkspaceLinked",
+          "known": true
+        },
+        {
+          "line": 184,
+          "key": "continueConversation",
+          "known": true
+        },
+        {
+          "line": 185,
+          "key": "newConversation",
+          "known": true
+        },
+        {
+          "line": 187,
+          "key": "newWorkspace",
+          "known": true
+        },
+        {
+          "line": 213,
+          "key": "editOpenBKNSettingsForTheCurrentDSHProfile",
+          "known": true
+        },
+        {
+          "line": 213,
+          "key": "enterTheOpenBKNPlatformURLThenSignIn",
+          "known": true
+        },
+        {
+          "line": 216,
+          "key": "openBKNPlatformURL",
+          "known": true
+        },
+        {
+          "line": 216,
+          "key": "openBKNPlatformURL",
+          "known": true
+        },
+        {
+          "line": 219,
+          "key": "advancedSettings",
+          "known": true
+        },
+        {
+          "line": 221,
+          "key": "openBKNCLIExecutablePathCliPath",
+          "known": true
+        },
+        {
+          "line": 221,
+          "key": "openBKNCLIExecutablePath",
+          "known": true
+        },
+        {
+          "line": 223,
+          "key": "theDefaultIsOpenbknIfDSHCannotFind",
+          "known": true
+        },
+        {
+          "line": 227,
+          "key": "readingSettings",
+          "known": true
+        },
+        {
+          "line": 229,
+          "key": "saving",
+          "known": true
+        },
+        {
+          "line": 229,
+          "key": "saveAndContinue",
+          "known": true
+        },
+        {
+          "line": 235,
+          "key": "aBusinessTurnIsStillRunningReopenSettings",
+          "known": true
+        },
+        {
+          "line": 236,
+          "key": "thisConfigurationCannotBeEditedCheckForDisabled",
+          "known": true
+        }
+      ],
+      "jsxText": [
+        {
+          "line": 53,
+          "text": "OPENBKN"
+        },
+        {
+          "line": 59,
+          "text": "×"
+        }
+      ],
+      "literalAttributes": [
+        {
+          "line": 216,
+          "attribute": "placeholder",
+          "text": "https://openbkn.example.com"
+        }
+      ]
+    },
+    {
+      "path": "packages/openbkn-business-context/src/client/ProvenanceOverlay.tsx",
+      "sha256": "4e2e969e9570bdcde457ca088d0a4572d8866bd6d7bd8b9dd18ef779b109c81a",
+      "translationKeys": [
+        "answer",
+        "answerInThisTurn",
+        "businessDomainNotAuthorized",
+        "businessElementsNotYetResolved",
+        "businessObjects",
+        "businessProvenance",
+        "businessProvenanceCouldNotBeRead",
+        "businessReceipts",
+        "businessReference",
+        "checkTheOpenBKNPlatformConnectionAndYourAccount",
+        "close",
+        "communityEdition",
+        "domainDetail",
+        "domainUnauthorized",
+        "enterpriseRequired",
+        "evidenceChain",
+        "executionStatus",
+        "executionTimeline",
+        "failed",
+        "formalProjectionInThisTurn",
+        "formalReferencesInThisTurn",
+        "formalRelationsLabel",
+        "graphContextCount",
+        "graphCounts",
+        "graphFactCount",
+        "graphRelationCount",
+        "graphUndisclosed",
+        "licenseDetail",
+        "lifecycle",
+        "localSession",
+        "logicMetrics",
+        "mCPResult",
+        "managedAccess",
+        "nativeEvents",
+        "nativeHistoricalRecords",
+        "nextCheckThePluginBusinessDomainSettingBdPublic",
+        "nextRetryLaterOrCheckThePlatformConnection",
+        "nextSignInToOpenBKNAgainAndRetry",
+        "nextUpgradeAndActivateAnOpenBKNEnterpriseLicense",
+        "nextUseOpenbknTraceInteractionsOperationsInteractionID",
+        "noBusinessOperationInThisTurnRequiredA",
+        "noDisplayableFormalBKNElementsInThisTurn",
+        "noDisplayableFormalBKNMappingsInThisTurn",
+        "noDisplayableOperationFactsWereRecordedForThis",
+        "noManagedDataToDisplay",
+        "noProvenanceRecordedTraceDisabled",
+        "noProvenanceRecordedTraceUnavailable",
+        "notLocated",
+        "notRecorded",
+        "notReturned",
+        "operationStatusDurationAndRequestTraceReceiptReferences",
+        "partialIdentifiers",
+        "platform",
+        "platformDataTemporarilyUnavailable",
+        "platformExecutionFacts",
+        "platformHint",
+        "platformNotDisplayed",
+        "platformRecordNotFound",
+        "platformRecordTooLargeToDisplay",
+        "platformUnavailable",
+        "platformUnavailableText148",
+        "provenanceEyebrow",
+        "provenanceLabel",
+        "provenanceViews",
+        "question",
+        "questionInThisTurn",
+        "readingBusinessProvenanceForThisTurn",
+        "receiptsAreDurableRecordsOfPersistedBusinessOperations",
+        "reconstructedFromLocalSessionEventsIndependentlyOfPlatform",
+        "recordNotDisclosed",
+        "recordTooLarge",
+        "recorded",
+        "resolutionTool",
+        "signInRequired",
+        "signInRequiredText145",
+        "sourceKnowledgeNetwork",
+        "sourceMCPResult",
+        "sourceOperation",
+        "sourcePlatform",
+        "theOpenBKNPlatformIsTemporarilyUnreachableTryAgain",
+        "thePlatformExplicitlyDisabledTraceCollectionThisTurn",
+        "thePlatformExplicitlyReportedTraceUnavailableThisTurn",
+        "thePlatformTokenIsMissingOrExpiredThis",
+        "theRecordReturnedByThePlatformExceedsThe",
+        "theTimelineIsReconstructedFromLocalEventsPlatform",
+        "thereAreNotEnoughSessionEventsToReconstruct",
+        "thisDeploymentHasNotProvidedAnAuthorizedEnterprise",
+        "thisInteractionDoesNotExistOnTheCurrent",
+        "thisPaneRequiresAnEnterpriseLicense",
+        "timelineNodes",
+        "traceDisabled",
+        "traceNotRecorded"
+      ],
+      "translationCalls": [
+        {
+          "line": 96,
+          "key": "provenanceLabel",
+          "known": true
+        },
+        {
+          "line": 97,
+          "key": "provenanceEyebrow",
+          "known": true
+        },
+        {
+          "line": 97,
+          "key": "businessProvenance",
+          "known": true
+        },
+        {
+          "line": 97,
+          "key": "close",
+          "known": true
+        },
+        {
+          "line": 98,
+          "key": "provenanceViews",
+          "known": true
+        },
+        {
+          "line": 98,
+          "key": "nativeEvents",
+          "known": true
+        },
+        {
+          "line": 98,
+          "key": "evidenceChain",
+          "known": true
+        },
+        {
+          "line": 101,
+          "key": "nativeHistoricalRecords",
+          "known": true
+        },
+        {
+          "line": 114,
+          "key": "notRecorded",
+          "known": true
+        },
+        {
+          "line": 114,
+          "key": "executionStatus",
+          "known": true
+        },
+        {
+          "line": 114,
+          "key": "notRecorded",
+          "known": true
+        },
+        {
+          "line": 114,
+          "key": "timelineNodes",
+          "known": true
+        },
+        {
+          "line": 116,
+          "key": "localSession",
+          "known": true
+        },
+        {
+          "line": 116,
+          "key": "executionTimeline",
+          "known": true
+        },
+        {
+          "line": 116,
+          "key": "reconstructedFromLocalSessionEventsIndependentlyOfPlatform",
+          "known": true
+        },
+        {
+          "line": 117,
+          "key": "thereAreNotEnoughSessionEventsToReconstruct",
+          "known": true
+        },
+        {
+          "line": 120,
+          "key": "platform",
+          "known": true
+        },
+        {
+          "line": 120,
+          "key": "platformNotDisplayed",
+          "known": true
+        },
+        {
+          "line": 120,
+          "key": "platformUnavailable",
+          "known": true
+        },
+        {
+          "line": 120,
+          "key": "platformExecutionFacts",
+          "known": true
+        },
+        {
+          "line": 120,
+          "key": "operationStatusDurationAndRequestTraceReceiptReferences",
+          "known": true
+        },
+        {
+          "line": 121,
+          "key": "noDisplayableOperationFactsWereRecordedForThis",
+          "known": true
+        },
+        {
+          "line": 137,
+          "key": "question",
+          "known": true
+        },
+        {
+          "line": 137,
+          "key": "answer",
+          "known": true
+        },
+        {
+          "line": 138,
+          "key": "questionInThisTurn",
+          "known": true
+        },
+        {
+          "line": 138,
+          "key": "answerInThisTurn",
+          "known": true
+        },
+        {
+          "line": 152,
+          "key": "notReturned",
+          "known": true
+        },
+        {
+          "line": 161,
+          "key": "thisDeploymentHasNotProvidedAnAuthorizedEnterprise",
+          "known": true
+        },
+        {
+          "line": 174,
+          "key": "businessObjects",
+          "known": true
+        },
+        {
+          "line": 174,
+          "key": "logicMetrics",
+          "known": true
+        },
+        {
+          "line": 174,
+          "key": "formalReferencesInThisTurn",
+          "known": true
+        },
+        {
+          "line": 175,
+          "key": "noDisplayableFormalBKNElementsInThisTurn",
+          "known": true
+        },
+        {
+          "line": 176,
+          "key": "formalRelationsLabel",
+          "known": true
+        },
+        {
+          "line": 189,
+          "key": "businessReference",
+          "known": true
+        },
+        {
+          "line": 189,
+          "key": "businessElementsNotYetResolved",
+          "known": true
+        },
+        {
+          "line": 189,
+          "key": "noDisplayableFormalBKNMappingsInThisTurn",
+          "known": true
+        },
+        {
+          "line": 189,
+          "key": "sourceKnowledgeNetwork",
+          "known": true
+        },
+        {
+          "line": 189,
+          "key": "notLocated",
+          "known": true
+        },
+        {
+          "line": 189,
+          "key": "sourceOperation",
+          "known": true
+        },
+        {
+          "line": 189,
+          "key": "resolutionTool",
+          "known": true
+        },
+        {
+          "line": 189,
+          "key": "formalProjectionInThisTurn",
+          "known": true
+        },
+        {
+          "line": 189,
+          "key": "graphCounts",
+          "known": true
+        },
+        {
+          "line": 189,
+          "key": "graphUndisclosed",
+          "known": true
+        },
+        {
+          "line": 189,
+          "key": "graphRelationCount",
+          "known": true
+        },
+        {
+          "line": 189,
+          "key": "graphFactCount",
+          "known": true
+        },
+        {
+          "line": 189,
+          "key": "graphContextCount",
+          "known": true
+        },
+        {
+          "line": 199,
+          "key": "noBusinessOperationInThisTurnRequiredA",
+          "known": true
+        },
+        {
+          "line": 202,
+          "key": "mCPResult",
+          "known": true
+        },
+        {
+          "line": 202,
+          "key": "platform",
+          "known": true
+        },
+        {
+          "line": 202,
+          "key": "businessReceipts",
+          "known": true
+        },
+        {
+          "line": 202,
+          "key": "receiptsAreDurableRecordsOfPersistedBusinessOperations",
+          "known": true
+        },
+        {
+          "line": 207,
+          "key": "sourcePlatform",
+          "known": true
+        },
+        {
+          "line": 207,
+          "key": "sourceMCPResult",
+          "known": true
+        },
+        {
+          "line": 226,
+          "key": "noProvenanceRecordedTraceDisabled",
+          "known": true
+        },
+        {
+          "line": 227,
+          "key": "thePlatformExplicitlyDisabledTraceCollectionThisTurn",
+          "known": true
+        },
+        {
+          "line": 230,
+          "key": "noProvenanceRecordedTraceUnavailable",
+          "known": true
+        },
+        {
+          "line": 231,
+          "key": "thePlatformExplicitlyReportedTraceUnavailableThisTurn",
+          "known": true
+        },
+        {
+          "line": 235,
+          "key": "thisPaneRequiresAnEnterpriseLicense",
+          "known": true
+        },
+        {
+          "line": 236,
+          "key": "licenseDetail",
+          "known": true
+        },
+        {
+          "line": 236,
+          "key": "communityEdition",
+          "known": true
+        },
+        {
+          "line": 237,
+          "key": "nextUpgradeAndActivateAnOpenBKNEnterpriseLicense",
+          "known": true
+        },
+        {
+          "line": 241,
+          "key": "businessDomainNotAuthorized",
+          "known": true
+        },
+        {
+          "line": 242,
+          "key": "domainDetail",
+          "known": true
+        },
+        {
+          "line": 242,
+          "key": "platformHint",
+          "known": true
+        },
+        {
+          "line": 243,
+          "key": "nextCheckThePluginBusinessDomainSettingBdPublic",
+          "known": true
+        },
+        {
+          "line": 247,
+          "key": "signInRequired",
+          "known": true
+        },
+        {
+          "line": 248,
+          "key": "thePlatformTokenIsMissingOrExpiredThis",
+          "known": true
+        },
+        {
+          "line": 249,
+          "key": "nextSignInToOpenBKNAgainAndRetry",
+          "known": true
+        },
+        {
+          "line": 253,
+          "key": "platformRecordNotFound",
+          "known": true
+        },
+        {
+          "line": 254,
+          "key": "thisInteractionDoesNotExistOnTheCurrent",
+          "known": true
+        },
+        {
+          "line": 258,
+          "key": "platformRecordTooLargeToDisplay",
+          "known": true
+        },
+        {
+          "line": 259,
+          "key": "theRecordReturnedByThePlatformExceedsThe",
+          "known": true
+        },
+        {
+          "line": 260,
+          "key": "nextUseOpenbknTraceInteractionsOperationsInteractionID",
+          "known": true
+        },
+        {
+          "line": 264,
+          "key": "platformDataTemporarilyUnavailable",
+          "known": true
+        },
+        {
+          "line": 265,
+          "key": "theOpenBKNPlatformIsTemporarilyUnreachableTryAgain",
+          "known": true
+        },
+        {
+          "line": 266,
+          "key": "nextRetryLaterOrCheckThePlatformConnection",
+          "known": true
+        },
+        {
+          "line": 283,
+          "key": "partialIdentifiers",
+          "known": true
+        },
+        {
+          "line": 289,
+          "key": "traceDisabled",
+          "known": true
+        },
+        {
+          "line": 290,
+          "key": "traceNotRecorded",
+          "known": true
+        },
+        {
+          "line": 291,
+          "key": "enterpriseRequired",
+          "known": true
+        },
+        {
+          "line": 292,
+          "key": "domainUnauthorized",
+          "known": true
+        },
+        {
+          "line": 293,
+          "key": "signInRequiredText145",
+          "known": true
+        },
+        {
+          "line": 294,
+          "key": "recordNotDisclosed",
+          "known": true
+        },
+        {
+          "line": 295,
+          "key": "recordTooLarge",
+          "known": true
+        },
+        {
+          "line": 296,
+          "key": "platformUnavailableText148",
+          "known": true
+        },
+        {
+          "line": 302,
+          "key": "lifecycle",
+          "known": true
+        },
+        {
+          "line": 303,
+          "key": "managedAccess",
+          "known": true
+        },
+        {
+          "line": 327,
+          "key": "recorded",
+          "known": true
+        },
+        {
+          "line": 330,
+          "key": "noManagedDataToDisplay",
+          "known": true
+        },
+        {
+          "line": 333,
+          "key": "readingBusinessProvenanceForThisTurn",
+          "known": true
+        },
+        {
+          "line": 333,
+          "key": "theTimelineIsReconstructedFromLocalEventsPlatform",
+          "known": true
+        },
+        {
+          "line": 336,
+          "key": "businessProvenanceCouldNotBeRead",
+          "known": true
+        },
+        {
+          "line": 336,
+          "key": "checkTheOpenBKNPlatformConnectionAndYourAccount",
+          "known": true
+        }
+      ],
+      "jsxText": [
+        {
+          "line": 97,
+          "text": "×"
+        },
+        {
+          "line": 147,
+          "text": "error"
+        },
+        {
+          "line": 189,
+          "text": "→"
+        },
+        {
+          "line": 189,
+          "text": "·"
+        },
+        {
+          "line": 189,
+          "text": "→"
+        }
+      ],
+      "literalAttributes": [
+        {
+          "line": 114,
+          "attribute": "label",
+          "text": "Interaction ID"
+        },
+        {
+          "line": 121,
+          "attribute": "label",
+          "text": "Request"
+        },
+        {
+          "line": 121,
+          "attribute": "label",
+          "text": "Trace"
+        },
+        {
+          "line": 121,
+          "attribute": "label",
+          "text": "Receipt"
+        },
+        {
+          "line": 148,
+          "attribute": "label",
+          "text": "Op"
+        },
+        {
+          "line": 148,
+          "attribute": "label",
+          "text": "Receipt"
+        },
+        {
+          "line": 148,
+          "attribute": "label",
+          "text": "Status"
+        }
+      ]
+    },
+    {
+      "path": "packages/openbkn-business-context/src/client/SuggestionDock.tsx",
+      "sha256": "d2d3b2455a38de77335281ff19c4d9e061e6ad56bd6f8bd70663aae6b28075ec",
+      "translationKeys": [
+        "sessionEntryLabel",
+        "sessionSuggestion"
+      ],
+      "translationCalls": [
+        {
+          "line": 23,
+          "key": "sessionEntryLabel",
+          "known": true
+        },
+        {
+          "line": 36,
+          "key": "sessionSuggestion",
+          "known": true
+        }
+      ],
+      "jsxText": [],
+      "literalAttributes": []
+    },
+    {
+      "path": "packages/openbkn-business-context/src/client/TurnProvenanceActions.tsx",
+      "sha256": "85063b5f0012642c6a1b8781cf70d27c355d1ad4643714ec201acfbab3e8d7ed",
+      "translationKeys": [
+        "answerProvenanceHint",
+        "viewBusinessProvenance"
+      ],
+      "translationCalls": [
+        {
+          "line": 27,
+          "key": "answerProvenanceHint",
+          "known": true
+        },
+        {
+          "line": 31,
+          "key": "viewBusinessProvenance",
+          "known": true
+        }
+      ],
+      "jsxText": [],
+      "literalAttributes": []
+    },
+    {
+      "path": "packages/openbkn-business-context/src/client/cli-setup-controller.ts",
+      "sha256": "6125d3d3cb6d7054c1a7da8e13efb5030fa728f3753a44a42ad441081499c496",
+      "translationKeys": [
+        "aBusinessTurnOrSettingsSaveIsStill",
+        "anSDKExistsInTheNpmDirectoryBut",
+        "cLIInstallationEncounteredACertificateErrorCheckThe",
+        "cLIInstallationEncounteredANetworkErrorCheckThe",
+        "cLIInstallationFailedCheckTheLocalNpmEnvironment",
+        "cLIWasFoundButThisDSHHostCannot",
+        "cLIWasNotFoundInTheCurrentEnvironment",
+        "checking",
+        "checkingCLI",
+        "cliInstalling",
+        "cliMissingVersion",
+        "cliReady",
+        "cliVersionMismatch",
+        "failed",
+        "installing",
+        "selectASupportedCLIVersion015",
+        "theCLIOperationTimedOutCheckLocalInstallation",
+        "theCLISetupServiceIsUnavailableCheckThe",
+        "theInstallationCommandCompletedButCLIIsNot",
+        "theNpmInstallationDirectoryCouldNotBeDetermined",
+        "theNpmInstallationDirectoryIsNotWritableInstall",
+        "thePathHasBeenFilledInClickSave",
+        "thisDSHHostCannotFindNpmInstallNode",
+        "thisDSHHostCannotUseASupportedNode",
+        "thisPathIsADirectoryEnterThePath",
+        "thisPathWasNotFoundCorrectItOr"
+      ],
+      "translationCalls": [
+        {
+          "line": 89,
+          "key": "checkingCLI",
+          "known": true
+        },
+        {
+          "line": 90,
+          "key": "cliInstalling",
+          "known": true
+        },
+        {
+          "line": 94,
+          "key": "cliVersionMismatch",
+          "known": true
+        },
+        {
+          "line": 95,
+          "key": "cliReady",
+          "known": true
+        },
+        {
+          "line": 95,
+          "key": "thePathHasBeenFilledInClickSave",
+          "known": true
+        },
+        {
+          "line": 98,
+          "key": "cLIWasNotFoundInTheCurrentEnvironment",
+          "known": true
+        },
+        {
+          "line": 99,
+          "key": "cliMissingVersion",
+          "known": true
+        },
+        {
+          "line": 101,
+          "key": "thisPathWasNotFoundCorrectItOr",
+          "known": true
+        },
+        {
+          "line": 102,
+          "key": "thisPathIsADirectoryEnterThePath",
+          "known": true
+        },
+        {
+          "line": 103,
+          "key": "cLIWasFoundButThisDSHHostCannot",
+          "known": true
+        },
+        {
+          "line": 104,
+          "key": "anSDKExistsInTheNpmDirectoryBut",
+          "known": true
+        },
+        {
+          "line": 105,
+          "key": "thisDSHHostCannotFindNpmInstallNode",
+          "known": true
+        },
+        {
+          "line": 106,
+          "key": "thisDSHHostCannotUseASupportedNode",
+          "known": true
+        },
+        {
+          "line": 107,
+          "key": "theNpmInstallationDirectoryCouldNotBeDetermined",
+          "known": true
+        },
+        {
+          "line": 108,
+          "key": "theNpmInstallationDirectoryIsNotWritableInstall",
+          "known": true
+        },
+        {
+          "line": 109,
+          "key": "cLIInstallationEncounteredANetworkErrorCheckThe",
+          "known": true
+        },
+        {
+          "line": 110,
+          "key": "cLIInstallationEncounteredACertificateErrorCheckThe",
+          "known": true
+        },
+        {
+          "line": 111,
+          "key": "theCLIOperationTimedOutCheckLocalInstallation",
+          "known": true
+        },
+        {
+          "line": 112,
+          "key": "theInstallationCommandCompletedButCLIIsNot",
+          "known": true
+        },
+        {
+          "line": 113,
+          "key": "aBusinessTurnOrSettingsSaveIsStill",
+          "known": true
+        },
+        {
+          "line": 114,
+          "key": "selectASupportedCLIVersion015",
+          "known": true
+        },
+        {
+          "line": 115,
+          "key": "theCLISetupServiceIsUnavailableCheckThe",
+          "known": true
+        },
+        {
+          "line": 116,
+          "key": "cLIInstallationFailedCheckTheLocalNpmEnvironment",
+          "known": true
+        }
+      ],
+      "jsxText": [],
+      "literalAttributes": []
+    },
+    {
+      "path": "packages/openbkn-business-context/src/client/diagnostics-controller.ts",
+      "sha256": "0712fc77bb9cca154cd6d037a5ee557565c1421c02b3de06c9f6e8facfdcf370",
+      "translationKeys": [
+        "couldNotConnectToTheDSHHostConfirm",
+        "diagnosticsServiceUnavailableTheDiagnosticsEntryDidNot"
+      ],
+      "translationCalls": [
+        {
+          "line": 90,
+          "key": "couldNotConnectToTheDSHHostConfirm",
+          "known": true
+        },
+        {
+          "line": 92,
+          "key": "diagnosticsServiceUnavailableTheDiagnosticsEntryDidNot",
+          "known": true
+        }
+      ],
+      "jsxText": [],
+      "literalAttributes": []
+    },
+    {
+      "path": "packages/openbkn-business-context/src/client/diagnostics-copy.ts",
+      "sha256": "6af69e1b11b8a0f9562dffa4cc411b65cbd8b71c74e719c1d26dcc6036e24a80",
+      "translationKeys": [
+        "diagnosticBootstrapFailed",
+        "diagnosticBootstrapMissing",
+        "diagnosticConfigure",
+        "diagnosticEntryMissing",
+        "diagnosticExportBlocked",
+        "diagnosticExportFailure"
+      ],
+      "translationCalls": [],
+      "jsxText": [],
+      "literalAttributes": []
+    },
+    {
+      "path": "packages/openbkn-business-context/src/client/diagnostics-export.ts",
+      "sha256": "b3911628b66646e1b7f3ab3fd83c65b4db5a7b0c269f96f1c776c5d4ff583c5c",
+      "translationKeys": [
+        "report"
+      ],
+      "translationCalls": [],
+      "jsxText": [],
+      "literalAttributes": []
+    },
+    {
+      "path": "packages/openbkn-business-context/src/client/diagnostics-target.ts",
+      "sha256": "239ebf2ff322b604756ea03d6d27ebc274fe2fc9fad9cc5d93c930d2229f1a2b",
+      "translationKeys": [
+        "dSHVersion",
+        "desktop",
+        "hostForm",
+        "notCollected",
+        "notCollectedInstallationInformationUnavailable",
+        "notCollectedNoVersionInformationInThisReport",
+        "notCollectedRunningVersionCannotBeConfirmed",
+        "npmBrowserApp",
+        "operatingSystem",
+        "pluginLoaded",
+        "pluginOnDisk",
+        "sourceBuild",
+        "unknownTheCurrentReportCannotIdentifyTheHost"
+      ],
+      "translationCalls": [
+        {
+          "line": 5,
+          "key": "desktop",
+          "known": true
+        },
+        {
+          "line": 6,
+          "key": "npmBrowserApp",
+          "known": true
+        },
+        {
+          "line": 7,
+          "key": "sourceBuild",
+          "known": true
+        },
+        {
+          "line": 8,
+          "key": "unknownTheCurrentReportCannotIdentifyTheHost",
+          "known": true
+        },
+        {
+          "line": 21,
+          "key": "hostForm",
+          "known": true
+        },
+        {
+          "line": 22,
+          "key": "operatingSystem",
+          "known": true
+        },
+        {
+          "line": 22,
+          "key": "notCollected",
+          "known": true
+        },
+        {
+          "line": 23,
+          "key": "dSHVersion",
+          "known": true
+        },
+        {
+          "line": 23,
+          "key": "notCollectedNoVersionInformationInThisReport",
+          "known": true
+        },
+        {
+          "line": 24,
+          "key": "pluginOnDisk",
+          "known": true
+        },
+        {
+          "line": 24,
+          "key": "notCollectedInstallationInformationUnavailable",
+          "known": true
+        },
+        {
+          "line": 25,
+          "key": "pluginLoaded",
+          "known": true
+        },
+        {
+          "line": 25,
+          "key": "notCollectedRunningVersionCannotBeConfirmed",
+          "known": true
+        }
+      ],
+      "jsxText": [],
+      "literalAttributes": []
+    },
+    {
+      "path": "packages/openbkn-business-context/src/client/index.tsx",
+      "sha256": "a0f384ec388199186533ffc947d9d00fbab12b3992849455f04501096c327709",
+      "translationKeys": [],
+      "translationCalls": [],
+      "jsxText": [],
+      "literalAttributes": []
+    },
+    {
+      "path": "packages/openbkn-business-context/src/client/locale.tsx",
+      "sha256": "df03dc30e97a3b951998d3210730dcac93264069e6b1b701852f6a65eb344d89",
+      "translationKeys": [],
+      "translationCalls": [],
+      "jsxText": [],
+      "literalAttributes": []
+    },
+    {
+      "path": "packages/openbkn-business-context/src/client/locales.ts",
+      "sha256": "2421233b5a6b1024e9e707e6b269a06532c087979d355e771386792979f4bdc7",
+      "translationKeys": [
+        "aBusinessTurnIsStillRunningReopenSettings",
+        "aBusinessTurnIsStillRunningSaveSettings",
+        "aBusinessTurnOrSettingsSaveIsStill",
+        "accessDenied",
+        "accessDeniedAccount",
+        "activeRetest",
+        "advancedSettings",
+        "anSDKExistsInTheNpmDirectoryBut",
+        "another",
+        "answer",
+        "answerInThisTurn",
+        "answerProvenanceHint",
+        "bindFailed",
+        "bindingHint",
+        "bindingTheCurrentConversation",
+        "businessContext",
+        "businessContextGraph",
+        "businessDomainNotAuthorized",
+        "businessElementsNotYetResolved",
+        "businessKnowledgeNetworkContextLoaded",
+        "businessKnowledgeNetworks",
+        "businessObjects",
+        "businessProvenance",
+        "businessProvenanceCouldNotBeRead",
+        "businessReceipts",
+        "businessReference",
+        "cLIInstallationEncounteredACertificateErrorCheckThe",
+        "cLIInstallationEncounteredANetworkErrorCheckThe",
+        "cLIInstallationFailedCheckTheLocalNpmEnvironment",
+        "cLIInstallationVersion",
+        "cLIInstallationVersionText1",
+        "cLIWasFoundButThisDSHHostCannot",
+        "cLIWasNotFoundInTheCurrentEnvironment",
+        "cancelSignIn",
+        "checkTheOpenBKNPlatformConnectionAndYourAccount",
+        "checking",
+        "checkingCLI",
+        "chooseABusinessKnowledgeNetworkToContinueOr",
+        "chooseTheVersionMatchingYourPlatformUseAn",
+        "cliInstalling",
+        "cliMissingVersion",
+        "cliReady",
+        "cliVersionMismatch",
+        "close",
+        "collapse",
+        "collectAgain",
+        "communityEdition",
+        "completeSignInInTheBrowserCancellingOr",
+        "connectingToOpenBKN",
+        "contextLoaderMCPIsConnectedButTheBusiness",
+        "continueConversation",
+        "couldNotConnectToOpenBKNContextLoaderMCP",
+        "couldNotConnectToTheDSHHostConfirm",
+        "couldNotReadBusinessKnowledgeNetwork",
+        "created",
+        "credentialRejected",
+        "crossOperationEvidence",
+        "dSHVersion",
+        "desktop",
+        "detectAndInstallCLI",
+        "diagnosticBootstrapFailed",
+        "diagnosticBootstrapMissing",
+        "diagnosticConfigure",
+        "diagnosticEntryMissing",
+        "diagnosticExportBlocked",
+        "diagnosticExportFailure",
+        "diagnostics",
+        "diagnosticsServiceUnavailable",
+        "diagnosticsServiceUnavailableTheDiagnosticsEntryDidNot",
+        "domainDetail",
+        "domainUnauthorized",
+        "earlierConversationContexts",
+        "editOpenBKNSettingsForTheCurrentDSHProfile",
+        "elements",
+        "enterACompleteHTTPSPlatformURLFor",
+        "enterTheOpenBKNCLIExecutablePathUseOpenbkn",
+        "enterTheOpenBKNPlatformURLThenSignIn",
+        "enterpriseRequired",
+        "evidenceChain",
+        "executionProvenance",
+        "executionStatus",
+        "executionTimeline",
+        "exportDiagnosticsReport",
+        "failed",
+        "formalProjectionInThisTurn",
+        "formalReferencesInThisTurn",
+        "formalRelationsLabel",
+        "formalRelationshipsAreRetainedAsRecordsBecauseTheir",
+        "found",
+        "graphContextCount",
+        "graphCounts",
+        "graphFactCount",
+        "graphRelationCount",
+        "graphUndisclosed",
+        "hostForm",
+        "installing",
+        "insufficientEvidence",
+        "licenseDetail",
+        "lifecycle",
+        "loadMore",
+        "localSession",
+        "logicMetrics",
+        "mCPResult",
+        "managedAccess",
+        "missingBasicInformationDoesNotImplyAFailure",
+        "mode",
+        "nameIDOrDescription",
+        "nativeAccessDenied",
+        "nativeAllProcessing",
+        "nativeAttempt",
+        "nativeAuthRequired",
+        "nativeBusinessProcessing",
+        "nativeConclusions",
+        "nativeEvents",
+        "nativeEvidenceNodes",
+        "nativeExecutionGraph",
+        "nativeExecutionSteps",
+        "nativeExplanationRecord",
+        "nativeExplanationTextBoundary",
+        "nativeExplanationTextNotDisclosed",
+        "nativeHistoricalRecords",
+        "nativeInput",
+        "nativeIntegrityUnavailable",
+        "nativeInvalid",
+        "nativeInvalidRecords",
+        "nativeNext",
+        "nativeNextPage",
+        "nativeNoClaims",
+        "nativeNoEvents",
+        "nativeNoLinkedFunction",
+        "nativeNoNodes",
+        "nativeNoSteps",
+        "nativeNotDisclosed",
+        "nativeNotGenerated",
+        "nativeOpenReference",
+        "nativeOriginalRecord",
+        "nativeOriginalTextNotDisclosed",
+        "nativeOutput",
+        "nativePageRange",
+        "nativePlatformValidation",
+        "nativePrevious",
+        "nativePreviousPage",
+        "nativeProcessing",
+        "nativeQuestionPair",
+        "nativeRecordIntegrity",
+        "nativeRecordedAnswer",
+        "nativeRelatedProcesses",
+        "nativeRelationBoundary",
+        "nativeRelationshipRecords",
+        "nativeSchemaSources",
+        "nativeSelectProcessing",
+        "nativeSelectionBoundary",
+        "nativeServerLinked",
+        "nativeStates",
+        "nativeTechnicalDetails",
+        "nativeTooLarge",
+        "nativeUnavailable",
+        "nativeUndisclosedRefs",
+        "nativeUnresolvedReference",
+        "networkCount",
+        "networksLabel",
+        "networksThoseLinkedToLocalWorkspacesAppearFirst",
+        "newConversation",
+        "newWorkspace",
+        "nextCheckThePluginBusinessDomainSettingBdPublic",
+        "nextRetryLaterOrCheckThePlatformConnection",
+        "nextSignInToOpenBKNAgainAndRetry",
+        "nextUpgradeAndActivateAnOpenBKNEnterpriseLicense",
+        "nextUseOpenbknTraceInteractionsOperationsInteractionID",
+        "noBusinessKnowledgeNetworksAreAvailableForThis",
+        "noBusinessOperationInThisTurnRequiredA",
+        "noChecksWereRun",
+        "noDisplayableFormalBKNElementsInThisTurn",
+        "noDisplayableFormalBKNMappingsInThisTurn",
+        "noDisplayableOperationFactsWereRecordedForThis",
+        "noLocalWorkspaceLinked",
+        "noManagedDataToDisplay",
+        "noMatchingBusinessKnowledgeNetworks",
+        "noProvenanceRecordedTraceDisabled",
+        "noProvenanceRecordedTraceUnavailable",
+        "notCollected",
+        "notCollectedInstallationInformationUnavailable",
+        "notCollectedNoVersionInformationInThisReport",
+        "notCollectedRunningVersionCannotBeConfirmed",
+        "notLocated",
+        "notRecorded",
+        "notReturned",
+        "notRun",
+        "npmBrowserApp",
+        "openBKNBusinessContext",
+        "openBKNCLIExecutablePath",
+        "openBKNCLIExecutablePathCliPath",
+        "openBKNDiagnostics",
+        "openBKNPlatform",
+        "openBKNPlatformURL",
+        "operatingSystem",
+        "operationStatusDurationAndRequestTraceReceiptReferences",
+        "partialIdentifiers",
+        "passed",
+        "passiveCollection",
+        "pickerFailed",
+        "platform",
+        "platformDataTemporarilyUnavailable",
+        "platformExecutionFacts",
+        "platformHint",
+        "platformNotDisplayed",
+        "platformRecordNotFound",
+        "platformRecordTooLargeToDisplay",
+        "platformRelationshipRecords",
+        "platformURL",
+        "platformUnavailable",
+        "platformUnavailableText148",
+        "pluginLoaded",
+        "pluginOnDisk",
+        "pluginSettingsCouldNotBeReadCheckDiagnostics",
+        "provenanceEyebrow",
+        "provenanceLabel",
+        "provenanceViews",
+        "question",
+        "questionInThisTurn",
+        "readingBusinessKnowledgeNetwork",
+        "readingBusinessProvenanceForThisTurn",
+        "readingDiagnostics",
+        "readingSettings",
+        "receiptsAreDurableRecordsOfPersistedBusinessOperations",
+        "reconstructedFromLocalSessionEventsIndependentlyOfPlatform",
+        "recordNotDisclosed",
+        "recordTooLarge",
+        "recorded",
+        "refreshStatus",
+        "report",
+        "resolutionTool",
+        "retry",
+        "retrySignIn",
+        "reused",
+        "saveAndContinue",
+        "saving",
+        "searchBusinessKnowledgeNetworks",
+        "selectASupportedCLIVersion015",
+        "selectAVersion",
+        "selectAWorkspaceDirectoryInTheSystemWindow",
+        "selectItInTheModeMenuBeforeSending",
+        "sessionEntryLabel",
+        "sessionSuggestion",
+        "settings",
+        "settingsCouldNotBeSavedRetryOrCheck",
+        "settingsSaved",
+        "settingsSavedCheckingConnection",
+        "settingsSavedSignInAndSyncWithOpenBKN",
+        "signInAndSyncWithOpenBKNCLI",
+        "signInAndSynchronizationSucceeded",
+        "signInRequired",
+        "signInRequiredText145",
+        "signInWaitCancelledSignInAgainOr",
+        "signInWaitTimedOutPlatformAuthorizationMay",
+        "signInWithTheLocalOpenBKNCLIThe",
+        "sourceBuild",
+        "sourceKnowledgeNetwork",
+        "sourceMCPResult",
+        "sourceOperation",
+        "sourcePlatform",
+        "standardMode",
+        "theCLIOperationTimedOutCheckLocalInstallation",
+        "theCLISetupServiceIsUnavailableCheckThe",
+        "theDefaultIsOpenbknIfDSHCannotFind",
+        "theDiagnosticsEntryDidNotStartWithThe",
+        "theInstallationCommandCompletedButCLIIsNot",
+        "theNpmInstallationDirectoryCouldNotBeDetermined",
+        "theNpmInstallationDirectoryIsNotWritableInstall",
+        "theOpenBKNBusinessComponentIsNotReadyOr",
+        "theOpenBKNBusinessKnowledgeNetworkDirectoryIsTemporarily",
+        "theOpenBKNConnectionCouldNotBeVerifiedThe",
+        "theOpenBKNPlatformIsTemporarilyUnreachableTryAgain",
+        "thePathHasBeenFilledInClickSave",
+        "thePlatformExplicitlyDisabledTraceCollectionThisTurn",
+        "thePlatformExplicitlyReportedTraceUnavailableThisTurn",
+        "thePlatformTokenIsMissingOrExpiredThis",
+        "thePlatformURLOrCLIExecutablePathIs",
+        "theRecordReturnedByThePlatformExceedsThe",
+        "theSelectedBusinessKnowledgeNetworkIsNoLonger",
+        "theTimelineIsReconstructedFromLocalEventsPlatform",
+        "thereAreNotEnoughSessionEventsToReconstruct",
+        "thisConfigurationCannotBeChangedCheckForDisabled",
+        "thisConfigurationCannotBeEditedCheckForDisabled",
+        "thisConnectionModeRemoteBrowseBackendCannotCreate",
+        "thisDSHHostCannotFindNpmInstallNode",
+        "thisDSHHostCannotUseASupportedNode",
+        "thisDSHHostCannotUseOpenBKNCLIOpen",
+        "thisDeploymentHasNotProvidedAnAuthorizedEnterprise",
+        "thisInteractionDoesNotExistOnTheCurrent",
+        "thisPaneRequiresAnEnterpriseLicense",
+        "thisPathIsADirectoryEnterThePath",
+        "thisPathWasNotFoundCorrectItOr",
+        "timelineNodes",
+        "traceDisabled",
+        "traceNotRecorded",
+        "unknownTheCurrentReportCannotIdentifyTheHost",
+        "view",
+        "viewBusinessProvenance",
+        "visualRelationships",
+        "waitingForOpenBKNCLIBrowserAuthorizationAndCredential",
+        "workspaceLinked"
+      ],
+      "translationCalls": [],
+      "jsxText": [],
+      "literalAttributes": []
+    },
+    {
+      "path": "packages/openbkn-business-context/src/client/messages.ts",
+      "sha256": "b044a59d0325fd5043f950235284067d81a083977bd47314f61fa7ff8e057d54",
+      "translationKeys": [],
+      "translationCalls": [],
+      "jsxText": [],
+      "literalAttributes": []
+    },
+    {
+      "path": "packages/openbkn-business-context/src/client/native-provenance-selection.ts",
+      "sha256": "40efb3aa9830ea2dbff105dcc67d733356387aaab262ab4ca31cd130369b45a4",
+      "translationKeys": [],
+      "translationCalls": [],
+      "jsxText": [],
+      "literalAttributes": []
+    },
+    {
+      "path": "packages/openbkn-business-context/src/client/network-directory.ts",
+      "sha256": "0cc7dbaa4c16ed1e0f1481a414949c35a1783872c8f8a78587c6e244f31eeee0",
+      "translationKeys": [],
+      "translationCalls": [],
+      "jsxText": [],
+      "literalAttributes": []
+    },
+    {
+      "path": "packages/openbkn-business-context/src/client/openbkn-panel-bridge.ts",
+      "sha256": "c9553e23607e339665b51a0521bec50e196dfaac44277e7bedc2c8b0e5d7c685",
+      "translationKeys": [],
+      "translationCalls": [],
+      "jsxText": [],
+      "literalAttributes": []
+    },
+    {
+      "path": "packages/openbkn-business-context/src/client/openbkn-ui-controller.ts",
+      "sha256": "726c8e2652115d94ace9e2618d7c6f80cae5150dda3e396f1512b088a5239479",
+      "translationKeys": [
+        "aBusinessTurnIsStillRunningSaveSettings",
+        "accessDenied",
+        "accessDeniedAccount",
+        "bindFailed",
+        "contextLoaderMCPIsConnectedButTheBusiness",
+        "couldNotConnectToOpenBKNContextLoaderMCP",
+        "credentialRejected",
+        "enterACompleteHTTPSPlatformURLFor",
+        "enterTheOpenBKNCLIExecutablePathUseOpenbkn",
+        "failed",
+        "openBKNPlatform",
+        "pickerFailed",
+        "pluginSettingsCouldNotBeReadCheckDiagnostics",
+        "selectAWorkspaceDirectoryInTheSystemWindow",
+        "settingsCouldNotBeSavedRetryOrCheck",
+        "settingsSaved",
+        "settingsSavedCheckingConnection",
+        "settingsSavedSignInAndSyncWithOpenBKN",
+        "theOpenBKNBusinessComponentIsNotReadyOr",
+        "theOpenBKNBusinessKnowledgeNetworkDirectoryIsTemporarily",
+        "theOpenBKNConnectionCouldNotBeVerifiedThe",
+        "thePlatformURLOrCLIExecutablePathIs",
+        "theSelectedBusinessKnowledgeNetworkIsNoLonger",
+        "thisConfigurationCannotBeChangedCheckForDisabled",
+        "thisConnectionModeRemoteBrowseBackendCannotCreate",
+        "thisDSHHostCannotUseOpenBKNCLIOpen"
+      ],
+      "translationCalls": [
+        {
+          "line": 121,
+          "key": "pluginSettingsCouldNotBeReadCheckDiagnostics",
+          "known": true
+        },
+        {
+          "line": 142,
+          "key": "settingsSavedCheckingConnection",
+          "known": true
+        },
+        {
+          "line": 213,
+          "key": "theSelectedBusinessKnowledgeNetworkIsNoLonger",
+          "known": true
+        },
+        {
+          "line": 237,
+          "key": "settingsSavedSignInAndSyncWithOpenBKN",
+          "known": true
+        },
+        {
+          "line": 249,
+          "key": "settingsSaved",
+          "known": true
+        },
+        {
+          "line": 255,
+          "key": "theOpenBKNBusinessKnowledgeNetworkDirectoryIsTemporarily",
+          "known": true
+        },
+        {
+          "line": 303,
+          "key": "enterACompleteHTTPSPlatformURLFor",
+          "known": true
+        },
+        {
+          "line": 305,
+          "key": "enterTheOpenBKNCLIExecutablePathUseOpenbkn",
+          "known": true
+        },
+        {
+          "line": 311,
+          "key": "thePlatformURLOrCLIExecutablePathIs",
+          "known": true
+        },
+        {
+          "line": 312,
+          "key": "aBusinessTurnIsStillRunningSaveSettings",
+          "known": true
+        },
+        {
+          "line": 313,
+          "key": "thisConfigurationCannotBeChangedCheckForDisabled",
+          "known": true
+        },
+        {
+          "line": 314,
+          "key": "settingsCouldNotBeSavedRetryOrCheck",
+          "known": true
+        },
+        {
+          "line": 329,
+          "key": "openBKNPlatform",
+          "known": true
+        },
+        {
+          "line": 331,
+          "key": "accessDeniedAccount",
+          "known": true
+        },
+        {
+          "line": 334,
+          "key": "credentialRejected",
+          "known": true
+        },
+        {
+          "line": 351,
+          "key": "theOpenBKNBusinessComponentIsNotReadyOr",
+          "known": true
+        },
+        {
+          "line": 354,
+          "key": "thisDSHHostCannotUseOpenBKNCLIOpen",
+          "known": true
+        },
+        {
+          "line": 359,
+          "key": "openBKNPlatform",
+          "known": true
+        },
+        {
+          "line": 360,
+          "key": "accessDenied",
+          "known": true
+        },
+        {
+          "line": 362,
+          "key": "couldNotConnectToOpenBKNContextLoaderMCP",
+          "known": true
+        },
+        {
+          "line": 363,
+          "key": "contextLoaderMCPIsConnectedButTheBusiness",
+          "known": true
+        },
+        {
+          "line": 366,
+          "key": "theOpenBKNConnectionCouldNotBeVerifiedThe",
+          "known": true
+        },
+        {
+          "line": 370,
+          "key": "selectAWorkspaceDirectoryInTheSystemWindow",
+          "known": true
+        },
+        {
+          "line": 408,
+          "key": "thisConnectionModeRemoteBrowseBackendCannotCreate",
+          "known": true
+        },
+        {
+          "line": 410,
+          "key": "pickerFailed",
+          "known": true
+        },
+        {
+          "line": 411,
+          "key": "bindFailed",
+          "known": true
+        }
+      ],
+      "jsxText": [],
+      "literalAttributes": []
+    },
+    {
+      "path": "packages/openbkn-business-context/src/client/pick-workspace-directory.ts",
+      "sha256": "7e343abb5b0be3cde214410bce041ae3c4f6b073fbca44923e7669f1e0b9dd36",
+      "translationKeys": [],
+      "translationCalls": [],
+      "jsxText": [],
+      "literalAttributes": []
+    },
+    {
+      "path": "packages/openbkn-business-context/src/client/suggestion-dock-controller.ts",
+      "sha256": "24a758bcb6ce0e9e636fb5e88b717e1af46b4aae83cb05ed48da49c0b13f1446",
+      "translationKeys": [],
+      "translationCalls": [],
+      "jsxText": [],
+      "literalAttributes": []
+    },
+    {
+      "path": "packages/openbkn-business-context/src/client/turn-provenance-controller.ts",
+      "sha256": "1502f30499cd96d36d9e8a32a624e2e434f3fc2ae0fac088edb954284e402992",
+      "translationKeys": [],
+      "translationCalls": [],
+      "jsxText": [],
+      "literalAttributes": []
+    },
+    {
+      "path": "packages/openbkn-business-context/src/client/use-dialog-focus.ts",
+      "sha256": "50a42f25dfb166cf8a0e87982c9544e2324f3021994191bef2684a66903055e0",
+      "translationKeys": [],
+      "translationCalls": [],
+      "jsxText": [],
+      "literalAttributes": []
+    }
+  ],
+  "missingLiteralKeys": []
+}

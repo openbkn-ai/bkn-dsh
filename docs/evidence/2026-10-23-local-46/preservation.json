@@ -1,0 +1,29 @@
+{
+  "checkedAt": "2026-10-23T13:53:47.350092+00:00",
+  "preexistingFiles": 802,
+  "unchangedPreexistingFiles": 797,
+  "authorizedLocalStatusUpdates": [
+    "CLAUDE.md",
+    "docs/plans/0.2.1/ACCEPTANCE-CONTRACT.md",
+    "docs/plans/0.2.1/DSH-COMPATIBILITY.md",
+    "docs/plans/0.2.1/NATIVE-CONTRACT.md",
+    "docs/plans/0.2.1/README.md"
+  ],
+  "primaryHead": "933b0ab251c75461ece1ada6145a9487e7eb04d1",
+  "primaryBranch": "feat/021-localization-login",
+  "primaryIndexUnchanged": true,
+  "allExistingWorktreeRefsUnchanged": true,
+  "frozenR3Clean": true,
+  "productionPackageChanged": false,
+  "platformAccessed": false,
+  "hostUiStarted": false,
+  "realCliExecuted": false,
+  "browserExecuted": false,
+  "realWindowsJobExecuted": false,
+  "commitPerformed": false,
+  "pushPerformed": false,
+  "ciRun": null,
+  "formalAcceptanceEligible": false,
+  "nativeWireControlledCases": 6,
+  "cleanupAllCasesPassed": true
+}

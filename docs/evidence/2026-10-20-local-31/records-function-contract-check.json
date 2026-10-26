@@ -1,0 +1,161 @@
+{
+  "checked_at": "2026-10-20T06:01:14.659Z",
+  "passed": true,
+  "tool_id": "01a157e4-3246-7cec-a7b6-244e4c773fd2",
+  "sources_items": "string",
+  "records": [
+    {
+      "case": "finished-goods",
+      "args": {
+        "material_code": "382-000005",
+        "sources": [
+          "inventory"
+        ],
+        "warehouse_scope": "finished_goods"
+      },
+      "counts": {
+        "inventory": 9
+      },
+      "inventory_summary": {
+        "note": "复用分层库存的同一统计：仅可用状态、所选仓；available已是可用量，不再扣预留，不含在途。无记录为null而非实测0；总量取total，不由模型手算，不附加其它仓或全仓合计。",
+        "warehouse_scope": "finished_goods",
+        "warehouse_filter": [
+          "苏州成品仓",
+          "乌鲁木齐成品仓",
+          "哈尔滨成品仓"
+        ],
+        "stock_status": "可用",
+        "total": {
+          "inventory_status": "recorded",
+          "inventory_units": [
+            "个"
+          ],
+          "available_qty": 534,
+          "reserved_qty": 0,
+          "inventory_record_count": 9
+        },
+        "by_warehouse": [
+          {
+            "reserved_qty": 0,
+            "inventory_record_count": 5,
+            "inventory_status": "recorded",
+            "inventory_units": [
+              "个"
+            ],
+            "warehouse": "苏州成品仓",
+            "available_qty": 325
+          },
+          {
+            "inventory_record_count": 2,
+            "inventory_status": "recorded",
+            "inventory_units": [
+              "个"
+            ],
+            "warehouse": "乌鲁木齐成品仓",
+            "available_qty": 127,
+            "reserved_qty": 0
+          },
+          {
+            "inventory_status": "recorded",
+            "inventory_units": [
+              "个"
+            ],
+            "warehouse": "哈尔滨成品仓",
+            "available_qty": 82,
+            "reserved_qty": 0,
+            "inventory_record_count": 2
+          }
+        ]
+      },
+      "scope": {
+        "include_bom_components": false,
+        "sources": [
+          "inventory"
+        ],
+        "exact_code_only": true
+      },
+      "source_datasets": [
+        "inventory"
+      ]
+    },
+    {
+      "case": "purchase",
+      "args": {
+        "material_code": "382-000005",
+        "sources": [
+          "purchase_request",
+          "purchase_order"
+        ]
+      },
+      "counts": {
+        "purchase_order": 0,
+        "purchase_request": 0
+      },
+      "scope": {
+        "exact_code_only": true,
+        "include_bom_components": false,
+        "sources": [
+          "purchase_request",
+          "purchase_order"
+        ]
+      },
+      "source_datasets": [
+        "purchase_order",
+        "purchase_request"
+      ]
+    },
+    {
+      "case": "missing",
+      "args": {
+        "material_code": "999-999999",
+        "sources": [
+          "material",
+          "inventory",
+          "sales_order",
+          "purchase_request",
+          "purchase_order"
+        ]
+      },
+      "counts": {
+        "sales_order": 0,
+        "purchase_request": 0,
+        "purchase_order": 0,
+        "material": 0,
+        "inventory": 0
+      },
+      "inventory_summary": {
+        "warehouse_scope": "all",
+        "warehouse_filter": [],
+        "stock_status": "可用",
+        "total": {
+          "inventory_units": [],
+          "available_qty": null,
+          "reserved_qty": null,
+          "inventory_record_count": 0,
+          "inventory_status": "no_records_in_scope"
+        },
+        "by_warehouse": [],
+        "note": "复用分层库存的同一统计：仅可用状态、所选仓；available已是可用量，不再扣预留，不含在途。无记录为null而非实测0；总量取total，不由模型手算，不附加其它仓或全仓合计。"
+      },
+      "scope": {
+        "exact_code_only": true,
+        "include_bom_components": false,
+        "sources": [
+          "material",
+          "inventory",
+          "sales_order",
+          "purchase_request",
+          "purchase_order"
+        ]
+      },
+      "source_datasets": [
+        "material",
+        "inventory",
+        "purchase_order",
+        "purchase_request",
+        "sales_order"
+      ]
+    }
+  ],
+  "scope": "Actual formal Function and SDK reads; scripted, not model/UI acceptance"
+}

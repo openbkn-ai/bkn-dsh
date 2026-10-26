@@ -6,17 +6,23 @@ OpenBKN business knowledge, network-scoped access, diagnostics, and provenance f
 
 Bring governed enterprise business knowledge into DeepSeek Harness conversations.
 
-## -12 overlay recovery
+## 0.2.1 version and compatibility
 
-Version `0.2.0-rc.2-openbkn.0.2.0-12` preserves settings drafts, validation, network search, diagnostics and same-turn provenance state when a Desktop modal is closed to change the Host language. A pending CLI login continues without reopening the panel; **Back to networks** discards a draft without saving. Chinese provenance reference labels and dark-theme dialog readability are also corrected. Authentication, access guards and business semantics remain Host-owned.
+This release line uses `0.2.1-rc.3-openbkn.0.2.1` and targets official DSH `0.2.0-rc.2` and `0.2.1-rc.3`. The OpenBKN `0.2.1` component is the version identity requested by the maintainer. Actual platform evidence remains on retained official OpenBKN `0.2.0` and CLI `0.2.0`; it does not establish acceptance on an unreleased OpenBKN `0.2.1` platform. Consult the matching GitHub Release acceptance record for the tested coverage and known limitations.
 
-For acceptance, install the exact `.tgz` from the versioned review kit and check its `pins.json`; do not install `latest` or another candidate in its place. Run Desktop and npm/Web separately on official DSH `0.2.0-rc.2`. Keep all npm publishing and dist-tag changes on hold during review. Registry availability and dist-tags are separate from this package's version; this text does not assert that -12 has been published or accepted on Windows.
+The #105 same-origin protection requires the matching profile MCP companion; the plugin tarball alone does not install that backport. Keep the original official application and follow the [companion placement and rollback instructions](https://github.com/openbkn-ai/bkn-dsh/tree/main/compat/mcp-profile-backport). Existing Hosts, platform, frozen -30/-31/-32 and historical verdicts are preserved.
 
-## -11 English interface
+### Historical development checkpoints
 
-Based on published -10, this release adds English UI localization. The plugin follows DSH **Settings → General → Language**. Open network, settings, diagnostics and the original three provenance tabs update immediately when switching between Chinese and English, while preserving unsaved fields, the selected view and pending requests. Network names, platform text, business data and model answers remain verbatim.
+This branch now targets official DSH `0.2.0-rc.2` and `0.2.1-rc.3`, with formal OpenBKN `v0.2.0` and CLI `0.2.0`. The old build generator remains pinned. The local development candidate is -32; it is not a final CI candidate or formal acceptance result. Frozen -30/-31 and their rc.2 handoff evidence remain unchanged and do not establish rc.3 acceptance.
 
-Install the English release explicitly as `@openbkn/dsh-business-context@0.2.0-rc.2-openbkn.0.2.0-11`. The DSH pairing remains `0.2.0-rc.2`. Development-branch login progress, native provenance, CSV export and dual-host compatibility are outside this release. The limitations of -10 still apply. npm publication starts on `rc`; Windows acceptance of this candidate remains open and `latest` promotion follows the release gates.
+CSV delivery in this local development version uses the scoped `openbkn_export_csv` tool when the Host offers the required file services. After an existing platform CSV is created, the tool verifies and copies its exact UTF-8 bytes (up to 512 KiB) to a new file in the current DSH workspace. It requires the current bound Interaction and workspace write access; read-only sessions refuse delivery. Open the returned local file link only after export succeeds. Host read/grep/present remain unavailable. Managed guidance requires source precision in answers and CSV serialization, including avoiding Python default general formatting unless rounding is requested by the user or a disclosed platform rule. Model answer and file contents still require independent validation.
+
+Export results include a verified `markdown_link`; repeat it with the answer and scope in the final message after finishing the Interaction, because progress messages may be collapsed. Count scope and requested calculation signs follow the platform contract; the plugin does not recalculate business results.
+
+Formal capture-disabled responses retain managed Conversation/Interaction IDs: business calls still send the required `bkn_context`, and finish uses the current Interaction ID. Provenance preserves the disclosed identities, labels the absence of recorded evidence and keeps the local timeline. The earlier explicit no-identity downgrade remains a separate compatibility path. The plugin does not recalculate business results or alter model answers.
+
+Source tests, controlled official npm runtime checks, fixed CI artifacts, real platform calls and human acceptance are separate gates. The eight Desktop/npm and Mac/Windows combinations across both DSH versions remain pending on a fixed CI candidate. Existing installations are not upgraded automatically.
 
 ## Why bkn-dsh
 
@@ -63,7 +69,7 @@ dsh plugin --profile <desktop|web> add @openbkn/dsh-business-context@latest
 
 On Windows, use `dsh.cmd`. A source build uses `node apps/cli/lib/bin.js plugin --profile web add @openbkn/dsh-business-context@latest` from the DSH checkout root. Choose the actual profile and `DSH_HOME` of the Host you run; `desktop` and `web` are separate profiles. For a downloaded package, replace the package spec with its absolute `.tgz` path.
 
-Install an OpenBKN CLI version that matches the platform. For the supported OpenBKN 0.2.0 platform, use `npm install -g @openbkn/bkn-sdk@0.2.0`. For OpenBKN 0.1.5, use `npm install -g @openbkn/bkn-sdk@0.1.5`; for 0.1.4, use `@openbkn/bkn-sdk@0.1.4` (`0.1.5-rc.1` also works). CLI `0.1.5-rc.2` and later require a platform health/version endpoint absent in 0.1.4. You do not need to sign in before configuring the plugin. The npm DSH CLI also requires pnpm on `PATH` (`npm install -g pnpm@11.7.0`); the desktop app bundles it. For a self-signed platform certificate, configure `NODE_EXTRA_CA_CERTS` for the DSH process and fully restart it; detailed platform-specific instructions are in the [repository README](https://github.com/openbkn-ai/bkn-dsh#before-you-start).
+Install an OpenBKN CLI version that matches the platform. For OpenBKN 0.1.5, use `npm install -g @openbkn/bkn-sdk@0.1.5`; for 0.1.4, use `@openbkn/bkn-sdk@0.1.4` (`0.1.5-rc.1` also works). CLI `0.1.5-rc.2` and later require a platform health/version endpoint absent in 0.1.4. You do not need to sign in before configuring the plugin. The npm DSH CLI also requires pnpm on `PATH` (`npm install -g pnpm@11.7.0`); the desktop app bundles it. For a self-signed platform certificate, configure `NODE_EXTRA_CA_CERTS` for the DSH process and fully restart it; detailed platform-specific instructions are in the [repository README](https://github.com/openbkn-ai/bkn-dsh#before-you-start).
 
 ### Configure, authorize, and ask
 

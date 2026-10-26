@@ -1,0 +1,23 @@
+{
+  "changedFilesFrom5e55": [
+    "README.md",
+    "HANDOFF-FILES.json",
+    "kit/KIT-FILES.json",
+    "kit/run-gui-proof.mjs",
+    "kit/INPUTS.json",
+    "kit/WINDOWS-PROMPT.md"
+  ],
+  "onlyCodeDelta": "OS pass-through in existing baseEnv whitelist",
+  "repairedControllerSha256": "a619b0d0a5a70e1a44610e7f5d2ede771a13d5791eb88dfa7a8eb33cf46e8eea",
+  "allExecutableFilesEqualTestedRound67": true,
+  "nodeEnvironmentRegressionReused": {
+    "pass": 5,
+    "fail": 0,
+    "rerun": false
+  },
+  "powershellAndGuardsUnchanged": true,
+  "frozenTgzUnchanged": true,
+  "inputIntegrity": "PASS:82/12",
+  "textSecretAndLinks": "PASS",
+  "workflowFiles": 0
+}

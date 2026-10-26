@@ -1,0 +1,181 @@
+{
+  "checked_at": "2026-10-21T08:59:30.555727+00:00",
+  "files": {
+    "RESULTS.md": {
+      "sha256": "4128c35d85fee336e4499ade9b8cdc493832a8058d5190629703d79e22dee48c",
+      "bytes": 10475
+    },
+    "SECURITY-CANDIDATE.md": {
+      "sha256": "185236847c5bebda8d6e465e7e61f2067d2f7c59492399d8201e3a52ae43025a",
+      "bytes": 4848
+    },
+    "b1-new-checks.json": {
+      "sha256": "6fca1afe4ba6056ab1e30f116956b5d9d7f44ce8224bef553ee1dd0de08b9d7e",
+      "bytes": 2475
+    },
+    "b1-old-checks.json": {
+      "sha256": "d59e79f7f9b99cf43d958ec7b30316bbf6e47693665619568c3979d82cf7771f",
+      "bytes": 2583
+    },
+    "b1-platform-operations.json": {
+      "sha256": "55d00180807863d61854a8c626e18b4619d366a1f136eccb0dfb7e30eb853d92",
+      "bytes": 1355
+    },
+    "bundle-check.json": {
+      "sha256": "75216b17d5126c7b788dec28de87447e393d32c0fabcbcbd919c9d2bc3b48746",
+      "bytes": 1424
+    },
+    "candidate-24.json": {
+      "sha256": "170cac4df118432b5b178ba52ae373d483be85db5c3e35adba526830e648f3a6",
+      "bytes": 700
+    },
+    "candidate-image-validation.json": {
+      "sha256": "c4a7e5f6917d283744016a75d6ec0ca7c613e9be8f2ad1cb3394b95420a8804c",
+      "bytes": 1614
+    },
+    "candidate-images.json": {
+      "sha256": "47cf2c0d76f2ef9349f47fbc54e59c5799634f3ebc49157c3e3523e85e0bf45f",
+      "bytes": 2224
+    },
+    "candidate.json": {
+      "sha256": "e63e696acfaea57fb1a4fc4b8fdb6b511f9c0caf475d64d39f4c7d65dec35ded",
+      "bytes": 969
+    },
+    "controlled-hosts-25.json": {
+      "sha256": "9a67634d9761a9b9397ea4be0aac3455f31feb31311d04df7a5f3cd29569ec27",
+      "bytes": 5020
+    },
+    "desktop-app-identities.json": {
+      "sha256": "391a4a146186864f5a4ef91ea9d6ca3151926f7333c4bd6aba6136e9f45ca9eb",
+      "bytes": 1138
+    },
+    "desktop-installed-artifact-25.json": {
+      "sha256": "4cfef63878316c29d1c8cd437724b14198e0922dd307468d34bc321d6f05d80b",
+      "bytes": 493
+    },
+    "desktop-new-diagnostic-25.json": {
+      "sha256": "632e621e2d98b14072a0d8d16d72cde685462053902927daf084a7af96ceb854",
+      "bytes": 2512
+    },
+    "desktop-new-diagnostics-en-25.jpg": {
+      "sha256": "cf1621fd057ea4117f6706f05ca7f55d1bf386e598eb1d4c3fd66eb9642ae6a5",
+      "bytes": 135925
+    },
+    "desktop-new-diagnostics-narrow-25.jpg": {
+      "sha256": "15307a3ca49cec255d681dd180354f7b1cd21df3f6d984123fa349dd274b2123",
+      "bytes": 73567
+    },
+    "desktop-new-login-cancel-process-25.json": {
+      "sha256": "28a2002acf3bee8fb84bdefe0efd5e9559b88c1c474b710f38d473d1d151ffe2",
+      "bytes": 284
+    },
+    "desktop-new-login-timeout-25.jpg": {
+      "sha256": "269ca9670c73485a90e8de4eadd3d87dc5aaec95b9668081e97a12524a19b0d3",
+      "bytes": 80039
+    },
+    "desktop-new-login-timeout-process-25.json": {
+      "sha256": "18f91e53fe4ad3dcca08d7d0e8bff3d762761254327d8e289e6f2d44928c24f5",
+      "bytes": 287
+    },
+    "desktop-new-network-en-25.jpg": {
+      "sha256": "85fa790a35ec7feb9ce88e9906c5aa179460dab286e6d97e0fac221ee973973b",
+      "bytes": 112598
+    },
+    "desktop-new-network-narrow-25.jpg": {
+      "sha256": "2d19214dfc8d38e640b592a77da0e7a58c47e67de3ba2bae8de1845cb1dcf6c5",
+      "bytes": 74130
+    },
+    "desktop-new-runtime-closure-25.json": {
+      "sha256": "0d4b9f2f955f4a89fa78e72794b21074a93bf535cc54005429f148dfb250fa89",
+      "bytes": 17129
+    },
+    "desktop-new-workspace-binding-25.json": {
+      "sha256": "ee642911403e19b011fb2ea5328ab51e09e1e6c3d1e137770ff378c485467b79",
+      "bytes": 708
+    },
+    "desktop-new-workspace-session-25.jpg": {
+      "sha256": "d10a51f2101b155b24b4a48a66fd85a53f7ded2b0af3bea91347ecb041a06ede",
+      "bytes": 64319
+    },
+    "desktop-new-workspace-session-25.txt": {
+      "sha256": "1abb6e690f4b82e63bbdc8937d9d7aca80be95f05b395f6decdc70334c89b990",
+      "bytes": 1795
+    },
+    "desktop-old-diagnostic-25.json": {
+      "sha256": "abf525fe52bf5396022448c83e14203f543faf615e785d033565f458b02ce655",
+      "bytes": 2512
+    },
+    "desktop-old-diagnostics-en-25.jpg": {
+      "sha256": "34c365a10187e38a63efd6a7a8de602c5eab6fb3e3ed26cc697c431fad62660f",
+      "bytes": 136422
+    },
+    "desktop-old-login-cancel-process-25.json": {
+      "sha256": "27dbb38595f3869d11e95fbb1df169b89de2443a4136cf7243763c22cd074adc",
+      "bytes": 284
+    },
+    "desktop-old-login-timeout-25.jpg": {
+      "sha256": "8cd14d19828bfd37974d40e5e3209dd23d71b60dbbcd841d3944728908360d50",
+      "bytes": 80669
+    },
+    "desktop-old-login-timeout-process-25.json": {
+      "sha256": "8afe4da93d11b4184edf0f9c9e201ad3a68dd2d0cd8cc40907df1edda1fa8031",
+      "bytes": 287
+    },
+    "desktop-old-network-en-25.jpg": {
+      "sha256": "7236d955c5117afcc7e04d13987cfa29bf4758981654dfba55674081e01a27a8",
+      "bytes": 116257
+    },
+    "desktop-old-runtime-closure-25.json": {
+      "sha256": "a43ad30abb2bc12ad05bc1331d0d77f8e12ad610fabc8af5fa18bb3ff35133cd",
+      "bytes": 15961
+    },
+    "go-credential-probe.json": {
+      "sha256": "d53748e8b9a689a1047f18899bc73439689caf3e4280c53361b21dcdb384fb08",
+      "bytes": 1380
+    },
+    "go-full-package-summary.json": {
+      "sha256": "d52fc2e57eac90e5c474eb15b09a5e4909224302b84ce8aac803fd73d82ea469",
+      "bytes": 237
+    },
+    "live-impact.json": {
+      "sha256": "78e4ee6a631f487c2f29c6d90c7db392e06ba4d58bead95a99db9a3d0f1ae258",
+      "bytes": 2799
+    },
+    "platform-after-check.json": {
+      "sha256": "d9da6ed550c2b0d2e0941309e831aaeb41dc687557feab5568f94609cc496684",
+      "bytes": 968
+    },
+    "preservation-check.json": {
+      "sha256": "1ff07f088bc54bb2214956c05405c822bcff7ddf3e9c3b11876f0ff90aa579e7",
+      "bytes": 3307
+    },
+    "proposed-backport-index.json": {
+      "sha256": "6b5d95869314c5cd72ca0a3dd65a454be2b2e66eb8fbc506d18bc2c06c308e8c",
+      "bytes": 1798
+    },
+    "proposed-security-backport.patch": {
+      "sha256": "fb08dc67fe4bfca3657b43ce8f44e11c40dc3af1f9fe35c91a0db281d49720f9",
+      "bytes": 6539
+    },
+    "secret-scan.json": {
+      "sha256": "a1dced1fb175facb36936e6d3bfbacc92c749b06c43a2ca904ed7b283f01740c",
+      "bytes": 224
+    },
+    "upstream-main-delta.json": {
+      "sha256": "ce468d4f4abb70c3fa2666933db15fd68c7eb3fdcd0e6a955fa7118311f721c8",
+      "bytes": 4030
+    },
+    "upstream-refresh.json": {
+      "sha256": "47a7a3c6de263155003d31e7c68b1c42a386e4319d890006245b53a49eb8b4c9",
+      "bytes": 1094
+    },
+    "user-config-preservation.json": {
+      "sha256": "3314f71df561db6034879cadac33de8eff712665d7cc6837ac72afc4350818cc",
+      "bytes": 705
+    },
+    "validation-summary.json": {
+      "sha256": "10da4d29c236fe72b9b4bf45f885dbb5a5a22b0a49e2b1d896d4244c5e5d1a1d",
+      "bytes": 922
+    }
+  }
+}

@@ -1,0 +1,52 @@
+{
+  "checked_at": "2026-10-19T15:13:03.570798+00:00",
+  "read_only": true,
+  "repositories": {
+    "deepseek-ai/deepseek-harness": {
+      "status": 0,
+      "releases": [
+        {
+          "draft": false,
+          "prerelease": true,
+          "published_at": "2026-10-17T08:16:33Z",
+          "tag_name": "dsh-v0.2.1-rc.2"
+        },
+        {
+          "draft": false,
+          "prerelease": true,
+          "published_at": "2026-10-17T05:22:10Z",
+          "tag_name": "dsh-v0.2.1-rc.1"
+        },
+        {
+          "draft": false,
+          "prerelease": true,
+          "published_at": "2026-10-16T12:23:28Z",
+          "tag_name": "dsh-v0.2.1-alpha.5"
+        }
+      ]
+    },
+    "openbkn-ai/bkn-foundry": {
+      "status": 0,
+      "releases": [
+        {
+          "draft": false,
+          "prerelease": false,
+          "published_at": "2026-10-16T07:21:25Z",
+          "tag_name": "v0.2.0"
+        },
+        {
+          "draft": false,
+          "prerelease": false,
+          "published_at": "2026-08-31T07:31:22Z",
+          "tag_name": "v0.1.4"
+        },
+        {
+          "draft": false,
+          "prerelease": false,
+          "published_at": "2026-09-28T10:05:55Z",
+          "tag_name": "v0.1.5"
+        }
+      ]
+    }
+  }
+}

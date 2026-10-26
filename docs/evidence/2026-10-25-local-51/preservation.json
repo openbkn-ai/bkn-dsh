@@ -1,0 +1,44 @@
+{
+  "at": "2026-10-24T16:38:47.424841+00:00",
+  "mainHead": "933b0ab251c75461ece1ada6145a9487e7eb04d1",
+  "indexUnchanged": true,
+  "worktreeRefsUnchanged": true,
+  "preexistingFiles": 3684,
+  "unchangedFiles": 3680,
+  "onlyStatusDocsChanged": [
+    "CLAUDE.md",
+    "docs/plans/0.2.1/ACCEPTANCE-CONTRACT.md",
+    "docs/plans/0.2.1/DSH-COMPATIBILITY.md",
+    "docs/plans/0.2.1/README.md"
+  ],
+  "protectedGroups": {
+    "desktop-old": {
+      "filesMatched": 80,
+      "unchanged": true
+    },
+    "desktop-new": {
+      "filesMatched": 80,
+      "unchanged": true
+    },
+    "npm-old": {
+      "filesMatched": 40,
+      "unchanged": true
+    },
+    "npm-new": {
+      "filesMatched": 44,
+      "unchanged": true
+    },
+    "handoff": {
+      "filesMatched": 61,
+      "unchanged": true
+    },
+    "ui31-source": {
+      "filesMatched": 317,
+      "unchanged": true
+    }
+  },
+  "frozen30And31AndKitUnchanged": true,
+  "credentialRefresh": "officialCLI normal login; temporary credential copy removed",
+  "platformChanged": false,
+  "pushOrCi": false
+}

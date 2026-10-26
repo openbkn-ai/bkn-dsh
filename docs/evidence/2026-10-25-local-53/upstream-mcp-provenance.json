@@ -1,0 +1,12 @@
+{
+  "source": "https://github.com/modelcontextprotocol/typescript-sdk",
+  "commit": "433eb413dc305ebeb93b8ebcde0095a8fc0d5fa0",
+  "files": {
+    "transport.ts": "0c7de94d6b7b9531acfd54c9131e57392266c6320ea166c824face174d0d5116",
+    "fetchWithinOrigin.test.ts": "d10dc515b30be87a4ddcc85de4c0ebb7e3d493f60b1ae88322aaab303135b2c6",
+    "redirects.test.ts": "5fd75a8e042f3f51506b174ae3b7a03ebd217ba462d9457e4ea74aeabe2f5839"
+  },
+  "fullPinnedLicenseCopied": "backport/MCP-SDK-LICENSE.txt",
+  "implementationAdjustment": "omit unused fetchLeavingRedirects/WeakSet opt-out only; origin/method/hop/userinfo/manual/error/opaque behavior retained",
+  "sourceTextCopy": true
+}

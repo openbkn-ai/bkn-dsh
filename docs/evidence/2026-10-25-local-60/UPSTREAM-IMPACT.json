@@ -1,0 +1,64 @@
+{
+  "checkedAt": "2026-10-25T13:04:36.314926+00:00",
+  "dsh": {
+    "defaultBranchRef": {
+      "name": "master",
+      "target": {
+        "oid": "22ddee3792402c3e70ec5f86a63c3e3e895a2f60"
+      }
+    },
+    "releases": {
+      "nodes": [
+        {
+          "tagName": "dsh-v0.2.1-rc.3",
+          "publishedAt": "2026-10-23T15:26:39Z"
+        }
+      ]
+    }
+  },
+  "foundry": {
+    "defaultBranchRef": {
+      "name": "main",
+      "target": {
+        "oid": "83ddfcf01eb2e73ee5ac09025ffd42ed1c093620"
+      }
+    },
+    "releases": {
+      "nodes": [
+        {
+          "tagName": "v0.2.0",
+          "publishedAt": "2026-10-16T07:21:25Z"
+        }
+      ]
+    }
+  },
+  "foundryComparedFrom": "a50d1b7d008d452a40fd061c9bded77c886f72d9",
+  "foundryDeltaCommits": [
+    {
+      "sha": "b024c0e9a6ad0eec9c1b75caf555dc625dfc59cf",
+      "subject": "feat(bkn-safe): extraEnv in the chart (#2492)"
+    },
+    {
+      "sha": "36d34b4846d2189bfc13743cee7b5078a5976ecc",
+      "subject": "feat(agent-retrieval): expose Object Metric analysis MCP App (#2496)"
+    },
+    {
+      "sha": "0521c4a522c620fcb7da76fdb6a769377caf085d",
+      "subject": "feat(bkn-backend): scale concept group overview graphs (#2494)"
+    },
+    {
+      "sha": "83ddfcf01eb2e73ee5ac09025ffd42ed1c093620",
+      "subject": "fix(bkn-trace): durably hand off answers during managed finish (#2493)"
+    }
+  ],
+  "foundryDeltaFileCount": 75,
+  "reviewedAreas": [
+    "bkn-safe chart extraEnv",
+    "Object Metric MCP App/result metadata",
+    "concept-group graph pagination",
+    "managed-finish durable answer handoff and status"
+  ],
+  "impact": "Unreleased Foundry main changes; not deployed to the retained formal v0.2.0 baseline. No platform tool/prompt/fixture change for this non-GUI kit. New tool capability is not enabled by this work. DSH head unchanged from round59. No compatibility claim for undeployed main.",
+  "platformContactedOrDeployed": false,
+  "hostOrSdkPinsChanged": false
+}

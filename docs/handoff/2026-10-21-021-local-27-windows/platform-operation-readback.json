@@ -1,0 +1,173 @@
+{
+  "checked_at": "2026-10-21T15:22:39.548210+00:00",
+  "checks": [
+    {
+      "form": "npm-web",
+      "host": "0.2.0-rc.2",
+      "case": "standard-lead-time",
+      "interaction_id": "int_e27c0b9f5712fb88037bdc2237faccb5",
+      "detail_http_status": 200,
+      "operations_http_status": 200,
+      "operations": [
+        {
+          "tool_name": "search_schema",
+          "status": "completed"
+        },
+        {
+          "tool_name": "query_object_instance",
+          "status": "completed"
+        }
+      ],
+      "sandbox_operation_observed": false
+    },
+    {
+      "form": "npm-web",
+      "host": "0.2.0-rc.2",
+      "case": "recovery",
+      "interaction_id": "int_13fda0db326a57dbaaef205fe4de8a13",
+      "detail_http_status": 200,
+      "operations_http_status": 200,
+      "operations": [],
+      "sandbox_operation_observed": false
+    },
+    {
+      "form": "npm-web",
+      "host": "0.2.1-rc.2",
+      "case": "standard-lead-time",
+      "interaction_id": "int_43082e21d5d4a5b73c09c10191a4d3de",
+      "detail_http_status": 200,
+      "operations_http_status": 200,
+      "operations": [
+        {
+          "tool_name": "search_capabilities",
+          "status": "completed"
+        },
+        {
+          "tool_name": "get_object_types",
+          "status": "completed"
+        },
+        {
+          "tool_name": "query_object_instance",
+          "status": "completed"
+        }
+      ],
+      "sandbox_operation_observed": false
+    },
+    {
+      "form": "npm-web",
+      "host": "0.2.1-rc.2",
+      "case": "recovery",
+      "interaction_id": "int_7ab9fd71e56c98d1f9fc94e09652b4f6",
+      "detail_http_status": 200,
+      "operations_http_status": 200,
+      "operations": [
+        {
+          "tool_name": "search_capabilities",
+          "status": "completed"
+        },
+        {
+          "tool_name": "get_object_types",
+          "status": "completed"
+        },
+        {
+          "tool_name": "search_capabilities",
+          "status": "completed"
+        }
+      ],
+      "sandbox_operation_observed": false
+    },
+    {
+      "form": "desktop",
+      "host": "0.2.0-rc.2",
+      "case": "standard-lead-time",
+      "interaction_id": "int_67c5c3d335b707584b84ceecfe2e0ee9",
+      "detail_http_status": 200,
+      "operations_http_status": 200,
+      "operations": [
+        {
+          "tool_name": "search_schema",
+          "status": "completed"
+        },
+        {
+          "tool_name": "query_object_instance",
+          "status": "completed"
+        }
+      ],
+      "sandbox_operation_observed": false
+    },
+    {
+      "form": "desktop",
+      "host": "0.2.0-rc.2",
+      "case": "recovery",
+      "interaction_id": "int_21b22255e9aa619772598e648b7affc6",
+      "detail_http_status": 200,
+      "operations_http_status": 200,
+      "operations": [
+        {
+          "tool_name": "search_schema",
+          "status": "completed"
+        },
+        {
+          "tool_name": "query_object_instance",
+          "status": "completed"
+        }
+      ],
+      "sandbox_operation_observed": false
+    },
+    {
+      "form": "desktop",
+      "host": "0.2.1-rc.2",
+      "case": "standard-lead-time",
+      "interaction_id": "int_8278832c18705f8125086dbd5f3225e3",
+      "detail_http_status": 200,
+      "operations_http_status": 200,
+      "operations": [
+        {
+          "tool_name": "search_capabilities",
+          "status": "completed"
+        },
+        {
+          "tool_name": "get_object_types",
+          "status": "completed"
+        },
+        {
+          "tool_name": "get_object_types",
+          "status": "completed"
+        },
+        {
+          "tool_name": "query_object_instance",
+          "status": "completed"
+        }
+      ],
+      "sandbox_operation_observed": false
+    },
+    {
+      "form": "desktop",
+      "host": "0.2.1-rc.2",
+      "case": "recovery",
+      "interaction_id": "int_a76adcadcfa2d1f610acfa858912836c",
+      "detail_http_status": 200,
+      "operations_http_status": 200,
+      "operations": [
+        {
+          "tool_name": "search_capabilities",
+          "status": "completed"
+        },
+        {
+          "tool_name": "get_object_types",
+          "status": "completed"
+        },
+        {
+          "tool_name": "get_object_types",
+          "status": "completed"
+        },
+        {
+          "tool_name": "query_object_instance",
+          "status": "completed"
+        }
+      ],
+      "sandbox_operation_observed": false
+    }
+  ],
+  "input_output_values_exported": false
+}

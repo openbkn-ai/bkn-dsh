@@ -1,0 +1,860 @@
+{
+  "checkedAt": "2026-10-25T02:01:55.936Z",
+  "node": "v24.19.0",
+  "selection": "npm",
+  "scope": "isolated upstream same-origin helper backport proposal, not production repair or acceptance",
+  "realCredentialsOrPlatformCalls": false,
+  "frozenArtifactsChanged": false,
+  "hostsLaunched": false,
+  "rows": [
+    {
+      "host": "old",
+      "sdk": "2.0.0",
+      "entrySha256": "60dc3a0f0f1cdafcceec0baf33c71687a2f378741a6810f86752ef1be75eeca9",
+      "runtime": "v24.19.0",
+      "execution": "actual installed SDK transport; synthetic loopback servers; no full Host or CLI"
+    },
+    {
+      "host": "old",
+      "sdk": "2.0.0",
+      "kind": "proposed-deny-redirects",
+      "method": "POST",
+      "status": 301,
+      "secondOriginRequests": 0,
+      "secondOrigin": [],
+      "rejected": true,
+      "error": {
+        "name": "SdkHttpError",
+        "code": "CLIENT_HTTP_NOT_IMPLEMENTED",
+        "status": 301
+      },
+      "result": "PASS"
+    },
+    {
+      "host": "old",
+      "sdk": "2.0.0",
+      "kind": "proposed-deny-redirects",
+      "method": "POST",
+      "status": 302,
+      "secondOriginRequests": 0,
+      "secondOrigin": [],
+      "rejected": true,
+      "error": {
+        "name": "SdkHttpError",
+        "code": "CLIENT_HTTP_NOT_IMPLEMENTED",
+        "status": 302
+      },
+      "result": "PASS"
+    },
+    {
+      "host": "old",
+      "sdk": "2.0.0",
+      "kind": "proposed-deny-redirects",
+      "method": "POST",
+      "status": 303,
+      "secondOriginRequests": 0,
+      "secondOrigin": [],
+      "rejected": true,
+      "error": {
+        "name": "SdkHttpError",
+        "code": "CLIENT_HTTP_NOT_IMPLEMENTED",
+        "status": 303
+      },
+      "result": "PASS"
+    },
+    {
+      "host": "old",
+      "sdk": "2.0.0",
+      "kind": "proposed-deny-redirects",
+      "method": "POST",
+      "status": 307,
+      "secondOriginRequests": 0,
+      "secondOrigin": [],
+      "rejected": true,
+      "error": {
+        "name": "SdkHttpError",
+        "code": "CLIENT_HTTP_NOT_IMPLEMENTED",
+        "status": 307
+      },
+      "result": "PASS"
+    },
+    {
+      "host": "old",
+      "sdk": "2.0.0",
+      "kind": "proposed-deny-redirects",
+      "method": "POST",
+      "status": 308,
+      "secondOriginRequests": 0,
+      "secondOrigin": [],
+      "rejected": true,
+      "error": {
+        "name": "SdkHttpError",
+        "code": "CLIENT_HTTP_NOT_IMPLEMENTED",
+        "status": 308
+      },
+      "result": "PASS"
+    },
+    {
+      "host": "old",
+      "sdk": "2.0.0",
+      "kind": "proposed-deny-redirects",
+      "method": "GET",
+      "status": 301,
+      "secondOriginRequests": 0,
+      "secondOrigin": [],
+      "rejected": true,
+      "error": {
+        "name": "SdkHttpError",
+        "code": "CLIENT_HTTP_FAILED_TO_OPEN_STREAM",
+        "status": 301
+      },
+      "result": "PASS"
+    },
+    {
+      "host": "old",
+      "sdk": "2.0.0",
+      "kind": "proposed-deny-redirects",
+      "method": "GET",
+      "status": 302,
+      "secondOriginRequests": 0,
+      "secondOrigin": [],
+      "rejected": true,
+      "error": {
+        "name": "SdkHttpError",
+        "code": "CLIENT_HTTP_FAILED_TO_OPEN_STREAM",
+        "status": 302
+      },
+      "result": "PASS"
+    },
+    {
+      "host": "old",
+      "sdk": "2.0.0",
+      "kind": "proposed-deny-redirects",
+      "method": "GET",
+      "status": 303,
+      "secondOriginRequests": 0,
+      "secondOrigin": [],
+      "rejected": true,
+      "error": {
+        "name": "SdkHttpError",
+        "code": "CLIENT_HTTP_FAILED_TO_OPEN_STREAM",
+        "status": 303
+      },
+      "result": "PASS"
+    },
+    {
+      "host": "old",
+      "sdk": "2.0.0",
+      "kind": "proposed-deny-redirects",
+      "method": "GET",
+      "status": 307,
+      "secondOriginRequests": 0,
+      "secondOrigin": [],
+      "rejected": true,
+      "error": {
+        "name": "SdkHttpError",
+        "code": "CLIENT_HTTP_FAILED_TO_OPEN_STREAM",
+        "status": 307
+      },
+      "result": "PASS"
+    },
+    {
+      "host": "old",
+      "sdk": "2.0.0",
+      "kind": "proposed-deny-redirects",
+      "method": "GET",
+      "status": 308,
+      "secondOriginRequests": 0,
+      "secondOrigin": [],
+      "rejected": true,
+      "error": {
+        "name": "SdkHttpError",
+        "code": "CLIENT_HTTP_FAILED_TO_OPEN_STREAM",
+        "status": 308
+      },
+      "result": "PASS"
+    },
+    {
+      "host": "old",
+      "sdk": "2.0.0",
+      "kind": "proposed-deny-redirects",
+      "method": "DELETE",
+      "status": 301,
+      "secondOriginRequests": 0,
+      "secondOrigin": [],
+      "rejected": true,
+      "error": {
+        "name": "SdkHttpError",
+        "code": "CLIENT_HTTP_FAILED_TO_TERMINATE_SESSION",
+        "status": 301
+      },
+      "result": "PASS"
+    },
+    {
+      "host": "old",
+      "sdk": "2.0.0",
+      "kind": "proposed-deny-redirects",
+      "method": "DELETE",
+      "status": 302,
+      "secondOriginRequests": 0,
+      "secondOrigin": [],
+      "rejected": true,
+      "error": {
+        "name": "SdkHttpError",
+        "code": "CLIENT_HTTP_FAILED_TO_TERMINATE_SESSION",
+        "status": 302
+      },
+      "result": "PASS"
+    },
+    {
+      "host": "old",
+      "sdk": "2.0.0",
+      "kind": "proposed-deny-redirects",
+      "method": "DELETE",
+      "status": 303,
+      "secondOriginRequests": 0,
+      "secondOrigin": [],
+      "rejected": true,
+      "error": {
+        "name": "SdkHttpError",
+        "code": "CLIENT_HTTP_FAILED_TO_TERMINATE_SESSION",
+        "status": 303
+      },
+      "result": "PASS"
+    },
+    {
+      "host": "old",
+      "sdk": "2.0.0",
+      "kind": "proposed-deny-redirects",
+      "method": "DELETE",
+      "status": 307,
+      "secondOriginRequests": 0,
+      "secondOrigin": [],
+      "rejected": true,
+      "error": {
+        "name": "SdkHttpError",
+        "code": "CLIENT_HTTP_FAILED_TO_TERMINATE_SESSION",
+        "status": 307
+      },
+      "result": "PASS"
+    },
+    {
+      "host": "old",
+      "sdk": "2.0.0",
+      "kind": "proposed-deny-redirects",
+      "method": "DELETE",
+      "status": 308,
+      "secondOriginRequests": 0,
+      "secondOrigin": [],
+      "rejected": true,
+      "error": {
+        "name": "SdkHttpError",
+        "code": "CLIENT_HTTP_FAILED_TO_TERMINATE_SESSION",
+        "status": 308
+      },
+      "result": "PASS"
+    },
+    {
+      "host": "old",
+      "kind": "official-same-origin-policy",
+      "method": "POST",
+      "status": 301,
+      "followed": false,
+      "finalRequests": 0,
+      "rejected": true,
+      "result": "PASS"
+    },
+    {
+      "host": "old",
+      "kind": "official-same-origin-policy",
+      "method": "POST",
+      "status": 302,
+      "followed": false,
+      "finalRequests": 0,
+      "rejected": true,
+      "result": "PASS"
+    },
+    {
+      "host": "old",
+      "kind": "official-same-origin-policy",
+      "method": "POST",
+      "status": 303,
+      "followed": false,
+      "finalRequests": 0,
+      "rejected": true,
+      "result": "PASS"
+    },
+    {
+      "host": "old",
+      "kind": "official-same-origin-policy",
+      "method": "POST",
+      "status": 307,
+      "followed": true,
+      "finalRequests": 1,
+      "rejected": false,
+      "result": "PASS"
+    },
+    {
+      "host": "old",
+      "kind": "official-same-origin-policy",
+      "method": "POST",
+      "status": 308,
+      "followed": true,
+      "finalRequests": 1,
+      "rejected": false,
+      "result": "PASS"
+    },
+    {
+      "host": "old",
+      "kind": "official-same-origin-policy",
+      "method": "GET",
+      "status": 301,
+      "followed": true,
+      "finalRequests": 1,
+      "rejected": false,
+      "result": "PASS"
+    },
+    {
+      "host": "old",
+      "kind": "official-same-origin-policy",
+      "method": "GET",
+      "status": 302,
+      "followed": true,
+      "finalRequests": 1,
+      "rejected": false,
+      "result": "PASS"
+    },
+    {
+      "host": "old",
+      "kind": "official-same-origin-policy",
+      "method": "GET",
+      "status": 303,
+      "followed": true,
+      "finalRequests": 1,
+      "rejected": false,
+      "result": "PASS"
+    },
+    {
+      "host": "old",
+      "kind": "official-same-origin-policy",
+      "method": "GET",
+      "status": 307,
+      "followed": true,
+      "finalRequests": 1,
+      "rejected": false,
+      "result": "PASS"
+    },
+    {
+      "host": "old",
+      "kind": "official-same-origin-policy",
+      "method": "GET",
+      "status": 308,
+      "followed": true,
+      "finalRequests": 1,
+      "rejected": false,
+      "result": "PASS"
+    },
+    {
+      "host": "old",
+      "kind": "official-same-origin-policy",
+      "method": "DELETE",
+      "status": 301,
+      "followed": false,
+      "finalRequests": 0,
+      "rejected": true,
+      "result": "PASS"
+    },
+    {
+      "host": "old",
+      "kind": "official-same-origin-policy",
+      "method": "DELETE",
+      "status": 302,
+      "followed": false,
+      "finalRequests": 0,
+      "rejected": true,
+      "result": "PASS"
+    },
+    {
+      "host": "old",
+      "kind": "official-same-origin-policy",
+      "method": "DELETE",
+      "status": 303,
+      "followed": false,
+      "finalRequests": 0,
+      "rejected": true,
+      "result": "PASS"
+    },
+    {
+      "host": "old",
+      "kind": "official-same-origin-policy",
+      "method": "DELETE",
+      "status": 307,
+      "followed": true,
+      "finalRequests": 1,
+      "rejected": false,
+      "result": "PASS"
+    },
+    {
+      "host": "old",
+      "kind": "official-same-origin-policy",
+      "method": "DELETE",
+      "status": 308,
+      "followed": true,
+      "finalRequests": 1,
+      "rejected": false,
+      "result": "PASS"
+    },
+    {
+      "host": "old",
+      "kind": "normal-nonredirected-mcp",
+      "initialize": true,
+      "notification": true,
+      "toolsList": true,
+      "toolCall": true,
+      "sessionPropagation": true,
+      "sseResumeRead": true,
+      "closeInvoked": true,
+      "deleteSession": true,
+      "result": "PASS"
+    },
+    {
+      "host": "old",
+      "kind": "explicit-401-no-sdk-oauth-provider",
+      "rejected": true,
+      "error": {
+        "name": "SdkHttpError",
+        "code": "CLIENT_HTTP_NOT_IMPLEMENTED",
+        "status": 401
+      },
+      "discoveryRequests": 0,
+      "result": "PASS"
+    },
+    {
+      "host": "rc3",
+      "sdk": "2.2.0",
+      "entrySha256": "e7f532409081f6bfb1490fdab84a9c12d5fc666b20a1d2d8ea23a530f65dfd3c",
+      "runtime": "v24.19.0",
+      "execution": "actual installed SDK transport; synthetic loopback servers; no full Host or CLI"
+    },
+    {
+      "host": "rc3",
+      "sdk": "2.2.0",
+      "kind": "proposed-deny-redirects",
+      "method": "POST",
+      "status": 301,
+      "secondOriginRequests": 0,
+      "secondOrigin": [],
+      "rejected": true,
+      "error": {
+        "name": "SdkHttpError",
+        "code": "CLIENT_HTTP_NOT_IMPLEMENTED",
+        "status": 301
+      },
+      "result": "PASS"
+    },
+    {
+      "host": "rc3",
+      "sdk": "2.2.0",
+      "kind": "proposed-deny-redirects",
+      "method": "POST",
+      "status": 302,
+      "secondOriginRequests": 0,
+      "secondOrigin": [],
+      "rejected": true,
+      "error": {
+        "name": "SdkHttpError",
+        "code": "CLIENT_HTTP_NOT_IMPLEMENTED",
+        "status": 302
+      },
+      "result": "PASS"
+    },
+    {
+      "host": "rc3",
+      "sdk": "2.2.0",
+      "kind": "proposed-deny-redirects",
+      "method": "POST",
+      "status": 303,
+      "secondOriginRequests": 0,
+      "secondOrigin": [],
+      "rejected": true,
+      "error": {
+        "name": "SdkHttpError",
+        "code": "CLIENT_HTTP_NOT_IMPLEMENTED",
+        "status": 303
+      },
+      "result": "PASS"
+    },
+    {
+      "host": "rc3",
+      "sdk": "2.2.0",
+      "kind": "proposed-deny-redirects",
+      "method": "POST",
+      "status": 307,
+      "secondOriginRequests": 0,
+      "secondOrigin": [],
+      "rejected": true,
+      "error": {
+        "name": "SdkHttpError",
+        "code": "CLIENT_HTTP_NOT_IMPLEMENTED",
+        "status": 307
+      },
+      "result": "PASS"
+    },
+    {
+      "host": "rc3",
+      "sdk": "2.2.0",
+      "kind": "proposed-deny-redirects",
+      "method": "POST",
+      "status": 308,
+      "secondOriginRequests": 0,
+      "secondOrigin": [],
+      "rejected": true,
+      "error": {
+        "name": "SdkHttpError",
+        "code": "CLIENT_HTTP_NOT_IMPLEMENTED",
+        "status": 308
+      },
+      "result": "PASS"
+    },
+    {
+      "host": "rc3",
+      "sdk": "2.2.0",
+      "kind": "proposed-deny-redirects",
+      "method": "GET",
+      "status": 301,
+      "secondOriginRequests": 0,
+      "secondOrigin": [],
+      "rejected": true,
+      "error": {
+        "name": "SdkHttpError",
+        "code": "CLIENT_HTTP_FAILED_TO_OPEN_STREAM",
+        "status": 301
+      },
+      "result": "PASS"
+    },
+    {
+      "host": "rc3",
+      "sdk": "2.2.0",
+      "kind": "proposed-deny-redirects",
+      "method": "GET",
+      "status": 302,
+      "secondOriginRequests": 0,
+      "secondOrigin": [],
+      "rejected": true,
+      "error": {
+        "name": "SdkHttpError",
+        "code": "CLIENT_HTTP_FAILED_TO_OPEN_STREAM",
+        "status": 302
+      },
+      "result": "PASS"
+    },
+    {
+      "host": "rc3",
+      "sdk": "2.2.0",
+      "kind": "proposed-deny-redirects",
+      "method": "GET",
+      "status": 303,
+      "secondOriginRequests": 0,
+      "secondOrigin": [],
+      "rejected": true,
+      "error": {
+        "name": "SdkHttpError",
+        "code": "CLIENT_HTTP_FAILED_TO_OPEN_STREAM",
+        "status": 303
+      },
+      "result": "PASS"
+    },
+    {
+      "host": "rc3",
+      "sdk": "2.2.0",
+      "kind": "proposed-deny-redirects",
+      "method": "GET",
+      "status": 307,
+      "secondOriginRequests": 0,
+      "secondOrigin": [],
+      "rejected": true,
+      "error": {
+        "name": "SdkHttpError",
+        "code": "CLIENT_HTTP_FAILED_TO_OPEN_STREAM",
+        "status": 307
+      },
+      "result": "PASS"
+    },
+    {
+      "host": "rc3",
+      "sdk": "2.2.0",
+      "kind": "proposed-deny-redirects",
+      "method": "GET",
+      "status": 308,
+      "secondOriginRequests": 0,
+      "secondOrigin": [],
+      "rejected": true,
+      "error": {
+        "name": "SdkHttpError",
+        "code": "CLIENT_HTTP_FAILED_TO_OPEN_STREAM",
+        "status": 308
+      },
+      "result": "PASS"
+    },
+    {
+      "host": "rc3",
+      "sdk": "2.2.0",
+      "kind": "proposed-deny-redirects",
+      "method": "DELETE",
+      "status": 301,
+      "secondOriginRequests": 0,
+      "secondOrigin": [],
+      "rejected": true,
+      "error": {
+        "name": "SdkHttpError",
+        "code": "CLIENT_HTTP_FAILED_TO_TERMINATE_SESSION",
+        "status": 301
+      },
+      "result": "PASS"
+    },
+    {
+      "host": "rc3",
+      "sdk": "2.2.0",
+      "kind": "proposed-deny-redirects",
+      "method": "DELETE",
+      "status": 302,
+      "secondOriginRequests": 0,
+      "secondOrigin": [],
+      "rejected": true,
+      "error": {
+        "name": "SdkHttpError",
+        "code": "CLIENT_HTTP_FAILED_TO_TERMINATE_SESSION",
+        "status": 302
+      },
+      "result": "PASS"
+    },
+    {
+      "host": "rc3",
+      "sdk": "2.2.0",
+      "kind": "proposed-deny-redirects",
+      "method": "DELETE",
+      "status": 303,
+      "secondOriginRequests": 0,
+      "secondOrigin": [],
+      "rejected": true,
+      "error": {
+        "name": "SdkHttpError",
+        "code": "CLIENT_HTTP_FAILED_TO_TERMINATE_SESSION",
+        "status": 303
+      },
+      "result": "PASS"
+    },
+    {
+      "host": "rc3",
+      "sdk": "2.2.0",
+      "kind": "proposed-deny-redirects",
+      "method": "DELETE",
+      "status": 307,
+      "secondOriginRequests": 0,
+      "secondOrigin": [],
+      "rejected": true,
+      "error": {
+        "name": "SdkHttpError",
+        "code": "CLIENT_HTTP_FAILED_TO_TERMINATE_SESSION",
+        "status": 307
+      },
+      "result": "PASS"
+    },
+    {
+      "host": "rc3",
+      "sdk": "2.2.0",
+      "kind": "proposed-deny-redirects",
+      "method": "DELETE",
+      "status": 308,
+      "secondOriginRequests": 0,
+      "secondOrigin": [],
+      "rejected": true,
+      "error": {
+        "name": "SdkHttpError",
+        "code": "CLIENT_HTTP_FAILED_TO_TERMINATE_SESSION",
+        "status": 308
+      },
+      "result": "PASS"
+    },
+    {
+      "host": "rc3",
+      "kind": "official-same-origin-policy",
+      "method": "POST",
+      "status": 301,
+      "followed": false,
+      "finalRequests": 0,
+      "rejected": true,
+      "result": "PASS"
+    },
+    {
+      "host": "rc3",
+      "kind": "official-same-origin-policy",
+      "method": "POST",
+      "status": 302,
+      "followed": false,
+      "finalRequests": 0,
+      "rejected": true,
+      "result": "PASS"
+    },
+    {
+      "host": "rc3",
+      "kind": "official-same-origin-policy",
+      "method": "POST",
+      "status": 303,
+      "followed": false,
+      "finalRequests": 0,
+      "rejected": true,
+      "result": "PASS"
+    },
+    {
+      "host": "rc3",
+      "kind": "official-same-origin-policy",
+      "method": "POST",
+      "status": 307,
+      "followed": true,
+      "finalRequests": 1,
+      "rejected": false,
+      "result": "PASS"
+    },
+    {
+      "host": "rc3",
+      "kind": "official-same-origin-policy",
+      "method": "POST",
+      "status": 308,
+      "followed": true,
+      "finalRequests": 1,
+      "rejected": false,
+      "result": "PASS"
+    },
+    {
+      "host": "rc3",
+      "kind": "official-same-origin-policy",
+      "method": "GET",
+      "status": 301,
+      "followed": true,
+      "finalRequests": 1,
+      "rejected": false,
+      "result": "PASS"
+    },
+    {
+      "host": "rc3",
+      "kind": "official-same-origin-policy",
+      "method": "GET",
+      "status": 302,
+      "followed": true,
+      "finalRequests": 1,
+      "rejected": false,
+      "result": "PASS"
+    },
+    {
+      "host": "rc3",
+      "kind": "official-same-origin-policy",
+      "method": "GET",
+      "status": 303,
+      "followed": true,
+      "finalRequests": 1,
+      "rejected": false,
+      "result": "PASS"
+    },
+    {
+      "host": "rc3",
+      "kind": "official-same-origin-policy",
+      "method": "GET",
+      "status": 307,
+      "followed": true,
+      "finalRequests": 1,
+      "rejected": false,
+      "result": "PASS"
+    },
+    {
+      "host": "rc3",
+      "kind": "official-same-origin-policy",
+      "method": "GET",
+      "status": 308,
+      "followed": true,
+      "finalRequests": 1,
+      "rejected": false,
+      "result": "PASS"
+    },
+    {
+      "host": "rc3",
+      "kind": "official-same-origin-policy",
+      "method": "DELETE",
+      "status": 301,
+      "followed": false,
+      "finalRequests": 0,
+      "rejected": true,
+      "result": "PASS"
+    },
+    {
+      "host": "rc3",
+      "kind": "official-same-origin-policy",
+      "method": "DELETE",
+      "status": 302,
+      "followed": false,
+      "finalRequests": 0,
+      "rejected": true,
+      "result": "PASS"
+    },
+    {
+      "host": "rc3",
+      "kind": "official-same-origin-policy",
+      "method": "DELETE",
+      "status": 303,
+      "followed": false,
+      "finalRequests": 0,
+      "rejected": true,
+      "result": "PASS"
+    },
+    {
+      "host": "rc3",
+      "kind": "official-same-origin-policy",
+      "method": "DELETE",
+      "status": 307,
+      "followed": true,
+      "finalRequests": 1,
+      "rejected": false,
+      "result": "PASS"
+    },
+    {
+      "host": "rc3",
+      "kind": "official-same-origin-policy",
+      "method": "DELETE",
+      "status": 308,
+      "followed": true,
+      "finalRequests": 1,
+      "rejected": false,
+      "result": "PASS"
+    },
+    {
+      "host": "rc3",
+      "kind": "normal-nonredirected-mcp",
+      "initialize": true,
+      "notification": true,
+      "toolsList": true,
+      "toolCall": true,
+      "sessionPropagation": true,
+      "sseResumeRead": true,
+      "closeInvoked": true,
+      "deleteSession": true,
+      "result": "PASS"
+    },
+    {
+      "host": "rc3",
+      "kind": "explicit-401-no-sdk-oauth-provider",
+      "rejected": true,
+      "error": {
+        "name": "SdkHttpError",
+        "code": "CLIENT_HTTP_NOT_IMPLEMENTED",
+        "status": 401
+      },
+      "discoveryRequests": 0,
+      "result": "PASS"
+    }
+  ],
+  "serversClosed": true,
+  "ports": [
+    "52814",
+    "52815"
+  ]
+}

@@ -1,0 +1,110 @@
+{
+  "checked_at": "2026-10-20T06:15:29.005772+00:00",
+  "comparison_baseline": "after the authorized priority correction, before local business follow-ups",
+  "only_expected_changes": true,
+  "tables": [
+    {
+      "table": "t_kn_capability_binding",
+      "before_rows": 1,
+      "after_rows": 4,
+      "removed_ids": [],
+      "added_ids": [
+        "01a15750-6f6d-7b7b-8ffc-85a0d81cc89c",
+        "01a157d2-3567-73bc-89b0-c609d68fb5ba",
+        "01a157e5-91e5-759b-917e-d05f8f8341e3"
+      ],
+      "only_expected_changes": true
+    },
+    {
+      "table": "t_knowledge_network",
+      "before_rows": 2,
+      "after_rows": 2,
+      "removed_ids": [],
+      "added_ids": [],
+      "only_expected_changes": true
+    },
+    {
+      "table": "t_llm_model",
+      "before_rows": 1,
+      "after_rows": 1,
+      "removed_ids": [],
+      "added_ids": [],
+      "only_expected_changes": true
+    },
+    {
+      "table": "t_object_type",
+      "before_rows": 42,
+      "after_rows": 42,
+      "removed_ids": [
+        "supply_ontology_hand_bom",
+        "supply_ontology_hand_inventory",
+        "supply_ontology_hand_material",
+        "supply_ontology_hand_po",
+        "supply_ontology_hand_pr",
+        "supply_ontology_hand_salesorder"
+      ],
+      "added_ids": [
+        "supply_ontology_hand_bom",
+        "supply_ontology_hand_inventory",
+        "supply_ontology_hand_material",
+        "supply_ontology_hand_po",
+        "supply_ontology_hand_pr",
+        "supply_ontology_hand_salesorder"
+      ],
+      "only_expected_changes": true
+    },
+    {
+      "table": "t_relation_type",
+      "before_rows": 48,
+      "after_rows": 48,
+      "removed_ids": [],
+      "added_ids": [],
+      "only_expected_changes": true
+    },
+    {
+      "table": "t_skill_release",
+      "before_rows": 3,
+      "after_rows": 3,
+      "removed_ids": [],
+      "added_ids": [],
+      "only_expected_changes": true
+    },
+    {
+      "table": "t_skill_repository",
+      "before_rows": 3,
+      "after_rows": 3,
+      "removed_ids": [],
+      "added_ids": [],
+      "only_expected_changes": true
+    },
+    {
+      "table": "t_small_model",
+      "before_rows": 1,
+      "after_rows": 1,
+      "removed_ids": [],
+      "added_ids": [],
+      "only_expected_changes": true
+    },
+    {
+      "table": "t_tool",
+      "before_rows": 15,
+      "after_rows": 17,
+      "removed_ids": [
+        "01a11f4e-fb6a-7d44-8fd4-f1585cb3a016",
+        "01a11f4e-fe5e-795f-a358-5d1d799293c8"
+      ],
+      "added_ids": [
+        "01a11f4e-fb6a-7d44-8fd4-f1585cb3a016",
+        "01a11f4e-fe5e-795f-a358-5d1d799293c8",
+        "01a157d1-a0c3-71f8-9a9e-05b14198a9c3",
+        "01a157e4-3246-7cec-a7b6-244e4c773fd2"
+      ],
+      "only_expected_changes": true
+    }
+  ],
+  "expected_change_purpose": {
+    "t_tool": "Two existing read-only Functions preserve their identities; two new read-only Functions (complete sales detail and exact-code selected records)",
+    "t_object_type": "Six object comments and BOM/material/customer property comments; no data type/key/source/metric or other changes",
+    "t_kn_capability_binding": "Three additive read-only bindings (inventory, sales detail and exact-code records); existing BOM binding preserved"
+  }
+}

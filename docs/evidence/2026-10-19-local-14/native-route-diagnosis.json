@@ -1,0 +1,205 @@
+{
+  "captured_at": "2026-10-19T15:05:16.799Z",
+  "mode": "read-only; no lifecycle creation, generation, license, configuration or deployment writes",
+  "interaction_id": "int_7bc9e049376da884ad8af7e06777cc99",
+  "source_commit": "81d5752826f3b3f3f72f3ad4cb1e22d45e99ab4b",
+  "running_image_provenance": [
+    {
+      "pod": "agent-observability-6cd947dc67-svw9j",
+      "container": "agent-observability",
+      "image": "swr.cn-east-3.myhuaweicloud.com/openbkn-ai/agent-observability:0.2.0",
+      "image_id": "swr.cn-east-3.myhuaweicloud.com/openbkn-ai/agent-observability@sha256:977b669f42c5457c010fc38bc83c6314809bdda40ffa47c42bf63b09975ddc08",
+      "arm64_manifest_digest": "sha256:f73b73e6ea2702dde35758333adc4498172477a86865635c6602c9a5c24110dd",
+      "image_config_digest": "sha256:1da5a2579a3ec61842873276cb6a23ed337977c2f05dbde17723458d911e3096",
+      "registry_arm64_digest_match": true,
+      "source_commit": "81d5752826f3b3f3f72f3ad4cb1e22d45e99ab4b",
+      "release_workflow_url": "https://github.com/openbkn-ai/bkn-foundry/actions/runs/38863993137"
+    }
+  ],
+  "source_files": [
+    {
+      "path": "bkn-trace/agent-observability/src/boot/bootstrap.go",
+      "sha256": "394c5e2e547d9a226647b7c4975a86979b2905e64c5190e12c565226cbc6527f"
+    },
+    {
+      "path": "bkn-trace/agent-observability/src/boot/route_boundary_test.go",
+      "sha256": "5791b6a796af27967d2b98e94f4040a2cf3c5b1c58273f532ee023c74f4699bf"
+    },
+    {
+      "path": "bkn-trace/agent-observability/src/extension/enterpriseroute/socket.go",
+      "sha256": "9e19371aa353e6f25f25c095091f8737a2cd78a5fe168a8de8f80264577c59e6"
+    },
+    {
+      "path": "bkn-trace/agent-observability/src/extension/enterpriseroute/socket_test.go",
+      "sha256": "24117156a77cea3750c169b274d17ecb139ed52b38996b514b9a48eceb55d38c"
+    },
+    {
+      "path": "bkn-trace/agent-observability/Dockerfile",
+      "sha256": "bcb676c5b8fc300e4a6cbef573fdfbd99e1e6690c2a11a2943332ed5a2a72f82"
+    },
+    {
+      "path": "bkn-trace/agent-observability/main.go",
+      "sha256": "46280a8c4a1bceae61e5d06b66808030480b208a96e21e883e8b034ab0accaa7"
+    }
+  ],
+  "calls": [
+    {
+      "origin": "public-tls",
+      "kind": "standard",
+      "path": "/api/agent-observability/v1/interactions/int_7bc9e049376da884ad8af7e06777cc99",
+      "status": 200,
+      "content_type": "application/json",
+      "bytes": 4572,
+      "body_sha256": "a4fce2ab95ec1136e5384a3b7c4094071475553a2b8c14998d69119e0e645919",
+      "returned_id": "int_7bc9e049376da884ad8af7e06777cc99",
+      "execution_status": "completed"
+    },
+    {
+      "origin": "public-tls",
+      "kind": "standard-operations",
+      "path": "/api/agent-observability/v1/interactions/int_7bc9e049376da884ad8af7e06777cc99/operations",
+      "status": 200,
+      "content_type": "application/json",
+      "bytes": 2499083,
+      "body_sha256": "e560b02e4415dc49813e4b25405c5f5edd464b8cf3da7f38c8403a76ba26f745",
+      "operation_count": 27
+    },
+    {
+      "origin": "public-tls",
+      "kind": "native-detail",
+      "path": "/api/agent-observability/v1/business-provenance/interactions/int_7bc9e049376da884ad8af7e06777cc99",
+      "status": 404,
+      "content_type": "text/plain; charset=utf-8",
+      "bytes": 19,
+      "body_sha256": "b16e15764b8bc06c5c3f9f19bc8b99fa48e7894aa5a6ccdad65da49bbf564793",
+      "body_text": "404 page not found\n"
+    },
+    {
+      "origin": "public-tls",
+      "kind": "native-explanations",
+      "path": "/api/agent-observability/v1/business-provenance/interactions/int_7bc9e049376da884ad8af7e06777cc99/explanations",
+      "status": 404,
+      "content_type": "text/plain; charset=utf-8",
+      "bytes": 19,
+      "body_sha256": "b16e15764b8bc06c5c3f9f19bc8b99fa48e7894aa5a6ccdad65da49bbf564793",
+      "body_text": "404 page not found\n"
+    },
+    {
+      "origin": "public-tls",
+      "kind": "native-list",
+      "path": "/api/agent-observability/v1/business-provenance/conversations",
+      "status": 404,
+      "content_type": "text/plain; charset=utf-8",
+      "bytes": 19,
+      "body_sha256": "b16e15764b8bc06c5c3f9f19bc8b99fa48e7894aa5a6ccdad65da49bbf564793",
+      "body_text": "404 page not found\n"
+    },
+    {
+      "origin": "public-tls",
+      "kind": "standard-missing",
+      "path": "/api/agent-observability/v1/interactions/int_00000000000000000000000000000000",
+      "status": 404,
+      "content_type": "application/json",
+      "bytes": 222,
+      "body_sha256": "f5eaf1265b24899f693c8b1c7d98c5d67c66a903ff1914a1bd4ad1ed4004862e",
+      "error_code": "resource_not_disclosed"
+    },
+    {
+      "origin": "public-tls",
+      "kind": "standard-no-auth",
+      "path": "/api/agent-observability/v1/interactions/int_7bc9e049376da884ad8af7e06777cc99",
+      "status": 401,
+      "content_type": "application/json",
+      "bytes": 213,
+      "body_sha256": "92846ecf8a5f1feb19f3347e381f89e9df68a0eae70f3b69dff42e36df05abc4"
+    },
+    {
+      "origin": "public-tls",
+      "kind": "native-no-auth",
+      "path": "/api/agent-observability/v1/business-provenance/interactions/int_7bc9e049376da884ad8af7e06777cc99",
+      "status": 404,
+      "content_type": "text/plain; charset=utf-8",
+      "bytes": 19,
+      "body_sha256": "b16e15764b8bc06c5c3f9f19bc8b99fa48e7894aa5a6ccdad65da49bbf564793"
+    },
+    {
+      "origin": "service-port-forward",
+      "kind": "standard",
+      "path": "/api/agent-observability/v1/interactions/int_7bc9e049376da884ad8af7e06777cc99",
+      "status": 200,
+      "content_type": "application/json",
+      "bytes": 4572,
+      "body_sha256": "a4fce2ab95ec1136e5384a3b7c4094071475553a2b8c14998d69119e0e645919",
+      "returned_id": "int_7bc9e049376da884ad8af7e06777cc99",
+      "execution_status": "completed"
+    },
+    {
+      "origin": "service-port-forward",
+      "kind": "standard-operations",
+      "path": "/api/agent-observability/v1/interactions/int_7bc9e049376da884ad8af7e06777cc99/operations",
+      "status": 200,
+      "content_type": "application/json",
+      "bytes": 2499083,
+      "body_sha256": "e560b02e4415dc49813e4b25405c5f5edd464b8cf3da7f38c8403a76ba26f745",
+      "operation_count": 27
+    },
+    {
+      "origin": "service-port-forward",
+      "kind": "native-detail",
+      "path": "/api/agent-observability/v1/business-provenance/interactions/int_7bc9e049376da884ad8af7e06777cc99",
+      "status": 404,
+      "content_type": "text/plain; charset=utf-8",
+      "bytes": 19,
+      "body_sha256": "b16e15764b8bc06c5c3f9f19bc8b99fa48e7894aa5a6ccdad65da49bbf564793",
+      "body_text": "404 page not found\n"
+    },
+    {
+      "origin": "service-port-forward",
+      "kind": "native-explanations",
+      "path": "/api/agent-observability/v1/business-provenance/interactions/int_7bc9e049376da884ad8af7e06777cc99/explanations",
+      "status": 404,
+      "content_type": "text/plain; charset=utf-8",
+      "bytes": 19,
+      "body_sha256": "b16e15764b8bc06c5c3f9f19bc8b99fa48e7894aa5a6ccdad65da49bbf564793",
+      "body_text": "404 page not found\n"
+    },
+    {
+      "origin": "service-port-forward",
+      "kind": "native-list",
+      "path": "/api/agent-observability/v1/business-provenance/conversations",
+      "status": 404,
+      "content_type": "text/plain; charset=utf-8",
+      "bytes": 19,
+      "body_sha256": "b16e15764b8bc06c5c3f9f19bc8b99fa48e7894aa5a6ccdad65da49bbf564793",
+      "body_text": "404 page not found\n"
+    },
+    {
+      "origin": "service-port-forward",
+      "kind": "standard-missing",
+      "path": "/api/agent-observability/v1/interactions/int_00000000000000000000000000000000",
+      "status": 404,
+      "content_type": "application/json",
+      "bytes": 174,
+      "body_sha256": "928c11ff5450db80791252475f594517427473fa44e249e7db5910ac77b822f5",
+      "error_code": "resource_not_disclosed"
+    },
+    {
+      "origin": "service-port-forward",
+      "kind": "standard-no-auth",
+      "path": "/api/agent-observability/v1/interactions/int_7bc9e049376da884ad8af7e06777cc99",
+      "status": 401,
+      "content_type": "application/json",
+      "bytes": 165,
+      "body_sha256": "57a065e8fcc95d12c43325d4178302e6bb04f9413f7960c73db697e76b6c23d8"
+    },
+    {
+      "origin": "service-port-forward",
+      "kind": "native-no-auth",
+      "path": "/api/agent-observability/v1/business-provenance/interactions/int_7bc9e049376da884ad8af7e06777cc99",
+      "status": 404,
+      "content_type": "text/plain; charset=utf-8",
+      "bytes": 19,
+      "body_sha256": "b16e15764b8bc06c5c3f9f19bc8b99fa48e7894aa5a6ccdad65da49bbf564793"
+    }
+  ]
+}

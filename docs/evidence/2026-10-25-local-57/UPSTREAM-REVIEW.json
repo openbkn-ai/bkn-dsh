@@ -1,0 +1,40 @@
+{
+  "checkedAt": "2026-10-25",
+  "mode": "read-only gh API; no fetch/checkout/pin/deployment change",
+  "dsh": {
+    "master": "22ddee3792402c3e70ec5f86a63c3e3e895a2f60",
+    "latestRelease": {
+      "tagName": "dsh-v0.2.1-rc.3",
+      "publishedAt": "2026-10-23T15:26:39Z"
+    },
+    "supported": [
+      "0.2.0-rc.2",
+      "0.2.1-rc.3"
+    ],
+    "noUpgrade": true
+  },
+  "foundry": {
+    "main": "baa9367c51050cdb13dbb5bbe93508df1affd286",
+    "latestFormalRelease": {
+      "tagName": "v0.2.0",
+      "publishedAt": "2026-10-16T07:21:25Z"
+    },
+    "reviewedFrom": "6fff80cd66e95c1e00b4fadb893f5d84c356e6f1",
+    "deltaCommits": 1,
+    "deltaFiles": 10,
+    "topic": "fix(bkn-trace): verify and freeze technical archive cleanup (#2482)",
+    "assessment": "Targeted archive/frozen-delete and docs review: require completed search and freeze concrete document versions/routing; delete only conditional frozen versions after archive verification; late or changed records retained; cleanup_incomplete prevents success claim; legacy archive not automatically cleaned. No change found to this plugin consumed MCP/Interaction operations/business-graph/business-provenance routes. Not a full upstream audit.",
+    "deployedOrMigrated": false
+  },
+  "issue105": {
+    "stateRead": "OPEN",
+    "writePerformed": false,
+    "otherReleaseRiskAcceptanceTransferred": false,
+    "completionStillOpen": [
+      "actual candidate/CLI-managed authentication",
+      "derived Desktop GUI/signing/distribution",
+      "Windows changed-boundary validation",
+      "artifact and scope release review"
+    ]
+  }
+}

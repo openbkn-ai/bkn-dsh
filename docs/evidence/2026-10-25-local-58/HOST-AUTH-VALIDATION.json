@@ -1,0 +1,633 @@
+{
+  "kind": "local-development-preacceptance",
+  "ciRun": null,
+  "formalAcceptanceEligible": false,
+  "cases": [
+    {
+      "id": "npm-old",
+      "hostVersion": "0.2.0-rc.2",
+      "form": "npm/web",
+      "candidateVersion": "0.2.0-rc.2-openbkn.0.2.0-32",
+      "candidateSha256": "46626510825fe9146aef12c27a1724acbb455aeac22aa600358add0fc8e1c9f8",
+      "candidateFiles": 82,
+      "distributionId": "openbkn-host-old-same-origin-r1-mac-arm64",
+      "runtimeProof": {
+        "scope": "Actual frozen32 profile in complete Host; native business service and native subprocess; real CLI browser login and read-only platform MCP/catalogue; no model/tool execution/Sandbox",
+        "host": "0.2.0-rc.2",
+        "form": "npm/web",
+        "node": "24.19.0",
+        "electron": null,
+        "loadedEntries": [
+          {
+            "name": "@openbkn/dsh-business-context",
+            "state": 2
+          },
+          {
+            "name": "@openbkn/dsh-business-context/business",
+            "state": 2
+          },
+          {
+            "name": "@openbkn/dsh-business-context/diagnostics",
+            "state": 2
+          }
+        ],
+        "pluginClassIdentity": true,
+        "actualMcpEntrySha256": "b3cd7156c0b8639656ce117530fec4d006b74cafdc9a78ac426fec084e62972c",
+        "mcpSamePhysicalPackage": true,
+        "nativeSubprocessCliConfigIsolated": true,
+        "vaultCredentialConfigured": true,
+        "managedToolRegistered": true,
+        "openbknToolNames": [
+          "mcp__openbkn__bkn_finish_interaction",
+          "mcp__openbkn__bkn_start_interaction",
+          "mcp__openbkn__execute_action",
+          "mcp__openbkn__execute_tool",
+          "mcp__openbkn__explore_subgraph",
+          "mcp__openbkn__get_action_execution",
+          "mcp__openbkn__get_action_info",
+          "mcp__openbkn__get_kn_detail",
+          "mcp__openbkn__get_logic_properties_values",
+          "mcp__openbkn__get_object_types",
+          "mcp__openbkn__get_relation_types",
+          "mcp__openbkn__get_skill_content",
+          "mcp__openbkn__list_action_executions",
+          "mcp__openbkn__list_knowledge_networks",
+          "mcp__openbkn__list_skills",
+          "mcp__openbkn__query_instance_subgraph",
+          "mcp__openbkn__query_metric",
+          "mcp__openbkn__query_object_instance",
+          "mcp__openbkn__read_skill_file",
+          "mcp__openbkn__run_code",
+          "mcp__openbkn__run_cypher",
+          "mcp__openbkn__run_shell",
+          "mcp__openbkn__search_capabilities",
+          "mcp__openbkn__search_instance",
+          "mcp__openbkn__search_schema"
+        ],
+        "diagnostics": {
+          "mode": "passive",
+          "loadedVersion": null,
+          "diskVersion": "0.2.0-rc.2-openbkn.0.2.0-32",
+          "checks": [
+            {
+              "id": "bootstrap-entry",
+              "status": "pass",
+              "code": "component-loaded"
+            },
+            {
+              "id": "business-entry",
+              "status": "pass",
+              "code": "component-loaded"
+            },
+            {
+              "id": "diagnostics-entry",
+              "status": "pass",
+              "code": "component-loaded"
+            },
+            {
+              "id": "observed:cli",
+              "status": "pass",
+              "code": "cli"
+            },
+            {
+              "id": "observed:login-state",
+              "status": "pass",
+              "code": "login-state"
+            },
+            {
+              "id": "observed:context-loader",
+              "status": "pass",
+              "code": "context-loader"
+            },
+            {
+              "id": "observed:platform-network-list",
+              "status": "pass",
+              "code": "platform-network-list"
+            }
+          ]
+        },
+        "phase": "complete",
+        "rows": [
+          {
+            "stage": "before",
+            "kind": "authentication-required",
+            "baseUrl": "https://192.168.50.129"
+          },
+          {
+            "stage": "beginLogin",
+            "networkCount": 2
+          },
+          {
+            "stage": "after",
+            "kind": "authenticated",
+            "baseUrl": "https://192.168.50.129"
+          }
+        ],
+        "result": "PASS",
+        "realBusinessToolsExecuted": 0,
+        "modelCalls": 0
+      },
+      "independentCliReadback": {
+        "baseUrl": "https://192.168.50.129",
+        "hasToken": true,
+        "expired": false
+      },
+      "managedVaultEqualsOfficialCli": true,
+      "profileClosure": {
+        "profileCoverage": "pass",
+        "pluginVersion": "0.2.0-rc.2-openbkn.0.2.0-32",
+        "cordis": "4.0.4",
+        "schemastery": "3.18.4",
+        "selected": [
+          {
+            "name": "@deepseek-ai/cordis",
+            "version": "4.0.4",
+            "samePhysicalPackage": true
+          },
+          {
+            "name": "@deepseek-ai/schemastery",
+            "version": "3.18.4",
+            "samePhysicalPackage": true
+          }
+        ],
+        "noMixedDsh": true,
+        "noSplitCordis": true,
+        "noSplitSchemastery": true,
+        "mcpEntrySha256": "b3cd7156c0b8639656ce117530fec4d006b74cafdc9a78ac426fec084e62972c"
+      },
+      "mcpSdkVersion": "2.0.0",
+      "desktopReadyIPC": null,
+      "exited": true
+    },
+    {
+      "id": "desktop-old",
+      "hostVersion": "0.2.0-rc.2",
+      "form": "Desktop backend only",
+      "candidateVersion": "0.2.0-rc.2-openbkn.0.2.0-32",
+      "candidateSha256": "46626510825fe9146aef12c27a1724acbb455aeac22aa600358add0fc8e1c9f8",
+      "candidateFiles": 82,
+      "distributionId": "openbkn-desktop-backend-old-same-origin-r1-mac-arm64",
+      "runtimeProof": {
+        "scope": "Actual frozen32 profile in complete Host; native business service and native subprocess; real CLI browser login and read-only platform MCP/catalogue; no model/tool execution/Sandbox",
+        "host": "0.2.0-rc.2",
+        "form": "Desktop backend only",
+        "node": "24.18.1",
+        "electron": "44.0.0",
+        "loadedEntries": [
+          {
+            "name": "@openbkn/dsh-business-context",
+            "state": 2
+          },
+          {
+            "name": "@openbkn/dsh-business-context/business",
+            "state": 2
+          },
+          {
+            "name": "@openbkn/dsh-business-context/diagnostics",
+            "state": 2
+          }
+        ],
+        "pluginClassIdentity": true,
+        "actualMcpEntrySha256": "b3cd7156c0b8639656ce117530fec4d006b74cafdc9a78ac426fec084e62972c",
+        "mcpSamePhysicalPackage": true,
+        "nativeSubprocessCliConfigIsolated": true,
+        "vaultCredentialConfigured": true,
+        "managedToolRegistered": true,
+        "openbknToolNames": [
+          "mcp__openbkn__bkn_finish_interaction",
+          "mcp__openbkn__bkn_start_interaction",
+          "mcp__openbkn__execute_action",
+          "mcp__openbkn__execute_tool",
+          "mcp__openbkn__explore_subgraph",
+          "mcp__openbkn__get_action_execution",
+          "mcp__openbkn__get_action_info",
+          "mcp__openbkn__get_kn_detail",
+          "mcp__openbkn__get_logic_properties_values",
+          "mcp__openbkn__get_object_types",
+          "mcp__openbkn__get_relation_types",
+          "mcp__openbkn__get_skill_content",
+          "mcp__openbkn__list_action_executions",
+          "mcp__openbkn__list_knowledge_networks",
+          "mcp__openbkn__list_skills",
+          "mcp__openbkn__query_instance_subgraph",
+          "mcp__openbkn__query_metric",
+          "mcp__openbkn__query_object_instance",
+          "mcp__openbkn__read_skill_file",
+          "mcp__openbkn__run_code",
+          "mcp__openbkn__run_cypher",
+          "mcp__openbkn__run_shell",
+          "mcp__openbkn__search_capabilities",
+          "mcp__openbkn__search_instance",
+          "mcp__openbkn__search_schema"
+        ],
+        "diagnostics": {
+          "mode": "passive",
+          "loadedVersion": null,
+          "diskVersion": "0.2.0-rc.2-openbkn.0.2.0-32",
+          "checks": [
+            {
+              "id": "bootstrap-entry",
+              "status": "pass",
+              "code": "component-loaded"
+            },
+            {
+              "id": "business-entry",
+              "status": "pass",
+              "code": "component-loaded"
+            },
+            {
+              "id": "diagnostics-entry",
+              "status": "pass",
+              "code": "component-loaded"
+            },
+            {
+              "id": "observed:cli",
+              "status": "pass",
+              "code": "cli"
+            },
+            {
+              "id": "observed:login-state",
+              "status": "pass",
+              "code": "login-state"
+            },
+            {
+              "id": "observed:context-loader",
+              "status": "pass",
+              "code": "context-loader"
+            },
+            {
+              "id": "observed:platform-network-list",
+              "status": "pass",
+              "code": "platform-network-list"
+            }
+          ]
+        },
+        "phase": "complete",
+        "rows": [
+          {
+            "stage": "before",
+            "kind": "authentication-required",
+            "baseUrl": "https://192.168.50.129"
+          },
+          {
+            "stage": "beginLogin",
+            "networkCount": 2
+          },
+          {
+            "stage": "after",
+            "kind": "authenticated",
+            "baseUrl": "https://192.168.50.129"
+          }
+        ],
+        "result": "PASS",
+        "realBusinessToolsExecuted": 0,
+        "modelCalls": 0
+      },
+      "independentCliReadback": {
+        "baseUrl": "https://192.168.50.129",
+        "hasToken": true,
+        "expired": false
+      },
+      "managedVaultEqualsOfficialCli": true,
+      "profileClosure": {
+        "profileCoverage": "pass",
+        "pluginVersion": "0.2.0-rc.2-openbkn.0.2.0-32",
+        "cordis": "4.0.4",
+        "schemastery": "3.18.4",
+        "selected": [
+          {
+            "name": "@deepseek-ai/cordis",
+            "version": "4.0.4",
+            "samePhysicalPackage": true
+          },
+          {
+            "name": "@deepseek-ai/schemastery",
+            "version": "3.18.4",
+            "samePhysicalPackage": true
+          }
+        ],
+        "noMixedDsh": true,
+        "noSplitCordis": true,
+        "noSplitSchemastery": true,
+        "mcpEntrySha256": "b3cd7156c0b8639656ce117530fec4d006b74cafdc9a78ac426fec084e62972c"
+      },
+      "mcpSdkVersion": "2.0.0",
+      "desktopReadyIPC": true,
+      "exited": true
+    },
+    {
+      "id": "desktop-rc3",
+      "hostVersion": "0.2.1-rc.3",
+      "form": "Desktop backend only",
+      "candidateVersion": "0.2.0-rc.2-openbkn.0.2.0-32",
+      "candidateSha256": "46626510825fe9146aef12c27a1724acbb455aeac22aa600358add0fc8e1c9f8",
+      "candidateFiles": 82,
+      "distributionId": "openbkn-desktop-backend-rc3-same-origin-r1-mac-arm64",
+      "runtimeProof": {
+        "scope": "Actual frozen32 profile in complete Host; native business service and native subprocess; real CLI browser login and read-only platform MCP/catalogue; no model/tool execution/Sandbox",
+        "host": "0.2.1-rc.3",
+        "form": "Desktop backend only",
+        "node": "24.21.0",
+        "electron": "44.7.0",
+        "loadedEntries": [
+          {
+            "name": "@openbkn/dsh-business-context",
+            "state": 2
+          },
+          {
+            "name": "@openbkn/dsh-business-context/business",
+            "state": 2
+          },
+          {
+            "name": "@openbkn/dsh-business-context/diagnostics",
+            "state": 2
+          }
+        ],
+        "pluginClassIdentity": true,
+        "actualMcpEntrySha256": "b3cd7156c0b8639656ce117530fec4d006b74cafdc9a78ac426fec084e62972c",
+        "mcpSamePhysicalPackage": true,
+        "nativeSubprocessCliConfigIsolated": true,
+        "vaultCredentialConfigured": true,
+        "managedToolRegistered": true,
+        "openbknToolNames": [
+          "mcp__openbkn__bkn_finish_interaction",
+          "mcp__openbkn__bkn_start_interaction",
+          "mcp__openbkn__execute_action",
+          "mcp__openbkn__execute_tool",
+          "mcp__openbkn__explore_subgraph",
+          "mcp__openbkn__get_action_execution",
+          "mcp__openbkn__get_action_info",
+          "mcp__openbkn__get_kn_detail",
+          "mcp__openbkn__get_logic_properties_values",
+          "mcp__openbkn__get_object_types",
+          "mcp__openbkn__get_relation_types",
+          "mcp__openbkn__get_skill_content",
+          "mcp__openbkn__list_action_executions",
+          "mcp__openbkn__list_knowledge_networks",
+          "mcp__openbkn__list_skills",
+          "mcp__openbkn__query_instance_subgraph",
+          "mcp__openbkn__query_metric",
+          "mcp__openbkn__query_object_instance",
+          "mcp__openbkn__read_skill_file",
+          "mcp__openbkn__run_code",
+          "mcp__openbkn__run_cypher",
+          "mcp__openbkn__run_shell",
+          "mcp__openbkn__search_capabilities",
+          "mcp__openbkn__search_instance",
+          "mcp__openbkn__search_schema"
+        ],
+        "diagnostics": {
+          "mode": "passive",
+          "loadedVersion": null,
+          "diskVersion": "0.2.0-rc.2-openbkn.0.2.0-32",
+          "checks": [
+            {
+              "id": "bootstrap-entry",
+              "status": "pass",
+              "code": "component-loaded"
+            },
+            {
+              "id": "business-entry",
+              "status": "pass",
+              "code": "component-loaded"
+            },
+            {
+              "id": "diagnostics-entry",
+              "status": "pass",
+              "code": "component-loaded"
+            },
+            {
+              "id": "observed:cli",
+              "status": "pass",
+              "code": "cli"
+            },
+            {
+              "id": "observed:login-state",
+              "status": "pass",
+              "code": "login-state"
+            },
+            {
+              "id": "observed:context-loader",
+              "status": "pass",
+              "code": "context-loader"
+            },
+            {
+              "id": "observed:platform-network-list",
+              "status": "pass",
+              "code": "platform-network-list"
+            }
+          ]
+        },
+        "phase": "complete",
+        "rows": [
+          {
+            "stage": "before",
+            "kind": "authentication-required",
+            "baseUrl": "https://192.168.50.129"
+          },
+          {
+            "stage": "beginLogin",
+            "networkCount": 2
+          },
+          {
+            "stage": "after",
+            "kind": "authenticated",
+            "baseUrl": "https://192.168.50.129"
+          }
+        ],
+        "result": "PASS",
+        "realBusinessToolsExecuted": 0,
+        "modelCalls": 0
+      },
+      "independentCliReadback": {
+        "baseUrl": "https://192.168.50.129",
+        "hasToken": true,
+        "expired": false
+      },
+      "managedVaultEqualsOfficialCli": true,
+      "profileClosure": {
+        "profileCoverage": "pass",
+        "pluginVersion": "0.2.0-rc.2-openbkn.0.2.0-32",
+        "cordis": "4.0.5",
+        "schemastery": "3.18.5",
+        "selected": [
+          {
+            "name": "@deepseek-ai/cordis",
+            "version": "4.0.5",
+            "samePhysicalPackage": true
+          },
+          {
+            "name": "@deepseek-ai/schemastery",
+            "version": "3.18.5",
+            "samePhysicalPackage": true
+          }
+        ],
+        "noMixedDsh": true,
+        "noSplitCordis": true,
+        "noSplitSchemastery": true,
+        "mcpEntrySha256": "b3cd7156c0b8639656ce117530fec4d006b74cafdc9a78ac426fec084e62972c"
+      },
+      "mcpSdkVersion": "2.2.0",
+      "desktopReadyIPC": true,
+      "exited": true
+    },
+    {
+      "id": "npm-rc3-retry",
+      "hostVersion": "0.2.1-rc.3",
+      "form": "npm/web",
+      "candidateVersion": "0.2.0-rc.2-openbkn.0.2.0-32",
+      "candidateSha256": "46626510825fe9146aef12c27a1724acbb455aeac22aa600358add0fc8e1c9f8",
+      "candidateFiles": 82,
+      "distributionId": "openbkn-host-rc3-same-origin-r1-mac-arm64",
+      "runtimeProof": {
+        "scope": "Actual frozen32 profile in complete Host; native business service and native subprocess; real CLI browser login and read-only platform MCP/catalogue; no model/tool execution/Sandbox",
+        "host": "0.2.1-rc.3",
+        "form": "npm/web",
+        "node": "24.19.0",
+        "electron": null,
+        "loadedEntries": [
+          {
+            "name": "@openbkn/dsh-business-context",
+            "state": 2
+          },
+          {
+            "name": "@openbkn/dsh-business-context/business",
+            "state": 2
+          },
+          {
+            "name": "@openbkn/dsh-business-context/diagnostics",
+            "state": 2
+          }
+        ],
+        "pluginClassIdentity": true,
+        "actualMcpEntrySha256": "b3cd7156c0b8639656ce117530fec4d006b74cafdc9a78ac426fec084e62972c",
+        "mcpSamePhysicalPackage": true,
+        "nativeSubprocessCliConfigIsolated": true,
+        "vaultCredentialConfigured": true,
+        "managedToolRegistered": true,
+        "openbknToolNames": [
+          "mcp__openbkn__bkn_finish_interaction",
+          "mcp__openbkn__bkn_start_interaction",
+          "mcp__openbkn__execute_action",
+          "mcp__openbkn__execute_tool",
+          "mcp__openbkn__explore_subgraph",
+          "mcp__openbkn__get_action_execution",
+          "mcp__openbkn__get_action_info",
+          "mcp__openbkn__get_kn_detail",
+          "mcp__openbkn__get_logic_properties_values",
+          "mcp__openbkn__get_object_types",
+          "mcp__openbkn__get_relation_types",
+          "mcp__openbkn__get_skill_content",
+          "mcp__openbkn__list_action_executions",
+          "mcp__openbkn__list_knowledge_networks",
+          "mcp__openbkn__list_skills",
+          "mcp__openbkn__query_instance_subgraph",
+          "mcp__openbkn__query_metric",
+          "mcp__openbkn__query_object_instance",
+          "mcp__openbkn__read_skill_file",
+          "mcp__openbkn__run_code",
+          "mcp__openbkn__run_cypher",
+          "mcp__openbkn__run_shell",
+          "mcp__openbkn__search_capabilities",
+          "mcp__openbkn__search_instance",
+          "mcp__openbkn__search_schema"
+        ],
+        "diagnostics": {
+          "mode": "passive",
+          "loadedVersion": null,
+          "diskVersion": "0.2.0-rc.2-openbkn.0.2.0-32",
+          "checks": [
+            {
+              "id": "bootstrap-entry",
+              "status": "pass",
+              "code": "component-loaded"
+            },
+            {
+              "id": "business-entry",
+              "status": "pass",
+              "code": "component-loaded"
+            },
+            {
+              "id": "diagnostics-entry",
+              "status": "pass",
+              "code": "component-loaded"
+            },
+            {
+              "id": "observed:cli",
+              "status": "pass",
+              "code": "cli"
+            },
+            {
+              "id": "observed:login-state",
+              "status": "pass",
+              "code": "login-state"
+            },
+            {
+              "id": "observed:context-loader",
+              "status": "pass",
+              "code": "context-loader"
+            },
+            {
+              "id": "observed:platform-network-list",
+              "status": "pass",
+              "code": "platform-network-list"
+            }
+          ]
+        },
+        "phase": "complete",
+        "rows": [
+          {
+            "stage": "before",
+            "kind": "authentication-required",
+            "baseUrl": "https://192.168.50.129"
+          },
+          {
+            "stage": "beginLogin",
+            "networkCount": 2
+          },
+          {
+            "stage": "after",
+            "kind": "authenticated",
+            "baseUrl": "https://192.168.50.129"
+          }
+        ],
+        "result": "PASS",
+        "realBusinessToolsExecuted": 0,
+        "modelCalls": 0
+      },
+      "independentCliReadback": {
+        "baseUrl": "https://192.168.50.129",
+        "hasToken": true,
+        "expired": false
+      },
+      "managedVaultEqualsOfficialCli": true,
+      "profileClosure": {
+        "profileCoverage": "pass",
+        "pluginVersion": "0.2.0-rc.2-openbkn.0.2.0-32",
+        "cordis": "4.0.5",
+        "schemastery": "3.18.5",
+        "selected": [
+          {
+            "name": "@deepseek-ai/cordis",
+            "version": "4.0.5",
+            "samePhysicalPackage": true
+          },
+          {
+            "name": "@deepseek-ai/schemastery",
+            "version": "3.18.5",
+            "samePhysicalPackage": true
+          }
+        ],
+        "noMixedDsh": true,
+        "noSplitCordis": true,
+        "noSplitSchemastery": true,
+        "mcpEntrySha256": "b3cd7156c0b8639656ce117530fec4d006b74cafdc9a78ac426fec084e62972c"
+      },
+      "mcpSdkVersion": "2.2.0",
+      "desktopReadyIPC": null,
+      "exited": true
+    }
+  ],
+  "scopeLimit": "Loaded business/diagnostic service modules and public service method calls in actual Host; not browser Remote carrier/GUI/B1/model acceptance. Desktop uses unchanged official backend entry under matching Electron, no GUI shell.",
+  "requestedCallCountersNote": "Probe constants indicate no model or business tool execution was requested by this harness. They are not measurements of all platform traffic or other sessions."
+}

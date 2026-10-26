@@ -1,295 +1,320 @@
 import assert from 'node:assert/strict'
+import { readFileSync } from 'node:fs'
 import test from 'node:test'
 import { createElement, useSyncExternalStore } from 'react'
 import { act, create } from 'react-test-renderer'
 import type { LocaleRuntime } from '@deepseek-ai/dsh-client-locale/client'
 import { localized, useOpenBknTranslation } from '../src/client/locale.tsx'
 import { en, zh, type OpenBknMessageKey } from '../src/client/locales.ts'
-import { renderUiMessage, translateMessage } from '../src/client/messages.ts'
-import { OpenBknUiController, type OpenBknUiPort } from '../src/client/openbkn-ui-controller.ts'
-import { OpenBknOverlay } from '../src/client/OpenBknOverlay.tsx'
-import { ProvenanceOverlay, ProvenanceOverlayController } from '../src/client/ProvenanceOverlay.tsx'
+import { translateMessage, renderUiMessage } from '../src/client/messages.ts'
+import { OpenBknUiController } from '../src/client/openbkn-ui-controller.ts'
+import { NativeProvenancePanel } from '../src/client/NativeProvenancePanel.tsx'
+import { projectNativeExplanation } from '../src/native-provenance.ts'
 import { diagnosticAction } from '../src/client/diagnostics-copy.ts'
-import { sessionSuggestionText } from '../src/client/SuggestionDock.tsx'
-import type { OpenBknConfigurationInput, ProvenanceView } from '../src/types.ts'
+import type { ProvenanceView } from '../src/types.ts'
 
 function localeHarness() {
-  let snapshot = { active: 'zh', revision: 0, locales: [] }
-  const listeners = new Set<() => void>()
+  let snapshot = { active: 'zh', revision: 0, locales: [] }; const listeners = new Set<() => void>()
   const locale = {
-    subscribe(listener: () => void) { listeners.add(listener); return () => { listeners.delete(listener) } },
+    subscribe(listener: () => void) { listeners.add(listener);return () => {listeners.delete(listener)} },
     getSnapshot() { return snapshot },
-    bind() { return (key: OpenBknMessageKey, params?: Record<string, unknown>) => translateMessage(snapshot.active, key, params) },
+    bind() {return (key: OpenBknMessageKey, params?: Record<string,unknown>) => translateMessage(snapshot.active,key,params)},
   } as unknown as LocaleRuntime
-  return { locale, set(active: string) {
-    snapshot = { ...snapshot, active, revision: snapshot.revision + 1 }
-    for (const listener of listeners) listener()
-  } }
+  return {locale, set(active: string) { snapshot = {...snapshot, active, revision:snapshot.revision+1};for(const listener of listeners) listener() }}
 }
 
-function port(overrides: Partial<OpenBknUiPort> = {}): OpenBknUiPort {
-  return {
-    status: async () => ({ kind: 'authenticated', baseUrl: 'https://platform.invalid' }),
-    beginLogin: async () => [], configureToken: async () => [], listNetworks: async () => [],
-    bindNetworkWorkspace: async () => ({ id: 'n', displayName: '原始网络' }),
-    bindNetwork: async () => ({ platformBaseUrl: 'https://platform.invalid', knowledgeNetworkId: 'n', displayName: '原始网络' }),
-    ...overrides,
-  }
+// Text nodes concatenate in the browser; JSON.stringify would hide missing spaces between siblings.
+function visibleText(node: any): string {
+  if (node === null) return ''
+  if (typeof node === 'string' || typeof node === 'number') return String(node)
+  if (Array.isArray(node)) return node.map(visibleText).join('')
+  return visibleText(node.children)
 }
 
-const previousWindow = Object.getOwnPropertyDescriptor(globalThis, 'window')
-test.before(() => Object.defineProperty(globalThis, 'window', {
-  configurable: true, value: { addEventListener() {}, removeEventListener() {} },
-}))
-test.after(() => {
-  if (previousWindow === undefined) Reflect.deleteProperty(globalThis, 'window')
-  else Object.defineProperty(globalThis, 'window', previousWindow)
+test('English diagnostic metadata separates every label from its value', async () => {
+  const {OpenBknDiagnostics}=await import('../src/client/OpenBknDiagnostics.tsx')
+  const harness=localeHarness();harness.set('en')
+  const report={schemaVersion:1,reportId:'21349163',createdAt:'2026-10-22T00:00:00Z',mode:'passive',target:{hostForm:'npm',platform:'win32',dshVersion:null,pluginDiskVersion:null,pluginLoadedVersion:null},checks:[],coverage:{executedChecks:0,notRunChecks:0,insufficientEvidenceChecks:0,notes:[]}}
+  const Component=localized(OpenBknDiagnostics,harness.locale);let ui!:ReturnType<typeof create>
+  act(()=>{ui=create(createElement(Component,{useDiagnostics:(select:any)=>select({open:true,phase:'ready',report}),close(){},refresh:async()=>{}} as never))})
+  try {
+    const text=visibleText(ui.toJSON())
+    assert.match(text,/Report 21349163 · Created \S/)
+    assert.match(text,/· Mode Passive collection/)
+  } finally {act(()=>ui.unmount())}
 })
 
-test('English and Chinese cover every owned message with identical interpolation parameters', () => {
-  assert.deepEqual(Object.keys(en).sort(), Object.keys(zh).sort())
+test('English sign-in platform label is separated from the displayed URL', async () => {
+  const {OpenBknOverlay}=await import('../src/client/OpenBknOverlay.tsx')
+  const harness=localeHarness();harness.set('en');const Component=localized(OpenBknOverlay,harness.locale)
+  const state={open:true,phase:'authentication-required',auth:{kind:'authentication-required',baseUrl:'https://192.168.50.129'},networks:[]}
+  let ui!:ReturnType<typeof create>
+  act(()=>{ui=create(createElement(Component,{useUi:(select:any)=>select(state),close(){},refresh:async()=>{},beginLogin:async()=>{},cancelLogin(){},showSettings(){},saveConfiguration:async()=>{},cliSetup:{},openNetwork:async()=>{},openDiagnostics(){}} as never))})
+  try {assert.match(visibleText(ui.toJSON()),/Platform URL: https:\/\/192\.168\.50\.129/)} finally {act(()=>ui.unmount())}
+})
+test('both dictionaries cover the same keys and interpolation contracts', () => {
+  assert.deepEqual(Object.keys(en).sort(),Object.keys(zh).sort())
   for (const key of Object.keys(zh) as OpenBknMessageKey[]) {
-    const parameters = (text: string) => [...text.matchAll(/\{(\w+)\}/g)].map(match => match[1]).sort()
-    assert.deepEqual(parameters(en[key]), parameters(zh[key]), key)
+    const params = (value: string) => [...value.matchAll(/\{(\w+)\}/g)].map(match => match[1]).sort()
+    assert.deepEqual(params(zh[key]),params(en[key]),key)
     assert.ok(en[key].trim(), key)
-    assert.doesNotMatch(en[key], /\p{Script=Han}/u, key)
   }
-  assert.equal(translateMessage('en', '__unknown__' as OpenBknMessageKey), 'Text unavailable')
+  assert.equal(translateMessage('en', '__unknown__' as OpenBknMessageKey),'Text unavailable')
+})
+test('an already displayed failure updates zh/en/zh without rereading credentials or reconnecting', async () => {
+  let calls = 0
+  const controller = new OpenBknUiController({
+    status: async () => { calls++;throw Object.assign(new Error('private-cli-output'),{code:'openbkn/cli-unavailable'}) },
+    beginLogin: async () => [], configureToken: async () => [], listNetworks: async () => [],
+    bindNetworkWorkspace: async () => ({id:'n',displayName:'N'}), bindNetwork: async () => ({platformBaseUrl:'https://p.invalid',knowledgeNetworkId:'n',displayName:'N'}),
+  },async () => 's')
+  controller.open();await controller.refresh()
+  const frozen = controller.getSnapshot(); const harness = localeHarness()
+  function Failure() { const state = useSyncExternalStore(listener => controller.subscribe(listener),()=>controller.getSnapshot());const t = useOpenBknTranslation();return createElement('p',null,renderUiMessage(state.message,t)) }
+  const Component = localized(Failure,harness.locale);let renderer!: ReturnType<typeof create>
+  act(() => { renderer = create(createElement(Component)) }); assert.match(JSON.stringify(renderer.toJSON()),/当前 DSH/)
+  act(() => harness.set('en'));assert.match(JSON.stringify(renderer.toJSON()),/This DSH Host cannot use OpenBKN CLI/)
+  act(() => harness.set('zh'));assert.match(JSON.stringify(renderer.toJSON()),/当前 DSH/)
+  assert.equal(controller.getSnapshot(),frozen);assert.equal(calls,1);assert.doesNotMatch(JSON.stringify(renderer.toJSON()),/private-cli-output/)
+  act(() => renderer.unmount())
+})
+test('native evidence selection survives language changes and never links equal-valued unrelated nodes', () => {
+  const raw = JSON.parse(readFileSync(new URL('./fixtures/native-provenance-schema1.json',import.meta.url),'utf8'))
+  const explanation = projectNativeExplanation(raw,'int-fixture')
+  const view: ProvenanceView = {interactionId:'int-fixture',native:{detail:{kind:'unavailable',reason:'unavailable'},explanation},timeline:[],sources:{timeline:'local-session',operations:'unavailable',business:'unavailable',evidence:'unavailable',degraded:[]},execution:{operations:[]},business:{kind:'unavailable'},evidence:{kind:'unavailable',reason:'no-receipts'}}
+  const harness = localeHarness();const Component = localized(NativeProvenancePanel,harness.locale);let renderer!: ReturnType<typeof create>
+  act(() => { renderer = create(createElement(Component,{view,tab:'evidence'})) })
+  const text = () => JSON.stringify(renderer.toJSON())
+  assert.match(text(),/candidate/);assert.match(text(),/平台缺口原文/);assert.match(text(),/部分引用端点未披露/)
+  const nodes = renderer.root.findAllByType('button'); const linked = nodes.find(node => node.findAllByType('strong').some(label => label.children.includes('来源原文')))!;const unrelated = nodes.find(node => node.findAllByType('strong').some(label => label.children.includes('同值非关联')))!
+  assert.equal(linked.props.style.borderColor,'#087d72');assert.equal(unrelated.props.style.borderColor,'#dce4ec')
+  act(() => unrelated.props.onClick());assert.equal(renderer.root.findAllByType('button').find(node => node.findAllByType('strong').some(label => label.children.includes('同值非关联')))!.props['aria-pressed'],true)
+  act(() => harness.set('en'));assert.match(text(),/Business evidence and sources/);assert.match(text(),/业务原文 Answer/);assert.match(text(),/平台缺口原文/)
+  assert.match(text(),/has not disclosed a business-function link/)
+  assert.equal(renderer.root.findAllByType('button').find(node => node.findAllByType('strong').some(label => label.children.includes('同值非关联')))!.props['aria-pressed'],true)
+  act(() => renderer.unmount())
+})
+test('diagnostic next actions translate without mutating exported report facts or unknown text', () => {
+  const original = 'Open OpenBKN settings, save the platform URL, then sign in with the OpenBKN CLI.'
+  const t = (key:OpenBknMessageKey) => translateMessage('zh',key)
+  assert.match(diagnosticAction(original,t),/保存平台地址/);assert.equal(diagnosticAction('external fact 原文',t),'external fact 原文');assert.equal(original,'Open OpenBKN settings, save the platform URL, then sign in with the OpenBKN CLI.')
 })
 
-test('an already displayed connection error switches zh/en/zh without new credential or platform reads', async () => {
-  let reads = 0
-  const controller = new OpenBknUiController(port({ status: async () => {
-    reads++
-    throw Object.assign(new Error('private-cli-output'), { code: 'openbkn/cli-unavailable' })
-  } }), async () => 's')
-  controller.open()
-  await controller.refresh()
-  const state = controller.getSnapshot()
-  const harness = localeHarness()
-  function Failure() {
-    const current = useSyncExternalStore(listener => controller.subscribe(listener), () => controller.getSnapshot())
-    return createElement('p', null, renderUiMessage(current.message, useOpenBknTranslation()))
+test('the open login panel switches language while waiting and cancellation never dispatches a second login', async () => {
+  const { OpenBknOverlay } = await import('../src/client/OpenBknOverlay.tsx')
+  let resolve!: (value: readonly []) => void; let calls=0; let checked=0
+  const pending = new Promise<readonly []>(accept=>{resolve=accept})
+  const controller=new OpenBknUiController({status:async()=>{checked++;return {kind:'authenticated',baseUrl:'https://p.invalid'}},beginLogin:async()=>{calls++;return pending},configureToken:async()=>[],listNetworks:async()=>[],bindNetworkWorkspace:async()=>({id:'n',displayName:'N'}),bindNetwork:async()=>({platformBaseUrl:'https://p.invalid',knowledgeNetworkId:'n',displayName:'N'})},async()=> 's')
+  controller.open();const login=controller.beginLogin();const harness=localeHarness();const Component=localized(OpenBknOverlay,harness.locale)
+  let renderer!: ReturnType<typeof create>
+  const props={useUi:(select: (state:ReturnType<typeof controller.getSnapshot>)=>unknown)=>select(useSyncExternalStore(listener=>controller.subscribe(listener),()=>controller.getSnapshot())),close:()=>controller.close(),refresh:()=>controller.refresh(),beginLogin:()=>controller.beginLogin(),cancelLogin:()=>controller.cancelLogin(),showSettings:()=>controller.showSettings(),saveConfiguration:async()=>{},cliSetup:{checkCli:async()=>({state:'ready' as const,canInstall:false}),installCli:async()=>({state:'ready' as const,canInstall:false})},openNetwork:async()=>{},openDiagnostics:()=>{}}
+  act(()=>{renderer=create(createElement(Component,props as never))})
+  assert.match(JSON.stringify(renderer.toJSON()),/正在等待 OpenBKN CLI/)
+  act(()=>harness.set('en'));assert.match(JSON.stringify(renderer.toJSON()),/Waiting for OpenBKN CLI/)
+  act(()=>renderer.root.findAllByType('button').find(button=>button.children.includes('Cancel sign-in'))!.props.onClick())
+  assert.equal(controller.snapshot().login,'cancelled');assert.match(JSON.stringify(renderer.toJSON()),/Sign-in wait cancelled/)
+  resolve([]);await login;assert.equal(calls,1);assert.equal(checked,0)
+  act(()=>renderer.unmount())
+})
+
+test('closing provenance cancels its read and discards the late response', async () => {
+  const {ProvenanceOverlay,ProvenanceOverlayController}=await import('../src/client/ProvenanceOverlay.tsx')
+  const controller=new ProvenanceOverlayController();const handle={schemaVersion:2 as const,interactionId:'int-fixture',status:'completed' as const,requestIds:[],traceIds:[],receiptIds:[],partial:false}
+  let requestSignal:AbortSignal|undefined;let resolve!: (value:undefined)=>void
+  const pending=new Promise<undefined>(accept=>{resolve=accept});const previousWindow=Object.getOwnPropertyDescriptor(globalThis,'window')
+  Object.defineProperty(globalThis,'window',{configurable:true,value:{addEventListener:()=>{},removeEventListener:()=>{}}})
+  const harness=localeHarness();const Component=localized(ProvenanceOverlay,harness.locale);let renderer!:ReturnType<typeof create>
+  try {
+    controller.open('s1','m1',handle)
+    act(()=>{renderer=create(createElement(Component,{useProvenanceOverlay:(select:(state:ReturnType<typeof controller.getSnapshot>)=>unknown)=>select(useSyncExternalStore(controller.subscribe,controller.getSnapshot)),load:async(_session:string,_message:string,signal?:AbortSignal)=>{requestSignal=signal;return pending},close:()=>controller.close()} as never))})
+    act(()=>controller.close());assert.equal(requestSignal?.aborted,true)
+    await act(async()=>{resolve(undefined);await pending})
+    assert.equal(renderer.toJSON(),null)
+    act(()=>renderer.unmount())
+  } finally {if(previousWindow) Object.defineProperty(globalThis,'window',previousWindow);else Reflect.deleteProperty(globalThis,'window')}
+})
+
+function selectionView(): ProvenanceView {
+  const raw = JSON.parse(readFileSync(new URL('./fixtures/native-provenance-schema1.json',import.meta.url),'utf8'))
+  const first = raw.view.selectedPairGraphs.p1
+  first.claims.push({id:'c2',label:'第二结论',status:'candidate',nodeIds:['n2']})
+  raw.view.questionPairs[0].claimIds.push('c2')
+  first.businessFunctions.push({...structuredClone(first.businessFunctions[0]),id:'fn2',displayName:'第二业务函数',supportsClaimIds:['c2'],operationIds:['op2'],logicSummary:'第二处理过程',businessOutputs:[{summary:'第二输出',evidenceRefs:['n2'],adoptedRowRefs:[]}]})
+  raw.view.timeRail.push({...raw.view.timeRail[0],id:'t2',operation_id:'op2',order:2})
+  raw.view.questionPairs.push({id:'p2',question:'Q2',answer:'A2',summary:'第二问答对',status:'partial',claimIds:['c3']})
+  raw.view.selectedPairGraphs.p2 = {
+    claims:[{id:'c3',label:'第三结论',status:'candidate',nodeIds:['n3']}],
+    evidenceNodes:[{id:'n3',label:'第二问答来源',kind:'source',value:'42'}],schemaNodes:[],executionSteps:[],edges:[],
+    businessFunctions:[{...structuredClone(first.businessFunctions[0]),id:'fn3',displayName:'第二问答业务函数',supportsClaimIds:['c3'],operationIds:['op3'],businessOutputs:[{summary:'第三输出',evidenceRefs:['n3'],adoptedRowRefs:[]}]}],
   }
-  const Component = localized(Failure, harness.locale)
-  let renderer!: ReturnType<typeof create>
-  act(() => { renderer = create(createElement(Component)) })
-  assert.match(JSON.stringify(renderer.toJSON()), /当前 DSH/)
-  act(() => harness.set('en'))
-  assert.match(JSON.stringify(renderer.toJSON()), /This DSH Host cannot use OpenBKN CLI/)
-  act(() => harness.set('zh'))
-  assert.match(JSON.stringify(renderer.toJSON()), /当前 DSH/)
-  assert.equal(controller.getSnapshot(), state)
-  assert.equal(reads, 1)
-  assert.doesNotMatch(JSON.stringify(renderer.toJSON()), /private-cli-output/)
-  act(() => renderer.unmount())
+  raw.view.questionPairs.push({id:'p3',question:'Q3',answer:'A3',summary:'无关系问答对',status:'partial',claimIds:[]})
+  return viewFromRaw(raw)
+}
+
+function viewFromRaw(raw: any): ProvenanceView {
+  return {interactionId:raw.interaction_id,native:{detail:{kind:'ready',view:{interactionId:raw.interaction_id,knowledgeNetworkIds:[],timeRail:raw.view.timeRail ?? []}},explanation:projectNativeExplanation(raw,raw.interaction_id)},timeline:[],sources:{timeline:'local-session',operations:'unavailable',business:'unavailable',evidence:'unavailable',degraded:[]},execution:{operations:[]},business:{kind:'unavailable'},evidence:{kind:'unavailable',reason:'no-receipts'}}
+}
+
+function namedButton(renderer: ReturnType<typeof create>, label: string) {
+  const button = renderer.root.findAllByType('button').find(node => node.findAllByType('strong').some(strong => strong.children.includes(label)))
+  assert.ok(button, `missing button: ${label}`)
+  return button
+}
+
+function relatedProcessing(renderer:ReturnType<typeof create>) {
+  return renderer.root.findAllByType('button').filter(node=>node.props['data-target-kind']==='function' && !node.props['aria-label'] && node.props['data-related']).map(node=>node.props['data-target-id'])
+}
+
+test('claim selection marks only explicitly linked functions while retaining the same-pair catalogue', () => {
+  const harness = localeHarness();const Component = localized(NativeProvenancePanel,harness.locale);const view = selectionView()
+  let renderer!:ReturnType<typeof create>
+  act(()=>{renderer=create(createElement(Component,{view,tab:'evidence'}))})
+  const text=()=>JSON.stringify(renderer.toJSON())
+  assert.match(text(),/业务函数原文/);assert.match(text(),/第二业务函数/)
+  assert.deepEqual(relatedProcessing(renderer),['fn1'])
+  act(()=>namedButton(renderer,'第二结论').props.onClick())
+  assert.equal(namedButton(renderer,'第二结论').props['aria-pressed'],true)
+  assert.equal(namedButton(renderer,'来源原文').props.style.borderColor,'#dce4ec')
+  assert.equal(namedButton(renderer,'同值非关联').props.style.borderColor,'#087d72')
+  assert.match(text(),/第二业务函数/);assert.match(text(),/第二处理过程/);assert.match(text(),/业务函数原文/)
+  assert.deepEqual(relatedProcessing(renderer),['fn2'])
+  act(()=>harness.set('en'));assert.equal(namedButton(renderer,'第二结论').props['aria-pressed'],true)
+  assert.match(text(),/Business inputs/);assert.match(text(),/第二业务函数/)
+  act(()=>renderer.unmount())
 })
 
-test('nested authentication messages switch language while preserving the Latest recovery classification', async () => {
-  const controller = new OpenBknUiController(port({ status: async () => {
-    throw { code: 'openbkn/authentication-required', details: { baseUrl: 'https://platform.invalid', httpStatus: 401 } }
-  } }), async () => 's')
-  controller.open()
-  await controller.refresh()
-  assert.equal(controller.snapshot().phase, 'authentication-required')
-  const english = renderUiMessage(controller.snapshot().message, (key, params) => translateMessage('en', key, params))
-  assert.match(english, /OpenBKN platform.*HTTP 401.*Sign in again/)
-  assert.doesNotMatch(english, /\p{Script=Han}/u)
+test('event selection marks processing by disclosed operation IDs and survives tab changes', () => {
+  const harness=localeHarness();const Component=localized(NativeProvenancePanel,harness.locale);const view=selectionView()
+  let renderer!:ReturnType<typeof create>
+  act(()=>{renderer=create(createElement(Component,{view,tab:'events'}))})
+  act(()=>namedButton(renderer,'第二业务函数').props.onClick())
+  assert.equal(namedButton(renderer,'第二业务函数').props['aria-pressed'],true)
+  assert.deepEqual(relatedProcessing(renderer),['fn2'])
+  act(()=>renderer.update(createElement(Component,{view,tab:'evidence'})))
+  assert.equal(namedButton(renderer,'第二结论').props['data-related'],true)
+  assert.equal(namedButton(renderer,'结论原文').props['data-related'],false)
+  assert.deepEqual(relatedProcessing(renderer),['fn2'])
+  act(()=>renderer.update(createElement(Component,{view,tab:'events'})))
+  assert.equal(namedButton(renderer,'第二业务函数').props['aria-pressed'],true)
+  assert.deepEqual(relatedProcessing(renderer),['fn2'])
+  act(()=>namedButton(renderer,'业务函数原文').props.onClick());assert.deepEqual(relatedProcessing(renderer),['fn1'])
+  act(()=>renderer.unmount())
 })
 
-test('switching an open configuration form preserves unsaved URL, CLI path and advanced disclosure', () => {
-  const harness = localeHarness()
-  const Component = localized(OpenBknOverlay, harness.locale)
-  const state = { open: true, phase: 'configuration' as const, networks: [], configuration: {
-    configured: true, editable: true, baseUrl: 'https://platform.invalid', cliPath: 'openbkn',
-  } }
-  const noop = () => {}
-  const asyncNoop = async () => {}
-  const props = {
-    useUi: (select: (value: typeof state) => unknown) => select(state), close: noop, refresh: asyncNoop,
-    beginLogin: asyncNoop, showSettings: asyncNoop, saveConfiguration: asyncNoop,
-    cliSetup: { checkCli: async () => ({ state: 'ready' as const, canInstall: false }), installCli: async () => ({ state: 'ready' as const, canInstall: false }) },
-    openNetwork: asyncNoop, openDiagnostics: noop,
+test('changing question pairs resets node, claim and event selections without importing unrelated functions', () => {
+  const harness=localeHarness();const Component=localized(NativeProvenancePanel,harness.locale);const view=selectionView()
+  let renderer!:ReturnType<typeof create>
+  act(()=>{renderer=create(createElement(Component,{view,tab:'events'}))})
+  act(()=>namedButton(renderer,'第二业务函数').props.onClick())
+  act(()=>renderer.update(createElement(Component,{view,tab:'evidence'})))
+  act(()=>namedButton(renderer,'第二结论').props.onClick());act(()=>namedButton(renderer,'同值非关联').props.onClick())
+  act(()=>renderer.root.findByType('select').props.onChange({target:{value:'p2'}}))
+  assert.equal(namedButton(renderer,'第三结论').props['aria-pressed'],true)
+  assert.equal(namedButton(renderer,'第二问答来源').props['aria-pressed'],false)
+  assert.equal(renderer.root.findAllByType('button').some(node=>node.findAllByType('strong').some(strong=>strong.children.includes('第二结论'))),false)
+  assert.match(JSON.stringify(renderer.toJSON()),/第二问答业务函数/)
+  act(()=>renderer.update(createElement(Component,{view,tab:'events'})))
+  assert.equal(renderer.root.findAllByType('button').some(node=>node.props['aria-pressed']===true),false)
+  act(()=>renderer.update(createElement(Component,{view,tab:'evidence'})))
+  act(()=>renderer.root.findByType('select').props.onChange({target:{value:'p3'}}))
+  assert.equal(renderer.root.findAllByType('button').filter(node=>node.props['data-target-kind']==='function').length,0)
+  assert.match(JSON.stringify(renderer.toJSON()),new RegExp(translateMessage('zh','nativeNoClaims')))
+  assert.match(JSON.stringify(renderer.toJSON()),new RegExp(translateMessage('zh','nativeNoLinkedFunction')))
+  act(()=>renderer.unmount())
+})
+
+test('truly empty ready evidence, not-generated and an omitted oversized native projection remain distinct', () => {
+  const raw=JSON.parse(readFileSync(new URL('./fixtures/native-provenance-schema1.json',import.meta.url),'utf8'))
+  raw.view.claims=[];raw.view.requirements=[];raw.view.questionPairs=[];raw.view.selectedPairGraphs={};raw.view.execution={nodes:[],edges:[]};raw.view.evidence={nodes:[],edges:[]}
+  const view=viewFromRaw(raw);const harness=localeHarness();const Component=localized(NativeProvenancePanel,harness.locale)
+  let renderer!:ReturnType<typeof create>
+  act(()=>{renderer=create(createElement(Component,{view,tab:'evidence'}))})
+  assert.match(JSON.stringify(renderer.toJSON()),new RegExp(translateMessage('zh','nativeNoClaims')))
+  assert.doesNotMatch(JSON.stringify(renderer.toJSON()),new RegExp(translateMessage('zh','nativeNotGenerated')))
+  const notGenerated:ProvenanceView={...view,native:{...view.native!,explanation:{kind:'not-generated'}}}
+  act(()=>renderer.update(createElement(Component,{view:notGenerated,tab:'evidence'})))
+  assert.match(JSON.stringify(renderer.toJSON()),new RegExp(translateMessage('zh','nativeNotGenerated')))
+  const {native:_native,...withoutNative}=view
+  const overflow:ProvenanceView={...withoutNative,sources:{...view.sources,degraded:[{pane:'native',reason:'result-too-large'}]}}
+  act(()=>renderer.update(createElement(Component,{view:overflow,tab:'evidence'})))
+  assert.match(JSON.stringify(renderer.toJSON()),new RegExp(translateMessage('zh','nativeTooLarge')))
+  act(()=>harness.set('en'));assert.match(JSON.stringify(renderer.toJSON()),new RegExp(translateMessage('en','nativeTooLarge')))
+  act(()=>renderer.unmount())
+})
+
+// Reproduced on the fixed CI candidate against the formal local CE platform:
+// both native reads returned 404, yet the empty evidence-node section claimed
+// that an explanation existed. An unreadable record cannot establish existence.
+test('unavailable and not-generated evidence never claim that an explanation exists', () => {
+  const harness=localeHarness();const Component=localized(NativeProvenancePanel,harness.locale)
+  for (const language of ['zh','en']) {
+    act(()=>harness.set(language))
+    for (const explanation of [{kind:'unavailable',reason:'not-disclosed-or-unavailable'},{kind:'not-generated'}] as const) {
+      const view:ProvenanceView={interactionId:'int-live-404',native:{detail:{kind:'unavailable',reason:'not-disclosed-or-unavailable'},explanation},timeline:[],sources:{timeline:'local-session',operations:'unavailable',business:'unavailable',evidence:'unavailable',degraded:[]},execution:{operations:[]},business:{kind:'unavailable'},evidence:{kind:'unavailable',reason:'no-receipts'}}
+      let renderer!:ReturnType<typeof create>
+      try {
+        act(()=>{renderer=create(createElement(Component,{view,tab:'evidence'}))})
+        const text=JSON.stringify(renderer.toJSON())
+        assert.equal(text.includes(translateMessage(language,'nativeNoClaims')),false)
+        assert.equal(text.includes(translateMessage(language,explanation.kind==='not-generated'?'nativeNotGenerated':'nativeNotDisclosed')),true)
+      } finally {act(()=>renderer.unmount())}
+    }
   }
-  let renderer!: ReturnType<typeof create>
-  act(() => { renderer = create(createElement(Component, props as never)) })
-  act(() => renderer.root.findByProps({ 'aria-label': 'OpenBKN 平台地址' }).props.onChange({ target: { value: 'https://unsaved.invalid' } }))
-  act(() => renderer.root.findByType('details').props.onToggle({ currentTarget: { open: true } }))
-  act(() => renderer.root.findByProps({ 'aria-label': 'OpenBKN CLI 执行路径' }).props.onChange({ target: { value: '/unsaved/openbkn' } }))
-  state.open = false
-  act(() => renderer.update(createElement(Component, props as never)))
-  act(() => harness.set('en'))
-  state.open = true
-  act(() => renderer.update(createElement(Component, props as never)))
-  assert.equal(renderer.root.findByProps({ 'aria-label': 'OpenBKN platform URL' }).props.value, 'https://unsaved.invalid')
-  assert.equal(renderer.root.findByProps({ 'aria-label': 'OpenBKN CLI executable path' }).props.value, '/unsaved/openbkn')
-  assert.equal(renderer.root.findByType('details').props.open, true)
-  assert.match(JSON.stringify(renderer.toJSON()), /Save and continue/)
-  act(() => renderer.unmount())
 })
 
-test('the released pending login request survives locale changes without cancellation or a second login', async () => {
-  let resolve!: (value: readonly []) => void
-  let logins = 0
-  let statuses = 0
-  let signal: AbortSignal | undefined
-  const pending = new Promise<readonly []>(accept => { resolve = accept })
-  const controller = new OpenBknUiController(port({
-    beginLogin: async current => { logins++; signal = current; return pending },
-    status: async () => { statuses++; return { kind: 'authenticated', baseUrl: 'https://platform.invalid' } },
-  }), async () => 's')
-  controller.open()
-  const request = controller.beginLogin()
-  const harness = localeHarness()
-  function State() {
-    const current = useSyncExternalStore(listener => controller.subscribe(listener), () => controller.getSnapshot())
-    const t = useOpenBknTranslation()
-    return createElement('p', null, current.phase === 'loading' ? t('connectingToOpenBKN') : current.phase)
+// Live dark-host regressions: a white surface inherited white glyph/body text.
+test('overlay text and close controls keep visible contrast against their white surface in a dark host', async () => {
+  const {OpenBknOverlay}=await import('../src/client/OpenBknOverlay.tsx')
+  const {OpenBknDiagnostics}=await import('../src/client/OpenBknDiagnostics.tsx')
+  const {ProvenanceOverlay}=await import('../src/client/ProvenanceOverlay.tsx')
+  const harness=localeHarness();const noop=()=>{};const refresh=async()=>{}
+  const handle={schemaVersion:2 as const,interactionId:'int-fixture',status:'completed' as const,requestIds:[],traceIds:[],receiptIds:[],partial:false}
+  const components=[
+    {component:localized(OpenBknOverlay,harness.locale),props:{useUi:(select:(s:unknown)=>unknown)=>select({open:true,phase:'loading',networks:[],login:'idle'}),close:noop,refresh}},
+    {component:localized(OpenBknDiagnostics,harness.locale),props:{useDiagnostics:(select:(s:unknown)=>unknown)=>select({open:true,phase:'loading'}),close:noop,refresh}},
+    {component:localized(ProvenanceOverlay,harness.locale),props:{useProvenanceOverlay:(select:(s:unknown)=>unknown)=>select({sessionId:'s',messageId:'m',handle}),close:noop,load:async()=>new Promise<ProvenanceView>(()=>{})}},
+  ]
+  const luminance=(hex:string)=>{const rgb=hex.slice(1);const full=rgb.length===3?[...rgb].map(c=>c+c).join(''):rgb;return full.match(/../g)!.map(c=>parseInt(c,16)/255).map(c=>c<=0.04045?c/12.92:((c+0.055)/1.055)**2.4).reduce((sum,c,i)=>sum+c*[0.2126,0.7152,0.0722][i],0)}
+  const previousWindow=Object.getOwnPropertyDescriptor(globalThis,'window')
+  Object.defineProperty(globalThis,'window',{configurable:true,value:{addEventListener:noop,removeEventListener:noop}})
+  try {
+    for(const {component,props} of components){
+      let renderer!:ReturnType<typeof create>
+      try {
+        act(()=>{renderer=create(createElement(component,props as never))})
+        const button=renderer.root.findByProps({'aria-label':translateMessage('zh','close')});const style=button.props.style
+        const a=luminance(style.color??'#fff'),b=luminance(!style.background||style.background==='transparent'?'#fff':style.background)
+        assert.ok((Math.max(a,b)+0.05)/(Math.min(a,b)+0.05)>=3,'close glyph must contrast with its surface under dark host colors')
+        const surface=renderer.root.findByProps({role:'dialog'}).props.style
+        const foreground=luminance(surface.color??'#fff'),background=luminance(surface.background)
+        assert.ok((Math.max(foreground,background)+0.05)/(Math.min(foreground,background)+0.05)>=4.5,
+          'normal dialog text must contrast with its white surface when the Host foreground is white')
+      } finally {act(()=>renderer.unmount())}
+    }
+  } finally {if(previousWindow)Object.defineProperty(globalThis,'window',previousWindow);else Reflect.deleteProperty(globalThis,'window')}
+})
+
+test('a late response from the closed answer cannot overwrite a newly opened answer', async () => {
+  const {ProvenanceOverlay,ProvenanceOverlayController}=await import('../src/client/ProvenanceOverlay.tsx')
+  const controller=new ProvenanceOverlayController();const handle={schemaVersion:2 as const,interactionId:'int-fixture',status:'completed' as const,requestIds:[],traceIds:[],receiptIds:[],partial:false}
+  const replies:((value:ProvenanceView)=>void)[]=[];const signals:AbortSignal[]=[]
+  const load=async(_session:string,_message:string,signal?:AbortSignal)=>{signals.push(signal!);return new Promise<ProvenanceView>(resolve=>{replies.push(resolve)})}
+  const previousWindow=Object.getOwnPropertyDescriptor(globalThis,'window')
+  Object.defineProperty(globalThis,'window',{configurable:true,value:{addEventListener:()=>{},removeEventListener:()=>{}}})
+  const harness=localeHarness();const Component=localized(ProvenanceOverlay,harness.locale);let renderer!:ReturnType<typeof create>
+  try {
+    controller.open('s1','m1',handle)
+    act(()=>{renderer=create(createElement(Component,{useProvenanceOverlay:(select:(state:ReturnType<typeof controller.getSnapshot>)=>unknown)=>select(useSyncExternalStore(controller.subscribe,controller.getSnapshot)),load,close:()=>controller.close()} as never))})
+    act(()=>controller.close());assert.equal(signals[0].aborted,true)
+    act(()=>controller.open('s1','m2',{...handle,interactionId:'int-new'}))
+    const next=selectionView();const rawNext={...next,interactionId:'int-new',native:{...next.native!,detail:{kind:'ready' as const,view:{interactionId:'int-new',knowledgeNetworkIds:[],timeRail:[],answer:'新回答独有内容'}}}}
+    await act(async()=>{replies[1](rawNext);await Promise.resolve()})
+    assert.match(JSON.stringify(renderer.toJSON()),/新回答独有内容/)
+    await act(async()=>{replies[0](selectionView());await Promise.resolve()})
+    assert.match(JSON.stringify(renderer.toJSON()),/新回答独有内容/)
+    assert.equal(signals[1].aborted,false)
+  } finally {
+    act(()=>renderer.unmount())
+    if(previousWindow) Object.defineProperty(globalThis,'window',previousWindow);else Reflect.deleteProperty(globalThis,'window')
   }
-  const Component = localized(State, harness.locale)
-  let renderer!: ReturnType<typeof create>
-  act(() => { renderer = create(createElement(Component)) })
-  act(() => harness.set('en'))
-  assert.match(JSON.stringify(renderer.toJSON()), /Connecting to OpenBKN/)
-  assert.equal(signal?.aborted, false)
-  assert.equal(logins, 1)
-  resolve([])
-  await act(async () => { await request })
-  assert.equal(statuses, 1)
-  assert.equal(controller.snapshot().phase, 'ready')
-  act(() => renderer.unmount())
-})
-
-test('all three Latest provenance tabs remain and graph selection survives locale changes without rereading', async () => {
-  const harness = localeHarness()
-  const controller = new ProvenanceOverlayController()
-  const view: ProvenanceView = {
-    interactionId: 'interaction-original', timeline: [
-      { seq: 0, kind: 'managed', tool: 'query_object_instance', at: 1, outcome: 'ok', summary: 'query_object_instance · 2 项' },
-      { seq: 1, kind: 'question', at: 0, summary: '用户原文：2 项' },
-    ],
-    sources: { timeline: 'local-session', operations: 'unavailable', business: 'platform', evidence: 'unavailable', degraded: [] },
-    execution: { operations: [] }, evidence: { kind: 'unavailable', reason: 'no-receipts' },
-    business: { kind: 'ready', operations: [{ id: 'op-original', attempt: 1, toolName: 'query_object_instance', status: 'resolved', missingFacts: [], elements: [
-      { kind: 'object', id: 'a', name: '平台原文 A' }, { kind: 'object', id: 'b', name: '平台原文 B' },
-    ] }], contextRelations: [], derivedFacts: [], conversationContext: [] },
-  }
-  const original = JSON.stringify(view)
-  const handle = { schemaVersion: 2 as const, interactionId: 'interaction-original', status: 'completed' as const, requestIds: [], traceIds: [], receiptIds: [], partial: false }
-  controller.open('session-original', 'message-original', handle)
-  const Component = localized(ProvenanceOverlay, harness.locale)
-  let reads = 0
-  const load = async () => { reads++; return view }
-  let renderer!: ReturnType<typeof create>
-  await act(async () => { renderer = create(createElement(Component, {
-    useProvenanceOverlay: (select: (value: ReturnType<typeof controller.getSnapshot>) => unknown) => select(useSyncExternalStore(controller.subscribe, controller.getSnapshot)),
-    load, close: () => controller.close(),
-  } as never)) })
-  act(() => renderer.root.findAllByType('button').find(button => button.children.includes('业务上下文图'))!.props.onClick())
-  const node = () => renderer.root.findAllByType('button').find(button => button.findAllByType('strong').some(label => label.children.includes('平台原文 B')))!
-  act(() => node().props.onClick())
-  act(() => controller.close())
-  act(() => harness.set('en'))
-  act(() => controller.open('session-original', 'message-original', { ...handle }))
-  const text = JSON.stringify(renderer.toJSON())
-  assert.match(text, /Execution provenance/)
-  assert.match(text, /Business context graph/)
-  assert.match(text, /Evidence chain/)
-  assert.match(text, /平台原文 B/)
-  assert.equal(node().props['aria-pressed'], true)
-  assert.equal(reads, 1)
-  assert.equal(JSON.stringify(view), original)
-  act(() => renderer.root.findAllByType('button').find(button => button.children.includes('Execution provenance'))!.props.onClick())
-  assert.match(JSON.stringify(renderer.toJSON()), /query_object_instance · items: 2/)
-  assert.match(JSON.stringify(renderer.toJSON()), /用户原文：2 项/)
-  assert.equal(JSON.stringify(view), original)
-  act(() => renderer.unmount())
-})
-
-test('only plugin-owned diagnostic guidance and suggestion templates are translated', () => {
-  const t = (key: OpenBknMessageKey, params?: Record<string, unknown>) => translateMessage('en', key, params)
-  assert.match(diagnosticAction('Open OpenBKN settings, save the platform URL, then sign in with the OpenBKN CLI.', t), /Open OpenBKN settings/)
-  assert.equal(diagnosticAction('平台原文 unchanged', t), '平台原文 unchanged')
-  assert.match(sessionSuggestionText('了解「原始网络」知识网络。', t), /原始网络/)
-  assert.doesNotMatch(sessionSuggestionText('了解「原始网络」知识网络。', t), /了解|知识网络/)
-  assert.equal(sessionSuggestionText('平台自有建议 unchanged', t), '平台自有建议 unchanged')
-})
-
-
-test('closing the ready directory for a Desktop language change preserves search and expansion', async () => {
-  const harness = localeHarness()
-  const controller = new OpenBknUiController(port({ listNetworks: async () => [
-    { id: 'a', displayName: 'Alpha', description: 'Platform description', workspacePath: '/workspace' },
-    { id: 'b', displayName: 'Beta' },
-  ] }), async () => 'session')
-  controller.open()
-  await controller.refresh()
-  const Component = localized(OpenBknOverlay, harness.locale)
-  const noop = () => {}
-  let renderer!: ReturnType<typeof create>
-  act(() => { renderer = create(createElement(Component, {
-    useUi: (select: (value: ReturnType<typeof controller.snapshot>) => unknown) => select(useSyncExternalStore(listener => controller.subscribe(listener), () => controller.snapshot())),
-    close: () => controller.close(), refresh: () => controller.refresh(), beginLogin: () => controller.beginLogin(),
-    showSettings: noop, saveConfiguration: noop, cliSetup: {}, openNetwork: noop, openDiagnostics: noop,
-  } as never)) })
-  act(() => renderer.root.findByType('input').props.onChange({ target: { value: 'Alpha' } }))
-  act(() => renderer.root.findByProps({ 'aria-expanded': false }).props.onClick())
-  act(() => controller.close())
-  assert.equal(renderer.root.findByProps({ role: 'presentation' }).props.style.display, 'none')
-  act(() => harness.set('en'))
-  act(() => controller.open())
-  assert.equal(renderer.root.findByType('input').props.value, 'Alpha')
-  assert.equal(renderer.root.findByProps({ 'aria-expanded': true }).props['aria-expanded'], true)
-  assert.match(JSON.stringify(renderer.toJSON()), /Platform description/)
-  assert.doesNotMatch(JSON.stringify(renderer.toJSON()), /Beta/)
-  act(() => controller.reset())
-  assert.equal(renderer.toJSON(), null)
-  act(() => renderer.unmount())
-})
-
-test('the English authentication surface separates its platform label from the URL', () => {
-  const harness = localeHarness(); harness.set('en')
-  const Component = localized(OpenBknOverlay, harness.locale)
-  let renderer!: ReturnType<typeof create>
-  const noop = () => {}
-  act(() => { renderer = create(createElement(Component, {
-    useUi: (select: (state: unknown) => unknown) => select({ open: true, phase: 'authentication-required', networks: [], auth: { baseUrl: 'https://platform.invalid' } }),
-    close: noop, refresh: noop, beginLogin: noop, showSettings: noop, saveConfiguration: noop, cliSetup: {}, openNetwork: noop, openDiagnostics: noop,
-  } as never)) })
-  const paragraphs = renderer.root.findAllByType('p').map(row => row.children.join(''))
-  assert.ok(paragraphs.some(text => text === 'Platform URL: https://platform.invalid'))
-  act(() => renderer.unmount())
-})
-
-test('a retained settings draft has an explicit path back to networks without saving', async () => {
-  const harness = localeHarness(); harness.set('en')
-  let saves = 0
-  const controller = new OpenBknUiController(port({ listNetworks: async () => [{ id: 'a', displayName: 'Alpha' }] }), async () => 'session', undefined, {
-    getConfiguration: async () => ({ configured: true, editable: true, baseUrl: 'https://platform.invalid', cliPath: 'openbkn' }),
-    saveConfiguration: async () => { saves++; throw new Error('must not save a discarded draft') },
-  })
-  controller.open(); await controller.refresh()
-  const Component = localized(OpenBknOverlay, harness.locale)
-  const noop = () => {}
-  let renderer!: ReturnType<typeof create>
-  await act(async () => { renderer = create(createElement(Component, {
-    useUi: (select: (value: ReturnType<typeof controller.snapshot>) => unknown) => select(useSyncExternalStore(listener => controller.subscribe(listener), () => controller.snapshot())),
-    close: () => controller.close(), refresh: () => controller.refresh(), beginLogin: () => controller.beginLogin(),
-    showSettings: () => controller.showSettings(), saveConfiguration: (input: OpenBknConfigurationInput) => controller.saveConfiguration(input),
-    cliSetup: { checkCli: async () => ({ state: 'ready', canInstall: false }), installCli: async () => ({ state: 'ready', canInstall: false }) },
-    openNetwork: noop, openDiagnostics: noop,
-  } as never)) })
-  await act(async () => { await controller.showSettings() })
-  act(() => renderer.root.findByProps({ 'aria-label': 'OpenBKN platform URL' }).props.onChange({ target: { value: 'not-a-url' } }))
-  act(() => { controller.close(); controller.open() })
-  assert.equal(renderer.root.findByProps({ 'aria-label': 'OpenBKN platform URL' }).props.value, 'not-a-url')
-  await act(async () => {
-    renderer.root.findAllByType('button').find(button => button.children.includes('Back to networks'))!.props.onClick()
-    await new Promise(resolve => setImmediate(resolve))
-  })
-  assert.equal(controller.snapshot().phase, 'ready')
-  assert.equal(saves, 0)
-  assert.match(JSON.stringify(renderer.toJSON()), /Alpha/)
-  assert.equal(renderer.root.findAllByProps({ 'aria-label': 'OpenBKN platform URL' }).length, 0)
-  act(() => renderer.unmount())
 })

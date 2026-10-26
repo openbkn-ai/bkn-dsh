@@ -1,0 +1,22 @@
+{
+  "ciRun": 40349578570,
+  "commit": "ed70cc4b9a3ce21346ecde20d1d69f09286e6e02",
+  "publish": false,
+  "conclusion": "success",
+  "candidateSha256": "52cd285967d6cee7d9810cacff5f189407ddd03f77b839af2926f28b457575c2",
+  "files": 82,
+  "localFileDifferences": [],
+  "companions": [
+    {
+      "host": "0.2.0-rc.2",
+      "sha256": "0e06001c240fd8dcf73f813ee837c36e978b78066a8637e65740b0dae4542511",
+      "verified": true
+    },
+    {
+      "host": "0.2.1-rc.3",
+      "sha256": "48694ca37f889edbc7c41ed8edd3c08e3dc8c0d9cf87c6c118d96de44556d3e0",
+      "verified": true
+    }
+  ],
+  "supersededForPublicationBy": "pending scoped native size-admission fix #107; retain as successful baseline"
+}

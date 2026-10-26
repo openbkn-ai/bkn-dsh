@@ -1,0 +1,33 @@
+{
+  "prepared_at": "2026-10-21T06:53:08.622344+00:00",
+  "formal_commit": "81d5752826f3b3f3f72f3ad4cb1e22d45e99ab4b",
+  "files": [
+    {
+      "path": "infra/sandbox/sandbox_control_plane/src/infrastructure/persistence/database.py",
+      "upstream_commit": "ba8909564fa90c5ffee18e7c77862c31c155cab9",
+      "formal_sha256": "841b0527a6c6ec9f529b2352329b0533b6c83b85a6c9d89858a7abd8cda40144",
+      "proposed_sha256": "7e6167f6061808e094a1b6cfac2aa1de4ac41633c0bab316655b02d1c6c7ec97"
+    },
+    {
+      "path": "infra/sandbox/sandbox_control_plane/src/infrastructure/persistence/models/execution_model.py",
+      "upstream_commit": "ba8909564fa90c5ffee18e7c77862c31c155cab9",
+      "formal_sha256": "2f213f4f52d99a42d3dfb53dd81a545e5b99ab8ca7a5efaa6a20820d933356bc",
+      "proposed_sha256": "9d2104efa3f08817b6d7a6dc7bb25590a1ddc9aeaf12f677f9498e7b4e862fba"
+    },
+    {
+      "path": "infra/sandbox/sandbox_control_plane/src/infrastructure/persistence/repositories/sql_execution_repository.py",
+      "upstream_commit": "ba8909564fa90c5ffee18e7c77862c31c155cab9",
+      "formal_sha256": "bbbe71f5c7652369999bcefa1c7efc7435307eaa2fa74a5bcbd100a20469164d",
+      "proposed_sha256": "792da470c25b868724b92529d02edde45764d0fd06adb5f08aeec0de6c800b0b"
+    },
+    {
+      "path": "adp/execution-factory/operator-integration/server/logics/sandbox/session_pool.go",
+      "upstream_commit": "bafd352f8a1acf64ffa7f7756b32fc1a351f6f20",
+      "formal_sha256": "b7700e3764e7073b8dfbf4535e7b82e9a81b5616c4d33362db2aa248a6676450",
+      "proposed_sha256": "7e5610cb54a3dcd685a572e0e4c720c1704e6463d19f7168224e444cb0372977"
+    }
+  ],
+  "scope": "Four files in two services; only reviewed upstream hunks, local staging and test overlays",
+  "platform_deployed": false,
+  "formal_source_tree_changed": false
+}

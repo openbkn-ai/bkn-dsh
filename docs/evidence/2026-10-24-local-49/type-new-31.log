@@ -1,0 +1,8 @@
+
+> @openbkn/bkn-dsh-workspace@0.1.0 typecheck <primary-repository>/release/local-49/new-host-source
+> pnpm --filter @openbkn/dsh-business-context run typecheck
+
+
+> @openbkn/dsh-business-context@0.2.0-rc.2-openbkn.0.2.0-31 typecheck <primary-repository>/release/local-49/new-host-source/packages/openbkn-business-context
+> tsc -b ../..
+

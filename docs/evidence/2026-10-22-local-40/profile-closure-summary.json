@@ -1,0 +1,74 @@
+[
+  {
+    "key": "desktop-old",
+    "scope": "installation-and-profile",
+    "pluginVersion": "0.2.0-rc.2-openbkn.0.2.0-30",
+    "profileCoverage": "pass",
+    "selected": [
+      {
+        "name": "@deepseek-ai/cordis",
+        "version": "4.0.4",
+        "samePhysicalPackage": true
+      },
+      {
+        "name": "@deepseek-ai/schemastery",
+        "version": "3.18.4",
+        "samePhysicalPackage": true
+      }
+    ]
+  },
+  {
+    "key": "desktop-new",
+    "scope": "installation-and-profile",
+    "pluginVersion": "0.2.0-rc.2-openbkn.0.2.0-30",
+    "profileCoverage": "pass",
+    "selected": [
+      {
+        "name": "@deepseek-ai/cordis",
+        "version": "4.0.5",
+        "samePhysicalPackage": true
+      },
+      {
+        "name": "@deepseek-ai/schemastery",
+        "version": "3.18.5",
+        "samePhysicalPackage": true
+      }
+    ]
+  },
+  {
+    "key": "npm-old",
+    "scope": "installation-and-profile",
+    "pluginVersion": "0.2.0-rc.2-openbkn.0.2.0-30",
+    "profileCoverage": "pass",
+    "selected": [
+      {
+        "name": "@deepseek-ai/cordis",
+        "version": "4.0.4",
+        "samePhysicalPackage": true
+      },
+      {
+        "name": "@deepseek-ai/schemastery",
+        "version": "3.18.4",
+        "samePhysicalPackage": true
+      }
+    ]
+  },
+  {
+    "key": "npm-new",
+    "scope": "installation-and-profile",
+    "pluginVersion": "0.2.0-rc.2-openbkn.0.2.0-30",
+    "profileCoverage": "pass",
+    "selected": [
+      {
+        "name": "@deepseek-ai/cordis",
+        "version": "4.0.5",
+        "samePhysicalPackage": true
+      },
+      {
+        "name": "@deepseek-ai/schemastery",
+        "version": "3.18.5",
+        "samePhysicalPackage": true
+      }
+    ]
+  }
+]

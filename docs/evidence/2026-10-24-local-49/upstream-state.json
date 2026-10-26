@@ -1,0 +1,93 @@
+{
+  "checkedAt": "2026-10-24T15:05:32.807663+00:00",
+  "dsh": {
+    "defaultBranchRef": {
+      "name": "master",
+      "target": {
+        "oid": "22ddee3792402c3e70ec5f86a63c3e3e895a2f60"
+      }
+    },
+    "releases": {
+      "nodes": [
+        {
+          "tagName": "dsh-v0.2.1-rc.3",
+          "publishedAt": "2026-10-23T15:26:39Z"
+        }
+      ]
+    }
+  },
+  "foundry": {
+    "defaultBranchRef": {
+      "name": "main",
+      "target": {
+        "oid": "8fd261a8339135a3f74fc1f98ebab148eef45ee3"
+      }
+    },
+    "releases": {
+      "nodes": [
+        {
+          "tagName": "v0.2.0",
+          "publishedAt": "2026-10-16T07:21:25Z"
+        }
+      ]
+    }
+  },
+  "foundryDelta": {
+    "base": "1e50a4fb90c05af9d80903aafc9cbcea03d89ba0",
+    "head": "8fd261a8339135a3f74fc1f98ebab148eef45ee3",
+    "totalCommits": 1,
+    "files": [
+      "bkn-trace/CHANGELOG.md",
+      "bkn-trace/CHANGELOG.zh.md",
+      "bkn-trace/README.md",
+      "bkn-trace/README.zh.md",
+      "bkn-trace/agent-observability/docs/swagger/docs.go",
+      "bkn-trace/agent-observability/docs/swagger/swagger.json",
+      "bkn-trace/agent-observability/locale/agent_observability_en_us.go",
+      "bkn-trace/agent-observability/locale/agent_observability_zh_cn.go",
+      "bkn-trace/agent-observability/migrations/mariadb/v037/init.sql",
+      "bkn-trace/agent-observability/migrations/mariadb/v037/schema.go",
+      "bkn-trace/agent-observability/src/domain/service/evidencesvc/issue2144_contract_test.go",
+      "bkn-trace/agent-observability/src/domain/service/evidencesvc/issue2144_repro_test.go",
+      "bkn-trace/agent-observability/src/domain/service/evidencesvc/root_tool_test.go",
+      "bkn-trace/agent-observability/src/domain/service/evidencesvc/summary.go",
+      "bkn-trace/agent-observability/src/domain/service/evidencesvc/summary_service_test.go",
+      "bkn-trace/agent-observability/src/domain/service/evidencesvc/trace_summary_archive_test.go",
+      "bkn-trace/agent-observability/src/domain/service/evidencesvc/trace_summary_authorization_test.go",
+      "bkn-trace/agent-observability/src/domain/service/evidencesvc/trace_summary_scan.go",
+      "bkn-trace/agent-observability/src/domain/service/evidencesvc/trace_summary_scan_test.go",
+      "bkn-trace/agent-observability/src/drivenadapter/dbaccess/mariadb/sessionstore/root_tool.go",
+      "bkn-trace/agent-observability/src/drivenadapter/dbaccess/mariadb/sessionstore/root_tool_test.go",
+      "bkn-trace/agent-observability/src/drivenadapter/dbaccess/mariadb/sessionstore/schema.go",
+      "bkn-trace/agent-observability/src/drivenadapter/dbaccess/mariadb/sessionstore/schema_test.go",
+      "bkn-trace/agent-observability/src/drivenadapter/dbaccess/mariadb/sessionstore/store_test.go",
+      "bkn-trace/agent-observability/src/drivenadapter/dbaccess/mariadb/sessionstore/summary_capacity_opensearch_integration_test.go",
+      "bkn-trace/agent-observability/src/drivenadapter/dbaccess/mariadb/sessionstore/summary_page.go",
+      "bkn-trace/agent-observability/src/drivenadapter/dbaccess/mariadb/sessionstore/summary_remaining_filters_integration_test.go",
+      "bkn-trace/agent-observability/src/drivenadapter/dbaccess/mariadb/sessionstore/summary_snapshot_integration_test.go",
+      "bkn-trace/agent-observability/src/drivenadapter/dbaccess/mariadb/sessionstore/summary_tool_acceptance_integration_test.go",
+      "bkn-trace/agent-observability/src/drivenadapter/dbaccess/mariadb/sessionstore/trace_failure_metadata.go",
+      "bkn-trace/agent-observability/src/drivenadapter/dbaccess/mariadb/sessionstore/trace_failure_metadata_test.go",
+      "bkn-trace/agent-observability/src/drivenadapter/httpaccess/opensearchcoreprojection/issue2144_contract_test.go",
+      "bkn-trace/agent-observability/src/drivenadapter/httpaccess/opensearchcoreprojection/scan.go",
+      "bkn-trace/agent-observability/src/drivenadapter/httpaccess/opensearchcoreprojection/scan_test.go",
+      "bkn-trace/agent-observability/src/drivenadapter/httpaccess/opensearchcoreprojection/source.go",
+      "bkn-trace/agent-observability/src/drivenadapter/memoryaccess/sessionstore/root_tool.go",
+      "bkn-trace/agent-observability/src/drivenadapter/memoryaccess/sessionstore/trace_failure_metadata.go",
+      "bkn-trace/agent-observability/src/drivenadapter/memoryaccess/sessionstore/trace_failure_metadata_test.go",
+      "bkn-trace/agent-observability/src/driveradapter/api/httphandler/trace_summary_budget_test.go",
+      "bkn-trace/agent-observability/src/driveradapter/api/httphandler/trace_summary_handler.go",
+      "bkn-trace/agent-observability/src/infra/opensearch/point_in_time.go",
+      "bkn-trace/agent-observability/src/infra/opensearch/point_in_time_test.go",
+      "bkn-trace/agent-observability/src/port/driven/iprojectionsource/port.go",
+      "bkn-trace/agent-observability/src/port/driven/iprojectionsource/trace_summary_scan.go",
+      "bkn-trace/agent-observability/src/port/driven/isessionstore/port.go",
+      "bkn-trace/agent-observability/src/port/driven/isessionstore/trace_source_metadata.go",
+      "bkn-trace/agent-observability/src/port/driven/isessionstore/trace_summary_scan.go",
+      "docs/api/agent-observability/agent-observability.yaml"
+    ],
+    "review": "Read the Trace filtering/pagination README delta including authorization scope and migration037 restrictions; no deployment or formal0.2.0 contract change."
+  },
+  "pinsChanged": false,
+  "deployed": false
+}

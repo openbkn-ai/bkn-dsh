@@ -1,0 +1,20 @@
+{
+  "checked_at": "2026-10-19T16:50:25.696100+00:00",
+  "context": "kind-bkn-test-015-lan",
+  "platform": "https://192.168.50.129",
+  "cli_path": "/Users/dominiczhang/.local/bin/openbkn",
+  "cli_version": "0.2.0",
+  "running_pods": 37,
+  "ready_running_pods": 37,
+  "not_ready_running": [],
+  "helm_releases": 21,
+  "all_releases_deployed": true,
+  "platform_running_pods": 27,
+  "platform_ready_pods": 27,
+  "platform_application_releases": 17,
+  "formal_020_application_charts": 16,
+  "sample_chart": [
+    "bkn-sample-studio-0.1.0"
+  ],
+  "scope_note": "37 Ready/21 Helm are cluster-wide; formal application namespace has 17 releases (16 formal 0.2.0 plus sample 0.1.0), and application/resource namespaces have 27 Ready Pods."
+}

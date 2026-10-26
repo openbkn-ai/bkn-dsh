@@ -1,0 +1,7 @@
+{
+  "checked_at": "2026-10-21T15:10:42.686047+00:00",
+  "query": "SELECT material_code,materialattr,product_fixedleadtime,purchase_fixedleadtime FROM supply_demo_hand.erp_material WHERE material_code='382-000005';",
+  "result_tsv": "382-000005\t自制\t1\t1\n",
+  "read_only": true,
+  "unchanged_from_prior": true
+}

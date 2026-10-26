@@ -1,0 +1,15 @@
+{
+  "textFilesScanned": 40,
+  "jsonFilesParsed": 18,
+  "credentialPatternMatches": [],
+  "newLocalLinksValid": true,
+  "preparedHandoffManifestEntriesMatched": 27,
+  "guiArtifactMissingIsBlocked": true,
+  "guiPlanContractTests": {
+    "pass": 5,
+    "fail": 0
+  },
+  "windowsProbe": "syntax only; native Windows NOT_RUN",
+  "hostGuiSigningOrPlatformExecution": false,
+  "scope": "Pattern checks are not a proof of absence of every possible secret. All four binary inputs are fixed previously verified tarballs, never user credential stores."
+}

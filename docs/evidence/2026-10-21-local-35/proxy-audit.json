@@ -1,0 +1,187 @@
+{
+  "at": "2026-10-21T15:13:34.610Z",
+  "hosts": {
+    "0.2.0-rc.2": {
+      "forwarded": 78,
+      "faulted": 2,
+      "blocked": [
+        {
+          "at": "2026-10-21T15:00:32.653Z",
+          "name": "run_code"
+        }
+      ],
+      "tool_calls": [
+        {
+          "at": "2026-10-21T14:58:35.678Z",
+          "name": "bkn_start_interaction"
+        },
+        {
+          "at": "2026-10-21T14:58:37.451Z",
+          "name": "search_schema"
+        },
+        {
+          "at": "2026-10-21T14:58:39.883Z",
+          "name": "query_object_instance"
+        },
+        {
+          "at": "2026-10-21T14:58:42.670Z",
+          "name": "bkn_finish_interaction"
+        },
+        {
+          "at": "2026-10-21T15:00:30.499Z",
+          "name": "bkn_start_interaction"
+        },
+        {
+          "at": "2026-10-21T15:00:32.653Z",
+          "name": "run_code"
+        },
+        {
+          "at": "2026-10-21T15:00:34.356Z",
+          "name": "bkn_finish_interaction"
+        },
+        {
+          "at": "2026-10-21T15:10:44.781Z",
+          "name": "bkn_start_interaction"
+        },
+        {
+          "at": "2026-10-21T15:10:46.761Z",
+          "name": "search_schema"
+        },
+        {
+          "at": "2026-10-21T15:10:49.366Z",
+          "name": "query_object_instance"
+        },
+        {
+          "at": "2026-10-21T15:10:51.149Z",
+          "name": "bkn_finish_interaction"
+        },
+        {
+          "at": "2026-10-21T15:13:26.512Z",
+          "name": "bkn_start_interaction"
+        },
+        {
+          "at": "2026-10-21T15:13:28.895Z",
+          "name": "search_schema"
+        },
+        {
+          "at": "2026-10-21T15:13:31.165Z",
+          "name": "query_object_instance"
+        },
+        {
+          "at": "2026-10-21T15:13:33.819Z",
+          "name": "bkn_finish_interaction"
+        }
+      ],
+      "catalogue_passed_through": 10
+    },
+    "0.2.1-rc.2": {
+      "forwarded": 87,
+      "faulted": 2,
+      "blocked": [
+        {
+          "at": "2026-10-21T15:00:36.995Z",
+          "name": "execute_tool"
+        }
+      ],
+      "tool_calls": [
+        {
+          "at": "2026-10-21T14:58:35.978Z",
+          "name": "bkn_start_interaction"
+        },
+        {
+          "at": "2026-10-21T14:58:38.510Z",
+          "name": "search_capabilities"
+        },
+        {
+          "at": "2026-10-21T14:58:38.759Z",
+          "name": "get_object_types"
+        },
+        {
+          "at": "2026-10-21T14:58:40.713Z",
+          "name": "query_object_instance"
+        },
+        {
+          "at": "2026-10-21T14:58:42.837Z",
+          "name": "bkn_finish_interaction"
+        },
+        {
+          "at": "2026-10-21T15:00:30.213Z",
+          "name": "bkn_start_interaction"
+        },
+        {
+          "at": "2026-10-21T15:00:32.598Z",
+          "name": "search_capabilities"
+        },
+        {
+          "at": "2026-10-21T15:00:34.717Z",
+          "name": "get_object_types"
+        },
+        {
+          "at": "2026-10-21T15:00:34.791Z",
+          "name": "search_capabilities"
+        },
+        {
+          "at": "2026-10-21T15:00:36.995Z",
+          "name": "execute_tool"
+        },
+        {
+          "at": "2026-10-21T15:00:38.253Z",
+          "name": "bkn_finish_interaction"
+        },
+        {
+          "at": "2026-10-21T15:10:44.705Z",
+          "name": "bkn_start_interaction"
+        },
+        {
+          "at": "2026-10-21T15:10:47.063Z",
+          "name": "search_capabilities"
+        },
+        {
+          "at": "2026-10-21T15:10:47.205Z",
+          "name": "get_object_types"
+        },
+        {
+          "at": "2026-10-21T15:10:48.906Z",
+          "name": "get_object_types"
+        },
+        {
+          "at": "2026-10-21T15:10:50.946Z",
+          "name": "query_object_instance"
+        },
+        {
+          "at": "2026-10-21T15:10:53.551Z",
+          "name": "bkn_finish_interaction"
+        },
+        {
+          "at": "2026-10-21T15:10:55.302Z",
+          "name": "bkn_finish_interaction"
+        },
+        {
+          "at": "2026-10-21T15:13:26.019Z",
+          "name": "bkn_start_interaction"
+        },
+        {
+          "at": "2026-10-21T15:13:28.286Z",
+          "name": "search_capabilities"
+        },
+        {
+          "at": "2026-10-21T15:13:28.449Z",
+          "name": "get_object_types"
+        },
+        {
+          "at": "2026-10-21T15:13:30.382Z",
+          "name": "get_object_types"
+        },
+        {
+          "at": "2026-10-21T15:13:32.239Z",
+          "name": "query_object_instance"
+        },
+        {
+          "at": "2026-10-21T15:13:34.610Z",
+          "name": "bkn_finish_interaction"
+        }
+      ],
+      "catalogue_passed_through": 10
+    }
+  }
+}

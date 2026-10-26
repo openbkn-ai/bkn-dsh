@@ -1,0 +1,55 @@
+{
+  "checked_at": "2026-10-20T06:01:24.009Z",
+  "passed": true,
+  "tool_id": "01a157d1-a0c3-71f8-9a9e-05b14198a9c3",
+  "row_count": 40,
+  "status_counts": {
+    "已确认": 40
+  },
+  "order_id_ranges": [
+    {
+      "count": 20,
+      "start": "SO0000001",
+      "end": "SO0000020"
+    },
+    {
+      "start": "SO0000501",
+      "end": "SO0000520",
+      "count": 20
+    }
+  ],
+  "preview_rows": 5,
+  "artifact": {
+    "encoding": "utf-8",
+    "note": "当前Conversation沙箱内完整销售明细，全部源字段原值输出；请用客户端支持的交付能力取得本地文件，预览不是完整清单。",
+    "columns": [
+      "sales_order_id",
+      "contract_number",
+      "customer_id",
+      "customer_name",
+      "product_code",
+      "product_name",
+      "signing_quantity",
+      "signing_date",
+      "promised_delivery_date",
+      "shipping_quantity",
+      "shipping_date",
+      "order_status",
+      "salesperson"
+    ],
+    "path": "sales_order_detail-8a9615e17e6e451aa1da20584a325e7c.csv",
+    "media_type": "text/csv",
+    "row_count": 40,
+    "bytes": 8473,
+    "sha256": "d9c26b8f8cc23ca064a6ce7e859f8a90fa9417a1e739ce798238910e2e528437",
+    "scope": {
+      "object_type_id": "supply_ontology_hand_salesorder",
+      "field": "product_code",
+      "operation": "==",
+      "value": "382-000005"
+    }
+  },
+  "source_bytes_preserved": true,
+  "file": "/Users/dominiczhang/Documents/project/app/openBKN/bkn-dsh/release/local-30/canonical-function-sales.csv",
+  "scope": "Actual formal Function and same-Conversation file read; scripted, no model/UI acceptance"
+}

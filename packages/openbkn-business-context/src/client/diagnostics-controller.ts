@@ -54,19 +54,14 @@ export class DiagnosticsPanelController {
 
   open(): void {
     this.update({ open: true })
-    if (this.state.phase === 'idle') void this.load()
+    void this.load()
   }
 
   close(): void {
     this.update({ open: false })
   }
 
-  reset(): void {
-    this.loadEpoch++
-    this.update({ open: false, phase: 'idle', report: undefined, message: undefined })
-  }
-
-  /** Fetch one passive report; a newer explicit collection supersedes older reads. */
+  /** Fetch one passive report; a later open never shows a stale in-flight result. */
   async load(): Promise<void> {
     const epoch = ++this.loadEpoch
     this.update({ phase: 'loading' })

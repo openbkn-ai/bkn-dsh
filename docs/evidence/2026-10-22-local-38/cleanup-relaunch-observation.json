@@ -1,0 +1,23 @@
+{
+  "at": "2026-10-22T03:02:16.818257+00:00",
+  "personalFilesUnchanged": {
+    "/Users/dominiczhang/.dsh/.credentials.yaml": true,
+    "/Users/dominiczhang/.dsh/profiles/desktop/cordis.patch.yml": true,
+    "/Users/dominiczhang/.dsh/profiles/desktop/cordis.yml": true,
+    "/Users/dominiczhang/.dsh/profiles/desktop/package.json": true,
+    "/Users/dominiczhang/.dsh/profiles/desktop/pnpm-workspace.yaml": true
+  },
+  "postQuitProcessStates": {
+    "47820": null,
+    "47837": null,
+    "15163": null,
+    "15209": null,
+    "15162": null,
+    "15210": null
+  },
+  "cause": "CUA AX observation of an already quit old app launched it without task DSH_HOME after acceptance checks",
+  "nativeRelaunchBackendUsedPersonalHome": true,
+  "newModelPromptDispatched": false,
+  "personalFilesRestoredOrOverwritten": false,
+  "initialCleanupPortAssertionFailed": 19387
+}

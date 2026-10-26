@@ -1,0 +1,11 @@
+--- 96f8f76/test-desktop-launcher-argv.ps1
++++ local-r3/test-desktop-launcher-argv.ps1
+@@ -45,7 +45,7 @@
+   $taskStderr=Join-Path $taskScratch ('argv-'+$taskInitialize+'.stderr')
+   $taskChild=Start-Process -FilePath $NodeExe -ArgumentList $taskVerifyArgs -RedirectStandardOutput $taskStdout -RedirectStandardError $taskStderr -Wait -PassThru
+   if($taskChild.ExitCode -ne 0){throw 'Real Node argv sink failed'}
+-  $taskActualArgv=@(Get-Content -Raw $taskStdout | ConvertFrom-Json)
++  $taskActualArgv=@((Get-Content -Raw $taskStdout | ConvertFrom-Json))
+   if($taskActualArgv.Count -ne $taskExpectedArgv.Count){throw 'Native argv element count differs'}
+   for($taskIndex=0;$taskIndex -lt $taskExpectedArgv.Count;$taskIndex++){
+    if($taskActualArgv[$taskIndex] -cne $taskExpectedArgv[$taskIndex]){throw ('Native argv mismatch at index '+$taskIndex)}

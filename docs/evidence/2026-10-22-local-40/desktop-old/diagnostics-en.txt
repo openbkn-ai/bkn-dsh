@@ -1,0 +1,28 @@
+The following is a diff from the previous accessibility tree for Window: "DeepSeek Harness" with ~ and + representing changed and added elements, respectively. Removed elements are summarized by ID range.
+Removed element IDs: 92-94
+~					86 container OpenBKN diagnostics
+~							89 heading Diagnostics, Value: 2
+~								90 text Diagnostics
+~							91 button Close
++						92 container
++							93 text Report 8ea0241b · Created 10/22/2026, 1:38:06 PM · Mode Passive collection Host form Desktop Operating system macOS DSH version Not collected (no version information in this report) Plugin (on disk) 0.2.0-rc.2-openbkn.0.2.0-30 Plugin (loaded) Not collected (running version cannot be confirmed)
++							94 text Missing basic information does not imply a failure. Review the checks below. The version on disk does not identify the version currently loaded.
++							95 text ●  Passed bootstrap-entry installation  /  component-loaded
++							96 text entryPresent=true
++							97 text ●  Passed business-entry component  /  component-loaded
++							98 text entryPresent=true
++							99 text ●  Passed diagnostics-entry diagnostics  /  component-loaded
++							100 text schemaVersion=1
++							101 text ●  Passed observed:cli cli  /  cli
++							102 text failureCount=0 lastOutcomeAgoMs=29591 exitCode=0
++							103 text ●  Passed observed:login-state authentication  /  login-state
++							104 text failureCount=0 lastOutcomeAgoMs=29666 loggedIn=true
++							105 text ●  Passed observed:context-loader context-loader  /  context-loader
++							106 text failureCount=0 lastOutcomeAgoMs=29542 toolsPublished=true
++							107 text ●  Passed observed:platform-network-list platform-directory  /  platform-network-list
++							108 text failureCount=0 lastOutcomeAgoMs=29531 networkCount=2
++							109 text ●  Passed observed:platform-network-detail platform-directory  /  platform-network-detail
++							110 text failureCount=0 lastOutcomeAgoMs=68078
++							111 button Export diagnostics report
++							112 button Collect again
+The focused UI element is 86 container OpenBKN diagnostics

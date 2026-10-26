@@ -1,0 +1,7 @@
+{
+  "frozen32TgzSha256": "46626510825fe9146aef12c27a1724acbb455aeac22aa600358add0fc8e1c9f8",
+  "frozenBusinessJsSha256": "9901a046cb3274a56ac47cc1734d669e7a012dab25ef7e34fe3643a38b8d1081",
+  "importSnippet": "eaddir, realpath, rename, rm, stat } from \"node:fs/promises\";\nimport * as McpClient from \"@deepseek-ai/dsh-mcp-client\";\nimport { Service } from \"@deepseek-ai/cordis\";\nimport { d",
+  "probeUsesManualPackageOfThenImport": true,
+  "profileOverrideRealBusinessPath": "NOT_VERIFIED"
+}

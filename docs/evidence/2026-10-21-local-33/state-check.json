@@ -1,0 +1,53 @@
+{
+  "checked_at": "2026-10-21T12:19:24.147597+00:00",
+  "platform": "https://192.168.50.129",
+  "user_decision": "Keep official 0.2.0; do not replace either service",
+  "auth_status_after": {
+    "baseUrl": "https://192.168.50.129",
+    "hasToken": true,
+    "expired": false
+  },
+  "auth_status_before": {
+    "expired": true,
+    "source": "CLI output observed before UI login; no credential value recorded"
+  },
+  "actual_network_ids_after": [
+    "supply_ontology_hand",
+    "worldcup_vega_catalog_bkn"
+  ],
+  "desktop_host_pid": 33047,
+  "desktop_host_not_restarted": true,
+  "desktop_workspace_binding_preserved": true,
+  "deployments": [
+    {
+      "name": "agent-operator-integration",
+      "entire_spec_unchanged_from_round_32": true,
+      "generation": 3,
+      "images": [
+        "swr.cn-east-3.myhuaweicloud.com/openbkn-ai/agent-operator-integration:0.2.0"
+      ]
+    },
+    {
+      "name": "sandbox-control-plane",
+      "entire_spec_unchanged_from_round_32": true,
+      "generation": 8,
+      "images": [
+        "ghcr.io/openbkn-ai/sandbox-control-plane:0.2.0"
+      ]
+    }
+  ],
+  "sandbox_execution_aggregate": {
+    "total_rows": 670,
+    "rows_with_nonempty_token_field": 395,
+    "distinct_token_values_count": 8,
+    "largest_stored_code_bytes": 65514
+  },
+  "sandbox_aggregate_unchanged": true,
+  "sandbox_model_runs_added": false,
+  "personal_dsh_five_files_unchanged": true,
+  "plugin_artifact_sha256": "ec33b3ff3776b28a939a12e7c8b822bfa2878e812db13edd3a0db59794a25d63",
+  "plugin_artifact_unchanged": true,
+  "security_candidate_deployed": false,
+  "new_commit_push_or_ci": false,
+  "contract_passed": false
+}

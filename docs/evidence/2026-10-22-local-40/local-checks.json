@@ -1,0 +1,85 @@
+{
+  "node": "v24.19.0",
+  "oldPackageManager": "pnpm@11.7.0",
+  "newPackageManager": "pnpm@11.28.5",
+  "checks": {
+    "source-old-30.log": {
+      "sha256": "daab5bc8ed22a1ad9e873eab2356287a91bff4597f24899ddf48ee22caa01823",
+      "bytes": 61118,
+      "passed": true,
+      "tests": 614,
+      "pass": 613,
+      "fail": 0,
+      "skipped": 1
+    },
+    "source-new-30.log": {
+      "sha256": "6bec3d85e3e4a5bd2a9a15d7e630742e9bd5ab45f477a564a05986548c6f786c",
+      "bytes": 61267,
+      "passed": true,
+      "tests": 614,
+      "pass": 613,
+      "fail": 0,
+      "skipped": 1
+    },
+    "type-old-30.log": {
+      "sha256": "c73097c59efcdc9798d3680443d679738ae1ea25c37cb50ce5f22e8af9f78566",
+      "bytes": 239,
+      "passed": true
+    },
+    "type-new-30.log": {
+      "sha256": "80f2197ef78814c8d2472b0b853850cf6c1ca7b1fcbd0544f773a7585a3531c0",
+      "bytes": 263,
+      "passed": true
+    },
+    "repo-tests-final.log": {
+      "sha256": "01986b7bdc39537662e067a7fc17e5533b0c9bb417e3d7378b067eddf3dd947b",
+      "bytes": 10003,
+      "passed": true,
+      "tests": 70,
+      "pass": 70,
+      "fail": 0,
+      "skipped": 0
+    },
+    "package-check-30.log": {
+      "sha256": "2a3e88b6b6e34111e044f36cda502aa3f97b41e13a9f4d7618ca96ca3d79b9bb",
+      "bytes": 259,
+      "passed": true
+    },
+    "verifier-tests-final.log": {
+      "sha256": "e87947ff5e9258ded0cfb098e613a8305878b1c3d1fdd4ab3a76394b69f63784",
+      "bytes": 494,
+      "passed": true,
+      "tests": 4,
+      "pass": 4,
+      "fail": 0,
+      "skipped": 0
+    },
+    "controlledHosts": [
+      {
+        "version": "0.2.0-rc.2",
+        "status": "pass",
+        "checks": {
+          "guard-formal": "pass",
+          "guard-formal-disabled": "pass",
+          "guard-legacy": "pass",
+          "csv-export": "pass",
+          "native-output": "pass",
+          "remote": "pass"
+        }
+      },
+      {
+        "version": "0.2.1-rc.2",
+        "status": "pass",
+        "checks": {
+          "guard-formal": "pass",
+          "guard-formal-disabled": "pass",
+          "guard-legacy": "pass",
+          "csv-export": "pass",
+          "native-output": "pass",
+          "remote": "pass"
+        }
+      }
+    ]
+  },
+  "windowsNativeExecuted": false
+}

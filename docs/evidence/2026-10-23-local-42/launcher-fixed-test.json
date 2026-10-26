@@ -1,0 +1,19 @@
+{
+  "powershell": "7.6.8",
+  "hostStarted": false,
+  "platformAccessed": false,
+  "cases": [
+    {
+      "initializeOnly": true,
+      "argumentElements": 6,
+      "nativeArgvMatched": true
+    },
+    {
+      "initializeOnly": false,
+      "argumentElements": 10,
+      "nativeArgvMatched": true
+    }
+  ],
+  "platform": "macOS",
+  "nativeWindows51Acceptance": false
+}

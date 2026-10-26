@@ -1,0 +1,35 @@
+{
+  "built_at": "2026-10-21T07:41:16.594285+00:00",
+  "formal_commit": "81d5752826f3b3f3f72f3ad4cb1e22d45e99ab4b",
+  "candidates": [
+    {
+      "service": "aoi",
+      "tag": "openbkn-local/agent-operator-integration:0.2.0-security-r32",
+      "image_config_id": "sha256:44c064fd695eb32dadc4582d9ffe2eb9466ccf15b9cdbc26fe1e934c8866d54c",
+      "architecture": "arm64",
+      "os": "linux",
+      "base_formal_image": "swr.cn-east-3.myhuaweicloud.com/openbkn-ai/agent-operator-integration:0.2.0",
+      "base_manifest_digest": "sha256:c65183be891efc9d2a6c36f59d8f2f7e805f9047520e77427b227b8a76977856",
+      "base_arm64_manifest_digest": "sha256:f1b14403f455177ad42db3b70062980de43026903f885341408ffb0c7f389b8e",
+      "base_image_config_id": "sha256:66b7978464b646a17407b95287d7b7ea6499f64478e5e7355ce6459b48d80a73"
+    },
+    {
+      "service": "sandbox",
+      "tag": "openbkn-local/sandbox-control-plane:0.2.0-security-r32",
+      "image_config_id": "sha256:8f7ab9a1fc798d6f548a437e89db334aee64287ab156521dcac9ae24ed0b2481",
+      "architecture": "arm64",
+      "os": "linux",
+      "base_formal_image": "ghcr.io/openbkn-ai/sandbox-control-plane:0.2.0",
+      "base_manifest_digest": "sha256:58dfae8e1a3575bdf0f673b66dfbf5aeb260ac77333a6c3b1b740392c9bb164e",
+      "base_arm64_manifest_digest": "sha256:ff3f4db46623c5ef51a66f8b127c7f2200b0400655bf5f9fe9c8fe2464c99806",
+      "base_image_config_id": "sha256:87a1d0613f121fa33ab735951dfef64abc9dbd72c0d4d7eb9ad7294ee36499ff"
+    }
+  ],
+  "operator_binary_sha256": "a92fe467f2a1eb24d65f6aae06d7302ba0c563d6e5bcc71d03fa0ec03ea5e096",
+  "compiler": "Official golang:1.25.14 Linux/ARM64 container, matching the formal binary's Go patch version and CGO build",
+  "compiler_image": "sha256:4e2219ca515d99610115539a96f733fa567f62941e31ac5bfb87c7ade6143bcc",
+  "go_build_scope": "Formal 0.2.0 sources copied intact plus the one staged Go security file; original Dockerfile's compiler version and link flags",
+  "platform_workloads_changed": false,
+  "images_pushed": false,
+  "image_cache_preparation": "One new aoi base alias in the node from the failed export attempt; official image tags/digests preserved. Final builds use exact official ARM64 pulls in local Docker only."
+}

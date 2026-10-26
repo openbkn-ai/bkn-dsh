@@ -1,0 +1,30 @@
+{
+  "firstRc3Attempt": {
+    "classification": "operator preparation exceeded the official CLI default login wait",
+    "nativeStatusBefore": "authentication-required",
+    "cliResult": "Device login timed out; not an auth PASS",
+    "browserLaterShowedSuccess": true,
+    "lateBrowserSuccessCountedAsCliSuccess": false,
+    "originalLogsRetainedLocally": true
+  },
+  "retry": {
+    "newIndependentHomeAndCliConfig": true,
+    "unchangedCandidateAndHostCode": true,
+    "defaultTimeoutUnchanged": true,
+    "result": "PASS"
+  },
+  "cuaCorrections": [
+    "macOS app.typeText(text,index) is unsupported; used current field click then typeText",
+    "A generic close-key cleanup encountered noWindowsAvailable; restored a blank Chrome window and used current task-tab AX close controls thereafter. No browser lifecycle cause inferred."
+  ],
+  "browserTls": {
+    "pageAccessible": true,
+    "addressBarObservation": "Not secure (preexisting browser state)",
+    "interstitialBypassedThisRun": false,
+    "trustOrExceptionModifiedByAgent": false,
+    "browserTrustAccepted": false
+  },
+  "newPasswordSetOrBrowserSaveRequested": false,
+  "existingLocalAccountUsed": true,
+  "additionalTemporaryCredentialFileRemoved": true
+}

@@ -1,0 +1,33 @@
+{
+  "checked_at": "2026-10-22T03:03:02.773058+00:00",
+  "deployments": [
+    {
+      "name": "agent-operator-integration",
+      "uid_unchanged": true,
+      "generation_before": 3,
+      "generation_after": 3,
+      "entire_deployment_spec_unchanged": true
+    },
+    {
+      "name": "sandbox-control-plane",
+      "uid_unchanged": true,
+      "generation_before": 8,
+      "generation_after": 8,
+      "entire_deployment_spec_unchanged": true
+    }
+  ],
+  "sandbox_execution_aggregate": {
+    "total_rows": 670,
+    "rows_with_nonempty_token_field": 395,
+    "distinct_token_values_count": 8,
+    "largest_stored_code_bytes": 65514
+  },
+  "aggregate_unchanged": true,
+  "formal_source_files_unchanged": {
+    "src/infrastructure/persistence/models/execution_model.py": true,
+    "src/infrastructure/persistence/database.py": true
+  },
+  "platform_workloads_changed": false,
+  "real_credentials_read_from_execution_rows": false,
+  "sandbox_model_runs_added": false
+}

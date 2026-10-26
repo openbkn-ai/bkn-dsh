@@ -1,0 +1,111 @@
+The following is a diff from the previous accessibility tree for Window: "382-000005 标准交期查询 — DeepSeek Harness" with ~ and + representing changed and added elements, respectively. Removed elements are summarized by ID range.
+Removed element IDs: 61, 71-101
+~0 standard window 382-000005 标准交期查询 — DeepSeek Harness, Secondary Actions: Raise
+~	1 container 382-000005 标准交期查询 — DeepSeek Harness
+~			3 HTML content 382-000005 标准交期查询 — DeepSeek Harness, URL: dsh-app://app/
+~							60 row (selected) 382-000005 标准交期查询 Session actions for 382-000005 标准交期查询 Archive session Pin session
++								71 text 382-000005 标准交期查询
++								72 container
++									73 button Session actions for 382-000005 标准交期查询
++									74 button Archive session
++									75 button Pin session
+~							62 row Untitled 4min
+~								70 text Untitled 4min
++					76 container
++						77 container Session hierarchy
++							78 text 382-000005 标准交期查询
++						79 text Standard mode
++						80 text 供应链本体知识网络-手工版
++						81 button Open in Finder
++						82 pop up button More ways to open
++						83 pop up button More actions
++						84 button Open right sidebar
++						85 tab group
++							86 tab (selected) Chat, Value: 1
++							87 tab (settable, integer) Trajectory, Value: 0
++					88 container
++						89 container
++							90 container Turn navigation
++								91 container
++									92 button Jump to turn 1
++									93 button Jump to turn 2
++							94 text Failed
++							95 button (disabled) Failed
++							96 container
++								97 text This turn failed mcp-client(openbkn): initial connection or tool synchronization failed: Version negotiation probe failed: fetch failed: fetch failed: other side closed UNKNOWN
++							98 text 382-000005 的标准交期？
++							99 text 23:13
++							100 button Copy
++							101 text Completed
++							102 button Completed in 14s
++								103 text Completed in 
++								104 text 14
++								105 text s
++							106 heading 382-000005 的标准交期：1 天, Value: 2
++								107 text 382-000005 的标准交期：1 天
++							108 container
++								109 text 依据 （知识网络 supply_ontology_hand，在物料主档中精确匹配  material_code = "382-000005" ，共 1 条记录）：
++							110 table
++								111 row
++									112 column header
++										113 text 项目
++									114 column header
++										115 text 值
++								116 row
++									117 cell
++										118 text 物料编码
++									119 cell
++										120 text 382-000005
++								121 row
++									122 cell
++										123 text 物料名称
++									124 cell
++										125 text 北斗导航农机驾驶仪
++								126 row
++									127 cell
++										128 text 物料属性
++									129 cell
++										130 text 自制
++								131 row
++									132 cell
++										133 text 存货类别
++									134 cell
++										135 text 库存商品-产成品
++								136 row
++									137 cell
++										138 text 产品状态
++									139 cell
++										140 text 已上架
++								141 row
++									142 cell
++										143 text 标准交期
++									144 cell
++										145 text 1 天
++										146 text （生产固定提前期 
++										147 text product_fixedleadtime
++										148 text  = 1）
++							149 container
++								150 text 口径说明 ：按「物料」对象的企业规则，标准交期按物料属性取值——自制件（含产成品、半成品）采用生产固定提前期  product_fixedleadtime ，外购件采用采购固定提前期  purchase_fixedleadtime ，单位均为天。382-000005 属自制件（产成品），所以标准交期取生产固定提前期 = 1 天；该物料的采购固定提前期同为 1 天，但本问题不按采购口径解释。
++							151 container
++								152 text 范围与限制 ：本答案只覆盖物料主档中该确切编码的标准交期字段；采购订单上的「预计交货日期」是单据字段，与本标准交期不同，未纳入。
++							153 button Copy
++							154 toggle button Description: Good response, Value: 0
++							155 toggle button Description: Bad response, Value: 0
++							156 button View business provenance, Help: View OpenBKN provenance for this answer
++							157 button Branch into a new conversation
++							158 pop up button Usage 331K tok
++							159 text 23:13
++						160 container
++							161 text entry area (settable) Message or run a task, / commands, @ files or sessions
++							162 pop up button Add files or run commands
++							163 button Access mode, current: Workspace Write
++							164 pop up button Select model, current deepseek_chat
++							165 button (disabled) Send message
++							166 pop up button 1 turns 7 steps · 395 tok/s
++								167 text 1 turns 7 steps
++								168 text 395 tok/s
++							169 pop up button 331K tok · Cache hit 79%
++								170 text 331K tok
++								171 text Cache hit 79%
++							172 pop up button 6% of context used
+The focused UI element is 161 text entry area (settable) Message or run a task, / commands, @ files or sessions

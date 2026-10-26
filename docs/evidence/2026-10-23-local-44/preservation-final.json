@@ -1,0 +1,41 @@
+{
+  "preexistingFilesChecked": 753,
+  "byteIdentical": 747,
+  "authorizedChangedFiles": [
+    "CLAUDE.md",
+    "docs/plans/0.2.1/ACCEPTANCE-CONTRACT.md",
+    "docs/plans/0.2.1/DSH-COMPATIBILITY.md",
+    "docs/plans/0.2.1/NATIVE-CONTRACT.md",
+    "docs/plans/0.2.1/README.md",
+    "tests/windows-desktop-launcher-argv.ps1"
+  ],
+  "unexpectedMainWorktreeFileChanges": [],
+  "headUnchanged": true,
+  "branchUnchanged": true,
+  "indexUnchanged": true,
+  "otherWorktreeRefsUnchanged": false,
+  "externallyObservedOtherWorktreeRefChanges": [
+    {
+      "path": "/Users/dominiczhang/Documents/project/app/openBKN/bkn-dsh-english12-review",
+      "before": [
+        "HEAD 319aaed7a1a52f056a53ee2e64f3044d1cdb0981",
+        "branch refs/heads/fix/english12-overlay-recovery"
+      ],
+      "after": [
+        "HEAD 1c758ff480c633aa438622877a9f03624e5e4453",
+        "branch refs/heads/fix/english12-overlay-recovery"
+      ]
+    }
+  ],
+  "actionsAgainstOtherWorktrees": [],
+  "otherWorktreeCodeAdopted": false,
+  "r3TestBytesMatchSource": true,
+  "r3InputsVerified": 26,
+  "r3CandidateFilesVerified": 82,
+  "r3SdkIntegrityMatched": true,
+  "helperAndCandidateUnchanged": true,
+  "platformActions": [],
+  "hostLaunches": [],
+  "pushes": [],
+  "ciDispatches": []
+}

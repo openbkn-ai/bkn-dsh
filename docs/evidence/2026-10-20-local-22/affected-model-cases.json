@@ -1,0 +1,150 @@
+[
+  {
+    "host": "0.2.0-rc.2",
+    "native_session_id": "session-77736f9a-13aa-4ebb-995c-bec5f7f89184",
+    "created_at_ms": 1792468260738,
+    "question": "查询 382-000005 的 BOM 清单，每个物料的使用量，以及每个物料的库存情况",
+    "response_models": [
+      "deepseek-flash"
+    ],
+    "turn_end": "completed",
+    "tool_count": 14,
+    "failed_tool_names": [
+      "mcp__openbkn__run_cypher",
+      "mcp__openbkn__run_cypher",
+      "bash"
+    ],
+    "catalogues": [
+      {
+        "tool_count": 55,
+        "csv_offered": true
+      },
+      {
+        "tool_count": 55,
+        "csv_offered": true
+      }
+    ],
+    "exports": [],
+    "conversation_ids": [
+      "conv_d930db40f097dba6e17b32af59bdd9cb"
+    ],
+    "interaction_ids": [
+      "int_d02577b6b148df8a19d0867042b7bdc0"
+    ],
+    "starts": 1,
+    "finishes": 1,
+    "case_id": "bom-usage-inventory"
+  },
+  {
+    "host": "0.2.0-rc.2",
+    "native_session_id": "session-9147c711-aaa1-4a16-854f-191724e2cf5f",
+    "created_at_ms": 1792467866035,
+    "question": "382-000005 的 BOM 构成是什么？",
+    "response_models": [
+      "deepseek-flash"
+    ],
+    "turn_end": "completed",
+    "tool_count": 12,
+    "failed_tool_names": [],
+    "catalogues": [
+      {
+        "tool_count": 55,
+        "csv_offered": true
+      },
+      {
+        "tool_count": 55,
+        "csv_offered": true
+      }
+    ],
+    "exports": [],
+    "conversation_ids": [
+      "conv_df033a60147d4beceb3858d7b15f6ed7"
+    ],
+    "interaction_ids": [
+      "int_efdd99e391b9b1f952ed8850bf8bf754"
+    ],
+    "starts": 1,
+    "finishes": 1,
+    "case_id": "bom-structure"
+  },
+  {
+    "host": "0.2.1-rc.2",
+    "native_session_id": "session-c8ccc63a-0ec2-4de6-ac69-38baa7e42926",
+    "created_at_ms": 1792467867314,
+    "question": "382-000005 的 BOM 构成是什么？",
+    "response_models": [
+      "deepseek-flash"
+    ],
+    "turn_end": "completed",
+    "tool_count": 16,
+    "failed_tool_names": [
+      "mcp__openbkn__run_cypher",
+      "read"
+    ],
+    "catalogues": [
+      {
+        "tool_count": 60,
+        "csv_offered": true
+      },
+      {
+        "tool_count": 60,
+        "csv_offered": true
+      }
+    ],
+    "exports": [],
+    "conversation_ids": [
+      "conv_9fa9ea6c443c146f74694ca2ab089c87"
+    ],
+    "interaction_ids": [
+      "int_661d90726aeb3bbb897eadda5706dfe5"
+    ],
+    "starts": 1,
+    "finishes": 1,
+    "case_id": "bom-structure"
+  },
+  {
+    "host": "0.2.1-rc.2",
+    "native_session_id": "session-fde54c42-bd3a-46cd-a293-c03f15c11d37",
+    "created_at_ms": 1792468261964,
+    "question": "查询 382-000005 的 BOM 清单，每个物料的使用量，以及每个物料的库存情况",
+    "response_models": [
+      "deepseek-flash"
+    ],
+    "turn_end": "completed",
+    "tool_count": 17,
+    "failed_tool_names": [
+      "mcp__openbkn__run_cypher",
+      "bkn_context",
+      "mcp__openbkn__run_shell"
+    ],
+    "catalogues": [
+      {
+        "tool_count": 60,
+        "csv_offered": true
+      },
+      {
+        "tool_count": 60,
+        "csv_offered": true
+      }
+    ],
+    "exports": [
+      {
+        "is_error": false,
+        "path": "/Users/dominiczhang/Documents/project/app/openBKN/bkn-dsh/release/ci-41507f9/workspaces/supply-new/openbkn-7a0f4c4b-7ae9-46e3-b056-837049424018-bom_inv_382-000005.csv",
+        "markdown_link": "[CSV](<openbkn-7a0f4c4b-7ae9-46e3-b056-837049424018-bom_inv_382-000005.csv>)",
+        "bytes": 30306,
+        "sha256": "2e7f1bccdee4917ac3dd519421961a492fece4eb6d9d05ded03b3c8daa9101ea",
+        "source_path": "bom_inv_382-000005.csv"
+      }
+    ],
+    "conversation_ids": [
+      "conv_0244d77f0f13f9c85ba95c51f4c476ff"
+    ],
+    "interaction_ids": [
+      "int_541ac9c178a59e97d2aedd9cfd3001a6"
+    ],
+    "starts": 1,
+    "finishes": 1,
+    "case_id": "bom-usage-inventory"
+  }
+]

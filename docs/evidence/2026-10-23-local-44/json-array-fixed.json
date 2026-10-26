@@ -1,0 +1,40 @@
+[
+  {
+    "hostStarted": false,
+    "platformAccessed": false,
+    "cases": [
+      {
+        "initializeOnly": true,
+        "argumentElements": 6,
+        "nativeArgvMatched": true
+      },
+      {
+        "initializeOnly": false,
+        "argumentElements": 10,
+        "nativeArgvMatched": true
+      }
+    ],
+    "powershell": "7.6.8",
+    "mode": "native-ps7",
+    "nativeWindows51": false
+  },
+  {
+    "cases": [
+      {
+        "nativeArgvMatched": true,
+        "initializeOnly": true,
+        "argumentElements": 6
+      },
+      {
+        "nativeArgvMatched": true,
+        "initializeOnly": false,
+        "argumentElements": 10
+      }
+    ],
+    "platformAccessed": false,
+    "powershell": "7.6.8",
+    "hostStarted": false,
+    "mode": "ps51-output-contract",
+    "nativeWindows51": false
+  }
+]

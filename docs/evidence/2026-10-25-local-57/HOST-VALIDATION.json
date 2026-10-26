@@ -1,0 +1,183 @@
+{
+  "kind": "local-development-preacceptance",
+  "ciRun": null,
+  "formalAcceptanceEligible": false,
+  "cases": [
+    {
+      "source": "full-host-old.json",
+      "scope": "Complete CLI web profile boot with native configured MCP instances and ToolRuntime; synthetic agent/tools only; no UI/model/real credentials/OpenBKN",
+      "records": [
+        {
+          "host": "0.2.0-rc.2",
+          "form": "full official web profile",
+          "mode": "stock-control",
+          "nativeConfiguredToolsRegistered": 2,
+          "sameOriginToolCallSucceeded": true,
+          "crossOriginRejected": false,
+          "secondOriginRequests": 1,
+          "sourceMcpEntrySha256": "758d8fc473b700b5d351158d06ce9f9e92c16e8b25497b08bb7bd2122a87f5dd",
+          "syntheticAgent": true,
+          "newModelOrPlatformCall": false,
+          "result": "PASS"
+        },
+        {
+          "host": "0.2.0-rc.2",
+          "form": "full official web profile",
+          "mode": "protected",
+          "nativeConfiguredToolsRegistered": 2,
+          "sameOriginToolCallSucceeded": true,
+          "crossOriginRejected": true,
+          "secondOriginRequests": 0,
+          "sourceMcpEntrySha256": "b3cd7156c0b8639656ce117530fec4d006b74cafdc9a78ac426fec084e62972c",
+          "syntheticAgent": true,
+          "newModelOrPlatformCall": false,
+          "result": "PASS"
+        }
+      ],
+      "serversClosed": true
+    },
+    {
+      "source": "full-host-rc3-stock-control-first.json",
+      "scope": "Complete CLI web profile boot with native configured MCP instances and ToolRuntime; synthetic agent/tools only; no UI/model/real credentials/OpenBKN",
+      "records": [
+        {
+          "host": "0.2.1-rc.3",
+          "form": "full official web profile",
+          "mode": "stock-control",
+          "nativeConfiguredToolsRegistered": 2,
+          "sameOriginToolCallSucceeded": true,
+          "crossOriginRejected": false,
+          "secondOriginRequests": 1,
+          "sourceMcpEntrySha256": "758d8fc473b700b5d351158d06ce9f9e92c16e8b25497b08bb7bd2122a87f5dd",
+          "syntheticAgent": true,
+          "newModelOrPlatformCall": false,
+          "result": "PASS"
+        }
+      ],
+      "serversClosed": true
+    },
+    {
+      "source": "full-host-all-protected-relocated.json",
+      "scope": "Complete CLI web profile boot with native configured MCP instances and ToolRuntime; synthetic agent/tools only; no UI/model/real credentials/OpenBKN",
+      "records": [
+        {
+          "host": "0.2.0-rc.2",
+          "form": "full official web profile",
+          "mode": "protected",
+          "nativeConfiguredToolsRegistered": 2,
+          "sameOriginToolCallSucceeded": true,
+          "crossOriginRejected": true,
+          "secondOriginRequests": 0,
+          "sourceMcpEntrySha256": "b3cd7156c0b8639656ce117530fec4d006b74cafdc9a78ac426fec084e62972c",
+          "syntheticAgent": true,
+          "newModelOrPlatformCall": false,
+          "result": "PASS"
+        },
+        {
+          "host": "0.2.1-rc.3",
+          "form": "full official web profile",
+          "mode": "protected",
+          "nativeConfiguredToolsRegistered": 2,
+          "sameOriginToolCallSucceeded": true,
+          "crossOriginRejected": true,
+          "secondOriginRequests": 0,
+          "sourceMcpEntrySha256": "b3cd7156c0b8639656ce117530fec4d006b74cafdc9a78ac426fec084e62972c",
+          "syntheticAgent": true,
+          "newModelOrPlatformCall": false,
+          "result": "PASS"
+        }
+      ],
+      "serversClosed": true
+    },
+    {
+      "source": "desktop-host-old-all-first.json",
+      "scope": "Official Desktop backend entry boot with ready IPC under matching unchanged Electron, GUI not exercised with native configured MCP instances and ToolRuntime; synthetic agent/tools only; no UI/model/real credentials/OpenBKN",
+      "records": [
+        {
+          "host": "0.2.0-rc.2",
+          "form": "official Desktop backend entry under matching Electron Node mode; no GUI",
+          "mode": "stock-control",
+          "nativeConfiguredToolsRegistered": 2,
+          "sameOriginToolCallSucceeded": true,
+          "crossOriginRejected": false,
+          "secondOriginRequests": 1,
+          "sourceMcpEntrySha256": "758d8fc473b700b5d351158d06ce9f9e92c16e8b25497b08bb7bd2122a87f5dd",
+          "syntheticAgent": true,
+          "newModelOrPlatformCall": false,
+          "result": "PASS"
+        },
+        {
+          "host": "0.2.0-rc.2",
+          "form": "official Desktop backend entry under matching Electron Node mode; no GUI",
+          "mode": "protected",
+          "nativeConfiguredToolsRegistered": 2,
+          "sameOriginToolCallSucceeded": true,
+          "crossOriginRejected": true,
+          "secondOriginRequests": 0,
+          "sourceMcpEntrySha256": "b3cd7156c0b8639656ce117530fec4d006b74cafdc9a78ac426fec084e62972c",
+          "syntheticAgent": true,
+          "newModelOrPlatformCall": false,
+          "result": "PASS"
+        }
+      ],
+      "serversClosed": true
+    },
+    {
+      "source": "desktop-host-rc3-all-first.json",
+      "scope": "Official Desktop backend entry boot with ready IPC under matching unchanged Electron, GUI not exercised with native configured MCP instances and ToolRuntime; synthetic agent/tools only; no UI/model/real credentials/OpenBKN",
+      "records": [
+        {
+          "host": "0.2.1-rc.3",
+          "form": "official Desktop backend entry under matching Electron Node mode; no GUI",
+          "mode": "stock-control",
+          "nativeConfiguredToolsRegistered": 2,
+          "sameOriginToolCallSucceeded": true,
+          "crossOriginRejected": false,
+          "secondOriginRequests": 1,
+          "sourceMcpEntrySha256": "758d8fc473b700b5d351158d06ce9f9e92c16e8b25497b08bb7bd2122a87f5dd",
+          "syntheticAgent": true,
+          "newModelOrPlatformCall": false,
+          "result": "PASS"
+        },
+        {
+          "host": "0.2.1-rc.3",
+          "form": "official Desktop backend entry under matching Electron Node mode; no GUI",
+          "mode": "protected",
+          "nativeConfiguredToolsRegistered": 2,
+          "sameOriginToolCallSucceeded": true,
+          "crossOriginRejected": true,
+          "secondOriginRequests": 0,
+          "sourceMcpEntrySha256": "b3cd7156c0b8639656ce117530fec4d006b74cafdc9a78ac426fec084e62972c",
+          "syntheticAgent": true,
+          "newModelOrPlatformCall": false,
+          "result": "PASS"
+        }
+      ],
+      "serversClosed": true
+    }
+  ],
+  "frozen32OwnerResolution": [
+    {
+      "baseHost": "0.2.1-rc.3",
+      "pluginVersion": "0.2.0-rc.2-openbkn.0.2.0-32",
+      "sameSelectedFile": false,
+      "mcpEntrySha256": "b3cd7156c0b8639656ce117530fec4d006b74cafdc9a78ac426fec084e62972c",
+      "scope": "Read-only official resolution APIs on a new copied profile; no plugin mount, CLI auth or platform call",
+      "samePhysicalFile": true,
+      "lexicalPathDifference": "Official package API retains a dependency symlink path; Node resolves its real path"
+    },
+    {
+      "baseHost": "0.2.0-rc.2",
+      "pluginVersion": "0.2.0-rc.2-openbkn.0.2.0-32",
+      "sameSelectedFile": true,
+      "samePhysicalFile": true,
+      "mcpEntrySha256": "b3cd7156c0b8639656ce117530fec4d006b74cafdc9a78ac426fec084e62972c",
+      "scope": "Read-only official resolution APIs on a new copied profile; no plugin mount, CLI auth or platform call"
+    }
+  ],
+  "desktopBoundary": {
+    "guiStarted": false,
+    "stockAndProtectedBothEmitReadyIPC": true,
+    "telemetryWarning": "Both stock and protected isolated backend runs omit DSH_CLIENT_VERSION; product telemetry schema refuses serviceVersion and client product analytics waits. This unrelated composition was not represented as fully healthy Desktop GUI."
+  }
+}

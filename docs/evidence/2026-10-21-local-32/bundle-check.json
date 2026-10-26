@@ -1,0 +1,60 @@
+{
+  "checked_at": "2026-10-21T08:59:30.555727+00:00",
+  "artifact_sha256_unchanged": true,
+  "global_dsh_preserved": true,
+  "json_files_parsed": 30,
+  "local_markdown_links_exist": true,
+  "jwt_pattern_matched_files": [],
+  "prior_known_credential_scan": "secret-scan.json",
+  "new_workspace_binding_read_back": true,
+  "new_workspace_native_session_entry_observed": true,
+  "plugin_system_chooser_interaction_passed": false,
+  "image_dimensions": [
+    {
+      "file": "desktop-new-diagnostics-en-25.jpg",
+      "width": 1280,
+      "height": 820
+    },
+    {
+      "file": "desktop-new-diagnostics-narrow-25.jpg",
+      "width": 800,
+      "height": 600
+    },
+    {
+      "file": "desktop-new-login-timeout-25.jpg",
+      "width": 1280,
+      "height": 820
+    },
+    {
+      "file": "desktop-new-network-en-25.jpg",
+      "width": 1280,
+      "height": 820
+    },
+    {
+      "file": "desktop-new-network-narrow-25.jpg",
+      "width": 800,
+      "height": 600
+    },
+    {
+      "file": "desktop-new-workspace-session-25.jpg",
+      "width": 1280,
+      "height": 820
+    },
+    {
+      "file": "desktop-old-diagnostics-en-25.jpg",
+      "width": 1280,
+      "height": 820
+    },
+    {
+      "file": "desktop-old-login-timeout-25.jpg",
+      "width": 1280,
+      "height": 820
+    },
+    {
+      "file": "desktop-old-network-en-25.jpg",
+      "width": 1280,
+      "height": 820
+    }
+  ],
+  "contract_passed": false
+}

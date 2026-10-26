@@ -1,0 +1,23 @@
+{
+  "checkedAt": "2026-10-23T13:18:52.976918+00:00",
+  "head": "fac4db78a1a974192fa13fdbe62063331cf04ec1",
+  "treeFiles": 33,
+  "allTreeFilesMatch": true,
+  "cleanCheckout": true,
+  "textConversionDisabledForAllFiles": true,
+  "cloneCommandCoreAutocrlf": true,
+  "verification": {
+    "kitFilesVerified": 26,
+    "kind": "local-development-preacceptance",
+    "formalAcceptanceEligible": false,
+    "ciRun": null,
+    "candidate": {
+      "matched": 82,
+      "version": "0.2.0-rc.2-openbkn.0.2.0-30"
+    },
+    "sdk": {
+      "version": "0.2.0",
+      "officialRegistryIntegrityMatched": true
+    }
+  }
+}

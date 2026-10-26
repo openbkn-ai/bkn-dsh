@@ -1,0 +1,180 @@
+{
+  "checkedAt": "2026-10-21T17:48:05.689440+00:00",
+  "files": [
+    {
+      "localFile": "release/local-37/candidate-28.json",
+      "sha256": "0931d62f2dd4e50b8db115f5dae047c6960386ccee31a49c9eaf68c0ed5cf13e",
+      "bytes": 403,
+      "localOnly": true
+    },
+    {
+      "localFile": "release/local-37/candidate-29.json",
+      "sha256": "c354df7b09f8248a658602f379e7041200445adae1f319e1334a5e65cf44efdd",
+      "bytes": 403,
+      "localOnly": true
+    },
+    {
+      "localFile": "release/local-37/artifact-28-to-29-diff.json",
+      "sha256": "9c28fb66ebffad5fbf0dd1351419cf1cf9da2a79263154442b2ddda62045b96e",
+      "bytes": 176,
+      "localOnly": true
+    },
+    {
+      "localFile": "release/local-37/cancellation-actual-28.json",
+      "sha256": "426a165138a158903596bcb1f2954ea36653ac21e680df66bb4df622e3ced42e",
+      "bytes": 6001,
+      "localOnly": true
+    },
+    {
+      "localFile": "release/local-37/diagnostic-refresh-focus-before-fix.json",
+      "sha256": "d375d9b382e0e60fc745e5aa89283b506bf0d933364c4d8bc830ed38c8d76f91",
+      "bytes": 476,
+      "localOnly": true
+    },
+    {
+      "localFile": "release/local-37/diagnostic-refresh-focus-after-29.json",
+      "sha256": "22433423f6ae6c9940fa165086710a7033c5b24d7c5e57f6403ed7417894706f",
+      "bytes": 407,
+      "localOnly": true
+    },
+    {
+      "localFile": "release/local-37/passive-ui-check.json",
+      "sha256": "982b1b9c279141587b8c1e6e1fc54aeaf979d27f089d0ce894906b16f2b2286c",
+      "bytes": 210,
+      "localOnly": true
+    },
+    {
+      "localFile": "release/local-37/preservation-check.json",
+      "sha256": "bb9d2aecd95cb6fca277da54aaf7c39a0f66bf033058b346f3512806e17949c9",
+      "bytes": 3307,
+      "localOnly": true
+    },
+    {
+      "localFile": "release/local-37/platform-after-check.json",
+      "sha256": "74fb389eb504cd4972ce543c879e652b8eabb76044735c8c028ef6ee031e9313",
+      "bytes": 968,
+      "localOnly": true
+    },
+    {
+      "localFile": "release/local-37/workspace-preservation-check.json",
+      "sha256": "34a8c7786aa159721410a20893b5d580c94407060076d5d9fbb5481c624874ed",
+      "bytes": 1563,
+      "localOnly": true
+    },
+    {
+      "localFile": "release/local-37/cleanup-check.json",
+      "sha256": "192ef2f3cd09567c9ce7d80d3b22d05bb208f62538431b89c30d7a82830ed27a",
+      "bytes": 552,
+      "localOnly": true
+    },
+    {
+      "localFile": "release/local-37/read-audit-summary.json",
+      "sha256": "67b25740896a307f36e778db689e482daf1848228e8e19e601e61b4bdda4c7a5",
+      "bytes": 817,
+      "localOnly": true
+    },
+    {
+      "localFile": "release/local-37/upstream-refresh.json",
+      "sha256": "c25d9f41fe33736b912a09bec3a07cdf2dda4d2a6702a5da79e3aa0fed6d9202",
+      "bytes": 1047,
+      "localOnly": true
+    },
+    {
+      "localFile": "release/local-37/cli-status-final.json",
+      "sha256": "a3a96ec1ac683838983f826eedf34b42850b5fe8d599baf55de1321a16e0aefa",
+      "bytes": 150,
+      "localOnly": true
+    },
+    {
+      "localFile": "release/local-37/task-profile-restore.json",
+      "sha256": "4f79f10887d87aa959ec1d13e53df2d1603c59f4739f00e3c2a0751be8821464",
+      "bytes": 127,
+      "localOnly": true
+    },
+    {
+      "localFile": "release/local-37/desktop-old-29-diagnostic.json",
+      "sha256": "9da8dc2e18d7d6f3387e1836b93346007f8c6947f5835e18b27afc1f538814de",
+      "bytes": 2441,
+      "localOnly": true
+    },
+    {
+      "localFile": "release/local-37/desktop-new-29-diagnostic.json",
+      "sha256": "3157f302ffac4c15b565750fce98c3d1af6b2c516a7c91a4d92e62a68fadd0df",
+      "bytes": 2441,
+      "localOnly": true
+    },
+    {
+      "localFile": "release/local-37/OpenBKN-diagnostic-20261021T174042093Z-f3a73f84.json",
+      "sha256": "e000ee1d112e387eafed07ba65dd3b264b21027ddd48474867de2453c7f0abf0",
+      "bytes": 2441,
+      "localOnly": true
+    },
+    {
+      "localFile": "release/local-37/OpenBKN-diagnostic-20261021T174042376Z-1857944d.json",
+      "sha256": "5206944b51d9ad02b9250d98a15730a9f13844eceba1c23d419d06942c2c31e4",
+      "bytes": 2441,
+      "localOnly": true
+    },
+    {
+      "localFile": "release/local-37/desktop-0.2.0-rc.2-install-29.json",
+      "sha256": "7c269b979a96ab2b4b9a81cd22e8ab531bfc21972b782829d34fb23498363bbc",
+      "bytes": 493,
+      "localOnly": true
+    },
+    {
+      "localFile": "release/local-37/desktop-0.2.1-rc.2-install-29.json",
+      "sha256": "621ddfcd7a5e8273d2cd4f0c64d4a41dfd325b59f982b67fbd31f92ccdaba283",
+      "bytes": 493,
+      "localOnly": true
+    },
+    {
+      "localFile": "release/local-37/npm-0.2.0-rc.2-install-29.json",
+      "sha256": "c7ed064210624e4905ced70fe2fa04a7aaccdb5ea67a3872fd77169b1313ea52",
+      "bytes": 481,
+      "localOnly": true
+    },
+    {
+      "localFile": "release/local-37/npm-0.2.1-rc.2-install-29.json",
+      "sha256": "3695d4503b700ab147fed4b279d01c0100123038a3de4b6030fb924016007dc3",
+      "bytes": 481,
+      "localOnly": true
+    },
+    {
+      "localFile": "release/local-37/desktop-old-29-diagnostics-zh.png",
+      "sha256": "c802812b8b8445a137b6adb3115b206c9d1f5a58f98b77ef2b341cefcae57c74",
+      "bytes": 162939,
+      "localOnly": true
+    },
+    {
+      "localFile": "release/local-37/desktop-new-29-diagnostics-en.png",
+      "sha256": "d9d70bb28ddcb63aaa84d21eb857ca6db6615f4c461d1ac24c5e1bfcbf43def5",
+      "bytes": 170702,
+      "localOnly": true
+    },
+    {
+      "localFile": "release/local-37/npm-old-29-diagnostics-en.png",
+      "sha256": "1f2c7746abbc91fae51e983c17350f44a89e8326bfd12f1173e151d098a8a5db",
+      "bytes": 116322,
+      "localOnly": true
+    },
+    {
+      "localFile": "release/local-37/npm-new-29-diagnostics-en.png",
+      "sha256": "a49c3397b68643c8f19bfe4bba963ed97164f40da97ee04e855b2c11b1de449a",
+      "bytes": 111628,
+      "localOnly": true
+    },
+    {
+      "localFile": "release/local-37/http-read-audit-private.jsonl",
+      "sha256": "4308fa32a602b879f44287f81cd310735d916169b9a1c776c3cb3167cedaece6",
+      "bytes": 130481,
+      "localOnly": true
+    },
+    {
+      "localFile": "release/local-37/cli-read-audit-private.jsonl",
+      "sha256": "4b0cce364449b90656b0cb9c6775f6e89723372f28c2d3d1b2a44dbc0b724dd7",
+      "bytes": 2162,
+      "localOnly": true
+    }
+  ],
+  "rawBusinessHistoryAndCredentialsNotCopied": true
+}

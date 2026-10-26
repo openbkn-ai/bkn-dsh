@@ -1,0 +1,195 @@
+{
+  "kind": "local-development-preacceptance",
+  "ciRun": null,
+  "formalAcceptanceEligible": false,
+  "rows": [
+    {
+      "case": "Mac npm/web old",
+      "hostVersion": "0.2.0-rc.2",
+      "proof": {
+        "kind": "local-development-preacceptance",
+        "ciRun": null,
+        "formalAcceptanceEligible": false,
+        "node": "24.19.0",
+        "scope": "real frozen32 business manager, profile-only MCP, single synthetic connection; no redirect/tool execution",
+        "loadedComponents": [
+          {
+            "name": "@openbkn/dsh-business-context",
+            "state": 2
+          },
+          {
+            "name": "@openbkn/dsh-business-context/business",
+            "state": 2
+          },
+          {
+            "name": "@openbkn/dsh-business-context/diagnostics",
+            "state": 2
+          }
+        ],
+        "frozenServiceClassIdentity": true,
+        "businessSha256": "9901a046cb3274a56ac47cc1734d669e7a012dab25ef7e34fe3643a38b8d1081",
+        "publicConfigureNormal": "PASS",
+        "selectedMcpSha256": "b3cd7156c0b8639656ce117530fec4d006b74cafdc9a78ac426fec084e62972c",
+        "selectedModuleAlreadyRegistered": true,
+        "managerFiberUsesSelectedModule": true,
+        "selectedProfileRelativeFile": "node_modules/@deepseek-ai/dsh-mcp-client/lib/index.js",
+        "profileOverrideAutomatic": "PASS",
+        "result": "PASS"
+      },
+      "postExitFileCountsMatched": {
+        "plugin32": 82,
+        "profileMcp": 12
+      },
+      "installationMcpSha256": "758d8fc473b700b5d351158d06ce9f9e92c16e8b25497b08bb7bd2122a87f5dd",
+      "stockRuntimeRoot": true,
+      "sourceNativeCliAndMcpFilesUnchanged": true,
+      "nativeCliEntrySha256": "1a03dee18683483ff6a1b27b2a1e650230da6bcca9a0f55f7d81b3308c3f307f",
+      "normalSyntheticConnections": 1,
+      "toolExecutions": 0,
+      "requests": [
+        {
+          "path": "/mcp",
+          "method": "POST",
+          "rpc": "server/discover",
+          "syntheticAuth": true
+        },
+        {
+          "path": "/mcp",
+          "method": "POST",
+          "rpc": "initialize",
+          "syntheticAuth": true
+        },
+        {
+          "path": "/mcp",
+          "method": "POST",
+          "rpc": "notifications/initialized",
+          "syntheticAuth": true
+        },
+        {
+          "path": "/mcp",
+          "method": "GET",
+          "rpc": null,
+          "syntheticAuth": true
+        },
+        {
+          "path": "/mcp",
+          "method": "POST",
+          "rpc": "tools/list",
+          "syntheticAuth": true
+        },
+        {
+          "path": "/api/bkn-backend/v1/knowledge-networks",
+          "method": "GET",
+          "rpc": null,
+          "syntheticAuth": true
+        }
+      ],
+      "exit": {
+        "code": 0,
+        "signal": null
+      },
+      "stopMethod": "identity-checked owned SIGTERM",
+      "fixtureListenersClosed": true
+    },
+    {
+      "case": "Mac npm/web rc3",
+      "hostVersion": "0.2.1-rc.3",
+      "proof": {
+        "kind": "local-development-preacceptance",
+        "ciRun": null,
+        "formalAcceptanceEligible": false,
+        "node": "24.19.0",
+        "scope": "real frozen32 business manager, profile-only MCP, single synthetic connection; no redirect/tool execution",
+        "loadedComponents": [
+          {
+            "name": "@openbkn/dsh-business-context",
+            "state": 2
+          },
+          {
+            "name": "@openbkn/dsh-business-context/business",
+            "state": 2
+          },
+          {
+            "name": "@openbkn/dsh-business-context/diagnostics",
+            "state": 2
+          }
+        ],
+        "frozenServiceClassIdentity": true,
+        "businessSha256": "9901a046cb3274a56ac47cc1734d669e7a012dab25ef7e34fe3643a38b8d1081",
+        "publicConfigureNormal": "PASS",
+        "selectedMcpSha256": "b3cd7156c0b8639656ce117530fec4d006b74cafdc9a78ac426fec084e62972c",
+        "selectedModuleAlreadyRegistered": true,
+        "managerFiberUsesSelectedModule": true,
+        "selectedProfileRelativeFile": "node_modules/@deepseek-ai/dsh-mcp-client/lib/index.js",
+        "profileOverrideAutomatic": "PASS",
+        "result": "PASS"
+      },
+      "postExitFileCountsMatched": {
+        "plugin32": 82,
+        "profileMcp": 12
+      },
+      "installationMcpSha256": "758d8fc473b700b5d351158d06ce9f9e92c16e8b25497b08bb7bd2122a87f5dd",
+      "stockRuntimeRoot": true,
+      "sourceNativeCliAndMcpFilesUnchanged": true,
+      "nativeCliEntrySha256": "80112efe368efb1a39720c7ada0af00442e5131fb2744edaaff8a3e8bb499e6f",
+      "normalSyntheticConnections": 1,
+      "toolExecutions": 0,
+      "requests": [
+        {
+          "path": "/mcp",
+          "method": "POST",
+          "rpc": "server/discover",
+          "syntheticAuth": true
+        },
+        {
+          "path": "/mcp",
+          "method": "POST",
+          "rpc": "initialize",
+          "syntheticAuth": true
+        },
+        {
+          "path": "/mcp",
+          "method": "POST",
+          "rpc": "notifications/initialized",
+          "syntheticAuth": true
+        },
+        {
+          "path": "/mcp",
+          "method": "POST",
+          "rpc": "tools/list",
+          "syntheticAuth": true
+        },
+        {
+          "path": "/mcp",
+          "method": "GET",
+          "rpc": null,
+          "syntheticAuth": true
+        },
+        {
+          "path": "/api/bkn-backend/v1/knowledge-networks",
+          "method": "GET",
+          "rpc": null,
+          "syntheticAuth": true
+        }
+      ],
+      "exit": {
+        "code": 0,
+        "signal": null
+      },
+      "stopMethod": "identity-checked owned SIGTERM",
+      "fixtureListenersClosed": true
+    }
+  ],
+  "hostPortsReleased": [
+    52300,
+    52309
+  ],
+  "reusedPublishedObserverCommit": "5e55d090ee2996fe2a006a59bef012d28f8f278a",
+  "notRepeated": [
+    "redirect vectors",
+    "GUI/UI",
+    "real auth/B1/W-LIFE",
+    "real platform/model/G6/BOM/Sandbox"
+  ],
+  "firstAttempt": "Private runner forwarded outer --home to native CLI; parser exited before business loading; original log retained; corrected runner used fresh empty home. No product/Host/candidate fix."
+}

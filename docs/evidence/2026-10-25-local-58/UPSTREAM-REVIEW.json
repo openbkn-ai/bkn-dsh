@@ -1,0 +1,57 @@
+{
+  "dsh": {
+    "defaultBranchRef": {
+      "name": "master",
+      "target": {
+        "oid": "22ddee3792402c3e70ec5f86a63c3e3e895a2f60"
+      }
+    },
+    "releases": {
+      "nodes": [
+        {
+          "tagName": "dsh-v0.2.1-rc.3",
+          "publishedAt": "2026-10-23T15:26:39Z"
+        }
+      ]
+    }
+  },
+  "foundry": {
+    "defaultBranchRef": {
+      "name": "main",
+      "target": {
+        "oid": "d31470a8cd7189e18ac054103667eb327c9e78ac"
+      }
+    },
+    "releases": {
+      "nodes": [
+        {
+          "tagName": "v0.2.0",
+          "publishedAt": "2026-10-16T07:21:25Z"
+        }
+      ]
+    }
+  },
+  "foundryComparedFrom": "baa9367c51050cdb13dbb5bbe93508df1affd286",
+  "commits": [
+    {
+      "sha": "b996ba9f5ce2c4dbee6a06dde5dd63089e5feedc",
+      "subject": "fix(bkn-trace): discover authorized root service filter values (#2483)"
+    },
+    {
+      "sha": "a1613f696957a45a8cd81da3bf04aa61e3294ab6",
+      "subject": "fix(bkn-trace): reverify archive objects before cleanup retries (#2484)"
+    },
+    {
+      "sha": "5e3a4fdb632e8ea27e8598bcbf599e5836cdac06",
+      "subject": "Fix concept group overview graph scoping (#2486)"
+    },
+    {
+      "sha": "d31470a8cd7189e18ac054103667eb327c9e78ac",
+      "subject": "fix(bkn-trace): bound Trace archive batches by count and bytes (#2489)"
+    }
+  ],
+  "changedFiles": 54,
+  "reviewScope": "File-set review plus targeted concept-group overview scoping, trace root-service authorization, archive retry verification and bounded archive batch source patches; not a full upstream audit. No MCP/CLI/auth path file changed in the compared set. Frozen platform reader does not consume these overview/root-service/archive routes. Formal 0.2.0 is retained; no deployment or schema adaptation.",
+  "upstreamReadAt": "2026-10-25T09:04:02.373928+00:00",
+  "reviewRecordedAt": "2026-10-25T09:26:54.521170+00:00"
+}

@@ -1,0 +1,100 @@
+{
+  "checked_at": "2026-10-19T15:24:40.292Z",
+  "records": [
+    {
+      "host": "0.2.0-rc.2",
+      "interaction_id": "int_23a41a1680bc3a6c0db6908214f5c90f",
+      "calls": {
+        "standard": {
+          "status": 200,
+          "execution_status": "completed",
+          "returned_id": "int_23a41a1680bc3a6c0db6908214f5c90f"
+        },
+        "operations": {
+          "status": 200,
+          "count": 29,
+          "tool_names": [
+            "01a11f4e-fb6a-7d44-8fd4-f1585cb3a016",
+            "01a11f4e-fb6a-7d44-8fd4-f1585cb3a016",
+            "01a11f4e-fb6a-7d44-8fd4-f1585cb3a016",
+            "01a11f4e-fb6a-7d44-8fd4-f1585cb3a016",
+            "execute_tool",
+            "execute_tool",
+            "execute_tool",
+            "execute_tool",
+            "get_kn_detail",
+            "query_metric",
+            "query_metric",
+            "query_object_instance",
+            "query_object_instance",
+            "query_object_instance",
+            "query_object_instance",
+            "query_object_instance",
+            "query_object_instance",
+            "query_object_instance",
+            "query_object_instance",
+            "query_object_instance",
+            "query_object_instance",
+            "query_object_instance",
+            "query_object_instance",
+            "query_object_instance",
+            "query_object_instance",
+            "query_object_instance",
+            "search_capabilities",
+            "search_capabilities",
+            "search_schema"
+          ]
+        },
+        "native_detail": {
+          "status": 404
+        },
+        "native_explanations": {
+          "status": 404
+        }
+      }
+    },
+    {
+      "host": "0.2.1-rc.2",
+      "interaction_id": "int_6c5934a94c50c1f4602eeafe02bc979d",
+      "calls": {
+        "standard": {
+          "status": 200,
+          "execution_status": "completed",
+          "returned_id": "int_6c5934a94c50c1f4602eeafe02bc979d"
+        },
+        "operations": {
+          "status": 200,
+          "count": 15,
+          "tool_names": [
+            "01a11f4e-fb6a-7d44-8fd4-f1585cb3a016",
+            "execute_tool",
+            "execute_tool",
+            "get_kn_detail",
+            "get_object_types",
+            "get_relation_types",
+            "query_metric",
+            "query_metric",
+            "query_metric",
+            "query_object_instance",
+            "query_object_instance",
+            "query_object_instance",
+            "query_object_instance",
+            "query_object_instance",
+            "search_capabilities"
+          ]
+        },
+        "native_detail": {
+          "status": 404
+        },
+        "native_explanations": {
+          "status": 404
+        }
+      }
+    }
+  ],
+  "capture": {
+    "status": 200,
+    "desired_state": "enabled",
+    "effective_state": "enabled"
+  }
+}

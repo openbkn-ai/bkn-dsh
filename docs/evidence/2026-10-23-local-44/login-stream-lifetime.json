@@ -1,0 +1,24 @@
+{
+  "kind": "controlled client-port lifetime probe",
+  "productionFunctionExtracted": true,
+  "productionFunctionSHA256": "c7e2cb8a0b2f834e56db67bc4a3ccccc1f2f8a5e413d8e8c1ce50b1d2cfa3863",
+  "currentFirstResultConsumer": {
+    "naturalEnd": false,
+    "terminalConsumed": false,
+    "earlyReturn": true,
+    "modelCancelRequested": true,
+    "disposeCalls": 1
+  },
+  "consumeToTerminalControl": {
+    "naturalEnd": true,
+    "terminalConsumed": true,
+    "earlyReturn": false,
+    "modelCancelRequested": false,
+    "disposeCalls": 1
+  },
+  "nativeRemoteTransportExecuted": false,
+  "nativeWindowsJobExecuted": false,
+  "browserExecuted": false,
+  "platformAccessed": false,
+  "conclusion": "Current production client returns after first yielded result and disposes before consuming terminal completion. A documented native cancel path can therefore be reached if server stream is still active. This does not establish Windows Job membership or the observed browser-close cause."
+}

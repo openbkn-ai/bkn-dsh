@@ -1,0 +1,116 @@
+{
+  "localRoot": "/Users/dominiczhang/Documents/project/app/openBKN/bkn-dsh/release/local-38",
+  "rawBusinessOutputsAndPrivateBootstrapUrlsCopied": false,
+  "credentialsOrAuthChallengeUrlsCopied": false,
+  "selectedEvidenceOnly": true,
+  "files": [
+    {
+      "path": "long-plan.json",
+      "sha256": "fdeacca11e741b7e935a7fc7789a125e4d57a5d2520dc1cdc7b489bf8818bfb5"
+    },
+    {
+      "path": "long-state.json",
+      "sha256": "b5488eef9b9e3d6269d7785ba4ed3e06de33e50f382b512afc997ad5bc2d8a2e"
+    },
+    {
+      "path": "long-samples.jsonl",
+      "sha256": "815ac7a60d64f27d1446c8cd12cc5822196590fe82720c013d502fe8042eb6a6"
+    },
+    {
+      "path": "protocol-events.jsonl",
+      "sha256": "5e143ad47781d18d2668537777176e98de6da02fa71b623f42046e8d1760dd11"
+    },
+    {
+      "path": "protocol-driver-private.log",
+      "sha256": "e388cffe216aaca84052a11ce82793267b4a52bf03b76adeb938faceb30ab90d"
+    },
+    {
+      "path": "long-watch-private.log",
+      "sha256": "f16cc32dfd62a38c969b757aa5009e5facf7a1db663a3cb8111a96e135b7e48f"
+    },
+    {
+      "path": "worktree-before-private.json",
+      "sha256": "24bc18732271947f445f804407389c7df51988ddcae41bd4c2e9dd14c41b67e0"
+    },
+    {
+      "path": "personal-before-private.json",
+      "sha256": "e94fb323b5d2105f9b675d92a42ec012061a9bae3863237df3b438a331d90b48"
+    },
+    {
+      "path": "workspace-before-docs-check.json",
+      "sha256": "40440fde44c2267fa567a3cdb6cfeb859b6beafef23f8f5c28e72c672d09236a"
+    },
+    {
+      "path": "post-check-wake-guard.json",
+      "sha256": "f6b07e667438dea8a632da1c57431d183a7aea466b6c390f274c606ed3ac69df"
+    },
+    {
+      "path": "owned-fixture.json",
+      "sha256": "1dfa84a85eba82f338cf70a79b700c21baab5fd0ece15be4d7025ab5cfb120c5"
+    },
+    {
+      "path": "desktop-old/owned-host.json",
+      "sha256": "82db5cc1444b613d2635b7d2fabfe499d97405c4c1ef57e256873c26bdebffba"
+    },
+    {
+      "path": "desktop-old/host-private.log",
+      "sha256": "5a28c55d5182a3ed0d7740b35095601bf4cc01589eb10c0d512f903887294704"
+    },
+    {
+      "path": "desktop-old/baseline-accepted-private.json",
+      "sha256": "9f0fcac2db2c1a002b7b6446182787a8d3a9f6d82f3801f4ecceb88f480c06b0"
+    },
+    {
+      "path": "desktop-old/after-owner-reload-accepted-private.json",
+      "sha256": "b12c5892d609138f1e8dff7ab33ba87584f8c615c310c7395ecc126b99b30552"
+    },
+    {
+      "path": "desktop-new/owned-host.json",
+      "sha256": "df64f6f377d8331cee91ab92aa3584a83c7ebc1150bd1298c6bf4093160ec754"
+    },
+    {
+      "path": "desktop-new/host-private.log",
+      "sha256": "fb27be403510ea198941428682111d669c1dfa951383705c72d4d8cc83ea3ef4"
+    },
+    {
+      "path": "desktop-new/baseline-accepted-private.json",
+      "sha256": "cc0b8c991662201b62b9e81161a2b9faeaea185c3a6c6b705f5a1a8701d87877"
+    },
+    {
+      "path": "desktop-new/after-owner-reload-accepted-private.json",
+      "sha256": "9e52f1c37efd589821e2a3d7f54be564c3fd70651e397defb99ef434677a7b9f"
+    },
+    {
+      "path": "npm-old/owned-host.json",
+      "sha256": "3e3acbfa0e54c622d8a4a98df65a9666a103b82025d63e54cb9be9a6f943db38"
+    },
+    {
+      "path": "npm-old/host-private.log",
+      "sha256": "99be15c41dacbb6f638d8f291c37efe2ba4b4b79ac4c97164149845525b8bb70"
+    },
+    {
+      "path": "npm-old/baseline-accepted-private.json",
+      "sha256": "443d370ac8cbcfd704688a92711f787c57ae1f595224f0785664a57525a9cc4a"
+    },
+    {
+      "path": "npm-old/after-owner-reload-accepted-private.json",
+      "sha256": "d794a40f83c3d83f2025ed66bfbec61d553b6d615d2dee8dbfd0acb3d852a973"
+    },
+    {
+      "path": "npm-new/owned-host.json",
+      "sha256": "4312f4d584a27d7751be1a1b2eb6736509b46ef842e0139cea6d3ebebcddb6ab"
+    },
+    {
+      "path": "npm-new/host-private.log",
+      "sha256": "e3fc56e43ceab94d01fe1cb57ad01eb28d080bff95c128de7e09f57ac2e0f814"
+    },
+    {
+      "path": "npm-new/baseline-accepted-private.json",
+      "sha256": "ff8d9f1798220f4d5a95cddeb8ea01b6a8cc13b4274cc9977ecae90a42dac107"
+    },
+    {
+      "path": "npm-new/after-owner-reload-accepted-private.json",
+      "sha256": "53dd4576aa40dd16e018596ed2b3789bffe28b18a30633cbce5421a9b683b5f7"
+    }
+  ]
+}

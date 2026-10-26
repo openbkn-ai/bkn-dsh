@@ -1,0 +1,290 @@
+{
+  "sourceCommit": "433eb413dc305ebeb93b8ebcde0095a8fc0d5fa0",
+  "scope": "official golden vectors and exact-source helper equivalence; synthetic fetch plus already-aborted loopback fetch",
+  "rows": [
+    {
+      "kind": "upstream-origin-vector",
+      "from": "https://example.com/mcp",
+      "to": "https://example.com/mcp",
+      "expected": true,
+      "result": "PASS"
+    },
+    {
+      "kind": "upstream-origin-vector",
+      "from": "https://example.com/mcp",
+      "to": "https://example.com/mcp/?a=1",
+      "expected": true,
+      "result": "PASS"
+    },
+    {
+      "kind": "upstream-origin-vector",
+      "from": "http://example.com:8080/mcp",
+      "to": "http://example.com:8080/other",
+      "expected": true,
+      "result": "PASS"
+    },
+    {
+      "kind": "upstream-origin-vector",
+      "from": "http://example.com/mcp",
+      "to": "https://example.com/mcp",
+      "expected": true,
+      "result": "PASS"
+    },
+    {
+      "kind": "upstream-origin-vector",
+      "from": "http://example.com:80/mcp",
+      "to": "https://example.com:443/mcp",
+      "expected": true,
+      "result": "PASS"
+    },
+    {
+      "kind": "upstream-origin-vector",
+      "from": "https://example.com/mcp",
+      "to": "http://example.com/mcp",
+      "expected": false,
+      "result": "PASS"
+    },
+    {
+      "kind": "upstream-origin-vector",
+      "from": "https://example.com/mcp",
+      "to": "https://example.com:8443/mcp",
+      "expected": false,
+      "result": "PASS"
+    },
+    {
+      "kind": "upstream-origin-vector",
+      "from": "http://example.com:8080/mcp",
+      "to": "https://example.com/mcp",
+      "expected": false,
+      "result": "PASS"
+    },
+    {
+      "kind": "upstream-origin-vector",
+      "from": "http://example.com/mcp",
+      "to": "https://example.com:8443/mcp",
+      "expected": false,
+      "result": "PASS"
+    },
+    {
+      "kind": "upstream-origin-vector",
+      "from": "https://example.com/mcp",
+      "to": "https://other.example/mcp",
+      "expected": false,
+      "result": "PASS"
+    },
+    {
+      "kind": "upstream-origin-vector",
+      "from": "http://example.com/mcp",
+      "to": "https://other.example/mcp",
+      "expected": false,
+      "result": "PASS"
+    },
+    {
+      "kind": "upstream-origin-vector",
+      "from": "https://example.com/mcp",
+      "to": "https://sub.example.com/mcp",
+      "expected": false,
+      "result": "PASS"
+    },
+    {
+      "kind": "official-helper-equivalence",
+      "name": "same-GET-301",
+      "result": "PASS"
+    },
+    {
+      "kind": "official-helper-equivalence",
+      "name": "cross-GET-301",
+      "result": "PASS"
+    },
+    {
+      "kind": "official-helper-equivalence",
+      "name": "same-GET-302",
+      "result": "PASS"
+    },
+    {
+      "kind": "official-helper-equivalence",
+      "name": "cross-GET-302",
+      "result": "PASS"
+    },
+    {
+      "kind": "official-helper-equivalence",
+      "name": "same-GET-303",
+      "result": "PASS"
+    },
+    {
+      "kind": "official-helper-equivalence",
+      "name": "cross-GET-303",
+      "result": "PASS"
+    },
+    {
+      "kind": "official-helper-equivalence",
+      "name": "same-GET-307",
+      "result": "PASS"
+    },
+    {
+      "kind": "official-helper-equivalence",
+      "name": "cross-GET-307",
+      "result": "PASS"
+    },
+    {
+      "kind": "official-helper-equivalence",
+      "name": "same-GET-308",
+      "result": "PASS"
+    },
+    {
+      "kind": "official-helper-equivalence",
+      "name": "cross-GET-308",
+      "result": "PASS"
+    },
+    {
+      "kind": "official-helper-equivalence",
+      "name": "same-POST-301",
+      "result": "PASS"
+    },
+    {
+      "kind": "official-helper-equivalence",
+      "name": "cross-POST-301",
+      "result": "PASS"
+    },
+    {
+      "kind": "official-helper-equivalence",
+      "name": "same-POST-302",
+      "result": "PASS"
+    },
+    {
+      "kind": "official-helper-equivalence",
+      "name": "cross-POST-302",
+      "result": "PASS"
+    },
+    {
+      "kind": "official-helper-equivalence",
+      "name": "same-POST-303",
+      "result": "PASS"
+    },
+    {
+      "kind": "official-helper-equivalence",
+      "name": "cross-POST-303",
+      "result": "PASS"
+    },
+    {
+      "kind": "official-helper-equivalence",
+      "name": "same-POST-307",
+      "result": "PASS"
+    },
+    {
+      "kind": "official-helper-equivalence",
+      "name": "cross-POST-307",
+      "result": "PASS"
+    },
+    {
+      "kind": "official-helper-equivalence",
+      "name": "same-POST-308",
+      "result": "PASS"
+    },
+    {
+      "kind": "official-helper-equivalence",
+      "name": "cross-POST-308",
+      "result": "PASS"
+    },
+    {
+      "kind": "official-helper-equivalence",
+      "name": "same-DELETE-301",
+      "result": "PASS"
+    },
+    {
+      "kind": "official-helper-equivalence",
+      "name": "cross-DELETE-301",
+      "result": "PASS"
+    },
+    {
+      "kind": "official-helper-equivalence",
+      "name": "same-DELETE-302",
+      "result": "PASS"
+    },
+    {
+      "kind": "official-helper-equivalence",
+      "name": "cross-DELETE-302",
+      "result": "PASS"
+    },
+    {
+      "kind": "official-helper-equivalence",
+      "name": "same-DELETE-303",
+      "result": "PASS"
+    },
+    {
+      "kind": "official-helper-equivalence",
+      "name": "cross-DELETE-303",
+      "result": "PASS"
+    },
+    {
+      "kind": "official-helper-equivalence",
+      "name": "same-DELETE-307",
+      "result": "PASS"
+    },
+    {
+      "kind": "official-helper-equivalence",
+      "name": "cross-DELETE-307",
+      "result": "PASS"
+    },
+    {
+      "kind": "official-helper-equivalence",
+      "name": "same-DELETE-308",
+      "result": "PASS"
+    },
+    {
+      "kind": "official-helper-equivalence",
+      "name": "cross-DELETE-308",
+      "result": "PASS"
+    },
+    {
+      "kind": "official-helper-equivalence",
+      "name": "unsafe-https://example.com:8443/mcp",
+      "result": "PASS"
+    },
+    {
+      "kind": "official-helper-equivalence",
+      "name": "unsafe-http://example.com/mcp",
+      "result": "PASS"
+    },
+    {
+      "kind": "official-helper-equivalence",
+      "name": "unsafe-//other.example/mcp",
+      "result": "PASS"
+    },
+    {
+      "kind": "official-helper-equivalence",
+      "name": "unsafe-https://user:pass@example.com/mcp/",
+      "result": "PASS"
+    },
+    {
+      "kind": "official-helper-equivalence",
+      "name": "unsafe-ftp://example.com/mcp",
+      "result": "PASS"
+    },
+    {
+      "kind": "official-helper-equivalence",
+      "name": "unsafe-http://[",
+      "result": "PASS"
+    },
+    {
+      "kind": "official-helper-equivalence",
+      "name": "default-port-https-upgrade",
+      "result": "PASS"
+    },
+    {
+      "kind": "official-helper-equivalence",
+      "name": "same-userinfo",
+      "result": "PASS"
+    },
+    {
+      "kind": "official-helper-equivalence",
+      "name": "changed-userinfo",
+      "result": "PASS"
+    },
+    {
+      "kind": "hop-budget-opaque-explicit-modes-mixed-chain-abort",
+      "referenceAndBackport": true,
+      "result": "PASS"
+    }
+  ]
+}

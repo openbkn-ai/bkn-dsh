@@ -1,0 +1,20 @@
+{
+  "fresh-copy": {
+    "exitCode": 0,
+    "expectedSuccess": true
+  },
+  "unexpected-file": {
+    "exitCode": 1,
+    "expectedSuccess": false
+  },
+  "publicTextSecretScan": {
+    "hits": [],
+    "binaryTgzExcludedFromTextPatternScan": true,
+    "privateFilesIncluded": false
+  },
+  "zip": {
+    "file": "/Users/dominiczhang/Documents/project/app/openBKN/bkn-dsh/release/local-40/openbkn-021-local30-windows-handoff.zip",
+    "sha256": "2dc2892fc546cac30e70ce6233b2e11023dbdddb91500454720933e42373d774",
+    "bytes": 494404
+  }
+}

@@ -1,0 +1,22 @@
+{
+  "name": "@deepseek-ai/dsh",
+  "version": "0.2.1-rc.3",
+  "gitHead": null,
+  "dist": {
+    "shasum": "ccc527065b9f736ea299a1f78150a21143d961aa",
+    "tarball": "https://registry.npmjs.org/@deepseek-ai/dsh/-/dsh-0.2.1-rc.3.tgz",
+    "fileCount": 20,
+    "integrity": "sha512-H+E9HLnHf7fJqzen84Z9Bq8ggb5xbrcbyhZjXTJLE9NabHr3zteGvTRvdvGkxPl4ov80is4WLglFmSo+/olJjg==",
+    "signatures": [
+      {
+        "sig": "MEQCIH92keYjBzBeGcwKZPkGnXITACCTyzFcoPVEZdmv8QNNAiAGbdjAsaGc6h5Ckjwqn1EKcZ9PXzUc1+y3zidvHiowbQ==",
+        "keyid": "SHA256:DhQ8wR5APBvFHLF/+Tc+AYvPOdTpcIDqOhxsBHRwC7U"
+      },
+      {
+        "keyid": "SHA256:DhQ8wR5APBvFHLF/+Tc+AYvPOdTpcIDqOhxsBHRwC7U",
+        "sig": "MEUCIQDags7oL1LGelxUsd1SnUvQD8QdX6ZX3FNN055mLqlnvwIgHAjBQeV0R/URNb599Zgd/UJ3afYwHNKjM/wHKBKmPfw="
+      }
+    ],
+    "unpackedSize": 75972
+  }
+}
