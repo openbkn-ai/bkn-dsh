@@ -1,0 +1,61 @@
+{
+  "kind": "local-development-preacceptance",
+  "ciRun": null,
+  "formalAcceptanceEligible": false,
+  "handoffBranch": "handoff/windows-local32-profile-gui-r2-20261026",
+  "scope": "one existing official Windows rc3 GUI, new empty profile, frozen32 real business autoload of profile-only MCP; normal menu exit",
+  "base": {
+    "version": "0.2.1-rc.3",
+    "commit": "1f81c047fc48fa190a683e469daa699857e9afe8",
+    "mcpSdk": "2.2.0"
+  },
+  "packages": [
+    {
+      "role": "plugin32",
+      "path": "candidate/openbkn-dsh-business-context-0.2.0-rc.2-openbkn.0.2.0-32.tgz",
+      "version": "0.2.0-rc.2-openbkn.0.2.0-32",
+      "bytes": 231465,
+      "sha256": "46626510825fe9146aef12c27a1724acbb455aeac22aa600358add0fc8e1c9f8",
+      "filesManifest": "plugin32-files.json",
+      "fileCount": 82
+    },
+    {
+      "role": "mcpRc3",
+      "path": "payload/openbkn-mcp-rc3-same-origin-r1.tgz",
+      "version": "0.2.1-rc.3",
+      "bytes": 21684,
+      "sha256": "48694ca37f889edbc7c41ed8edd3c08e3dc8c0d9cf87c6c118d96de44556d3e0",
+      "filesManifest": "mcpRc3-files.json",
+      "fileCount": 12
+    }
+  ],
+  "businessSha256": "9901a046cb3274a56ac47cc1734d669e7a012dab25ef7e34fe3643a38b8d1081",
+  "mcpProtectedEntrySha256": "b3cd7156c0b8639656ce117530fec4d006b74cafdc9a78ac426fec084e62972c",
+  "mcpStockEntrySha256": "758d8fc473b700b5d351158d06ce9f9e92c16e8b25497b08bb7bd2122a87f5dd",
+  "officialWindowsExeSha256": "fd7d298f4ba03ee9bab1719a892afeaef5c09bf50c574a592a64c85f64574c0c",
+  "officialWindowsNode": "24.21.0",
+  "officialWindowsElectron": "44.7.0",
+  "zodVersion": "4.4.3",
+  "requiredBeforeGui": "HKCU dsh protocol subtree and dsh UserChoice guard: full reg export or explicit absence; current account identity; known write sites; must succeed before launch",
+  "notRepeated": [
+    "stock/protected 8/8",
+    "redirect vectors",
+    "UI",
+    "login",
+    "B1",
+    "W-LIFE",
+    "G6/BOM/Sandbox"
+  ],
+  "previousWindowsResults": "8f94288fd92ab04938decc8ad561aaac2696f2e7",
+  "sourceDevelopmentHead": "933b0ab251c75461ece1ada6145a9487e7eb04d1",
+  "mainHostOrPlatformMutationAllowed": false,
+  "newGuiBuildOrDistributionSystem": false,
+  "remote11Allowed": false,
+  "windowsPushCIAllowed": false,
+  "sourceHandoffBranch": "handoff/windows-local32-profile-gui-20261026",
+  "sourceHandoffCommit": "5e55d090ee2996fe2a006a59bef012d28f8f278a",
+  "repair": "Pass through OS in existing minimal baseEnv; all guards unchanged",
+  "previousBlockedWindowsResults": "c0fa28d87464a449002cb3fcc633eda1f8283aa0",
+  "sourceControllerSha256": "a488aa49c630f709b2734a97972d202d30f71a01f7bb433e1785ed49f126cba6",
+  "repairedControllerSha256": "a619b0d0a5a70e1a44610e7f5d2ede771a13d5791eb88dfa7a8eb33cf46e8eea"
+}
