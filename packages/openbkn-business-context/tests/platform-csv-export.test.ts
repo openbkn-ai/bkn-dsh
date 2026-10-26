@@ -27,6 +27,18 @@ test('CSV transfer preserves BOM, CRLF, Chinese names, and fractional quantities
   assert.deepEqual(decodeCsvResult(response(), args.path), { bytes, sha256 })
 })
 
+test('missing or malformed content returns the controlled incomplete-result error', () => {
+  for (const result of [{ value: {} }, { value: {}, content: null }, { value: {}, content: {} }]) {
+    assert.throws(() => decodeCsvResult(result as never, args.path),
+      (error: unknown) => error instanceof Error && !(error instanceof TypeError)
+        && error.message === 'Platform CSV retrieval returned no complete executor result.')
+  }
+})
+
+test('portable CSV names reject Windows wildcards before delivery', () => {
+  assert.throws(() => validateCsvPath('output/q*.csv'), /relative \.csv path/)
+})
+
 test('CSV transfer refuses wrong source, digest, size, malformed base64 and invalid UTF-8', () => {
   for (const change of [{ path: 'other.csv' }, { sha256: '0'.repeat(64) }, { size: bytes.length - 1 }, { size: MAX_CSV_BYTES + 1 }, { data_base64: bytes.toString('base64') + '!' }]) {
     assert.throws(() => decodeCsvResult(response(change), args.path))

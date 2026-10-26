@@ -6,9 +6,9 @@ OpenBKN business knowledge, network-scoped access, diagnostics, and provenance f
 
 Bring governed enterprise business knowledge into DeepSeek Harness conversations.
 
-## Current 0.2.1 release candidate
+## 0.2.1 version and compatibility
 
-This release line uses `0.2.1-rc.3-openbkn.0.2.1` and targets official DSH `0.2.0-rc.2` and `0.2.1-rc.3`. The OpenBKN `0.2.1` component is the version identity requested by the maintainer. Actual platform evidence remains on retained official OpenBKN `0.2.0` and CLI `0.2.0`; it does not establish acceptance on an unreleased OpenBKN `0.2.1` platform. Final CI-candidate acceptance is in progress.
+This release line uses `0.2.1-rc.3-openbkn.0.2.1` and targets official DSH `0.2.0-rc.2` and `0.2.1-rc.3`. The OpenBKN `0.2.1` component is the version identity requested by the maintainer. Actual platform evidence remains on retained official OpenBKN `0.2.0` and CLI `0.2.0`; it does not establish acceptance on an unreleased OpenBKN `0.2.1` platform. Consult the matching GitHub Release acceptance record for the tested coverage and known limitations.
 
 The #105 same-origin protection requires the matching profile MCP companion; the plugin tarball alone does not install that backport. Keep the original official application and follow the [companion placement and rollback instructions](https://github.com/openbkn-ai/bkn-dsh/tree/main/compat/mcp-profile-backport). Existing Hosts, platform, frozen -30/-31/-32 and historical verdicts are preserved.
 

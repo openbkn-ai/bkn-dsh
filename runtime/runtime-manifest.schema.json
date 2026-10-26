@@ -88,16 +88,15 @@
         "version": {
           "type": "string",
           "minLength": 1,
-          "pattern": "^0\\.2\\.(?:0-rc\\.2|1-rc\\.3)-openbkn\\."
+          "pattern": "^\\d+\\.\\d+\\.\\d+-rc\\.\\d+-openbkn\\."
         },
         "artifact": {
           "pattern": "\\.tgz$"
         },
         "hostVersion": {
-          "enum": [
-            "0.2.0-rc.2",
-            "0.2.1-rc.3"
-          ]
+          "type": "string",
+          "pattern": "^\\d+\\.\\d+\\.\\d+-rc\\.\\d+$",
+          "description": "Naming syntax only; reviewed Host membership is validated against compat/dsh-hosts.json."
         }
       }
     },

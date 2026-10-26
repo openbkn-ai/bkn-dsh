@@ -55,7 +55,7 @@ export function csvExportHost(context: unknown, currentDirectory: () => WorkingD
 }
 
 export function validateCsvPath(value: string): string {
-  if (value.length === 0 || value.length > 512 || /[\\\x00-\x1f\x7f:"#?<>|]/u.test(value)
+  if (value.length === 0 || value.length > 512 || /[\\\x00-\x1f\x7f:"#?*<>|]/u.test(value)
     || value.startsWith('/') || value.split('/').some(part => part === '' || part === '.' || part === '..')
     || Buffer.byteLength(value.split('/').at(-1)!, 'utf8') > 120
     || !value.endsWith('.csv')) throw new Error('Export requires a relative .csv path inside the current platform conversation directory (filename at most 120 UTF-8 bytes).')
@@ -112,7 +112,7 @@ function executorBody(result: ToolExecutionResult): Record<string, unknown> {
   const structured = record(value?.structuredContent)
   const canonical = record(structured?.value)
   if (canonical !== undefined) return canonical
-  for (const block of (Array.isArray(value?.content) ? value.content : result.content)) {
+  for (const block of (Array.isArray(value?.content) ? value.content : Array.isArray(result.content) ? result.content : [])) {
     const text = record(block)?.text
     if (typeof text !== 'string' || text.length > MAX_CSV_BYTES * 2) continue
     try { const parsed = record(JSON.parse(text)); if (parsed !== undefined) return parsed } catch { /* other MCP content */ }

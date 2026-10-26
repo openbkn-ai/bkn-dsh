@@ -1,5 +1,6 @@
 import { readFileSync } from 'node:fs'
 import { fileURLToPath } from 'node:url'
+import { readDshHosts } from '../scripts/dsh-host-compatibility.mjs'
 
 const commitPattern = /^[0-9a-f]{40}$/
 const digestPattern = /^[0-9a-f]{64}$/
@@ -58,7 +59,7 @@ export function loadRuntimeManifest(source) {
   const pluginHostVersion = plugin.hostVersion === undefined
     ? string(dsh.tag, 'dsh.tag').replace(/^dsh-v/, '')
     : string(plugin.hostVersion, 'plugin.hostVersion')
-  if (!['0.2.0-rc.2', '0.2.1-rc.3'].includes(pluginHostVersion)
+  if (!readDshHosts().hosts.some(host => host.version === pluginHostVersion)
     || !string(plugin.version, 'plugin.version').startsWith(`${pluginHostVersion}-openbkn.`)) {
     fail('plugin.version must carry the pinned DSH version (<dsh-version>-openbkn.N)')
   }
