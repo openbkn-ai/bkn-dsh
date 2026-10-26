@@ -1,0 +1,14 @@
+{
+  "ghsa": "GHSA-mrhx-c7xc-m3w5",
+  "candidate": "ed70cc4b9a3ce21346ecde20d1d69f09286e6e02",
+  "zod": "4.4.3",
+  "entry": "projectNativeDetail",
+  "field": "operations",
+  "limit": 500,
+  "inputItems": 4096,
+  "rejected": true,
+  "elementVisits": 4096,
+  "syntheticOnly": true,
+  "oomAttempted": false,
+  "platformCalls": 0
+}

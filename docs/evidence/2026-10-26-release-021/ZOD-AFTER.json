@@ -1,0 +1,27 @@
+{
+  "issue": 107,
+  "ghsa": "GHSA-mrhx-c7xc-m3w5",
+  "change": "leading admission on existing native collection limits only",
+  "arrayBounds": 21,
+  "pairGraphKeyBound": 64,
+  "syntheticRegression": {
+    "arrayCases": [
+      "operations",
+      "time_rail",
+      "evidence.nodes",
+      "selectedPairGraphs.businessFunctions"
+    ],
+    "oversizeItems": 4096,
+    "arrayElementVisitsAfter": 0,
+    "recordKeys": 65,
+    "recordValueVisitsAfter": 0
+  },
+  "nativeControlledTests": {
+    "pass": 49,
+    "fail": 0
+  },
+  "platformCalls": 0,
+  "hostOrDependencyPinsChanged": false,
+  "frozenArchivesChanged": false,
+  "scope": "does not clear upstream dependency/stock Host advisory findings"
+}

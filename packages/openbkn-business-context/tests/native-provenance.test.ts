@@ -7,6 +7,39 @@ import { passiveDiagnostics } from '../src/diagnostics-observer.ts'
 const fixture = () => JSON.parse(readFileSync(new URL('./fixtures/native-provenance-schema1.json', import.meta.url), 'utf8'))
 const signal = () => AbortSignal.timeout(1000)
 const config = { baseUrl: 'https://platform.invalid', maxResultBytes: 1_000_000, requestTimeoutMs: 30_000, allowInsecureTls: false, resolveToken: async () => 'host-only-test-token' }
+test('oversized native arrays are refused before any untrusted element is inspected', () => {
+  for (const field of ['operations', 'time_rail', 'evidenceNodes', 'pairFunctions']) {
+    let elementVisits = 0
+    const oversized = new Proxy(Array(4096).fill(null), {
+      get(target, property, receiver) {
+        if (typeof property === 'string' && /^\d+$/.test(property)) elementVisits++
+        return Reflect.get(target, property, receiver)
+      },
+    })
+    const input = fixture()
+    if (field === 'evidenceNodes') input.view.evidence.nodes = oversized
+    if (field === 'pairFunctions') input.view.selectedPairGraphs.p1.businessFunctions = oversized
+    const project = field === 'operations' || field === 'time_rail'
+      ? () => projectNativeDetail({ interaction_id: 'int-fixture', time_rail: [], [field]: oversized }, 'int-fixture')
+      : () => projectNativeExplanation(input, 'int-fixture')
+    assert.throws(project, NativeProjectionError)
+    assert.equal(elementVisits, 0, `${field} must be size-checked before Zod walks elements`)
+  }
+})
+test('the existing pair-graph key limit is checked before any untrusted value is read', () => {
+  let valueVisits = 0
+  const pairs = Object.fromEntries(Array.from({ length: 65 }, (_, index) => [`pair-${index}`, null]))
+  const input = fixture()
+  input.view.selectedPairGraphs = new Proxy(pairs, {
+    get(target, property, receiver) {
+      if (typeof property === 'string' && property.startsWith('pair-')) valueVisits++
+      return Reflect.get(target, property, receiver)
+    },
+  })
+  assert.throws(() => projectNativeExplanation(input, 'int-fixture'),
+    (error: unknown) => error instanceof NativeProjectionError && error.reason === 'result-too-large')
+  assert.equal(valueVisits, 0)
+})
 test('schema 1 projection retains disclosed gaps and removes payloads, offsets and unknown fields', () => {
   const input = fixture(); input.view.claims[0].answerRange = { start: 0, end: 1, exact: 'x' };input.view.credential = 'MUST-NOT-CROSS'
   const result = projectNativeExplanation(input, 'int-fixture')
