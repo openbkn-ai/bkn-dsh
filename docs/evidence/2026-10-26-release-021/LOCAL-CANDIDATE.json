@@ -1,0 +1,39 @@
+{
+  "version": "0.2.1-rc.3-openbkn.0.2.1",
+  "localCandidateSha256": "f7a8ca219cc9356983a312bc8e26a2ade060f84235bc313a1e44cdf814c54964",
+  "bytes": 231958,
+  "fileCount": 82,
+  "frozen32Sha256": "46626510825fe9146aef12c27a1724acbb455aeac22aa600358add0fc8e1c9f8",
+  "changedFromFrozen32": [
+    "README.md",
+    "README.zh.md",
+    "package.json"
+  ],
+  "implementationAndGeneratedFilesIdenticalToFrozen32": true,
+  "sourcePathsUnchangedFromCheckpoint": 68,
+  "buildOnlyCiRun": null,
+  "formalAcceptanceEligible": false,
+  "checks": {
+    "plugin": {
+      "pass": 617,
+      "skip": 1,
+      "fail": 0
+    },
+    "repository": {
+      "pass": 72,
+      "fail": 0
+    },
+    "typecheck": true,
+    "packageAudit": true,
+    "releaseTools": {
+      "pass": 13,
+      "fail": 0
+    }
+  },
+  "releaseNamingHost": "0.2.1-rc.3",
+  "buildGeneratorHost": "0.2.0-rc.2",
+  "actualVerifiedPlatform": "0.2.0",
+  "cli": "0.2.0",
+  "requestedOpenBknVersion": "0.2.1",
+  "platformTargetClarification": "pending before publication"
+}

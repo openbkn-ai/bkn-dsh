@@ -48,3 +48,11 @@ test('a second DSH version cannot slip into any development dependency', () => {
     assert.throws(() => checkDshHostCompatibility(candidate, build()), /development dependencies/)
   }
 })
+
+test('release naming cannot select an unreviewed Host or disagree with package identity', () => {
+  for (const version of ['0.2.1-rc.2', '0.2.2-rc.1', '0.2.0-rc.2']) {
+    const candidate = build(); candidate.plugin.hostVersion = version
+    assert.throws(() => checkDshHostCompatibility(pkg(), candidate), /release identity/)
+  }
+  assert.doesNotThrow(() => checkDshHostCompatibility(pkg(), build()))
+})

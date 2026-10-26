@@ -89,3 +89,12 @@ test('rejects a plugin artifact from a different release', () => {
     plugin: { ...manifest.plugin, artifact: `openbkn-dsh-business-context-${manifest.plugin.version}.tgz` },
   }))
 })
+
+test('an explicit release naming Host cannot expand the reviewed versions', () => {
+  const manifest = JSON.parse(readFileSync(new URL('../openbkn-dsh-runtime.manifest.json', import.meta.url), 'utf8'))
+  const version = '0.2.2-rc.1-openbkn.0.2.1'
+  assert.throws(() => loadRuntimeManifest({
+    ...manifest,
+    plugin: { ...manifest.plugin, hostVersion: '0.2.2-rc.1', version, artifact: `openbkn-dsh-business-context-${version}.tgz` },
+  }), /plugin\.version must carry/)
+})

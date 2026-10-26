@@ -53,7 +53,13 @@ export function loadRuntimeManifest(source) {
   // version and the OpenBKN platform release (see bundleVersionPattern), so a
   // manifest can never pair a plugin release with a DSH revision it was not
   // built for.
-  if (!string(plugin.version, 'plugin.version').startsWith(`${string(dsh.tag, 'dsh.tag').replace(/^dsh-v/, '')}-openbkn.`)) {
+  // The plugin may name a reviewed compatible Host independently of the
+  // generator/build pin. The dual-host check validates that reviewed set.
+  const pluginHostVersion = plugin.hostVersion === undefined
+    ? string(dsh.tag, 'dsh.tag').replace(/^dsh-v/, '')
+    : string(plugin.hostVersion, 'plugin.hostVersion')
+  if (!['0.2.0-rc.2', '0.2.1-rc.3'].includes(pluginHostVersion)
+    || !string(plugin.version, 'plugin.version').startsWith(`${pluginHostVersion}-openbkn.`)) {
     fail('plugin.version must carry the pinned DSH version (<dsh-version>-openbkn.N)')
   }
   const artifact = string(plugin.artifact, 'plugin.artifact')

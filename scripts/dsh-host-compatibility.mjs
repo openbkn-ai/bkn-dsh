@@ -35,6 +35,11 @@ export function checkDshHostCompatibility(pkg, build, matrix = readDshHosts()) {
   }
   const primary = matrix.hosts.find(host => host.version === matrix.buildVersion)
   if (build.dsh?.tag !== primary.tag || build.dsh?.baseCommit !== primary.commit) throw new Error('DSH source build pin disagrees with the host matrix')
+  const releaseHostVersion = build.plugin?.hostVersion ?? matrix.buildVersion
+  if (!matrix.hosts.some(host => host.version === releaseHostVersion)
+    || !pkg.version?.startsWith(`${releaseHostVersion}-openbkn.`)) {
+    throw new Error('Plugin release identity must name one explicitly reviewed DSH host')
+  }
   if (pkg.dependencies?.zod !== '4.4.3') throw new Error('Zod must stay pinned to the reviewed DSH storage/Remote schema version')
   return matrix
 }

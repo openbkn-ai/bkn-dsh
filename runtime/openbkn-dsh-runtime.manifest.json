@@ -22,8 +22,9 @@
   },
   "plugin": {
     "packageName": "@openbkn/dsh-business-context",
-    "version": "0.2.0-rc.2-openbkn.0.2.0-32",
-    "artifact": "openbkn-dsh-business-context-0.2.0-rc.2-openbkn.0.2.0-32.tgz"
+    "version": "0.2.1-rc.3-openbkn.0.2.1",
+    "artifact": "openbkn-dsh-business-context-0.2.1-rc.3-openbkn.0.2.1.tgz",
+    "hostVersion": "0.2.1-rc.3"
   },
   "compatibility": {
     "directory": "compat/dsh-0.2.0-rc.2",

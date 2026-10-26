@@ -53,3 +53,4 @@ docs/evidence/openbkn020-compatibility10-20261012/mac-minimal/** -text
 docs/evidence/openbkn020-compatibility10-20261012/windows-minimal/** -text
 # Native PowerShell/cmd outputs keep CRLF and trailing blanks byte-for-byte.
 docs/evidence/openbkn020-compatibility10-20261012/windows-minimal/** whitespace=cr-at-eol,-blank-at-eol,-blank-at-eof
+/compat/mcp-profile-backport/*.tgz -text
