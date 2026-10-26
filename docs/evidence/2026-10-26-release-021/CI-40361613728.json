@@ -1,0 +1,32 @@
+{
+  "kind": "final-ci-build-only",
+  "run": 40361613728,
+  "headSha": "db68c80070f3475a1a460c3c9fca84d26944e198",
+  "url": "https://github.com/openbkn-ai/bkn-dsh/actions/runs/40361613728",
+  "conclusion": "success",
+  "publish": false,
+  "candidateVersion": "0.2.1-rc.3-openbkn.0.2.1",
+  "candidateSha256": "27ccf15c46e4f71ef850ee481e22556b70f4d4795e89d7d587a2e3210fc6b3e3",
+  "candidateBytes": 232091,
+  "candidateFiles": 82,
+  "matchesLocalBuild": "all files byte-identical except package.json formatting/key order; parsed objects equal",
+  "changedFromFrozen32": [
+    "README.md",
+    "README.zh.md",
+    "lib/business.js",
+    "package.json"
+  ],
+  "companionArchivesUnchanged": true,
+  "supersedes": [
+    40349578570,
+    40356656291
+  ],
+  "platformActual": "formal OpenBKN 0.2.0; release identity 0.2.1 only",
+  "notClaimed": [
+    "full real-model G6",
+    "real nonempty native provenance",
+    "global SDK/OAuth repair",
+    "Windows final-candidate acceptance",
+    "published npm or latest"
+  ]
+}

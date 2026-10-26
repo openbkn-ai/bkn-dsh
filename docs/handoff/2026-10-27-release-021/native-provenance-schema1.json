@@ -1,0 +1,20 @@
+{
+  "schema_version": "1", "interaction_id": "int-fixture", "status": "ready", "generated_at": "2026-10-18T03:00:00Z",
+  "view": {
+    "interactionId": "int-fixture", "question": "业务原文 Question", "answer": "业务原文 Answer", "status": "completed", "evidenceStatus": "partial", "generationStatus": "ready",
+    "requirements": [{"id":"r1","label":"需求原文","status":"partial","claimIds":["c1"]}],
+    "claims": [{"id":"c1","label":"结论原文","value":"42","status":"candidate","supportStatus":"partial","attributionStatus":"explicit","nodeIds":["n1","not-disclosed"],"requirementIds":["r1"]}],
+    "execution": {"nodes":[{"id":"x1","label":"查询原文","kind":"query"}],"edges":[]},
+    "evidence": {"nodes":[{"id":"n1","label":"来源原文","kind":"source","executionNodeId":"x1","value":"42"},{"id":"n2","label":"同值非关联","kind":"result","value":"42"}],"edges":[{"id":"e1","source":"n1","target":"not-disclosed","label":"服务器关系原文"}]},
+    "notices": ["平台缺口原文"],
+    "questionPairs": [{"id":"p1","question":"业务原文 Question","answer":"业务原文 Answer","summary":"业务问题原文","status":"partial","claimIds":["c1"]}],
+    "selectedPairGraphs": {"p1": {
+      "claims": [{"id":"c1","label":"结论原文","value":"42","status":"candidate","nodeIds":["n1","not-disclosed"]}],
+      "evidenceNodes": [{"id":"n1","label":"来源原文","kind":"source","value":"42"},{"id":"n2","label":"同值非关联","kind":"result","value":"42"}], "schemaNodes": [],
+      "businessFunctions": [{"id":"fn1","displayName":"业务函数原文","capabilityKind":"query","businessPurpose":"业务目的原文","businessInputs":[{"name":"条件原文","value":"A"}],"logicSummary":"处理原文","businessOutputs":[{"summary":"输出原文","evidenceRefs":["n1"],"adoptedRowRefs":[]}],"operationIds":["op1"],"supportsClaimIds":["c1"],"schemaRefs":[],"validationStatus":"candidate"}],
+      "executionSteps": [{"id":"step1","operationId":"op1","attempt":1,"businessRole":"query","interfaceName":"query_object_instance","status":"completed","timeRailItemId":"t1"}],
+      "edges": [{"edgeId":"pe1","kind":"support","fromId":"n1","toId":"c1","operationIds":["op1"],"validationStatus":"candidate"}]
+    }},
+    "timeRail": [{"id":"t1","order":1,"operation_id":"op1","attempt":1,"interface_name":"query_object_instance","protocol":"mcp","status":"completed","started_at":"2026-10-18T03:00:00Z","duration_ms":10,"input":{"mode":"inline","media_type":"application/json","byte_length":30,"inline":{"token":"MUST-NOT-CROSS"}}}]
+  }
+}

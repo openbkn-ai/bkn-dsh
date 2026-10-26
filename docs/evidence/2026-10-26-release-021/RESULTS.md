@@ -33,3 +33,15 @@ PR106的首轮审查批准了ed70cc4，但明确保留本线关闭登录与legac
 19ac084的CI40356656291因集中处理这些审查项而请求取消，不作发布候选；后续以包含全部修正的固定提交重新build-only。没有改版本号、冻结包或现有Host/平台，也没有重复UI/B1/G6。
 
 集中修正后本地全套：插件621pass/1平台skip，仓库73pass，原生/CSV受影响61pass，类型和82文件包审计通过。待提交固定最终CI；CI R1、R2及本地失败回归分别保留，不混用摘要。
+
+## 最终CI与按项收尾（2026-10-27）
+
+最终CI40361613728在db68c800成功、publish=false，前一轮40356656291实际cancelled。候选27ccf15c…6b3e3，232091B/82文件；与本地构建除package.json的等义格式/键序外逐字节相等；相对冻结-32只有business.js、package.json及两份README不同。不是R1仅元数据等价结果。两份companion仍是原摘要，client.js和其他生成实现不变。
+
+四个新隔离Mac实际npm/官方Electron Desktop后端均加载此CI包，3组件active、导出Service类身份、profile内protected MCP及manager已注册实例一致；每行公开打包Reader验证有效detail/explanation及4类拒绝，全部退出0、fixture关闭。没有GUI/UI/向量重跑；见MAC-FINAL-HOST.json。独立CSV ToolRuntime探针先因直接Node导入缺少Host模块映射失败，私有原件保留；仅旧npm在链接同一物理依赖后通过，其他3行未完成该独立探针，不冒称通过。正式CI两版npm的原CSV探针通过；本地新增星号向量已在实际旧npm ToolRuntime验证，源码61项受影响测试含缺content拒绝。
+
+此外对该CI包补一次真实平台只读正向：先遇到test_supply过期，未派发；仅在隔离副本恢复已授权登录，再在新rc.3 npm Host开原生Session，start→search_schema→finish。独立平台读回completed、唯一search_schema Operation，Host exit0/端口释放。没有模型、Function/run_code/Sandbox或业务数据写入；只新增测试会话/Interaction。原个人配置/Host/正式0.2.0和冻结包不改。见LIVE-FINAL-METADATA.json。
+
+独立评审对db68c800批准，CodeQL全部通过；3条inline意见已回复并解决，2项非阻断行为边界和schema语法/语义分工明确解释。#95/#96/#105/#107按自身标准关闭，#94保持；#93/#97仍等真实非空原生样本，#98保留历史未确认条件，#92/#99待总体验收/发布身份。Project阶段已按实际工作更新，计数和外部归属见ISSUE-AUDIT.json。
+
+本次没有全局安全豁免、依赖/Host升级或新GUI体系。Windows最终CI包只补四后端实际加载/profile/Reader及一处CSV变化边界，材料已准备并随本轮提交；旧UI/GUI/B1/向量不重跑。没有收到Windows最终包结果前不宣称其通过或迁移latest。main rehearsal和公开包逐文件身份继续作为发布门槛。

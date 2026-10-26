@@ -1,6 +1,18 @@
 # 0.2.1 当前剩余工作：六组收敛
 
-> 第73轮授权更新（2026-10-26）：用户已允许本线整合/推送、最终 build-only CI、审查合并及按既定门槛发布；此前“不推送/不跑CI/未授权”均为历史边界。本次版本为 `0.2.1-rc.3-openbkn.0.2.1`，不加后缀。实际平台仍为正式0.2.0，OpenBKN0.2.1尚无正式Release，不伪称已验；冻结包/现有Host/数据配置不改。#99、#105已进入Project 12 In progress；各issue按实际阶段与自身标准更新，CI/验收/发布尚未完成。
+## 当前发布状态（2026-10-27，第73轮）
+
+维护者已授权本线整合、推送、build-only CI、审查合并及按既定门槛发布；旧“不推送/不跑CI/尚未授权”仅为当时历史状态。发布包固定 `0.2.1-rc.3-openbkn.0.2.1`，不加复发后缀；OpenBKN0.2.1是本次发布标识，实际平台和CLI实测仍为正式0.2.0，不宣称平台0.2.1已验。冻结-30/-31/-32、现有Host/正式平台和原数据配置保留，不采用平行-11/-13包或其风险接受。
+
+最终build-only [CI40361613728](https://github.com/openbkn-ai/bkn-dsh/actions/runs/40361613728) 在 `db68c80070f3475a1a460c3c9fca84d26944e198` 成功、publish=false；包SHA256 `27ccf15c46e4f71ef850ee481e22556b70f4d4795e89d7d587a2e3210fc6b3e3`，232091B/82文件。该包在Mac两版npm/官方Electron Desktop后端实际加载/自动profile回补及公开Reader检查通过；新rc.3 npm另完成真实平台正向元数据回合，独立读回completed/唯一search_schema。没有模型/Sandbox。CI包相对冻结-32只有business.js、package.json及两份README不同，client.js及其余实现/生成文件逐字节相同；只补变化，不重跑UI/B1/G6/向量。
+
+- 已按自身标准关闭并移到Done：#94（既有）、#95、#96、#105、#107。新增原生集合晚拒绝和CSV输入缺陷均先留失败，再最小修补；Host/Zod/SDK未升级，安全告警未整体清除。
+- 保留OPEN：#92 In progress；#93/#97/#98 Validating；#99 Validating。#93/#97等待真实非空原生/新路由授权，由Foundry#2517分类；#98按自身标准保留未确认历史。D2/D3业务归属提报Foundry#2515/#2516/#2517均OPEN，原FAIL不改成PASS。
+- 发布剩余：提交本轮根文档/探针证据，独立审查合并、main rehearsal逐文件相等、按仓库规则rc发布及公开制品核对；Windows最终包只补加载/profile/原生读取和CSV变化边界，材料见 `docs/handoff/2026-10-27-release-021/`。Windows尚未回传前不移latest，不新增GUI发行体系或重复其已过GUI/UI/B1。
+- 范围计数：Project12插件条目10项，5项OPEN/5项CLOSED；仓库另有旧#62/#63开放但不在该Project，不能据源码推断其新CI实机标准已完成。全OpenBKN0.2.1跨仓库Project的只读 `is:issue is:open` 快照为91项，不等于本次插件有91项待办。
+
+上述是当前入口；以下第71轮及更早的“当前/未决/待授权/待回传”陈述保留历史身份，不覆盖本节。完整结果和证据见 [本轮发布记录](../../evidence/2026-10-26-release-021/RESULTS.md)。
+
 
 修订：2026-10-26，第71轮落实用户D2/D3归属原则、D5已知限制处置，并用用户新设测试身份完成D4供应链有权/世界杯无权的新场景。Windows e7b383b/b7941883与D1决定继续复用；历史原件和失败不改。
 
@@ -15,8 +27,8 @@
 | M1 #105实际交付闭环 | 冻结-32/profile回补的本轮最小验证已收尾：Mac第64/66轮复用，Windows r2真实业务自动加载、GUI启动、备份/手工受限恢复按报告PASS；D1已明确接受欢迎态官方X终止整树作为本轮最小退出依据。原菜单FAIL、exit code未观测及controller超时保留。配套payload/放置恢复说明随M5固定，不新建GUI发行体系。 |
 | M2 业务观察、归属及提报 | 已落实D2。旧销售错误提报[Foundry #2515](https://github.com/openbkn-ai/bkn-foundry/issues/2515)，字段混用提报[#2516](https://github.com/openbkn-ai/bkn-foundry/issues/2516)；两者保留模型/元数据/调用方归属未知，不擅称已证实平台服务缺陷。npm恢复在安全派发前被阻断，仍BLOCKED而非业务失败；Sandbox复用已有#2294/#2301/#2303跟踪。独立G6保留原判分，不再要求插件等上游修完或修正模型答案。主料alt_priority=0、去根399行/333种、PR/PO仅产品本身的业务基准不变。 |
 | M3 原生溯源平台依赖 | 已落实D3，提报[Foundry #2517](https://github.com/openbkn-ai/bkn-foundry/issues/2517)，请平台区分Community能力边界、部署配置及平台缺陷。真实非空原生联动仍未验，不冒充PASS，也不自动撤掉功能承诺；该外部样本/路由问题不再阻塞其他插件验收或推进。 |
-| M4 最终候选兼容与授权 | 最终候选仍待完成。同一候选覆盖声明支持的两Host×Mac/Windows×Desktop/npm加载/profile及受影响边界；历史包按原身份复用，只补缺口，不跑八份完整UI/G6/长时。D4新账户在实际rc.3 npm Host的有权/无权场景已通过，真实ToolRuntime权限守卫继续保留，不外推为全形态或原G6题11/11。 |
-| M5 正式候选及发布手续 | 待完成。本地收敛后另获授权，固定源码提交、build-only CI制品/摘要/逐文件身份，完成必要候选验收、审查及required checks，按各issue自身标准关单，公开包与候选一致，latest最后迁移。当前不推送、不跑CI、不发布。 |
+| M4 最终候选兼容与授权 | 最终CI包Mac实际加载/profile及正向平台只读通过；Windows最终包变化边界尚待回传。同一候选覆盖声明支持的两Host×Mac/Windows×Desktop/npm加载/profile及受影响边界；历史包按原身份复用，只补缺口，不跑八份完整UI/G6/长时。D4新账户在实际rc.3 npm Host的有权/无权场景已通过，真实ToolRuntime权限守卫继续保留，不外推为全形态或原G6题11/11。 |
+| M5 正式候选及发布手续 | 当前已获授权并执行，CI40361613728成功；继续固定源码提交、build-only CI制品/摘要/逐文件身份，完成必要候选验收、审查及required checks，按各issue自身标准关单，公开包与候选一致，latest最后迁移。尚未宣称已发布；latest最后迁移。 |
 
 ## 集中决策清单
 

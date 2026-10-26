@@ -1,0 +1,53 @@
+{
+  "date": "2026-10-27 Asia/Taipei",
+  "project": 12,
+  "pluginProjectTotal": 10,
+  "pluginProjectOpen": [
+    92,
+    93,
+    97,
+    98,
+    99
+  ],
+  "pluginProjectClosed": [
+    94,
+    95,
+    96,
+    105,
+    107
+  ],
+  "thisRunClosed": [
+    95,
+    96,
+    105,
+    107
+  ],
+  "stage": {
+    "92": "In progress",
+    "93": "Validating; external native sample/authorization pending",
+    "97": "Validating; external native relation cross-check pending",
+    "98": "Validating; historical unknown remains open",
+    "99": "Validating; final Windows/archive/release gates",
+    "94": "Done",
+    "95": "Done",
+    "96": "Done",
+    "105": "Done",
+    "107": "Done"
+  },
+  "repoOpenOutsideProject": [
+    62,
+    63
+  ],
+  "whyOutsideRemainOpen": {
+    "62": "new-CI R4/R5 authorized source-field and UI end-to-end criterion not revalidated this turn",
+    "63": "new-CI Desktop/npm S2 Remote brands/UI/JSON plus Windows W3 criterion not revalidated this turn"
+  },
+  "externalFoundryOpen": [
+    2515,
+    2516,
+    2517
+  ],
+  "externalOwnership": "business/model/platform findings retained; no answer arbitration, upstream completion not a plugin-wide stop",
+  "wholeCrossRepoProjectOpenIssueSnapshot": 91,
+  "scopeNote": "whole-project count is not the plugin backlog; no claim that all cross-repo owners were investigated"
+}

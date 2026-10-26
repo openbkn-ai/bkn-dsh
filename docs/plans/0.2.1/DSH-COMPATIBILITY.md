@@ -1,5 +1,19 @@
 # 0.2.1 新增需求：DSH 双版本兼容
 
+## 当前发布状态（2026-10-27，第73轮）
+
+维护者已授权本线整合、推送、build-only CI、审查合并及按既定门槛发布；旧“不推送/不跑CI/尚未授权”仅为当时历史状态。发布包固定 `0.2.1-rc.3-openbkn.0.2.1`，不加复发后缀；OpenBKN0.2.1是本次发布标识，实际平台和CLI实测仍为正式0.2.0，不宣称平台0.2.1已验。冻结-30/-31/-32、现有Host/正式平台和原数据配置保留，不采用平行-11/-13包或其风险接受。
+
+最终build-only [CI40361613728](https://github.com/openbkn-ai/bkn-dsh/actions/runs/40361613728) 在 `db68c80070f3475a1a460c3c9fca84d26944e198` 成功、publish=false；包SHA256 `27ccf15c46e4f71ef850ee481e22556b70f4d4795e89d7d587a2e3210fc6b3e3`，232091B/82文件。该包在Mac两版npm/官方Electron Desktop后端实际加载/自动profile回补及公开Reader检查通过；新rc.3 npm另完成真实平台正向元数据回合，独立读回completed/唯一search_schema。没有模型/Sandbox。CI包相对冻结-32只有business.js、package.json及两份README不同，client.js及其余实现/生成文件逐字节相同；只补变化，不重跑UI/B1/G6/向量。
+
+- 已按自身标准关闭并移到Done：#94（既有）、#95、#96、#105、#107。新增原生集合晚拒绝和CSV输入缺陷均先留失败，再最小修补；Host/Zod/SDK未升级，安全告警未整体清除。
+- 保留OPEN：#92 In progress；#93/#97/#98 Validating；#99 Validating。#93/#97等待真实非空原生/新路由授权，由Foundry#2517分类；#98按自身标准保留未确认历史。D2/D3业务归属提报Foundry#2515/#2516/#2517均OPEN，原FAIL不改成PASS。
+- 发布剩余：提交本轮根文档/探针证据，独立审查合并、main rehearsal逐文件相等、按仓库规则rc发布及公开制品核对；Windows最终包只补加载/profile/原生读取和CSV变化边界，材料见 `docs/handoff/2026-10-27-release-021/`。Windows尚未回传前不移latest，不新增GUI发行体系或重复其已过GUI/UI/B1。
+- 范围计数：Project12插件条目10项，5项OPEN/5项CLOSED；仓库另有旧#62/#63开放但不在该Project，不能据源码推断其新CI实机标准已完成。全OpenBKN0.2.1跨仓库Project的只读 `is:issue is:open` 快照为91项，不等于本次插件有91项待办。
+
+上述是当前入口；以下第71轮及更早的“当前/未决/待授权/待回传”陈述保留历史身份，不覆盖本节。完整结果和证据见 [本轮发布记录](../../evidence/2026-10-26-release-021/RESULTS.md)。
+
+
 ## 当前兼容任务边界（2026-10-26）
 
 执行 [六组工作第5组及五项最小发布清单](REMAINING-WORK.md)；旧0.2.0-rc.2/639ed015与新0.2.1-rc.3/1f81c047及冻结-32不变。八组合保留真实安装/加载/profile和变化路径验证，共享测试复用，不扩为八份G6/UI/长时或升级矩阵。Windows非GUI8f94288f两版Node/npm及匹配Electron后端stock/protected最终8/8继续复用；rc.3运行根/82文件/闭包按报告接收，实际JSON中的Host/Node/Electron/MCP入口及合成对照已有独立核对。

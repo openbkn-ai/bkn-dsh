@@ -1,6 +1,6 @@
 # Changelog
 
-## 0.2.1-rc.3-openbkn.0.2.1 (unreleased)
+## 0.2.1-rc.3-openbkn.0.2.1 (2026-10-27)
 
 - Consolidate the 0.2.1 feature commits and local implementation on the latest main history while preserving this release line's verified native provenance, login, focus, locale and scoped CSV-delivery behavior. Do not adopt the parallel -11/-13 package or its different modal-dismissal policy.
 - Name the plugin for DSH 0.2.1-rc.3 and the requested OpenBKN 0.2.1 version identity without a republish suffix. Keep both reviewed Host versions and the independent old generator pin; actual retained-platform verification remains OpenBKN 0.2.0/CLI 0.2.0, not an OpenBKN 0.2.1 platform acceptance claim. The maintainer explicitly confirmed this naming interpretation.
@@ -8,7 +8,8 @@
 - Keep business answers under model/OpenBKN ownership. Sales and field-label observations are tracked by Foundry #2515/#2516; native-route availability and the unverified nonempty explanation are tracked by #2517 in the 0.2.1 Project. Retain original FAIL/BLOCKED verdicts without adding answer arbitration or corrective turns.
 - Record the real restricted-account allow/deny case as scoped PASS. Retain historical runner/browser and menu findings, browser trust and macOS association evidence limits. The Windows rc.3 welcome-window X is accepted only for that owned-tree exit; the original menu FAIL, controller timeout, manual restore and unobserved exit code remain recorded.
 - Mitigate GHSA-mrhx-c7xc-m3w5 on this plugin's native reader: check the existing 21 array limits and 64-entry selected-pair-graph limit before validating child values. Preserve accepted data, Zod 4.4.3 and Host pins; oversize failures retain their explicit budget classification. Stock Host/dependency advisories remain open, not globally fixed.
-- Final fixed-CI-candidate acceptance, independent review, public-package identity and latest promotion are still pending; no publication is claimed by these notes.
+- Refuse missing/malformed executor content with a controlled CSV error and reject Windows-invalid star filenames before dispatch or file creation. Preserve the original CSV bytes and business content.
+- Fixed build-only CI 40361613728 and the affected Mac Node/Electron backend checks pass, including one real formal-0.2.0 metadata round with completed platform readback. Reuse existing GUI/UI/B1/MCP-vector evidence with its original identity. Windows final-candidate affected checks remain a separate supplement; publication starts on rc, and latest stays gated until the declared forms and artifact identities are verified.
 
 
 All notable changes to this project are documented here.

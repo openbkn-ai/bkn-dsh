@@ -108,6 +108,7 @@ async function scenario(captureDisabled) {
       ['missing context', { kn_id: args.kn_id, path: args.path }],
       ['different Interaction', { ...input, bkn_context: { ...runContext, interaction_id: 'other' } }],
       ['different Conversation', { ...input, bkn_context: { ...runContext, conversation_id: 'other' } }],
+      ['Windows star filename', { ...input, path: 'q*.csv' }],
       ['path traversal', { ...input, path: '../other.csv' }],
       ['absolute path', { ...input, path: '/other.csv' }],
       ['URL source', { ...input, path: 'https://other/file.csv' }],
