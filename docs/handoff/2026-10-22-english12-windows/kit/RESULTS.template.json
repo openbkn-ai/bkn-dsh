@@ -1,0 +1,185 @@
+{
+  "schema": 1,
+  "pluginVersion": "0.2.0-rc.2-openbkn.0.2.0-12",
+  "dshVersion": "0.2.0-rc.2",
+  "tester": "",
+  "testedAt": "",
+  "platform": {
+    "baseUrl": "",
+    "version": "0.2.0",
+    "cliVersion": "0.2.0",
+    "contractReviewEvidence": ""
+  },
+  "requiredCases": [
+    "E00",
+    "E01",
+    "E02",
+    "E03",
+    "E04",
+    "E05",
+    "E06",
+    "E07",
+    "E08",
+    "E09",
+    "E10"
+  ],
+  "anomalies": [],
+  "forms": {
+    "desktop": {
+      "manualConfirmed": false,
+      "hostReceipt": "desktop/after-locale-host.json",
+      "restartReceipts": [
+        "desktop/restart-en-host.json",
+        "desktop/restart-zh-host.json"
+      ],
+      "cases": [
+        {
+          "id": "E00",
+          "status": "NOT_RUN",
+          "evidence": [],
+          "notes": ""
+        },
+        {
+          "id": "E01",
+          "status": "NOT_RUN",
+          "evidence": [],
+          "notes": ""
+        },
+        {
+          "id": "E02",
+          "status": "NOT_RUN",
+          "evidence": [],
+          "notes": ""
+        },
+        {
+          "id": "E03",
+          "status": "NOT_RUN",
+          "evidence": [],
+          "notes": ""
+        },
+        {
+          "id": "E04",
+          "status": "NOT_RUN",
+          "evidence": [],
+          "notes": ""
+        },
+        {
+          "id": "E05",
+          "status": "NOT_RUN",
+          "evidence": [],
+          "notes": ""
+        },
+        {
+          "id": "E06",
+          "status": "NOT_RUN",
+          "evidence": [],
+          "notes": ""
+        },
+        {
+          "id": "E07",
+          "status": "NOT_RUN",
+          "evidence": [],
+          "notes": ""
+        },
+        {
+          "id": "E08",
+          "status": "NOT_RUN",
+          "evidence": [],
+          "notes": ""
+        },
+        {
+          "id": "E09",
+          "status": "NOT_RUN",
+          "evidence": [],
+          "notes": ""
+        },
+        {
+          "id": "E10",
+          "status": "NOT_RUN",
+          "evidence": [],
+          "notes": ""
+        }
+      ],
+      "cleanupReceipt": "desktop/cleanup.json",
+      "additionalEvidence": []
+    },
+    "npm": {
+      "manualConfirmed": false,
+      "hostReceipt": "npm/after-locale-host.json",
+      "restartReceipts": [
+        "npm/restart-en-host.json",
+        "npm/restart-zh-host.json"
+      ],
+      "cases": [
+        {
+          "id": "E00",
+          "status": "NOT_RUN",
+          "evidence": [],
+          "notes": ""
+        },
+        {
+          "id": "E01",
+          "status": "NOT_RUN",
+          "evidence": [],
+          "notes": ""
+        },
+        {
+          "id": "E02",
+          "status": "NOT_RUN",
+          "evidence": [],
+          "notes": ""
+        },
+        {
+          "id": "E03",
+          "status": "NOT_RUN",
+          "evidence": [],
+          "notes": ""
+        },
+        {
+          "id": "E04",
+          "status": "NOT_RUN",
+          "evidence": [],
+          "notes": ""
+        },
+        {
+          "id": "E05",
+          "status": "NOT_RUN",
+          "evidence": [],
+          "notes": ""
+        },
+        {
+          "id": "E06",
+          "status": "NOT_RUN",
+          "evidence": [],
+          "notes": ""
+        },
+        {
+          "id": "E07",
+          "status": "NOT_RUN",
+          "evidence": [],
+          "notes": ""
+        },
+        {
+          "id": "E08",
+          "status": "NOT_RUN",
+          "evidence": [],
+          "notes": ""
+        },
+        {
+          "id": "E09",
+          "status": "NOT_RUN",
+          "evidence": [],
+          "notes": ""
+        },
+        {
+          "id": "E10",
+          "status": "NOT_RUN",
+          "evidence": [],
+          "notes": ""
+        }
+      ],
+      "cleanupReceipt": "npm/cleanup.json",
+      "additionalEvidence": []
+    }
+  }
+}

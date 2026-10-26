@@ -124,6 +124,49 @@ All notable changes to this project are documented here.
 - Add source-derived formal schemas and lifecycle examples, with pinned source digests and executable upstream pure Go projections. Source fixtures do not establish live platform compatibility.
 - Release gates remain open: fixed build-only CI artifact, two DSH versions on Mac/Windows Desktop/npm, formal local-platform identity and valid login, B1 reproduction, real-platform/model G6, human review and anomaly triage. No publication or dist-tag change has occurred.
 
+## 0.2.0-rc.2-openbkn.0.2.0-13
+
+Host-adaptive Chinese/English UI and modal-state recovery for official DSH 0.2.0-rc.2 with OpenBKN 0.2.0. This release combines the English UI introduced in -11, the accepted -12 recovery fixes, and the final Chinese provenance-copy correction.
+
+- Follow the DSH language preference across the plugin entry, network directory, settings/CLI setup, diagnostics, context card, session suggestion and existing provenance tabs. Platform-owned text, business values, IDs and model output remain verbatim.
+- Preserve unsaved settings, validation errors, network search/expansion, the last diagnostics report and the current provenance tab/selection when a Desktop modal is dismissed to change the Host language. Explicit Back and refresh actions retain their documented behavior.
+- Keep one pending CLI login across modal dismissal and synchronize its completion without requiring Refresh status. This does not change the CLI authentication protocol or add automatic login retries.
+- Complete plugin-owned Chinese provenance reference labels and the platform-execution explanation; retain the English explanation and fix the space after “Platform URL:”. Keep text and close controls readable on white dialogs under a dark Host theme.
+- Retain the DSH 0.2.0-rc.2 pin, runtime dependencies and six Host/Remote JavaScript files from -11. The unfinished 0.2.1 compatibility, native provenance and CSV-export work is not included.
+
+Acceptance: the exact -13 CI candidate was checked on macOS and native Windows, Desktop and npm/Web. Windows target-copy evidence is complete; unchanged -11/-12 behavior reuses its reviewed baseline. See the [release acceptance record](docs/evidence/2026-10-24-english13-release-preparation/RESULTS.md) and [release notes](docs/releases/2026-10-24-english13-notes.md). This is not a fresh full business/model G6 run or acceptance of every live-data branch.
+
+Known limitations:
+
+- Windows login command carrier processes may remain until the Host exits; Ctrl+C may leave the npm/Web Host running. These are retained known issues. Stop only the identified test Host tree when needed.
+- Desktop overlays remain modal: close the overlay, change the Host language, then reopen. The release does not claim that Host settings can be changed while a modal stays open.
+- Live counted-timeline and nonempty-graph selection cases remain BLOCKED where the available data does not exercise them. Web diagnostics may report unknown Host form or unavailable loaded-version metadata; exported nulls are preserved.
+- The pinned DSH MCP peer stack uses `@modelcontextprotocol/client@2.0.0`, with open upstream [OAuth issuer-binding](https://github.com/advisories/GHSA-6qxp-vccf-f47h) and [cross-origin redirect](https://github.com/advisories/GHSA-6prh-2h8m-c8cw) advisories. The SDK is supplied by DSH, not bundled in this plugin. This plugin uses an explicit bearer header rather than an SDK OAuth provider, but HTTP transport redirect exposure is not claimed to be fixed. Host/SDK remediation requires a separate reviewed compatibility change; do not silently update this accepted artifact.
+- A self-signed platform requires the correct signing CA in the Node trust configuration before starting DSH/CLI. The Windows TLS failure was addressed by correcting the local CA bundle, not by disabling verification or changing plugin code. Device authorization must finish within the platform-provided expiry window.
+- The specifically identified A7 duplicate-start error is an expected guard refusal while an interaction is already open. Keep the original error and dispatch=unknown; no guard relaxation is included. Historical unretained response/process details remain unknown.
+
+## 0.2.0-rc.2-openbkn.0.2.0-12
+
+Review candidate based on published -11. Supports official DSH 0.2.0-rc.2.
+
+- Preserve unsaved settings, validation messages, network search and expansion when the OpenBKN modal is dismissed to change the Desktop Host language. An explicit Back to networks action discards the draft without saving and returns to the directory.
+- Keep a single pending CLI login across modal dismissal and synchronize its completion without reopening the modal. Service replacement still invalidates old requests; canceled workspace selection and configuration saves retain their existing safety boundaries.
+- Preserve the last diagnostics report and the same turn's provenance tab/graph selection across dismissal; use explicit refresh to collect new diagnostics or reload the network directory.
+- Keep text and the close control readable on white plugin dialogs under a dark Host theme.
+- Translate plugin-owned provenance reference labels and their explanatory sentence in Chinese, and add the missing English space after “Platform URL:”. Platform facts, IDs, status values and model answers remain verbatim.
+
+This candidate has not been published to npm. Windows delta evidence supports the tested state/login recovery paths; publication and promotion remain on hold. The Chinese explanatory-sentence follow-up is a source change after the accepted CI artifact, so the original -12 package and its evidence remain unchanged and do not include that follow-up.
+
+Known Windows issues retained at the maintainer's request: the login command's cmd/node children exit, while its carrier process can remain until the Host exits; Ctrl+C can leave the npm/Web Host running even without a Tee-Object pipeline. These behaviors are not fixed or uniquely attributed by this release. Stop only the recorded test Host tree when needed. npm Host identification metadata remains unknown where authoritative data is unavailable. The isolated local start/continue error was subsequently triaged as an expected duplicate-start guard denial; see -13 for the evidence limits. Nonempty graph and counted-timeline coverage from controlled renderer fixtures remains distinct from live-platform acceptance.
+
+## 0.2.0-rc.2-openbkn.0.2.0-11 (2026-10-22)
+
+- Add English translations to the existing OpenBKN entry, network directory, settings and CLI setup, diagnostics, context-tool card, session suggestion and all three existing provenance tabs.
+- Follow the native DSH language preference through its public locale registry. Switching Chinese/English updates already-open views and displayed errors without new authentication/platform reads, repeated login, lost form input or reset provenance selection.
+- This is a localization-only release based on published `v0.2.0-rc.2-openbkn.0.2.0-10` (`5b885dd7492fd42951b21729984f0d1e99da8b0d`). The six published Host/business/diagnostics/Remote JavaScript files are byte-identical to -10; only the client JavaScript, client declarations, resources, documentation and version metadata change. Runtime dependency and DSH compatibility pins stay unchanged (`0.2.0-rc.2`).
+- Platform-owned text, business facts, identifiers, exported diagnostic JSON and model output remain verbatim. The unfinished development branch's login lifecycle, native provenance, CSV export, access-policy and dual-host changes are not included.
+- Verification and candidate identities are recorded in [the English release evidence](docs/evidence/2026-10-22-english-11/RESULTS.md). npm publishes to `rc` first. Windows acceptance of this exact candidate and promotion of npm `latest` remain separate gates; this release does not claim a fresh full-platform/model G6 run or new Windows runtime acceptance. Existing -10 limitations, including its historical B1 authentication anomaly, remain applicable.
+
 ## 0.2.0-rc.2-openbkn.0.2.0-10 (2026-10-13)
 
 - Diagnostics now displays Windows/macOS/Linux names and explains unavailable host-form and version fields. Exported identifiers and nulls remain unchanged; disk and loaded versions are kept separate.
