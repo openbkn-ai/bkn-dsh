@@ -1,0 +1,18 @@
+[
+  {
+    "key": "npm-old",
+    "pid": 73295,
+    "port": 38651,
+    "backendExited": true,
+    "portFree": true,
+    "stop": "SIGTERM after PID/start/exe/listener identity checks"
+  },
+  {
+    "key": "npm-new",
+    "pid": 73304,
+    "port": 38652,
+    "backendExited": true,
+    "portFree": true,
+    "stop": "SIGTERM after PID/start/exe/listener identity checks"
+  }
+]

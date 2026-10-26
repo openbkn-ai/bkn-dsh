@@ -1,0 +1,103 @@
+{
+  "checked_at": "2026-10-19T16:48:50.181026+00:00",
+  "platform": "https://192.168.50.129",
+  "hosts": [
+    {
+      "host": "0.2.0-rc.2",
+      "native_session_id": "session-9a8f6ab5-fe58-4f85-b2b7-2f815d74473d",
+      "question": "查询 382-000005 的 BOM 清单，每个物料的使用量，以及每个物料的库存情况",
+      "response_models": [
+        "deepseek-flash"
+      ],
+      "turn_end": "completed",
+      "tool_count": 33,
+      "failed_tool_names": [
+        "bash",
+        "mcp__openbkn__run_cypher",
+        "mcp__openbkn__run_code",
+        "mcp__openbkn__run_code",
+        "mcp__openbkn__run_code",
+        "mcp__openbkn__run_code"
+      ],
+      "catalogues": [
+        {
+          "tool_count": 27,
+          "csv_offered": true
+        },
+        {
+          "tool_count": 55,
+          "csv_offered": true
+        },
+        {
+          "tool_count": 55,
+          "csv_offered": true
+        }
+      ],
+      "exports": [
+        {
+          "is_error": false,
+          "path": "/Users/dominiczhang/Documents/project/app/openBKN/bkn-dsh/release/ci-41507f9/workspaces/supply-old/openbkn-cac43f95-c6c0-4633-96fe-6b1fdd8800c2-bom_inventory_382-000005.csv",
+          "bytes": 60351,
+          "sha256": "80f9822aa26932d2865aed4923bf120c7fd28a49d83b320e6c791c220e3be798",
+          "source_path": "bom_inventory_382-000005.csv"
+        }
+      ],
+      "conversation_ids": [
+        "conv_9df8405c456aedae6287e9b73d224641"
+      ],
+      "interaction_ids": [
+        "int_46a6265997803fff1bfd4c78a814c7c4"
+      ],
+      "starts": 1,
+      "finishes": 1
+    },
+    {
+      "host": "0.2.1-rc.2",
+      "native_session_id": "session-ab7a552d-4877-474d-8dd3-485ff237dd11",
+      "question": "查询 382-000005 的 BOM 清单，每个物料的使用量，以及每个物料的库存情况",
+      "response_models": [
+        "deepseek-flash"
+      ],
+      "turn_end": "completed",
+      "tool_count": 21,
+      "failed_tool_names": [
+        "bash",
+        "mcp__openbkn__run_code",
+        "mcp__openbkn__run_code",
+        "mcp__openbkn__run_code",
+        "present"
+      ],
+      "catalogues": [
+        {
+          "tool_count": 32,
+          "csv_offered": true
+        },
+        {
+          "tool_count": 60,
+          "csv_offered": true
+        },
+        {
+          "tool_count": 60,
+          "csv_offered": true
+        }
+      ],
+      "exports": [
+        {
+          "is_error": false,
+          "path": "/Users/dominiczhang/Documents/project/app/openBKN/bkn-dsh/release/ci-41507f9/workspaces/supply-new/openbkn-e935243c-3aab-4077-90f8-3d53c319b6c1-382-000005_BOM清单与库存.csv",
+          "bytes": 107887,
+          "sha256": "017bc8e7cbc73c4f6a45e6a3c095112e1f86f5f1dd504499dfddbba73f6f2b88",
+          "source_path": "382-000005_BOM清单与库存.csv"
+        }
+      ],
+      "conversation_ids": [
+        "conv_c18bf599528f539310e9251401d8df12"
+      ],
+      "interaction_ids": [
+        "int_1c8ba1af86572da55456840d538f7a5c"
+      ],
+      "starts": 1,
+      "finishes": 1
+    }
+  ]
+}

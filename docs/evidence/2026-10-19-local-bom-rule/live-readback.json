@@ -1,0 +1,113 @@
+{
+  "checked_at": "2026-10-19T15:54:03.088Z",
+  "records": [
+    {
+      "host": "0.2.0-rc.2",
+      "interaction_id": "int_f0953843136084a8c9e1478f178e0ee3",
+      "calls": {
+        "standard": {
+          "status": 200,
+          "execution_status": "completed",
+          "returned_id": "int_f0953843136084a8c9e1478f178e0ee3"
+        },
+        "operations": {
+          "status": 200,
+          "count": 31,
+          "tool_names": [
+            "01a11f4e-fb6a-7d44-8fd4-f1585cb3a016",
+            "01a11f4e-fb6a-7d44-8fd4-f1585cb3a016",
+            "01a11f4e-fb6a-7d44-8fd4-f1585cb3a016",
+            "01a11f4e-fb6a-7d44-8fd4-f1585cb3a016",
+            "execute_tool",
+            "execute_tool",
+            "execute_tool",
+            "execute_tool",
+            "get_kn_detail",
+            "get_object_types",
+            "query_object_instance",
+            "query_object_instance",
+            "query_object_instance",
+            "query_object_instance",
+            "query_object_instance",
+            "query_object_instance",
+            "query_object_instance",
+            "query_object_instance",
+            "query_object_instance",
+            "query_object_instance",
+            "query_object_instance",
+            "run_code",
+            "run_code",
+            "run_code",
+            "run_code",
+            "run_code",
+            "run_code",
+            "run_code",
+            "run_code",
+            "run_code",
+            "search_capabilities"
+          ]
+        },
+        "native_detail": {
+          "status": 404
+        },
+        "native_explanations": {
+          "status": 404
+        }
+      }
+    },
+    {
+      "host": "0.2.1-rc.2",
+      "interaction_id": "int_808d14c59a7b853c693f6881740f1c5b",
+      "calls": {
+        "standard": {
+          "status": 200,
+          "execution_status": "completed",
+          "returned_id": "int_808d14c59a7b853c693f6881740f1c5b"
+        },
+        "operations": {
+          "status": 200,
+          "count": 26,
+          "tool_names": [
+            "01a11f4e-fb6a-7d44-8fd4-f1585cb3a016",
+            "01a11f4e-fb6a-7d44-8fd4-f1585cb3a016",
+            "01a11f4e-fb6a-7d44-8fd4-f1585cb3a016",
+            "execute_tool",
+            "execute_tool",
+            "execute_tool",
+            "get_kn_detail",
+            "get_object_types",
+            "query_object_instance",
+            "query_object_instance",
+            "query_object_instance",
+            "query_object_instance",
+            "query_object_instance",
+            "query_object_instance",
+            "query_object_instance",
+            "query_object_instance",
+            "query_object_instance",
+            "query_object_instance",
+            "query_object_instance",
+            "query_object_instance",
+            "run_code",
+            "run_code",
+            "run_code",
+            "run_code",
+            "run_code",
+            "search_capabilities"
+          ]
+        },
+        "native_detail": {
+          "status": 404
+        },
+        "native_explanations": {
+          "status": 404
+        }
+      }
+    }
+  ],
+  "capture": {
+    "status": 200,
+    "desired_state": "enabled",
+    "effective_state": "enabled"
+  }
+}

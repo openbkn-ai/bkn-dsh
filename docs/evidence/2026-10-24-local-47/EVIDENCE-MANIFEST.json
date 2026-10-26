@@ -1,0 +1,26 @@
+{
+  "files": {
+    "RESULTS.md": "a2ca428e88e48bf45d3be0a742013d1ad468b3e7f8fb33f3e2a019a09a6b012e",
+    "input-verification.json": "f77b460ff0a47d17bfaf4e289a7f776126388acfc6c94516d0ce80d637013d45",
+    "issues-current.json": "4cbaaa8752cdf0637e44a8c3c1c5cbb3b3c4d8e5c0e261256757d77e40b1cadd",
+    "preservation.json": "6b091ac97077452c7c270e7e29f7721208058c429401d7ced03313052e81ca85",
+    "upstream-delta.json": "60459bc635f6b10af82c5863505f51c2d9ffe61a4b20a8f5856535fe11f874e9",
+    "upstream-state.json": "cc99c3f9a6d379f1eaaabf8125cad2288fa7000a8d6da92d78410610bde07dd7",
+    "windows-r3-reported-results.json": "897093b2dd9f4055fb7a2cdd053d1c2602ab4f4e45aa86332feabc94053c9846"
+  },
+  "relatedDocuments": {
+    "docs/plans/0.2.1/ISSUE-WORKFLOW.md": "daa4ad47dcef9e35e2046a4a4ad0597cb4ea4dfbd7405e18561ab13113e7daa4"
+  },
+  "secretScan": {
+    "patterns": [
+      "private-key",
+      "jwt",
+      "github-token",
+      "provider-key",
+      "bearer-value",
+      "credential-url"
+    ],
+    "files": 8,
+    "hits": []
+  }
+}

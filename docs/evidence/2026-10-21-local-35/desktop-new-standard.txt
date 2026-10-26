@@ -1,0 +1,99 @@
+The following is a diff from the previous accessibility tree for Window: "382-000005 标准交期查询 — DeepSeek Harness" with ~ and + representing changed and added elements, respectively. Removed elements are summarized by ID range.
+Removed element IDs: 16-20, 40-51, 65
+~0 standard window 382-000005 标准交期查询 — DeepSeek Harness, Secondary Actions: Raise
+~	1 container 382-000005 标准交期查询 — DeepSeek Harness
+~			3 HTML content 382-000005 标准交期查询 — DeepSeek Harness, URL: dsh-app://app/
++						67 row native-picker-new
++							68 text native-picker-new
+~							60 row Completed 382-000005 标准交期查询 2min
+~								61 text Completed 382-000005 标准交期查询 2min
+~							62 row Completed Untitled 4min
+~								63 text Completed Untitled 4min
+~							64 row (selected) 382-000005 标准交期查询 5min
++								69 text 382-000005 标准交期查询 5min
+~							28 row R34 B1 native Desktop protocol check Session actions for R34 B1 native Desktop protocol check Archive session Pin session
+~								29 text R34 B1 native Desktop protocol check
++								70 container
++									71 button Session actions for R34 B1 native Desktop protocol check
++									72 button Archive session
++									73 button Pin session
++					74 container
++						75 container Session hierarchy
++							76 text 382-000005 标准交期查询
++						77 text Standard mode
++						78 text 供应链本体知识网络-手工版
++						79 button Open in Finder
++						80 pop up button More ways to open
++						81 pop up button More actions
++						82 button Open right sidebar
++						83 tab group
++							84 tab (selected) Chat, Value: 1
++							85 tab (settable, integer) Trajectory, Value: 0
++					86 container
++						87 container
++							88 text 382-000005 的标准交期？ 23:10
++							89 button Copy
++							90 text Completed
++							91 button Completed in 15s
++								92 text Completed in 
++								93 text 15
++								94 text s
++							95 text 382-000005（北斗导航农机驾驶仪）的标准交期为 1 天。
++							96 text 依据：物料主档（
++							97 text supply_ontology_hand_material
++							98 text ）中 
++							99 text material_code = 382-000005
++							100 text  的记录仅 1 条：
++							101 table
++								102 row
++									103 column header
++										104 text 字段
++									105 column header
++										106 text 值
++								107 row
++									108 cell
++										109 text 物料属性
++									110 cell
++										111 text 自制
++								112 row
++									113 cell
++										114 text 存货类别 / 产品状态
++									115 cell
++										116 text 库存商品-产成品 / 已上架
++								117 row
++									118 cell
++										119 text 生产固定提前期 
++										120 text product_fixedleadtime
++									121 cell
++										122 text 1
++										123 text （天）
++								124 row
++									125 cell
++										126 text 采购固定提前期 
++										127 text purchase_fixedleadtime
++									128 cell
++										129 text 1（天）
++							130 text 判定标准：该网络中物料对象的定义写明，自制件（含产成品、半成品）的标准交期取「生产固定提前期」，外购件才取「采购固定提前期」；因此这里的标准交期按 
++							131 text 1 天
++							132 text 计。采购提前期恰好也是 1，但两者数值相同并不能说明它属于采购口径。单据上的预计到货日期是另一个字段，不在本次口径内。 范围说明：只核对这一个确切编码在物料主档中的记录（命中 1 条），未展开 BOM、未查其他物料，也无权限受限提示。
++							133 button Copy
++							134 toggle button Description: Good response, Value: 0
++							135 toggle button Description: Bad response, Value: 0
++							136 button View business provenance, Help: View OpenBKN provenance for this answer
++							137 button Branch into a new conversation
++							138 pop up button Usage 354K tok
++							139 text 23:10
++						140 container
++							141 text entry area (settable) Message or run a task, / commands, @ files or sessions
++							142 pop up button Add files or run commands
++							143 button Access mode, current: Workspace Write
++							144 pop up button Select model, current deepseek_chat
++							145 button (disabled) Send message
++							146 pop up button 1 turns 7 steps · 337 tok/s
++								147 text 1 turns 7 steps
++								148 text 337 tok/s
++							149 pop up button 354K tok · Cache hit 75%
++								150 text 354K tok
++								151 text Cache hit 75%
++							152 pop up button 5% of context used
+The focused UI element is 141 text entry area (settable) Message or run a task, / commands, @ files or sessions

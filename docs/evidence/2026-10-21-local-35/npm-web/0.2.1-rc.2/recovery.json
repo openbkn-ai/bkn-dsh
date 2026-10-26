@@ -1,0 +1,85 @@
+{
+  "form": "npm-web",
+  "host": "0.2.1-rc.2",
+  "case_id": "recovery",
+  "session_id": "session-e90f022b-89e1-492e-8225-dd36143442bf",
+  "turn": 2,
+  "question": "382-000005 的标准交期？",
+  "started_at": "2026-10-21T15:00:26.807156+00:00",
+  "finished_at": "2026-10-21T15:00:41.292021+00:00",
+  "response_models": [
+    "deepseek-flash"
+  ],
+  "real_model_response_observed": true,
+  "model_configured_real": true,
+  "turn_end_kind": "completed",
+  "error_message": null,
+  "tool_calls": [
+    {
+      "name": "bash",
+      "arguments": "{\"command\":\"echo check\",\"description\":\"No-op check\"}",
+      "callId": "call_00_BQ6HnSvTFLWzIXidY8Dg3236"
+    },
+    {
+      "name": "mcp__openbkn__bkn_start_interaction",
+      "arguments": "{\"conversation_mode\":\"new\",\"question\":\"382-000005 的标准交期？\",\"agent_name\":\"bkn-agent-dsh-business-context\"}",
+      "callId": "call_00_1zaefKCXA9g9ViUQ23xE6648"
+    },
+    {
+      "name": "mcp__openbkn__search_capabilities",
+      "arguments": "{\"kn_id\":\"supply_ontology_hand\",\"query\":\"标准交期 物料 供应商 采购提前期\",\"bkn_context\":{\"conversation_id\":\"conv_72fa32a4103c679cff366dc415d804b3\",\"interaction_id\":\"int_7ab9fd71e56c98d1f9fc94e09652b4f6\"}}",
+      "callId": "call_00_DHjm6YjATNn2TyxJo2oz8851"
+    },
+    {
+      "name": "mcp__openbkn__run_cypher",
+      "arguments": "{\"kn_id\":\"supply_ontology_hand\",\"query\":\"MATCH (m:supply_ontology_hand_material) WHERE m.material_code = '382-000005' RETURN m.material_code AS code, m.material_name AS name, m.standard_lead_time AS std_lt, m.lead_time AS lt LIMIT 20\",\"bkn_context\":{\"conversation_id\":\"conv_72fa32a4103c679cff366dc415d804b3\",\"interaction_id\":\"int_7ab9fd71e56c98d1f9fc94e09652b4f6\"}}",
+      "callId": "call_01_C5fdZZD0Z0yGLyFrgjYc5614"
+    },
+    {
+      "name": "mcp__openbkn__get_object_types",
+      "arguments": "{\"ids\":[\"supply_ontology_hand_material\"],\"kn_id\":\"supply_ontology_hand\",\"bkn_context\":{\"conversation_id\":\"conv_72fa32a4103c679cff366dc415d804b3\",\"interaction_id\":\"int_7ab9fd71e56c98d1f9fc94e09652b4f6\"}}",
+      "callId": "call_00_OGzkR0ttl411Q8Y2SeHP1070"
+    },
+    {
+      "name": "mcp__openbkn__search_capabilities",
+      "arguments": "{\"query\":\"标准交期 提前期 采购周期 standard lead time\",\"kn_id\":\"supply_ontology_hand\",\"bkn_context\":{\"conversation_id\":\"conv_72fa32a4103c679cff366dc415d804b3\",\"interaction_id\":\"int_7ab9fd71e56c98d1f9fc94e09652b4f6\"}}",
+      "callId": "call_01_aMQmpBbvGsbVT0GEewR88635"
+    },
+    {
+      "name": "mcp__openbkn__execute_tool",
+      "arguments": "{\"kn_id\":\"supply_ontology_hand\",\"toolbox_id\":\"01a11f4e-fa74-705a-b023-faa56efcd9b3\",\"tool_id\":\"01a157e4-3246-7cec-a7b6-244e4c773fd2\",\"arguments\":{\"material_code\":\"382-000005\",\"sources\":[\"material\"]},\"bkn_context\":{\"conversation_id\":\"conv_72fa32a4103c679cff366dc415d804b3\",\"interaction_id\":\"int_7ab9fd71e56c98d1f9fc94e09652b4f6\"}}",
+      "callId": "call_00_BXcOmmoLwaspLyfU8nzT8399"
+    },
+    {
+      "name": "mcp__openbkn__bkn_finish_interaction",
+      "arguments": "{\"interaction_id\":\"int_7ab9fd71e56c98d1f9fc94e09652b4f6\",\"outcome\":\"failed\",\"reason\":\"业务取数被平台阻断：LOCAL_ACCEPTANCE_SANDBOX_HOLD（执行在派发前被停止，无替代答案授权）\"}",
+      "callId": "call_00_Pqikjh281bkKP9rl0kh02191"
+    }
+  ],
+  "failed_tools": [
+    {
+      "name": "bash",
+      "call_id": "call_00_BQ6HnSvTFLWzIXidY8Dg3236"
+    },
+    {
+      "name": "mcp__openbkn__run_cypher",
+      "call_id": "call_01_C5fdZZD0Z0yGLyFrgjYc5614"
+    },
+    {
+      "name": "mcp__openbkn__execute_tool",
+      "call_id": "call_00_BXcOmmoLwaspLyfU8nzT8399"
+    }
+  ],
+  "interaction_ids": [
+    "int_7ab9fd71e56c98d1f9fc94e09652b4f6"
+  ],
+  "sandbox_hold_triggered": true,
+  "original_answer": "我未能查到 **382-000005 的标准交期**，本次没有可用的业务数据结果。\n\n**已确认的口径（来自 supply_ontology_hand 物料对象类定义）**\n- 标准交期按物料属性取值：自制件（含产成品、半成品）取「生产固定提前期 product_fixedleadtime」，外购件取「采购固定提前期 purchase_fixedleadtime」，单位均为天。\n- 不能因为两个字段数值恰好相同，就把自制件的标准交期归到采购口径；单据上的「预计到货日期」是另一字段，不等于标准交期。\n\n**阻断原因**\n- 我调用只读能力「物料库存与单据记录」（material_code=382-000005，sources=[\"material\"]），以获取该编码的物料主档，包括物料属性、生产固定提前期和采购固定提前期。平台在派发前终止了这次调用，并返回 `LOCAL_ACCEPTANCE_SANDBOX_HOLD`。这是执行侧的阻断，不表示该编码没有数据。\n- 本会话不支持 run_cypher 和主机工具，因此我没有其他获准的取数途径；我也不会凭推测给出交期数值。\n\n**说明与下一步**\n- 目前我无法确认 382-000005 是否存在、是自制件还是外购件，也没有任何交期天数。\n- 待该执行阻断解除后，我可以按同一口径重新运行上述只读能力来查询；或者您可以提供该物料的属性（自制件或外购件），以便我明确该看哪个字段。",
+  "original_answer_sha256": "9b63aa722cd6216636667945143c80fd87a11ab926c83f0a6c953887eb564e64",
+  "protocol_driver": false,
+  "answer_changed": false,
+  "transport": "Full-catalogue TLS forwarding with execution pre-dispatch hold",
+  "core_lead_time_criteria_passed": false,
+  "additional_field_label_error": false,
+  "status": "blocked"
+}

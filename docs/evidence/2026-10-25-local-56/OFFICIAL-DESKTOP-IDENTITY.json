@@ -1,0 +1,18 @@
+{
+  "feed": "https://download.deepseek.com/dsh-desk/feeds/mac-arm64/nightly-mac.yml",
+  "url": "https://download.deepseek.com/dsh-desk/bin/mac-arm64/deepseek-harness-0.2.1-rc.3-mac-arm64.zip",
+  "version": "0.2.1-rc.3",
+  "sha512": "0tCeP/zLGLtsH+S4BD4TIyRJ8TwRhh7xaJprTMOUoEfj7hYJFC3G5l6nl/2zCTS41MeE9k+KRN19RE9sqX6goQ==",
+  "size": 347702586,
+  "sha256": "599a3ceef4d58f2b82bfd61ca4ef9d55c0f8e055dde60550c92f00d78d0cad2f",
+  "feedDigestMatched": true,
+  "source": "Official signed rc.2 app updater URL plus current official mac-arm64 nightly feed",
+  "asarSha256": "848f8437a990ffb88fca6772eb8e0e69af84d066c76087ac973a8d8015b459f4",
+  "infoPlistVersion": "0.2.1-rc.3",
+  "actualAboutVersion": "0.2.1-rc.3",
+  "codesignDeepStrictBefore": "PASS",
+  "codesignDeepStrictAfter": "PASS",
+  "gatekeeper": "accepted; Notarized Developer ID",
+  "installedIntoDailyApplications": false,
+  "existingHostReplaced": false
+}

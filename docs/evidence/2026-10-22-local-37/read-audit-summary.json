@@ -1,0 +1,26 @@
+{
+  "events": {
+    "non_read_request_blocked": 2,
+    "client_connection_closed": 62,
+    "unexpected_mcp_method_blocked": 18,
+    "forwarded": 125,
+    "upstream_headers": 125,
+    "response_released": 101,
+    "response_completed": 83,
+    "response_delayed": 24
+  },
+  "businessToolsDispatched": 0,
+  "methodsForwarded": {
+    "POST": 54,
+    "GET": 71
+  },
+  "forwardedUpstreamTlsChecks": 125,
+  "allObservedUpstreamTlsAuthorized": true,
+  "initialFixtureCorrection": "The initial exact MCP route matcher omitted its legal trailing slash; corrected before valid reads. Original failure log retained.",
+  "fixtureLimitations": {
+    "unknownMcpRequestsRejected": 18,
+    "unknownMethodNamesNotRecorded": true,
+    "fullMcpOrB1ProtocolAcceptanceClaimed": false
+  },
+  "responseBodiesAndCredentialsLogged": false
+}

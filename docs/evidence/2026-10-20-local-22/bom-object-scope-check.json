@@ -1,0 +1,11 @@
+{
+  "checked_at": "2026-10-20T03:41:50.503094+00:00",
+  "id": "supply_ontology_hand_bom",
+  "changed_fields": [
+    "comment",
+    "update_time"
+  ],
+  "data_source_properties_keys_and_bindings_preserved": true,
+  "new_comment": "定义产品的物料清单结构，\n1. BOM结构：多层树形结构：产品 → L1子件 → L2子件 → ... → 最底层原材料；物料类型含自制、委外、外购。 \n2. BOM 组件分析默认去根（bom_level > 0），仅使用 alt_priority == 0 的主料；alt_method 和 alt_part 不参与主料/替代条角色判定。主料父子行数与按物料编码去重的物料种数分别统计；不得把分页行数当作全量。含根或含替代条的原始统计可以另列，但须明确标注该范围，不得称为默认去根主料组件数。\n3. BOM 替代料模型：\n1） BOM 中同一父件下的子件满足以下条件时，判定为同一替代组：\n  - alt_method = '替代'\n  - parent_material_code 相同（为空时使用 bom_material_code）\n  - alt_group_no 相同且非空\n2） 组内角色定义：\n  - alt_priority = 0 → 主料\n  - alt_priority != 0 → 替代条（priority 越小越优先）",
+  "rollback_request": "bom-object-rollback-request-private.json"
+}

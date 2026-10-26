@@ -1,0 +1,34 @@
+{
+  "checkedAt": "2026-10-24T13:33:55.709667+00:00",
+  "preexistingFiles": 819,
+  "unchangedPreexistingFiles": 813,
+  "authorizedStatusUpdates": [
+    "CLAUDE.md",
+    "docs/plans/0.2.1/ACCEPTANCE-CONTRACT.md",
+    "docs/plans/0.2.1/DSH-COMPATIBILITY.md",
+    "docs/plans/0.2.1/ISSUE-WORKFLOW.md",
+    "docs/plans/0.2.1/NATIVE-CONTRACT.md",
+    "docs/plans/0.2.1/README.md"
+  ],
+  "primaryHead": "933b0ab251c75461ece1ada6145a9487e7eb04d1",
+  "primaryBranch": "feat/021-localization-login",
+  "indexUnchanged": true,
+  "existingWorktreeRefsUnchangedDuringRound": true,
+  "productionSourceChanged": false,
+  "candidateChanged": false,
+  "newCompleteHostOrBrowserStarted": false,
+  "electronExecutableUsedOnlyToReadArchive": true,
+  "probeProcessesRemaining": [],
+  "platformAccessedByMainThisRound": false,
+  "newCredentialReadOrLogin": false,
+  "newTestsExecuted": {
+    "existingFocusedTests": 19,
+    "carrierControlledCases": 6,
+    "localeLabelReproduction": 1
+  },
+  "issueMutations": [],
+  "commitPerformed": false,
+  "pushPerformed": false,
+  "ciRun": null,
+  "formalAcceptanceEligible": false
+}

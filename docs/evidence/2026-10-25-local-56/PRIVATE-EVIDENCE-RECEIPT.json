@@ -1,0 +1,419 @@
+{
+  "files": [
+    {
+      "path": "release/local-56/preservation-before-private.json",
+      "sha256": "69708261126b1a4ec029e80f77a270a3a5d015d10d5d5d56e187c0802c3deee5",
+      "bytes": 565072,
+      "distribution": "local-only"
+    },
+    {
+      "path": "release/local-56/home-copy-private.json",
+      "sha256": "2cdd0a036aff113c93379738b434d4f3609ca2817834c971a309a2655db5ec62",
+      "bytes": 302,
+      "distribution": "local-only"
+    },
+    {
+      "path": "release/local-56/install-32-private.log",
+      "sha256": "e1693109379d9213b8d92b32a2e2af5d812b9297e5eb4e1f719d29b1ceffe01f",
+      "bytes": 591,
+      "distribution": "local-only"
+    },
+    {
+      "path": "release/local-56/profile-closure-private.log",
+      "sha256": "7f27a5f8539d67cfc19f4444256944c3cfc8ebd430ad65552174f4e0b1663d6d",
+      "bytes": 269,
+      "distribution": "local-only"
+    },
+    {
+      "path": "release/local-56/profile-closure.json",
+      "sha256": "b1bec75b8acf759c1d0b6d6edf2add773ecf85112075b5b6f10759c472606f7b",
+      "bytes": 35808,
+      "distribution": "local-only"
+    },
+    {
+      "path": "release/local-56/codesign-verify.log",
+      "sha256": "60f8f21c27904fd7acaea46ba04ed7152c9b356a9fe698df2f0e960b10f43c06",
+      "bytes": 3344,
+      "distribution": "local-only"
+    },
+    {
+      "path": "release/local-56/codesign-identity.log",
+      "sha256": "5323b8a9fc23f510b84876c85aa1da83576e9dce7cff25aa9e06a4187ba96894",
+      "bytes": 1209,
+      "distribution": "local-only"
+    },
+    {
+      "path": "release/local-56/codesign-after.log",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "bytes": 0,
+      "distribution": "local-only"
+    },
+    {
+      "path": "release/local-56/gatekeeper-assess.log",
+      "sha256": "3d4987f87a1d4e669f5c9d5d9ec372365ab44b482dadeab5ba8e6a860f83a7af",
+      "bytes": 86,
+      "distribution": "local-only"
+    },
+    {
+      "path": "release/local-56/about-private.txt",
+      "sha256": "1dd6d7afd6a51e46c6d784bc530ca8d22047ea55b340999d7f53521fc89e9ef2",
+      "bytes": 304,
+      "distribution": "local-only"
+    },
+    {
+      "path": "release/local-56/plugin-loaded-private.txt",
+      "sha256": "e4a2827c6622baff9aa0b80642a9b41705e5301e9dec69191d683ac9b591e769",
+      "bytes": 2040,
+      "distribution": "local-only"
+    },
+    {
+      "path": "release/local-56/native-more-open-private.txt",
+      "sha256": "4e0192e3f55a3fb1d30e9ad4c6f1890e0afc094894376f6f78bf444d824b410d",
+      "bytes": 3023,
+      "distribution": "local-only"
+    },
+    {
+      "path": "release/local-56/native-more-keyboard-private.txt",
+      "sha256": "2a6bb2d6c075dcf51aff043bb8fd2d26fb59b6fbbe53971e743deb4c7eba032a",
+      "bytes": 2974,
+      "distribution": "local-only"
+    },
+    {
+      "path": "release/local-56/business-en-private.txt",
+      "sha256": "8e3087c445e3f8e7628db2b221666bb4491d96dd7de5d4e5e14d6cbea90cd2d6",
+      "bytes": 930,
+      "distribution": "local-only"
+    },
+    {
+      "path": "release/local-56/business-zh-private.txt",
+      "sha256": "bb679bd27c644433dc077552de935a2d3f6ee4cbde838f8520abfc5998ba3d9a",
+      "bytes": 873,
+      "distribution": "local-only"
+    },
+    {
+      "path": "release/local-56/business-focus-private.txt",
+      "sha256": "958c8fd6934f61badb98ab15f29030798922a7c345c64df450ae28575e3bc3da",
+      "bytes": 3938,
+      "distribution": "local-only"
+    },
+    {
+      "path": "release/local-56/diagnostic-focus-private.txt",
+      "sha256": "2b3fa95e6446d40ef6d0e3b502aa7006e0ecec6e7bfb1b9e15b3ef64df57c28f",
+      "bytes": 2060,
+      "distribution": "local-only"
+    },
+    {
+      "path": "release/local-56/diagnostics-en-private.txt",
+      "sha256": "ada9c3ce54984e4545b8233ac25b921c5caad085f2ac1dcb9a6952ae9178259e",
+      "bytes": 1933,
+      "distribution": "local-only"
+    },
+    {
+      "path": "release/local-56/diagnostics-zh-private.txt",
+      "sha256": "e8ceb08ce6ec23e5ed19ac62d8e1f1310f5422095083d6a8ab05e59b036c8dfd",
+      "bytes": 4404,
+      "distribution": "local-only"
+    },
+    {
+      "path": "release/local-56/narrow-diagnostics-private.txt",
+      "sha256": "cec6639296a10b963ed304f32413da8c7e36b97545a2ef657d121bbe653822e9",
+      "bytes": 132,
+      "distribution": "local-only"
+    },
+    {
+      "path": "release/local-56/narrow-bottom-private.txt",
+      "sha256": "cec6639296a10b963ed304f32413da8c7e36b97545a2ef657d121bbe653822e9",
+      "bytes": 132,
+      "distribution": "local-only"
+    },
+    {
+      "path": "release/local-56/narrow-close-private.txt",
+      "sha256": "6036a2f035b27798b17f14216c1bb9145ff3f16dd81e867c2dd46faa62b6339d",
+      "bytes": 2478,
+      "distribution": "local-only"
+    },
+    {
+      "path": "release/local-56/provenance-zh-private.txt",
+      "sha256": "e09330f7bed0e302dec163fa513b115e0343deeb159301532891bd99e13e2c9c",
+      "bytes": 2096,
+      "distribution": "local-only"
+    },
+    {
+      "path": "release/local-56/provenance-expanded-private.txt",
+      "sha256": "e7f467126fd45347c5cf931132c2e1ea316fe24df197ec87fb5eb61ac35f5d8a",
+      "bytes": 3228,
+      "distribution": "local-only"
+    },
+    {
+      "path": "release/local-56/provenance-focus-private.txt",
+      "sha256": "4ed241ad4a6bdb56f171e54bc6f747d65d9f9a6256ff91b223e705897ecab7d1",
+      "bytes": 4065,
+      "distribution": "local-only"
+    },
+    {
+      "path": "release/local-56/historical-session-private.txt",
+      "sha256": "3b20d0de73d49f03a0da5741c3030448b7dc0eb1c6908ae455d5b29e5b9a8db9",
+      "bytes": 3041,
+      "distribution": "local-only"
+    },
+    {
+      "path": "release/local-56/final-state-private.txt",
+      "sha256": "794238d25febf55a776d400b603751b850f61939d956b5a7b0725bc5c2d44344",
+      "bytes": 3770,
+      "distribution": "local-only"
+    },
+    {
+      "path": "release/local-56/rc3-desktop32-diagnostics-en-private.jpg",
+      "sha256": "a45ece92cbf482e7ad4e99c38d6a4040fb6ceeacd41f6db421763023d52b18b6",
+      "bytes": 152555,
+      "distribution": "local-only"
+    },
+    {
+      "path": "release/local-56/rc3-desktop32-narrow-private.jpg",
+      "sha256": "5a1cd3ec1189c8695a7da5c4fd98685419422a22b390181511ca4485a8d18e93",
+      "bytes": 86581,
+      "distribution": "local-only"
+    },
+    {
+      "path": "release/local-56/rc3-desktop32-narrow-bottom-private.jpg",
+      "sha256": "24b6d0762d24daf03299878b8b6bff54fd282247a9c8b423b5857aecc114247a",
+      "bytes": 82571,
+      "distribution": "local-only"
+    },
+    {
+      "path": "release/local-56/window-restored-private.jpg",
+      "sha256": "b81079f8066c71e2b8b1ef3fa7c04ee75cd5b708d456b6fb536f40854aa38ca4",
+      "bytes": 116368,
+      "distribution": "local-only"
+    },
+    {
+      "path": "release/local-56/foundry-relevant.patch",
+      "sha256": "fa8a018c43417b7df7b11d3d182c669d134335529c55684790e36334cac0e003",
+      "bytes": 26277,
+      "distribution": "local-only"
+    },
+    {
+      "path": "release/local-56/cleanup.json",
+      "sha256": "18327734143e8b8b4ac667493d7da30370cc03559d4a945bd52b7be40ad34bef",
+      "bytes": 522,
+      "distribution": "local-only"
+    },
+    {
+      "path": "release/local-56/cli-status-private.txt",
+      "sha256": "b49e4d9c8a910b7ac14c4e56e904c3f6f633477db96fa3175f0a5caad1ea9302",
+      "bytes": 156,
+      "distribution": "local-only"
+    },
+    {
+      "path": "release/local-56/cli-status-after-private.txt",
+      "sha256": "b49e4d9c8a910b7ac14c4e56e904c3f6f633477db96fa3175f0a5caad1ea9302",
+      "bytes": 156,
+      "distribution": "local-only"
+    },
+    {
+      "path": "release/local-56/cli-status-final-private.txt",
+      "sha256": "1d07a72f0f8abd85459bd817743865de523f48145e2c02c22dff1a2cec8ebd18",
+      "bytes": 157,
+      "distribution": "local-only"
+    },
+    {
+      "path": "release/local-56/cli-login-private.log",
+      "sha256": "3c38b4108aa02e782ff14c0439f20d20b948e4c4b97f8aabf44281aad539c0cd",
+      "bytes": 179,
+      "distribution": "local-only"
+    },
+    {
+      "path": "release/local-56/cli-login-explicit-private.log",
+      "sha256": "d1ab0ce56c11bd4de9f85d51a740d9a97f95481c71ab9c550e0bb1f09a143cf9",
+      "bytes": 179,
+      "distribution": "local-only"
+    },
+    {
+      "path": "release/local-56/cli-login-final-private.log",
+      "sha256": "92a24725358c6ec71b4c85716134c9c197c2cec88f13989ae8f678bb2ec24bf7",
+      "bytes": 200,
+      "distribution": "local-only"
+    },
+    {
+      "path": "release/local-56/auth-ui-summary.json",
+      "sha256": "f57be25d66ce23b486ac32305e7af0310cb0f1daaf0ef408e298739dd8ee932e",
+      "bytes": 232,
+      "distribution": "local-only"
+    },
+    {
+      "path": "release/local-56/auth-preparation.json",
+      "sha256": "950634bd8ad5501ac11d237d83050a8c6176d3f5aa2fd13aebf0c8823a8bbcbf",
+      "bytes": 1145,
+      "distribution": "local-only"
+    },
+    {
+      "path": "release/local-56/npm-source-before-private.json",
+      "sha256": "b20561266ed8f7f812c4f090ec50bd83f387f4a528a4aea792a0776864ecd7ba",
+      "bytes": 8499,
+      "distribution": "local-only"
+    },
+    {
+      "path": "release/local-56/phase2/reference-facts-private.json",
+      "sha256": "e2e82484fa0d67b5b47e8738839f8e445adafdd102dfbb0420fd6fc9d1db00ac",
+      "bytes": 768,
+      "distribution": "local-only"
+    },
+    {
+      "path": "release/local-56/phase2/final-state-private.txt",
+      "sha256": "794238d25febf55a776d400b603751b850f61939d956b5a7b0725bc5c2d44344",
+      "bytes": 3770,
+      "distribution": "local-only"
+    },
+    {
+      "path": "release/local-56/phase2/app-private.log",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "bytes": 0,
+      "distribution": "local-only"
+    },
+    {
+      "path": "release/local-56/phase2/provenance-en-private.txt",
+      "sha256": "64cd156f229b82eced22b217700082ff3b3e86dbadc0be9324888c7d29950f8a",
+      "bytes": 2382,
+      "distribution": "local-only"
+    },
+    {
+      "path": "release/local-56/phase2/reference-zh2-private.txt",
+      "sha256": "9df3655b7639c88b0214cdd0632eb163e9c134d028a57b32a8e2974bee1ec496",
+      "bytes": 4361,
+      "distribution": "local-only"
+    },
+    {
+      "path": "release/local-56/phase2/reference-zh1-private.txt",
+      "sha256": "9df3655b7639c88b0214cdd0632eb163e9c134d028a57b32a8e2974bee1ec496",
+      "bytes": 4361,
+      "distribution": "local-only"
+    },
+    {
+      "path": "release/local-56/phase2/owned-host.json",
+      "sha256": "a6c0e190301b8c7951e2cf3fda535a43993c3c3326c212abb294094c1b5e19c1",
+      "bytes": 660,
+      "distribution": "local-only"
+    },
+    {
+      "path": "release/local-56/phase2/reference-en-private.txt",
+      "sha256": "80c14ec533de1569bde726c938d60eab5a74376993a2c96e4e634ef18361af38",
+      "bytes": 4670,
+      "distribution": "local-only"
+    },
+    {
+      "path": "release/local-56/phase2/reference-en2-private.txt",
+      "sha256": "9f3b16491537a740979caeb2c037be3af49ddd497bca2b655d9fa2efccf0a436",
+      "bytes": 4857,
+      "distribution": "local-only"
+    },
+    {
+      "path": "release/local-56/phase2/host-private.log",
+      "sha256": "71f2ff7737cc251e5d5b9c1052b4ed4bd149e3fedc06a41acba9f5ac54404531",
+      "bytes": 205,
+      "distribution": "local-only"
+    },
+    {
+      "path": "release/local-56/phase2/cleanup.json",
+      "sha256": "b6d12bf55485acb646a3359aa056449091605a17a67dd0c9b9777bbcb18f1fbf",
+      "bytes": 218,
+      "distribution": "local-only"
+    },
+    {
+      "path": "release/local-56/phase2/reference-check.json",
+      "sha256": "3a572aab0eac6abc13753888e05b61ef5c40c861715898cd72bd4576d30fff15",
+      "bytes": 217,
+      "distribution": "local-only"
+    },
+    {
+      "path": "release/local-56/phase2/rc3-desktop32-reference-zh-private.jpg",
+      "sha256": "94e61d08e4ec99bfbea2fbd0477413c3d6f4f50a989e1e493c80fdf8a227d959",
+      "bytes": 140921,
+      "distribution": "local-only"
+    },
+    {
+      "path": "release/local-56/npm/reference-facts-private.json",
+      "sha256": "6be20b3f6040b556a99e1043cd0fe9da0b906d1614a9cafcec06a5f6c64eb796",
+      "bytes": 768,
+      "distribution": "local-only"
+    },
+    {
+      "path": "release/local-56/npm/final-state-private.txt",
+      "sha256": "3c7fc7b4e0665713a463907897009a1934d53bdc3d186f1481d6611e834b3784",
+      "bytes": 3950,
+      "distribution": "local-only"
+    },
+    {
+      "path": "release/local-56/npm/reference-zh2-private.txt",
+      "sha256": "28fd525a403a8b9e2ebe1086f4d2bbe54cc1b7f5f8e0fcb48d69ec6980ae575c",
+      "bytes": 7611,
+      "distribution": "local-only"
+    },
+    {
+      "path": "release/local-56/npm/reference-zh1-private.txt",
+      "sha256": "28fd525a403a8b9e2ebe1086f4d2bbe54cc1b7f5f8e0fcb48d69ec6980ae575c",
+      "bytes": 7611,
+      "distribution": "local-only"
+    },
+    {
+      "path": "release/local-56/npm/owned-host.json",
+      "sha256": "4b848072367afdba1d52ec7dfdb8b040aa095103b44566796415bd70f4d79c13",
+      "bytes": 473,
+      "distribution": "local-only"
+    },
+    {
+      "path": "release/local-56/npm/reference-en-private.txt",
+      "sha256": "e90d236deac4c0255c989c73d62163e3625c7205e682a7dba720cb2272617648",
+      "bytes": 8081,
+      "distribution": "local-only"
+    },
+    {
+      "path": "release/local-56/npm/historical-session-private.txt",
+      "sha256": "7c37921e92fbf9ff33b9b2d8cea6a3917b5f5053f282f51efe613ca1d11ffc82",
+      "bytes": 4121,
+      "distribution": "local-only"
+    },
+    {
+      "path": "release/local-56/npm/reference-en2-private.txt",
+      "sha256": "e90d236deac4c0255c989c73d62163e3625c7205e682a7dba720cb2272617648",
+      "bytes": 8081,
+      "distribution": "local-only"
+    },
+    {
+      "path": "release/local-56/npm/host-private.log",
+      "sha256": "eb6cb1abc5daf62202faf9652b73b59a33e36cee58a14d2139005911f006fc2a",
+      "bytes": 83,
+      "distribution": "local-only"
+    },
+    {
+      "path": "release/local-56/npm/cleanup.json",
+      "sha256": "9c63c7ff57aac22b08aeeedc917197ef0db703aa7aca5d489a919ec824609f43",
+      "bytes": 220,
+      "distribution": "local-only"
+    },
+    {
+      "path": "release/local-56/npm/reference-check.json",
+      "sha256": "15b761e6687cd4b15ac9c573847a837ed4efe0855a2553398dba85693edfa1ce",
+      "bytes": 218,
+      "distribution": "local-only"
+    },
+    {
+      "path": "release/local-56/npm/identity-preservation.json",
+      "sha256": "7a7c40bba27e78c4877a2a748b875ddcb202274c8490f40590a97e2434910d64",
+      "bytes": 108,
+      "distribution": "local-only"
+    },
+    {
+      "path": "release/local-56/npm/profile-closure.json",
+      "sha256": "38ae41cbd28587c12bd5f521f775b8e8c5ca9fca358698096c69e4f87de89897",
+      "bytes": 35661,
+      "distribution": "local-only"
+    }
+  ],
+  "privateContentsNotCopiedToPublic": [
+    "Host stdout/stderr and bootstrap URLs",
+    "credentials and task home contents",
+    "raw AX and native screenshots",
+    "CLI verification URIs and device codes"
+  ],
+  "allFilesRemainLocal": true
+}

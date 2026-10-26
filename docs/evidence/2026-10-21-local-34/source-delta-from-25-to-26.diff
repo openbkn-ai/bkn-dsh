@@ -1,0 +1,85 @@
+--- before-26/packages/openbkn-business-context/src/business-context-service.ts
++++ after-26/packages/openbkn-business-context/src/business-context-service.ts
+@@ -108,6 +108,8 @@
+   private readonly mounted = new WeakSet<Agent>()
+   private readonly capabilityProfiles = new WeakMap<Agent, NetworkCapabilityProfile>()
+   private mcpManagerInstance: OpenBknMcpManager | undefined
++  /** Native Service views rebind this.ctx to the caller; child lifetimes belong here. */
++  private readonly ownerContext: Context
+   private readonly lifetime = new AbortController()
+   private readonly observations = passiveDiagnostics.writer()
+   /** This instance may use only the token verified for its configured platform. */
+@@ -128,6 +130,7 @@
+ 
+   constructor(ctx: Context, readonly config: PluginConfig) {
+     super(ctx, 'openbknBusinessContext')
++    this.ownerContext = ctx
+     ctx.effect(() => () => { this.lifetime.abort(new Error('OpenBKN configuration was reloaded.')) })
+     ctx.on('agent/created', async ({ agent }) => {
+       await this.restoreBinding(agent)
+@@ -723,7 +726,7 @@
+   }
+ 
+   private mcpManager(): OpenBknMcpManager {
+-    return this.mcpManagerInstance ??= new OpenBknMcpManager(this.ctx, this.config, () => this.resolveOpenBknToken())
++    return this.mcpManagerInstance ??= new OpenBknMcpManager(this.ownerContext, this.config, () => this.resolveOpenBknToken())
+   }
+ 
+   private authCoordinator(): AuthCoordinator {
+--- before-26/packages/openbkn-business-context/src/client/index.tsx
++++ after-26/packages/openbkn-business-context/src/client/index.tsx
+@@ -21,6 +21,7 @@
+ import type { UiWorkspace } from '@deepseek-ai/dsh-client-ui-workspace/client'
+ import openbknBusinessContextRemote from '@openbkn/dsh-business-context/remote'
+ import { OpenBknEntry } from './OpenBknEntry.tsx'
++import { pickWorkspaceDirectory } from './pick-workspace-directory.ts'
+ import { OpenBknOverlay } from './OpenBknOverlay.tsx'
+ import { OpenBknDiagnostics } from './OpenBknDiagnostics.tsx'
+ import { DiagnosticsPanelController } from './diagnostics-controller.ts'
+@@ -302,7 +303,7 @@
+       if (mode !== 'create-workspace') throw new Error('This OpenBKN business knowledge network has no associated local workspace.')
+       let path: string | null
+       try {
+-        path = await uiWorkspace.pickDirectory()
++        path = await pickWorkspaceDirectory(uiWorkspace)
+       } catch (error: unknown) {
+         throw directoryPickerFailure(error)
+       }
+--- before-26/packages/openbkn-business-context/package.json
++++ after-26/packages/openbkn-business-context/package.json
+@@ -1,6 +1,6 @@
+ {
+   "name": "@openbkn/dsh-business-context",
+-  "version": "0.2.0-rc.2-openbkn.0.2.0-25",
++  "version": "0.2.0-rc.2-openbkn.0.2.0-26",
+   "description": "OpenBKN business knowledge-network context for DeepSeek Harness",
+   "license": "Apache-2.0",
+   "type": "module",
+--- before-26/runtime/openbkn-dsh-runtime.manifest.json
++++ after-26/runtime/openbkn-dsh-runtime.manifest.json
+@@ -22,8 +22,8 @@
+   },
+   "plugin": {
+     "packageName": "@openbkn/dsh-business-context",
+-    "version": "0.2.0-rc.2-openbkn.0.2.0-25",
+-    "artifact": "openbkn-dsh-business-context-0.2.0-rc.2-openbkn.0.2.0-25.tgz"
++    "version": "0.2.0-rc.2-openbkn.0.2.0-26",
++    "artifact": "openbkn-dsh-business-context-0.2.0-rc.2-openbkn.0.2.0-26.tgz"
+   },
+   "compatibility": {
+     "directory": "compat/dsh-0.2.0-rc.2",
+--- before-26/CHANGELOG.md
++++ after-26/CHANGELOG.md
+@@ -1,6 +1,12 @@
+ # Changelog
+ 
+ All notable changes to this project are documented here.
++
++## 0.2.0-rc.2-openbkn.0.2.0-26 (unreleased)
++
++- Keep the managed MCP child on the business component's construction context. Native Cordis service calls rebind the caller context; clients must leave with their configuration owner so reloads cannot leave an old authenticated transport behind.
++- Use the official Desktop directory bridge for business workspace selection, matching the native workspace flow; retain the Host picker in browser hosts and preserve native cancellation/failure without a second chooser.
++- Keep business tools, answers, calculations and CSV delivery unchanged. Local development only; no platform replacement, push, CI or publication.
+ 
+ ## 0.2.0-rc.2-openbkn.0.2.0-25 (unreleased)
+ 

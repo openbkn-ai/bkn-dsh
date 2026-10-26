@@ -1,0 +1,10 @@
+{
+  "at": "2026-10-24T16:06:46.428392+00:00",
+  "purpose": "Restore expired official CLI authentication to read existing records; no Host login lifecycle/B1 or new business turn",
+  "firstAttempt": "Expired during credential lookup; private original retained",
+  "retry": "Official CLI exited0; browser showed login success",
+  "existingLocalCredentialUsed": true,
+  "temporaryPlaintextCopyRemoved": true,
+  "certificateTrustChanged": false,
+  "hostLoginButtonUsed": false
+}

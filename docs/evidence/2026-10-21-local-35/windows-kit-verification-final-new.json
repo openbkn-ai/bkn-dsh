@@ -1,0 +1,25 @@
+{
+  "kitFilesVerified": 48,
+  "kind": "local-development-preacceptance",
+  "formalAcceptanceEligible": false,
+  "ciRun": null,
+  "candidate": {
+    "root": "/var/folders/hc/nmd2t7b96nb_d6jpf7xbb0zr0000gn/T/bkn021-verify-u8K4l9/package",
+    "matched": 82,
+    "version": "0.2.0-rc.2-openbkn.0.2.0-27"
+  },
+  "sdk": {
+    "version": "0.2.0",
+    "officialRegistryIntegrityMatched": true
+  },
+  "runtime": {
+    "host": "0.2.1-rc.2",
+    "dshPackages": 295,
+    "cordis": "4.0.5",
+    "schemastery": "3.18.5",
+    "zod": "4.4.3",
+    "noMixedDsh": true,
+    "noSplitCordis": true,
+    "noSplitSchemastery": true
+  }
+}

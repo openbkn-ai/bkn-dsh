@@ -1,0 +1,26 @@
+{
+  "checked_at": "2026-10-20T03:57:54.043976+00:00",
+  "oracle": "Independent read-only SQL; all 399 main BOM lines, quantities, scoped available/reserved sums, record counts and missingness",
+  "tolerance": "1e-8 absolute for DOUBLE inventory sums",
+  "records": [
+    {
+      "warehouse_scope": "production_available",
+      "rows": 399,
+      "materials": 333,
+      "fractional_materials_checked": 0,
+      "bom_lines_exact": true,
+      "differences": [],
+      "passed": true
+    },
+    {
+      "warehouse_scope": "all",
+      "rows": 399,
+      "materials": 333,
+      "fractional_materials_checked": 11,
+      "bom_lines_exact": true,
+      "differences": [],
+      "passed": true
+    }
+  ],
+  "passed": true
+}

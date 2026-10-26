@@ -1,0 +1,20 @@
+[
+  {
+    "namespace": "openbkn",
+    "name": "agent-operator-integration",
+    "uid": "2d73c850-27c4-4575-bb21-3d9bf3e1f7fd",
+    "generation": 3,
+    "images": [
+      "swr.cn-east-3.myhuaweicloud.com/openbkn-ai/agent-operator-integration:0.2.0"
+    ]
+  },
+  {
+    "namespace": "openbkn",
+    "name": "sandbox-control-plane",
+    "uid": "cb61dff4-bb37-4e16-b1e7-9ef2adedebf0",
+    "generation": 8,
+    "images": [
+      "ghcr.io/openbkn-ai/sandbox-control-plane:0.2.0"
+    ]
+  }
+]

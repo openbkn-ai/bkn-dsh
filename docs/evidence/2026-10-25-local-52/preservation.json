@@ -1,0 +1,94 @@
+{
+  "at": "2026-10-25T01:43:40.351842+00:00",
+  "mainHead": "933b0ab251c75461ece1ada6145a9487e7eb04d1",
+  "indexUnchanged": true,
+  "worktreeRefsUnchanged": true,
+  "preexistingFiles": 3707,
+  "unchangedFiles": 3702,
+  "onlyStatusDocsChanged": [
+    "docs/plans/0.2.1/ISSUE-WORKFLOW.md",
+    "CLAUDE.md",
+    "docs/plans/0.2.1/ACCEPTANCE-CONTRACT.md",
+    "docs/plans/0.2.1/DSH-COMPATIBILITY.md",
+    "docs/plans/0.2.1/README.md"
+  ],
+  "protectedGroups": {
+    "handoff": {
+      "filesMatched": 61,
+      "unchanged": true
+    },
+    "ui31-source": {
+      "filesMatched": 3821,
+      "unchanged": true
+    },
+    "npm-old": {
+      "filesMatched": 34,
+      "unchanged": true
+    },
+    "npm-new": {
+      "filesMatched": 34,
+      "unchanged": true
+    },
+    "round51-desktop-old": {
+      "filesMatched": 81,
+      "unchanged": true
+    },
+    "round51-desktop-new": {
+      "filesMatched": 81,
+      "unchanged": true
+    },
+    "round51-npm-old": {
+      "filesMatched": 41,
+      "unchanged": true
+    },
+    "round51-npm-new": {
+      "filesMatched": 45,
+      "unchanged": true
+    },
+    "desktop-old": {
+      "filesMatched": 80,
+      "unchanged": true
+    },
+    "desktop-new": {
+      "filesMatched": 80,
+      "unchanged": true
+    }
+  },
+  "frozenInputs": {
+    "openbkn-dsh-business-context-0.2.0-rc.2-openbkn.0.2.0-30.tgz": "6d95ff7517dbe409875fd398784fe01049ba26d2b97c43fad65c817d3ea18ee9",
+    "openbkn-dsh-business-context-0.2.0-rc.2-openbkn.0.2.0-31.tgz": "22ba0e17235ccb3c93d585f2811604f5221375ac9e3496e92e6d8c1756196e4a",
+    "KIT-FILES.json": "61bace60c424eade7904ab1ed592cd5a0a7e1b332a0b768215a8eecba1298996"
+  },
+  "probeListeners": [
+    {
+      "port": 50847,
+      "listening": false
+    },
+    {
+      "port": 50848,
+      "listening": false
+    },
+    {
+      "port": 50789,
+      "listening": false
+    },
+    {
+      "port": 50790,
+      "listening": false
+    },
+    {
+      "port": 50807,
+      "listening": false
+    },
+    {
+      "port": 50808,
+      "listening": false
+    }
+  ],
+  "allOwnedProbeServersClosed": true,
+  "formalPlatformConnected": false,
+  "platformOrDataMutationPerformed": false,
+  "credentialsRead": false,
+  "hostUpgradeOrPatchApplied": false,
+  "pushOrCi": false
+}

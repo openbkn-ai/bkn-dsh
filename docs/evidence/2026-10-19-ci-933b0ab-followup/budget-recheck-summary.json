@@ -1,0 +1,328 @@
+[
+  {
+    "host": "0.2.0-rc.2",
+    "session": "session-57dcaedf-bc4b-4a03-875e-839a9e96b0eb",
+    "question": null,
+    "end": {
+      "kind": "error",
+      "error": {
+        "message": "401: {\"message\":\"访问令牌无效或已过期。\",\"type\":\"authentication_error\",\"param\":null,\"code\":\"Unauthorized\"}",
+        "code": "AUTH"
+      }
+    },
+    "context_window": 1000000,
+    "max_observed_prompt_tokens": 0,
+    "max_observed_output_tokens": 0,
+    "tools": [],
+    "final_answer_characters": 0
+  },
+  {
+    "host": "0.2.0-rc.2",
+    "session": "session-c7a7c780-2465-4ce2-8186-a55c3d7dad2a",
+    "question": "查询 382-000005 的 BOM 清单，每个物料的使用量，以及每个物料的库存情况",
+    "end": {
+      "kind": "completed"
+    },
+    "context_window": 1000000,
+    "max_observed_prompt_tokens": 94742,
+    "max_observed_output_tokens": 1605,
+    "tools": [
+      {
+        "name": "mcp__openbkn__bkn_start_interaction",
+        "isError": false
+      },
+      {
+        "name": "mcp__openbkn__get_kn_detail",
+        "isError": false
+      },
+      {
+        "name": "mcp__openbkn__get_object_types",
+        "isError": false
+      },
+      {
+        "name": "mcp__openbkn__search_capabilities",
+        "isError": false
+      },
+      {
+        "name": "mcp__openbkn__query_object_instance",
+        "isError": false
+      },
+      {
+        "name": "mcp__openbkn__execute_tool",
+        "isError": false
+      },
+      {
+        "name": "mcp__openbkn__run_code",
+        "isError": false
+      },
+      {
+        "name": "mcp__openbkn__run_code",
+        "isError": false
+      },
+      {
+        "name": "mcp__openbkn__run_code",
+        "isError": false
+      },
+      {
+        "name": "mcp__openbkn__run_code",
+        "isError": false
+      },
+      {
+        "name": "mcp__openbkn__run_code",
+        "isError": false
+      },
+      {
+        "name": "mcp__openbkn__run_code",
+        "isError": false
+      },
+      {
+        "name": "mcp__openbkn__run_code",
+        "isError": false
+      },
+      {
+        "name": "mcp__openbkn__run_code",
+        "isError": false
+      },
+      {
+        "name": "mcp__openbkn__bkn_finish_interaction",
+        "isError": false
+      },
+      {
+        "name": "present",
+        "isError": true
+      }
+    ],
+    "final_answer_characters": 220
+  },
+  {
+    "host": "0.2.0-rc.2",
+    "session": "session-dbd529dd-c681-4847-89a4-97ab53b32dd8",
+    "question": "382-000005 的 BOM 构成是什么？",
+    "end": {
+      "kind": "completed"
+    },
+    "context_window": 1000000,
+    "max_observed_prompt_tokens": 111664,
+    "max_observed_output_tokens": 1729,
+    "tools": [
+      {
+        "name": "bash",
+        "isError": true
+      },
+      {
+        "name": "mcp__openbkn__bkn_start_interaction",
+        "isError": false
+      },
+      {
+        "name": "mcp__openbkn__get_kn_detail",
+        "isError": false
+      },
+      {
+        "name": "mcp__openbkn__get_object_types",
+        "isError": false
+      },
+      {
+        "name": "mcp__openbkn__get_relation_types",
+        "isError": false
+      },
+      {
+        "name": "mcp__openbkn__run_cypher",
+        "isError": true
+      },
+      {
+        "name": "mcp__openbkn__query_object_instance",
+        "isError": false
+      },
+      {
+        "name": "mcp__openbkn__search_capabilities",
+        "isError": false
+      },
+      {
+        "name": "mcp__openbkn__execute_tool",
+        "isError": false
+      },
+      {
+        "name": "mcp__openbkn__execute_tool",
+        "isError": false
+      },
+      {
+        "name": "mcp__openbkn__execute_tool",
+        "isError": false
+      },
+      {
+        "name": "mcp__openbkn__execute_tool",
+        "isError": false
+      },
+      {
+        "name": "mcp__openbkn__bkn_finish_interaction",
+        "isError": false
+      }
+    ],
+    "final_answer_characters": 3058
+  },
+  {
+    "host": "0.2.1-rc.2",
+    "session": "session-129c2443-dc61-4c8e-8359-0fac961ff6b6",
+    "question": "382-000005 的 BOM 构成是什么？",
+    "end": {
+      "kind": "completed"
+    },
+    "context_window": 1000000,
+    "max_observed_prompt_tokens": 67038,
+    "max_observed_output_tokens": 958,
+    "tools": [
+      {
+        "name": "bash",
+        "isError": true
+      },
+      {
+        "name": "mcp__openbkn__bkn_start_interaction",
+        "isError": false
+      },
+      {
+        "name": "mcp__openbkn__get_kn_detail",
+        "isError": false
+      },
+      {
+        "name": "mcp__openbkn__search_capabilities",
+        "isError": false
+      },
+      {
+        "name": "mcp__openbkn__get_object_types",
+        "isError": false
+      },
+      {
+        "name": "mcp__openbkn__execute_tool",
+        "isError": false
+      },
+      {
+        "name": "mcp__openbkn__execute_tool",
+        "isError": false
+      },
+      {
+        "name": "mcp__openbkn__bkn_finish_interaction",
+        "isError": false
+      }
+    ],
+    "final_answer_characters": 1645
+  },
+  {
+    "host": "0.2.1-rc.2",
+    "session": "session-543b0393-d45e-4c1d-a7c5-7d20629442cc",
+    "question": null,
+    "end": {
+      "kind": "error",
+      "error": {
+        "message": "401: {\"message\":\"访问令牌无效或已过期。\",\"type\":\"authentication_error\",\"param\":null,\"code\":\"Unauthorized\"}",
+        "code": "AUTH"
+      }
+    },
+    "context_window": 1000000,
+    "max_observed_prompt_tokens": 0,
+    "max_observed_output_tokens": 0,
+    "tools": [],
+    "final_answer_characters": 0
+  },
+  {
+    "host": "0.2.1-rc.2",
+    "session": "session-9cb6149d-874c-46f7-ab65-4bfee1047323",
+    "question": "查询 382-000005 的 BOM 清单，每个物料的使用量，以及每个物料的库存情况",
+    "end": {
+      "kind": "completed"
+    },
+    "context_window": 1000000,
+    "max_observed_prompt_tokens": 82380,
+    "max_observed_output_tokens": 1302,
+    "tools": [
+      {
+        "name": "mcp__openbkn__bkn_start_interaction",
+        "isError": false
+      },
+      {
+        "name": "mcp__openbkn__get_kn_detail",
+        "isError": false
+      },
+      {
+        "name": "mcp__openbkn__get_object_types",
+        "isError": false
+      },
+      {
+        "name": "mcp__openbkn__search_capabilities",
+        "isError": false
+      },
+      {
+        "name": "mcp__openbkn__execute_tool",
+        "isError": false
+      },
+      {
+        "name": "mcp__openbkn__run_code",
+        "isError": false
+      },
+      {
+        "name": "mcp__openbkn__run_code",
+        "isError": false
+      },
+      {
+        "name": "mcp__openbkn__run_code",
+        "isError": false
+      },
+      {
+        "name": "mcp__openbkn__run_code",
+        "isError": false
+      },
+      {
+        "name": "mcp__openbkn__run_code",
+        "isError": false
+      },
+      {
+        "name": "mcp__openbkn__run_code",
+        "isError": false
+      },
+      {
+        "name": "mcp__openbkn__run_code",
+        "isError": true
+      },
+      {
+        "name": "mcp__openbkn__run_code",
+        "isError": false
+      },
+      {
+        "name": "mcp__openbkn__run_code",
+        "isError": false
+      },
+      {
+        "name": "mcp__openbkn__run_code",
+        "isError": false
+      },
+      {
+        "name": "mcp__openbkn__run_code",
+        "isError": false
+      },
+      {
+        "name": "mcp__openbkn__run_code",
+        "isError": false
+      },
+      {
+        "name": "mcp__openbkn__run_code",
+        "isError": false
+      },
+      {
+        "name": "bash",
+        "isError": true
+      },
+      {
+        "name": "mcp__openbkn__run_shell",
+        "isError": true
+      },
+      {
+        "name": "mcp__openbkn__run_code",
+        "isError": false
+      },
+      {
+        "name": "mcp__openbkn__bkn_finish_interaction",
+        "isError": false
+      }
+    ],
+    "final_answer_characters": 2247
+  }
+]

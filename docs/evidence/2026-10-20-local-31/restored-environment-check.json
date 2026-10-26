@@ -1,0 +1,40 @@
+{
+  "checked_at": "2026-10-20T06:59:47.897324+00:00",
+  "hosts": [
+    {
+      "host": "0.2.0-rc.2",
+      "profile_unchanged_bytes": true,
+      "platform_base_url": "https://192.168.50.129",
+      "cli_path": "/Users/dominiczhang/.local/bin/openbkn",
+      "workspace_registry_restored_exact_bytes": true,
+      "only_expected_credential_refs_refreshed": true,
+      "changed_ref_names": [
+        "BKN_ACCEPTANCE_MODEL_TOKEN",
+        "OPENBKN_MCP_TOKEN"
+      ],
+      "other_credential_data_unchanged": true,
+      "web_running_without_extra_patch": true,
+      "runtime_cwd_verified": true
+    },
+    {
+      "host": "0.2.1-rc.2",
+      "profile_unchanged_bytes": true,
+      "platform_base_url": "https://192.168.50.129",
+      "cli_path": "/Users/dominiczhang/.local/bin/openbkn",
+      "workspace_registry_restored_exact_bytes": true,
+      "only_expected_credential_refs_refreshed": true,
+      "changed_ref_names": [
+        "BKN_ACCEPTANCE_MODEL_TOKEN",
+        "OPENBKN_MCP_TOKEN"
+      ],
+      "other_credential_data_unchanged": true,
+      "web_running_without_extra_patch": true,
+      "runtime_cwd_verified": true
+    }
+  ],
+  "test_proxy_listener_stopped": true,
+  "default_cli_version": "0.2.0",
+  "default_cli_authenticated_network_read_passed": true,
+  "user_relogin_required": false,
+  "credential_values_never_in_report": true
+}

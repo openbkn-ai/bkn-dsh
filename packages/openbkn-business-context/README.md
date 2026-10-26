@@ -6,9 +6,13 @@ OpenBKN business knowledge, network-scoped access, diagnostics, and provenance f
 
 Bring governed enterprise business knowledge into DeepSeek Harness conversations.
 
-## 0.2.1 development / -11 (unreleased)
+## 0.2.1 development / -22 (unreleased)
 
-This branch targets the same plugin tarball on official DSH `0.2.0-rc.2` and `0.2.1-rc.2`, against formal OpenBKN `v0.2.0` and npm CLI `0.2.0`. The `0.2.0-rc.2` prefix in `0.2.0-rc.2-openbkn.0.2.0-12` identifies the retained build baseline; the exact runtime pair is declared in the package peers. This development version has not been published. Public `latest`/`rc` still point to historical `-10` as checked on October 19.
+This branch now targets official DSH `0.2.0-rc.2` and `0.2.1-rc.3`, with formal OpenBKN `v0.2.0` and CLI `0.2.0`. The old build generator remains pinned. The local development candidate is -32; it is not a final CI candidate or formal acceptance result. Frozen -30/-31 and their rc.2 handoff evidence remain unchanged and do not establish rc.3 acceptance.
+
+CSV delivery in this local development version uses the scoped `openbkn_export_csv` tool when the Host offers the required file services. After an existing platform CSV is created, the tool verifies and copies its exact UTF-8 bytes (up to 512 KiB) to a new file in the current DSH workspace. It requires the current bound Interaction and workspace write access; read-only sessions refuse delivery. Open the returned local file link only after export succeeds. Host read/grep/present remain unavailable. Managed guidance requires source precision in answers and CSV serialization, including avoiding Python default general formatting unless rounding is requested by the user or a disclosed platform rule. Model answer and file contents still require independent validation.
+
+Export results include a verified `markdown_link`; repeat it with the answer and scope in the final message after finishing the Interaction, because progress messages may be collapsed. Count scope and requested calculation signs follow the platform contract; the plugin does not recalculate business results.
 
 Formal capture-disabled responses retain managed Conversation/Interaction IDs: business calls still send the required `bkn_context`, and finish uses the current Interaction ID. Provenance preserves the disclosed identities, labels the absence of recorded evidence and keeps the local timeline. The earlier explicit no-identity downgrade remains a separate compatibility path. The plugin does not recalculate business results or alter model answers.
 

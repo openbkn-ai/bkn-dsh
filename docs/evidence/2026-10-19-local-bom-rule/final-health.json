@@ -1,0 +1,14 @@
+{
+  "checked_at": "2026-10-19T15:54:30.240045+00:00",
+  "running_platform_resource_pods": 27,
+  "not_ready": [],
+  "cli_auth": {
+    "hasToken": true,
+    "expired": false,
+    "baseUrl": "https://192.168.50.129"
+  },
+  "cli_version": "0.2.0",
+  "plugin_artifact_sha256": "51cf44ce14e06bd534ce957602ebb2d83cf4cc457830a09d2144cebf2ad5127d",
+  "bkn_dsh_head": "933b0ab251c75461ece1ada6145a9487e7eb04d1",
+  "samples_head": "7b5b59ca106d4d563cfcc03ffc85b2e3c3b7d9f6"
+}

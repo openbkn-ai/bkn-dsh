@@ -1,0 +1,41 @@
+{
+  "checked_at": "2026-10-19T16:50:25.029592+00:00",
+  "old": {
+    "root_scope_ambiguity": "Final introduction uses 400 rows / 334 materials without an explicit root-included qualifier; final CSV has 399 rows / 333 materials.",
+    "unrequested_derived_column": {
+      "mismatched_rows": 389,
+      "examples": [
+        {
+          "row": 2,
+          "material": "791-000013",
+          "column": "累计需求-可用库存",
+          "actual": "999",
+          "literal_column_calculation": "-999"
+        },
+        {
+          "row": 3,
+          "material": "606-000989",
+          "column": "累计需求-可用库存",
+          "actual": "343",
+          "literal_column_calculation": "-343"
+        },
+        {
+          "row": 4,
+          "material": "606-000990",
+          "column": "累计需求-可用库存",
+          "actual": "399",
+          "literal_column_calculation": "-399"
+        }
+      ],
+      "note": "Independent review only. Original model text and CSV remain unchanged. CSV primary BOM/quantity/inventory verdict excludes these extra metrics."
+    }
+  },
+  "new": {
+    "final_delivery_hint": "Final text refers to an earlier link without repeating it. The native per-turn change card opens the delivered CSV through its file preview action; actually tested.",
+    "completed_turn_not_full_g6_acceptance": true
+  },
+  "prior_iterations": {
+    "local_15": "Original new-host CSV used Python %g and changed 17 primary values in the independently checked columns; targeted precision-request CSV was correct.",
+    "local_17": "Old host did not offer export because workingDirectory is absent in official 0.2.0-rc.2; new file was numerically correct but prose had an incorrect zero-stock count."
+  }
+}

@@ -1,0 +1,38 @@
+{
+  "sourceHandoffCommit": "5e55d090ee2996fe2a006a59bef012d28f8f278a",
+  "receivedResultBranch": "docs/windows-021-profile32-gui-results-20261026",
+  "receivedResultCommit": "c0fa28d87464a449002cb3fcc633eda1f8283aa0",
+  "rawGitObjectsMatched": 4,
+  "manifestPublicEvidenceMatched": 2,
+  "userReportAndManifestSha256Matched": true,
+  "privateOriginalsRead": false,
+  "receivedVerdict": "BLOCKED before GUI",
+  "businessAutoloadAndGui": "NOT_RUN",
+  "afterRestore": "NOT_RUN; full-env diagnostic only demonstrated Before",
+  "officialExeExecutionScope": "Node-mode inspect ran before/after; owned GUI spawn did not occur",
+  "localCodeFix": "Pass OS through the existing baseEnv whitelist",
+  "codeFilesChanged": [
+    "kit/run-gui-proof.mjs"
+  ],
+  "otherChangedFiles": "local-state documentation/INPUTS and regenerated integrity manifests only",
+  "powershellAndGuardsChanged": false,
+  "frozenArtifactBytesChanged": false,
+  "localNodeChildEnvironmentRegression": {
+    "tests": 5,
+    "pass": 5,
+    "fail": 0,
+    "covers": [
+      "original negative control",
+      "corrected OS child propagation",
+      "no other baseEnv changes",
+      "secret fields still excluded",
+      "missing/non-Windows OS not fabricated"
+    ]
+  },
+  "windowsNativeReexecution": "NOT_RUN",
+  "newKitSha256": "d8d1720b03148eec96407aa398730e2ae7756d4462d3648ed2caf1d8932bbf38",
+  "repairedControllerSha256": "a619b0d0a5a70e1a44610e7f5d2ede771a13d5791eb88dfa7a8eb33cf46e8eea",
+  "published": false,
+  "newRemoteCommit": null,
+  "noGuiPlatformLoginOrCIExecution": true
+}

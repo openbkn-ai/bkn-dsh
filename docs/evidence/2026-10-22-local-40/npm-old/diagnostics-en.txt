@@ -1,0 +1,29 @@
+Browser tab: 994606766, Title: "DeepSeek Harness", URL: "http://127.0.0.1:38640/".
+The following is a diff from the previous accessibility tree with ~ and + representing changed and added elements, respectively. Removed elements are summarized by ID range.
+Removed element IDs: 39-41
+~		33 container OpenBKN diagnostics
+~				36 heading Diagnostics, Value: 2
+~					37 text Diagnostics
+~				38 button Close
++			39 container
++				40 text Report 2be3167c · Created 2026/10/22 13:40:05 · Mode Passive collection Host form Unknown (the current report cannot identify the host form) Operating system macOS DSH version Not collected (no version information in this report) Plugin (on disk) 0.2.0-rc.2-openbkn.0.2.0-30 Plugin (loaded) Not collected (running version cannot be confirmed)
++				41 text Missing basic information does not imply a failure. Review the checks below. The version on disk does not identify the version currently loaded.
++				42 text ●  Passed bootstrap-entry installation  /  component-loaded
++				43 text entryPresent=true
++				44 text ●  Passed business-entry component  /  component-loaded
++				45 text entryPresent=true
++				46 text ●  Passed diagnostics-entry diagnostics  /  component-loaded
++				47 text schemaVersion=1
++				48 text ●  Passed observed:cli cli  /  cli
++				49 text failureCount=0 lastOutcomeAgoMs=3953 exitCode=0
++				50 text ●  Passed observed:login-state authentication  /  login-state
++				51 text failureCount=0 lastOutcomeAgoMs=4056 loggedIn=true
++				52 text ●  Passed observed:context-loader context-loader  /  context-loader
++				53 text failureCount=0 lastOutcomeAgoMs=3926 toolsPublished=true
++				54 text ●  Passed observed:platform-network-list platform-directory  /  platform-network-list
++				55 text failureCount=0 lastOutcomeAgoMs=3920 networkCount=2
++				56 text ●  Passed observed:platform-network-detail platform-directory  /  platform-network-detail
++				57 text failureCount=0 lastOutcomeAgoMs=65068
++				58 button Export diagnostics report
++				59 button Collect again
+The focused UI element is 33 container OpenBKN diagnostics

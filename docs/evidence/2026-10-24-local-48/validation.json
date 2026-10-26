@@ -1,0 +1,19 @@
+{
+  "checkedAt": "2026-10-24T13:33:09.864652+00:00",
+  "existingFocusedTests": {
+    "command": "node --import ./node_modules/tsx/dist/loader.mjs --test tests/locale-rendering.test.ts tests/client-slot-contract.test.mjs",
+    "cwd": "packages/openbkn-business-context",
+    "tests": 19,
+    "pass": 19,
+    "fail": 0,
+    "skip": 0
+  },
+  "desktopCarrierCases": 6,
+  "desktopCarrierCasesPass": 6,
+  "publicLabelRepro": "REPRODUCED_UNLOCALIZED_PLUGIN_LABELS",
+  "publicScriptsSyntax": "PASS",
+  "gitDiffCheck": "PASS",
+  "fullPackageSuiteRerun": false,
+  "packageRebuild": false,
+  "reason": "No production source/package changes. Verify new carrier boundary and independent locale audit only; previous full dual baseline retains its original identity."
+}

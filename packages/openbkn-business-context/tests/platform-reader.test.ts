@@ -120,3 +120,21 @@ test('projects the license edition from bkn-safe capabilities', async () => {
   const reader = new OpenBknPlatformReader({ baseUrl: 'http://localhost:8081', requestTimeoutMs: 1_000, maxResultBytes: 1024, allowInsecureTls: false, resolveToken: async () => 'token' }, async () => response({ licensed: false, edition: 'community', capabilities: [], features: [] }))
   assert.deepEqual(await reader.getLicenseEdition(AbortSignal.timeout(1_000)), { edition: 'community', licensed: false })
 })
+
+
+test('credential lookup receives the request cancellation before any HTTP dispatch', async () => {
+  const cancellation = new AbortController()
+  let lookupSignal: AbortSignal | undefined, fetched = false
+  let release!: () => void
+  const pending = new Promise<void>(resolve => { release = resolve })
+  const reader = new OpenBknPlatformReader({
+    baseUrl: 'https://platform.invalid', requestTimeoutMs: 1000, maxResultBytes: 1024, allowInsecureTls: false,
+    resolveToken: async signal => { lookupSignal = signal; await pending; return 'late-fixture-token' },
+  }, async () => { fetched = true; return response({}) })
+  const operation = reader.listKnowledgeNetworks(cancellation.signal)
+  const rejected = assert.rejects(operation, (error: unknown) => error instanceof PlatformReaderError && error.code === 'REQUEST_ABORTED')
+  cancellation.abort()
+  assert.equal(lookupSignal?.aborted, true)
+  release(); await rejected
+  assert.equal(fetched, false)
+})

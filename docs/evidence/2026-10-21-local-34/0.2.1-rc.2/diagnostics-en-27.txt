@@ -1,0 +1,86 @@
+Window: "DeepSeek Harness", App: DeepSeek Harness.
+0 standard window DeepSeek Harness, Secondary Actions: Raise
+	1 container DeepSeek Harness
+		2 container
+			3 HTML content DeepSeek Harness, URL: dsh-app://app/
+				4 container
+					5 button Collapse sidebar
+					6 button New session
+					7 container Global panels
+						8 button Plugins
+						9 button Automation tasks
+					10 text Workspaces
+					11 button Search sessions
+					12 text field (settable) Search session names
+					13 button View options
+					14 button Add workspace
+					15 outline Sessions
+						16 container
+							17 row native-picker-new
+								18 text native-picker-new
+							19 row (selected) New Session
+								20 text New Session
+						21 row desktop-new
+							22 text desktop-new
+						23 row Default workspace
+							24 text Default workspace
+						25 container
+							26 row Ungrouped
+								27 text Ungrouped
+							28 row R34 B1 native Desktop protocol check 42min
+								29 text R34 B1 native Desktop protocol check 42min
+							30 row R34 B1 native Desktop protocol check 1h
+								31 text R34 B1 native Desktop protocol check 1h
+							32 row R34 B1 native Desktop protocol check 1h
+								33 text R34 B1 native Desktop protocol check 1h
+							34 row R34 B1 native Desktop protocol check 1h
+								35 text R34 B1 native Desktop protocol check 1h
+							36 row R34_B1:0.2.1-rc.2:before 原生Desktop B 1h
+								37 text R34_B1:0.2.1-rc.2:before 原生Desktop B 1h
+					38 button OpenBKN business knowledge networks
+					39 pop up button Account menu
+					40 button Open right sidebar
+					41 container
+						42 text Into the Unknown Preview
+						43 pop up button Choose workspace
+						44 pop up button Standard mode, Help: Choose the agent preset for your new task
+						45 container OpenBKN business session entry
+							46 button Explore the “Fjelstul 世界杯 · Vega Catalog 绑定（占位符）” knowledge network.
+						47 text entry area (settable) Describe what you want to build, / commands, @ files or sessions
+						48 pop up button Add files or run commands
+						49 button Access mode, current: Workspace Write
+						50 pop up button Select model, current deepseek_chat
+						51 button (disabled) Send message
+					52 container OpenBKN diagnostics
+						53 container
+							54 text OPENBKN
+							55 heading Diagnostics, Value: 2
+								56 text Diagnostics
+							57 button Close
+						58 container
+							59 text Report 2833b2a4 · Created 10/21/2026, 10:08:28 PM · Mode Passive collection Host form Desktop Operating system macOS DSH version Not collected (no version information in this report) Plugin (on disk) 0.2.0-rc.2-openbkn.0.2.0-27 Plugin (loaded) Not collected (running version cannot be confirmed)
+							60 text Missing basic information does not imply a failure. Review the checks below. The version on disk does not identify the version currently loaded.
+							61 text ●  Passed bootstrap-entry installation  /  component-loaded
+							62 text entryPresent=true
+							63 text ●  Passed business-entry component  /  component-loaded
+							64 text entryPresent=true
+							65 text ●  Passed diagnostics-entry diagnostics  /  component-loaded
+							66 text schemaVersion=1
+							67 text ●  Passed observed:cli cli  /  cli
+							68 text failureCount=0 lastOutcomeAgoMs=25 exitCode=0
+							69 text ●  Passed observed:login-state authentication  /  login-state
+							70 text failureCount=0 lastOutcomeAgoMs=114 loggedIn=true
+							71 text ●  Passed observed:context-loader context-loader  /  context-loader
+							72 text failureCount=0 lastOutcomeAgoMs=286 toolsPublished=true
+							73 button Export diagnostics report
+							74 button Collect again
+	75 close button
+	76 full screen button Help: this button also has an action to zoom the window, Secondary Actions: zoom the window
+	77 minimize button
+78 menu bar
+	79 DeepSeek Harness
+	80 File
+	81 Edit
+	82 Window
+
+The focused UI element is 52 container OpenBKN diagnostics

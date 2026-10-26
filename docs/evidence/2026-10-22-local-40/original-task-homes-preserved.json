@@ -1,0 +1,36 @@
+[
+  {
+    "key": "desktop-old",
+    "selectedOriginalHomeFilesUnchanged": {
+      "profiles/desktop/cordis.patch.yml": true,
+      "profiles/desktop/package.json": true,
+      "profiles/desktop/pnpm-lock.yaml": true,
+      "storages/openbkn_workspace_bindings.json": true
+    }
+  },
+  {
+    "key": "desktop-new",
+    "selectedOriginalHomeFilesUnchanged": {
+      "profiles/desktop/cordis.patch.yml": true,
+      "profiles/desktop/package.json": true,
+      "profiles/desktop/pnpm-lock.yaml": true,
+      "storages/openbkn_workspace_bindings.json": true
+    }
+  },
+  {
+    "key": "npm-old",
+    "selectedOriginalHomeFilesUnchanged": {
+      "profiles/web/cordis.patch.yml": true,
+      "profiles/web/package.json": true,
+      "profiles/web/pnpm-lock.yaml": true
+    }
+  },
+  {
+    "key": "npm-new",
+    "selectedOriginalHomeFilesUnchanged": {
+      "profiles/web/cordis.patch.yml": true,
+      "profiles/web/package.json": true,
+      "profiles/web/pnpm-lock.yaml": true
+    }
+  }
+]

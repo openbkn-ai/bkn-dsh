@@ -1,0 +1,75 @@
+{
+  "captured_at": "2026-10-19T15:42:24.857476+00:00",
+  "data_tables": {
+    "customer_entity": {
+      "rows": 60,
+      "sha256": "316ac846130869f5e338729cb82f8dc40f650474344daab0ea1e7bc93cb7ba92"
+    },
+    "erp_material": {
+      "rows": 3500,
+      "sha256": "b0c404ca8f25b703c63906ff1c906ecead41d441a74d386f664e0e85651c4b1a"
+    },
+    "erp_material_bom": {
+      "rows": 31423,
+      "sha256": "676342917d423c70be26c1393b4370c252b274997c20d41ee9b60b1df4c1618b"
+    },
+    "erp_mds_forecast": {
+      "rows": 137,
+      "sha256": "1dc33db72419b3f80941aedd511f4ae19b7a2fade978d27b7d0c83ee0dd2c422"
+    },
+    "erp_mrp_plan_order": {
+      "rows": 824,
+      "sha256": "222d3a8bc6af1569f7411265a53eeb51009ff53fbacad15cd726784d355d4298"
+    },
+    "erp_production_work_order": {
+      "rows": 605,
+      "sha256": "a14b50b3df352741dc45fd49949cdeeb20dacd80d58ac823f77903b08c0a2e1c"
+    },
+    "erp_purchase_order": {
+      "rows": 1972,
+      "sha256": "0dcf19493db926bb620a8191a74fd659dfb47aba98d559f15317593b817fa18f"
+    },
+    "erp_purchase_request": {
+      "rows": 19333,
+      "sha256": "67c3d13b478a3487d8fb888aa63eaf12581b618de406c883abe160401eebea2c"
+    },
+    "erp_real_time_inventory": {
+      "rows": 19724,
+      "sha256": "ee7b5cc9cc8d75f9b1c47e74c1d79f768adb0f7bf6aa9cfb038fac606eeb90df"
+    },
+    "erp_supplier": {
+      "rows": 230,
+      "sha256": "3b57b6a3cb70e8c8d0ca388e7859056d54b91f59dfee386b2ce003a3c73f109c"
+    },
+    "hd_product_view": {
+      "rows": 30,
+      "sha256": "3d22a90085a456a79b5ff05d407979a3d272aee585ce186f93099548c3cdbe66"
+    },
+    "sales_order": {
+      "rows": 800,
+      "sha256": "2b1c0685c98210ff9a116b4b8efc79196e14c8726c1746842396f18b473b2bd1"
+    }
+  },
+  "oracle": {
+    "counts": {
+      "sql": "SELECT SUM(bom_level>0 AND alt_priority=0), COUNT(DISTINCT IF(bom_level>0 AND alt_priority=0,material_code,NULL)), SUM(bom_level>0 AND alt_priority<>0), SUM(bom_level>0), COUNT(DISTINCT IF(bom_level>0,material_code,NULL)) FROM supply_demo_hand.erp_material_bom WHERE bom_material_code='382-000005';",
+      "result": "399\t333\t107\t506\t407"
+    },
+    "shared_two": {
+      "sql": "SELECT COUNT(*) FROM (SELECT material_code FROM supply_demo_hand.erp_material_bom WHERE bom_material_code IN ('382-000005','P61-000351') AND bom_level>0 AND alt_priority=0 GROUP BY material_code HAVING COUNT(DISTINCT bom_material_code)=2) AS shared;",
+      "result": "38"
+    },
+    "shared_three": {
+      "sql": "SELECT COUNT(*) FROM (SELECT material_code FROM supply_demo_hand.erp_material_bom WHERE bom_material_code IN ('382-000005','P61-000351','U00-000151') AND bom_level>0 AND alt_priority=0 GROUP BY material_code HAVING COUNT(DISTINCT bom_material_code)=3) AS shared;",
+      "result": "17"
+    },
+    "level_counts": {
+      "sql": "SELECT bom_level,COUNT(*) FROM supply_demo_hand.erp_material_bom WHERE bom_material_code='382-000005' AND alt_priority=0 AND bom_level>0 GROUP BY bom_level ORDER BY bom_level;",
+      "result": "1\t9\n2\t23\n3\t40\n4\t278\n5\t49"
+    },
+    "backward_affected_row": {
+      "sql": "SELECT material_code,parent_material_code,bom_level,alt_priority,alt_method FROM supply_demo_hand.erp_material_bom WHERE bom_material_code='U00-000080' AND material_code IN ('454-000033','588-000496');",
+      "result": "588-000496\t815-000002\t2\t0\tNULL\n454-000033\t588-000496\t3\t0\t替代"
+    }
+  }
+}

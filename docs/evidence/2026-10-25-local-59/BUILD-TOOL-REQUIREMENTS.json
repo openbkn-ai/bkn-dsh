@@ -1,0 +1,38 @@
+[
+  {
+    "base": "old",
+    "packageManager": "pnpm@11.7.0",
+    "rootDevToolRanges": {
+      "typescript": "^6.0.3",
+      "tsdown": "^0.22.2",
+      "tsx": "^4.22.4",
+      "electron-builder": null,
+      "app-builder-lib": null
+    },
+    "desktopDevToolRanges": {
+      "electron": "^44.0.0",
+      "electron-builder": "^26.15.3",
+      "app-builder-lib": "26.15.3"
+    },
+    "pnpmLockSha256": "80fe05eae33582ae26839afd05f1965f9b0e4be11034ddf9797af6085d5ba9b1",
+    "stage": "source requirements only; clean source dependency installation/full GUI build NOT_RUN"
+  },
+  {
+    "base": "rc3",
+    "packageManager": "pnpm@11.28.5",
+    "rootDevToolRanges": {
+      "typescript": "^6.0.3",
+      "tsdown": "^0.22.2",
+      "tsx": "^4.23.13",
+      "electron-builder": null,
+      "app-builder-lib": null
+    },
+    "desktopDevToolRanges": {
+      "electron": "^44.7.0",
+      "electron-builder": "^26.17.0",
+      "app-builder-lib": "26.17.0"
+    },
+    "pnpmLockSha256": "911b049924e8256d8d6e684235cf935ca75b28fd0dd46f0c3b316a51c2cf5dc1",
+    "stage": "source requirements only; clean source dependency installation/full GUI build NOT_RUN"
+  }
+]

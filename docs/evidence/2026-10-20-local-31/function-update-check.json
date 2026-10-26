@@ -1,0 +1,23 @@
+{
+  "checked_at": "2026-10-20T05:58:12.004Z",
+  "checks": [
+    {
+      "name": "bom",
+      "id": "01a11f4e-fb6a-7d44-8fd4-f1585cb3a016",
+      "readback_verified": true,
+      "identity_preserved": true
+    },
+    {
+      "name": "inventory",
+      "id": "01a11f4e-fe5e-795f-a358-5d1d799293c8",
+      "readback_verified": true,
+      "identity_preserved": true
+    },
+    {
+      "name": "sales",
+      "id": "01a157d1-a0c3-71f8-9a9e-05b14198a9c3",
+      "readback_verified": true,
+      "identity_preserved": true
+    }
+  ]
+}

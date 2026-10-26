@@ -1,0 +1,79 @@
+{
+  "at": "2026-10-22T05:55:47.219610+00:00",
+  "stopped": [
+    {
+      "key": "desktop-old",
+      "pid": 70080,
+      "port": 19387,
+      "backendExited": true,
+      "portReleased": true
+    },
+    {
+      "key": "desktop-new",
+      "pid": 70885,
+      "port": 63282,
+      "backendExited": true,
+      "portReleased": true
+    },
+    {
+      "key": "npm-old",
+      "pid": 70082,
+      "port": 38640,
+      "backendExited": true,
+      "portReleased": true
+    },
+    {
+      "key": "npm-new",
+      "pid": 70081,
+      "port": 38641,
+      "backendExited": true,
+      "portReleased": true
+    },
+    {
+      "fixture": "release/local-40/probes/protocol-driver.py",
+      "previouslyStoppedByGuardedAttempt": true,
+      "portReleased": true
+    },
+    {
+      "fixture": "b1-readonly-protocol.mjs",
+      "previouslyStoppedByGuardedAttempt": true,
+      "portReleased": true
+    }
+  ],
+  "restored": [
+    {
+      "key": "desktop-old",
+      "taskPatchRestored": true,
+      "fixtureAndObserverRemoved": true,
+      "sessionsRetained": true
+    },
+    {
+      "key": "desktop-new",
+      "taskPatchRestored": true,
+      "fixtureAndObserverRemoved": true,
+      "sessionsRetained": true
+    },
+    {
+      "key": "npm-old",
+      "taskPatchRestored": true,
+      "fixtureAndObserverRemoved": true,
+      "sessionsRetained": true
+    },
+    {
+      "key": "npm-new",
+      "taskPatchRestored": true,
+      "fixtureAndObserverRemoved": true,
+      "sessionsRetained": true
+    }
+  ],
+  "personalFilesUnchanged": {
+    ".dsh/profiles/desktop/package.json": true,
+    ".dsh/profiles/desktop/cordis.patch.yml": true,
+    ".dsh/profiles/web/package.json": true,
+    ".dsh/profiles/web/cordis.patch.yml": true,
+    ".dsh/.credentials.yaml": true
+  },
+  "nativeMainProcessesExited": true,
+  "platformReplaced": false,
+  "sessionsOrEvidenceDeleted": false
+}

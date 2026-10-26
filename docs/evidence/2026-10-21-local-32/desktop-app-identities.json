@@ -1,0 +1,25 @@
+{
+  "prepared_at": "2026-10-21T07:07:07.648780+00:00",
+  "new_source_feed": "https://download.deepseek.com/dsh-desk/feeds/mac-arm64/nightly-mac.yml",
+  "new_download_url": "https://download.deepseek.com/dsh-desk/bin/mac-arm64/deepseek-harness-0.2.1-rc.2-mac-arm64.zip",
+  "new_archive_bytes": 347777642,
+  "new_archive_sha512_matches_official_feed": true,
+  "new_archive_sha256": "1131da00d7474b5373f3ffc580686b4b009464b68bd35d761c4352824f964604",
+  "old_source": "Existing official installed 0.2.0-rc.2 app copied intact",
+  "apps": [
+    {
+      "version": "0.2.0-rc.2",
+      "app": "/Users/dominiczhang/Documents/project/app/openBKN/bkn-dsh/release/local-32/desktop/0.2.0-rc.2/DeepSeek Harness.app",
+      "bundle_identifier": "com.deepseek.dsh",
+      "signature_verify_exit_code": 0
+    },
+    {
+      "version": "0.2.1-rc.2",
+      "app": "/Users/dominiczhang/Documents/project/app/openBKN/bkn-dsh/release/local-32/desktop/0.2.1-rc.2/DeepSeek Harness.app",
+      "bundle_identifier": "com.deepseek.dsh",
+      "signature_verify_exit_code": 0
+    }
+  ],
+  "user_installed_app_changed": false,
+  "security_warning_bypassed": false
+}

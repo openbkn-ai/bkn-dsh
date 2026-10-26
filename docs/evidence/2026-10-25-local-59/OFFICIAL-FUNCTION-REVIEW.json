@@ -1,0 +1,57 @@
+[
+  {
+    "key": "old",
+    "scope": "Actual official developmentLauncher pure function and extracted localMacOSPackageEnvironment function/constant; no prepareDevelopmentApp, build, sign, lsregister or GUI executed",
+    "developmentLauncher": {
+      "setsDevAppFlag": true,
+      "opensMainInspector": true,
+      "opensRendererDebugPort": true,
+      "setsHostInspector": true,
+      "persistsDshHome": true,
+      "persistsPrimaryRuntime": false,
+      "persistsRuntimeOverride": false
+    },
+    "developmentAppSource": {
+      "registersLaunchServices": true,
+      "declaresOfficialDshScheme": true,
+      "adHocSignsCopy": true
+    },
+    "localMacPackageDefault": {
+      "available": false
+    },
+    "oldUnsignedFlagWindowsOnly": true,
+    "sourceHashes": {
+      "developmentApp": "9c2c8fad9979baf099d14d2fa43476f0845ad8202c7fbbdffc50eecf0403b1ef",
+      "packageEnvironment": "8d7acbba7e63f0c71b713e259f0c9d0852b336e7b907cd10cbad03b33e836711"
+    }
+  },
+  {
+    "key": "rc3",
+    "scope": "Actual official developmentLauncher pure function and extracted localMacOSPackageEnvironment function/constant; no prepareDevelopmentApp, build, sign, lsregister or GUI executed",
+    "developmentLauncher": {
+      "setsDevAppFlag": true,
+      "opensMainInspector": true,
+      "opensRendererDebugPort": true,
+      "setsHostInspector": true,
+      "persistsDshHome": true,
+      "persistsPrimaryRuntime": false,
+      "persistsRuntimeOverride": false
+    },
+    "developmentAppSource": {
+      "registersLaunchServices": true,
+      "declaresOfficialDshScheme": true,
+      "adHocSignsCopy": true
+    },
+    "localMacPackageDefault": {
+      "actualFunctionEvaluated": true,
+      "resultingAppId": "com.deepseek.harness",
+      "unsigned": "1",
+      "callerIdentityPreserved": false
+    },
+    "oldUnsignedFlagWindowsOnly": false,
+    "sourceHashes": {
+      "developmentApp": "9c2c8fad9979baf099d14d2fa43476f0845ad8202c7fbbdffc50eecf0403b1ef",
+      "packageEnvironment": "6b3e4f5fa97a70161c4ea038ef66f66218dd3961fcc348384cbcbb0f470667dd"
+    }
+  }
+]

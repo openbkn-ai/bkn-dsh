@@ -129,7 +129,7 @@ export interface PlatformReaderConfig {
   readonly allowInsecureTls: boolean
   /** Business domain header sent on platform requests; defaults to the platform default `bd_public`. */
   readonly businessDomain?: string
-  readonly resolveToken?: () => Promise<string | undefined>
+  readonly resolveToken?: (signal: AbortSignal) => Promise<string | undefined>
 }
 
 export type PlatformFetch = (input: URL, init: RequestInit) => Promise<Response>
@@ -257,7 +257,7 @@ export class OpenBknPlatformReader {
   private async request(path: string, init: RequestInit, signal: AbortSignal, options?: RequestOptions): Promise<JsonValue> {
     if (signal.aborted) throw new PlatformReaderError('REQUEST_ABORTED', 'OpenBKN context request was cancelled.')
     const url = fixedUrl(this.config.baseUrl, path, this.config.allowInsecureTls)
-    const token = await this.config.resolveToken?.()
+    const token = await this.config.resolveToken?.(signal)
     if (signal.aborted) throw new PlatformReaderError('REQUEST_ABORTED', 'OpenBKN context request was cancelled.')
     if (token === undefined || token.trim().length === 0) {
       throw new PlatformReaderError('AUTHENTICATION_REQUIRED', 'OpenBKN authentication is required.')

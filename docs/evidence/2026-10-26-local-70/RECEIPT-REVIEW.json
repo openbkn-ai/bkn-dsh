@@ -1,0 +1,163 @@
+{
+  "date": "2026-10-26",
+  "kind": "local-development-preacceptance",
+  "ciRun": null,
+  "formalAcceptanceEligible": false,
+  "sourceResultCommit": "b7941883077fc101df233d83c6cec3d31254bc46",
+  "fixedInputs": {
+    "branch": "handoff/windows-local32-profile-gui-r2-20261026",
+    "commit": "e7b383b96747dbeb3e6897c0e79039f7f3d1711c",
+    "kitFilesSha256": "99ccd2ff0e15077916bb25992985e2ea2a10c2763d1c7b7f9b05baf4605e5178",
+    "plugin32Sha256": "46626510825fe9146aef12c27a1724acbb455aeac22aa600358add0fc8e1c9f8",
+    "mcpRc3Sha256": "48694ca37f889edbc7c41ed8edd3c08e3dc8c0d9cf87c6c118d96de44556d3e0",
+    "r2Delta": "run-gui-proof.mjs line 42: OS added to baseEnv whitelist only (line-diff verified)"
+  },
+  "publicGitFiles": [
+    {
+      "path": ".gitattributes",
+      "gitBlobSha1": "fbd3b2e4cbc943cf1331d112e6f81f99cebbca6c",
+      "sha256": "27f1c535296dae67c9734ca19ea563de7510d59243fbee9b214331399326f56d",
+      "bytes": 113
+    },
+    {
+      "path": "results/RESULTS-profile32-gui-r2-20261026.md",
+      "gitBlobSha1": "069d756cc5502910208815627a58f926b602458a",
+      "sha256": "8f2045d869246a507b4c88c87d22b2939b995ec76df80aa6f0788411a1e41249",
+      "bytes": 6240
+    },
+    {
+      "path": "results/evidence-manifest-r2.json",
+      "gitBlobSha1": "5096ea1cefb5812b215acf2df6d807283af52f13",
+      "sha256": "ac27fc507625746b8cf0f7e05ad922bd41f02a8ec3ab5d89695da98abca4e481",
+      "bytes": 17394
+    },
+    {
+      "path": "results/gui-identity.txt",
+      "gitBlobSha1": "e25a4ec424bba3709273695fd70684ae79461866",
+      "sha256": "1c78be0ef6ca6e2c419ed950b8e11f4fb74fc2efedf3499ce0bbc80b3e569766",
+      "bytes": 755
+    },
+    {
+      "path": "results/gui-window-welcome.png",
+      "gitBlobSha1": "365db281ad69f951ea51f5d93dc27be5c00f10e4",
+      "sha256": "0f1d582f17aa8e42fd3720972dc224612aa39b682123c8a11ae1460637154073",
+      "bytes": 21719
+    },
+    {
+      "path": "results/verify-inputs.json",
+      "gitBlobSha1": "5dce51e29ae87723004a12092f91dbaa622feb8d",
+      "sha256": "c00ba427d3b6c14963e2fc00484b2bffc13db51ebcb3adee2aa2a230b6c2cba4",
+      "bytes": 323
+    }
+  ],
+  "publicManifestChecks": [
+    {
+      "path": "results/RESULTS-profile32-gui-r2-20261026.md",
+      "sha256": "8f2045d869246a507b4c88c87d22b2939b995ec76df80aa6f0788411a1e41249",
+      "matched": true
+    },
+    {
+      "path": "results/gui-identity.txt",
+      "sha256": "1c78be0ef6ca6e2c419ed950b8e11f4fb74fc2efedf3499ce0bbc80b3e569766",
+      "matched": true
+    },
+    {
+      "path": "results/gui-window-welcome.png",
+      "sha256": "0f1d582f17aa8e42fd3720972dc224612aa39b682123c8a11ae1460637154073",
+      "matched": true
+    },
+    {
+      "path": "results/verify-inputs.json",
+      "sha256": "c00ba427d3b6c14963e2fc00484b2bffc13db51ebcb3adee2aa2a230b6c2cba4",
+      "matched": true
+    }
+  ],
+  "welcomeScreenshotViewed": true,
+  "privateEvidenceCount": 113,
+  "privateEvidenceFetchedOrRead": false,
+  "evidenceLayer": "Public Git bytes, hashes, report, structured summaries, process-identity text and screenshot checked locally; Windows runtime, association restore, shutdown and preservation accepted as remote report, not independently rerun.",
+  "originalWindowsVerdicts": {
+    "inputVerification": "PASS",
+    "beforeAssociationBackup": "PASS (backupComplete=true printed before official-gui-started)",
+    "newProfilePreparation": "PASS",
+    "realBusinessAutoload": "PASS (all instance-level criteria)",
+    "officialGuiStartAndWindow": "PASS (pid 31980, actual createdUtc 2026-10-26T05:03:31.155Z, welcome page, no login/api-key clicks)",
+    "menuQuit": "FAIL (deviation: welcome window has no menu bar - Alt/F10/resize/in-page tried, tray unreachable; official close button X used instead -> whole 6-process tree exited, port released, NOT close-to-tray; exit code unobserved by controller whose 5-min window had expired)",
+    "afterAndScopedRestore": "PASS (manual kit phases After+Restore: After=50ef3f8f (this round EXE write), guard passed, restored==Before 8f3af673, UserChoice absent before/after, ACL untouched)",
+    "preservation": "PASS",
+    "ownedCloseout": "PASS (0 processes, 0 listeners, checkout clean)"
+  },
+  "autoloadSummary": {
+    "threeComponentsActive": true,
+    "frozenServiceClassIdentity": true,
+    "businessSha256": "9901a046cb3274a56ac47cc1734d669e7a012dab25ef7e34fe3643a38b8d1081",
+    "publicConfigureSyntheticConnection": true,
+    "syntheticTrafficOnly": true,
+    "noToolsCall": true,
+    "registryInstanceIsManagerRuntime": true,
+    "mcpFileInProfile": true,
+    "selectedMcpSha256": "b3cd7156c0b8639656ce117530fec4d006b74cafdc9a78ac426fec084e62972c",
+    "node": "24.21.0",
+    "electron": "44.7.0"
+  },
+  "exitDisposition": {
+    "originalMenuQuit": "FAIL",
+    "observedExitCode": null,
+    "controllerTimedOut": true,
+    "afterRestorePath": "existing manual kit phases; not automatic controller success",
+    "officialCloseWholeOwnedTree": "PASS per remote report",
+    "D1": "Explicit user decision accepts official welcome-window close button terminating the whole owned process tree as this round's minimal exit evidence.",
+    "scope": "e7b383b Windows rc.3 welcome state only; not historical menu failures or general GUI acceptance",
+    "menuRerunRequired": false,
+    "rawFailureRewritten": false
+  },
+  "pendingDecisions": {
+    "D2": "G6/BOM and safe-execution conditions",
+    "D3": "real nonempty native provenance",
+    "D4": "independent low-permission negative case",
+    "D5": "other historical anomalies and environment limits"
+  },
+  "noImplicitDowngrade": true,
+  "currentIssue105": {
+    "state": "open",
+    "comments": 0,
+    "remoteMutated": false,
+    "completionScope": "independent own criteria; no added global SDK/OAuth/GUI-distribution or blanket issue99 gates"
+  },
+  "upstream": {
+    "checkedDate": "2026-10-26",
+    "dsh": {
+      "head": "22ddee3792402c3e70ec5f86a63c3e3e895a2f60",
+      "latestTag": "dsh-v0.2.1-rc.3",
+      "changedSinceRound69": false
+    },
+    "foundry": {
+      "head": "94ad3c2ea8e08d8cb5498bc11affafba66f99093",
+      "latestTag": "v0.2.0",
+      "previousHead": "081f7fd5591edc990215bf3aea8ef9c1fe393d24",
+      "commitCount": 3,
+      "changedFiles": 37,
+      "commits": [
+        {
+          "sha": "1ddc0815bc2c0edfbea32f36709d0a5a7de41c44",
+          "subject": "chore(ci): check the sandbox tool surface on direct pushes too (#2508)"
+        },
+        {
+          "sha": "425d8cabc95823e348d48c658c153d3a0b051853",
+          "subject": "fix(bkn-agent): refuse value nodes as path ends (#2507)"
+        },
+        {
+          "sha": "94ad3c2ea8e08d8cb5498bc11affafba66f99093",
+          "subject": "feat(vega): add Dataset bulk replacement and deletion progress (#2510)"
+        }
+      ]
+    },
+    "review": "DSH unchanged. Foundry adds sandbox tool-surface CI triggers, bkn-agent value-node path-end refusal, and Vega dataset bulk writes/deletion progress. Reviewed file list, CI/graph patches and Vega API changes; unreleased main not deployed. Retained formal v0.2.0 and CLI/managed allowlist/fixtures unchanged, no new main compatibility claim or new tests.",
+    "platformContacted": false,
+    "hostStarted": false,
+    "pinsOrFixturesChanged": false
+  },
+  "mainSessionNewRuntimeTests": 0,
+  "mainSessionHostGuiPlatformAuthModelSandboxCalls": 0,
+  "pushCiOrIssueWrites": 0
+}

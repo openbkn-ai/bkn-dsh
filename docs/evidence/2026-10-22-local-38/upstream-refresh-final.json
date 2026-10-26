@@ -1,0 +1,28 @@
+{
+  "checkedAt": "2026-10-22 03:04:45 UTC",
+  "source": "read-only GitHub API via gh",
+  "dshHead": {
+    "sha": "687f282e8625c6b8d11ff58211a90524be2e4317",
+    "subject": "Merge pull request #6408 from deepseek-harness/worktree/release-dsh-0.2.1-rc.2"
+  },
+  "dshLatestIncludingPrereleases": {
+    "prerelease": true,
+    "publishedAt": "2026-10-17T08:16:33Z",
+    "tag": "dsh-v0.2.1-rc.2"
+  },
+  "foundryHead": {
+    "sha": "6b80afb087156330040afd8cecb0d9d581fd66db",
+    "subject": "feat(bkn-backend): answer Cypher over datasets and indexes through the data API (#2351)"
+  },
+  "foundryLatestRelease": {
+    "publishedAt": "2026-10-16T07:21:25Z",
+    "tag": "v0.2.0"
+  },
+  "windowsRef": {
+    "ref": "refs/heads/handoff/windows-local27-20261022",
+    "sha": "fd879740e4292836a24dc1e411ee335619ba4c41"
+  },
+  "headsUnchangedSincePreSoakCheck": true,
+  "pinsOrDeploymentChanged": false,
+  "apiSelectionNote": "DSH /releases/latest returned 404 because current releases are prereleases; /releases?per_page=1 confirmed the pinned RC."
+}

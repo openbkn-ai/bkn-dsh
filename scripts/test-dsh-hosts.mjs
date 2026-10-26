@@ -86,7 +86,7 @@ export function testDshHosts({ plugin, output }) {
       ...Object.fromEntries(Object.keys(packed.peerDependencies ?? {})
         .filter(name => name.startsWith('@deepseek-ai/dsh-')).map(name => [name, host.version])),
       ...Object.fromEntries(additionalPackages.map(name => [`@deepseek-ai/dsh-${name}`, host.version])),
-      ...(host.version === '0.2.1-rc.2' ? { '@deepseek-ai/dsh-api-remote-access': host.version } : {}),
+      ...(host.version === '0.2.1-rc.3' ? { '@deepseek-ai/dsh-api-remote-access': host.version } : {}),
       '@openbkn/dsh-business-context': 'file:../candidate.tgz',
       zod: '4.4.3',
     }
@@ -112,6 +112,7 @@ export function testDshHosts({ plugin, output }) {
         ['guard-formal', 'guard-runtime.probe.mjs', ['--runtime', directory, '--plugin', candidate, '--contract', 'formal']],
         ['guard-formal-disabled', 'guard-runtime.probe.mjs', ['--runtime', directory, '--plugin', candidate, '--contract', 'formal', '--capture', 'disabled']],
         ['guard-legacy', 'guard-runtime.probe.mjs', ['--runtime', directory, '--plugin', candidate]],
+        ['csv-export', 'csv-export-runtime.probe.mjs', ['--runtime', directory, '--plugin', candidate]],
         ['native-output', 'native-output-runtime.probe.mjs', ['--runtime', directory, '--plugin', candidate]],
         ['remote', 'remote-host.probe.mjs', ['--runtime', directory, '--plugin', candidate]],
       ]) {

@@ -1,0 +1,106 @@
+{
+  "dsh": {
+    "supportedNewHostCommit": "687f282e8625c6b8d11ff58211a90524be2e4317",
+    "latestDefaultHead": "22ddee3792402c3e70ec5f86a63c3e3e895a2f60",
+    "latestReleaseTag": "dsh-v0.2.1-rc.3",
+    "latestReleaseCommit": "1f81c047fc48fa190a683e469daa699857e9afe8",
+    "compareTotalCommits": 1539,
+    "compareReturnedCommits": 250,
+    "compareReturnedFiles": 300,
+    "compareCoverage": "GitHub compare response is truncated; no complete delta-review claim",
+    "targetedReleaseSourceChecks": [
+      {
+        "file": "packages/api/gateway/src/client/index.ts",
+        "oldFileSha256": "67b346bbb099b65ec37c6fcedb08e4efeae2aee291fe1809e7a2d6fea080030c",
+        "newFileSha256": "67b346bbb099b65ec37c6fcedb08e4efeae2aee291fe1809e7a2d6fea080030c",
+        "fileIdentical": true,
+        "selectedBoundary": "class ClientStreamHandle",
+        "boundaryFound": true,
+        "boundaryIdentical": true,
+        "oldBoundarySha256": "093e30199951405aae2d732552c2f9e0e7938d72758fbfb5b49714368da7ee4a",
+        "newBoundarySha256": "093e30199951405aae2d732552c2f9e0e7938d72758fbfb5b49714368da7ee4a"
+      },
+      {
+        "file": "packages/api/gateway/src/client/stream-client.ts",
+        "oldFileSha256": "4acd9e39179f9c1e9ffe899f5ed08b54564a30ef1f194cc5ef19ad539d7f0d97",
+        "newFileSha256": "4acd9e39179f9c1e9ffe899f5ed08b54564a30ef1f194cc5ef19ad539d7f0d97",
+        "fileIdentical": true,
+        "selectedBoundary": "  async *open(",
+        "boundaryFound": true,
+        "boundaryIdentical": true,
+        "oldBoundarySha256": "2d22360d732944ac56094fe7a8e572d3716230b9e69bf8e29e3d4afe8cfec7ea",
+        "newBoundarySha256": "2d22360d732944ac56094fe7a8e572d3716230b9e69bf8e29e3d4afe8cfec7ea"
+      },
+      {
+        "file": "packages/api/gateway/src/stream-server.ts",
+        "oldFileSha256": "cec92f5946f3a7c417e7041882bad14d6eff23b23d057adfcebacdbb31e56d2a",
+        "newFileSha256": "cec92f5946f3a7c417e7041882bad14d6eff23b23d057adfcebacdbb31e56d2a",
+        "fileIdentical": true
+      },
+      {
+        "file": "packages/subprocess/subprocess-local/src/spawn.ts",
+        "oldFileSha256": "1087f9ed1704167865e1a35cea0604f335cc348ac17da9c83c542fc454d00ae0",
+        "newFileSha256": "1087f9ed1704167865e1a35cea0604f335cc348ac17da9c83c542fc454d00ae0",
+        "fileIdentical": true,
+        "selectedBoundary": "export function bindManagedProcess(",
+        "boundaryFound": true,
+        "boundaryIdentical": true,
+        "oldBoundarySha256": "c26ef2ccd87eaa74834656ebba2176eb6f5cf036344666decbc240191ee8b467",
+        "newBoundarySha256": "c26ef2ccd87eaa74834656ebba2176eb6f5cf036344666decbc240191ee8b467"
+      },
+      {
+        "file": "packages/subprocess/subprocess-local/src/windows-job.ts",
+        "oldFileSha256": "220d210e72df9da21a313a70a400e6f5443b17b4a08188f0131bc09167067f63",
+        "newFileSha256": "220d210e72df9da21a313a70a400e6f5443b17b4a08188f0131bc09167067f63",
+        "fileIdentical": true,
+        "selectedBoundary": "class WindowsJobOwner",
+        "boundaryFound": true,
+        "boundaryIdentical": true,
+        "oldBoundarySha256": "241099e25e35df8d7254e1f1aab7ff024e752aa4ecfa0f99807409b9e388c314",
+        "newBoundarySha256": "241099e25e35df8d7254e1f1aab7ff024e752aa4ecfa0f99807409b9e388c314"
+      },
+      {
+        "file": "packages/subprocess/subprocess-local/src/spawn-runner.ts",
+        "oldFileSha256": "d4ba8aeec4427437cf4b7f23d2ea61c3a25becb43ee3944df190eef537a4679d",
+        "newFileSha256": "d4ba8aeec4427437cf4b7f23d2ea61c3a25becb43ee3944df190eef537a4679d",
+        "fileIdentical": true,
+        "selectedBoundary": "class WindowsJobRunner",
+        "boundaryFound": true,
+        "boundaryIdentical": true,
+        "oldBoundarySha256": "6e575b66154ea18615de3698cb869b156f75e153f72620f96dfed22b75f3084a",
+        "newBoundarySha256": "6e575b66154ea18615de3698cb869b156f75e153f72620f96dfed22b75f3084a"
+      },
+      {
+        "file": "packages/subprocess/win32-process/src/process.ts",
+        "oldFileSha256": "2043f59d97f320f83d731fb2f81ec15c77065d4ff98f305be3a95cebb5e776be",
+        "newFileSha256": "2043f59d97f320f83d731fb2f81ec15c77065d4ff98f305be3a95cebb5e776be",
+        "fileIdentical": true
+      }
+    ],
+    "installedOrTestedRc3": false
+  },
+  "foundry": {
+    "formalRelease": "v0.2.0",
+    "newMain": "b058d07fefc22a0b5f759046a19e1c49958977fd",
+    "totalCommits": 1,
+    "commits": [
+      {
+        "sha": "b058d07fefc22a0b5f759046a19e1c49958977fd",
+        "subject": "refactor(comm-go): extract HTTP errors into httperrors package (#2464)"
+      }
+    ],
+    "files": [
+      "comm-go/README.md",
+      "comm-go/audit/audit.go",
+      "comm-go/httperrors/common_errors.go",
+      "comm-go/httperrors/common_errors_test.go",
+      "comm-go/httperrors/errors.go",
+      "comm-go/httperrors/errors_test.go",
+      "comm-go/otel/oteltrace/attr.go",
+      "comm-go/rest/server.go",
+      "comm-go/rest/server_test.go"
+    ],
+    "deployed": false
+  },
+  "scope": "Only pinned-evidence consolidation and targeted source comparison. No Host pin, plugin, platform, CI or deployment change."
+}

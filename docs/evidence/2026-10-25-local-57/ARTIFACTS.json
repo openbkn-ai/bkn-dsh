@@ -1,0 +1,55 @@
+{
+  "kind": "local-development-preacceptance",
+  "ciRun": null,
+  "formalAcceptanceEligible": false,
+  "artifacts": [
+    {
+      "distributionId": "openbkn-host-old-same-origin-r1-mac-arm64",
+      "baseHostVersion": "0.2.0-rc.2",
+      "platform": "darwin-arm64",
+      "kind": "complete-npm-web-host",
+      "path": "release/local-57/artifacts/openbkn-host-old-same-origin-r1-mac-arm64.tar.gz",
+      "bytes": 209191220,
+      "sha256": "1c864db150fed9176813f91fc4355c8926191056513d67c4749ec3ef1ec0183e",
+      "fileListSha256": "18e67225f456ba7c6b25106f3d70e9ebdbec2fc39c6565f5dd168d57db2c4e0a",
+      "filesOrLinks": 27119,
+      "mcpEntrySha256": "b3cd7156c0b8639656ce117530fec4d006b74cafdc9a78ac426fec084e62972c",
+      "bundledNode": "24.19.0",
+      "bundledPnpm": "11.7.0"
+    },
+    {
+      "distributionId": "openbkn-mcp-old-same-origin-r1",
+      "baseHostVersion": "0.2.0-rc.2",
+      "kind": "payload-only-package-overlay-not-standalone-host",
+      "path": "release/local-57/artifacts/openbkn-mcp-old-same-origin-r1.tgz",
+      "bytes": 21689,
+      "sha256": "0e06001c240fd8dcf73f813ee837c36e978b78066a8637e65740b0dae4542511",
+      "regularFiles": 12,
+      "containsDependencies": false
+    },
+    {
+      "distributionId": "openbkn-host-rc3-same-origin-r1-mac-arm64",
+      "baseHostVersion": "0.2.1-rc.3",
+      "platform": "darwin-arm64",
+      "kind": "complete-npm-web-host",
+      "path": "release/local-57/artifacts/openbkn-host-rc3-same-origin-r1-mac-arm64.tar.gz",
+      "bytes": 235871387,
+      "sha256": "97e93bc6ce53ed5b8ee12f23d808bf187bbc881fed7c579cd15392a4954e7d23",
+      "fileListSha256": "e1e345e89bbce4a13868c3ed44c55c94afaae8452c9dff3f5ea423eecebad166",
+      "filesOrLinks": 39521,
+      "mcpEntrySha256": "b3cd7156c0b8639656ce117530fec4d006b74cafdc9a78ac426fec084e62972c",
+      "bundledNode": "24.19.0",
+      "bundledPnpm": "11.28.5"
+    },
+    {
+      "distributionId": "openbkn-mcp-rc3-same-origin-r1",
+      "baseHostVersion": "0.2.1-rc.3",
+      "kind": "payload-only-package-overlay-not-standalone-host",
+      "path": "release/local-57/artifacts/openbkn-mcp-rc3-same-origin-r1.tgz",
+      "bytes": 21684,
+      "sha256": "48694ca37f889edbc7c41ed8edd3c08e3dc8c0d9cf87c6c118d96de44556d3e0",
+      "regularFiles": 12,
+      "containsDependencies": false
+    }
+  ]
+}

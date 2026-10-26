@@ -1,0 +1,65 @@
+{
+  "checked_at": "2026-10-21T07:01:06.031846+00:00",
+  "platform": "https://192.168.50.129",
+  "context": "kind-bkn-test-015-lan",
+  "formal_commit": "81d5752826f3b3f3f72f3ad4cb1e22d45e99ab4b",
+  "sandbox_execution_aggregate": {
+    "total_rows": 670,
+    "rows_with_nonempty_token_field": 395,
+    "distinct_token_values_count": 8,
+    "largest_stored_code_bytes": 65514
+  },
+  "aggregate_query": "SELECT COUNT(*),COALESCE(SUM(CASE WHEN JSON_VALID(f_event_data) THEN JSON_UNQUOTE(JSON_EXTRACT(f_event_data,'$.token')) IS NOT NULL AND JSON_UNQUOTE(JSON_EXTRACT(f_event_data,'$.token'))<>'' ELSE 0 END),0),COUNT(DISTINCT CASE WHEN JSON_VALID(f_event_data) THEN NULLIF(JSON_UNQUOTE(JSON_EXTRACT(f_event_data,'$.token')),'') ELSE NULL END),MAX(OCTET_LENGTH(f_code)) FROM openbkn.t_sandbox_execution;",
+  "code_column": {
+    "type": "text",
+    "max_characters": 65535,
+    "max_bytes": 65535
+  },
+  "operator_observability_trace_enabled": false,
+  "trace_configuration_is_not_a_mitigation_for_database_event_storage": true,
+  "live_python_source_matches_formal_tag": true,
+  "source_hashes": {
+    "src/infrastructure/persistence/models/execution_model.py": "2f213f4f52d99a42d3dfb53dd81a545e5b99ab8ca7a5efaa6a20820d933356bc",
+    "src/infrastructure/persistence/database.py": "841b0527a6c6ec9f529b2352329b0533b6c83b85a6c9d89858a7abd8cda40144"
+  },
+  "images": [
+    {
+      "pod": "agent-operator-integration-5c96974647-c69vk",
+      "containers": [
+        {
+          "name": "agent-operator-integration",
+          "image": "swr.cn-east-3.myhuaweicloud.com/openbkn-ai/agent-operator-integration:0.2.0",
+          "imageID": "swr.cn-east-3.myhuaweicloud.com/openbkn-ai/agent-operator-integration@sha256:c65183be891efc9d2a6c36f59d8f2f7e805f9047520e77427b227b8a76977856"
+        }
+      ]
+    },
+    {
+      "pod": "sandbox-control-plane-784d9c6b68-5zqpp",
+      "containers": [
+        {
+          "name": "control-plane",
+          "image": "ghcr.io/openbkn-ai/sandbox-control-plane:0.2.0",
+          "imageID": "ghcr.io/openbkn-ai/sandbox-control-plane@sha256:58dfae8e1a3575bdf0f673b66dfbf5aeb260ac77333a6c3b1b740392c9bb164e"
+        }
+      ]
+    }
+  ],
+  "deployment_baseline": [
+    {
+      "name": "agent-operator-integration",
+      "uid": "2d73c850-27c4-4575-bb21-3d9bf3e1f7fd",
+      "generation": 3,
+      "spec_sha256": "e3ed5d357364834632c43d2ac43cf1aa5fff2cdb2bf5113ac68d05dceaff286c"
+    },
+    {
+      "name": "sandbox-control-plane",
+      "uid": "cb61dff4-bb37-4e16-b1e7-9ef2adedebf0",
+      "generation": 8,
+      "spec_sha256": "32ac9ae99b7d302267c2c8d929f6ebbf9e16642691a08a57a2039fc344f625a3"
+    }
+  ],
+  "token_values_read_or_exported": false,
+  "token_validity_or_unauthorized_access_tested": false,
+  "external_disclosure_demonstrated": false,
+  "platform_mutated": false
+}

@@ -1,0 +1,53 @@
+{
+  "checked_at": "2026-10-21T08:14:16.333284+00:00",
+  "checks": [
+    {
+      "dsh": "0.2.0-rc.2",
+      "phase": "before-reauth",
+      "interaction_id": "int_3094d6ff1eb9d8ed19b15e3457a43e5b",
+      "operations_http_cli_ok": true,
+      "platform_operations": [
+        "query_object_instance"
+      ],
+      "total_count": 40,
+      "page_rows": 1,
+      "sandbox_used": false
+    },
+    {
+      "dsh": "0.2.0-rc.2",
+      "phase": "after-reauth",
+      "interaction_id": "int_09976a670c11a8203e03f8947678924b",
+      "operations_http_cli_ok": true,
+      "platform_operations": [
+        "query_object_instance"
+      ],
+      "total_count": 40,
+      "page_rows": 1,
+      "sandbox_used": false
+    },
+    {
+      "dsh": "0.2.1-rc.2",
+      "phase": "before-reauth",
+      "interaction_id": "int_a90caced37ee5b68df9908a32b6dd364",
+      "operations_http_cli_ok": true,
+      "platform_operations": [
+        "query_object_instance"
+      ],
+      "total_count": 40,
+      "page_rows": 1,
+      "sandbox_used": false
+    },
+    {
+      "dsh": "0.2.1-rc.2",
+      "phase": "after-reauth",
+      "interaction_id": "int_7ef47d6b3e419ee7db163d499fc56ea2",
+      "operations_http_cli_ok": true,
+      "platform_operations": [
+        "query_object_instance"
+      ],
+      "total_count": 40,
+      "page_rows": 1,
+      "sandbox_used": false
+    }
+  ]
+}

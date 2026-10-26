@@ -1,7 +1,8 @@
+import { useDialogFocus } from './use-dialog-focus.ts'
 import { NativeProvenancePanel } from './NativeProvenancePanel.tsx'
 import { useOpenBknTranslation } from './locale.tsx'
 import { translateChinese, type OpenBknTranslate } from './messages.ts'
-import { useEffect, useRef, useState, type ReactNode } from 'react'
+import { useEffect, useState, type ReactNode } from 'react'
 import type { HostObservable, InjectFace, PropsRuntime } from '@deepseek-ai/dsh-client-ui-slots'
 import { buildBusinessGraphModel, businessGraphGeometry } from '../business-graph-model.ts'
 import { foldTimeline, type TimelineFoldGroup } from '../timeline-fold.ts'
@@ -68,7 +69,7 @@ export function ProvenanceOverlay({ useProvenanceOverlay, load, close }: Provena
   const view = current?.view
   const tab = current === undefined ? 'events' : selectedTab
   const loading = current === undefined || current.phase === 'loading'
-  const dialog = useRef<HTMLElement>(null)
+  const dialog = useDialogFocus(state.handle !== undefined, close)
   useEffect(() => {
     if (state.handle === undefined || state.sessionId === undefined || state.messageId === undefined) return
     let active = true
@@ -83,13 +84,6 @@ export function ProvenanceOverlay({ useProvenanceOverlay, load, close }: Provena
     })
     return () => { active = false; request.abort() }
   }, [load, state.handle, state.messageId, state.sessionId, requestKey])
-  useEffect(() => {
-    if (state.handle === undefined) return
-    dialog.current?.focus()
-    const onKeyDown = (event: KeyboardEvent) => { if (event.key === 'Escape') close() }
-    window.addEventListener('keydown', onKeyDown)
-    return () => window.removeEventListener('keydown', onKeyDown)
-  }, [close, state.handle, requestKey])
   if (state.handle === undefined) return null
 
   return <div role="presentation" onMouseDown={close} style={backdropStyle}>
@@ -118,7 +112,7 @@ function Execution({ handle, view }: { handle: ProvenanceHandle; view: Provenanc
     </section>
     <section style={{ display: 'grid', gap: 10 }}>
       <PaneHeading badge={<SourceBadge label={operationsDegradation === undefined ? t('platform') : operationsDegradation.reason === 'result-too-large' ? t('platformNotDisplayed') : t('platformUnavailable')} mark={operationsDegradation?.reason} />} title={t('platformExecutionFacts')} note={operationsDegradation === undefined ? t('operationStatusDurationAndRequestTraceReceiptReferences') : undefined} />
-      {operationsDegradation !== undefined ? <DegradedPane degradation={operationsDegradation} /> : view.execution.operations.length === 0 ? <Empty text={t('noDisplayableOperationFactsWereRecordedForThis')} /> : <div style={timelineStyle}>{view.execution.operations.map((operation, index) => <article key={operation.id} style={operationStyle}><div style={timelineIndexStyle}>{String(index + 1).padStart(2, '0')}</div><div style={{ display: 'grid', gap: 7 }}><div style={{ display: 'flex', justifyContent: 'space-between', gap: 12 }}><strong>{operation.label}</strong><Status value={operation.status} /></div><span style={mutedStyle}>{[operation.protocol, operation.startedAt, operation.finishedAt].filter(Boolean).join(' · ')}</span><div style={referenceRowStyle}>{operation.requestId === undefined ? null : <Reference label="Request" value={operation.requestId} />}{operation.traceId === undefined ? null : <Reference label="Trace" value={operation.traceId} />}{operation.receiptId === undefined ? null : <Reference label="Receipt" value={operation.receiptId} />}</div></div></article>)}</div>}
+      {operationsDegradation !== undefined ? <DegradedPane degradation={operationsDegradation} /> : view.execution.operations.length === 0 ? <Empty text={t('noDisplayableOperationFactsWereRecordedForThis')} /> : <div style={timelineStyle}>{view.execution.operations.map((operation, index) => <article key={operation.id} style={operationStyle}><div style={timelineIndexStyle}>{String(index + 1).padStart(2, '0')}</div><div style={{ display: 'grid', gap: 7 }}><div style={{ display: 'flex', justifyContent: 'space-between', gap: 12 }}><strong>{operation.label}</strong><Status value={operation.status} /></div><span style={mutedStyle}>{[operation.protocol, operation.startedAt, operation.finishedAt].filter(Boolean).join(' · ')}</span><div style={referenceRowStyle}>{operation.requestId === undefined ? null : <Reference label={t('referenceRequest')} value={operation.requestId} />}{operation.traceId === undefined ? null : <Reference label={t('referenceTrace')} value={operation.traceId} />}{operation.receiptId === undefined ? null : <Reference label={t('referenceReceipt')} value={operation.receiptId} />}</div></div></article>)}</div>}
     </section>
   </div>
 }
@@ -145,7 +139,7 @@ function TimelineRow({ group }: { group: TimelineFoldGroup }) {
       <div style={{ display: 'flex', gap: 10, alignItems: 'baseline', flexWrap: 'wrap' as const }}>
         <strong style={{ overflowWrap: 'anywhere' as const }}>{node.tool}{folded ? ` ×${group.nodes.length}` : ''}</strong>
         {node.outcome === 'error' ? <span style={{ color: '#b42318', fontSize: 13, fontWeight: 700 }}>error</span> : null}
-        {node.platform === undefined ? null : <span style={referenceRowStyle}>{node.platform.operationId === undefined ? null : <Reference label="Op" value={node.platform.operationId} />}{node.platform.receiptId === undefined ? null : <Reference label="Receipt" value={node.platform.receiptId} />}{node.platform.status === undefined ? null : <Reference label="Status" value={node.platform.status} />}</span>}
+        {node.platform === undefined ? null : <span style={referenceRowStyle}>{node.platform.operationId === undefined ? null : <Reference label={t('referenceOperation')} value={node.platform.operationId} />}{node.platform.receiptId === undefined ? null : <Reference label={t('referenceReceipt')} value={node.platform.receiptId} />}{node.platform.status === undefined ? null : <Reference label={t('referenceStatus')} value={node.platform.status} />}</span>}
       </div>
       {node.summary === undefined ? null : <span style={mutedStyle}>{node.summary}</span>}
     </div>
@@ -340,7 +334,7 @@ const backdropStyle = { pointerEvents: 'auto' as const, position: 'fixed' as con
 const dialogStyle = { width: 'min(1280px, 100%)', minHeight: 560, maxHeight: 'min(840px, calc(100vh - 40px))', overflow: 'auto' as const, borderRadius: 16, background: '#fff', boxShadow: '0 24px 70px rgb(15 23 42 / 28%)', color: '#172033' }
 const headerStyle = { display: 'flex', alignItems: 'start', justifyContent: 'space-between', padding: '26px 28px 18px', borderBottom: '1px solid #e6eaf0' }
 const eyebrowStyle = { color: '#087d72', fontSize: 12, fontWeight: 750, letterSpacing: '0.12em' }
-const closeStyle = { border: '1px solid #d9e0ea', borderRadius: 9, width: 42, height: 42, background: '#fff', fontSize: 30, lineHeight: 1, cursor: 'pointer' }
+const closeStyle = { border: '1px solid #d9e0ea', borderRadius: 9, width: 42, height: 42, background: '#fff', color: '#374151', fontSize: 30, lineHeight: 1, cursor: 'pointer' }
 const tabBarStyle = { display: 'flex', gap: 12, padding: '0 20px', borderBottom: '1px solid #e6eaf0' }
 const mutedStyle = { color: '#64748b', fontSize: 14, margin: 0, lineHeight: 1.55 }
 const summaryStyle = { display: 'grid', gridTemplateColumns: 'minmax(0, 2fr) repeat(2, minmax(0, 1fr))', gap: 1, overflow: 'hidden', border: '1px solid #e1e8ee', borderRadius: 12, background: '#e1e8ee' }

@@ -10,9 +10,15 @@ Published -7 history: [GitHub Release](https://github.com/openbkn-ai/bkn-dsh/rel
 
 Bring governed OpenBKN business knowledge into DeepSeek Harness conversations.
 
-## 0.2.1 development / -11 (unreleased)
+## 0.2.1 development / -27 (unreleased)
 
-This branch targets the same plugin tarball on official DSH `0.2.0-rc.2` and `0.2.1-rc.2`, against formal OpenBKN `v0.2.0` and npm CLI `0.2.0`. The `0.2.0-rc.2` prefix in `0.2.0-rc.2-openbkn.0.2.0-12` identifies the retained build baseline; the exact runtime pair is declared in the package peers. This development version has not been published. Public `latest`/`rc` still point to historical `-10` as checked on October 19.
+This branch now targets official DSH `0.2.0-rc.2` and `0.2.1-rc.3`, with formal OpenBKN `v0.2.0` and CLI `0.2.0`. The old build generator remains pinned. The local development candidate is -32; it is not a final CI candidate or formal acceptance result. Frozen -30/-31 and their rc.2 handoff evidence remain unchanged and do not establish rc.3 acceptance.
+
+Local round 34 fixes a reproduced native Cordis MCP-owner lifetime defect, reuses the official Desktop directory bridge, and fixes diagnostic text contrast in dark hosts. Both source baselines and the same packed artifact pass local checks; actual Desktop B1 protocol checks are recorded separately from model G6. The platform remains unchanged official 0.2.0, with Sandbox-related acceptance held and the remaining G6 cases classified individually. See [current evidence](docs/evidence/2026-10-21-local-34/RESULTS.md) and [G6 pending items](docs/evidence/2026-10-21-local-34/G6-BLOCKERS.md). No push or CI is authorized before local convergence.
+
+CSV delivery in this local development version uses the scoped `openbkn_export_csv` tool when the Host offers the required file services. After an existing platform CSV is created, the tool verifies and copies its exact UTF-8 bytes (up to 512 KiB) to a new file in the current DSH workspace. It requires the current bound Interaction and workspace write access; read-only sessions refuse delivery. Open the returned local file link only after export succeeds. Host read/grep/present remain unavailable. Managed guidance requires source precision in answers and CSV serialization, including avoiding Python default general formatting unless rounding is requested by the user or a disclosed platform rule. Model answer and file contents still require independent validation.
+
+Export results include a verified `markdown_link`; repeat it with the answer and scope in the final message after finishing the Interaction, because progress messages may be collapsed. Count scope and requested calculation signs follow the platform contract; the plugin does not recalculate business results.
 
 Formal capture-disabled responses retain managed Conversation/Interaction IDs: business calls still send the required `bkn_context`, and finish uses the current Interaction ID. Provenance preserves the disclosed identities, labels the absence of recorded evidence and keeps the local timeline. The earlier explicit no-identity downgrade remains a separate compatibility path. The plugin does not recalculate business results or alter model answers.
 
@@ -26,7 +32,7 @@ Enterprise decisions need trusted business objects, metrics, rules, relationship
 
 bkn-dsh is an additive DeepSeek Harness plugin that lets authorized users select one OpenBKN business knowledge network for a conversation, analyze within that explicit scope, and inspect available business provenance for each completed answer.
 
-> Version prerequisite: the provenance views need a valid OpenBKN token and a `businessDomain` the deployment allows (`x-business-domain`; the stock chart allow-lists `bd_public`, no admin action needed). Verified against OpenBKN 0.1.4: the observability read routes have **no license gate**, so community deployments show the full provenance panel; the business graph may carry fewer enriched references there (enterprise optimizer, unverified). No upgrade prompt is ever shown for reads — a 403 always means the domain or account was refused.
+> Version prerequisite: provenance availability depends on the deployed OpenBKN version, routes and account permissions. On formal 0.2.0 Community, standard Interaction/operation records are available, while the optional native business-provenance routes are not mounted. Nonempty native business interpretation requires the corresponding extension. Historical 0.1.4 read-route results do not establish 0.2.0 feature availability; a 404 alone is not a license diagnosis.
 
 ## Who it serves
 
@@ -157,14 +163,14 @@ The plugin needs a reachable OpenBKN platform with at least one knowledge networ
 
 ## Supported DSH versions
 
-The published -10 release targets `dsh-v0.2.0-rc.2`. The unreleased -11 branch declares the exact pair in [the host matrix](compat/dsh-hosts.json): `0.2.0-rc.2` and `0.2.1-rc.2`, with the old generator retained for building. Acceptance follows the [formal release contract](docs/plans/0.2.1/ACCEPTANCE-CONTRACT.md); declaration or a controlled smoke result does not establish full product acceptance.
+The current development target is the exact pair in [the host matrix](compat/dsh-hosts.json): `0.2.0-rc.2` and `0.2.1-rc.3`. The old generator remains the build baseline. Acceptance follows the [formal release contract](docs/plans/0.2.1/ACCEPTANCE-CONTRACT.md); the isolated private fixture checks are not a released or CI candidate.
 
 Check your version with `dsh --version`, then pair it like this:
 
 | Your DSH version | Compatibility series | Plugin to install | Prebuilt runtime archive |
 | --- | --- | --- | --- |
 | `dsh-v0.2.0-rc.2` (current pin): desktop app, npm CLI, or source build | not needed to use the plugin; [`compat/dsh-0.2.0-rc.2/`](compat/dsh-0.2.0-rc.2/) builds it from source | `@openbkn/dsh-business-context@latest` from npm or a published `.tgz` (Standard mode) | discontinued; last one: [openbkn-dsh-runtime-v0.2.0-rc.2-openbkn.0.2.0](https://github.com/openbkn-ai/bkn-dsh/releases/tag/openbkn-dsh-runtime-v0.2.0-rc.2-openbkn.0.2.0) |
-| `dsh-v0.2.1-rc.2` (development target) | official host; old build generator stays separate | unreleased -11 only after fixed-candidate acceptance; public -10 is not this branch | no new runtime archive |
+| `dsh-v0.2.1-rc.3` (development target) | official host in isolation; old build generator retained | -32 metadata only; fixed candidate and real-form acceptance pending | no new runtime archive |
 | `dsh-v0.1.7-rc.2` (previous series) | [`compat/dsh-0.1.7-rc.2/`](compat/dsh-0.1.7-rc.2/) (archived) | `@openbkn/dsh-business-context@0.1.7-rc.2-openbkn.0.2.0` from npm, or build from git tag [`v0.1.7-rc.2-openbkn.0.2.0`](https://github.com/openbkn-ai/bkn-dsh/tree/v0.1.7-rc.2-openbkn.0.2.0) | [openbkn-dsh-runtime-v0.1.7-rc.2-openbkn.0.2.0](https://github.com/openbkn-ai/bkn-dsh/releases/tag/openbkn-dsh-runtime-v0.1.7-rc.2-openbkn.0.2.0) |
 | `dsh-v0.1.6-alpha.2` (previous series) | [`compat/dsh-0.1.6-alpha.2/`](compat/dsh-0.1.6-alpha.2/) (archived) | `@openbkn/dsh-business-context@0.1.5-rc.2` from npm, or a source build from git tag [`v0.1.5-rc.2`](https://github.com/openbkn-ai/bkn-dsh/tree/v0.1.5-rc.2) | [openbkn-dsh-runtime-v0.1.6-alpha.2-openbkn.1](https://github.com/openbkn-ai/bkn-dsh/releases/tag/openbkn-dsh-runtime-v0.1.6-alpha.2-openbkn.1) |
 

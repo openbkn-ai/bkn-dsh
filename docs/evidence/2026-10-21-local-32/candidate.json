@@ -1,0 +1,21 @@
+{
+  "checked_at": "2026-10-21T08:11:32.764698+00:00",
+  "plugin_version": "0.2.0-rc.2-openbkn.0.2.0-25",
+  "artifact_file": "/Users/dominiczhang/Documents/project/app/openBKN/bkn-dsh/release/local-32/openbkn-dsh-business-context-0.2.0-rc.2-openbkn.0.2.0-25.tgz",
+  "artifact_sha256": "ec33b3ff3776b28a939a12e7c8b822bfa2878e812db13edd3a0db59794a25d63",
+  "artifact_bytes": 229313,
+  "files": 81,
+  "mode": "local only; no push, commit or CI",
+  "bkn_dsh_head": "933b0ab251c75461ece1ada6145a9487e7eb04d1",
+  "changed_from_24": [
+    "lib/business.js",
+    "lib/client.js",
+    "lib/typert.host.js",
+    "lib/typert.remote-client.d.ts",
+    "lib/typert.remote-client.js",
+    "lib/types/business-context-service.d.ts",
+    "package.json"
+  ],
+  "previous_artifact_24_sha256": "2e927d4608b7eb5c238ded45bfbaf9b54fd6790c97f81d446a70228384a02e93",
+  "change_scope": "UI focus plus a native cancellable Remote login stream; business calculations and tool policies unchanged"
+}

@@ -1,0 +1,7 @@
+import {useDialogFocus as oldHook} from "../../../packages/openbkn-business-context/src/client/use-dialog-focus.ts";
+import {useDialogFocus as newHook} from "../../../../bkn-dsh-local49-ui/packages/openbkn-business-context/src/client/use-dialog-focus.ts";
+import {useModalLayer} from "../../dsh-0.2.1-rc.2/packages/client/ui-primitives/src/useModalLayer.ts";
+let parentCleanup=[],childCleanup=[],events=[],mode;const parent=document.querySelector('#parent'),child=document.querySelector('#child'),status=document.querySelector('#status');
+const render=()=>{const data={mode,parentOpen:!parent.hidden,childOpen:!child.hidden,events:[...events],active:document.activeElement?.id};status.textContent=JSON.stringify(data);return data};
+function reset(next){for(const f of [...childCleanup,...parentCleanup].reverse())f();parentCleanup=[];childCleanup=[];events=[];mode=next;parent.hidden=false;child.hidden=false;globalThis.probeCleanups=parentCleanup;useModalLayer({current:parent},true,()=>{events.push('native-parent-close');parent.hidden=true;render()});globalThis.probePanel=child;globalThis.probeCleanups=childCleanup;(mode==='old'?oldHook:newHook)(true,()=>{events.push('plugin-child-close');child.hidden=true;render();fetch('/result',{method:'POST',headers:{'content-type':'application/json'},body:JSON.stringify(render())})});render()}
+document.querySelector('#old').onclick=()=>reset('old');document.querySelector('#new').onclick=()=>reset('new');document.querySelector('#reset').onclick=()=>reset(mode??'old');document.addEventListener('keyup',()=>render());

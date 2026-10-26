@@ -1,0 +1,41 @@
+{
+  "checkedAt": "2026-10-25T02:25:26.255685+00:00",
+  "data": {
+    "dsh": {
+      "defaultBranchRef": {
+        "name": "master",
+        "target": {
+          "oid": "22ddee3792402c3e70ec5f86a63c3e3e895a2f60"
+        }
+      },
+      "releases": {
+        "nodes": [
+          {
+            "tagName": "dsh-v0.2.1-rc.3",
+            "publishedAt": "2026-10-23T15:26:39Z"
+          }
+        ]
+      }
+    },
+    "foundry": {
+      "defaultBranchRef": {
+        "name": "main",
+        "target": {
+          "oid": "a4ed5f9cf8972bb4f2c39e321965819bea7baeb3"
+        }
+      },
+      "releases": {
+        "nodes": [
+          {
+            "tagName": "v0.2.0",
+            "publishedAt": "2026-10-16T07:21:25Z"
+          }
+        ]
+      }
+    }
+  },
+  "unchangedSinceRound52": true,
+  "fixedOldBuildVersion": "0.2.0-rc.2",
+  "newCompatibilityTarget": "0.2.1-rc.3",
+  "existingHostsOrPlatformUpgraded": false
+}

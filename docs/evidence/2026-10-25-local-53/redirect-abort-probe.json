@@ -1,0 +1,11 @@
+{
+  "scope": "real loopback HTTP with an unfinished same-origin redirect body; caller AbortSignal",
+  "rejectedAs": "AbortError",
+  "elapsedMs": 65,
+  "requests": [
+    "/slow"
+  ],
+  "serversClosed": true,
+  "port": "53418",
+  "result": "PASS"
+}

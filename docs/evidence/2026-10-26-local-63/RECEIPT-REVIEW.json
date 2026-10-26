@@ -1,0 +1,188 @@
+{
+  "clientReviewDate": "2026-10-26",
+  "resultsBranch": "docs/windows-021-host32-mcp-nongui-results-20261026",
+  "resultsCommit": "8f94288fd92ab04938decc8ad561aaac2696f2e7",
+  "inputCommit": "a362d783d75b8b1ff80b55ba0e497fe1a56c8ade",
+  "kind": "local-development-preacceptance",
+  "ciRun": null,
+  "formalAcceptanceEligible": false,
+  "gitBlobObjectsVerified": 12,
+  "sourceHashes": {
+    "results/RESULTS-105-nongui-20261026.md": "fd93358d58e150173b33c69599c6053f075917d1dbb7d62e19c3033bf74b2a46",
+    "results/evidence-manifest-105.json": "1cd35339144de7d3c257644a599fb000778bed60b7c0be0ed49d6cb063ee043a",
+    "results/verify-inputs.json": "b30314318ab5134bd6bd5e2a637a4e8ce59c070d35e69498b035ca0fc81eb417"
+  },
+  "publicManifestEntriesMatched": 10,
+  "publicPathMapping": {
+    "out/desktop-protected.json": {
+      "publishedPath": "evidence/desktop-protected.json",
+      "sha256": "8a7dd29ce599df4c56f9613c04f8acb5679b68ef43c72dbe184f6b66cd32bd32"
+    },
+    "out/desktop-stock.json": {
+      "publishedPath": "evidence/desktop-stock.json",
+      "sha256": "63c13dfd5e4b0dd43bffa5a4f2234804c37bc2fa44dc012c7644cd857849fd8d"
+    },
+    "out/desktop3-protected.json": {
+      "publishedPath": "evidence/desktop3-protected.json",
+      "sha256": "5b29b5a2cbe13a90c0b591c77f4c1b26a7f53069af0e036b9d49603e02d7d31e"
+    },
+    "out/desktop3-stock.json": {
+      "publishedPath": "evidence/desktop3-stock.json",
+      "sha256": "40eb31c049b0f833b492f9355388a4f109641a79f65a2f35efdbce1416fe931c"
+    },
+    "out/npm-rc2-protected.json": {
+      "publishedPath": "evidence/npm-rc2-protected.json",
+      "sha256": "698d2c7d5431f9a5186a9d37037025c779ec7e3af619081db9e8f594b0d96b2f"
+    },
+    "out/npm-rc2-stock.json": {
+      "publishedPath": "evidence/npm-rc2-stock.json",
+      "sha256": "560de6d2e226f0716eaabff20db5f47194656d2fda81fb2a53172bc9d2ea9579"
+    },
+    "out/npm-rc3-protected.json": {
+      "publishedPath": "evidence/npm-rc3-protected.json",
+      "sha256": "fae512afa7a2328346ead27196fee0125a82b322b70bb6818f93f4686e4db56f"
+    },
+    "out/npm-rc3-stock.json": {
+      "publishedPath": "evidence/npm-rc3-stock.json",
+      "sha256": "72467cba8b844fbc7eb48530fa7a2b47d4a1a121d27795c7352a073e852676bb"
+    },
+    "results/RESULTS-105-nongui-20261026.md": {
+      "publishedPath": "results/RESULTS-105-nongui-20261026.md",
+      "sha256": "fd93358d58e150173b33c69599c6053f075917d1dbb7d62e19c3033bf74b2a46"
+    },
+    "results/verify-inputs.json": {
+      "publishedPath": "results/verify-inputs.json",
+      "sha256": "b30314318ab5134bd6bd5e2a637a4e8ce59c070d35e69498b035ca0fc81eb417"
+    }
+  },
+  "privateEvidenceNotFetched": 46,
+  "probeReports": [
+    {
+      "file": "desktop-protected.json",
+      "host": "0.2.0-rc.2",
+      "form": "Desktop backend",
+      "mode": "protected",
+      "node": "24.18.1",
+      "electron": "44.0.0",
+      "actualMcpSha256": "b3cd7156c0b8639656ce117530fec4d006b74cafdc9a78ac426fec084e62972c",
+      "sameOrigin307": "PASS",
+      "secondOriginRequests": 0,
+      "syntheticSessionAndQuestionPositiveControl": "not-applicable-protected",
+      "fixtureListenersClosed": true,
+      "mcpDisposalErrors": [],
+      "result": "PASS"
+    },
+    {
+      "file": "desktop-stock.json",
+      "host": "0.2.0-rc.2",
+      "form": "Desktop backend",
+      "mode": "stock-control",
+      "node": "24.18.1",
+      "electron": "44.0.0",
+      "actualMcpSha256": "758d8fc473b700b5d351158d06ce9f9e92c16e8b25497b08bb7bd2122a87f5dd",
+      "sameOrigin307": "PASS",
+      "secondOriginRequests": 1,
+      "syntheticSessionAndQuestionPositiveControl": true,
+      "fixtureListenersClosed": true,
+      "mcpDisposalErrors": [],
+      "result": "PASS"
+    },
+    {
+      "file": "desktop3-protected.json",
+      "host": "0.2.1-rc.3",
+      "form": "Desktop backend",
+      "mode": "protected",
+      "node": "24.21.0",
+      "electron": "44.7.0",
+      "actualMcpSha256": "b3cd7156c0b8639656ce117530fec4d006b74cafdc9a78ac426fec084e62972c",
+      "sameOrigin307": "PASS",
+      "secondOriginRequests": 0,
+      "syntheticSessionAndQuestionPositiveControl": "not-applicable-protected",
+      "fixtureListenersClosed": true,
+      "mcpDisposalErrors": [],
+      "result": "PASS"
+    },
+    {
+      "file": "desktop3-stock.json",
+      "host": "0.2.1-rc.3",
+      "form": "Desktop backend",
+      "mode": "stock-control",
+      "node": "24.21.0",
+      "electron": "44.7.0",
+      "actualMcpSha256": "758d8fc473b700b5d351158d06ce9f9e92c16e8b25497b08bb7bd2122a87f5dd",
+      "sameOrigin307": "PASS",
+      "secondOriginRequests": 1,
+      "syntheticSessionAndQuestionPositiveControl": true,
+      "fixtureListenersClosed": true,
+      "mcpDisposalErrors": [],
+      "result": "PASS"
+    },
+    {
+      "file": "npm-rc2-protected.json",
+      "host": "0.2.0-rc.2",
+      "form": "npm/Node",
+      "mode": "protected",
+      "node": "24.19.0",
+      "electron": null,
+      "actualMcpSha256": "b3cd7156c0b8639656ce117530fec4d006b74cafdc9a78ac426fec084e62972c",
+      "sameOrigin307": "PASS",
+      "secondOriginRequests": 0,
+      "syntheticSessionAndQuestionPositiveControl": "not-applicable-protected",
+      "fixtureListenersClosed": true,
+      "mcpDisposalErrors": [],
+      "result": "PASS"
+    },
+    {
+      "file": "npm-rc2-stock.json",
+      "host": "0.2.0-rc.2",
+      "form": "npm/Node",
+      "mode": "stock-control",
+      "node": "24.19.0",
+      "electron": null,
+      "actualMcpSha256": "758d8fc473b700b5d351158d06ce9f9e92c16e8b25497b08bb7bd2122a87f5dd",
+      "sameOrigin307": "PASS",
+      "secondOriginRequests": 1,
+      "syntheticSessionAndQuestionPositiveControl": true,
+      "fixtureListenersClosed": true,
+      "mcpDisposalErrors": [],
+      "result": "PASS"
+    },
+    {
+      "file": "npm-rc3-protected.json",
+      "host": "0.2.1-rc.3",
+      "form": "npm/Node",
+      "mode": "protected",
+      "node": "24.19.0",
+      "electron": null,
+      "actualMcpSha256": "b3cd7156c0b8639656ce117530fec4d006b74cafdc9a78ac426fec084e62972c",
+      "sameOrigin307": "PASS",
+      "secondOriginRequests": 0,
+      "syntheticSessionAndQuestionPositiveControl": "not-applicable-protected",
+      "fixtureListenersClosed": true,
+      "mcpDisposalErrors": [],
+      "result": "PASS"
+    },
+    {
+      "file": "npm-rc3-stock.json",
+      "host": "0.2.1-rc.3",
+      "form": "npm/Node",
+      "mode": "stock-control",
+      "node": "24.19.0",
+      "electron": null,
+      "actualMcpSha256": "758d8fc473b700b5d351158d06ce9f9e92c16e8b25497b08bb7bd2122a87f5dd",
+      "sameOrigin307": "PASS",
+      "secondOriginRequests": 1,
+      "syntheticSessionAndQuestionPositiveControl": true,
+      "fixtureListenersClosed": true,
+      "mcpDisposalErrors": [],
+      "result": "PASS"
+    }
+  ],
+  "summary": "Windows changed-boundary non-GUI supplement: 8/8 final reports satisfy agreed checks",
+  "coverage": "Two pinned Hosts x Node/npm and matching Electron backend. Synthetic loopback307 native factory/ToolRuntime only. No GUI/full platform/auth/model or arbitrary-version conclusion.",
+  "environmentAndHostCleanupEvidence": "Versions within probe JSON independently checked; source/installer/82-file inventory/closure/overall process cleanup and local authorization are accepted as remote report statements, private originals not viewed.",
+  "retainedEarlierAttempts": "Report sections2/4 are historical BLOCKED; final sections6-8 and manifest resolution take precedence. Earlier --patch injection attempts are retained, not counted as eight first-attempt passes.",
+  "methodChange": "Profile-level cordis.patch.yml and forward-slash paths used for final probes; no proof of a general CLI defect or plugin defect. No new reproduction required.",
+  "profileDeliveryClue": "Windows Desktop probe manually imports the MCP selected through packageOf. Actual frozen business bundle statically imports McpClient; profile override coverage of that path and GUI remains unproven. Evaluate this bounded route before a GUI rebuild.",
+  "remoteIssueWriteOrNewExecution": false
+}

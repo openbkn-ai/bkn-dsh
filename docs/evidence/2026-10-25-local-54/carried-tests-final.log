@@ -1,0 +1,14 @@
+✔ an open dialog receives focus, wraps visible controls and restores its opener (3.345167ms)
+✔ content updates retain focus and Escape uses the latest close action without leaking listeners (0.325666ms)
+✔ owned keyboard handling yields to consumed, composing and modified gestures (0.211667ms)
+✔ historical reference labels switch zh/en/zh without rereading or changing platform facts (10.223041ms)
+✔ passive diagnostics explains observation age without relabeling historical pass or changing JSON (21.476917ms)
+✔ brand captions and the sign-in action have normal-text contrast on their actual surfaces (1.2735ms)
+ℹ tests 6
+ℹ suites 0
+ℹ pass 6
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 209.611875

@@ -1,0 +1,62 @@
+Window: "DeepSeek Harness", App: DeepSeek Harness.
+0 standard window DeepSeek Harness, Secondary Actions: Raise
+	1 container DeepSeek Harness
+		2 container
+			3 HTML content DeepSeek Harness, URL: dsh-app://app/
+				4 container
+					5 button Collapse sidebar
+					6 button New session
+					7 container Global panels
+						8 button Plugins
+						9 button Automation tasks
+					10 text Workspaces
+					11 button Search sessions
+					12 text field (settable) Search session names
+					13 button View options
+					14 button Add workspace
+					15 outline Sessions
+						16 container
+							17 row desktop-new
+								18 text desktop-new
+							19 row (selected) New Session
+								20 text New Session
+						21 row Default workspace
+							22 text Default workspace
+					23 button OpenBKN business knowledge networks
+					24 pop up button Account menu
+					25 button Open right sidebar
+					26 container
+						27 text Into the Unknown Preview
+						28 pop up button Choose workspace
+						29 pop up button Standard mode, Help: Choose the agent preset for your new task
+						30 container OpenBKN business session entry
+							31 button Explore the “供应链本体知识网络-手工版” knowledge network.
+						32 text entry area (settable) Description: Describe what you want to build, / commands, @ files or sessions, Value: 
+
+						33 pop up button Add files or run commands
+						34 button Access mode, current: Workspace Write
+						35 pop up button Select model, current deepseek_chat
+						36 button (disabled) Send message
+					37 container OpenBKN business knowledge networks
+						38 container
+							39 text OPENBKN
+							40 heading Business knowledge networks, Value: 2
+								41 text Business knowledge networks
+							42 button Settings
+							43 button Diagnostics
+							44 button Close
+						45 text Sign in with the local OpenBKN CLI. The plugin then synchronizes credentials within the Host, connects to Context Loader MCP, and lists the business knowledge networks you can access.
+						46 container
+							47 text Platform URL: https://192.168.50.129
+						48 button Sign in and sync with OpenBKN CLI
+						49 button Refresh status
+	50 close button
+	51 full screen button Help: this button also has an action to zoom the window, Secondary Actions: zoom the window
+	52 minimize button
+53 menu bar
+	54 DeepSeek Harness
+	55 File
+	56 Edit
+	57 Window
+
+The focused UI element is 3 HTML content DeepSeek Harness, URL: dsh-app://app/

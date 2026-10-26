@@ -1,0 +1,56 @@
+[
+  {
+    "name": "bom",
+    "tool_id": "01a11f4e-fb6a-7d44-8fd4-f1585cb3a016",
+    "changed_archive_files": [
+      "fn/bom.py",
+      "fn/contracts.py",
+      "fn/inventory.py",
+      "managed_execution.py",
+      "fn/detail_export.py"
+    ],
+    "added_archive_files": [
+      "fn/records.py"
+    ],
+    "other_archive_files_preserved_exactly": true,
+    "native_entrypoint_changed_for_selected_scope_and_default_complete_file": true,
+    "source_before_sha256": "5471bb54ad8e2a3f454c7a2a2c52ddb09b09c149c56bd121be6ec9794cd288d6",
+    "source_after_sha256": "12105e1cd0a296caa651b055a53ee532e16e8df791ae9af8afb4c9d3e3970ea5"
+  },
+  {
+    "name": "inventory",
+    "tool_id": "01a11f4e-fe5e-795f-a358-5d1d799293c8",
+    "changed_archive_files": [
+      "fn/bom.py",
+      "fn/contracts.py",
+      "fn/inventory.py",
+      "managed_execution.py",
+      "fn/detail_export.py"
+    ],
+    "added_archive_files": [
+      "fn/records.py"
+    ],
+    "other_archive_files_preserved_exactly": true,
+    "native_entrypoint_changed_for_selected_scope_and_default_complete_file": true,
+    "source_before_sha256": "30ecde44419e6cc5d2b6468187cde34e4cbaca21b514a394c45d46871d00e51b",
+    "source_after_sha256": "7d375cde569001567f1a17208d8749ad6681a2ca593779b504c42cece398008f"
+  },
+  {
+    "name": "sales",
+    "tool_id": "01a157d1-a0c3-71f8-9a9e-05b14198a9c3",
+    "changed_archive_files": [
+      "fn/bom.py",
+      "fn/contracts.py",
+      "fn/detail_export.py",
+      "fn/inventory.py",
+      "managed_execution.py"
+    ],
+    "added_archive_files": [
+      "fn/records.py"
+    ],
+    "other_archive_files_preserved_exactly": true,
+    "native_entrypoint_changed_for_selected_scope_and_default_complete_file": true,
+    "source_before_sha256": "f7e02edf9d6db1a0677e11209ea1e7043de4532deeb3fba5b61631b5bd28a3dd",
+    "source_after_sha256": "686c7a295ff86cfdbc7d7c3d3b59748c64c0f96a7a4e0ee1a9eb30a9cb3df4df"
+  }
+]

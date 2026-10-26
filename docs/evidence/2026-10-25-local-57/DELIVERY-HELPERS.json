@@ -1,0 +1,26 @@
+[
+  {
+    "host": "0.2.0-rc.2",
+    "copyBytesPreserved": true,
+    "originalUnchanged": true,
+    "dependenciesExcluded": true,
+    "existingDestinationRefused": true,
+    "homeSymlinkRefused": true,
+    "extraBundleFileDetected": true,
+    "portability": "PASS",
+    "fileListSha256": "18e67225f456ba7c6b25106f3d70e9ebdbec2fc39c6565f5dd168d57db2c4e0a",
+    "result": "PASS"
+  },
+  {
+    "host": "0.2.1-rc.3",
+    "copyBytesPreserved": true,
+    "originalUnchanged": true,
+    "dependenciesExcluded": true,
+    "existingDestinationRefused": true,
+    "homeSymlinkRefused": true,
+    "extraBundleFileDetected": true,
+    "portability": "PASS",
+    "fileListSha256": "e1e345e89bbce4a13868c3ed44c55c94afaae8452c9dff3f5ea423eecebad166",
+    "result": "PASS"
+  }
+]

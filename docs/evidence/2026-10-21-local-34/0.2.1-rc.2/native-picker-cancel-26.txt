@@ -1,0 +1,144 @@
+The following is a diff from the previous accessibility tree for Window: "R34 B1 native Desktop protocol check — DeepSeek Harness" with ~ and + representing changed and added elements, respectively. Removed elements are summarized by ID range.
+Removed element IDs: 128-362
+~123 standard window R34 B1 native Desktop protocol check — DeepSeek Harness, Secondary Actions: Raise
+~	124 container R34 B1 native Desktop protocol check — DeepSeek Harness
+~		125 container
+~			126 HTML content R34 B1 native Desktop protocol check — DeepSeek Harness, URL: dsh-app://app/
+~				127 container
++					128 button Collapse sidebar
++					129 button New session
++					130 container Global panels
++						131 button Plugins
++						132 button Automation tasks
++					133 text Workspaces
++					134 button Search sessions
++					135 text field (settable) Search session names
++					136 button View options
++					137 button Add workspace
++					138 outline Sessions
++						139 row desktop-new
++							140 text desktop-new
++						141 row Default workspace
++							142 text Default workspace
++						143 container
++							144 row Ungrouped
++								145 text Ungrouped
++							146 row R34 B1 native Desktop protocol check 17min
++								147 text R34 B1 native Desktop protocol check 17min
++							148 row R34 B1 native Desktop protocol check 41min
++								149 text R34 B1 native Desktop protocol check 41min
++							150 row (selected) R34 B1 native Desktop protocol check 57min
++								151 text R34 B1 native Desktop protocol check 57min
++							152 row R34 B1 native Desktop protocol check 1h
++								153 text R34 B1 native Desktop protocol check 1h
++							154 row R34_B1:0.2.1-rc.2:before 原生Desktop B 1h
++								155 text R34_B1:0.2.1-rc.2:before 原生Desktop B 1h
++					156 button OpenBKN business knowledge networks
++					157 pop up button Account menu
++					158 container
++						159 container Session hierarchy
++							160 text R34 B1 native Desktop protocol check
++						161 text Standard mode
++						162 text 供应链本体知识网络-手工版
++						163 button Open in Finder
++						164 pop up button More ways to open
++						165 pop up button More actions
++						166 button Open right sidebar
++						167 tab group
++							168 tab (settable, integer) Chat, Value: 0
++							169 tab (selected) Trajectory, Value: 1
++					170 container
++						171 toolbar Trajectory toolbar
++							172 toggle button Description: Use actual duration, Value: 0
++							173 toggle button Description: Collapse turns, Value: 0
++							174 toggle button Description: Collapse calls, Value: 0
++							175 search text field (settable) Description: Search trajectory, Placeholder: Search
++						176 container Trajectory timeline
++							177 container Timeline overview; drag horizontally to focus events
++						178 table
++							179 row SYSTEM, Initial System Prompt
++								180 cell
++									181 text SYSTEM
++								182 cell
++									183 text Initial System Prompt
++							184 row USER, R34_B1:0.2.1-rc.2:after 原生Desktop B1只读协议检查。由本地测试驱动选择开始、精确产品查询、结束，不是模型G6题。
++								185 cell
++									186 container Turn 1
++									187 text USER
++								188 cell
++									189 text R34_B1:0.2.1-rc.2:after 原生Desktop B1只读协议检查。由本地测试驱动选择开始、精确产品查询、结束，不是模型G6题。
++							190 row CONTEXT, <system-reminder> The following workspace instructions may be relevant to your work. Use them as guidance when applicable. More specific instructions take precedence over broader ones. They do not override system, developer, or direct user instructions. Instructions from: AGENTS.md AGENTS.md 适用于本仓库内的 AI Agent 工作。 开始工作前阅读 CLAUDE.md，遵循其中的构建、兼容性、验证与发布规则；用户在当前会话中的明确指令优先。 插件迭代、问题诊断和发布评审必须执行 CLAUDE.md 的 Upstream contracts and test maintenance 规则，同时检查 DSH 宿主和 OpenBKN 平台的变化。 测试、fixture、评测集及验证脚本必须随上游契约更新；测试
++								191 cell
++									192 text CONTEXT
++								193 cell
++									194 text <system-reminder> The following workspace instructions may be relevant to your work. Use them as guidance when applicable. More specific instructions take precedence over broader ones. They do not override system, developer, or direct user instructions. Instructions from: AGENTS.md AGENTS.md 适用于本仓库内的 AI Agent 工作。 开始工作前阅读 CLAUDE.md，遵循其中的构建、兼容性、验证与发布规则；用户在当前会话中的明确指令优先。 插件迭代、问题诊断和发布评审必须执行 CLAUDE.md 的 Upstream contracts and test maintenance 规则，同时检查 DSH 宿主和 OpenBKN 平台的变化。 测试、fixture、评测集及验证脚本必须随上游契约更新；测试通过不能替代对最新
++							195 row CONTEXT, Current runtime context. This snapshot supersedes earlier runtime-context snapshots. Current working directory: "/Users/dominiczhang/Documents/project/app/openBKN/bkn-dsh/release/local-32/workspaces/desktop-new". Current DSH file policy: workspace-write. Any available operation enforced by the DSH file sandbox may modify files under the session workspace: "/Users/dominiczhang/Documents/project/app/openBKN/bkn-dsh/release/local-32/workspaces/desktop-new". Some platform temporary areas may also be wr
++								196 cell
++									197 text CONTEXT
++								198 cell
++									199 text Current runtime context. This snapshot supersedes earlier runtime-context snapshots. Current working directory: "/Users/dominiczhang/Documents/project/app/openBKN/bkn-dsh/release/local-32/workspaces/desktop-new". Current DSH file policy: workspace-write. Any available operation enforced by the DSH file sandbox may modify files under the session workspace: "/Users/dominiczhang/Documents/project/app/openBKN/bkn-dsh/release/local-32/workspaces/desktop-new". Some platform temporary areas may also be writable. A
++							200 row CONTEXT, <system-reminder> A skill is a reusable set of task-specific instructions. The following skills are available in this session: <available_skills> agent-reach: MUST USE when user wants to 调研/research/搜索/search/查/找/look up anything on the internet — e.g. 全网调研 X / 帮我调研一下 X / 查一下 X / 搜搜 X / 看看大家怎么评价 X / X 上有什么讨论 / research this topic。 Also MUST USE when user mentions any platform or shares any URL/链接: 小红书/xiaohongshu/xhs, Twitter/推特/X, B站/bilibili, Reddit, V2EX, LinkedIn/领英/招聘/求职/jobs, YouTube, GitHub 
++								201 cell
++									202 text CONTEXT
++								203 cell
++									204 text <system-reminder> A skill is a reusable set of task-specific instructions. The following skills are available in this session: <available_skills> agent-reach: MUST USE when user wants to 调研/research/搜索/search/查/找/look up anything on the internet — e.g. 全网调研 X / 帮我调研一下 X / 查一下 X / 搜搜 X / 看看大家怎么评价 X / X 上有什么讨论 / research this topic。 Also MUST USE when user mentions any platform or shares any URL/链接: 小红书/xiaohongshu/xhs, Twitter/推特/X, B站/bilibili, Reddit, V2EX, LinkedIn/领英/招聘/求职/jobs, YouTube, GitHub code sear
++							205 row CONTEXT, Time sampled while preparing turn 1, step 1: 2026-10-21T20:45:24+08:00[Asia/Taipei] Browser time zone for this request: Asia/Taipei. Interpret otherwise-unqualified dates and times in this zone. Elapsed since the preceding model-visible message: unavailable.
++								206 cell
++									207 text CONTEXT
++								208 cell
++									209 text Time sampled while preparing turn 1, step 1: 2026-10-21T20:45:24+08:00[Asia/Taipei] Browser time zone for this request: Asia/Taipei. Interpret otherwise-unqualified dates and times in this zone. Elapsed since the preceding model-visible message: unavailable.
++							210 row Request 1, ASSISTANT, (tool call only)
++								211 cell
++									212 toggle button Description: Request #1, Value: 0
++										213 text Request #1
++									214 text ASSISTANT
++								215 cell
++									216 text (tool call only)
++							217 row TOOL, mcp__openbkn__bkn_start_interaction {"conversation_mode":"new","question":"R34_B1:0.2.1-rc.2:after","agent_name":"bkn-agent-dsh-business-context"}
++								218 cell
++									219 text TOOL
++								220 cell
++									221 container mcp__openbkn__bkn_start_interaction {"conversation_mode":"new","question":"R34_B1:0.2.1-rc.2:after","agent_name":"bkn-agent-dsh-business-context"} → error
++										222 text mcp__openbkn__bkn_start_interaction {"conversation_mode":"new","question":"R34_B1:0.2.1-rc.2:after","agent_name":"bkn-agent-dsh-business-context"} → error
++							223 row Request 2, ASSISTANT, B1 协议检查记录：原生 MCP 开始工具返回 Public.Unauthorized / token is invalid，未执行后续业务查询。
++								224 cell
++									225 toggle button Description: Request #2, Value: 0
++										226 text Request #2
++									227 text ASSISTANT
++								228 cell
++									229 text B1 协议检查记录：原生 MCP 开始工具返回 Public.Unauthorized / token is invalid，未执行后续业务查询。
++						230 container
++							231 text entry area (settable) Message or run a task, / commands, @ files or sessions
++							232 pop up button Add files or run commands
++							233 button Access mode, current: Workspace Write
++							234 pop up button Select model, current LOCAL B1 PROTOCOL - no Sandbox
++							235 button (disabled) Send message
++						236 pop up button 1 turns 2 steps
++						237 pop up button 0% of context used
++					238 container OpenBKN business knowledge networks
++						239 container
++							240 text OPENBKN
++							241 heading Business knowledge networks, Value: 2
++								242 text Business knowledge networks
++							243 button Settings
++							244 button Diagnostics
++							245 button Close
++						246 container
++							247 text Choose a business knowledge network to continue or create a conversation in its DSH workspace. Business conversations require Standard mode : select it in the mode menu before sending the first message. PTC mode is not supported, and existing PTC conversations cannot switch modes.
++						248 container
++							249 text Search business knowledge networks
++							250 search text field (settable) Description: Search business knowledge networks, Placeholder: Name, ID, or description
++						251 text Found 2 networks; those linked to local workspaces appear first.
++						252 container
++							253 text 供应链本体知识网络-手工版 supply_ontology_hand
++							254 button View
++							255 text Linked workspace · /Users/dominiczhang/Documents/project/app/openBKN/bkn-dsh/release/local-32/workspaces/desktop-new
++						256 container
++							257 text Fjelstul 世界杯 · Vega Catalog 绑定（占位符） worldcup_vega_catalog_bkn
++							258 button Collapse
++							259 text No local workspace linked 本网络覆盖 Joshua C. Fjelstul 世界杯开放数据库（`data/*.csv`）的实体与关系。**关系类型**已不再使用无含义的 `fk_<hash>` ID，而采用 `rel_<来源表>_<外键列>` 的可读标识，并在各关系文件中用中文说明业务语义与典型 join 用途。 **关系从何而来**：凡列名在 FK 白名单中（如 `tournament_id`、`match_id`、`team_id`、`home_team_id` 等）且能对应到另一张对象表，即生成一条 **RelationType**，映射为「事实表外键 → 维表主键」。 **RelationTypes（minimal · 默认）**：**29** 条骨架边（约 **20～30** 量级）——赛程、积分榜、阵容、黄牌、进球及奖项。**不含** `substitutions.*` RelationType、`goals.player_team_id`。换人分析可经由 `substitutions` 表本体属性 + `matches`/`player_appearances`。`compact` / `full` 见上文。
++							260 button New workspace
++	261 close button
++	262 full screen button Help: this button also has an action to zoom the window, Secondary Actions: zoom the window
++	263 minimize button
+The focused UI element is 126 HTML content R34 B1 native Desktop protocol check — DeepSeek Harness, URL: dsh-app://app/

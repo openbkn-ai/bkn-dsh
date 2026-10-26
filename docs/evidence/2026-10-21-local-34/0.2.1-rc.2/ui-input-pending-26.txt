@@ -1,0 +1,37 @@
+Window: "R34 B1 native Desktop protocol check — DeepSeek Harness", App: DeepSeek Harness.
+0 standard window R34 B1 native Desktop protocol check — DeepSeek Harness, Secondary Actions: Raise
+	1 container R34 B1 native Desktop protocol check — DeepSeek Harness
+		2 container
+			3 HTML content R34 B1 native Desktop protocol check — DeepSeek Harness, URL: dsh-app://app/
+				4 container OpenBKN business knowledge networks
+					5 container
+						6 text OPENBKN
+						7 heading Business knowledge networks, Value: 2
+							8 text Business knowledge networks
+						9 button Settings
+						10 button Diagnostics
+						11 button Close
+					12 container
+						13 text Choose a business knowledge network to continue or create a conversation in its DSH workspace. Business conversations require Standard mode : select it in the mode menu before sending the first message. PTC mode is not supported, and existing PTC conversations cannot switch modes.
+					14 container
+						15 text Search business knowledge networks
+						16 search text field (settable) Description: Search business knowledge networks, Placeholder: Name, ID, or description
+					17 text Found 2 networks; those linked to local workspaces appear first.
+					18 container
+						19 text 供应链本体知识网络-手工版 supply_ontology_hand
+						20 button View
+						21 text Linked workspace · /Users/dominiczhang/Documents/project/app/openBKN/bkn-dsh/release/local-32/workspaces/desktop-new
+					22 container
+						23 text Fjelstul 世界杯 · Vega Catalog 绑定（占位符） worldcup_vega_catalog_bkn
+						24 button View
+						25 text No local workspace linked
+	26 close button
+	27 full screen button Help: this button also has an action to zoom the window, Secondary Actions: zoom the window
+	28 minimize button
+29 menu bar
+	30 DeepSeek Harness
+	31 File
+	32 Edit
+	33 Window
+
+The focused UI element is 3 HTML content R34 B1 native Desktop protocol check — DeepSeek Harness, URL: dsh-app://app/

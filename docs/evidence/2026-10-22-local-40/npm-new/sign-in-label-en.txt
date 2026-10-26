@@ -1,0 +1,16 @@
+Browser tab: 994606767, Title: "DeepSeek Harness", URL: "http://127.0.0.1:38641/".
+The following is a diff from the previous accessibility tree with ~ and + representing changed and added elements, respectively. Removed elements are summarized by ID range.
++		35 container OpenBKN business knowledge networks
++			36 container
++				37 text OPENBKN
++				38 heading Business knowledge networks, Value: 2
++					39 text Business knowledge networks
++				40 button Settings
++				41 button Diagnostics
++				42 button Close
++			43 text Sign in with the local OpenBKN CLI. The plugin then synchronizes credentials within the Host, connects to Context Loader MCP, and lists the business knowledge networks you can access.
++			44 container
++				45 text Platform URL: https://192.168.50.129
++			46 button Sign in and sync with OpenBKN CLI
++			47 button Refresh status
+The focused UI element is 35 container OpenBKN business knowledge networks

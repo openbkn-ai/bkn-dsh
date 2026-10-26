@@ -1,0 +1,24 @@
+{
+  "checked_at": "2026-10-20T06:15:29.003605+00:00",
+  "artifact_sha256": "fd2b0126d66e5f7bad4241516d81724b03c0089552b6d3036b77364fc8e7368e",
+  "artifact_bytes": 228057,
+  "artifact_unchanged_since_freeze": true,
+  "hosts": [
+    {
+      "host": "0.2.0-rc.2",
+      "version": "0.2.0-rc.2-openbkn.0.2.0-23",
+      "files_compared": 80,
+      "package_json_semantic_equal": true,
+      "differences": [],
+      "passed": true
+    },
+    {
+      "host": "0.2.1-rc.2",
+      "version": "0.2.0-rc.2-openbkn.0.2.0-23",
+      "files_compared": 80,
+      "package_json_semantic_equal": true,
+      "differences": [],
+      "passed": true
+    }
+  ]
+}

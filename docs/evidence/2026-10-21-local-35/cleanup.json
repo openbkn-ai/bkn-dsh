@@ -1,0 +1,61 @@
+{
+  "checked_at": "2026-10-21T15:32:59.364832+00:00",
+  "records": [
+    {
+      "form": "npm-web",
+      "host": "0.2.0-rc.2",
+      "task_listener_stopped": true,
+      "task_patch_and_workspace_registry_restored": true,
+      "temporary_test_candidate": "-27",
+      "restored_installed_version": "0.2.0-rc.2-openbkn.0.2.0-23",
+      "prior_package_bytes_restored": true,
+      "only_expected_credential_refs_changed": [
+        "OPENBKN_MCP_TOKEN",
+        "BKN_ACCEPTANCE_MODEL_TOKEN"
+      ],
+      "sessions_and_failure_evidence_preserved": true
+    },
+    {
+      "form": "npm-web",
+      "host": "0.2.1-rc.2",
+      "task_listener_stopped": true,
+      "task_patch_and_workspace_registry_restored": true,
+      "temporary_test_candidate": "-27",
+      "restored_installed_version": "0.2.0-rc.2-openbkn.0.2.0-23",
+      "prior_package_bytes_restored": true,
+      "only_expected_credential_refs_changed": [
+        "OPENBKN_MCP_TOKEN",
+        "BKN_ACCEPTANCE_MODEL_TOKEN"
+      ],
+      "sessions_and_failure_evidence_preserved": true
+    },
+    {
+      "form": "desktop",
+      "host": "0.2.0-rc.2",
+      "native_app_normally_exited": true,
+      "task_patch_and_workspace_registry_restored": true,
+      "installed_plugin_version": "0.2.0-rc.2-openbkn.0.2.0-27",
+      "only_expected_credential_refs_changed": [
+        "OPENBKN_MCP_TOKEN",
+        "BKN_ACCEPTANCE_MODEL_TOKEN"
+      ],
+      "sessions_and_failure_evidence_preserved": true
+    },
+    {
+      "form": "desktop",
+      "host": "0.2.1-rc.2",
+      "native_app_normally_exited": true,
+      "task_patch_and_workspace_registry_restored": true,
+      "installed_plugin_version": "0.2.0-rc.2-openbkn.0.2.0-27",
+      "only_expected_credential_refs_changed": [
+        "OPENBKN_MCP_TOKEN",
+        "BKN_ACCEPTANCE_MODEL_TOKEN"
+      ],
+      "sessions_and_failure_evidence_preserved": true
+    }
+  ],
+  "personal_dsh_five_files_unchanged": true,
+  "default_formal_cli_network_read_passed": true,
+  "temporary_admin_password_file_absent": true,
+  "no_user_action_required": true
+}

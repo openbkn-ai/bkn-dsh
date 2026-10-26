@@ -1,0 +1,651 @@
+{
+  "checked_at": "2026-10-20T04:01:30.810940+00:00",
+  "context": "kind-bkn-test-015-lan",
+  "platform": "https://192.168.50.129",
+  "application_pods": [
+    {
+      "namespace": "openbkn",
+      "name": "agent-observability-6cd947dc67-svw9j",
+      "ready": true,
+      "phase": "Running",
+      "images": [
+        "swr.cn-east-3.myhuaweicloud.com/openbkn-ai/agent-observability:0.2.0"
+      ]
+    },
+    {
+      "namespace": "openbkn",
+      "name": "agent-operator-integration-5c96974647-c69vk",
+      "ready": true,
+      "phase": "Running",
+      "images": [
+        "swr.cn-east-3.myhuaweicloud.com/openbkn-ai/agent-operator-integration:0.2.0"
+      ]
+    },
+    {
+      "namespace": "openbkn",
+      "name": "agent-retrieval-86d4f48944-bg9n6",
+      "ready": true,
+      "phase": "Running",
+      "images": [
+        "swr.cn-east-3.myhuaweicloud.com/openbkn-ai/agent-retrieval:0.2.0"
+      ]
+    },
+    {
+      "namespace": "openbkn",
+      "name": "bkn-agent-5dc96dd94d-tncpg",
+      "ready": true,
+      "phase": "Running",
+      "images": [
+        "swr.cn-east-3.myhuaweicloud.com/openbkn-ai/bkn-agent:0.2.0"
+      ]
+    },
+    {
+      "namespace": "openbkn",
+      "name": "bkn-backend-59cb4b9f9-m6jfc",
+      "ready": true,
+      "phase": "Running",
+      "images": [
+        "swr.cn-east-3.myhuaweicloud.com/openbkn-ai/bkn-backend:0.2.0"
+      ]
+    },
+    {
+      "namespace": "openbkn",
+      "name": "bkn-safe-585566f7df-htwl2",
+      "ready": true,
+      "phase": "Running",
+      "images": [
+        "swr.cn-east-3.myhuaweicloud.com/openbkn-ai/bkn-safe:0.2.0"
+      ]
+    },
+    {
+      "namespace": "openbkn",
+      "name": "bkn-safe-hydra-599bdf86d-grmgh",
+      "ready": true,
+      "phase": "Running",
+      "images": [
+        "swr.cn-east-3.myhuaweicloud.com/openbkn-ai/oryd/hydra:v26.2.0"
+      ]
+    },
+    {
+      "namespace": "openbkn",
+      "name": "bkn-safe-postgres-746c88c5d9-bxsgh",
+      "ready": true,
+      "phase": "Running",
+      "images": [
+        "swr.cn-east-3.myhuaweicloud.com/openbkn-ai/postgres:16"
+      ]
+    },
+    {
+      "namespace": "openbkn",
+      "name": "bkn-sample-studio-76dd8d5db7-w97zh",
+      "ready": true,
+      "phase": "Running",
+      "images": [
+        "ghcr.io/openbkn-ai/bkn-sample-studio:0.1.0"
+      ]
+    },
+    {
+      "namespace": "openbkn",
+      "name": "bkn-studio-5b774676d7-zdjmm",
+      "ready": true,
+      "phase": "Running",
+      "images": [
+        "swr.cn-east-3.myhuaweicloud.com/openbkn-ai/bkn-studio:0.2.0"
+      ]
+    },
+    {
+      "namespace": "openbkn",
+      "name": "core-data-migrator-job-l8pv6",
+      "ready": false,
+      "phase": "Succeeded",
+      "images": [
+        "swr.cn-east-3.myhuaweicloud.com/openbkn-ai/core-data-migrator:0.2.0"
+      ]
+    },
+    {
+      "namespace": "openbkn",
+      "name": "fake-embedding-5c94576d95-qm4gb",
+      "ready": true,
+      "phase": "Running",
+      "images": [
+        "swr.cn-east-3.myhuaweicloud.com/openbkn-ai/sandbox-template-python-basic:0.1.5"
+      ]
+    },
+    {
+      "namespace": "openbkn",
+      "name": "install-status-6b88b4c957-qzngs",
+      "ready": true,
+      "phase": "Running",
+      "images": [
+        "swr.cn-east-3.myhuaweicloud.com/openbkn-ai/portainer/kubectl-shell:latest",
+        "swr.cn-east-3.myhuaweicloud.com/openbkn-ai/library/nginx:1.27-alpine"
+      ]
+    },
+    {
+      "namespace": "openbkn",
+      "name": "kafka-connect-74bbcb7446-npfmg",
+      "ready": true,
+      "phase": "Running",
+      "images": [
+        "swr.cn-east-3.myhuaweicloud.com/openbkn-ai/kafka-connect:0.2.0"
+      ]
+    },
+    {
+      "namespace": "openbkn",
+      "name": "mf-model-api-5bc77cbcd5-rkf7g",
+      "ready": true,
+      "phase": "Running",
+      "images": [
+        "swr.cn-east-3.myhuaweicloud.com/openbkn-ai/mf-model-api:0.2.0"
+      ]
+    },
+    {
+      "namespace": "openbkn",
+      "name": "mf-model-manager-5fd75f8f64-ptm5d",
+      "ready": true,
+      "phase": "Running",
+      "images": [
+        "swr.cn-east-3.myhuaweicloud.com/openbkn-ai/mf-model-manager:0.2.0"
+      ]
+    },
+    {
+      "namespace": "openbkn",
+      "name": "minio-6fc7bf75bb-fkmw9",
+      "ready": true,
+      "phase": "Running",
+      "images": [
+        "swr.cn-east-3.myhuaweicloud.com/openbkn-ai/minio:RELEASE.2025-09-07T16-13-09Z"
+      ]
+    },
+    {
+      "namespace": "openbkn",
+      "name": "ontology-query-69bd8546fd-g6fpk",
+      "ready": true,
+      "phase": "Running",
+      "images": [
+        "swr.cn-east-3.myhuaweicloud.com/openbkn-ai/ontology-query:0.2.0"
+      ]
+    },
+    {
+      "namespace": "openbkn",
+      "name": "oss-gateway-backend-7675b4cd65-2w97h",
+      "ready": true,
+      "phase": "Running",
+      "images": [
+        "swr.cn-east-3.myhuaweicloud.com/openbkn-ai/oss-gateway-backend:0.2.0"
+      ]
+    },
+    {
+      "namespace": "openbkn",
+      "name": "otelcol-contrib-7777f4944d-s6jkb",
+      "ready": true,
+      "phase": "Running",
+      "images": [
+        "swr.cn-east-3.myhuaweicloud.com/openbkn-ai/otelcol-openbkn:0.2.0"
+      ]
+    },
+    {
+      "namespace": "openbkn",
+      "name": "sandbox-control-plane-784d9c6b68-5zqpp",
+      "ready": true,
+      "phase": "Running",
+      "images": [
+        "ghcr.io/openbkn-ai/sandbox-control-plane:0.2.0"
+      ]
+    },
+    {
+      "namespace": "openbkn",
+      "name": "sandbox-sandbox-sess-aoi-0",
+      "ready": true,
+      "phase": "Running",
+      "images": [
+        "ghcr.io/openbkn-ai/sandbox-template-python-basic:0.2.0"
+      ]
+    },
+    {
+      "namespace": "openbkn",
+      "name": "vega-backend-597d98dcf7-h42mv",
+      "ready": true,
+      "phase": "Running",
+      "images": [
+        "swr.cn-east-3.myhuaweicloud.com/openbkn-ai/vega-backend:0.2.0"
+      ]
+    },
+    {
+      "namespace": "resource",
+      "name": "kafka-broker-0",
+      "ready": true,
+      "phase": "Running",
+      "images": [
+        "docker.io/bitnamilegacy/kafka:4.0.0-debian-12-r10"
+      ]
+    },
+    {
+      "namespace": "resource",
+      "name": "kafka-controller-0",
+      "ready": true,
+      "phase": "Running",
+      "images": [
+        "docker.io/bitnamilegacy/kafka:4.0.0-debian-12-r10"
+      ]
+    },
+    {
+      "namespace": "resource",
+      "name": "mariadb-0",
+      "ready": true,
+      "phase": "Running",
+      "images": [
+        "swr.cn-east-3.myhuaweicloud.com/openbkn-ai/mariadb:11.4.7"
+      ]
+    },
+    {
+      "namespace": "resource",
+      "name": "opensearch-cluster-master-0",
+      "ready": true,
+      "phase": "Running",
+      "images": [
+        "swr.cn-east-3.myhuaweicloud.com/openbkn-ai/opensearch:2.19.4-main.20260818163046.shaaeb5d56"
+      ]
+    },
+    {
+      "namespace": "resource",
+      "name": "redis-redis-0",
+      "ready": true,
+      "phase": "Running",
+      "images": [
+        "swr.cn-east-3.myhuaweicloud.com/openbkn-ai/redis:1.11.2-main.20260718025853.shaf24e971",
+        "swr.cn-east-3.myhuaweicloud.com/openbkn-ai/redis:1.11.2-main.20260718025853.shaf24e971",
+        "swr.cn-east-3.myhuaweicloud.com/openbkn-ai/public/oliver006/redis_exporter:v1.77.0"
+      ]
+    }
+  ],
+  "cluster_release_count": 21,
+  "cluster_pod_count": 38,
+  "cluster_ready_pod_count": 37,
+  "all_releases": [
+    {
+      "name": "agent-observability",
+      "namespace": "openbkn",
+      "revision": "5",
+      "updated": "2026-10-19 19:18:58.425207 +0800 CST",
+      "status": "deployed",
+      "chart": "agent-observability-0.2.0",
+      "app_version": "0.2.0"
+    },
+    {
+      "name": "agent-operator-integration",
+      "namespace": "openbkn",
+      "revision": "3",
+      "updated": "2026-10-19 19:19:30.880118 +0800 CST",
+      "status": "deployed",
+      "chart": "agent-operator-integration-0.2.0",
+      "app_version": "0.2.0"
+    },
+    {
+      "name": "agent-retrieval",
+      "namespace": "openbkn",
+      "revision": "3",
+      "updated": "2026-10-19 19:20:12.944968 +0800 CST",
+      "status": "deployed",
+      "chart": "agent-retrieval-0.2.0",
+      "app_version": "0.2.0"
+    },
+    {
+      "name": "bkn-agent",
+      "namespace": "openbkn",
+      "revision": "3",
+      "updated": "2026-10-19 19:20:15.886148 +0800 CST",
+      "status": "deployed",
+      "chart": "bkn-agent-0.2.0",
+      "app_version": "0.2.0"
+    },
+    {
+      "name": "bkn-backend",
+      "namespace": "openbkn",
+      "revision": "3",
+      "updated": "2026-10-19 19:19:25.739585 +0800 CST",
+      "status": "deployed",
+      "chart": "bkn-backend-0.2.0",
+      "app_version": "0.2.0"
+    },
+    {
+      "name": "bkn-safe",
+      "namespace": "openbkn",
+      "revision": "3",
+      "updated": "2026-10-19 19:18:41.98389 +0800 CST",
+      "status": "deployed",
+      "chart": "bkn-safe-0.2.0",
+      "app_version": "0.2.0"
+    },
+    {
+      "name": "bkn-sample-studio",
+      "namespace": "openbkn",
+      "revision": "1",
+      "updated": "2026-10-12 23:53:00.077932 +0800 CST",
+      "status": "deployed",
+      "chart": "bkn-sample-studio-0.1.0",
+      "app_version": "0.1.0"
+    },
+    {
+      "name": "bkn-studio",
+      "namespace": "openbkn",
+      "revision": "3",
+      "updated": "2026-10-19 19:20:35.112223 +0800 CST",
+      "status": "deployed",
+      "chart": "bkn-studio-0.2.0",
+      "app_version": "0.2.0"
+    },
+    {
+      "name": "core-data-migrator",
+      "namespace": "openbkn",
+      "revision": "3",
+      "updated": "2026-10-19 19:18:31.252892 +0800 CST",
+      "status": "deployed",
+      "chart": "core-data-migrator-0.2.0",
+      "app_version": "0.2.0"
+    },
+    {
+      "name": "kafka",
+      "namespace": "resource",
+      "revision": "3",
+      "updated": "2026-10-12 23:47:56.340323 +0800 CST",
+      "status": "deployed",
+      "chart": "kafka-32.4.3",
+      "app_version": "4.0.0"
+    },
+    {
+      "name": "kafka-connect",
+      "namespace": "openbkn",
+      "revision": "2",
+      "updated": "2026-10-19 19:18:53.244686 +0800 CST",
+      "status": "deployed",
+      "chart": "kafka-connect-0.2.0",
+      "app_version": "0.2.0"
+    },
+    {
+      "name": "mariadb",
+      "namespace": "resource",
+      "revision": "1",
+      "updated": "2026-10-09 13:59:05.913813 +0800 CST",
+      "status": "deployed",
+      "chart": "mariadb-1.0.0",
+      "app_version": "11.4"
+    },
+    {
+      "name": "mf-model-api",
+      "namespace": "openbkn",
+      "revision": "3",
+      "updated": "2026-10-19 19:18:50.645088 +0800 CST",
+      "status": "deployed",
+      "chart": "mf-model-api-0.2.0",
+      "app_version": "0.2.0"
+    },
+    {
+      "name": "mf-model-manager",
+      "namespace": "openbkn",
+      "revision": "3",
+      "updated": "2026-10-19 19:18:47.982779 +0800 CST",
+      "status": "deployed",
+      "chart": "mf-model-manager-0.2.0",
+      "app_version": "0.2.0"
+    },
+    {
+      "name": "ontology-query",
+      "namespace": "openbkn",
+      "revision": "3",
+      "updated": "2026-10-19 19:19:28.366781 +0800 CST",
+      "status": "deployed",
+      "chart": "ontology-query-0.2.0",
+      "app_version": "0.2.0"
+    },
+    {
+      "name": "opensearch",
+      "namespace": "resource",
+      "revision": "1",
+      "updated": "2026-10-09 14:08:14.513411 +0800 CST",
+      "status": "deployed",
+      "chart": "opensearch-2.36.0",
+      "app_version": "2.19.4"
+    },
+    {
+      "name": "oss-gateway-backend",
+      "namespace": "openbkn",
+      "revision": "3",
+      "updated": "2026-10-19 19:19:33.553766 +0800 CST",
+      "status": "deployed",
+      "chart": "oss-gateway-backend-0.2.0",
+      "app_version": "0.2.0"
+    },
+    {
+      "name": "otelcol-contrib",
+      "namespace": "openbkn",
+      "revision": "3",
+      "updated": "2026-10-19 19:20:18.43496 +0800 CST",
+      "status": "deployed",
+      "chart": "otelcol-contrib-0.2.0",
+      "app_version": "0.2.0"
+    },
+    {
+      "name": "redis",
+      "namespace": "resource",
+      "revision": "1",
+      "updated": "2026-10-09 13:59:42.639823 +0800 CST",
+      "status": "deployed",
+      "chart": "redis-1.11.2",
+      "app_version": "1.11.2-20251029.2.169ac3c0"
+    },
+    {
+      "name": "sandbox",
+      "namespace": "openbkn",
+      "revision": "9",
+      "updated": "2026-10-19 19:19:36.082425 +0800 CST",
+      "status": "deployed",
+      "chart": "sandbox-0.2.0",
+      "app_version": "0.2.0"
+    },
+    {
+      "name": "vega-backend",
+      "namespace": "openbkn",
+      "revision": "3",
+      "updated": "2026-10-19 19:19:11.153434 +0800 CST",
+      "status": "deployed",
+      "chart": "vega-backend-0.2.0",
+      "app_version": "0.2.0"
+    }
+  ],
+  "formal_openbkn_releases": [
+    {
+      "name": "agent-observability",
+      "namespace": "openbkn",
+      "revision": "5",
+      "updated": "2026-10-19 19:18:58.425207 +0800 CST",
+      "status": "deployed",
+      "chart": "agent-observability-0.2.0",
+      "app_version": "0.2.0"
+    },
+    {
+      "name": "agent-operator-integration",
+      "namespace": "openbkn",
+      "revision": "3",
+      "updated": "2026-10-19 19:19:30.880118 +0800 CST",
+      "status": "deployed",
+      "chart": "agent-operator-integration-0.2.0",
+      "app_version": "0.2.0"
+    },
+    {
+      "name": "agent-retrieval",
+      "namespace": "openbkn",
+      "revision": "3",
+      "updated": "2026-10-19 19:20:12.944968 +0800 CST",
+      "status": "deployed",
+      "chart": "agent-retrieval-0.2.0",
+      "app_version": "0.2.0"
+    },
+    {
+      "name": "bkn-agent",
+      "namespace": "openbkn",
+      "revision": "3",
+      "updated": "2026-10-19 19:20:15.886148 +0800 CST",
+      "status": "deployed",
+      "chart": "bkn-agent-0.2.0",
+      "app_version": "0.2.0"
+    },
+    {
+      "name": "bkn-backend",
+      "namespace": "openbkn",
+      "revision": "3",
+      "updated": "2026-10-19 19:19:25.739585 +0800 CST",
+      "status": "deployed",
+      "chart": "bkn-backend-0.2.0",
+      "app_version": "0.2.0"
+    },
+    {
+      "name": "bkn-safe",
+      "namespace": "openbkn",
+      "revision": "3",
+      "updated": "2026-10-19 19:18:41.98389 +0800 CST",
+      "status": "deployed",
+      "chart": "bkn-safe-0.2.0",
+      "app_version": "0.2.0"
+    },
+    {
+      "name": "bkn-studio",
+      "namespace": "openbkn",
+      "revision": "3",
+      "updated": "2026-10-19 19:20:35.112223 +0800 CST",
+      "status": "deployed",
+      "chart": "bkn-studio-0.2.0",
+      "app_version": "0.2.0"
+    },
+    {
+      "name": "core-data-migrator",
+      "namespace": "openbkn",
+      "revision": "3",
+      "updated": "2026-10-19 19:18:31.252892 +0800 CST",
+      "status": "deployed",
+      "chart": "core-data-migrator-0.2.0",
+      "app_version": "0.2.0"
+    },
+    {
+      "name": "kafka-connect",
+      "namespace": "openbkn",
+      "revision": "2",
+      "updated": "2026-10-19 19:18:53.244686 +0800 CST",
+      "status": "deployed",
+      "chart": "kafka-connect-0.2.0",
+      "app_version": "0.2.0"
+    },
+    {
+      "name": "mf-model-api",
+      "namespace": "openbkn",
+      "revision": "3",
+      "updated": "2026-10-19 19:18:50.645088 +0800 CST",
+      "status": "deployed",
+      "chart": "mf-model-api-0.2.0",
+      "app_version": "0.2.0"
+    },
+    {
+      "name": "mf-model-manager",
+      "namespace": "openbkn",
+      "revision": "3",
+      "updated": "2026-10-19 19:18:47.982779 +0800 CST",
+      "status": "deployed",
+      "chart": "mf-model-manager-0.2.0",
+      "app_version": "0.2.0"
+    },
+    {
+      "name": "ontology-query",
+      "namespace": "openbkn",
+      "revision": "3",
+      "updated": "2026-10-19 19:19:28.366781 +0800 CST",
+      "status": "deployed",
+      "chart": "ontology-query-0.2.0",
+      "app_version": "0.2.0"
+    },
+    {
+      "name": "oss-gateway-backend",
+      "namespace": "openbkn",
+      "revision": "3",
+      "updated": "2026-10-19 19:19:33.553766 +0800 CST",
+      "status": "deployed",
+      "chart": "oss-gateway-backend-0.2.0",
+      "app_version": "0.2.0"
+    },
+    {
+      "name": "otelcol-contrib",
+      "namespace": "openbkn",
+      "revision": "3",
+      "updated": "2026-10-19 19:20:18.43496 +0800 CST",
+      "status": "deployed",
+      "chart": "otelcol-contrib-0.2.0",
+      "app_version": "0.2.0"
+    },
+    {
+      "name": "sandbox",
+      "namespace": "openbkn",
+      "revision": "9",
+      "updated": "2026-10-19 19:19:36.082425 +0800 CST",
+      "status": "deployed",
+      "chart": "sandbox-0.2.0",
+      "app_version": "0.2.0"
+    },
+    {
+      "name": "vega-backend",
+      "namespace": "openbkn",
+      "revision": "3",
+      "updated": "2026-10-19 19:19:11.153434 +0800 CST",
+      "status": "deployed",
+      "chart": "vega-backend-0.2.0",
+      "app_version": "0.2.0"
+    }
+  ],
+  "sample_releases": [
+    {
+      "name": "bkn-sample-studio",
+      "namespace": "openbkn",
+      "revision": "1",
+      "updated": "2026-10-12 23:53:00.077932 +0800 CST",
+      "status": "deployed",
+      "chart": "bkn-sample-studio-0.1.0",
+      "app_version": "0.1.0"
+    }
+  ],
+  "infrastructure_releases": [
+    {
+      "name": "kafka",
+      "namespace": "resource",
+      "revision": "3",
+      "updated": "2026-10-12 23:47:56.340323 +0800 CST",
+      "status": "deployed",
+      "chart": "kafka-32.4.3",
+      "app_version": "4.0.0"
+    },
+    {
+      "name": "mariadb",
+      "namespace": "resource",
+      "revision": "1",
+      "updated": "2026-10-09 13:59:05.913813 +0800 CST",
+      "status": "deployed",
+      "chart": "mariadb-1.0.0",
+      "app_version": "11.4"
+    },
+    {
+      "name": "opensearch",
+      "namespace": "resource",
+      "revision": "1",
+      "updated": "2026-10-09 14:08:14.513411 +0800 CST",
+      "status": "deployed",
+      "chart": "opensearch-2.36.0",
+      "app_version": "2.19.4"
+    },
+    {
+      "name": "redis",
+      "namespace": "resource",
+      "revision": "1",
+      "updated": "2026-10-09 13:59:42.639823 +0800 CST",
+      "status": "deployed",
+      "chart": "redis-1.11.2",
+      "app_version": "1.11.2-20251029.2.169ac3c0"
+    }
+  ]
+}

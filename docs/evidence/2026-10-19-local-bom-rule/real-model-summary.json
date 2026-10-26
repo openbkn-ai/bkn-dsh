@@ -1,0 +1,51 @@
+{
+  "captured_at": "2026-10-19T15:54:02.538649+00:00",
+  "plugin_artifact_unchanged": true,
+  "artifact_sha256": "51cf44ce14e06bd534ce957602ebb2d83cf4cc457830a09d2144cebf2ad5127d",
+  "evaluation_sha256": "abca47f611a04cadd571124154aa0810688dc9bc6fbc4526946d060b038dfffd",
+  "evidence": "Actual model runs; one fresh turn per host, no answer correction or retry for grading",
+  "hosts": [
+    {
+      "host": "0.2.0-rc.2",
+      "session": "session-617861fd-d7a3-450d-87d7-e9e281fea4c7",
+      "response_models": [
+        "deepseek-flash"
+      ],
+      "completed": true,
+      "tool_calls": 18,
+      "interaction_ids": [
+        "int_f0953843136084a8c9e1478f178e0ee3"
+      ],
+      "final_answer_characters": 20813,
+      "final_answer_sha256": "34d6f7b1396e284c08471c905d4c76d5d1086b8c4cd12810d06927ada69fc98b",
+      "case_result": "fail",
+      "other_cases": "not rerun for this platform function change",
+      "findings": [
+        "399 main rows/333 materials; inline table covers all 333 codes and raw standard-usage sums verified against SQL",
+        "11 inventory values are rounded to integers without a rounding note; exact numeric presentation not accepted",
+        "Trailing model DSML token and refused run_cypher / remote access to host spill path retained as observed anomalies"
+      ]
+    },
+    {
+      "host": "0.2.1-rc.2",
+      "session": "session-c38daa76-e238-4655-8f07-e9c4f12c62dd",
+      "response_models": [
+        "deepseek-flash"
+      ],
+      "completed": true,
+      "tool_calls": 13,
+      "interaction_ids": [
+        "int_808d14c59a7b853c693f6881740f1c5b"
+      ],
+      "final_answer_characters": 2197,
+      "final_answer_sha256": "4bb0b7642d0a086447c493033080e2c9b906b920b7bb0f338d7cb9743e4264f8",
+      "case_result": "fail",
+      "other_cases": "not rerun for this platform function change",
+      "findings": [
+        "Correct main/substitute counts 399/107; Sandbox code fetched both inclusive pages",
+        "333-material CSV was written only in remote Sandbox; clicking the generated DSH file reference shows file missing",
+        "No host-file bridge or presentation succeeded; completed does not mean delivered"
+      ]
+    }
+  ]
+}

@@ -1,0 +1,12 @@
+{
+  "checked_at": "2026-10-20T06:00:25.498Z",
+  "tool_id": "01a157e4-3246-7cec-a7b6-244e4c773fd2",
+  "toolbox_id": "01a11f4e-fa74-705a-b023-faa56efcd9b3",
+  "binding_id": "01a157e5-91e5-759b-917e-d05f8f8341e3",
+  "readback_verified": true,
+  "read_only": true,
+  "prior_tools_and_bindings_preserved": true,
+  "only_bound_network": "supply_ontology_hand",
+  "sources_array_items": "string, explicitly declared and identical to the official API normalization",
+  "rollback_binding": "openbkn bkn capability detach supply_ontology_hand 01a157e5-91e5-759b-917e-d05f8f8341e3"
+}

@@ -1,0 +1,47 @@
+{
+  "checked_at": "2026-10-20T07:10:38.480270+00:00",
+  "local_business_round": 31,
+  "plugin_artifact_round": 23,
+  "branch": "feat/021-localization-login",
+  "head": "933b0ab251c75461ece1ada6145a9487e7eb04d1",
+  "frozen_business_source_checks": {
+    "fn/bom.py": true,
+    "fn/inventory.py": true,
+    "fn/detail_export.py": true,
+    "managed_execution.py": true,
+    "native_function_bundle.py": true,
+    "function_catalog.py": true,
+    "register_native_function_toolbox.py": true,
+    "fn/contracts.py": true,
+    "fn/sales.py": true,
+    "fn/records.py": true,
+    "ontology": true,
+    "sample_eval": true
+  },
+  "g6_yaml_sha256": "1c3892461dd541900e446636f969e92044ff6c6721e9f63b4d5267d41fce96e8",
+  "user_preflight_sha256": "4ed2bba80f394fd13a227d44b6f2cdf5262348b3b29cc89e479cf19229cf2031",
+  "artifact_sha256": "fd2b0126d66e5f7bad4241516d81724b03c0089552b6d3036b77364fc8e7368e",
+  "installed_artifact_checks": [
+    {
+      "host": "0.2.0-rc.2",
+      "files_compared": 80,
+      "passed": true
+    },
+    {
+      "host": "0.2.1-rc.2",
+      "files_compared": 80,
+      "passed": true
+    }
+  ],
+  "original_delivered_csvs_unchanged": 6,
+  "original_final_answers_copied_verbatim": 16,
+  "new_doc_local_links_checked": 80,
+  "answer_workspace_relative_csv_links_preserved_as_original": 6,
+  "link_errors": [],
+  "text_evidence_files_secret_pattern_scanned": 69,
+  "secret_pattern_hits": [],
+  "secret_scan_scope": "Pattern scan of staged text evidence only; no credential files read or copied",
+  "both_repository_git_diff_checks_passed": true,
+  "overall_contract_passed": false,
+  "remaining_fixed_route_sales_failure": "0.2.0-rc.2 sales-order-detail; retained without retry or replacement"
+}

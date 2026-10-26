@@ -1,0 +1,125 @@
+{
+  "checkedAt": "2026-10-24T13:27:21.149232+00:00",
+  "pluginSourceHead": "933b0ab251c75461ece1ada6145a9487e7eb04d1",
+  "uncommittedSourceIdentityFilesMatched": 167,
+  "candidateSHA256": "6d95ff7517dbe409875fd398784fe01049ba26d2b97c43fad65c817d3ea18ee9",
+  "helperSHA256": "0e3466f3da61bd2cac8f263c03573ad03206dea7cf20ac58d8f94e433b4943a7",
+  "preparationKitSHA256": "82d1b74c43728301016928b527742d1cee66e45413412de17fdc76b7735bc936",
+  "hosts": {
+    "0.2.0-rc.2": {
+      "hostCommit": "639ed015397290b3745d163aafe02ffee4aa3f84",
+      "candidateFilesMatched": 82,
+      "sourceFilesMatchPinnedGitBlobs": {
+        "apps/desktop/src/main.ts": "1fd424f16514d82d79665e0e8a1e2448dd8636126d3a37be7fa888d883b6ea3a",
+        "apps/desktop/src/preload-app.ts": "cff269a4f049d276a44974c3c40008ceb9d6a0b35105a54d6605f7dcf59a64eb",
+        "apps/web/src/main.ts": "fde2d8134e55b2f463c19453e255bb64fda2e46380ff405b6a6d27f1398e208c",
+        "packages/client/connection/src/client/index.ts": "6474b5b1ec97f5e3044cacd5156e20179e5cbc296cb182059247efe284d4bf5f",
+        "packages/client/connection/src/client/rpc.ts": "8a55426351dfc3b4150b6fdd60daf20735824cbb90b4b806321ec442c639e460",
+        "packages/api/gateway/src/client/index.ts": "a0047eab85960a4a34755a835cc2388d97937be2b8582083030ecd1bf3e24f28",
+        "packages/api/gateway/src/client/stream-client.ts": "18b8004e7d0c03f8ac1429f7f5868c9e49666c895d00959dab74be511b25a5a7",
+        "packages/api/gateway/src/stream-server.ts": "cc467061eeff90a804b40efbe236a87beefee3378ea06741d0b6c990ec71d5d7",
+        "packages/subprocess/subprocess-local/src/index.ts": "8b83ac19479fab6affcbb67a059bece0a6b06200093ed17374d3a2d0f78ef121",
+        "packages/subprocess/subprocess-local/src/spawn.ts": "1087f9ed1704167865e1a35cea0604f335cc348ac17da9c83c542fc454d00ae0",
+        "packages/subprocess/subprocess-local/src/windows-job.ts": "220d210e72df9da21a313a70a400e6f5443b17b4a08188f0131bc09167067f63",
+        "packages/subprocess/subprocess-local/src/spawn-runner.ts": "d4ba8aeec4427437cf4b7f23d2ea61c3a25becb43ee3944df190eef537a4679d",
+        "packages/subprocess/subprocess-local/src/managed-owner.ts": "c8153bbb1093f2ed69b45170f59ebadc9ac770210fff23e4a99c6228522a286d",
+        "packages/subprocess/subprocess-local/src/output.ts": "1151a91d7bc31ffcd6ea3db85af2ef8c19ac4bc2d3a41654da9feac29cae7433",
+        "packages/subprocess/subprocess-local/src/runner-protocol.ts": "0ada1f271cede3a0a0f04fa1c7df4fb76a3466dc239315b7332cd4e3630a306c",
+        "packages/subprocess/win32-process/src/process.ts": "2043f59d97f320f83d731fb2f81ec15c77065d4ff98f305be3a95cebb5e776be"
+      },
+      "desktopArtifact": {
+        "version": "0.2.0-rc.2",
+        "embeddedNode": "v24.18.1",
+        "asarSHA256": "18d5036bbb58eaff41d351ede99314b8d06505aec06fb2e164c49874ada30f9e",
+        "records": {
+          "connection.js": {
+            "archivePath": "dsh/node_modules/@deepseek-ai/dsh-client-connection/lib/client.js",
+            "sha256": "0fbb93fa2382bb66919767f69c909585c6255486f9536f9232231edaeac8c4e6",
+            "bytes": 59411
+          },
+          "gateway.js": {
+            "archivePath": "dsh/node_modules/@deepseek-ai/dsh-api-gateway/lib/client.js",
+            "sha256": "e09e26fcd4849cd55683b9cc702dca896efce93a5af3968431c1c8a62147b9cf",
+            "bytes": 82186
+          },
+          "web-boot.js": {
+            "archivePath": "dsh/node_modules/@deepseek-ai/dsh-web-frontend/dist/assets/index-5SrrfWpU.js",
+            "sha256": "af3ff948cf3f132edbddebea93e2f9f02233b390a94bd4c9842182300be811bb",
+            "bytes": 633282
+          },
+          "desktop-main.js": {
+            "archivePath": "lib/main.js",
+            "sha256": "10325004a1ddbd8118ed0607ea28d50a7b0d692dcaeb25a67a7d8aea9165019d",
+            "bytes": 490173
+          },
+          "desktop-preload.cjs": {
+            "archivePath": "lib/preload-app.cjs",
+            "sha256": "f323eb67f7ace407d3b1d858f264f7846e436d9ba3e80c02b0454a6da0aed968",
+            "bytes": 41075
+          }
+        }
+      }
+    },
+    "0.2.1-rc.2": {
+      "hostCommit": "687f282e8625c6b8d11ff58211a90524be2e4317",
+      "candidateFilesMatched": 82,
+      "sourceFilesMatchPinnedGitBlobs": {
+        "apps/desktop/src/main.ts": "e345eda0425f2df795d20413bb87bb9a3ddc46e71ceb1cec0755ad1cca3fb847",
+        "apps/desktop/src/preload-app.ts": "cff269a4f049d276a44974c3c40008ceb9d6a0b35105a54d6605f7dcf59a64eb",
+        "apps/web/src/main.ts": "fde2d8134e55b2f463c19453e255bb64fda2e46380ff405b6a6d27f1398e208c",
+        "packages/client/connection/src/client/index.ts": "932b2d75fc3ad2490664f2980008cc408b13e8706bc862af406200aff86057dd",
+        "packages/client/connection/src/client/rpc.ts": "8a55426351dfc3b4150b6fdd60daf20735824cbb90b4b806321ec442c639e460",
+        "packages/api/gateway/src/client/index.ts": "67b346bbb099b65ec37c6fcedb08e4efeae2aee291fe1809e7a2d6fea080030c",
+        "packages/api/gateway/src/client/stream-client.ts": "4acd9e39179f9c1e9ffe899f5ed08b54564a30ef1f194cc5ef19ad539d7f0d97",
+        "packages/api/gateway/src/stream-server.ts": "cec92f5946f3a7c417e7041882bad14d6eff23b23d057adfcebacdbb31e56d2a",
+        "packages/subprocess/subprocess-local/src/index.ts": "0839baefcbc7562ac73562cc7c5c3f1f983a8693bf3b76e0c956a5f93b4548ce",
+        "packages/subprocess/subprocess-local/src/spawn.ts": "1087f9ed1704167865e1a35cea0604f335cc348ac17da9c83c542fc454d00ae0",
+        "packages/subprocess/subprocess-local/src/windows-job.ts": "220d210e72df9da21a313a70a400e6f5443b17b4a08188f0131bc09167067f63",
+        "packages/subprocess/subprocess-local/src/spawn-runner.ts": "d4ba8aeec4427437cf4b7f23d2ea61c3a25becb43ee3944df190eef537a4679d",
+        "packages/subprocess/subprocess-local/src/managed-owner.ts": "c8153bbb1093f2ed69b45170f59ebadc9ac770210fff23e4a99c6228522a286d",
+        "packages/subprocess/subprocess-local/src/output.ts": "1151a91d7bc31ffcd6ea3db85af2ef8c19ac4bc2d3a41654da9feac29cae7433",
+        "packages/subprocess/subprocess-local/src/runner-protocol.ts": "0ada1f271cede3a0a0f04fa1c7df4fb76a3466dc239315b7332cd4e3630a306c",
+        "packages/subprocess/win32-process/src/process.ts": "2043f59d97f320f83d731fb2f81ec15c77065d4ff98f305be3a95cebb5e776be"
+      },
+      "desktopArtifact": {
+        "version": "0.2.1-rc.2",
+        "embeddedNode": "v24.21.0",
+        "asarSHA256": "b9ec4c2bbc20c9dbc3e39fa4c961434a943434ab0a803052b26753dd15f3b066",
+        "records": {
+          "connection.js": {
+            "archivePath": "dsh/node_modules/@deepseek-ai/dsh-client-connection/lib/client.browser.js",
+            "sha256": "dfc3544eb894c74b340a4c4c63a8c125fd2e983df9efed5885712574af994e62",
+            "bytes": 60601
+          },
+          "gateway.js": {
+            "archivePath": "dsh/node_modules/@deepseek-ai/dsh-api-gateway/lib/client.browser.js",
+            "sha256": "3043de82334846a3a5654b7317830c5403f90e9aeca692d3c15e30e01d16505d",
+            "bytes": 84127
+          },
+          "web-boot.js": {
+            "archivePath": "dsh/node_modules/@deepseek-ai/dsh-web-frontend/dist/assets/index-CN7NIWNw.js",
+            "sha256": "4bc914bfbb6adbdd63953a29f63835eb7127defd2a973149d64cdab489f1a9a5",
+            "bytes": 939867
+          },
+          "desktop-main.js": {
+            "archivePath": "lib/main.js",
+            "sha256": "6f3d1ddd1106371452c2204be6dfb2e5460a8e8259cdd05cdccb5387b3f9a85a",
+            "bytes": 516716
+          },
+          "desktop-preload.cjs": {
+            "archivePath": "lib/preload-app.cjs",
+            "sha256": "f323eb67f7ace407d3b1d858f264f7846e436d9ba3e80c02b0454a6da0aed968",
+            "bytes": 41075
+          }
+        }
+      }
+    }
+  },
+  "ciRun": null,
+  "formalAcceptanceEligible": false,
+  "frozenR3": {
+    "head": "fac4db78a1a974192fa13fdbe62063331cf04ec1",
+    "clean": true,
+    "kitSHA256": "7daaca61691706ef476ce007eb4c49e8a8f538a30dc73764fea6f6a4281308d0"
+  }
+}

@@ -1,0 +1,29 @@
+{
+  "checkedAt": "2026-10-22T03:20:44.372327+00:00",
+  "frozenKitInventorySha256": "53374ef97d0d3d1e5fd6ae1aff1e00950004979e4f81e0b7cf19a147878138d8",
+  "artifactChecks": [
+    {
+      "version": "0.2.0-rc.2-openbkn.0.2.0-27",
+      "sha256": "5a24a54fa327f04c79884b8303d44d0b2f0bae69e844169c31d28a69af832aef",
+      "schemasteryDependency": "^3.18.4",
+      "schemasteryPeer": null,
+      "diagnosticHeaderSnippet": " */ (0, react_jsx_runtime.jsxs)(\"p\", {\n\t\t\t\t\tstyle: {\n\t\t\t\t\t\tmarginTop: 0,\n\t\t\t\t\t\tcolor: \"#4b5563\",\n\t\t\t\t\t\tfontSize: 13\n\t\t\t\t\t},\n\t\t\t\t\tchildren: [\n\t\t\t\t\t\tt(\"report\"),\n\t\t\t\t\t\treport.reportId,\n\t\t\t\t\t\t\" \",\n\t\t\t\t\t\tt(\"created\"),\n\t\t\t\t\t\tnew Date(report.createdAt).toLocaleString(),\n\t\t\t\t\t\t\" \",\n\t\t\t\t\t\tt(\"mode\"),\n\t\t\t\t\t\treport.mode === \"passive\" ? t(\"passiveCollection\") : t(\"activeRetest\")\n\t\t\t\t\t]\n\t\t\t\t}),\n\t\t\t\t/* @__PURE__ */ (0, react_jsx_runtime.jsx)(T",
+      "platformUrlSnippet": "\t\t\t\t\tstyle: {\n\t\t\t\t\t\t...mutedStyle$2,\n\t\t\t\t\t\tmarginTop: 0\n\t\t\t\t\t},\n\t\t\t\t\tchildren: [t(\"platformURL\"), displayBaseUrl(state.auth)]\n\t\t\t\t}),\n\t\t\t\tstate.login === \"timed-out\" ? /* @__PURE__ */ (0, react_jsx_runtime.jsx)(\"p\", {\n\t\t\t\t\trol"
+    },
+    {
+      "version": "0.2.0-rc.2-openbkn.0.2.0-29",
+      "sha256": "dec3417310b4e50a80f987c69f573e41d78725ae2caabdd6ebfbf00b8a3914f6",
+      "schemasteryDependency": "^3.18.4",
+      "schemasteryPeer": null,
+      "diagnosticHeaderSnippet": " */ (0, react_jsx_runtime.jsxs)(\"p\", {\n\t\t\t\t\tstyle: {\n\t\t\t\t\t\tmarginTop: 0,\n\t\t\t\t\t\tcolor: \"#4b5563\",\n\t\t\t\t\t\tfontSize: 13\n\t\t\t\t\t},\n\t\t\t\t\tchildren: [\n\t\t\t\t\t\tt(\"report\"),\n\t\t\t\t\t\treport.reportId,\n\t\t\t\t\t\t\" \",\n\t\t\t\t\t\tt(\"created\"),\n\t\t\t\t\t\tnew Date(report.createdAt).toLocaleString(),\n\t\t\t\t\t\t\" \",\n\t\t\t\t\t\tt(\"mode\"),\n\t\t\t\t\t\treport.mode === \"passive\" ? t(\"passiveCollection\") : t(\"activeRetest\")\n\t\t\t\t\t]\n\t\t\t\t}),\n\t\t\t\t/* @__PURE__ */ (0, react_jsx_runtime.jsx)(T",
+      "platformUrlSnippet": "\t\t\t\t\tstyle: {\n\t\t\t\t\t\t...mutedStyle$2,\n\t\t\t\t\t\tmarginTop: 0\n\t\t\t\t\t},\n\t\t\t\t\tchildren: [t(\"platformURL\"), displayBaseUrl(state.auth)]\n\t\t\t\t}),\n\t\t\t\tstate.login === \"timed-out\" ? /* @__PURE__ */ (0, react_jsx_runtime.jsx)(\"p\", {\n\t\t\t\t\trol"
+    }
+  ],
+  "existingVerifierCoverage": {
+    "installedOptionChecksOnlyFileInventory": true,
+    "runtimeTraversalFollowsOnlyDshAndCordis": true,
+    "profilePluginDependencyClosureChecked": false
+  },
+  "peerDependencyFixValidated": false,
+  "functionalSchemasteryFailureReproducedInThisReview": false
+}

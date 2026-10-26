@@ -1,6 +1,7 @@
 import { test } from 'node:test'
 import assert from 'node:assert/strict'
-import { mkdtempSync, readFileSync, rmSync, writeFileSync } from 'node:fs'
+import { existsSync, mkdtempSync, readFileSync, rmSync, writeFileSync } from 'node:fs'
+import { createHash } from 'node:crypto'
 import { tmpdir } from 'node:os'
 import { join } from 'node:path'
 import { fileURLToPath } from 'node:url'
@@ -56,3 +57,33 @@ test('an entirely untested run cannot be reported as successes', () => {
     assert.equal((report.match(/— NOT-RUN/g) ?? []).length, cases.length)
   })
 })
+
+test('records the exact evaluation definition used for the marks', () => {
+  const values = Object.fromEntries(cases.map(c => [c.id, 'not-run']))
+  const sha = createHash('sha256').update(readFileSync(new URL('./supply-ontology.yaml', import.meta.url))).digest('hex')
+  grade(values, (stdout, report) => {
+    assert.match(stdout, new RegExp(`set_sha256: ${sha}`))
+    assert.match(report, new RegExp(`set_sha256: ${sha}`))
+  })
+})
+
+for (const invalid of ['false', 1, null]) {
+  test(`rejects a non-boolean BOM mark (${JSON.stringify(invalid)}) instead of coercing a pass`, () => {
+    const values = Object.fromEntries(cases.map(c => [c.id, 'not-run']))
+    const bom = cases.find(c => c.id === 'bom-usage-inventory')
+    values[bom.id] = [...bom.expectFacts, ...bom.forbidden].map(() => true)
+    values[bom.id][0] = invalid
+    const dir = mkdtempSync(join(tmpdir(), 'openbkn eval invalid '))
+    try {
+      const answers = join(dir, 'answers.json')
+      const report = join(dir, 'results.md')
+      writeFileSync(answers, JSON.stringify(values))
+      const result = spawnSync(process.execPath, [runner, '--answers', answers, '--out', report], { encoding: 'utf8' })
+      assert.equal(result.status, 1, result.stdout)
+      assert.match(result.stderr, /bom-usage-inventory.*booleans/)
+      assert.equal(existsSync(report), false)
+    } finally {
+      rmSync(dir, { recursive: true, force: true })
+    }
+  })
+}

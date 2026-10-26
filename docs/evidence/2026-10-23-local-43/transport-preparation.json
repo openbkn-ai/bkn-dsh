@@ -1,0 +1,15 @@
+{
+  "kitInventorySHA256": "f340d205a6290c9e9eea9cfaef08561a5a596496bdb75a1e30c43ccd71e0e004",
+  "helperSHA256": "0e3466f3da61bd2cac8f263c03573ad03206dea7cf20ac58d8f94e433b4943a7",
+  "inputs": 25,
+  "candidateSHA256": "6d95ff7517dbe409875fd398784fe01049ba26d2b97c43fad65c817d3ea18ee9",
+  "changesFromPreparedR2": [
+    "HANDOFF.md",
+    "FOLLOWUP.md",
+    "RESULTS-TEMPLATE.md",
+    "KIT-FILES.json"
+  ],
+  "allExecutionBytesUnchanged": true,
+  "workflows": 0,
+  "files": 32
+}

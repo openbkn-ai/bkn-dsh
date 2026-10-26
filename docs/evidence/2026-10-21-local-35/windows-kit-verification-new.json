@@ -1,0 +1,29 @@
+{
+  "kitFilesVerified": 15,
+  "kind": "local-development-preacceptance",
+  "formalAcceptanceEligible": false,
+  "ciRun": null,
+  "candidate": {
+    "root": "/var/folders/hc/nmd2t7b96nb_d6jpf7xbb0zr0000gn/T/bkn021-verify-vphNZr/package",
+    "matched": 82,
+    "version": "0.2.0-rc.2-openbkn.0.2.0-27"
+  },
+  "sdk": {
+    "version": "0.2.0",
+    "officialRegistryIntegrityMatched": true
+  },
+  "installed": {
+    "root": "/Users/dominiczhang/Documents/project/app/openBKN/bkn-dsh/release/ci-41507f9/mac-cli/0.2.1-rc.2/node_modules/@openbkn/dsh-business-context",
+    "matched": 82,
+    "version": "0.2.0-rc.2-openbkn.0.2.0-27"
+  },
+  "runtime": {
+    "host": "0.2.1-rc.2",
+    "dshPackages": 295,
+    "cordis": "4.0.5",
+    "noMixedDsh": true,
+    "noSplitCordis": true
+  },
+  "capture_stage": "During temporary -27 npm byte mount; task payload restored to prior -23 at cleanup",
+  "checked_at_from_original_file_mtime": "2026-10-21T15:08:12.432431+00:00"
+}

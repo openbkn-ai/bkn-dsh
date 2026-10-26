@@ -1,0 +1,52 @@
+TAP version 13
+# Subtest: unavailable permission account is excluded and reported separately
+ok 1 - unavailable permission account is excluded and reported separately
+  ---
+  duration_ms: 41.019083
+  type: 'test'
+  ...
+# Subtest: not-run does not hide observed failures
+ok 2 - not-run does not hide observed failures
+  ---
+  duration_ms: 39.867
+  type: 'test'
+  ...
+# Subtest: an entirely untested run cannot be reported as successes
+ok 3 - an entirely untested run cannot be reported as successes
+  ---
+  duration_ms: 40.514667
+  type: 'test'
+  ...
+# Subtest: records the exact evaluation definition used for the marks
+ok 4 - records the exact evaluation definition used for the marks
+  ---
+  duration_ms: 40.925083
+  type: 'test'
+  ...
+# Subtest: rejects a non-boolean BOM mark ("false") instead of coercing a pass
+ok 5 - rejects a non-boolean BOM mark ("false") instead of coercing a pass
+  ---
+  duration_ms: 38.226542
+  type: 'test'
+  ...
+# Subtest: rejects a non-boolean BOM mark (1) instead of coercing a pass
+ok 6 - rejects a non-boolean BOM mark (1) instead of coercing a pass
+  ---
+  duration_ms: 39.726792
+  type: 'test'
+  ...
+# Subtest: rejects a non-boolean BOM mark (null) instead of coercing a pass
+ok 7 - rejects a non-boolean BOM mark (null) instead of coercing a pass
+  ---
+  duration_ms: 39.83875
+  type: 'test'
+  ...
+1..7
+# tests 7
+# suites 0
+# pass 7
+# fail 0
+# cancelled 0
+# skipped 0
+# todo 0
+# duration_ms 335.269208

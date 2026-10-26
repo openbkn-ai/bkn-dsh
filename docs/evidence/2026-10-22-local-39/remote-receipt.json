@@ -1,0 +1,22 @@
+{
+  "checkedAt": "2026-10-22T03:16:35.433206+00:00",
+  "remote": "https://github.com/openbkn-ai/bkn-dsh.git",
+  "ref": "refs/heads/results/windows-local27-20261022",
+  "expectedCommit": "fb77c07bc283b4f53a55179e43942949e0e1c8ca",
+  "fetchedCommit": "fb77c07bc283b4f53a55179e43942949e0e1c8ca",
+  "baseCommit": "fd879740e4292836a24dc1e411ee335619ba4c41",
+  "parents": [
+    "fd879740e4292836a24dc1e411ee335619ba4c41"
+  ],
+  "commitsAfterBase": 1,
+  "diff": [
+    "A\tresults/WINDOWS-RESULTS-local27-20261022.md"
+  ],
+  "reportPath": "results/WINDOWS-RESULTS-local27-20261022.md",
+  "reportSha256": "86adfeb6c5f3d0b205dbdafa95a3d9cac439fad0995b3c5484283a6fe59e61e9",
+  "reportBytes": 11028,
+  "reportLines": 83,
+  "subject": "docs: record Windows local27 preacceptance results (2026-10-22) [skip ci]",
+  "currentDevelopmentHeadUnchanged": true,
+  "checkoutMergeOrCherryPickPerformed": false
+}

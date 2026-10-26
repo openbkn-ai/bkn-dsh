@@ -1,0 +1,33 @@
+{
+  "checked_at": "2026-10-20T04:34:12.365073+00:00",
+  "records": [
+    {
+      "file": "/Users/dominiczhang/Documents/project/app/openBKN/bkn-dsh/release/ci-41507f9/workspaces/supply-old/openbkn-abf974a5-fbcd-47ae-aa2c-3bccee0fbabb-382-000005_BOM_清单与库存.csv",
+      "export_sha256": "4ce12fec330d44c9110a0c9185d79f4bf1f506e9a48005277c310c5d18a3f976",
+      "sha256_after_UI_open": "4ce12fec330d44c9110a0c9185d79f4bf1f506e9a48005277c310c5d18a3f976",
+      "unchanged": true,
+      "screenshot": "old-bom-csv-open.png",
+      "opened_from_final_answer_link": true,
+      "native_csv_grid_rendered": true
+    },
+    {
+      "file": "/Users/dominiczhang/Documents/project/app/openBKN/bkn-dsh/release/ci-41507f9/workspaces/supply-new/openbkn-d7462d89-ea40-489e-8419-2f69faf758e3-382-000005_unsettled_PO_PR.csv",
+      "export_sha256": "38a26be6c20008832be813396240946eadbefce7b8a5255173e099c6d4f0eb08",
+      "sha256_after_UI_open": "38a26be6c20008832be813396240946eadbefce7b8a5255173e099c6d4f0eb08",
+      "unchanged": true,
+      "screenshot": "new-purchase-csv-open.png",
+      "opened_from_final_answer_link": true,
+      "native_csv_grid_rendered": true
+    },
+    {
+      "file": "/Users/dominiczhang/Documents/project/app/openBKN/bkn-dsh/release/ci-41507f9/workspaces/supply-old/openbkn-1d49292d-c418-40ec-8441-610d4ca96b7f-bom_382-000005_main_full.csv",
+      "export_sha256": "f6e4e62ba6db715ca6d4967d0ede15bd02273b0a73f0ded974837ae1963cbdc9",
+      "screenshot": "old-bom-structure-csv-open.png",
+      "opened_from_final_answer_link": true,
+      "native_csv_grid_rendered": true,
+      "sha256_after_UI_open": "f6e4e62ba6db715ca6d4967d0ede15bd02273b0a73f0ded974837ae1963cbdc9",
+      "unchanged": true
+    }
+  ],
+  "historical_purchase_file_is_not_product_only_acceptance": true
+}

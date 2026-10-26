@@ -1,0 +1,39 @@
+{
+  "checkedAt": "2026-10-24T15:05:32.807663+00:00",
+  "oldSourceTests": {
+    "total": 618,
+    "pass": 617,
+    "skip": 1,
+    "fail": 0
+  },
+  "newSourceTests": {
+    "total": 618,
+    "pass": 617,
+    "skip": 1,
+    "fail": 0
+  },
+  "typesBoth": "PASS",
+  "packageFilesAudited": 82,
+  "packedClientFocusedTests": {
+    "pass": 3,
+    "fail": 0
+  },
+  "newLifecycleCases": {
+    "pass": 4,
+    "fail": 0,
+    "realWindowsApis": false,
+    "realAuthentication": false
+  },
+  "browserControlledDom": {
+    "old": "native parent closed before child",
+    "fixed": "child only; native parent remains",
+    "tabAndShiftTab": "owned panel wrap",
+    "shiftEscape": "no close",
+    "nativeHook": "pinned new rc.2 useModalLayer",
+    "reactBoundary": "effect/ref seams; no full renderer/Host"
+  },
+  "windowsExecutedThisRound": false,
+  "realPlatformOrModelExecuted": false,
+  "ciRun": null,
+  "formalAcceptanceEligible": false
+}

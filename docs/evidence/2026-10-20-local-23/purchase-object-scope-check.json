@@ -1,0 +1,24 @@
+{
+  "checked_at": "2026-10-20T04:28:28.778Z",
+  "owner_decision": "Only the product itself; direct PR=0 and PO=0; no unrequested BOM expansion",
+  "checks": [
+    {
+      "id": "supply_ontology_hand_pr",
+      "changed_fields": [
+        "comment",
+        "update_time"
+      ],
+      "data_source_properties_keys_and_bindings_preserved": true,
+      "new_comment": "根据MRP生成的内部采购申请PR。 查询范围：用户给定产品或物料编码时，只查 material_number 等于该编码的本对象单据；本身无记录时明确说明无未结项，不自动展开 BOM，不把子料采购单据加入产品本身结果。只有用户明确要求 BOM 关联采购时，才按已确认的去根主料规则另行查询，并披露层级、角色范围和完整性。"
+    },
+    {
+      "id": "supply_ontology_hand_po",
+      "changed_fields": [
+        "comment",
+        "update_time"
+      ],
+      "data_source_properties_keys_and_bindings_preserved": true,
+      "new_comment": "发给供应商的正式采购订单。 查询范围：用户给定产品或物料编码时，只查 material_number 等于该编码的本对象单据；本身无记录时明确说明无未结项，不自动展开 BOM，不把子料采购单据加入产品本身结果。只有用户明确要求 BOM 关联采购时，才按已确认的去根主料规则另行查询，并披露层级、角色范围和完整性。"
+    }
+  ]
+}

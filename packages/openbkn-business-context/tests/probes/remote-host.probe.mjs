@@ -22,14 +22,14 @@ const version = require('@deepseek-ai/dsh-api-gateway/package.json').version
 const ctx = new Context(), fibers = [], peers = []
 try {
   fibers.push(await ctx.plugin(Registry))
-  if (version === '0.2.1-rc.2') fibers.push(await ctx.plugin((await fromRuntime('dsh-api-remote-access')).default))
+  if (version === '0.2.1-rc.3') fibers.push(await ctx.plugin((await fromRuntime('dsh-api-remote-access')).default))
   fibers.push(await ctx.plugin(Gateway))
   fibers.push(await ctx.plugin({ apply(scope) { scope.provide('loader', { entries: () => [] }) } }))
   fibers.push(await ctx.plugin(bootstrap))
   fibers.push(await ctx.plugin(diagnostics))
   const contribution = ctx.typert.register(TYPERT)
   assert.ok(ctx.typert.local.get('openbknConfiguration/getConfiguration'))
-  const peer = version === '0.2.1-rc.2' ? new Peer(ctx, { principal: { kind: 'owner' } }) : undefined
+  const peer = version === '0.2.1-rc.3' ? new Peer(ctx, { principal: { kind: 'owner' } }) : undefined
   if (peer) peers.push(peer)
   const invoke = (namespace, method, args = {}, signal) => ctx.typertGateway.invoke({ namespace, method, args, peer, signal })
   const config = await invoke('openbknConfiguration', 'getConfiguration')
@@ -65,7 +65,7 @@ try {
   fibers.push(await ctx.plugin(business.OpenBknBusinessContextService, { baseUrl: 'https://probe.invalid', cliPath: 'controlled-missing-cli' }))
   await assert.rejects(invoke('openbknBusinessContext', 'status'), { code: 'openbkn/cli-unavailable' })
   await assert.rejects(invoke('openbknBusinessContext', 'getNetworkBinding', { sessionId: 'not-live' }), /not a live DSH session/)
-  if (version === '0.2.1-rc.2') {
+  if (version === '0.2.1-rc.3') {
     const visitor = new Peer(ctx, { principal: { kind: 'probe-ungranted' } })
     peers.push(visitor)
     await assert.rejects(ctx.typertGateway.invoke({ namespace: 'openbknDiagnostics', method: 'getReport', args: {}, peer: visitor }), {
@@ -79,7 +79,7 @@ try {
     'passive diagnostics', 'optional subprocess degradation', 'typed business errors',
     'invalid input refusal', 'cancellation', 'contribution unload',
     'business service loading', 'credential-provider base and CLI failure', 'business Remote session refusal',
-    ...(version === '0.2.1-rc.2' ? ['ungranted principal refusal'] : []),
+    ...(version === '0.2.1-rc.3' ? ['ungranted principal refusal'] : []),
   ] }))
 } finally {
   for (const peer of peers.reverse()) await peer.dispose()

@@ -1,0 +1,46 @@
+[
+  {
+    "id": "npm-old",
+    "clonedExistingFiles": 47,
+    "changedExistingRelativeFiles": [
+      ".credentials.yaml",
+      "profiles/web/cordis.patch.yml"
+    ],
+    "missingOriginalFilesInClone": []
+  },
+  {
+    "id": "npm-rc3",
+    "clonedExistingFiles": 47,
+    "changedExistingRelativeFiles": [
+      "profiles/web/cordis.patch.yml"
+    ],
+    "missingOriginalFilesInClone": []
+  },
+  {
+    "id": "desktop-old",
+    "clonedExistingFiles": 82,
+    "changedExistingRelativeFiles": [
+      ".credentials.yaml",
+      "profiles/desktop/cordis.patch.yml"
+    ],
+    "missingOriginalFilesInClone": []
+  },
+  {
+    "id": "desktop-rc3",
+    "clonedExistingFiles": 82,
+    "changedExistingRelativeFiles": [
+      ".credentials.yaml",
+      "profiles/desktop/cordis.patch.yml"
+    ],
+    "missingOriginalFilesInClone": []
+  },
+  {
+    "id": "npm-rc3-retry",
+    "clonedExistingFiles": 47,
+    "changedExistingRelativeFiles": [
+      ".credentials.yaml",
+      "profiles/web/cordis.patch.yml"
+    ],
+    "missingOriginalFilesInClone": []
+  }
+]

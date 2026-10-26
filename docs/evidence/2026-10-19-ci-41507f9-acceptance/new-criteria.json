@@ -1,0 +1,53 @@
+{
+  "orders-count-status": [
+    false,
+    false,
+    false,
+    false,
+    true
+  ],
+  "finished-goods-inventory": [
+    true,
+    true,
+    true,
+    true,
+    false
+  ],
+  "standard-lead-time": [
+    true,
+    true,
+    true
+  ],
+  "bom-structure": [
+    false,
+    false,
+    true
+  ],
+  "bom-usage-inventory": [
+    false,
+    false,
+    false,
+    false,
+    true,
+    true
+  ],
+  "purchase-flow": [
+    true,
+    true,
+    true
+  ],
+  "sales-order-detail": [
+    true,
+    true,
+    true
+  ],
+  "missing-object": [
+    true,
+    true,
+    true,
+    true
+  ],
+  "invalid-token": "not-run",
+  "platform-unreachable": "not-run",
+  "unauthorized-network": "not-run"
+}

@@ -1,0 +1,20 @@
+{
+  "checked_at": "2026-10-21T08:14:15.094136+00:00",
+  "artifact_sha256": "ec33b3ff3776b28a939a12e7c8b822bfa2878e812db13edd3a0db59794a25d63",
+  "hosts": [
+    {
+      "desktop": "0.2.0-rc.2",
+      "version": "0.2.0-rc.2-openbkn.0.2.0-25",
+      "files_compared": 81,
+      "differences": [],
+      "passed": true
+    },
+    {
+      "desktop": "0.2.1-rc.2",
+      "version": "0.2.0-rc.2-openbkn.0.2.0-25",
+      "files_compared": 81,
+      "differences": [],
+      "passed": true
+    }
+  ]
+}

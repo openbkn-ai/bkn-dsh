@@ -513,7 +513,7 @@ test('default 0.1.5 deployment: execute_skill is not registered, so it is refuse
   assert.match(fake.guards[0]!({ name: 'mcp__openbkn__execute_skill', arguments: { kn_id: bound, skill_id: 's', entry_shell: 'python main.py' } }) ?? '', /not registered in this session/)
   assert.equal(fake.guards[0]!({ name: 'mcp__openbkn__get_skill_content', arguments: { kn_id: bound, skill_id: 's' } }), undefined)
   const prompt = governanceOf(fake)
-  assert.match(prompt, /find a published capability with search_capabilities\. Run a function or MCP tool hit with execute_tool/)
+  assert.match(prompt, /find a published capability with search_capabilities before implementing a calculation or a run_code fallback\..*Run a function or MCP tool hit with execute_tool/)
   assert.match(prompt, /Skill execution is not enabled on this deployment \(execute_skill is not offered\)/)
   assert.doesNotMatch(prompt, /pass execute_skill only/)
   assert.doesNotMatch(prompt, /search_tools|find_skills/)

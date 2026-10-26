@@ -1,0 +1,20 @@
+{
+  "created_at": "2026-10-19T15:46:47.916571+00:00",
+  "plugin_version": "0.2.0-rc.2-openbkn.0.2.0-14",
+  "tgz_sha256": "51cf44ce14e06bd534ce957602ebb2d83cf4cc457830a09d2144cebf2ad5127d",
+  "platform": "official Community 0.2.0 at https://192.168.50.129",
+  "function_manifest": {
+    "fixed_operation": "bom_list",
+    "archive_entries": 16,
+    "changed_entries": [
+      "fn/bom.py",
+      "managed_execution.py"
+    ],
+    "before_code_sha256": "ba86aee7f288ddca26f38b91f8c6115f1f3407da8790f6032ea4f93175b99977",
+    "after_code_sha256": "a456382ec3e9dfd636d987474b6efc43e254355b639395f0650779ea42d9a4da",
+    "package": "unchanged plugin -14",
+    "no_data_mutations": true
+  },
+  "evaluation_sha256": "abca47f611a04cadd571124154aa0810688dc9bc6fbc4526946d060b038dfffd",
+  "model_question": "查询 382-000005 的 BOM 清单，每个物料的使用量，以及每个物料的库存情况"
+}

@@ -1,0 +1,655 @@
+{
+  "checked_at": "2026-10-21T15:41:14.619411+00:00",
+  "method": "Retained original native tool calls/results plus current independent read-only SQL; no new function execution",
+  "records": [
+    {
+      "host": "0.2.0-rc.2",
+      "original_session_id": "session-d3094f4e-6b4c-4e6d-a372-bacb36fc1d2a",
+      "original_native_file_sha256": "784a756479ab47a40dcf29e98f9cb13de8d3d25b2cb53f53e4c29434a22fccce",
+      "original_model_request_catalogues": [
+        {
+          "tool_count": 55,
+          "execute_tool_offered": true,
+          "execute_tool_descriptor": {
+            "name": "mcp__openbkn__execute_tool",
+            "description": "调用一个已挂载到该知识网络的函数工具或 MCP 工具，返回工具原始响应。需要该知识网络本身的执行权限：工具经知识网络的受管代理执行，不必另有工具授权。kn_id / toolbox_id / tool_id 必须取自 search_capabilities；arguments 按其返回的 input_schema 填。工具可能对外部系统写入且不可回滚，调用前先读清 description 与 use_rule。",
+            "parameters": {
+              "type": "object",
+              "properties": {
+                "arguments": {
+                  "description": "工具的业务入参，按 search_capabilities 返回的 input_schema 填写。不要在这里塞令牌、会话 id 等传输信息，平台会自行携带。",
+                  "type": "object"
+                },
+                "bkn_context": {
+                  "description": "Managed session context. Copy both IDs from bkn_start_interaction, even when Trace capture is disabled.",
+                  "properties": {
+                    "conversation_id": {
+                      "description": "conversation_id returned by bkn_start_interaction.",
+                      "type": "string"
+                    },
+                    "interaction_id": {
+                      "description": "interaction_id returned by bkn_start_interaction.",
+                      "type": "string"
+                    }
+                  },
+                  "required": [
+                    "conversation_id",
+                    "interaction_id"
+                  ],
+                  "type": "object"
+                },
+                "kn_id": {
+                  "description": "必填。知识网络 ID，须与 search_capabilities 所用一致。调用者须有该网络本身的执行权限，工具必须已挂载到该网络才可调用。",
+                  "type": "string"
+                },
+                "tool_id": {
+                  "description": "工具 ID，取自 search_capabilities 返回的 capability_id。",
+                  "type": "string"
+                },
+                "toolbox_id": {
+                  "description": "工具箱 ID，取自 search_capabilities 返回的 owner_id。",
+                  "type": "string"
+                }
+              },
+              "required": [
+                "kn_id",
+                "toolbox_id",
+                "tool_id",
+                "arguments",
+                "bkn_context"
+              ]
+            }
+          },
+          "csv_transfer_offered": true
+        },
+        {
+          "tool_count": 55,
+          "execute_tool_offered": true,
+          "execute_tool_descriptor": {
+            "name": "mcp__openbkn__execute_tool",
+            "description": "调用一个已挂载到该知识网络的函数工具或 MCP 工具，返回工具原始响应。需要该知识网络本身的执行权限：工具经知识网络的受管代理执行，不必另有工具授权。kn_id / toolbox_id / tool_id 必须取自 search_capabilities；arguments 按其返回的 input_schema 填。工具可能对外部系统写入且不可回滚，调用前先读清 description 与 use_rule。",
+            "parameters": {
+              "type": "object",
+              "properties": {
+                "arguments": {
+                  "description": "工具的业务入参，按 search_capabilities 返回的 input_schema 填写。不要在这里塞令牌、会话 id 等传输信息，平台会自行携带。",
+                  "type": "object"
+                },
+                "bkn_context": {
+                  "description": "Managed session context. Copy both IDs from bkn_start_interaction, even when Trace capture is disabled.",
+                  "properties": {
+                    "conversation_id": {
+                      "description": "conversation_id returned by bkn_start_interaction.",
+                      "type": "string"
+                    },
+                    "interaction_id": {
+                      "description": "interaction_id returned by bkn_start_interaction.",
+                      "type": "string"
+                    }
+                  },
+                  "required": [
+                    "conversation_id",
+                    "interaction_id"
+                  ],
+                  "type": "object"
+                },
+                "kn_id": {
+                  "description": "必填。知识网络 ID，须与 search_capabilities 所用一致。调用者须有该网络本身的执行权限，工具必须已挂载到该网络才可调用。",
+                  "type": "string"
+                },
+                "tool_id": {
+                  "description": "工具 ID，取自 search_capabilities 返回的 capability_id。",
+                  "type": "string"
+                },
+                "toolbox_id": {
+                  "description": "工具箱 ID，取自 search_capabilities 返回的 owner_id。",
+                  "type": "string"
+                }
+              },
+              "required": [
+                "kn_id",
+                "toolbox_id",
+                "tool_id",
+                "arguments",
+                "bkn_context"
+              ]
+            }
+          },
+          "csv_transfer_offered": true
+        }
+      ],
+      "call_sequence": [
+        {
+          "name": "mcp__openbkn__bkn_start_interaction",
+          "arguments": {
+            "conversation_mode": "new",
+            "question": "列出 382-000005 的销售订单明细。",
+            "agent_name": "bkn-agent-dsh-business-context"
+          }
+        },
+        {
+          "name": "mcp__openbkn__get_kn_detail",
+          "arguments": {
+            "kn_id": "supply_ontology_hand",
+            "bkn_context": {
+              "conversation_id": "conv_e922192f54df8d2dce237ce4faeaff6c",
+              "interaction_id": "int_6a68f83032ff118e752229490145ccfe"
+            },
+            "detail_level": "summary"
+          }
+        },
+        {
+          "name": "mcp__openbkn__get_object_types",
+          "arguments": {
+            "bkn_context": {
+              "conversation_id": "conv_e922192f54df8d2dce237ce4faeaff6c",
+              "interaction_id": "int_6a68f83032ff118e752229490145ccfe"
+            },
+            "kn_id": "supply_ontology_hand",
+            "ids": [
+              "supply_ontology_hand_salesorder",
+              "supply_ontology_hand_product"
+            ]
+          }
+        },
+        {
+          "name": "mcp__openbkn__run_cypher",
+          "arguments": {
+            "bkn_context": {
+              "conversation_id": "conv_e922192f54df8d2dce237ce4faeaff6c",
+              "interaction_id": "int_6a68f83032ff118e752229490145ccfe"
+            },
+            "kn_id": "supply_ontology_hand",
+            "query": "MATCH (o:supply_ontology_hand_salesorder) WHERE o.sales_order_id CONTAINS '382-000005' RETURN o.sales_order_id AS sales_order_id, o.contract_number AS contract_number, o.customer_id AS customer_id, o.customer_name AS customer_name, o.product_code AS product_code, o.product_name AS product_name, o.signing_quantity AS signing_quantity, o.signing_date AS signing_date, o.promised_delivery_date AS promised_delivery_date, o.shipping_quantity AS shipping_quantity, o.shipping_date AS shipping_date, o.order_status AS order_status, o.salesperson AS salesperson LIMIT 200"
+          }
+        },
+        {
+          "name": "mcp__openbkn__query_object_instance",
+          "arguments": {
+            "bkn_context": {
+              "conversation_id": "conv_e922192f54df8d2dce237ce4faeaff6c",
+              "interaction_id": "int_6a68f83032ff118e752229490145ccfe"
+            },
+            "kn_id": "supply_ontology_hand",
+            "ot_id": "supply_ontology_hand_salesorder",
+            "condition": {
+              "operation": "like",
+              "field": "sales_order_id",
+              "value": "382-000005",
+              "value_from": "const"
+            },
+            "limit": 100,
+            "response_format": "json"
+          }
+        },
+        {
+          "name": "mcp__openbkn__search_capabilities",
+          "arguments": {
+            "bkn_context": {
+              "conversation_id": "conv_e922192f54df8d2dce237ce4faeaff6c",
+              "interaction_id": "int_6a68f83032ff118e752229490145ccfe"
+            },
+            "kn_id": "supply_ontology_hand",
+            "query": "销售订单明细"
+          }
+        },
+        {
+          "name": "mcp__openbkn__query_object_instance",
+          "arguments": {
+            "bkn_context": {
+              "conversation_id": "conv_e922192f54df8d2dce237ce4faeaff6c",
+              "interaction_id": "int_6a68f83032ff118e752229490145ccfe"
+            },
+            "condition": {
+              "field": "sales_order_id",
+              "operation": "regex",
+              "value": ".*382-000005.*",
+              "value_from": "const"
+            },
+            "kn_id": "supply_ontology_hand",
+            "limit": 100,
+            "ot_id": "supply_ontology_hand_salesorder",
+            "properties": [
+              "sales_order_id",
+              "contract_number",
+              "customer_id",
+              "customer_name",
+              "product_code",
+              "product_name",
+              "signing_quantity",
+              "signing_date",
+              "promised_delivery_date",
+              "shipping_quantity",
+              "shipping_date",
+              "order_status",
+              "salesperson"
+            ],
+            "response_format": "json"
+          }
+        },
+        {
+          "name": "mcp__openbkn__query_object_instance",
+          "arguments": {
+            "bkn_context": {
+              "conversation_id": "conv_e922192f54df8d2dce237ce4faeaff6c",
+              "interaction_id": "int_6a68f83032ff118e752229490145ccfe"
+            },
+            "kn_id": "supply_ontology_hand",
+            "limit": 100,
+            "ot_id": "supply_ontology_hand_salesorder",
+            "properties": [
+              "sales_order_id",
+              "contract_number",
+              "customer_name",
+              "product_code",
+              "product_name",
+              "signing_quantity",
+              "signing_date",
+              "promised_delivery_date",
+              "shipping_quantity",
+              "shipping_date",
+              "order_status",
+              "salesperson"
+            ],
+            "response_format": "json"
+          }
+        }
+      ],
+      "disclosure": {
+        "format": "toon",
+        "result_text_bytes": 14649,
+        "result_text_sha256": "7f3f512bc1ea5dfca0f9a8ffd3143a99535e106f44e7bb47193d04def878b388",
+        "capability_name": "销售订单明细",
+        "capability_id": "01a157d1-a0c3-71f8-9a9e-05b14198a9c3",
+        "owner_id": "01a11f4e-fa74-705a-b023-faa56efcd9b3",
+        "input_schema": {
+          "parameters[#0]": null,
+          "request_body": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "properties": {
+                    "export_csv": {
+                      "description": "默认true，生成完整匹配销售订单CSV及独立前5行核心预览；false时返回summary或full分页。",
+                      "type": "boolean"
+                    },
+                    "offset": {
+                      "description": "full分页偏移，默认0，按next_offset继续。",
+                      "type": "number"
+                    },
+                    "page_size": {
+                      "description": "export_csv=false且full时的分页行数，1到5000，默认100。",
+                      "type": "number"
+                    },
+                    "product": {
+                      "description": "产品编码。",
+                      "type": "string"
+                    },
+                    "report_grain": {
+                      "description": "export_csv=false时，summary返回总数/状态/单号区间；full返回完整源字段分页。",
+                      "type": "string"
+                    }
+                  },
+                  "required[#1]": "product",
+                  "type": "object"
+                }
+              }
+            },
+            "description": "Function input parameters",
+            "required": true
+          }
+        },
+        "call": {
+          "arguments": {
+            "arguments": null,
+            "kn_id": "supply_ontology_hand",
+            "tool_id": "01a157d1-a0c3-71f8-9a9e-05b14198a9c3",
+            "toolbox_id": "01a11f4e-fa74-705a-b023-faa56efcd9b3"
+          },
+          "tool": "execute_tool"
+        },
+        "use_rule": "execute_tool.arguments 直接填写业务参数对象，例如 {\"product\":\"产品编码\"}；input_schema.request_body 是 OpenAPI 请求体说明，不要再包装 request_body。HTTP 200 不代表函数成功，还须检查 body.exit_code=0 且 result 非空。csv_export.columns是实际文件列名，只据此说明交付字段，不猜测额外字段。product是产品编码，不是销售单号或合同号。函数自行按product_code等值过滤并取全分页；任何分页/总数不一致将失败，不把第一页当完整明细。默认export_csv=true，完整明细必须通过客户端支持的交付能力交付csv_export文件，最终回答含可打开链接；不由模型重写全部明细。detail_preview仅前5行核心字段，全部客户、合同、数量、状态及日期在完整CSV，不能把预览条数当总数或声称只命中预览订单。不改写客户名称或其他源文本，不附加未问的履约/数量/日期推断。export_csv=false时summary返回计数，full按next_offset分页。",
+        "truncation_marker_observed": false
+      },
+      "queries": [
+        {
+          "call_id": "call_00_B2ohKjfdt8AEOfiyTJaR6568",
+          "condition": {
+            "operation": "like",
+            "field": "sales_order_id",
+            "value": "382-000005",
+            "value_from": "const"
+          },
+          "limit": 100,
+          "response_format": "json",
+          "platform_total_counts": [
+            0
+          ],
+          "is_error": false
+        },
+        {
+          "call_id": "call_00_vbnPtl2ciqKxuerQjkGj4582",
+          "condition": {
+            "field": "sales_order_id",
+            "operation": "regex",
+            "value": ".*382-000005.*",
+            "value_from": "const"
+          },
+          "limit": 100,
+          "response_format": "json",
+          "platform_total_counts": [
+            0
+          ],
+          "is_error": false
+        },
+        {
+          "call_id": "call_00_OUXhvbtp0ik3zTCV74Py1841",
+          "condition": null,
+          "limit": 100,
+          "response_format": "json",
+          "platform_total_counts": [
+            800
+          ],
+          "is_error": false
+        }
+      ],
+      "execute_tool_calls": []
+    },
+    {
+      "host": "0.2.1-rc.2",
+      "original_session_id": "session-667bd486-a539-44e8-a329-5a991d285ed7",
+      "original_native_file_sha256": "c385c0f8e8eeb478439980095df0496134d50cdea33ccabd18bad9737993436e",
+      "original_model_request_catalogues": [
+        {
+          "tool_count": 60,
+          "execute_tool_offered": true,
+          "execute_tool_descriptor": {
+            "name": "mcp__openbkn__execute_tool",
+            "description": "调用一个已挂载到该知识网络的函数工具或 MCP 工具，返回工具原始响应。需要该知识网络本身的执行权限：工具经知识网络的受管代理执行，不必另有工具授权。kn_id / toolbox_id / tool_id 必须取自 search_capabilities；arguments 按其返回的 input_schema 填。工具可能对外部系统写入且不可回滚，调用前先读清 description 与 use_rule。",
+            "parameters": {
+              "type": "object",
+              "properties": {
+                "arguments": {
+                  "description": "工具的业务入参，按 search_capabilities 返回的 input_schema 填写。不要在这里塞令牌、会话 id 等传输信息，平台会自行携带。",
+                  "type": "object"
+                },
+                "bkn_context": {
+                  "description": "Managed session context. Copy both IDs from bkn_start_interaction, even when Trace capture is disabled.",
+                  "properties": {
+                    "conversation_id": {
+                      "description": "conversation_id returned by bkn_start_interaction.",
+                      "type": "string"
+                    },
+                    "interaction_id": {
+                      "description": "interaction_id returned by bkn_start_interaction.",
+                      "type": "string"
+                    }
+                  },
+                  "required": [
+                    "conversation_id",
+                    "interaction_id"
+                  ],
+                  "type": "object"
+                },
+                "kn_id": {
+                  "description": "必填。知识网络 ID，须与 search_capabilities 所用一致。调用者须有该网络本身的执行权限，工具必须已挂载到该网络才可调用。",
+                  "type": "string"
+                },
+                "tool_id": {
+                  "description": "工具 ID，取自 search_capabilities 返回的 capability_id。",
+                  "type": "string"
+                },
+                "toolbox_id": {
+                  "description": "工具箱 ID，取自 search_capabilities 返回的 owner_id。",
+                  "type": "string"
+                }
+              },
+              "required": [
+                "kn_id",
+                "toolbox_id",
+                "tool_id",
+                "arguments",
+                "bkn_context"
+              ]
+            }
+          },
+          "csv_transfer_offered": true
+        },
+        {
+          "tool_count": 60,
+          "execute_tool_offered": true,
+          "execute_tool_descriptor": {
+            "name": "mcp__openbkn__execute_tool",
+            "description": "调用一个已挂载到该知识网络的函数工具或 MCP 工具，返回工具原始响应。需要该知识网络本身的执行权限：工具经知识网络的受管代理执行，不必另有工具授权。kn_id / toolbox_id / tool_id 必须取自 search_capabilities；arguments 按其返回的 input_schema 填。工具可能对外部系统写入且不可回滚，调用前先读清 description 与 use_rule。",
+            "parameters": {
+              "type": "object",
+              "properties": {
+                "arguments": {
+                  "description": "工具的业务入参，按 search_capabilities 返回的 input_schema 填写。不要在这里塞令牌、会话 id 等传输信息，平台会自行携带。",
+                  "type": "object"
+                },
+                "bkn_context": {
+                  "description": "Managed session context. Copy both IDs from bkn_start_interaction, even when Trace capture is disabled.",
+                  "properties": {
+                    "conversation_id": {
+                      "description": "conversation_id returned by bkn_start_interaction.",
+                      "type": "string"
+                    },
+                    "interaction_id": {
+                      "description": "interaction_id returned by bkn_start_interaction.",
+                      "type": "string"
+                    }
+                  },
+                  "required": [
+                    "conversation_id",
+                    "interaction_id"
+                  ],
+                  "type": "object"
+                },
+                "kn_id": {
+                  "description": "必填。知识网络 ID，须与 search_capabilities 所用一致。调用者须有该网络本身的执行权限，工具必须已挂载到该网络才可调用。",
+                  "type": "string"
+                },
+                "tool_id": {
+                  "description": "工具 ID，取自 search_capabilities 返回的 capability_id。",
+                  "type": "string"
+                },
+                "toolbox_id": {
+                  "description": "工具箱 ID，取自 search_capabilities 返回的 owner_id。",
+                  "type": "string"
+                }
+              },
+              "required": [
+                "kn_id",
+                "toolbox_id",
+                "tool_id",
+                "arguments",
+                "bkn_context"
+              ]
+            }
+          },
+          "csv_transfer_offered": true
+        }
+      ],
+      "call_sequence": [
+        {
+          "name": "mcp__openbkn__bkn_start_interaction",
+          "arguments": {
+            "conversation_mode": "new",
+            "question": "列出 382-000005 的销售订单明细。",
+            "agent_name": "bkn-agent-dsh-business-context"
+          }
+        },
+        {
+          "name": "mcp__openbkn__get_kn_detail",
+          "arguments": {
+            "kn_id": "supply_ontology_hand",
+            "bkn_context": {
+              "conversation_id": "conv_ec993e9aa3bdeebaacdc474bc802755a",
+              "interaction_id": "int_f31e289e4e5c3cbc801bf9848e79f881"
+            },
+            "response_format": "json"
+          }
+        },
+        {
+          "name": "mcp__openbkn__get_object_types",
+          "arguments": {
+            "bkn_context": {
+              "conversation_id": "conv_ec993e9aa3bdeebaacdc474bc802755a",
+              "interaction_id": "int_f31e289e4e5c3cbc801bf9848e79f881"
+            },
+            "kn_id": "supply_ontology_hand",
+            "ids": [
+              "supply_ontology_hand_salesorder"
+            ],
+            "response_format": "json"
+          }
+        },
+        {
+          "name": "mcp__openbkn__search_capabilities",
+          "arguments": {
+            "bkn_context": {
+              "conversation_id": "conv_ec993e9aa3bdeebaacdc474bc802755a",
+              "interaction_id": "int_f31e289e4e5c3cbc801bf9848e79f881"
+            },
+            "kn_id": "supply_ontology_hand",
+            "query": "销售订单明细 sales order detail",
+            "response_format": "json"
+          }
+        },
+        {
+          "name": "mcp__openbkn__execute_tool",
+          "arguments": {
+            "kn_id": "supply_ontology_hand",
+            "toolbox_id": "01a11f4e-fa74-705a-b023-faa56efcd9b3",
+            "tool_id": "01a157d1-a0c3-71f8-9a9e-05b14198a9c3",
+            "arguments": {
+              "product": "382-000005"
+            },
+            "bkn_context": {
+              "conversation_id": "conv_ec993e9aa3bdeebaacdc474bc802755a",
+              "interaction_id": "int_f31e289e4e5c3cbc801bf9848e79f881"
+            }
+          }
+        },
+        {
+          "name": "openbkn_export_csv",
+          "arguments": {
+            "kn_id": "supply_ontology_hand",
+            "path": "sales_order_detail-0bf1fcb9472344358b4fb60ef4c55d4f.csv",
+            "bkn_context": {
+              "conversation_id": "conv_ec993e9aa3bdeebaacdc474bc802755a",
+              "interaction_id": "int_f31e289e4e5c3cbc801bf9848e79f881"
+            }
+          }
+        }
+      ],
+      "disclosure": {
+        "format": "json",
+        "result_text_bytes": 13072,
+        "result_text_sha256": "beca2e58a3cccb2bd86495a45c2022a8a685748f43f899f64abb586ae977b34e",
+        "capability_name": "销售订单明细",
+        "capability_id": "01a157d1-a0c3-71f8-9a9e-05b14198a9c3",
+        "owner_id": "01a11f4e-fa74-705a-b023-faa56efcd9b3",
+        "input_schema": {
+          "request_body": {
+            "required": true,
+            "description": "Function input parameters",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "export_csv": {
+                      "description": "默认true，生成完整匹配销售订单CSV及独立前5行核心预览；false时返回summary或full分页。",
+                      "type": "boolean"
+                    },
+                    "offset": {
+                      "type": "number",
+                      "description": "full分页偏移，默认0，按next_offset继续。"
+                    },
+                    "page_size": {
+                      "type": "number",
+                      "description": "export_csv=false且full时的分页行数，1到5000，默认100。"
+                    },
+                    "product": {
+                      "description": "产品编码。",
+                      "type": "string"
+                    },
+                    "report_grain": {
+                      "description": "export_csv=false时，summary返回总数/状态/单号区间；full返回完整源字段分页。",
+                      "type": "string"
+                    }
+                  },
+                  "required": [
+                    "product"
+                  ]
+                }
+              }
+            }
+          },
+          "parameters": []
+        },
+        "call": {
+          "tool": "execute_tool",
+          "arguments": {
+            "kn_id": "supply_ontology_hand",
+            "toolbox_id": "01a11f4e-fa74-705a-b023-faa56efcd9b3",
+            "tool_id": "01a157d1-a0c3-71f8-9a9e-05b14198a9c3",
+            "arguments": {}
+          }
+        },
+        "use_rule": "execute_tool.arguments 直接填写业务参数对象，例如 {\"product\":\"产品编码\"}；input_schema.request_body 是 OpenAPI 请求体说明，不要再包装 request_body。HTTP 200 不代表函数成功，还须检查 body.exit_code=0 且 result 非空。csv_export.columns是实际文件列名，只据此说明交付字段，不猜测额外字段。product是产品编码，不是销售单号或合同号。函数自行按product_code等值过滤并取全分页；任何分页/总数不一致将失败，不把第一页当完整明细。默认export_csv=true，完整明细必须通过客户端支持的交付能力交付csv_export文件，最终回答含可打开链接；不由模型重写全部明细。detail_preview仅前5行核心字段，全部客户、合同、数量、状态及日期在完整CSV，不能把预览条数当总数或声称只命中预览订单。不改写客户名称或其他源文本，不附加未问的履约/数量/日期推断。export_csv=false时summary返回计数，full按next_offset分页。",
+        "truncation_marker_observed": false
+      },
+      "queries": [],
+      "execute_tool_calls": [
+        {
+          "kn_id": "supply_ontology_hand",
+          "toolbox_id": "01a11f4e-fa74-705a-b023-faa56efcd9b3",
+          "tool_id": "01a157d1-a0c3-71f8-9a9e-05b14198a9c3",
+          "arguments": {
+            "product": "382-000005"
+          },
+          "bkn_context": {
+            "conversation_id": "conv_ec993e9aa3bdeebaacdc474bc802755a",
+            "interaction_id": "int_f31e289e4e5c3cbc801bf9848e79f881"
+          }
+        }
+      ]
+    }
+  ],
+  "equivalent_disclosed_fields": {
+    "capability_id": true,
+    "owner_id": true,
+    "capability_type": true,
+    "metadata_type": true,
+    "name": true,
+    "description": true,
+    "use_rule": true
+  },
+  "function_business_properties_identical": true,
+  "required_product_present_in_both": true,
+  "execute_tool_offered_in_every_original_model_request_catalogue": true,
+  "old_new_execute_tool_descriptor_identical": true,
+  "independent_sql": {
+    "query": "SELECT COUNT(*),MIN(sales_order_id),MAX(sales_order_id) FROM supply_demo_hand.sales_order WHERE product_code='382-000005'; SELECT COUNT(*) FROM supply_demo_hand.sales_order;",
+    "result_tsv": "40\tSO0000001\tSO0000520\n800\n"
+  },
+  "verified_findings": [
+    "Old model used sales_order_id like/regex for a product code despite disclosed product_code semantics.",
+    "A complete product-scoped Function was the first capability hit; owner/id/schema/use_rule were present, without an observed truncation marker.",
+    "Both original old request/header catalogues actually offered mcp__openbkn__execute_tool and CSV transfer; availability is not inferred from prompt text or another Session.",
+    "Old model did not call execute_tool; it later removed the condition, received whole-table total_count=800, and claimed an unsupported product-filtered total of 20.",
+    "New original run called the disclosed execute_tool with flat product arguments and delivered 40 source rows; it does not replace old failure."
+  ],
+  "inference": "The first evidenced divergence is model field/tool selection, not a failed Function dispatch. No missing capability or lost nonempty Function argument information was found in these original results.",
+  "unknowns": [
+    "Single historical runs cannot isolate why the model chose differently or assign causality to Host version.",
+    "TOON versus JSON is an observed format difference, not an established cause.",
+    "A complete current original sales rerun still requires a safe Sandbox execution condition; no plugin business arbitration is authorized."
+  ],
+  "old_failure_closed": false,
+  "plugin_source_changed": false,
+  "sandbox_executions_added": false
+}

@@ -1,0 +1,22 @@
+[
+  {
+    "key": "npm-old",
+    "changedOnlyCopiedProfileKeys": [
+      "openbkn-business-context.config.baseUrl",
+      "openbkn-business-context.config.cliPath"
+    ],
+    "originalProfileChanged": false,
+    "formalPlatformReplaced": false,
+    "priorProxyPort": "38429"
+  },
+  {
+    "key": "npm-new",
+    "changedOnlyCopiedProfileKeys": [
+      "openbkn-business-context.config.baseUrl",
+      "openbkn-business-context.config.cliPath"
+    ],
+    "originalProfileChanged": false,
+    "formalPlatformReplaced": false,
+    "priorProxyPort": "38430"
+  }
+]

@@ -1,0 +1,103 @@
+{
+  "kind": "local-development-preacceptance",
+  "ciRun": null,
+  "formalAcceptanceEligible": false,
+  "candidateSha256": "46626510825fe9146aef12c27a1724acbb455aeac22aa600358add0fc8e1c9f8",
+  "host": "0.2.1-rc.3",
+  "forms": {
+    "desktop": {
+      "sequence": [
+        "zh",
+        "en",
+        "zh"
+      ],
+      "allFiveLabelsPresent": true,
+      "allFiveValuesUnchanged": true,
+      "originalStatus": "completed",
+      "platformQueryCreated": false,
+      "readCountNotAsserted": true,
+      "privateFactsSha256": "e2e82484fa0d67b5b47e8738839f8e445adafdd102dfbb0420fd6fc9d1db00ac",
+      "privateSnapshots": [
+        {
+          "file": "release/local-56/phase2/reference-zh1-private.txt",
+          "sha256": "9df3655b7639c88b0214cdd0632eb163e9c134d028a57b32a8e2974bee1ec496"
+        },
+        {
+          "file": "release/local-56/phase2/reference-en2-private.txt",
+          "sha256": "9f3b16491537a740979caeb2c037be3af49ddd497bca2b655d9fa2efccf0a436"
+        },
+        {
+          "file": "release/local-56/phase2/reference-zh2-private.txt",
+          "sha256": "9df3655b7639c88b0214cdd0632eb163e9c134d028a57b32a8e2974bee1ec496"
+        }
+      ],
+      "exit": {
+        "pid": 87540,
+        "port": 58881,
+        "exitMethod": "native application menu Quit",
+        "ownedProcessExited": true,
+        "portReleased": true,
+        "ownedPathProcessesRemaining": 0,
+        "at": "2026-10-25T04:36:16.418745+00:00"
+      }
+    },
+    "npm-web": {
+      "sequence": [
+        "zh",
+        "en",
+        "zh"
+      ],
+      "allFiveLabelsPresent": true,
+      "allFiveValuesUnchanged": true,
+      "originalStatus": "completed",
+      "newQueryOrInteraction": false,
+      "readCountNotAsserted": true,
+      "privateFactsSha256": "6be20b3f6040b556a99e1043cd0fe9da0b906d1614a9cafcec06a5f6c64eb796",
+      "privateSnapshots": [
+        {
+          "file": "release/local-56/npm/reference-zh1-private.txt",
+          "sha256": "28fd525a403a8b9e2ebe1086f4d2bbe54cc1b7f5f8e0fcb48d69ec6980ae575c"
+        },
+        {
+          "file": "release/local-56/npm/reference-en2-private.txt",
+          "sha256": "e90d236deac4c0255c989c73d62163e3625c7205e682a7dba720cb2272617648"
+        },
+        {
+          "file": "release/local-56/npm/reference-zh2-private.txt",
+          "sha256": "28fd525a403a8b9e2ebe1086f4d2bbe54cc1b7f5f8e0fcb48d69ec6980ae575c"
+        }
+      ],
+      "exit": {
+        "pid": 87664,
+        "port": 38656,
+        "identityMatchedBeforeStop": true,
+        "exitMethod": "SIGTERM after task tab closed",
+        "ownedProcessExited": true,
+        "portReleased": true,
+        "at": "2026-10-25T04:41:34.982546+00:00"
+      }
+    }
+  },
+  "source": "Existing completed protocol histories and standard platform operations/receipts, not new model/business queries",
+  "nativeBusinessProvenance": "Known 404 on both forms; not accepted as nonempty native business explanation",
+  "readCountNotAsserted": true,
+  "npmCopyIdentity": {
+    "sourceHomeOriginalFiles": 47,
+    "installedFilesMatched": 82,
+    "host": "0.2.1-rc.3",
+    "pluginVersion": "0.2.0-rc.2-openbkn.0.2.0-32",
+    "selected": [
+      {
+        "name": "@deepseek-ai/cordis",
+        "version": "4.0.5",
+        "samePhysicalPackage": true
+      },
+      {
+        "name": "@deepseek-ai/schemastery",
+        "version": "3.18.5",
+        "samePhysicalPackage": true
+      }
+    ],
+    "runtimeSource": "Unmodified round54 official rc.3 runtime; new round56 home only"
+  }
+}

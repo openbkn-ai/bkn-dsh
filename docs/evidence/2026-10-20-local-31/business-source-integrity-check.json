@@ -1,0 +1,18 @@
+{
+  "checked_at": "2026-10-20T06:49:49.317145+00:00",
+  "all_frozen_business_sources_unchanged": true,
+  "files": {
+    "fn/bom.py": true,
+    "fn/inventory.py": true,
+    "fn/detail_export.py": true,
+    "managed_execution.py": true,
+    "native_function_bundle.py": true,
+    "function_catalog.py": true,
+    "register_native_function_toolbox.py": true,
+    "fn/contracts.py": true,
+    "fn/sales.py": true,
+    "fn/records.py": true
+  },
+  "ontology_unchanged_after_cohort_start": true,
+  "sample_eval_metadata_unchanged_after_cohort_start": true
+}

@@ -1,0 +1,21 @@
+{
+  "checkedAt": "2026-10-24T15:44:23.901305+00:00",
+  "repository": "https://github.com/openbkn-ai/bkn-dsh.git",
+  "branch": "handoff/windows-local31-ui-life30-20261024",
+  "commit": "d20a266fa550dd854c9bd7d30bd04c088de9bbfe",
+  "parentCount": 0,
+  "files": 61,
+  "freshOriginFileBytesMatched": 61,
+  "kitInputs": 55,
+  "kitSha256": "61bace60c424eade7904ab1ed592cd5a0a7e1b332a0b768215a8eecba1298996",
+  "frozen30Sha256": "6d95ff7517dbe409875fd398784fe01049ba26d2b97c43fad65c817d3ea18ee9",
+  "ui31Sha256": "22ba0e17235ccb3c93d585f2811604f5221375ac9e3496e92e6d8c1756196e4a",
+  "frozenR3KitSha256": "7daaca61691706ef476ce007eb4c49e8a8f538a30dc73764fea6f6a4281308d0",
+  "noWorkflowsInTree": true,
+  "actionsAtCheck": [],
+  "prsAtCheck": [],
+  "windowsRunThisTurn": false,
+  "ciRun": null,
+  "formalAcceptanceEligible": false,
+  "scope": "Only this independent handoff branch pushed; no source/main push, PR/tag/release/CI/deployment or Host launch."
+}

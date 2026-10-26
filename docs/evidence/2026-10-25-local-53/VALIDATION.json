@@ -1,0 +1,102 @@
+{
+  "checkedAt": "2026-10-25T02:25:26.256065+00:00",
+  "classification": "local-isolated-backport-and-rc3-compatibility-assessment",
+  "ciRun": null,
+  "formalAcceptanceEligible": false,
+  "currentTargetHosts": [
+    "0.2.0-rc.2",
+    "0.2.1-rc.3"
+  ],
+  "newTargetCommit": "1f81c047fc48fa190a683e469daa699857e9afe8",
+  "buildGeneratorRetained": "0.2.0-rc.2",
+  "mainSourceDevelopmentMetadata": "0.2.0-rc.2-openbkn.0.2.0-32",
+  "built32Artifact": false,
+  "fixtureVersion": "0.0.0-local53-rc3-probe",
+  "frozen30And31Changed": false,
+  "officialHelperVectorGroups": 52,
+  "actualSdkCrossOriginCases": 30,
+  "secondOriginRequests": 0,
+  "sameOriginMethodPolicyCases": 30,
+  "sourceBuiltMcpJsBundles": 2,
+  "fullHostBuilt": false,
+  "publishableHostPackageBuilt": false,
+  "sourceBuiltServiceCompositionCases": 12,
+  "sourceBuiltServiceAllPassed": true,
+  "inFlightRedirectBodyAbort": {
+    "scope": "real loopback HTTP with an unfinished same-origin redirect body; caller AbortSignal",
+    "rejectedAs": "AbortError",
+    "elapsedMs": 65,
+    "requests": [
+      "/slow"
+    ],
+    "serversClosed": true,
+    "port": "53418",
+    "result": "PASS"
+  },
+  "rc3ControlledChecks": [
+    {
+      "check": "guard-formal",
+      "exitCode": 0,
+      "seconds": 0.14,
+      "status": "PASS"
+    },
+    {
+      "check": "guard-capture-disabled",
+      "exitCode": 0,
+      "seconds": 0.11,
+      "status": "PASS"
+    },
+    {
+      "check": "guard-legacy",
+      "exitCode": 0,
+      "seconds": 0.11,
+      "status": "PASS"
+    },
+    {
+      "check": "csv-export",
+      "exitCode": 0,
+      "seconds": 0.12,
+      "status": "PASS"
+    },
+    {
+      "check": "native-output",
+      "exitCode": 0,
+      "seconds": 0.15,
+      "status": "PASS"
+    },
+    {
+      "check": "remote",
+      "exitCode": 0,
+      "seconds": 0.12,
+      "status": "PASS"
+    }
+  ],
+  "rc3SourceHostAndClientTypecheck": "PASS after isolated root explicit zod4.4.3; original failed fallback retained",
+  "rc3ActualProfileClosure": {
+    "status": "PASS",
+    "rootPackages": 303,
+    "profilePackages": 33,
+    "selected": [
+      {
+        "name": "@deepseek-ai/cordis",
+        "version": "4.0.5",
+        "samePhysicalPackage": true
+      },
+      {
+        "name": "@deepseek-ai/schemastery",
+        "version": "3.18.5",
+        "samePhysicalPackage": true
+      }
+    ]
+  },
+  "metadataClosureMixedRuntimeTests": 9,
+  "focusedRechecks": "3 closure after resolver change; current exact-peer test includes refusal of frozen old rc2/new rc2 pair",
+  "pinnedFrozenLockAndSupplyChainCheck": "PASS with pnpm11.28.5; 230 entries; root lock unchanged",
+  "fullRc3UiDesktopWindowsOrPlatformAcceptance": "NOT_RUN",
+  "existingHostOrPlatformMutation": false,
+  "realCredentialsUsed": false,
+  "modelOrSandboxRun": false,
+  "windowsHandoffChanged": false,
+  "issue105Closed": false,
+  "sdkReportLabelNote": "Legacy internal row name proposed-deny-redirects denotes the enabled same-origin guard in this probe; official-same-origin-policy rows verify allowed following, not deny-all."
+}

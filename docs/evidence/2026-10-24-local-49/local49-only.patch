@@ -1,0 +1,250 @@
+--- a/packages/openbkn-business-context/src/client/use-dialog-focus.ts
++++ b/packages/openbkn-business-context/src/client/use-dialog-focus.ts
+@@ -15,10 +15,11 @@
+     const opener = document.activeElement as HTMLElement | null
+     panel.focus()
+     const onKeyDown = (event: KeyboardEvent) => {
+-      if (event.key === 'Escape') {
++      if (event.defaultPrevented || event.isComposing || event.ctrlKey || event.altKey || event.metaKey) return
++      if (event.key === 'Escape' && !event.shiftKey) {
+         event.preventDefault()
+         event.stopPropagation()
+-        closeRef.current()
++        if (!event.repeat) closeRef.current()
+       } else if (event.key === 'Tab') {
+         const controls = [...panel.querySelectorAll<HTMLElement>(
+           'button:not([disabled]), a[href], input:not([disabled]):not([type="hidden"]), textarea:not([disabled]), select:not([disabled]), summary, [tabindex]:not([tabindex="-1"])',
+@@ -38,9 +39,10 @@
+         }
+       }
+     }
+-    window.addEventListener('keydown', onKeyDown)
++    // Consume inside the owned panel before native parent-modal document listeners.
++    panel.addEventListener('keydown', onKeyDown)
+     return () => {
+-      window.removeEventListener('keydown', onKeyDown)
++      panel.removeEventListener('keydown', onKeyDown)
+       if (opener?.isConnected && typeof opener.focus === 'function') opener.focus()
+     }
+   }, [open])
+--- a/packages/openbkn-business-context/tests/dialog-focus.test.ts
++++ b/packages/openbkn-business-context/tests/dialog-focus.test.ts
+@@ -21,14 +21,16 @@
+   const opener = control(), first = control(), last = control(), hidden = control(false)
+   const panel = {
+     ownerDocument: document,
++    addEventListener: (_name: string, listener: (event: KeyboardEvent) => void) => listeners.add(listener),
++    removeEventListener: (_name: string, listener: (event: KeyboardEvent) => void) => listeners.delete(listener),
+     focus() { document.activeElement = this },
+     contains: (node: object) => [panel, first, last, hidden].includes(node as never),
+     querySelectorAll: () => [first, hidden, last],
+   }
+   opener.focus()
+-  const key = (key: string, shiftKey = false) => {
++  const key = (key: string, shiftKey = false, flags: Partial<KeyboardEvent> = {}) => {
+     let prevented = false
+-    const event = { key, shiftKey, preventDefault() { prevented = true }, stopPropagation() {} } as KeyboardEvent
++    const event = { key, shiftKey, ...flags, preventDefault() { prevented = true }, stopPropagation() {} } as KeyboardEvent
+     act(() => { for (const listener of listeners) listener(event) })
+     return prevented
+   }
+@@ -70,3 +72,15 @@
+   assert.equal(ui.listeners.size, 0)
+   assert.equal(ui.document.activeElement, ui.opener)
+ })
++
++
++test('owned keyboard handling yields to consumed, composing and modified gestures', () => {
++  const ui=harness(); let calls=0,renderer!:ReturnType<typeof create>
++  act(()=>{renderer=create(createElement(ui.Dialog,{open:true,close(){calls++}}),{createNodeMock:()=>ui.panel})})
++  try {
++    for(const flags of [{defaultPrevented:true},{isComposing:true},{ctrlKey:true},{altKey:true},{metaKey:true}])assert.equal(ui.key('Escape',false,flags),false)
++    assert.equal(ui.key('Escape',true),false);assert.equal(calls,0)
++    assert.equal(ui.key('Escape',false,{repeat:true}),true);assert.equal(calls,0)
++    assert.equal(ui.key('Escape'),true);assert.equal(calls,1)
++  } finally {act(()=>renderer.unmount())}
++})
+--- a/packages/openbkn-business-context/package.json
++++ b/packages/openbkn-business-context/package.json
+@@ -1,6 +1,6 @@
+ {
+   "name": "@openbkn/dsh-business-context",
+-  "version": "0.2.0-rc.2-openbkn.0.2.0-30",
++  "version": "0.2.0-rc.2-openbkn.0.2.0-31",
+   "description": "OpenBKN business knowledge-network context for DeepSeek Harness",
+   "license": "Apache-2.0",
+   "type": "module",
+--- a/packages/openbkn-business-context/src/client/OpenBknDiagnostics.tsx
++++ b/packages/openbkn-business-context/src/client/OpenBknDiagnostics.tsx
+@@ -102,6 +102,7 @@
+       <p style={{ marginTop: 0, color: '#4b5563', fontSize: 13 }}>
+         {t('report')} {report.reportId} {t('created')} {new Date(report.createdAt).toLocaleString()} {t('mode')} {report.mode === 'passive' ? t('passiveCollection') : t('activeRetest')}
+       </p>
++      {report.mode === 'passive' ? <p style={mutedStyle}>{t('passiveHistoryNotice')}</p> : null}
+       <TargetSummary report={report} />
+       <CheckList checks={report.checks} />
+     </div>
+@@ -187,7 +188,7 @@
+   padding: '16px 20px 12px', borderBottom: '1px solid #e5e7eb',
+ }
+ 
+-const eyebrowStyle: React.CSSProperties = { fontSize: 11, letterSpacing: 2, color: '#0891b2', fontWeight: 700 }
++const eyebrowStyle: React.CSSProperties = { fontSize: 11, letterSpacing: 2, color: '#0e7490', fontWeight: 700 }
+ 
+ const closeStyle: React.CSSProperties = {
+   border: 'none', background: 'transparent', fontSize: 20, lineHeight: 1,
+--- a/packages/openbkn-business-context/src/client/OpenBknOverlay.tsx
++++ b/packages/openbkn-business-context/src/client/OpenBknOverlay.tsx
+@@ -244,9 +244,9 @@
+ const backdropStyle = { pointerEvents: 'auto' as const, position: 'fixed' as const, inset: 0, display: 'grid', placeItems: 'center', background: 'rgb(15 23 42 / 38%)', padding: 20 }
+ const dialogStyle = { width: 'min(560px, 100%)', maxHeight: 'min(720px, calc(100vh - 40px))', overflow: 'auto' as const, borderRadius: 16, background: '#fff', boxShadow: '0 24px 70px rgb(15 23 42 / 28%)', color: '#172033' }
+ const headerStyle = { display: 'flex', alignItems: 'start', justifyContent: 'space-between', padding: '20px 20px 16px', borderBottom: '1px solid #e6eaf0' }
+-const eyebrowStyle = { color: '#078b7f', fontSize: 12, fontWeight: 750, letterSpacing: '0.12em' }
++const eyebrowStyle = { color: '#087d72', fontSize: 12, fontWeight: 750, letterSpacing: '0.12em' }
+ const closeStyle = { border: '1px solid #d9e0ea', borderRadius: 9, width: 34, height: 34, background: '#fff', color: '#374151', fontSize: 24, lineHeight: 1, cursor: 'pointer' }
+-const primaryStyle = { border: 0, borderRadius: 9, background: '#078b7f', color: '#fff', fontWeight: 650, padding: '10px 14px', cursor: 'pointer' }
++const primaryStyle = { border: 0, borderRadius: 9, background: '#087d72', color: '#fff', fontWeight: 650, padding: '10px 14px', cursor: 'pointer' }
+ const secondaryStyle = { ...primaryStyle, background: '#eef5f5', color: '#087d72' }
+ const mutedStyle = { color: '#64748b', fontSize: 14 }
+ const networkStyle = { textAlign: 'left' as const, display: 'grid', gap: 8, padding: 14, border: '1px solid #d9e4e8', borderRadius: 12, background: '#fff', color: '#172033' }
+--- a/packages/openbkn-business-context/src/client/ProvenanceOverlay.tsx
++++ b/packages/openbkn-business-context/src/client/ProvenanceOverlay.tsx
+@@ -1,7 +1,8 @@
++import { useDialogFocus } from './use-dialog-focus.ts'
+ import { NativeProvenancePanel } from './NativeProvenancePanel.tsx'
+ import { useOpenBknTranslation } from './locale.tsx'
+ import { translateChinese, type OpenBknTranslate } from './messages.ts'
+-import { useEffect, useRef, useState, type ReactNode } from 'react'
++import { useEffect, useState, type ReactNode } from 'react'
+ import type { HostObservable, InjectFace, PropsRuntime } from '@deepseek-ai/dsh-client-ui-slots'
+ import { buildBusinessGraphModel, businessGraphGeometry } from '../business-graph-model.ts'
+ import { foldTimeline, type TimelineFoldGroup } from '../timeline-fold.ts'
+@@ -68,7 +69,7 @@
+   const view = current?.view
+   const tab = current === undefined ? 'events' : selectedTab
+   const loading = current === undefined || current.phase === 'loading'
+-  const dialog = useRef<HTMLElement>(null)
++  const dialog = useDialogFocus(state.handle !== undefined, close)
+   useEffect(() => {
+     if (state.handle === undefined || state.sessionId === undefined || state.messageId === undefined) return
+     let active = true
+@@ -83,13 +84,6 @@
+     })
+     return () => { active = false; request.abort() }
+   }, [load, state.handle, state.messageId, state.sessionId, requestKey])
+-  useEffect(() => {
+-    if (state.handle === undefined) return
+-    dialog.current?.focus()
+-    const onKeyDown = (event: KeyboardEvent) => { if (event.key === 'Escape') close() }
+-    window.addEventListener('keydown', onKeyDown)
+-    return () => window.removeEventListener('keydown', onKeyDown)
+-  }, [close, state.handle, requestKey])
+   if (state.handle === undefined) return null
+ 
+   return <div role="presentation" onMouseDown={close} style={backdropStyle}>
+@@ -118,7 +112,7 @@
+     </section>
+     <section style={{ display: 'grid', gap: 10 }}>
+       <PaneHeading badge={<SourceBadge label={operationsDegradation === undefined ? t('platform') : operationsDegradation.reason === 'result-too-large' ? t('platformNotDisplayed') : t('platformUnavailable')} mark={operationsDegradation?.reason} />} title={t('platformExecutionFacts')} note={operationsDegradation === undefined ? t('operationStatusDurationAndRequestTraceReceiptReferences') : undefined} />
+-      {operationsDegradation !== undefined ? <DegradedPane degradation={operationsDegradation} /> : view.execution.operations.length === 0 ? <Empty text={t('noDisplayableOperationFactsWereRecordedForThis')} /> : <div style={timelineStyle}>{view.execution.operations.map((operation, index) => <article key={operation.id} style={operationStyle}><div style={timelineIndexStyle}>{String(index + 1).padStart(2, '0')}</div><div style={{ display: 'grid', gap: 7 }}><div style={{ display: 'flex', justifyContent: 'space-between', gap: 12 }}><strong>{operation.label}</strong><Status value={operation.status} /></div><span style={mutedStyle}>{[operation.protocol, operation.startedAt, operation.finishedAt].filter(Boolean).join(' · ')}</span><div style={referenceRowStyle}>{operation.requestId === undefined ? null : <Reference label="Request" value={operation.requestId} />}{operation.traceId === undefined ? null : <Reference label="Trace" value={operation.traceId} />}{operation.receiptId === undefined ? null : <Reference label="Receipt" value={operation.receiptId} />}</div></div></article>)}</div>}
++      {operationsDegradation !== undefined ? <DegradedPane degradation={operationsDegradation} /> : view.execution.operations.length === 0 ? <Empty text={t('noDisplayableOperationFactsWereRecordedForThis')} /> : <div style={timelineStyle}>{view.execution.operations.map((operation, index) => <article key={operation.id} style={operationStyle}><div style={timelineIndexStyle}>{String(index + 1).padStart(2, '0')}</div><div style={{ display: 'grid', gap: 7 }}><div style={{ display: 'flex', justifyContent: 'space-between', gap: 12 }}><strong>{operation.label}</strong><Status value={operation.status} /></div><span style={mutedStyle}>{[operation.protocol, operation.startedAt, operation.finishedAt].filter(Boolean).join(' · ')}</span><div style={referenceRowStyle}>{operation.requestId === undefined ? null : <Reference label={t('referenceRequest')} value={operation.requestId} />}{operation.traceId === undefined ? null : <Reference label={t('referenceTrace')} value={operation.traceId} />}{operation.receiptId === undefined ? null : <Reference label={t('referenceReceipt')} value={operation.receiptId} />}</div></div></article>)}</div>}
+     </section>
+   </div>
+ }
+@@ -145,7 +139,7 @@
+       <div style={{ display: 'flex', gap: 10, alignItems: 'baseline', flexWrap: 'wrap' as const }}>
+         <strong style={{ overflowWrap: 'anywhere' as const }}>{node.tool}{folded ? ` ×${group.nodes.length}` : ''}</strong>
+         {node.outcome === 'error' ? <span style={{ color: '#b42318', fontSize: 13, fontWeight: 700 }}>error</span> : null}
+-        {node.platform === undefined ? null : <span style={referenceRowStyle}>{node.platform.operationId === undefined ? null : <Reference label="Op" value={node.platform.operationId} />}{node.platform.receiptId === undefined ? null : <Reference label="Receipt" value={node.platform.receiptId} />}{node.platform.status === undefined ? null : <Reference label="Status" value={node.platform.status} />}</span>}
++        {node.platform === undefined ? null : <span style={referenceRowStyle}>{node.platform.operationId === undefined ? null : <Reference label={t('referenceOperation')} value={node.platform.operationId} />}{node.platform.receiptId === undefined ? null : <Reference label={t('referenceReceipt')} value={node.platform.receiptId} />}{node.platform.status === undefined ? null : <Reference label={t('referenceStatus')} value={node.platform.status} />}</span>}
+       </div>
+       {node.summary === undefined ? null : <span style={mutedStyle}>{node.summary}</span>}
+     </div>
+--- a/packages/openbkn-business-context/src/client/locales.ts
++++ b/packages/openbkn-business-context/src/client/locales.ts
+@@ -1,5 +1,12 @@
+ /** Plugin-owned copy only. Platform text, protocol identifiers and model answers stay verbatim. */
+ export const zh = {
++  "referenceRequest": "请求",
++  "referenceTrace": "跟踪",
++  "referenceReceipt": "回执",
++  "referenceOperation": "操作",
++  "referenceStatus": "状态",
++  "passiveHistoryNotice": "以下检查是历史观察，不会主动验证当前登录或连接状态。请查看观察时间；如需确认恢复，请先重试相关操作，再重新采集报告。",
++
+   "cLIInstallationVersion": "CLI 安装版本：",
+   "cLIInstallationVersionText1": "CLI 安装版本",
+   "selectAVersion": "请选择版本",
+@@ -307,6 +314,13 @@
+ export type OpenBknMessageKey = keyof typeof zh
+ 
+ export const en: Record<OpenBknMessageKey, string> = {
++  "referenceRequest": "Request",
++  "referenceTrace": "Trace",
++  "referenceReceipt": "Receipt",
++  "referenceOperation": "Op",
++  "referenceStatus": "Status",
++  "passiveHistoryNotice": "These checks summarize the last observed operations. Collecting a report does not recheck your current sign-in or connection. Review the observation age; retry the affected action, then collect a report to confirm recovery.",
++
+   "cLIInstallationVersion": "CLI installation version:",
+   "cLIInstallationVersionText1": "CLI installation version",
+   "selectAVersion": "Select a version",
+--- a/runtime/openbkn-dsh-runtime.manifest.json
++++ b/runtime/openbkn-dsh-runtime.manifest.json
+@@ -22,8 +22,8 @@
+   },
+   "plugin": {
+     "packageName": "@openbkn/dsh-business-context",
+-    "version": "0.2.0-rc.2-openbkn.0.2.0-30",
+-    "artifact": "openbkn-dsh-business-context-0.2.0-rc.2-openbkn.0.2.0-30.tgz"
++    "version": "0.2.0-rc.2-openbkn.0.2.0-31",
++    "artifact": "openbkn-dsh-business-context-0.2.0-rc.2-openbkn.0.2.0-31.tgz"
+   },
+   "compatibility": {
+     "directory": "compat/dsh-0.2.0-rc.2",
+--- /dev/null
++++ b/packages/openbkn-business-context/tests/ui-followup.test.ts
+@@ -0,0 +1,43 @@
++import assert from 'node:assert/strict'
++import test from 'node:test'
++import { createElement } from 'react'
++import { act, create } from 'react-test-renderer'
++import { localized } from '../src/client/locale.tsx'
++import { translateMessage } from '../src/client/messages.ts'
++import { ProvenanceOverlay, ProvenanceOverlayController } from '../src/client/ProvenanceOverlay.tsx'
++import { OpenBknDiagnostics } from '../src/client/OpenBknDiagnostics.tsx'
++import { OpenBknOverlay } from '../src/client/OpenBknOverlay.tsx'
++import type { LocaleRuntime } from '@deepseek-ai/dsh-client-locale/client'
++
++function language() {
++  let snapshot = { active: 'zh', revision: 0, locales: [] }; const listeners = new Set<() => void>()
++  const locale = { getSnapshot: () => snapshot, subscribe: (f: () => void) => { listeners.add(f); return () => listeners.delete(f) }, bind: () => (key: Parameters<typeof translateMessage>[1], params?: Record<string,unknown>) => translateMessage(snapshot.active,key,params) } as unknown as LocaleRuntime
++  return { locale, set(active: string) { snapshot = { ...snapshot, active, revision: snapshot.revision+1 }; for (const f of listeners) f() } }
++}
++function text(value: any): string { if(value == null) return ''; if(typeof value === 'string') return value; if(Array.isArray(value)) return value.map(text).join(''); return text(value.children) }
++const report = { schemaVersion: 1, reportId: 'fixture-report', createdAt: '2026-10-24T00:00:00Z', mode: 'passive', target: { hostForm: 'unknown',platform: 'win32',dshVersion:null,pluginDiskVersion:null,pluginLoadedVersion:null }, checks: [{id:'observed:cli',stage:'cli',status:'pass',source:'observed-operation',code:'cli',evidence:{lastOutcomeAgoMs:3600000},nextAction:null}], coverage: {executedChecks:1,notRunChecks:0,insufficientEvidenceChecks:0,notes:[]} }
++
++test('historical reference labels switch zh/en/zh without rereading or changing platform facts', async () => {
++  globalThis.window = { addEventListener() {}, removeEventListener() {} } as unknown as Window & typeof globalThis
++  const controller = new ProvenanceOverlayController(); controller.open('fixture-session','fixture-message',{interactionId:'fixture-interaction',status:'completed'} as never)
++  const view = { timeline:[{seq:1,kind:'tool',at:'2026-10-24T00:00:00Z',tool:'fixture_tool',outcome:'error',platform:{operationId:'fixture-operation',receiptId:'fixture-receipt',status:'completed'}}], sources:{timeline:'local-session',operations:'platform',business:'unavailable',evidence:'unavailable',degraded:[]}, execution:{operations:[{id:'fixture-operation',label:'原始平台名称',status:'completed',requestId:'fixture-request',traceId:'fixture-trace',receiptId:'fixture-receipt'}]},business:{kind:'unavailable'},evidence:{kind:'unavailable',reason:'no-receipts'} }
++  const before=JSON.stringify(view), lang=language(), Component=localized(ProvenanceOverlay,lang.locale);let reads=0,ui!:ReturnType<typeof create>
++  const props={useProvenanceOverlay:(select:any)=>select(controller.getSnapshot()),load:async()=>{reads++;return view},close:()=>controller.close()}
++  await act(async()=>{ui=create(createElement(Component,props as never));await new Promise(r=>setImmediate(r))})
++  try { for(const active of ['zh','en','zh']) { act(()=>lang.set(active));const rendered=text(ui.toJSON());for(const label of active==='zh'?['请求','跟踪','回执','操作','状态']:['Request','Trace','Receipt','Op','Status']) assert.ok(rendered.includes(label),label);assert.ok(rendered.includes('原始平台名称'));assert.ok(rendered.includes('completed'));assert.ok(rendered.includes('fixture-operation')) } assert.equal(reads,1);assert.equal(JSON.stringify(view),before) } finally {act(()=>ui.unmount())}
++})
++
++test('passive diagnostics explains observation age without relabeling historical pass or changing JSON', () => {
++  const before=JSON.stringify(report),lang=language(),Component=localized(OpenBknDiagnostics,lang.locale);let ui!:ReturnType<typeof create>
++  act(()=>{ui=create(createElement(Component,{useDiagnostics:(s:any)=>s({open:true,phase:'ready',report}),close(){},refresh:async()=>{}} as never))})
++  try {assert.match(text(ui.toJSON()),/历史观察/);assert.match(text(ui.toJSON()),/不会主动验证/);act(()=>lang.set('en'));assert.match(text(ui.toJSON()),/last observed operations/);assert.match(text(ui.toJSON()),/does not recheck/);assert.equal(JSON.stringify(report),before)} finally {act(()=>ui.unmount())}
++})
++
++test('brand captions and the sign-in action have normal-text contrast on their actual surfaces', () => {
++  const luminance=(hex:string)=>hex.slice(1).match(/../g)!.map(c=>parseInt(c,16)/255).map(c=>c<=0.04045?c/12.92:((c+0.055)/1.055)**2.4).reduce((s,c,i)=>s+c*[0.2126,0.7152,0.0722][i],0)
++  const contrast=(a:string,b:string)=>(Math.max(luminance(a),luminance(b))+0.05)/(Math.min(luminance(a),luminance(b))+0.05)
++  for(const [Component,props] of [[OpenBknDiagnostics,{useDiagnostics:(s:any)=>s({open:true,phase:'ready',report}),close(){},refresh:async()=>{}}],[OpenBknOverlay,{useUi:(s:any)=>s({open:true,phase:'authentication-required',auth:{kind:'authentication-required',baseUrl:'https://fixture.invalid'},networks:[]}),close(){},refresh:async()=>{},beginLogin:async()=>{},cancelLogin(){},showSettings(){},saveConfiguration:async()=>{},cliSetup:{},openNetwork:async()=>{},openDiagnostics(){}}]] as const) {
++    let ui!:ReturnType<typeof create>;act(()=>{ui=create(createElement(Component as any,props))})
++    try {const brand=ui.root.findAll(node=>node.type==='div'&&node.children.length===1&&node.children[0]==='OPENBKN')[0]!;assert.ok(contrast(brand.props.style.color,'#ffffff')>=4.5,'brand caption contrast');for(const button of ui.root.findAllByType('button')) {const s=button.props.style;if(s?.background?.startsWith('#')&&s?.color==='#fff')assert.ok(contrast(s.background,'#ffffff')>=4.5,'button label contrast')} } finally {act(()=>ui.unmount())}
++  }
++})

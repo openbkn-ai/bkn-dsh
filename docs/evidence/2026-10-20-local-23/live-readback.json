@@ -1,0 +1,705 @@
+{
+  "checked_at": "2026-10-20T04:33:30.608Z",
+  "records": [
+    {
+      "host": "0.2.0-rc.2",
+      "interaction_id": "int_a216ac91756e61e32f582d0c280256aa",
+      "calls": {
+        "standard": {
+          "status": 200,
+          "execution_status": "completed",
+          "returned_id": "int_a216ac91756e61e32f582d0c280256aa"
+        },
+        "operations": {
+          "status": 200,
+          "count": 7,
+          "tool_names": [
+            "query_object_instance",
+            "query_object_instance",
+            "query_object_instance",
+            "query_object_instance",
+            "query_object_instance",
+            "search_instance",
+            "search_schema"
+          ]
+        },
+        "native_detail": {
+          "status": 404
+        },
+        "native_explanations": {
+          "status": 404
+        }
+      }
+    },
+    {
+      "host": "0.2.0-rc.2",
+      "interaction_id": "int_14f809b028d2e33d7fff3194ac5e015d",
+      "calls": {
+        "standard": {
+          "status": 200,
+          "execution_status": "completed",
+          "returned_id": "int_14f809b028d2e33d7fff3194ac5e015d"
+        },
+        "operations": {
+          "status": 200,
+          "count": 8,
+          "tool_names": [
+            "get_kn_detail",
+            "get_object_types",
+            "query_object_instance",
+            "query_object_instance",
+            "query_object_instance",
+            "query_object_instance",
+            "query_object_instance",
+            "search_instance"
+          ]
+        },
+        "native_detail": {
+          "status": 404
+        },
+        "native_explanations": {
+          "status": 404
+        }
+      }
+    },
+    {
+      "host": "0.2.0-rc.2",
+      "interaction_id": "int_b532d3fa9e9086ab9ed0debdfe4967fb",
+      "calls": {
+        "standard": {
+          "status": 200,
+          "execution_status": "completed",
+          "returned_id": "int_b532d3fa9e9086ab9ed0debdfe4967fb"
+        },
+        "operations": {
+          "status": 200,
+          "count": 3,
+          "tool_names": [
+            "get_object_types",
+            "query_object_instance",
+            "search_schema"
+          ]
+        },
+        "native_detail": {
+          "status": 404
+        },
+        "native_explanations": {
+          "status": 404
+        }
+      }
+    },
+    {
+      "host": "0.2.0-rc.2",
+      "interaction_id": "int_4e520081b122e1ff8687b12ed73ceee0",
+      "calls": {
+        "standard": {
+          "status": 200,
+          "execution_status": "completed",
+          "returned_id": "int_4e520081b122e1ff8687b12ed73ceee0"
+        },
+        "operations": {
+          "status": 200,
+          "count": 38,
+          "tool_names": [
+            "01a11f4e-fb6a-7d44-8fd4-f1585cb3a016",
+            "01a11f4e-fe5e-795f-a358-5d1d799293c8",
+            "01a11f4e-fe5e-795f-a358-5d1d799293c8",
+            "execute_tool",
+            "execute_tool",
+            "execute_tool",
+            "get_kn_detail",
+            "get_object_types",
+            "query_object_instance",
+            "query_object_instance",
+            "query_object_instance",
+            "query_object_instance",
+            "query_object_instance",
+            "query_object_instance",
+            "query_object_instance",
+            "query_object_instance",
+            "query_object_instance",
+            "query_object_instance",
+            "query_object_instance",
+            "query_object_instance",
+            "query_object_instance",
+            "query_object_instance",
+            "query_object_instance",
+            "query_object_instance",
+            "query_object_instance",
+            "query_object_instance",
+            "query_object_instance",
+            "query_object_instance",
+            "query_object_instance",
+            "run_code",
+            "run_code",
+            "run_code",
+            "run_code",
+            "run_code",
+            "run_code",
+            "run_code",
+            "run_code",
+            "search_capabilities"
+          ]
+        },
+        "native_detail": {
+          "status": 404
+        },
+        "native_explanations": {
+          "status": 404
+        }
+      }
+    },
+    {
+      "host": "0.2.0-rc.2",
+      "interaction_id": "int_6a86b766f2656bda772a6b940003d1da",
+      "calls": {
+        "standard": {
+          "status": 200,
+          "execution_status": "completed",
+          "returned_id": "int_6a86b766f2656bda772a6b940003d1da"
+        },
+        "operations": {
+          "status": 200,
+          "count": 38,
+          "tool_names": [
+            "01a11f4e-fb6a-7d44-8fd4-f1585cb3a016",
+            "01a11f4e-fb6a-7d44-8fd4-f1585cb3a016",
+            "01a11f4e-fb6a-7d44-8fd4-f1585cb3a016",
+            "01a11f4e-fb6a-7d44-8fd4-f1585cb3a016",
+            "01a11f4e-fb6a-7d44-8fd4-f1585cb3a016",
+            "01a11f4e-fb6a-7d44-8fd4-f1585cb3a016",
+            "01a11f4e-fb6a-7d44-8fd4-f1585cb3a016",
+            "execute_tool",
+            "execute_tool",
+            "execute_tool",
+            "execute_tool",
+            "execute_tool",
+            "execute_tool",
+            "execute_tool",
+            "get_kn_detail",
+            "get_object_types",
+            "query_object_instance",
+            "query_object_instance",
+            "query_object_instance",
+            "query_object_instance",
+            "query_object_instance",
+            "query_object_instance",
+            "query_object_instance",
+            "query_object_instance",
+            "query_object_instance",
+            "query_object_instance",
+            "query_object_instance",
+            "query_object_instance",
+            "query_object_instance",
+            "query_object_instance",
+            "run_code",
+            "run_code",
+            "run_code",
+            "run_code",
+            "run_code",
+            "run_code",
+            "run_code",
+            "search_capabilities"
+          ]
+        },
+        "native_detail": {
+          "status": 404
+        },
+        "native_explanations": {
+          "status": 404
+        }
+      }
+    },
+    {
+      "host": "0.2.0-rc.2",
+      "interaction_id": "int_bdf4aa86c1c3a52b52fa38ba604a9be2",
+      "calls": {
+        "standard": {
+          "status": 200,
+          "execution_status": "completed",
+          "returned_id": "int_bdf4aa86c1c3a52b52fa38ba604a9be2"
+        },
+        "operations": {
+          "status": 200,
+          "count": 16,
+          "tool_names": [
+            "get_kn_detail",
+            "get_object_types",
+            "query_object_instance",
+            "query_object_instance",
+            "query_object_instance",
+            "query_object_instance",
+            "query_object_instance",
+            "query_object_instance",
+            "query_object_instance",
+            "query_object_instance",
+            "query_object_instance",
+            "query_object_instance",
+            "query_object_instance",
+            "query_object_instance",
+            "search_instance",
+            "search_instance"
+          ]
+        },
+        "native_detail": {
+          "status": 404
+        },
+        "native_explanations": {
+          "status": 404
+        }
+      }
+    },
+    {
+      "host": "0.2.0-rc.2",
+      "interaction_id": "int_96e7d0b84624befe12c6bdf84bba99a7",
+      "calls": {
+        "standard": {
+          "status": 200,
+          "execution_status": "completed",
+          "returned_id": "int_96e7d0b84624befe12c6bdf84bba99a7"
+        },
+        "operations": {
+          "status": 200,
+          "count": 5,
+          "tool_names": [
+            "get_kn_detail",
+            "get_object_types",
+            "query_metric",
+            "query_metric",
+            "query_object_instance"
+          ]
+        },
+        "native_detail": {
+          "status": 404
+        },
+        "native_explanations": {
+          "status": 404
+        }
+      }
+    },
+    {
+      "host": "0.2.0-rc.2",
+      "interaction_id": "int_be8333cf19b8eeeaadce119cc2db2aab",
+      "calls": {
+        "standard": {
+          "status": 200,
+          "execution_status": "completed",
+          "returned_id": "int_be8333cf19b8eeeaadce119cc2db2aab"
+        },
+        "operations": {
+          "status": 200,
+          "count": 57,
+          "tool_names": [
+            "01a11f4e-fb6a-7d44-8fd4-f1585cb3a016",
+            "execute_tool",
+            "get_kn_detail",
+            "get_object_types",
+            "get_object_types",
+            "query_object_instance",
+            "query_object_instance",
+            "run_code",
+            "run_code",
+            "run_code",
+            "run_code",
+            "run_code",
+            "run_code",
+            "run_code",
+            "run_code",
+            "run_code",
+            "run_code",
+            "run_code",
+            "run_code",
+            "run_cypher",
+            "run_cypher",
+            "run_cypher",
+            "run_cypher",
+            "run_cypher",
+            "run_cypher",
+            "run_cypher",
+            "run_cypher",
+            "run_cypher",
+            "run_cypher",
+            "run_cypher",
+            "run_cypher",
+            "run_cypher",
+            "run_cypher",
+            "run_cypher",
+            "run_cypher",
+            "run_cypher",
+            "run_cypher",
+            "run_cypher",
+            "run_cypher",
+            "run_cypher",
+            "run_cypher",
+            "run_cypher",
+            "run_cypher",
+            "run_cypher",
+            "run_cypher",
+            "run_cypher",
+            "run_cypher",
+            "run_cypher",
+            "run_cypher",
+            "run_cypher",
+            "run_cypher",
+            "run_cypher",
+            "run_cypher",
+            "run_cypher",
+            "run_cypher",
+            "run_cypher",
+            "search_capabilities"
+          ]
+        },
+        "native_detail": {
+          "status": 404
+        },
+        "native_explanations": {
+          "status": 404
+        }
+      }
+    },
+    {
+      "host": "0.2.0-rc.2",
+      "interaction_id": "int_5927947a90ac6d74cca03368bbefef4f",
+      "calls": {
+        "standard": {
+          "status": 200,
+          "execution_status": "completed",
+          "returned_id": "int_5927947a90ac6d74cca03368bbefef4f"
+        },
+        "operations": {
+          "status": 200,
+          "count": 7,
+          "tool_names": [
+            "get_kn_detail",
+            "get_object_types",
+            "query_metric",
+            "query_metric",
+            "query_object_instance",
+            "query_object_instance",
+            "run_code"
+          ]
+        },
+        "native_detail": {
+          "status": 404
+        },
+        "native_explanations": {
+          "status": 404
+        }
+      }
+    },
+    {
+      "host": "0.2.1-rc.2",
+      "interaction_id": "int_ec7a21858e8aaeaef17ac49a2b68c166",
+      "calls": {
+        "standard": {
+          "status": 200,
+          "execution_status": "completed",
+          "returned_id": "int_ec7a21858e8aaeaef17ac49a2b68c166"
+        },
+        "operations": {
+          "status": 200,
+          "count": 6,
+          "tool_names": [
+            "get_kn_detail",
+            "get_object_types",
+            "query_object_instance",
+            "query_object_instance",
+            "query_object_instance",
+            "query_object_instance"
+          ]
+        },
+        "native_detail": {
+          "status": 404
+        },
+        "native_explanations": {
+          "status": 404
+        }
+      }
+    },
+    {
+      "host": "0.2.1-rc.2",
+      "interaction_id": "int_dc67663d9352d2876ea849e55a706819",
+      "calls": {
+        "standard": {
+          "status": 200,
+          "execution_status": "completed",
+          "returned_id": "int_dc67663d9352d2876ea849e55a706819"
+        },
+        "operations": {
+          "status": 200,
+          "count": 25,
+          "tool_names": [
+            "01a11f4e-fe5e-795f-a358-5d1d799293c8",
+            "01a11f4e-fe5e-795f-a358-5d1d799293c8",
+            "execute_tool",
+            "execute_tool",
+            "get_kn_detail",
+            "get_object_types",
+            "query_object_instance",
+            "query_object_instance",
+            "query_object_instance",
+            "query_object_instance",
+            "query_object_instance",
+            "query_object_instance",
+            "query_object_instance",
+            "query_object_instance",
+            "query_object_instance",
+            "query_object_instance",
+            "query_object_instance",
+            "query_object_instance",
+            "query_object_instance",
+            "query_object_instance",
+            "query_object_instance",
+            "query_object_instance",
+            "query_object_instance",
+            "query_object_instance",
+            "search_capabilities"
+          ]
+        },
+        "native_detail": {
+          "status": 404
+        },
+        "native_explanations": {
+          "status": 404
+        }
+      }
+    },
+    {
+      "host": "0.2.1-rc.2",
+      "interaction_id": "int_20997b886d3e5a59a4c8b481a77f1cea",
+      "calls": {
+        "standard": {
+          "status": 200,
+          "execution_status": "completed",
+          "returned_id": "int_20997b886d3e5a59a4c8b481a77f1cea"
+        },
+        "operations": {
+          "status": 200,
+          "count": 4,
+          "tool_names": [
+            "get_kn_detail",
+            "get_object_types",
+            "query_metric",
+            "search_capabilities"
+          ]
+        },
+        "native_detail": {
+          "status": 404
+        },
+        "native_explanations": {
+          "status": 404
+        }
+      }
+    },
+    {
+      "host": "0.2.1-rc.2",
+      "interaction_id": "int_b121182b4b0eb2d756c47ff7e74320a4",
+      "calls": {
+        "standard": {
+          "status": 200,
+          "execution_status": "completed",
+          "returned_id": "int_b121182b4b0eb2d756c47ff7e74320a4"
+        },
+        "operations": {
+          "status": 200,
+          "count": 5,
+          "tool_names": [
+            "get_kn_detail",
+            "get_object_types",
+            "query_metric",
+            "query_object_instance",
+            "search_capabilities"
+          ]
+        },
+        "native_detail": {
+          "status": 404
+        },
+        "native_explanations": {
+          "status": 404
+        }
+      }
+    },
+    {
+      "host": "0.2.1-rc.2",
+      "interaction_id": "int_dd4c6ea70092364646b45e6beadfab5e",
+      "calls": {
+        "standard": {
+          "status": 200,
+          "execution_status": "completed",
+          "returned_id": "int_dd4c6ea70092364646b45e6beadfab5e"
+        },
+        "operations": {
+          "status": 200,
+          "count": 2,
+          "tool_names": [
+            "query_object_instance",
+            "search_schema"
+          ]
+        },
+        "native_detail": {
+          "status": 404
+        },
+        "native_explanations": {
+          "status": 404
+        }
+      }
+    },
+    {
+      "host": "0.2.1-rc.2",
+      "interaction_id": "int_a624aef75bf3e0a3bfd20163dfcd6994",
+      "calls": {
+        "standard": {
+          "status": 200,
+          "execution_status": "completed",
+          "returned_id": "int_a624aef75bf3e0a3bfd20163dfcd6994"
+        },
+        "operations": {
+          "status": 200,
+          "count": 7,
+          "tool_names": [
+            "get_kn_detail",
+            "get_object_types",
+            "query_object_instance",
+            "query_object_instance",
+            "query_object_instance",
+            "query_object_instance",
+            "search_capabilities"
+          ]
+        },
+        "native_detail": {
+          "status": 404
+        },
+        "native_explanations": {
+          "status": 404
+        }
+      }
+    },
+    {
+      "host": "0.2.1-rc.2",
+      "interaction_id": "int_89c876eae77af788384d2bb3729157fc",
+      "calls": {
+        "standard": {
+          "status": 200,
+          "execution_status": "completed",
+          "returned_id": "int_89c876eae77af788384d2bb3729157fc"
+        },
+        "operations": {
+          "status": 200,
+          "count": 36,
+          "tool_names": [
+            "explore_subgraph",
+            "explore_subgraph",
+            "explore_subgraph",
+            "explore_subgraph",
+            "explore_subgraph",
+            "explore_subgraph",
+            "get_kn_detail",
+            "get_object_types",
+            "query_object_instance",
+            "query_object_instance",
+            "query_object_instance",
+            "query_object_instance",
+            "query_object_instance",
+            "query_object_instance",
+            "query_object_instance",
+            "query_object_instance",
+            "query_object_instance",
+            "query_object_instance",
+            "run_code",
+            "run_code",
+            "run_code",
+            "run_code",
+            "run_code",
+            "run_code",
+            "run_code",
+            "run_code",
+            "run_code",
+            "run_code",
+            "run_code",
+            "run_code",
+            "run_code",
+            "run_code",
+            "run_code",
+            "run_code",
+            "run_code",
+            "run_code"
+          ]
+        },
+        "native_detail": {
+          "status": 404
+        },
+        "native_explanations": {
+          "status": 404
+        }
+      }
+    },
+    {
+      "host": "0.2.1-rc.2",
+      "interaction_id": "int_f6a4de4163b0a8541b9a96393afd2586",
+      "calls": {
+        "standard": {
+          "status": 200,
+          "execution_status": "completed",
+          "returned_id": "int_f6a4de4163b0a8541b9a96393afd2586"
+        },
+        "operations": {
+          "status": 200,
+          "count": 3,
+          "tool_names": [
+            "query_object_instance",
+            "query_object_instance",
+            "search_schema"
+          ]
+        },
+        "native_detail": {
+          "status": 404
+        },
+        "native_explanations": {
+          "status": 404
+        }
+      }
+    },
+    {
+      "host": "0.2.1-rc.2",
+      "interaction_id": "int_f7a17faf8809222ce11a0ba6b5aedb07",
+      "calls": {
+        "standard": {
+          "status": 200,
+          "execution_status": "completed",
+          "returned_id": "int_f7a17faf8809222ce11a0ba6b5aedb07"
+        },
+        "operations": {
+          "status": 200,
+          "count": 14,
+          "tool_names": [
+            "01a11f4e-fb6a-7d44-8fd4-f1585cb3a016",
+            "01a11f4e-fb6a-7d44-8fd4-f1585cb3a016",
+            "01a11f4e-fb6a-7d44-8fd4-f1585cb3a016",
+            "execute_tool",
+            "execute_tool",
+            "execute_tool",
+            "get_kn_detail",
+            "query_object_instance",
+            "query_object_instance",
+            "query_object_instance",
+            "query_object_instance",
+            "query_object_instance",
+            "query_object_instance",
+            "search_capabilities"
+          ]
+        },
+        "native_detail": {
+          "status": 404
+        },
+        "native_explanations": {
+          "status": 404
+        }
+      }
+    }
+  ],
+  "capture": {
+    "status": 200,
+    "desired_state": "enabled",
+    "effective_state": "enabled"
+  }
+}

@@ -1,0 +1,52 @@
+Window: "DeepSeek Harness", App: DeepSeek Harness.
+0 standard window DeepSeek Harness, Secondary Actions: Raise
+	1 container DeepSeek Harness
+		2 container
+			3 HTML content DeepSeek Harness, URL: dsh-app://app/
+				4 container
+					5 button 收起侧边栏
+					6 button 新建会话
+					7 container 全局面板
+						8 button 插件
+					9 text 工作区
+					10 button 搜索会话
+					11 text field (settable) 搜索会话名称
+					12 button 视图选项
+					13 button 添加工作区
+					14 outline 会话
+						15 container
+							16 row native-picker-old
+								17 text native-picker-old
+							18 row (selected) 新会话
+								19 text 新会话
+						20 row desktop-old
+							21 text desktop-old
+						22 row 默认工作区
+							23 text 默认工作区
+						24 row 未分组
+							25 text 未分组
+					26 button OpenBKN 业务知识网络
+					27 pop up button 账号菜单
+					28 button 新版本
+					29 button 打开右侧边栏
+					30 container
+						31 text 探索未至之境 预览版
+						32 pop up button 选择工作区
+						33 pop up button 标准模式, Help: 选择新任务使用的 Agent 预设
+						34 container OpenBKN 业务会话入口
+							35 button 了解「Fjelstul 世界杯 · Vega Catalog 绑定（占位符）」知识网络。
+						36 text entry area (settable) 描述你想要构建的内容, / 调用指令, @ 文件或对话
+						37 pop up button 添加文件或调用指令
+						38 button 访问模式，当前：工作区内修改
+						39 pop up button 选择模型，当前 LOCAL B1 PROTOCOL - no Sandbox
+						40 button (disabled) 发送消息
+	41 close button
+	42 full screen button Help: this button also has an action to zoom the window, Secondary Actions: zoom the window
+	43 minimize button
+44 menu bar
+	45 DeepSeek Harness
+	46 文件
+	47 Edit
+	48 Window
+
+The focused UI element is 26 button OpenBKN 业务知识网络

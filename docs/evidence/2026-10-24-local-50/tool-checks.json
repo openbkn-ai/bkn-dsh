@@ -1,0 +1,26 @@
+{
+  "kind": "controlled-mac-tool-fixtures",
+  "nativeWindowsExecuted": false,
+  "checks": [
+    {
+      "case": "offline task data/config copied byte-identical without dependencies; source preserved",
+      "status": "PASS"
+    },
+    {
+      "case": "existing destination rejected without overwrite",
+      "status": "PASS"
+    },
+    {
+      "case": "nested destination rejected before mutation",
+      "status": "PASS"
+    },
+    {
+      "case": "non-dependency link rejected before destination creation",
+      "status": "PASS"
+    },
+    {
+      "case": "delivery corruption rejected before Host/platform action",
+      "status": "PASS"
+    }
+  ]
+}

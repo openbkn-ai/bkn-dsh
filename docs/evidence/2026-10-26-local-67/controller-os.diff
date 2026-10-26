@@ -1,0 +1,11 @@
+--- a/kit/run-gui-proof.mjs
++++ b/kit/run-gui-proof.mjs
+@@ -39,7 +39,7 @@
+  if(values['prepare-only']){console.log(JSON.stringify({preparation:'PASS',hostStarted:false,taskRoot:row.taskRoot}));return}
+  const exe=realpathSync(values.exe);assert.equal(sha(exe),inputs.officialWindowsExeSha256,'Use the existing verified official Windows rc3 executable; no replacement or download')
+  const baseEnv={}
+- for(const key of ['SystemRoot','WINDIR','ComSpec','PATH','PATHEXT','USERPROFILE','HOMEDRIVE','HOMEPATH','APPDATA','LOCALAPPDATA','USERNAME','USERDOMAIN','PROGRAMDATA','PROGRAMFILES','PROGRAMFILES(X86)'])if(process.env[key]!==undefined)baseEnv[key]=process.env[key]
++ for(const key of ['OS','SystemRoot','WINDIR','ComSpec','PATH','PATHEXT','USERPROFILE','HOMEDRIVE','HOMEPATH','APPDATA','LOCALAPPDATA','USERNAME','USERDOMAIN','PROGRAMDATA','PROGRAMFILES','PROGRAMFILES(X86)'])if(process.env[key]!==undefined)baseEnv[key]=process.env[key]
+  Object.assign(baseEnv,{DSH_HOME:row.home,BKN_CONFIG_DIR:join(row.taskRoot,'empty-cli-config'),TEMP:join(row.taskRoot,'tmp'),TMP:join(row.taskRoot,'tmp')})
+  const powershell=join(baseEnv.SystemRoot,'System32/WindowsPowerShell/v1.0/powershell.exe'),associationRoot=join(evidence,'system-association')
+  function associations(phase){

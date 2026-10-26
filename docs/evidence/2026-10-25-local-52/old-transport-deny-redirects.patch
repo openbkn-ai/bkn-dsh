@@ -1,0 +1,11 @@
+--- a/packages/mcp/mcp-client/src/transport.ts
++++ b/packages/mcp/mcp-client/src/transport.ts
+@@ -40,7 +40,7 @@
+     case 'streamable-http':
+       return new StreamableHTTPClientTransport(
+         new URL(config.url),
+-        { requestInit: { headers: config.headers } },
++        { requestInit: { headers: config.headers, redirect: 'error' } },
+       )
+   }
+ }

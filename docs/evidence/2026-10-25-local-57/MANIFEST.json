@@ -1,0 +1,32 @@
+{
+  "algorithm": "sha256",
+  "files": {
+    "ARTIFACTS.json": "efaaa4ccd2e6ee658771cb7c641b4529b26bda34e0db6dfea793f845c9f91390",
+    "BLOCKERS.md": "78d4c5e0ff5a20a0978befa4e5ef0c38d9f6e7e9221c3cc03e849a21759ca0bd",
+    "DECLARATION-API.json": "3ea242613797e274edb2fce5d142086d96973f86e26a85a133f07862d7cf722e",
+    "DELIVERY-DELTA.json": "5710788ec18345e3dc8faf1bf464b0b3e4e0943c6514c9ee6d8c423747cea170",
+    "DELIVERY-HELPERS.json": "3a65467b17b50e18c7720432864f562ee2d9966a6a493ac4752c362c727d83ea",
+    "HOST-DELIVERY-PLAN.md": "b1a54add9eb6ad65b8ebc5082713d84742c7e6026308b1d94df7264063e00325",
+    "HOST-VALIDATION.json": "f8bba822ee2252b4bc967a10a7e8191c0d24bef09e547fe479898103f0b2bcc6",
+    "PRESERVATION.json": "42f5aee49b0bce9abdf7c53005b31310079db0d10a8e8acb06e72b438d641c56",
+    "PRIVATE-EVIDENCE.json": "93edbe97741055999046de7be3cee6760ac47bde9e9a25c66c50a86c1721c1bf",
+    "RESULTS.md": "fb05bd30e455a07681a5f287088117625c613af05ade943e26d577ba240bbd90",
+    "SOURCE-PACKAGING.json": "9cf26109bc073aa44917143b374a7f2088018b812ea95b36fb865ee1d54a01b8",
+    "UPSTREAM-REVIEW.json": "603aa189d1b12d75fb85bbe3e72f4b031cb1870f085fcecf970bae87b9f8735a",
+    "VALIDATION-CHECKS.json": "e3eaee555b5d0b1fa8bf6b2628b52c1a012a46fb7ffda8f96bf065cea8d2623c",
+    "recipes/apply-desktop-overlay.py": "dc2980e4a7c9278be060984f1735c1a63925ca721a189413016a47b3a4ae45fb",
+    "recipes/archive-delivery.py": "0b35432ebf3eb31ec8db3febbac265e45087f8d402252fb84c657181786479b3",
+    "recipes/assemble-hosts.py": "2c8a339e2123d2348c63d30599b679242cac0a26dc9ba79671388e3e61aad4c0",
+    "recipes/build-declarations.mjs": "ab662ddf3367978452bfd7219c0ca0ecc6e06402e399278753f68d2a044a718d",
+    "recipes/collect-delivery.py": "d858a8a53b523b157bb2b800d3dabcf5d68e47abf41828d702aada495b0eb679",
+    "recipes/compare-declarations.mjs": "f02f48262e2fabf179e8292e51679e96189b8b9a6f3a18993f7e6c585ce4eee7",
+    "recipes/extract-desktop-runtime.mjs": "93aae7a69faad8f8756fabe8cffc76c3d17fe4381cdf07b1c1ed7e8a77e5a0d8",
+    "recipes/finalize-delivery.mjs": "842f9016f2ec39937236644dad93ef9d9e343b53bfef7b7fd933ff320db20e37",
+    "recipes/full-host-probe.mjs": "c872e695f76b47921ce280de721ab3b9f5b54ae9bc97c43e43c5651854f44247",
+    "recipes/old-packaging-addendum.patch": "36c798f50c69e7951ae18f91e6b2468f3c7e3b6b0b1da9ab0cc1ec5f86a38f0a",
+    "recipes/profile-mcp-resolution.mjs": "0c9f88a877e5a12e4993aa2556357f43ad0421e826b74c089cb7ff3a2a9e89c9",
+    "recipes/rc3-packaging-addendum.patch": "2ab72a0cd8864390b374f1bc902e5dc09178d883dcea20efd8894e0f2dfc32ba",
+    "recipes/run-desktop-host.mjs": "421aecf8579bb7cde5a5d3e13370482f2c5b3b2eb97b18f2ffa31b2e5a0bb9d4",
+    "recipes/run-full-host.mjs": "824322d50a649323cfb533d833ef71ce01a23640c8833c4b0302b1dd7d7be37c"
+  }
+}

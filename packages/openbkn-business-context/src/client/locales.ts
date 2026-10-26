@@ -1,5 +1,12 @@
 /** Plugin-owned copy only. Platform text, protocol identifiers and model answers stay verbatim. */
 export const zh = {
+  "referenceRequest": "请求",
+  "referenceTrace": "跟踪",
+  "referenceReceipt": "回执",
+  "referenceOperation": "操作",
+  "referenceStatus": "状态",
+  "passiveHistoryNotice": "以下检查是历史观察，不会主动验证当前登录或连接状态。请查看观察时间；如需确认恢复，请先重试相关操作，再重新采集报告。",
+
   "cLIInstallationVersion": "CLI 安装版本：",
   "cLIInstallationVersionText1": "CLI 安装版本",
   "selectAVersion": "请选择版本",
@@ -307,6 +314,13 @@ export const zh = {
 export type OpenBknMessageKey = keyof typeof zh
 
 export const en: Record<OpenBknMessageKey, string> = {
+  "referenceRequest": "Request",
+  "referenceTrace": "Trace",
+  "referenceReceipt": "Receipt",
+  "referenceOperation": "Op",
+  "referenceStatus": "Status",
+  "passiveHistoryNotice": "These checks summarize the last observed operations. Collecting a report does not recheck your current sign-in or connection. Review the observation age; retry the affected action, then collect a report to confirm recovery.",
+
   "cLIInstallationVersion": "CLI installation version:",
   "cLIInstallationVersionText1": "CLI installation version",
   "selectAVersion": "Select a version",

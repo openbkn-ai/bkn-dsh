@@ -1,0 +1,18 @@
+{
+  "captured_at": "2026-10-19T15:06:29.343745+00:00",
+  "mode": "read-only SQL, no data/configuration writes",
+  "queries": {
+    "bom-by-scope": {
+      "sql": "SELECT 'all_rows',COUNT(*),COUNT(DISTINCT material_code) FROM supply_demo_hand.erp_material_bom WHERE bom_material_code='382-000005' UNION ALL SELECT 'priority_zero_with_root',COUNT(*),COUNT(DISTINCT material_code) FROM supply_demo_hand.erp_material_bom WHERE bom_material_code='382-000005' AND COALESCE(alt_priority,0)=0 UNION ALL SELECT 'priority_zero_children',COUNT(*),COUNT(DISTINCT material_code) FROM supply_demo_hand.erp_material_bom WHERE bom_material_code='382-000005' AND COALESCE(alt_priority,0)=0 AND bom_level>0 UNION ALL SELECT 'published_main_children',COUNT(*),COUNT(DISTINCT material_code) FROM supply_demo_hand.erp_material_bom WHERE bom_material_code='382-000005' AND COALESCE(alt_priority,0)=0 AND TRIM(COALESCE(alt_method,''))<>'替代' AND bom_level>0 UNION ALL SELECT 'zero_priority_substitute_children',COUNT(*),COUNT(DISTINCT material_code) FROM supply_demo_hand.erp_material_bom WHERE bom_material_code='382-000005' AND COALESCE(alt_priority,0)=0 AND TRIM(COALESCE(alt_method,''))='替代' AND bom_level>0;",
+      "result_tsv": "all_rows\t507\t408\npriority_zero_with_root\t400\t334\npriority_zero_children\t399\t333\npublished_main_children\t313\t272\nzero_priority_substitute_children\t86\t68\n"
+    },
+    "inventory-528": {
+      "sql": "SELECT warehouse,stock_status,SUM(available_inventory_qty),COUNT(*) FROM supply_demo_hand.erp_real_time_inventory WHERE material_code='528-000036' GROUP BY warehouse,stock_status ORDER BY warehouse,stock_status;",
+      "result_tsv": "借用仓\t可用\t16\t2\n苏州半成品仓\t可用\t34\t1\n苏州待处理仓\t可用\t1\t1\n"
+    },
+    "bom-main-identity": {
+      "sql": "SELECT bom_level,COUNT(*),COUNT(DISTINCT material_code) FROM supply_demo_hand.erp_material_bom WHERE bom_material_code='382-000005' AND COALESCE(alt_priority,0)=0 AND TRIM(COALESCE(alt_method,''))<>'替代' AND bom_level>0 GROUP BY bom_level ORDER BY bom_level;",
+      "result_tsv": "1\t9\t9\n2\t16\t16\n3\t38\t35\n4\t212\t184\n5\t38\t38\n"
+    }
+  }
+}

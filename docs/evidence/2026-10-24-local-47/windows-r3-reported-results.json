@@ -1,0 +1,121 @@
+{
+  "kind": "Windows r3 user-supplied report, not independently read Windows originals",
+  "clientReceiptDate": "2026-10-24",
+  "pastedAttachmentSha256": "2f3de0d9e565dcf632ff7fc6997d443fd8c8402613145897cc0564087674ce77",
+  "expectedIdentity": {
+    "branch": "handoff/windows-local30-r3-20261023",
+    "commit": "fac4db78a1a974192fa13fdbe62063331cf04ec1",
+    "kitSha256": "7daaca61691706ef476ce007eb4c49e8a8f538a30dc73764fea6f6a4281308d0",
+    "candidateVersion": "0.2.0-rc.2-openbkn.0.2.0-30",
+    "candidateSha256": "6d95ff7517dbe409875fd398784fe01049ba26d2b97c43fad65c817d3ea18ee9",
+    "identityMatchReported": true,
+    "actualFullWindowsValuesRestatedInPaste": false
+  },
+  "p1": {
+    "verdict": "PASS",
+    "evidenceLevel": "Windows report",
+    "invocations": 1,
+    "branchesArgumentElements": [
+      6,
+      10
+    ],
+    "nativeArgvMatched": [
+      true,
+      true
+    ],
+    "exitCode": 0,
+    "stderrReportedEmpty": true,
+    "hostStartedDuringP1": false,
+    "originalR2OfficialFailureRetained": true
+  },
+  "p2": {
+    "evidenceLevel": "Windows report",
+    "desktop": "A",
+    "version": "0.2.0-rc.2",
+    "mainPid": 11564,
+    "backendPid": 58708,
+    "port": 19387,
+    "runnerPid": 11544,
+    "initializeOnly": false,
+    "readOnlyProtocol": false,
+    "profileFilesMatched": 82,
+    "samePhysicalFrameworkReported": true,
+    "countedAsStartupAcceptanceRerun": false,
+    "dailyChrome": {
+      "userConfirmedWindow": true,
+      "rootPid": 11368,
+      "parentReported": "explorer.exe",
+      "creationTimeReportedUnchanged": true,
+      "rootSurvivedLoginAndHostExit": true,
+      "loginUsedExistingRoot": true,
+      "newRootReported": false,
+      "newTabProcessesLaterEnded": "about 27 seconds later; no causal inference"
+    },
+    "login": {
+      "successReported": true,
+      "userConfirmedAuthorizationInWindowsChrome": true,
+      "usedExistingCertificateException": true,
+      "agentReportedNoWarningBypassOrTrustChange": true,
+      "browserTrustVerdict": "BLOCKED"
+    },
+    "runner": {
+      "noResidualReported": true,
+      "observationAfterDirectExit": "about 4 minutes",
+      "sameSampleAbsentAt": "13:59:50.221Z",
+      "sameSampleAsCliNode": true,
+      "configuredSamplingMs": 250,
+      "actualSamplingMsApprox": 370,
+      "subsampleOrderKnown": false,
+      "jobMembershipKnown": false,
+      "terminationMechanismKnown": false
+    },
+    "closeout": {
+      "menuExitReported": true,
+      "ownedProcessesEndedReported": true,
+      "listenersOn19387": 0,
+      "timeWaitConnections": 3,
+      "dailyChromeRootRemained": true
+    },
+    "preservation": {
+      "personalFilesCompared": 115,
+      "dailyDesktopFilesCompared": 41,
+      "differencesReported": 0,
+      "baseline": "r2 after-state, not an immediate r3 before-snapshot",
+      "taskCliConfig": "task A config logged out then reauthenticated; updated credentials retained",
+      "profilePatched": false,
+      "platformBusinessDataBeforeAfterChecked": false
+    },
+    "samplerDeviation": {
+      "initialOutputMistakenlyTargetedR2PrivateWorkingCopy": true,
+      "samplesBeforeStopFile": 0,
+      "emptyStartEndLinesAdded": 2,
+      "windowsReportSaysRestoredByteIdentical": true,
+      "restoredSha256Reported": "1430cf67598730c665b2cad13728fe24aef4b5af10de24fb272397cde757a14a",
+      "modifiedCopyRetainedPrivatelyReported": true,
+      "independentlyVerifiedHere": false
+    },
+    "autoUpdate": {
+      "detected": "0.2.1-rc.2",
+      "downloadOrInstallReported": false
+    }
+  },
+  "windowsFiles": {
+    "root": "C:\\bkn-verify\\021-local30-r3-20261023-213500-fd3c39",
+    "reportRelativePath": "results\\RESULTS-redacted.md",
+    "reportSha256Reported": "9be15bc1492f9614dddd3d49d970c0eb7e81871027af365df86afc162829ae70",
+    "manifestRelativePath": "results\\EVIDENCE-MANIFEST.json",
+    "manifestSha256Reported": "5fc546de5b9e519a217c66a044494eaac3a5f8b4e96520d3cea6ec473e0b9dd3",
+    "filesReported": 79,
+    "privateOnlyFilesReported": 5,
+    "originalsIndependentlyRead": false
+  },
+  "reviewBoundaries": {
+    "r1NewChromeRootAndLeftOpenNotEstablishedHere": true,
+    "r2BrowserClosureCauseNotExcludedByDifferentR3Condition": true,
+    "sameSamplingIntervalDoesNotEstablishOrder": true,
+    "privateLaunchTokenInvalidationClaimNotIndependentlyVerified": true,
+    "noNewB1OrG6Run": true
+  },
+  "ciRun": null,
+  "formalAcceptanceEligible": false
+}

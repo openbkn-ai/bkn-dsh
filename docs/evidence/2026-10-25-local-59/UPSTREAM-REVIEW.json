@@ -1,0 +1,48 @@
+{
+  "readAt": "2026-10-25T10:35:54.989234+00:00",
+  "dsh": {
+    "defaultBranchRef": {
+      "name": "master",
+      "target": {
+        "oid": "22ddee3792402c3e70ec5f86a63c3e3e895a2f60"
+      }
+    },
+    "releases": {
+      "nodes": [
+        {
+          "tagName": "dsh-v0.2.1-rc.3",
+          "publishedAt": "2026-10-23T15:26:39Z"
+        }
+      ]
+    }
+  },
+  "foundry": {
+    "defaultBranchRef": {
+      "name": "main",
+      "target": {
+        "oid": "a50d1b7d008d452a40fd061c9bded77c886f72d9"
+      }
+    },
+    "releases": {
+      "nodes": [
+        {
+          "tagName": "v0.2.0",
+          "publishedAt": "2026-10-16T07:21:25Z"
+        }
+      ]
+    }
+  },
+  "foundryFrom": "d31470a8cd7189e18ac054103667eb327c9e78ac",
+  "commits": [
+    {
+      "sha": "fedaeed369a726f78b5a5e765367502361a9b83c",
+      "subject": "feat(bkn-safe): let edition builds serve authorization resources (#2488)"
+    },
+    {
+      "sha": "a50d1b7d008d452a40fd061c9bded77c886f72d9",
+      "subject": "fix(bkn-trace): reject stale SQL archive cleanup (#2491)"
+    }
+  ],
+  "changedFiles": 20,
+  "targetedReview": "New edition authzresource socket consulted only for resource types not served by core, with per-call edition gate and 5-second provider timeout; errors unavailable rather than missing. Existing core resources retain fixed upstreams. Archive SQL cleanup adds stale/revision fencing. No change in compared MCP/CLI/GUI path files or this plugin consumed platform-reader routes. Not a whole-upstream audit; formal0.2.0 not deployed or migrated."
+}

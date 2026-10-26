@@ -1,0 +1,57 @@
+{
+  "source_each": {
+    "tests": 607,
+    "pass": 606,
+    "fail": 0,
+    "windows_skip": 1
+  },
+  "typechecks_both_pass": true,
+  "repository_pass": 66,
+  "package_files": 82,
+  "controlled_groups_per_host": 6,
+  "unchanged_evaluator_tests_origin": "7 passed on -26; evaluator/source not changed for diagnostics color fix",
+  "checks": [
+    {
+      "file": "source-old-27.log",
+      "sha256": "8fa34e94544bafa70d817e274e9a9534cd10891ec22f5af59ba811cdd4882045",
+      "result": "pass",
+      "tests": 607,
+      "pass": 606,
+      "fail": 0,
+      "skipped": 1
+    },
+    {
+      "file": "source-new-27.log",
+      "sha256": "617d00b8d6ba10f3f368cfc40ccc11e6f4d4cb86410cefbd35282adbb80034cc",
+      "result": "pass",
+      "tests": 607,
+      "pass": 606,
+      "fail": 0,
+      "skipped": 1
+    },
+    {
+      "file": "type-old-27.log",
+      "sha256": "a368bcbdb704ec8beba04db08db9146f87d1a4f3815b6fcff1378c7a206c43d3",
+      "result": "pass"
+    },
+    {
+      "file": "type-new-27.log",
+      "sha256": "90b4ac6e83a9bf68e0bfb28d5a023e8d4fe30bbee4b612a8e10aa36495b4aa99",
+      "result": "pass"
+    },
+    {
+      "file": "repo-tests-27.log",
+      "sha256": "4c79184302b6fdd5108feedb084c358a9e46e0cf7f9f930a08238c243034680d",
+      "result": "pass",
+      "tests": 66,
+      "pass": 66,
+      "fail": 0,
+      "skipped": 0
+    },
+    {
+      "file": "package-check-27.log",
+      "sha256": "1153f3239adadf6ce7ff75222feb426dc9acaf5941fbf25b7c4a2a9c864a4d5f",
+      "result": "pass"
+    }
+  ]
+}

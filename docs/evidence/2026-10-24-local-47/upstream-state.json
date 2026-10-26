@@ -1,0 +1,39 @@
+{
+  "checkedAt": "2026-10-23T16:19:33.244746+00:00",
+  "clientDate": "2026-10-24",
+  "dsh": {
+    "defaultBranchRef": {
+      "name": "master",
+      "target": {
+        "oid": "22ddee3792402c3e70ec5f86a63c3e3e895a2f60"
+      }
+    },
+    "releases": {
+      "nodes": [
+        {
+          "tagName": "dsh-v0.2.1-rc.3",
+          "isPrerelease": true,
+          "publishedAt": "2026-10-23T15:26:39Z"
+        }
+      ]
+    }
+  },
+  "foundry": {
+    "defaultBranchRef": {
+      "name": "main",
+      "target": {
+        "oid": "b058d07fefc22a0b5f759046a19e1c49958977fd"
+      }
+    },
+    "releases": {
+      "nodes": [
+        {
+          "tagName": "v0.2.0",
+          "isPrerelease": false,
+          "publishedAt": "2026-10-16T07:21:25Z"
+        }
+      ]
+    }
+  },
+  "scope": "metadata refresh for pinned-evidence consolidation; no deployment or new compatibility claim"
+}

@@ -1,0 +1,949 @@
+{
+  "root": "release/local-57 (local only)",
+  "recordedFiles": 157,
+  "files": [
+    {
+      "path": "assembly-identities.json",
+      "sha256": "38860cd86101262bab1190e03b222848c0ce20978892f5735a863c085c68496d",
+      "bytes": 70815,
+      "classification": "local-only; may contain task paths, copied-profile facts or temporary authenticated loopback URL; do not publish raw"
+    },
+    {
+      "path": "assembly.log",
+      "sha256": "0c4f0b82d7ed5314b702b6e43462520baf296dc8c82af5480c28c72537e2becd",
+      "bytes": 234,
+      "classification": "local-only; may contain task paths, copied-profile facts or temporary authenticated loopback URL; do not publish raw"
+    },
+    {
+      "path": "assemble-hosts.py",
+      "sha256": "2c8a339e2123d2348c63d30599b679242cac0a26dc9ba79671388e3e61aad4c0",
+      "bytes": 14432,
+      "classification": "local-only; may contain task paths, copied-profile facts or temporary authenticated loopback URL; do not publish raw"
+    },
+    {
+      "path": "full-host-rc3-stock-harness.log",
+      "sha256": "8e3b7cbfa53d3d0bf0e790132f49142e4b16c1fc588f1c39147a548b85672637",
+      "bytes": 33,
+      "classification": "local-only; may contain task paths, copied-profile facts or temporary authenticated loopback URL; do not publish raw"
+    },
+    {
+      "path": "artifact-receipt.json",
+      "sha256": "efaaa4ccd2e6ee658771cb7c641b4529b26bda34e0db6dfea793f845c9f91390",
+      "bytes": 2314,
+      "classification": "local-only; may contain task paths, copied-profile facts or temporary authenticated loopback URL; do not publish raw"
+    },
+    {
+      "path": "desktop-identities.json",
+      "sha256": "c3c4fbb4c42b376560917e343e13f3aafc42076fa4eafb06b066d162892854a3",
+      "bytes": 1725,
+      "classification": "local-only; may contain task paths, copied-profile facts or temporary authenticated loopback URL; do not publish raw"
+    },
+    {
+      "path": "extract-desktop-old.log",
+      "sha256": "369a15138039cee80729183124ca4a7fc1e7941984e24758ac57f1c6cb435bc7",
+      "bytes": 276,
+      "classification": "local-only; may contain task paths, copied-profile facts or temporary authenticated loopback URL; do not publish raw"
+    },
+    {
+      "path": "full-host-old.json",
+      "sha256": "b031dec4fb318130447ff783e87a201cde7bae4074592504a978a6976a8cea70",
+      "bytes": 6914,
+      "classification": "local-only; may contain task paths, copied-profile facts or temporary authenticated loopback URL; do not publish raw"
+    },
+    {
+      "path": "owned-cleanup-collected.json",
+      "sha256": "7f5c5534041f67dd436cd96dea0e6f6afaa8ca31046357441753dfb6ee70e848",
+      "bytes": 2840,
+      "classification": "local-only; may contain task paths, copied-profile facts or temporary authenticated loopback URL; do not publish raw"
+    },
+    {
+      "path": "full-host-old-attempt1.json",
+      "sha256": "dcf96bd63f193de2fb5236d17755639345f45f8f065638a7d46a200d64e57615",
+      "bytes": 2723,
+      "classification": "local-only; may contain task paths, copied-profile facts or temporary authenticated loopback URL; do not publish raw"
+    },
+    {
+      "path": "issue105-current.json",
+      "sha256": "7c021712d7b0327c1c6ce3bb5596144f21cfa4fea87517782644d5e9cf16db6e",
+      "bytes": 9616,
+      "classification": "local-only; may contain task paths, copied-profile facts or temporary authenticated loopback URL; do not publish raw"
+    },
+    {
+      "path": "issue105-comments.json",
+      "sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+      "bytes": 2,
+      "classification": "local-only; may contain task paths, copied-profile facts or temporary authenticated loopback URL; do not publish raw"
+    },
+    {
+      "path": "foundry-relevant.patch",
+      "sha256": "913647b8c3a72712b47118efd27c8fb5d17be6a84763748d0f386623c4855000",
+      "bytes": 17738,
+      "classification": "local-only; may contain task paths, copied-profile facts or temporary authenticated loopback URL; do not publish raw"
+    },
+    {
+      "path": "profile-mcp-resolution-old.json",
+      "sha256": "4166484bacb703a67f57079b9c8890a0c58ef32c45eb69866c71a934c42d34f9",
+      "bytes": 782,
+      "classification": "local-only; may contain task paths, copied-profile facts or temporary authenticated loopback URL; do not publish raw"
+    },
+    {
+      "path": "delivery-delta-private.json",
+      "sha256": "5710788ec18345e3dc8faf1bf464b0b3e4e0943c6514c9ee6d8c423747cea170",
+      "bytes": 88915,
+      "classification": "local-only; may contain task paths, copied-profile facts or temporary authenticated loopback URL; do not publish raw"
+    },
+    {
+      "path": "collect-delivery.log",
+      "sha256": "53a58c607279b5530d9b71c8974f2272e3828e8d00e7cecd55059611a31daf74",
+      "bytes": 57,
+      "classification": "local-only; may contain task paths, copied-profile facts or temporary authenticated loopback URL; do not publish raw"
+    },
+    {
+      "path": "collect-delivery.py",
+      "sha256": "d858a8a53b523b157bb2b800d3dabcf5d68e47abf41828d702aada495b0eb679",
+      "bytes": 4348,
+      "classification": "local-only; may contain task paths, copied-profile facts or temporary authenticated loopback URL; do not publish raw"
+    },
+    {
+      "path": "declaration-api-comparison.json",
+      "sha256": "3ea242613797e274edb2fce5d142086d96973f86e26a85a133f07862d7cf722e",
+      "bytes": 291,
+      "classification": "local-only; may contain task paths, copied-profile facts or temporary authenticated loopback URL; do not publish raw"
+    },
+    {
+      "path": "full-host-all-protected-relocated.json",
+      "sha256": "226bee6337dd4875b6d668a9b75a127b6a7e7b9c40642471db3823286ff1405c",
+      "bytes": 6694,
+      "classification": "local-only; may contain task paths, copied-profile facts or temporary authenticated loopback URL; do not publish raw"
+    },
+    {
+      "path": "full-host-old-a2-harness.log",
+      "sha256": "bac4be4c26d7f3b8b01be4fb3f3684b1b530087aeb32d0ab38da4a76e5ed091b",
+      "bytes": 362,
+      "classification": "local-only; may contain task paths, copied-profile facts or temporary authenticated loopback URL; do not publish raw"
+    },
+    {
+      "path": "desktop-host-rc3-all-first.json",
+      "sha256": "57aa3b26386b8b60ff2bdfce837ce4ce8f476c6ac3b1e2631d6c9e143f5e999b",
+      "bytes": 7082,
+      "classification": "local-only; may contain task paths, copied-profile facts or temporary authenticated loopback URL; do not publish raw"
+    },
+    {
+      "path": "node-identity.json",
+      "sha256": "76daccf5f49685bca79c81ffa214b5597e45ea681545d10bf92040d86be50abc",
+      "bytes": 277,
+      "classification": "local-only; may contain task paths, copied-profile facts or temporary authenticated loopback URL; do not publish raw"
+    },
+    {
+      "path": "final-preservation.log",
+      "sha256": "198a25b4cb00e7e0a92612e7fd0bce63f90f57e4485083d70f817aa1effdbd16",
+      "bytes": 149,
+      "classification": "local-only; may contain task paths, copied-profile facts or temporary authenticated loopback URL; do not publish raw"
+    },
+    {
+      "path": "desktop-host-old-all-first.json",
+      "sha256": "e56319fb5ff942e75047f2c81d13cb13c08b452c15191a28548a504ef39507a0",
+      "bytes": 7082,
+      "classification": "local-only; may contain task paths, copied-profile facts or temporary authenticated loopback URL; do not publish raw"
+    },
+    {
+      "path": "delivery-helper-validation.json",
+      "sha256": "3a65467b17b50e18c7720432864f562ee2d9966a6a493ac4752c362c727d83ea",
+      "bytes": 761,
+      "classification": "local-only; may contain task paths, copied-profile facts or temporary authenticated loopback URL; do not publish raw"
+    },
+    {
+      "path": "declarations-old.log",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "bytes": 0,
+      "classification": "local-only; may contain task paths, copied-profile facts or temporary authenticated loopback URL; do not publish raw"
+    },
+    {
+      "path": "pnpm-identities.json",
+      "sha256": "813f1ea2893cd00925428b25f49606dca49ccbe75580190d15dc8cfab079d8c1",
+      "bytes": 671,
+      "classification": "local-only; may contain task paths, copied-profile facts or temporary authenticated loopback URL; do not publish raw"
+    },
+    {
+      "path": "source-packaging.json",
+      "sha256": "9cf26109bc073aa44917143b374a7f2088018b812ea95b36fb865ee1d54a01b8",
+      "bytes": 715,
+      "classification": "local-only; may contain task paths, copied-profile facts or temporary authenticated loopback URL; do not publish raw"
+    },
+    {
+      "path": "declaration-build.json",
+      "sha256": "4dd142edf2e687b110a4a83267682852168eebf38b337eb0bb0719c593ddfb04",
+      "bytes": 491,
+      "classification": "local-only; may contain task paths, copied-profile facts or temporary authenticated loopback URL; do not publish raw"
+    },
+    {
+      "path": "desktop-overlay-old.json",
+      "sha256": "44bf3cc4a0a1f27d6b544c981d445cae7625264bddbe82ac5438ade245c3210e",
+      "bytes": 1411,
+      "classification": "local-only; may contain task paths, copied-profile facts or temporary authenticated loopback URL; do not publish raw"
+    },
+    {
+      "path": "source-portability-audit.json",
+      "sha256": "d63ae1cdf07948e4abfe4d80759c307dabc65bab7f285e450d458db2dbe27b63",
+      "bytes": 70746,
+      "classification": "local-only; may contain task paths, copied-profile facts or temporary authenticated loopback URL; do not publish raw"
+    },
+    {
+      "path": "apply-desktop-overlay.py",
+      "sha256": "dc2980e4a7c9278be060984f1735c1a63925ca721a189413016a47b3a4ae45fb",
+      "bytes": 1996,
+      "classification": "local-only; may contain task paths, copied-profile facts or temporary authenticated loopback URL; do not publish raw"
+    },
+    {
+      "path": "foundry-delta-private.json",
+      "sha256": "cdce12402a89093ecb372fc1a52918ce7ce9265cd842035c521d66fe3b782c58",
+      "bytes": 70778,
+      "classification": "local-only; may contain task paths, copied-profile facts or temporary authenticated loopback URL; do not publish raw"
+    },
+    {
+      "path": "compare-declarations.mjs",
+      "sha256": "f02f48262e2fabf179e8292e51679e96189b8b9a6f3a18993f7e6c585ce4eee7",
+      "bytes": 1505,
+      "classification": "local-only; may contain task paths, copied-profile facts or temporary authenticated loopback URL; do not publish raw"
+    },
+    {
+      "path": "archive-delivery.py",
+      "sha256": "0b35432ebf3eb31ec8db3febbac265e45087f8d402252fb84c657181786479b3",
+      "bytes": 1599,
+      "classification": "local-only; may contain task paths, copied-profile facts or temporary authenticated loopback URL; do not publish raw"
+    },
+    {
+      "path": "relocated-full-host-harness.log",
+      "sha256": "6b472fc4b3c5230b870955810bfbceeb00d185552b2a2f2b337b8fcaf430b136",
+      "bytes": 33,
+      "classification": "local-only; may contain task paths, copied-profile facts or temporary authenticated loopback URL; do not publish raw"
+    },
+    {
+      "path": "build-declarations.mjs",
+      "sha256": "ab662ddf3367978452bfd7219c0ca0ecc6e06402e399278753f68d2a044a718d",
+      "bytes": 2333,
+      "classification": "local-only; may contain task paths, copied-profile facts or temporary authenticated loopback URL; do not publish raw"
+    },
+    {
+      "path": "final-preservation.py",
+      "sha256": "d92ec5fd601549cb5c29141c43e67385503fa2de1b8b41f2fb71acaa14db4995",
+      "bytes": 5035,
+      "classification": "local-only; may contain task paths, copied-profile facts or temporary authenticated loopback URL; do not publish raw"
+    },
+    {
+      "path": "upstream-current.json",
+      "sha256": "8840a8fdf1ed5ddc148556e350d0a07e2f3f967fb5da143bfa012f63d9f7edb1",
+      "bytes": 393,
+      "classification": "local-only; may contain task paths, copied-profile facts or temporary authenticated loopback URL; do not publish raw"
+    },
+    {
+      "path": "desktop-host-rc3-harness.log",
+      "sha256": "6b472fc4b3c5230b870955810bfbceeb00d185552b2a2f2b337b8fcaf430b136",
+      "bytes": 33,
+      "classification": "local-only; may contain task paths, copied-profile facts or temporary authenticated loopback URL; do not publish raw"
+    },
+    {
+      "path": "bundle-preflight.json",
+      "sha256": "7566fc21c6c9f712ba36ae5c55205d4a8490302cce97715fe0d72940b9373565",
+      "bytes": 740,
+      "classification": "local-only; may contain task paths, copied-profile facts or temporary authenticated loopback URL; do not publish raw"
+    },
+    {
+      "path": "profile-mcp-resolution.json",
+      "sha256": "610cb863516665ec9ff32c7cbdadea8f947af861eadea389e37d9e28770d230b",
+      "bytes": 1068,
+      "classification": "local-only; may contain task paths, copied-profile facts or temporary authenticated loopback URL; do not publish raw"
+    },
+    {
+      "path": "declarations-rc3.log",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "bytes": 0,
+      "classification": "local-only; may contain task paths, copied-profile facts or temporary authenticated loopback URL; do not publish raw"
+    },
+    {
+      "path": "desktop-host-old-harness.log",
+      "sha256": "6b472fc4b3c5230b870955810bfbceeb00d185552b2a2f2b337b8fcaf430b136",
+      "bytes": 33,
+      "classification": "local-only; may contain task paths, copied-profile facts or temporary authenticated loopback URL; do not publish raw"
+    },
+    {
+      "path": "relocated-identities.json",
+      "sha256": "e538a37a9ea447e24a5bb0c9f518517de061bd707b7e72b7f5bbd030a946521f",
+      "bytes": 71471,
+      "classification": "local-only; may contain task paths, copied-profile facts or temporary authenticated loopback URL; do not publish raw"
+    },
+    {
+      "path": "profile-mcp-resolution-old-private.log",
+      "sha256": "d279743b87b289ac9f9597ef19bf0f41853bce4683e25456e9559f510a1da47a",
+      "bytes": 749,
+      "classification": "local-only; may contain task paths, copied-profile facts or temporary authenticated loopback URL; do not publish raw"
+    },
+    {
+      "path": "desktop-overlay-rc3.json",
+      "sha256": "81c83d74c07e83645b237c858c6031b301753e2271c2dd51d4dcb77e9c3ea0f1",
+      "bytes": 1411,
+      "classification": "local-only; may contain task paths, copied-profile facts or temporary authenticated loopback URL; do not publish raw"
+    },
+    {
+      "path": "extract-desktop-rc3.log",
+      "sha256": "83cbfa1ea87cb8110e0735ad191cad39676c026dabdf62a703eae3e849b3b7d4",
+      "bytes": 110,
+      "classification": "local-only; may contain task paths, copied-profile facts or temporary authenticated loopback URL; do not publish raw"
+    },
+    {
+      "path": "archive-delivery.log",
+      "sha256": "c1b6ea90739ea5c3590217340ed1e2d1d721380077a25986e411adaf7052b739",
+      "bytes": 226,
+      "classification": "local-only; may contain task paths, copied-profile facts or temporary authenticated loopback URL; do not publish raw"
+    },
+    {
+      "path": "profile-mcp-resolution.mjs",
+      "sha256": "0c9f88a877e5a12e4993aa2556357f43ad0421e826b74c089cb7ff3a2a9e89c9",
+      "bytes": 2277,
+      "classification": "local-only; may contain task paths, copied-profile facts or temporary authenticated loopback URL; do not publish raw"
+    },
+    {
+      "path": "delivery-helper-validation.log",
+      "sha256": "a00d9fbb6b176f44368ebd8ea3ae9a633f9075ea04659cfae299d73a06ca1121",
+      "bytes": 28,
+      "classification": "local-only; may contain task paths, copied-profile facts or temporary authenticated loopback URL; do not publish raw"
+    },
+    {
+      "path": "finalize-delivery.mjs",
+      "sha256": "842f9016f2ec39937236644dad93ef9d9e343b53bfef7b7fd933ff320db20e37",
+      "bytes": 3143,
+      "classification": "local-only; may contain task paths, copied-profile facts or temporary authenticated loopback URL; do not publish raw"
+    },
+    {
+      "path": "preservation-before-private.json",
+      "sha256": "af984c47e1b90371cacda6f59649fb84b5439f6f5079661cb3a1d8b74433ee36",
+      "bytes": 550951,
+      "classification": "local-only; may contain task paths, copied-profile facts or temporary authenticated loopback URL; do not publish raw"
+    },
+    {
+      "path": "full-host-old-harness.log",
+      "sha256": "bac4be4c26d7f3b8b01be4fb3f3684b1b530087aeb32d0ab38da4a76e5ed091b",
+      "bytes": 362,
+      "classification": "local-only; may contain task paths, copied-profile facts or temporary authenticated loopback URL; do not publish raw"
+    },
+    {
+      "path": "full-host-old-attempt2.json",
+      "sha256": "dcf96bd63f193de2fb5236d17755639345f45f8f065638a7d46a200d64e57615",
+      "bytes": 2723,
+      "classification": "local-only; may contain task paths, copied-profile facts or temporary authenticated loopback URL; do not publish raw"
+    },
+    {
+      "path": "full-host-rc3-stock-control-first.json",
+      "sha256": "44ea331e3f2204a62221dbd466e4506d8a9769549a74243acfa3d79c33b313ad",
+      "bytes": 3682,
+      "classification": "local-only; may contain task paths, copied-profile facts or temporary authenticated loopback URL; do not publish raw"
+    },
+    {
+      "path": "extract-desktop-runtime.mjs",
+      "sha256": "93aae7a69faad8f8756fabe8cffc76c3d17fe4381cdf07b1c1ed7e8a77e5a0d8",
+      "bytes": 1361,
+      "classification": "local-only; may contain task paths, copied-profile facts or temporary authenticated loopback URL; do not publish raw"
+    },
+    {
+      "path": "full-host-old-a3-harness.log",
+      "sha256": "6b472fc4b3c5230b870955810bfbceeb00d185552b2a2f2b337b8fcaf430b136",
+      "bytes": 33,
+      "classification": "local-only; may contain task paths, copied-profile facts or temporary authenticated loopback URL; do not publish raw"
+    },
+    {
+      "path": "harness/full-host-probe.mjs",
+      "sha256": "c872e695f76b47921ce280de721ab3b9f5b54ae9bc97c43e43c5651854f44247",
+      "bytes": 2101,
+      "classification": "local-only; may contain task paths, copied-profile facts or temporary authenticated loopback URL; do not publish raw"
+    },
+    {
+      "path": "harness/run-full-host.mjs",
+      "sha256": "824322d50a649323cfb533d833ef71ce01a23640c8833c4b0302b1dd7d7be37c",
+      "bytes": 6837,
+      "classification": "local-only; may contain task paths, copied-profile facts or temporary authenticated loopback URL; do not publish raw"
+    },
+    {
+      "path": "harness/run-desktop-host.mjs",
+      "sha256": "421aecf8579bb7cde5a5d3e13370482f2c5b3b2eb97b18f2ffa31b2e5a0bb9d4",
+      "bytes": 7374,
+      "classification": "local-only; may contain task paths, copied-profile facts or temporary authenticated loopback URL; do not publish raw"
+    },
+    {
+      "path": "delivery-helper-tests/old/copy-home/OPENBKN-HOST-ISOLATION.json",
+      "sha256": "f08e884e892ad0133d6a5789320fe0881940ddb2f6bcb833a7defce103dee2d6",
+      "bytes": 173,
+      "classification": "local-only; may contain task paths, copied-profile facts or temporary authenticated loopback URL; do not publish raw"
+    },
+    {
+      "path": "delivery-helper-tests/old/copy-home/sessions/synthetic.json",
+      "sha256": "19d04b11a7287c6670d90106402450c8697099a97a034ec4419fd194ea640964",
+      "bytes": 28,
+      "classification": "local-only; may contain task paths, copied-profile facts or temporary authenticated loopback URL; do not publish raw"
+    },
+    {
+      "path": "delivery-helper-tests/old/original-home/sessions/synthetic.json",
+      "sha256": "19d04b11a7287c6670d90106402450c8697099a97a034ec4419fd194ea640964",
+      "bytes": 28,
+      "classification": "local-only; may contain task paths, copied-profile facts or temporary authenticated loopback URL; do not publish raw"
+    },
+    {
+      "path": "delivery-helper-tests/rc3/copy-home/OPENBKN-HOST-ISOLATION.json",
+      "sha256": "c0588b762e1b729ab88bbec77c8a646e3a99070bcdb4d4a32ddf0a682900c009",
+      "bytes": 173,
+      "classification": "local-only; may contain task paths, copied-profile facts or temporary authenticated loopback URL; do not publish raw"
+    },
+    {
+      "path": "delivery-helper-tests/rc3/copy-home/sessions/synthetic.json",
+      "sha256": "19d04b11a7287c6670d90106402450c8697099a97a034ec4419fd194ea640964",
+      "bytes": 28,
+      "classification": "local-only; may contain task paths, copied-profile facts or temporary authenticated loopback URL; do not publish raw"
+    },
+    {
+      "path": "delivery-helper-tests/rc3/original-home/sessions/synthetic.json",
+      "sha256": "19d04b11a7287c6670d90106402450c8697099a97a034ec4419fd194ea640964",
+      "bytes": 28,
+      "classification": "local-only; may contain task paths, copied-profile facts or temporary authenticated loopback URL; do not publish raw"
+    },
+    {
+      "path": "host-runs/old-stock-control/owned-process.json",
+      "sha256": "cf77594db6cd4afae0668efb81c0a02047fddb6e284997290c59f39db7ce7423",
+      "bytes": 479,
+      "classification": "local-only; may contain task paths, copied-profile facts or temporary authenticated loopback URL; do not publish raw"
+    },
+    {
+      "path": "host-runs/old-stock-control/host-private.log",
+      "sha256": "00926f0c52157cdd24c95fe74d1c38ed12df0b961bb45fd07a6b87c2aacf1f9f",
+      "bytes": 83,
+      "classification": "local-only; may contain task paths, copied-profile facts or temporary authenticated loopback URL; do not publish raw"
+    },
+    {
+      "path": "host-runs/old-stock-control/cleanup.json",
+      "sha256": "38d655dea598407a9c507223753080be3d632977c7be307ce7d33c8d446b7073",
+      "bytes": 88,
+      "classification": "local-only; may contain task paths, copied-profile facts or temporary authenticated loopback URL; do not publish raw"
+    },
+    {
+      "path": "host-runs/old-stock-control/proof.json",
+      "sha256": "a1e5cd85576586c428547c0dab0a4db4379ffeb64f60b58e291bd1b5e70b3e28",
+      "bytes": 608,
+      "classification": "local-only; may contain task paths, copied-profile facts or temporary authenticated loopback URL; do not publish raw"
+    },
+    {
+      "path": "host-runs/old-stock-control-a2/owned-process.json",
+      "sha256": "d29b14c8d295272e61cf2db48817ad9818710ee114489a5870bea25f8aeff25a",
+      "bytes": 482,
+      "classification": "local-only; may contain task paths, copied-profile facts or temporary authenticated loopback URL; do not publish raw"
+    },
+    {
+      "path": "host-runs/old-stock-control-a2/host-private.log",
+      "sha256": "e92bae7467fa9f80821dbf41d91c1406752c16e044c1084cce0fcb0f884f44b5",
+      "bytes": 83,
+      "classification": "local-only; may contain task paths, copied-profile facts or temporary authenticated loopback URL; do not publish raw"
+    },
+    {
+      "path": "host-runs/old-stock-control-a2/cleanup.json",
+      "sha256": "ca5e7a1482bbe058d00259a0e1f1e89725cc57053888b355daaef0e1db3fcc6c",
+      "bytes": 88,
+      "classification": "local-only; may contain task paths, copied-profile facts or temporary authenticated loopback URL; do not publish raw"
+    },
+    {
+      "path": "host-runs/old-stock-control-a2/proof.json",
+      "sha256": "318505e68d859763bd67c4a0e337e4b6810665b2727666812906a52c3309608e",
+      "bytes": 840,
+      "classification": "local-only; may contain task paths, copied-profile facts or temporary authenticated loopback URL; do not publish raw"
+    },
+    {
+      "path": "host-runs/rc3-stock-control-first/owned-process.json",
+      "sha256": "45a080c087bcf3f76beafd8891900ddafa6691671d18bbff1a5862c7dda077ed",
+      "bytes": 481,
+      "classification": "local-only; may contain task paths, copied-profile facts or temporary authenticated loopback URL; do not publish raw"
+    },
+    {
+      "path": "host-runs/rc3-stock-control-first/host-private.log",
+      "sha256": "3de64fbce29f9d84c6f382d1ae11cf424c28477da711e32b4a87c63356637f44",
+      "bytes": 83,
+      "classification": "local-only; may contain task paths, copied-profile facts or temporary authenticated loopback URL; do not publish raw"
+    },
+    {
+      "path": "host-runs/rc3-stock-control-first/cleanup.json",
+      "sha256": "1c6ce56eb40756d27f2cb50b5a8f7433e5d526c9b250a9703fea671bb8a755ed",
+      "bytes": 88,
+      "classification": "local-only; may contain task paths, copied-profile facts or temporary authenticated loopback URL; do not publish raw"
+    },
+    {
+      "path": "host-runs/rc3-stock-control-first/proof.json",
+      "sha256": "94f48d38c79599a3bf74a193e2065441aaa7ec890c27364b11308edb69d303eb",
+      "bytes": 788,
+      "classification": "local-only; may contain task paths, copied-profile facts or temporary authenticated loopback URL; do not publish raw"
+    },
+    {
+      "path": "host-runs/desktop-old-stock-control-first/init-profile.mjs",
+      "sha256": "d4b6ab91b39cf17bb0ee4900e6a8ac70dac480cf706be0c9f5b265aefde153ec",
+      "bytes": 385,
+      "classification": "local-only; may contain task paths, copied-profile facts or temporary authenticated loopback URL; do not publish raw"
+    },
+    {
+      "path": "host-runs/desktop-old-stock-control-first/owned-process.json",
+      "sha256": "112406ffcc37a0884078696c66561943ae2890b031f25f3adc27602677969e88",
+      "bytes": 495,
+      "classification": "local-only; may contain task paths, copied-profile facts or temporary authenticated loopback URL; do not publish raw"
+    },
+    {
+      "path": "host-runs/desktop-old-stock-control-first/host-private.log",
+      "sha256": "f4d4b19b1206b797ee3b8ae9f43a0029941064fbdd0ff69de7f8e69e5d70dfae",
+      "bytes": 949,
+      "classification": "local-only; may contain task paths, copied-profile facts or temporary authenticated loopback URL; do not publish raw"
+    },
+    {
+      "path": "host-runs/desktop-old-stock-control-first/cleanup.json",
+      "sha256": "1c89107d7cf1eb01f17c61e55af063681f2e7c880ecae86ee120c16e85b72e79",
+      "bytes": 88,
+      "classification": "local-only; may contain task paths, copied-profile facts or temporary authenticated loopback URL; do not publish raw"
+    },
+    {
+      "path": "host-runs/desktop-old-stock-control-first/desktop-ready-private.json",
+      "sha256": "cff10d3e5e7b80915323a48f8b402569076297c25dc0897a8930b9099f558f7b",
+      "bytes": 34912,
+      "classification": "local-only; may contain task paths, copied-profile facts or temporary authenticated loopback URL; do not publish raw"
+    },
+    {
+      "path": "host-runs/desktop-old-stock-control-first/proof.json",
+      "sha256": "a34f43a0f9739251013cb414a81eeac7d0ac098b63d5dd3634c017632ff8628a",
+      "bytes": 713,
+      "classification": "local-only; may contain task paths, copied-profile facts or temporary authenticated loopback URL; do not publish raw"
+    },
+    {
+      "path": "host-runs/old-stock-control-a3/owned-process.json",
+      "sha256": "5eb60b03d823f94db9fd5544235242567c48f0c6513efe893e7a0da57614f987",
+      "bytes": 482,
+      "classification": "local-only; may contain task paths, copied-profile facts or temporary authenticated loopback URL; do not publish raw"
+    },
+    {
+      "path": "host-runs/old-stock-control-a3/host-private.log",
+      "sha256": "34a6c72c242f4e787a0ee81b795b34e6c9c1cc64df86c050b36ca46b3bcf1c6b",
+      "bytes": 83,
+      "classification": "local-only; may contain task paths, copied-profile facts or temporary authenticated loopback URL; do not publish raw"
+    },
+    {
+      "path": "host-runs/old-stock-control-a3/cleanup.json",
+      "sha256": "05ba8e77e5fda5aaa78cf06fdad3c6bd483b8c35145b02fcda0705db2f0e1367",
+      "bytes": 88,
+      "classification": "local-only; may contain task paths, copied-profile facts or temporary authenticated loopback URL; do not publish raw"
+    },
+    {
+      "path": "host-runs/old-stock-control-a3/proof.json",
+      "sha256": "90ea44a4b203dfd79204d839cb229481ffdd0d3d6f49a2ecb9b9071d0e46f0d2",
+      "bytes": 701,
+      "classification": "local-only; may contain task paths, copied-profile facts or temporary authenticated loopback URL; do not publish raw"
+    },
+    {
+      "path": "host-runs/rc3-protected-relocated/owned-process.json",
+      "sha256": "e35cf2f8ddfe34696dd7a490b990874673f37b912fdc72d50b3a5fc84ca934f8",
+      "bytes": 559,
+      "classification": "local-only; may contain task paths, copied-profile facts or temporary authenticated loopback URL; do not publish raw"
+    },
+    {
+      "path": "host-runs/rc3-protected-relocated/host-private.log",
+      "sha256": "d85dd1cb15cc1dbc512cdabf7a9ddd2c9f0ec019329af18b9400a8894497d54d",
+      "bytes": 267,
+      "classification": "local-only; may contain task paths, copied-profile facts or temporary authenticated loopback URL; do not publish raw"
+    },
+    {
+      "path": "host-runs/rc3-protected-relocated/cleanup.json",
+      "sha256": "d753aab891eba92e94a4afb1affefd269d12fd74dfab8e9a7464de30db18e23b",
+      "bytes": 88,
+      "classification": "local-only; may contain task paths, copied-profile facts or temporary authenticated loopback URL; do not publish raw"
+    },
+    {
+      "path": "host-runs/rc3-protected-relocated/proof.json",
+      "sha256": "f4d59085925b348fb6eb05d99ec0a50fe1b39a2c7dab1f568510c11ba81b96e7",
+      "bytes": 916,
+      "classification": "local-only; may contain task paths, copied-profile facts or temporary authenticated loopback URL; do not publish raw"
+    },
+    {
+      "path": "host-runs/desktop-old-protected-first/init-profile.mjs",
+      "sha256": "9fbeca07bd7f018beb3519c85824b17e0529c94594979ddcc6cd50e560997488",
+      "bytes": 381,
+      "classification": "local-only; may contain task paths, copied-profile facts or temporary authenticated loopback URL; do not publish raw"
+    },
+    {
+      "path": "host-runs/desktop-old-protected-first/owned-process.json",
+      "sha256": "2ca2d6e4bd06f9c7285dee73a34efb3cd0eedddecab371bd513ec526f577a183",
+      "bytes": 487,
+      "classification": "local-only; may contain task paths, copied-profile facts or temporary authenticated loopback URL; do not publish raw"
+    },
+    {
+      "path": "host-runs/desktop-old-protected-first/host-private.log",
+      "sha256": "621a0c77cf5760750d1c041f8c9a164261e7c870e37dd669b117e11b7f179ea2",
+      "bytes": 949,
+      "classification": "local-only; may contain task paths, copied-profile facts or temporary authenticated loopback URL; do not publish raw"
+    },
+    {
+      "path": "host-runs/desktop-old-protected-first/cleanup.json",
+      "sha256": "056f052829d17a9c0f902f8d3e7990dc0d2d5ef7344054baf6407e608c3137b4",
+      "bytes": 88,
+      "classification": "local-only; may contain task paths, copied-profile facts or temporary authenticated loopback URL; do not publish raw"
+    },
+    {
+      "path": "host-runs/desktop-old-protected-first/desktop-ready-private.json",
+      "sha256": "0ab4e0a94fb46588be67ee9504299ecb2b2e724bb8589d5ede1db1bed90a38b3",
+      "bytes": 34912,
+      "classification": "local-only; may contain task paths, copied-profile facts or temporary authenticated loopback URL; do not publish raw"
+    },
+    {
+      "path": "host-runs/desktop-old-protected-first/proof.json",
+      "sha256": "05e29275ed18bb229b2a7e0480c61f0413e5ae32ee3d188b93ee7c20dbb654ac",
+      "bytes": 776,
+      "classification": "local-only; may contain task paths, copied-profile facts or temporary authenticated loopback URL; do not publish raw"
+    },
+    {
+      "path": "host-runs/old-protected-relocated/owned-process.json",
+      "sha256": "f369a628ad22d7c5492918ce2d210c0e65253d477c9931a9db7597b245e7b7b1",
+      "bytes": 559,
+      "classification": "local-only; may contain task paths, copied-profile facts or temporary authenticated loopback URL; do not publish raw"
+    },
+    {
+      "path": "host-runs/old-protected-relocated/host-private.log",
+      "sha256": "b58c0b2143290254a97d82c19ffb1e2a8936bc78093002ccbaa4b86319ea9611",
+      "bytes": 267,
+      "classification": "local-only; may contain task paths, copied-profile facts or temporary authenticated loopback URL; do not publish raw"
+    },
+    {
+      "path": "host-runs/old-protected-relocated/cleanup.json",
+      "sha256": "d9eb980f6140afcb293ddab250d9b9b7f3d1d4f5d6852f83a64e087339e79f77",
+      "bytes": 88,
+      "classification": "local-only; may contain task paths, copied-profile facts or temporary authenticated loopback URL; do not publish raw"
+    },
+    {
+      "path": "host-runs/old-protected-relocated/proof.json",
+      "sha256": "9351d341772a1a2fcdf83e8f8a8175e873fdb140052026e2f11241f9e654cd88",
+      "bytes": 825,
+      "classification": "local-only; may contain task paths, copied-profile facts or temporary authenticated loopback URL; do not publish raw"
+    },
+    {
+      "path": "host-runs/desktop-rc3-stock-control-first/init-profile.mjs",
+      "sha256": "1a53734d5ed1d9f1fc156501f831d99d7781426b9e61f98aa9d7292b2dae7b4c",
+      "bytes": 385,
+      "classification": "local-only; may contain task paths, copied-profile facts or temporary authenticated loopback URL; do not publish raw"
+    },
+    {
+      "path": "host-runs/desktop-rc3-stock-control-first/owned-process.json",
+      "sha256": "6232e7a88b861ee77c6d481072985463149922afad17c7a9e86bd5f71445022d",
+      "bytes": 484,
+      "classification": "local-only; may contain task paths, copied-profile facts or temporary authenticated loopback URL; do not publish raw"
+    },
+    {
+      "path": "host-runs/desktop-rc3-stock-control-first/host-private.log",
+      "sha256": "980df9d20629dc84fed1214542d323a7aacfaaba7ee92abdf6089074c0ac62cd",
+      "bytes": 949,
+      "classification": "local-only; may contain task paths, copied-profile facts or temporary authenticated loopback URL; do not publish raw"
+    },
+    {
+      "path": "host-runs/desktop-rc3-stock-control-first/cleanup.json",
+      "sha256": "d6b9ffdb651f8ca4a055939e0e7eed99823b06a84af10ab640a3280bd92d4194",
+      "bytes": 88,
+      "classification": "local-only; may contain task paths, copied-profile facts or temporary authenticated loopback URL; do not publish raw"
+    },
+    {
+      "path": "host-runs/desktop-rc3-stock-control-first/desktop-ready-private.json",
+      "sha256": "71ee10cc3c443c2f99eed2b2cbc6f272ba23919b3b288f793b84b8900f2b993d",
+      "bytes": 38052,
+      "classification": "local-only; may contain task paths, copied-profile facts or temporary authenticated loopback URL; do not publish raw"
+    },
+    {
+      "path": "host-runs/desktop-rc3-stock-control-first/proof.json",
+      "sha256": "17e96fdcf744dd2039fb99cfa4b2bffe6403f8312e1a76d5a44be694528a8f94",
+      "bytes": 713,
+      "classification": "local-only; may contain task paths, copied-profile facts or temporary authenticated loopback URL; do not publish raw"
+    },
+    {
+      "path": "host-runs/desktop-rc3-protected-first/init-profile.mjs",
+      "sha256": "ee782ed3123506e7d2e1d44b96b2917496427916700ab3e76e1aa20a50c03cff",
+      "bytes": 381,
+      "classification": "local-only; may contain task paths, copied-profile facts or temporary authenticated loopback URL; do not publish raw"
+    },
+    {
+      "path": "host-runs/desktop-rc3-protected-first/owned-process.json",
+      "sha256": "b8b21fe7f46222d80ac07fcd63f2c1c21d1a81013d96123e506d33ddaf269bc5",
+      "bytes": 476,
+      "classification": "local-only; may contain task paths, copied-profile facts or temporary authenticated loopback URL; do not publish raw"
+    },
+    {
+      "path": "host-runs/desktop-rc3-protected-first/host-private.log",
+      "sha256": "d17935b6ddfc84728e07025cfe25684c9b2cd58dff5b9c3e02bd0bd5ae97bb4d",
+      "bytes": 949,
+      "classification": "local-only; may contain task paths, copied-profile facts or temporary authenticated loopback URL; do not publish raw"
+    },
+    {
+      "path": "host-runs/desktop-rc3-protected-first/cleanup.json",
+      "sha256": "57a7f82acb02a686e37f439bbf2533ce4c91def24fc3f8462dae9cf74e4fdfc2",
+      "bytes": 88,
+      "classification": "local-only; may contain task paths, copied-profile facts or temporary authenticated loopback URL; do not publish raw"
+    },
+    {
+      "path": "host-runs/desktop-rc3-protected-first/desktop-ready-private.json",
+      "sha256": "bca2c718b0f71108c0abeed62ed2f12e9e6d611b24d267f74ad74c2c39029d6e",
+      "bytes": 38052,
+      "classification": "local-only; may contain task paths, copied-profile facts or temporary authenticated loopback URL; do not publish raw"
+    },
+    {
+      "path": "host-runs/desktop-rc3-protected-first/proof.json",
+      "sha256": "d56f2a29048f79d891f0b67c3ba1dbb4ed8b55ac514a3793a8fec05f356c927f",
+      "bytes": 776,
+      "classification": "local-only; may contain task paths, copied-profile facts or temporary authenticated loopback URL; do not publish raw"
+    },
+    {
+      "path": "host-runs/old-protected-a3/owned-process.json",
+      "sha256": "53532de35f5c2d9c71e932f9fec6311dcb268d7e056bd9b0c17c79ce2a3ba096",
+      "bytes": 518,
+      "classification": "local-only; may contain task paths, copied-profile facts or temporary authenticated loopback URL; do not publish raw"
+    },
+    {
+      "path": "host-runs/old-protected-a3/host-private.log",
+      "sha256": "aa6fda8b03f90276990ea30cabf1751dac67b093c502c76a0b9881e5212bed23",
+      "bytes": 267,
+      "classification": "local-only; may contain task paths, copied-profile facts or temporary authenticated loopback URL; do not publish raw"
+    },
+    {
+      "path": "host-runs/old-protected-a3/cleanup.json",
+      "sha256": "77c72211ac75f9fe0d903ff6568895e162d186bfa384c767de353618db03000c",
+      "bytes": 88,
+      "classification": "local-only; may contain task paths, copied-profile facts or temporary authenticated loopback URL; do not publish raw"
+    },
+    {
+      "path": "host-runs/old-protected-a3/proof.json",
+      "sha256": "5ba78e8cfbed36317cc10af43e53d674a8ad06d064a56f1d23d6a2e28cce3916",
+      "bytes": 808,
+      "classification": "local-only; may contain task paths, copied-profile facts or temporary authenticated loopback URL; do not publish raw"
+    },
+    {
+      "path": "host-runs/old-protected-a3/home/OPENBKN-HOST-ISOLATION.json",
+      "sha256": "f08e884e892ad0133d6a5789320fe0881940ddb2f6bcb833a7defce103dee2d6",
+      "bytes": 173,
+      "classification": "local-only; may contain task paths, copied-profile facts or temporary authenticated loopback URL; do not publish raw"
+    },
+    {
+      "path": "host-runs/old-protected-a3/home/storages/workspace.json",
+      "sha256": "8332e072a55f6c6ac287e41ac1a57640d630c2143cd55eeba907a3a33fb3240e",
+      "bytes": 227,
+      "classification": "local-only; may contain task paths, copied-profile facts or temporary authenticated loopback URL; do not publish raw"
+    },
+    {
+      "path": "host-runs/old-protected-a3/home/profiles/web/package.json",
+      "sha256": "210068ddb9ebc4cdf395ebb53020be6ccaaedb917e74dae16296d62394626398",
+      "bytes": 207,
+      "classification": "local-only; may contain task paths, copied-profile facts or temporary authenticated loopback URL; do not publish raw"
+    },
+    {
+      "path": "host-runs/old-protected-a3/home/storages/session_projcache/sessions/session-1.json",
+      "sha256": "5c5b63b30d57d85d1049d2aec473c0c480f0eca782a1004713756af014ff45c9",
+      "bytes": 4207,
+      "classification": "local-only; may contain task paths, copied-profile facts or temporary authenticated loopback URL; do not publish raw"
+    },
+    {
+      "path": "host-runs/desktop-rc3-protected-first/home/storages/workspace.json",
+      "sha256": "8332e072a55f6c6ac287e41ac1a57640d630c2143cd55eeba907a3a33fb3240e",
+      "bytes": 227,
+      "classification": "local-only; may contain task paths, copied-profile facts or temporary authenticated loopback URL; do not publish raw"
+    },
+    {
+      "path": "host-runs/desktop-rc3-protected-first/home/profiles/desktop/package.json",
+      "sha256": "eafc5b4ebc3e702e8aaee00f6012ae1d76ef8ea24b8bbe03a003f369c5d2934f",
+      "bytes": 211,
+      "classification": "local-only; may contain task paths, copied-profile facts or temporary authenticated loopback URL; do not publish raw"
+    },
+    {
+      "path": "host-runs/desktop-rc3-protected-first/home/storages/session_projcache/sessions/session-1.json",
+      "sha256": "944044cac124b2b8dd52c4988f76747383c8f577bc52ed956bdf8b3aa640e614",
+      "bytes": 4819,
+      "classification": "local-only; may contain task paths, copied-profile facts or temporary authenticated loopback URL; do not publish raw"
+    },
+    {
+      "path": "host-runs/desktop-rc3-stock-control-first/home/storages/workspace.json",
+      "sha256": "8332e072a55f6c6ac287e41ac1a57640d630c2143cd55eeba907a3a33fb3240e",
+      "bytes": 227,
+      "classification": "local-only; may contain task paths, copied-profile facts or temporary authenticated loopback URL; do not publish raw"
+    },
+    {
+      "path": "host-runs/desktop-rc3-stock-control-first/home/profiles/desktop/package.json",
+      "sha256": "eafc5b4ebc3e702e8aaee00f6012ae1d76ef8ea24b8bbe03a003f369c5d2934f",
+      "bytes": 211,
+      "classification": "local-only; may contain task paths, copied-profile facts or temporary authenticated loopback URL; do not publish raw"
+    },
+    {
+      "path": "host-runs/desktop-rc3-stock-control-first/home/storages/session_projcache/sessions/session-1.json",
+      "sha256": "85e3b9350fcf30612ebb831a7510b26c3c57761fc4381bb83b9c0ff160eb4156",
+      "bytes": 4827,
+      "classification": "local-only; may contain task paths, copied-profile facts or temporary authenticated loopback URL; do not publish raw"
+    },
+    {
+      "path": "host-runs/old-protected-relocated/home/OPENBKN-HOST-ISOLATION.json",
+      "sha256": "f08e884e892ad0133d6a5789320fe0881940ddb2f6bcb833a7defce103dee2d6",
+      "bytes": 173,
+      "classification": "local-only; may contain task paths, copied-profile facts or temporary authenticated loopback URL; do not publish raw"
+    },
+    {
+      "path": "host-runs/old-protected-relocated/home/storages/workspace.json",
+      "sha256": "8332e072a55f6c6ac287e41ac1a57640d630c2143cd55eeba907a3a33fb3240e",
+      "bytes": 227,
+      "classification": "local-only; may contain task paths, copied-profile facts or temporary authenticated loopback URL; do not publish raw"
+    },
+    {
+      "path": "host-runs/old-protected-relocated/home/profiles/web/package.json",
+      "sha256": "210068ddb9ebc4cdf395ebb53020be6ccaaedb917e74dae16296d62394626398",
+      "bytes": 207,
+      "classification": "local-only; may contain task paths, copied-profile facts or temporary authenticated loopback URL; do not publish raw"
+    },
+    {
+      "path": "host-runs/old-protected-relocated/home/storages/session_projcache/sessions/session-1.json",
+      "sha256": "e590f5b9341e19a1b566500936399199fea51515e180aabf8cb115e9d079cb45",
+      "bytes": 4214,
+      "classification": "local-only; may contain task paths, copied-profile facts or temporary authenticated loopback URL; do not publish raw"
+    },
+    {
+      "path": "host-runs/desktop-old-protected-first/home/storages/workspace.json",
+      "sha256": "8332e072a55f6c6ac287e41ac1a57640d630c2143cd55eeba907a3a33fb3240e",
+      "bytes": 227,
+      "classification": "local-only; may contain task paths, copied-profile facts or temporary authenticated loopback URL; do not publish raw"
+    },
+    {
+      "path": "host-runs/desktop-old-protected-first/home/profiles/desktop/package.json",
+      "sha256": "eafc5b4ebc3e702e8aaee00f6012ae1d76ef8ea24b8bbe03a003f369c5d2934f",
+      "bytes": 211,
+      "classification": "local-only; may contain task paths, copied-profile facts or temporary authenticated loopback URL; do not publish raw"
+    },
+    {
+      "path": "host-runs/desktop-old-protected-first/home/storages/session_projcache/sessions/session-1.json",
+      "sha256": "06a29fa86e8e2352398bfe474d906a8e5f340a5973fc9dfe1dc92b720275a532",
+      "bytes": 4218,
+      "classification": "local-only; may contain task paths, copied-profile facts or temporary authenticated loopback URL; do not publish raw"
+    },
+    {
+      "path": "host-runs/rc3-protected-relocated/home/OPENBKN-HOST-ISOLATION.json",
+      "sha256": "c0588b762e1b729ab88bbec77c8a646e3a99070bcdb4d4a32ddf0a682900c009",
+      "bytes": 173,
+      "classification": "local-only; may contain task paths, copied-profile facts or temporary authenticated loopback URL; do not publish raw"
+    },
+    {
+      "path": "host-runs/rc3-protected-relocated/home/storages/workspace.json",
+      "sha256": "8332e072a55f6c6ac287e41ac1a57640d630c2143cd55eeba907a3a33fb3240e",
+      "bytes": 227,
+      "classification": "local-only; may contain task paths, copied-profile facts or temporary authenticated loopback URL; do not publish raw"
+    },
+    {
+      "path": "host-runs/rc3-protected-relocated/home/profiles/web/package.json",
+      "sha256": "210068ddb9ebc4cdf395ebb53020be6ccaaedb917e74dae16296d62394626398",
+      "bytes": 207,
+      "classification": "local-only; may contain task paths, copied-profile facts or temporary authenticated loopback URL; do not publish raw"
+    },
+    {
+      "path": "host-runs/rc3-protected-relocated/home/storages/session_projcache/sessions/session-1.json",
+      "sha256": "2533c7fda06e631c5290fe79a190d54664cd91009bad01eea40156e39377c421",
+      "bytes": 4811,
+      "classification": "local-only; may contain task paths, copied-profile facts or temporary authenticated loopback URL; do not publish raw"
+    },
+    {
+      "path": "host-runs/old-stock-control-a3/home/OPENBKN-HOST-ISOLATION.json",
+      "sha256": "f08e884e892ad0133d6a5789320fe0881940ddb2f6bcb833a7defce103dee2d6",
+      "bytes": 173,
+      "classification": "local-only; may contain task paths, copied-profile facts or temporary authenticated loopback URL; do not publish raw"
+    },
+    {
+      "path": "host-runs/old-stock-control-a3/home/storages/workspace.json",
+      "sha256": "8332e072a55f6c6ac287e41ac1a57640d630c2143cd55eeba907a3a33fb3240e",
+      "bytes": 227,
+      "classification": "local-only; may contain task paths, copied-profile facts or temporary authenticated loopback URL; do not publish raw"
+    },
+    {
+      "path": "host-runs/old-stock-control-a3/home/profiles/web/package.json",
+      "sha256": "210068ddb9ebc4cdf395ebb53020be6ccaaedb917e74dae16296d62394626398",
+      "bytes": 207,
+      "classification": "local-only; may contain task paths, copied-profile facts or temporary authenticated loopback URL; do not publish raw"
+    },
+    {
+      "path": "host-runs/old-stock-control-a3/home/storages/session_projcache/sessions/session-1.json",
+      "sha256": "607fa440aacc6319f1c276164053c2ab09d7a4e727dee6b62ab2f82727cea05e",
+      "bytes": 4211,
+      "classification": "local-only; may contain task paths, copied-profile facts or temporary authenticated loopback URL; do not publish raw"
+    },
+    {
+      "path": "host-runs/desktop-old-stock-control-first/home/storages/workspace.json",
+      "sha256": "8332e072a55f6c6ac287e41ac1a57640d630c2143cd55eeba907a3a33fb3240e",
+      "bytes": 227,
+      "classification": "local-only; may contain task paths, copied-profile facts or temporary authenticated loopback URL; do not publish raw"
+    },
+    {
+      "path": "host-runs/desktop-old-stock-control-first/home/profiles/desktop/package.json",
+      "sha256": "eafc5b4ebc3e702e8aaee00f6012ae1d76ef8ea24b8bbe03a003f369c5d2934f",
+      "bytes": 211,
+      "classification": "local-only; may contain task paths, copied-profile facts or temporary authenticated loopback URL; do not publish raw"
+    },
+    {
+      "path": "host-runs/desktop-old-stock-control-first/home/storages/session_projcache/sessions/session-1.json",
+      "sha256": "f22e248a3b39fc0dae7e168be393df963796d427dbc6a853bd58d697287a91ab",
+      "bytes": 4222,
+      "classification": "local-only; may contain task paths, copied-profile facts or temporary authenticated loopback URL; do not publish raw"
+    },
+    {
+      "path": "host-runs/rc3-stock-control-first/home/OPENBKN-HOST-ISOLATION.json",
+      "sha256": "c0588b762e1b729ab88bbec77c8a646e3a99070bcdb4d4a32ddf0a682900c009",
+      "bytes": 173,
+      "classification": "local-only; may contain task paths, copied-profile facts or temporary authenticated loopback URL; do not publish raw"
+    },
+    {
+      "path": "host-runs/rc3-stock-control-first/home/storages/workspace.json",
+      "sha256": "8332e072a55f6c6ac287e41ac1a57640d630c2143cd55eeba907a3a33fb3240e",
+      "bytes": 227,
+      "classification": "local-only; may contain task paths, copied-profile facts or temporary authenticated loopback URL; do not publish raw"
+    },
+    {
+      "path": "host-runs/rc3-stock-control-first/home/profiles/web/package.json",
+      "sha256": "210068ddb9ebc4cdf395ebb53020be6ccaaedb917e74dae16296d62394626398",
+      "bytes": 207,
+      "classification": "local-only; may contain task paths, copied-profile facts or temporary authenticated loopback URL; do not publish raw"
+    },
+    {
+      "path": "host-runs/rc3-stock-control-first/home/storages/session_projcache/sessions/session-1.json",
+      "sha256": "6d5f4dded0b001a2815bbb0dc6101b27816bef4b77432a49344f17b25b33cca0",
+      "bytes": 4811,
+      "classification": "local-only; may contain task paths, copied-profile facts or temporary authenticated loopback URL; do not publish raw"
+    },
+    {
+      "path": "host-runs/old-stock-control-a2/home/OPENBKN-HOST-ISOLATION.json",
+      "sha256": "f08e884e892ad0133d6a5789320fe0881940ddb2f6bcb833a7defce103dee2d6",
+      "bytes": 173,
+      "classification": "local-only; may contain task paths, copied-profile facts or temporary authenticated loopback URL; do not publish raw"
+    },
+    {
+      "path": "host-runs/old-stock-control-a2/home/storages/workspace.json",
+      "sha256": "8332e072a55f6c6ac287e41ac1a57640d630c2143cd55eeba907a3a33fb3240e",
+      "bytes": 227,
+      "classification": "local-only; may contain task paths, copied-profile facts or temporary authenticated loopback URL; do not publish raw"
+    },
+    {
+      "path": "host-runs/old-stock-control-a2/home/profiles/web/package.json",
+      "sha256": "210068ddb9ebc4cdf395ebb53020be6ccaaedb917e74dae16296d62394626398",
+      "bytes": 207,
+      "classification": "local-only; may contain task paths, copied-profile facts or temporary authenticated loopback URL; do not publish raw"
+    },
+    {
+      "path": "host-runs/old-stock-control/home/OPENBKN-HOST-ISOLATION.json",
+      "sha256": "f08e884e892ad0133d6a5789320fe0881940ddb2f6bcb833a7defce103dee2d6",
+      "bytes": 173,
+      "classification": "local-only; may contain task paths, copied-profile facts or temporary authenticated loopback URL; do not publish raw"
+    },
+    {
+      "path": "host-runs/old-stock-control/home/storages/workspace.json",
+      "sha256": "8332e072a55f6c6ac287e41ac1a57640d630c2143cd55eeba907a3a33fb3240e",
+      "bytes": 227,
+      "classification": "local-only; may contain task paths, copied-profile facts or temporary authenticated loopback URL; do not publish raw"
+    },
+    {
+      "path": "host-runs/old-stock-control/home/profiles/web/package.json",
+      "sha256": "210068ddb9ebc4cdf395ebb53020be6ccaaedb917e74dae16296d62394626398",
+      "bytes": 207,
+      "classification": "local-only; may contain task paths, copied-profile facts or temporary authenticated loopback URL; do not publish raw"
+    }
+  ],
+  "notIncluded": "Copied homes/profiles and entire dependency trees, Electron raw logs and ASAR extractions remain local; artifact outer hashes and public redacted summaries cover the deliverable identity. No private values are copied to this manifest."
+}

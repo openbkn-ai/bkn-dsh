@@ -1,0 +1,30 @@
+{
+  "at": "2026-10-21T13:57:04.141992+00:00",
+  "candidate": "-26",
+  "actual_desktop_host_pid_for_ui": 61151,
+  "b1_process_56681_evidence_completed_before_separate_ui_recovery_restart": true,
+  "ui_completed_after_recovery": {
+    "native_picker_cancel_retry_select_bind": true,
+    "focus_tab_wrap_escape": true,
+    "login_cancel_process_reaped": true,
+    "default_timeout_process_reaped": true,
+    "real_cli_browser_retry_and_two_network_sync": true,
+    "official_cli_restored_through_actual_ui": true,
+    "narrow_800_600": true,
+    "directory_and_diagnostics_locales": [
+      "en",
+      "zh"
+    ],
+    "keyboard_diagnostic_native_save": true
+  },
+  "real_model": false,
+  "sandbox_used": false,
+  "user_directory_or_login_help_required": false,
+  "notes": [
+    "One real retry browser authorization completed after the Host deadline; retained separately and retried successfully.",
+    "Native AX reported a visible resized control offscreen; screenshot-based input succeeded.",
+    "Diagnostics still disclose loaded/Host versions as not collected; no metadata invented."
+  ],
+  "diagnostics_readability": "failed visual review before -27; original screenshots retained",
+  "overall_ui_acceptance": false
+}

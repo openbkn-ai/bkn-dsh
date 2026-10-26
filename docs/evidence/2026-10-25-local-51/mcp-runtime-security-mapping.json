@@ -1,0 +1,48 @@
+[
+  {
+    "host": "0.2.0-rc.2",
+    "dshMcpVersion": "0.2.0-rc.2",
+    "dshTransportSha256": "758d8fc473b700b5d351158d06ce9f9e92c16e8b25497b08bb7bd2122a87f5dd",
+    "sdkVersion": "2.0.0",
+    "sdkEntrySha256": "60dc3a0f0f1cdafcceec0baf33c71687a2f378741a6810f86752ef1be75eeca9",
+    "usesStreamableHTTP": true,
+    "hasExplicitFetchOverride": false,
+    "hasExplicitRedirectPolicy": false,
+    "execution": "read-only manifest/source resolution; no SDK import, fetch or network call"
+  },
+  {
+    "host": "0.2.1-rc.2",
+    "dshMcpVersion": "0.2.1-rc.2",
+    "dshTransportSha256": "758d8fc473b700b5d351158d06ce9f9e92c16e8b25497b08bb7bd2122a87f5dd",
+    "sdkVersion": "2.2.0",
+    "sdkEntrySha256": "e7f532409081f6bfb1490fdab84a9c12d5fc666b20a1d2d8ea23a530f65dfd3c",
+    "usesStreamableHTTP": true,
+    "hasExplicitFetchOverride": false,
+    "hasExplicitRedirectPolicy": false,
+    "execution": "read-only manifest/source resolution; no SDK import, fetch or network call"
+  },
+  {
+    "host": "0.2.0-rc.2",
+    "form": "npm/web",
+    "dshMcpVersion": "0.2.0-rc.2",
+    "dshTransportSha256": "758d8fc473b700b5d351158d06ce9f9e92c16e8b25497b08bb7bd2122a87f5dd",
+    "sdkVersion": "2.0.0",
+    "sdkEntrySha256": "60dc3a0f0f1cdafcceec0baf33c71687a2f378741a6810f86752ef1be75eeca9",
+    "usesStreamableHTTP": true,
+    "hasExplicitFetchOverride": false,
+    "hasExplicitRedirectPolicy": false,
+    "execution": "read-only manifest/source resolution; no SDK import, fetch or network call"
+  },
+  {
+    "host": "0.2.1-rc.2",
+    "form": "npm/web",
+    "dshMcpVersion": "0.2.1-rc.2",
+    "dshTransportSha256": "758d8fc473b700b5d351158d06ce9f9e92c16e8b25497b08bb7bd2122a87f5dd",
+    "sdkVersion": "2.2.0",
+    "sdkEntrySha256": "e7f532409081f6bfb1490fdab84a9c12d5fc666b20a1d2d8ea23a530f65dfd3c",
+    "usesStreamableHTTP": true,
+    "hasExplicitFetchOverride": false,
+    "hasExplicitRedirectPolicy": false,
+    "execution": "read-only manifest/source resolution; no SDK import, fetch or network call"
+  }
+]

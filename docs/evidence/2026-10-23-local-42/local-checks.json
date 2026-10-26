@@ -1,0 +1,19 @@
+{
+  "originalLauncherRegression": "failed as expected: Argument element count differs",
+  "correctedLauncherRegression": "pass: initializer6/normal10 elements; real Node argv with spaces matched",
+  "powershellRuntime": "task-local official7.6.8 on macOS; not Windows5.1",
+  "powershellScriptsParsed": 4,
+  "revisedKitInputsVerified": 25,
+  "candidateFilesVerified": 82,
+  "sdkRegistryIntegrityMatched": true,
+  "originalLocalKitVerified": true,
+  "frozenRemoteRefsUnchanged": true,
+  "zipCopyVerified": true,
+  "productionPackageChanged": false,
+  "sourceSuitesRepeated": false,
+  "nativeWindowsTestsThisSession": false,
+  "newKitCommitted": false,
+  "newKitPushed": false,
+  "ciRun": null,
+  "formalAcceptanceEligible": false
+}

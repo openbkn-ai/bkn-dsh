@@ -1,0 +1,597 @@
+{
+  "checkedAt": "2026-10-25T01:37:51.059Z",
+  "node": "v24.19.0",
+  "scope": "isolated one-line policy proposal, not production repair or acceptance",
+  "realCredentialsOrPlatformCalls": false,
+  "frozenArtifactsChanged": false,
+  "hostsLaunched": false,
+  "rows": [
+    {
+      "host": "old",
+      "sdk": "2.0.0",
+      "entrySha256": "60dc3a0f0f1cdafcceec0baf33c71687a2f378741a6810f86752ef1be75eeca9",
+      "runtime": "v24.19.0",
+      "execution": "actual installed SDK transport; synthetic loopback servers; no full Host or CLI"
+    },
+    {
+      "host": "old",
+      "sdk": "2.0.0",
+      "kind": "frozen-control",
+      "method": "POST",
+      "status": 301,
+      "secondOriginRequests": 1,
+      "secondOrigin": [
+        {
+          "origin": "B",
+          "method": "GET",
+          "path": "/final",
+          "authorization": false,
+          "session": true,
+          "custom": true,
+          "question": false,
+          "hasBody": false
+        }
+      ],
+      "rejected": true,
+      "error": {
+        "name": "SdkHttpError",
+        "code": "CLIENT_HTTP_NOT_IMPLEMENTED",
+        "status": 405
+      },
+      "result": "PASS"
+    },
+    {
+      "host": "old",
+      "sdk": "2.0.0",
+      "kind": "frozen-control",
+      "method": "POST",
+      "status": 302,
+      "secondOriginRequests": 1,
+      "secondOrigin": [
+        {
+          "origin": "B",
+          "method": "GET",
+          "path": "/final",
+          "authorization": false,
+          "session": true,
+          "custom": true,
+          "question": false,
+          "hasBody": false
+        }
+      ],
+      "rejected": true,
+      "error": {
+        "name": "SdkHttpError",
+        "code": "CLIENT_HTTP_NOT_IMPLEMENTED",
+        "status": 405
+      },
+      "result": "PASS"
+    },
+    {
+      "host": "old",
+      "sdk": "2.0.0",
+      "kind": "frozen-control",
+      "method": "POST",
+      "status": 303,
+      "secondOriginRequests": 1,
+      "secondOrigin": [
+        {
+          "origin": "B",
+          "method": "GET",
+          "path": "/final",
+          "authorization": false,
+          "session": true,
+          "custom": true,
+          "question": false,
+          "hasBody": false
+        }
+      ],
+      "rejected": true,
+      "error": {
+        "name": "SdkHttpError",
+        "code": "CLIENT_HTTP_NOT_IMPLEMENTED",
+        "status": 405
+      },
+      "result": "PASS"
+    },
+    {
+      "host": "old",
+      "sdk": "2.0.0",
+      "kind": "frozen-control",
+      "method": "POST",
+      "status": 307,
+      "secondOriginRequests": 1,
+      "secondOrigin": [
+        {
+          "origin": "B",
+          "method": "POST",
+          "path": "/final",
+          "authorization": false,
+          "session": true,
+          "custom": true,
+          "question": true,
+          "hasBody": true
+        }
+      ],
+      "rejected": false,
+      "result": "PASS"
+    },
+    {
+      "host": "old",
+      "sdk": "2.0.0",
+      "kind": "frozen-control",
+      "method": "POST",
+      "status": 308,
+      "secondOriginRequests": 1,
+      "secondOrigin": [
+        {
+          "origin": "B",
+          "method": "POST",
+          "path": "/final",
+          "authorization": false,
+          "session": true,
+          "custom": true,
+          "question": true,
+          "hasBody": true
+        }
+      ],
+      "rejected": false,
+      "result": "PASS"
+    },
+    {
+      "host": "old",
+      "sdk": "2.0.0",
+      "kind": "frozen-control",
+      "method": "GET",
+      "status": 301,
+      "secondOriginRequests": 1,
+      "secondOrigin": [
+        {
+          "origin": "B",
+          "method": "GET",
+          "path": "/final",
+          "authorization": false,
+          "session": true,
+          "custom": true,
+          "question": false,
+          "hasBody": false
+        }
+      ],
+      "rejected": false,
+      "result": "PASS"
+    },
+    {
+      "host": "old",
+      "sdk": "2.0.0",
+      "kind": "frozen-control",
+      "method": "GET",
+      "status": 302,
+      "secondOriginRequests": 1,
+      "secondOrigin": [
+        {
+          "origin": "B",
+          "method": "GET",
+          "path": "/final",
+          "authorization": false,
+          "session": true,
+          "custom": true,
+          "question": false,
+          "hasBody": false
+        }
+      ],
+      "rejected": false,
+      "result": "PASS"
+    },
+    {
+      "host": "old",
+      "sdk": "2.0.0",
+      "kind": "frozen-control",
+      "method": "GET",
+      "status": 303,
+      "secondOriginRequests": 1,
+      "secondOrigin": [
+        {
+          "origin": "B",
+          "method": "GET",
+          "path": "/final",
+          "authorization": false,
+          "session": true,
+          "custom": true,
+          "question": false,
+          "hasBody": false
+        }
+      ],
+      "rejected": false,
+      "result": "PASS"
+    },
+    {
+      "host": "old",
+      "sdk": "2.0.0",
+      "kind": "frozen-control",
+      "method": "GET",
+      "status": 307,
+      "secondOriginRequests": 1,
+      "secondOrigin": [
+        {
+          "origin": "B",
+          "method": "GET",
+          "path": "/final",
+          "authorization": false,
+          "session": true,
+          "custom": true,
+          "question": false,
+          "hasBody": false
+        }
+      ],
+      "rejected": false,
+      "result": "PASS"
+    },
+    {
+      "host": "old",
+      "sdk": "2.0.0",
+      "kind": "frozen-control",
+      "method": "GET",
+      "status": 308,
+      "secondOriginRequests": 1,
+      "secondOrigin": [
+        {
+          "origin": "B",
+          "method": "GET",
+          "path": "/final",
+          "authorization": false,
+          "session": true,
+          "custom": true,
+          "question": false,
+          "hasBody": false
+        }
+      ],
+      "rejected": false,
+      "result": "PASS"
+    },
+    {
+      "host": "old",
+      "sdk": "2.0.0",
+      "kind": "frozen-control",
+      "method": "DELETE",
+      "status": 301,
+      "secondOriginRequests": 1,
+      "secondOrigin": [
+        {
+          "origin": "B",
+          "method": "DELETE",
+          "path": "/final",
+          "authorization": false,
+          "session": true,
+          "custom": true,
+          "question": false,
+          "hasBody": false
+        }
+      ],
+      "rejected": false,
+      "result": "PASS"
+    },
+    {
+      "host": "old",
+      "sdk": "2.0.0",
+      "kind": "frozen-control",
+      "method": "DELETE",
+      "status": 302,
+      "secondOriginRequests": 1,
+      "secondOrigin": [
+        {
+          "origin": "B",
+          "method": "DELETE",
+          "path": "/final",
+          "authorization": false,
+          "session": true,
+          "custom": true,
+          "question": false,
+          "hasBody": false
+        }
+      ],
+      "rejected": false,
+      "result": "PASS"
+    },
+    {
+      "host": "old",
+      "sdk": "2.0.0",
+      "kind": "frozen-control",
+      "method": "DELETE",
+      "status": 303,
+      "secondOriginRequests": 1,
+      "secondOrigin": [
+        {
+          "origin": "B",
+          "method": "GET",
+          "path": "/final",
+          "authorization": false,
+          "session": true,
+          "custom": true,
+          "question": false,
+          "hasBody": false
+        }
+      ],
+      "rejected": false,
+      "result": "PASS"
+    },
+    {
+      "host": "old",
+      "sdk": "2.0.0",
+      "kind": "frozen-control",
+      "method": "DELETE",
+      "status": 307,
+      "secondOriginRequests": 1,
+      "secondOrigin": [
+        {
+          "origin": "B",
+          "method": "DELETE",
+          "path": "/final",
+          "authorization": false,
+          "session": true,
+          "custom": true,
+          "question": false,
+          "hasBody": false
+        }
+      ],
+      "rejected": false,
+      "result": "PASS"
+    },
+    {
+      "host": "old",
+      "sdk": "2.0.0",
+      "kind": "frozen-control",
+      "method": "DELETE",
+      "status": 308,
+      "secondOriginRequests": 1,
+      "secondOrigin": [
+        {
+          "origin": "B",
+          "method": "DELETE",
+          "path": "/final",
+          "authorization": false,
+          "session": true,
+          "custom": true,
+          "question": false,
+          "hasBody": false
+        }
+      ],
+      "rejected": false,
+      "result": "PASS"
+    },
+    {
+      "host": "old",
+      "sdk": "2.0.0",
+      "kind": "proposed-deny-redirects",
+      "method": "POST",
+      "status": 301,
+      "secondOriginRequests": 0,
+      "secondOrigin": [],
+      "rejected": true,
+      "error": {
+        "name": "TypeError",
+        "cause": "unexpected redirect"
+      },
+      "result": "PASS"
+    },
+    {
+      "host": "old",
+      "sdk": "2.0.0",
+      "kind": "proposed-deny-redirects",
+      "method": "POST",
+      "status": 302,
+      "secondOriginRequests": 0,
+      "secondOrigin": [],
+      "rejected": true,
+      "error": {
+        "name": "TypeError",
+        "cause": "unexpected redirect"
+      },
+      "result": "PASS"
+    },
+    {
+      "host": "old",
+      "sdk": "2.0.0",
+      "kind": "proposed-deny-redirects",
+      "method": "POST",
+      "status": 303,
+      "secondOriginRequests": 0,
+      "secondOrigin": [],
+      "rejected": true,
+      "error": {
+        "name": "TypeError",
+        "cause": "unexpected redirect"
+      },
+      "result": "PASS"
+    },
+    {
+      "host": "old",
+      "sdk": "2.0.0",
+      "kind": "proposed-deny-redirects",
+      "method": "POST",
+      "status": 307,
+      "secondOriginRequests": 0,
+      "secondOrigin": [],
+      "rejected": true,
+      "error": {
+        "name": "TypeError",
+        "cause": "unexpected redirect"
+      },
+      "result": "PASS"
+    },
+    {
+      "host": "old",
+      "sdk": "2.0.0",
+      "kind": "proposed-deny-redirects",
+      "method": "POST",
+      "status": 308,
+      "secondOriginRequests": 0,
+      "secondOrigin": [],
+      "rejected": true,
+      "error": {
+        "name": "TypeError",
+        "cause": "unexpected redirect"
+      },
+      "result": "PASS"
+    },
+    {
+      "host": "old",
+      "sdk": "2.0.0",
+      "kind": "proposed-deny-redirects",
+      "method": "GET",
+      "status": 301,
+      "secondOriginRequests": 0,
+      "secondOrigin": [],
+      "rejected": true,
+      "error": {
+        "name": "TypeError",
+        "cause": "unexpected redirect"
+      },
+      "result": "PASS"
+    },
+    {
+      "host": "old",
+      "sdk": "2.0.0",
+      "kind": "proposed-deny-redirects",
+      "method": "GET",
+      "status": 302,
+      "secondOriginRequests": 0,
+      "secondOrigin": [],
+      "rejected": true,
+      "error": {
+        "name": "TypeError",
+        "cause": "unexpected redirect"
+      },
+      "result": "PASS"
+    },
+    {
+      "host": "old",
+      "sdk": "2.0.0",
+      "kind": "proposed-deny-redirects",
+      "method": "GET",
+      "status": 303,
+      "secondOriginRequests": 0,
+      "secondOrigin": [],
+      "rejected": true,
+      "error": {
+        "name": "TypeError",
+        "cause": "unexpected redirect"
+      },
+      "result": "PASS"
+    },
+    {
+      "host": "old",
+      "sdk": "2.0.0",
+      "kind": "proposed-deny-redirects",
+      "method": "GET",
+      "status": 307,
+      "secondOriginRequests": 0,
+      "secondOrigin": [],
+      "rejected": true,
+      "error": {
+        "name": "TypeError",
+        "cause": "unexpected redirect"
+      },
+      "result": "PASS"
+    },
+    {
+      "host": "old",
+      "sdk": "2.0.0",
+      "kind": "proposed-deny-redirects",
+      "method": "GET",
+      "status": 308,
+      "secondOriginRequests": 0,
+      "secondOrigin": [],
+      "rejected": true,
+      "error": {
+        "name": "TypeError",
+        "cause": "unexpected redirect"
+      },
+      "result": "PASS"
+    },
+    {
+      "host": "old",
+      "sdk": "2.0.0",
+      "kind": "proposed-deny-redirects",
+      "method": "DELETE",
+      "status": 301,
+      "secondOriginRequests": 0,
+      "secondOrigin": [],
+      "rejected": true,
+      "error": {
+        "name": "TypeError",
+        "cause": "unexpected redirect"
+      },
+      "result": "PASS"
+    },
+    {
+      "host": "old",
+      "sdk": "2.0.0",
+      "kind": "proposed-deny-redirects",
+      "method": "DELETE",
+      "status": 302,
+      "secondOriginRequests": 0,
+      "secondOrigin": [],
+      "rejected": true,
+      "error": {
+        "name": "TypeError",
+        "cause": "unexpected redirect"
+      },
+      "result": "PASS"
+    },
+    {
+      "host": "old",
+      "sdk": "2.0.0",
+      "kind": "proposed-deny-redirects",
+      "method": "DELETE",
+      "status": 303,
+      "secondOriginRequests": 0,
+      "secondOrigin": [],
+      "rejected": true,
+      "error": {
+        "name": "TypeError",
+        "cause": "unexpected redirect"
+      },
+      "result": "PASS"
+    },
+    {
+      "host": "old",
+      "sdk": "2.0.0",
+      "kind": "proposed-deny-redirects",
+      "method": "DELETE",
+      "status": 307,
+      "secondOriginRequests": 0,
+      "secondOrigin": [],
+      "rejected": true,
+      "error": {
+        "name": "TypeError",
+        "cause": "unexpected redirect"
+      },
+      "result": "PASS"
+    },
+    {
+      "host": "old",
+      "sdk": "2.0.0",
+      "kind": "proposed-deny-redirects",
+      "method": "DELETE",
+      "status": 308,
+      "secondOriginRequests": 0,
+      "secondOrigin": [],
+      "rejected": true,
+      "error": {
+        "name": "TypeError",
+        "cause": "unexpected redirect"
+      },
+      "result": "PASS"
+    }
+  ],
+  "failure": {
+    "name": "AssertionError",
+    "message": "Expected values to be strictly equal:\n\ntrue !== false\n",
+    "stack": "AssertionError [ERR_ASSERTION]: Expected values to be strictly equal:\n\ntrue !== false\n\n    at file:///Users/dominiczhang/Documents/project/app/openBKN/bkn-dsh/release/local-52/redirect-probe.mjs:114:14\n    at process.processTicksAndRejections (node:internal/process/task_queues:104:5)"
+  },
+  "serversClosed": true,
+  "ports": [
+    "50735",
+    "50736"
+  ]
+}

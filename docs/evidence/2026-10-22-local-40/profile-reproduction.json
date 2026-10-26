@@ -1,0 +1,38 @@
+[
+  {
+    "host": "old",
+    "plugin": "0.2.0-rc.2-openbkn.0.2.0-29",
+    "records": [
+      {
+        "name": "@deepseek-ai/cordis",
+        "hostVersion": "4.0.4",
+        "profileVersion": "4.0.4",
+        "samePhysicalPackage": true
+      },
+      {
+        "name": "@deepseek-ai/schemastery",
+        "hostVersion": "3.18.4",
+        "profileVersion": "3.18.5",
+        "samePhysicalPackage": false
+      }
+    ]
+  },
+  {
+    "host": "new",
+    "plugin": "0.2.0-rc.2-openbkn.0.2.0-29",
+    "records": [
+      {
+        "name": "@deepseek-ai/cordis",
+        "hostVersion": "4.0.5",
+        "profileVersion": "4.0.5",
+        "samePhysicalPackage": true
+      },
+      {
+        "name": "@deepseek-ai/schemastery",
+        "hostVersion": "3.18.5",
+        "profileVersion": "3.18.5",
+        "samePhysicalPackage": false
+      }
+    ]
+  }
+]

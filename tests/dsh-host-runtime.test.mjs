@@ -19,7 +19,7 @@ test('runtime identity inspection refuses a nested DSH copy even when direct pin
     write(join(directory, 'node_modules/@deepseek-ai/dsh-b'), { name: '@deepseek-ai/dsh-b', version: '0.2.0-rc.2' })
     write(join(a, 'node_modules/@deepseek-ai/dsh-b'), { name: '@deepseek-ai/dsh-b', version: '0.2.0-rc.2' })
     assert.equal(Object.keys(inspectDshClosure(directory, '0.2.0-rc.2')).length, 2)
-    write(join(a, 'node_modules/@deepseek-ai/dsh-b'), { name: '@deepseek-ai/dsh-b', version: '0.2.1-rc.2' })
+    write(join(a, 'node_modules/@deepseek-ai/dsh-b'), { name: '@deepseek-ai/dsh-b', version: '0.2.1-rc.3' })
     assert.throws(() => inspectDshClosure(directory, '0.2.0-rc.2'), /Mixed DSH runtime/)
   } finally { rmSync(directory, { recursive: true, force: true }) }
 })

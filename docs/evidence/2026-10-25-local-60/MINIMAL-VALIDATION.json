@@ -1,0 +1,36 @@
+{
+  "checkedAt": "2026-10-25T13:03:16.155389+00:00",
+  "node": "v24.19.0",
+  "scope": "New non-GUI preparation gate only; no Host/runtime/Windows/model/GUI execution",
+  "newVerifierSyntax": "PASS",
+  "cases": [
+    {
+      "case": "no-gui-no-wlife",
+      "result": "PASS",
+      "exitCode": 0,
+      "filesMatched": [
+        82,
+        12,
+        12
+      ],
+      "guiSigningWLifeChromeOrLoginSupplied": false,
+      "inputReadyOnly": true
+    },
+    {
+      "case": "tampered-payload",
+      "result": "PASS",
+      "observedRejectionExitCode": 1,
+      "falsePassPrevented": true
+    },
+    {
+      "case": "receipt-inside-kit",
+      "result": "PASS",
+      "observedRejectionExitCode": 1,
+      "falsePassPrevented": true
+    }
+  ],
+  "unchangedProbeAndHelpersReusedByHash": true,
+  "semanticSuitesRepeated": [],
+  "ciRun": null,
+  "formalAcceptanceEligible": false
+}

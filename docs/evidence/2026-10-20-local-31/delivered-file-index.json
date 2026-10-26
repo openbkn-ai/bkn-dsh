@@ -1,0 +1,65 @@
+{
+  "checked_at": "2026-10-20T07:01:48.431496+00:00",
+  "records": [
+    {
+      "host": "0.2.0-rc.2",
+      "case_id": "orders-count-status",
+      "native_session_id": "session-48c32c8d-f89e-4b4d-b6ea-0b4c71ebb483",
+      "file": "/Users/dominiczhang/Documents/project/app/openBKN/bkn-dsh/release/ci-41507f9/workspaces/supply-old/openbkn-c9b2902b-a4b1-48a3-9180-a80cbd1b8182-sales_order_detail-2de52eadda6b4dedb294ab6d2310015b.csv",
+      "bytes": 8473,
+      "sha256": "d9c26b8f8cc23ca064a6ce7e859f8a90fa9417a1e739ce798238910e2e528437",
+      "opened_from_own_final_link": false,
+      "not_a_replacement_for_failed_sales_detail": true
+    },
+    {
+      "host": "0.2.0-rc.2",
+      "case_id": "bom-structure",
+      "native_session_id": "session-8a0bb247-e839-4d78-a594-0c6e6eaae857",
+      "file": "/Users/dominiczhang/Documents/project/app/openBKN/bkn-dsh/release/ci-41507f9/workspaces/supply-old/openbkn-e410ab53-7dcb-4904-a9c2-22e8cdc5b4da-bom_list-2c9517d2267c4a86814f5eb3d18efef4.csv",
+      "bytes": 35381,
+      "sha256": "dc2d7c0281f506e462eb839d75d959715b6658a093aba22c838d03960a574fcd",
+      "opened_from_own_final_link": true,
+      "not_a_replacement_for_failed_sales_detail": false
+    },
+    {
+      "host": "0.2.0-rc.2",
+      "case_id": "bom-usage-inventory",
+      "native_session_id": "session-9753ff34-d844-4eeb-830c-79d8fe1882b9",
+      "file": "/Users/dominiczhang/Documents/project/app/openBKN/bkn-dsh/release/ci-41507f9/workspaces/supply-old/openbkn-38ce857b-11a5-4411-9ebe-30f3330aa60a-layered_inventory-c4beee43f39f493fb7842b28f4825460.csv",
+      "bytes": 299019,
+      "sha256": "98ec958bd16e2ae71295c73d6b059e3166d9e9dcb7f60b9f465823ab7946b9f6",
+      "opened_from_own_final_link": true,
+      "not_a_replacement_for_failed_sales_detail": false
+    },
+    {
+      "host": "0.2.1-rc.2",
+      "case_id": "sales-order-detail",
+      "native_session_id": "session-667bd486-a539-44e8-a329-5a991d285ed7",
+      "file": "/Users/dominiczhang/Documents/project/app/openBKN/bkn-dsh/release/ci-41507f9/workspaces/supply-new/openbkn-44b83895-ea47-4dda-b191-b59ff640d83f-sales_order_detail-0bf1fcb9472344358b4fb60ef4c55d4f.csv",
+      "bytes": 8473,
+      "sha256": "d9c26b8f8cc23ca064a6ce7e859f8a90fa9417a1e739ce798238910e2e528437",
+      "opened_from_own_final_link": true,
+      "not_a_replacement_for_failed_sales_detail": false
+    },
+    {
+      "host": "0.2.1-rc.2",
+      "case_id": "bom-usage-inventory",
+      "native_session_id": "session-9ffa3244-ba6d-4dfc-938b-1ccbbe8d1d7c",
+      "file": "/Users/dominiczhang/Documents/project/app/openBKN/bkn-dsh/release/ci-41507f9/workspaces/supply-new/openbkn-9b9f6545-98e9-45b3-93df-1ddc5b7dab86-layered_inventory-6a99cbac94f54d9bada4e4856b5ac929.csv",
+      "bytes": 299019,
+      "sha256": "98ec958bd16e2ae71295c73d6b059e3166d9e9dcb7f60b9f465823ab7946b9f6",
+      "opened_from_own_final_link": true,
+      "not_a_replacement_for_failed_sales_detail": false
+    },
+    {
+      "host": "0.2.1-rc.2",
+      "case_id": "bom-structure",
+      "native_session_id": "session-bbfe8895-f4ee-4fd1-be56-ce4d294992c1",
+      "file": "/Users/dominiczhang/Documents/project/app/openBKN/bkn-dsh/release/ci-41507f9/workspaces/supply-new/openbkn-ff09c890-5fe4-4d71-9a87-4537078fe310-bom_list-66d819c030954c988d979888f2ca4208.csv",
+      "bytes": 35381,
+      "sha256": "dc2d7c0281f506e462eb839d75d959715b6658a093aba22c838d03960a574fcd",
+      "opened_from_own_final_link": true,
+      "not_a_replacement_for_failed_sales_detail": false
+    }
+  ]
+}

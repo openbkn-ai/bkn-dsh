@@ -1,0 +1,95 @@
+{
+  "checked_at": "2026-10-21T15:54:11.317165+00:00",
+  "artifact_checks": [
+    {
+      "check": "standalone ZIP extraction and verifier",
+      "passed": true,
+      "files": 49
+    },
+    {
+      "check": "wrong tarball rejected before extraction",
+      "passed": true,
+      "exit_code_nonzero": true
+    },
+    {
+      "check": "new runtime template and existing-root refusal",
+      "host": "0.2.0-rc.2",
+      "passed": true,
+      "packages_installed": false
+    },
+    {
+      "check": "new runtime template and existing-root refusal",
+      "host": "0.2.1-rc.2",
+      "passed": true,
+      "packages_installed": false
+    },
+    {
+      "check": "modified kit input rejected",
+      "passed": true,
+      "exit_code_nonzero": true
+    }
+  ],
+  "windows_zip": {
+    "file": "windows-local27-kit.zip",
+    "bytes": 528646,
+    "sha256": "6f9834ca15cc3525d9c41b868d28124e45a0e5bed18b37b1723cd03e9565d414"
+  },
+  "text_files_scanned": 100,
+  "secret_value_or_pattern_hits": 0,
+  "json_parse_passed": true,
+  "images": [
+    {
+      "file": "desktop-new-recovery.png",
+      "format": "JPEG",
+      "width": 1280,
+      "height": 820
+    },
+    {
+      "file": "desktop-old-standard.png",
+      "format": "JPEG",
+      "width": 1280,
+      "height": 820
+    },
+    {
+      "file": "desktop-old-invalid-token.png",
+      "format": "JPEG",
+      "width": 1280,
+      "height": 820
+    },
+    {
+      "file": "login-success.png",
+      "format": "JPEG",
+      "width": 1920,
+      "height": 828
+    },
+    {
+      "file": "desktop-new-standard.png",
+      "format": "JPEG",
+      "width": 1280,
+      "height": 820
+    },
+    {
+      "file": "desktop-old-recovery.png",
+      "format": "JPEG",
+      "width": 1280,
+      "height": 820
+    },
+    {
+      "file": "desktop-new-invalid-token.png",
+      "format": "JPEG",
+      "width": 1280,
+      "height": 820
+    }
+  ],
+  "local_links_checked": 69,
+  "broken_links": [],
+  "all_task_listeners_released": true,
+  "personal_dsh_preserved": true,
+  "cli_base_url": "https://192.168.50.129",
+  "cli_expired": false,
+  "native_windows_executed": false,
+  "powershell_executed": false,
+  "source_plugin_changed_this_round": false,
+  "new_ci_run": false,
+  "new_push": false
+}

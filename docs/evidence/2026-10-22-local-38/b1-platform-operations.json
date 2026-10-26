@@ -1,0 +1,248 @@
+{
+  "checkedAt": "2026-10-22T02:57:09.337593+00:00",
+  "realModel": false,
+  "localProtocolDriver": true,
+  "directFormalPlatform": true,
+  "checks": [
+    {
+      "phase": "R38_B1:desktop-old:baseline",
+      "interactionId": "int_339dfa8a7fdf65e3af2c511cb64cb2fa",
+      "platformOperations": [
+        {
+          "tool_name": "query_object_instance",
+          "status": "completed"
+        }
+      ],
+      "executionStatus": "completed",
+      "observedTotalCounts": [
+        40
+      ],
+      "sandboxUsed": false
+    },
+    {
+      "phase": "R38_B1:desktop-new:baseline",
+      "interactionId": "int_1faed596d7ab5297df9e91ec3993061d",
+      "platformOperations": [
+        {
+          "tool_name": "query_object_instance",
+          "status": "completed"
+        }
+      ],
+      "executionStatus": "completed",
+      "observedTotalCounts": [
+        40
+      ],
+      "sandboxUsed": false
+    },
+    {
+      "phase": "R38_B1:npm-new:baseline",
+      "interactionId": "int_18771ea220e9101a5d3ed82336aee493",
+      "platformOperations": [
+        {
+          "tool_name": "query_object_instance",
+          "status": "completed"
+        }
+      ],
+      "executionStatus": "completed",
+      "observedTotalCounts": [
+        40
+      ],
+      "sandboxUsed": false
+    },
+    {
+      "phase": "R38_B1:npm-old:baseline",
+      "interactionId": "int_ef20563989337d71e48427ca803862e4",
+      "platformOperations": [
+        {
+          "tool_name": "query_object_instance",
+          "status": "completed"
+        }
+      ],
+      "executionStatus": "completed",
+      "observedTotalCounts": [
+        40
+      ],
+      "sandboxUsed": false
+    },
+    {
+      "phase": "R38_B1:desktop-old:after-cli-refresh",
+      "interactionId": "int_1c7a94a151568849c835743772d4904e",
+      "platformOperations": [
+        {
+          "tool_name": "query_object_instance",
+          "status": "completed"
+        }
+      ],
+      "executionStatus": "completed",
+      "observedTotalCounts": [
+        40
+      ],
+      "sandboxUsed": false
+    },
+    {
+      "phase": "R38_B1:desktop-new:after-cli-refresh",
+      "interactionId": "int_d1951f2674c417ae46b83004399fb1a9",
+      "platformOperations": [
+        {
+          "tool_name": "query_object_instance",
+          "status": "completed"
+        }
+      ],
+      "executionStatus": "completed",
+      "observedTotalCounts": [
+        40
+      ],
+      "sandboxUsed": false
+    },
+    {
+      "phase": "R38_B1:npm-old:after-cli-refresh",
+      "interactionId": "int_df37afdfdd4e136614cffd92486259c1",
+      "platformOperations": [
+        {
+          "tool_name": "query_object_instance",
+          "status": "completed"
+        }
+      ],
+      "executionStatus": "completed",
+      "observedTotalCounts": [
+        40
+      ],
+      "sandboxUsed": false
+    },
+    {
+      "phase": "R38_B1:npm-new:after-cli-refresh",
+      "interactionId": "int_8dc38a1deb30f87ba29e1dbd0546487f",
+      "platformOperations": [
+        {
+          "tool_name": "query_object_instance",
+          "status": "completed"
+        }
+      ],
+      "executionStatus": "completed",
+      "observedTotalCounts": [
+        40
+      ],
+      "sandboxUsed": false
+    },
+    {
+      "phase": "R38_B1:desktop-old:after-browser-login",
+      "interactionId": "int_8af382a28fbd9ffde4b84b1ded9b9920",
+      "platformOperations": [
+        {
+          "tool_name": "query_object_instance",
+          "status": "completed"
+        }
+      ],
+      "executionStatus": "completed",
+      "observedTotalCounts": [
+        40
+      ],
+      "sandboxUsed": false
+    },
+    {
+      "phase": "R38_B1:desktop-new:after-browser-login",
+      "interactionId": "int_d3c0b936ca33052629e5fd8a8bc9463c",
+      "platformOperations": [
+        {
+          "tool_name": "query_object_instance",
+          "status": "completed"
+        }
+      ],
+      "executionStatus": "completed",
+      "observedTotalCounts": [
+        40
+      ],
+      "sandboxUsed": false
+    },
+    {
+      "phase": "R38_B1:npm-old:after-browser-login",
+      "interactionId": "int_de6882c8d6f9cfa40c43b2839c2f6535",
+      "platformOperations": [
+        {
+          "tool_name": "query_object_instance",
+          "status": "completed"
+        }
+      ],
+      "executionStatus": "completed",
+      "observedTotalCounts": [
+        40
+      ],
+      "sandboxUsed": false
+    },
+    {
+      "phase": "R38_B1:npm-new:after-browser-login",
+      "interactionId": "int_f3e38716c65ef2fb56ca303a360780a9",
+      "platformOperations": [
+        {
+          "tool_name": "query_object_instance",
+          "status": "completed"
+        }
+      ],
+      "executionStatus": "completed",
+      "observedTotalCounts": [
+        40
+      ],
+      "sandboxUsed": false
+    },
+    {
+      "phase": "R38_B1:desktop-old:after-owner-reload",
+      "interactionId": "int_f4fab09f7a606f00c5831a89f309e713",
+      "platformOperations": [
+        {
+          "tool_name": "query_object_instance",
+          "status": "completed"
+        }
+      ],
+      "executionStatus": "completed",
+      "observedTotalCounts": [
+        40
+      ],
+      "sandboxUsed": false
+    },
+    {
+      "phase": "R38_B1:desktop-new:after-owner-reload",
+      "interactionId": "int_483fcb1c82c312307118f65ee8bafc11",
+      "platformOperations": [
+        {
+          "tool_name": "query_object_instance",
+          "status": "completed"
+        }
+      ],
+      "executionStatus": "completed",
+      "observedTotalCounts": [
+        40
+      ],
+      "sandboxUsed": false
+    },
+    {
+      "phase": "R38_B1:npm-old:after-owner-reload",
+      "interactionId": "int_74ea7a3591fc645f5f9d9fd2672c3c30",
+      "platformOperations": [
+        {
+          "tool_name": "query_object_instance",
+          "status": "completed"
+        }
+      ],
+      "executionStatus": "completed",
+      "observedTotalCounts": [
+        40
+      ],
+      "sandboxUsed": false
+    },
+    {
+      "phase": "R38_B1:npm-new:after-owner-reload",
+      "interactionId": "int_109a23b6324e2b08793deb8f40f4f885",
+      "platformOperations": [
+        {
+          "tool_name": "query_object_instance",
+          "status": "completed"
+        }
+      ],
+      "executionStatus": "completed",
+      "observedTotalCounts": [
+        40
+      ],
+      "sandboxUsed": false
+    }
+  ]
+}

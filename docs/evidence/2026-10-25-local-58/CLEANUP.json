@@ -1,0 +1,92 @@
+[
+  {
+    "id": "npm-old",
+    "pid": 96633,
+    "exit": {
+      "code": 0,
+      "signal": null
+    },
+    "exited": true,
+    "ports": [
+      51020
+    ],
+    "method": "owned subprocess SIGTERM",
+    "epipeCount": 0,
+    "telemetryMissingVersionWarning": false,
+    "authOutcome": "PASS",
+    "pidStillPresent": false,
+    "portsReleased": true
+  },
+  {
+    "id": "npm-rc3",
+    "pid": 95654,
+    "exit": {
+      "code": 0,
+      "signal": null
+    },
+    "exited": true,
+    "ports": [
+      50695
+    ],
+    "method": "owned subprocess SIGTERM",
+    "epipeCount": 0,
+    "telemetryMissingVersionWarning": false,
+    "authOutcome": "preparation timeout, not a passing auth case",
+    "pidStillPresent": false,
+    "portsReleased": true
+  },
+  {
+    "id": "desktop-old",
+    "pid": 96735,
+    "exit": {
+      "code": 0,
+      "signal": null
+    },
+    "exited": true,
+    "ports": [
+      19387
+    ],
+    "method": "official Desktop shutdown IPC",
+    "epipeCount": 0,
+    "telemetryMissingVersionWarning": true,
+    "authOutcome": "PASS",
+    "pidStillPresent": false,
+    "portsReleased": true
+  },
+  {
+    "id": "desktop-rc3",
+    "pid": 96682,
+    "exit": {
+      "code": 0,
+      "signal": null
+    },
+    "exited": true,
+    "ports": [
+      51083
+    ],
+    "method": "official Desktop shutdown IPC",
+    "epipeCount": 0,
+    "telemetryMissingVersionWarning": true,
+    "authOutcome": "PASS",
+    "pidStillPresent": false,
+    "portsReleased": true
+  },
+  {
+    "id": "npm-rc3-retry",
+    "pid": 96558,
+    "exit": {
+      "code": 0,
+      "signal": null
+    },
+    "exited": true,
+    "ports": [
+      50939
+    ],
+    "method": "owned subprocess SIGTERM",
+    "epipeCount": 0,
+    "telemetryMissingVersionWarning": false,
+    "authOutcome": "PASS",
+    "pidStillPresent": false,
+    "portsReleased": true
+  }
+]

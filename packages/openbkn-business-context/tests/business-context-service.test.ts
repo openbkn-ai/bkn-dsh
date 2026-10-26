@@ -1183,3 +1183,53 @@ test('navigation-shell detail passes the validated binding boundary and clears p
   assert.equal(detail?.status, 'pass')
   assert.equal(detail?.evidence.recovered, true)
 })
+
+
+test('cancelled historical reads stop their CLI before HTTP and never reuse a late token', async () => {
+  const operation = new AbortController()
+  let readSignal: AbortSignal | undefined
+  let release!: (token: string) => void
+  const pending = new Promise<string>(resolve => { release = resolve })
+  let reads = 0
+  const service = Object.create(OpenBknBusinessContextService.prototype) as unknown as {
+    synchronizedToken?: string
+    authCoordinator(): { readToken(signal?: AbortSignal): Promise<string> }
+    resolveOpenBknToken(signal?: AbortSignal): Promise<string | undefined>
+  }
+  service.authCoordinator = () => ({ readToken: async signal => {
+    reads++; readSignal = signal
+    return reads === 1 ? pending : 'fresh-fixture-token'
+  } })
+  const first = service.resolveOpenBknToken(operation.signal)
+  const sibling = service.resolveOpenBknToken(operation.signal)
+  const firstRejected = assert.rejects(first, { name: 'AbortError' })
+  const siblingRejected = assert.rejects(sibling, { name: 'AbortError' })
+  assert.equal(reads, 1, 'one request shares its credential lookup across provenance panes')
+  operation.abort()
+  assert.equal(readSignal?.aborted, true, 'the CLI must receive the cancelled request signal')
+  release('late-fixture-token')
+  await Promise.all([firstRejected, siblingRejected])
+  assert.equal(service.synchronizedToken, undefined)
+  assert.equal(await service.resolveOpenBknToken(new AbortController().signal), 'fresh-fixture-token')
+  assert.equal(reads, 2, 'a reopened request must not attach to the cancelled lookup')
+})
+
+test('independent provenance requests do not cancel each other during credential lookup', async () => {
+  const cancelled = new AbortController(), survivor = new AbortController()
+  const reads: { signal?: AbortSignal; resolve(token: string): void }[] = []
+  const service = Object.create(OpenBknBusinessContextService.prototype) as unknown as {
+    authCoordinator(): { readToken(signal?: AbortSignal): Promise<string> }
+    resolveOpenBknToken(signal?: AbortSignal): Promise<string | undefined>
+  }
+  service.authCoordinator = () => ({ readToken: signal => new Promise(resolve => { reads.push({ signal, resolve }) }) })
+  const first = service.resolveOpenBknToken(cancelled.signal)
+  const other = service.resolveOpenBknToken(survivor.signal)
+  const rejected = assert.rejects(first, { name: 'AbortError' })
+  assert.equal(reads.length, 2)
+  cancelled.abort()
+  assert.equal(reads[0].signal?.aborted, true)
+  assert.equal(reads[1].signal?.aborted, false)
+  reads[0].resolve('late-fixture-token'); reads[1].resolve('surviving-fixture-token')
+  await rejected
+  assert.equal(await other, 'surviving-fixture-token')
+})

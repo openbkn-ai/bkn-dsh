@@ -1,0 +1,42 @@
+{
+  "checked_at": "2026-10-20T04:07:02.601897+00:00",
+  "read_only": true,
+  "platform": "https://192.168.50.129",
+  "cases": {
+    "orders": {
+      "query": "SELECT order_status,COUNT(*) FROM supply_demo_hand.sales_order WHERE product_code='382-000005' GROUP BY order_status; SELECT sales_order_id,signing_quantity,order_status FROM supply_demo_hand.sales_order WHERE product_code='382-000005' ORDER BY sales_order_id;",
+      "result_tsv": "已确认\t40\nSO0000001\t11\t已确认\nSO0000002\t43\t已确认\nSO0000003\t32\t已确认\nSO0000004\t41\t已确认\nSO0000005\t43\t已确认\nSO0000006\t22\t已确认\nSO0000007\t9\t已确认\nSO0000008\t44\t已确认\nSO0000009\t8\t已确认\nSO0000010\t24\t已确认\nSO0000011\t43\t已确认\nSO0000012\t2\t已确认\nSO0000013\t21\t已确认\nSO0000014\t16\t已确认\nSO0000015\t33\t已确认\nSO0000016\t24\t已确认\nSO0000017\t15\t已确认\nSO0000018\t14\t已确认\nSO0000019\t29\t已确认\nSO0000020\t23\t已确认\nSO0000501\t45\t已确认\nSO0000502\t10\t已确认\nSO0000503\t41\t已确认\nSO0000504\t2\t已确认\nSO0000505\t23\t已确认\nSO0000506\t3\t已确认\nSO0000507\t10\t已确认\nSO0000508\t48\t已确认\nSO0000509\t50\t已确认\nSO0000510\t2\t已确认\nSO0000511\t46\t已确认\nSO0000512\t48\t已确认\nSO0000513\t13\t已确认\nSO0000514\t41\t已确认\nSO0000515\t42\t已确认\nSO0000516\t34\t已确认\nSO0000517\t37\t已确认\nSO0000518\t41\t已确认\nSO0000519\t1\t已确认\nSO0000520\t47\t已确认\n",
+      "unchanged_from_prior_oracle": true
+    },
+    "inventory": {
+      "query": "SELECT warehouse,SUM(available_inventory_qty),COUNT(*),SUM(reserved_inventory_qty) FROM supply_demo_hand.erp_real_time_inventory WHERE material_code='382-000005' GROUP BY warehouse ORDER BY warehouse;",
+      "result_tsv": "乌鲁木齐成品仓\t127\t2\t0\n借用仓\t232\t14\t0\n哈尔滨成品仓\t82\t2\t0\n苏州客退仓\t44\t12\t0\n苏州待发物料仓\t6\t1\t0\n苏州成品仓\t325\t5\t0\n",
+      "unchanged_from_prior_oracle": true
+    },
+    "lead-time": {
+      "query": "SELECT material_code,materialattr,product_fixedleadtime,purchase_fixedleadtime FROM supply_demo_hand.erp_material WHERE material_code='382-000005';",
+      "result_tsv": "382-000005\t自制\t1\t1\n",
+      "unchanged_from_prior_oracle": true
+    },
+    "missing-object": {
+      "query": "SELECT COUNT(*) FROM supply_demo_hand.erp_material WHERE material_code='999-999999'; SELECT COUNT(*) FROM supply_demo_hand.erp_real_time_inventory WHERE material_code='999-999999'; SELECT COUNT(*) FROM supply_demo_hand.sales_order WHERE product_code='999-999999';",
+      "result_tsv": "0\n0\n0\n",
+      "unchanged_from_prior_oracle": true
+    },
+    "inventory-by-status": {
+      "query": "SELECT warehouse,stock_status,SUM(available_inventory_qty),COUNT(*) FROM supply_demo_hand.erp_real_time_inventory WHERE material_code='382-000005' GROUP BY warehouse,stock_status ORDER BY warehouse,stock_status;",
+      "result_tsv": "乌鲁木齐成品仓\t可用\t127\t2\n借用仓\t可用\t232\t14\n哈尔滨成品仓\t可用\t82\t2\n苏州客退仓\t可用\t44\t12\n苏州待发物料仓\t可用\t6\t1\n苏州成品仓\t可用\t325\t5\n",
+      "unchanged_from_prior_oracle": true
+    },
+    "purchase-direct": {
+      "query": "SELECT COUNT(*) FROM supply_demo_hand.erp_purchase_request WHERE material_number='382-000005'; SELECT COUNT(*) FROM supply_demo_hand.erp_purchase_order WHERE material_number='382-000005';",
+      "result_tsv": "0\n0\n",
+      "unchanged_from_prior_oracle": true
+    },
+    "sales-rows": {
+      "query": "SELECT sales_order_id,signing_quantity,shipping_quantity,order_status FROM supply_demo_hand.sales_order WHERE product_code='382-000005' ORDER BY sales_order_id;",
+      "result_tsv": "SO0000001\t11\t11\t已确认\nSO0000002\t43\t43\t已确认\nSO0000003\t32\t32\t已确认\nSO0000004\t41\t41\t已确认\nSO0000005\t43\t39\t已确认\nSO0000006\t22\t22\t已确认\nSO0000007\t9\t9\t已确认\nSO0000008\t44\t43\t已确认\nSO0000009\t8\t8\t已确认\nSO0000010\t24\t24\t已确认\nSO0000011\t43\t43\t已确认\nSO0000012\t2\t2\t已确认\nSO0000013\t21\t19\t已确认\nSO0000014\t16\t16\t已确认\nSO0000015\t33\t33\t已确认\nSO0000016\t24\t24\t已确认\nSO0000017\t15\t15\t已确认\nSO0000018\t14\t14\t已确认\nSO0000019\t29\t29\t已确认\nSO0000020\t23\t23\t已确认\nSO0000501\t45\t45\t已确认\nSO0000502\t10\t6\t已确认\nSO0000503\t41\t41\t已确认\nSO0000504\t2\t2\t已确认\nSO0000505\t23\t23\t已确认\nSO0000506\t3\t1\t已确认\nSO0000507\t10\t10\t已确认\nSO0000508\t48\t48\t已确认\nSO0000509\t50\t50\t已确认\nSO0000510\t2\t2\t已确认\nSO0000511\t46\t46\t已确认\nSO0000512\t48\t48\t已确认\nSO0000513\t13\t13\t已确认\nSO0000514\t41\t41\t已确认\nSO0000515\t42\t42\t已确认\nSO0000516\t34\t34\t已确认\nSO0000517\t37\t35\t已确认\nSO0000518\t41\t41\t已确认\nSO0000519\t1\t1\t已确认\nSO0000520\t47\t47\t已确认\n",
+      "unchanged_from_prior_oracle": true
+    }
+  }
+}

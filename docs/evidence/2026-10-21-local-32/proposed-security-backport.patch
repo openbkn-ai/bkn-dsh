@@ -1,0 +1,140 @@
+--- a/infra/sandbox/sandbox_control_plane/src/infrastructure/persistence/database.py
++++ b/infra/sandbox/sandbox_control_plane/src/infrastructure/persistence/database.py
+@@ -267,6 +267,9 @@ async def initialize(self) -> None:
+         self._engine = create_async_engine(
+             self._get_runtime_database_url(),
+             echo=settings.log_level == "DEBUG",
++            # Statement parameters carry execution payloads, which can hold caller
++            # credentials. Keep them out of DBAPI error messages and echoed SQL.
++            hide_parameters=True,
+             pool_size=settings.db_pool_size,
+             max_overflow=settings.db_max_overflow,
+             pool_recycle=settings.db_pool_recycle,
+--- a/infra/sandbox/sandbox_control_plane/src/infrastructure/persistence/models/execution_model.py
++++ b/infra/sandbox/sandbox_control_plane/src/infrastructure/persistence/models/execution_model.py
+@@ -5,6 +5,7 @@
+ Naming convention: t_{module}_{entity} for tables, f_{field_name} for columns.
+ """
+ 
++import hashlib
+ from datetime import datetime
+ 
+ from sqlalchemy import Column, String, Integer, BigInteger, Text, Index
+@@ -14,6 +15,31 @@
+ 
+ from src.infrastructure.persistence.database import Base
+ 
++# f_code is a MariaDB TEXT column: 65535 bytes, not characters.
++CODE_COLUMN_MAX_BYTES = 65535
++
++
++def bounded_code(code: str) -> str:
++    """
++    Fit the code into f_code.
++
++    The executor receives the code with the request and never reads it back from
++    here; the column only feeds the execution history. Rejecting the row would fail
++    the execution before it starts (#2294), so oversized code keeps its tail behind
++    a marker. The tail is the part worth keeping: callers such as run_code put a
++    generated prelude first and the caller's own code last.
++    """
++    raw = code.encode("utf-8")
++    if len(raw) <= CODE_COLUMN_MAX_BYTES:
++        return code
++    digest = hashlib.sha256(raw).hexdigest()
++    marker = f"# [truncated: {len(raw)} bytes, sha256:{digest}, tail kept]\n"
++    budget = CODE_COLUMN_MAX_BYTES - len(marker.encode("utf-8"))
++    # Cutting inside a multi-byte character leaves continuation bytes at the start;
++    # dropping them keeps the result valid UTF-8 and within budget.
++    tail = raw[-budget:].decode("utf-8", errors="ignore")
++    return marker + tail
++
+ 
+ class ExecutionModel(Base):
+     """
+@@ -114,13 +140,14 @@ def from_entity(cls, execution):
+             f_id=execution.id,
+             f_session_id=execution.session_id,
+             f_status=execution.state.status.value,
+-            f_code=execution.code,
++            f_code=bounded_code(execution.code),
+             f_language=execution.language,
+             f_timeout_sec=execution.timeout,
+             f_entrypoint="",
+-            f_event_data=(
+-                json.dumps(execution.event_data, ensure_ascii=False) if execution.event_data else ""
+-            ),
++            # The event goes to the executor with the request and nothing reads it back.
++            # It can carry the caller's credentials (run_code sends a bearer token), so
++            # it is not stored.
++            f_event_data="",
+             f_return_value=(
+                 json.dumps(execution.return_value, ensure_ascii=False)
+                 if execution.return_value
+--- a/infra/sandbox/sandbox_control_plane/src/infrastructure/persistence/repositories/sql_execution_repository.py
++++ b/infra/sandbox/sandbox_control_plane/src/infrastructure/persistence/repositories/sql_execution_repository.py
+@@ -13,7 +13,7 @@
+ 
+ from src.domain.repositories.execution_repository import IExecutionRepository
+ from src.domain.entities.execution import Execution
+-from src.infrastructure.persistence.models.execution_model import ExecutionModel
++from src.infrastructure.persistence.models.execution_model import ExecutionModel, bounded_code
+ 
+ 
+ class SqlExecutionRepository(IExecutionRepository):
+@@ -36,7 +36,7 @@ async def save(self, execution: Execution) -> None:
+         if model:
+             # Update the existing row
+             model.f_session_id = execution.session_id
+-            model.f_code = execution.code
++            model.f_code = bounded_code(execution.code)
+             model.f_language = execution.language
+             model.f_status = execution.state.status.value
+             model.f_stdout = execution.stdout
+--- a/adp/execution-factory/operator-integration/server/logics/sandbox/session_pool.go
++++ b/adp/execution-factory/operator-integration/server/logics/sandbox/session_pool.go
+@@ -159,12 +159,7 @@ func (p *sessionPoolImpl) ExecuteCode(ctx context.Context, req *interfaces.Execu
+ 	// record observable.
+ 	ctx, _ = oteltrace.StartInternalSpan(ctx)
+ 	defer oteltrace.EndSpan(ctx, err)
+-	telemetry.SetSpanAttributes(ctx, map[string]interface{}{
+-		"language": req.Language,
+-		"timeout":  req.Timeout,
+-		"code":     req.Code,
+-		"event":    req.Event,
+-	})
++	telemetry.SetSpanAttributes(ctx, executionSpanAttributes(req))
+ 	sessionID, err := p.acquireSessionWithEnv(ctx, req.EnvVars)
+ 	if err != nil {
+ 		return nil, err
+@@ -179,10 +174,11 @@ func (p *sessionPoolImpl) ExecuteCode(ctx context.Context, req *interfaces.Execu
+ 		})
+ 		if err != nil {
+ 			p.logger.WithContext(ctx).Errorf("InstallPythonDependencies failed for session %s: %v", sessionID, err)
++			// The request itself is not echoed: its event and env vars carry the
++			// caller's bearer token, and these details travel back to the caller.
+ 			err = errors.NewHTTPError(ctx, http.StatusInternalServerError, errors.ErrExtPypiRepoUnavailable, map[string]any{
+ 				"error":            err.Error(),
+ 				"session_id":       sessionID,
+-				"request_params":   utils.ObjectToJSON(req),
+ 				"dependencies":     utils.ObjectToJSON(req.Dependencies),
+ 				"dependencies_url": req.PythonPackageIndexURL,
+ 			})
+@@ -198,6 +194,17 @@ func (p *sessionPoolImpl) ExecuteCode(ctx context.Context, req *interfaces.Execu
+ 	return resp, nil
+ }
+ 
++// executionSpanAttributes is what the execute span records. The event is left
++// out: run_code's event carries the caller's bearer token, and span attributes
++// are exported with the trace.
++func executionSpanAttributes(req *interfaces.ExecuteCodeReq) map[string]interface{} {
++	return map[string]interface{}{
++		"language": req.Language,
++		"timeout":  req.Timeout,
++		"code":     req.Code,
++	}
++}
++
+ // AcquireSession Get available sessions.
+ func (p *sessionPoolImpl) AcquireSession(ctx context.Context) (sessionID string, err error) {
+ 	return p.acquireSession(ctx, p.slotRetryBudget())

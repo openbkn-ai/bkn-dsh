@@ -1,0 +1,41 @@
+{
+ "run": "021-profile32-gui-20261026",
+ "generatedLocal": "2026-10-26",
+ "kind": "local-development-preacceptance",
+ "ciRun": null,
+ "formalAcceptanceEligible": false,
+ "fixedInputs": {
+  "branch": "handoff/windows-local32-profile-gui-20261026",
+  "commit": "5e55d090ee2996fe2a006a59bef012d28f8f278a",
+  "kitFilesSha256": "5a984dbade28f8cec15dfb59edb86b342af4c75d4e6bac944396d710e132e7e7",
+  "plugin32Sha256": "46626510825fe9146aef12c27a1724acbb455aeac22aa600358add0fc8e1c9f8",
+  "mcpRc3Sha256": "48694ca37f889edbc7c41ed8edd3c08e3dc8c0d9cf87c6c118d96de44556d3e0"
+ },
+ "verdict": {
+  "inputVerification": "PASS",
+  "resourceLocation": "PASS (exe fd7d298f... + zod 4.4.3 from prior task dir)",
+  "profilePreparation": "PASS (82/12 + zod copied, no home/credentials)",
+  "associationBefore": "FAIL -> ROUND BLOCKED",
+  "businessAutoload": "NOT_RUN",
+  "officialGui": "NOT_RUN (guard prevented launch; ownedPid null)",
+  "preservation": "PASS (official before/after deepEqual; frozen files and zod intact)"
+ },
+ "rootCause": {
+  "where": "run-gui-proof.mjs baseEnv construction spawns system-association.ps1 without the OS env key",
+  "evidence": [
+   "taskroot-1/evidence/association-before-private.log (original failure, no registry access)",
+   "diag stripped-env replay reproduces identical throw",
+   "diag full-env run completes Before successfully (handler.reg sha 8f3af673..., UserChoice Exists=false, SID captured)"
+  ],
+  "resolution": "kit fix needed (pass OS through baseEnv or use OSVersion check); not fixed here per frozen-kit rules"
+ },
+ "publicEvidence": {
+  "results/verify-inputs.json": "c00ba427d3b6c14963e2fc00484b2bffc13db51ebcb3adee2aa2a230b6c2cba4",
+  "results/RESULTS-profile32-gui-20261026.md": "ece2251fc22e9eb3785a746cc73014333489cee91af1d0f0628babe3be9271ee"
+ },
+ "privateEvidence": {
+  "note": "taskroot-1 full evidence, diag .reg exports + snapshots, controller logs, SID and registry contents stay on Windows only",
+  "controllerLog": "75da4a2d438a4dc83411a094a5c99daa7f9723075e65f73e317eca603f350e66",
+  "summaryPrivate": "78784cfb2402238e99eda760d70ddeb2a6fd07dfd09013a238bee6a4a03dcf7a"
+ }
+}

@@ -1,0 +1,41 @@
+{
+  "scope": "actual pinned factory source and draft source executed in isolation; actual SDK constructor; not a full Host",
+  "records": [
+    {
+      "host": "old",
+      "proposed": false,
+      "actualSdkConstructor": true,
+      "headersPreserved": true,
+      "redirectOption": "SDK default",
+      "networkRequests": 0,
+      "result": "PASS"
+    },
+    {
+      "host": "old",
+      "proposed": true,
+      "actualSdkConstructor": true,
+      "headersPreserved": true,
+      "redirectOption": "error",
+      "networkRequests": 0,
+      "result": "PASS"
+    },
+    {
+      "host": "new",
+      "proposed": false,
+      "actualSdkConstructor": true,
+      "headersPreserved": true,
+      "redirectOption": "SDK default",
+      "networkRequests": 0,
+      "result": "PASS"
+    },
+    {
+      "host": "new",
+      "proposed": true,
+      "actualSdkConstructor": true,
+      "headersPreserved": true,
+      "redirectOption": "error",
+      "networkRequests": 0,
+      "result": "PASS"
+    }
+  ]
+}

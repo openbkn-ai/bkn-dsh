@@ -1,0 +1,29 @@
+{
+  "checkedAt": "2026-10-23T16:29:05.796893+00:00",
+  "clientDate": "2026-10-24",
+  "preexistingFiles": 810,
+  "unchangedPreexistingFiles": 805,
+  "authorizedStatusUpdates": [
+    "CLAUDE.md",
+    "docs/plans/0.2.1/ACCEPTANCE-CONTRACT.md",
+    "docs/plans/0.2.1/DSH-COMPATIBILITY.md",
+    "docs/plans/0.2.1/NATIVE-CONTRACT.md",
+    "docs/plans/0.2.1/README.md"
+  ],
+  "newWorkflow": "docs/plans/0.2.1/ISSUE-WORKFLOW.md",
+  "primaryHead": "933b0ab251c75461ece1ada6145a9487e7eb04d1",
+  "primaryBranch": "feat/021-localization-login",
+  "indexUnchanged": true,
+  "existingWorktreeRefsUnchangedDuringRound": true,
+  "frozenR3Clean": true,
+  "candidateChanged": false,
+  "productionSourceChanged": false,
+  "platformAccessedByMainThisRound": false,
+  "newHostOrBrowserStartedByMain": false,
+  "newTestsExecuted": false,
+  "issueMutations": [],
+  "commitPerformed": false,
+  "pushPerformed": false,
+  "ciRun": null,
+  "formalAcceptanceEligible": false
+}

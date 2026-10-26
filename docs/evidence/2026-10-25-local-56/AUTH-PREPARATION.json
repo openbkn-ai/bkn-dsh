@@ -1,0 +1,39 @@
+{
+  "purpose": "Restore preexisting CLI auth only for readonly existing-reference validation; not Host login/B1 acceptance",
+  "before": {
+    "baseUrl": "https://192.168.50.129",
+    "hasToken": true,
+    "expired": true
+  },
+  "after": {
+    "baseUrl": "https://192.168.50.129",
+    "hasToken": true,
+    "expired": false
+  },
+  "attempts": [
+    {
+      "kind": "default-browser device flow",
+      "result": "canceled before authorization after harness expected a /device URI instead of official /oauth2/device/verify"
+    },
+    {
+      "kind": "explicit no-browser URI",
+      "result": "browser sign-in succeeded after CLI wait expired; no CLI credential refresh"
+    },
+    {
+      "kind": "explicit URI, timeout600",
+      "result": "CLI exit0; expired=false"
+    }
+  ],
+  "browser": {
+    "browserLoginSucceeded": true,
+    "ownTaskTabClosed": true,
+    "passwordPrinted": false,
+    "passwordSavedByAgent": false,
+    "certificateTrustChanged": false,
+    "existingLocalCredentialUsed": true,
+    "hostLoginButtonUsed": false
+  },
+  "platformCredentialReset": false,
+  "hostLoginButtonUsed": false,
+  "newModelOrInteraction": false
+}

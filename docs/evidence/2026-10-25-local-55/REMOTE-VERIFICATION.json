@@ -1,0 +1,99 @@
+{
+  "remoteCommit": "74c4d731619a036978bc8f11fb796e651a7cc0d8",
+  "gitObjectsExtracted": 11,
+  "expectedReportAndManifestHashesMatched": true,
+  "publicEvidenceManifestEntriesMatched": 8,
+  "privateFilesVerified": false,
+  "privateFileCount": 15,
+  "privateScreenshotCount": 24,
+  "candidateDeltaIndependentlyMatched": [
+    "lib/client.js",
+    "lib/types/client/locales.d.ts",
+    "package.json"
+  ],
+  "source30Sha256": "6d95ff7517dbe409875fd398784fe01049ba26d2b97c43fad65c817d3ea18ee9",
+  "source31Sha256": "22ba0e17235ccb3c93d585f2811604f5221375ac9e3496e92e6d8c1756196e4a",
+  "clientDiffLines": 317,
+  "contrastArtifactValidSingleJsonDocument": false,
+  "contrastArtifactParseFailure": {
+    "message": "Extra data",
+    "line": 7,
+    "column": 1
+  },
+  "contrastTopLevelJsonValues": 3,
+  "remoteBranch": "docs/windows-021-local31-ui-life30-results-20261025",
+  "remoteBranchTipMatchedRequestedCommit": true,
+  "baseHandoff": "d20a266fa550dd854c9bd7d30bd04c088de9bbfe",
+  "sourceRepository": "https://github.com/openbkn-ai/bkn-dsh",
+  "objectHashes": [
+    {
+      "path": "docs/handoff/2026-10-25-021-local31-ui-life30-windows/.gitattributes",
+      "sha256": "27f1c535296dae67c9734ca19ea563de7510d59243fbee9b214331399326f56d",
+      "bytes": 113
+    },
+    {
+      "path": "docs/handoff/2026-10-25-021-local31-ui-life30-windows/evidence/E00-ab-identity.txt",
+      "sha256": "8768f15c981be62e99ac7c313e95636dba6c9752337b20647e133e601303eabc",
+      "bytes": 2821
+    },
+    {
+      "path": "docs/handoff/2026-10-25-021-local31-ui-life30-windows/evidence/E01-post-install-A.json",
+      "sha256": "b3806ed8f83ff0477cae4b57a407ee4b88907078a016ca125f276fef16b0063a",
+      "bytes": 555
+    },
+    {
+      "path": "docs/handoff/2026-10-25-021-local31-ui-life30-windows/evidence/E01-post-install-B.json",
+      "sha256": "82d0a5fa4bf2f9bfef3eebc0b9d4e4abbbf3cf3815d2707deeb40181d1e5fe6a",
+      "bytes": 555
+    },
+    {
+      "path": "docs/handoff/2026-10-25-021-local31-ui-life30-windows/evidence/U-A-desktop/owned-host.json",
+      "sha256": "429bfaf7ab2a12a544dada82b9a09d6c45d82ec365815cbbd4b13b7fdf5e8f72",
+      "bytes": 552
+    },
+    {
+      "path": "docs/handoff/2026-10-25-021-local31-ui-life30-windows/evidence/U-B-desktop/owned-host.json",
+      "sha256": "cb989ab87002620fd495b75093e888b059877c4c86c3edf416be150afedae236",
+      "bytes": 551
+    },
+    {
+      "path": "docs/handoff/2026-10-25-021-local31-ui-life30-windows/evidence/U-B-launch.txt",
+      "sha256": "49c580dd8b5de97fc70a03de311734a39a1ebe7017b4051348479afe12cc7ed1",
+      "bytes": 807
+    },
+    {
+      "path": "docs/handoff/2026-10-25-021-local31-ui-life30-windows/results/RESULTS-021-local31-ui-life30-20261024.md",
+      "sha256": "eef01c19d58435e3c7cd58c717933e91fef183102f2367a60ea8ef11e637b4e5",
+      "bytes": 8725
+    },
+    {
+      "path": "docs/handoff/2026-10-25-021-local31-ui-life30-windows/results/evidence-manifest.json",
+      "sha256": "66cce92d13f59ea61745f496557b904616a8c9fba9d60d8ec168dc62721acc15",
+      "bytes": 7234
+    },
+    {
+      "path": "docs/handoff/2026-10-25-021-local31-ui-life30-windows/results/u3-contrast-sampling.json",
+      "sha256": "f9735185ce4bb7a577e91ae654b504016ba64a0746bf76a18276965d9b6f8814",
+      "bytes": 1293
+    },
+    {
+      "path": "docs/handoff/2026-10-25-021-local31-ui-life30-windows/results/verify-handoff.json",
+      "sha256": "671d688078773c2e71bec2090b16e013df6e2cc798a57eb81b4384afee44dd83",
+      "bytes": 1235
+    }
+  ],
+  "remoteRawFilesModified": false,
+  "productSourcesModified": false,
+  "windowsExecutionRepeated": false,
+  "reportSha256": "eef01c19d58435e3c7cd58c717933e91fef183102f2367a60ea8ef11e637b4e5",
+  "manifestSha256": "66cce92d13f59ea61745f496557b904616a8c9fba9d60d8ec168dc62721acc15",
+  "reviewCorrections": [
+    "The changed-file list is correct, but -31 is not locale-only: focus/Escape ownership and contrast are executable UI changes. Host and Remote bytes remain identical.",
+    "The contrast artifact is a concatenation of three top-level JSON values; preserve raw bytes and use a separately identified normalized derivative. Private screenshots were not independently reviewed.",
+    "U2 is partial: provenance NOT_RUN and exact 800x600 NOT_RUN; 664x538 is a reported alternate-size pass, not the exact contract size.",
+    "hasToken=true is not proof of current valid authentication; the sign-in action deliberately starts interactive CLI login.",
+    "U1 uses -31; W-LIFE uses frozen -30. A single -31 login cannot count as -30 lifecycle evidence.",
+    "The latest Windows report contains no lifecycle stream, runner or Job observation."
+  ],
+  "privateFilesNoteExcludedFromFileCount": true
+}

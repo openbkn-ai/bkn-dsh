@@ -1,0 +1,84 @@
+[
+  {
+    "checked_at": "2026-10-21T07:46:10.768Z",
+    "pid": 28123,
+    "phase": "before-reauth-opened",
+    "interaction_id": "int_a90caced37ee5b68df9908a32b6dd364",
+    "conversation_id": "conv_36d94299a619f13a55984788d4b34811"
+  },
+  {
+    "checked_at": "2026-10-21T07:46:10.819Z",
+    "pid": 28123,
+    "phase": "before-reauth",
+    "interaction_id": "int_a90caced37ee5b68df9908a32b6dd364",
+    "conversation_id": "conv_36d94299a619f13a55984788d4b34811",
+    "query_succeeded": true,
+    "response_keys": [
+      "query_source",
+      "datas",
+      "effective_permissions",
+      "total_count",
+      "cursor"
+    ],
+    "no_sandbox_call": true
+  },
+  {
+    "checked_at": "2026-10-21T07:46:10.833Z",
+    "pid": 28123,
+    "phase": "baseline-ready",
+    "version": "0.2.1-rc.2",
+    "mode": "sync-observer",
+    "real_platform": true,
+    "real_cli": true,
+    "real_dsh_tools_credentials_subprocess_and_business_service": true,
+    "model_used": false,
+    "desktop_process_used": false,
+    "agent_registry_is_minimal_probe_composition": true
+  },
+  {
+    "checked_at": "2026-10-21T07:47:20.543Z",
+    "pid": 28123,
+    "phase": "reauth-synchronized",
+    "credential_changed": true,
+    "same_authenticated_identity": true,
+    "catalogue_count": 2
+  },
+  {
+    "checked_at": "2026-10-21T07:47:20.571Z",
+    "pid": 28123,
+    "phase": "after-reauth-opened",
+    "interaction_id": "int_7ef47d6b3e419ee7db163d499fc56ea2",
+    "conversation_id": "conv_e11b9fcc1d1c944a263cdbc542c8069f"
+  },
+  {
+    "checked_at": "2026-10-21T07:47:20.613Z",
+    "pid": 28123,
+    "phase": "after-reauth",
+    "interaction_id": "int_7ef47d6b3e419ee7db163d499fc56ea2",
+    "conversation_id": "conv_e11b9fcc1d1c944a263cdbc542c8069f",
+    "query_succeeded": true,
+    "response_keys": [
+      "query_source",
+      "datas",
+      "effective_permissions",
+      "total_count",
+      "cursor"
+    ],
+    "no_sandbox_call": true
+  },
+  {
+    "checked_at": "2026-10-21T07:47:20.628Z",
+    "pid": 28123,
+    "phase": "result",
+    "version": "0.2.1-rc.2",
+    "same_process_and_service": true,
+    "same_mcp_manager_owner": true,
+    "credential_changed": true,
+    "same_authenticated_identity": true,
+    "catalogue_count": 2,
+    "fresh_interaction_query_succeeded": true,
+    "observed_unauthorized": false,
+    "original_long_running_desktop_issue_reproduced": false,
+    "limitation": "Short real-platform service composition; no original long-running Desktop session or model turn"
+  }
+]

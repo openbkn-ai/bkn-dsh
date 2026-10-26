@@ -16,6 +16,7 @@ import type { NetworkCapabilityProfile } from './network-capability-profile.js'
 import type { PlatformReaderConfig } from './platform-reader.js'
 import type { BusinessNetworkBinding } from './types.js'
 import { trimTrailingSlashes } from './trailing-slashes.js'
+import { CSV_EXPORT_TOOL, createCsvExportTool, csvExportHost, type CsvExportHost } from './platform-csv-export.js'
 
 interface ScopedSystemPrompt {
   section(section: { readonly name: string; readonly order: number; readonly text: string | (() => string) }): () => void
@@ -84,11 +85,20 @@ const MANAGED_OPENBKN_TOOLS: readonly string[] = [...LIFECYCLE_TOOLS, ...MANAGED
 const OPENBKN_TOOL_PREFIX = 'mcp__openbkn__'
 
 /** Denial for a tool outside the managed set; an OpenBKN tool is named so the gap is diagnosable. */
-function unmanagedDenial(name: string): string | undefined {
+function unmanagedDenial(name: string, csvExportRegistered = false): string | undefined {
+  if (csvExportRegistered && name === CSV_EXPORT_TOOL) return undefined
   if (MANAGED_OPENBKN_TOOLS.includes(name)) return undefined
-  return name.startsWith(OPENBKN_TOOL_PREFIX)
+  if (csvExportRegistered && name === 'present') {
+    return 'Host present cannot deliver a platform Sandbox file in this OpenBKN business session. '
+      + 'For an existing CSV, call openbkn_export_csv with its relative platform path, the bound kn_id and current bkn_context before finishing the Interaction. '
+      + 'Only link the verified local path returned by a successful export; the remote path is not a local file.'
+  }
+  const denial = name.startsWith(OPENBKN_TOOL_PREFIX)
     ? `${name} is not supported in an OpenBKN business session by this version of the bkn-dsh plugin. Do not retry it; continue with the managed OpenBKN tools.`
     : 'This OpenBKN business session only permits managed OpenBKN tools.'
+  return csvExportRegistered
+    ? denial + ' The separately offered openbkn_export_csv remains available to transfer an existing platform CSV into this Session workspace before finishing the Interaction; it does not enable Host tools or raw queries.'
+    : denial
 }
 
 /**
@@ -209,9 +219,31 @@ const scopedPolicyPlugin = (
       // DSH's monotonic enforcement point and works regardless of registration
       // timing; it also covers tools contributed by the agent preset itself.
       let lifecycle: InteractionLifecycleState = restoreFrom(agent.session.snapshotEvents())
+      let csvExportRegistered = false
+      // File services are optional preset capabilities and require their own
+      // Cordis injection scope. Their absence must not disable business access.
+      if (typeof ctx.inject === 'function') {
+        let unregisterCsv = (): void => {}
+        const csvFiber = ctx.inject(['tools', 'fs', 'sandboxPolicy'], scope => {
+          let workingDirectory: CsvExportHost['workingDirectory'] | undefined
+          const directoryFiber = scope.inject(['workingDirectory'], directoryScope => {
+            workingDirectory = (directoryScope as unknown as CsvExportHost).workingDirectory
+            return () => { workingDirectory = undefined }
+          })
+          const csvHost = csvExportHost(scope, () => workingDirectory)
+          if (csvHost === undefined) return
+          const unregister = scope.tools.register(createCsvExportTool(csvHost, binding, agent, () => lifecycle.open
+            && lifecycle.conversationId !== undefined && lifecycle.interactionId !== undefined
+            ? { conversationId: lifecycle.conversationId, interactionId: lifecycle.interactionId } : undefined))
+          csvExportRegistered = true
+          unregisterCsv = () => { csvExportRegistered = false; unregister() }
+          return () => { unregisterCsv(); void directoryFiber.dispose() }
+        })
+        disposers.push(() => { unregisterCsv(); void csvFiber.dispose() })
+      }
       disposers.push(tools.guard(execution => {
         if (execution.name === PTC_RUN_CODE_TOOL) return PTC_UNSUPPORTED_DENIAL
-        const unmanaged = unmanagedDenial(execution.name)
+        const unmanaged = unmanagedDenial(execution.name, csvExportRegistered)
         if (unmanaged !== undefined) return unmanaged
         // Rules 2–5 of the interaction boundary (§6.3) all live in the pure
         // `denialFor`; the managed set (rule 1) and the network scope are the

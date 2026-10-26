@@ -1,0 +1,52 @@
+{
+  "form": "npm-web",
+  "host": "0.2.0-rc.2",
+  "case_id": "standard-lead-time",
+  "session_id": "session-d48e5a60-264c-4c0f-a576-af416081b4c0",
+  "turn": 1,
+  "question": "382-000005 的标准交期？",
+  "started_at": "2026-10-21T14:58:31.934862+00:00",
+  "finished_at": "2026-10-21T14:58:45.684000+00:00",
+  "response_models": [
+    "deepseek-flash"
+  ],
+  "real_model_response_observed": true,
+  "model_configured_real": true,
+  "turn_end_kind": "completed",
+  "error_message": null,
+  "tool_calls": [
+    {
+      "name": "mcp__openbkn__bkn_start_interaction",
+      "arguments": "{\"conversation_mode\":\"new\",\"question\":\"382-000005 的标准交期？\",\"agent_name\":\"bkn-agent-dsh-business-context\"}",
+      "callId": "call_00_k1wXEWD9E2M2HWU37URY1177"
+    },
+    {
+      "name": "mcp__openbkn__search_schema",
+      "arguments": "{\"kn_id\":\"supply_ontology_hand\",\"query\":\"物料 标准交期\",\"bkn_context\":{\"conversation_id\":\"conv_68d823d78ee5af1f8b60a35db32fc084\",\"interaction_id\":\"int_e27c0b9f5712fb88037bdc2237faccb5\"}}",
+      "callId": "call_00_wr6LVKZZmMLFiwlb3GE84089"
+    },
+    {
+      "name": "mcp__openbkn__query_object_instance",
+      "arguments": "{\"bkn_context\":{\"conversation_id\":\"conv_68d823d78ee5af1f8b60a35db32fc084\",\"interaction_id\":\"int_e27c0b9f5712fb88037bdc2237faccb5\"},\"kn_id\":\"supply_ontology_hand\",\"ot_id\":\"supply_ontology_hand_material\",\"filters\":[{\"field\":\"material_code\",\"op\":\"==\",\"value\":\"382-000005\"}],\"properties\":[\"material_code\",\"material_name\",\"materialattr\",\"group_name\",\"purchase_fixedleadtime\",\"product_fixedleadtime\"]}",
+      "callId": "call_00_EJUeSyTNgcwBQgstnSrW2162"
+    },
+    {
+      "name": "mcp__openbkn__bkn_finish_interaction",
+      "arguments": "{\"interaction_id\":\"int_e27c0b9f5712fb88037bdc2237faccb5\",\"outcome\":\"completed\",\"answer\":\"## 382-000005 的标准交期：**1 天**\\n\\n| 物料编码 | 物料名称 | 物料属性 | 存货类别 | 标准交期 |\\n|---|---|---|---|---|\\n| 382-000005 | 北斗导航农机驾驶仪 | 自制 | 库存商品-产成品 | 1 天 |\\n\\n**口径说明**：按物料对象定义，标准交期按物料属性取值——自制件（含产成品、半成品）取「生产固定提前期」`product_fixedleadtime`，外购件才取「采购固定提前期」`purchase_fixedleadtime`，单位天。该物料 `materialattr = 自制`，故标准交期为生产固定提前期 **1**。\\n\\n- 该物料 `purchase_fixedleadtime` 同为 1，但两个字段取值相同不等于可归到采购口径，此处仍按自制件口径给出。\\n- 「单据预计到货日期」是另一个字段，与标准交期无关，未使用。\\n\\n**范围与限制**：按 `material_code = '382-000005'` 精确匹配物料主档，命中 1 条记录，无权限受限字段（相关字段均为 full）。除此之外未做其他范围扩展。\"}",
+      "callId": "call_00_I6jmWpXMFnRQmVWQAkdQ4238"
+    }
+  ],
+  "failed_tools": [],
+  "interaction_ids": [
+    "int_e27c0b9f5712fb88037bdc2237faccb5"
+  ],
+  "sandbox_hold_triggered": false,
+  "original_answer": "## 382-000005 的标准交期：**1 天**\n\n| 物料编码 | 物料名称 | 物料属性 | 存货类别 | 标准交期 |\n|---|---|---|---|---|\n| 382-000005 | 北斗导航农机驾驶仪 | 自制 | 库存商品-产成品 | 1 天 |\n\n**口径**：在本知识网络中，标准交期由物料属性决定：自制件（含产成品、半成品）取「生产固定提前期」`product_fixedleadtime`，外购件才取「采购固定提前期」`purchase_fixedleadtime`，二者的单位都是天。该物料的 `materialattr` 为自制，因此标准交期取生产固定提前期，值为 **1**。\n\n- 该物料的 `purchase_fixedleadtime` 同样是 1，但两个字段取值相同，并不表示它的标准交期采用采购固定提前期；此处仍按自制件的口径给出。\n- 「单据预计到货日期」属于另一个字段，与标准交期无关，本次未使用。\n\n**范围与限制**：按 `material_code = '382-000005'` 精确匹配物料主档，命中 1 条记录，相关字段权限均为 full，没有受限字段。未做其他范围的扩展。",
+  "original_answer_sha256": "17bb8a2c9c762e3f749dfaee41da655d5b23bee1e5af2dd2b29f3c13cce855e5",
+  "protocol_driver": false,
+  "answer_changed": false,
+  "transport": "Full-catalogue TLS forwarding with execution pre-dispatch hold",
+  "core_lead_time_criteria_passed": true,
+  "additional_field_label_error": false,
+  "status": "pass"
+}

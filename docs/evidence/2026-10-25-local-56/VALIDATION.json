@@ -1,0 +1,176 @@
+{
+  "kind": "local-development-preacceptance",
+  "ciRun": null,
+  "formalAcceptanceEligible": false,
+  "newForm": "macOS official Desktop 0.2.1-rc.3",
+  "hostCommit": "1f81c047fc48fa190a683e469daa699857e9afe8",
+  "candidateVersion": "0.2.0-rc.2-openbkn.0.2.0-32",
+  "candidateSha256": "46626510825fe9146aef12c27a1724acbb455aeac22aa600358add0fc8e1c9f8",
+  "candidateRebuilt": false,
+  "installedFilesMatched": 82,
+  "actualRuntime": {
+    "node": "24.21.0",
+    "electron": "44.7.0"
+  },
+  "actualLoadedEvidence": [
+    "native About and Settings show 0.2.1-rc.3",
+    "native plugin detail shows -32, final-candidate source path, 3 total / 3 running",
+    "actual profile traversal and 82 installed file hashes"
+  ],
+  "cases": [
+    {
+      "case": "new native More menu",
+      "status": "PASS",
+      "observations": [
+        "Tab focuses Browse other plugins",
+        "Escape closes only menu and returns More focus"
+      ]
+    },
+    {
+      "case": "business dialog keyboard",
+      "status": "PASS",
+      "observations": [
+        "initial panel focus",
+        "Tab to Settings; Shift-Tab wraps Refresh status",
+        "Escape restores OpenBKN entry; native plugin detail remains"
+      ]
+    },
+    {
+      "case": "diagnostics keyboard",
+      "status": "PASS",
+      "observations": [
+        "Tab to Close; Shift-Tab wraps Collect again",
+        "Escape returns original entry"
+      ]
+    },
+    {
+      "case": "zh/en notices and state",
+      "status": "PASS",
+      "observations": [
+        "English and Chinese passive-history notice rendered",
+        "Host form Desktop / 桌面版",
+        "DSH and loaded plugin versions remain Not collected",
+        "not-logged-in / loggedIn=false retained; no sign-in attempted",
+        "Platform URL spacing correct"
+      ],
+      "phase": "initial Desktop UI before CLI renewal"
+    },
+    {
+      "case": "exact 800x600 native window image",
+      "status": "PASS",
+      "observations": [
+        "CUA native corner drag; captured window JPEG dimensions 800x600",
+        "diagnostic modal stays in window; scroll reaches both final buttons with focus visible",
+        "viewport/client-area dimensions were not independently measured",
+        "window restored to original 1280x820"
+      ]
+    },
+    {
+      "case": "existing historical provenance",
+      "status": "PASS",
+      "observations": [
+        "copied R40 protocol session only; no new B1/model turn",
+        "existing completed Interaction and 4 local timeline nodes visible",
+        "authentication-required degradation retains local records",
+        "Tab wraps Close; Shift-Tab wraps disclosure summary; Escape restores View business provenance",
+        "existing supply-network binding label remains after EN/ZH/EN"
+      ],
+      "phase": "initial Desktop UI before CLI renewal; later authenticated standard records in REFERENCE-VALIDATION.json"
+    },
+    {
+      "case": "live nonempty five-reference platform labels",
+      "status": "PASS",
+      "phase": "after standalone CLI credential renewal",
+      "observations": [
+        "Actual Desktop and npm/web zh/en/zh",
+        "Request/Trace/Receipt/Op ids and completed unchanged",
+        "Only existing records read; no new query/Interaction",
+        "Native business views remain known 404"
+      ],
+      "details": "REFERENCE-VALIDATION.json"
+    },
+    {
+      "case": "native nested-parent consumed Escape combination",
+      "status": "NOT_RUN",
+      "reason": "No new special native parent-modal reproduction; source/controlled and Windows reported cases retain original scope."
+    }
+  ],
+  "notRepeated": [
+    "previous -31 old/new forms",
+    "rc.3 npm/web UI",
+    "source suites/build/package audit",
+    "Host login/cancel/timeout/B1 acceptance",
+    "G6/model/Sandbox/Function/run_code/BOM/CSV",
+    "Windows d20a266 tests"
+  ],
+  "languageRestored": "English",
+  "windowRestored": true,
+  "EPIPECounts": {
+    "host-private.log": {
+      "EPIPE": 0
+    },
+    "app-private.log": {
+      "EPIPE": 0
+    }
+  },
+  "harnessNotes": [
+    "Native CUA modifier name Shift was unsupported; use shift+Tab. The initial Tab succeeded, then the missing operation resumed; no product failure inferred.",
+    "Native screenshot bytes were JPEG; the initial PNG extension/header assumption was corrected and dimensions read from the real JPEG. Original screenshot bytes retained.",
+    "One native AX Diagnostics click reported offscreen despite visibly located control; a screenshot-grounded coordinate click succeeded. No product UI defect inferred.",
+    "CLI prints /oauth2/device/verify; an initial /device matcher was incorrect. One canceled and one expired preparation flow were retained before successful CLI renewal.",
+    "Npm initial Get started dismissal changed AX indices; a stale Expand action was rejected, then the current full snapshot supplied the real index. No product failure inferred."
+  ],
+  "phaseBoundary": "Initial Desktop UI ran before credential renewal; later standalone CLI renewal and reference-only cases are recorded separately. No Host login/B1 or new business turn.",
+  "authenticationPreparation": "AUTH-PREPARATION.json",
+  "additionalReferenceOnlyForms": [
+    "Mac Desktop rc.3",
+    "Mac npm/web rc.3"
+  ],
+  "exits": {
+    "desktopUi": {
+      "pid": 86987,
+      "port": 58007,
+      "exitMethod": "native application menu Quit",
+      "ownedProcessExited": true,
+      "portReleased": true,
+      "ownedPathProcessesRemaining": 0,
+      "windowImages": {
+        "rc3-desktop32-diagnostics-en-private.jpg": [
+          1280,
+          820
+        ],
+        "rc3-desktop32-narrow-private.jpg": [
+          800,
+          600
+        ],
+        "rc3-desktop32-narrow-bottom-private.jpg": [
+          800,
+          600
+        ],
+        "window-restored-private.jpg": [
+          1280,
+          820
+        ]
+      },
+      "at": "2026-10-25T04:17:42Z"
+    },
+    "desktopReferences": {
+      "pid": 87540,
+      "port": 58881,
+      "exitMethod": "native application menu Quit",
+      "ownedProcessExited": true,
+      "portReleased": true,
+      "ownedPathProcessesRemaining": 0,
+      "at": "2026-10-25T04:36:16.418745+00:00"
+    },
+    "npmReferences": {
+      "pid": 87664,
+      "port": 38656,
+      "identityMatchedBeforeStop": true,
+      "exitMethod": "SIGTERM after task tab closed",
+      "ownedProcessExited": true,
+      "portReleased": true,
+      "at": "2026-10-25T04:41:34.982546+00:00"
+    }
+  }
+}

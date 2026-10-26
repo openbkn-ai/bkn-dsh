@@ -2,6 +2,115 @@
 
 All notable changes to this project are documented here.
 
+## 0.2.0-rc.2-openbkn.0.2.0-32 (unreleased local candidate)
+
+- Acceptance disposition (documentation only): bkn-dsh does not rewrite model/OpenBKN business exchanges, arbitrate answers or implement duplicate business calculations. Retained sales/capability selection and field-label failures are tracked in Foundry [#2515](https://github.com/openbkn-ai/bkn-foundry/issues/2515) and [#2516](https://github.com/openbkn-ai/bkn-foundry/issues/2516); native-route environment/edition classification is tracked in [#2517](https://github.com/openbkn-ai/bkn-foundry/issues/2517). They retain their original failure/unverified status without blocking unrelated plugin acceptance.
+- Accepted known limitations: historical Windows runner/browser causality and older menu-exit anomalies remain unresolved findings, not verified fixes. Browser certificate trust in the test environment was not accepted; require trusted HTTPS rather than bypassing TLS validation. The earlier macOS URL-handler preference change lacks its original file content, so exact restoration cannot be claimed or guessed.
+- The Windows rc.3 welcome-window exit is accepted only at its explicit minimal boundary: the official X closed the whole owned tree. Original menu FAIL, unobserved exit code, controller timeout and manual association-restore phases remain disclosed. No GUI distribution/signing framework is added.
+- A new-account read-only permission case passed on the frozen -32 with the actual rc.3 npm Host: supply access allowed, World Cup access/binding/cross-network tool request refused. This is not the original inverse-permission model question, an all-form matrix or formal CI-candidate acceptance. The frozen tarball is unchanged.
+- Carry the five localized provenance reference labels, passive diagnostic history notice, normal-text contrast and dialog Escape/focus fixes from frozen -31 into this candidate. Preserve the original -30/-31 artifacts.
+- Replace the newer compatibility target with pinned DSH `0.2.1-rc.3`, retaining `0.2.0-rc.2` and the old build generator. Update exact peers and runtime verification branches. Frozen -30/-31 artifacts and existing installations are unchanged.
+- Validate rc.3 with a metadata-only private derivative of -31, isolated source type checks, actual profile resolution and controlled official runtime checks. Those preliminary fixtures remain separate from the -32 local-candidate UI checks and final acceptance.
+- Validate a profile-only MCP same-origin redirect backport with the frozen candidate and original official Hosts. Same-origin method-preserving redirects are retained; cross-origin forwarding is blocked in the scoped checks. Existing Host code and SDK versions stay unchanged; final-candidate and companion-artifact delivery are not yet released, and global SDK/OAuth security is not declared fixed.
+
+## 0.2.0-rc.2-openbkn.0.2.0-30 (unreleased)
+
+- Obtain Schemastery from the supported Host as a peer, so an installed profile can share the Host's exact schema package instead of installing a separate copy. Audit the actual profile with the official Host resolver as well as the installation graph.
+- Separate English diagnostic metadata and sign-in labels from their values. Preserve refresh focus and cancellable Remote behavior.
+- Prepare portable Windows verification and durable task-owned Desktop logging locally. Native Windows revalidation and the final fixed CI candidate remain pending.
+
+## 0.2.0-rc.2-openbkn.0.2.0-29 (unreleased)
+
+- Keep the diagnostic refresh control mounted while loading, displaying a new report, failing or retrying. Keyboard focus stays on that control instead of falling back to the page body.
+- Preserve the -28 provenance cancellation fix. Local development only; the frozen Windows -27 handoff and formal platform remain unchanged.
+
+## 0.2.0-rc.2-openbkn.0.2.0-28 (unreleased)
+
+- Carry provenance reads over the native cancellable Remote stream so closing the dialog cancels the Host HTTP requests on Desktop. Retain the unary endpoint for compatibility.
+- Pass the request cancellation through verified CLI credential lookup. Share lookup work within one request while keeping independent requests isolated; discard late tokens after cancellation or configuration disposal.
+- Local development only. Formal platform 0.2.0 and the frozen Windows -27 handoff stay unchanged; full acceptance is pending.
+
+## 0.2.0-rc.2-openbkn.0.2.0-27 (unreleased)
+
+- Give the white diagnostics dialog its own foreground color, matching the other plugin dialogs. This keeps its title, version values and check IDs readable in dark Desktop hosts without changing exported facts or diagnostics behavior.
+- Preserve the reproduced MCP-owner and native directory-picker fixes from -26. Local development only; formal platform 0.2.0 remains unchanged and full acceptance is pending.
+
+## 0.2.0-rc.2-openbkn.0.2.0-26 (unreleased)
+
+- Keep the managed MCP child on the business component's construction context. Native Cordis service calls rebind the caller context; clients must leave with their configuration owner so reloads cannot leave an old authenticated transport behind.
+- Use the official Desktop directory bridge for business workspace selection, matching the native workspace flow; retain the Host picker in browser hosts and preserve native cancellation/failure without a second chooser.
+- Keep business tools, answers, calculations and CSV delivery unchanged. Local development only; no platform replacement, push, CI or publication.
+
+## 0.2.0-rc.2-openbkn.0.2.0-25 (unreleased)
+
+- Carry browser-login completion over DSH's native cancellable Remote stream so cancel, timeout and panel disposal can stop the Host-owned CLI process on Desktop. Retain the unary login endpoint for compatibility and the focus improvements from -24.
+- Keep access policy, business outputs and CSV transfer unchanged. Local development only; no remote synchronization, CI or publication.
+
+## 0.2.0-rc.2-openbkn.0.2.0-24 (unreleased)
+
+- Focus the business directory and diagnostics dialogs when they open, keep Tab navigation inside them, close with Escape, and restore focus to the opener. Preserve the active control while reports or locale text update.
+- Keep the -23 business policy, lifecycle and CSV transfer unchanged. Local development only; no remote synchronization, CI or publication.
+
+## 0.2.0-rc.2-openbkn.0.2.0-23 (unreleased)
+
+- Keep denied Host/raw-query calls distinct from the separately registered CSV delivery route in actionable refusal messages. No permissions or dispatch rules change.
+- Independently evaluate the original answers and files; the sample business layer now supplies exact per-level counts for each root/role/depth scope.
+
+## 0.2.0-rc.2-openbkn.0.2.0-22 (unreleased)
+
+- Explain the formal Function discovery envelope: OpenAPI request_body describes the body; execute_tool.arguments takes the business properties directly. Inspect the nested execution status rather than treating HTTP 200 as success.
+- Retain workspace-relative verified CSV links and count-scope guidance. Missing required product inputs fail before any BKN read in the sample Function layer.
+
+## 0.2.0-rc.2-openbkn.0.2.0-21 (unreleased)
+
+- Return a verified workspace-relative Markdown CSV link, avoiding transcription of machine-specific directory prefixes. The absolute verified path remains diagnostic output; existing exact-byte, scope and permission checks are unchanged.
+- Extend both official-host probes and filename escaping coverage to resolve the relative link inside the native Session workspace.
+
+## 0.2.0-rc.2-openbkn.0.2.0-20 (unreleased)
+
+- Discover matching published capabilities before a calculation or run_code fallback; use documented pages rather than rebuilding an available business calculation. This is routing guidance, not answer arbitration or automatic correction.
+- Retain verified final-file links and explicit count-scope guidance from local -19. Business BOM/inventory pagination and missing-record semantics live in the sample Function layer.
+
+## 0.2.0-rc.2-openbkn.0.2.0-19 (unreleased)
+
+- Return an escaped, verified `markdown_link` from successful scoped CSV export and require a self-contained final answer after Interaction finish. Preserve native model output and the existing lifecycle/file boundaries.
+- Clarify platform-disclosed count scopes and requested calculation signs without encoding business counts or formulas in the plugin. Independent evaluation checks the original answers and exported bytes.
+
+## 0.2.0-rc.2-openbkn.0.2.0-18 (unreleased)
+
+- Register scoped CSV export on official DSH 0.2.0-rc.2, which supplies the workspace through the immutable Session header rather than the new workingDirectory service. Prefer the native service when it exists; never fall back to server cwd.
+- Reproduce the missing old-host registration with the packed -17 plugin and a no-workingDirectory runtime, and keep that real old-host contract in the regression probe.
+- Preserve exact-byte transfer, numeric-precision guidance and all managed access restrictions. Local development only; no push, CI or publication.
+
+## 0.2.0-rc.2-openbkn.0.2.0-17 (unreleased)
+
+- Explicitly preserve precision during CSV serialization: Python default general formatting silently keeps only six significant digits. Use original numeric strings or full-precision values and preserve missing-value meaning.
+- Retain the exact-byte CSV transfer and actionable Host present refusal from the preceding local iterations. No answer rewriting or automatic corrective turns.
+- Local development only; no remote synchronization, CI or publication.
+
+## 0.2.0-rc.2-openbkn.0.2.0-16 (unreleased)
+
+- Explain the supported CSV transfer route when a bound session attempts Host present. The refusal stays fail-closed and does not dispatch a Host tool.
+- Add packed-plugin CSV export probes against both official ToolRuntime versions, covering lifecycle/context/network refusals, read-only Sessions, exact bytes and capture-disabled governance.
+- Keep local -15 model failures and artifacts as separate evidence. No remote synchronization, CI or publication.
+
+## 0.2.0-rc.2-openbkn.0.2.0-15 (unreleased)
+
+- Preserve source numeric precision in managed answer and export guidance; rounding requires an explicit user request or disclosed platform rule.
+- Add the agent-scoped `openbkn_export_csv` delivery tool. It reads an existing CSV through the current managed platform Interaction, verifies size/UTF-8/SHA-256, and creates a new byte-verified file through the native DSH filesystem in the Session write boundary. Read-only mode, cross-session identities, path traversal, symlinks, collisions and invalid transfers fail closed. Host read/grep/present stay refused; no answer rewriting or business algorithm is added.
+- Local development only; the previous -14 artifact and historical acceptance remain separate. No new remote CI or publication.
+
+## 0.2.0-rc.2-openbkn.0.2.0-14 (unreleased)
+
+- Explain the bound session's actual recovery route for spilled MCP results: use the same managed capability's documented pagination with smaller pages and unchanged filters. Host read/grep/present remain refused. Distinguish platform Sandbox files from local workspace delivery without changing business rules or model output.
+- Tighten independent BOM evaluation around substitute/main scope and inaccessible file claims. Reject non-boolean grading marks instead of coercing them into passes, and record the evaluation-set SHA-256 in reports.
+- Local development and validation only; native CE route absence and model-answer failures remain explicitly tracked. No remote synchronization or CI before local work converges.
+
+## 0.2.0-rc.2-openbkn.0.2.0-13 (unreleased)
+
+- Keep the network and provenance overlay close glyph visible in dark DSH hosts by setting its foreground color explicitly. Reproduced as white text on a white button in the -12 CI candidate; covered by a contrast regression for all three overlays.
+- Local development only while the remaining acceptance work is completed. No remote build-only CI has been triggered for this version.
+
 ## 0.2.0-rc.2-openbkn.0.2.0-12 (unreleased)
 
 - Use a neutral empty-node message in the evidence view. An unavailable or not-generated explanation no longer displays a claim that an explanation exists. Reproduced on the formal local platform using the -11 CI candidate; covered by zh/en rendering regression tests.

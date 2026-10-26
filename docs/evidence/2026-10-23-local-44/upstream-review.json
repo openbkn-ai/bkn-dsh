@@ -1,0 +1,24 @@
+{
+  "checkedAtUTC": "2026-10-23T08:35:42.737756+00:00",
+  "dsh": {
+    "head": "687f282e8625c6b8d11ff58211a90524be2e4317",
+    "release": "dsh-v0.2.1-rc.2",
+    "changedSinceRound42": false
+  },
+  "foundry": {
+    "formalRelease": "v0.2.0",
+    "previousReviewed": "3762d1a940a01c81953dd0e22300b22397fa72e6",
+    "head": "0b44799646aaf119df894bdf7fb43a489be21275",
+    "newUnreleasedCommits": 6,
+    "reviewedChanges": [
+      "UNION/UNION ALL Cypher support and dataset text/schema/SDK descriptions",
+      "GraphExplorer canvas tools",
+      "composite-key trace and unaliased != column naming",
+      "BKN value type storage/API/validation/export/audit metadata"
+    ],
+    "loginSubprocessContractChanged": false,
+    "impact": "Unreleased main only. No deployment, migration, tool expansion or production schema adaptation on fixed formal0.2.0. Future support requires contract/fixture review."
+  },
+  "platformAccessed": false,
+  "otherRelease11Adopted": false
+}

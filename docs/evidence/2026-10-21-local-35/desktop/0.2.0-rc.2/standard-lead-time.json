@@ -1,0 +1,53 @@
+{
+  "form": "desktop",
+  "host": "0.2.0-rc.2",
+  "case_id": "standard-lead-time",
+  "session_id": "session-449423e6-41b7-44bf-ad9a-47cf7574902f",
+  "turn": 1,
+  "question": "382-000005 的标准交期？",
+  "started_at": "2026-10-21T15:10:41.952640+00:00",
+  "finished_at": "2026-10-21T15:10:53.905569+00:00",
+  "response_models": [
+    "deepseek-flash"
+  ],
+  "real_model_response_observed": true,
+  "model_configured_real": true,
+  "turn_end_kind": "completed",
+  "error_message": null,
+  "tool_calls": [
+    {
+      "name": "mcp__openbkn__bkn_start_interaction",
+      "arguments": "{\"conversation_mode\":\"new\",\"question\":\"382-000005 的标准交期？\",\"agent_name\":\"bkn-agent-dsh-business-context\"}",
+      "callId": "call_00_irdWN6gCRGrUuL3VDyqi1098"
+    },
+    {
+      "name": "mcp__openbkn__search_schema",
+      "arguments": "{\"kn_id\":\"supply_ontology_hand\",\"query\":\"标准交期 产品 物料 供应商 交期\",\"bkn_context\":{\"conversation_id\":\"conv_2ba01212de61bd9ff81a52aa78e0bfce\",\"interaction_id\":\"int_67c5c3d335b707584b84ceecfe2e0ee9\"},\"response_format\":\"json\"}",
+      "callId": "call_00_xShQxSKAGpqwhNlXCPoe6362"
+    },
+    {
+      "name": "mcp__openbkn__query_object_instance",
+      "arguments": "{\"bkn_context\":{\"conversation_id\":\"conv_2ba01212de61bd9ff81a52aa78e0bfce\",\"interaction_id\":\"int_67c5c3d335b707584b84ceecfe2e0ee9\"},\"kn_id\":\"supply_ontology_hand\",\"ot_id\":\"supply_ontology_hand_material\",\"filters\":[{\"field\":\"material_code\",\"op\":\"==\",\"value\":\"382-000005\"}],\"limit\":10,\"response_format\":\"json\"}",
+      "callId": "call_00_eLEB1bxVPdNDhxgs75Bb6215"
+    },
+    {
+      "name": "mcp__openbkn__bkn_finish_interaction",
+      "arguments": "{\"interaction_id\":\"int_67c5c3d335b707584b84ceecfe2e0ee9\",\"outcome\":\"completed\",\"answer\":\"382-000005（北斗导航农机驾驶仪，型号 YN406BDS-2.5GD(YN406拖拉机V2)，存货类别 406包装成品）的标准交期为 1 天。口径依据物料对象说明：物料属性为“自制”，标准交期取 product_fixedleadtime（生产固定提前期）= 1 天；该物料 purchase_fixedleadtime 同为 1，但按规则不采用采购口径。单位为天；单据预计到货日期属另一字段，未参与本回答。数据来源：物料对象按 material_code=382-000005 精确匹配 1 条，无权限限制提示。\"}",
+      "callId": "call_00_kJYNSyj4d5poEsMsU8cr8447"
+    }
+  ],
+  "failed_tools": [],
+  "interaction_ids": [
+    "int_67c5c3d335b707584b84ceecfe2e0ee9"
+  ],
+  "sandbox_hold_triggered": false,
+  "original_answer": "**382-000005 的标准交期是 1 天。**\n\n| 项目 | 值 |\n|---|---|\n| 物料编码 | 382-000005 |\n| 物料名称 | 北斗导航农机驾驶仪 |\n| 规格型号 | YN406BDS-2.5GD(YN406拖拉机V2) |\n| 物料属性 | 自制 |\n| 存货类别 | 406包装成品 |\n| **标准交期** | **1 天**（取自生产固定提前期 product_fixedleadtime） |\n\n口径说明：按本网络中「物料」对象的规则，标准交期随物料属性取值——自制件（含产成品、半成品）取**生产固定提前期**，外购件才取采购固定提前期。该物料的采购固定提前期同为 1，但按规则不采用采购口径；单据上的「预计到货日期」是另一字段，与标准交期无关。\n\n- 查询范围：物料对象按 material_code = 382-000005 精确匹配，命中 1 条，total_count=1，无权限限制提示。\n- 单位：天。",
+  "original_answer_sha256": "01043cfa962ab6b98be5c91bab025b5aa7be6f64cec5cd42e4f1dcf32bbbd860",
+  "protocol_driver": false,
+  "answer_changed": false,
+  "transport": "Full-catalogue TLS forwarding with execution pre-dispatch hold",
+  "core_lead_time_criteria_passed": true,
+  "additional_field_label_error": true,
+  "status": "fail",
+  "failure_reason": "Original answer labels group_type=406包装成品 as 存货类别; actual group_name=库存商品-产成品. Lead-time core is correct; whole delivery is not accepted."
+}

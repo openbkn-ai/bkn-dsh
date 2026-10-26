@@ -1,0 +1,20 @@
+{
+  "kind": "local-development-preacceptance",
+  "ciRun": null,
+  "formalAcceptanceEligible": false,
+  "sha256": {
+    "AUTH-PREPARATION.json": "950634bd8ad5501ac11d237d83050a8c6176d3f5aa2fd13aebf0c8823a8bbcbf",
+    "BLOCKERS.md": "bdff7894471c9409937f3f6d6d7387aaf8ba8bef20e17fb91214215f091f18e1",
+    "OFFICIAL-DESKTOP-IDENTITY.json": "6e50b5ef3d64bdbecdc9d3d97d7c52436350250c0a23383325efd6fa6b9e056b",
+    "PRESERVATION.json": "49d626dc4b76f0217241976ab836304b14be6b1bec43fa5a17af078d9b78c2f2",
+    "PRIVATE-EVIDENCE-RECEIPT.json": "a11f6c27239a7f227b9de825cd58c7e3fb7fcb3ac255e729edcff401b6a746e9",
+    "PROFILE-CLOSURE.json": "93f1f3b2135d55458af7934d40fb8eea0a647f27af983d3daa58349627951621",
+    "REFERENCE-VALIDATION.json": "90f0a242c6ddf3ba788db84fd3651e6fcc59c65597c2c441a70ffdff256afbbe",
+    "RESULTS.md": "4c41854048d76e6326401cbffd39fbe262939b14374c0c3794ef90cfa42399ff",
+    "SECURITY-MAPPING.json": "6636a7a788cebfa5b3daf02f9047df5f76c2c5fbfbe5e469a5128c1e82ae0543",
+    "UPSTREAM-REVIEW.json": "b34a32e113e7ea2eb6d9a0d654e5c62d6fec346ec9ebc17d0c4970df1c21fddb",
+    "VALIDATION.json": "eb5ae9cfeb745c62441aaa18603340cbc009a1126d9c794f86543353025ff322"
+  },
+  "secretPatternScanMatches": 0,
+  "scanScope": "JWT, literal bearer, structured token/secret/device-code assignment and credential query patterns; not a guarantee of all secret types"
+}

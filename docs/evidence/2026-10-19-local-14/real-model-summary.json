@@ -1,0 +1,49 @@
+{
+  "captured_at": "2026-10-19T15:21:14.415190+00:00",
+  "artifact_sha256": "51cf44ce14e06bd534ce957602ebb2d83cf4cc457830a09d2144cebf2ad5127d",
+  "evidence": "real platform and model; preserve original answers; no corrective turn",
+  "hosts": [
+    {
+      "host": "0.2.0-rc.2",
+      "session": "session-6d033001-2a97-4b4a-88a5-65944648bded",
+      "response_models": [
+        "deepseek-flash"
+      ],
+      "completed": true,
+      "tool_calls": 22,
+      "interaction_ids": [
+        "int_23a41a1680bc3a6c0db6908214f5c90f"
+      ],
+      "final_answer_characters": 2981,
+      "final_answer_sha256": "7936f6c4046782cd18314fc3d280986974ec9e8b4f59e2510ec6f70382c294da",
+      "model_case_result": "fail",
+      "other_cases": "not run on this local artifact",
+      "remaining_failures": [
+        "Incomplete per-material delivery (selected L1/L2/L3 only).",
+        "Reported all-warehouse inventory 94 for 994-000550; its unspilled metric response sums to 1925.",
+        "Called refused host read; did not use smaller published-function pages after a spill."
+      ]
+    },
+    {
+      "host": "0.2.1-rc.2",
+      "session": "session-20004f3f-3125-40ee-8571-2d6d0fab599d",
+      "response_models": [
+        "deepseek-flash"
+      ],
+      "completed": true,
+      "tool_calls": 16,
+      "interaction_ids": [
+        "int_6c5934a94c50c1f4602eeafe02bc979d"
+      ],
+      "final_answer_characters": 1963,
+      "final_answer_sha256": "5bfb5a04804e7e058b2e6932f3ca85b3cefa008d796ce8457859f9a626554450",
+      "model_case_result": "fail",
+      "other_cases": "not run on this local artifact",
+      "remaining_failures": [
+        "Retrieved depth=1 / scoped_line_count=9 / next_offset=null, then attributed missing deep rows to pagination.",
+        "Did not deliver every material usage/inventory; asks to continue although original question requested it.",
+        "Mixes object-type priority-only main semantics with function scope; upstream semantic conflict remains."
+      ]
+    }
+  ]
+}

@@ -1,0 +1,43 @@
+{
+  "captured_at": "2026-10-19T15:23:58.339774+00:00",
+  "live_schema_from": {
+    "host": "0.2.1-rc.2",
+    "session": "session-9cb6149d-874c-46f7-ab65-4bfee1047323",
+    "tool_call_seq": 31,
+    "result_sha256": "28a0775587134d5a74d5a89d74dd1969744710b20217855c8ed7acf857b61e93"
+  },
+  "object_type_comment": "定义产品的物料清单结构，\n1. BOM结构：多层树形结构：产品 → L1子件 → L2子件 → ... → 最底层原材料；物料类型含自制、委外、外购。 \n2. BOM 分析默认使用 alt_priority == 0 的主料；\n3. BOM 替代料模型：\n1） BOM 中同一父件下的子件满足以下条件时，判定为同一替代组：\n  - alt_method = '替代'\n  - parent_material_code 相同（为空时使用 bom_material_code）\n  - alt_group_no 相同且非空\n2） 组内角色定义：\n  - alt_priority = 0 → 主料\n  - alt_priority > 0 → 替代料（priority 越小越优先）",
+  "property_comments": [
+    {
+      "name": "alt_method",
+      "display_name": "替代方式",
+      "comment": "直接替代或者需要改造改制后替代"
+    },
+    {
+      "name": "alt_part",
+      "display_name": "替代件",
+      "comment": "主料为空，其他为√；"
+    },
+    {
+      "name": "alt_priority",
+      "display_name": "优先级",
+      "comment": "优先级为0的是主料；"
+    }
+  ],
+  "function_reference": {
+    "path": "bkn-samples/samples/supply_ontology_hand/tools/fn/bom.py",
+    "sha256": "aa6c7a500e9c687895c4e701b49cc0aad739fb2602f7efb9891a65e885dd8dc8",
+    "main_filter": "alt_priority == 0 and stripped alt_method != 替代"
+  },
+  "skill_reference": {
+    "path": "bkn-samples/samples/supply_ontology_hand/skills/production-schedule-backward-planning/references/business-rules.md",
+    "sha256": "d2be3e0a67aacb00455c93221a94584bacb6bd8bcc07bc45d327bd4139c289bb",
+    "rule_line": "BOM：默认主料（`alt_priority == 0` 且 `alt_method != 替代`）；按 `parent_material_code` 建树；环路跳过；上限 5000 节点。"
+  },
+  "read_only_sql": {
+    "query": "SELECT alt_priority,COALESCE(alt_method,''),COALESCE(alt_part,''),COUNT(*),COUNT(DISTINCT material_code) FROM supply_demo_hand.erp_material_bom WHERE bom_material_code='382-000005' GROUP BY alt_priority,alt_method,alt_part ORDER BY alt_priority,alt_method,alt_part; SELECT parent_material_code,material_code,alt_group_no,alt_priority,alt_method,alt_part,standard_usage FROM supply_demo_hand.erp_material_bom WHERE bom_material_code='382-000005' AND parent_material_code='791-000007' ORDER BY alt_group_no,alt_priority LIMIT 16; SELECT material_code,SUM(available_inventory_qty) FROM supply_demo_hand.erp_real_time_inventory WHERE material_code IN ('994-000550','165-000120','165-000257') GROUP BY material_code;",
+    "result_tsv": "0\t\t\t314\t273\n0\t替代\t\t86\t68\n1\t替代\t√\t86\t70\n2\t替代\t√\t21\t14\n791-000007\t849-000288\t0\t0\tNULL\tNULL\t6\n791-000007\t165-002527\t8\t0\t替代\tNULL\t1\n791-000007\t165-002281\t8\t1\t替代\t√\t1\n791-000007\t549-000880\t9\t0\t替代\tNULL\t1\n791-000007\t549-000881\t9\t1\t替代\t√\t1\n791-000007\t549-001813\t9\t2\t替代\t√\t1\n791-000007\t165-001299\t10\t0\t替代\tNULL\t1\n791-000007\t165-001235\t10\t1\t替代\t√\t1\n791-000007\t791-000001\t11\t0\t替代\tNULL\t1\n791-000007\t791-000004\t11\t1\t替代\t√\t1\n165-000120\t2547\n165-000257\t3285\n994-000550\t1925\n"
+  },
+  "business_resolution": "not decided; preserve existing data, function and metadata; plugin must not arbitrate",
+  "important_correction": "399/333 is consistent with current object-type prose; 313/272 is consistent with current published-function/Skill filter. SQL count agreement does not adjudicate which business rule is right."
+}

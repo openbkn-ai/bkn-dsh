@@ -1,0 +1,6 @@
+{
+  "claim": "The early bare-specifier hook is not sufficient to observe profile peers supplied by the official interception layer. No ESM plugin-import coverage claim is made from this trace.",
+  "actualProof": "All four running Hosts independently passed actual-profile-observation.json using the public official resolver and Node resolution from the plugin parent.",
+  "nodeHookProfileCoverage": "insufficient-evidence",
+  "officialResolverAndNodeProfileCoverage": "pass"
+}

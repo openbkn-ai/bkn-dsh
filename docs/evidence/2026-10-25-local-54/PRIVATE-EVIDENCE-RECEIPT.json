@@ -1,0 +1,209 @@
+{
+  "rawFilesRemainLocal": true,
+  "files": [
+    {
+      "path": "release/local-54/preservation-before-private.json",
+      "sha256": "2e5938449eaa7e6facbf32122c493d2dc2f58bb0a831cbdc8f525afb061a0ac4",
+      "bytes": 1212421,
+      "distribution": "local-private-only"
+    },
+    {
+      "path": "release/local-54/original-rc3-runtime-before-private.json",
+      "sha256": "f8da42163ef78321241091073a59a103e834258e5a17bac360ecfc0ecaa67939",
+      "bytes": 7881845,
+      "distribution": "local-private-only"
+    },
+    {
+      "path": "release/local-54/carryover.patch",
+      "sha256": "eda4234102af48c800c38b9bb13959376e80e0286abdb5a9e8e53b976fe41ba4",
+      "bytes": 19913,
+      "distribution": "local-private-only"
+    },
+    {
+      "path": "release/local-54/runtime-copy.json",
+      "sha256": "62b451727c9e1a223b4a3b7702975f7fa678bcd0d65a762bc8bdfc93380eef33",
+      "bytes": 361,
+      "distribution": "local-private-only"
+    },
+    {
+      "path": "release/local-54/home-copy-before-private.json",
+      "sha256": "afb4f0f6aac26d9d677b9eb4f5f239e5dce2324556adb0f24f8ccd95f2d319ba",
+      "bytes": 8025,
+      "distribution": "local-private-only"
+    },
+    {
+      "path": "release/local-54/profile-32-closure.json",
+      "sha256": "38ae41cbd28587c12bd5f521f775b8e8c5ca9fca358698096c69e4f87de89897",
+      "bytes": 35661,
+      "distribution": "local-private-only"
+    },
+    {
+      "path": "release/local-54/final-profile-closure.json",
+      "sha256": "38ae41cbd28587c12bd5f521f775b8e8c5ca9fca358698096c69e4f87de89897",
+      "bytes": 35661,
+      "distribution": "local-private-only"
+    },
+    {
+      "path": "release/local-54/final-candidate-manifest.json",
+      "sha256": "179c1322fa83a54b2d1442a2c04e215bcadcc7622294589ce1c8e1a40a9d6a2d",
+      "bytes": 466,
+      "distribution": "local-private-only"
+    },
+    {
+      "path": "release/local-54/candidate-manifest.json",
+      "sha256": "def5651ce16ec63e3f7ef937dcf2444724ce38ef61e0295187ba7d88ee22597f",
+      "bytes": 629,
+      "distribution": "local-private-only"
+    },
+    {
+      "path": "release/local-54/client31-to32.diff",
+      "sha256": "de225d80d83bf0915c66d6528acf1828ba5a71241584d537728fd8a222f2496b",
+      "bytes": 6602,
+      "distribution": "local-private-only"
+    },
+    {
+      "path": "release/local-54/ui-observations-pre-final.json",
+      "sha256": "a5ee3661dfd5d938aa862b8791441075e4de368e51e17a3234cf4c3283299df7",
+      "bytes": 2506,
+      "distribution": "local-private-only"
+    },
+    {
+      "path": "release/local-54/business-focus-and-colors.json",
+      "sha256": "2c13b794696262597b7072b68dc38fedabbdc0672cbee40c1a9e529a56ff6a26",
+      "bytes": 1102,
+      "distribution": "local-private-only"
+    },
+    {
+      "path": "release/local-54/diagnostics-focus-and-colors.json",
+      "sha256": "07c5d7a1db58f6d0f92b9811e70e015d5efb95f627004b1e0d8baf70595a744f",
+      "bytes": 333,
+      "distribution": "local-private-only"
+    },
+    {
+      "path": "release/local-54/provenance-focus.json",
+      "sha256": "5a26f1483e8ec29c032e87b8c4835c25ac133dce619a88272782a828fa61ada3",
+      "bytes": 199,
+      "distribution": "local-private-only"
+    },
+    {
+      "path": "release/local-54/narrow-ui.json",
+      "sha256": "16f2bf0a0fd80e7afd734f8639f721ff9bd14281a767d415403886cbe4678be0",
+      "bytes": 706,
+      "distribution": "local-private-only"
+    },
+    {
+      "path": "release/local-54/rc3-32-diagnostics-800-top-private.png",
+      "sha256": "34d0bfbe0259cb4a1e475bd38c6a28f2d1a70a9045fa479a215194a36edbb401",
+      "bytes": 55119,
+      "distribution": "local-private-only"
+    },
+    {
+      "path": "release/local-54/provenance-zh-local-history-private.txt",
+      "sha256": "bc57e4bb56c272816d7a46cbd09fd6c558cd26d265653deef0b8d8a53aa7e8a4",
+      "bytes": 313,
+      "distribution": "local-private-only"
+    },
+    {
+      "path": "release/local-54/plugin-loaded-private.txt",
+      "sha256": "c31ab13cc4951eb265a8ee402f01b289b89d4e84265fe91a5aa036789f369ae3",
+      "bytes": 204,
+      "distribution": "local-private-only"
+    },
+    {
+      "path": "release/local-54/business-zh-private.txt",
+      "sha256": "185f863b993e68215a7b9a6fb1987b44dbf8892d4dedc9c06143dd270ecfbd21",
+      "bytes": 192,
+      "distribution": "local-private-only"
+    },
+    {
+      "path": "release/local-54/diagnostics-zh-private.txt",
+      "sha256": "bbc6b13465fc27a0589a9dd85003ff8c951248f431ff572b3c6e7f98508679a0",
+      "bytes": 180,
+      "distribution": "local-private-only"
+    },
+    {
+      "path": "release/local-54/browser-errors-before-restart-private.json",
+      "sha256": "37517e5f3dc66819f61f5a7bb8ace1921282415f10551d2defa5c3eb0985b570",
+      "bytes": 3,
+      "distribution": "local-private-only"
+    },
+    {
+      "path": "release/local-54/foundry-delta-private.json",
+      "sha256": "0d0958d57e1454e86f9de3db890f15b72c62cb5c23dbe17222503f56273c2c13",
+      "bytes": 120080,
+      "distribution": "local-private-only"
+    },
+    {
+      "path": "release/local-54/upstream-consumed-review.patch",
+      "sha256": "a034316028f9984157c1cfd447ccb28a4951291248235ce15fa40ca4ae175554",
+      "bytes": 7089,
+      "distribution": "local-private-only"
+    },
+    {
+      "path": "release/local-54/carried-tests-wrong-cwd.log",
+      "sha256": "dbb14d03e657c4925c056247da29f076cd6ce7046d9e929afdd022d3cd30d034",
+      "bytes": 71,
+      "distribution": "local-private-only"
+    },
+    {
+      "path": "release/local-54/carried-tests.log",
+      "sha256": "dbb14d03e657c4925c056247da29f076cd6ce7046d9e929afdd022d3cd30d034",
+      "bytes": 71,
+      "distribution": "local-private-only"
+    },
+    {
+      "path": "release/local-54/final-ui-run/plugin-loaded-private.txt",
+      "sha256": "5be172ff9a85ade12037e74a0ae9974e74c0bf275ac83977dbd51c72abc0cb1a",
+      "bytes": 204,
+      "distribution": "local-private-only"
+    },
+    {
+      "path": "release/local-54/final-ui-run/plugin-loaded-private.png",
+      "sha256": "c684bfa7eb9875c04481bff2beefb9f4c9e2fd7134850e011d150f3e98fddc3c",
+      "bytes": 76900,
+      "distribution": "local-private-only"
+    },
+    {
+      "path": "release/local-54/final-ui-run/diagnostics-en-private.txt",
+      "sha256": "b5b363721f5e89b8cd395372180994117571d02aef1431e3e35233c17d5f830c",
+      "bytes": 185,
+      "distribution": "local-private-only"
+    },
+    {
+      "path": "release/local-54/final-ui-run/rc3-32-diagnostics-en-private.png",
+      "sha256": "d3a1c21150484fe2e4e807138cfffe1d3a1c57f27b7ff01383461fa534a74e20",
+      "bytes": 95882,
+      "distribution": "local-private-only"
+    },
+    {
+      "path": "release/local-54/final-ui-run/observations.json",
+      "sha256": "d42467e4368e2cf2417201b6d73c4282d36dc845c29b7ee13592524cd41c42c2",
+      "bytes": 812,
+      "distribution": "local-private-only"
+    },
+    {
+      "path": "release/local-54/final-ui-run/browser-errors-private.json",
+      "sha256": "37517e5f3dc66819f61f5a7bb8ace1921282415f10551d2defa5c3eb0985b570",
+      "bytes": 3,
+      "distribution": "local-private-only"
+    },
+    {
+      "path": "release/local-54/final-ui-run/close-proof.json",
+      "sha256": "9f372560f50d98442c45abeef610a7779008185d2a9a891c61937f15c5bcbb9c",
+      "bytes": 76,
+      "distribution": "local-private-only"
+    },
+    {
+      "path": "release/local-54/final-ui-run/cleanup.json",
+      "sha256": "4673be3194a21833f92c113a20ede7927a8b397ae4ff8b722dada3df9cf11ce7",
+      "bytes": 150,
+      "distribution": "local-private-only"
+    }
+  ],
+  "excludedFromPublicContents": [
+    "bootstrap URL",
+    "Host output logs",
+    "CLI credentials and auth material",
+    "raw browser AX and screenshots"
+  ]
+}

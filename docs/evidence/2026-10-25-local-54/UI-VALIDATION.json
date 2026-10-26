@@ -1,0 +1,92 @@
+{
+  "classification": "local-development-preacceptance",
+  "ciRun": null,
+  "formalAcceptanceEligible": false,
+  "form": "macOS npm/web, actual official rc.3 runtime",
+  "runtimeVersion": "0.2.1-rc.3",
+  "upstreamCommit": "1f81c047fc48fa190a683e469daa699857e9afe8",
+  "pluginVersion": "0.2.0-rc.2-openbkn.0.2.0-32",
+  "finalArtifactSha256": "46626510825fe9146aef12c27a1724acbb455aeac22aa600358add0fc8e1c9f8",
+  "executableEquivalentEarlierUiArtifactSha256": "c14c50815ae1b50332aabb6a0a666e000287439fa84bbe8e8187ec9e0c8acff6",
+  "earlierUiArtifactDifference": [
+    "README.md",
+    "README.zh.md"
+  ],
+  "reuseBoundary": "Earlier Chinese, keyboard, narrow-layout and historical-provenance observations apply by exact executable/configuration identity. The final package was installed with all 82 files matched and reloaded for English diagnostics and package-page identity. These are bounded local checks, not final CI acceptance.",
+  "results": [
+    {
+      "case": "final candidate installed and actually loaded",
+      "status": "PASS",
+      "evidence": "82 installed file bytes match; final source path/version on native plugin page; 3/3 components running"
+    },
+    {
+      "case": "actual profile closure",
+      "status": "PASS",
+      "evidence": "Cordis 4.0.5 / Schemastery 3.18.5, same physical packages; no mixed DSH, plugin Zod 4.4.3"
+    },
+    {
+      "case": "business overlay and diagnostic notice zh/en",
+      "status": "PASS",
+      "evidence": "Correct Platform URL spacing, historical-observation notice, unknown versions remain unknown; not-logged-in remains a failure"
+    },
+    {
+      "case": "brand / primary-action contrast",
+      "status": "PASS",
+      "evidence": "Actual DOM RGB 8,125,114 / 14,116,144 on white; source contrast assertions pass"
+    },
+    {
+      "case": "business, diagnostics and provenance keyboard ownership",
+      "status": "PASS",
+      "evidence": "Tab/Shift+Tab wrap; Escape closes only owned dialog and restores its opener; parent page/session retained"
+    },
+    {
+      "case": "rc.3 native menu ownership",
+      "status": "PASS",
+      "evidence": "More and narrow-session More Tab/Escape close only their menu; no pin/unpin mutation"
+    },
+    {
+      "case": "800x600 and scroll access",
+      "status": "PASS",
+      "evidence": "document width 800; dialog bounds x60,y66,right740,bottom534; scroll body 394/960; final control visible; viewport restored 1280x720"
+    },
+    {
+      "case": "copied historical protocol session provenance",
+      "status": "PASS",
+      "evidence": "Existing completed Interaction and four local timeline entries remain available while auth-required degradation is displayed; no new turn or platform fact is asserted"
+    },
+    {
+      "case": "live nonempty five-reference platform rendering",
+      "status": "NOT_RUN",
+      "reason": "CLI reported not logged in; no login or additional platform/model/B1 round. Six focused source tests include all five zh/en/zh labels and immutable ids/status/read count."
+    },
+    {
+      "case": "nested native parent-dialog consumed Escape",
+      "status": "NOT_RUN",
+      "reason": "No new rc.3 nested-parent live reproduction; carried focused tests and prior -31 evidence retain their original scope"
+    },
+    {
+      "case": "final English diagnostics reload",
+      "status": "PASS",
+      "evidence": "Historical notice, unknown runtime fields and auth failure retained; zero browser error entries after final reload; final Escape returns footer focus"
+    },
+    {
+      "case": "existing tests outside changed boundary",
+      "status": "NOT_RUN",
+      "reason": "Full old suites, export/login/B1/G6/Windows/Desktop not repeated"
+    }
+  ],
+  "languageRestored": "English",
+  "browserViewportRestored": true,
+  "ownedTabClosed": true,
+  "ownedHostCleanup": {
+    "pid": 85469,
+    "identityMatched": true,
+    "signal": "SIGTERM",
+    "processExited": true,
+    "portReleased": true,
+    "at": "2026-10-25T03:08:59Z"
+  },
+  "browserErrorCountBeforeRestart": 0,
+  "browserErrorCountAfterFinalReload": 0,
+  "actualLoadedIdentityEvidence": "Native plugin detail page and actual installed profile, not diagnostic unknown fields"
+}

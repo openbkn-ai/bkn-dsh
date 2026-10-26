@@ -1,0 +1,307 @@
+{
+  "checked_at": "2026-10-21T13:28:16.465136+00:00",
+  "source_round": 31,
+  "only_names_exported": true,
+  "cases": [
+    {
+      "host": "0.2.0-rc.2",
+      "case_id": "orders-count-status",
+      "baseline_plugin": "-23",
+      "historical_interaction_ids": [
+        "int_3825e86550327ac778ce0556a0139f9c"
+      ],
+      "observed_operation_names": [
+        "01a157d1-a0c3-71f8-9a9e-05b14198a9c3",
+        "execute_tool",
+        "get_kn_detail",
+        "get_object_types",
+        "query_object_instance",
+        "run_code",
+        "search_capabilities"
+      ],
+      "run_code_observed": true,
+      "function_execute_observed": true,
+      "new_model_run_performed": false
+    },
+    {
+      "host": "0.2.0-rc.2",
+      "case_id": "missing-object",
+      "baseline_plugin": "-23",
+      "historical_interaction_ids": [
+        "int_290ec8a81fafeed2d3848f5ba45c100e"
+      ],
+      "observed_operation_names": [
+        "01a157e4-3246-7cec-a7b6-244e4c773fd2",
+        "execute_tool",
+        "get_kn_detail",
+        "get_object_types",
+        "query_object_instance",
+        "search_capabilities"
+      ],
+      "run_code_observed": false,
+      "function_execute_observed": true,
+      "new_model_run_performed": false
+    },
+    {
+      "host": "0.2.0-rc.2",
+      "case_id": "standard-lead-time",
+      "baseline_plugin": "-23",
+      "historical_interaction_ids": [
+        "int_e05b148809ae5c76800e53ced2b662ec"
+      ],
+      "observed_operation_names": [
+        "get_kn_detail",
+        "query_object_instance",
+        "search_schema"
+      ],
+      "run_code_observed": false,
+      "function_execute_observed": false,
+      "new_model_run_performed": false
+    },
+    {
+      "host": "0.2.0-rc.2",
+      "case_id": "bom-structure",
+      "baseline_plugin": "-23",
+      "historical_interaction_ids": [
+        "int_31d8bd45b3aa0e32fc5ea881c416ecd5"
+      ],
+      "observed_operation_names": [
+        "01a11f4e-fb6a-7d44-8fd4-f1585cb3a016",
+        "execute_tool",
+        "query_object_instance",
+        "run_code",
+        "search_capabilities",
+        "search_schema"
+      ],
+      "run_code_observed": true,
+      "function_execute_observed": true,
+      "new_model_run_performed": false
+    },
+    {
+      "host": "0.2.0-rc.2",
+      "case_id": "bom-usage-inventory",
+      "baseline_plugin": "-23",
+      "historical_interaction_ids": [
+        "int_43f6afd8e9cfbaa2dfaa826d1ac8e870"
+      ],
+      "observed_operation_names": [
+        "01a11f4e-fe5e-795f-a358-5d1d799293c8",
+        "execute_tool",
+        "get_kn_detail",
+        "get_object_types",
+        "query_object_instance",
+        "run_code",
+        "search_capabilities"
+      ],
+      "run_code_observed": true,
+      "function_execute_observed": true,
+      "new_model_run_performed": false
+    },
+    {
+      "host": "0.2.0-rc.2",
+      "case_id": "finished-goods-inventory",
+      "baseline_plugin": "-23",
+      "historical_interaction_ids": [
+        "int_b2d97673bb67b6020f5fd807f63dd74c"
+      ],
+      "observed_operation_names": [
+        "01a157e4-3246-7cec-a7b6-244e4c773fd2",
+        "execute_tool",
+        "get_kn_detail",
+        "get_object_types",
+        "query_object_instance",
+        "search_capabilities"
+      ],
+      "run_code_observed": false,
+      "function_execute_observed": true,
+      "new_model_run_performed": false
+    },
+    {
+      "host": "0.2.0-rc.2",
+      "case_id": "purchase-flow",
+      "baseline_plugin": "-23",
+      "historical_interaction_ids": [
+        "int_9f0a27dbcd3285015d2794deb811a757"
+      ],
+      "observed_operation_names": [
+        "01a157e4-3246-7cec-a7b6-244e4c773fd2",
+        "execute_tool",
+        "get_kn_detail",
+        "get_object_types",
+        "query_object_instance",
+        "search_capabilities",
+        "search_instance"
+      ],
+      "run_code_observed": false,
+      "function_execute_observed": true,
+      "new_model_run_performed": false
+    },
+    {
+      "host": "0.2.0-rc.2",
+      "case_id": "sales-order-detail",
+      "baseline_plugin": "-23",
+      "historical_interaction_ids": [
+        "int_6a68f83032ff118e752229490145ccfe"
+      ],
+      "observed_operation_names": [
+        "get_kn_detail",
+        "get_object_types",
+        "query_object_instance",
+        "search_capabilities"
+      ],
+      "run_code_observed": false,
+      "function_execute_observed": false,
+      "new_model_run_performed": false
+    },
+    {
+      "host": "0.2.1-rc.2",
+      "case_id": "finished-goods-inventory",
+      "baseline_plugin": "-23",
+      "historical_interaction_ids": [
+        "int_a538b8bfdf7a76642c50658bcad33d4b"
+      ],
+      "observed_operation_names": [
+        "01a157e4-3246-7cec-a7b6-244e4c773fd2",
+        "execute_tool",
+        "get_kn_detail",
+        "query_object_instance",
+        "search_capabilities"
+      ],
+      "run_code_observed": false,
+      "function_execute_observed": true,
+      "new_model_run_performed": false
+    },
+    {
+      "host": "0.2.1-rc.2",
+      "case_id": "purchase-flow",
+      "baseline_plugin": "-23",
+      "historical_interaction_ids": [
+        "int_8cc494eaf62c652efe82eb644f2791d4"
+      ],
+      "observed_operation_names": [
+        "01a157e4-3246-7cec-a7b6-244e4c773fd2",
+        "execute_tool",
+        "get_kn_detail",
+        "get_object_types",
+        "query_object_instance",
+        "search_capabilities"
+      ],
+      "run_code_observed": false,
+      "function_execute_observed": true,
+      "new_model_run_performed": false
+    },
+    {
+      "host": "0.2.1-rc.2",
+      "case_id": "sales-order-detail",
+      "baseline_plugin": "-23",
+      "historical_interaction_ids": [
+        "int_f31e289e4e5c3cbc801bf9848e79f881"
+      ],
+      "observed_operation_names": [
+        "01a157d1-a0c3-71f8-9a9e-05b14198a9c3",
+        "execute_tool",
+        "get_kn_detail",
+        "get_object_types",
+        "query_object_instance",
+        "run_code",
+        "search_capabilities"
+      ],
+      "run_code_observed": true,
+      "function_execute_observed": true,
+      "new_model_run_performed": false
+    },
+    {
+      "host": "0.2.1-rc.2",
+      "case_id": "bom-usage-inventory",
+      "baseline_plugin": "-23",
+      "historical_interaction_ids": [
+        "int_7441e530704cdb4a22295defdd016933"
+      ],
+      "observed_operation_names": [
+        "01a11f4e-fe5e-795f-a358-5d1d799293c8",
+        "execute_tool",
+        "get_kn_detail",
+        "get_object_types",
+        "get_relation_types",
+        "query_object_instance",
+        "run_code",
+        "search_capabilities"
+      ],
+      "run_code_observed": true,
+      "function_execute_observed": true,
+      "new_model_run_performed": false
+    },
+    {
+      "host": "0.2.1-rc.2",
+      "case_id": "missing-object",
+      "baseline_plugin": "-23",
+      "historical_interaction_ids": [
+        "int_659ee166a24f5c812b60d6fcd9db8bc0"
+      ],
+      "observed_operation_names": [
+        "01a157e4-3246-7cec-a7b6-244e4c773fd2",
+        "execute_tool",
+        "get_kn_detail",
+        "get_object_types",
+        "query_object_instance",
+        "search_capabilities"
+      ],
+      "run_code_observed": false,
+      "function_execute_observed": true,
+      "new_model_run_performed": false
+    },
+    {
+      "host": "0.2.1-rc.2",
+      "case_id": "bom-structure",
+      "baseline_plugin": "-23",
+      "historical_interaction_ids": [
+        "int_9501c4f8d851a9c5f22b275aafbb522d"
+      ],
+      "observed_operation_names": [
+        "01a11f4e-fb6a-7d44-8fd4-f1585cb3a016",
+        "execute_tool",
+        "get_kn_detail",
+        "get_object_types",
+        "query_object_instance",
+        "run_code",
+        "search_capabilities"
+      ],
+      "run_code_observed": true,
+      "function_execute_observed": true,
+      "new_model_run_performed": false
+    },
+    {
+      "host": "0.2.1-rc.2",
+      "case_id": "standard-lead-time",
+      "baseline_plugin": "-23",
+      "historical_interaction_ids": [
+        "int_367b850ce7ae090028b05f4cf6664f1a"
+      ],
+      "observed_operation_names": [
+        "query_object_instance",
+        "search_schema"
+      ],
+      "run_code_observed": false,
+      "function_execute_observed": false,
+      "new_model_run_performed": false
+    },
+    {
+      "host": "0.2.1-rc.2",
+      "case_id": "orders-count-status",
+      "baseline_plugin": "-23",
+      "historical_interaction_ids": [
+        "int_ab088235d42e82d4e2875856383e44a5"
+      ],
+      "observed_operation_names": [
+        "01a157d1-a0c3-71f8-9a9e-05b14198a9c3",
+        "execute_tool",
+        "query_object_instance",
+        "search_capabilities",
+        "search_schema"
+      ],
+      "run_code_observed": false,
+      "function_execute_observed": true,
+      "new_model_run_performed": false
+    }
+  ]
+}

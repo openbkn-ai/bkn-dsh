@@ -1,0 +1,155 @@
+{
+  "checked_at": "2026-10-19T16:37:05.040602+00:00",
+  "file": "/Users/dominiczhang/Documents/project/app/openBKN/bkn-dsh/release/ci-41507f9/workspaces/supply-new/openbkn-2024112f-0b97-4922-ba7d-d0c4b7bf22b9-382-000005_BOM_用量_库存.csv",
+  "sha256": "42269f76d36c31474983752d49df266108598c22dd684c05436301f28c25e386",
+  "bytes": 42021,
+  "utf8_bom": true,
+  "rows": 333,
+  "unique_materials": 333,
+  "headers": [
+    "物料编码",
+    "物料名称",
+    "BOM层级",
+    "直接父件编码",
+    "单层单耗",
+    "顶层累积使用量(每台)",
+    "单位",
+    "全仓可用库存",
+    "生产可用库存",
+    "库存明细(仓库:可用量)"
+  ],
+  "oracle_main_rows": 399,
+  "oracle_main_materials": 333,
+  "missing_materials": [],
+  "unexpected_materials": [],
+  "fractional_inventory_materials": 11,
+  "columns_checked": {
+    "all_available": "全仓可用库存",
+    "production_available": "生产可用库存"
+  },
+  "usage_oracle": "SUM of main-row standard_usage per material; independently verified all ancestors with main children have unit quantity in this dataset. Never infer paths from breadth-first seq_no.",
+  "inventory_tolerance": "1e-8 absolute for independent DOUBLE sums; integer and six-significant-digit rounding are not accepted",
+  "differences": [
+    {
+      "row": 107,
+      "material": "454-000213",
+      "column": "全仓可用库存",
+      "actual": "163869",
+      "expected": "163869.22999999998"
+    },
+    {
+      "row": 117,
+      "material": "539-000001",
+      "column": "全仓可用库存",
+      "actual": "1.79871e+06",
+      "expected": "1798707"
+    },
+    {
+      "row": 118,
+      "material": "539-000002",
+      "column": "全仓可用库存",
+      "actual": "1.80161e+06",
+      "expected": "1801614"
+    },
+    {
+      "row": 120,
+      "material": "539-000006",
+      "column": "全仓可用库存",
+      "actual": "1.02493e+06",
+      "expected": "1024926"
+    },
+    {
+      "row": 121,
+      "material": "539-000008",
+      "column": "全仓可用库存",
+      "actual": "3.00658e+06",
+      "expected": "3006582"
+    },
+    {
+      "row": 196,
+      "material": "725-000005",
+      "column": "全仓可用库存",
+      "actual": "74614.9",
+      "expected": "74614.9333"
+    },
+    {
+      "row": 199,
+      "material": "725-000012",
+      "column": "全仓可用库存",
+      "actual": "589002",
+      "expected": "589001.6240000001"
+    },
+    {
+      "row": 202,
+      "material": "725-000024",
+      "column": "全仓可用库存",
+      "actual": "99155.1",
+      "expected": "99155.0673"
+    },
+    {
+      "row": 203,
+      "material": "725-000025",
+      "column": "全仓可用库存",
+      "actual": "61950.1",
+      "expected": "61950.0945"
+    },
+    {
+      "row": 207,
+      "material": "725-000030",
+      "column": "全仓可用库存",
+      "actual": "128979",
+      "expected": "128978.7"
+    },
+    {
+      "row": 217,
+      "material": "725-000070",
+      "column": "全仓可用库存",
+      "actual": "124197",
+      "expected": "124197.25"
+    },
+    {
+      "row": 219,
+      "material": "725-000086",
+      "column": "全仓可用库存",
+      "actual": "1.35743e+06",
+      "expected": "1357428"
+    },
+    {
+      "row": 226,
+      "material": "725-000118",
+      "column": "全仓可用库存",
+      "actual": "40533.3",
+      "expected": "40533.34"
+    },
+    {
+      "row": 235,
+      "material": "725-000179",
+      "column": "全仓可用库存",
+      "actual": "323236",
+      "expected": "323236.1666"
+    },
+    {
+      "row": 236,
+      "material": "725-000182",
+      "column": "全仓可用库存",
+      "actual": "225105",
+      "expected": "225105.11"
+    },
+    {
+      "row": 237,
+      "material": "725-000226",
+      "column": "全仓可用库存",
+      "actual": "3.1159e+06",
+      "expected": "3115901.5"
+    },
+    {
+      "row": 237,
+      "material": "725-000226",
+      "column": "生产可用库存",
+      "actual": "1.51603e+06",
+      "expected": "1516029"
+    }
+  ],
+  "passed": false,
+  "scope": "Read-only independent source SQL; original model CSV retained byte-for-byte. Full BOM line identity was separately checked for the 399-row -15 targeted export."
+}

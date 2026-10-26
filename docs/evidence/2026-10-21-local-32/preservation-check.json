@@ -1,0 +1,126 @@
+{
+  "checked_at": "2026-10-21T08:55:00.020887+00:00",
+  "comparison_baseline": "local-31 after the authorized business metadata updates",
+  "platform": "https://192.168.50.129",
+  "context": "kind-bkn-test-015-lan",
+  "data_tables": {
+    "customer_entity": {
+      "rows": 60,
+      "sha256": "316ac846130869f5e338729cb82f8dc40f650474344daab0ea1e7bc93cb7ba92",
+      "unchanged": true
+    },
+    "erp_material": {
+      "rows": 3497,
+      "sha256": "b0c404ca8f25b703c63906ff1c906ecead41d441a74d386f664e0e85651c4b1a",
+      "unchanged": true
+    },
+    "erp_material_bom": {
+      "rows": 31423,
+      "sha256": "676342917d423c70be26c1393b4370c252b274997c20d41ee9b60b1df4c1618b",
+      "unchanged": true
+    },
+    "erp_mds_forecast": {
+      "rows": 137,
+      "sha256": "1dc33db72419b3f80941aedd511f4ae19b7a2fade978d27b7d0c83ee0dd2c422",
+      "unchanged": true
+    },
+    "erp_mrp_plan_order": {
+      "rows": 824,
+      "sha256": "222d3a8bc6af1569f7411265a53eeb51009ff53fbacad15cd726784d355d4298",
+      "unchanged": true
+    },
+    "erp_production_work_order": {
+      "rows": 605,
+      "sha256": "a14b50b3df352741dc45fd49949cdeeb20dacd80d58ac823f77903b08c0a2e1c",
+      "unchanged": true
+    },
+    "erp_purchase_order": {
+      "rows": 1972,
+      "sha256": "0dcf19493db926bb620a8191a74fd659dfb47aba98d559f15317593b817fa18f",
+      "unchanged": true
+    },
+    "erp_purchase_request": {
+      "rows": 19333,
+      "sha256": "67c3d13b478a3487d8fb888aa63eaf12581b618de406c883abe160401eebea2c",
+      "unchanged": true
+    },
+    "erp_real_time_inventory": {
+      "rows": 19724,
+      "sha256": "ee7b5cc9cc8d75f9b1c47e74c1d79f768adb0f7bf6aa9cfb038fac606eeb90df",
+      "unchanged": true
+    },
+    "erp_supplier": {
+      "rows": 230,
+      "sha256": "3b57b6a3cb70e8c8d0ca388e7859056d54b91f59dfee386b2ce003a3c73f109c",
+      "unchanged": true
+    },
+    "hd_product_view": {
+      "rows": 30,
+      "sha256": "3d22a90085a456a79b5ff05d407979a3d272aee585ce186f93099548c3cdbe66",
+      "unchanged": true
+    },
+    "sales_order": {
+      "rows": 800,
+      "sha256": "2b1c0685c98210ff9a116b4b8efc79196e14c8726c1746842396f18b473b2bd1",
+      "unchanged": true
+    }
+  },
+  "source_rows": 78635,
+  "business_data_unchanged": true,
+  "metadata": [
+    {
+      "table": "t_knowledge_network",
+      "rows": 2,
+      "unchanged": true
+    },
+    {
+      "table": "t_llm_model",
+      "rows": 1,
+      "unchanged": true
+    },
+    {
+      "table": "t_small_model",
+      "rows": 1,
+      "unchanged": true
+    },
+    {
+      "table": "t_kn_capability_binding",
+      "rows": 4,
+      "unchanged": true
+    },
+    {
+      "table": "t_object_type",
+      "rows": 42,
+      "unchanged": true
+    },
+    {
+      "table": "t_relation_type",
+      "rows": 48,
+      "unchanged": true
+    },
+    {
+      "table": "t_tool",
+      "rows": 17,
+      "unchanged": true
+    },
+    {
+      "table": "t_operator_release",
+      "rows": 0,
+      "unchanged": true
+    },
+    {
+      "table": "t_skill_release",
+      "rows": 3,
+      "unchanged": true
+    },
+    {
+      "table": "t_skill_repository",
+      "rows": 3,
+      "unchanged": true
+    }
+  ],
+  "selected_business_config_unchanged": true,
+  "preexisting_user_edit_unchanged": true,
+  "database_mutations_performed": false,
+  "raw_configuration_exported": false
+}

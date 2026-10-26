@@ -1,0 +1,22 @@
+{
+  "version": "-28",
+  "forms": [
+    "npm old",
+    "npm new"
+  ],
+  "afterCollect": {
+    "tag": "BODY",
+    "role": null,
+    "inDialog": false
+  },
+  "observedBy": [
+    "actual AX state",
+    "read-only document.activeElement DOM query"
+  ],
+  "cause": "loading state unmounted the active refresh button",
+  "keyboardWrapBeforeRefresh": "passed",
+  "notProductFailures": [
+    "invalid profile argument in owned launch helper",
+    "incorrect root tsx invocation"
+  ]
+}

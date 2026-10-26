@@ -1,0 +1,27 @@
+{
+  "checkedAtUTC": "2026-10-22T23:54:33.304164+00:00",
+  "dsh": {
+    "head": "687f282e8625c6b8d11ff58211a90524be2e4317",
+    "latestRelease": "dsh-v0.2.1-rc.2",
+    "changedSinceRound40": false,
+    "repository": "deepseek-ai/deepseek-harness"
+  },
+  "foundry": {
+    "previousReviewed": "1635c246f3041b5697e5417a802e9c6847503d33",
+    "head": "3762d1a940a01c81953dd0e22300b22397fa72e6",
+    "formalRelease": "v0.2.0",
+    "unreleasedCommits": 29,
+    "reviewedAreas": [
+      "run_cypher docs: dataset explain exception, != alias, limited marker and cross-product refusal",
+      "query_metric filtering/grouping/having/sorting/paging query descriptions and schemas",
+      "BKN spec3 declarations/network check/import-export metadata",
+      "semantic evidence optional fields, graph explorer builtins, Vega query semantics and CI changes"
+    ],
+    "loginOrSubprocessSourceChangedInCompare": false,
+    "impact": "These main changes are unreleased and not deployed to the fixed platform. No tool expansion, platform upgrade, schema replacement or acceptance claim for unreleased main. Re-review before supporting a future release. No SDK/DSH subprocess ownership contract migration is implied by this delta."
+  },
+  "separateRemote11": "Excluded; not adopted or modified",
+  "platformActions": [],
+  "ciDispatched": false,
+  "pushed": false
+}

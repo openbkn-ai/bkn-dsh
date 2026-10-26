@@ -1,0 +1,31 @@
+TAP version 13
+# Subtest: overlay text and close controls keep visible contrast against their white surface in a dark host
+not ok 1 - overlay text and close controls keep visible contrast against their white surface in a dark host
+  ---
+  duration_ms: 16.907666
+  type: 'test'
+  location: '/Users/dominiczhang/Documents/project/app/openBKN/bkn-dsh/packages/openbkn-business-context/tests/locale-rendering.test.ts:1:19453'
+  failureType: 'testCodeFailure'
+  error: 'normal dialog text must contrast with its white surface when the Host foreground is white'
+  code: 'ERR_ASSERTION'
+  name: 'AssertionError'
+  expected: true
+  actual: false
+  operator: '=='
+  stack: |-
+    TestContext.<anonymous> (/Users/dominiczhang/Documents/project/app/openBKN/bkn-dsh/packages/openbkn-business-context/tests/locale-rendering.test.ts:260:16)
+    async Test.run (node:internal/test_runner/test:1054:7)
+    async startSubtestAfterBootstrap (node:internal/test_runner/harness:296:3)
+  ...
+1..1
+# tests 1
+# suites 0
+# pass 0
+# fail 1
+# cancelled 0
+# skipped 0
+# todo 0
+# duration_ms 263.271458
+undefined
+/Users/dominiczhang/Documents/project/app/openBKN/bkn-dsh/packages/openbkn-business-context:
+ ERR_PNPM_RECURSIVE_EXEC_FIRST_FAIL  Command failed with exit code 1: node --import tsx --test --test-name-pattern=overlay text and close controls tests/locale-rendering.test.ts

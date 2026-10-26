@@ -1,0 +1,13 @@
+{
+  "checked_at": "2026-10-20T04:03:01.801142+00:00",
+  "file": "/Users/dominiczhang/Documents/project/app/openBKN/bkn-dsh/release/ci-41507f9/workspaces/supply-old/openbkn-1d49292d-c418-40ec-8441-610d4ca96b7f-bom_382-000005_main_full.csv",
+  "bytes": 33773,
+  "sha256": "f6e4e62ba6db715ca6d4967d0ede15bd02273b0a73f0ded974837ae1963cbdc9",
+  "rows": 399,
+  "materials": 333,
+  "oracle": "Independent read-only SQL; all nine source columns including names, quantities, roles, groups and version",
+  "representation_normalization": "SQL unassigned alt_group_no=0 matches Function empty group; SQL DATETIME matches the wall-clock portion of the platform ISO timestamp. All nonzero group IDs and numeric source values are exact. The original CSV is never edited.",
+  "differences": [],
+  "invalid_substitute_flags": [],
+  "passed": true
+}

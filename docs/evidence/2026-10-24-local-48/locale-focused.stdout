@@ -1,0 +1,27 @@
+✔ OpenBKN UI remains additive and does not replace native DSH surfaces (0.394667ms)
+✔ OpenBKN client mounts its generated Remote contribution before using its namespace (0.119375ms)
+✔ OpenBKN client bundles the Remote schema runtime instead of requiring an unmaterialized dependency (2.472583ms)
+✔ first-use configuration stays independent and the ordinary login UI uses only CLI (0.751375ms)
+✔ English diagnostic metadata separates every label from its value (36.704833ms)
+✔ English sign-in platform label is separated from the displayed URL (3.855791ms)
+✔ both dictionaries cover the same keys and interpolation contracts (0.783042ms)
+✔ an already displayed failure updates zh/en/zh without rereading credentials or reconnecting (0.915792ms)
+✔ native evidence selection survives language changes and never links equal-valued unrelated nodes (7.797291ms)
+✔ diagnostic next actions translate without mutating exported report facts or unknown text (0.067541ms)
+✔ the open login panel switches language while waiting and cancellation never dispatches a second login (0.823917ms)
+✔ closing provenance cancels its read and discards the late response (6.350417ms)
+✔ claim selection marks only explicitly linked functions while retaining the same-pair catalogue (4.220166ms)
+✔ event selection marks processing by disclosed operation IDs and survives tab changes (3.4135ms)
+✔ changing question pairs resets node, claim and event selections without importing unrelated functions (4.4265ms)
+✔ truly empty ready evidence, not-generated and an omitted oversized native projection remain distinct (1.3495ms)
+✔ unavailable and not-generated evidence never claim that an explanation exists (0.417416ms)
+✔ overlay text and close controls keep visible contrast against their white surface in a dark host (0.70125ms)
+✔ a late response from the closed answer cannot overwrite a newly opened answer (2.383375ms)
+ℹ tests 19
+ℹ suites 0
+ℹ pass 19
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 236.734083

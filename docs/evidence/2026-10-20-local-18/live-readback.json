@@ -1,0 +1,152 @@
+{
+  "checked_at": "2026-10-19T16:48:50.881Z",
+  "records": [
+    {
+      "host": "0.2.0-rc.2",
+      "interaction_id": "int_46a6265997803fff1bfd4c78a814c7c4",
+      "calls": {
+        "standard": {
+          "status": 200,
+          "execution_status": "completed",
+          "returned_id": "int_46a6265997803fff1bfd4c78a814c7c4"
+        },
+        "operations": {
+          "status": 200,
+          "count": 44,
+          "tool_names": [
+            "01a11f4e-fb6a-7d44-8fd4-f1585cb3a016",
+            "execute_tool",
+            "get_kn_detail",
+            "get_object_types",
+            "query_metric",
+            "query_object_instance",
+            "query_object_instance",
+            "query_object_instance",
+            "query_object_instance",
+            "query_object_instance",
+            "query_object_instance",
+            "query_object_instance",
+            "query_object_instance",
+            "query_object_instance",
+            "query_object_instance",
+            "query_object_instance",
+            "query_object_instance",
+            "query_object_instance",
+            "run_code",
+            "run_code",
+            "run_code",
+            "run_code",
+            "run_code",
+            "run_code",
+            "run_code",
+            "run_code",
+            "run_code",
+            "run_code",
+            "run_code",
+            "run_code",
+            "run_code",
+            "run_code",
+            "run_code",
+            "run_code",
+            "run_code",
+            "run_code",
+            "run_code",
+            "run_code",
+            "run_code",
+            "run_code",
+            "run_code",
+            "run_code",
+            "run_code",
+            "search_capabilities"
+          ]
+        },
+        "native_detail": {
+          "status": 404
+        },
+        "native_explanations": {
+          "status": 404
+        }
+      }
+    },
+    {
+      "host": "0.2.1-rc.2",
+      "interaction_id": "int_1c8ba1af86572da55456840d538f7a5c",
+      "calls": {
+        "standard": {
+          "status": 200,
+          "execution_status": "completed",
+          "returned_id": "int_1c8ba1af86572da55456840d538f7a5c"
+        },
+        "operations": {
+          "status": 200,
+          "count": 52,
+          "tool_names": [
+            "01a11f4e-fb6a-7d44-8fd4-f1585cb3a016",
+            "01a11f4e-fb6a-7d44-8fd4-f1585cb3a016",
+            "01a11f4e-fb6a-7d44-8fd4-f1585cb3a016",
+            "execute_tool",
+            "execute_tool",
+            "execute_tool",
+            "get_kn_detail",
+            "get_logic_properties_values",
+            "get_object_types",
+            "get_object_types",
+            "query_object_instance",
+            "query_object_instance",
+            "query_object_instance",
+            "query_object_instance",
+            "query_object_instance",
+            "query_object_instance",
+            "run_code",
+            "run_code",
+            "run_code",
+            "run_code",
+            "run_code",
+            "run_code",
+            "run_code",
+            "run_code",
+            "run_code",
+            "run_code",
+            "run_code",
+            "run_code",
+            "run_code",
+            "run_code",
+            "run_cypher",
+            "run_cypher",
+            "run_cypher",
+            "run_cypher",
+            "run_cypher",
+            "run_cypher",
+            "run_cypher",
+            "run_cypher",
+            "run_cypher",
+            "run_cypher",
+            "run_cypher",
+            "run_cypher",
+            "run_cypher",
+            "run_cypher",
+            "run_cypher",
+            "run_cypher",
+            "run_cypher",
+            "run_cypher",
+            "run_cypher",
+            "run_cypher",
+            "run_cypher",
+            "search_capabilities"
+          ]
+        },
+        "native_detail": {
+          "status": 404
+        },
+        "native_explanations": {
+          "status": 404
+        }
+      }
+    }
+  ],
+  "capture": {
+    "status": 200,
+    "desired_state": "enabled",
+    "effective_state": "enabled"
+  }
+}

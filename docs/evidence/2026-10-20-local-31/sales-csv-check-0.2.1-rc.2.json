@@ -1,0 +1,28 @@
+{
+  "checked_at": "2026-10-20T06:42:19.465571+00:00",
+  "file": "/Users/dominiczhang/Documents/project/app/openBKN/bkn-dsh/release/ci-41507f9/workspaces/supply-new/openbkn-44b83895-ea47-4dda-b191-b59ff640d83f-sales_order_detail-0bf1fcb9472344358b4fb60ef4c55d4f.csv",
+  "sha256": "d9c26b8f8cc23ca064a6ce7e859f8a90fa9417a1e739ce798238910e2e528437",
+  "bytes": 8473,
+  "source_orders": 40,
+  "csv_rows": 40,
+  "headers": [
+    "sales_order_id",
+    "contract_number",
+    "customer_id",
+    "customer_name",
+    "product_code",
+    "product_name",
+    "signing_quantity",
+    "signing_date",
+    "promised_delivery_date",
+    "shipping_quantity",
+    "shipping_date",
+    "order_status",
+    "salesperson"
+  ],
+  "missing_order_ids": [],
+  "duplicate_order_ids": [],
+  "differences": [],
+  "representation_mapping": "Compare numeric representations as Decimal; source business dates use their YYYY-MM-DD part, SQL DATE_FORMAT. Customer names and all other text match exactly. Original file never rewritten.",
+  "passed": true
+}

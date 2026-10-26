@@ -1,0 +1,19 @@
+{
+  "kind": "local kit revision r3, not a plugin release",
+  "candidateVersion": "0.2.0-rc.2-openbkn.0.2.0-30",
+  "candidateSHA256": "6d95ff7517dbe409875fd398784fe01049ba26d2b97c43fad65c817d3ea18ee9",
+  "helperSHA256": "0e3466f3da61bd2cac8f263c03573ad03206dea7cf20ac58d8f94e433b4943a7",
+  "kitInputs": 26,
+  "kitInventorySHA256": "82d1b74c43728301016928b527742d1cee66e45413412de17fdc76b7735bc936",
+  "changesFromFrozenR2": {
+    "FOLLOWUP.md": "changed",
+    "HANDOFF.md": "changed",
+    "RESULTS-TEMPLATE.md": "changed",
+    "test-desktop-launcher-argv.ps1": "changed",
+    "test-desktop-launcher-json-array.ps1": "added"
+  },
+  "productionFilesChanged": false,
+  "committed": false,
+  "pushed": false,
+  "nativeWindows51OfficialRegression": "not-run"
+}

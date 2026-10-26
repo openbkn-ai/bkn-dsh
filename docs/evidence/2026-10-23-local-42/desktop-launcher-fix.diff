@@ -1,0 +1,13 @@
+--- 743eb4a/start-owned-desktop.ps1
++++ local-r2/start-owned-desktop.ps1
+@@ -33,8 +33,8 @@
+  foreach($taskName in @('BKN_TOKEN','BKN_BASE_URL','BKN_USER','BKN_PROFILE')){[Environment]::SetEnvironmentVariable($taskName,$null,'Process')}
+  # Electron supplies native ASAR reads. The standalone system Node cannot read app.asar/dsh.
+  $env:ELECTRON_RUN_AS_NODE='1'
+- $taskVerifyList=@('--expose-internals','"'+(Join-Path $taskKit 'verify-kit.mjs')+'"','--runtime','"'+$taskRuntime+'"','--host',$HostVersion)
+- if(-not $InitializeOnly){$taskVerifyList+=@('--profile','"'+$taskProfile+'"','--installed','"'+(Join-Path $taskProfile 'node_modules\@openbkn\dsh-business-context')+'"')}
++ $taskVerifyList=@('--expose-internals',('"'+(Join-Path $taskKit 'verify-kit.mjs')+'"'),'--runtime',('"'+$taskRuntime+'"'),'--host',$HostVersion)
++ if(-not $InitializeOnly){$taskVerifyList+=@('--profile',('"'+$taskProfile+'"'),'--installed',('"'+(Join-Path $taskProfile 'node_modules\@openbkn\dsh-business-context')+'"'))}
+  $taskVerifyArgs=$taskVerifyList -join ' '
+  $taskVerify=Start-Process -FilePath $taskExe -ArgumentList $taskVerifyArgs -Wait -PassThru -RedirectStandardOutput (Join-Path $Evidence 'closure-before-private.txt') -RedirectStandardError (Join-Path $Evidence 'closure-before-stderr-private.txt')
+  if($taskVerify.ExitCode -ne 0){throw 'Actual Desktop/profile closure failed; inspect the retained verification log'}

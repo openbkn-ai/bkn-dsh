@@ -1,0 +1,97 @@
+{
+  "checked_at": "2026-10-20T03:30:25.958Z",
+  "interaction_id": "int_046c1b3f7364dceffa2abdf44664dea5",
+  "schema": {
+    "checked_at": "2026-10-20T03:30:11.138Z",
+    "tool_count": 25,
+    "source_schema_matches": [
+      "bkn_finish_interaction",
+      "bkn_start_interaction",
+      "execute_action",
+      "execute_tool",
+      "explore_subgraph",
+      "get_action_execution",
+      "get_action_info",
+      "get_kn_detail",
+      "get_logic_properties_values",
+      "get_object_types",
+      "get_relation_types",
+      "get_skill_content",
+      "list_action_executions",
+      "list_knowledge_networks",
+      "list_skills",
+      "query_instance_subgraph",
+      "query_metric",
+      "query_object_instance",
+      "read_skill_file",
+      "run_cypher",
+      "search_capabilities",
+      "search_instance",
+      "search_schema"
+    ],
+    "inline_ptc": [
+      "run_code",
+      "run_shell"
+    ],
+    "conditionally_absent": [
+      "execute_skill"
+    ]
+  },
+  "records": [
+    {
+      "scope": "production_available",
+      "pages": [
+        {
+          "offset": 0,
+          "rows": 100,
+          "next_offset": 100
+        },
+        {
+          "offset": 100,
+          "rows": 100,
+          "next_offset": 200
+        },
+        {
+          "offset": 200,
+          "rows": 100,
+          "next_offset": 300
+        },
+        {
+          "offset": 300,
+          "rows": 99,
+          "next_offset": null
+        }
+      ],
+      "rows": 399,
+      "materials": 333
+    },
+    {
+      "scope": "all",
+      "pages": [
+        {
+          "offset": 0,
+          "rows": 100,
+          "next_offset": 100
+        },
+        {
+          "offset": 100,
+          "rows": 100,
+          "next_offset": 200
+        },
+        {
+          "offset": 200,
+          "rows": 100,
+          "next_offset": 300
+        },
+        {
+          "offset": 300,
+          "rows": 99,
+          "next_offset": null
+        }
+      ],
+      "rows": 399,
+      "materials": 333
+    }
+  ],
+  "passed": true
+}

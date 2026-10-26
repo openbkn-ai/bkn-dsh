@@ -1,0 +1,28 @@
+{
+  "foundry-main": {
+    "checked": true,
+    "sha": "e47ebc0563378765cf830981ab56d55bf6b281e6",
+    "html_url": "https://github.com/openbkn-ai/bkn-foundry/commit/e47ebc0563378765cf830981ab56d55bf6b281e6"
+  },
+  "dsh-master": {
+    "checked": true,
+    "sha": "687f282e8625c6b8d11ff58211a90524be2e4317",
+    "html_url": "https://github.com/deepseek-ai/deepseek-harness/commit/687f282e8625c6b8d11ff58211a90524be2e4317"
+  },
+  "foundry-latest": {
+    "checked": true,
+    "tag_name": "v0.2.0",
+    "published_at": "2026-10-16T07:21:25Z",
+    "html_url": "https://github.com/openbkn-ai/bkn-foundry/releases/tag/v0.2.0",
+    "prerelease": false
+  },
+  "dsh-releases": {
+    "checked": true,
+    "tag_name": "dsh-v0.2.1-rc.2",
+    "published_at": "2026-10-17T08:16:33Z",
+    "html_url": "https://github.com/deepseek-ai/deepseek-harness/releases/tag/dsh-v0.2.1-rc.2",
+    "prerelease": true
+  },
+  "checked_at": "2026-10-21T08:30:50.406156+00:00",
+  "prior_read_failure": "DSH releases/latest returned no stable latest; the explicit release list is used without treating its prerelease as stable"
+}

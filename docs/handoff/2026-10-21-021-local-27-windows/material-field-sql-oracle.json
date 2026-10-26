@@ -1,0 +1,5 @@
+{
+  "query": "SELECT material_code,group_name,group_type,materialattr,product_fixedleadtime,purchase_fixedleadtime FROM supply_demo_hand.erp_material WHERE material_code='382-000005';",
+  "result_tsv": "382-000005\t库存商品-产成品\t406包装成品\t自制\t1\t1\n",
+  "read_only": true
+}

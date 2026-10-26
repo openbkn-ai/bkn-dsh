@@ -1,0 +1,44 @@
+{
+  "checked_at": "2026-10-21T08:41:23.901583+00:00",
+  "source": {
+    "old": {
+      "tests": 602,
+      "pass": 601,
+      "fail": 0,
+      "skipped": 1
+    },
+    "new": {
+      "tests": 602,
+      "pass": 601,
+      "fail": 0,
+      "skipped": 1
+    }
+  },
+  "types": {
+    "old": {
+      "passed": true,
+      "log_sha256": "6f425671efa3242656766980c4ac9853c33f337e7ac8e04a43a4b9120c1b323b"
+    },
+    "new": {
+      "passed": true,
+      "log_sha256": "40de4dfdf11d47d1fcd2d69ae6284608078bd1e984924db51e7b5fe9209e6324"
+    }
+  },
+  "repo": {
+    "repo": {
+      "tests": 66,
+      "pass": 66,
+      "fail": 0
+    },
+    "evaluator": {
+      "tests": 7,
+      "pass": 7,
+      "fail": 0
+    }
+  },
+  "artifact": "ec33b3ff3776b28a939a12e7c8b822bfa2878e812db13edd3a0db59794a25d63",
+  "controlled_matrix": "controlled-hosts-25.json",
+  "platform_deployed": false,
+  "remote_ci_run": false,
+  "contract_passed": false
+}

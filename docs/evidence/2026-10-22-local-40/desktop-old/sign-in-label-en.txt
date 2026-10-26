@@ -1,0 +1,7 @@
+The following is a diff from the previous accessibility tree for Window: "DeepSeek Harness" with ~ and + representing changed and added elements, respectively. Removed elements are summarized by ID range.
+~						94 text Sign in with the local OpenBKN CLI. The plugin then synchronizes credentials within the Host, connects to Context Loader MCP, and lists the business knowledge networks you can access.
++						95 container
++							96 text Platform URL: https://192.168.50.129
++						97 button Sign in and sync with OpenBKN CLI
++						98 button Refresh status
+The focused UI element is 86 container OpenBKN business knowledge networks

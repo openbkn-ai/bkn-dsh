@@ -1,0 +1,597 @@
+{
+  "checked_at": "2026-10-20T04:32:23.192702+00:00",
+  "cases": [
+    {
+      "host": "0.2.0-rc.2",
+      "native_session_id": "session-19d40b8a-b9d8-4583-9e4d-f0a91d66d084",
+      "native_session_title": "查看销售订单382-000005明细",
+      "created_at_ms": 1792469093288,
+      "question": "列出 382-000005 的销售订单明细。",
+      "response_models": [
+        "deepseek-flash"
+      ],
+      "turn_end": "completed",
+      "tool_count": 10,
+      "failed_tool_names": [
+        "mcp__openbkn__run_cypher"
+      ],
+      "catalogues": [
+        {
+          "tool_count": 55,
+          "csv_offered": true
+        },
+        {
+          "tool_count": 55,
+          "csv_offered": true
+        }
+      ],
+      "exports": [],
+      "conversation_ids": [
+        "conv_8af401715095c7ed8807fcae7dbc2993"
+      ],
+      "interaction_ids": [
+        "int_a216ac91756e61e32f582d0c280256aa"
+      ],
+      "starts": 1,
+      "finishes": 1,
+      "case_id": "sales-order-detail"
+    },
+    {
+      "host": "0.2.0-rc.2",
+      "native_session_id": "session-2992c218-e596-46ef-96a2-e3abe3c41e24",
+      "native_session_title": "查询物料库存和订单情况",
+      "created_at_ms": 1792469143820,
+      "question": "物料 999-999999 的库存和订单情况？",
+      "response_models": [
+        "deepseek-flash"
+      ],
+      "turn_end": "completed",
+      "tool_count": 11,
+      "failed_tool_names": [
+        "mcp__openbkn__run_cypher"
+      ],
+      "catalogues": [
+        {
+          "tool_count": 55,
+          "csv_offered": true
+        },
+        {
+          "tool_count": 55,
+          "csv_offered": true
+        }
+      ],
+      "exports": [],
+      "conversation_ids": [
+        "conv_44bc739cb23a59dc0302570ca726ceac"
+      ],
+      "interaction_ids": [
+        "int_14f809b028d2e33d7fff3194ac5e015d"
+      ],
+      "starts": 1,
+      "finishes": 1,
+      "case_id": "missing-object"
+    },
+    {
+      "host": "0.2.0-rc.2",
+      "native_session_id": "session-80a453e4-62e7-4001-a242-4402d7856420",
+      "native_session_title": "382-000005 标准交期查询",
+      "created_at_ms": 1792468924080,
+      "question": "382-000005 的标准交期？",
+      "response_models": [
+        "deepseek-flash"
+      ],
+      "turn_end": "completed",
+      "tool_count": 5,
+      "failed_tool_names": [],
+      "catalogues": [
+        {
+          "tool_count": 55,
+          "csv_offered": true
+        },
+        {
+          "tool_count": 55,
+          "csv_offered": true
+        }
+      ],
+      "exports": [],
+      "conversation_ids": [
+        "conv_c7f60d763c0e827aeb00a9a26b459e34"
+      ],
+      "interaction_ids": [
+        "int_b532d3fa9e9086ab9ed0debdfe4967fb"
+      ],
+      "starts": 1,
+      "finishes": 1,
+      "case_id": "standard-lead-time"
+    },
+    {
+      "host": "0.2.0-rc.2",
+      "native_session_id": "session-881bbe5e-b1c9-4ad1-9be1-12b5320598f1",
+      "native_session_title": "查询BOM清单及物料库存情况",
+      "created_at_ms": 1792468662835,
+      "question": "查询 382-000005 的 BOM 清单，每个物料的使用量，以及每个物料的库存情况",
+      "response_models": [
+        "deepseek-flash"
+      ],
+      "turn_end": "completed",
+      "tool_count": 16,
+      "failed_tool_names": [
+        "mcp__openbkn__run_code"
+      ],
+      "catalogues": [
+        {
+          "tool_count": 55,
+          "csv_offered": true
+        },
+        {
+          "tool_count": 55,
+          "csv_offered": true
+        }
+      ],
+      "exports": [
+        {
+          "is_error": false,
+          "path": "/Users/dominiczhang/Documents/project/app/openBKN/bkn-dsh/release/ci-41507f9/workspaces/supply-old/openbkn-abf974a5-fbcd-47ae-aa2c-3bccee0fbabb-382-000005_BOM_清单与库存.csv",
+          "markdown_link": "[CSV](<openbkn-abf974a5-fbcd-47ae-aa2c-3bccee0fbabb-382-000005_BOM_%E6%B8%85%E5%8D%95%E4%B8%8E%E5%BA%93%E5%AD%98.csv>)",
+          "bytes": 48001,
+          "sha256": "4ce12fec330d44c9110a0c9185d79f4bf1f506e9a48005277c310c5d18a3f976",
+          "source_path": "382-000005_BOM_清单与库存.csv"
+        }
+      ],
+      "conversation_ids": [
+        "conv_0232fa7f1998f0d79c85ca8568679ef2"
+      ],
+      "interaction_ids": [
+        "int_4e520081b122e1ff8687b12ed73ceee0"
+      ],
+      "starts": 1,
+      "finishes": 1,
+      "case_id": "bom-usage-inventory"
+    },
+    {
+      "host": "0.2.0-rc.2",
+      "native_session_id": "session-9a4cf158-7b88-4520-acf6-86caf824045b",
+      "native_session_title": "BOM 构成查询 382-000005",
+      "created_at_ms": 1792468580699,
+      "question": "382-000005 的 BOM 构成是什么？",
+      "response_models": [
+        "deepseek-flash"
+      ],
+      "turn_end": "completed",
+      "tool_count": 16,
+      "failed_tool_names": [
+        "bash"
+      ],
+      "catalogues": [
+        {
+          "tool_count": 27,
+          "csv_offered": true
+        },
+        {
+          "tool_count": 55,
+          "csv_offered": true
+        },
+        {
+          "tool_count": 55,
+          "csv_offered": true
+        }
+      ],
+      "exports": [
+        {
+          "is_error": false,
+          "path": "/Users/dominiczhang/Documents/project/app/openBKN/bkn-dsh/release/ci-41507f9/workspaces/supply-old/openbkn-1d49292d-c418-40ec-8441-610d4ca96b7f-bom_382-000005_main_full.csv",
+          "markdown_link": "[CSV](<openbkn-1d49292d-c418-40ec-8441-610d4ca96b7f-bom_382-000005_main_full.csv>)",
+          "bytes": 33773,
+          "sha256": "f6e4e62ba6db715ca6d4967d0ede15bd02273b0a73f0ded974837ae1963cbdc9",
+          "source_path": "bom_382-000005_main_full.csv"
+        }
+      ],
+      "conversation_ids": [
+        "conv_b662f1c3720267eedcbe877c40e28be6"
+      ],
+      "interaction_ids": [
+        "int_6a86b766f2656bda772a6b940003d1da"
+      ],
+      "starts": 1,
+      "finishes": 1,
+      "case_id": "bom-structure"
+    },
+    {
+      "host": "0.2.0-rc.2",
+      "native_session_id": "session-a0c52ee3-99ec-42a2-a49d-39d4d5318867",
+      "native_session_title": "查询未结采购申请和订单",
+      "created_at_ms": 1792470694024,
+      "question": "382-000005 当前有哪些未结的采购申请和采购订单？",
+      "response_models": [
+        "deepseek-flash"
+      ],
+      "turn_end": "completed",
+      "tool_count": 23,
+      "failed_tool_names": [
+        "bash",
+        "mcp__openbkn__run_cypher",
+        "mcp__openbkn__run_cypher",
+        "mcp__openbkn__run_cypher",
+        "mcp__openbkn__query_object_instance",
+        "mcp__openbkn__finish_indicator_placeholder"
+      ],
+      "catalogues": [
+        {
+          "tool_count": 27,
+          "csv_offered": true
+        },
+        {
+          "tool_count": 55,
+          "csv_offered": true
+        },
+        {
+          "tool_count": 55,
+          "csv_offered": true
+        }
+      ],
+      "exports": [],
+      "conversation_ids": [
+        "conv_a5dac035801ef4af0d90f2515a889a03"
+      ],
+      "interaction_ids": [
+        "int_bdf4aa86c1c3a52b52fa38ba604a9be2"
+      ],
+      "starts": 1,
+      "finishes": 1,
+      "case_id": "purchase-flow"
+    },
+    {
+      "host": "0.2.0-rc.2",
+      "native_session_id": "session-f00d07ef-4a3b-4855-a559-2c672206cbf1",
+      "native_session_title": "382-000005销售订单数量与状态查询",
+      "created_at_ms": 1792468749881,
+      "question": "382-000005 有多少张销售订单？什么状态？",
+      "response_models": [
+        "deepseek-flash"
+      ],
+      "turn_end": "completed",
+      "tool_count": 8,
+      "failed_tool_names": [
+        "mcp__openbkn__run_cypher"
+      ],
+      "catalogues": [
+        {
+          "tool_count": 55,
+          "csv_offered": true
+        },
+        {
+          "tool_count": 55,
+          "csv_offered": true
+        }
+      ],
+      "exports": [],
+      "conversation_ids": [
+        "conv_047c9b2aaf1c261bae3c0042a6bb1bde"
+      ],
+      "interaction_ids": [
+        "int_96e7d0b84624befe12c6bdf84bba99a7"
+      ],
+      "starts": 1,
+      "finishes": 1,
+      "case_id": "orders-count-status"
+    },
+    {
+      "host": "0.2.0-rc.2",
+      "native_session_id": "session-fe838a83-aca2-4b9a-baaa-a14899a16312",
+      "native_session_title": "查询382-000005各成品仓可用库存",
+      "created_at_ms": 1792468818610,
+      "question": "382-000005 在各成品仓的可用库存？",
+      "response_models": [
+        "deepseek-flash"
+      ],
+      "turn_end": "completed",
+      "tool_count": 8,
+      "failed_tool_names": [
+        "mcp__openbkn__run_cypher"
+      ],
+      "catalogues": [
+        {
+          "tool_count": 55,
+          "csv_offered": true
+        },
+        {
+          "tool_count": 55,
+          "csv_offered": true
+        }
+      ],
+      "exports": [],
+      "conversation_ids": [
+        "conv_093b4621a3d14603ee770a9e23c7b66e"
+      ],
+      "interaction_ids": [
+        "int_5927947a90ac6d74cca03368bbefef4f"
+      ],
+      "starts": 1,
+      "finishes": 1,
+      "case_id": "finished-goods-inventory"
+    },
+    {
+      "host": "0.2.1-rc.2",
+      "native_session_id": "session-23b98785-a1e0-4e8e-ac48-f33a0f2b2100",
+      "native_session_title": "查询物料库存和订单情况",
+      "created_at_ms": 1792469145125,
+      "question": "物料 999-999999 的库存和订单情况？",
+      "response_models": [
+        "deepseek-flash"
+      ],
+      "turn_end": "completed",
+      "tool_count": 9,
+      "failed_tool_names": [
+        "mcp__openbkn__run_cypher"
+      ],
+      "catalogues": [
+        {
+          "tool_count": 60,
+          "csv_offered": true
+        },
+        {
+          "tool_count": 60,
+          "csv_offered": true
+        }
+      ],
+      "exports": [],
+      "conversation_ids": [
+        "conv_69dcefa96003c5056e793d1f5ffb4ae7"
+      ],
+      "interaction_ids": [
+        "int_ec7a21858e8aaeaef17ac49a2b68c166"
+      ],
+      "starts": 1,
+      "finishes": 1,
+      "case_id": "missing-object"
+    },
+    {
+      "host": "0.2.1-rc.2",
+      "native_session_id": "session-359c08cb-574c-46ff-8e46-8e2fee53a5f6",
+      "native_session_title": "查询BOM及物料库存",
+      "created_at_ms": 1792468664111,
+      "question": "查询 382-000005 的 BOM 清单，每个物料的使用量，以及每个物料的库存情况",
+      "response_models": [
+        "deepseek-flash"
+      ],
+      "turn_end": "completed",
+      "tool_count": 9,
+      "failed_tool_names": [
+        "mcp__openbkn__run_cypher",
+        "mcp__openbkn__run_cypher"
+      ],
+      "catalogues": [
+        {
+          "tool_count": 60,
+          "csv_offered": true
+        },
+        {
+          "tool_count": 60,
+          "csv_offered": true
+        }
+      ],
+      "exports": [],
+      "conversation_ids": [
+        "conv_6650b041975236297d3e31d61d43b7a6"
+      ],
+      "interaction_ids": [
+        "int_dc67663d9352d2876ea849e55a706819"
+      ],
+      "starts": 1,
+      "finishes": 1,
+      "case_id": "bom-usage-inventory"
+    },
+    {
+      "host": "0.2.1-rc.2",
+      "native_session_id": "session-3a52fe7b-bcd9-4e94-a5bc-b8d4edb14fda",
+      "native_session_title": "成品仓可用库存查询",
+      "created_at_ms": 1792468819774,
+      "question": "382-000005 在各成品仓的可用库存？",
+      "response_models": [
+        "deepseek-flash"
+      ],
+      "turn_end": "completed",
+      "tool_count": 7,
+      "failed_tool_names": [
+        "mcp__openbkn__run_cypher"
+      ],
+      "catalogues": [
+        {
+          "tool_count": 60,
+          "csv_offered": true
+        },
+        {
+          "tool_count": 60,
+          "csv_offered": true
+        }
+      ],
+      "exports": [],
+      "conversation_ids": [
+        "conv_891bf0dc2f6fa72dd567dbf572afe3b9"
+      ],
+      "interaction_ids": [
+        "int_20997b886d3e5a59a4c8b481a77f1cea"
+      ],
+      "starts": 1,
+      "finishes": 1,
+      "case_id": "finished-goods-inventory"
+    },
+    {
+      "host": "0.2.1-rc.2",
+      "native_session_id": "session-4b138452-5940-4513-b0db-273fd97a253a",
+      "native_session_title": "查询销售订单382-000005状态",
+      "created_at_ms": 1792468751162,
+      "question": "382-000005 有多少张销售订单？什么状态？",
+      "response_models": [
+        "deepseek-flash"
+      ],
+      "turn_end": "completed",
+      "tool_count": 8,
+      "failed_tool_names": [
+        "mcp__openbkn__run_cypher"
+      ],
+      "catalogues": [
+        {
+          "tool_count": 60,
+          "csv_offered": true
+        },
+        {
+          "tool_count": 60,
+          "csv_offered": true
+        }
+      ],
+      "exports": [],
+      "conversation_ids": [
+        "conv_67a05b86213b00794b021c6d549e8c2c"
+      ],
+      "interaction_ids": [
+        "int_b121182b4b0eb2d756c47ff7e74320a4"
+      ],
+      "starts": 1,
+      "finishes": 1,
+      "case_id": "orders-count-status"
+    },
+    {
+      "host": "0.2.1-rc.2",
+      "native_session_id": "session-71ec3b87-ceeb-462f-af90-912a82309811",
+      "native_session_title": "查询 382-000005 标准交期",
+      "created_at_ms": 1792468925278,
+      "question": "382-000005 的标准交期？",
+      "response_models": [
+        "deepseek-flash"
+      ],
+      "turn_end": "completed",
+      "tool_count": 4,
+      "failed_tool_names": [],
+      "catalogues": [
+        {
+          "tool_count": 60,
+          "csv_offered": true
+        },
+        {
+          "tool_count": 60,
+          "csv_offered": true
+        }
+      ],
+      "exports": [],
+      "conversation_ids": [
+        "conv_8fed1eb56150ade01a2793ae92a705a7"
+      ],
+      "interaction_ids": [
+        "int_dd4c6ea70092364646b45e6beadfab5e"
+      ],
+      "starts": 1,
+      "finishes": 1,
+      "case_id": "standard-lead-time"
+    },
+    {
+      "host": "0.2.1-rc.2",
+      "native_session_id": "session-93a2b72b-80f4-4ea5-99c9-e94a68f815bc",
+      "native_session_title": "未结采购申请与订单查询",
+      "created_at_ms": 1792470695155,
+      "question": "382-000005 当前有哪些未结的采购申请和采购订单？",
+      "response_models": [
+        "deepseek-flash"
+      ],
+      "turn_end": "completed",
+      "tool_count": 10,
+      "failed_tool_names": [
+        "mcp__openbkn__run_cypher"
+      ],
+      "catalogues": [
+        {
+          "tool_count": 32,
+          "csv_offered": true
+        },
+        {
+          "tool_count": 60,
+          "csv_offered": true
+        }
+      ],
+      "exports": [],
+      "conversation_ids": [
+        "conv_fcb6427aa02fc513a2bb6c2974acbe3d"
+      ],
+      "interaction_ids": [
+        "int_a624aef75bf3e0a3bfd20163dfcd6994"
+      ],
+      "starts": 1,
+      "finishes": 1,
+      "case_id": "purchase-flow"
+    },
+    {
+      "host": "0.2.1-rc.2",
+      "native_session_id": "session-b7568fce-f373-43e4-b4ca-78c9d5422254",
+      "native_session_title": "列出销售订单明细 382-000005",
+      "created_at_ms": 1792469094566,
+      "question": "列出 382-000005 的销售订单明细。",
+      "response_models": [
+        "deepseek-flash"
+      ],
+      "turn_end": "completed",
+      "tool_count": 6,
+      "failed_tool_names": [
+        "mcp__openbkn__run_cypher"
+      ],
+      "catalogues": [
+        {
+          "tool_count": 60,
+          "csv_offered": true
+        },
+        {
+          "tool_count": 60,
+          "csv_offered": true
+        }
+      ],
+      "exports": [],
+      "conversation_ids": [
+        "conv_d540d3cb39f393e7c9678473e1256498"
+      ],
+      "interaction_ids": [
+        "int_f6a4de4163b0a8541b9a96393afd2586"
+      ],
+      "starts": 1,
+      "finishes": 1,
+      "case_id": "sales-order-detail"
+    },
+    {
+      "host": "0.2.1-rc.2",
+      "native_session_id": "session-ce5f0188-7344-4a0c-909a-0f25741cefc5",
+      "native_session_title": "查询 BOM 构成 382-000005",
+      "created_at_ms": 1792468582008,
+      "question": "382-000005 的 BOM 构成是什么？",
+      "response_models": [
+        "deepseek-flash"
+      ],
+      "turn_end": "completed",
+      "tool_count": 8,
+      "failed_tool_names": [
+        "bash"
+      ],
+      "catalogues": [
+        {
+          "tool_count": 32,
+          "csv_offered": true
+        },
+        {
+          "tool_count": 60,
+          "csv_offered": true
+        },
+        {
+          "tool_count": 60,
+          "csv_offered": true
+        }
+      ],
+      "exports": [],
+      "conversation_ids": [
+        "conv_1543ec4a4794931f381869dbd2ef053e"
+      ],
+      "interaction_ids": [
+        "int_f7a17faf8809222ce11a0ba6b5aedb07"
+      ],
+      "starts": 1,
+      "finishes": 1,
+      "case_id": "bom-structure"
+    }
+  ]
+}

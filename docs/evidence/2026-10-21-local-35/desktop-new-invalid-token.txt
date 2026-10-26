@@ -1,0 +1,42 @@
+The following is a diff from the previous accessibility tree for Window: "DeepSeek Harness" with ~ and + representing changed and added elements, respectively. Removed elements are summarized by ID range.
+Removed element IDs: 63, 70-152
+~0 standard window DeepSeek Harness, Secondary Actions: Raise
+~	1 container DeepSeek Harness
+~			3 HTML content DeepSeek Harness, URL: dsh-app://app/
+~							62 row (selected) Untitled Session actions for Untitled Archive session Pin session
++								70 text Untitled
++								71 container
++									72 button Session actions for Untitled
++									73 button Archive session
++									74 button Pin session
+~							64 row 382-000005 标准交期查询 5min
+~							28 row R34 B1 native Desktop protocol check 1h
+~								29 text R34 B1 native Desktop protocol check 1h
++					75 container
++						76 container Session hierarchy
++							77 text desktop-new
++						78 text Standard mode
++						79 text 供应链本体知识网络-手工版
++						80 button Open in Finder
++						81 pop up button More ways to open
++						82 pop up button More actions
++						83 button Open right sidebar
++						84 tab group
++							85 tab (selected) Chat, Value: 1
++							86 tab (settable, integer) Trajectory, Value: 0
++					87 container
++						88 container
++							89 text Failed
++							90 button (disabled) Failed
++							91 container
++								92 text This turn failed OpenBKN rejected the Context Loader MCP credential (HTTP 401). Re-login with `openbkn auth login` (or update the stored token) and retry; no business data was read.
++							93 text UNKNOWN
++						94 container OpenBKN business session entry
++							95 button Explore the “供应链本体知识网络-手工版” knowledge network.
++						96 container
++							97 text entry area (settable) Message or run a task, / commands, @ files or sessions
++							98 pop up button Add files or run commands
++							99 button Access mode, current: Workspace Write
++							100 pop up button Select model, current deepseek_chat
++							101 button (disabled) Send message
+The focused UI element is 97 text entry area (settable) Message or run a task, / commands, @ files or sessions

@@ -1,0 +1,134 @@
+{
+  "RESULTS.md": {
+    "sha256": "7f656405292bf89a8eb0bcf037128ee3e667271a33495a7aa80c465d39418ec1",
+    "bytes": 6644
+  },
+  "WINDOWS-MINIMAL-PLAN.md": {
+    "sha256": "a99b8c110ec59960c41274b41b4620c9191a2ebd42fe39c6196e130d5862ac84",
+    "bytes": 6570
+  },
+  "candidate-files.json": {
+    "sha256": "084b5de11a3a278735e9c24de8426358ce4dad197fe2ad24fba0428687815793",
+    "bytes": 8713
+  },
+  "candidate-manifest.json": {
+    "sha256": "445dc9d554d9495d538c04c2b3b3f5650af36db8d897275a872a1cf0bdde7d9a",
+    "bytes": 518
+  },
+  "development-source-identity.json": {
+    "sha256": "5c04e0d099503ec59cd5321eba46040a30c8d1bcb1e539e8cc8d240a48d52ec6",
+    "bytes": 23927
+  },
+  "issue94-closure-receipt.json": {
+    "sha256": "77667db9695a4b56e1502067242bfe46d03c9927d39d96139ad875b16cbf73dd",
+    "bytes": 609
+  },
+  "issues-current.json": {
+    "sha256": "b213e4efbc3deca10323cc0a73f6435b65c3a5cfc7af3d67818423adaae3c2df",
+    "bytes": 1589
+  },
+  "local49-only.patch": {
+    "sha256": "b35514ee5f9b40664b9c0dfa681c45673ee3319833d2db840b06d6318303f119",
+    "bytes": 20697
+  },
+  "locale-inventory-31.json": {
+    "sha256": "c6b39a2822800b537fa0f2f018de985d11643c56ce130ecf4089609488105cc9",
+    "bytes": 69864
+  },
+  "modal-browser/README.md": {
+    "sha256": "1c37f509af70eeb728552bc4145767194c7208d5f926aa9479c5e7017518e839",
+    "bytes": 504
+  },
+  "modal-browser/fixture.js": {
+    "sha256": "e27376cf5b3eb6f470e69faec0a1455b1cb9d5d0e4552b7f8ec0ac3ef71c1530",
+    "bytes": 1566
+  },
+  "modal-browser/index.html": {
+    "sha256": "e4fb94089810be313c7b0ba9275f93e34eecae04044c7cef2870069b75f200a9",
+    "bytes": 887
+  },
+  "modal-browser/react-seam.js": {
+    "sha256": "113cc29b489a5d1d488445b4a6ae8db3427c4adc7d835aeb83d8cda7410cb705",
+    "bytes": 244
+  },
+  "modal-browser-observations.jsonl": {
+    "sha256": "f64c33be91815d7c5ad3dd2e0943424dc8029a00081badb38ac9cfd2c0715d8d",
+    "bytes": 409
+  },
+  "modal-fixed-final.png": {
+    "sha256": "032e96eb82ce111c68717f8f93b1aa72b10e84e69c05cb08fe6c87b8591c9a0d",
+    "bytes": 35768
+  },
+  "modal-fixed.png": {
+    "sha256": "56ec824f460e203a2ec581d9fec108ff0b5787a640db5a0f86da05a94e521d0f",
+    "bytes": 39676
+  },
+  "modal-old.png": {
+    "sha256": "ded33e4ae04215a6c3ba636a34de92eae13c575450d4cad9e2aa29c510d19402",
+    "bytes": 34338
+  },
+  "package-check-31.log": {
+    "sha256": "dc63460dfefb53ca77668bf48171f85508d8aa6fb75651097750a5c5d63e8d7a",
+    "bytes": 342
+  },
+  "packed-ui.stdout": {
+    "sha256": "102e46b7d182494770950a53a7d7cf22127ae36d7aedce96c33b268729b46ef5",
+    "bytes": 440
+  },
+  "preservation.json": {
+    "sha256": "35c7db32b58607681da208641860596d174058303d2170974097fb8080b8e0b6",
+    "bytes": 1446
+  },
+  "secret-and-runtime-scan.json": {
+    "sha256": "5bf1859ef5151e1da3050c22e52af5d35b339a57aa09087b812d6f76920cbe2f",
+    "bytes": 276
+  },
+  "source-delta.json": {
+    "sha256": "f1a0fdaa0f5cadc4c32b522164892992f7a6d1b7bf7d396f364db954c5155987",
+    "bytes": 2142
+  },
+  "source-new-31-recheck.log": {
+    "sha256": "c8eb7ef407e23ac94ef08a5be40166dde67ad2bb4c96ee415b44f57e97a58ee1",
+    "bytes": 61480
+  },
+  "source-old-31.log": {
+    "sha256": "b21ff8d40778ee0e8ca20542a97f49f5734709e3c66980b0a4cf01d1779374f5",
+    "bytes": 61339
+  },
+  "type-new-31.log": {
+    "sha256": "51a254573b0c5bc5bf47abd06e8f89c414e41940dc5034769126b2196493214c",
+    "bytes": 336
+  },
+  "type-old-31.log": {
+    "sha256": "c94bdccd006b2676a54a896b95ec2b5f3d71ea47adcf6dd581631eb276138fef",
+    "bytes": 292
+  },
+  "ui-close-lifecycle-probe.mjs": {
+    "sha256": "17091ae00d85018f0edb6ac3af2e33348ccaa57a01ef1aaa159116a6643a4f49",
+    "bytes": 20669
+  },
+  "ui-close-lifecycle.json": {
+    "sha256": "a6fa76089f2bb1a829c596d194ab830f425390cf65d47adebaa5514fa84ed806",
+    "bytes": 24294
+  },
+  "ui-green.stdout": {
+    "sha256": "b349b70a77871954debb4e904ae686ee46993ea82d12c7c344e8783bb94dcb86",
+    "bytes": 2186
+  },
+  "ui-red.stdout": {
+    "sha256": "3691c1fc3ddc77effa4ec49ccffa16efc016c89d3cedc9b54f57817aae4f0f7d",
+    "bytes": 4106
+  },
+  "ui-triage.json": {
+    "sha256": "6f8a03dfbea132eecf158284c59d7958afe5df23d798df82310de2ba191e4c7c",
+    "bytes": 2257
+  },
+  "upstream-state.json": {
+    "sha256": "955a3b5a4d2540253b69413379d2c6f1b06c3f822d0366f6ba5aca654b7548cf",
+    "bytes": 5441
+  },
+  "validation.json": {
+    "sha256": "c067368a63e4a626c30a3066eff737bdbbe2d27a739f57c1e48f321f82f4d9a0",
+    "bytes": 925
+  }
+}

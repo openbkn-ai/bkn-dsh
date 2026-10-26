@@ -22,6 +22,36 @@ function localeHarness() {
   } as unknown as LocaleRuntime
   return {locale, set(active: string) { snapshot = {...snapshot, active, revision:snapshot.revision+1};for(const listener of listeners) listener() }}
 }
+
+// Text nodes concatenate in the browser; JSON.stringify would hide missing spaces between siblings.
+function visibleText(node: any): string {
+  if (node === null) return ''
+  if (typeof node === 'string' || typeof node === 'number') return String(node)
+  if (Array.isArray(node)) return node.map(visibleText).join('')
+  return visibleText(node.children)
+}
+
+test('English diagnostic metadata separates every label from its value', async () => {
+  const {OpenBknDiagnostics}=await import('../src/client/OpenBknDiagnostics.tsx')
+  const harness=localeHarness();harness.set('en')
+  const report={schemaVersion:1,reportId:'21349163',createdAt:'2026-10-22T00:00:00Z',mode:'passive',target:{hostForm:'npm',platform:'win32',dshVersion:null,pluginDiskVersion:null,pluginLoadedVersion:null},checks:[],coverage:{executedChecks:0,notRunChecks:0,insufficientEvidenceChecks:0,notes:[]}}
+  const Component=localized(OpenBknDiagnostics,harness.locale);let ui!:ReturnType<typeof create>
+  act(()=>{ui=create(createElement(Component,{useDiagnostics:(select:any)=>select({open:true,phase:'ready',report}),close(){},refresh:async()=>{}} as never))})
+  try {
+    const text=visibleText(ui.toJSON())
+    assert.match(text,/Report 21349163 · Created \S/)
+    assert.match(text,/· Mode Passive collection/)
+  } finally {act(()=>ui.unmount())}
+})
+
+test('English sign-in platform label is separated from the displayed URL', async () => {
+  const {OpenBknOverlay}=await import('../src/client/OpenBknOverlay.tsx')
+  const harness=localeHarness();harness.set('en');const Component=localized(OpenBknOverlay,harness.locale)
+  const state={open:true,phase:'authentication-required',auth:{kind:'authentication-required',baseUrl:'https://192.168.50.129'},networks:[]}
+  let ui!:ReturnType<typeof create>
+  act(()=>{ui=create(createElement(Component,{useUi:(select:any)=>select(state),close(){},refresh:async()=>{},beginLogin:async()=>{},cancelLogin(){},showSettings(){},saveConfiguration:async()=>{},cliSetup:{},openNetwork:async()=>{},openDiagnostics(){}} as never))})
+  try {assert.match(visibleText(ui.toJSON()),/Platform URL: https:\/\/192\.168\.50\.129/)} finally {act(()=>ui.unmount())}
+})
 test('both dictionaries cover the same keys and interpolation contracts', () => {
   assert.deepEqual(Object.keys(en).sort(),Object.keys(zh).sort())
   for (const key of Object.keys(zh) as OpenBknMessageKey[]) {
@@ -230,6 +260,38 @@ test('unavailable and not-generated evidence never claim that an explanation exi
       } finally {act(()=>renderer.unmount())}
     }
   }
+})
+
+// Live dark-host regressions: a white surface inherited white glyph/body text.
+test('overlay text and close controls keep visible contrast against their white surface in a dark host', async () => {
+  const {OpenBknOverlay}=await import('../src/client/OpenBknOverlay.tsx')
+  const {OpenBknDiagnostics}=await import('../src/client/OpenBknDiagnostics.tsx')
+  const {ProvenanceOverlay}=await import('../src/client/ProvenanceOverlay.tsx')
+  const harness=localeHarness();const noop=()=>{};const refresh=async()=>{}
+  const handle={schemaVersion:2 as const,interactionId:'int-fixture',status:'completed' as const,requestIds:[],traceIds:[],receiptIds:[],partial:false}
+  const components=[
+    {component:localized(OpenBknOverlay,harness.locale),props:{useUi:(select:(s:unknown)=>unknown)=>select({open:true,phase:'loading',networks:[],login:'idle'}),close:noop,refresh}},
+    {component:localized(OpenBknDiagnostics,harness.locale),props:{useDiagnostics:(select:(s:unknown)=>unknown)=>select({open:true,phase:'loading'}),close:noop,refresh}},
+    {component:localized(ProvenanceOverlay,harness.locale),props:{useProvenanceOverlay:(select:(s:unknown)=>unknown)=>select({sessionId:'s',messageId:'m',handle}),close:noop,load:async()=>new Promise<ProvenanceView>(()=>{})}},
+  ]
+  const luminance=(hex:string)=>{const rgb=hex.slice(1);const full=rgb.length===3?[...rgb].map(c=>c+c).join(''):rgb;return full.match(/../g)!.map(c=>parseInt(c,16)/255).map(c=>c<=0.04045?c/12.92:((c+0.055)/1.055)**2.4).reduce((sum,c,i)=>sum+c*[0.2126,0.7152,0.0722][i],0)}
+  const previousWindow=Object.getOwnPropertyDescriptor(globalThis,'window')
+  Object.defineProperty(globalThis,'window',{configurable:true,value:{addEventListener:noop,removeEventListener:noop}})
+  try {
+    for(const {component,props} of components){
+      let renderer!:ReturnType<typeof create>
+      try {
+        act(()=>{renderer=create(createElement(component,props as never))})
+        const button=renderer.root.findByProps({'aria-label':translateMessage('zh','close')});const style=button.props.style
+        const a=luminance(style.color??'#fff'),b=luminance(!style.background||style.background==='transparent'?'#fff':style.background)
+        assert.ok((Math.max(a,b)+0.05)/(Math.min(a,b)+0.05)>=3,'close glyph must contrast with its surface under dark host colors')
+        const surface=renderer.root.findByProps({role:'dialog'}).props.style
+        const foreground=luminance(surface.color??'#fff'),background=luminance(surface.background)
+        assert.ok((Math.max(foreground,background)+0.05)/(Math.min(foreground,background)+0.05)>=4.5,
+          'normal dialog text must contrast with its white surface when the Host foreground is white')
+      } finally {act(()=>renderer.unmount())}
+    }
+  } finally {if(previousWindow)Object.defineProperty(globalThis,'window',previousWindow);else Reflect.deleteProperty(globalThis,'window')}
 })
 
 test('a late response from the closed answer cannot overwrite a newly opened answer', async () => {

@@ -1,0 +1,168 @@
+{
+  "checked_at": "2026-10-19T15:52:28.896183+00:00",
+  "business_data_tables_before_after_equal": true,
+  "supply_tables": 12,
+  "supply_rows": 78635,
+  "data_tables": {
+    "customer_entity": {
+      "rows": 60,
+      "sha256": "316ac846130869f5e338729cb82f8dc40f650474344daab0ea1e7bc93cb7ba92"
+    },
+    "erp_material": {
+      "rows": 3500,
+      "sha256": "b0c404ca8f25b703c63906ff1c906ecead41d441a74d386f664e0e85651c4b1a"
+    },
+    "erp_material_bom": {
+      "rows": 31423,
+      "sha256": "676342917d423c70be26c1393b4370c252b274997c20d41ee9b60b1df4c1618b"
+    },
+    "erp_mds_forecast": {
+      "rows": 137,
+      "sha256": "1dc33db72419b3f80941aedd511f4ae19b7a2fade978d27b7d0c83ee0dd2c422"
+    },
+    "erp_mrp_plan_order": {
+      "rows": 824,
+      "sha256": "222d3a8bc6af1569f7411265a53eeb51009ff53fbacad15cd726784d355d4298"
+    },
+    "erp_production_work_order": {
+      "rows": 605,
+      "sha256": "a14b50b3df352741dc45fd49949cdeeb20dacd80d58ac823f77903b08c0a2e1c"
+    },
+    "erp_purchase_order": {
+      "rows": 1972,
+      "sha256": "0dcf19493db926bb620a8191a74fd659dfb47aba98d559f15317593b817fa18f"
+    },
+    "erp_purchase_request": {
+      "rows": 19333,
+      "sha256": "67c3d13b478a3487d8fb888aa63eaf12581b618de406c883abe160401eebea2c"
+    },
+    "erp_real_time_inventory": {
+      "rows": 19724,
+      "sha256": "ee7b5cc9cc8d75f9b1c47e74c1d79f768adb0f7bf6aa9cfb038fac606eeb90df"
+    },
+    "erp_supplier": {
+      "rows": 230,
+      "sha256": "3b57b6a3cb70e8c8d0ca388e7859056d54b91f59dfee386b2ce003a3c73f109c"
+    },
+    "hd_product_view": {
+      "rows": 30,
+      "sha256": "3d22a90085a456a79b5ff05d407979a3d272aee585ce186f93099548c3cdbe66"
+    },
+    "sales_order": {
+      "rows": 800,
+      "sha256": "2b1c0685c98210ff9a116b4b8efc79196e14c8726c1746842396f18b473b2bd1"
+    }
+  },
+  "metadata_comparison_to_formal_upgrade_baseline": [
+    {
+      "table": "t_knowledge_network",
+      "unchanged": true,
+      "before_rows": 2,
+      "after_rows": 2,
+      "removed_rows": 0,
+      "added_rows": 0,
+      "changed_rows_contain_target_id": true
+    },
+    {
+      "table": "t_llm_model",
+      "unchanged": true,
+      "before_rows": 1,
+      "after_rows": 1,
+      "removed_rows": 0,
+      "added_rows": 0,
+      "changed_rows_contain_target_id": true
+    },
+    {
+      "table": "t_small_model",
+      "unchanged": true,
+      "before_rows": 1,
+      "after_rows": 1,
+      "removed_rows": 0,
+      "added_rows": 0,
+      "changed_rows_contain_target_id": true
+    },
+    {
+      "table": "t_kn_capability_binding",
+      "unchanged": true,
+      "before_rows": 1,
+      "after_rows": 1,
+      "removed_rows": 0,
+      "added_rows": 0,
+      "changed_rows_contain_target_id": true
+    },
+    {
+      "table": "t_object_type",
+      "unchanged": true,
+      "before_rows": 42,
+      "after_rows": 42,
+      "removed_rows": 0,
+      "added_rows": 0,
+      "changed_rows_contain_target_id": true
+    },
+    {
+      "table": "t_relation_type",
+      "unchanged": true,
+      "before_rows": 48,
+      "after_rows": 48,
+      "removed_rows": 0,
+      "added_rows": 0,
+      "changed_rows_contain_target_id": true
+    },
+    {
+      "table": "t_tool",
+      "unchanged": false,
+      "before_rows": 15,
+      "after_rows": 15,
+      "removed_rows": 1,
+      "added_rows": 1,
+      "changed_rows_contain_target_id": true
+    },
+    {
+      "table": "t_operator_release",
+      "unchanged": true,
+      "before_rows": 0,
+      "after_rows": 0,
+      "removed_rows": 0,
+      "added_rows": 0,
+      "changed_rows_contain_target_id": true
+    },
+    {
+      "table": "t_skill_release",
+      "unchanged": false,
+      "before_rows": 3,
+      "after_rows": 3,
+      "removed_rows": 1,
+      "added_rows": 1,
+      "changed_rows_contain_target_id": true
+    },
+    {
+      "table": "t_skill_repository",
+      "unchanged": false,
+      "before_rows": 3,
+      "after_rows": 3,
+      "removed_rows": 1,
+      "added_rows": 1,
+      "changed_rows_contain_target_id": true
+    }
+  ],
+  "intentional_updates": [
+    "BOM清单 existing native Function source",
+    "production-schedule-backward-planning existing Skill one reference line; new local published version"
+  ],
+  "preflight_preserved": true,
+  "exact_count_star": {
+    "customer_entity": 60,
+    "erp_material": 3497,
+    "erp_material_bom": 31423,
+    "erp_mds_forecast": 137,
+    "erp_mrp_plan_order": 824,
+    "erp_production_work_order": 605,
+    "erp_purchase_order": 1972,
+    "erp_purchase_request": 19333,
+    "erp_real_time_inventory": 19724,
+    "erp_supplier": 230,
+    "hd_product_view": 30,
+    "sales_order": 800
+  },
+  "hash_method": "SHA256 of sorted batch-escaped SELECT * text; digest equality covers every row and cell; text-line count is not SQL row count"
+}

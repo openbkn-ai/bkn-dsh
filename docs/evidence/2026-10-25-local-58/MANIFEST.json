@@ -1,0 +1,24 @@
+{
+  "algorithm": "sha256",
+  "files": {
+    "BLOCKERS.md": "cd8a9253a0d40157fc11eefb069430fe6ac5fdc48471d73c0a9ca87d0a8a09d0",
+    "CLEANUP.json": "1639efe7a81773a985bad635a072db43d8b62d2786f7cd6b816c123a7dea09da",
+    "CLI-IDENTITY.json": "c84f357aa68c7bc902680687384a0d587a9c59a5c690d1de4182049af5e9ceb8",
+    "CLI-SDK-COMPARISON.json": "54034def9fc2dd2a3ec067035983c828a034b3289b5a17694bcbc7bc13a49145",
+    "HOME-COPY-CHANGES.json": "69871bd6fa828c4620292d9c05f500211026786066ede5598768483d1659f8cb",
+    "HOST-AUTH-VALIDATION.json": "8578596a792e8a3053af0c900c26c641a7c41afab13d62bea1a9a969116f9d2e",
+    "PLATFORM-SERVICE-IDENTITY.json": "4ab96a1291566d030cbaf631e29ff972407478f41c66a5018e454d5292c975fd",
+    "PREPARATION.json": "8bb600cb454ce0d76bc12da657ed347f48649c8aae72a3f616a9cfe910fed6ea",
+    "PRESERVATION.json": "564eeb02daf3818d55dabbe3b98fa7f8444f364a77f5b202662d67d65ede15f0",
+    "PRIVATE-EVIDENCE.json": "c7a3bbe70a8a1df547f8cda8bf5a09eefdc83ac3bda2fcdd9575f56311299c04",
+    "RESULTS.md": "0fde6b47d90192c89c54e2b08f5dd477b6ca71ee895ee318086dcf4cf73eef39",
+    "UPSTREAM-REVIEW.json": "1a02f5d3b074741f90c366815545a18d09275716f2e101e5b081c965dd48047c",
+    "VALIDATION-CHECKS.json": "ba505f0b92404ba00da3d532de4452da25eb4621550f606a9b41bebfda6f80d0",
+    "recipes/actual-auth-probe.mjs": "c575dbf0c5d99073d2222aa673ba8d7c0746972d1b3384f7e069491b38b906e0",
+    "recipes/check-new-profile.mjs": "b3c7882303bb2f3588d91bbb45b4288d29bc7a08d52bab863f18fa9b7fa17655",
+    "recipes/collect.py": "35918cad4f30eb374c5a02ff184081cadc889033f50b57c4ca55f80d3dda2208",
+    "recipes/final-preservation.py": "c4a2d4f714ea62fc832066d327bba72387788f38d4e4405425ddf50b4ff3fa8a",
+    "recipes/prepare.py": "0874777f53988474d724ab01505bd3e4440702340c6966b83b2d4941baa37fd1",
+    "recipes/run-one.mjs": "f9c384cf45a52911ab19b5046ffcfd744769c891c258ad2863ffe2538c00a939"
+  }
+}

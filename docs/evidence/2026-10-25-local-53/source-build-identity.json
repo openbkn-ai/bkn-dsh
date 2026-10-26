@@ -1,0 +1,32 @@
+[
+  {
+    "host": "old",
+    "originalVersion": "0.2.0-rc.2",
+    "entrySha256": "b3cd7156c0b8639656ce117530fec4d006b74cafdc9a78ac426fec084e62972c",
+    "compilerVersion": "0.22.14",
+    "compiledHelperBundled": true,
+    "licenseDeclared": true,
+    "folder": "/Users/dominiczhang/Documents/project/app/openBKN/bkn-dsh/release/local-53/source-build/old/packages/mcp/mcp-client",
+    "fullHostBuilt": false,
+    "officialArtifact": false,
+    "sourceArchiveCopyPatched": true,
+    "sourceCommit": "639ed015397290b3745d163aafe02ffee4aa3f84",
+    "declarationArtifactsBuilt": false,
+    "publishableHostPackage": false
+  },
+  {
+    "host": "rc3",
+    "originalVersion": "0.2.1-rc.3",
+    "entrySha256": "b3cd7156c0b8639656ce117530fec4d006b74cafdc9a78ac426fec084e62972c",
+    "compilerVersion": "0.22.14",
+    "compiledHelperBundled": true,
+    "licenseDeclared": true,
+    "folder": "/Users/dominiczhang/Documents/project/app/openBKN/bkn-dsh/release/local-53/source-build/rc3/packages/mcp/mcp-client",
+    "fullHostBuilt": false,
+    "officialArtifact": false,
+    "sourceArchiveCopyPatched": true,
+    "sourceCommit": "1f81c047fc48fa190a683e469daa699857e9afe8",
+    "declarationArtifactsBuilt": false,
+    "publishableHostPackage": false
+  }
+]

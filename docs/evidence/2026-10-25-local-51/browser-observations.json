@@ -1,0 +1,28 @@
+{
+  "npmOld": {
+    "businessLast": "View",
+    "businessFirst": "Settings",
+    "diagnosticsLast": "Collect again",
+    "diagnosticsFirst": "Close",
+    "diagnosticsAfterEscape": {
+      "dialogCount": 0,
+      "focus": "OpenBKN business knowledge networks"
+    },
+    "fiveEnglishReferenceLabels": true
+  },
+  "npmNew": {
+    "style": {
+      "background": "rgb(255, 255, 255)",
+      "caption": [
+        "rgb(8, 125, 114)"
+      ]
+    },
+    "businessLast": "View",
+    "businessFirst": "Settings",
+    "historicalNotice": true,
+    "diagnosticsLast": "Collect again",
+    "diagnosticsFirst": "Close",
+    "provenanceFirst": "Close",
+    "fiveEnglishReferenceLabels": true
+  }
+}

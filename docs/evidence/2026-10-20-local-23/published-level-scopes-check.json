@@ -1,0 +1,1127 @@
+{
+  "checked_at": "2026-10-20T03:58:46.974532+00:00",
+  "oracle": "Independent read-only SQL grouped by level, using each result scope definition",
+  "checks": [
+    {
+      "tool_id": "01a11f4e-fe5e-795f-a358-5d1d799293c8",
+      "scope": "components",
+      "scope_definition": {
+        "depth": null,
+        "include_root": false,
+        "include_substitute": false
+      },
+      "by_level": [
+        {
+          "bom_level": 1,
+          "line_count": 9,
+          "unique_material_count": 9
+        },
+        {
+          "unique_material_count": 23,
+          "bom_level": 2,
+          "line_count": 23
+        },
+        {
+          "line_count": 40,
+          "unique_material_count": 37,
+          "bom_level": 3
+        },
+        {
+          "unique_material_count": 234,
+          "bom_level": 4,
+          "line_count": 278
+        },
+        {
+          "unique_material_count": 47,
+          "bom_level": 5,
+          "line_count": 49
+        }
+      ],
+      "matches_independent_SQL": true
+    },
+    {
+      "tool_id": "01a11f4e-fe5e-795f-a358-5d1d799293c8",
+      "scope": "selected_depth",
+      "scope_definition": {
+        "depth": 5,
+        "include_root": false,
+        "include_substitute": false
+      },
+      "by_level": [
+        {
+          "unique_material_count": 9,
+          "bom_level": 1,
+          "line_count": 9
+        },
+        {
+          "bom_level": 2,
+          "line_count": 23,
+          "unique_material_count": 23
+        },
+        {
+          "unique_material_count": 37,
+          "bom_level": 3,
+          "line_count": 40
+        },
+        {
+          "unique_material_count": 234,
+          "bom_level": 4,
+          "line_count": 278
+        },
+        {
+          "unique_material_count": 47,
+          "bom_level": 5,
+          "line_count": 49
+        }
+      ],
+      "matches_independent_SQL": true
+    },
+    {
+      "tool_id": "01a11f4e-fe5e-795f-a358-5d1d799293c8",
+      "scope": "source_rows",
+      "scope_definition": {
+        "depth": null,
+        "include_root": true,
+        "include_substitute": true
+      },
+      "by_level": [
+        {
+          "bom_level": 0,
+          "line_count": 1,
+          "unique_material_count": 1
+        },
+        {
+          "line_count": 9,
+          "unique_material_count": 9,
+          "bom_level": 1
+        },
+        {
+          "line_count": 31,
+          "unique_material_count": 31,
+          "bom_level": 2
+        },
+        {
+          "bom_level": 3,
+          "line_count": 42,
+          "unique_material_count": 39
+        },
+        {
+          "bom_level": 4,
+          "line_count": 362,
+          "unique_material_count": 296
+        },
+        {
+          "bom_level": 5,
+          "line_count": 62,
+          "unique_material_count": 59
+        }
+      ],
+      "matches_independent_SQL": true
+    },
+    {
+      "tool_id": "01a11f4e-fe5e-795f-a358-5d1d799293c8",
+      "scope": "selected_depth",
+      "scope_definition": {
+        "depth": 5,
+        "include_root": false,
+        "include_substitute": false
+      },
+      "by_level": [
+        {
+          "line_count": 9,
+          "unique_material_count": 9,
+          "bom_level": 1
+        },
+        {
+          "bom_level": 2,
+          "line_count": 23,
+          "unique_material_count": 23
+        },
+        {
+          "bom_level": 3,
+          "line_count": 40,
+          "unique_material_count": 37
+        },
+        {
+          "line_count": 278,
+          "unique_material_count": 234,
+          "bom_level": 4
+        },
+        {
+          "unique_material_count": 47,
+          "bom_level": 5,
+          "line_count": 49
+        }
+      ],
+      "matches_independent_SQL": true
+    },
+    {
+      "tool_id": "01a11f4e-fe5e-795f-a358-5d1d799293c8",
+      "scope": "source_rows",
+      "scope_definition": {
+        "depth": null,
+        "include_root": true,
+        "include_substitute": true
+      },
+      "by_level": [
+        {
+          "bom_level": 0,
+          "line_count": 1,
+          "unique_material_count": 1
+        },
+        {
+          "bom_level": 1,
+          "line_count": 9,
+          "unique_material_count": 9
+        },
+        {
+          "bom_level": 2,
+          "line_count": 31,
+          "unique_material_count": 31
+        },
+        {
+          "unique_material_count": 39,
+          "bom_level": 3,
+          "line_count": 42
+        },
+        {
+          "line_count": 362,
+          "unique_material_count": 296,
+          "bom_level": 4
+        },
+        {
+          "unique_material_count": 59,
+          "bom_level": 5,
+          "line_count": 62
+        }
+      ],
+      "matches_independent_SQL": true
+    },
+    {
+      "tool_id": "01a11f4e-fe5e-795f-a358-5d1d799293c8",
+      "scope": "components",
+      "scope_definition": {
+        "depth": null,
+        "include_root": false,
+        "include_substitute": false
+      },
+      "by_level": [
+        {
+          "bom_level": 1,
+          "line_count": 9,
+          "unique_material_count": 9
+        },
+        {
+          "line_count": 23,
+          "unique_material_count": 23,
+          "bom_level": 2
+        },
+        {
+          "unique_material_count": 37,
+          "bom_level": 3,
+          "line_count": 40
+        },
+        {
+          "bom_level": 4,
+          "line_count": 278,
+          "unique_material_count": 234
+        },
+        {
+          "bom_level": 5,
+          "line_count": 49,
+          "unique_material_count": 47
+        }
+      ],
+      "matches_independent_SQL": true
+    },
+    {
+      "tool_id": "01a11f4e-fe5e-795f-a358-5d1d799293c8",
+      "scope": "selected_depth",
+      "scope_definition": {
+        "depth": 5,
+        "include_root": false,
+        "include_substitute": false
+      },
+      "by_level": [
+        {
+          "bom_level": 1,
+          "line_count": 9,
+          "unique_material_count": 9
+        },
+        {
+          "bom_level": 2,
+          "line_count": 23,
+          "unique_material_count": 23
+        },
+        {
+          "bom_level": 3,
+          "line_count": 40,
+          "unique_material_count": 37
+        },
+        {
+          "bom_level": 4,
+          "line_count": 278,
+          "unique_material_count": 234
+        },
+        {
+          "bom_level": 5,
+          "line_count": 49,
+          "unique_material_count": 47
+        }
+      ],
+      "matches_independent_SQL": true
+    },
+    {
+      "tool_id": "01a11f4e-fe5e-795f-a358-5d1d799293c8",
+      "scope": "source_rows",
+      "scope_definition": {
+        "depth": null,
+        "include_root": true,
+        "include_substitute": true
+      },
+      "by_level": [
+        {
+          "bom_level": 0,
+          "line_count": 1,
+          "unique_material_count": 1
+        },
+        {
+          "unique_material_count": 9,
+          "bom_level": 1,
+          "line_count": 9
+        },
+        {
+          "line_count": 31,
+          "unique_material_count": 31,
+          "bom_level": 2
+        },
+        {
+          "bom_level": 3,
+          "line_count": 42,
+          "unique_material_count": 39
+        },
+        {
+          "line_count": 362,
+          "unique_material_count": 296,
+          "bom_level": 4
+        },
+        {
+          "unique_material_count": 59,
+          "bom_level": 5,
+          "line_count": 62
+        }
+      ],
+      "matches_independent_SQL": true
+    },
+    {
+      "tool_id": "01a11f4e-fe5e-795f-a358-5d1d799293c8",
+      "scope": "components",
+      "scope_definition": {
+        "depth": null,
+        "include_root": false,
+        "include_substitute": false
+      },
+      "by_level": [
+        {
+          "line_count": 9,
+          "unique_material_count": 9,
+          "bom_level": 1
+        },
+        {
+          "unique_material_count": 23,
+          "bom_level": 2,
+          "line_count": 23
+        },
+        {
+          "bom_level": 3,
+          "line_count": 40,
+          "unique_material_count": 37
+        },
+        {
+          "unique_material_count": 234,
+          "bom_level": 4,
+          "line_count": 278
+        },
+        {
+          "unique_material_count": 47,
+          "bom_level": 5,
+          "line_count": 49
+        }
+      ],
+      "matches_independent_SQL": true
+    },
+    {
+      "tool_id": "01a11f4e-fe5e-795f-a358-5d1d799293c8",
+      "scope": "selected_depth",
+      "scope_definition": {
+        "depth": 5,
+        "include_root": false,
+        "include_substitute": false
+      },
+      "by_level": [
+        {
+          "line_count": 9,
+          "unique_material_count": 9,
+          "bom_level": 1
+        },
+        {
+          "bom_level": 2,
+          "line_count": 23,
+          "unique_material_count": 23
+        },
+        {
+          "unique_material_count": 37,
+          "bom_level": 3,
+          "line_count": 40
+        },
+        {
+          "bom_level": 4,
+          "line_count": 278,
+          "unique_material_count": 234
+        },
+        {
+          "unique_material_count": 47,
+          "bom_level": 5,
+          "line_count": 49
+        }
+      ],
+      "matches_independent_SQL": true
+    },
+    {
+      "tool_id": "01a11f4e-fe5e-795f-a358-5d1d799293c8",
+      "scope": "source_rows",
+      "scope_definition": {
+        "depth": null,
+        "include_root": true,
+        "include_substitute": true
+      },
+      "by_level": [
+        {
+          "line_count": 1,
+          "unique_material_count": 1,
+          "bom_level": 0
+        },
+        {
+          "bom_level": 1,
+          "line_count": 9,
+          "unique_material_count": 9
+        },
+        {
+          "line_count": 31,
+          "unique_material_count": 31,
+          "bom_level": 2
+        },
+        {
+          "bom_level": 3,
+          "line_count": 42,
+          "unique_material_count": 39
+        },
+        {
+          "unique_material_count": 296,
+          "bom_level": 4,
+          "line_count": 362
+        },
+        {
+          "line_count": 62,
+          "unique_material_count": 59,
+          "bom_level": 5
+        }
+      ],
+      "matches_independent_SQL": true
+    },
+    {
+      "tool_id": "01a11f4e-fe5e-795f-a358-5d1d799293c8",
+      "scope": "components",
+      "scope_definition": {
+        "depth": null,
+        "include_root": false,
+        "include_substitute": false
+      },
+      "by_level": [
+        {
+          "bom_level": 1,
+          "line_count": 9,
+          "unique_material_count": 9
+        },
+        {
+          "unique_material_count": 23,
+          "bom_level": 2,
+          "line_count": 23
+        },
+        {
+          "unique_material_count": 37,
+          "bom_level": 3,
+          "line_count": 40
+        },
+        {
+          "unique_material_count": 234,
+          "bom_level": 4,
+          "line_count": 278
+        },
+        {
+          "line_count": 49,
+          "unique_material_count": 47,
+          "bom_level": 5
+        }
+      ],
+      "matches_independent_SQL": true
+    },
+    {
+      "tool_id": "01a11f4e-fe5e-795f-a358-5d1d799293c8",
+      "scope": "source_rows",
+      "scope_definition": {
+        "depth": null,
+        "include_root": true,
+        "include_substitute": true
+      },
+      "by_level": [
+        {
+          "unique_material_count": 1,
+          "bom_level": 0,
+          "line_count": 1
+        },
+        {
+          "bom_level": 1,
+          "line_count": 9,
+          "unique_material_count": 9
+        },
+        {
+          "unique_material_count": 31,
+          "bom_level": 2,
+          "line_count": 31
+        },
+        {
+          "bom_level": 3,
+          "line_count": 42,
+          "unique_material_count": 39
+        },
+        {
+          "unique_material_count": 296,
+          "bom_level": 4,
+          "line_count": 362
+        },
+        {
+          "bom_level": 5,
+          "line_count": 62,
+          "unique_material_count": 59
+        }
+      ],
+      "matches_independent_SQL": true
+    },
+    {
+      "tool_id": "01a11f4e-fe5e-795f-a358-5d1d799293c8",
+      "scope": "components",
+      "scope_definition": {
+        "depth": null,
+        "include_root": false,
+        "include_substitute": false
+      },
+      "by_level": [
+        {
+          "bom_level": 1,
+          "line_count": 9,
+          "unique_material_count": 9
+        },
+        {
+          "bom_level": 2,
+          "line_count": 23,
+          "unique_material_count": 23
+        },
+        {
+          "bom_level": 3,
+          "line_count": 40,
+          "unique_material_count": 37
+        },
+        {
+          "unique_material_count": 234,
+          "bom_level": 4,
+          "line_count": 278
+        },
+        {
+          "unique_material_count": 47,
+          "bom_level": 5,
+          "line_count": 49
+        }
+      ],
+      "matches_independent_SQL": true
+    },
+    {
+      "tool_id": "01a11f4e-fe5e-795f-a358-5d1d799293c8",
+      "scope": "selected_depth",
+      "scope_definition": {
+        "depth": 5,
+        "include_root": false,
+        "include_substitute": false
+      },
+      "by_level": [
+        {
+          "unique_material_count": 9,
+          "bom_level": 1,
+          "line_count": 9
+        },
+        {
+          "unique_material_count": 23,
+          "bom_level": 2,
+          "line_count": 23
+        },
+        {
+          "bom_level": 3,
+          "line_count": 40,
+          "unique_material_count": 37
+        },
+        {
+          "unique_material_count": 234,
+          "bom_level": 4,
+          "line_count": 278
+        },
+        {
+          "unique_material_count": 47,
+          "bom_level": 5,
+          "line_count": 49
+        }
+      ],
+      "matches_independent_SQL": true
+    },
+    {
+      "tool_id": "01a11f4e-fe5e-795f-a358-5d1d799293c8",
+      "scope": "components",
+      "scope_definition": {
+        "depth": null,
+        "include_root": false,
+        "include_substitute": false
+      },
+      "by_level": [
+        {
+          "line_count": 9,
+          "unique_material_count": 9,
+          "bom_level": 1
+        },
+        {
+          "unique_material_count": 23,
+          "bom_level": 2,
+          "line_count": 23
+        },
+        {
+          "unique_material_count": 37,
+          "bom_level": 3,
+          "line_count": 40
+        },
+        {
+          "line_count": 278,
+          "unique_material_count": 234,
+          "bom_level": 4
+        },
+        {
+          "bom_level": 5,
+          "line_count": 49,
+          "unique_material_count": 47
+        }
+      ],
+      "matches_independent_SQL": true
+    },
+    {
+      "tool_id": "01a11f4e-fe5e-795f-a358-5d1d799293c8",
+      "scope": "selected_depth",
+      "scope_definition": {
+        "depth": 5,
+        "include_root": false,
+        "include_substitute": false
+      },
+      "by_level": [
+        {
+          "unique_material_count": 9,
+          "bom_level": 1,
+          "line_count": 9
+        },
+        {
+          "bom_level": 2,
+          "line_count": 23,
+          "unique_material_count": 23
+        },
+        {
+          "bom_level": 3,
+          "line_count": 40,
+          "unique_material_count": 37
+        },
+        {
+          "line_count": 278,
+          "unique_material_count": 234,
+          "bom_level": 4
+        },
+        {
+          "bom_level": 5,
+          "line_count": 49,
+          "unique_material_count": 47
+        }
+      ],
+      "matches_independent_SQL": true
+    },
+    {
+      "tool_id": "01a11f4e-fe5e-795f-a358-5d1d799293c8",
+      "scope": "source_rows",
+      "scope_definition": {
+        "depth": null,
+        "include_root": true,
+        "include_substitute": true
+      },
+      "by_level": [
+        {
+          "bom_level": 0,
+          "line_count": 1,
+          "unique_material_count": 1
+        },
+        {
+          "line_count": 9,
+          "unique_material_count": 9,
+          "bom_level": 1
+        },
+        {
+          "bom_level": 2,
+          "line_count": 31,
+          "unique_material_count": 31
+        },
+        {
+          "line_count": 42,
+          "unique_material_count": 39,
+          "bom_level": 3
+        },
+        {
+          "bom_level": 4,
+          "line_count": 362,
+          "unique_material_count": 296
+        },
+        {
+          "line_count": 62,
+          "unique_material_count": 59,
+          "bom_level": 5
+        }
+      ],
+      "matches_independent_SQL": true
+    },
+    {
+      "tool_id": "01a11f4e-fe5e-795f-a358-5d1d799293c8",
+      "scope": "components",
+      "scope_definition": {
+        "depth": null,
+        "include_root": false,
+        "include_substitute": false
+      },
+      "by_level": [
+        {
+          "bom_level": 1,
+          "line_count": 9,
+          "unique_material_count": 9
+        },
+        {
+          "unique_material_count": 23,
+          "bom_level": 2,
+          "line_count": 23
+        },
+        {
+          "bom_level": 3,
+          "line_count": 40,
+          "unique_material_count": 37
+        },
+        {
+          "bom_level": 4,
+          "line_count": 278,
+          "unique_material_count": 234
+        },
+        {
+          "line_count": 49,
+          "unique_material_count": 47,
+          "bom_level": 5
+        }
+      ],
+      "matches_independent_SQL": true
+    },
+    {
+      "tool_id": "01a11f4e-fe5e-795f-a358-5d1d799293c8",
+      "scope": "selected_depth",
+      "scope_definition": {
+        "depth": 5,
+        "include_root": false,
+        "include_substitute": false
+      },
+      "by_level": [
+        {
+          "bom_level": 1,
+          "line_count": 9,
+          "unique_material_count": 9
+        },
+        {
+          "line_count": 23,
+          "unique_material_count": 23,
+          "bom_level": 2
+        },
+        {
+          "unique_material_count": 37,
+          "bom_level": 3,
+          "line_count": 40
+        },
+        {
+          "unique_material_count": 234,
+          "bom_level": 4,
+          "line_count": 278
+        },
+        {
+          "unique_material_count": 47,
+          "bom_level": 5,
+          "line_count": 49
+        }
+      ],
+      "matches_independent_SQL": true
+    },
+    {
+      "tool_id": "01a11f4e-fe5e-795f-a358-5d1d799293c8",
+      "scope": "source_rows",
+      "scope_definition": {
+        "depth": null,
+        "include_root": true,
+        "include_substitute": true
+      },
+      "by_level": [
+        {
+          "line_count": 1,
+          "unique_material_count": 1,
+          "bom_level": 0
+        },
+        {
+          "line_count": 9,
+          "unique_material_count": 9,
+          "bom_level": 1
+        },
+        {
+          "bom_level": 2,
+          "line_count": 31,
+          "unique_material_count": 31
+        },
+        {
+          "unique_material_count": 39,
+          "bom_level": 3,
+          "line_count": 42
+        },
+        {
+          "bom_level": 4,
+          "line_count": 362,
+          "unique_material_count": 296
+        },
+        {
+          "line_count": 62,
+          "unique_material_count": 59,
+          "bom_level": 5
+        }
+      ],
+      "matches_independent_SQL": true
+    },
+    {
+      "tool_id": "01a11f4e-fb6a-7d44-8fd4-f1585cb3a016",
+      "scope": "selected_depth",
+      "scope_definition": {
+        "depth": 1,
+        "include_root": false,
+        "include_substitute": false
+      },
+      "by_level": [
+        {
+          "unique_material_count": 9,
+          "bom_level": 1,
+          "line_count": 9
+        }
+      ],
+      "matches_independent_SQL": true
+    },
+    {
+      "tool_id": "01a11f4e-fb6a-7d44-8fd4-f1585cb3a016",
+      "scope": "source_rows",
+      "scope_definition": {
+        "depth": null,
+        "include_root": true,
+        "include_substitute": true
+      },
+      "by_level": [
+        {
+          "line_count": 1,
+          "unique_material_count": 1,
+          "bom_level": 0
+        },
+        {
+          "bom_level": 1,
+          "line_count": 9,
+          "unique_material_count": 9
+        },
+        {
+          "line_count": 31,
+          "unique_material_count": 31,
+          "bom_level": 2
+        },
+        {
+          "bom_level": 3,
+          "line_count": 42,
+          "unique_material_count": 39
+        },
+        {
+          "unique_material_count": 296,
+          "bom_level": 4,
+          "line_count": 362
+        },
+        {
+          "unique_material_count": 59,
+          "bom_level": 5,
+          "line_count": 62
+        }
+      ],
+      "matches_independent_SQL": true
+    },
+    {
+      "tool_id": "01a11f4e-fb6a-7d44-8fd4-f1585cb3a016",
+      "scope": "components",
+      "scope_definition": {
+        "depth": null,
+        "include_root": false,
+        "include_substitute": false
+      },
+      "by_level": [
+        {
+          "bom_level": 1,
+          "line_count": 9,
+          "unique_material_count": 9
+        },
+        {
+          "bom_level": 2,
+          "line_count": 23,
+          "unique_material_count": 23
+        },
+        {
+          "bom_level": 3,
+          "line_count": 40,
+          "unique_material_count": 37
+        },
+        {
+          "unique_material_count": 234,
+          "bom_level": 4,
+          "line_count": 278
+        },
+        {
+          "bom_level": 5,
+          "line_count": 49,
+          "unique_material_count": 47
+        }
+      ],
+      "matches_independent_SQL": true
+    },
+    {
+      "tool_id": "01a11f4e-fe5e-795f-a358-5d1d799293c8",
+      "scope": "source_rows",
+      "scope_definition": {
+        "depth": null,
+        "include_root": true,
+        "include_substitute": true
+      },
+      "by_level": [
+        {
+          "unique_material_count": 1,
+          "bom_level": 0,
+          "line_count": 1
+        },
+        {
+          "unique_material_count": 9,
+          "bom_level": 1,
+          "line_count": 9
+        },
+        {
+          "bom_level": 2,
+          "line_count": 31,
+          "unique_material_count": 31
+        },
+        {
+          "bom_level": 3,
+          "line_count": 42,
+          "unique_material_count": 39
+        },
+        {
+          "unique_material_count": 296,
+          "bom_level": 4,
+          "line_count": 362
+        },
+        {
+          "bom_level": 5,
+          "line_count": 62,
+          "unique_material_count": 59
+        }
+      ],
+      "matches_independent_SQL": true
+    },
+    {
+      "tool_id": "01a11f4e-fe5e-795f-a358-5d1d799293c8",
+      "scope": "components",
+      "scope_definition": {
+        "depth": null,
+        "include_root": false,
+        "include_substitute": false
+      },
+      "by_level": [
+        {
+          "bom_level": 1,
+          "line_count": 9,
+          "unique_material_count": 9
+        },
+        {
+          "bom_level": 2,
+          "line_count": 23,
+          "unique_material_count": 23
+        },
+        {
+          "unique_material_count": 37,
+          "bom_level": 3,
+          "line_count": 40
+        },
+        {
+          "line_count": 278,
+          "unique_material_count": 234,
+          "bom_level": 4
+        },
+        {
+          "unique_material_count": 47,
+          "bom_level": 5,
+          "line_count": 49
+        }
+      ],
+      "matches_independent_SQL": true
+    },
+    {
+      "tool_id": "01a11f4e-fe5e-795f-a358-5d1d799293c8",
+      "scope": "selected_depth",
+      "scope_definition": {
+        "depth": 1,
+        "include_root": false,
+        "include_substitute": false
+      },
+      "by_level": [
+        {
+          "unique_material_count": 9,
+          "bom_level": 1,
+          "line_count": 9
+        }
+      ],
+      "matches_independent_SQL": true
+    },
+    {
+      "tool_id": "01a11f4e-fe5e-795f-a358-5d1d799293c8",
+      "scope": "source_rows",
+      "scope_definition": {
+        "depth": null,
+        "include_root": true,
+        "include_substitute": true
+      },
+      "by_level": [
+        {
+          "bom_level": 0,
+          "line_count": 1,
+          "unique_material_count": 1
+        },
+        {
+          "line_count": 9,
+          "unique_material_count": 9,
+          "bom_level": 1
+        },
+        {
+          "line_count": 31,
+          "unique_material_count": 31,
+          "bom_level": 2
+        },
+        {
+          "bom_level": 3,
+          "line_count": 42,
+          "unique_material_count": 39
+        },
+        {
+          "unique_material_count": 296,
+          "bom_level": 4,
+          "line_count": 362
+        },
+        {
+          "bom_level": 5,
+          "line_count": 62,
+          "unique_material_count": 59
+        }
+      ],
+      "matches_independent_SQL": true
+    },
+    {
+      "tool_id": "01a11f4e-fe5e-795f-a358-5d1d799293c8",
+      "scope": "components",
+      "scope_definition": {
+        "depth": null,
+        "include_root": false,
+        "include_substitute": false
+      },
+      "by_level": [
+        {
+          "bom_level": 1,
+          "line_count": 9,
+          "unique_material_count": 9
+        },
+        {
+          "line_count": 23,
+          "unique_material_count": 23,
+          "bom_level": 2
+        },
+        {
+          "bom_level": 3,
+          "line_count": 40,
+          "unique_material_count": 37
+        },
+        {
+          "line_count": 278,
+          "unique_material_count": 234,
+          "bom_level": 4
+        },
+        {
+          "bom_level": 5,
+          "line_count": 49,
+          "unique_material_count": 47
+        }
+      ],
+      "matches_independent_SQL": true
+    },
+    {
+      "tool_id": "01a11f4e-fe5e-795f-a358-5d1d799293c8",
+      "scope": "selected_depth",
+      "scope_definition": {
+        "depth": 5,
+        "include_root": false,
+        "include_substitute": false
+      },
+      "by_level": [
+        {
+          "bom_level": 1,
+          "line_count": 9,
+          "unique_material_count": 9
+        },
+        {
+          "bom_level": 2,
+          "line_count": 23,
+          "unique_material_count": 23
+        },
+        {
+          "line_count": 40,
+          "unique_material_count": 37,
+          "bom_level": 3
+        },
+        {
+          "bom_level": 4,
+          "line_count": 278,
+          "unique_material_count": 234
+        },
+        {
+          "unique_material_count": 47,
+          "bom_level": 5,
+          "line_count": 49
+        }
+      ],
+      "matches_independent_SQL": true
+    }
+  ],
+  "passed": true
+}

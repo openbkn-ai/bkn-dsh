@@ -1,0 +1,16 @@
+{
+  "branch": "handoff/windows-local30-r3-20261023",
+  "kitSha256": "7daaca61691706ef476ce007eb4c49e8a8f538a30dc73764fea6f6a4281308d0",
+  "argvSha256": "0a2ff6b813ac5364738e9db712a796c4aceb81f64cf2127085aeba5e420dcafd",
+  "preparationKitSha256": "82d1b74c43728301016928b527742d1cee66e45413412de17fdc76b7735bc936",
+  "deliveryDocumentChanges": [
+    "FOLLOWUP.md",
+    "HANDOFF.md",
+    "KIT-FILES.json",
+    "RESULTS-TEMPLATE.md"
+  ],
+  "inputs": 26,
+  "treeFiles": 33,
+  "ciRun": null,
+  "formalAcceptanceEligible": false
+}

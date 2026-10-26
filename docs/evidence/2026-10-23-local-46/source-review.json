@@ -1,0 +1,29 @@
+{
+  "checkedAt": "2026-10-23T13:50:25.549623+00:00",
+  "sdk": {
+    "version": "0.2.0",
+    "tgzSha256": "d227f6264597d727e7931bef4118f099df20d42402ff32e306f6d65e8a6b273f",
+    "archiveMember": "package/dist/chunk-XNXE76OW.js",
+    "memberSha256": "2d516aa9e07ff461cb9c877a6c03f4752db85a668f9d675910c8a80f53d7c6a8",
+    "browserFunctionSha256": "ce82a87a3e1178ed6145f8a3943a08052b5b49652c540ff361dc5fa0deac210c",
+    "browserFunction": "function openBrowser(url) {\n  const cmd = process.platform === \"darwin\" ? \"open\" : process.platform === \"win32\" ? \"start\" : \"xdg-open\";\n  try {\n    const child = spawn(cmd, [url], {\n      stdio: \"ignore\",\n      detached: true,\n      shell: process.platform === \"win32\"\n    });\n    child.on(\"error\", () => {\n    });\n    child.unref();\n  } catch {\n  }\n}\n",
+    "executed": false,
+    "conclusion": "Windows source selects start with shell=true, stdio=ignore, detached=true, followed by unref. This is not evidence of actual Job membership, breakaway or browser lifecycle."
+  },
+  "ui": {
+    "file": "packages/openbkn-business-context/src/client/openbkn-ui-controller.ts",
+    "fileSha256": "726c8e2652115d94ace9e2618d7c6f80cae5150dda3e396f1512b088a5239479",
+    "loginMethodSha256": "5a41b55a5707d85dc0c9e682c416fec796118963d0fe7b60003ecc6cef6083e4",
+    "review": "Successful beginLogin publishes succeeded and removes its listener/clears the timeout; it does not invoke invalidate there. Later invalidate/close/replacement can abort the operation. Controlled native-wire cases leave the caller operation un-aborted, so an explicit UI cancellation is not required for early stream dispose."
+  },
+  "windowsContainment": {
+    "jobFlagSource": "packages/subprocess/win32-process/src/process.ts:createKillOnCloseJob",
+    "targetAssignmentSource": "packages/subprocess/win32-process/src/process.ts:spawnCurrentTokenJobProcess",
+    "review": "Fixed source configures JOB_OBJECT_LIMIT_KILL_ON_JOB_CLOSE and assigns the direct target before resume. Actual Chrome Job identity, member list and incident ordering remain unknown."
+  },
+  "upstreamReview": {
+    "dsh": "Default master still 687f282e and most recent release dsh-v0.2.1-rc.2; supported pins unchanged.",
+    "foundry": "Five commits since 0b447996 to 2466c45f cover public error localization/type refactoring, graph-explorer UNION wording, null enum rejection and stored aliases. Full changed-file/commit list retained; no DSH subprocess, SDK browser-launch or auth runner implementation is among these files. These changes are unreleased and are not applied to the formal0.2.0 baseline.",
+    "deployedPlatformInspectedThisRound": false
+  }
+}

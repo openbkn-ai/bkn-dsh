@@ -1,0 +1,28 @@
+✔ an open dialog receives focus, wraps visible controls and restores its opener (3.919333ms)
+✔ content updates retain focus and Escape uses the latest close action without leaking listeners (0.351167ms)
+✔ English diagnostic metadata separates every label from its value (13.76275ms)
+✔ English sign-in platform label is separated from the displayed URL (2.251458ms)
+✔ both dictionaries cover the same keys and interpolation contracts (1.000042ms)
+✔ an already displayed failure updates zh/en/zh without rereading credentials or reconnecting (0.973042ms)
+✔ native evidence selection survives language changes and never links equal-valued unrelated nodes (7.829542ms)
+✔ diagnostic next actions translate without mutating exported report facts or unknown text (0.065708ms)
+✔ the open login panel switches language while waiting and cancellation never dispatches a second login (0.836291ms)
+✔ closing provenance cancels its read and discards the late response (5.006708ms)
+✔ claim selection marks only explicitly linked functions while retaining the same-pair catalogue (4.041708ms)
+✔ event selection marks processing by disclosed operation IDs and survives tab changes (3.351375ms)
+✔ changing question pairs resets node, claim and event selections without importing unrelated functions (4.540541ms)
+✔ truly empty ready evidence, not-generated and an omitted oversized native projection remain distinct (0.870625ms)
+✔ unavailable and not-generated evidence never claim that an explanation exists (0.456209ms)
+✔ overlay text and close controls keep visible contrast against their white surface in a dark host (0.7795ms)
+✔ a late response from the closed answer cannot overwrite a newly opened answer (2.981708ms)
+✔ historical reference labels switch zh/en/zh without rereading or changing platform facts (12.223791ms)
+✔ passive diagnostics explains observation age without relabeling historical pass or changing JSON (11.550542ms)
+✔ brand captions and the sign-in action have normal-text contrast on their actual surfaces (1.402166ms)
+ℹ tests 20
+ℹ suites 0
+ℹ pass 20
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 252.371833

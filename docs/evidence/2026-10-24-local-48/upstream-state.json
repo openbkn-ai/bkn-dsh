@@ -1,0 +1,172 @@
+{
+  "checkedAt": "2026-10-24T13:29:39.276876+00:00",
+  "clientDate": "2026-10-24",
+  "dsh": {
+    "defaultBranchRef": {
+      "name": "master",
+      "target": {
+        "oid": "22ddee3792402c3e70ec5f86a63c3e3e895a2f60"
+      }
+    },
+    "releases": {
+      "nodes": [
+        {
+          "tagName": "dsh-v0.2.1-rc.3",
+          "isPrerelease": true,
+          "publishedAt": "2026-10-23T15:26:39Z"
+        }
+      ]
+    }
+  },
+  "foundry": {
+    "defaultBranchRef": {
+      "name": "main",
+      "target": {
+        "oid": "1e50a4fb90c05af9d80903aafc9cbcea03d89ba0"
+      }
+    },
+    "releases": {
+      "nodes": [
+        {
+          "tagName": "v0.2.0",
+          "isPrerelease": false,
+          "publishedAt": "2026-10-16T07:21:25Z"
+        }
+      ]
+    }
+  },
+  "dshStateSameAsRound47": true,
+  "foundryDelta": {
+    "base": "b058d07fefc22a0b5f759046a19e1c49958977fd",
+    "head": "1e50a4fb90c05af9d80903aafc9cbcea03d89ba0",
+    "totalCommits": 24,
+    "returnedCommits": 24,
+    "returnedFiles": 300,
+    "fileListTruncated": true,
+    "commits": [
+      {
+        "sha": "4e0a9ebee3fca2f598b0a877fa6c86a0941d6fdf",
+        "subject": "fix(bkn-trace): verify summary capacity and avoid duplicate service scans"
+      },
+      {
+        "sha": "9abe9d809d89217d047c0ce9d528bae1f2806b7b",
+        "subject": "fix(bkn-trace): handle summary result cleanup errors"
+      },
+      {
+        "sha": "0992c5dceba0ddb69cc52e8763c7ad46ec8cbf65",
+        "subject": "test(bkn-trace): cover service window pagination in CI"
+      },
+      {
+        "sha": "cd1d2147977c901910440b4e47328d628f07ab46",
+        "subject": "fix(bkn-agent): localize the built-in claim attribution prompt"
+      },
+      {
+        "sha": "07c1ba24715c6b46221634cf16cb37add43a87ab",
+        "subject": "fix(bkn-agent): migrate prompt locales through schema 0.2.2"
+      },
+      {
+        "sha": "b2086d539c414a41720cb98304ff2a5c55242a50",
+        "subject": "test(bkn-agent): follow selected fresh-install snapshot"
+      },
+      {
+        "sha": "a41272bb954fc230fa0872bf2bff137927ae02e8",
+        "subject": "fix(bkn-agent): preserve current graph explorer seed in locale snapshot"
+      },
+      {
+        "sha": "187fc49c60d5ee67dc20d3b96698703c156155fc",
+        "subject": "fix(bkn-agent): commit admin configuration and history atomically"
+      },
+      {
+        "sha": "a84ffe6918b13defe82fb04b636242b2c91e2d4f",
+        "subject": "fix(bkn-agent): order prompt import locks and run MariaDB regressions"
+      },
+      {
+        "sha": "ef9d8fadc30b7b45c6c436afd46a0ce2dbaff7f2",
+        "subject": "fix(bkn-agent): scope binding locks with a current-read index"
+      },
+      {
+        "sha": "4de8a2b62cd70989def94a16a5206875b831bc98",
+        "subject": "fix(bkn-agent): return current locked configuration to editors"
+      },
+      {
+        "sha": "9d4cf319d62151407babbbfd267e973fd101eebc",
+        "subject": "refactor(foundry): migrate consumers to shared error localization and typed languages (#2463)"
+      },
+      {
+        "sha": "efd3697236c0853060d557cbc8d6d26bddbaaa30",
+        "subject": "Merge pull request #2458 from openbkn-ai/fix/2341-localized-claim-prompt"
+      },
+      {
+        "sha": "4185b6ddccb22cd3e9774c4e6c943566adffa69b",
+        "subject": "chore(agent): integrate merged locale baseline"
+      },
+      {
+        "sha": "b2abdc66c1c74ac65888eaeddd3bcf7c6dc48ca3",
+        "subject": "chore(bkn-trace): integrate current mainline for acceptance"
+      },
+      {
+        "sha": "be99642f8ae53e0dac9d8f4e133b0c6b58566e17",
+        "subject": "Merge pull request #2457 from openbkn-ai/fix/agent-config-atomic-history"
+      },
+      {
+        "sha": "7313f10256ae7514f2125cdcf0586384730add99",
+        "subject": "Merge pull request #2456 from openbkn-ai/fix/2150-summary-capacity"
+      },
+      {
+        "sha": "8901ec1c43e879148e7452c047d33a9e3527e909",
+        "subject": "refactor(ontology-query): batch object metric reads and bound logical-property work (#2460)"
+      },
+      {
+        "sha": "4c7433b4abb0f3d537bc38770c1b5e698238beb1",
+        "subject": "docs(object-metrics): align V1 query contracts (#2465)"
+      },
+      {
+        "sha": "5c57e6f9048423cbdfe3d6d222e552805aca2ef5",
+        "subject": "fix(ontology-query): authorize metric execution dependencies (#2466)"
+      },
+      {
+        "sha": "d0162f193fa5855f9f665cba0dddc66dc6c291b7",
+        "subject": "fix(context-loader): preserve metric drill rejection errors (#2467)"
+      },
+      {
+        "sha": "f5cc39de878fd9ba03fc344fb4b38aa1daf0c70f",
+        "subject": "docs(object-metrics): document missing version-list response (#2468)"
+      },
+      {
+        "sha": "91dd3687dfea0e5a54c3024959df2e090344945e",
+        "subject": "fix(bkn-agent): tell the graph explorer which Cypher run_cypher rejects (#2470)"
+      },
+      {
+        "sha": "1e50a4fb90c05af9d80903aafc9cbcea03d89ba0",
+        "subject": "feat(bkn-safe): sign MCP clients in by URL only and manage connected clients (#2472)"
+      }
+    ],
+    "targetedAuthCommit": {
+      "sha": "1e50a4fb90c05af9d80903aafc9cbcea03d89ba0",
+      "files": [
+        "bkn-safe/charts/bkn-safe/templates/configmap.yaml",
+        "bkn-safe/charts/bkn-safe/values.yaml",
+        "bkn-safe/server/app/app.go",
+        "bkn-safe/server/config/config.go",
+        "bkn-safe/server/config/config_test.go",
+        "bkn-safe/server/config/defaults.go",
+        "bkn-safe/server/config/load.go",
+        "bkn-safe/server/internal/auth/hydra.go",
+        "bkn-safe/server/internal/auth/hydra_clients_test.go",
+        "bkn-safe/server/internal/httpapi/audit.go",
+        "bkn-safe/server/internal/httpapi/audit_semantics_test.go",
+        "bkn-safe/server/internal/httpapi/oauthclients.go",
+        "bkn-safe/server/internal/httpapi/oauthclients_test.go",
+        "bkn-safe/server/internal/httpapi/oauthregister.go",
+        "bkn-safe/server/internal/httpapi/oauthregister_test.go",
+        "bkn-safe/server/internal/httpapi/router.go",
+        "docs/api/bkn-safe/oauth-clients.yaml"
+      ],
+      "review": "New optional bkn-safe OAuth discovery, public-client dynamic registration, and connected-client management. The documented first-party CLI/Studio clients are excluded from connected-client revocation. This is unreleased main, not formal v0.2.0 and not deployed here."
+    },
+    "otherAreas": "Trace summary/pagination, agent prompt locale/config atomicity, shared error languages, metric batch/authorization and drill errors. This is a subject-level inventory and targeted auth patch review; the 300-file overall compare is truncated, so no full platform compatibility claim."
+  },
+  "pinnedHostsChanged": false,
+  "deployed": false,
+  "scope": "Metadata/targeted patch review only. No fresh platform tool catalogue or real login was executed; official v0.2.0/SDK0.2.0 stay fixed."
+}

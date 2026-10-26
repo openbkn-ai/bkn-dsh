@@ -1,0 +1,55 @@
+{
+  "checkedAt": "2026-10-24T16:38:46.762733+00:00",
+  "kind": "local-development-preacceptance",
+  "candidateVersion": "0.2.0-rc.2-openbkn.0.2.0-31",
+  "candidateSha256": "22ba0e17235ccb3c93d585f2811604f5221375ac9e3496e92e6d8c1756196e4a",
+  "ciRun": null,
+  "formalAcceptanceEligible": false,
+  "sourceTestsRepeated": false,
+  "modelOrNewBusinessTurn": false,
+  "B1Repeated": false,
+  "hostVersions": [
+    "0.2.0-rc.2",
+    "0.2.1-rc.2"
+  ],
+  "matrix": [
+    {
+      "form": "Mac Desktop old",
+      "actualUi": "PASS: package page31/3running plus changed labels/notice actually rendered",
+      "labels": "PASS: same existing record, zh-en-zh; original identifiers/completed unchanged",
+      "dialogs": "PASS: three dialogs Tab/ShiftTab/Escape/focus return; native page/sidebar retained",
+      "narrowLayout": "PASS: 800x600; visible text and keyboard-reachable scroll footer",
+      "noticeAndReadability": "PASS"
+    },
+    {
+      "form": "Mac Desktop new",
+      "actualUi": "PASS: package page31/3running plus changed labels/notice actually rendered",
+      "labels": "PASS: five English labels in an existing record",
+      "dialogs": "PASS: affected three-dialog Tab/ShiftTab/Escape/focus quick checks",
+      "noticeAndReadability": "PASS: historical notice/readable native screenshot",
+      "scope": "quick changed-boundary check; not a repeat of old Desktop full pass set"
+    },
+    {
+      "form": "Mac npm/web old",
+      "actualUi": "PASS after isolated task runtime metadata collision removal and copied endpoint preparation",
+      "labels": "PASS: five English labels in existing record",
+      "dialogs": "PASS: three-dialog local Tab/ShiftTab/Escape/focus checks",
+      "noticeAndReadability": "PASS: actual DOM notice and computed colors"
+    },
+    {
+      "form": "Mac npm/web new",
+      "actualUi": "PASS: package page31/3running plus actual UI changes",
+      "labels": "PASS: five English labels in existing record",
+      "dialogs": "PASS: three-dialog local Tab/ShiftTab/Escape/focus checks",
+      "noticeAndReadability": "PASS: actual DOM notice/computed caption color"
+    }
+  ],
+  "limits": {
+    "diagnosticLoadedAndDshVersion": "still not collected; package page/files/UI evidence kept separate",
+    "nativeNestedModalConsumedEscape": "NOT_RUN: no existing nested plugin menu/native-parent-modal entry exercised; prior controlled round49 evidence retained, not rerun",
+    "fullUiMatrix": "NOT_RUN; only changed UI checked",
+    "newDesktopNarrowLayout": "not repeated; old Desktop31 narrow evidence is not transferred as new Desktop evidence",
+    "originalFailures": "wrong-context metadata/proxy preparation and expired first auth retained separately; not candidate UI PASS",
+    "windows": "await fixed d20a266 report; no new work requested"
+  }
+}

@@ -108,11 +108,14 @@ export class OpenBknBusinessContextService extends TypertRemoteService {
   private readonly mounted = new WeakSet<Agent>()
   private readonly capabilityProfiles = new WeakMap<Agent, NetworkCapabilityProfile>()
   private mcpManagerInstance: OpenBknMcpManager | undefined
+  /** Native Service views rebind this.ctx to the caller; child lifetimes belong here. */
+  private readonly ownerContext: Context
   private readonly lifetime = new AbortController()
   private readonly observations = passiveDiagnostics.writer()
   /** This instance may use only the token verified for its configured platform. */
   private synchronizedToken: string | undefined
-  private tokenRead: Promise<string> | undefined
+  private tokenReads: WeakMap<AbortSignal, Promise<string>> | undefined
+  private tokenReadSignal: AbortSignal | undefined
   private bindingMutations = 0
   /** Per-session binding records under `$DSH_HOME/openbkn/session-bindings`. */
   bindingRecords: SessionBindingRecords = new SessionBindingStore(dshHomePath('openbkn', 'session-bindings'))
@@ -128,6 +131,7 @@ export class OpenBknBusinessContextService extends TypertRemoteService {
 
   constructor(ctx: Context, readonly config: PluginConfig) {
     super(ctx, 'openbknBusinessContext')
+    this.ownerContext = ctx
     ctx.effect(() => () => { this.lifetime.abort(new Error('OpenBKN configuration was reloaded.')) })
     ctx.on('agent/created', async ({ agent }) => {
       await this.restoreBinding(agent)
@@ -193,6 +197,12 @@ export class OpenBknBusinessContextService extends TypertRemoteService {
     return await this.listNetworksAfterAuthentication(signal)
   }
 
+  /** Own browser-login cancellation on the Host's native Remote stream carrier. */
+  @Remote({ mode: 'stream' })
+  async *beginLoginStream(signal: AbortSignal): AsyncIterable<readonly BusinessNetworkSummary[]> {
+    yield await this.remoteBeginLogin(signal)
+  }
+
   /**
    * Save one user-entered token to DSH's credential provider, connect the
    * standard MCP client by reference, then return only visible network DTOs.
@@ -250,6 +260,16 @@ export class OpenBknBusinessContextService extends TypertRemoteService {
    * classified into `sources.degraded` instead of failing the whole view, so
    * a partially authorized deployment still sees the local execution chain.
    */
+  /** Desktop cancellation is carried by native streams, including single-result reads. */
+  @Remote({ mode: 'stream' })
+  async *getTurnProvenanceViewStream(
+    sessionId: SessionId,
+    messageId: string,
+    signal: AbortSignal,
+  ): AsyncIterable<ProvenanceView | undefined> {
+    yield await this.remoteGetTurnProvenanceView(sessionId, messageId, signal)
+  }
+
   @Remote('getTurnProvenanceView')
   async remoteGetTurnProvenanceView(
     sessionId: SessionId,
@@ -717,7 +737,7 @@ export class OpenBknBusinessContextService extends TypertRemoteService {
   }
 
   private mcpManager(): OpenBknMcpManager {
-    return this.mcpManagerInstance ??= new OpenBknMcpManager(this.ctx, this.config, () => this.resolveOpenBknToken())
+    return this.mcpManagerInstance ??= new OpenBknMcpManager(this.ownerContext, this.config, () => this.resolveOpenBknToken())
   }
 
   private authCoordinator(): AuthCoordinator {
@@ -739,27 +759,36 @@ export class OpenBknBusinessContextService extends TypertRemoteService {
   private platformReader(): OpenBknPlatformReader {
     return new OpenBknPlatformReader({
       ...this.config,
-      resolveToken: () => this.resolveOpenBknToken(),
+      resolveToken: signal => this.resolveOpenBknToken(signal),
     })
   }
 
   /** Never send a shared credential from another platform before CLI verification. */
-  private async resolveOpenBknToken(): Promise<string | undefined> {
+  private async resolveOpenBknToken(signal?: AbortSignal): Promise<string | undefined> {
+    signal?.throwIfAborted()
     if (this.lifetime?.signal.aborted) return undefined
     if (this.synchronizedToken !== undefined) return this.synchronizedToken
     // Historical provenance may be opened before the panel or a new turn.
     // Verify against the configured-platform CLI rather than borrowing the
-    // global vault. Parallel provenance panes share this one refresh.
-    this.tokenRead ??= (async () => {
-      const token = await this.authCoordinator().readToken(this.lifetime?.signal)
-      this.lifetime?.signal.throwIfAborted()
-      this.synchronizedToken = token
-      return token
-    })().finally(() => { this.tokenRead = undefined })
+    // global vault. Panes of one request share a lookup; independent requests
+    // keep their own cancellation so closing one cannot stop another.
+    const owner = signal ?? this.lifetime?.signal ?? (this.tokenReadSignal ??= new AbortController().signal)
+    const readSignal = this.operationSignal(owner)
+    const reads = this.tokenReads ??= new WeakMap()
+    let pending = reads.get(owner)
+    if (pending === undefined) {
+      pending = (async () => {
+        const token = await this.authCoordinator().readToken(readSignal)
+        readSignal.throwIfAborted()
+        this.synchronizedToken = token
+        return token
+      })().finally(() => { reads.delete(owner) })
+      reads.set(owner, pending)
+    }
     try {
-      return await this.tokenRead
+      return await pending
     } catch (error: unknown) {
-      this.lifetime?.signal.throwIfAborted()
+      readSignal.throwIfAborted()
       // Historical provenance can precede panel login. An unusable CLI
       // session supplies no verified token; let the reader retain its
       // authentication-required boundary rather than invent network failure.

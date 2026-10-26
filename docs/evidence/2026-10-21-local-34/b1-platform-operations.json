@@ -1,0 +1,105 @@
+{
+  "checked_at": "2026-10-21T13:28:17.226930+00:00",
+  "real_model": false,
+  "protocol_driver": true,
+  "checks": [
+    {
+      "phase": "R34_B1:0.2.0-rc.2:before",
+      "interaction_id": "int_5a680aecacac431d9e47ab554031ab9b",
+      "platform_operations": [
+        {
+          "tool_name": "query_object_instance",
+          "status": "completed"
+        }
+      ],
+      "observed_total_counts": [
+        40
+      ],
+      "sandbox_used": false
+    },
+    {
+      "phase": "R34_B1:0.2.0-rc.2:before",
+      "interaction_id": "int_d5ff766198a17dcc2647f85d86d9c219",
+      "platform_operations": [
+        {
+          "tool_name": "query_object_instance",
+          "status": "completed"
+        }
+      ],
+      "observed_total_counts": [
+        40
+      ],
+      "sandbox_used": false
+    },
+    {
+      "phase": "R34_B1:0.2.0-rc.2:after",
+      "interaction_id": "int_5996c3c6942c0460c0246d054a4dbc04",
+      "platform_operations": [
+        {
+          "tool_name": "query_object_instance",
+          "status": "completed"
+        }
+      ],
+      "observed_total_counts": [
+        40
+      ],
+      "sandbox_used": false
+    },
+    {
+      "phase": "R34_B1:0.2.1-rc.2:fixed-before",
+      "interaction_id": "int_9b1cc33087e885d4aa113a550933b466",
+      "platform_operations": [
+        {
+          "tool_name": "query_object_instance",
+          "status": "completed"
+        }
+      ],
+      "observed_total_counts": [
+        40
+      ],
+      "sandbox_used": false
+    },
+    {
+      "phase": "R34_B1:0.2.0-rc.2:fixed-before",
+      "interaction_id": "int_f4ce1d8028464bcd4c4edc0a0c04e2f7",
+      "platform_operations": [
+        {
+          "tool_name": "query_object_instance",
+          "status": "completed"
+        }
+      ],
+      "observed_total_counts": [
+        40
+      ],
+      "sandbox_used": false
+    },
+    {
+      "phase": "R34_B1:0.2.0-rc.2:fixed-after",
+      "interaction_id": "int_7cbad7ef18a422f1546f231fb7e604a5",
+      "platform_operations": [
+        {
+          "tool_name": "query_object_instance",
+          "status": "completed"
+        }
+      ],
+      "observed_total_counts": [
+        40
+      ],
+      "sandbox_used": false
+    },
+    {
+      "phase": "R34_B1:0.2.1-rc.2:fixed-after",
+      "interaction_id": "int_fff4821e76c1bf4c1264aa991eb50f3b",
+      "platform_operations": [
+        {
+          "tool_name": "query_object_instance",
+          "status": "completed"
+        }
+      ],
+      "observed_total_counts": [
+        40
+      ],
+      "sandbox_used": false
+    }
+  ]
+}

@@ -1,0 +1,24 @@
+{
+  "classification": "local-development-preacceptance",
+  "ciRun": null,
+  "formalAcceptanceEligible": false,
+  "sha256": {
+    "BLOCKERS.md": "063ffb5b4bf16cd6449ab3555ea1af0bcc5ee37aa01e6f8028252196cde135af",
+    "CANDIDATE-FILES.json": "9b43d98298ed5440c0e2f2194f2e7f723bf6de4e5f4ead56ec7e068f7596eea5",
+    "CANDIDATE.json": "ec5482ab6249ebf08c7d136e2bdeb308d8c6b863f2d87e4cc0006a572fd975a6",
+    "CARRYOVER.json": "c5dbd669bdeb2e4b389b2ea8ac0426ff7f634772508a279562ce325a6cb130ca",
+    "PRESERVATION.json": "13937b0c67fe4eb93274001b057636a704f55c2cbbd247bd224a2c9e319b183a",
+    "PRIVATE-EVIDENCE-RECEIPT.json": "d20a2a59647418bc29e482ac37e0ef2bbd70f2212b7db7cceaa21cd5ef65624e",
+    "PROFILE-CLOSURE.json": "84f0f086ffa9caaef16a582875608d82fe22187192815fe593bae70ec8abf118",
+    "RESULTS.md": "a6605fa737df0fc3acb9ed91ebdf53aa43d587ace5572a1af8b2a75fc55fd717",
+    "UI-VALIDATION.json": "df4f722eb74d644e9073a2a12ffef54c2aa91bea44bd1c106997b81185e07428",
+    "UPSTREAM-STATE.json": "2d2176d64676220ffe7fe7dc2d96d32b9278322ee7ef513815bc708bb8a21a12",
+    "build-32.log": "f06bf3794186d5264be0fa9fa0c08f880c3039f88c6264c425d7f12216274466",
+    "carried-tests-final.log": "5f24decca204ebd96e3d018e3f0b38871ffe9c1c0516b2eda6cc67f6a1028328",
+    "package-audit.log": "d37e2df53b92f31396fd8bb1f1088da6bbe72522f257c09454f184d037066822"
+  },
+  "publicEvidenceSecretPatternScan": {
+    "matchedFiles": 0,
+    "scope": "JWT, literal bearer credential, structured token/secret assignment, authenticated localhost URL patterns; not a guarantee of all secret types"
+  }
+}

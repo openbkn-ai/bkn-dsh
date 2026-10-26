@@ -1,0 +1,117 @@
+{
+  "kind": "new-account-minimal-permission-case-and-documentation-checks",
+  "documentationChanges": [
+    {
+      "path": "CLAUDE.md",
+      "beforeSha256": "540f2f5d9bef7b4ad6b047f64e3d44d92c6953986bed518146421d5a23337ebd",
+      "afterSha256": "c9baa63ae375ec6e56e409dc6632e8ab389a2e448ea478f0f79d0e98ae668fa3",
+      "addedLines": 3,
+      "removedLines": 1
+    },
+    {
+      "path": "CHANGELOG.md",
+      "beforeSha256": "5ce6ae7c521a5c81c3df1c6125a0784e947daa31116cd45a19b93c190547d129",
+      "afterSha256": "eecf2dec0266ba84e0f43680ecfa5edf22ca8efcd7adc47bfd1ee15371c1e479",
+      "addedLines": 5,
+      "removedLines": 1
+    },
+    {
+      "path": "docs/plans/0.2.1/README.md",
+      "beforeSha256": "687919ba559fdfdf09a4c91ad887e54e85e99188942784e0895429c7df7ff8f3",
+      "afterSha256": "9f5ff599e41be6a1cc6f32dce180a5e1aaec47fe42eff31b1a3dbbc526f9d219",
+      "addedLines": 5,
+      "removedLines": 5
+    },
+    {
+      "path": "docs/plans/0.2.1/ACCEPTANCE-CONTRACT.md",
+      "beforeSha256": "392a763daabb3f80a5c35fe9f20d6c73b4775655e344de4617e7499c669b4949",
+      "afterSha256": "5bd442625adb9a304a5e0ea84610b5a2a1dfd3116041bd02192c32ff8d9e2ed7",
+      "addedLines": 14,
+      "removedLines": 10
+    },
+    {
+      "path": "docs/plans/0.2.1/REMAINING-WORK.md",
+      "beforeSha256": "8abea0580f7087d7524ebe0afb097585b273d105f4f2ed3436411d7b4ae88ca9",
+      "afterSha256": "9c027c55d5b666786f774354c148b430ed313be6f28aa8a44014a434a18ac67f",
+      "addedLines": 25,
+      "removedLines": 25
+    },
+    {
+      "path": "docs/plans/0.2.1/DSH-COMPATIBILITY.md",
+      "beforeSha256": "b50e4e370a5fbd08898f603ab9d9c353e894d44c8043ce49be97703de01af7e7",
+      "afterSha256": "fb45d8c09628bad653d57c8033b4bda5acfd68ccebe073272ee9598f566a5ef9",
+      "addedLines": 1,
+      "removedLines": 1
+    },
+    {
+      "path": "docs/plans/0.2.1/ISSUE-WORKFLOW.md",
+      "beforeSha256": "3badaf649bb1391198c39ff64bdcc5129fd8d89ee6a37eb2232a574fd301c132",
+      "afterSha256": "881b453c6db7718036b26a8671408530302f5a1a3f4c21f83c725c6c582019a7",
+      "addedLines": 3,
+      "removedLines": 3
+    },
+    {
+      "path": "docs/plans/0.2.1/NATIVE-CONTRACT.md",
+      "beforeSha256": "df20e3edcb9e5c5eec522024d2c030536fb7803b0b1713d326e07a6283fbe525",
+      "afterSha256": "f18dbfcff8852ca28a8050bfd5cca7c2d7d930fef5eb00b2b2680dfdd94de9df",
+      "addedLines": 2,
+      "removedLines": 2
+    },
+    {
+      "path": "docs/plans/0.2.1/SCOPE-AND-ANALYSIS.md",
+      "beforeSha256": "f8d188dd3ef180ecb0ee67e6d0e26e9c9423c2e2124b49359b0ebad4e731e143",
+      "afterSha256": "5a0826091dba4da8ba503b8561600ec5e936ea5a1771155a46a4ba99053cdc80",
+      "addedLines": 1,
+      "removedLines": 1
+    }
+  ],
+  "localLinksAndAnchorsChecked": 16,
+  "decisionsApplied": [
+    "D1",
+    "D2",
+    "D3",
+    "D4",
+    "D5"
+  ],
+  "scope": "No business answer changes; upstream findings tracked independently; only the user-specified new account case executed.",
+  "accountPermissionResult": "PASS",
+  "inverseSupplyModelCaseClaimed": false,
+  "oldPassedSuitesRerun": false,
+  "modelCalls": 0,
+  "sandboxCalls": 0,
+  "issuesCreatedAndReadBack": [
+    2515,
+    2516,
+    2517
+  ],
+  "secretPatternsChecked": [
+    "jwt",
+    "privateKey",
+    "githubToken",
+    "passwordValue",
+    "deviceCodeUrl",
+    "authChallenge"
+  ],
+  "secretMatches": 0,
+  "newProfileFilesUnchanged": {
+    "plugin32": 82,
+    "mcpRc3": 12
+  },
+  "frozenCandidatesUnchanged": [
+    "30",
+    "31",
+    "32"
+  ],
+  "officialCliEntryUnchanged": true,
+  "sourceHostEntryAndStockMcpUnchanged": true,
+  "branchHeadOriginIndexAndWorktreesUnchanged": true,
+  "nativeHostExit": {
+    "code": 0,
+    "signal": null
+  },
+  "nativeTaskListenersRemaining": false,
+  "codePushes": 0,
+  "ciDispatches": 0,
+  "tagsReleasesOrPluginIssueClosures": 0,
+  "nodeVersion": "24.19.0"
+}

@@ -1,0 +1,66 @@
+{
+  "captured_at": "2026-10-19T15:20:32.370Z",
+  "host": "0.2.1-rc.2",
+  "plugin": "0.2.0-rc.2-openbkn.0.2.0-14",
+  "mode": "real official DSH ToolRuntime/McpClient and host spill policy; no model; read-only published capability; no host-tool allowance",
+  "maxInlineTokens": 12500,
+  "checks": [
+    {
+      "check": "large published function result stays canonical while model display spills",
+      "passed": true,
+      "canonical_lines": 313,
+      "canonical_unique": 272,
+      "display_chars": 49931,
+      "display_spilled": true,
+      "full_line_hash": "2ad8e4a6c0bf2666f9116295fff42224497dd8a6fc564510ba8ec79992958758"
+    },
+    {
+      "check": "read remains refused without dispatch",
+      "passed": true
+    },
+    {
+      "check": "present remains refused without dispatch",
+      "passed": true
+    },
+    {
+      "check": "documented pagination recovers all published rows with unchanged scope",
+      "passed": true,
+      "pages": [
+        {
+          "offset": 0,
+          "returned": 100,
+          "next_offset": 100,
+          "display_chars": 27571,
+          "display_spilled": false
+        },
+        {
+          "offset": 100,
+          "returned": 100,
+          "next_offset": 200,
+          "display_chars": 27254,
+          "display_spilled": false
+        },
+        {
+          "offset": 200,
+          "returned": 100,
+          "next_offset": 300,
+          "display_chars": 27110,
+          "display_spilled": false
+        },
+        {
+          "offset": 300,
+          "returned": 13,
+          "next_offset": null,
+          "display_chars": 6240,
+          "display_spilled": false
+        }
+      ],
+      "rows": 313,
+      "line_hash": "2ad8e4a6c0bf2666f9116295fff42224497dd8a6fc564510ba8ec79992958758"
+    }
+  ],
+  "interaction_id": "int_64bb6614e040d61f76d27d66ab43bd70",
+  "finished": true,
+  "local_host_dispatches": 0,
+  "passed": true
+}

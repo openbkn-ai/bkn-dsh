@@ -1,0 +1,61 @@
+{
+  "form": "npm-web",
+  "host": "0.2.0-rc.2",
+  "case_id": "recovery",
+  "session_id": "session-a5cde01c-29f4-4a8b-8af5-e4a7a1ddcaf3",
+  "turn": 2,
+  "question": "382-000005 的标准交期？",
+  "started_at": "2026-10-21T15:00:26.805312+00:00",
+  "finished_at": "2026-10-21T15:00:38.196537+00:00",
+  "response_models": [
+    "deepseek-flash"
+  ],
+  "real_model_response_observed": true,
+  "model_configured_real": true,
+  "turn_end_kind": "completed",
+  "error_message": null,
+  "tool_calls": [
+    {
+      "name": "ask_user_question",
+      "arguments": "{\"questions\":[{\"id\":\"entity\",\"header\":\"确认对象\",\"question\":\"382-000005 是物料编码还是产品编码？（标准交期通常挂在供应商或物料/产品上）\",\"options\":[{\"label\":\"物料（material）\",\"description\":\"按物料查其标准交期\"},{\"label\":\"产品（product）\",\"description\":\"按产品查其标准交期\"},{\"label\":\"不确定，先查两者都试\",\"description\":\"先在物料、产品、供应商等对象中匹配该编码\"}]}]}",
+      "callId": "call_00_PG64eqMe2iOu56TxID0K1982"
+    },
+    {
+      "name": "mcp__openbkn__bkn_start_interaction",
+      "arguments": "{\"conversation_mode\":\"new\",\"question\":\"382-000005 的标准交期？\",\"agent_name\":\"bkn-agent-dsh-business-context\"}",
+      "callId": "call_00_Jza6xUAFPW8sqw6opJo65616"
+    },
+    {
+      "name": "mcp__openbkn__run_code",
+      "arguments": "{\"code\":\"\\nkn = \\\"supply_ontology_hand\\\"\\nctx = {\\\"conversation_id\\\": \\\"conv_a6e72aa55eb86a0fe4c95d270b973752\\\", \\\"interaction_id\\\": \\\"int_13fda0db326a57dbaaef205fe4de8a13\\\"}\\nimport json\\nfor ot in [\\\"supply_ontology_hand_material\\\",\\\"supply_ontology_hand_product\\\",\\\"supply_ontology_hand_supplier\\\"]:\\n    try:\\n        r = get_object_types(kn_id=kn, ids=[ot], bkn_context=ctx)\\n        print(ot, json.dumps(r, ensure_ascii=False)[:1500])\\n    except Exception as e:\\n        print(ot, \\\"ERR\\\", e)\\n\",\"bkn_context\":{\"conversation_id\":\"conv_a6e72aa55eb86a0fe4c95d270b973752\",\"interaction_id\":\"int_13fda0db326a57dbaaef205fe4de8a13\"}}",
+      "callId": "call_00_0kaOXUoflPAPiUH8rNxr8360"
+    },
+    {
+      "name": "mcp__openbkn__bkn_finish_interaction",
+      "arguments": "{\"interaction_id\":\"int_13fda0db326a57dbaaef205fe4de8a13\",\"outcome\":\"failed\",\"reason\":\"平台返回 LOCAL_ACCEPTANCE_SANDBOX_HOLD，查询在派发前被阻断，无法获取 382-000005 的交期数据。\"}",
+      "callId": "call_00_yjSP3CubOQrJcn8yqXSi9655"
+    }
+  ],
+  "failed_tools": [
+    {
+      "name": "ask_user_question",
+      "call_id": "call_00_PG64eqMe2iOu56TxID0K1982"
+    },
+    {
+      "name": "mcp__openbkn__run_code",
+      "call_id": "call_00_0kaOXUoflPAPiUH8rNxr8360"
+    }
+  ],
+  "interaction_ids": [
+    "int_13fda0db326a57dbaaef205fe4de8a13"
+  ],
+  "sandbox_hold_triggered": true,
+  "original_answer": "抱歉，这次没能取到数据。\n\n**结果：未能查询**\n\n- 本轮 OpenBKN 交互已开启（conversation `conv_a6e72aa55eb86a0fe4c95d270b973752`，interaction `int_13fda0db326a57dbaaef205fe4de8a13`），但业务数据查询在派发到平台之前就被拦截，返回 `LOCAL_ACCEPTANCE_SANDBOX_HOLD: execution was stopped before platform dispatch. This case is blocked and cannot be accepted; no substitute business answer is authorized.`\n- 因此我**没有**拿到 `382-000005` 在供应链本体知识网络（supply_ontology_hand）里的任何字段值，也就无法给出它的标准交期。这个结果既不能说明该编码不存在，也不能说明它没有交期——那句话\"没查到\"只是本次查询没被执行，不构成任何业务结论。\n- 我也没有用别的方式（脚本推算、外部知识）拼凑一个答案，因为这属于该网络受管的业务口径，不能替代。\n\n**另外一点需要你确认**：`382-000005` 这个编码在网络上可能对应不同实体——物料（`supply_ontology_hand_material`）、产品（`supply_ontology_hand_product`），或与供应商（`supply_ontology_hand_supplier`）的交期字段相关。如果平台恢复后能继续，我需要先确认它指哪个对象类，再取其\"标准交期\"字段；不同对象类上的交期含义不同，取错会给出看似合理但错误的数字。\n\n**建议下一步**：等平台侧解除该拦截后重试同一问题；如果方便，也可以先告诉我 `382-000005` 是物料还是产品编码，我恢复后直接按对应对象类查。",
+  "original_answer_sha256": "86a9b8889a4889fb23a3343198e8d809ba8d6b4fa1942a14eaa3f0fe7942b5c6",
+  "protocol_driver": false,
+  "answer_changed": false,
+  "transport": "Full-catalogue TLS forwarding with execution pre-dispatch hold",
+  "core_lead_time_criteria_passed": false,
+  "additional_field_label_error": false,
+  "status": "blocked"
+}

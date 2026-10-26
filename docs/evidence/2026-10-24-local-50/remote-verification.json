@@ -1,0 +1,42 @@
+{
+  "kind": "local-development-preacceptance",
+  "ciRun": null,
+  "formalAcceptanceEligible": false,
+  "deliveryFiles": 55,
+  "frozenR3KitMatched": true,
+  "candidateDelta": [
+    "lib/client.js",
+    "lib/types/client/locales.d.ts",
+    "package.json"
+  ],
+  "reports": {
+    "lifecycle30": {
+      "kitFilesVerified": 26,
+      "kind": "local-development-preacceptance",
+      "formalAcceptanceEligible": false,
+      "ciRun": null,
+      "candidate": {
+        "matched": 82,
+        "version": "0.2.0-rc.2-openbkn.0.2.0-30"
+      },
+      "sdk": {
+        "version": "0.2.0",
+        "officialRegistryIntegrityMatched": true
+      }
+    },
+    "ui31": {
+      "kitFilesVerified": 13,
+      "kind": "local-development-preacceptance",
+      "formalAcceptanceEligible": false,
+      "ciRun": null,
+      "candidate": {
+        "matched": 82,
+        "version": "0.2.0-rc.2-openbkn.0.2.0-31"
+      },
+      "sdk": {
+        "version": "0.2.0",
+        "officialRegistryIntegrityMatched": true
+      }
+    }
+  }
+}
