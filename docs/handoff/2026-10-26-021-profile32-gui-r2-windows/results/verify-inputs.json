@@ -1,0 +1,18 @@
+{
+  "inputVerification": "PASS",
+  "kitFilesMatched": 13,
+  "packages": [
+    {
+      "role": "plugin32",
+      "filesMatched": 82
+    },
+    {
+      "role": "mcpRc3",
+      "filesMatched": 12
+    }
+  ],
+  "windowsRuntimeExecution": "NOT_RUN",
+  "hostStarted": false,
+  "ciRun": null,
+  "formalAcceptanceEligible": false
+}
