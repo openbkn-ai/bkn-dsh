@@ -1,0 +1,63 @@
+{
+  "evidence": "packed plugin; official ToolRuntime; controlled platform and filesystem ports; no model",
+  "plugin": "0.2.1-rc.3-openbkn.0.2.1",
+  "dsh": "0.2.1-rc.3",
+  "scenarios": [
+    {
+      "capture": "enabled",
+      "workspaceContract": "native workingDirectory service overrides initial header",
+      "checks": [
+        "closed Interaction",
+        "wrong network",
+        "missing network",
+        "missing context",
+        "different Interaction",
+        "different Conversation",
+        "Windows star filename",
+        "path traversal",
+        "absolute path",
+        "URL source",
+        "read-only Session",
+        "Host/excluded read",
+        "Host/excluded grep",
+        "Host/excluded present",
+        "Host/excluded mcp__openbkn__run_shell",
+        "bad digest: retrieved but never written",
+        "exact BOM/CRLF/UTF-8/fractional bytes and verified new path",
+        "finished Interaction"
+      ],
+      "passed": true,
+      "reads": 2,
+      "writes": 1,
+      "unrelatedAgentInvisible": true
+    },
+    {
+      "capture": "disabled",
+      "workspaceContract": "native workingDirectory service overrides initial header",
+      "checks": [
+        "closed Interaction",
+        "wrong network",
+        "missing network",
+        "missing context",
+        "different Interaction",
+        "different Conversation",
+        "Windows star filename",
+        "path traversal",
+        "absolute path",
+        "URL source",
+        "read-only Session",
+        "Host/excluded read",
+        "Host/excluded grep",
+        "Host/excluded present",
+        "Host/excluded mcp__openbkn__run_shell",
+        "bad digest: retrieved but never written",
+        "exact BOM/CRLF/UTF-8/fractional bytes and verified new path",
+        "finished Interaction"
+      ],
+      "passed": true,
+      "reads": 2,
+      "writes": 1,
+      "unrelatedAgentInvisible": true
+    }
+  ]
+}
