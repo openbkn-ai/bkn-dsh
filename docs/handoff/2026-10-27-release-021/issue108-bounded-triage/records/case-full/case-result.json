@@ -1,0 +1,93 @@
+{
+ "caseName": "full",
+ "reason": "result-obtained",
+ "identity": {
+  "pid": 1668,
+  "cimError": "Command failed: powershell.exe -NoProfile -Command $p=Get-CimInstance Win32_Process -Filter \"ProcessId=1668\"; if($p){ 'createdUtc='+([datetimeoffset]$p.CreationDate).ToUniversalTime().ToString('o')+' ",
+  "spawnUtc": "2026-10-27T03:01:55.751Z"
+ },
+ "events": [
+  {
+   "t": "2026-10-27T03:01:55.751Z",
+   "ev": "spawn",
+   "pid": 1668,
+   "src": "orchestrator"
+  },
+  {
+   "t": "2026-10-27T03:01:57.176Z",
+   "ev": "passive:diag-apply",
+   "pid": 1668,
+   "src": "passive-log",
+   "cwd": "C:\\bkn-verify\\021-issue108-triage-20261027\\taskroot-1\\case-full\\cwd",
+   "dshHome": "C:\\bkn-verify\\021-issue108-triage-20261027\\taskroot-1\\case-full\\home\\dsh-home",
+   "bknConfigDir": "C:\\bkn-verify\\021-issue108-triage-20261027\\taskroot-1\\case-full\\cli"
+  },
+  {
+   "t": "2026-10-27T03:01:57.891Z",
+   "ev": "passive:observer-apply-enter",
+   "pid": 1668,
+   "src": "passive-log"
+  },
+  {
+   "t": "2026-10-27T03:01:57.893Z",
+   "ev": "passive:components-active",
+   "pid": 1668,
+   "src": "passive-log"
+  },
+  {
+   "t": "2026-10-27T03:01:57.992Z",
+   "ev": "passive:manager-configured",
+   "pid": 1668,
+   "src": "passive-log"
+  },
+  {
+   "t": "2026-10-27T03:01:57.995Z",
+   "ev": "port-ready",
+   "port": 60954,
+   "src": "host-out-log"
+  },
+  {
+   "t": "2026-10-27T03:01:58.003Z",
+   "ev": "passive:result-writing",
+   "pid": 1668,
+   "src": "passive-log"
+  },
+  {
+   "t": "2026-10-27T03:01:58.200Z",
+   "ev": "output-file",
+   "src": "orchestrator-poll"
+  }
+ ],
+ "writes": {
+  "newFiles": {},
+  "changedFiles": {},
+  "cwdLanding": "taskRoot/cwd",
+  "homeLanding": "taskRoot home (non-node_modules, non-profiles)"
+ },
+ "portFromLog": 60954,
+ "portStateAfterStop": "0",
+ "stop": {
+  "method": "identity-verified kill via child PID 1668",
+  "at": "2026-10-27T03:01:58.200Z",
+  "exitObserved": null
+ },
+ "resultPresent": true,
+ "resultSummary": {
+  "result": "PASS",
+  "pluginVersion": "0.2.1-rc.3-openbkn.0.2.1",
+  "components": [
+   {
+    "name": "@openbkn/dsh-business-context",
+    "state": 2
+   },
+   {
+    "name": "@openbkn/dsh-business-context/business",
+    "state": 2
+   },
+   {
+    "name": "@openbkn/dsh-business-context/diagnostics",
+    "state": 2
+   }
+  ]
+ }
+}

@@ -1,0 +1,46 @@
+{
+ "caseName": "full",
+ "launchRequestedUtc": "2026-10-27T03:01:55.742Z",
+ "node": "C:/bkn-verify/021-local30-r2-run-20261023-133254/tools/node-v24.19.0-win-x64/node.exe",
+ "argv": [
+  "C:/bkn-verify/021-issue108-triage-20261027/taskroot-1/runtime/node_modules/@deepseek-ai/dsh/lib/bin.js",
+  "--profile",
+  "web",
+  "--host",
+  "127.0.0.1",
+  "--port",
+  "0",
+  "--no-open"
+ ],
+ "intendedEnv": {
+  "DSH_HOME": "C:\\bkn-verify\\021-issue108-triage-20261027\\taskroot-1\\case-full\\home\\dsh-home",
+  "BKN_CONFIG_DIR": "C:\\bkn-verify\\021-issue108-triage-20261027\\taskroot-1\\case-full\\cli",
+  "cwd": "C:\\bkn-verify\\021-issue108-triage-20261027\\taskroot-1\\case-full\\cwd",
+  "outPath": "C:\\bkn-verify\\021-issue108-triage-20261027\\taskroot-1\\case-full\\result\\autoload.json",
+  "triLog": "C:\\bkn-verify\\021-issue108-triage-20261027\\taskroot-1\\case-full\\logs\\triage.jsonl"
+ },
+ "patch": [
+  {
+   "id": "openbkn-business-context",
+   "config": {
+    "baseUrl": "http://127.0.0.1:60917",
+    "mcpUrl": "http://127.0.0.1:60917/mcp",
+    "cliPath": "C:/bkn-verify/021-issue108-triage-20261027/taskroot-1/never-executed-cli.exe",
+    "requestTimeoutMs": 3000,
+    "toolCallTimeoutMs": 3000
+   }
+  },
+  {
+   "insert": [
+    {
+     "id": "issue108-triage-diag",
+     "name": "C:/bkn-verify/021-issue108-triage-20261027/taskroot-1/probes/diag.mjs"
+    },
+    {
+     "id": "final-ci-profile-observer",
+     "name": "C:/bkn-verify/021-issue108-triage-20261027/taskroot-1/probes/observer-triage.mjs"
+    }
+   ]
+  }
+ ]
+}
