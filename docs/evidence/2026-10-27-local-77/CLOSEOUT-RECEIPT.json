@@ -1,0 +1,76 @@
+{
+  "kind": "maintainer-approved-plugin-release-closeout",
+  "date": "2026-10-27",
+  "version": "0.2.1-rc.3-openbkn.0.2.1",
+  "sourceMainCommit": "ddbf578b93efca1872e0ae9781dafae5713e9deb",
+  "acceptedCiRun": 40361613728,
+  "candidateSha256": "27ccf15c46e4f71ef850ee481e22556b70f4d4795e89d7d587a2e3210fc6b3e3",
+  "publishedRegistrySha256": "3a877e1fa6ae218b36cfc4d65ca0bb1b6e17363880465ac164c31a89e14ed46d",
+  "maintainerDecisions": {
+    "108": "bounded test not reproduced; mark circumstances and close investigation as completed",
+    "98": "review specific B1 facts and close investigation if no new confirmed defect remains",
+    "releaseMetadata": "mark existing GitHub Release as prerelease; no workflow edits",
+    "latestAndNpmCli": "maintainer explicitly takes over all later latest promotion and local npm CLI setup"
+  },
+  "npm": {
+    "writesPerformed": false,
+    "authorizationWait": "cancelled on maintainer instruction",
+    "isolatedConfigBytes": 0,
+    "latestOwner": "maintainer",
+    "latestPromotionComplete": false,
+    "latestBaseline": "0.2.0-rc.2-openbkn.0.2.0-13",
+    "rcBaseline": "0.2.1-rc.3-openbkn.0.2.1"
+  },
+  "githubRelease": {
+    "id": 424565892,
+    "url": "https://github.com/openbkn-ai/bkn-dsh/releases/tag/v0.2.1-rc.3-openbkn.0.2.1",
+    "prereleaseBefore": false,
+    "prereleaseAfter": true,
+    "originalNotesKept": true,
+    "assetCount": 8,
+    "assetMetadataUnchanged": true
+  },
+  "evidenceScope": {
+    "priorRemoteFlagsPreserved": true,
+    "formalAcceptanceEligibleNotUpgraded": true,
+    "allModelG6AndNativeNonemptyNotClaimed": true,
+    "108RootCause": "UNKNOWN",
+    "98HistoricalLongRunningConditions": "not universally verified",
+    "run6CleanupCorrectionPreserved": true
+  },
+  "openExternalPluginFollowups": [
+    93,
+    97
+  ],
+  "upstreamFoundry": [
+    2515,
+    2516,
+    2517
+  ],
+  "verification": "documentation links/hash/secret scan and unchanged code/archive checks only; no new Host/model/Sandbox/test/build/CI execution",
+  "preserved": [
+    "existing official Hosts",
+    "formal OpenBKN 0.2.0",
+    "all data/configuration",
+    "frozen -30/-31/-32",
+    "accepted package, companion archives and public assets",
+    "original failure and UNKNOWN evidence"
+  ],
+  "gitDelivery": "prepare docs-only commit/PR; main requires one independent approval; do not trigger a review workflow or bypass rules",
+  "closedIssues": [
+    108,
+    98,
+    99,
+    92
+  ],
+  "closeStateReadback": "all four closed/completed; bodies preserve raw verdicts and manual npm handoff",
+  "documentationReview": {
+    "files": 39,
+    "secretFindings": 0,
+    "brokenRelativeLinks": 0,
+    "originalGitObjectHashesChecked": 19,
+    "productHostWorkflowDiff": "unchanged",
+    "testReruns": 0,
+    "whitespace": "authored files pass; two untouched Windows identity CRLF originals retained with source hashes and checked with cr-at-eol"
+  }
+}

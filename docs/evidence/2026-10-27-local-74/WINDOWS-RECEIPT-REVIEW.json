@@ -1,0 +1,98 @@
+{
+  "date": "2026-10-27 Asia/Taipei",
+  "resultCommit": "0d9666c36a48d33ced6cb2966d6f25d8a8257360",
+  "handoffCommit": "f36103e6af0d3b5ed838696c5efd0fd272c4ec9e",
+  "ciRun": 40361613728,
+  "formalAcceptanceEligible": false,
+  "publicGitObjectsVerified": 10,
+  "manifestEntriesVerified": 8,
+  "privateEntriesNotRead": 115,
+  "candidateIdentityMatches": true,
+  "rows": [
+    {
+      "row": "npm-old",
+      "node": "24.19.0",
+      "electron": null,
+      "publicInstanceEvidence": "PASS",
+      "readerChecks": 6,
+      "hostVersionAndFullCleanupEvidence": "remote report and manifest; private source/logs not retrieved"
+    },
+    {
+      "row": "npm-new",
+      "node": "24.19.0",
+      "electron": null,
+      "publicInstanceEvidence": "PASS",
+      "readerChecks": 6,
+      "hostVersionAndFullCleanupEvidence": "remote report and manifest; private source/logs not retrieved"
+    },
+    {
+      "row": "desk-old",
+      "node": "24.18.1",
+      "electron": "44.0.0",
+      "publicInstanceEvidence": "PASS",
+      "readerChecks": 6,
+      "hostVersionAndFullCleanupEvidence": "remote report and manifest; private source/logs not retrieved"
+    },
+    {
+      "row": "desk-new",
+      "node": "24.21.0",
+      "electron": "44.7.0",
+      "publicInstanceEvidence": "PASS",
+      "readerChecks": 6,
+      "hostVersionAndFullCleanupEvidence": "remote report and manifest; private source/logs not retrieved"
+    }
+  ],
+  "csvScenariosVerified": 2,
+  "malformedContentWindows": "NOT_RUN; shared source regression reused",
+  "acceptedScope": "final CI candidate actual business/profile mount and packed Reader/CSV controls; not complete GUI/native-platform/model acceptance",
+  "deviations": {
+    "npmStartup": "Correct-HOME old npm C/D/E and new npm J each exceeded90s without observer output. Removing business bundle H reached diagnostic apply within20s; this implicates the integrated bundle/config path but does not prove which side owns the cause. Supported npm/web is also a product form; fast Desktop backends do not exonerate it. No new90s SLA or fix without failure evidence.",
+    "homeVariableIncident": "Wrong-HOME A/B separate from C/D/E/J. Remote supplement reports four template files under <user-home>/profiles/web, twice deleted after inspection; no before snapshot, original disk error/identity files overwritten. Only observed watch errors on NTUSER.DAT family are reported. Do not claim all personal state unchanged.",
+    "checkoutStrays": "Correct-HOME C also generated7 files in the handoff checkout: anonymous id, synthetic credential, four profile templates, workspace file. Moved rather than deleted. Write mechanism UNKNOWN; no real platform credential exposure inferred from synthetic names.",
+    "publicRecordCorrections": "Original npm-old identity file belongs to timeoutE, not successfulI. Original broad 4-artifact wording does not enumerate the7 retained stray files. Npm-new successful measured duration3.18s, not merely within180s."
+  },
+  "issue99": "OPEN/Validating: functional Windows rows/CSV received; new integration finding and old-npm success identity gap need maintainer disposition",
+  "latest": "hold; no promotion in this receipt review",
+  "clarificationSource": "user-transmitted read-only Windows session supplement; no new files/tests/push there; original remote report/manifest unchanged",
+  "correctHomeTimeouts": {
+    "npmOld": [
+      "C",
+      "D",
+      "E"
+    ],
+    "npmNew": [
+      "J"
+    ],
+    "total": 4,
+    "includesWrongHomeAB": false,
+    "includesNoBusinessDiagnosticH": false,
+    "componentsAtTimeout": "UNKNOWN",
+    "observerApplyTime": "UNKNOWN"
+  },
+  "successIdentity": {
+    "npmOld": {
+      "successfulAttempt": "I",
+      "pid": "UNKNOWN",
+      "createdUtc": "UNKNOWN",
+      "resultFileMtimeReportedUtc": "2026-10-26T23:30:29.804Z",
+      "duration": "approx22-23s from session inference; not a measured creation-to-output interval",
+      "publicHostIdentityActuallyBelongsTo": "timeout E, PID39680, created2026-10-26T23:23:10.0005830Z",
+      "identityAndCleanupCorrelation": "INSUFFICIENT_EVIDENCE; overall zero-residual cleanup received only as remote report"
+    },
+    "npmNew": {
+      "successfulAttempt": "K",
+      "pid": 36736,
+      "createdUtc": "2026-10-26T23:33:21.3319340Z",
+      "resultFileMtimeReportedUtc": "2026-10-26T23:33:24.510Z",
+      "reportedDurationSeconds": 3.18
+    }
+  },
+  "integrationIssue": {
+    "number": 108,
+    "url": "https://github.com/openbkn-ai/bkn-dsh/issues/108",
+    "project": 12,
+    "stage": "In progress",
+    "rootCause": "UNKNOWN",
+    "status": "triage only; no candidate/Host code repair"
+  }
+}

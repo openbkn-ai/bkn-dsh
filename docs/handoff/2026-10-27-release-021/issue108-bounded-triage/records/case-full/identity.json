@@ -1,0 +1,5 @@
+{
+ "pid": 1668,
+ "cimError": "Command failed: powershell.exe -NoProfile -Command $p=Get-CimInstance Win32_Process -Filter \"ProcessId=1668\"; if($p){ 'createdUtc='+([datetimeoffset]$p.CreationDate).ToUniversalTime().ToString('o')+' ",
+ "spawnUtc": "2026-10-27T03:01:55.751Z"
+}

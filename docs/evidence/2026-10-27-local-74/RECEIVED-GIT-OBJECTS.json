@@ -1,0 +1,60 @@
+{
+  "ref": "0d9666c36a48d33ced6cb2966d6f25d8a8257360",
+  "parents": [
+    "f36103e6af0d3b5ed838696c5efd0fd272c4ec9e"
+  ],
+  "files": [
+    {
+      "path": "docs/handoff/2026-10-27-release-021/results-windows/.gitattributes",
+      "sha256": "27f1c535296dae67c9734ca19ea563de7510d59243fbee9b214331399326f56d",
+      "bytes": 113
+    },
+    {
+      "path": "docs/handoff/2026-10-27-release-021/results-windows/RESULTS-release-final-20261027.md",
+      "sha256": "11961121f86bc5806bb9c28bd2a8c428321666309dca4ab2aa82ace59a8b842e",
+      "bytes": 7467
+    },
+    {
+      "path": "docs/handoff/2026-10-27-release-021/results-windows/evidence-manifest.json",
+      "sha256": "d3052b31680907ba34ef090152e03f562bd0e66e7edb6958b98216f318e189ef",
+      "bytes": 17155
+    },
+    {
+      "path": "docs/handoff/2026-10-27-release-021/results-windows/evidence/autoload-desk-new.json",
+      "sha256": "306a03440d82dc2569238f6514ed146386aae4d23a553874bbabfe6cb74d24c6",
+      "bytes": 1363
+    },
+    {
+      "path": "docs/handoff/2026-10-27-release-021/results-windows/evidence/autoload-desk-old.json",
+      "sha256": "6a43e3ae01c2ee7baf7178c362fbb1556fa6c7924f399a47cbe0ff9dcf4f661b",
+      "bytes": 1363
+    },
+    {
+      "path": "docs/handoff/2026-10-27-release-021/results-windows/evidence/autoload-npm-new.json",
+      "sha256": "1e58b34ef9d57cadf642e1da52be145601ebccdd355bdbce4116cf752a7ec4f7",
+      "bytes": 1339
+    },
+    {
+      "path": "docs/handoff/2026-10-27-release-021/results-windows/evidence/autoload-npm-old.json",
+      "sha256": "1e58b34ef9d57cadf642e1da52be145601ebccdd355bdbce4116cf752a7ec4f7",
+      "bytes": 1339
+    },
+    {
+      "path": "docs/handoff/2026-10-27-release-021/results-windows/evidence/csv-probe-npm-new.json",
+      "sha256": "53a438dedc848f1a19a84e336696a79c6b3340b53c44103a938bdb33ca370b8f",
+      "bytes": 1909
+    },
+    {
+      "path": "docs/handoff/2026-10-27-release-021/results-windows/evidence/host-identity-npm-new.txt",
+      "sha256": "5eecf1181283f8b253078796265ca6fcefa4397635087ca04659604ddd750373",
+      "bytes": 149
+    },
+    {
+      "path": "docs/handoff/2026-10-27-release-021/results-windows/evidence/host-identity-npm-old.txt",
+      "sha256": "839138d0c26867e7805075d0d423e203c11f9e4bdf4a66f8a63e62ee54ea2c64",
+      "bytes": 149
+    }
+  ],
+  "publicObjectsVerified": 10,
+  "onlyResultDirectoryChanged": true
+}
