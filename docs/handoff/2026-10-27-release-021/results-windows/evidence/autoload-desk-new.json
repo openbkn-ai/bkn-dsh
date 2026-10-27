@@ -1,0 +1,40 @@
+{
+  "kind": "local-development-preacceptance",
+  "ciRun": 40361613728,
+  "formalAcceptanceEligible": false,
+  "node": "24.21.0",
+  "electron": "44.7.0",
+  "scope": "final CI candidate business manager, profile-only MCP, single synthetic connection; no redirect/tool execution",
+  "loadedComponents": [
+    {
+      "name": "@openbkn/dsh-business-context",
+      "state": 2
+    },
+    {
+      "name": "@openbkn/dsh-business-context/business",
+      "state": 2
+    },
+    {
+      "name": "@openbkn/dsh-business-context/diagnostics",
+      "state": 2
+    }
+  ],
+  "frozenServiceClassIdentity": true,
+  "businessSha256": "ca9125bd7ce9d017f8c0a9a1fa097ff8165e8943dfbde5dad96f31406b2bd537",
+  "publicConfigureNormal": "PASS",
+  "selectedMcpSha256": "b3cd7156c0b8639656ce117530fec4d006b74cafdc9a78ac426fec084e62972c",
+  "selectedModuleAlreadyRegistered": true,
+  "managerFiberUsesSelectedModule": true,
+  "selectedProfileRelativeFile": "node_modules/@deepseek-ai/dsh-mcp-client/lib/index.js",
+  "profileOverrideAutomatic": "PASS",
+  "pluginVersion": "0.2.1-rc.3-openbkn.0.2.1",
+  "packedNativeReaderChecks": [
+    "valid detail unchanged",
+    "operations: oversized controlled refusal",
+    "time_rail: oversized controlled refusal",
+    "valid explanation unchanged",
+    "wrong record container rejected",
+    "pair record oversized refusal"
+  ],
+  "result": "PASS"
+}

@@ -1,0 +1,76 @@
+{
+  "kind": "bounded-windows-npm-startup-triage-receipt-review",
+  "date": "2026-10-27",
+  "sourceCiRun": 40361613728,
+  "formalAcceptanceEligible": false,
+  "receivedCommit": "cc3934d26268ddff71d926b4932ea57d608e43a0",
+  "baseCommit": "f36103e6af0d3b5ed838696c5efd0fd272c4ec9e",
+  "resultOnlyChanges": true,
+  "gitObjectsChecked": 9,
+  "reportSha256": "f19ef34c00af9178f90bd64db0e622b9dab46715e81082da66ab833339620262",
+  "manifestSha256": "022ce03aba6a74f86df936c1a298616c12ee4dd4606a74e37e550cd7d5c21211",
+  "manifestEntriesCompared": 7,
+  "manifestPrivateEntries": 42,
+  "privateEntriesRepublishedAsSixGitObjects": 6,
+  "remainingPrivateEntriesNotFetched": 36,
+  "executionSource": "Windows remote report and published JSON; no local Host or private-log re-execution",
+  "verdict": "not reproduced this round; bounded execution stopped; no repair or root-cause claim",
+  "hostSpawnBudget": {
+    "authorized": 2,
+    "reportedActual": 2,
+    "full": 1,
+    "withoutBusiness": 1,
+    "remaining": 0
+  },
+  "full": {
+    "result": "functional path PASS",
+    "spawnUtc": "2026-10-27T03:01:55.751Z",
+    "resultWritingUtc": "2026-10-27T03:01:58.003Z",
+    "spawnToResultSeconds": 2.252,
+    "actualCreatedUtc": "UNKNOWN",
+    "cimExeAndCmdline": "UNKNOWN",
+    "componentsActive": 3
+  },
+  "withoutBusiness": {
+    "result": "diag applied; business absent by design",
+    "actualCreatedUtc": "2026-10-27T03:05:12.4112190+00:00",
+    "diagUtc": "2026-10-27T03:05:13.513Z",
+    "diagDeltaSecondsApprox": 1.1,
+    "portReadyUtc": "UNKNOWN",
+    "deadlineCompliance": "FAIL: controller exceeded authorized 90s window to outer 130s",
+    "exitUtcAndCode": "UNKNOWN"
+  },
+  "writeEvidence": "full selected cwd/home-state diff empty (not all-root absence); control task-home artifacts inventoried post hoc, before-inventory lost; writer PID unknown",
+  "priorRun6Correction": {
+    "oldZeroResidualClaim": "contradicted by later receipt",
+    "fixturePid": 37868,
+    "createdUtc": "2026-10-26T23:43:50Z",
+    "recovered": "identity-stopped in current Windows round, per remote report"
+  },
+  "issue108": "OPEN / In progress; authorized bounded execution finished, root cause unresolved; no additional spawn authorized",
+  "issue99": "OPEN / Validating",
+  "latestPromotion": false,
+  "newTestsBuildsPushesCI": false,
+  "preserved": [
+    "original remote report and manifest bytes",
+    "four prior correct-home timeouts",
+    "old npm prior successful PID unknown",
+    "prior checkout seven stray write mechanism unknown",
+    "frozen -30/-31/-32",
+    "existing Host and formal OpenBKN 0.2.0",
+    "data and configuration"
+  ],
+  "githubIssueBodiesUpdatedAndReadBack": [
+    108,
+    99,
+    92
+  ],
+  "projectStageChanged": false,
+  "documentChecks": {
+    "originalObjects": 9,
+    "manifestEntries": 7,
+    "affectedLinks": "PASS",
+    "diffCheck": "PASS",
+    "productAndHostUnchanged": "PASS"
+  }
+}

@@ -1,0 +1,54 @@
+{
+  "commit": "cc3934d26268ddff71d926b4932ea57d608e43a0",
+  "parents": [
+    "f36103e6af0d3b5ed838696c5efd0fd272c4ec9e"
+  ],
+  "files": [
+    {
+      "path": "docs/handoff/2026-10-27-release-021/issue108-bounded-triage/.gitattributes",
+      "bytes": 113,
+      "sha256": "27f1c535296dae67c9734ca19ea563de7510d59243fbee9b214331399326f56d"
+    },
+    {
+      "path": "docs/handoff/2026-10-27-release-021/issue108-bounded-triage/RESULTS-issue108-triage.md",
+      "bytes": 7194,
+      "sha256": "f19ef34c00af9178f90bd64db0e622b9dab46715e81082da66ab833339620262"
+    },
+    {
+      "path": "docs/handoff/2026-10-27-release-021/issue108-bounded-triage/evidence-manifest-issue108.json",
+      "bytes": 6732,
+      "sha256": "022ce03aba6a74f86df936c1a298616c12ee4dd4606a74e37e550cd7d5c21211"
+    },
+    {
+      "path": "docs/handoff/2026-10-27-release-021/issue108-bounded-triage/records/case-full/case-result.json",
+      "bytes": 2277,
+      "sha256": "d70851ead7bd234fe207d4a1c7088d53cf358362b87e9a82b8fd43c305584360"
+    },
+    {
+      "path": "docs/handoff/2026-10-27-release-021/issue108-bounded-triage/records/case-full/identity.json",
+      "bytes": 277,
+      "sha256": "1c81ebbd7427f7fd7d81f2e6462cfb2a47855fa2d0cd6df5993e32e4bced351c"
+    },
+    {
+      "path": "docs/handoff/2026-10-27-release-021/issue108-bounded-triage/records/case-full/launch.json",
+      "bytes": 1524,
+      "sha256": "b4e4d569633bd0ccaa0b2ffdfa02617e3046c0b242368994c3ad2887cc4bb220"
+    },
+    {
+      "path": "docs/handoff/2026-10-27-release-021/issue108-bounded-triage/records/case-nobiz/closeout-manual.json",
+      "bytes": 2655,
+      "sha256": "7e37dc0d12b55793f9c72f497e0f1c14c33281ea0ebc3feb02b02bc1d275f767"
+    },
+    {
+      "path": "docs/handoff/2026-10-27-release-021/issue108-bounded-triage/records/case-nobiz/identity.json",
+      "bytes": 471,
+      "sha256": "0f127d6f0b4278b617458a184d054f40e2c85037819c99b82a6286bacfe35ebe"
+    },
+    {
+      "path": "docs/handoff/2026-10-27-release-021/issue108-bounded-triage/records/case-nobiz/launch.json",
+      "bytes": 1075,
+      "sha256": "b923281cc993135d9effe95d0a426fdf85e47845edc959bc6914de7eaabc74ec"
+    }
+  ],
+  "resultOnlyChanges": true
+}

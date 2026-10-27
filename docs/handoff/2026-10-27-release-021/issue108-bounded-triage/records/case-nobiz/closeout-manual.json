@@ -1,0 +1,78 @@
+{
+ "caseName": "nobiz",
+ "reason": "orchestrator 90s-window logic failed (CIM createdUtc trailing CR -> Date.parse NaN -> deadline NaN, finish never fired); outer 130s timeout killed orchestrator; host observed beyond window; manual identity closeout afterwards",
+ "identity": {
+  "pid": 32872,
+  "createdUtc": "2026-10-27T03:05:12.4112190+00:00",
+  "exe": "C:\\bkn-verify\\021-local30-r2-run-20261023-133254\\tools\\node-v24.19.0-win-x64\\node.exe",
+  "argv": "node bin.js --profile web --host 127.0.0.1 --port 0 --no-open (cwd=case-nobiz/cwd)"
+ },
+ "events": [
+  {
+   "t": "2026-10-27T03:05:12.406Z",
+   "ev": "launchRequested",
+   "src": "launch.json"
+  },
+  {
+   "t": "2026-10-27T03:05:12.416Z",
+   "ev": "spawn",
+   "pid": 32872,
+   "src": "orchestrator"
+  },
+  {
+   "t": "2026-10-27T03:05:12.411Z",
+   "ev": "process-created(CIM)",
+   "src": "identity.json"
+  },
+  {
+   "t": "2026-10-27T03:05:13.513Z",
+   "ev": "passive:diag-apply",
+   "src": "triage.jsonl",
+   "cwd": "C:\\bkn-verify\\021-issue108-triage-20261027\\taskroot-1\\case-nobiz\\cwd",
+   "dshHome": "C:\\bkn-verify\\021-issue108-triage-20261027\\taskroot-1\\case-nobiz\\home\\dsh-home",
+   "bknConfigDir": "C:\\bkn-verify\\021-issue108-triage-20261027\\taskroot-1\\case-nobiz\\cli"
+  },
+  {
+   "t": "UNKNOWN",
+   "ev": "port-ready",
+   "port": 61050,
+   "src": "host.out.log (value only; live time not observed)"
+  },
+  {
+   "t": "UNKNOWN",
+   "ev": "exit",
+   "note": "process gone at manual closeout; exit moment/code not observed (orchestrator already dead)",
+   "src": "identity closeout"
+  }
+ ],
+ "expectedNoBusiness": true,
+ "resultPresent": false,
+ "closeout": {
+  "method": "identity check (pid/exe/port) then already-gone at inspection; port 61050 freed",
+  "stopTimeUtc": "2026-10-27T03:10:04.882324Z"
+ },
+ "writes": {
+  "cwdNew": {},
+  "homeStateNew": {
+   ".anonymous-user-id": {
+    "bytes": 37,
+    "mtime": "2026-10-27T03:05:13.906315Z",
+    "sha256": "63810e497d9a71f0fba4ba982a4b5d92fd82caf6cb6174c9f3f5d1c287bd16b4"
+   },
+   ".credentials.yaml": {
+    "bytes": 161,
+    "mtime": "2026-10-27T03:05:14.056634Z",
+    "sha256": "cd1c764f3c90cac64e86046c999e3cd6ffa8bac9db97c881d50284bf7ee05a5e"
+   },
+   "storages/workspace.json": {
+    "bytes": 227,
+    "mtime": "2026-10-27T03:05:14.037568Z",
+    "sha256": "8332e072a55f6c6ac287e41ac1a57640d630c2143cd55eeba907a3a33fb3240e"
+   }
+  },
+  "note": "post-hoc inventory at closeout (orchestrator before-inventory lost with its process); cwd/home-state lists are full current sets"
+ },
+ "orchestratorBug": {
+  "detail": "PS Write-Output createdUtc had trailing CR; Date.parse=NaN; deadline=NaN; watcher finish never fired"
+ }
+}

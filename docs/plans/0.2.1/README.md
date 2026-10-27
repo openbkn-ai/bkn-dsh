@@ -1,18 +1,25 @@
 # bkn-dsh 0.2.1 接手入口
 
-## 当前发布状态（2026-10-27，第73轮）
+> 第77轮收尾决定（2026-10-27）：维护者明确将#108按本轮未复现的有界调查认定完成；#98经原失败/owner修复/长时及Windows证据审阅后按调查完成关闭，历史未知不称已修。#99/#92按本版插件验收与发布交接收尾；#93/#97真实非空原生验证继续开放、由Foundry#2517跟踪。GitHub现有Release已改为prerelease并补最终说明，8份资产不变。**npm latest推广及本机npm CLI认证由维护者后续自行处理，本会话停止登录且不修改dist-tag。** 不新建工程、不重跑已过项或CI、不改候选/Host/正式0.2.0/数据配置及冻结包；最终文档按独立PR交付。见[第77轮收尾](../../evidence/2026-10-27-local-77/RESULTS.md)。以下旧轮次的OPEN、待决及不推送限制按历史保留，本轮授权仅覆盖明确收尾资料和元数据。
 
-维护者已授权本线整合、推送、build-only CI、审查合并及按既定门槛发布；旧“不推送/不跑CI/尚未授权”仅为当时历史状态。发布包固定 `0.2.1-rc.3-openbkn.0.2.1`，不加复发后缀；OpenBKN0.2.1是本次发布标识，实际平台和CLI实测仍为正式0.2.0，不宣称平台0.2.1已验。冻结-30/-31/-32、现有Host/正式平台和原数据配置保留，不采用平行-11/-13包或其风险接受。
+> 第76轮收尾（2026-10-27）：Windows旧npm完整配置/去business各一次、总2次已结束，本次未复现；完整路径spawn记录→结果约2.252秒，对照diag约1.10秒。不称已修、不关闭#108、不追加启动，rc保持、latest不迁移。full真实CIM身份缺失、对照90秒窗口失效至外层130秒及退出未知单列，不能报整体验收全PASS；run6遗留fixture本轮才清理，纠正旧“零残留”总结并保留原件。9个Git对象及7项manifest映射摘要已核对，42项private记录中6项已公开、其余36项未取回。#108 In progress（本轮执行已结束，根因未知）、#99 Validating；不新增工程/重跑，不改候选/Host/正式0.2.0/数据配置或冻结包，不推送/CI。见[第76轮审阅](../../evidence/2026-10-27-local-76/RESULTS.md)。下方第75轮“尚未执行”和更早待选方案均为历史。
 
-最终build-only [CI40361613728](https://github.com/openbkn-ai/bkn-dsh/actions/runs/40361613728) 在 `db68c80070f3475a1a460c3c9fca84d26944e198` 成功、publish=false；包SHA256 `27ccf15c46e4f71ef850ee481e22556b70f4d4795e89d7d587a2e3210fc6b3e3`，232091B/82文件。该包在Mac两版npm/官方Electron Desktop后端实际加载/自动profile回补及公开Reader检查通过；新rc.3 npm另完成真实平台正向元数据回合，独立读回completed/唯一search_schema。没有模型/Sandbox。CI包相对冻结-32只有business.js、package.json及两份README不同，client.js及其余实现/生成文件逐字节相同；只补变化，不重跑UI/B1/G6/向量。
+> 第75轮决定（2026-10-27）：维护者已选保持rc并有界分诊，不再待选方案。仅Windows旧npm0.2.0-rc.2/Node24.19.0，完整配置及去business各最多启动一次；每案固定90秒观察窗（非性能SLA），不重试/扩矩阵。复用f36103e候选和旧工具，私有测试副本只补身份/就绪/写点日志，不改候选/Host/正式0.2.0。#108 In progress、#99 Validating，latest不迁移；Windows尚未执行，不能报PASS/已修。见[第75轮与完整执行提示词](../../evidence/2026-10-27-local-75/RESULTS.md)。下方第74轮“待维护者选择”仅为历史过程。
 
-- 已按自身标准关闭并移到Done：#94（既有）、#95、#96、#105、#107。新增原生集合晚拒绝和CSV输入缺陷均先留失败，再最小修补；Host/Zod/SDK未升级，安全告警未整体清除。
-- 保留OPEN：#92 In progress；#93/#97/#98 Validating；#99 Validating。#93/#97等待真实非空原生/新路由授权，由Foundry#2517分类；#98按自身标准保留未确认历史。D2/D3业务归属提报Foundry#2515/#2516/#2517均OPEN，原FAIL不改成PASS。
-- 发布剩余：提交本轮根文档/探针证据，独立审查合并、main rehearsal逐文件相等、按仓库规则rc发布及公开制品核对；Windows最终包只补加载/profile/原生读取和CSV变化边界，材料见 `docs/handoff/2026-10-27-release-021/`。Windows尚未回传前不移latest，不新增GUI发行体系或重复其已过GUI/UI/B1。
-- 范围计数：Project12插件条目10项，5项OPEN/5项CLOSED；仓库另有旧#62/#63开放但不在该Project，不能据源码推断其新CI实机标准已完成。全OpenBKN0.2.1跨仓库Project的只读 `is:issue is:open` 快照为91项，不等于本次插件有91项待办。
 
-上述是当前入口；以下第71轮及更早的“当前/未决/待授权/待回传”陈述保留历史身份，不覆盖本节。完整结果和证据见 [本轮发布记录](../../evidence/2026-10-26-release-021/RESULTS.md)。
+## 第74轮发布状态（历史，最新见上）
 
+包 `0.2.1-rc.3-openbkn.0.2.1` 已经由PR106合并main `ddbf578b93efca1872e0ae9781dafae5713e9deb`，main build-only CI40368159024及发布CI40369214007成功，npm/GitHub公开制品与已实测CI40361613728逐文件核对完成（package.json仅等义序列化差异）。OpenBKN0.2.1仅发布标识，平台实测仍正式0.2.0；已有Host、数据配置和冻结-30/-31/-32不改，不采用平行-11/-13。
+
+Windows最终候选结果 `0d9666c36a48d33ced6cb2966d6f25d8a8257360` 已接收：唯一父提交f36103e，只有results-windows目录10文件新增，报告/manifest及8项公开证据摘要匹配。四后端实际业务Service/profile回补、24项打包Reader检查及CSV双场景按其范围PASS；Host完整运行/退出和源根保全按远程报告接收，115项私有原件未读。共享missing/malformed-content回归不是本轮Windows执行，原报告formalAcceptanceEligible=false保持；不外推完整GUI、真实非空原生或模型/G6合同通过。见[第74轮审阅](../../evidence/2026-10-27-local-74/RESULTS.md)。
+
+只读澄清已回传：正确HOME下旧npm C/D/E共3次、新npm J一次超过90秒无输出，不含HOME误配A/B或去business诊断H；去business时diag可执行，归属仍未定。旧npm公开身份文件属于超时E，成功I的PID/创建时间缺失；正确HOME的C在checkout生成7文件（含合成credential/workspace）且写入机制UNKNOWN。A/B用户目录4模板清理只按会话记录接收，没有前置快照，不称个人状态逐字节不变。已提#108（Project12 In progress），保留成功功能结果、旧npm身份/收态关联记证据不足，不同#105协议问题混并、不新增90秒SLA。当前只需集中决定保持rc做一个失败组合的有界分诊，或明确接受新限制后继续latest；未决定前不启动新测试或迁移。
+
+#99保持OPEN/Validating，Windows功能结果已核对；#108进入Project12 In progress，新发现未明确处置前不迁移npm latest。#92保持In progress；#93/#97等待外部真实非空原生样本，#98历史未确认条件保持；#94/#95/#96/#105/#107仍按各自标准已关闭。正式平台/CLI、模型业务归属和D1–D5原决定不变。npm当前rc指向新版本，latest保持既有0.2.0-rc.2-openbkn.0.2.0-13；这不表示采用平行发布线。
+
+当前插件Project共11项，6项OPEN（#92/#93/#97/#98/#99/#108）、5项CLOSED（#94/#95/#96/#105/#107）；#108的阶段已在项目界面核对。
+
+本轮只读取/审阅现有证据和同步文档，无新测试/Host/平台/模型/Sandbox执行、构建、推送、CI或dist-tag变更。下列第73轮及更早检查点保留当时身份，不覆盖本节。
 
 ## 当前执行入口：六组收敛（2026-10-26）
 
