@@ -1,12 +1,16 @@
 # 0.2.1 issue 指派与关单规则
 
-## 当前状态：#93 / #97 原生补证完成（2026-10-28）
+## 当前状态：Windows 原生 UI 补证有界收尾（2026-10-29）
 
-RC发行与既有独立评审/合并保持。#93已完成企业既存样例API/Studio同记录对照；本轮复用同一记录，在固定 `0.2.1-rc.3-openbkn.0.2.1` 候选、一个新隔离的官方DSH rc.3 npm/Web Host上完成#97最小联动。三条非空结论、当前问答切片11条关系、详细证据来源及执行步骤/业务定义跳转准确，四项未披露引用保持提示；十项聚焦对照通过。#97现为CLOSED/completed、Project 12 Done，#93维持Done。见[本轮结果与偏差](../../evidence/2026-10-28-issue97-native-linkage/RESULTS.md)及[#93对照](../../evidence/2026-10-27-issue93-native-studio/RESULTS.md)。
+#93已完成企业既存样例API/Studio同记录对照；#97已在固定 `0.2.1-rc.3-openbkn.0.2.1` 候选、官方DSH rc.3 npm/Web隔离Host完成三条非空结论、当前问答切片11条关系、来源及步骤/定义联动，十项聚焦对照通过。二者均已关闭completed、Project 12 Done。Mac只读回放由公开Session/Workspace API建立，不是新模型回合；见[#93对照](../../evidence/2026-10-27-issue93-native-studio/RESULTS.md)及[#97结果](../../evidence/2026-10-28-issue97-native-linkage/RESULTS.md)。
 
-本地会话明确标为既存平台记录的只读回放，由公开Session/Workspace API建立，使用未修改的真实Service/Reader和实际插件面板，不是新模型回合或原始provider转录。未生成解释或新平台Interaction。仅完成本issue的展示/关系标准，不外推Windows/Desktop非空原生、全平台或新模型端到端验收；原50.129的PARTIAL/空结论及历史FAIL/UNKNOWN保留。#2573仍为平台侧Backlog、待管理员分派，不改其状态/指派，不把企业样例可读称为原平台已修。
+新增[Windows公开补证及接收边界](../../handoff/2026-10-27-release-021/native-ui-supplement-windows/RESULTS-native-ui-supplement-20261028.md)：同一固定候选在官方rc.3 Desktop上，指定既存记录的原生GET读取、三条结论、当前切片11条关系和主要来源/步骤/定义展示，按远程报告接收为 **PASS_WITH_LIMITS**。Windows采用直接构造存储的回放，本地答案正文来自另一条旧会话，答案归因绑定 **NOT_VALIDATED**；不冒充Mac公开API流程或新模型端到端。schema引用强制切换证据视图 **UNKNOWN/证据不足**；早期渲染崩溃唯一根因 **UNKNOWN**；真实业务CSV条件项 **NOT_RUN**。后续成功不覆盖首次FAIL/BLOCKED，也不由Mac通过代填Windows子项。任务GUI须继承 `DSH_HOME`、`BKN_CONFIG_DIR` 和任务CA配置，避免CLI取token时落入默认配置。
 
-固定候选82文件/profile回补12文件及Host入口收尾保持；任务进程/端口已收净。补证轮次仅改本地验收文档和插件issue元数据，未推送或跑CI。本次另获授权将脱敏记录及六份文档作为独立PR，经独立评审后合并；不新增工程、不改现有Host或正式0.2.0/数据配置及冻结-30/-31/-32，不重跑已过项、不跑CI。任务配置/编排和过宽对照断言的原始偏差另见结果；不隐去首个失败。`latest`推广及本机npm CLI仍由维护者处理。下方2026-10-27及更早检查点是历史，不覆盖本节。
+主会话仅核对六份公开Git文件、摘要和校验输出，未取回Windows私有截图/AX/崩溃/注册表原件；manifest为206条私有文件SHA256加1条说明。更正后的六份公开文件按字节纳入本次从main建立的干净文档分支，不合入旧结果提交的历史；既有公开历史未改写，不因本次脱敏而消失。固定候选82文件及profile回补12文件的保全、后期实例菜单退出和收态按远程报告接收，不外推全部Windows形态或平台0.2.1。`formalAcceptanceEligible=false`及原平台PARTIAL/空结论保持。
+
+#2573仍为平台侧OPEN，维护者已明确指派可观测性负责人 **leecky** 并读回确认；本次不改变issue状态/项目阶段，不把企业样例可读称为原平台已修。旧“未分派”文字仅为当时事实，当前不再列为待办。完整模块分工以工作区项目规则为准，不另复制负责人表。
+
+本次只收尾脱敏材料和六份计划/合同台账，通过必要独立评审及默认CodeQL后合并；不运行构建、测试或发布CI，不启动Host/平台/模型，不重跑已过项，不改固定包、现有Host、正式0.2.0/数据配置及冻结-30/-31/-32。`latest`推广和本机npm CLI仍由维护者处理，不新增工程或补证门槛。下方2026-10-28及更早检查点均保留其历史身份，不覆盖本节。
 
 > 第77轮收尾决定（2026-10-27）：维护者明确将#108按本轮未复现的有界调查认定完成；#98经原失败/owner修复/长时及Windows证据审阅后按调查完成关闭，历史未知不称已修。#99/#92按本版插件验收与发布交接收尾；#93/#97真实非空原生验证继续开放、由Foundry#2517跟踪。GitHub现有Release已改为prerelease并补最终说明，8份资产不变。**npm latest推广及本机npm CLI认证由维护者后续自行处理，本会话停止登录且不修改dist-tag。** 不新建工程、不重跑已过项或CI、不改候选/Host/正式0.2.0/数据配置及冻结包；最终文档按独立PR交付。见[第77轮收尾](../../evidence/2026-10-27-local-77/RESULTS.md)。以下旧轮次的OPEN、待决及不推送限制按历史保留，本轮授权仅覆盖明确收尾资料和元数据。
 
