@@ -5,8 +5,9 @@
   {"identityFile": "gui-identity.txt", "pid": 27072, "createdUtc": "2026-10-28T05:40:50.236Z", "note": "first launch; hand-written session storage crash round (RESULTS section 2)"},
   {"n": 2, "pid": 27372, "note": "app self-restarted after crash; not initiated by us; stopped by identity"},
   {"n": 4, "pid": 12228, "createdUtc": "2026-10-28T12:54:16.726Z", "note": "fork session auto-restore; entry button + panel open; native read nativeAuthRequired (BKN_CONFIG_DIR absent); menu exit effective"},
-  {"n": 5, "pid": 10660, "createdUtc": "2026-10-28T13:17:11.967Z", "note": "relaunch with DSH_HOME+BKN_CONFIG_DIR+NODE_EXTRA_CA_CERTS+BKN_SKIP_VERSION_CHECK (launch-gui-5.ps1); full provenance chain PASS (RESULTS 6.2); menu exit effective"}
+  {"n": 5, "pid": 10660, "createdUtc": "2026-10-28T13:17:11.967Z", "note": "Relaunch with task-scoped DSH_HOME+BKN_CONFIG_DIR+NODE_EXTRA_CA_CERTS+BKN_SKIP_VERSION_CHECK; bounded target-record read/display passed with retained navigation/attribution limits; menu exit observed."}
  ],
  "menuExit": "effective on pid 12228 and 10660 (menu-exit-open.png + process GONE checks)",
- "processSweep": "ALL-CLEAN after final exit (dsh/openbkn/DeepSeek Harness all zero)"
+ "processSweep": "ALL-CLEAN after final exit (dsh/openbkn/DeepSeek Harness all zero)",
+ "scopeLimits": ["Private identity and cleanup originals were not retrieved by the main session.", "Instance 3 is not represented by a complete public identity row.", "Earlier crash cause remains UNKNOWN; later menu success does not erase earlier failed exits."]
 }

@@ -1,28 +1,37 @@
 {
- "run": "021-native-supplement-run-20261028",
- "kind": "windows-native-existing-record-ui-supplement",
- "sourceCiRun": 40361613728,
- "ciRun": null,
- "formalAcceptanceEligible": false,
- "verdicts": {
-  "auth": "PASS (attempt3 device login by user; hasToken=true; expired=false)",
-  "preconditionExistingRecordReadable": "PASS (detail+explanations GET 200; 3 nonempty claims; 11 pair relations; matches expected characteristics)",
-  "desktopInstance": "PASS (instance4 pid12228 entry+panel; instance5 pid10660 with BKN_CONFIG_DIR full chain; identities recorded)",
-  "readonlyReplayIntegration": "RESOLVED-AS-TEST-ENGINEERING (first failure closed: 5 root causes all on our side - 2-frame checksummed zstd, numeric frame order, delivery-marker SID patch, profile bundles missing plugin, stale electron-user-data; not a candidate defect)",
-  "mainNativeProvenanceUIChain": "PASS (entry button renders; panel opens; 3 claims exact values + located/supported/reconstructed; 11 slice edge ids exact; claim2022 -> step query_object_instance attempt1 297ms + definition; evidence node expands to evidence:op_9003052b...:1; 4 undisclosed-reference notices stay notices; two minor deviations recorded: #7 tab-forcing no_change at AX level on Desktop, answer text left as .129 original)",
-  "csvConditional": "NOT_RUN (no suitable real business CSV + baseline on machine)"
- },
- "deviations": [
-  "hand-written session storage alternative (Mac API replay path unavailable on Windows Desktop); first crash closed with 5 test-side root causes; final fork session = numeric-order reassembly of real .129 success session + minimal ID/text patches",
-  "BKN_CONFIG_DIR was initially not set on the app env -> plugin auth token resolved to default (unlogged) CLI dir -> nativeAuthRequired banner; fixed by relaunch with task-scoped env (launch-gui-5.ps1)",
-  "menu exit effective on both instance 4 and 5 this round (earlier ineffective-click pattern did not recur)",
-  "crosscheck #7 strict tab-forcing navigation observed as AX no_change on Desktop (selection-level link only); npm/Web behavior already verified in Mac round",
-  "no push/CI/PR/tag/release this round; #93/#97/#2573 untouched"
- ],
- "publicEvidence": {
-  "results/RESULTS-native-ui-supplement-20261028.md": "9a6046c917814c2a09201e3f52168eeb318eb4e25206f19e7162104606df415e"
- },
- "privateEvidence": {
+  "run": "021-native-supplement-run-20261028",
+  "kind": "windows-native-existing-record-ui-supplement",
+  "sourceCiRun": 40361613728,
+  "ciRun": null,
+  "formalAcceptanceEligible": false,
+  "verdicts": {
+    "auth": "PASS (third normal user device authorization succeeded; task account identity redacted)",
+    "preconditionExistingRecordReadable": "PASS (detail+explanations GET 200; 3 nonempty claims; 11 pair relations; matches expected characteristics)",
+    "desktopInstance": "PASS_WITH_LIMITS (later instances show panel/read success; original crash and identity coverage limits retained)",
+    "readonlyReplayIntegration": "PARTIAL: identified task setup errors were corrected; direct storage reconstruction is not proof of the public Session API route; original native renderer crash sole cause remains UNKNOWN",
+    "mainNativeProvenanceUIChain": "PASS_WITH_LIMITS: target-record read/display, three claims, eleven pair relations and main source/step/definition selection accepted from remote report; strict schema tab navigation and local-answer attribution are not counted as passed",
+    "csvConditional": "NOT_RUN (no suitable real business CSV + baseline on machine)",
+    "schemaReferenceTabNavigation": "INSUFFICIENT_EVIDENCE / UNKNOWN on Windows; no substitution of Mac evidence",
+    "localAnswerAttribution": "NOT_VALIDATED: local replay body is from a different prior record",
+    "originalRendererCrashCause": "UNKNOWN: setup corrections and later success do not establish sole cause or exclude candidate/Host factors"
+  },
+  "deviations": [
+    "Original public Session/Workspace API route was not reached; later direct storage reconstruction and multiple instances expanded the initial setup route.",
+    "Several task setup issues were identified and corrected; original native renderer crash sole cause remains UNKNOWN.",
+    "Missing task BKN_CONFIG_DIR caused CLI auth to use a different default config location; later task-scoped environment enabled normal reads.",
+    "Later instances showed effective menu exit; earlier ineffective attempts remain historical failures with unknown cause.",
+    "Schema forced-tab navigation remains insufficient-evidence on Windows, not a confirmed Desktop-specific design difference.",
+    "Local replay answer remains from another prior record; target Interaction display is not local-answer attribution.",
+    "Validation checkpoint had no push/CI/PR/tag/release; result publication and this documentation-only correction are separate, with no new runtime execution."
+  ],
+  "publicEvidence": {
+    ".gitattributes": "27f1c535296dae67c9734ca19ea563de7510d59243fbee9b214331399326f56d",
+    "RESULTS-native-ui-supplement-20261028.md": "a49733f7c7c2f9209b42413753a9a5ac5021a28b535c1d13f792697395d3cd00",
+    "evidence/verify-candidate.json": "0de27cd4e88c14427760c9fdba4e7e7c7ce46ecb01e29b9430af66357e49db00",
+    "evidence/verify-companion.json": "9e3353f016a57bb3dd37d0db871bcc336af539980636bb1e63890aba374c3196",
+    "records/gui-identity.json": "531b9e5644b91d5f01b536b53703cc699762d27b0de4325cefb6072ce87ef3e3"
+  },
+  "privateEvidence": {
   "note": "API responses, crash logs, replay jsonl, screenshots, reg/SID stay on Windows",
   "results/evidence-manifest.json": "105d8e40c6fe488a3ff40673d2e38d9f5f0bd2cfdb5041be64eea8afc2b8d347",
   "results/gui-identity.txt": "3c061d44b77fe5129c4a75e127a227a0f467bd03fbb4b531e4a21ae74355d85f",
@@ -231,10 +240,28 @@
   "evidence/system-association-post5/restored/handler.reg": "49882de04e79c3daf0cfc536234fc9a67c9d95d876142058dc48d02318c7aa9b",
   "evidence/system-association-post5/restored/snapshot.json": "4773f81225ad6e8cc34b43e3bfea03e4ba3b7f163b351eb8fde493eb00553722"
  },
- "generatedLocal": "2026-10-28 (continued execution: auth OK, precondition PASS, replay path first-failure preserved)",
- "unknowns": [
-  "renderer crash root cause (no error-level console output; no JS stack)",
-  "why menu-exit clicks do not terminate the app in these rounds"
- ],
- "finalizedAtUtc": "2026-10-28T13:25:20.601Z"
+  "generatedLocal": "2026-10-28 (continued execution: auth OK, precondition PASS, replay path first-failure preserved)",
+  "unknowns": [
+    "Original native renderer crash sole cause and any candidate/Host contribution remain UNKNOWN.",
+    "Cause of earlier ineffective menu-exit attempts remains UNKNOWN; later successes do not resolve it.",
+    "Strict schema-reference tab transition is insufficient-evidence on Windows.",
+    "Per-endpoint response-size labels were not independently resolved from Windows originals."
+  ],
+  "finalizedAtUtc": "2026-10-28T13:25:20.601Z",
+  "receivedEvidence": {
+    "sourceCommit": "6f28da4335380472dabab3315dafae702e8ff4d9",
+    "reportSha256": "9a6046c917814c2a09201e3f52168eeb318eb4e25206f19e7162104606df415e",
+    "manifestSha256": "28d205423da5bb3a6bae378f6d03a8fa4dd4c2fee7e689afebe56872b6aa71e1",
+    "privateHashEntries": 206,
+    "privateNoteEntries": 1,
+    "privateMapMeaning": "Unchanged digest map of Windows-retained originals. The results/evidence-manifest.json entry refers to that retained original, not this corrected public manifest."
+  },
+  "scopeReview": {
+    "newRuntimeExecutions": 0,
+    "privateOriginalsRetrieved": false,
+    "overallFormalAcceptanceEligible": false,
+    "historyRewritten": false,
+    "publicationRedactionOnly": true
+  },
+  "publicEvidenceMeaning": "Current published file SHA256 values, relative to this directory; manifest excludes its own digest."
 }
