@@ -1,0 +1,146 @@
+{
+  "kind": "issue93-native-api-studio-acceptance",
+  "date": "2026-10-27",
+  "issueAcceptance": "PASS",
+  "sourceCiRun": 40361613728,
+  "ciRun": null,
+  "formalAcceptanceEligible": false,
+  "pluginVersion": "0.2.1-rc.3-openbkn.0.2.1",
+  "candidateSha256": "27ccf15c46e4f71ef850ee481e22556b70f4d4795e89d7d587a2e3210fc6b3e3",
+  "platformVersionBasis": "Maintainer states both platforms are 0.2.0; no deployment-difference audit requested/performed.",
+  "sample": "one pre-existing native World Cup sample; same Interaction across API and Studio; original explanation predates this run",
+  "matchedCapturedFieldChecks": 27,
+  "capturedFieldChecks": {
+    "conversation_list_contains_same_interaction": true,
+    "detail_and_explanation_identity_match": true,
+    "schema_one": true,
+    "existing_ready_explanation": true,
+    "studio_question_matches_detail": true,
+    "studio_answer_matches_detail": true,
+    "studio_explanation_answer_matches_api": true,
+    "one_call_in_api_and_studio": true,
+    "operation_identity_visible_in_timechain": true,
+    "same_operation_visible_in_technical_reference": true,
+    "interface_matches_technical_reference": true,
+    "function_operation_reference_matches": true,
+    "function_label_matches": true,
+    "function_purpose_matches": true,
+    "function_logic_matches": true,
+    "function_inputs_match": true,
+    "function_output_summary_matches": true,
+    "three_claims_count_matches": true,
+    "three_claim_labels_and_values_match": true,
+    "platform_support_status_matches_studio": true,
+    "question_pair_text_matches": true,
+    "function_support_refs_match_claims": true,
+    "pair_claim_identity_matches": true,
+    "integrity_scope_retained": true,
+    "technical_completeness_matches": true,
+    "all_observed_native_requests_are_get": true,
+    "all_observed_native_responses_are_200": true
+  },
+  "newRuntimeRegressionTests": 0,
+  "newModelTurns": 0,
+  "explanationPosts": 0,
+  "observedNativeRequests": {
+    "GET": 5
+  },
+  "platformStates": {
+    "resource": "ready",
+    "execution": "completed",
+    "evidence": "complete",
+    "generation": "ready",
+    "integrityScope": "registered_call_records"
+  },
+  "selectedPairCounts": {
+    "claims": 3,
+    "evidenceNodes": 1,
+    "businessFunctions": 1,
+    "executionSteps": 1,
+    "schemaNodes": 1,
+    "edges": 11
+  },
+  "apiBodyDigests": [
+    {
+      "file": "conversation-interactions-private.json",
+      "bytes": 1167,
+      "sha256": "1ab82bd709cfc7187b6830d15b3a01b6ab0edacbb3402c45b12297cabd61b2a0"
+    },
+    {
+      "file": "native-detail-private.json",
+      "bytes": 33625,
+      "sha256": "9dc5ccf4de6a316e50f9ba28f495c7b3c2df867e3a6125269459c83da5b6d731"
+    },
+    {
+      "file": "native-explanation-private.json",
+      "bytes": 135270,
+      "sha256": "b1d1d94de34de699d2b38908b55996f19987f1cbde464763e163b1942f9001b9"
+    }
+  ],
+  "privateEvidenceDigests": [
+    {
+      "file": "API-STUDIO-CROSSCHECK-private.json",
+      "bytes": 2337,
+      "sha256": "8be2a0a95680221d51eeda850af60d71c943e14976d0088e71149c0b2df72758"
+    },
+    {
+      "file": "conversation-interactions-private.json",
+      "bytes": 1167,
+      "sha256": "1ab82bd709cfc7187b6830d15b3a01b6ab0edacbb3402c45b12297cabd61b2a0"
+    },
+    {
+      "file": "native-detail-private.json",
+      "bytes": 33625,
+      "sha256": "9dc5ccf4de6a316e50f9ba28f495c7b3c2df867e3a6125269459c83da5b6d731"
+    },
+    {
+      "file": "native-explanation-private.json",
+      "bytes": 135270,
+      "sha256": "b1d1d94de34de699d2b38908b55996f19987f1cbde464763e163b1942f9001b9"
+    },
+    {
+      "file": "native-network-metadata-private.json",
+      "bytes": 2501,
+      "sha256": "2ea90faa085860fa227845e00070ac07ba1fc74da9f0786ab63fd6d80e441008"
+    },
+    {
+      "file": "studio-evidence-private.md",
+      "bytes": 9558,
+      "sha256": "77040e10ecd3006469810f57fe1330caf818b326101211fa23c7d870eef6de12"
+    },
+    {
+      "file": "studio-evidence-private.png",
+      "bytes": 244009,
+      "sha256": "407570c46297fca08d1bc63c6993dc14c327be6f61652b6dd76ef507f569418e"
+    },
+    {
+      "file": "studio-technical-reference-private.md",
+      "bytes": 10259,
+      "sha256": "40957f415f01664f7fd18d27ff3152f014a71891d702992a55170312b0236ea8"
+    },
+    {
+      "file": "studio-technical-reference-private.png",
+      "bytes": 263893,
+      "sha256": "0972a4ca08201ac03df05d6d98f04adf7e7ed68eeed61da37d334a45afbb3bf3"
+    },
+    {
+      "file": "studio-timechain-private.md",
+      "bytes": 5142,
+      "sha256": "86a5c28be407f201365b970618f269efa13b5c2212df98cf3ba6d3590d1509ec"
+    },
+    {
+      "file": "studio-timechain-private.png",
+      "bytes": 113006,
+      "sha256": "433eb8af9c2bc563d95c1cf275a0d0eb4dbf282325bb18b3f393e9572ac01aca"
+    }
+  ],
+  "privateManifestSha256": "94306d8e9fa95a19d3a0f7be787b09d70458536e3c9f912aacfb3adeeedb7a6c",
+  "limitations": [
+    "Support status is the platform assertion; this does not independently judge the answer.",
+    "Current new API evidence comes from the authorized Studio browser session; no CLI authentication test was repeated.",
+    "No new plugin Host execution or issue97 plugin selection validation is claimed.",
+    "Only current-pair fields, claim assertions and business-function/Operation references were compared; not every top-level graph edge was manually accepted.",
+    "Issue97 plugin-side linkage is not performed or closed.",
+    "The earlier 50.129 partial result and platform issue2573 remain unchanged."
+  ]
+}
