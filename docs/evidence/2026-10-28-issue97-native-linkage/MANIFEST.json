@@ -1,0 +1,208 @@
+{
+  "kind": "native-existing-record-ui-validation",
+  "date": "2026-10-28",
+  "sourceCiRun": 40361613728,
+  "ciRun": null,
+  "formalAcceptanceEligible": false,
+  "issue97": {
+    "state": "closed",
+    "stateReason": "completed",
+    "projectStatus": "Done"
+  },
+  "candidateSha256": "27ccf15c46e4f71ef850ee481e22556b70f4d4795e89d7d587a2e3210fc6b3e3",
+  "checks": {
+    "three_claims_render_exact_api_id_label_value_status": true,
+    "all_eleven_current_pair_edges_render_exact_ids_and_direction": true,
+    "selected_claim_only_not_other_year_claims": true,
+    "explicit_support_sources_related": true,
+    "unresolved_refs_are_notice_spans_not_links": true,
+    "evidence_detail_and_technical_source_exact": true,
+    "reference_jumps_to_matching_attempt_in_event_view": true,
+    "schema_reference_jumps_to_evidence_view": true,
+    "same_existing_explanation_as_issue93_studio_compare": true,
+    "all_dto_claim_fields_equal_matching_api_fields": true
+  },
+  "passed": true,
+  "claimCount": 3,
+  "currentPairRelationCount": 11,
+  "privateEvidence": [
+    {
+      "file": "CLOSEOUT-private.json",
+      "bytes": 252,
+      "sha256": "059e8b6fa106a3c637698d70e7e36eb8765c603b887820e963544087ce6b84fe",
+      "public": false
+    },
+    {
+      "file": "PRESERVATION-private.json",
+      "bytes": 443,
+      "sha256": "67768fd783360b77bdbe64e9058bb64e695bbdcd34a3ca2504e83ffe30877ba6",
+      "public": false
+    },
+    {
+      "file": "UI-CROSSCHECK-initial-assertion-private.json",
+      "bytes": 883,
+      "sha256": "3d82adc41f3bfa42581e5ca1e1f36698872cbff4c637512ea6c85aa838a12460",
+      "public": false
+    },
+    {
+      "file": "UI-CROSSCHECK-private.json",
+      "bytes": 1177,
+      "sha256": "8c0556f639c679d41213f05d068933084473f41f78fe9540de42591fd347ce51",
+      "public": false
+    },
+    {
+      "file": "attempt-3-host-private.log",
+      "bytes": 83,
+      "sha256": "7fae0125e236d2222e32080ffeb6a7246609fe0227937863014f2d9ab6acd4df",
+      "public": false
+    },
+    {
+      "file": "attempts-1-2-combined-host-private.log",
+      "bytes": 83,
+      "sha256": "bcfc614b422de7f6b889ef6157d57dd8912d4fb45d60118de5687788f8fe4d63",
+      "public": false
+    },
+    {
+      "file": "attempts-1-2-owned-identities-private.json",
+      "bytes": 421,
+      "sha256": "e386e91b1eba75fc6f7521988bbf945709da0f25c123d836b2dd81a1909ba5cb",
+      "public": false
+    },
+    {
+      "file": "attempts-1-2-setup-failure-private.json",
+      "bytes": 565,
+      "sha256": "d4c1a5e8d976681a9198c71b6d70b3896caf51a8b9b7f9954cce909a4ceeeb04",
+      "public": false
+    },
+    {
+      "file": "claim-2018-selection-private.json",
+      "bytes": 7828,
+      "sha256": "59302fac860c8c71de7abdb5b959711945a10da9f0bbf145620747b3c0412941",
+      "public": false
+    },
+    {
+      "file": "execution-jump-selection-private.json",
+      "bytes": 987,
+      "sha256": "ae80a40da20ccfaef45141a4fe091c2bab228fdb675c907bfba781a61173b123",
+      "public": false
+    },
+    {
+      "file": "host-record-ready-private.json",
+      "bytes": 620,
+      "sha256": "8047151a15d18cfcfc640453a3a675b05aa2a31508496c791e2e1a9af9870737",
+      "public": false
+    },
+    {
+      "file": "issue97-closed-done-private.png",
+      "bytes": 200111,
+      "sha256": "9cc55a9c32e5f7615b6e61152fd3f3a8b40a4a2abf0a8b4c0fa13252fc25f68f",
+      "public": false
+    },
+    {
+      "file": "native-detail-private.json",
+      "bytes": 47726,
+      "sha256": "f1f9f623a771e9075af395a68a9208dae38f6307d18ae780eb631d73d8ba5e65",
+      "public": false
+    },
+    {
+      "file": "native-explanation-private.json",
+      "bytes": 182671,
+      "sha256": "bb1856a7fbd3768e29fde50adc765b1d9d1a9b4df19de31a08adde480d16bd11",
+      "public": false
+    },
+    {
+      "file": "orchestration-deviation.json",
+      "bytes": 654,
+      "sha256": "e02c8887f60457b8800a8fe0c39c53a3e2843ce52e72375cc04c47006a59381e",
+      "public": false
+    },
+    {
+      "file": "owned-before-stop-private.json",
+      "bytes": 655,
+      "sha256": "08188311b6d8cafa13540334a5045361d4d7160150527c9ee48bb9011bf70d23",
+      "public": false
+    },
+    {
+      "file": "plugin-claims-final-private.png",
+      "bytes": 98957,
+      "sha256": "e110c034e46c26623212b7f2c40f53591b229375de7dea52d537b567db9ee643",
+      "public": false
+    },
+    {
+      "file": "plugin-claims-private.png",
+      "bytes": 98957,
+      "sha256": "e110c034e46c26623212b7f2c40f53591b229375de7dea52d537b567db9ee643",
+      "public": false
+    },
+    {
+      "file": "plugin-events-private.png",
+      "bytes": 77915,
+      "sha256": "92d9996ccfa28c63990d48649bb309c4f92b1c673cff3f20875aa71205068099",
+      "public": false
+    },
+    {
+      "file": "plugin-evidence-detail-private.md",
+      "bytes": 14028,
+      "sha256": "98cf97fe9a76bd27b12d2b13f9eaf9fc713884b6f59f9e3d79254ce32cded085",
+      "public": false
+    },
+    {
+      "file": "plugin-evidence-source-private.md",
+      "bytes": 14184,
+      "sha256": "4535415ed9b555a82054190cd7c22a9563fd24e23d72bfe74d8ffcd046c75a7c",
+      "public": false
+    },
+    {
+      "file": "plugin-evidence-source-private.png",
+      "bytes": 93516,
+      "sha256": "e29bcb2e1dfe8f1c5e5202b9f3723d030f6a835e664f2bf98870a554e6d1fe48",
+      "public": false
+    },
+    {
+      "file": "plugin-execution-jump-private.md",
+      "bytes": 8740,
+      "sha256": "dbf498e6c3c134658c11b019a866947fa23ba771a531ed149b6214d6c0352746",
+      "public": false
+    },
+    {
+      "file": "plugin-schema-reference-private.md",
+      "bytes": 13800,
+      "sha256": "98bb507964d39e9743fc9dbb8b9fbe02ea14026cf99ba076c34063e6a4349eb3",
+      "public": false
+    },
+    {
+      "file": "plugin-step-reference-private.md",
+      "bytes": 8283,
+      "sha256": "ec386d974c6486603f42f2350fcff0f0ac0ab2fd5b20f3f6c721abe19d9faf4d",
+      "public": false
+    },
+    {
+      "file": "plugin-step-reference-private.png",
+      "bytes": 97407,
+      "sha256": "2ad6ed420eb8b688c78ae8a4041dac12d25aceba1603ecdb4a57367bde6fd817",
+      "public": false
+    },
+    {
+      "file": "service-view-private.json",
+      "bytes": 175111,
+      "sha256": "d499cd215442d0395d90df6b2d8a06a2303c7d7611fda26b5643ee765d696d2a",
+      "public": false
+    },
+    {
+      "file": "ui-native-crosscheck-private.json",
+      "bytes": 4147,
+      "sha256": "c3bc47dd1934c02d5487fae1c48585ec8f0c66f51ccd18d0fa0cf2d992d6e963",
+      "public": false
+    },
+    {
+      "file": "workspace-registration-private.json",
+      "bytes": 211,
+      "sha256": "cf558ba45fa2e29230c7fa9f6ba3fb749d21a68acbf3a9c795053796b8a4b365",
+      "public": false
+    }
+  ],
+  "report": {
+    "file": "RESULTS.md",
+    "sha256": "88a6385e651ac3113dae350fe9aba0a31a5a552c012a230deacffc658356a454"
+  }
+}
