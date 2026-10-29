@@ -2,11 +2,13 @@
 
 ## 最新收口：登录成功状态修复（2026-10-30）
 
-维护者已授权先修复、本地验证通过后再推独立交接分支并交Windows复验；此范围覆盖旧“仅文档/源码冻结”的后续限制，不改写原93f3e85和ea6be318。Windows fa6e2fb核心认证/复用结果保留；等待文案超过5分钟须重开仍是未关闭异常。
+维护者已授权先修复、本地验证通过后再推独立交接分支并交Windows复验；此范围覆盖旧“仅文档/源码冻结”的后续限制，不改写原93f3e85和ea6be318。Windows fa6e2fb核心认证/复用及首次等待文案滞留保留为历史；auto.local.2的Windows最小复验8b5ee49现已返回，当前面板无需关闭或刷新即自动显示成功与目录，按本轮标准PASS并收口。
 
 最小修复源码 `dbf53d329eae704e580e555f9da37f7c05a8111a`，候选 `0.2.1-rc.3-openbkn.0.2.1-auto.local.2` / `96dc62d7ef9bded5ca45861a9d8d5e0f627f30a365a38590d7cbb541a9867571` / 94文件。仅client.js与包版本变化，Host/TLS/CLI/MCP等92项完全相同。13项聚焦检查、类型/构建/包审计、原生rc.3句柄/selector/打包UI受控对照及官方Mac GUI合成授权自动更新通过。受控清理延迟证明原consumer可阻塞成功反馈，不断言Windows现场唯一根因已确认。
 
-Windows本轮只需一个官方rc.3 Desktop、一次真实授权成功后的当前面板自动更新，以及必要的安装身份/正常退出/关联恢复；其余已过项复用，当前NOT_RUN。见[本轮证据](../../evidence/2026-10-30-auto-login-status/RESULTS.md)及[最小交接](../../handoff/2026-10-30-auto-login-status-windows/README.md)。不改现有Host/正式0.2.0/数据配置，不建GUI体系、不跑CI/发布/改latest；未决发布门槛不默认降级。
+Windows本轮已在一个官方rc.3 Desktop完成一次真实授权后的当前面板自动更新；公开proof确认实际版本/MCP身份与两个授权网络，退出进程树及关联恢复按远程报告接收。退出码和精确翻转时刻仍UNKNOWN，上轮唯一根因未确证；不追加测试。其余已过项继续复用。见[本轮证据](../../evidence/2026-10-30-auto-login-status/RESULTS.md)及[最小交接](../../handoff/2026-10-30-auto-login-status-windows/README.md)。不改现有Host/正式0.2.0/数据配置，不建GUI体系、不跑CI/发布/改latest；未决发布门槛不默认降级。
+
+接收明细见[Windows收口记录](../../evidence/2026-10-30-auto-login-status/WINDOWS-CLOSEOUT.md)：11个公开Git对象与9项非自身manifest映射已核对，私有原件未取回，manifest自身摘要另记。本次仅本地文档收口，不推送或跑CI；auto.local.2仍未发布、formalAcceptanceEligible=false，未决正式发布门槛不默认降级。
 
 以下2026-10-29及更早的“当前/未执行/不推送”描述是当时检查点，不覆盖本节的新授权与已收到Windows结果。
 

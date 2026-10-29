@@ -1,5 +1,7 @@
 # 登录成功状态最小修复（2026-10-30）
 
+> 后续接收：Windows 最小复验现已返回，受影响主项 PASS，见 [Windows 收口记录](WINDOWS-CLOSEOUT.md)。以下保留交接推送前的本地验证检查点；其中“Windows未执行”不覆盖本次接收结果。
+
 本地针对性验证通过；Windows `0.2.1-rc.3-openbkn.0.2.1-auto.local.2` 现场复验未执行。`ciRun=null`、`formalAcceptanceEligible=false`。固定修复源码 `dbf53d329eae704e580e555f9da37f7c05a8111a`，基于bde72db文档交接与93f3e85产品实现；原源码/ea6be318归档、Windows fa6e2fb报告及其首次异常保持。
 
 ## 复现事实与未知
