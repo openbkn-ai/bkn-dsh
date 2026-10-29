@@ -1,5 +1,7 @@
 # Draft: origin-scoped additional CA support for CLI device authorization
 
+> Later local increment: the maintainer explicitly accepts automatic private-platform trust. The plugin now scopes a dispatcher inside the dedicated official CLI child; the SDK files and its original public contract remain unchanged. The intermediate imported-CA refusal below is historical, not the current plugin behavior. This issue remains a local, unsubmitted upstream API draft; no upstream repair is claimed.
+
 Status: local draft only; not submitted. Repository/owner assignment must be confirmed for the CLI/SDK module. The workspace platform-module table does not assign a CLI/SDK owner.
 
 ## Problem and integration impact

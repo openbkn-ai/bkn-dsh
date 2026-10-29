@@ -34,6 +34,8 @@ import type { AuthSnapshot, BusinessNetworkSummary, ProvenanceDegradation, Prove
 import { realpath, stat } from 'node:fs/promises'
 import { trimTrailingSlashes } from './trailing-slashes.js'
 import { OpenBknPlatformTrust, PlatformConnectionError, connectionFailure } from './platform-trust.js'
+import { PrivatePlatformAccess } from './private-platform-access.js'
+import type {} from './platform-access-profile.js'
 
 declare module '@deepseek-ai/cordis' {
   interface Context {
@@ -89,6 +91,9 @@ function cliUnavailableAsRemote(error: unknown): unknown {
 /** Preserve a known credential refusal at the Host/browser boundary. */
 function mcpFailureAsRemote(error: unknown, baseUrl: string): unknown {
   const failure = connectionFailure(error)
+  if (failure === 'PLATFORM_IDENTITY_CHANGED' || failure === 'PLATFORM_REAUTHORIZATION_REQUIRED') {
+    return new RemoteError('openbkn/authentication-required', 'Platform identity requires a new browser authorization.', { baseUrl, layer: 'platform-api' })
+  }
   if (failure !== undefined) return cliUnavailableAsRemote(error)
   if (!(error instanceof OpenBknMcpCredentialRejectedError)) return error
   return error.httpStatus === 401
@@ -116,6 +121,8 @@ export class OpenBknBusinessContextService extends TypertRemoteService {
   private readonly capabilityProfiles = new WeakMap<Agent, NetworkCapabilityProfile>()
   private mcpManagerInstance: OpenBknMcpManager | undefined
   private platformTrustInstance?: OpenBknPlatformTrust
+  private privateAccessInstance?: PrivatePlatformAccess
+  private synchronizedGeneration?: string
   /** Native Service views rebind this.ctx to the caller; child lifetimes belong here. */
   private readonly ownerContext: Context
   private readonly lifetime = new AbortController()
@@ -144,6 +151,7 @@ export class OpenBknBusinessContextService extends TypertRemoteService {
       this.lifetime.abort(new Error('OpenBKN configuration was reloaded.'))
       return this.platformTrustInstance?.dispose()
     })
+    ctx.effect(() => () => this.privateAccessInstance?.dispose())
     ctx.on('agent/created', async ({ agent }) => {
       await this.restoreBinding(agent)
       return undefined
@@ -176,9 +184,19 @@ export class OpenBknBusinessContextService extends TypertRemoteService {
     signal = this.operationSignal(signal)
     if (signal.aborted) throw signal.reason
     try {
+      const privateAccess = this.privateAccess()
+      const platform = await privateAccess?.inspect(signal)
+      if (platform && !platform.authorized) {
+        this.synchronizedToken = undefined
+        return { kind: 'authentication-required', baseUrl: this.config.baseUrl,
+          ...(platform.reauthorize ? { reason: 'platform-changed' as const } : {}) }
+      }
       const auth = await this.authCoordinator().status(signal)
       if (auth.kind === 'authenticated') {
         await this.synchronizeCliCredential(signal)
+      } else {
+        this.synchronizedToken = undefined
+        this.synchronizedGeneration = undefined
       }
       return auth
     } catch (error: unknown) {
@@ -200,11 +218,14 @@ export class OpenBknBusinessContextService extends TypertRemoteService {
     signal = this.operationSignal(signal)
     if (signal.aborted) throw signal.reason
     try {
-      // Imported CA trust must never be lent to a CLI without an origin fence.
-      if (this.config.platformTrust != null) throw new PlatformConnectionError('TRUST_CLI_UNAVAILABLE')
+      // Legacy compositions without the automatic profile keep their original refusal.
+      if (!this.privateAccess() && this.config.platformTrust != null) throw new PlatformConnectionError('TRUST_CLI_UNAVAILABLE')
       await this.authCoordinator().beginLogin(signal)
       await this.synchronizeCliCredential(signal)
     } catch (error: unknown) {
+      if (connectionFailure(error) === 'PLATFORM_IDENTITY_CHANGED' || connectionFailure(error) === 'PLATFORM_REAUTHORIZATION_REQUIRED') {
+        throw mcpFailureAsRemote(error, this.config.baseUrl)
+      }
       throw cliUnavailableAsRemote(error)
     }
     return await this.listNetworksAfterAuthentication(signal)
@@ -329,6 +350,7 @@ export class OpenBknBusinessContextService extends TypertRemoteService {
     if ((this.provenanceRevision ?? 0) !== revision || bindingChanged) throw new Error('OpenBKN provenance identity changed; reopen the panel.')
     const nativeFailure = (failure: unknown): NativeReadFailure => {
       const transport = connectionFailure(failure)
+      if (transport === 'PLATFORM_IDENTITY_CHANGED' || transport === 'PLATFORM_REAUTHORIZATION_REQUIRED') return 'authentication-required'
       if (transport === 'CERTIFICATE_UNTRUSTED') return 'certificate-untrusted'
       if (transport?.startsWith('CERTIFICATE_') || transport === 'TRUST_SCOPE_MISMATCH') return 'certificate-invalid'
       if (transport === 'NETWORK_TIMEOUT') return 'network-timeout'
@@ -758,24 +780,37 @@ export class OpenBknBusinessContextService extends TypertRemoteService {
     return this.mcpManagerInstance ??= new OpenBknMcpManager(this.ownerContext, this.config, () => this.resolveOpenBknToken(), this.platformTrust())
   }
 
-  private platformTrust(): OpenBknPlatformTrust {
+  private platformTrust(): OpenBknPlatformTrust | PrivatePlatformAccess {
+    const automatic = this.privateAccess()
+    if (automatic) return automatic
     if (this.platformTrustInstance !== undefined) return this.platformTrustInstance
     const trust = new OpenBknPlatformTrust(this.config.baseUrl, this.config.platformTrust ?? undefined)
     return this.platformTrustInstance = trust
   }
 
+  private privateAccess(): PrivatePlatformAccess | undefined {
+    const profile = this.ownerContext?.get?.('openbknPlatformAccessProfile')
+    if (!profile) return undefined
+    return this.privateAccessInstance ??= new PrivatePlatformAccess(this.config.baseUrl, profile, dshHomePath('openbkn', 'platform-access'))
+  }
+
   private authCoordinator(): AuthCoordinator {
-    return new AuthCoordinator(new OpenBknCliSubprocess(this.ctx.subprocess, '.', this.config.baseUrl, this.config.cliPath), this.config.baseUrl)
+    const access = this.privateAccess()
+    return new AuthCoordinator(new OpenBknCliSubprocess(this.ctx.subprocess, '.', this.config.baseUrl, this.config.cliPath, access), this.config.baseUrl, !!access)
   }
 
   /** Synchronize exactly one configured-platform CLI token into DSH credentials. */
   private async synchronizeCliCredential(signal: AbortSignal): Promise<void> {
+    const expected = (await this.privateAccess()?.requireAuthorization(signal))?.generation
     const token = await this.authCoordinator().readToken(signal)
+    const generation = (await this.privateAccess()?.requireAuthorization(signal))?.generation
+    if (generation !== expected) throw new PlatformConnectionError('PLATFORM_IDENTITY_CHANGED')
     signal.throwIfAborted()
     await this.ctx.credentials.set(credentialRef(OPENBKN_MCP_TOKEN_REF), token)
     signal.throwIfAborted()
     if (this.synchronizedToken !== token) this.provenanceRevision = (this.provenanceRevision ?? 0) + 1
     this.synchronizedToken = token
+    this.synchronizedGeneration = generation
     await this.refreshMcpConnection()
   }
 
@@ -791,7 +826,16 @@ export class OpenBknBusinessContextService extends TypertRemoteService {
   private async resolveOpenBknToken(signal?: AbortSignal): Promise<string | undefined> {
     signal?.throwIfAborted()
     if (this.lifetime?.signal.aborted) return undefined
-    if (this.synchronizedToken !== undefined) return this.synchronizedToken
+    const access = this.privateAccess()
+    if (access) {
+      try {
+        const record = await access.requireAuthorization(signal)
+        if (this.synchronizedGeneration !== record.generation) this.synchronizedToken = undefined
+      } catch (error) { this.synchronizedToken = undefined; throw error }
+    }
+    // The CLI renews opaque access tokens as well as JWTs. Independent reads
+    // must not retain a token indefinitely merely because the platform pin is unchanged.
+    if (this.synchronizedToken !== undefined && !access) return this.synchronizedToken
     // Historical provenance may be opened before the panel or a new turn.
     // Verify against the configured-platform CLI rather than borrowing the
     // global vault. Panes of one request share a lookup; independent requests
@@ -802,9 +846,13 @@ export class OpenBknBusinessContextService extends TypertRemoteService {
     let pending = reads.get(owner)
     if (pending === undefined) {
       pending = (async () => {
+        const expected = access ? (await access.requireAuthorization(readSignal)).generation : undefined
         const token = await this.authCoordinator().readToken(readSignal)
+        const generation = (await access?.requireAuthorization(readSignal))?.generation
+        if (generation !== expected) throw new PlatformConnectionError('PLATFORM_IDENTITY_CHANGED')
         readSignal.throwIfAborted()
         this.synchronizedToken = token
+        this.synchronizedGeneration = generation
         return token
       })().finally(() => { reads.delete(owner) })
       reads.set(owner, pending)

@@ -115,17 +115,17 @@ test('a confirmed valid issuer still rejects expired and wrong-host actual serve
   }
 })
 
-test('stock or deployment-owned MCP cannot silently borrow the selected certificate trust', { skip: !opensslAvailable && 'OpenSSL fixture prerequisite unavailable' }, async () => {
+test('plugin-owned MCP selects its packaged scoped factory; deployment-owned MCP stays refused', { skip: !opensslAvailable && 'OpenSSL fixture prerequisite unavailable' }, async () => {
   const origin = 'https://127.0.0.1', identity = inspectPlatformCertificate(origin, pem)
   const trust = new OpenBknPlatformTrust(origin, { origin: identity.origin, pem, fingerprint256: identity.fingerprint256 })
   let mounts = 0
   const config = { baseUrl: origin, toolCallTimeoutMs: 1000 } as never
   try {
-    const ctx = { tools: { get: () => undefined }, plugin: () => { mounts++; throw Error('must not mount') } }
-    await assert.rejects(new OpenBknMcpManager(ctx as never, config, async () => 'synthetic-only', trust).ensure(), { code: 'TRUST_TRANSPORT_UNAVAILABLE' })
+    const ctx = { tools: { get: () => undefined }, plugin: (factory: { platformFetchSupported: boolean }, config: { platformFetch: unknown }) => { mounts++; assert.equal(factory.platformFetchSupported, true); assert.equal(config.platformFetch, trust.fetch); throw Error('selected scoped native factory') } }
+    await assert.rejects(new OpenBknMcpManager(ctx as never, config, async () => 'synthetic-only', trust).ensure(), /selected scoped native factory/)
     const owned = { ...ctx, tools: { get: () => ({}) } }
     await assert.rejects(new OpenBknMcpManager(owned as never, config, async () => 'synthetic-only', trust).ensure(), { code: 'TRUST_TRANSPORT_UNAVAILABLE' })
-    assert.equal(mounts, 0)
+    assert.equal(mounts, 1)
   } finally { await trust.dispose() }
 })
 

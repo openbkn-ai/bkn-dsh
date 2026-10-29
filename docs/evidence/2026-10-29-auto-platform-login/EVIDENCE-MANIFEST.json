@@ -1,0 +1,137 @@
+{
+  "scope": "selected retained evidence; not a whole-filesystem or personal-state snapshot",
+  "files": [
+    {
+      "file": "release/auto-verified-regression-2.log",
+      "bytes": 148826,
+      "sha256": "8b7c33417d17f30366248395dabe2eea967a2e6bcfe60d818cbc7f75f7aea53c",
+      "access": "local-private"
+    },
+    {
+      "file": "release/auto-final-ui-checks-2.log",
+      "bytes": 10881,
+      "sha256": "32f4ae497140003fd99d744df9587cc13cc6ec93337f7ad167054703fa4342a9",
+      "access": "local-private"
+    },
+    {
+      "file": "release/auto-final-runtime-checks.log",
+      "bytes": 4430,
+      "sha256": "021d05c381815a73178ede09970b67a75e72bfcdd14a14d291690c17af190789",
+      "access": "local-private"
+    },
+    {
+      "file": "release/auto-final-package-audit-2.log",
+      "bytes": 310,
+      "sha256": "79ee695a8058ece00a27920243e22e51da429d3d01903b34f67112c3ea816409",
+      "access": "local-private"
+    },
+    {
+      "file": "release/auto-final-manifest-errors.log",
+      "bytes": 717,
+      "sha256": "7aa2d2886ab346d58310ea2589ce2299ec92eb0184a128f882e949308b7dffe7",
+      "access": "local-private"
+    },
+    {
+      "file": "release/auto-final-rc3-host-types.log",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "access": "local-private"
+    },
+    {
+      "file": "release/auto-final-rc3-client-types.log",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "access": "local-private"
+    },
+    {
+      "file": "release/auto-official-cli-node24-proof.log",
+      "bytes": 647,
+      "sha256": "bbbbcb08cb627b718f7bc1de56d9c5974a588013afdc7fdf3c0504b5324949ef",
+      "access": "local-private"
+    },
+    {
+      "file": "release/auto-platform-login/run-3/RESTART-RESULT.json",
+      "bytes": 434,
+      "sha256": "8d98e63b55139342dc08f8bce28791588048d311cf159ec47dc1b0cea77dbe8c",
+      "access": "local-private"
+    },
+    {
+      "file": "release/auto-platform-login/run-3/proof-f5af3031-ec2d-4eac-9795-2dfc8f36ff11.json",
+      "bytes": 1013,
+      "sha256": "2fc1b06c1c74c1b3e9a3d3f5c3f573eebbec606b065b97375f1f31c190a3e02a",
+      "access": "local-private"
+    },
+    {
+      "file": "release/auto-platform-login/run-3/closeout.json",
+      "bytes": 42,
+      "sha256": "a8f1d1d473d09ce0ae148d8a8532e76c8329bc1b5dec3263cdc488cf5a9a845b",
+      "access": "local-private"
+    },
+    {
+      "file": "release/auto-platform-login/run-1/REQUESTS.json",
+      "bytes": 42770,
+      "sha256": "a41e6550585a233aa4b32b910922b258a9daa857dead7b67d700fd4e9df2fbf5",
+      "access": "local-private"
+    },
+    {
+      "file": "release/auto-platform-login/run-1/EXPIRY-RESULT.json",
+      "bytes": 244,
+      "sha256": "aff7ca1926a5ba39a90b44b9f066e6f6bf8996614dedc5999571b30fce1670f5",
+      "access": "local-private"
+    },
+    {
+      "file": "release/auto-platform-login/PROCESS-CLOSEOUT.json",
+      "bytes": 123,
+      "sha256": "64b2e4031c105ec645efcf8bca2365d93975bd90a4b2fd1295800fe21378687a",
+      "access": "local-private"
+    },
+    {
+      "file": "release/auto-platform-login/run-3/screenshots/E02-real-platform-ready.jpg",
+      "bytes": 42964,
+      "sha256": "2138e5633020e2d3f3407eac88ac0e7cda82aaadb718a623d84f138c695bd5dd",
+      "access": "local-private"
+    },
+    {
+      "file": "release/auto-platform-login/run-3/screenshots/E03-real-failure.jpg",
+      "bytes": 36658,
+      "sha256": "7853780d7f4b3d4f9da8df0414119b736b589fd3d93d98a710707cae1de15e4a",
+      "access": "local-private"
+    },
+    {
+      "file": "release/auto-platform-login/run-3/screenshots/E04-enterprise-ready.jpg",
+      "bytes": 42852,
+      "sha256": "e73d93877ba80adb8c15b7dbd37d6ebc3725e8fc2346119b29a934f05b3dce8c",
+      "access": "local-private"
+    },
+    {
+      "file": "release/auto-platform-login/run-3/screenshots/E05-cli-default-port-failure.jpg",
+      "bytes": 32517,
+      "sha256": "7e0c26dbabc97beed6fff4f4bdeca5c036530b4449f761b4d0ff93d553e5df23",
+      "access": "local-private"
+    },
+    {
+      "file": "release/auto-platform-login/run-3/screenshots/E06-real-authorization-waiting.jpg",
+      "bytes": 36678,
+      "sha256": "b614fcc5f5cc0cec785a837e8e0e5019709980d008ed8a7b3ed16cede681d131",
+      "access": "local-private"
+    },
+    {
+      "file": "release/auto-platform-login/run-3/screenshots/E07-real-authorized.jpg",
+      "bytes": 55387,
+      "sha256": "e85b30d9bb50cab1f3ee406a19bd83a4f4e045dfc0dc5ee6601916a43dff5d45",
+      "access": "local-private"
+    },
+    {
+      "file": "release/auto-platform-login/run-3/screenshots/E08-real-reopen.jpg",
+      "bytes": 53913,
+      "sha256": "cabb2cd7c90227e9b7e80c5694dc283bfc0b3561626b9a3b2a24d8daaa70ee9d",
+      "access": "local-private"
+    },
+    {
+      "file": "release/auto-platform-login/run-3/screenshots/E09-final-restart-ready.jpg",
+      "bytes": 53189,
+      "sha256": "4a18eb935229ef3685fa259a1d91683844bb02be08b94c687b3c49f0d6200022",
+      "access": "local-private"
+    }
+  ]
+}

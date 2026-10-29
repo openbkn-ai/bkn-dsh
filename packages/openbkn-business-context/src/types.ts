@@ -57,7 +57,7 @@ export interface OpenBknCliSetupView {
 /** Safe, UI-ready representation of OpenBKN authentication state. */
 export type AuthSnapshot =
   | { readonly kind: 'authenticated'; readonly baseUrl: string; readonly userId?: string; readonly username?: string }
-  | { readonly kind: 'authentication-required'; readonly baseUrl: string; readonly reason?: 'expired' }
+  | { readonly kind: 'authentication-required'; readonly baseUrl: string; readonly reason?: 'expired' | 'platform-changed' }
   | { readonly kind: 'platform-mismatch'; readonly expectedBaseUrl: string; readonly actualBaseUrl: string }
 
 /** The only platform-network fields allowed to cross from Host to Client. */

@@ -30,7 +30,7 @@ export default defineConfig(({ env }) => {
       intro: 'var module = { exports: {} }; var exports = module.exports;',
     },
   } : {
-    entry: { index: 'src/index.ts', business: 'src/business.ts', diagnostics: 'src/diagnostics.ts' },
+    entry: { index: 'src/index.ts', business: 'src/business.ts', diagnostics: 'src/diagnostics.ts', 'cli-platform-preload': 'src/cli-platform-preload.ts' },
     outDir: 'lib',
     format: ['esm'],
     platform: 'node',

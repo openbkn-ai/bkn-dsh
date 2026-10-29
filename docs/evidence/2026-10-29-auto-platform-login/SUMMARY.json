@@ -1,0 +1,69 @@
+{
+  "kind": "local-development-preacceptance",
+  "ciRun": null,
+  "formalAcceptanceEligible": false,
+  "candidate": {
+    "version": "0.2.1-rc.3-openbkn.0.2.1-auto.local.1",
+    "archive": "openbkn-dsh-business-context-0.2.1-rc.3-openbkn.0.2.1-auto.local.1.tgz",
+    "sha256": "ea6be318b40f06a55e95e1bfd962f4f06fe230874574028750639f62e61194dc",
+    "bytes": 259279
+  },
+  "fileCount": 94,
+  "businessSha256": "167e6571b44d6e0bece6456c19546b79c6d39bd709d0632e6c46f66859c40417",
+  "packagedMcpSha256": "41db8cdb31f2f3403eb10e3e42c8114fdb9e54bbc1c76fb6dbdb2c2b931bc22d",
+  "sourceTests": {
+    "total": 651,
+    "passed": 650,
+    "failed": 0,
+    "skippedWindowsOnly": 1
+  },
+  "finalUiTests": {
+    "total": 47,
+    "passed": 47
+  },
+  "runtimeChecks": {
+    "total": 20,
+    "passed": 20
+  },
+  "manifestErrorChecks": {
+    "total": 3,
+    "passed": 3
+  },
+  "realReadOnly": {
+    "loadedClassIdentity": true,
+    "authKind": "authenticated",
+    "networkCount": 2,
+    "packagedMcpRuntimeIdentity": true,
+    "manualProfileCompanionPresent": false,
+    "result": "PASS"
+  },
+  "restart": {
+    "proofWrittenAfterSpawn": true,
+    "authKind": "authenticated",
+    "networkCount": 2,
+    "packagedMcpRuntimeIdentity": true,
+    "newBrowserProfilesAfterRestart": 0
+  },
+  "synthetic": {
+    "deviceRequests": 2,
+    "completedBrowserAuthorizations": 1,
+    "refreshes": 1,
+    "noToolsCall": true,
+    "fixtureClosed": true
+  },
+  "officialCliSha256": "18445a26bfb20f7a8cc8eecb50f499ff12c0ed564e0e3d8741850fcbe43f82a5",
+  "stockHostMcpSha256": "758d8fc473b700b5d351158d06ce9f9e92c16e8b25497b08bb7bd2122a87f5dd",
+  "finalDeltaFromRealLogin": [
+    "lib/client.js",
+    "lib/types/client/locales.d.ts"
+  ],
+  "hostExitCode": 0,
+  "ownedTaskProcessesRemaining": 0,
+  "notRun": [
+    "physical Windows automatic login",
+    "official native Mac Desktop increment",
+    "fresh real public-CA account",
+    "full business/model/G6/Sandbox/BOM/CSV",
+    "public release review/CI/publish"
+  ]
+}

@@ -5,7 +5,7 @@ import type { InjectFace, PropsRuntime } from '@deepseek-ai/dsh-client-ui-slots'
 import type { OpenBknUiController, OpenBknOverlayState } from './openbkn-ui-controller.ts'
 import { INITIAL_NETWORK_DIRECTORY_LIMIT, selectNetworkDirectory } from './network-directory.ts'
 import type { BusinessNetworkSummary, OpenBknConfigurationInput } from '../types.ts'
-import { CertificateControl, type CertificateChoice, type CertificatePort } from './CertificateControl.tsx'
+import type { CertificatePort } from './CertificateControl.tsx'
 import { CliSetupControl } from './CliSetupControl.tsx'
 import { useDialogFocus } from './use-dialog-focus.ts'
 import type { CliSetupPort } from './cli-setup-controller.ts'
@@ -113,6 +113,7 @@ function OverlayBody({ state, beginLogin, cancelLogin, saveConfiguration, cliSet
       <div>
         <p style={{ marginTop: 0, lineHeight: 1.6 }}>{t('signInWithTheLocalOpenBKNCLIThe')}</p>
         {state.auth?.kind === 'authentication-required' && state.auth.reason === 'expired' ? <p role="status">{t('credentialExpired')}</p> : null}
+        {state.auth?.kind === 'authentication-required' && state.auth.reason === 'platform-changed' ? <p role="status">{t('privatePlatformAuthorization')}</p> : null}
         <p style={{ ...mutedStyle, marginTop: 0 }}>{t('platformURL')} {displayBaseUrl(state.auth)}</p>
         {state.login === 'timed-out' ? <p role="status" style={authenticationNoticeStyle}>{t('signInWaitTimedOutPlatformAuthorizationMay')}</p> : state.login === 'cancelled' ? <p role="status" style={authenticationNoticeStyle}>{t('signInWaitCancelledSignInAgainOr')}</p> : null}
         {state.message ? <p role="status" style={authenticationNoticeStyle}>{renderUiMessage(state.message, t)}</p> : null}
@@ -203,8 +204,6 @@ function ConfigurationForm({ state, saveConfiguration, cliSetup, certificate }: 
 
   const [baseUrl, setBaseUrl] = useState(state.configuration?.baseUrl ?? '')
   const [cliPath, setCliPath] = useState(state.configuration?.cliPath ?? 'openbkn')
-  const [certificateChoice, setCertificateChoice] = useState<CertificateChoice>({})
-  const [certificateBusy, setCertificateBusy] = useState(false)
   const [advanced, setAdvanced] = useState(false)
   const [cliBusy, setCliBusy] = useState(false)
   const [cliSetupPending, setCliSetupPending] = useState(false)
@@ -215,14 +214,14 @@ function ConfigurationForm({ state, saveConfiguration, cliSetup, certificate }: 
   }, [state.configuration])
   const editable = state.configuration?.editable === true && state.loadingConfiguration !== true
   const saving = state.savingConfiguration === true
-  return <form onSubmit={event => { event.preventDefault(); if (!cliBusy && !certificateBusy) void saveConfiguration({ baseUrl, cliPath, ...certificateChoice }) }} style={{ display: 'grid', gap: 14 }}>
+  return <form onSubmit={event => { event.preventDefault(); if (!cliBusy) void saveConfiguration({ baseUrl, cliPath }) }} style={{ display: 'grid', gap: 14 }}>
     <p style={{ margin: 0, ...mutedStyle, lineHeight: 1.6 }}>
       {state.configuration?.configured ? t('editOpenBKNSettingsForTheCurrentDSHProfile') : t('enterTheOpenBKNPlatformURLThenSignIn')}
     </p>
     <label style={searchLabelStyle}>
       {t('openBKNPlatformURL')}<input aria-label={t('openBKNPlatformURL')} type="text" inputMode="url" autoComplete="url" placeholder="https://openbkn.example.com" value={baseUrl} onChange={event => setBaseUrl(event.target.value)} disabled={!editable || saving} style={searchInputStyle} />
     </label>
-    <CertificateControl baseUrl={baseUrl} current={state.configuration?.certificate} certificateError={state.configuration?.certificateError} disabled={!editable || saving} port={certificate} onChange={(choice, pending) => { setCertificateChoice(choice); setCertificateBusy(pending) }} />
+    <p style={{ margin: 0, ...mutedStyle, lineHeight: 1.6 }}>{t('automaticPlatformTrust')}</p>
     <details open={advanced} onToggle={event => setAdvanced(event.currentTarget.open)}>
       <summary style={loginLinkStyle}>{t('advancedSettings')}</summary>
       <label style={{ ...searchLabelStyle, marginTop: 10 }}>
@@ -234,7 +233,7 @@ function ConfigurationForm({ state, saveConfiguration, cliSetup, certificate }: 
     {!editable && state.configuration !== undefined && state.loadingConfiguration !== true ? <p role="status" style={authenticationNoticeStyle}>{configurationUnavailableMessage(state.configuration.unavailableReason, t)}</p> : null}
     {state.loadingConfiguration ? <p style={mutedStyle}>{t('readingSettings')}</p> : null}
     {state.configurationMessage ? <p role="status" style={authenticationNoticeStyle}>{renderUiMessage(state.configurationMessage, t)}</p> : null}
-    <div><button type="submit" style={primaryStyle} disabled={!editable || saving || cliBusy || certificateBusy}>{saving ? t('saving') : t('saveAndContinue')}</button></div>
+    <div><button type="submit" style={primaryStyle} disabled={!editable || saving || cliBusy}>{saving ? t('saving') : t('saveAndContinue')}</button></div>
   </form>
 }
 

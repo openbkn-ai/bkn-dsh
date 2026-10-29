@@ -235,6 +235,11 @@ export class OpenBknUiController {
       if (!this.current(operation)) return
       if (auth.kind !== 'authenticated') {
         this.publish({ open: true, phase: 'authentication-required', auth, networks: [], ...withConfiguration(configuration), ...(saved ? { message: uiMessage('settingsSavedSignInAndSyncWithOpenBKN') } : {}) })
+        if (auth.kind === 'authentication-required' && auth.reason === 'platform-changed') {
+          // The user is viewing this control plane. A changed remembered platform
+          // starts one new authorization, without a certificate confirmation.
+          await this.beginLogin()
+        }
         return
       }
       const networks = await this.port.listNetworks(operation.signal)
@@ -353,6 +358,8 @@ function connectionFailureMessage(error: unknown): UiMessage {
       if (reason?.startsWith('CERTIFICATE_') || reason === 'TRUST_SCOPE_MISMATCH') return uiMessage('certificateInvalid', { p0: reason })
       if (reason === 'TRUST_TRANSPORT_UNAVAILABLE') return uiMessage('trustTransportMissing', { p0: reason })
       if (reason === 'TRUST_CLI_UNAVAILABLE') return uiMessage('trustCliMissing', { p0: reason })
+      if (reason === 'BROWSER_UNAVAILABLE') return uiMessage('authorizationBrowserMissing')
+      if (reason === 'PLATFORM_IDENTITY_CHANGED' || reason === 'PLATFORM_REAUTHORIZATION_REQUIRED') return uiMessage('privatePlatformAuthorization')
       if (reason === 'NETWORK_TIMEOUT') return uiMessage('connectionTimeout', { p0: reason })
       if (reason === 'NETWORK_UNREACHABLE') return uiMessage('connectionNetworkFailed', { p0: reason })
       if (reason === 'PLATFORM_REJECTED') return uiMessage('connectionRejected', { p0: reason })

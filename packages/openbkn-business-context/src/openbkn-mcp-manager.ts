@@ -1,9 +1,11 @@
 import type { Context } from '@deepseek-ai/cordis'
 import { assertHttpsEndpoint, isLoopbackHost } from './platform-reader.js'
 import { passiveDiagnostics, transportMarkersOf, type PassiveDiagnosticsWriter } from './diagnostics-observer.js'
-import * as McpClient from '@deepseek-ai/dsh-mcp-client'
+import * as StockMcpClient from '@deepseek-ai/dsh-mcp-client'
+import { pathToFileURL, fileURLToPath } from 'node:url'
+import { dirname, resolve } from 'node:path'
 import type { Config } from './config.js'
-import { OpenBknPlatformTrust, PlatformConnectionError } from './platform-trust.js'
+import { PlatformConnectionError } from './platform-trust.js'
 
 export const OPENBKN_MCP_TOKEN_REF = 'OPENBKN_MCP_TOKEN'
 const REQUIRED_TOOL = 'mcp__openbkn__bkn_start_interaction'
@@ -23,7 +25,7 @@ export class OpenBknMcpManager {
     private readonly ctx: Context,
     private readonly config: Config,
     private readonly resolveToken: () => Promise<string | undefined>,
-    private readonly trust?: OpenBknPlatformTrust,
+    private readonly trust?: { readonly certificate?: unknown; readonly fetch: typeof fetch },
   ) {}
 
   private reloading: Promise<void> | undefined
@@ -113,6 +115,12 @@ export class OpenBknMcpManager {
 
   private async mountFiber(token: string): Promise<{ dispose(): Promise<void> }> {
     const customTrust = this.trust?.certificate !== undefined
+    // The plugin carries the reviewed native factory for its own scoped fetch.
+    // No profile package installation, Host replacement or global fetch mutation.
+    const McpClient: typeof StockMcpClient & { platformFetchSupported?: boolean } = customTrust
+      ? await import(pathToFileURL(resolve(dirname(fileURLToPath(import.meta.url)),
+          import.meta.url.endsWith('.ts') ? '../lib/platform-mcp-client.js' : 'platform-mcp-client.js')).href)
+      : StockMcpClient
     if (customTrust && (McpClient as unknown as { platformFetchSupported?: boolean }).platformFetchSupported !== true) {
       throw new PlatformConnectionError('TRUST_TRANSPORT_UNAVAILABLE')
     }

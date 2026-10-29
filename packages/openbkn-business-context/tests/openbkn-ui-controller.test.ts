@@ -6,6 +6,27 @@ import { OpenBknUiController, directoryPickerFailure, workspaceSelectionCancelle
 const authenticated = { kind: 'authenticated' as const, baseUrl: 'https://poc.openbkn.ai', username: 'leecky' }
 const authenticationRequired = { kind: 'authentication-required' as const, baseUrl: 'https://poc.openbkn.ai' }
 
+test('a changed remembered platform starts one browser authorization without a certificate prompt', async () => {
+  let logins = 0, authorized = false
+  const controller = new OpenBknUiController({ status: async () => authorized ? authenticated : { ...authenticationRequired, reason: 'platform-changed' as const },
+    beginLogin: async () => { logins++; authorized = true; return [] }, configureToken: async () => [], listNetworks: async () => [],
+    bindNetworkWorkspace: async () => { throw Error('not used') }, bindNetwork: async () => { throw Error('not used') },
+  }, async () => 'session-1')
+  controller.open(); await controller.refresh()
+  assert.equal(logins, 1); assert.equal(controller.snapshot().phase, 'ready')
+  await controller.refresh(); assert.equal(logins, 1)
+})
+
+test('a fresh platform still waits for the user login action and does not start a browser on mere inspection', async () => {
+  let logins = 0
+  const controller = new OpenBknUiController({ status: async () => authenticationRequired,
+    beginLogin: async () => { logins++; return [] }, configureToken: async () => [], listNetworks: async () => [],
+    bindNetworkWorkspace: async () => { throw Error('not used') }, bindNetwork: async () => { throw Error('not used') },
+  }, async () => 'session-1')
+  controller.open(); await controller.refresh()
+  assert.equal(logins, 0); assert.equal(controller.snapshot().phase, 'authentication-required')
+})
+
 test('directs unavailable RPC and unknown connection failures to diagnostics without guessing credentials', async () => {
   for (const failure of [
     Object.assign(new Error('definition unavailable'), { code: 'gateway/definition-unavailable' }),

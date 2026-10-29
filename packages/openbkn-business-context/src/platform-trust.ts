@@ -7,6 +7,7 @@ export type { CertificateIdentity, PlatformCertificateTrust } from './types.js'
 export type ConnectionFailureCode = 'CERTIFICATE_UNTRUSTED' | 'CERTIFICATE_INVALID'
   | 'CERTIFICATE_EXPIRED' | 'CERTIFICATE_HOSTNAME_MISMATCH' | 'TRUST_SCOPE_MISMATCH'
   | 'TRUST_TRANSPORT_UNAVAILABLE' | 'TRUST_CLI_UNAVAILABLE' | 'NETWORK_TIMEOUT' | 'NETWORK_UNREACHABLE'
+  | 'PLATFORM_IDENTITY_CHANGED' | 'PLATFORM_REAUTHORIZATION_REQUIRED' | 'BROWSER_UNAVAILABLE'
   | 'PLATFORM_REJECTED' | 'CLI_FAILED'
 
 /** Only stable classifications may cross the Host/UI boundary. */
@@ -93,9 +94,13 @@ export function connectionFailure(error: unknown): ConnectionFailureCode | undef
     if (current instanceof PlatformConnectionError) return current.code
     const value = current as { code?: unknown; message?: unknown; cause?: unknown; data?: { cause?: unknown } }
     const code = typeof value.code === 'string' ? value.code : ''
+    if (code === 'PLATFORM_IDENTITY_CHANGED' || code === 'PLATFORM_REAUTHORIZATION_REQUIRED' || code === 'BROWSER_UNAVAILABLE') return code
     const message = typeof current === 'string' ? current.slice(0, 64 * 1024)
       : typeof value.message === 'string' ? value.message.slice(0, 64 * 1024) : ''
     const marker = code + ' ' + message
+    if (/PLATFORM_IDENTITY_CHANGED/.test(marker)) return 'PLATFORM_IDENTITY_CHANGED'
+    if (/PLATFORM_REAUTHORIZATION_REQUIRED/.test(marker)) return 'PLATFORM_REAUTHORIZATION_REQUIRED'
+    if (/BROWSER_UNAVAILABLE/.test(marker)) return 'BROWSER_UNAVAILABLE'
     if (/CERT_HAS_EXPIRED|CERT_NOT_YET_VALID/.test(marker)) return 'CERTIFICATE_EXPIRED'
     if (/ERR_TLS_CERT_ALTNAME_INVALID/.test(marker)) return 'CERTIFICATE_HOSTNAME_MISMATCH'
     if (/DEPTH_ZERO_SELF_SIGNED_CERT|SELF_SIGNED_CERT_IN_CHAIN|UNABLE_TO_VERIFY_LEAF_SIGNATURE|UNABLE_TO_GET_ISSUER_CERT_LOCALLY/.test(marker)) return 'CERTIFICATE_UNTRUSTED'

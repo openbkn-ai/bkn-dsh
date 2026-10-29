@@ -1,5 +1,8 @@
 /** Plugin-owned copy only. Platform text, protocol identifiers and model answers stay verbatim. */
 export const zh = {
+  "automaticPlatformTrust": "私有平台证书将在登录时自动记住。平台地址或证书变化后，需要重新进行浏览器授权。",
+  "privatePlatformAuthorization": "请在浏览器中授权当前平台。后续会自动续期；平台地址或证书变化后需要再次授权。",
+  "authorizationBrowserMissing": "未找到可用的 Chrome 或 Edge，无法打开私有平台授权页。请安装后重试。",
   "trustCliMissing": "当前 CLI 不能将附加证书严格限定到平台地址，暂未为登录启用证书。需要支持该边界的 CLI 后重试；不要关闭 TLS 校验。 ({p0})",
   "credentialExpired": "登录凭据已过期（AUTH_EXPIRED），请重新登录并完成浏览器授权。",
   "platformCertificate": "平台证书",
@@ -62,7 +65,7 @@ export const zh = {
   "businessKnowledgeNetworks": "业务知识网络",
   "settings": "设置",
   "waitingForOpenBKNCLIBrowserAuthorizationAndCredential": "正在等待 OpenBKN CLI 完成浏览器授权并同步凭据…",
-  "completeSignInInTheBrowserCancellingOr": "请在打开的浏览器中完成登录。取消或关闭面板会停止本次等待；已打开的浏览器需手动关闭，平台上已完成的授权不会撤销。",
+  "completeSignInInTheBrowserCancellingOr": "请在打开的浏览器中完成登录。取消或关闭面板会停止本次等待；平台上已完成的授权不会撤销。",
   "cancelSignIn": "取消登录",
   "bindingTheCurrentConversation": "正在绑定当前会话…",
   "connectingToOpenBKN": "正在连接 OpenBKN…",
@@ -336,6 +339,9 @@ export const zh = {
 export type OpenBknMessageKey = keyof typeof zh
 
 export const en: Record<OpenBknMessageKey, string> = {
+  "automaticPlatformTrust": "The private platform certificate is remembered automatically at sign-in. A platform address or certificate change requires new browser authorization.",
+  "privatePlatformAuthorization": "Authorize this platform in the browser. The session renews automatically; a platform address or certificate change requires new authorization.",
+  "authorizationBrowserMissing": "Chrome or Edge is unavailable for private-platform authorization. Install a supported browser and retry.",
   "trustCliMissing": "This CLI cannot restrict an extra certificate to the platform origin. Certificate-based login remains blocked until a compatible CLI is available; keep TLS verification enabled. ({p0})",
   "credentialExpired": "The login credential has expired (AUTH_EXPIRED). Sign in again and complete browser authorization.",
   "platformCertificate": "Platform certificate",
@@ -398,7 +404,7 @@ export const en: Record<OpenBknMessageKey, string> = {
   "businessKnowledgeNetworks": "Business knowledge networks",
   "settings": "Settings",
   "waitingForOpenBKNCLIBrowserAuthorizationAndCredential": "Waiting for OpenBKN CLI browser authorization and credential synchronization…",
-  "completeSignInInTheBrowserCancellingOr": "Complete sign-in in the browser. Cancelling or closing this panel stops this request. Close the browser yourself; authorization already completed on the platform is not revoked.",
+  "completeSignInInTheBrowserCancellingOr": "Complete sign-in in the browser. Cancelling or closing this panel stops this request. Authorization already completed on the platform is not revoked.",
   "cancelSignIn": "Cancel sign-in",
   "bindingTheCurrentConversation": "Binding the current conversation…",
   "connectingToOpenBKN": "Connecting to OpenBKN…",
