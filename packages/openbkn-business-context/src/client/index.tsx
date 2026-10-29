@@ -283,8 +283,12 @@ function remotePort(ctx: Context): OpenBknUiPort & {
     beginLogin: async signal => {
       const login = remote.beginLoginStream(signal)
       try {
-        for await (const networks of login) return networks
-        throw new Error('OpenBKN login completed without a verified network list.')
+        // This endpoint yields one verified result. A for-await return waits
+        // for iterator.return(), which can delay that result behind carrier
+        // cleanup. The handle's dispose owns cancellation and releases it.
+        const result = await login[Symbol.asyncIterator]().next()
+        if (result.done) throw new Error('OpenBKN login completed without a verified network list.')
+        return result.value
       } finally {
         await login.dispose()
       }
