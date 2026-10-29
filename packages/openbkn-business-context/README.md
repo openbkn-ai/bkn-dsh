@@ -1,6 +1,6 @@
 # bkn-dsh
 
-> Local automatic private-platform login candidate, unpublished. Click CLI sign-in to open the official authorization flow in an independently owned Chrome/Edge profile. The configured platform certificate is automatically observed and pinned; an address or certificate change automatically replaces the remembered identity and requires a new browser authorization. This explicitly accepted private-environment policy substitutes an observed fingerprint for public CA/hostname authentication; it is not a public-PKI security claim. No global Host/system trust is changed. The official CLI is unchanged; a preload dispatcher exists only in its dedicated child. Existing supplemental CA settings are not prerequisites. Actual platform/CLI baseline remains0.2.0; OpenBKN0.2.1 in the version is a release identifier.
+> Automatic private-platform login rc revision. Click CLI sign-in to open the official authorization flow in an independently owned Chrome/Edge profile. The configured platform certificate is automatically observed and pinned; an address or certificate change automatically replaces the remembered identity and requires a new browser authorization. This explicitly accepted private-environment policy substitutes an observed fingerprint for public CA/hostname authentication; it is not a public-PKI security claim. No global Host/system trust is changed. The official CLI is unchanged; a preload dispatcher exists only in its dedicated child. Existing supplemental CA settings are not prerequisites. Actual platform/CLI baseline remains0.2.0; OpenBKN0.2.1 in the version is a release identifier.
 
 This increment uses an installed compatible official OpenBKN CLI (0.2.0 exercised here) and locally installed Chrome or Edge. The private native MCP fetch backport ships with the plugin and is selected only for its managed connection; no manual companion installation or Host modification is required. Ordinary access-token expiry uses official CLI refresh; a revoked or rejected refresh grant still requires authorization. Peer certificate dates remain checked.
 
@@ -12,9 +12,9 @@ Bring governed enterprise business knowledge into DeepSeek Harness conversations
 
 ## 0.2.1 version and compatibility
 
-This release line uses `0.2.1-rc.3-openbkn.0.2.1` and targets official DSH `0.2.0-rc.2` and `0.2.1-rc.3`. The OpenBKN `0.2.1` component is the version identity requested by the maintainer. Actual platform evidence remains on retained official OpenBKN `0.2.0` and CLI `0.2.0`; it does not establish acceptance on an unreleased OpenBKN `0.2.1` platform. Consult the matching GitHub Release acceptance record for the tested coverage and known limitations.
+This release line uses `0.2.1-rc.3-openbkn.0.2.1-1` and targets official DSH `0.2.0-rc.2` and `0.2.1-rc.3`. The OpenBKN `0.2.1` component is the version identity requested by the maintainer. Actual platform evidence remains on retained official OpenBKN `0.2.0` and CLI `0.2.0`; it does not establish acceptance on an unreleased OpenBKN `0.2.1` platform. Consult the matching GitHub Release acceptance record for the tested coverage and known limitations.
 
-The #105 same-origin protection requires the matching profile MCP companion; the plugin tarball alone does not install that backport. Keep the original official application and follow the [companion placement and rollback instructions](https://github.com/openbkn-ai/bkn-dsh/tree/main/compat/mcp-profile-backport). Existing Hosts, platform, frozen -30/-31/-32 and historical verdicts are preserved.
+This revision ships the native MCP same-origin protection with the plugin and loads it through the business module; no separate profile companion or official Host modification is required. Companion instructions for the earlier base release remain historical. Frozen -30/-31/-32 and historical verdicts are preserved.
 
 ### Historical development checkpoints
 
@@ -65,15 +65,15 @@ Ordinary answers use the tool results and DSH's native model output. The plugin 
 
 ## Install and start
 
-Use an unpatched DeepSeek Harness `0.2.0-rc.2`: the official desktop app, npm CLI (`@deepseek-ai/dsh@0.2.0-rc.2`), or a built source checkout. In DSH's **Plugins** page, choose **Add plugin**, enter `@openbkn/dsh-business-context@latest`, and select your registry. Or stop DSH and run:
+Use unpatched official DeepSeek Harness `0.2.1-rc.3` (also retaining the `0.2.0-rc.2` compatibility target): its desktop app, matching npm CLI, or a built source checkout. In DSH's **Plugins** page, choose **Add plugin**, enter `@openbkn/dsh-business-context@0.2.1-rc.3-openbkn.0.2.1-1`, and select your registry. Or stop DSH and run:
 
 ```bash
-dsh plugin --profile <desktop|web> add @openbkn/dsh-business-context@latest
+dsh plugin --profile <desktop|web> add @openbkn/dsh-business-context@0.2.1-rc.3-openbkn.0.2.1-1
 ```
 
-On Windows, use `dsh.cmd`. A source build uses `node apps/cli/lib/bin.js plugin --profile web add @openbkn/dsh-business-context@latest` from the DSH checkout root. Choose the actual profile and `DSH_HOME` of the Host you run; `desktop` and `web` are separate profiles. For a downloaded package, replace the package spec with its absolute `.tgz` path.
+On Windows, use `dsh.cmd`. A source build uses `node apps/cli/lib/bin.js plugin --profile web add @openbkn/dsh-business-context@0.2.1-rc.3-openbkn.0.2.1-1` from the DSH checkout root. Choose the actual profile and `DSH_HOME` of the Host you run; `desktop` and `web` are separate profiles. For a downloaded package, replace the package spec with its absolute `.tgz` path.
 
-Install an OpenBKN CLI version that matches the platform. For OpenBKN 0.1.5, use `npm install -g @openbkn/bkn-sdk@0.1.5`; for 0.1.4, use `@openbkn/bkn-sdk@0.1.4` (`0.1.5-rc.1` also works). CLI `0.1.5-rc.2` and later require a platform health/version endpoint absent in 0.1.4. You do not need to sign in before configuring the plugin. The npm DSH CLI also requires pnpm on `PATH` (`npm install -g pnpm@11.7.0`); the desktop app bundles it. For this candidate’s self-signed certificate workflow and the current SDK restriction, see the local-candidate notice above.
+For the tested formal OpenBKN `0.2.0`, use official CLI `@openbkn/bkn-sdk@0.2.0`; select a compatible CLI for other platforms. Retain an existing usable CLI rather than automatically upgrading it. No prior sign-in is needed: the panel starts official authorization. The npm DSH CLI also requires pnpm on PATH (`pnpm@11.7.0`); the desktop app bundles it. See the automatic-trust scope and first-contact identity limitation above.
 
 ### Configure, authorize, and ask
 

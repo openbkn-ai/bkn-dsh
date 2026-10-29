@@ -1,5 +1,7 @@
 # bkn-dsh
 
+当前 rc：`0.2.1-rc.3-openbkn.0.2.1-1`。自动登录与随包 MCP 的安装和信任边界见 [插件说明](packages/openbkn-business-context/README.zh.md)；下方开发记录保留其历史判定。
+
 **近期更新（9 月 21 日至 10 月 12 日）：** [中文](docs/releases/2026-10-12-recent-updates.zh.md) · [English](docs/releases/2026-10-12-recent-updates.md)。
 
 **图文使用手册：** [中文](docs/user-guide/README.zh.md) · [English](docs/user-guide/README.en.md) · [PDF（中文）](docs/user-guide/bkn-dsh-9-user-guide.zh.pdf)。覆盖安装配置、CLI、登录、供应链问答、溯源与诊断，配有带点击编号的实机截图。
@@ -12,9 +14,9 @@
 
 ## 0.2.1 版本与兼容范围
 
-本线发布版本为 `0.2.1-rc.3-openbkn.0.2.1`，兼容目标为官方 DSH `0.2.0-rc.2` 与 `0.2.1-rc.3`。版本串中的 OpenBKN `0.2.1` 为维护者指定的版本标识；当前实际平台证据来自保留的正式 OpenBKN `0.2.0` 与 CLI `0.2.0`，不声明已在尚未发布的 OpenBKN `0.2.1` 平台验收。具体测试覆盖和已知限制以对应 GitHub Release 的验收记录为准。
+本线发布版本为 `0.2.1-rc.3-openbkn.0.2.1-1`，兼容目标为官方 DSH `0.2.0-rc.2` 与 `0.2.1-rc.3`。版本串中的 OpenBKN `0.2.1` 为维护者指定的版本标识；当前实际平台证据来自保留的正式 OpenBKN `0.2.0` 与 CLI `0.2.0`，不声明已在尚未发布的 OpenBKN `0.2.1` 平台验收。具体测试覆盖和已知限制以对应 GitHub Release 的验收记录为准。
 
-#105 同源保护采用与 Host 匹配的 profile MCP 配套文件；插件单包不会自动安装该回补。保留官方原应用，按 [配套交付与恢复说明](https://github.com/openbkn-ai/bkn-dsh/tree/main/compat/mcp-profile-backport)操作，不替换日常 Host 或平台。冻结 -30/-31/-32 及历史判定保持原样。
+本修订的原生 MCP 同源保护随插件交付并由业务模块自动加载，无需另装 profile companion 或修改官方 Host。较早基础版的 companion 说明仅适用于其历史包；冻结 -30/-31/-32 及历史判定保持原样。
 
 ### 历史开发检查点
 
@@ -71,27 +73,24 @@ bkn-dsh 是一个增量式 DeepSeek Harness 插件。授权用户可为一个会
 
 ### 开始之前
 
-1. **OpenBKN CLI。** 安装与平台版本匹配的 CLI：OpenBKN 0.1.5 平台用 `npm install -g @openbkn/bkn-sdk@0.1.5`；0.1.4 平台用 `@openbkn/bkn-sdk@0.1.4`（`0.1.5-rc.1` 也可以）。CLI 从 `0.1.5-rc.2` 起要求平台提供健康/版本接口，0.1.4 没有该接口。可以先配置插件，面板会在需要时发起 CLI 授权。DSH 要能从自身进程的 `PATH` 找到 `openbkn`；macOS 桌面版读取登录 shell 环境，Windows 使用 `openbkn.cmd`。找不到时，在面板的**设置 → 高级设置**里填写 CLI 绝对路径。Windows 上要写到 shim 文件本身，例如 `C:/Users/<你>/AppData/Roaming/npm/openbkn.cmd`（`where.exe openbkn` 可以查到位置）。
+1. **OpenBKN CLI。** 本次实测的正式 OpenBKN 0.2.0 使用官方 CLI `@openbkn/bkn-sdk@0.2.0`；已有兼容安装保持不变。历史 OpenBKN 0.1.5 平台用 `npm install -g @openbkn/bkn-sdk@0.1.5`；0.1.4 平台用 `@openbkn/bkn-sdk@0.1.4`（`0.1.5-rc.1` 也可以）。CLI 从 `0.1.5-rc.2` 起要求平台提供健康/版本接口，0.1.4 没有该接口。可以先配置插件，面板会在需要时发起 CLI 授权。DSH 要能从自身进程的 `PATH` 找到 `openbkn`；macOS 桌面版读取登录 shell 环境，Windows 使用 `openbkn.cmd`。找不到时，在面板的**设置 → 高级设置**里填写 CLI 绝对路径。Windows 上要写到 shim 文件本身，例如 `C:/Users/<你>/AppData/Roaming/npm/openbkn.cmd`（`where.exe openbkn` 可以查到位置）。
 2. **pnpm（只有 npm 命令行需要）。** npm 版的 `dsh` 会把 `plugin add` 交给 `PATH` 里的 `pnpm` 执行，要先安装它（`npm install -g pnpm@11.7.0`，与 DSH 自己用的版本一致）。桌面版自带 pnpm。
-3. **自签证书的平台**（公开受信任的证书可跳过）。DSH 要通过 `NODE_EXTRA_CA_CERTS=<CA pem 路径>` 信任平台 CA：
-   - 在终端里运行 `dsh web`：在命令前加上这个变量。
-   - macOS 桌面版：在 `~/.zprofile` 或 `~/.zshrc` 里 `export NODE_EXTRA_CA_CERTS=…`。桌面版启动时会读取登录 shell 的环境，从 Dock 或访达启动也一样。
-   - Windows：设为用户环境变量，然后把需要用到它的程序**完全退出后重开**，包括设置之前就开着的 IDE 或 agent 宿主里的终端。
+3. **私有平台授权。** 本 rc 使用已安装的 Chrome/Edge 和官方 CLI 启动独立授权流程。插件自动记录私有平台身份并锁定连接，无需手工导入 CA、修改 shell 配置或用户级 CA 环境变量。首次身份来自观察，不提供公共 CA/主机名身份保证；身份变化后需要重新完成浏览器授权。详见[插件信任边界](packages/openbkn-business-context/README.zh.md)。已有全局 CA 设置保留。
 4. **使用标准模式。** 绑定了 OpenBKN 网络的会话必须使用 DSH 的**标准模式**。目前不支持 PTC 模式：插件会拒绝其中的 `run_code`，模型会提示你新建一个标准模式的会话。模式要在发送第一条消息前、在模式菜单里选定，之后不能再改。
 
 ### 1. 安装插件
 
-在 DSH 的**插件**页面选择**添加插件**，填写 `@openbkn/dsh-business-context@latest`，选择安装源后安装。也可以先停止 DSH，再用终端安装；桌面版需要至少启动过一次，profile 才会存在：
+在 DSH 的**插件**页面选择**添加插件**，填写 `@openbkn/dsh-business-context@0.2.1-rc.3-openbkn.0.2.1-1`，选择安装源后安装。也可以先停止 DSH，再用终端安装；桌面版需要至少启动过一次，profile 才会存在：
 
 ```bash
 # 桌面版（macOS）。应用菜单里的「管理 dsh 命令…」也可把 dsh 加到 PATH。
-"/Applications/DeepSeek Harness.app/Contents/Resources/runtime/cli/bin/dsh" plugin --profile desktop add @openbkn/dsh-business-context@latest
+"/Applications/DeepSeek Harness.app/Contents/Resources/runtime/cli/bin/dsh" plugin --profile desktop add @openbkn/dsh-business-context@0.2.1-rc.3-openbkn.0.2.1-1
 
 # npm 命令行
-dsh plugin --profile web add @openbkn/dsh-business-context@latest
+dsh plugin --profile web add @openbkn/dsh-business-context@0.2.1-rc.3-openbkn.0.2.1-1
 
 # 源码构建，在 DSH 源码根目录执行
-node apps/cli/lib/bin.js plugin --profile web add @openbkn/dsh-business-context@latest
+node apps/cli/lib/bin.js plugin --profile web add @openbkn/dsh-business-context@0.2.1-rc.3-openbkn.0.2.1-1
 ```
 
 Windows 上用 `dsh.cmd` 代替 `dsh`。请使用实际启动的 Host 的 profile 和 `DSH_HOME`；默认 `desktop` 与 `web` 是独立的 profile。从下载包安装时，把包名替换为 `.tgz` 的绝对路径。
@@ -169,14 +168,14 @@ OpenBKN Runtime 归档不再发布：把插件装进 DSH 是唯一受支持的�
 
 ## 支持的 DSH 版本
 
-当前开发目标以[宿主清单](compat/dsh-hosts.json)为准：`0.2.0-rc.2` 与 `0.2.1-rc.3`，构建继续使用旧版生成器。验收遵循[正式版合同](docs/plans/0.2.1/ACCEPTANCE-CONTRACT.md)；隔离私有 fixture 的检查不是新发布或 CI 候选验收。
+当前 rc 目标以[宿主清单](compat/dsh-hosts.json)为准：`0.2.0-rc.2` 与 `0.2.1-rc.3`，构建继续使用旧版生成器。具体覆盖与限制见对应 Release 和[验收合同](docs/plans/0.2.1/ACCEPTANCE-CONTRACT.md)；历史 fixture 结果不构成全形态验收声明。
 
 用 `dsh --version` 确认自己的版本后按下表配对：
 
 | 你的 DSH 版本 | 兼容补丁系列 | 应安装的插件 | 预构建 Runtime 归档 |
 | --- | --- | --- | --- |
-| `dsh-v0.2.0-rc.2`（当前锁定）：桌面版、npm 命令行或源码构建 | 使用插件不需要；[`compat/dsh-0.2.0-rc.2/`](compat/dsh-0.2.0-rc.2/) 用于从源码构建 | npm 上的 `@openbkn/dsh-business-context@latest` 或正式 `.tgz`（标准模式） | 已停止发布；最后一个：[openbkn-dsh-runtime-v0.2.0-rc.2-openbkn.0.2.0](https://github.com/openbkn-ai/bkn-dsh/releases/tag/openbkn-dsh-runtime-v0.2.0-rc.2-openbkn.0.2.0) |
-| `dsh-v0.2.1-rc.3`（开发目标） | 隔离官方宿主；保留旧构建生成器 | -32 仅元数据，固定候选及实机验收待完成 | 不发布新 Runtime 归档 |
+| `dsh-v0.2.0-rc.2`（当前锁定）：桌面版、npm 命令行或源码构建 | 使用插件不需要；[`compat/dsh-0.2.0-rc.2/`](compat/dsh-0.2.0-rc.2/) 用于从源码构建 | npm 上的 `@openbkn/dsh-business-context@0.2.1-rc.3-openbkn.0.2.1-1` 或正式 `.tgz`（标准模式） | 已停止发布；最后一个：[openbkn-dsh-runtime-v0.2.0-rc.2-openbkn.0.2.0](https://github.com/openbkn-ai/bkn-dsh/releases/tag/openbkn-dsh-runtime-v0.2.0-rc.2-openbkn.0.2.0) |
+| `dsh-v0.2.1-rc.3`（rc 目标） | 官方 Host；保留旧构建生成器 | `@openbkn/dsh-business-context@0.2.1-rc.3-openbkn.0.2.1-1`；具体覆盖与限制见对应 Release | 不发布新 Runtime 归档 |
 | `dsh-v0.1.7-rc.2`（上一代系列） | [`compat/dsh-0.1.7-rc.2/`](compat/dsh-0.1.7-rc.2/)（存档） | npm 上的 `@openbkn/dsh-business-context@0.1.7-rc.2-openbkn.0.2.0`，或从 git tag [`v0.1.7-rc.2-openbkn.0.2.0`](https://github.com/openbkn-ai/bkn-dsh/tree/v0.1.7-rc.2-openbkn.0.2.0) 源码构建 | [openbkn-dsh-runtime-v0.1.7-rc.2-openbkn.0.2.0](https://github.com/openbkn-ai/bkn-dsh/releases/tag/openbkn-dsh-runtime-v0.1.7-rc.2-openbkn.0.2.0) |
 | `dsh-v0.1.6-alpha.2`（上一代系列） | [`compat/dsh-0.1.6-alpha.2/`](compat/dsh-0.1.6-alpha.2/)（存档） | npm 上的 `@openbkn/dsh-business-context@0.1.5-rc.2`，或从 git tag [`v0.1.5-rc.2`](https://github.com/openbkn-ai/bkn-dsh/tree/v0.1.5-rc.2) 源码构建 | [openbkn-dsh-runtime-v0.1.6-alpha.2-openbkn.1](https://github.com/openbkn-ai/bkn-dsh/releases/tag/openbkn-dsh-runtime-v0.1.6-alpha.2-openbkn.1) |
 

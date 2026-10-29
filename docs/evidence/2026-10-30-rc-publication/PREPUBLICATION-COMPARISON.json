@@ -1,0 +1,40 @@
+{
+  "sourceMain": "6c8699ebcee2b099dc23df484164d1062191bd84",
+  "version": "0.2.1-rc.3-openbkn.0.2.1-1",
+  "referenceCi": 40920391148,
+  "referenceSha256": "7c99d259758fabf1c14853d487904e81ffb51d799dd268e39326b299b372bcfc",
+  "localArchiveSha256": "7052ce5c6109301381a83768afa47a85f6c5eb5acb14913bc3d7a1bd7c4ffc76",
+  "files": 94,
+  "identicalFiles": 91,
+  "changedFiles": [
+    "README.md",
+    "README.zh.md",
+    "package.json"
+  ],
+  "manifestSemanticDelta": [
+    "version"
+  ],
+  "sourceRuntimeChanged": false,
+  "kind": "rc-publication-preflight",
+  "published": false,
+  "reusedAcceptance": "docs/evidence/2026-10-30-auto-login-integration/RESULTS.md",
+  "allowedPackageChanges": [
+    "package.json version only",
+    "README.md release/install documentation",
+    "README.zh.md release/install documentation"
+  ],
+  "targetedChecks": {
+    "releaseNotes": 6,
+    "manifest": "pass",
+    "hostDeclarations": "pass"
+  },
+  "upstreamSnapshot": {
+    "dsh": "f3803c96974ad4a94195fb97e5c637e9c2a3afe3",
+    "sdk": "fb6f228c7b33aac6227737425c78b60a519c6578",
+    "foundry": "de4f48b10395157c4ccf1d22374ec2740adba78e",
+    "scope": "DSH/SDK unchanged from integration; Foundry changes concern project workflows, added public project Agents and object/action scanning, not this plugin authorization transport. Deployed platform remains unchanged."
+  },
+  "npmLatestBefore": "0.2.0-rc.2-openbkn.0.2.0-13",
+  "githubLatestBefore": "v0.2.0-rc.2-openbkn.0.2.0-13",
+  "finalRegistryComparison": "pending before publishing the GitHub draft"
+}
