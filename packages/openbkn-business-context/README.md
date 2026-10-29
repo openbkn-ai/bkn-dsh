@@ -1,5 +1,7 @@
 # bkn-dsh
 
+> Local-only certificate repair candidate; not ready to replace the published package. In **Settings → Platform certificate**, choose an administrator-provided PEM/CRT, check the platform, validity and SHA-256 fingerprint, then explicitly confirm. Confirmed profile-scoped trust covers managed MCP, catalog and native provenance HTTP reads. Official OpenBKN CLI 0.2.0 does not yet constrain an additional CA to one origin, so imported-certificate login deliberately stops with `TRUST_CLI_UNAVAILABLE`. Keep TLS chain, date and hostname verification enabled; do not bypass this boundary with a global CA setting or insecure flag. This repair's CLI/platform baseline is 0.2.0; the existing version's OpenBKN 0.2.1 component remains a release identifier.
+
 OpenBKN business knowledge, network-scoped access, diagnostics, and provenance for DeepSeek Harness.
 
 [中文](README.zh.md)
@@ -69,7 +71,7 @@ dsh plugin --profile <desktop|web> add @openbkn/dsh-business-context@latest
 
 On Windows, use `dsh.cmd`. A source build uses `node apps/cli/lib/bin.js plugin --profile web add @openbkn/dsh-business-context@latest` from the DSH checkout root. Choose the actual profile and `DSH_HOME` of the Host you run; `desktop` and `web` are separate profiles. For a downloaded package, replace the package spec with its absolute `.tgz` path.
 
-Install an OpenBKN CLI version that matches the platform. For OpenBKN 0.1.5, use `npm install -g @openbkn/bkn-sdk@0.1.5`; for 0.1.4, use `@openbkn/bkn-sdk@0.1.4` (`0.1.5-rc.1` also works). CLI `0.1.5-rc.2` and later require a platform health/version endpoint absent in 0.1.4. You do not need to sign in before configuring the plugin. The npm DSH CLI also requires pnpm on `PATH` (`npm install -g pnpm@11.7.0`); the desktop app bundles it. For a self-signed platform certificate, configure `NODE_EXTRA_CA_CERTS` for the DSH process and fully restart it; detailed platform-specific instructions are in the [repository README](https://github.com/openbkn-ai/bkn-dsh#before-you-start).
+Install an OpenBKN CLI version that matches the platform. For OpenBKN 0.1.5, use `npm install -g @openbkn/bkn-sdk@0.1.5`; for 0.1.4, use `@openbkn/bkn-sdk@0.1.4` (`0.1.5-rc.1` also works). CLI `0.1.5-rc.2` and later require a platform health/version endpoint absent in 0.1.4. You do not need to sign in before configuring the plugin. The npm DSH CLI also requires pnpm on `PATH` (`npm install -g pnpm@11.7.0`); the desktop app bundles it. For this candidate’s self-signed certificate workflow and the current SDK restriction, see the local-candidate notice above.
 
 ### Configure, authorize, and ask
 

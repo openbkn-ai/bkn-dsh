@@ -1,0 +1,116 @@
+[
+  {
+    "upstreamVersion": "0.2.0-rc.2",
+    "kind": "local-unpublished-profile-companion",
+    "archive": "release/local2-delivery/dsh-mcp-client-0.2.0-rc.2-platform-cert-local1.tgz",
+    "sha256": "49d2ee3335338aa28e8acaa8a1d9474c8a021c68aa9b4fa268d81f24d8bd7d43",
+    "bytes": 36377,
+    "files": {
+      "LICENSE": {
+        "bytes": 1065,
+        "sha256": "ebb4f09972aee8608be255debaf78451a68e95c290f55c240dec2ecfa16ea6be"
+      },
+      "MCP-SDK-LICENSE.txt": {
+        "bytes": 12227,
+        "sha256": "0382b0057770ca05e9c350a50aa3b1c1fea84da0bc81d723bf00b9aa841be58a"
+      },
+      "README.i18n.yaml": {
+        "bytes": 3894,
+        "sha256": "7aab65f1f8bf8d7e2ef360cc7b05ce614363216d183b8670e82ee6f16b039510"
+      },
+      "README.md": {
+        "bytes": 18723,
+        "sha256": "dee48f8f16549d0e4a4dfeca201262281448f057997247ac49425c4dba1cb7a2"
+      },
+      "README.zh.md": {
+        "bytes": 17313,
+        "sha256": "1f6751a7b6a778a69379b103cfcc964f33a7eabf9b9187d2fd20957be907ceb0"
+      },
+      "lib/index.js": {
+        "bytes": 36063,
+        "sha256": "ad1c5744b50873368028f29bcf28964133d34f11d85c83ddee8be770c41d2eb1"
+      },
+      "lib/types/connection.d.ts": {
+        "bytes": 4062,
+        "sha256": "daa56cbb3935d495edfa3811e90fe3384ceba79513835db16ec1416860b81ced"
+      },
+      "lib/types/index.d.ts": {
+        "bytes": 4813,
+        "sha256": "68b7987bb77d75111537e70a71594ee36205a5099c2079e0617ceffc6cda2e8f"
+      },
+      "lib/types/server-context.d.ts": {
+        "bytes": 1122,
+        "sha256": "ca399c8ab7ddc726e64cc5cc3cc02b286857acb3958eae9775ac0aa5b54a45ad"
+      },
+      "lib/types/tools.d.ts": {
+        "bytes": 5228,
+        "sha256": "32fa23472d05bbe322ccf4541d033e1467aa795770fb3e0c3817271416e82dfc"
+      },
+      "lib/types/transport.d.ts": {
+        "bytes": 647,
+        "sha256": "502b4c216e89876828bf85c4bfca337375e45f37a65671e7375b9eb04211576c"
+      },
+      "package.json": {
+        "bytes": 2359,
+        "sha256": "904042c96928173cbd04c3d8455734f4f8ae68b145a0c6e8368a54925da0181a"
+      }
+    }
+  },
+  {
+    "upstreamVersion": "0.2.1-rc.3",
+    "kind": "local-unpublished-profile-companion",
+    "archive": "release/local2-delivery/dsh-mcp-client-0.2.1-rc.3-platform-cert-local1.tgz",
+    "sha256": "ba4c4dc485bee957117cbff07bf858cc2e80b77df186724fa4a1e5580c76b352",
+    "bytes": 36200,
+    "files": {
+      "LICENSE": {
+        "bytes": 1065,
+        "sha256": "ebb4f09972aee8608be255debaf78451a68e95c290f55c240dec2ecfa16ea6be"
+      },
+      "MCP-SDK-LICENSE.txt": {
+        "bytes": 12227,
+        "sha256": "0382b0057770ca05e9c350a50aa3b1c1fea84da0bc81d723bf00b9aa841be58a"
+      },
+      "README.i18n.yaml": {
+        "bytes": 3894,
+        "sha256": "342b303800175afd98281c1d60ed30707666fa575857e5d0bbbe81e828d6becd"
+      },
+      "README.md": {
+        "bytes": 18463,
+        "sha256": "346ad21f0c7f8bd7248a021513228769fcde1dec7065a3ea77e809f999805806"
+      },
+      "README.zh.md": {
+        "bytes": 17063,
+        "sha256": "7238d7c53a955b818f6c765615b83eb54d371959e38d1ea677175772ac064cfb"
+      },
+      "lib/index.js": {
+        "bytes": 36063,
+        "sha256": "ad1c5744b50873368028f29bcf28964133d34f11d85c83ddee8be770c41d2eb1"
+      },
+      "lib/types/connection.d.ts": {
+        "bytes": 4062,
+        "sha256": "daa56cbb3935d495edfa3811e90fe3384ceba79513835db16ec1416860b81ced"
+      },
+      "lib/types/index.d.ts": {
+        "bytes": 4813,
+        "sha256": "68b7987bb77d75111537e70a71594ee36205a5099c2079e0617ceffc6cda2e8f"
+      },
+      "lib/types/server-context.d.ts": {
+        "bytes": 1122,
+        "sha256": "ca399c8ab7ddc726e64cc5cc3cc02b286857acb3958eae9775ac0aa5b54a45ad"
+      },
+      "lib/types/tools.d.ts": {
+        "bytes": 5228,
+        "sha256": "32fa23472d05bbe322ccf4541d033e1467aa795770fb3e0c3817271416e82dfc"
+      },
+      "lib/types/transport.d.ts": {
+        "bytes": 647,
+        "sha256": "502b4c216e89876828bf85c4bfca337375e45f37a65671e7375b9eb04211576c"
+      },
+      "package.json": {
+        "bytes": 2360,
+        "sha256": "ec46ed8ab3f4c7660a02ed78770a59e94aaa2a666c43fe9a254422177bd9b60d"
+      }
+    }
+  }
+]

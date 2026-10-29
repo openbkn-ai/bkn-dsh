@@ -1,0 +1,358 @@
+{
+  "kind": "local-only-candidate-inventory",
+  "formalAcceptanceEligible": false,
+  "ciRun": null,
+  "acceptedBackendArchive": {
+    "file": "release/local2-final/openbkn-dsh-business-context-0.2.1-rc.3-openbkn.0.2.1-cert.local.2.tgz",
+    "sha256": "5d390fc73cda30a6c8d678689e2a1069193c1aa6187801acdc6a25ec4dcc3fac",
+    "bytes": 240604
+  },
+  "deliveryArchive": {
+    "file": "release/local2-delivery/openbkn-dsh-business-context-0.2.1-rc.3-openbkn.0.2.1-cert.local.2.tgz",
+    "sha256": "e2330836691d980f5987c5b28dde364ffb4e8b88c9c77e4ba941aa19c5a676ce",
+    "bytes": 241154
+  },
+  "changedFilesSinceBackendRun": [
+    "README.md",
+    "README.zh.md"
+  ],
+  "allExecutableFilesUnchanged": true,
+  "files": {
+    "LICENSE": {
+      "bytes": 11357,
+      "sha256": "c71d239df91726fc519c6eb72d318ec65820627232b2f796219e87dcf35d0ab4"
+    },
+    "lib/business.js": {
+      "bytes": 195603,
+      "sha256": "17f6cc395071622f4f66fcbdef399f2d37f756db07ac270f3d92b55bcb0578da"
+    },
+    "lib/client.js": {
+      "bytes": 461456,
+      "sha256": "923487919fde4c36a35b321e7bb310e4853dce87cf70a1d181809fc5d9fc4a0a"
+    },
+    "lib/diagnostics.js": {
+      "bytes": 37471,
+      "sha256": "c3aa61255d4927c444f4ca6a735c1e9c0ec669a2dab247db30a100f1acf9bd9a"
+    },
+    "lib/index.js": {
+      "bytes": 1422,
+      "sha256": "bbed4784d42d49d32cad4889dde1441f12f2556ef828cd27903e9d5c5d8c0b44"
+    },
+    "lib/platform-trust-B6ds0SeK.js": {
+      "bytes": 17351,
+      "sha256": "0d534954cd94b9ed1e9c8ba0f6bc33a9941ba3391ce0962ab91dc542d5bf0383"
+    },
+    "lib/typert.host.js": {
+      "bytes": 99469,
+      "sha256": "ad1b7045dad4fbe99b48996ec97f33b9adbe0282cc00e9de8bd566ac392a77d5"
+    },
+    "lib/typert.remote-client.js": {
+      "bytes": 70363,
+      "sha256": "dccbb146dfdb0e4a943702d218729122161d2fdd7ed9a60367490aab3235df32"
+    },
+    "package.json": {
+      "bytes": 5154,
+      "sha256": "a23adfeb84b2dcd5a879ff13a89fb39aaf47e912d77d0f8da9357b258887f828"
+    },
+    "README.md": {
+      "bytes": 14557,
+      "sha256": "835fd02912cd69a47804841585684866381f6820c6f3ba8a62bc692fa32d877b"
+    },
+    "README.zh.md": {
+      "bytes": 12475,
+      "sha256": "b11b4356776881221004aac837a96daa4c24b5c19fc8f9d1c0a010378f012228"
+    },
+    "lib/types/auth.d.ts": {
+      "bytes": 1946,
+      "sha256": "7230cba18a8c03e2a7c23d907d30f497a078e478cd45a22cddccd097b44fd25d"
+    },
+    "lib/types/client/BoundNetworkBadge.d.ts": {
+      "bytes": 1591,
+      "sha256": "87028f24515ac814f7ae0aa90f4bc3d7784031fdeb1bbe56bcb4b95ca2e8de1a"
+    },
+    "lib/types/business-context-service.d.ts": {
+      "bytes": 10332,
+      "sha256": "9d715ae8849b2b8123852360204b3acd31afe1c0ee0051d0ff5778350b04b54c"
+    },
+    "lib/types/business-graph-model.d.ts": {
+      "bytes": 1411,
+      "sha256": "4a6cc71b686d9ad79923e7206a01fa3d2688de83a8334de5afa18b05833252bf"
+    },
+    "lib/types/business-network-catalog.d.ts": {
+      "bytes": 447,
+      "sha256": "a76067557bb935f31eea0d81370f398fa7b979197c64055a8db7808d48bcc07a"
+    },
+    "lib/types/business.d.ts": {
+      "bytes": 3600,
+      "sha256": "7a6daaa57cf72f2584a10e4b05a5b52eeea84d9b7c580c1910210ed28915d56f"
+    },
+    "lib/types/client/CertificateControl.d.ts": {
+      "bytes": 846,
+      "sha256": "52895b56e52d552da35095170c87f5ac0cd27503cb8537e1a7b85fa432f7e5ab"
+    },
+    "lib/types/client/cli-setup-controller.d.ts": {
+      "bytes": 1597,
+      "sha256": "07f28321145b926426752cf1c1260363d17b54d3fb5d416c634f807458178f1f"
+    },
+    "lib/types/cli-setup.d.ts": {
+      "bytes": 1514,
+      "sha256": "59927842635cdbdef389eb0733eb02ae7c4c14adc8586882ba3ec731c4d361d7"
+    },
+    "lib/types/client/CliSetupControl.d.ts": {
+      "bytes": 428,
+      "sha256": "3b85229e1dd0284b92ec7c88b5e5fb555eaeb4cd87bf672ca21acfe73ce9a580"
+    },
+    "lib/types/config.d.ts": {
+      "bytes": 2019,
+      "sha256": "25e5876eaba23a59fba19d273ed80119625bd202110dd27e9ef69d385b94f009"
+    },
+    "lib/types/configuration-service.d.ts": {
+      "bytes": 2009,
+      "sha256": "4027ec328b8b959ab17590d9dd16586d3bbf727e7aa6ca82a51293c8c9508244"
+    },
+    "lib/types/diagnostics-contract.d.ts": {
+      "bytes": 8476,
+      "sha256": "08dda8327e54a4158e47e84fefe9baf4c1f085d43244a3b2809b0fe79d0dbf6b"
+    },
+    "lib/types/client/diagnostics-controller.d.ts": {
+      "bytes": 1808,
+      "sha256": "e3adaa63fb49a13341d354cffa9879f60a8df7d0dd1c2d1b8e10754861a58c20"
+    },
+    "lib/types/client/diagnostics-copy.d.ts": {
+      "bytes": 186,
+      "sha256": "05fc88d509a544350f3f7d14a99057c0ade3cb3ed8b6089180994b7cf3be4040"
+    },
+    "lib/types/client/diagnostics-export.d.ts": {
+      "bytes": 1217,
+      "sha256": "5fc411469408787568bdc4976bc257b4473662a916b931d87ebb84264b12a403"
+    },
+    "lib/types/diagnostics-host-adapter.d.ts": {
+      "bytes": 4506,
+      "sha256": "6b2f6c4b194fc3f909942f836580cdbae0b551d49682f1519ea7c1e21262aee9"
+    },
+    "lib/types/diagnostics-observer.d.ts": {
+      "bytes": 5013,
+      "sha256": "ae7744ca90fe14a30d0ad7e11ba322a5ee47b10c81a15db9eec2cee70488fe72"
+    },
+    "lib/types/diagnostics-service.d.ts": {
+      "bytes": 1853,
+      "sha256": "314fb2708f38ddab1277bc19bc2f2e239e85279d527986be421787caae74bca6"
+    },
+    "lib/types/client/diagnostics-target.d.ts": {
+      "bytes": 400,
+      "sha256": "3821cd03ceb86213497c9c5a81eafa291d05d6ff5455dbc419a6fe5646c138d2"
+    },
+    "lib/types/diagnostics.d.ts": {
+      "bytes": 1223,
+      "sha256": "e3a8bc8585993374eb0772aeefa207e5868c69780e1f2880b3d14db385cb3373"
+    },
+    "lib/types/dsh-session-binding.d.ts": {
+      "bytes": 2627,
+      "sha256": "7314da6ebbe8557425e6adb77dc6880d027454ad629a5507bffc9d81fa0eeb68"
+    },
+    "lib/types/dsh-session-provenance.d.ts": {
+      "bytes": 1240,
+      "sha256": "edf7040012d1750f0f6a00ea0572df2833e97f3da5008de89c15aab904c38b85"
+    },
+    "lib/types/client/index.d.ts": {
+      "bytes": 895,
+      "sha256": "8103984740bfd8e37abecec5dbb2cae4cea226fa28c8aa8498b6d90d0ed33729"
+    },
+    "lib/types/index.d.ts": {
+      "bytes": 1474,
+      "sha256": "2a842cd366b800b8c50f86a0e29024616ae8985172553c83e2b2d001c2e02478"
+    },
+    "lib/types/interaction-lifecycle.d.ts": {
+      "bytes": 8127,
+      "sha256": "28629c13d185f637bb4fb9e5aa3e5284cb2facfaa4f7c23dd51ca18ed83a3509"
+    },
+    "lib/types/interaction-references.d.ts": {
+      "bytes": 787,
+      "sha256": "bef249332959baa3f77b8d5f61ab1d4112a91d474fccb8dda7a48b64cd7aeda0"
+    },
+    "lib/types/client/locale.d.ts": {
+      "bytes": 704,
+      "sha256": "f2926a9efa829ef7fefaccdbc81b371e79068cdbc30312618bd125d7960ea1fa"
+    },
+    "lib/types/client/locales.d.ts": {
+      "bytes": 31134,
+      "sha256": "515f385987e39e36f17cbe2ca170a124140d63f011d9094ed0e8c63c693baa7c"
+    },
+    "lib/types/managed-session-policy.d.ts": {
+      "bytes": 1754,
+      "sha256": "99ce1b9500b077c737bf668160d02328dc7dc925073094cba96aab7d6f2ee163"
+    },
+    "lib/types/client/messages.d.ts": {
+      "bytes": 971,
+      "sha256": "e0e38d1c256ee097e67c8dac668f1fe26cba484c33d98c359be4bc8f50b4dd64"
+    },
+    "lib/types/native-mcp-provenance.d.ts": {
+      "bytes": 672,
+      "sha256": "e99173a97b60c5f769261b8d80469f345aa19b90a27699f4e6432dfcc3ffe218"
+    },
+    "lib/types/client/native-provenance-selection.d.ts": {
+      "bytes": 2036,
+      "sha256": "560086808dedaf74654376b3dd1cd1f2a29876d834c5607cb04ec523454daf56"
+    },
+    "lib/types/native-provenance-types.d.ts": {
+      "bytes": 4796,
+      "sha256": "76b48870c1c4f9cf7581133afcf56c043fb6006872eae8e52f32e0c88846db8f"
+    },
+    "lib/types/native-provenance.d.ts": {
+      "bytes": 839,
+      "sha256": "71fe29afe06e330ff2ab9af60611ed226fea99af278500967d694d3535beab1b"
+    },
+    "lib/types/client/NativeProvenancePanel.d.ts": {
+      "bytes": 436,
+      "sha256": "542d6c9cb3fccc6d87fb12a9b87af92657483a5ba2634199d74a1072b3c59078"
+    },
+    "lib/types/client/NativeRecordList.d.ts": {
+      "bytes": 566,
+      "sha256": "a9f1b4467b072342a63b5a68fd61b267aa4bc7b4e009dbdb91a4d9e0ea0c8686"
+    },
+    "lib/types/network-capability-profile.d.ts": {
+      "bytes": 1305,
+      "sha256": "29ffc80f37962baffbaf172d8674fa570365a8ceec8be409fa52aec7fd550272"
+    },
+    "lib/types/client/network-directory.d.ts": {
+      "bytes": 641,
+      "sha256": "10bfbab117331d6970c4dd7a386eea47349e7a394661645217c749679d30ab80"
+    },
+    "lib/types/openbkn-cli-subprocess.d.ts": {
+      "bytes": 2455,
+      "sha256": "1c9699d90f4b48c1c87accea09f601ad3b3061fd29bf211fc0c6fb7e88ce3dce"
+    },
+    "lib/types/openbkn-mcp-manager.d.ts": {
+      "bytes": 3208,
+      "sha256": "99143107c6dc6554162c48264d469dab813cd45a3d410ebc05904ed52fce5e27"
+    },
+    "lib/types/client/openbkn-panel-bridge.d.ts": {
+      "bytes": 679,
+      "sha256": "fac76999d6056491549658dec0ee2db5f8059be3f7a8f8f1ce44df55e56ef565"
+    },
+    "lib/types/client/openbkn-ui-controller.d.ts": {
+      "bytes": 4495,
+      "sha256": "27ff9b8a6b9a1b83000429ed09447716e275cda409706a4fc1149a99a607c9cf"
+    },
+    "lib/types/client/OpenBknContextToolView.d.ts": {
+      "bytes": 330,
+      "sha256": "07ee9643f7d0e56a8281081df56a01350a10587a35d8ffb52fc8abc0cf831275"
+    },
+    "lib/types/client/OpenBknDiagnostics.d.ts": {
+      "bytes": 831,
+      "sha256": "cee3ea920e607993e5de752355a226bfd06d58db38f120a83d6212580b21df7c"
+    },
+    "lib/types/client/OpenBknEntry.d.ts": {
+      "bytes": 585,
+      "sha256": "f6f306c7e19edfd5dd937ffc588d91427a0b0ca1b60405dbacb5537973993575"
+    },
+    "lib/types/client/OpenBknOverlay.d.ts": {
+      "bytes": 1332,
+      "sha256": "46356e31308a82ae5263b68dbaa3e6be65e464d1928b6c59703d4a36e1dbf009"
+    },
+    "lib/types/client/pick-workspace-directory.d.ts": {
+      "bytes": 351,
+      "sha256": "006e172bba60f3e279edb5cfd5bb60ea754247569ef8b6d2688546ca01103782"
+    },
+    "lib/types/platform-csv-export.d.ts": {
+      "bytes": 3068,
+      "sha256": "0cf53e3f35f49d3927c228437894ae743dbd05295a5d859fcbf7f0751610c87b"
+    },
+    "lib/types/platform-reader.d.ts": {
+      "bytes": 4259,
+      "sha256": "4d118a2b67041439de808227e2d40d471b7434be0a7f58ee0b1c7902ea33ec43"
+    },
+    "lib/types/platform-trust.d.ts": {
+      "bytes": 1712,
+      "sha256": "624f994eacde3d0912cc177193bd2fa5235ae98606e3e8681431918ff7a10636"
+    },
+    "lib/types/provenance-handle.d.ts": {
+      "bytes": 929,
+      "sha256": "a5f9f84828bf5f6f3918f0c58697e390127c0cb13eb548c3549b980ea5ce4e52"
+    },
+    "lib/types/provenance-view.d.ts": {
+      "bytes": 1090,
+      "sha256": "bed493bf5672501a5198a0ca3cfdd49b3058765f219eee181bd614b640c4e16a"
+    },
+    "lib/types/client/ProvenanceOverlay.d.ts": {
+      "bytes": 1584,
+      "sha256": "91ec8e4721203c02921a00a3cf9973c9252ac12762da9796aac7118ae237a49e"
+    },
+    "lib/types/scoped-business-context.d.ts": {
+      "bytes": 4041,
+      "sha256": "e1884b70a6bb180f40d692954b9b60384ebf383cf980407e3416772e5d4eda9f"
+    },
+    "lib/types/session-binding-store.d.ts": {
+      "bytes": 2387,
+      "sha256": "83904ea6070f4c5f8dffd1699ad2d15b0d98d26486f4de6f97c2195034d144c0"
+    },
+    "lib/types/session-binding.d.ts": {
+      "bytes": 2420,
+      "sha256": "f25525d56b82bee53a1f9797cb918d27c08f6a91b25978cf828b1a068a8388fc"
+    },
+    "lib/types/suggested-prompts.d.ts": {
+      "bytes": 213,
+      "sha256": "8d9e3f08022253cda24fe783f9a9f55eb907cd539fb5228c1925599ba9d2b7fa"
+    },
+    "lib/types/client/suggestion-dock-controller.d.ts": {
+      "bytes": 1039,
+      "sha256": "0e612bc5beb58e1091de1362ef2f29bf7df426b8b18cfe7d4ae866110ebd9ced"
+    },
+    "lib/types/client/SuggestionDock.d.ts": {
+      "bytes": 909,
+      "sha256": "bd1f92b4ef748a7469c3d2539282f820e7edad92a3438d575d3d60eb72811c14"
+    },
+    "lib/types/timeline-fold.d.ts": {
+      "bytes": 738,
+      "sha256": "76c2db2de38642a8f58a93148b29777ed70c6929b000d6af2e6663bf465e504d"
+    },
+    "lib/types/tool-result-message.d.ts": {
+      "bytes": 828,
+      "sha256": "6e55da8a63bf08a9ad2011cb4385d0668c059b36bfa79130e046b6951de4ccf4"
+    },
+    "lib/types/trailing-slashes.d.ts": {
+      "bytes": 378,
+      "sha256": "c001a16c2de58f21b1ef49e6e8d473545b4ea40239d16c48cc3da64751127742"
+    },
+    "lib/types/client/turn-provenance-controller.d.ts": {
+      "bytes": 808,
+      "sha256": "eb633affb0bf66242ee1ff3256a14fa1a7c96f380a8f39769a12e514ab6e749b"
+    },
+    "lib/types/turn-provenance.d.ts": {
+      "bytes": 1314,
+      "sha256": "7cd5cb900a8516e880eb66a30936e8b7473d2d24221402d4f4f21e54a414c4c1"
+    },
+    "lib/types/turn-timeline.d.ts": {
+      "bytes": 1252,
+      "sha256": "eb90b0871add78ba00b08ea743329c3a40c609c0a4e1ac972b3867adf08fb937"
+    },
+    "lib/types/client/TurnProvenanceActions.d.ts": {
+      "bytes": 869,
+      "sha256": "e5545baac9fd979c28b30bcfde30cd0d9b9c0dacec7fc3ba924d17761a703b83"
+    },
+    "lib/typert.host.d.ts": {
+      "bytes": 123,
+      "sha256": "5e2d26ee86d0fe170dac8cd3f5854e67bdea334c57f40a5766ace57b8304c17d"
+    },
+    "lib/typert.remote-client.d.ts": {
+      "bytes": 5801,
+      "sha256": "6b530841baff06269dbd18dd66b14b45e453f1f08548eefa3af3dfd41a5299a5"
+    },
+    "lib/types/types.d.ts": {
+      "bytes": 11710,
+      "sha256": "e77961acccbb3f9aa0268cf4678464fb0535190abf561a422c52c3aa1d2eefd0"
+    },
+    "lib/types/client/use-dialog-focus.d.ts": {
+      "bytes": 243,
+      "sha256": "0c5d3090a3dbaccc404191cc908c57267dbc596b9afa1df7ff28ca46f19d86fb"
+    },
+    "lib/types/workspace-binding-registry.d.ts": {
+      "bytes": 1957,
+      "sha256": "56499a16199296f15fa6b088924b2d21d75356a8f4c931af60c83b81ead81d96"
+    },
+    "cordis.patch.yml": {
+      "bytes": 290,
+      "sha256": "3d7d06832b9c335147ed8680da71a0e0b8afb19c80b9ed1d3e7a0e138e72a3cb"
+    }
+  }
+}

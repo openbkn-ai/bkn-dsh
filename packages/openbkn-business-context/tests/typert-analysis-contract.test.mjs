@@ -18,7 +18,7 @@ test('discovers every public OpenBKN Remote method from the host aggregate', () 
 
   assert.ok(bundle)
   // Single-result streams carry the login/provenance result and native cancellation.
-  assert.equal(bundle.invocations.length, 17)
+  assert.equal(bundle.invocations.length, 18)
   const business = bundle.invocations.filter(invocation => invocation.service === 'openbknBusinessContext')
   assert.deepEqual(business.map(invocation => invocation.method).sort(), [
     'beginLogin', 'beginLoginStream', 'bindNetwork', 'bindNetworkWorkspace', 'configureToken',
@@ -33,5 +33,7 @@ test('discovers every public OpenBKN Remote method from the host aggregate', () 
   assert.deepEqual(provenance.parameters.map(parameter => parameter.name), ['sessionId', 'messageId'])
   assert.deepEqual(provenance.cancellation, { parameter: 'signal' })
   const settings = bundle.invocations.filter(invocation => invocation.service === 'openbknConfiguration')
-  assert.equal(settings.length, 4)
+  assert.deepEqual(settings.map(invocation => invocation.method).sort(), [
+    'checkCli', 'getConfiguration', 'installCli', 'previewCertificate', 'saveConfiguration',
+  ])
 })

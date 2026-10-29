@@ -1123,11 +1123,13 @@ test('a missing OpenBKN CLI surfaces as openbkn/cli-unavailable on every CLI ent
     && ((error as { cause?: { cause?: unknown } }).cause?.cause === lookup)
   for (const configured of [false, true]) {
     const service = Object.create(OpenBknBusinessContextService.prototype) as {
+      config: typeof config
       ctx: { credentials: { describe(): Promise<{ configured: boolean }> } }
       authCoordinator(): { status(): Promise<never>; beginLogin(): Promise<never> }
       remoteStatus(signal: AbortSignal): Promise<unknown>
       remoteBeginLogin(signal: AbortSignal): Promise<unknown>
     }
+    service.config = config
     service.ctx = { credentials: { describe: async () => ({ configured }) } }
     const unavailable = async (): Promise<never> => { throw new OpenBknCliUnavailableError('openbkn', { cause: lookup }) }
     service.authCoordinator = () => ({ status: unavailable, beginLogin: unavailable })

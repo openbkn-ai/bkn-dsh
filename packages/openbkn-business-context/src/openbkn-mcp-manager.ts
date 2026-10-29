@@ -3,6 +3,7 @@ import { assertHttpsEndpoint, isLoopbackHost } from './platform-reader.js'
 import { passiveDiagnostics, transportMarkersOf, type PassiveDiagnosticsWriter } from './diagnostics-observer.js'
 import * as McpClient from '@deepseek-ai/dsh-mcp-client'
 import type { Config } from './config.js'
+import { OpenBknPlatformTrust, PlatformConnectionError } from './platform-trust.js'
 
 export const OPENBKN_MCP_TOKEN_REF = 'OPENBKN_MCP_TOKEN'
 const REQUIRED_TOOL = 'mcp__openbkn__bkn_start_interaction'
@@ -22,6 +23,7 @@ export class OpenBknMcpManager {
     private readonly ctx: Context,
     private readonly config: Config,
     private readonly resolveToken: () => Promise<string | undefined>,
+    private readonly trust?: OpenBknPlatformTrust,
   ) {}
 
   private reloading: Promise<void> | undefined
@@ -47,7 +49,12 @@ export class OpenBknMcpManager {
 
   private async ensureMounted(): Promise<void> {
     this.assertOwnerActive()
-    if (this.ctx.tools.get(REQUIRED_TOOL) !== undefined) return
+    if (this.ctx.tools.get(REQUIRED_TOOL) !== undefined) {
+      // A deployment-owned client cannot be silently certified as using the
+      // platform trust selected in this plugin's panel.
+      if (this.trust?.certificate !== undefined && this.fiber === undefined) throw new PlatformConnectionError('TRUST_TRANSPORT_UNAVAILABLE')
+      return
+    }
     if (this.starting === undefined) {
       this.starting = this.start().finally(() => { this.starting = undefined })
     }
@@ -105,15 +112,23 @@ export class OpenBknMcpManager {
   }
 
   private async mountFiber(token: string): Promise<{ dispose(): Promise<void> }> {
-    return await this.ctx.plugin(McpClient, McpClient.Config({
-      transport: 'streamable-http',
+    const customTrust = this.trust?.certificate !== undefined
+    if (customTrust && (McpClient as unknown as { platformFetchSupported?: boolean }).platformFetchSupported !== true) {
+      throw new PlatformConnectionError('TRUST_TRANSPORT_UNAVAILABLE')
+    }
+    const mountConfig = McpClient.Config(Object.assign({
+      transport: 'streamable-http' as const,
       serverName: 'openbkn',
       url: resolveMcpUrl(this.config),
       headers: { Authorization: `Bearer ${token}` },
       toolCallTimeoutMs: this.config.toolCallTimeoutMs,
       failOnStartupError: true,
       reconnect: { enabled: true, initialDelayMs: 500, maxDelayMs: 30_000, maxAttempts: 10 },
-    }))
+    }, customTrust ? { platformFetch: this.trust!.fetch } : {}))
+    if (customTrust && (mountConfig as unknown as { platformFetch?: unknown }).platformFetch !== this.trust!.fetch) {
+      throw new PlatformConnectionError('TRUST_TRANSPORT_UNAVAILABLE')
+    }
+    return await this.ctx.plugin(McpClient, mountConfig)
   }
 
   /**

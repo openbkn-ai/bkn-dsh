@@ -1,0 +1,33 @@
+{
+  "kind": "local-controlled-actual-host-service",
+  "ciRun": null,
+  "formalAcceptanceEligible": false,
+  "checkedAt": "2026-10-29T04:57:35.918Z",
+  "loadedClassIdentity": true,
+  "businessSha256": "17f6cc395071622f4f66fcbdef399f2d37f756db07ac270f3d92b55bcb0578da",
+  "version": "0.2.1-rc.3-openbkn.0.2.1-cert.local.2",
+  "hasAmbientExtraCa": false,
+  "tlsDisabled": false,
+  "importedCertificateCliLoginBlocked": "PASS",
+  "components": [
+    {
+      "name": "@openbkn/dsh-business-context",
+      "state": 2
+    },
+    {
+      "name": "@openbkn/dsh-business-context/business",
+      "state": 2
+    },
+    {
+      "name": "@openbkn/dsh-business-context/diagnostics",
+      "state": 2
+    }
+  ],
+  "managedMcpAndCatalog": "PASS",
+  "mcpEntrySha256": "ad1c5744b50873368028f29bcf28964133d34f11d85c83ddee8be770c41d2eb1",
+  "actualManagerUsesSelectedModule": true,
+  "profileOverrideAutomatic": true,
+  "nativeReadsPreservePlatformStates": "PASS",
+  "noBusinessToolsCalled": true,
+  "result": "PASS"
+}

@@ -3,7 +3,9 @@ import { Context } from '@deepseek-ai/cordis'
 import { Remote, RemoteError, TypertRemoteService } from '@deepseek-ai/dsh-typert-protocol'
 import { Config } from './config.js'
 import { BUSINESS_ENTRY_ID } from './diagnostics-contract.js'
-import type { OpenBknCliInstallVersion, OpenBknCliSetupView, OpenBknConfigurationInput, OpenBknConfigurationView } from './types.js'
+import type { OpenBknCliInstallVersion, OpenBknCliSetupView, OpenBknConfigurationInput, OpenBknConfigurationView, PlatformCertificatePreview } from './types.js'
+import { inspectPlatformCertificate, validatePlatformTrust, PlatformConnectionError, type PlatformCertificateTrust } from './platform-trust.js'
+import { randomUUID } from 'node:crypto'
 import { isCliInstallVersion, OpenBknCliSetup } from './cli-setup.js'
 import type { CliSubprocess } from './openbkn-cli-subprocess.js'
 
@@ -26,6 +28,7 @@ declare module '@deepseek-ai/dsh-typert-protocol' {
     'openbkn/configuration-unavailable': { readonly reason: string }
     'openbkn/configuration-busy': Record<string, never>
     'openbkn/configuration-save-failed': Record<string, never>
+    'openbkn/certificate-invalid': { readonly reason: string }
   }
 }
 
@@ -33,9 +36,23 @@ declare module '@deepseek-ai/dsh-typert-protocol' {
 export class OpenBknConfigurationService extends TypertRemoteService {
   private saving = false
   private cliSetup?: OpenBknCliSetup
+  private certificatePreview?: { id: string; trust: PlatformCertificateTrust; expiresAt: number }
   /** A short admission fence while the native editor writes/reloads. */
   get isChanging(): boolean { return this.saving }
   constructor(ctx: Context) { super(ctx, 'openbknConfiguration') }
+
+  @Remote('previewCertificate')
+  async previewCertificate(baseUrl: string, pem: string): Promise<PlatformCertificatePreview> {
+    this.certificatePreview = undefined
+    try {
+      const identity = inspectPlatformCertificate(baseUrl, pem)
+      const id = randomUUID()
+      this.certificatePreview = { id, trust: { origin: identity.origin, pem, fingerprint256: identity.fingerprint256 }, expiresAt: Date.now() + 5 * 60_000 }
+      return { ...identity, confirmationId: id }
+    } catch (error) {
+      throw new RemoteError('openbkn/certificate-invalid', 'The certificate could not be accepted.', { reason: error instanceof PlatformConnectionError ? error.code : 'CERTIFICATE_INVALID' })
+    }
+  }
 
   private setup(): OpenBknCliSetup | undefined {
     if (this.cliSetup !== undefined) return this.cliSetup
@@ -101,7 +118,15 @@ export class OpenBknConfigurationService extends TypertRemoteService {
       : this.entry(editor) === undefined ? 'entry-unavailable'
       : entry?.fiber?.state !== 2 ? 'entry-inactive'
       : this.saving || this.busy() ? 'busy' : undefined
+    let certificate, certificateError
+    if (config?.platformTrust != null) {
+      try { certificate = validatePlatformTrust(baseUrl, config.platformTrust as PlatformCertificateTrust) } catch (error) {
+        certificateError = error instanceof PlatformConnectionError ? error.code : 'CERTIFICATE_INVALID'
+      }
+    }
     return { baseUrl, cliPath, configured: baseUrl !== '', editable: unavailableReason === undefined,
+      ...(certificate === undefined ? {} : { certificate }),
+      ...(certificateError === undefined ? {} : { certificateError }),
       ...(unavailableReason === undefined ? {} : { unavailableReason }) }
   }
 
@@ -128,8 +153,28 @@ export class OpenBknConfigurationService extends TypertRemoteService {
       await editor.edit(entry, current => {
         if (signal?.aborted) throw signal.reason
         if (this.busy()) throw new RemoteError('openbkn/configuration-busy', 'Wait for the current session to finish before changing settings.', {})
-        return { ...current, baseUrl: input.baseUrl, cliPath: input.cliPath }
+        let platformTrust = (current.platformTrust ?? undefined) as PlatformCertificateTrust | undefined
+        if (platformTrust !== undefined) {
+          try { validatePlatformTrust(input.baseUrl, platformTrust) } catch { platformTrust = undefined }
+        }
+        if (input.removeCertificate === true) platformTrust = undefined
+        if (input.trustConfirmationId !== undefined) {
+          const preview = this.certificatePreview
+          if (input.removeCertificate === true || preview?.id !== input.trustConfirmationId || preview.expiresAt < Date.now()) {
+            throw new RemoteError('openbkn/certificate-invalid', 'Preview and confirm the certificate again.', { reason: 'TRUST_SCOPE_MISMATCH' })
+          }
+          try { validatePlatformTrust(input.baseUrl, preview.trust) } catch {
+            throw new RemoteError('openbkn/certificate-invalid', 'Preview and confirm the certificate for the current platform.', { reason: 'TRUST_SCOPE_MISMATCH' })
+          }
+          platformTrust = preview.trust
+        }
+        const next: Record<string, unknown> = { ...current, baseUrl: input.baseUrl, cliPath: input.cliPath }
+        // Null is an explicit deny at this profile layer. Deleting the key
+        // could let an inherited trust value reappear after a native merge.
+        next.platformTrust = platformTrust ?? null
+        return next
       })
+      this.certificatePreview = undefined
     } catch (error) {
       if (error instanceof RemoteError) throw error
       throw new RemoteError('openbkn/configuration-save-failed', 'Settings were not applied. Check for a profile override or export diagnostics.', {})

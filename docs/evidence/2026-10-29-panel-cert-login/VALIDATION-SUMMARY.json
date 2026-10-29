@@ -1,0 +1,76 @@
+{
+  "kind": "local-panel-certificate-validation-summary",
+  "ciRun": null,
+  "formalAcceptanceEligible": false,
+  "baseCommit": "dd4b7740e29fbc542332ec39f59205473fcce8e9",
+  "branch": "fix/021-panel-platform-trust",
+  "pluginTests": {
+    "total": 637,
+    "passed": 636,
+    "failed": 0,
+    "skipped": 1,
+    "skipScope": "Windows-only"
+  },
+  "runtimeManifestTests": {
+    "passed": 6,
+    "failed": 0
+  },
+  "rc3Types": {
+    "host": "PASS",
+    "client": "PASS"
+  },
+  "mcpControlledRows": {
+    "passed": 8,
+    "failed": 0,
+    "hosts": [
+      "0.2.0-rc.2",
+      "0.2.1-rc.3"
+    ]
+  },
+  "actualMacHost": "0.2.1-rc.3 npm/Web; synthetic HTTPS; imported CLI login blocked",
+  "windows": "NOT_RUN",
+  "realPlatformAccountLogin": "BLOCKED: official CLI origin-scoped trust unavailable",
+  "desktopThisCandidate": "NOT_RUN",
+  "proofSha256": {
+    "CLI-ORIGIN-PROOF.json": "ffac5d5bf1418900526f48b7091787f6de86a950592fcd7650d25a93f8ff2d44",
+    "CLIENT-EQUIVALENCE.json": "e5392f8b30b1b4033d7c52b3114745f4fb2bc2536cf03fa63bb825262501ca54",
+    "COMPANION-INVENTORY.json": "6de95e220bc69beccb93a0fdf1da1ad347792abf54e6649b70ea8bad040509b1",
+    "LOCAL-CANDIDATE-INVENTORY.json": "e8d97b3b21eb455dd9d4a34a6dd718632c3caf01ebc86c8f77493c58d0284252",
+    "MAC-RC3-ACTUAL-SERVICE.json": "f88c5e18e40f43a8fd58d5b7bc756aef708de13bd94b90a981db5ff525cb0677",
+    "MAC-RC3-FIXTURE-REQUESTS.json": "50c6f90d0814c67f1c67e70fb108ab6b432c1d628b44d1f6b32016ed9e1cf9f8",
+    "MAC-RC3-REVOCATION.json": "e52d947e4723bead5bde361aa620bc79cd03f04188e591ed07209c4ca91e747b",
+    "MCP-HTTPS-PROOF.json": "598506ba32fdd207ad84408c845243d35f4e7ab30a4030b13ad70bf11f0b7983"
+  },
+  "privateLocalLogDigests": [
+    {
+      "file": "release/all-plugin-local2-verified.log",
+      "bytes": 145308,
+      "sha256": "84a0c2233519f81f9438041ed558e35cc7bab49d4b377ecd5337752cae33f036",
+      "privacy": "local validation log; not uploaded"
+    },
+    {
+      "file": "release/runtime-manifest-final.log",
+      "bytes": 1252,
+      "sha256": "c9746545d0ca0b68cb05a5e6a87e09d955465fcbf596d4b2e2d7744c1d20f962",
+      "privacy": "local validation log; not uploaded"
+    },
+    {
+      "file": "release/rc3-host-types-final.log",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "privacy": "local validation log; not uploaded"
+    },
+    {
+      "file": "release/rc3-client-types-final.log",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "privacy": "local validation log; not uploaded"
+    },
+    {
+      "file": "release/package-check-final.log",
+      "bytes": 227,
+      "sha256": "ba43bf9ce8b875867d7a905865d602c80232b01fe712e46688d11eac309ba268",
+      "privacy": "local validation log; not uploaded"
+    }
+  ]
+}

@@ -24,6 +24,9 @@ importers:
 
   packages/openbkn-business-context:
     dependencies:
+      undici:
+        specifier: 8.10.2
+        version: 8.10.2
       zod:
         specifier: 4.4.3
         version: 4.4.3

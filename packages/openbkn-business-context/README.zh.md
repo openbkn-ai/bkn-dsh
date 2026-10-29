@@ -1,5 +1,7 @@
 # bkn-dsh
 
+> 本地证书修复候选，尚不具备替换现有公开包的条件。可在 **设置 → 平台证书** 选择管理员提供的 PEM/CRT，核对平台、有效期和 SHA-256 指纹后明确确认。已确认、按 profile 保存的信任覆盖 managed MCP、目录及原生溯源 HTTP 读取。官方 OpenBKN CLI 0.2.0 尚不能把附加 CA 限定到单一 origin，因此导入证书后的登录保持 `TRUST_CLI_UNAVAILABLE` 阻断。保留证书链、有效期和主机名校验，不要用全局 CA 配置或不安全开关绕过此边界。本轮 CLI/平台基线仍为 0.2.0，原版本串的 OpenBKN 0.2.1 仍是发布标识。
+
 为 DeepSeek Harness 提供 OpenBKN 业务知识、网络范围治理、诊断与溯源。
 
 [English](README.md)
@@ -69,7 +71,7 @@ dsh plugin --profile <desktop|web> add @openbkn/dsh-business-context@latest
 
 Windows 上使用 `dsh.cmd`。源码构建从 DSH 源码根目录执行 `node apps/cli/lib/bin.js plugin --profile web add @openbkn/dsh-business-context@latest`。请使用实际启动的 Host 的 profile 与 `DSH_HOME`，`desktop` 和 `web` 是独立的 profile。安装下载包时，把包名替换为 `.tgz` 的绝对路径。
 
-安装与平台版本匹配的 OpenBKN CLI：0.1.5 平台用 `npm install -g @openbkn/bkn-sdk@0.1.5`；0.1.4 平台用 `@openbkn/bkn-sdk@0.1.4`（`0.1.5-rc.1` 也可以）。CLI 从 `0.1.5-rc.2` 起要求平台提供健康/版本接口，0.1.4 没有该接口。配置插件前不必先登录。npm 版 DSH 还需要 `PATH` 中有 pnpm（`npm install -g pnpm@11.7.0`），桌面版自带。自签证书平台需为 DSH 进程设置 `NODE_EXTRA_CA_CERTS` 并完全重启；各形态的操作见[仓库 README](https://github.com/openbkn-ai/bkn-dsh/blob/main/README.zh.md#开始之前)。
+安装与平台版本匹配的 OpenBKN CLI：0.1.5 平台用 `npm install -g @openbkn/bkn-sdk@0.1.5`；0.1.4 平台用 `@openbkn/bkn-sdk@0.1.4`（`0.1.5-rc.1` 也可以）。CLI 从 `0.1.5-rc.2` 起要求平台提供健康/版本接口，0.1.4 没有该接口。配置插件前不必先登录。npm 版 DSH 还需要 `PATH` 中有 pnpm（`npm install -g pnpm@11.7.0`），桌面版自带。本候选的自签证书操作及当前 SDK 限制见上方本地候选说明。
 
 ### 配置、授权、提问
 

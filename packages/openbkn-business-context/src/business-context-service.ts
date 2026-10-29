@@ -33,6 +33,7 @@ import { sameIdentity, type BindBusinessNetworkResult, type BusinessNetworkBindi
 import type { AuthSnapshot, BusinessNetworkSummary, ProvenanceDegradation, ProvenanceHandle, ProvenanceView } from './types.js'
 import { realpath, stat } from 'node:fs/promises'
 import { trimTrailingSlashes } from './trailing-slashes.js'
+import { OpenBknPlatformTrust, PlatformConnectionError, connectionFailure } from './platform-trust.js'
 
 declare module '@deepseek-ai/cordis' {
   interface Context {
@@ -55,6 +56,7 @@ declare module '@deepseek-ai/dsh-typert-protocol' {
     }
     'openbkn/platform-unavailable': { readonly baseUrl: string }
     'openbkn/cli-unavailable': { readonly cliPath: string }
+    'openbkn/transport-failed': { readonly reason: string }
     'openbkn/provenance-platform-mismatch': Record<string, never>
   }
 }
@@ -76,6 +78,9 @@ const ORPHAN_BINDING_GRACE_MS = 7 * 24 * 60 * 60 * 1000
  * The lookup failure stays attached as the cause.
  */
 function cliUnavailableAsRemote(error: unknown): unknown {
+  const failure = connectionFailure(error)
+  if (failure !== undefined) return new RemoteError('openbkn/transport-failed', 'OpenBKN connection requires attention.', { reason: failure })
+  if (error instanceof OpenBknCliError) return new RemoteError('openbkn/transport-failed', 'The OpenBKN CLI operation failed.', { reason: 'CLI_FAILED' })
   return error instanceof OpenBknCliUnavailableError
     ? new RemoteError('openbkn/cli-unavailable', error.message, { cliPath: error.cliPath }, { cause: error })
     : error
@@ -83,6 +88,8 @@ function cliUnavailableAsRemote(error: unknown): unknown {
 
 /** Preserve a known credential refusal at the Host/browser boundary. */
 function mcpFailureAsRemote(error: unknown, baseUrl: string): unknown {
+  const failure = connectionFailure(error)
+  if (failure !== undefined) return cliUnavailableAsRemote(error)
   if (!(error instanceof OpenBknMcpCredentialRejectedError)) return error
   return error.httpStatus === 401
     ? new RemoteError('openbkn/authentication-required', error.message, { baseUrl, layer: 'context-loader-mcp', httpStatus: 401 })
@@ -108,6 +115,7 @@ export class OpenBknBusinessContextService extends TypertRemoteService {
   private readonly mounted = new WeakSet<Agent>()
   private readonly capabilityProfiles = new WeakMap<Agent, NetworkCapabilityProfile>()
   private mcpManagerInstance: OpenBknMcpManager | undefined
+  private platformTrustInstance?: OpenBknPlatformTrust
   /** Native Service views rebind this.ctx to the caller; child lifetimes belong here. */
   private readonly ownerContext: Context
   private readonly lifetime = new AbortController()
@@ -132,7 +140,10 @@ export class OpenBknBusinessContextService extends TypertRemoteService {
   constructor(ctx: Context, readonly config: PluginConfig) {
     super(ctx, 'openbknBusinessContext')
     this.ownerContext = ctx
-    ctx.effect(() => () => { this.lifetime.abort(new Error('OpenBKN configuration was reloaded.')) })
+    ctx.effect(() => () => {
+      this.lifetime.abort(new Error('OpenBKN configuration was reloaded.'))
+      return this.platformTrustInstance?.dispose()
+    })
     ctx.on('agent/created', async ({ agent }) => {
       await this.restoreBinding(agent)
       return undefined
@@ -189,6 +200,8 @@ export class OpenBknBusinessContextService extends TypertRemoteService {
     signal = this.operationSignal(signal)
     if (signal.aborted) throw signal.reason
     try {
+      // Imported CA trust must never be lent to a CLI without an origin fence.
+      if (this.config.platformTrust != null) throw new PlatformConnectionError('TRUST_CLI_UNAVAILABLE')
       await this.authCoordinator().beginLogin(signal)
       await this.synchronizeCliCredential(signal)
     } catch (error: unknown) {
@@ -315,6 +328,10 @@ export class OpenBknBusinessContextService extends TypertRemoteService {
     const bindingChanged = binding === undefined ? currentBinding !== undefined : currentBinding === undefined || !sameIdentity(binding, currentBinding)
     if ((this.provenanceRevision ?? 0) !== revision || bindingChanged) throw new Error('OpenBKN provenance identity changed; reopen the panel.')
     const nativeFailure = (failure: unknown): NativeReadFailure => {
+      const transport = connectionFailure(failure)
+      if (transport === 'CERTIFICATE_UNTRUSTED') return 'certificate-untrusted'
+      if (transport?.startsWith('CERTIFICATE_') || transport === 'TRUST_SCOPE_MISMATCH') return 'certificate-invalid'
+      if (transport === 'NETWORK_TIMEOUT') return 'network-timeout'
       const code = failure instanceof PlatformReaderError ? failure.code : undefined
       return code === 'AUTHENTICATION_REQUIRED' ? 'authentication-required' : code === 'ACCESS_DENIED' ? 'access-denied'
         : code === 'NATIVE_NOT_AVAILABLE' ? 'not-disclosed-or-unavailable' : code === 'INVALID_RESPONSE' ? 'invalid-response'
@@ -421,6 +438,7 @@ export class OpenBknBusinessContextService extends TypertRemoteService {
     try {
       payload = await this.platformReader().listKnowledgeNetworks(signal, '.')
     } catch (error: unknown) {
+      if (connectionFailure(error) !== undefined) throw cliUnavailableAsRemote(error)
       if (error instanceof PlatformReaderError && error.code === 'AUTHENTICATION_REQUIRED') {
         throw new RemoteError(
           'openbkn/authentication-required',
@@ -737,7 +755,13 @@ export class OpenBknBusinessContextService extends TypertRemoteService {
   }
 
   private mcpManager(): OpenBknMcpManager {
-    return this.mcpManagerInstance ??= new OpenBknMcpManager(this.ownerContext, this.config, () => this.resolveOpenBknToken())
+    return this.mcpManagerInstance ??= new OpenBknMcpManager(this.ownerContext, this.config, () => this.resolveOpenBknToken(), this.platformTrust())
+  }
+
+  private platformTrust(): OpenBknPlatformTrust {
+    if (this.platformTrustInstance !== undefined) return this.platformTrustInstance
+    const trust = new OpenBknPlatformTrust(this.config.baseUrl, this.config.platformTrust ?? undefined)
+    return this.platformTrustInstance = trust
   }
 
   private authCoordinator(): AuthCoordinator {
@@ -760,7 +784,7 @@ export class OpenBknBusinessContextService extends TypertRemoteService {
     return new OpenBknPlatformReader({
       ...this.config,
       resolveToken: signal => this.resolveOpenBknToken(signal),
-    })
+    }, (url, init) => this.platformTrust().fetch(url, init))
   }
 
   /** Never send a shared credential from another platform before CLI verification. */

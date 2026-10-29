@@ -13,6 +13,7 @@ export interface CliResult {
 import type { AuthSnapshot } from './types.js'
 import { passiveDiagnostics, type PassiveDiagnosticsWriter } from './diagnostics-observer.js'
 import { trimTrailingSlashes } from './trailing-slashes.js'
+import { connectionFailure, PlatformConnectionError } from './platform-trust.js'
 
 export type { AuthSnapshot } from './types.js'
 
@@ -70,7 +71,8 @@ export class AuthCoordinator {
     // An unknown expiry is not a refusal: `auth token` is the CLI's refresh
     // authority and fails by itself when the session cannot be renewed.
     if (!status.hasToken || status.expired === true) {
-      return observed({ kind: 'authentication-required', baseUrl: this.baseUrl }, this.observations)
+      return observed({ kind: 'authentication-required', baseUrl: this.baseUrl,
+        ...(status.expired === true ? { reason: 'expired' as const } : {}) }, this.observations)
     }
     return observed({
       kind: 'authenticated',
@@ -153,9 +155,12 @@ function normalizeBaseUrl(value: string): string {
   return trimTrailingSlashes(value)
 }
 
-function cliFailure(action: string, result: CliResult): OpenBknCliError {
-  const detail = result.stderr.trim() || 'no diagnostic output'
-  return new OpenBknCliError(`OpenBKN CLI could not ${action}: ${detail}`)
+function cliFailure(action: string, result: CliResult): Error {
+  const code = connectionFailure(result.stderr)
+  if (code?.startsWith('CERTIFICATE_')) passiveDiagnostics.writer().record({ subject: 'cli', stage: 'cli', code: 'tls-failed', status: 'fail' })
+  return code === undefined
+    ? new OpenBknCliError(`OpenBKN CLI could not ${action} (CLI_FAILED).`)
+    : new PlatformConnectionError(code)
 }
 
 /** Record one observed authentication outcome, then hand the snapshot through. */

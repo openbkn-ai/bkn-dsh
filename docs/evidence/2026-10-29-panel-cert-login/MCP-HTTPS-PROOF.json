@@ -1,0 +1,81 @@
+{
+  "kind": "local-controlled-https-native-mcp",
+  "ciRun": null,
+  "formalAcceptanceEligible": false,
+  "rows": [
+    {
+      "host": "old",
+      "name": "no-ca",
+      "rejected": true,
+      "toolRegistered": false,
+      "secondOriginRequests": 0,
+      "scopedFetchRetained": true,
+      "result": "PASS"
+    },
+    {
+      "host": "old",
+      "name": "confirmed",
+      "rejected": false,
+      "toolRegistered": true,
+      "secondOriginRequests": 0,
+      "scopedFetchRetained": true,
+      "result": "PASS"
+    },
+    {
+      "host": "old",
+      "name": "same-origin",
+      "rejected": false,
+      "toolRegistered": true,
+      "secondOriginRequests": 0,
+      "scopedFetchRetained": true,
+      "result": "PASS"
+    },
+    {
+      "host": "old",
+      "name": "cross-origin",
+      "rejected": true,
+      "toolRegistered": false,
+      "secondOriginRequests": 0,
+      "scopedFetchRetained": true,
+      "result": "PASS"
+    },
+    {
+      "host": "rc3",
+      "name": "no-ca",
+      "rejected": true,
+      "toolRegistered": false,
+      "secondOriginRequests": 0,
+      "scopedFetchRetained": true,
+      "result": "PASS"
+    },
+    {
+      "host": "rc3",
+      "name": "confirmed",
+      "rejected": false,
+      "toolRegistered": true,
+      "secondOriginRequests": 0,
+      "scopedFetchRetained": true,
+      "result": "PASS"
+    },
+    {
+      "host": "rc3",
+      "name": "same-origin",
+      "rejected": false,
+      "toolRegistered": true,
+      "secondOriginRequests": 0,
+      "scopedFetchRetained": true,
+      "result": "PASS"
+    },
+    {
+      "host": "rc3",
+      "name": "cross-origin",
+      "rejected": true,
+      "toolRegistered": false,
+      "secondOriginRequests": 0,
+      "scopedFetchRetained": true,
+      "result": "PASS"
+    }
+  ],
+  "fixtureListenersClosed": true,
+  "noBusinessToolsCalled": true
+}

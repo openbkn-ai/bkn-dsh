@@ -47,6 +47,7 @@ test('requires an OpenBKN login for missing or expired CLI credentials', async (
   assert.deepEqual(await auth.status(), {
     kind: 'authentication-required',
     baseUrl: 'https://poc.openbkn.ai',
+    reason: 'expired',
   })
 })
 
@@ -122,7 +123,7 @@ test('a CLI that has never logged in prints only { hasToken: false }: the user i
 
 test('an expired token still asks for login, and malformed fields are still refused', async () => {
   const expired = new AuthCoordinator(new FakeCli([json({ baseUrl: 'https://poc.openbkn.ai', hasToken: true, expired: true })]), 'https://poc.openbkn.ai')
-  assert.deepEqual(await expired.status(), { kind: 'authentication-required', baseUrl: 'https://poc.openbkn.ai' })
+  assert.deepEqual(await expired.status(), { kind: 'authentication-required', baseUrl: 'https://poc.openbkn.ai', reason: 'expired' })
 
   for (const payload of [
     { baseUrl: 'https://poc.openbkn.ai', hasToken: true, expired: 'no' },

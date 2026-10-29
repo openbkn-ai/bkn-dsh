@@ -119,6 +119,9 @@ function registerPanels(ctx: Context, bridge: OpenBknPanelBridge): void {
     cancelLogin: () => panel.cancelLogin(),
     showSettings: () => panel.showSettings(),
     saveConfiguration: (input: import('../types.ts').OpenBknConfigurationInput) => panel.saveConfiguration(input),
+    certificate: {
+      previewCertificate: async (baseUrl: string, pem: string) => unwrap(await ctx.remote.openbknConfiguration.previewCertificate(baseUrl, pem)),
+    },
     cliSetup: {
       checkCli: async (cliPath: string, signal?: AbortSignal) => unwrap(await ctx.remote.openbknConfiguration.checkCli(cliPath, signal)),
       installCli: async (cliPath: string, targetVersion: OpenBknCliInstallVersion) => unwrap(await ctx.remote.openbknConfiguration.installCli(cliPath, targetVersion)),

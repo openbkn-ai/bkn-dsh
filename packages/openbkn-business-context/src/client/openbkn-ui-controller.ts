@@ -347,6 +347,17 @@ function isPlatformUnavailableError(error: unknown): error is {
 function connectionFailureMessage(error: unknown): UiMessage {
   if (typeof error === 'object' && error !== null) {
     const candidate = error as { code?: unknown, details?: unknown }
+    if (candidate.code === 'openbkn/transport-failed') {
+      const reason = (candidate.details as { reason?: string } | undefined)?.reason
+      if (reason === 'CERTIFICATE_UNTRUSTED') return uiMessage('certificateUntrusted', { p0: reason })
+      if (reason?.startsWith('CERTIFICATE_') || reason === 'TRUST_SCOPE_MISMATCH') return uiMessage('certificateInvalid', { p0: reason })
+      if (reason === 'TRUST_TRANSPORT_UNAVAILABLE') return uiMessage('trustTransportMissing', { p0: reason })
+      if (reason === 'TRUST_CLI_UNAVAILABLE') return uiMessage('trustCliMissing', { p0: reason })
+      if (reason === 'NETWORK_TIMEOUT') return uiMessage('connectionTimeout', { p0: reason })
+      if (reason === 'NETWORK_UNREACHABLE') return uiMessage('connectionNetworkFailed', { p0: reason })
+      if (reason === 'PLATFORM_REJECTED') return uiMessage('connectionRejected', { p0: reason })
+      return uiMessage('cliOperationFailed', { p0: reason })
+    }
     if (candidate.code === 'openbkn/business-unavailable') {
       return uiMessage('theOpenBKNBusinessComponentIsNotReadyOr')
     }

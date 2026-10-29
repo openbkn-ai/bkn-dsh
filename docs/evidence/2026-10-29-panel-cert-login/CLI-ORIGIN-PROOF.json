@@ -1,0 +1,30 @@
+{
+  "kind": "controlled-official-cli-origin-boundary",
+  "cliVersion": "0.2.0",
+  "nodeInvocation": "explicit task Node",
+  "scope": "loopback HTTPS; synthetic device request; no account authorization, browser URI or credential",
+  "ciRun": null,
+  "outcome": {
+    "exitCode": 1,
+    "killed": false,
+    "outputContainsSyntheticStop": true
+  },
+  "requests": [
+    {
+      "origin": "a",
+      "method": "POST",
+      "path": "/oauth2/device/auth",
+      "bodyBytes": 60,
+      "hasAuthorization": false
+    },
+    {
+      "origin": "b",
+      "method": "POST",
+      "path": "/synthetic-device-target",
+      "bodyBytes": 60,
+      "hasAuthorization": false
+    }
+  ],
+  "secondOriginRequests": 1,
+  "fixtureListenersClosed": true
+}

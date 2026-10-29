@@ -1,5 +1,15 @@
 # 0.2.1 正式版开发与验收合同
 
+## 当前增量：面板证书与登录本地修复（2026-10-29）
+
+本节是历史固定包收尾之后新授权的本地开发，工作副本为`bkn-dsh-panel-cert-login`，不改变下方已发布包、冻结-30/-31/-32及旧轮次验收身份。见[本轮实现/候选/分层结果](../../evidence/2026-10-29-panel-cert-login/RESULTS.md)。本地候选为`0.2.1-rc.3-openbkn.0.2.1-cert.local.2`，尚未发布，`ciRun=null`、`formalAcceptanceEligible=false`。
+
+已实现面板选择单张PEM、预览origin/签发者/有效期/指纹、明确确认后持久化及撤销；MCP/目录/原生GET使用origin限定的连接级CA，保留证书链/日期/名称校验。插件637项（636通过/1项Windows专用跳过）、类型、包审计、两固定Host原生MCP合成HTTPS8项及一个真实Mac rc.3 npm/Web Host的受影响面板/加载/读取已验证，具体候选归档和UI复用边界见结果记录。没有更改现有Host代码或平台，也未重跑业务矩阵。
+
+**CLI缺口不降级为通过。** 官方CLI0.2.0在合成跨origin307后跟随至第二源；进程级附加CA不是origin边界。维护者明确选择保持导入证书后的CLI登录阻断，先整理[SDK issue草稿](../../evidence/2026-10-29-panel-cert-login/SDK-ISSUE.md)，继续MCP/HTTP/UI。草稿未提报，不猜测CLI/SDK负责人。没有为CLI注入CA环境变量或修改SDK。
+
+剩余范围仅为：获得origin限定的CLI契约后补最小真实账号认证；另行授权公开替换时才进行独立评审/新CI候选及受影响Windows、官方Desktop验证。此前已通过项不重跑，未执行项不默认为已知限制接受。当前无推送、PR、远端CI、发布/标签/资产变更；不操作维护者负责的latest及本机npm CLI。不新增GUI发行体系或业务内容仲裁。
+
 ## 当前状态：Windows 原生 UI 补证有界收尾（2026-10-29）
 
 #93已完成企业既存样例API/Studio同记录对照；#97已在固定 `0.2.1-rc.3-openbkn.0.2.1` 候选、官方DSH rc.3 npm/Web隔离Host完成三条非空结论、当前问答切片11条关系、来源及步骤/定义联动，十项聚焦对照通过。二者均已关闭completed、Project 12 Done。Mac只读回放由公开Session/Workspace API建立，不是新模型回合；见[#93对照](../../evidence/2026-10-27-issue93-native-studio/RESULTS.md)及[#97结果](../../evidence/2026-10-28-issue97-native-linkage/RESULTS.md)。
