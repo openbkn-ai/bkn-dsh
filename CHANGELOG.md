@@ -1,5 +1,15 @@
 # Changelog
 
+## 0.2.1-rc.3-openbkn.0.2.1-1 (2026-10-30)
+
+- Publish the reviewed automatic-login increment from PR #114 as the first public revision of the already published 0.2.1 pairing. Retain the frozen auto.local.2 reference and its exact Mac/Windows evidence; this revision changes release metadata and installation documentation, not runtime behavior.
+- Start official CLI authorization in an owned Chrome/Edge profile, automatically remember the configured private peer, and require fresh browser authorization after origin, observed IP or leaf changes. Ordinary access-token renewal remains with the official CLI.
+- Deliver the native MCP fetch/same-origin backport inside the plugin, without a manual companion or Host replacement. Keep MCP and native-reader transports bound to the authorization generation that supplied their credentials; three source and compiled regressions cover the reviewed race correction.
+- Show the verified login result in the currently open panel before iterator cleanup. Reuse passed Mac and Windows affected tests; retain the original five-minute lag, unknown unique cause, unobserved Windows exit code and exact-transition limits.
+- Preserve the explicitly accepted private-environment trust policy: observed pin authentication replaces public CA/hostname checks and provides no public-PKI first-contact assurance. CodeQL alerts #15/#16 have narrow reviewed accepted-design dispositions. Certificate dates, origin/peer checks and redirect fences remain enabled.
+- Retain two nonblocking limits: owned authorization browser profiles and superseded generation directories stay on disk, and discovery/connection TLS handshakes each have a five-second bound independent of the request timeout. No new cleanup framework or retries are added.
+- Actual platform/official CLI evidence remains 0.2.0; OpenBKN 0.2.1 is the release identifier. Existing Hosts, formal platform, data and configuration are unchanged. Publish to npm rc and a GitHub prerelease only; latest promotion and local npm CLI setup remain maintainer-owned.
+
 ## 0.2.1-rc.3-openbkn.0.2.1-auto.local.2 (unreleased integration candidate)
 
 - Start the official OpenBKN CLI authorization from the panel using an independently owned Chrome/Edge profile. Automatically observe the configured private platform and require a fresh grant after its origin, observed IP or leaf certificate changes; ordinary token expiry uses official CLI refresh.
