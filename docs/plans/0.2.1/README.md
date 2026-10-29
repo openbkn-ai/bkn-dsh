@@ -1,5 +1,7 @@
 # bkn-dsh 0.2.1 接手入口
 
+> 最新登录目标：维护者明确首次也只点CLI登录、完成官方浏览器账号授权，不增加证书确认。当前导入UI和CLI阻断仅为中间候选，尚不满足最终目标；旧CA不得遮蔽正常默认信任，未知私有CA的可信引导仍未确定，不默认为允许跳过TLS或自动信任。后续只按[最终登录验收目标](../../evidence/2026-10-29-panel-cert-login/LOGIN-ACCEPTANCE.md)补登录/信任改变边界，不新增GUI/OAuth代理工程，不重跑已过业务项。
+
 ## 当前增量：面板证书与登录本地修复（2026-10-29）
 
 本节是历史固定包收尾之后新授权的本地开发，工作副本为`bkn-dsh-panel-cert-login`，不改变下方已发布包、冻结-30/-31/-32及旧轮次验收身份。见[本轮实现/候选/分层结果](../../evidence/2026-10-29-panel-cert-login/RESULTS.md)。本地候选为`0.2.1-rc.3-openbkn.0.2.1-cert.local.2`，尚未发布，`ciRun=null`、`formalAcceptanceEligible=false`。

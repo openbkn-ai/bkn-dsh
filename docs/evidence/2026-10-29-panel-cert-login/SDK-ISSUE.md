@@ -29,6 +29,10 @@ See [the bounded result](CLI-ORIGIN-PROOF.json). The process-level CA variable i
 
 ## Expected public contract
 
+The maintainer has clarified the final user experience: a fresh installation or a client with stale/incorrect CA configuration must let the user click the plugin's CLI login button, complete the official browser username/password authorization, and return to a synchronized usable plugin. There must be no additional end-user certificate selection or confirmation, including on first use. The current manual-import UI and imported-CA login block are intermediate local behavior, not completion of that requirement.
+
+Default trusted certificates must remain usable even when an obsolete supplemental CA is configured. For private-CA deployments, a noninteractive trusted provisioning source and an origin-scoped CLI transport contract are needed; the source for a completely unknown private CA is still unresolved. This request does not authorize silently trusting arbitrary certificates or disabling TLS validation. It does not assume that an administrator-provisioning design has already been selected.
+
 Provide a supported way to supply additional trust for exactly the configured HTTPS origin (scheme, normalized host and effective port), while retaining certificate chain, validity and hostname verification. Auth requests should reject cross-origin redirects before dispatching a request body or credential. Same-origin redirects, cancellation and normal device authorization should retain their existing behavior. A stable refusal category would let embedding applications explain an unsupported trust configuration without exposing raw CLI output.
 
 An implementation may use a scoped transport option or another origin-fenced API. The plugin does not require a new authentication protocol or a global trust setting, and has not patched the CLI/SDK. Do not resolve this by disabling TLS verification, modifying the user's system trust, or broadening a process-wide CA variable.
@@ -36,3 +40,5 @@ An implementation may use a scoped transport option or another origin-fenced API
 ## Current disposition and acceptance boundary
 
 The maintainer explicitly chose to keep imported-certificate CLI login blocked and continue MCP/HTTP/UI work. Existing normal-trust CLI flows remain unchanged. Local MCP and HTTP success does not certify this CLI path. This draft requires separate authorization before public submission; no issue, project stage or assignee was changed in this round.
+
+Subsequent goal clarification makes the above block a temporary safety disposition, not an acceptable final experience. See [the final login acceptance target and remaining gaps](LOGIN-ACCEPTANCE.md). Read-only recheck on 2026-10-29: main `d6006640781fc87c40e50677ba11c529c7e79d25` and release/0.2.0 `3f53eba22f53b52d80aa98a58926c9815d83a473` still have byte-identical TLS, OAuth and public option sources to the npm0.2.0 source baseline; npm latest remains0.2.0. No fix for this exact contract was found in the inspected public issues/PRs. SDK168 (account configuration), SDK198 (stdio bridge) and DSH105 (MCP origin fence) do not resolve this CLI CA/login boundary. SDK206 is a separate version-compatibility gate.
