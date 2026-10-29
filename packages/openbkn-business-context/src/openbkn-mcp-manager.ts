@@ -25,7 +25,11 @@ export class OpenBknMcpManager {
     private readonly ctx: Context,
     private readonly config: Config,
     private readonly resolveToken: () => Promise<string | undefined>,
-    private readonly trust?: { readonly certificate?: unknown; readonly fetch: typeof fetch },
+    private readonly trust?: {
+      readonly certificate?: unknown
+      readonly fetch: typeof fetch
+      forAuthorization?(): Promise<{ readonly certificate?: unknown; readonly fetch: typeof fetch }>
+    },
   ) {}
 
   private reloading: Promise<void> | undefined
@@ -88,12 +92,14 @@ export class OpenBknMcpManager {
     // layer: refreshManagedMcpAtTurnStart re-mounts the client each turn and
     // refresh() re-mounts on demand, so the mounted secret never outlives the
     // credential it was resolved from.
+    const trust = this.trust?.forAuthorization ? await this.trust.forAuthorization() : this.trust
+    this.assertOwnerActive()
     const token = await this.resolveToken()
     this.assertOwnerActive()
     if (token === undefined || token.length === 0) {
       throw new Error('OpenBKN Context Loader MCP requires a configured token.')
     }
-    const fiber = await this.mountFiber(token).catch(error => {
+    const fiber = await this.mountFiber(token, trust).catch(error => {
       this.assertOwnerActive()
       throw this.explainStartupFailure(error)
     })
@@ -113,8 +119,8 @@ export class OpenBknMcpManager {
     this.observations.record({ subject: 'context-loader', stage: 'context-loader', code: 'context-loader', status: 'pass', evidence: { toolsPublished: true } })
   }
 
-  private async mountFiber(token: string): Promise<{ dispose(): Promise<void> }> {
-    const customTrust = this.trust?.certificate !== undefined
+  private async mountFiber(token: string, trust = this.trust): Promise<{ dispose(): Promise<void> }> {
+    const customTrust = trust?.certificate !== undefined
     // The plugin carries the reviewed native factory for its own scoped fetch.
     // No profile package installation, Host replacement or global fetch mutation.
     const McpClient: typeof StockMcpClient & { platformFetchSupported?: boolean } = customTrust
@@ -132,8 +138,8 @@ export class OpenBknMcpManager {
       toolCallTimeoutMs: this.config.toolCallTimeoutMs,
       failOnStartupError: true,
       reconnect: { enabled: true, initialDelayMs: 500, maxDelayMs: 30_000, maxAttempts: 10 },
-    }, customTrust ? { platformFetch: this.trust!.fetch } : {}))
-    if (customTrust && (mountConfig as unknown as { platformFetch?: unknown }).platformFetch !== this.trust!.fetch) {
+    }, customTrust ? { platformFetch: trust!.fetch } : {}))
+    if (customTrust && (mountConfig as unknown as { platformFetch?: unknown }).platformFetch !== trust!.fetch) {
       throw new PlatformConnectionError('TRUST_TRANSPORT_UNAVAILABLE')
     }
     return await this.ctx.plugin(McpClient, mountConfig)

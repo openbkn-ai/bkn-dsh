@@ -62,9 +62,22 @@ export class PrivatePlatformAccess {
   }
   // The marker requests the already-reviewed connection-scoped MCP fetch capability.
   get certificate(): PlatformPin | { automaticPrivateTrust: true } { return this.selected ?? { automaticPrivateTrust: true } }
-  readonly fetch: typeof fetch = async (input, init) => {
-    await this.requireAuthorization(init?.signal ?? undefined)
-    return await this.connection!.fetch(input, init)
+  /** Snapshot before resolving a token; an older client must never follow a new grant. */
+  async forAuthorization(signal?: AbortSignal): Promise<{ readonly certificate: PlatformAccessRecord; readonly fetch: typeof fetch }> {
+    const record = await this.requireAuthorization(signal)
+    return { certificate: record, fetch: this.fetchForGeneration(record.generation) }
+  }
+  get fetch(): typeof fetch { return this.fetchForGeneration(this.selected?.generation) }
+  private fetchForGeneration(expected: string | undefined): typeof fetch {
+    return async (input, init) => {
+      const record = await this.requireAuthorization(init?.signal ?? undefined)
+      // Another inspector may have advanced the selected transport while the
+      // authorization promise was settling. Check both before dispatch.
+      if (record.generation !== expected || this.selected?.generation !== expected) {
+        throw new PlatformConnectionError('PLATFORM_IDENTITY_CHANGED')
+      }
+      return await this.connection!.fetch(input, init)
+    }
   }
   async dispose(): Promise<void> { this.disposed = true; this.lifetime.abort(); await this.connection?.dispose() }
 }

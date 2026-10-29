@@ -816,10 +816,17 @@ export class OpenBknBusinessContextService extends TypertRemoteService {
 
   /** Historical private seam retained for unit fixtures; it now returns the Host HTTP reader, never a Python OSDK process. */
   private platformReader(): OpenBknPlatformReader {
+    const trust = this.platformTrust()
+    let connection: Promise<{ readonly fetch: typeof fetch }> | undefined
+    const forRequest = (signal?: AbortSignal) => connection ??= (
+      'forAuthorization' in trust ? trust.forAuthorization(signal) : Promise.resolve(trust))
     return new OpenBknPlatformReader({
       ...this.config,
-      resolveToken: signal => this.resolveOpenBknToken(signal),
-    }, (url, init) => this.platformTrust().fetch(url, init))
+      resolveToken: async signal => {
+        await forRequest(signal)
+        return await this.resolveOpenBknToken(signal)
+      },
+    }, async (url, init) => (await forRequest(init?.signal ?? undefined)).fetch(url, init))
   }
 
   /** Never send a shared credential from another platform before CLI verification. */
