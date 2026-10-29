@@ -28,6 +28,7 @@ export interface NativeExplanation {
   selectedPairGraphs?: Record<string, NativePairGraph>
 }
 export type NativeReadFailure = 'authentication-required' | 'access-denied' | 'not-disclosed-or-unavailable' | 'invalid-response' | 'result-too-large' | 'unavailable'
+  | 'certificate-untrusted' | 'certificate-invalid' | 'network-timeout'
 export type NativeExplanationResult = { kind: 'ready'; generatedAt: string; view: NativeExplanation } | { kind: 'not-generated' } | { kind: 'unavailable'; reason: NativeReadFailure }
 export interface NativeRecordIntegrity { status: 'complete' | 'missing'; checked_at: string; scope: 'registered_call_records'; missing: { operation_id: string; attempt: number; tool_name?: string; reason: string; field: string }[] }
 export interface NativeInteractionDetail { recordIntegrity?: NativeRecordIntegrity; recordIntegrityCheckFailed?: boolean; knowledgeNetworkIds: string[]; interactionId: string; question?: string; answer?: string; timeRail: NativeTimeItem[] }

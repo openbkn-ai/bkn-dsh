@@ -119,6 +119,9 @@ function registerPanels(ctx: Context, bridge: OpenBknPanelBridge): void {
     cancelLogin: () => panel.cancelLogin(),
     showSettings: () => panel.showSettings(),
     saveConfiguration: (input: import('../types.ts').OpenBknConfigurationInput) => panel.saveConfiguration(input),
+    certificate: {
+      previewCertificate: async (baseUrl: string, pem: string) => unwrap(await ctx.remote.openbknConfiguration.previewCertificate(baseUrl, pem)),
+    },
     cliSetup: {
       checkCli: async (cliPath: string, signal?: AbortSignal) => unwrap(await ctx.remote.openbknConfiguration.checkCli(cliPath, signal)),
       installCli: async (cliPath: string, targetVersion: OpenBknCliInstallVersion) => unwrap(await ctx.remote.openbknConfiguration.installCli(cliPath, targetVersion)),
@@ -280,8 +283,12 @@ function remotePort(ctx: Context): OpenBknUiPort & {
     beginLogin: async signal => {
       const login = remote.beginLoginStream(signal)
       try {
-        for await (const networks of login) return networks
-        throw new Error('OpenBKN login completed without a verified network list.')
+        // This endpoint yields one verified result. A for-await return waits
+        // for iterator.return(), which can delay that result behind carrier
+        // cleanup. The handle's dispose owns cancellation and releases it.
+        const result = await login[Symbol.asyncIterator]().next()
+        if (result.done) throw new Error('OpenBKN login completed without a verified network list.')
+        return result.value
       } finally {
         await login.dispose()
       }

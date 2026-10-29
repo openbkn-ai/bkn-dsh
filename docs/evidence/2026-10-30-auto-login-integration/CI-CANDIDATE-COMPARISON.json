@@ -1,0 +1,22 @@
+{
+  "kind": "ci-candidate-difference-validation",
+  "ciRun": 40920391148,
+  "ciHead": "42fe36206171e85b023bed2640ad2378f8023817",
+  "version": "0.2.1-rc.3-openbkn.0.2.1-auto.local.2",
+  "referenceSha256": "96dc62d7ef9bded5ca45861a9d8d5e0f627f30a365a38590d7cbb541a9867571",
+  "localRevisedSha256": "deffface9f7d5768ed3ec92e95887598586a3c32752eb26c5627c4b044065e63",
+  "ciSha256": "7c99d259758fabf1c14853d487904e81ffb51d799dd268e39326b299b372bcfc",
+  "ciBytes": 259623,
+  "files": 94,
+  "ciVsLocallyVerifiedDifferenceFiles": [],
+  "ciVsReferenceDifferenceFiles": [
+    "lib/business.js",
+    "lib/types/openbkn-mcp-manager.d.ts",
+    "lib/types/private-platform-access.d.ts"
+  ],
+  "identicalFileCountVsReference": 91,
+  "ciBusinessSha256": "14c080205500ef09318af272ba1ef4617c0280eb707f516df3c72befc8c6dd8e",
+  "clientUnchanged": true,
+  "cliPreloadUnchanged": true,
+  "nativeMcpUnchanged": true
+}

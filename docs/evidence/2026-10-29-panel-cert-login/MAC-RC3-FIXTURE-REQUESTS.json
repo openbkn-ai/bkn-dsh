@@ -1,0 +1,165 @@
+{
+  "requests": [
+    {
+      "path": "/api/agent-retrieval/v1/mcp/",
+      "method": "POST",
+      "hasAuthorization": true,
+      "bodyBytes": 280,
+      "rpcMethod": "server/discover"
+    },
+    {
+      "path": "/api/agent-retrieval/v1/mcp/",
+      "method": "POST",
+      "hasAuthorization": true,
+      "bodyBytes": 163,
+      "rpcMethod": "initialize"
+    },
+    {
+      "path": "/api/agent-retrieval/v1/mcp/",
+      "method": "POST",
+      "hasAuthorization": true,
+      "bodyBytes": 54,
+      "rpcMethod": "notifications/initialized"
+    },
+    {
+      "path": "/api/agent-retrieval/v1/mcp/",
+      "method": "GET",
+      "hasAuthorization": true,
+      "bodyBytes": 0
+    },
+    {
+      "path": "/api/agent-retrieval/v1/mcp/",
+      "method": "POST",
+      "hasAuthorization": true,
+      "bodyBytes": 46,
+      "rpcMethod": "tools/list"
+    },
+    {
+      "path": "/api/bkn-backend/v1/knowledge-networks",
+      "method": "GET",
+      "hasAuthorization": true,
+      "bodyBytes": 0
+    },
+    {
+      "path": "/api/agent-observability/v1/business-provenance/interactions/int-fixture",
+      "method": "GET",
+      "hasAuthorization": true,
+      "bodyBytes": 0
+    },
+    {
+      "path": "/api/agent-observability/v1/business-provenance/interactions/int-fixture/explanations",
+      "method": "GET",
+      "hasAuthorization": true,
+      "bodyBytes": 0
+    },
+    {
+      "path": "/api/agent-retrieval/v1/mcp/",
+      "method": "POST",
+      "hasAuthorization": true,
+      "bodyBytes": 280,
+      "rpcMethod": "server/discover"
+    },
+    {
+      "path": "/api/agent-retrieval/v1/mcp/",
+      "method": "POST",
+      "hasAuthorization": true,
+      "bodyBytes": 163,
+      "rpcMethod": "initialize"
+    },
+    {
+      "path": "/api/agent-retrieval/v1/mcp/",
+      "method": "POST",
+      "hasAuthorization": true,
+      "bodyBytes": 54,
+      "rpcMethod": "notifications/initialized"
+    },
+    {
+      "path": "/api/agent-retrieval/v1/mcp/",
+      "method": "GET",
+      "hasAuthorization": true,
+      "bodyBytes": 0
+    },
+    {
+      "path": "/api/agent-retrieval/v1/mcp/",
+      "method": "POST",
+      "hasAuthorization": true,
+      "bodyBytes": 46,
+      "rpcMethod": "tools/list"
+    },
+    {
+      "path": "/api/bkn-backend/v1/knowledge-networks",
+      "method": "GET",
+      "hasAuthorization": true,
+      "bodyBytes": 0
+    },
+    {
+      "path": "/api/agent-observability/v1/business-provenance/interactions/int-fixture",
+      "method": "GET",
+      "hasAuthorization": true,
+      "bodyBytes": 0
+    },
+    {
+      "path": "/api/agent-observability/v1/business-provenance/interactions/int-fixture/explanations",
+      "method": "GET",
+      "hasAuthorization": true,
+      "bodyBytes": 0
+    },
+    {
+      "path": "/api/agent-retrieval/v1/mcp/",
+      "method": "POST",
+      "hasAuthorization": true,
+      "bodyBytes": 280,
+      "rpcMethod": "server/discover"
+    },
+    {
+      "path": "/api/agent-retrieval/v1/mcp/",
+      "method": "POST",
+      "hasAuthorization": true,
+      "bodyBytes": 163,
+      "rpcMethod": "initialize"
+    },
+    {
+      "path": "/api/agent-retrieval/v1/mcp/",
+      "method": "POST",
+      "hasAuthorization": true,
+      "bodyBytes": 54,
+      "rpcMethod": "notifications/initialized"
+    },
+    {
+      "path": "/api/agent-retrieval/v1/mcp/",
+      "method": "GET",
+      "hasAuthorization": true,
+      "bodyBytes": 0
+    },
+    {
+      "path": "/api/agent-retrieval/v1/mcp/",
+      "method": "POST",
+      "hasAuthorization": true,
+      "bodyBytes": 46,
+      "rpcMethod": "tools/list"
+    },
+    {
+      "path": "/api/bkn-backend/v1/knowledge-networks",
+      "method": "GET",
+      "hasAuthorization": true,
+      "bodyBytes": 0
+    },
+    {
+      "path": "/api/agent-observability/v1/business-provenance/interactions/int-fixture",
+      "method": "GET",
+      "hasAuthorization": true,
+      "bodyBytes": 0
+    },
+    {
+      "path": "/api/agent-observability/v1/business-provenance/interactions/int-fixture/explanations",
+      "method": "GET",
+      "hasAuthorization": true,
+      "bodyBytes": 0
+    }
+  ],
+  "noToolsCall": true,
+  "fixtureListenersClosed": true,
+  "hostExited": true,
+  "hostExitCode": 0,
+  "hostSignal": null
+}

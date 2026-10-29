@@ -1,5 +1,14 @@
 # Changelog
 
+## 0.2.1-rc.3-openbkn.0.2.1-auto.local.2 (unreleased integration candidate)
+
+- Start the official OpenBKN CLI authorization from the panel using an independently owned Chrome/Edge profile. Automatically observe the configured private platform and require a fresh grant after its origin, observed IP or leaf certificate changes; ordinary token expiry uses official CLI refresh.
+- Scope the pinned transport to the plugin and its dedicated CLI child. Preserve existing Host installations, daily browsers and system trust. This explicitly accepted private-environment policy substitutes an observed fingerprint for public CA/hostname authentication; it does not provide public-PKI first-contact assurance. Certificate dates and origin/identity fences remain enforced.
+- Ship the reviewed native MCP fetch backport and license with the plugin, without a manual profile companion or Host modification. Bind credential-bearing MCP connections and native-reader requests to the authorization generation that supplied their token, so an older client cannot send its credential to a newly authorized replacement identity.
+- Deliver the verified one-result login outcome before asynchronous iterator cleanup, so the current panel can show success and its authorized network directory without closing or refreshing. Preserve cancellation, timeout and credential verification.
+- Carry the recorded Mac and Windows affected validation and the closeout documentation. Preserve the original five-minute lag, its unknown unique cause, unobserved Windows exit code and exact transition-time limits; do not rewrite earlier failures or generalize one success to all timing conditions.
+- Keep DSH targets at the reviewed versions and the actual platform/official CLI baseline at 0.2.0. OpenBKN 0.2.1 in the version remains the release identifier. This integration performs build-only verification, not publication; latest promotion and local npm CLI setup remain maintainer-owned.
+
 ## 0.2.1-rc.3-openbkn.0.2.1 (2026-10-27)
 
 - Consolidate the 0.2.1 feature commits and local implementation on the latest main history while preserving this release line's verified native provenance, login, focus, locale and scoped CSV-delivery behavior. Do not adopt the parallel -11/-13 package or its different modal-dismissal policy.

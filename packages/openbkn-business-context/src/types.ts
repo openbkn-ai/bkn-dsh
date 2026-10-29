@@ -1,9 +1,29 @@
+/** Public certificate identity only; no certificate body or filesystem path. */
+export interface CertificateIdentity {
+  readonly origin: string
+  readonly subject: string
+  readonly issuer: string
+  readonly validFrom: string
+  readonly validTo: string
+  readonly fingerprint256: string
+  readonly isCA: boolean
+}
+
+/** Public certificate stored in the Host's platform-scoped profile configuration. */
+export interface PlatformCertificateTrust {
+  readonly origin: string
+  readonly pem: string
+  readonly fingerprint256: string
+}
+
 /** Current profile settings; credentials never cross this boundary. */
 export interface OpenBknConfigurationView {
   readonly baseUrl: string
   readonly cliPath: string
   readonly configured: boolean
   readonly editable: boolean
+  readonly certificate?: CertificateIdentity
+  readonly certificateError?: string
   readonly unavailableReason?: 'editor-unavailable' | 'entry-unavailable' | 'entry-inactive' | 'busy'
 }
 
@@ -11,6 +31,13 @@ export interface OpenBknConfigurationView {
 export interface OpenBknConfigurationInput {
   readonly baseUrl: string
   readonly cliPath: string
+  /** One Host-issued preview confirmation; absent means retain matching trust. */
+  readonly trustConfirmationId?: string
+  readonly removeCertificate?: boolean
+}
+
+export interface PlatformCertificatePreview extends CertificateIdentity {
+  readonly confirmationId: string
 }
 
 /** Bounded CLI setup result; installer output and credentials never cross this boundary. */
@@ -30,7 +57,7 @@ export interface OpenBknCliSetupView {
 /** Safe, UI-ready representation of OpenBKN authentication state. */
 export type AuthSnapshot =
   | { readonly kind: 'authenticated'; readonly baseUrl: string; readonly userId?: string; readonly username?: string }
-  | { readonly kind: 'authentication-required'; readonly baseUrl: string }
+  | { readonly kind: 'authentication-required'; readonly baseUrl: string; readonly reason?: 'expired' | 'platform-changed' }
   | { readonly kind: 'platform-mismatch'; readonly expectedBaseUrl: string; readonly actualBaseUrl: string }
 
 /** The only platform-network fields allowed to cross from Host to Client. */

@@ -1,0 +1,20 @@
+{
+  "oldFiberStillActive": true,
+  "oldFiberDisposeCount": 0,
+  "capturedFetchIsSharedAccessFetch": true,
+  "oldLiteralHeaderRetained": true,
+  "generationChanged": true,
+  "blockedBeforeAuthorization": true,
+  "newGenerationAuthorized": true,
+  "oldSyntheticHeaderReachedNewIdentity": true,
+  "requests": [
+    {
+      "phase": "old",
+      "oldSyntheticHeader": true
+    },
+    {
+      "phase": "new",
+      "oldSyntheticHeader": true
+    }
+  ]
+}

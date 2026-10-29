@@ -13,6 +13,7 @@ export interface CliResult {
 import type { AuthSnapshot } from './types.js'
 import { passiveDiagnostics, type PassiveDiagnosticsWriter } from './diagnostics-observer.js'
 import { trimTrailingSlashes } from './trailing-slashes.js'
+import { connectionFailure, PlatformConnectionError } from './platform-trust.js'
 
 export type { AuthSnapshot } from './types.js'
 
@@ -46,7 +47,7 @@ export class AuthCoordinator {
   private readonly baseUrl: string
   private readonly observations = passiveDiagnostics.writer()
 
-  constructor(private readonly cli: OpenBknCli, baseUrl: string) {
+  constructor(private readonly cli: OpenBknCli, baseUrl: string, private readonly refreshExpired = false) {
     this.baseUrl = normalizeBaseUrl(baseUrl)
   }
 
@@ -56,7 +57,17 @@ export class AuthCoordinator {
     signal?.throwIfAborted()
     if (result.code !== 0) throw cliFailure('read authentication status', result)
 
-    const status = parseStatus(result.stdout, this.observations)
+    let status = parseStatus(result.stdout, this.observations)
+    if (this.refreshExpired && status.hasToken && status.expired === true
+      && status.baseUrl !== undefined && normalizeBaseUrl(status.baseUrl) === this.baseUrl) {
+      // Official CLI owns refresh-token rotation; never open a browser to renew an ordinary access token.
+      const renewed = await this.cli.run(['auth', 'token'], signal)
+      signal?.throwIfAborted()
+      if (renewed.code === 0) {
+        const reread = await this.cli.run(['auth', 'status', '--json'], signal)
+        if (reread.code === 0) status = parseStatus(reread.stdout, this.observations)
+      }
+    }
     // No active platform in the CLI: nobody has logged in yet.
     if (status.baseUrl === undefined) return observed({ kind: 'authentication-required', baseUrl: this.baseUrl }, this.observations)
     const actualBaseUrl = normalizeBaseUrl(status.baseUrl)
@@ -70,7 +81,8 @@ export class AuthCoordinator {
     // An unknown expiry is not a refusal: `auth token` is the CLI's refresh
     // authority and fails by itself when the session cannot be renewed.
     if (!status.hasToken || status.expired === true) {
-      return observed({ kind: 'authentication-required', baseUrl: this.baseUrl }, this.observations)
+      return observed({ kind: 'authentication-required', baseUrl: this.baseUrl,
+        ...(status.expired === true ? { reason: 'expired' as const } : {}) }, this.observations)
     }
     return observed({
       kind: 'authenticated',
@@ -82,9 +94,9 @@ export class AuthCoordinator {
 
   /**
    * Ask the CLI to initiate its normal local-browser OAuth flow. The plugin
-   * deliberately does not use `--no-browser`: that variant requires a human
-   * to paste an OAuth callback into stdin, while DSH's managed subprocess has
-   * no terminal input surface. Its human-facing output is not persisted here.
+   * retains the official device-code grant. The managed private-platform
+   * adapter adds `--no-browser` only to open that same verification URL in
+   * a separately owned, certificate-pinned browser. No callback is pasted.
    */
   async beginLogin(signal?: AbortSignal): Promise<void> {
     const result = await this.cli.run(['auth', 'login', this.baseUrl], signal)
@@ -153,9 +165,12 @@ function normalizeBaseUrl(value: string): string {
   return trimTrailingSlashes(value)
 }
 
-function cliFailure(action: string, result: CliResult): OpenBknCliError {
-  const detail = result.stderr.trim() || 'no diagnostic output'
-  return new OpenBknCliError(`OpenBKN CLI could not ${action}: ${detail}`)
+function cliFailure(action: string, result: CliResult): Error {
+  const code = connectionFailure(result.stderr)
+  if (code?.startsWith('CERTIFICATE_')) passiveDiagnostics.writer().record({ subject: 'cli', stage: 'cli', code: 'tls-failed', status: 'fail' })
+  return code === undefined
+    ? new OpenBknCliError(`OpenBKN CLI could not ${action} (CLI_FAILED).`)
+    : new PlatformConnectionError(code)
 }
 
 /** Record one observed authentication outcome, then hand the snapshot through. */

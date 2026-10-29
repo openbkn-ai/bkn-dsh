@@ -5,6 +5,7 @@ import type { InjectFace, PropsRuntime } from '@deepseek-ai/dsh-client-ui-slots'
 import type { OpenBknUiController, OpenBknOverlayState } from './openbkn-ui-controller.ts'
 import { INITIAL_NETWORK_DIRECTORY_LIMIT, selectNetworkDirectory } from './network-directory.ts'
 import type { BusinessNetworkSummary, OpenBknConfigurationInput } from '../types.ts'
+import type { CertificatePort } from './CertificateControl.tsx'
 import { CliSetupControl } from './CliSetupControl.tsx'
 import { useDialogFocus } from './use-dialog-focus.ts'
 import type { CliSetupPort } from './cli-setup-controller.ts'
@@ -18,6 +19,7 @@ export interface OpenBknOverlayInjected {
   showSettings(): Promise<void>
   saveConfiguration(input: OpenBknConfigurationInput): Promise<void>
   cliSetup: CliSetupPort
+  certificate?: CertificatePort
   openNetwork(networkId: string, mode: 'continue' | 'new' | 'create-workspace'): Promise<void>
   openDiagnostics(): void
 }
@@ -25,7 +27,7 @@ export interface OpenBknOverlayInjected {
 export type OpenBknOverlayProps = PropsRuntime<'shell.overlay'> & InjectFace<OpenBknOverlayInjected>
 
 /** Frame-wide, additive OpenBKN control plane. It is intentionally outside DSH chat scroll containers. */
-export function OpenBknOverlay({ useUi, close, refresh, beginLogin, cancelLogin, showSettings, saveConfiguration, cliSetup, openNetwork, openDiagnostics }: OpenBknOverlayProps) {
+export function OpenBknOverlay({ useUi, close, refresh, beginLogin, cancelLogin, showSettings, saveConfiguration, cliSetup, certificate, openNetwork, openDiagnostics }: OpenBknOverlayProps) {
   const t = useOpenBknTranslation()
 
   const state = useUi((value: OpenBknOverlayState) => value)
@@ -60,19 +62,20 @@ export function OpenBknOverlay({ useUi, close, refresh, beginLogin, cancelLogin,
           </div>
         </header>
         <div style={{ padding: 20 }}>
-          <OverlayBody state={state} beginLogin={beginLogin} cancelLogin={cancelLogin} saveConfiguration={saveConfiguration} cliSetup={cliSetup} refresh={refresh} openNetwork={openNetwork} />
+          <OverlayBody state={state} beginLogin={beginLogin} cancelLogin={cancelLogin} saveConfiguration={saveConfiguration} cliSetup={cliSetup} certificate={certificate} refresh={refresh} openNetwork={openNetwork} />
         </div>
       </section>
     </div>
   )
 }
 
-function OverlayBody({ state, beginLogin, cancelLogin, saveConfiguration, cliSetup, refresh, openNetwork }: {
+function OverlayBody({ state, beginLogin, cancelLogin, saveConfiguration, cliSetup, certificate, refresh, openNetwork }: {
   state: OpenBknOverlayState
   cancelLogin(): void
   beginLogin(): Promise<void>
   saveConfiguration(input: OpenBknConfigurationInput): Promise<void>
   cliSetup: CliSetupPort
+  certificate?: CertificatePort
   refresh(): Promise<void>
   openNetwork(networkId: string, mode: 'continue' | 'new' | 'create-workspace'): Promise<void>
 }) {
@@ -102,13 +105,15 @@ function OverlayBody({ state, beginLogin, cancelLogin, saveConfiguration, cliSet
   }
 
   if (state.phase === 'configuration') {
-    return <ConfigurationForm state={state} saveConfiguration={saveConfiguration} cliSetup={cliSetup} />
+    return <ConfigurationForm state={state} saveConfiguration={saveConfiguration} cliSetup={cliSetup} certificate={certificate} />
   }
 
   if (state.phase === 'authentication-required') {
     return (
       <div>
         <p style={{ marginTop: 0, lineHeight: 1.6 }}>{t('signInWithTheLocalOpenBKNCLIThe')}</p>
+        {state.auth?.kind === 'authentication-required' && state.auth.reason === 'expired' ? <p role="status">{t('credentialExpired')}</p> : null}
+        {state.auth?.kind === 'authentication-required' && state.auth.reason === 'platform-changed' ? <p role="status">{t('privatePlatformAuthorization')}</p> : null}
         <p style={{ ...mutedStyle, marginTop: 0 }}>{t('platformURL')} {displayBaseUrl(state.auth)}</p>
         {state.login === 'timed-out' ? <p role="status" style={authenticationNoticeStyle}>{t('signInWaitTimedOutPlatformAuthorizationMay')}</p> : state.login === 'cancelled' ? <p role="status" style={authenticationNoticeStyle}>{t('signInWaitCancelledSignInAgainOr')}</p> : null}
         {state.message ? <p role="status" style={authenticationNoticeStyle}>{renderUiMessage(state.message, t)}</p> : null}
@@ -189,10 +194,11 @@ function NetworkRow({ network, expanded, onToggle, openNetwork }: {
   </article>
 }
 
-function ConfigurationForm({ state, saveConfiguration, cliSetup }: {
+function ConfigurationForm({ state, saveConfiguration, cliSetup, certificate }: {
   state: OpenBknOverlayState
   saveConfiguration(input: OpenBknConfigurationInput): Promise<void>
   cliSetup: CliSetupPort
+  certificate?: CertificatePort
 }) {
   const t = useOpenBknTranslation()
 
@@ -215,6 +221,7 @@ function ConfigurationForm({ state, saveConfiguration, cliSetup }: {
     <label style={searchLabelStyle}>
       {t('openBKNPlatformURL')}<input aria-label={t('openBKNPlatformURL')} type="text" inputMode="url" autoComplete="url" placeholder="https://openbkn.example.com" value={baseUrl} onChange={event => setBaseUrl(event.target.value)} disabled={!editable || saving} style={searchInputStyle} />
     </label>
+    <p style={{ margin: 0, ...mutedStyle, lineHeight: 1.6 }}>{t('automaticPlatformTrust')}</p>
     <details open={advanced} onToggle={event => setAdvanced(event.currentTarget.open)}>
       <summary style={loginLinkStyle}>{t('advancedSettings')}</summary>
       <label style={{ ...searchLabelStyle, marginTop: 10 }}>

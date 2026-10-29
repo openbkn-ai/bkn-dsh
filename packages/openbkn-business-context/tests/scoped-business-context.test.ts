@@ -429,7 +429,9 @@ test('loads only the host selection service at the root instead of registering a
     tools: { register: () => { throw new Error('root plugin must not register a tool') } },
   }
   await apply(ctx, config)
-  assert.equal(installed.length, 2)
+  assert.deepEqual(installed.map(value => (value as { name: string }).name), [
+    'OpenBknWorkspaceBindingRegistry', 'OpenBknPlatformAccessProfile', 'OpenBknBusinessContextService',
+  ])
 })
 
 test('every Context Loader tool of the supported releases is classified: managed, or reviewed and excluded', async () => {

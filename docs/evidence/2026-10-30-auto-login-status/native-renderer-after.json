@@ -1,0 +1,14 @@
+{
+  "kind": "bounded-frozen-candidate-renderer-diagnostic",
+  "archiveSha": "ea6be318b40f06a55e95e1bfd962f4f06fe230874574028750639f62e61194dc",
+  "rendererSha": "dbdb3f26bfbc1d143bc8a0eed5982a2507c4f0cf8027e7c170f3bed3604be356",
+  "actualHostStarted": false,
+  "platformAccessed": false,
+  "nativeSelectorBinding": true,
+  "packedControllerAndOverlay": true,
+  "nativeStreamHandle": true,
+  "carrierCleanupDelayInjected": true,
+  "successBeforeCleanup": true,
+  "noCloseOrRefresh": true,
+  "realWindowsRootCause": "UNKNOWN"
+}

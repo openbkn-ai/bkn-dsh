@@ -1,5 +1,58 @@
 # 0.2.1 当前剩余工作：六组收敛
 
+## 自动登录增量 PR 集成与 CI 差异检查点（2026-10-30）
+
+维护者已授权整合自动登录增量及52b3f32，通过必要独立评审和build-only CI后正常合并。CI40920391148（publish=false、源码42fe362）成功：插件657 PASS/1 SKIP、仓库73 PASS，两官方npm运行时受控检查通过。独立评审复现并修复旧凭据跨新授权代次的竞态；3项新增源码/编译用例均通过。
+
+原auto.local.2/96dc62d7/94文件仍是冻结验收基准；同名未发布CI修订包为7c99d259/94文件，只有business.js及两份类型声明不同，91项相同。客户端、CLI预加载、授权浏览器、原生MCP与版本元数据不变，已有Mac/Windows界面证据按原身份复用；未重跑真实Host/业务验收。首轮CI缺CHANGELOG的失败及原退出码/精确时刻/唯一根因UNKNOWN保留。
+
+完整身份、首次失败、修复/独立评审和差异证明见[集成检查点](../../evidence/2026-10-30-auto-login-integration/RESULTS.md)。正式PR审批/合并以关联PR记录为准。本次不发布、不改Host/正式0.2.0或数据配置，不动latest/本机npm CLI；原formalAcceptanceEligible=false及未决发布门槛不默认降级。
+
+
+## 最新收口：登录成功状态修复（2026-10-30）
+
+维护者已授权先修复、本地验证通过后再推独立交接分支并交Windows复验；此范围覆盖旧“仅文档/源码冻结”的后续限制，不改写原93f3e85和ea6be318。Windows fa6e2fb核心认证/复用及首次等待文案滞留保留为历史；auto.local.2的Windows最小复验8b5ee49现已返回，当前面板无需关闭或刷新即自动显示成功与目录，按本轮标准PASS并收口。
+
+最小修复源码 `dbf53d329eae704e580e555f9da37f7c05a8111a`，候选 `0.2.1-rc.3-openbkn.0.2.1-auto.local.2` / `96dc62d7ef9bded5ca45861a9d8d5e0f627f30a365a38590d7cbb541a9867571` / 94文件。仅client.js与包版本变化，Host/TLS/CLI/MCP等92项完全相同。13项聚焦检查、类型/构建/包审计、原生rc.3句柄/selector/打包UI受控对照及官方Mac GUI合成授权自动更新通过。受控清理延迟证明原consumer可阻塞成功反馈，不断言Windows现场唯一根因已确认。
+
+Windows本轮已在一个官方rc.3 Desktop完成一次真实授权后的当前面板自动更新；公开proof确认实际版本/MCP身份与两个授权网络，退出进程树及关联恢复按远程报告接收。退出码和精确翻转时刻仍UNKNOWN，上轮唯一根因未确证；不追加测试。其余已过项继续复用。见[本轮证据](../../evidence/2026-10-30-auto-login-status/RESULTS.md)及[最小交接](../../handoff/2026-10-30-auto-login-status-windows/README.md)。不改现有Host/正式0.2.0/数据配置，不建GUI体系、不跑CI/发布/改latest；未决发布门槛不默认降级。
+
+接收明细见[Windows收口记录](../../evidence/2026-10-30-auto-login-status/WINDOWS-CLOSEOUT.md)：11个公开Git对象与9项非自身manifest映射已核对，私有原件未取回，manifest自身摘要另记。本次仅本地文档收口，不推送或跑CI；auto.local.2仍未发布、formalAcceptanceEligible=false，未决正式发布门槛不默认降级。
+
+以下2026-10-29及更早的“当前/未执行/不推送”描述是当时检查点，不覆盖本节的新授权与已收到Windows结果。
+
+## 历史检查点（2026-10-29及以前）
+
+> 最新授权（2026-10-29）：维护者明确接受私有环境首次自动信任，以及origin/IP/叶证书变化后的自动更新与重新浏览器授权。此前手工证书确认及CLI阻断是中间方案，已被本次明确决定覆盖；不改写其历史失败或验收结果。
+
+## 当前增量：私有平台自动登录
+
+本地未发布候选 `0.2.1-rc.3-openbkn.0.2.1-auto.local.1`，`ciRun=null`、`formalAcceptanceEligible=false`。首次只需点击CLI登录并完成官方账号授权；平台身份变化后进入新授权代次，旧代次凭据不得用于新身份。普通token过期由官方CLI续期；服务端撤销或拒绝续期仍需重新授权，不能承诺永久会话。
+
+实现复用官方CLI设备授权、DSH子进程/存储和原生MCP factory。专用CLI子进程加载origin/IP/叶指纹限定的dispatcher，官方CLI文件不改；独立Chrome/Edge采用平台SPKI例外，日常浏览器与系统信任不改。原生MCP的同源/fetch回补已随插件交付，只选择插件拥有的连接，不要求用户放置profile companion，不改Host安装根。维护者接受用观测指纹替代公共CA/名称身份验证；保留证书日期检查，不把过期证书判为通过。
+
+已有本地证据：651项源码测试（650通过、1项Windows专用跳过）；旧基线构建/新rc.3类型通过；合成首次授权、重开/重启和官方CLI续期、证书变化及跨源拒绝；无手工companion的新profile实际加载；企业0.2.0真实账号授权后同步与只读目录、打包MCP实际实例身份已通过。先前HTTPS默认端口被转成0的实际缺陷已修复，保留首次失败。完整身份、归档和未执行门槛见[本轮结果](../../evidence/2026-10-29-auto-platform-login/RESULTS.md)。
+
+仅补登录/信任受影响边界。不重跑G6/B1/已过矩阵，不新建GUI发行体系。现有兼容CLI及Chrome/Edge为前提；官方Mac Desktop受影响登录补证已完成，见下述记录；物理Windows及公开新候选独立评审/CI/替换仍未执行，未默认降级。保持正式0.2.0、现有Host、公开包及冻结-30/-31/-32；不推送、不跑远端CI，latest与本机npm CLI仍由维护者处理。
+
+### 冻结93f3e85的官方Mac Desktop补证与Windows准备
+
+同一ea6be318候选、94文件和原官方rc.3 App完成真实授权、实际CLI preload/MCP实例、只读目录、面板重开及Desktop重启免授权；两次官方菜单退出均exit0。首轮钥匙串提示保留，已用只读HOME对照定位为验证脚本伪造HOME；改为真实HOME后，维护者确认同一任务浏览器只读重开无提示，没有重复账号授权或修改系统钥匙串。启动前备份的URL关联配置已按当前==After守卫恢复，字节与Before一致。详见[补证记录](../../evidence/2026-10-29-auto-desktop-login/RESULTS.md)。
+
+[Windows最小材料](../../handoff/2026-10-29-auto-login-windows/README.md)已离线校验，只补一个既有官方rc.3 Desktop的CLI载体、独立浏览器取消/一次授权、MCP和重开/重启/正常退出及关联恢复。维护者已授权仅向 `handoff/windows-auto-login-93f3e85-20261029` 推送文档/材料交接子提交，Windows仍未执行；不重跑已过项、不新增GUI体系。生产源码及候选仍固定93f3e85/ea6be318；不更新main/开发分支、不建PR、不跑CI，取件SHA由主会话推送后读回。
+
+## 历史中间增量：手工面板证书与CLI阻断
+
+### 原2026-10-29中间方案快照
+
+本节是历史固定包收尾之后新授权的本地开发，工作副本为`bkn-dsh-panel-cert-login`，不改变下方已发布包、冻结-30/-31/-32及旧轮次验收身份。见[本轮实现/候选/分层结果](../../evidence/2026-10-29-panel-cert-login/RESULTS.md)。本地候选为`0.2.1-rc.3-openbkn.0.2.1-cert.local.2`，尚未发布，`ciRun=null`、`formalAcceptanceEligible=false`。
+
+已实现面板选择单张PEM、预览origin/签发者/有效期/指纹、明确确认后持久化及撤销；MCP/目录/原生GET使用origin限定的连接级CA，保留证书链/日期/名称校验。插件637项（636通过/1项Windows专用跳过）、类型、包审计、两固定Host原生MCP合成HTTPS8项及一个真实Mac rc.3 npm/Web Host的受影响面板/加载/读取已验证，具体候选归档和UI复用边界见结果记录。没有更改现有Host代码或平台，也未重跑业务矩阵。
+
+**CLI缺口不降级为通过。** 官方CLI0.2.0在合成跨origin307后跟随至第二源；进程级附加CA不是origin边界。维护者明确选择保持导入证书后的CLI登录阻断，先整理[SDK issue草稿](../../evidence/2026-10-29-panel-cert-login/SDK-ISSUE.md)，继续MCP/HTTP/UI。草稿未提报，不猜测CLI/SDK负责人。没有为CLI注入CA环境变量或修改SDK。
+
+剩余范围仅为：获得origin限定的CLI契约后补最小真实账号认证；另行授权公开替换时才进行独立评审/新CI候选及受影响Windows、官方Desktop验证。此前已通过项不重跑，未执行项不默认为已知限制接受。当前无推送、PR、远端CI、发布/标签/资产变更；不操作维护者负责的latest及本机npm CLI。不新增GUI发行体系或业务内容仲裁。
+
 ## 当前状态：Windows 原生 UI 补证有界收尾（2026-10-29）
 
 #93已完成企业既存样例API/Studio同记录对照；#97已在固定 `0.2.1-rc.3-openbkn.0.2.1` 候选、官方DSH rc.3 npm/Web隔离Host完成三条非空结论、当前问答切片11条关系、来源及步骤/定义联动，十项聚焦对照通过。二者均已关闭completed、Project 12 Done。Mac只读回放由公开Session/Workspace API建立，不是新模型回合；见[#93对照](../../evidence/2026-10-27-issue93-native-studio/RESULTS.md)及[#97结果](../../evidence/2026-10-28-issue97-native-linkage/RESULTS.md)。

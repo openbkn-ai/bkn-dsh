@@ -1,0 +1,114 @@
+{
+  "kind": "windows-auto-login-status-fix-receipt-review",
+  "ciRun": null,
+  "formalAcceptanceEligible": false,
+  "sourceResultCommit": "8b5ee4902463b79a89f06b4628977217356fd80c",
+  "sourceResultParent": "f1b4b8b6757799d1206db03d48a7f5a6d1334236",
+  "handoffCommit": "40fe7a53795390391027e0244dc00eb96b593a98",
+  "productSourceCommit": "dbf53d329eae704e580e555f9da37f7c05a8111a",
+  "candidateVersion": "0.2.1-rc.3-openbkn.0.2.1-auto.local.2",
+  "candidateSha256": "96dc62d7ef9bded5ca45861a9d8d5e0f627f30a365a38590d7cbb541a9867571",
+  "publicGitBlobsVerified": [
+    {
+      "sourcePath": "docs/handoff/2026-10-30-auto-login-status-windows/results-windows/.gitattributes",
+      "localPath": "docs/evidence/2026-10-30-auto-login-status/windows-results/.gitattributes",
+      "gitBlobSha": "fbd3b2e4cbc943cf1331d112e6f81f99cebbca6c",
+      "sha256": "27f1c535296dae67c9734ca19ea563de7510d59243fbee9b214331399326f56d",
+      "bytes": 113
+    },
+    {
+      "sourcePath": "docs/handoff/2026-10-30-auto-login-status-windows/results-windows/RESULTS-auto-login-status-fix-20261030.md",
+      "localPath": "docs/evidence/2026-10-30-auto-login-status/windows-results/RESULTS-auto-login-status-fix-20261030.md",
+      "gitBlobSha": "c65a69b06757381afcb1ae8c0751e9a7434e0bc0",
+      "sha256": "a95157863b199790f95821d626fb1dfef70ad44efbbafd8833b2fb3f970ebe58",
+      "bytes": 7701
+    },
+    {
+      "sourcePath": "docs/handoff/2026-10-30-auto-login-status-windows/results-windows/archive/proof-4041eba7-ebac-480f-9a92-c7734fea59ea.json",
+      "localPath": "docs/evidence/2026-10-30-auto-login-status/windows-results/archive/proof-4041eba7-ebac-480f-9a92-c7734fea59ea.json",
+      "gitBlobSha": "c2d6787423caf4bf4fc4b878886cd8a9805a157a",
+      "sha256": "fa55bc7538509994c25e8a9dc07addc6b573558a7ef7b130609af8ecb5d408f8",
+      "bytes": 1013
+    },
+    {
+      "sourcePath": "docs/handoff/2026-10-30-auto-login-status-windows/results-windows/archive/t-click.txt",
+      "localPath": "docs/evidence/2026-10-30-auto-login-status/windows-results/archive/t-click.txt",
+      "gitBlobSha": "6afa4c8d7d0d7b33604de74c13a39fefc487456e",
+      "sha256": "e2c4f6503de0eb81a863718a65e0d012ba23ad45209c16f718054b5e1d4d49d3",
+      "bytes": 37
+    },
+    {
+      "sourcePath": "docs/handoff/2026-10-30-auto-login-status-windows/results-windows/evidence-manifest.json",
+      "localPath": "docs/evidence/2026-10-30-auto-login-status/windows-results/evidence-manifest.json",
+      "gitBlobSha": "0a49b55c51ad5881f733d88a5851ee7526c4d42c",
+      "sha256": "f6e2d18b85fa8445bd9a5b1e1df9d5602669db1e697fbbf0a40ed3897594f3ae",
+      "bytes": 6833
+    },
+    {
+      "sourcePath": "docs/handoff/2026-10-30-auto-login-status-windows/results-windows/final-digests.txt",
+      "localPath": "docs/evidence/2026-10-30-auto-login-status/windows-results/final-digests.txt",
+      "gitBlobSha": "2192717ea0330e8e841f42e0802978ec3e116373",
+      "sha256": "60e788542d3d3448c1938fccce4b4144365723e9b26c51c48d09663337e5f6a2",
+      "bytes": 287
+    },
+    {
+      "sourcePath": "docs/handoff/2026-10-30-auto-login-status-windows/results-windows/gui-exit-code.txt",
+      "localPath": "docs/evidence/2026-10-30-auto-login-status/windows-results/gui-exit-code.txt",
+      "gitBlobSha": "a53b28eb8d9d7822c9498479c15bf39e2ab179ae",
+      "sha256": "07c7c3587485c591fda6007d46ab338f7a9cff1138df8f78a00eec9b82ce363b",
+      "bytes": 14
+    },
+    {
+      "sourcePath": "docs/handoff/2026-10-30-auto-login-status-windows/results-windows/gui-identity.txt",
+      "localPath": "docs/evidence/2026-10-30-auto-login-status/windows-results/gui-identity.txt",
+      "gitBlobSha": "79999a75e2546bbcce98e4a908ff14aeb1d8a567",
+      "sha256": "0dc284f5e9f227d52a0fa62967dec0a6b00d390669a5587dbe07a80986060067",
+      "bytes": 329
+    },
+    {
+      "sourcePath": "docs/handoff/2026-10-30-auto-login-status-windows/results-windows/verify-inputs-initial.json",
+      "localPath": "docs/evidence/2026-10-30-auto-login-status/windows-results/verify-inputs-initial.json",
+      "gitBlobSha": "e0bfc40e2eaa0a40e46ce7bca552c8b9818a43a1",
+      "sha256": "0792532179774cbd00bbede9de55b4b46bae40607e83d5f702df3229e92c758d",
+      "bytes": 327
+    },
+    {
+      "sourcePath": "docs/handoff/2026-10-30-auto-login-status-windows/results-windows/verify-installed-final.json",
+      "localPath": "docs/evidence/2026-10-30-auto-login-status/windows-results/verify-installed-final.json",
+      "gitBlobSha": "e72110c1bc670e1c1be355ec924442503f9ac49d",
+      "sha256": "b1d6365bcfd28038164d36d4856d12ff20878cd7a15bd2fb4d4f862cc2f8868f",
+      "bytes": 325
+    },
+    {
+      "sourcePath": "docs/handoff/2026-10-30-auto-login-status-windows/results-windows/verify-installed.json",
+      "localPath": "docs/evidence/2026-10-30-auto-login-status/windows-results/verify-installed.json",
+      "gitBlobSha": "e72110c1bc670e1c1be355ec924442503f9ac49d",
+      "sha256": "b1d6365bcfd28038164d36d4856d12ff20878cd7a15bd2fb4d4f862cc2f8868f",
+      "bytes": 325
+    }
+  ],
+  "nonSelfManifestMappingsVerified": [
+    "results/RESULTS-auto-login-status-fix-20261030.md",
+    "results/archive/proof-4041eba7-ebac-480f-9a92-c7734fea59ea.json",
+    "results/archive/t-click.txt",
+    "results/final-digests.txt",
+    "results/gui-exit-code.txt",
+    "results/gui-identity.txt",
+    "results/verify-inputs-initial.json",
+    "results/verify-installed-final.json",
+    "results/verify-installed.json"
+  ],
+  "manifestEntries": 42,
+  "manifestSha256": "f6e2d18b85fa8445bd9a5b1e1df9d5602669db1e697fbbf0a40ed3897594f3ae",
+  "manifestSelfEntryMatchesCurrentBlob": false,
+  "manifestSelfEntryDisposition": "Preserve the original self entry; hash the received manifest independently. No private original or prior manifest bytes were fetched, so its provenance remains unverified.",
+  "privateRawEvidenceFetched": false,
+  "receivedMainVerdict": "PASS",
+  "receivedProcessTreeCleanup": "PASS",
+  "receivedExitCode": "UNKNOWN",
+  "originalWindowsRootCause": "UNKNOWN",
+  "preciseUiFlipInstant": "UNKNOWN",
+  "reportedLocalObservationInterval": "(2026-10-30T00:31:56+08:00,2026-10-30T00:32:19+08:00]",
+  "reportedProofWrittenLocal": "2026-10-30T00:32:09+08:00",
+  "newHostsOrTestsRun": false
+}

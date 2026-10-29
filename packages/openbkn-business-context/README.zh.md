@@ -1,5 +1,9 @@
 # bkn-dsh
 
+> 未发布的私有平台自动登录候选。点击CLI登录后，在独立Chrome/Edge配置中完成官方浏览器授权。自动观察并锁定平台证书，地址或证书变化后自动更新记录并要求重新授权；不要求手工选择CA。维护者已明确接受首次及变化后的自动信任：这里用观测指纹替代公共CA/主机名身份验证，不声称具备公共PKI首次身份保证。不改Host或系统全局信任，官方CLI文件不改，仅在专用子进程加载受限dispatcher。旧的附加CA配置不作为前置条件。本轮CLI/平台基线仍0.2.0，版本串OpenBKN0.2.1仍为发布标识。
+
+本增量沿用已安装的兼容 OpenBKN CLI（本轮实测 0.2.0），授权浏览器需本机 Chrome 或 Edge。原生 MCP 的连接级 fetch 回补随插件交付，只用于插件管理的连接，不要求手工安装 companion 或修改 Host。普通 access token 到期由官方 CLI 刷新；平台撤销或拒绝续期仍须重新授权。证书有效期检查保留，过期/尚未生效的服务端证书不记作通过。
+
 为 DeepSeek Harness 提供 OpenBKN 业务知识、网络范围治理、诊断与溯源。
 
 [English](README.md)
@@ -69,7 +73,7 @@ dsh plugin --profile <desktop|web> add @openbkn/dsh-business-context@latest
 
 Windows 上使用 `dsh.cmd`。源码构建从 DSH 源码根目录执行 `node apps/cli/lib/bin.js plugin --profile web add @openbkn/dsh-business-context@latest`。请使用实际启动的 Host 的 profile 与 `DSH_HOME`，`desktop` 和 `web` 是独立的 profile。安装下载包时，把包名替换为 `.tgz` 的绝对路径。
 
-安装与平台版本匹配的 OpenBKN CLI：0.1.5 平台用 `npm install -g @openbkn/bkn-sdk@0.1.5`；0.1.4 平台用 `@openbkn/bkn-sdk@0.1.4`（`0.1.5-rc.1` 也可以）。CLI 从 `0.1.5-rc.2` 起要求平台提供健康/版本接口，0.1.4 没有该接口。配置插件前不必先登录。npm 版 DSH 还需要 `PATH` 中有 pnpm（`npm install -g pnpm@11.7.0`），桌面版自带。自签证书平台需为 DSH 进程设置 `NODE_EXTRA_CA_CERTS` 并完全重启；各形态的操作见[仓库 README](https://github.com/openbkn-ai/bkn-dsh/blob/main/README.zh.md#开始之前)。
+安装与平台版本匹配的 OpenBKN CLI：0.1.5 平台用 `npm install -g @openbkn/bkn-sdk@0.1.5`；0.1.4 平台用 `@openbkn/bkn-sdk@0.1.4`（`0.1.5-rc.1` 也可以）。CLI 从 `0.1.5-rc.2` 起要求平台提供健康/版本接口，0.1.4 没有该接口。配置插件前不必先登录。npm 版 DSH 还需要 `PATH` 中有 pnpm（`npm install -g pnpm@11.7.0`），桌面版自带。本候选的自签证书操作及当前 SDK 限制见上方本地候选说明。
 
 ### 配置、授权、提问
 

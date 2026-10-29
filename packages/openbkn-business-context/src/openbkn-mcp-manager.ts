@@ -1,8 +1,11 @@
 import type { Context } from '@deepseek-ai/cordis'
 import { assertHttpsEndpoint, isLoopbackHost } from './platform-reader.js'
 import { passiveDiagnostics, transportMarkersOf, type PassiveDiagnosticsWriter } from './diagnostics-observer.js'
-import * as McpClient from '@deepseek-ai/dsh-mcp-client'
+import * as StockMcpClient from '@deepseek-ai/dsh-mcp-client'
+import { pathToFileURL, fileURLToPath } from 'node:url'
+import { dirname, resolve } from 'node:path'
 import type { Config } from './config.js'
+import { PlatformConnectionError } from './platform-trust.js'
 
 export const OPENBKN_MCP_TOKEN_REF = 'OPENBKN_MCP_TOKEN'
 const REQUIRED_TOOL = 'mcp__openbkn__bkn_start_interaction'
@@ -22,6 +25,11 @@ export class OpenBknMcpManager {
     private readonly ctx: Context,
     private readonly config: Config,
     private readonly resolveToken: () => Promise<string | undefined>,
+    private readonly trust?: {
+      readonly certificate?: unknown
+      readonly fetch: typeof fetch
+      forAuthorization?(): Promise<{ readonly certificate?: unknown; readonly fetch: typeof fetch }>
+    },
   ) {}
 
   private reloading: Promise<void> | undefined
@@ -47,7 +55,12 @@ export class OpenBknMcpManager {
 
   private async ensureMounted(): Promise<void> {
     this.assertOwnerActive()
-    if (this.ctx.tools.get(REQUIRED_TOOL) !== undefined) return
+    if (this.ctx.tools.get(REQUIRED_TOOL) !== undefined) {
+      // A deployment-owned client cannot be silently certified as using the
+      // platform trust selected in this plugin's panel.
+      if (this.trust?.certificate !== undefined && this.fiber === undefined) throw new PlatformConnectionError('TRUST_TRANSPORT_UNAVAILABLE')
+      return
+    }
     if (this.starting === undefined) {
       this.starting = this.start().finally(() => { this.starting = undefined })
     }
@@ -79,12 +92,14 @@ export class OpenBknMcpManager {
     // layer: refreshManagedMcpAtTurnStart re-mounts the client each turn and
     // refresh() re-mounts on demand, so the mounted secret never outlives the
     // credential it was resolved from.
+    const trust = this.trust?.forAuthorization ? await this.trust.forAuthorization() : this.trust
+    this.assertOwnerActive()
     const token = await this.resolveToken()
     this.assertOwnerActive()
     if (token === undefined || token.length === 0) {
       throw new Error('OpenBKN Context Loader MCP requires a configured token.')
     }
-    const fiber = await this.mountFiber(token).catch(error => {
+    const fiber = await this.mountFiber(token, trust).catch(error => {
       this.assertOwnerActive()
       throw this.explainStartupFailure(error)
     })
@@ -104,16 +119,30 @@ export class OpenBknMcpManager {
     this.observations.record({ subject: 'context-loader', stage: 'context-loader', code: 'context-loader', status: 'pass', evidence: { toolsPublished: true } })
   }
 
-  private async mountFiber(token: string): Promise<{ dispose(): Promise<void> }> {
-    return await this.ctx.plugin(McpClient, McpClient.Config({
-      transport: 'streamable-http',
+  private async mountFiber(token: string, trust = this.trust): Promise<{ dispose(): Promise<void> }> {
+    const customTrust = trust?.certificate !== undefined
+    // The plugin carries the reviewed native factory for its own scoped fetch.
+    // No profile package installation, Host replacement or global fetch mutation.
+    const McpClient: typeof StockMcpClient & { platformFetchSupported?: boolean } = customTrust
+      ? await import(pathToFileURL(resolve(dirname(fileURLToPath(import.meta.url)),
+          import.meta.url.endsWith('.ts') ? '../lib/platform-mcp-client.js' : 'platform-mcp-client.js')).href)
+      : StockMcpClient
+    if (customTrust && (McpClient as unknown as { platformFetchSupported?: boolean }).platformFetchSupported !== true) {
+      throw new PlatformConnectionError('TRUST_TRANSPORT_UNAVAILABLE')
+    }
+    const mountConfig = McpClient.Config(Object.assign({
+      transport: 'streamable-http' as const,
       serverName: 'openbkn',
       url: resolveMcpUrl(this.config),
       headers: { Authorization: `Bearer ${token}` },
       toolCallTimeoutMs: this.config.toolCallTimeoutMs,
       failOnStartupError: true,
       reconnect: { enabled: true, initialDelayMs: 500, maxDelayMs: 30_000, maxAttempts: 10 },
-    }))
+    }, customTrust ? { platformFetch: trust!.fetch } : {}))
+    if (customTrust && (mountConfig as unknown as { platformFetch?: unknown }).platformFetch !== trust!.fetch) {
+      throw new PlatformConnectionError('TRUST_TRANSPORT_UNAVAILABLE')
+    }
+    return await this.ctx.plugin(McpClient, mountConfig)
   }
 
   /**

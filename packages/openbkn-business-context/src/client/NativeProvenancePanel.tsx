@@ -182,6 +182,9 @@ function NodeDetail({ node }: { node: NativeChainNode }) {
 }
 function NativeFailure({ reason }: { reason: NativeReadFailure }) {
   const t = useOpenBknTranslation()
+  if (reason === 'certificate-untrusted') return <>{t('certificateUntrusted', { p0: 'CERTIFICATE_UNTRUSTED' })}</>
+  if (reason === 'certificate-invalid') return <>{t('certificateInvalid', { p0: 'CERTIFICATE_INVALID' })}</>
+  if (reason === 'network-timeout') return <>{t('connectionTimeout', { p0: 'NETWORK_TIMEOUT' })}</>
   const keys = { 'authentication-required': 'nativeAuthRequired', 'access-denied': 'nativeAccessDenied', 'not-disclosed-or-unavailable': 'nativeNotDisclosed', 'invalid-response': 'nativeInvalid', 'result-too-large': 'nativeTooLarge', unavailable: 'nativeUnavailable' } as const
   return <>{t(keys[reason])}</>
 }

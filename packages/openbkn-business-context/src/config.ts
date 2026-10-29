@@ -1,4 +1,5 @@
 import Schema from '@deepseek-ai/schemastery'
+import type { PlatformCertificateTrust } from './platform-trust.js'
 
 /** Deployment settings that are safe to keep in a DSH configuration patch. */
 export interface Config {
@@ -10,6 +11,8 @@ export interface Config {
   businessDomain?: string
   /** Absolute path to the OpenBKN CLI used only for the Host login/token handshake. */
   cliPath: string
+  /** Explicitly confirmed public certificate, bound to one normalized HTTPS origin. */
+  platformTrust?: PlatformCertificateTrust | null
   /** Upper bound for one OpenBKN request. */
   requestTimeoutMs: number
   /**
@@ -67,6 +70,10 @@ export const Config: Schema<Config> = Schema.object({
   mcpUrl: Schema.string(),
   businessDomain: Schema.string().pattern(/^[A-Za-z0-9_-]{1,64}$/),
   cliPath: Schema.string().default('openbkn'),
+  platformTrust: Schema.union([
+    Schema.const(null),
+    Schema.object({ origin: Schema.string(), pem: Schema.string(), fingerprint256: Schema.string() }),
+  ]).default(null),
   requestTimeoutMs: Schema.natural().min(1).default(30_000),
   toolCallTimeoutMs: Schema.natural().min(1).default(20_000),
   maxResultBytes: Schema.natural().min(1).default(1_000_000),

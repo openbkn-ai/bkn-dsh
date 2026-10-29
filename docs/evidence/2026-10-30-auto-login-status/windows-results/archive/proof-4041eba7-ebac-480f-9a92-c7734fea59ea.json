@@ -1,0 +1,31 @@
+{
+  "kind": "local-controlled-automatic-platform-login",
+  "ciRun": null,
+  "formalAcceptanceEligible": false,
+  "loadedClassIdentity": true,
+  "version": "0.2.1-rc.3-openbkn.0.2.1-auto.local.2",
+  "businessSha256": "167e6571b44d6e0bece6456c19546b79c6d39bd709d0632e6c46f66859c40417",
+  "components": [
+    {
+      "name": "@openbkn/dsh-business-context",
+      "state": 2
+    },
+    {
+      "name": "@openbkn/dsh-business-context/business",
+      "state": 2
+    },
+    {
+      "name": "@openbkn/dsh-business-context/diagnostics",
+      "state": 2
+    }
+  ],
+  "authKind": "authenticated",
+  "networkCount": 2,
+  "packagedMcpRuntimeIdentity": true,
+  "packagedMcpSha256": "41db8cdb31f2f3403eb10e3e42c8114fdb9e54bbc1c76fb6dbdb2c2b931bc22d",
+  "manualProfileCompanionPresent": false,
+  "generation": "4041eba7-ebac-480f-9a92-c7734fea59ea",
+  "fingerprint256": "44:D1:AB:A4:39:17:9F:FC:BE:DD:B6:40:5A:48:48:BE:FE:59:C9:21:A9:A1:4A:E1:34:01:2A:76:4C:AA:17:F7",
+  "platformKind": "real-read-only",
+  "result": "PASS"
+}
