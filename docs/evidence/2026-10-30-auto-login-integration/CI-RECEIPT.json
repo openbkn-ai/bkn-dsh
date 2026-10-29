@@ -1,0 +1,84 @@
+{
+  "kind": "automatic-login-integration-ci-delta",
+  "ciRun": 40920391148,
+  "ciUrl": "https://github.com/openbkn-ai/bkn-dsh/actions/runs/40920391148",
+  "ciHead": "42fe36206171e85b023bed2640ad2378f8023817",
+  "ciConclusion": "success",
+  "publishRequested": false,
+  "referenceVersion": "0.2.1-rc.3-openbkn.0.2.1-auto.local.2",
+  "referenceSha256": "96dc62d7ef9bded5ca45861a9d8d5e0f627f30a365a38590d7cbb541a9867571",
+  "ciSha256": "7c99d259758fabf1c14853d487904e81ffb51d799dd268e39326b299b372bcfc",
+  "ciBytes": 259623,
+  "ciFiles": 94,
+  "ciSameUnpackedFilesAsLocallyVerifiedRevision": true,
+  "referenceDifferenceFiles": [
+    "lib/business.js",
+    "lib/types/openbkn-mcp-manager.d.ts",
+    "lib/types/private-platform-access.d.ts"
+  ],
+  "unchangedReferenceFiles": 91,
+  "pluginTests": {
+    "total": 658,
+    "pass": 657,
+    "fail": 0,
+    "skip": 1
+  },
+  "repositoryTests": {
+    "total": 73,
+    "pass": 73,
+    "fail": 0
+  },
+  "profileCompanionPreservationTest": {
+    "total": 1,
+    "pass": 1,
+    "fail": 0
+  },
+  "ciHostChecks": [
+    {
+      "host": "0.2.0-rc.2",
+      "commit": "639ed015397290b3745d163aafe02ffee4aa3f84",
+      "status": "pass",
+      "checks": {
+        "guard-formal": "pass",
+        "guard-formal-disabled": "pass",
+        "guard-legacy": "pass",
+        "csv-export": "pass",
+        "native-output": "pass",
+        "remote": "pass"
+      }
+    },
+    {
+      "host": "0.2.1-rc.3",
+      "commit": "1f81c047fc48fa190a683e469daa699857e9afe8",
+      "status": "pass",
+      "checks": {
+        "guard-formal": "pass",
+        "guard-formal-disabled": "pass",
+        "guard-legacy": "pass",
+        "csv-export": "pass",
+        "native-output": "pass",
+        "remote": "pass"
+      }
+    }
+  ],
+  "ciHostEvidenceBoundary": "controlled official npm runtime; stand-in platform and scripted model only",
+  "ciNode": "v22.19.0",
+  "ciPlatform": "linux",
+  "newGenerationRegressions": {
+    "sourceBeforePass": 0,
+    "sourceBeforeFail": 3,
+    "sourceAfterPass": 3,
+    "compiledAfterPass": 3
+  },
+  "firstCiRun": 40917633768,
+  "firstCiConclusion": "failure",
+  "firstCiFailure": "Missing root CHANGELOG section for the committed auto.local.2 version; plugin 654 passed/1 skipped, repository72 passed/1 failed. No candidate artifact was produced.",
+  "preservedCloseoutCommit": "52b3f324210efd4bf1cd9000b667681f0eb05571",
+  "preservedWindowsResultCommit": "8b5ee4902463b79a89f06b4628977217356fd80c",
+  "newLiveAcceptanceRun": false,
+  "privateRawEvidenceUploaded": false,
+  "published": false,
+  "latestChanged": false,
+  "formalAcceptanceEligible": false,
+  "independentPrReviewAndMerge": "Tracked by the PR carrying this receipt; this file records the build/delta checkpoint, not a publication claim."
+}

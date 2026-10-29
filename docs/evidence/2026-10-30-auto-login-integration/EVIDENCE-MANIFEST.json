@@ -1,0 +1,15 @@
+{
+  "sourceCommit": "42fe36206171e85b023bed2640ad2378f8023817",
+  "ciRun": 40920391148,
+  "privateRawEvidenceUploaded": false,
+  "retainedPrivateHashes": {
+    "review-repro/generation-before.log": "e6aaa888be0f175c6b95505460f52834f9c9edc5d3556a3fa839a3dd460c75ee",
+    "generation-after.log": "dd32fc65bdecb99a38fb4cef7120bea79db4e16db9dbef4207c34c17b3d771f3",
+    "packed-generation/test.log": "bd5b409b7a613448a144b9caa48ead37b87656b70427f72f4d79effb41cbd7a3",
+    "packed-generation/HASHES.json": "878308bf4e9cc3c53577d6c76420007eb799a7b72dc753f082fb975bc543deb8",
+    "typecheck-after.log": "557fa2ff6f0982dcc5e94f4fcd27b218c3050efcc7f2b48fd72d7c2c3ec508b4",
+    "build-generation-fix.log": "9d955e6474ddf7d861bd91bca3a5f122e3e92da44c5ca1a768e2737f624ff4a5",
+    "package-audit-after.log": "55799906e382c6d53cdca8df7d034451f815edb8c885ab8e1c7e643aafe6cd71",
+    "release-notes-regression.log": "96c3111b855de28720a0c2c7d9c95a246c78841d996e5aa5bbe085fc99fc704e"
+  }
+}

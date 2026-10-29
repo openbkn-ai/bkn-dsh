@@ -1,0 +1,25 @@
+{
+  "referenceSha256": "96dc62d7ef9bded5ca45861a9d8d5e0f627f30a365a38590d7cbb541a9867571",
+  "revisedSha256": "deffface9f7d5768ed3ec92e95887598586a3c32752eb26c5627c4b044065e63",
+  "revisedBytes": 259623,
+  "sourceCommit": "42fe36206171e85b023bed2640ad2378f8023817",
+  "files": 94,
+  "changes": [
+    {
+      "path": "lib/business.js",
+      "before": "167e6571b44d6e0bece6456c19546b79c6d39bd709d0632e6c46f66859c40417",
+      "after": "14c080205500ef09318af272ba1ef4617c0280eb707f516df3c72befc8c6dd8e"
+    },
+    {
+      "path": "lib/types/openbkn-mcp-manager.d.ts",
+      "before": "94967c3547a1fdc0c04fd43689182672c49794c7ada8ca7df3ba9ba75c73af24",
+      "after": "a2d3f535900e4b17f21b229873ff9f99737a1f7a6db5e25e3943bd8c7dc5a510"
+    },
+    {
+      "path": "lib/types/private-platform-access.d.ts",
+      "before": "c5222834aa508aa79950b2236874c6681ee7d86dcf077e6445ec232829c575db",
+      "after": "915d6fc8aa79faacd03efdec6bf21b9327020edb107773cdf96d47a7c545ba9c"
+    }
+  ],
+  "uiCliBrowserAndNativeMcpInputsUnchanged": true
+}

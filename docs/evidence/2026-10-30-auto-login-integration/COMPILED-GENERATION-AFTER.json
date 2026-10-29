@@ -1,0 +1,10 @@
+{
+  "passed": true,
+  "testCount": 3,
+  "pass": 3,
+  "fail": 0,
+  "skipped": 0,
+  "testLogSha256": "bd5b409b7a613448a144b9caa48ead37b87656b70427f72f4d79effb41cbd7a3",
+  "hashManifestSha256": "878308bf4e9cc3c53577d6c76420007eb799a7b72dc753f082fb975bc543deb8",
+  "executionBoundary": "Compiled bundle classes with fake Context and loopback synthetic TLS only; no native Host, CLI auth, browser, account, or live platform."
+}
