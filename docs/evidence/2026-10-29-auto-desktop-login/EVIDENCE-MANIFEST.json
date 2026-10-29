@@ -1,0 +1,149 @@
+{
+  "scope": "selected proof/identity/restore/private screenshot hashes, not a whole-machine snapshot",
+  "files": [
+    {
+      "file": "release/auto-desktop-login/rc3/cli-probe-1d54524f074b-private.json",
+      "bytes": 561,
+      "sha256": "e671651ab561ec54428ce02fe88fbcc4b9f3c561fcd753ab941d7604fdef72f7",
+      "access": "local-private"
+    },
+    {
+      "file": "release/auto-desktop-login/rc3/evidence/E01-desktop-ready.jpg",
+      "bytes": 72135,
+      "sha256": "797e476934f84f7ff87c0f5275853aaa31cd3af88ff18f517e7fc731839fb011",
+      "access": "local-private"
+    },
+    {
+      "file": "release/auto-desktop-login/rc3/evidence/E02-desktop-authorized.jpg",
+      "bytes": 98661,
+      "sha256": "489e5d19623f8350e2a27d73cf44d4f3cd437321aa54736efd5a4bb6abae1de5",
+      "access": "local-private"
+    },
+    {
+      "file": "release/auto-desktop-login/rc3/evidence/E03-desktop-restart-ready.jpg",
+      "bytes": 97067,
+      "sha256": "2cc73c5ecbed2a254ec174c452fe820db7260881c60d7bc8ca39611e2c1b26ce",
+      "access": "local-private"
+    },
+    {
+      "file": "release/auto-desktop-login/rc3/evidence/INPUTS-private.json",
+      "bytes": 927,
+      "sha256": "dfd469aa2815119b535a35151f3bbb0ff63b636ebcae6baa1c119ed76fc619c1",
+      "access": "local-private"
+    },
+    {
+      "file": "release/auto-desktop-login/rc3/evidence/association-restore.json",
+      "bytes": 518,
+      "sha256": "a8ba3ec4bdc698c38e55cfe15753e8c9ea49dc1b79d03f15ce677e7ea4f453d5",
+      "access": "local-private"
+    },
+    {
+      "file": "release/auto-desktop-login/rc3/evidence/desktop-exit.json",
+      "bytes": 69,
+      "sha256": "7c755682a3b1f36d15354f4fa39083d27d642535afad2a1fd3165912c11df9b8",
+      "access": "local-private"
+    },
+    {
+      "file": "release/auto-desktop-login/rc3/evidence/first-launch/cli-probe-1d54524f074b-private.json",
+      "bytes": 539,
+      "sha256": "92b02991a23f1b910a84cafcb9cb85118458191392ccb68b21495744c8c84ff0",
+      "access": "local-private"
+    },
+    {
+      "file": "release/auto-desktop-login/rc3/evidence/first-launch/cli-runtime-1d54524f074b-private.json",
+      "bytes": 79,
+      "sha256": "ec38c897a0a88890e70272894d965a5a7750891dfa36c5b62860c632798dd9c2",
+      "access": "local-private"
+    },
+    {
+      "file": "release/auto-desktop-login/rc3/evidence/first-launch/desktop-exit.json",
+      "bytes": 69,
+      "sha256": "90d812d5953c1fe32a088d7a2df5c1456b0e7388c465f5fe1d3ebd2c49b4b74e",
+      "access": "local-private"
+    },
+    {
+      "file": "release/auto-desktop-login/rc3/evidence/first-launch/owned-desktop-private.json",
+      "bytes": 465,
+      "sha256": "1fa3025dd56c21002985c32cc68b3aad3d6dab562b72225b6f98d11dc3f05876",
+      "access": "local-private"
+    },
+    {
+      "file": "release/auto-desktop-login/rc3/evidence/first-launch/proof-1782f6d9-2c1f-4241-b5ec-36d28fc7e149.json",
+      "bytes": 1013,
+      "sha256": "237e99b44e6d23376c928aebbf9a2ce7b19cab15d51530fcd82342496623912b",
+      "access": "local-private"
+    },
+    {
+      "file": "release/auto-desktop-login/rc3/evidence/keychain-browser-probe-exit.json",
+      "bytes": 25,
+      "sha256": "bcebd13d238a77ac126cc4e2019b18ca63df4a97ac56ee163379a4c768d3acd3",
+      "access": "local-private"
+    },
+    {
+      "file": "release/auto-desktop-login/rc3/evidence/keychain-browser-probe-private.json",
+      "bytes": 390,
+      "sha256": "62e81c0fd130465520d95a85dfaf7ee37b23f7376a57944e4b46c20cdc646a48",
+      "access": "local-private"
+    },
+    {
+      "file": "release/auto-desktop-login/rc3/evidence/keychain-finding.json",
+      "bytes": 1599,
+      "sha256": "03cbd992897083728e6417493891665cd2f46192a3ef4e538d7ee6dba640077a",
+      "access": "local-private"
+    },
+    {
+      "file": "release/auto-desktop-login/rc3/evidence/keychain-metadata-comparison.json",
+      "bytes": 450,
+      "sha256": "e06f454dc3af1f80f4fc2f56b1daa96be6dd345bc62a74987ba6c6c62051eb1a",
+      "access": "local-private"
+    },
+    {
+      "file": "release/auto-desktop-login/rc3/evidence/keychain-visible-probe-closeout.json",
+      "bytes": 291,
+      "sha256": "6ffbad9e31bce19cd6a1c2e437190f7ea2530283299914a08e4a13f64d0d625a",
+      "access": "local-private"
+    },
+    {
+      "file": "release/auto-desktop-login/rc3/evidence/keychain-visible-probe-private.json",
+      "bytes": 590,
+      "sha256": "2ae42b390853cd0d77af5cebe2a0cb23dc8d6fbd4b651702c2080665614a162f",
+      "access": "local-private"
+    },
+    {
+      "file": "release/auto-desktop-login/rc3/evidence/owned-desktop-private.json",
+      "bytes": 465,
+      "sha256": "9babb9314f2735ee825374b22e6d3b37762e61a1fb8d7f52f2211cf3597ee486",
+      "access": "local-private"
+    },
+    {
+      "file": "release/auto-desktop-login/rc3/evidence/process-closeout.json",
+      "bytes": 263,
+      "sha256": "f7b027f27d5c0e52c0d196b4ab5c3da524c8102fed7558c5184420e9eec9806b",
+      "access": "local-private"
+    },
+    {
+      "file": "release/auto-desktop-login/rc3/evidence/restart-result.json",
+      "bytes": 282,
+      "sha256": "31094797d0ef58ec16cae8bbe57ed923826c2a9d02023b65e124b29438d63e25",
+      "access": "local-private"
+    },
+    {
+      "file": "release/auto-desktop-login/rc3/proof-1782f6d9-2c1f-4241-b5ec-36d28fc7e149.json",
+      "bytes": 1013,
+      "sha256": "237e99b44e6d23376c928aebbf9a2ce7b19cab15d51530fcd82342496623912b",
+      "access": "local-private"
+    },
+    {
+      "file": "release/auto-desktop-login/windows-kit-final-verification.json",
+      "bytes": 327,
+      "sha256": "428cd1a1f7f4faf2be05e7a285d1fd29279f7100bbe3ebf17e97f1817292b380",
+      "access": "local-private"
+    },
+    {
+      "file": "release/auto-desktop-login/windows-kit-verification.json",
+      "bytes": 325,
+      "sha256": "222ed98675d65ad6538de88312f9846c2f9c2123a6d944290b2cd9c668364b53",
+      "access": "local-private"
+    }
+  ]
+}

@@ -1,5 +1,15 @@
 # CLAUDE.md
 
+## Authorized handoff-only publication (2026-10-29)
+
+The maintainer now explicitly authorizes one new branch push: `handoff/windows-auto-login-93f3e85-20261029`. Its single handoff commit is a child of production source93f3e85 and may add only this Mac supplement, Windows kit (including the unchanged ea6be318/94-file archive), and the corresponding plan/contract/rule documentation. Do not push main, development or other handoff refs; no PR, tags, workflow dispatch, CI, Host/platform/data/config mutation or acceptance reruns. Use an English [skip ci] commit, verify the remote ref/archive/kit and observe branch workflow state. Earlier local-only/no-push wording records the pre-authorization stage; Windows is still NOT_RUN and must not push or run CI. Source and candidate remain frozen93f3e85/ea6be318.
+
+## Current validation-only checkpoint: frozen93f3e85 Desktop supplement
+
+The maintainer fixes source `93f3e8560a7ab8834cab7fa97fa79677d71f1827` and archive ea6be318/94 files. This continuation adds evidence/docs/Windows handoff only: no product rebuild, Host/platform replacement, push or CI. The original signed official Mac rc.3 GUI now proves real authorization, its actual standalone-Node CLI preload, packaged native MCP identity, directory read, panel reopen, persisted authorization across restart, and two normal menu exits0. The first keychain prompt came with a test-only fake HOME: read-only real/fake-HOME metadata reproduces default-keychain failure; the launcher now retains the real HOME. The maintainer confirmed the corrected read-only browser window shows no keychain prompt; do not rewrite the first failure or claim a second full authorization. LaunchServices was fully backed up, the observed dsh timestamp-only change was guarded/restored byte-identically, and owned processes are closed. See docs/evidence/2026-10-29-auto-desktop-login/RESULTS.md.
+
+Windows material is prepared locally in docs/handoff/2026-10-29-auto-login-windows for one existing official rc.3 Desktop only. No manual companion, old/npm/full matrix, model, B1/W-LIFE/RDP or redirect rerun. The kit is not pushed and Windows has not executed it. Keep real user home/environment and require actual child marker execution before account authorization. Production source remains93f3e85. The newly authorized handoff-only child commit adds documentation/materials and does not change the fixed product commit.
+
 ## Current local increment: automatic private-platform login (2026-10-29)
 
 The maintainer explicitly authorizes automatic initial private-platform trust and automatic replacement when the origin, observed IP or leaf certificate changes, with fresh official browser authorization after each identity change. This supersedes the earlier manual certificate confirmation/imported-CA CLI block below. The policy substitutes an observed fingerprint for public CA/hostname authentication; do not claim public-PKI first-contact verification or unchanged SDK behavior. Retain certificate dates, exact origin/IP/leaf fencing and cancellation. Ordinary token renewal stays with the official CLI; revoked grants can require authorization again.

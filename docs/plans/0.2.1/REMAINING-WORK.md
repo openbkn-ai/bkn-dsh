@@ -10,7 +10,13 @@
 
 已有本地证据：651项源码测试（650通过、1项Windows专用跳过）；旧基线构建/新rc.3类型通过；合成首次授权、重开/重启和官方CLI续期、证书变化及跨源拒绝；无手工companion的新profile实际加载；企业0.2.0真实账号授权后同步与只读目录、打包MCP实际实例身份已通过。先前HTTPS默认端口被转成0的实际缺陷已修复，保留首次失败。完整身份、归档和未执行门槛见[本轮结果](../../evidence/2026-10-29-auto-platform-login/RESULTS.md)。
 
-仅补登录/信任受影响边界。不重跑G6/B1/已过矩阵，不新建GUI发行体系。现有兼容CLI及Chrome/Edge为前提；本轮物理Windows、官方Mac Desktop受影响路径、公开新候选独立评审/CI/替换均未执行，未默认降级。保持正式0.2.0、现有Host、公开包及冻结-30/-31/-32；不推送、不跑远端CI，latest与本机npm CLI仍由维护者处理。
+仅补登录/信任受影响边界。不重跑G6/B1/已过矩阵，不新建GUI发行体系。现有兼容CLI及Chrome/Edge为前提；官方Mac Desktop受影响登录补证已完成，见下述记录；物理Windows及公开新候选独立评审/CI/替换仍未执行，未默认降级。保持正式0.2.0、现有Host、公开包及冻结-30/-31/-32；不推送、不跑远端CI，latest与本机npm CLI仍由维护者处理。
+
+### 冻结93f3e85的官方Mac Desktop补证与Windows准备
+
+同一ea6be318候选、94文件和原官方rc.3 App完成真实授权、实际CLI preload/MCP实例、只读目录、面板重开及Desktop重启免授权；两次官方菜单退出均exit0。首轮钥匙串提示保留，已用只读HOME对照定位为验证脚本伪造HOME；改为真实HOME后，维护者确认同一任务浏览器只读重开无提示，没有重复账号授权或修改系统钥匙串。启动前备份的URL关联配置已按当前==After守卫恢复，字节与Before一致。详见[补证记录](../../evidence/2026-10-29-auto-desktop-login/RESULTS.md)。
+
+[Windows最小材料](../../handoff/2026-10-29-auto-login-windows/README.md)已离线校验，只补一个既有官方rc.3 Desktop的CLI载体、独立浏览器取消/一次授权、MCP和重开/重启/正常退出及关联恢复。维护者已授权仅向 `handoff/windows-auto-login-93f3e85-20261029` 推送文档/材料交接子提交，Windows仍未执行；不重跑已过项、不新增GUI体系。生产源码及候选仍固定93f3e85/ea6be318；不更新main/开发分支、不建PR、不跑CI，取件SHA由主会话推送后读回。
 
 ## 历史中间增量：手工面板证书与CLI阻断
 
