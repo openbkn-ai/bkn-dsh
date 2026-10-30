@@ -2,9 +2,12 @@
 
 ## 0.2.1-rc.3-openbkn.0.2.1-2 (2026-10-30)
 
+- Formal release acceptance (2026-10-30): reuse the existing registry package, source tag and five release assets without rebuilding or repacking. The maintainer explicitly accepts #63's missing actual Remote error-shape evidence and the untriaged rc.5 normal-instance diagnostic-export observation as nonblocking. Close #63 under this adjusted criterion while preserving UNKNOWN fields, the original checklist and historical failures. Official Windows rc.5 installation and runtime component loading pass within their bounded scope; do not claim full rc.5 or universal future-version acceptance. Clear the GitHub prerelease flag; latest promotion remains maintainer-owned. See [formal release notes](docs/evidence/2026-10-30-windows-rc5-load-issue63/FORMAL-RELEASE-NOTES.md).
+
+
 - Separate loading admission from pinned build/test anchors. Allow DSH >=0.2.1-rc.3 without an upper bound, including newer prereleases and major versions; retain0.2.0-rc.2. Use the native engines.dsh range and matching DSH peers, without an exact-version exemption or Host modification.
 - Let shared Cordis/Schemastery peers use newer Host-provided versions. Audit actual physical package identity rather than a two-version table; retain plugin Zod4.4.3, mixed-DSH detection and access/Interaction guards. This policy grants a loading attempt, not a claim of future API or behavioral compatibility.
-- Preserve fixed generator/development dependencies and prior runtime evidence. Version-range/native-preflight and synthetic dependency-graph checks are distinct from actual rc.5/alpha/future-major Host acceptance. Production runtime code is unchanged. Publish this revision on rc after independent review and build-only artifact comparison; latest promotion remains maintainer-owned.
+- Preserve fixed generator/development dependencies and prior runtime evidence. Version-range/native-preflight and synthetic dependency-graph checks are distinct from actual rc.5/alpha/future-major Host acceptance. Production runtime code is unchanged. Initial rc publication completed after independent review and build-only artifact comparison; the maintainer's formal acceptance above reuses that exact package, and latest promotion remains maintainer-owned.
 
 ## 0.2.1-rc.3-openbkn.0.2.1-1 (2026-10-30)
 
