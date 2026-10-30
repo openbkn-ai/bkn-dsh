@@ -18,6 +18,9 @@ importers:
       js-yaml:
         specifier: 4.3.2
         version: 4.3.2
+      semver:
+        specifier: 7.8.5
+        version: 7.8.5
       tsdown:
         specifier: ^0.22.2
         version: 0.22.14(tsx@4.23.13)(typescript@6.0.3)

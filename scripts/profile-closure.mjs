@@ -7,15 +7,11 @@ import {pathToFileURL} from 'node:url'
 
 const pluginName='@openbkn/dsh-business-context'
 const identities=['@deepseek-ai/cordis','@deepseek-ai/schemastery']
-const hostVersions={
- '0.2.0-rc.2':{cordis:'4.0.4',schema:'3.18.4'},
- '0.2.1-rc.3':{cordis:'4.0.5',schema:'3.18.5'},
-}
 const read=file=>JSON.parse(readFileSync(file,'utf8'))
 
 /** Traverse every loader-visible DSH/Cordis/plugin dependency and peer from all supplied anchors. */
 export function auditDependencyClosure({anchors,host,expected,resolveManifest,validateHostZod}) {
- assert.ok(hostVersions[host],'Exact supported Host version required')
+ assert.ok(typeof host==='string'&&host.length>0,'Actual Host version required')
  const seen=new Set(),packages=[]
  function visit(input) {
   const file=realpathSync(input)
@@ -50,17 +46,15 @@ export function auditDependencyClosure({anchors,host,expected,resolveManifest,va
 
 /** Include the actual installed profile via the public, unchanged Host resolution API. No plugins are mounted. */
 export async function inspectProfileClosure({runtime,host,profile,installed}) {
- assert.ok(hostVersions[host],'Exact --host required')
  runtime=resolve(runtime)
  const runtimeManifest=join(runtime,'package.json'),req=createRequire(runtimeManifest)
  const expected=Object.fromEntries(identities.map(name=>[name,realpathSync(req.resolve(name+'/package.json'))]))
- assert.equal(read(expected[identities[0]]).version,hostVersions[host].cordis,'Unexpected Host Cordis')
- assert.equal(read(expected[identities[1]]).version,hostVersions[host].schema,'Unexpected Host Schemastery')
  const nativeResolve=(name,parent)=>createRequire(parent).resolve(name+'/package.json')
  const semver=req('semver'),validateHostZod=(version,range)=>semver.satisfies(version,range)
+ const hostCordis=read(expected[identities[0]]).version,hostSchema=read(expected[identities[1]]).version
  const rootPackages=auditDependencyClosure({anchors:[runtimeManifest],host,expected,resolveManifest:nativeResolve,validateHostZod})
- assert.ok(rootPackages.some(p=>p.name==='@deepseek-ai/dsh'),'Official DSH is missing')
- const report={host,scope:'installation-only',profileCoverage:'not-run',rootPackages,cordis:hostVersions[host].cordis,schemastery:hostVersions[host].schema}
+ assert.ok(rootPackages.some(p=>p.name==='@deepseek-ai/dsh'&&p.version===host),'Actual official DSH version is missing or mismatched')
+ const report={host,scope:'installation-only',profileCoverage:'not-run',rootPackages,cordis:hostCordis,schemastery:hostSchema}
  if(!profile)return report
  profile=realpathSync(resolve(profile))
  const anchor=req.resolve('@deepseek-ai/dsh/package.json')
@@ -81,6 +75,12 @@ export async function inspectProfileClosure({runtime,host,profile,installed}) {
   assert.ok(realpathSync(plugin.dir).startsWith(profilePrefix),'Candidate must be installed in the selected profile')
   if(installed)assert.equal(realpathSync(resolve(installed)),realpathSync(plugin.dir),'--installed is not the active profile plugin')
   const selected=[]
+  const pluginManifest=read(plugin.manifestPath)
+  // Audit the installed artifact's native admission contract; remain portable
+  // when this helper is copied into a handoff without the source repository.
+  const ranges=pluginManifest.engines?.dsh!==undefined?[pluginManifest.engines.dsh]:[...new Set(Object.entries(pluginManifest.peerDependencies??{}).filter(([name])=>name==='@deepseek-ai/dsh'||name.startsWith('@deepseek-ai/dsh-')).map(([,range])=>range))]
+  assert.ok(ranges.length>0&&ranges.every(range=>typeof range==='string'&&semver.satisfies(host,range,{includePrerelease:true})),'Host does not satisfy the installed plugin loading declaration')
+  const loadRange=ranges.join(' && ')
   const resolveManifest=(name,parent)=>{
    const found=ctx.pluginPackages.packageOf(name,pathToFileURL(parent).href)
    assert.ok(found,`Unresolved package: ${name}`)
@@ -88,12 +88,14 @@ export async function inspectProfileClosure({runtime,host,profile,installed}) {
   }
   for(const name of identities) {
    const file=realpathSync(resolveManifest(name,join(plugin.dir,'lib/index.js')))
-   selected.push({name,version:read(file).version,samePhysicalPackage:file===expected[name]})
+   const version=read(file).version,range=pluginManifest.peerDependencies?.[name]
+   assert.ok(typeof range==='string'&&semver.satisfies(version,range,{includePrerelease:true}),`Host ${name} does not satisfy the plugin's declared peer contract`)
+   selected.push({name,version,samePhysicalPackage:file===expected[name]})
   }
   const profilePackages=auditDependencyClosure({anchors:[plugin.manifestPath],host,expected,resolveManifest,validateHostZod})
   assert.ok(profilePackages.some(p=>p.name===pluginName),'Profile traversal omitted the plugin')
   // Check Node's actual CommonJS resolver as well as the Host package API while interception is active.
   for(const name of identities)assert.equal(realpathSync(nativeResolve(name,join(plugin.dir,'lib/index.js'))),expected[name],`Node resolver split: ${name}`)
-  return {...report,scope:'installation-and-profile',profileCoverage:'pass',profilePackages,pluginVersion:plugin.version,selected,noMixedDsh:true,noSplitCordis:true,noSplitSchemastery:true}
+  return {...report,loadRange,scope:'installation-and-profile',profileCoverage:'pass',profilePackages,pluginVersion:plugin.version,selected,noMixedDsh:true,noSplitCordis:true,noSplitSchemastery:true}
  } finally {await fiber.dispose()}
 }

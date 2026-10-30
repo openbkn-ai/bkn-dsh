@@ -1,0 +1,41 @@
+{
+  "kind": "local-forward-loading-policy-validation",
+  "baseCommit": "f51762d",
+  "version": "0.2.1-rc.3-openbkn.0.2.1-2",
+  "loadRange": "0.2.0-rc.2 || >=0.2.1-rc.3",
+  "includesNewerAlphaRcStableAndMajor": true,
+  "testAnchorsRemain": [
+    "0.2.0-rc.2",
+    "0.2.1-rc.3"
+  ],
+  "buildPinUnchanged": "0.2.0-rc.2",
+  "targetedTests": {
+    "pass": 21,
+    "fail": 0,
+    "skip": 0,
+    "semver": "7.8.5"
+  },
+  "nativePreflight": "actual official rc.5 compatibility function, TypeScript erased only, explicit runtime-version inputs; not Host startup",
+  "actualRc5CliInstallExitCode": 0,
+  "actualRc5ProfileClosure": "pass",
+  "samePhysicalCordis": true,
+  "samePhysicalSchemastery": true,
+  "realHostStartup": false,
+  "gui": false,
+  "platformAccess": false,
+  "businessOrModelTurns": false,
+  "futureRuntimeCompatibilityClaimed": false,
+  "published": false,
+  "ciRun": null,
+  "pushed": false,
+  "productionRuntimeCodeChanged": false,
+  "existingHostPlatformDataConfigModified": false,
+  "privateLogHashes": {
+    "targeted-tests.log": "3c778cd3f69d0322236d2ad8535e165f4e085b50f21a369174d8a64618698d27",
+    "rc5-runtime-install.log": "7d1692c4e1c56993ee774283ec3e88fb775af570bb7d8e9257ac71dfef21f247",
+    "rc5-native-plugin-install.log": "b30e08ad077b02de28948d08536323328b41f49669d11301f519152aa864948c"
+  },
+  "installedCandidateByteMatchedFiles": 94,
+  "packageAuditFiles": 94,
+  "profileAuditRemainsStandalone": true
+}

@@ -1,6 +1,10 @@
 {
   "format": 1,
   "buildVersion": "0.2.0-rc.2",
+  "loadPolicy": {
+    "minimumVersion": "0.2.1-rc.3",
+    "legacyVersions": ["0.2.0-rc.2"]
+  },
   "hosts": [
     {
       "version": "0.2.0-rc.2",

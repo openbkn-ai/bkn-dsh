@@ -6,7 +6,7 @@ import {join} from 'node:path'
 import {createRequire} from 'node:module'
 import {auditDependencyClosure} from '../scripts/profile-closure.mjs'
 
-for(const [host,hostSchema] of [['0.2.0-rc.2','3.18.4'],['0.2.1-rc.3','3.18.5']])test(`${host}: a passing Host-root graph cannot hide a private profile Schemastery`,()=>{
+for(const [host,hostSchema] of [['0.2.0-rc.2','3.18.4'],['0.2.1-rc.3','3.18.5'],['0.2.1-rc.5','3.18.5'],['0.2.2-alpha.2','3.18.6'],['1.0.0','4.0.0']])test(`${host}: a passing Host-root graph cannot hide a private profile Schemastery (synthetic graph)`,()=>{
  const dir=mkdtempSync(join(tmpdir(),'bkn-profile-closure-'))
  const manifest=(path,value)=>{mkdirSync(path,{recursive:true});const file=join(path,'package.json');writeFileSync(file,JSON.stringify(value));return file}
  try {
@@ -17,6 +17,19 @@ for(const [host,hostSchema] of [['0.2.0-rc.2','3.18.4'],['0.2.1-rc.3','3.18.5']]
   const opts={host,expected:{'@deepseek-ai/schemastery':realpathSync(schema)},resolveManifest:(name,parent)=>createRequire(parent).resolve(name+'/package.json')}
   assert.equal(auditDependencyClosure({...opts,anchors:[runtime]}).length,1)
   assert.throws(()=>auditDependencyClosure({...opts,anchors:[runtime,plugin]}),/Split @deepseek-ai\/schemastery: @openbkn/)
+ } finally {rmSync(dir,{recursive:true,force:true})}
+})
+
+test('a future Host graph is accepted when its profile uses the same physical schema package',()=>{
+ const dir=mkdtempSync(join(tmpdir(),'bkn-forward-closure-'))
+ const manifest=(path,value)=>{mkdirSync(path,{recursive:true});const file=join(path,'package.json');writeFileSync(file,JSON.stringify(value));return file}
+ try {
+  const host='1.0.0'
+  const runtime=manifest(dir,{name:'@deepseek-ai/dsh',version:host,dependencies:{'@deepseek-ai/schemastery':'4.0.0'}})
+  const schema=manifest(join(dir,'node_modules/@deepseek-ai/schemastery'),{name:'@deepseek-ai/schemastery',version:'4.0.0'})
+  const plugin=manifest(join(dir,'home/profiles/web/node_modules/@openbkn/dsh-business-context'),{name:'@openbkn/dsh-business-context',version:'synthetic',peerDependencies:{'@deepseek-ai/schemastery':'>=3.18.4'}})
+  const packages=auditDependencyClosure({anchors:[runtime,plugin],host,expected:{'@deepseek-ai/schemastery':realpathSync(schema)},resolveManifest:(name,parent)=>createRequire(parent).resolve(name+'/package.json')})
+  assert.ok(packages.some(p=>p.name==='@openbkn/dsh-business-context'))
  } finally {rmSync(dir,{recursive:true,force:true})}
 })
 
