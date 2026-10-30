@@ -17,6 +17,7 @@
   "devDependencies": {
     "@deepseek-ai/dsh-typert-generator": "0.2.0-rc.2",
     "js-yaml": "4.3.2",
-    "tsdown": "^0.22.2"
+    "tsdown": "^0.22.2",
+    "semver": "7.8.5"
   }
 }

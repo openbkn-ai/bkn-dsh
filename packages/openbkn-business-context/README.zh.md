@@ -1,5 +1,7 @@
 # bkn-dsh
 
+> 本修订 `0.2.1-rc.3-openbkn.0.2.1-2` 采用无上界准入：DSH `0.2.1-rc.3` 及所有更高版本（含 alpha、rc、正式版和更高大版本）均允许尝试加载，另保留 `0.2.0-rc.2`。准入不等于已验证兼容；构建和实测锚点独立固定，现有接口、权限及依赖实例检查继续保留。
+
 > 私有平台自动登录 rc 修订。点击CLI登录后，在独立Chrome/Edge配置中完成官方浏览器授权。自动观察并锁定平台证书，地址或证书变化后自动更新记录并要求重新授权；不要求手工选择CA。维护者已明确接受首次及变化后的自动信任：这里用观测指纹替代公共CA/主机名身份验证，不声称具备公共PKI首次身份保证。不改Host或系统全局信任，官方CLI文件不改，仅在专用子进程加载受限dispatcher。旧的附加CA配置不作为前置条件。本轮CLI/平台基线仍0.2.0，版本串OpenBKN0.2.1仍为发布标识。
 
 本增量沿用已安装的兼容 OpenBKN CLI（本轮实测 0.2.0），授权浏览器需本机 Chrome 或 Edge。原生 MCP 的连接级 fetch 回补随插件交付，只用于插件管理的连接，不要求手工安装 companion 或修改 Host。普通 access token 到期由官方 CLI 刷新；平台撤销或拒绝续期仍须重新授权。证书有效期检查保留，过期/尚未生效的服务端证书不记作通过。
@@ -12,7 +14,7 @@
 
 ## 0.2.1 版本与兼容范围
 
-本线发布版本为 `0.2.1-rc.3-openbkn.0.2.1-1`，兼容目标为官方 DSH `0.2.0-rc.2` 与 `0.2.1-rc.3`。版本串中的 OpenBKN `0.2.1` 为维护者指定的版本标识；当前实际平台证据来自保留的正式 OpenBKN `0.2.0` 与 CLI `0.2.0`，不声明已在尚未发布的 OpenBKN `0.2.1` 平台验收。具体测试覆盖和已知限制以对应 GitHub Release 的验收记录为准。
+本线发布版本为 `0.2.1-rc.3-openbkn.0.2.1-2`，准入范围为官方 DSH `0.2.0-rc.2` 或 `>=0.2.1-rc.3`，不设版本上界。版本串中的 OpenBKN `0.2.1` 为维护者指定的版本标识；当前实际平台证据来自保留的正式 OpenBKN `0.2.0` 与 CLI `0.2.0`，不声明已在尚未发布的 OpenBKN `0.2.1` 平台验收。具体测试覆盖和已知限制以对应 GitHub Release 的验收记录为准。
 
 本修订的原生 MCP 同源保护随插件交付并由业务模块自动加载，无需另装 profile companion 或修改官方 Host。较早基础版的 companion 说明仅适用于其历史包；冻结 -30/-31/-32 及历史判定保持原样。
 
@@ -65,13 +67,13 @@ bkn-dsh 连接 DeepSeek Harness 与 OpenBKN，使经过授权的用户可以：
 
 ## 安装并开始使用
 
-使用未打补丁的官方 DeepSeek Harness `0.2.1-rc.3`（同时保留 `0.2.0-rc.2` 兼容目标）：官方桌面版、对应版本 npm 命令行或构建后的源码检出。在 DSH 的**插件**页面选择**添加插件**，填写 `@openbkn/dsh-business-context@0.2.1-rc.3-openbkn.0.2.1-1` 并选择安装源。也可以停止 DSH 后执行：
+使用未打补丁的官方 DeepSeek Harness `>=0.2.1-rc.3` 或保留的旧版 `0.2.0-rc.2`（新版本均允许尝试加载）：官方桌面版、对应版本 npm 命令行或构建后的源码检出。在 DSH 的**插件**页面选择**添加插件**，填写 `@openbkn/dsh-business-context@0.2.1-rc.3-openbkn.0.2.1-2` 并选择安装源。也可以停止 DSH 后执行：
 
 ```bash
-dsh plugin --profile <desktop|web> add @openbkn/dsh-business-context@0.2.1-rc.3-openbkn.0.2.1-1
+dsh plugin --profile <desktop|web> add @openbkn/dsh-business-context@0.2.1-rc.3-openbkn.0.2.1-2
 ```
 
-Windows 上使用 `dsh.cmd`。源码构建从 DSH 源码根目录执行 `node apps/cli/lib/bin.js plugin --profile web add @openbkn/dsh-business-context@0.2.1-rc.3-openbkn.0.2.1-1`。请使用实际启动的 Host 的 profile 与 `DSH_HOME`，`desktop` 和 `web` 是独立的 profile。安装下载包时，把包名替换为 `.tgz` 的绝对路径。
+Windows 上使用 `dsh.cmd`。源码构建从 DSH 源码根目录执行 `node apps/cli/lib/bin.js plugin --profile web add @openbkn/dsh-business-context@0.2.1-rc.3-openbkn.0.2.1-2`。请使用实际启动的 Host 的 profile 与 `DSH_HOME`，`desktop` 和 `web` 是独立的 profile。安装下载包时，把包名替换为 `.tgz` 的绝对路径。
 
 对本次实测的正式 OpenBKN `0.2.0`，使用官方 CLI `@openbkn/bkn-sdk@0.2.0`；其他平台须选择其兼容 CLI。已有可用 CLI 保留，不自动升级。配置插件前不必先登录，面板会启动官方授权。npm 版 DSH 还需要 `PATH` 中有 pnpm（`pnpm@11.7.0`），桌面版自带。自动信任的范围和首次身份限制见上方说明。
 

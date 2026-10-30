@@ -1,0 +1,18 @@
+{
+  "kind": "local-forward-loading-candidate",
+  "version": "0.2.1-rc.3-openbkn.0.2.1-2",
+  "referencePublishedSha256": "7052ce5c6109301381a83768afa47a85f6c5eb5acb14913bc3d7a1bd7c4ffc76",
+  "candidateSha256": "0aacc67bbb157c06b8907eeea549d22bd98b4e4639839ba784a233686de88767",
+  "bytes": 258518,
+  "files": 94,
+  "identicalFiles": 91,
+  "changedFiles": [
+    "README.md",
+    "README.zh.md",
+    "package.json"
+  ],
+  "loadRange": "0.2.0-rc.2 || >=0.2.1-rc.3",
+  "runtimeCodeUnchanged": true,
+  "published": false,
+  "ciRun": null
+}

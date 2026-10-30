@@ -1,0 +1,16 @@
+{
+  "kind": "forward-loading-release-preflight",
+  "version": "0.2.1-rc.3-openbkn.0.2.1-2",
+  "localCandidateSha256": "0aacc67bbb157c06b8907eeea549d22bd98b4e4639839ba784a233686de88767",
+  "releasePrepSha256": "6ce96d5bac3bb83e3b75b42cb217954e8b72f5ea7866e7536154cc12f20ae2d7",
+  "bytes": 258478,
+  "files": 94,
+  "identicalFiles": 92,
+  "changedFiles": [
+    "README.md",
+    "README.zh.md"
+  ],
+  "parsedPackageJsonIdentical": true,
+  "codeDeclarationsCliMcpByteIdentical": true,
+  "published": false
+}

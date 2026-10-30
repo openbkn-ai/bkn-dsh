@@ -1,0 +1,67 @@
+{
+  "kind": "official-dsh-manifest-preflight-only",
+  "sourceTag": "dsh-v0.2.1-rc.5",
+  "sourcePath": "packages/boot/app-boot/src/plugin-compatibility.ts",
+  "sourceSha256": "4badb6530e018f6ed4fefe418ed175d500fbb524f940456a71eb40c03842acf9",
+  "semver": "7.8.5",
+  "results": [
+    {
+      "version": "0.2.0-rc.2",
+      "beforeAdmitted": true,
+      "afterAdmitted": true,
+      "expected": true
+    },
+    {
+      "version": "0.2.1-rc.2",
+      "beforeAdmitted": false,
+      "afterAdmitted": false,
+      "expected": false
+    },
+    {
+      "version": "0.2.1-rc.3",
+      "beforeAdmitted": true,
+      "afterAdmitted": true,
+      "expected": true
+    },
+    {
+      "version": "0.2.1-rc.5",
+      "beforeAdmitted": false,
+      "afterAdmitted": true,
+      "expected": true
+    },
+    {
+      "version": "0.2.1",
+      "beforeAdmitted": false,
+      "afterAdmitted": true,
+      "expected": true
+    },
+    {
+      "version": "0.2.2-alpha.2",
+      "beforeAdmitted": false,
+      "afterAdmitted": true,
+      "expected": true
+    },
+    {
+      "version": "0.3.0-rc.1",
+      "beforeAdmitted": false,
+      "afterAdmitted": true,
+      "expected": true
+    },
+    {
+      "version": "1.0.0",
+      "beforeAdmitted": false,
+      "afterAdmitted": true,
+      "expected": true
+    },
+    {
+      "version": "99.0.0-alpha.1",
+      "beforeAdmitted": false,
+      "afterAdmitted": true,
+      "expected": true
+    }
+  ],
+  "realHostStartup": false,
+  "profileInstallation": false,
+  "platformAccess": false,
+  "futureRuntimeCompatibilityClaimed": false
+}

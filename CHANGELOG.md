@@ -1,5 +1,11 @@
 # Changelog
 
+## 0.2.1-rc.3-openbkn.0.2.1-2 (2026-10-30)
+
+- Separate loading admission from pinned build/test anchors. Allow DSH >=0.2.1-rc.3 without an upper bound, including newer prereleases and major versions; retain0.2.0-rc.2. Use the native engines.dsh range and matching DSH peers, without an exact-version exemption or Host modification.
+- Let shared Cordis/Schemastery peers use newer Host-provided versions. Audit actual physical package identity rather than a two-version table; retain plugin Zod4.4.3, mixed-DSH detection and access/Interaction guards. This policy grants a loading attempt, not a claim of future API or behavioral compatibility.
+- Preserve fixed generator/development dependencies and prior runtime evidence. Version-range/native-preflight and synthetic dependency-graph checks are distinct from actual rc.5/alpha/future-major Host acceptance. Production runtime code is unchanged. Publish this revision on rc after independent review and build-only artifact comparison; latest promotion remains maintainer-owned.
+
 ## 0.2.1-rc.3-openbkn.0.2.1-1 (2026-10-30)
 
 - Publish the reviewed automatic-login increment from PR #114 as the first public revision of the already published 0.2.1 pairing. Retain the frozen auto.local.2 reference and its exact Mac/Windows evidence; this revision changes release metadata and installation documentation, not runtime behavior.

@@ -1,0 +1,11 @@
+# Forward-loading -2 integration and rc publication
+
+The maintainer authorizes one independent PR, required non-author review/default CodeQL, build-only CI and a normal merge followed by rc publication. Preserve frozen local candidate0aacc67b/94 files, published-1/7052ce5c and all previous raw evidence. The package version remains0.2.1-rc.3-openbkn.0.2.1-2.
+
+The admission policy is0.2.0-rc.2 || >=0.2.1-rc.3, including newer alpha, rc, stable and major versions. This is a loading-attempt policy, not an all-version functional acceptance claim. Development/generator pins and explicit test anchors stay fixed. Runtime implementation, declarations, CLI preload, packaged MCP, platform business content and guard behavior are unchanged.
+
+Reuse the21 focused checks, the actual official rc.5 CLI install/profile closure, the94-file installed candidate check and previous runtime acceptance. See ../2026-10-30-forward-load/. Do not restart Hosts or rerun passed live cases. A local release-preparation repack changes only the two README files to accurately describe the public-2 installation and policy; parsed package.json is identical to the frozen local candidate. CI and final registry comparisons must enforce this same boundary, allowing package.json serialization only when parsed content remains identical.
+
+The frozen original local archive is included for reproducible comparison; it is not overwritten by the release-preparation or CI archives. Build-only CI, formal review, merge and final publication receipts are pending and will be recorded on the PR/Release. Initial registry availability may lag a successful npm publish; verify the actual archive and never republish a version merely because one read returned404.
+
+Precreate a latest=false draft prerelease at the final merged commit before pushing its tag. The existing-release guard must skip the workflow's default --latest creation. Upload only the actual registry plugin archive/hash and relevant comparison/verification receipts, then publish that draft as prerelease/latest=false. Do not attach obsolete profile companions. npm latest and GitHub Latest remain maintainer-owned. Existing Hosts, formal0.2.0 and all data/config are untouched; no private raw logs, credentials or personal paths are included.
