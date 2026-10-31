@@ -114,7 +114,19 @@
         ]
       ]
     ],
-    "note": "-9 is published. Get the pinned package from the <a href=\"https://github.com/openbkn-ai/bkn-dsh/releases/tag/v0.2.0-rc.2-openbkn.0.2.0-9\">official release</a>. The filled installation form demonstrates the controls; the plugin was not reinstalled during screenshot collection. You do not need a source build or a discontinued Runtime archive."
+    "note": "-9 is published. Get the pinned package from the <a href=\"https://github.com/openbkn-ai/bkn-dsh/releases/tag/v0.2.0-rc.2-openbkn.0.2.0-9\">official release</a>. The filled installation form demonstrates the controls; the plugin was not reinstalled during screenshot collection. You do not need a source build or a discontinued Runtime archive.",
+    "step_groups": [
+      [
+        0
+      ],
+      [
+        1,
+        2
+      ],
+      [
+        3
+      ]
+    ]
   },
   {
     "id": "config",
@@ -295,7 +307,17 @@
         ]
       ]
     ],
-    "note": "Business conversations in this version do not support PTC. Once a PTC conversation has messages, its mode cannot be switched; create a new Standard conversation in the bound workspace. The workspace is a local folder, while business knowledge stays on the platform."
+    "note": "Business conversations in this version do not support PTC. Once a PTC conversation has messages, its mode cannot be switched; create a new Standard conversation in the bound workspace. The workspace is a local folder, while business knowledge stays on the platform.",
+    "step_groups": [
+      [
+        0,
+        1,
+        2
+      ],
+      [
+        3
+      ]
+    ]
   },
   {
     "id": "ask",
@@ -375,7 +397,19 @@
         ]
       ]
     ],
-    "note": "The real turn completed in 26 seconds using network definitions and a small instance sample. One run_cypher call was refused by the plugin, after which managed instance queries succeeded. The answer described 3 order lines, 3 purchase requests, 2 suppliers, and 2 materials. This is not a full-population statistic; completed does not mean the business conclusion has passed human acceptance."
+    "note": "The real turn completed in 26 seconds using network definitions and a small instance sample. One run_cypher call was refused by the plugin, after which managed instance queries succeeded. The answer described 3 order lines, 3 purchase requests, 2 suppliers, and 2 materials. This is not a full-population statistic; completed does not mean the business conclusion has passed human acceptance.",
+    "step_groups": [
+      [
+        0,
+        1
+      ],
+      [
+        2
+      ],
+      [
+        3
+      ]
+    ]
   },
   {
     "id": "execution",
@@ -443,7 +477,17 @@
         ]
       ]
     ],
-    "note": "The demonstration has 10 local timeline nodes and 6 platform operations. The Interaction associates business access with this answer. Operation, Trace, and Receipt references support further investigation and serve different purposes."
+    "note": "The demonstration has 10 local timeline nodes and 6 platform operations. The Interaction associates business access with this answer. Operation, Trace, and Receipt references support further investigation and serve different purposes.",
+    "step_groups": [
+      [
+        0,
+        1
+      ],
+      [
+        2,
+        3
+      ]
+    ]
   },
   {
     "id": "graph",
@@ -631,7 +675,17 @@
         ]
       ]
     ],
-    "note": "All 10 checks in this exported report passed. Collection is passive. Authentication history has failureCount=1 and recovered=true, showing a recovered earlier failure. Unknown DSH or loaded-plugin versions mean the collector did not obtain them; the demonstration confirmed versions separately through the app metadata and plugin details."
+    "note": "All 10 checks in this exported report passed. Collection is passive. Authentication history has failureCount=1 and recovered=true, showing a recovered earlier failure. Unknown DSH or loaded-plugin versions mean the collector did not obtain them; the demonstration confirmed versions separately through the app metadata and plugin details.",
+    "step_groups": [
+      [
+        0,
+        1
+      ],
+      [
+        2,
+        3
+      ]
+    ]
   },
   {
     "id": "faq",
