@@ -4,6 +4,8 @@
 
 当前 rc：`0.2.1-rc.3-openbkn.0.2.1-2`。自动登录与随包 MCP 的安装和信任边界见 [插件说明](packages/openbkn-business-context/README.zh.md)；下方开发记录保留其历史判定。
 
+**0.2.1 发布说明：** [中文](docs/releases/2026-11-01-021-notes.zh.md) · [English](docs/releases/2026-11-01-021-notes.md)。汇总基础版及 -1/-2 修订的登录、溯源联动、CSV 交付、DSH 加载准入与验证限制。
+
 **近期更新（9 月 21 日至 10 月 12 日）：** [中文](docs/releases/2026-10-12-recent-updates.zh.md) · [English](docs/releases/2026-10-12-recent-updates.md)。
 
 **图文使用手册：** [中文](docs/user-guide/README.zh.md) · [English](docs/user-guide/README.en.md) · [PDF（中文）](docs/user-guide/bkn-dsh-9-user-guide.zh.pdf)。覆盖安装配置、CLI、登录、供应链问答、溯源与诊断，配有带点击编号的实机截图。

@@ -4,6 +4,8 @@
 
 Current rc: `0.2.1-rc.3-openbkn.0.2.1-2`. See the [plugin instructions](packages/openbkn-business-context/README.md) for automatic login, packaged MCP and trust boundaries; development records below retain their historical verdicts.
 
+**0.2.1 release notes:** [English](docs/releases/2026-11-01-021-notes.md) · [中文](docs/releases/2026-11-01-021-notes.zh.md). Covers the base release and revisions -1/-2, including login, provenance linkage, CSV delivery, DSH loading admission and verification limits.
+
 **Recent updates (September 21–October 12):** [English](docs/releases/2026-10-12-recent-updates.md) · [中文](docs/releases/2026-10-12-recent-updates.zh.md).
 
 **Illustrated user guide:** [English](docs/user-guide/README.en.md) · [中文](docs/user-guide/README.zh.md) · [PDF (中文)](docs/user-guide/bkn-dsh-9-user-guide.zh.pdf). Includes installation, CLI setup, sign-in, supply-chain Q&A, provenance, and diagnostics with numbered screenshots.
