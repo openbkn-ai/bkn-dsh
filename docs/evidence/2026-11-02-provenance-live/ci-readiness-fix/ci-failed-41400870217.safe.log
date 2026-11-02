@@ -1,0 +1,17 @@
+CI 41400870217; source a7ab632; Node 22.19.0; Ubuntu
+Only selected test names, timing, error text and relative stack frames are retained. DOM and unrelated output excluded.
+
+not ok 635 - v016 evidence fullscreen consumes Escape and restores the new non-portal fullscreen trigger
+duration_ms: 1198.27247
+Unable to find role="heading" and name "本轮业务执行过程"
+
+not ok 643 - native outer Escape closes only the activated interaction_question popover and restores its trigger
+duration_ms: 1209.045648
+Unable to find role="heading" and name "本轮业务执行过程"
+
+# tests 770
+# pass 767
+# fail 2
+# cancelled 0
+# skipped 1
+# duration_ms 150948.31158

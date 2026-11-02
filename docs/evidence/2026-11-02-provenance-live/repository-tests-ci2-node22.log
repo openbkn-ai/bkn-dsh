@@ -1,0 +1,564 @@
+TAP version 13
+# hint: Using 'master' as the name for the initial branch. This default branch name
+# hint: is subject to change. To configure the initial branch name to use in all
+# hint: of your new repositories, which will suppress this warning, call:
+# hint:
+# hint: \\tgit config --global init.defaultBranch <name>
+# hint:
+# hint: Names commonly chosen instead of 'master' are 'main', 'trunk' and
+# hint: 'development'. The just-created branch can be renamed via this command:
+# hint:
+# hint: \\tgit branch -m <name>
+# hint: Using 'master' as the name for the initial branch. This default branch name
+# hint: is subject to change. To configure the initial branch name to use in all
+# hint: of your new repositories, which will suppress this warning, call:
+# hint:
+# hint: \\tgit config --global init.defaultBranch <name>
+# hint:
+# hint: Names commonly chosen instead of 'master' are 'main', 'trunk' and
+# hint: 'development'. The just-created branch can be renamed via this command:
+# hint:
+# hint: \\tgit branch -m <name>
+# hint: Using 'master' as the name for the initial branch. This default branch name
+# hint: is subject to change. To configure the initial branch name to use in all
+# hint: of your new repositories, which will suppress this warning, call:
+# hint:
+# hint: \\tgit config --global init.defaultBranch <name>
+# hint:
+# hint: Names commonly chosen instead of 'master' are 'main', 'trunk' and
+# hint: 'development'. The just-created branch can be renamed via this command:
+# hint:
+# hint: \\tgit branch -m <name>
+# Subtest: rejects a non-matching DSH revision before running a patch command
+ok 1 - rejects a non-matching DSH revision before running a patch command
+  ---
+  duration_ms: 0.374416
+  type: 'test'
+  ...
+# Subtest: applies an exact manifest once and reverts it without touching unrelated state
+ok 2 - applies an exact manifest once and reverts it without touching unrelated state
+  ---
+  duration_ms: 255.47725
+  type: 'test'
+  ...
+# Subtest: rejects a dirty target before a compatibility patch can be applied
+ok 3 - rejects a dirty target before a compatibility patch can be applied
+  ---
+  duration_ms: 67.996542
+  type: 'test'
+  ...
+# Subtest: rejects a patch whose recorded digest was tampered with
+ok 4 - rejects a patch whose recorded digest was tampered with
+  ---
+  duration_ms: 35.284583
+  type: 'test'
+  ...
+# hint: Using 'master' as the name for the initial branch. This default branch name
+# hint: is subject to change. To configure the initial branch name to use in all
+# hint: of your new repositories, which will suppress this warning, call:
+# hint:
+# hint: \\tgit config --global init.defaultBranch <name>
+# hint:
+# hint: Names commonly chosen instead of 'master' are 'main', 'trunk' and
+# hint: 'development'. The just-created branch can be renamed via this command:
+# hint:
+# hint: \\tgit branch -m <name>
+# Subtest: reports the compatibility version only when the full patch series is present
+ok 5 - reports the compatibility version only when the full patch series is present
+  ---
+  duration_ms: 223.514542
+  type: 'test'
+  ...
+# Subtest: loads one fully pinned compatible-runtime release manifest
+ok 6 - loads one fully pinned compatible-runtime release manifest
+  ---
+  duration_ms: 2.730459
+  type: 'test'
+  ...
+# Subtest: rejects a plugin version that does not carry the pinned DSH version
+ok 7 - rejects a plugin version that does not carry the pinned DSH version
+  ---
+  duration_ms: 0.845625
+  type: 'test'
+  ...
+# Subtest: keeps the JSON schema in sync with the pinned manifest
+ok 8 - keeps the JSON schema in sync with the pinned manifest
+  ---
+  duration_ms: 0.574708
+  type: 'test'
+  ...
+# Subtest: rejects a release manifest without a pinned upstream commit
+ok 9 - rejects a release manifest without a pinned upstream commit
+  ---
+  duration_ms: 0.085958
+  type: 'test'
+  ...
+# Subtest: rejects a plugin artifact from a different release
+ok 10 - rejects a plugin artifact from a different release
+  ---
+  duration_ms: 0.920292
+  type: 'test'
+  ...
+# Subtest: an explicit release naming Host cannot expand the reviewed versions
+ok 11 - an explicit release naming Host cannot expand the reviewed versions
+  ---
+  duration_ms: 0.417917
+  type: 'test'
+  ...
+# Subtest: requires explicit source and output paths
+ok 12 - requires explicit source and output paths
+  ---
+  duration_ms: 0.856333
+  type: 'test'
+  ...
+# Subtest: passes the pinned release and compatibility manifests to the builder
+ok 13 - passes the pinned release and compatibility manifests to the builder
+  ---
+  duration_ms: 1.477166
+  type: 'test'
+  ...
+# Subtest: a corrupted compatibility manifest fails with the file path and cause
+ok 14 - a corrupted compatibility manifest fails with the file path and cause
+  ---
+  duration_ms: 1.766667
+  type: 'test'
+  ...
+# Subtest: non-JSON pnpm pack output fails with instructions instead of a bare SyntaxError
+ok 15 - non-JSON pnpm pack output fails with instructions instead of a bare SyntaxError
+  ---
+  duration_ms: 0.511
+  type: 'test'
+  ...
+# Subtest: valid inputs still parse through both helpers
+ok 16 - valid inputs still parse through both helpers
+  ---
+  duration_ms: 0.744167
+  type: 'test'
+  ...
+# Subtest: flags build-machine paths in hidden and multi-dot text files (native separators)
+ok 17 - flags build-machine paths in hidden and multi-dot text files (native separators)
+  ---
+  duration_ms: 4.625791
+  type: 'test'
+  ...
+# Subtest: flags build-time file: references across YAML, JSON, and Windows forms
+ok 18 - flags build-time file: references across YAML, JSON, and Windows forms
+  ---
+  duration_ms: 4.846292
+  type: 'test'
+  ...
+# Subtest: removes pnpm install metadata from the bundle
+ok 19 - removes pnpm install metadata from the bundle
+  ---
+  duration_ms: 3.729708
+  type: 'test'
+  ...
+# Subtest: keeps stored-relative in-bundle links and rejects escaping and absolute-stored ones
+ok 20 - keeps stored-relative in-bundle links and rejects escaping and absolute-stored ones
+  ---
+  duration_ms: 4.13275
+  type: 'test'
+  ...
+# Subtest: rebases absolute-stored in-bundle links to relative ones
+ok 21 - rebases absolute-stored in-bundle links to relative ones
+  ---
+  duration_ms: 1.6165
+  type: 'test'
+  ...
+# Subtest: re-points source-tree links to mirrored bundle paths and copies external ones
+ok 22 - re-points source-tree links to mirrored bundle paths and copies external ones
+  ---
+  duration_ms: 4.796875
+  type: 'test'
+  ...
+# Subtest: a mirrored .bin entry keeps resolving modules relative to its real file
+ok 23 - a mirrored .bin entry keeps resolving modules relative to its real file
+  ---
+  duration_ms: 32.427959
+  type: 'test'
+  ...
+# Subtest: maps links through a bundle subdirectory prefix (runtime shape)
+ok 24 - maps links through a bundle subdirectory prefix (runtime shape)
+  ---
+  duration_ms: 56.743291
+  type: 'test'
+  ...
+# Subtest: mirror matching follows platform identity rules (pure)
+ok 25 - mirror matching follows platform identity rules (pure)
+  ---
+  duration_ms: 0.252459
+  type: 'test'
+  ...
+# Subtest: in-bundle directory links pass scanning without EISDIR and keep their contents scanned
+ok 26 - in-bundle directory links pass scanning without EISDIR and keep their contents scanned
+  ---
+  duration_ms: 1.621125
+  type: 'test'
+  ...
+# Subtest: prefixForms covers windows-native, forward-slash, and escaped serializations
+ok 27 - prefixForms covers windows-native, forward-slash, and escaped serializations
+  ---
+  duration_ms: 0.109208
+  type: 'test'
+  ...
+# Subtest: scrubs serialized build roots (native JSON, escaped, and forward forms) and keeps payloads valid
+ok 28 - scrubs serialized build roots (native JSON, escaped, and forward forms) and keeps payloads valid
+  ---
+  duration_ms: 3.578708
+  type: 'test'
+  ...
+# Subtest: review planner includes every file beyond the first 100 and retains late auth changes
+ok 29 - review planner includes every file beyond the first 100 and retains late auth changes
+  ---
+  duration_ms: 74.446666
+  type: 'test'
+  ...
+# Subtest: review planner rejects an incomplete paginated list instead of claiming full review
+ok 30 - review planner rejects an incomplete paginated list instead of claiming full review
+  ---
+  duration_ms: 56.3355
+  type: 'test'
+  ...
+# hint: Using 'master' as the name for the initial branch. This default branch name
+# hint: is subject to change. To configure the initial branch name to use in all
+# hint: of your new repositories, which will suppress this warning, call:
+# hint:
+# hint: \\tgit config --global init.defaultBranch <name>
+# hint:
+# hint: Names commonly chosen instead of 'master' are 'main', 'trunk' and
+# hint: 'development'. The just-created branch can be renamed via this command:
+# hint:
+# hint: \\tgit branch -m <name>
+# hint: Using 'master' as the name for the initial branch. This default branch name
+# hint: is subject to change. To configure the initial branch name to use in all
+# hint: of your new repositories, which will suppress this warning, call:
+# hint:
+# hint: \\tgit config --global init.defaultBranch <name>
+# hint:
+# hint: Names commonly chosen instead of 'master' are 'main', 'trunk' and
+# hint: 'development'. The just-created branch can be renamed via this command:
+# hint:
+# hint: \\tgit branch -m <name>
+# hint: Using 'master' as the name for the initial branch. This default branch name
+# hint: is subject to change. To configure the initial branch name to use in all
+# hint: of your new repositories, which will suppress this warning, call:
+# hint:
+# hint: \\tgit config --global init.defaultBranch <name>
+# hint:
+# hint: Names commonly chosen instead of 'master' are 'main', 'trunk' and
+# hint: 'development'. The just-created branch can be renamed via this command:
+# hint:
+# hint: \\tgit branch -m <name>
+# hint: Using 'master' as the name for the initial branch. This default branch name
+# hint: is subject to change. To configure the initial branch name to use in all
+# hint: of your new repositories, which will suppress this warning, call:
+# hint:
+# hint: \\tgit config --global init.defaultBranch <name>
+# hint:
+# hint: Names commonly chosen instead of 'master' are 'main', 'trunk' and
+# hint: 'development'. The just-created branch can be renamed via this command:
+# hint:
+# hint: \\tgit branch -m <name>
+# Subtest: refuses a dirty runtime source before applying compatibility patches
+ok 31 - refuses a dirty runtime source before applying compatibility patches
+  ---
+  duration_ms: 152.019083
+  type: 'test'
+  ...
+# Subtest: applies and verifies one release-matched compatibility series
+ok 32 - applies and verifies one release-matched compatibility series
+  ---
+  duration_ms: 119.288958
+  type: 'test'
+  ...
+# Subtest: builds an explicit patched source into a separate deployed runtime directory
+ok 33 - builds an explicit patched source into a separate deployed runtime directory
+  ---
+  duration_ms: 91.098417
+  type: 'test'
+  ...
+# Subtest: refuses to deploy a runtime into its DSH source checkout
+ok 34 - refuses to deploy a runtime into its DSH source checkout
+  ---
+  duration_ms: 38.473208
+  type: 'test'
+  ...
+# Subtest: restores direct runtime-closure dependencies omitted by legacy deploy without copying nested node_modules
+ok 35 - restores direct runtime-closure dependencies omitted by legacy deploy without copying nested node_modules
+  ---
+  duration_ms: 1.103375
+  type: 'test'
+  ...
+# Subtest: assembles a self-contained runtime with the patched dependency closure and embedded plugin
+ok 36 - assembles a self-contained runtime with the patched dependency closure and embedded plugin
+  ---
+  duration_ms: 16.703667
+  type: 'test'
+  ...
+# Subtest: rejects a runtime directory without the patched dependency closure
+ok 37 - rejects a runtime directory without the patched dependency closure
+  ---
+  duration_ms: 1.992791
+  type: 'test'
+  ...
+# Subtest: writes a Windows launcher for a Windows bundle
+ok 38 - writes a Windows launcher for a Windows bundle
+  ---
+  duration_ms: 6.876542
+  type: 'test'
+  ...
+# Subtest: replaces the pristine placeholder override
+ok 39 - replaces the pristine placeholder override
+  ---
+  duration_ms: 2.252208
+  type: 'test'
+  ...
+# Subtest: replaces an already-configured local override and is idempotent
+ok 40 - replaces an already-configured local override and is idempotent
+  ---
+  duration_ms: 0.406042
+  type: 'test'
+  ...
+# Subtest: refuses a missing, duplicated, or non-link override
+ok 41 - refuses a missing, duplicated, or non-link override
+  ---
+  duration_ms: 0.702083
+  type: 'test'
+  ...
+# Subtest: configures the real repository workspace file
+ok 42 - configures the real repository workspace file
+  ---
+  duration_ms: 0.207
+  type: 'test'
+  ...
+# Subtest: pinned test anchors are independent of the open-ended loading policy
+ok 43 - pinned test anchors are independent of the open-ended loading policy
+  ---
+  duration_ms: 2.664
+  type: 'test'
+  ...
+# Subtest: DSH native prerelease semantics admit every newer version, including future major releases
+ok 44 - DSH native prerelease semantics admit every newer version, including future major releases
+  ---
+  duration_ms: 4.153583
+  type: 'test'
+  ...
+# Subtest: stale, bounded and inconsistent engine or peer ranges cannot override the policy
+ok 45 - stale, bounded and inconsistent engine or peer ranges cannot override the policy
+  ---
+  duration_ms: 2.533833
+  type: 'test'
+  ...
+# Subtest: shared Host identity peers have no hidden upper version ceiling
+ok 46 - shared Host identity peers have no hidden upper version ceiling
+  ---
+  duration_ms: 0.456792
+  type: 'test'
+  ...
+# Subtest: the compatibility gate rejects schema dependency drift and a different source build pin
+ok 47 - the compatibility gate rejects schema dependency drift and a different source build pin
+  ---
+  duration_ms: 0.251791
+  type: 'test'
+  ...
+# Subtest: host identities cannot be duplicated, unpinned or replaced by an unreviewed build version
+ok 48 - host identities cannot be duplicated, unpinned or replaced by an unreviewed build version
+  ---
+  duration_ms: 0.514333
+  type: 'test'
+  ...
+# Subtest: a second DSH version cannot slip into any development dependency
+ok 49 - a second DSH version cannot slip into any development dependency
+  ---
+  duration_ms: 0.626625
+  type: 'test'
+  ...
+# Subtest: release naming cannot select an unreviewed Host or disagree with package identity
+ok 50 - release naming cannot select an unreviewed Host or disagree with package identity
+  ---
+  duration_ms: 1.524625
+  type: 'test'
+  ...
+# Subtest: runtime identity inspection refuses a nested DSH copy even when direct pins agree
+ok 51 - runtime identity inspection refuses a nested DSH copy even when direct pins agree
+  ---
+  duration_ms: 16.1945
+  type: 'test'
+  ...
+# Subtest: posix launcher guard enforces ^22.19.0 || >=24.0.0 on the generated script
+ok 52 - posix launcher guard enforces ^22.19.0 || >=24.0.0 on the generated script
+  ---
+  duration_ms: 0.649792
+  type: 'test'
+  ...
+# Subtest: windows launcher guard enforces ^22.19.0 || >=24.0.0 on the generated script
+ok 53 - windows launcher guard enforces ^22.19.0 || >=24.0.0 on the generated script
+  ---
+  duration_ms: 0.164625
+  type: 'test'
+  ...
+# Subtest: windows launcher aborts on guard and bootstrap failure
+ok 54 - windows launcher aborts on guard and bootstrap failure
+  ---
+  duration_ms: 0.408
+  type: 'test'
+  ...
+# Subtest: release companions retain all previously accepted payload bytes for each fixed Host
+ok 55 - release companions retain all previously accepted payload bytes for each fixed Host
+  ---
+  duration_ms: 107.73325
+  type: 'test'
+  ...
+# Subtest: builds Windows built-in tar arguments for a ZIP archive
+ok 56 - builds Windows built-in tar arguments for a ZIP archive
+  ---
+  duration_ms: 1.431917
+  type: 'test'
+  ...
+# Subtest: assembles, archives, and writes a checksum for one declared target
+ok 57 - assembles, archives, and writes a checksum for one declared target
+  ---
+  duration_ms: 4.489833
+  type: 'test'
+  ...
+# Subtest: rejects archive work for an undeclared platform
+ok 58 - rejects archive work for an undeclared platform
+  ---
+  duration_ms: 0.328792
+  type: 'test'
+  ...
+# Subtest: extracts exactly one version section, not a version it is a prefix of
+ok 59 - extracts exactly one version section, not a version it is a prefix of
+  ---
+  duration_ms: 1.349625
+  type: 'test'
+  ...
+# Subtest: refuses a version with no or an empty CHANGELOG section
+ok 60 - refuses a version with no or an empty CHANGELOG section
+  ---
+  duration_ms: 0.320708
+  type: 'test'
+  ...
+# Subtest: renders the install command for the exact package version, then the changes
+ok 61 - renders the install command for the exact package version, then the changes
+  ---
+  duration_ms: 0.53075
+  type: 'test'
+  ...
+# Subtest: the committed CHANGELOG has a section for the committed plugin version
+ok 62 - the committed CHANGELOG has a section for the committed plugin version
+  ---
+  duration_ms: 0.83425
+  type: 'test'
+  ...
+# Subtest: relative links resolve against the released ref; absolute, anchor and rooted links stay
+ok 63 - relative links resolve against the released ref; absolute, anchor and rooted links stay
+  ---
+  duration_ms: 0.16875
+  type: 'test'
+  ...
+# Subtest: rendered notes carry no relative link and no unconditional provenance claim
+ok 64 - rendered notes carry no relative link and no unconditional provenance claim
+  ---
+  duration_ms: 0.070083
+  type: 'test'
+  ...
+# Subtest: Windows drive paths use system bsdtar even when Git tar is first on PATH
+ok 65 - Windows drive paths use system bsdtar even when Git tar is first on PATH
+  ---
+  duration_ms: 1.015958
+  type: 'test'
+  ...
+# Subtest: requires every release profile input
+ok 66 - requires every release profile input
+  ---
+  duration_ms: 1.7375
+  type: 'test'
+  ...
+# Subtest: passes explicit paths to the native-profile preparer
+ok 67 - passes explicit paths to the native-profile preparer
+  ---
+  duration_ms: 0.725
+  type: 'test'
+  ...
+# Subtest: delegates release profile creation to DSH native plugin management
+ok 68 - delegates release profile creation to DSH native plugin management
+  ---
+  duration_ms: 2.826416
+  type: 'test'
+  ...
+# Subtest: 0.2.0-rc.2: a passing Host-root graph cannot hide a private profile Schemastery (synthetic graph)
+ok 69 - 0.2.0-rc.2: a passing Host-root graph cannot hide a private profile Schemastery (synthetic graph)
+  ---
+  duration_ms: 8.279791
+  type: 'test'
+  ...
+# Subtest: 0.2.1-rc.3: a passing Host-root graph cannot hide a private profile Schemastery (synthetic graph)
+ok 70 - 0.2.1-rc.3: a passing Host-root graph cannot hide a private profile Schemastery (synthetic graph)
+  ---
+  duration_ms: 6.115792
+  type: 'test'
+  ...
+# Subtest: 0.2.1-rc.5: a passing Host-root graph cannot hide a private profile Schemastery (synthetic graph)
+ok 71 - 0.2.1-rc.5: a passing Host-root graph cannot hide a private profile Schemastery (synthetic graph)
+  ---
+  duration_ms: 4.986209
+  type: 'test'
+  ...
+# Subtest: 0.2.2-alpha.2: a passing Host-root graph cannot hide a private profile Schemastery (synthetic graph)
+ok 72 - 0.2.2-alpha.2: a passing Host-root graph cannot hide a private profile Schemastery (synthetic graph)
+  ---
+  duration_ms: 4.342958
+  type: 'test'
+  ...
+# Subtest: 1.0.0: a passing Host-root graph cannot hide a private profile Schemastery (synthetic graph)
+ok 73 - 1.0.0: a passing Host-root graph cannot hide a private profile Schemastery (synthetic graph)
+  ---
+  duration_ms: 2.482375
+  type: 'test'
+  ...
+# Subtest: a future Host graph is accepted when its profile uses the same physical schema package
+ok 74 - a future Host graph is accepted when its profile uses the same physical schema package
+  ---
+  duration_ms: 7.749166
+  type: 'test'
+  ...
+# Subtest: the official Host Zod range and exact plugin Zod pin are separate requirements
+ok 75 - the official Host Zod range and exact plugin Zod pin are separate requirements
+  ---
+  duration_ms: 2.076625
+  type: 'test'
+  ...
+# Subtest: recognizes only an exact bundled plugin installed as a web profile layer
+ok 76 - recognizes only an exact bundled plugin installed as a web profile layer
+  ---
+  duration_ms: 2.840833
+  type: 'test'
+  ...
+# Subtest: copies the release-built, native-plugin-managed profile without network access
+ok 77 - copies the release-built, native-plugin-managed profile without network access
+  ---
+  duration_ms: 2.590083
+  type: 'test'
+  ...
+# Subtest: a corrupted home profile manifest fails closed with context and is never overwritten
+ok 78 - a corrupted home profile manifest fails closed with context and is never overwritten
+  ---
+  duration_ms: 3.681917
+  type: 'test'
+  ...
+# Subtest: a corrupted template manifest fails closed before any home directory is created
+ok 79 - a corrupted template manifest fails closed before any home directory is created
+  ---
+  duration_ms: 2.177458
+  type: 'test'
+  ...
+1..79
+# tests 79
+# suites 0
+# pass 79
+# fail 0
+# cancelled 0
+# skipped 0
+# todo 0
+# duration_ms 458.265292

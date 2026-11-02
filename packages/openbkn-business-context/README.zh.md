@@ -1,5 +1,7 @@
 # bkn-dsh
 
+> 开发候选 `0.2.1-rc.3-openbkn.0.2.1-3`：平台一致的业务溯源详情、键盘焦点和大记录修复正在进行 build-only CI 与远程 E2E，尚未发布。请仅从本次已核对的 CI `.tgz` 安装候选；下方 npm 安装命令仍指向已发布的 -2。真实生成/分析只在明确授权的隔离样本上验收，平台和模型输出不做改写。
+
 > 本修订 `0.2.1-rc.3-openbkn.0.2.1-2` 采用无上界准入：DSH `0.2.1-rc.3` 及所有更高版本（含 alpha、rc、正式版和更高大版本）均允许尝试加载，另保留 `0.2.0-rc.2`。准入不等于已验证兼容；构建和实测锚点独立固定，现有接口、权限及依赖实例检查继续保留。
 
 > 私有平台自动登录 rc 修订。点击CLI登录后，在独立Chrome/Edge配置中完成官方浏览器授权。自动观察并锁定平台证书，地址或证书变化后自动更新记录并要求重新授权；不要求手工选择CA。维护者已明确接受首次及变化后的自动信任：这里用观测指纹替代公共CA/主机名身份验证，不声称具备公共PKI首次身份保证。不改Host或系统全局信任，官方CLI文件不改，仅在专用子进程加载受限dispatcher。旧的附加CA配置不作为前置条件。本轮CLI/平台基线仍0.2.0，版本串OpenBKN0.2.1仍为发布标识。
@@ -130,4 +132,4 @@ dsh plugin --profile <desktop|web> remove @openbkn/dsh-business-context
 
 ## License
 
-[Apache License 2.0](LICENSE)
+插件自有代码采用 Apache License 2.0；复用的 Studio 源码及对应打包输出保留 OpenBKN License。完整条款见[包许可证](LICENSE)及[Studio 原许可证](licenses/openbkn-studio.txt)。第三方代码仍遵循各自许可证。

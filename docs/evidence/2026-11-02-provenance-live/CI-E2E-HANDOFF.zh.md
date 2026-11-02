@@ -1,6 +1,6 @@
 # -3 CI 与远程发布前 E2E
 
-2026-11-02。状态：提交前准备；CI run/artifact/SHA待实际产生后补记，不能使用历史7f5本地包冒充。分支 `feat/provenance-platform-parity-live`，基于 `bc5e67b`，含原main之后已本地验证的managed-tool/CSV修复。新manifest为 `0.2.1-rc.3-openbkn.0.2.1-3`，已发布-2及历史试验包不变。
+2026-11-02。状态：首轮提交 `a7ab632` 已推送，CI [41400870217](https://github.com/openbkn-ai/bkn-dsh/actions/runs/41400870217) 的两个首屏就绪测试失败，保留原结果并准备修复后新CI。实际artifact/SHA仍待产生，不能使用历史7f5或本地参考包冒充。分支 `feat/provenance-platform-parity-live`，基于 `bc5e67b`，含原main之后已本地验证的managed-tool/CSV修复。新manifest为 `0.2.1-rc.3-openbkn.0.2.1-3`，已发布-2及历史试验包不变。
 
 提交前验证：默认插件测试770项，769通过/1 Windows专项跳过（已含原源码旁10项）；完整仓库79/79、范围保护2/2、包审计126文件通过。本地-3参考包SHA256 `4fd73c118a08238738a5c78c06b7d95dacdc98276aa6d065669d059060e95d41`，相对已实测7f5候选仅package.json版本/测试脚本不同，其余125文件及生产运行资产逐字节一致；仍需接受CI产物，见 [PRE-CI-DELTA.json](./PRE-CI-DELTA.json)。
 
@@ -35,3 +35,13 @@
 逐项PASS/FAIL/UNKNOWN及证据层级（源码/受控/原生/平台对照），记录候选commit和SHA、环境/安装/进程、所用Conversation/Interaction/Operation/analysis ID、屏幕与原文摘要。保留失败前后、超限/partial及平台Markdown异常；私有原件留本地，Git只放脱敏结果/必要样本截图/摘要。最后正常退出隔离Host、恢复日常窗口，核对原包和会话内容。只做Mac不能声明Windows通过。
 
 平台历史搜索返回projection_scan_cap_reached；BOM平台Markdown含700处“请求失败。”文本。二者均为已观察的上游输入/响应，需如实核对和报告，不允许插件清洗或改写。HTTP错误安全分类及detail不可读时KN预检拒绝Markdown/动作仍为明确适配差异，见原开发记录。
+
+## 首轮 CI 与评审修正
+
+首轮CI为767通过/2失败/1跳过，两个首项在原1秒等待条件内找不到就绪heading；慢响应受控复现与官方Node22专项修复见 [CI异步就绪修复](./ci-readiness-fix/README.zh.md)。没有跳过、自动重试或削减断言。
+
+独立评审指出正常原生路径覆盖了旧版降级入口：Community路由404、Trace关闭/缺锚点、绑定/认证不可用时不应把已有local timeline挡在通用错误后。本轮补最小受信Host降级路径及拒绝/迟到/跨轮回归；身份变化、平台不匹配、未披露、权限拒绝或未知错误不得自动改读其他记录。正常原生路径不重复读取旧view。
+
+包许可证标识改为 `SEE LICENSE IN LICENSE`，LICENSE同时列明插件Apache2.0与复用Studio的OpenBKN条款，原始许可证文件保持不变。README明确 -3 尚未发布、只能安装本次核对的CI tgz，旧npm命令保留已发布-2。已内联UI依赖仍固定在当前runtime dependencies中，安装额外依赖树的非阻断体积问题保留为单独后续项，本轮不调整依赖图。
+
+修复后提交前完整验证：官方Node22.19.0/pnpm11.7.0，809项中808通过/1 Windows专项跳过；完整仓库79/79、范围2/2、包审计126文件通过。新本地参考包e68bd4d9bf75a67e125beb39726a9f8aa05c83e4547aa6b0a841629dd85f3c02，相对首参考仅LICENSE、两份README、package.json、client.js与locales.d.ts不同，Host business.js及其余120文件不变。见 [PRE-CI2-DELTA.json](./PRE-CI2-DELTA.json)，仍待新CI和其实际包的E2E。

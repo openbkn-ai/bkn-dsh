@@ -1,0 +1,28 @@
+Controlled first conversation transport delay: 1200ms, applied once in v016 setup.
+Readiness waits: explicit 10000ms each for heading and fullscreen trigger; all business assertions unchanged.
+Node: v22.19.0; PATH starts with /var/folders/9r/1zks6bqd7f3dtwybvxsksbc40000gn/T/openbkn-ci-node22-c3iyg9dg/node-v22.19.0-darwin-arm64/bin
+Command: DEBUG_PRINT_LIMIT=160 /var/folders/9r/1zks6bqd7f3dtwybvxsksbc40000gn/T/openbkn-ci-node22-c3iyg9dg/node-v22.19.0-darwin-arm64/bin/node --import tsx --test --test-reporter=tap tests/provenance-fullscreen-escape.test.ts
+Exit: 0; elapsed: 14.99s
+
+TAP version 13
+# Subtest: v016 evidence fullscreen consumes Escape and restores the new non-portal fullscreen trigger
+ok 1 - v016 evidence fullscreen consumes Escape and restores the new non-portal fullscreen trigger
+  ---
+  duration_ms: 4651.471292
+  type: 'test'
+  ...
+# Subtest: legacy evidence fullscreen and its Inspector close in inner-to-outer Escape order
+ok 2 - legacy evidence fullscreen and its Inspector close in inner-to-outer Escape order
+  ---
+  duration_ms: 6736.907792
+  type: 'test'
+  ...
+1..2
+# tests 2
+# suites 0
+# pass 2
+# fail 0
+# cancelled 0
+# skipped 0
+# todo 0
+# duration_ms 13168.244

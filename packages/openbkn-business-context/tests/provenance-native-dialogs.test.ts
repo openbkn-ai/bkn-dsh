@@ -27,13 +27,15 @@ const anchor = fixture.identity.initialInteractionId
 afterEach(() => cleanup())
 after(() => dom.window.close())
 
-function setup(options:{history?:boolean}={}) {
+function setup(options:{history?:boolean;conversationDelayMs?:number}={}) {
   const calls:string[] = []
   const copied:string[] = []
   const adapter = createPlatformProvenanceAdapter(async request => {
     calls.push(request.kind)
     switch(request.kind) {
-      case 'conversation':return {entries:[fixture.conversation],total:1}
+      case 'conversation':
+        if (options.conversationDelayMs) await new Promise(resolve=>setTimeout(resolve,options.conversationDelayMs))
+        return {entries:[fixture.conversation],total:1}
       case 'rounds':return {entries:[fixture.rounds.find((row:{interaction_id:string})=>row.interaction_id===anchor)],total:1,page:1,page_size:50}
       case 'detail':return structuredClone(fixture.details[anchor])
       case 'markdown':return fixture.markdown[anchor]
@@ -54,8 +56,9 @@ function setup(options:{history?:boolean}={}) {
 }
 
 async function ready() {
-  await screen.findByRole('heading',{name:'本轮业务执行过程'})
-  await waitFor(()=>assert.equal((screen.getByRole('button',{name:'交给 BKN Agent 分析'}) as HTMLButtonElement).disabled,false))
+  // Cold AntD rendering and queued reads can exceed the default 1 s on CI.
+  await screen.findByRole('heading',{name:'本轮业务执行过程'},{timeout:10_000})
+  await waitFor(()=>assert.equal((screen.getByRole('button',{name:'交给 BKN Agent 分析'}) as HTMLButtonElement).disabled,false),{timeout:10_000})
   await act(async()=>{})
 }
 
@@ -71,7 +74,8 @@ for (const [label,title,field] of [
   ['查看完整本轮输出','本轮输出（原文）','interaction_result'],
 ] as const) {
   test(`native outer Escape closes only the activated ${field} popover and restores its trigger`,async()=>{
-    const state = setup();await ready()
+    // Keep the cold-start path slower than Testing Library's default 1 s window.
+    const state = setup({conversationDelayMs:field==='interaction_question'?1200:0});await ready()
     const trigger = screen.getByRole('button',{name:label})
     trigger.focus();fireEvent.click(trigger)
     const layer = await sourceLayer(title)

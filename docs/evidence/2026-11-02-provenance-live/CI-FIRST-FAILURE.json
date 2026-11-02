@@ -1,0 +1,33 @@
+{
+  "ciRun": 41400870217,
+  "url": "https://github.com/openbkn-ai/bkn-dsh/actions/runs/41400870217",
+  "commit": "a7ab632568651389c55e27d66db69457b4197645",
+  "publishRequested": false,
+  "conclusion": "failure",
+  "stage": "Test plugin and compatibility tooling",
+  "toolchain": "Ubuntu /Node22.19.0 /pnpm11.7.0",
+  "tests": {
+    "total": 770,
+    "pass": 767,
+    "fail": 2,
+    "skip": 1,
+    "durationMs": 150948.31158
+  },
+  "failedTests": [
+    {
+      "file": "tests/provenance-fullscreen-escape.test.ts",
+      "name": "v016 evidence fullscreen consumes Escape and restores the new non-portal fullscreen trigger",
+      "durationMs": 1198.27247
+    },
+    {
+      "file": "tests/provenance-native-dialogs.test.ts",
+      "name": "native outer Escape closes only the activated interaction_question popover and restores its trigger",
+      "durationMs": 1209.045648
+    }
+  ],
+  "sharedObservedError": "Unable to find role=\"heading\" and name \"本轮业务执行过程\" in the first test of each file",
+  "sameFileLaterTests": "passed",
+  "cause": "under investigation; do not infer production defect or runner timeout merely from test names",
+  "artifactReleasedForE2E": false,
+  "rawLog": "retained in ignored private acceptance directory; no credentials copied to this report"
+}

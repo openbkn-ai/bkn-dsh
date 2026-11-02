@@ -1,0 +1,40 @@
+Controlled first conversation transport delay: 1200ms, applied once in v016 setup.
+Node: v23.11.0
+Command: DEBUG_PRINT_LIMIT=160 node --import tsx --test --test-reporter=spec tests/provenance-fullscreen-escape.test.ts
+Exit: 1; elapsed: 9.59s
+
+✖ v016 evidence fullscreen consumes Escape and restores the new non-portal fullscreen trigger (1037.85575ms)
+✔ legacy evidence fullscreen and its Inspector close in inner-to-outer Escape order (6392.308584ms)
+ℹ tests 2
+ℹ suites 0
+ℹ pass 1
+ℹ fail 1
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 9505.718
+
+✖ failing tests:
+
+test at tests/provenance-fullscreen-escape.test.ts:1:5360
+✖ v016 evidence fullscreen consumes Escape and restores the new non-portal fullscreen trigger (1037.85575ms)
+  Error: Unable to find role="heading" and name "本轮业务执行过程"
+  
+  Ignored nodes: comments, script, style
+  [36m<body>[39m
+    [36m<div>[39m
+      [36m<div[39m
+        [33mrole[39m=[32m"presentation"[39m
+        [33mstyle[39m=[32m"pointer-events: auto; position: ...
+      at waitForWrapper (/Users/kalias/Documents/project/app/openBKN/bkn-dsh-provenance-parity-live-20261102/node_modules/.pnpm/@testing-library+dom@10.4.1/node_modules/@testing-library/dom/dist/wait-for.js:163:27)
+      at /Users/kalias/Documents/project/app/openBKN/bkn-dsh-provenance-parity-live-20261102/node_modules/.pnpm/@testing-library+dom@10.4.1/node_modules/@testing-library/dom/dist/query-helpers.js:86:33
+      at evidenceReady (/Users/kalias/Documents/project/app/openBKN/bkn-dsh-provenance-parity-live-20261102/packages/openbkn-business-context/tests/provenance-fullscreen-escape.test.ts:57:16)
+      at <anonymous> (/Users/kalias/Documents/project/app/openBKN/bkn-dsh-provenance-parity-live-20261102/packages/openbkn-business-context/tests/provenance-fullscreen-escape.test.ts:85:62)
+      at withConnectedRects (/Users/kalias/Documents/project/app/openBKN/bkn-dsh-provenance-parity-live-20261102/packages/openbkn-business-context/tests/provenance-fullscreen-escape.test.ts:67:14)
+      at TestContext.<anonymous> (/Users/kalias/Documents/project/app/openBKN/bkn-dsh-provenance-parity-live-20261102/packages/openbkn-business-context/tests/provenance-fullscreen-escape.test.ts:84:104)
+      at Test.runInAsyncScope (node:async_hooks:214:14)
+      at Test.run (node:internal/test_runner/test:1047:25)
+      at Test.start (node:internal/test_runner/test:944:17)
+      at startSubtestAfterBootstrap (node:internal/test_runner/harness:297:17) {
+    name: 'TestingLibraryElementError'
+  }

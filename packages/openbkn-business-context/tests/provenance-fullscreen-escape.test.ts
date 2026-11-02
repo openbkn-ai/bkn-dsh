@@ -24,12 +24,18 @@ const anchor = fixture.identity.initialInteractionId
 afterEach(()=>cleanup())
 after(()=>dom.window.close())
 
-function setup(explanation:unknown) {
+function setup(explanation:unknown,conversationDelayMs=0) {
   const calls:string[]=[]
+  let conversationDelayed=false
   const adapter=createPlatformProvenanceAdapter(async request=>{
     calls.push(request.kind)
     switch(request.kind){
-      case 'conversation':return {entries:[fixture.conversation],total:1}
+      case 'conversation':
+        if(conversationDelayMs>0&&!conversationDelayed){
+          conversationDelayed=true
+          await new Promise(resolve=>setTimeout(resolve,conversationDelayMs))
+        }
+        return {entries:[fixture.conversation],total:1}
       case 'rounds':return {entries:[fixture.rounds.find((row:{interaction_id:string})=>row.interaction_id===anchor)],total:1,page:1,page_size:50}
       case 'detail':return structuredClone(fixture.details[anchor])
       case 'explanation':return structuredClone(explanation) as never
@@ -48,9 +54,9 @@ function setup(explanation:unknown) {
 }
 
 async function evidenceReady() {
-  await screen.findByRole('heading',{name:'本轮业务执行过程'})
+  await screen.findByRole('heading',{name:'本轮业务执行过程'},{timeout:10_000})
   fireEvent.click(screen.getByRole('tab',{name:'证据链'}))
-  await screen.findByRole('button',{name:'全屏查看'})
+  await screen.findByRole('button',{name:'全屏查看'},{timeout:10_000})
   await act(async()=>{})
 }
 
@@ -76,7 +82,7 @@ function tabCycle(layer:HTMLElement,name:string) {
 }
 
 test('v016 evidence fullscreen consumes Escape and restores the new non-portal fullscreen trigger',()=>withConnectedRects(async()=>{
-  const state=setup(fixture.explanations[anchor]);await evidenceReady()
+  const state=setup(fixture.explanations[anchor],1200);await evidenceReady()
   const opener=screen.getByRole('button',{name:'全屏查看'})
   opener.focus();fireEvent.click(opener)
   const exit=await screen.findByRole('button',{name:'退出全屏'})

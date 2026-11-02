@@ -1,0 +1,321 @@
+✖ production native NATIVE_NOT_AVAILABLE preserves the trusted legacy local view (8.235334ms)
+✖ production native TRACE_DISABLED preserves the trusted legacy local view (1.122625ms)
+✖ production native TRACE_UNAVAILABLE preserves the trusted legacy local view (0.755167ms)
+✖ production native BINDING_REQUIRED preserves the trusted legacy local view (0.615833ms)
+✖ production native AUTHENTICATION_REQUIRED preserves the trusted legacy local view (0.754584ms)
+✖ a handle without Interaction uses only the trusted local reader (disabled) (0.732541ms)
+✖ a handle without Interaction uses only the trusted local reader (unavailable) (0.570875ms)
+✖ a handle without Interaction uses only the trusted local reader (legacy) (0.412875ms)
+✖ native IDENTITY_CHANGED never silently falls back or relabels the cause as a connection issue (0.815084ms)
+✖ native PLATFORM_MISMATCH never silently falls back or relabels the cause as a connection issue (0.689459ms)
+✖ native RECORD_NOT_DISCLOSED never silently falls back or relabels the cause as a connection issue (0.675458ms)
+✖ native ACCESS_DENIED never silently falls back or relabels the cause as a connection issue (0.681834ms)
+✖ native INVALID_RESPONSE never silently falls back or relabels the cause as a connection issue (0.442625ms)
+✖ native OUTPUT_OVERFLOW never silently falls back or relabels the cause as a connection issue (0.426917ms)
+✖ native SESSION_UNAVAILABLE never silently falls back or relabels the cause as a connection issue (0.359292ms)
+✔ an unknown, untyped or transport failure does not enable a legacy fallback (object) (0.42925ms)
+✔ an unknown, untyped or transport failure does not enable a legacy fallback (undefined) (0.345ms)
+✔ an unknown, untyped or transport failure does not enable a legacy fallback (TypeError) (0.310708ms)
+✔ an unknown, untyped or transport failure does not enable a legacy fallback (Error) (0.331875ms)
+✔ an unknown, untyped or transport failure does not enable a legacy fallback (object) (0.281666ms)
+✔ an unknown, untyped or transport failure does not enable a legacy fallback (ProvenanceDetailTransportError) (0.263292ms)
+✔ a readable native conversation never prefetches the legacy view (6.83725ms)
+✖ legacy fallback refuses a different interactionId (0.408916ms)
+✖ legacy fallback refuses a different conversationId (0.326542ms)
+✔ a late native failure after another answer opens cannot trigger its legacy fallback (3.263667ms)
+✖ a pending fallback is cancelled on close and cannot replace a reopened answer (0.375208ms)
+ℹ tests 26
+ℹ suites 0
+ℹ pass 8
+ℹ fail 18
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 1384.710417
+
+✖ failing tests:
+
+test at tests/provenance-legacy-fallback.test.ts:1:3039
+✖ production native NATIVE_NOT_AVAILABLE preserves the trusted legacy local view (8.235334ms)
+  AssertionError [ERR_ASSERTION]: Expected values to be strictly equal:
+  
+  0 !== 1
+  
+      at TestContext.<anonymous> (/Users/kalias/Documents/project/app/openBKN/bkn-dsh-provenance-parity-live-20261102/packages/openbkn-business-context/tests/provenance-legacy-fallback.test.ts:50:12)
+      at async Test.run (node:internal/test_runner/test:1389:7)
+      at async startSubtestAfterBootstrap (node:internal/test_runner/harness:387:3) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: 0,
+    expected: 1,
+    operator: 'strictEqual',
+    diff: 'simple'
+  }
+
+test at tests/provenance-legacy-fallback.test.ts:1:3039
+✖ production native TRACE_DISABLED preserves the trusted legacy local view (1.122625ms)
+  AssertionError [ERR_ASSERTION]: Expected values to be strictly equal:
+  
+  0 !== 1
+  
+      at TestContext.<anonymous> (/Users/kalias/Documents/project/app/openBKN/bkn-dsh-provenance-parity-live-20261102/packages/openbkn-business-context/tests/provenance-legacy-fallback.test.ts:50:12)
+      at async Test.run (node:internal/test_runner/test:1389:7)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:960:7) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: 0,
+    expected: 1,
+    operator: 'strictEqual',
+    diff: 'simple'
+  }
+
+test at tests/provenance-legacy-fallback.test.ts:1:3039
+✖ production native TRACE_UNAVAILABLE preserves the trusted legacy local view (0.755167ms)
+  AssertionError [ERR_ASSERTION]: Expected values to be strictly equal:
+  
+  0 !== 1
+  
+      at TestContext.<anonymous> (/Users/kalias/Documents/project/app/openBKN/bkn-dsh-provenance-parity-live-20261102/packages/openbkn-business-context/tests/provenance-legacy-fallback.test.ts:50:12)
+      at async Test.run (node:internal/test_runner/test:1389:7)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:960:7) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: 0,
+    expected: 1,
+    operator: 'strictEqual',
+    diff: 'simple'
+  }
+
+test at tests/provenance-legacy-fallback.test.ts:1:3039
+✖ production native BINDING_REQUIRED preserves the trusted legacy local view (0.615833ms)
+  AssertionError [ERR_ASSERTION]: Expected values to be strictly equal:
+  
+  0 !== 1
+  
+      at TestContext.<anonymous> (/Users/kalias/Documents/project/app/openBKN/bkn-dsh-provenance-parity-live-20261102/packages/openbkn-business-context/tests/provenance-legacy-fallback.test.ts:50:12)
+      at async Test.run (node:internal/test_runner/test:1389:7)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:960:7) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: 0,
+    expected: 1,
+    operator: 'strictEqual',
+    diff: 'simple'
+  }
+
+test at tests/provenance-legacy-fallback.test.ts:1:3039
+✖ production native AUTHENTICATION_REQUIRED preserves the trusted legacy local view (0.754584ms)
+  AssertionError [ERR_ASSERTION]: Expected values to be strictly equal:
+  
+  0 !== 1
+  
+      at TestContext.<anonymous> (/Users/kalias/Documents/project/app/openBKN/bkn-dsh-provenance-parity-live-20261102/packages/openbkn-business-context/tests/provenance-legacy-fallback.test.ts:50:12)
+      at async Test.run (node:internal/test_runner/test:1389:7)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:960:7) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: 0,
+    expected: 1,
+    operator: 'strictEqual',
+    diff: 'simple'
+  }
+
+test at tests/provenance-legacy-fallback.test.ts:1:3862
+✖ a handle without Interaction uses only the trusted local reader (disabled) (0.732541ms)
+  AssertionError [ERR_ASSERTION]: Expected values to be strictly equal:
+  
+  1 !== 0
+  
+      at TestContext.<anonymous> (/Users/kalias/Documents/project/app/openBKN/bkn-dsh-provenance-parity-live-20261102/packages/openbkn-business-context/tests/provenance-legacy-fallback.test.ts:62:10)
+      at async Test.run (node:internal/test_runner/test:1389:7)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:960:7) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: 1,
+    expected: 0,
+    operator: 'strictEqual',
+    diff: 'simple'
+  }
+
+test at tests/provenance-legacy-fallback.test.ts:1:3862
+✖ a handle without Interaction uses only the trusted local reader (unavailable) (0.570875ms)
+  AssertionError [ERR_ASSERTION]: Expected values to be strictly equal:
+  
+  1 !== 0
+  
+      at TestContext.<anonymous> (/Users/kalias/Documents/project/app/openBKN/bkn-dsh-provenance-parity-live-20261102/packages/openbkn-business-context/tests/provenance-legacy-fallback.test.ts:62:10)
+      at async Test.run (node:internal/test_runner/test:1389:7)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:960:7) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: 1,
+    expected: 0,
+    operator: 'strictEqual',
+    diff: 'simple'
+  }
+
+test at tests/provenance-legacy-fallback.test.ts:1:3862
+✖ a handle without Interaction uses only the trusted local reader (legacy) (0.412875ms)
+  AssertionError [ERR_ASSERTION]: Expected values to be strictly equal:
+  
+  1 !== 0
+  
+      at TestContext.<anonymous> (/Users/kalias/Documents/project/app/openBKN/bkn-dsh-provenance-parity-live-20261102/packages/openbkn-business-context/tests/provenance-legacy-fallback.test.ts:62:10)
+      at async Test.run (node:internal/test_runner/test:1389:7)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:960:7) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: 1,
+    expected: 0,
+    operator: 'strictEqual',
+    diff: 'simple'
+  }
+
+test at tests/provenance-legacy-fallback.test.ts:1:4356
+✖ native IDENTITY_CHANGED never silently falls back or relabels the cause as a connection issue (0.815084ms)
+  AssertionError [ERR_ASSERTION]: the fixed failure classification remains visible
+      at TestContext.<anonymous> (/Users/kalias/Documents/project/app/openBKN/bkn-dsh-provenance-parity-live-20261102/packages/openbkn-business-context/tests/provenance-legacy-fallback.test.ts:71:12)
+      at async Test.run (node:internal/test_runner/test:1389:7)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:960:7) {
+    generatedMessage: false,
+    code: 'ERR_ASSERTION',
+    actual: false,
+    expected: true,
+    operator: '==',
+    diff: 'simple'
+  }
+
+test at tests/provenance-legacy-fallback.test.ts:1:4356
+✖ native PLATFORM_MISMATCH never silently falls back or relabels the cause as a connection issue (0.689459ms)
+  AssertionError [ERR_ASSERTION]: the fixed failure classification remains visible
+      at TestContext.<anonymous> (/Users/kalias/Documents/project/app/openBKN/bkn-dsh-provenance-parity-live-20261102/packages/openbkn-business-context/tests/provenance-legacy-fallback.test.ts:71:12)
+      at async Test.run (node:internal/test_runner/test:1389:7)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:960:7) {
+    generatedMessage: false,
+    code: 'ERR_ASSERTION',
+    actual: false,
+    expected: true,
+    operator: '==',
+    diff: 'simple'
+  }
+
+test at tests/provenance-legacy-fallback.test.ts:1:4356
+✖ native RECORD_NOT_DISCLOSED never silently falls back or relabels the cause as a connection issue (0.675458ms)
+  AssertionError [ERR_ASSERTION]: the fixed failure classification remains visible
+      at TestContext.<anonymous> (/Users/kalias/Documents/project/app/openBKN/bkn-dsh-provenance-parity-live-20261102/packages/openbkn-business-context/tests/provenance-legacy-fallback.test.ts:71:12)
+      at async Test.run (node:internal/test_runner/test:1389:7)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:960:7) {
+    generatedMessage: false,
+    code: 'ERR_ASSERTION',
+    actual: false,
+    expected: true,
+    operator: '==',
+    diff: 'simple'
+  }
+
+test at tests/provenance-legacy-fallback.test.ts:1:4356
+✖ native ACCESS_DENIED never silently falls back or relabels the cause as a connection issue (0.681834ms)
+  AssertionError [ERR_ASSERTION]: the fixed failure classification remains visible
+      at TestContext.<anonymous> (/Users/kalias/Documents/project/app/openBKN/bkn-dsh-provenance-parity-live-20261102/packages/openbkn-business-context/tests/provenance-legacy-fallback.test.ts:71:12)
+      at async Test.run (node:internal/test_runner/test:1389:7)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:960:7) {
+    generatedMessage: false,
+    code: 'ERR_ASSERTION',
+    actual: false,
+    expected: true,
+    operator: '==',
+    diff: 'simple'
+  }
+
+test at tests/provenance-legacy-fallback.test.ts:1:4356
+✖ native INVALID_RESPONSE never silently falls back or relabels the cause as a connection issue (0.442625ms)
+  AssertionError [ERR_ASSERTION]: the fixed failure classification remains visible
+      at TestContext.<anonymous> (/Users/kalias/Documents/project/app/openBKN/bkn-dsh-provenance-parity-live-20261102/packages/openbkn-business-context/tests/provenance-legacy-fallback.test.ts:71:12)
+      at async Test.run (node:internal/test_runner/test:1389:7)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:960:7) {
+    generatedMessage: false,
+    code: 'ERR_ASSERTION',
+    actual: false,
+    expected: true,
+    operator: '==',
+    diff: 'simple'
+  }
+
+test at tests/provenance-legacy-fallback.test.ts:1:4356
+✖ native OUTPUT_OVERFLOW never silently falls back or relabels the cause as a connection issue (0.426917ms)
+  AssertionError [ERR_ASSERTION]: the fixed failure classification remains visible
+      at TestContext.<anonymous> (/Users/kalias/Documents/project/app/openBKN/bkn-dsh-provenance-parity-live-20261102/packages/openbkn-business-context/tests/provenance-legacy-fallback.test.ts:71:12)
+      at async Test.run (node:internal/test_runner/test:1389:7)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:960:7) {
+    generatedMessage: false,
+    code: 'ERR_ASSERTION',
+    actual: false,
+    expected: true,
+    operator: '==',
+    diff: 'simple'
+  }
+
+test at tests/provenance-legacy-fallback.test.ts:1:4356
+✖ native SESSION_UNAVAILABLE never silently falls back or relabels the cause as a connection issue (0.359292ms)
+  AssertionError [ERR_ASSERTION]: the fixed failure classification remains visible
+      at TestContext.<anonymous> (/Users/kalias/Documents/project/app/openBKN/bkn-dsh-provenance-parity-live-20261102/packages/openbkn-business-context/tests/provenance-legacy-fallback.test.ts:71:12)
+      at async Test.run (node:internal/test_runner/test:1389:7)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:960:7) {
+    generatedMessage: false,
+    code: 'ERR_ASSERTION',
+    actual: false,
+    expected: true,
+    operator: '==',
+    diff: 'simple'
+  }
+
+test at tests/provenance-legacy-fallback.test.ts:1:5783
+✖ legacy fallback refuses a different interactionId (0.408916ms)
+  AssertionError [ERR_ASSERTION]: Expected values to be strictly equal:
+  
+  0 !== 1
+  
+      at TestContext.<anonymous> (/Users/kalias/Documents/project/app/openBKN/bkn-dsh-provenance-parity-live-20261102/packages/openbkn-business-context/tests/provenance-legacy-fallback.test.ts:94:10)
+      at async Test.run (node:internal/test_runner/test:1389:7)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:960:7) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: 0,
+    expected: 1,
+    operator: 'strictEqual',
+    diff: 'simple'
+  }
+
+test at tests/provenance-legacy-fallback.test.ts:1:5783
+✖ legacy fallback refuses a different conversationId (0.326542ms)
+  AssertionError [ERR_ASSERTION]: Expected values to be strictly equal:
+  
+  0 !== 1
+  
+      at TestContext.<anonymous> (/Users/kalias/Documents/project/app/openBKN/bkn-dsh-provenance-parity-live-20261102/packages/openbkn-business-context/tests/provenance-legacy-fallback.test.ts:94:10)
+      at async Test.run (node:internal/test_runner/test:1389:7)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:960:7) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: 0,
+    expected: 1,
+    operator: 'strictEqual',
+    diff: 'simple'
+  }
+
+test at tests/provenance-legacy-fallback.test.ts:1:6702
+✖ a pending fallback is cancelled on close and cannot replace a reopened answer (0.375208ms)
+  AssertionError [ERR_ASSERTION]: Expected values to be strictly equal:
+  
+  0 !== 1
+  
+      at TestContext.<anonymous> (/Users/kalias/Documents/project/app/openBKN/bkn-dsh-provenance-parity-live-20261102/packages/openbkn-business-context/tests/provenance-legacy-fallback.test.ts:111:10)
+      at async Test.run (node:internal/test_runner/test:1389:7)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:960:7) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: 0,
+    expected: 1,
+    operator: 'strictEqual',
+    diff: 'simple'
+  }

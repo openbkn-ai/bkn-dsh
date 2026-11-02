@@ -1,5 +1,7 @@
 # bkn-dsh
 
+> Development candidate `0.2.1-rc.3-openbkn.0.2.1-3` adds platform-style provenance details and focus/large-record fixes. Build-only CI and remote E2E are in progress; it is not published. Install this candidate only from the verified CI `.tgz`. The npm commands below still select the published -2. Generation/analysis acceptance is limited to explicitly authorized isolated samples; platform and model output remain unchanged.
+
 > Revision `0.2.1-rc.3-openbkn.0.2.1-2` admits DSH `0.2.1-rc.3` and every newer version, including alpha, rc, stable and future major releases; `0.2.0-rc.2` remains admitted. Loading admission is distinct from verified compatibility. Build/test anchors remain pinned, and existing interface, permission and dependency-identity checks remain enabled.
 
 > Automatic private-platform login rc revision. Click CLI sign-in to open the official authorization flow in an independently owned Chrome/Edge profile. The configured platform certificate is automatically observed and pinned; an address or certificate change automatically replaces the remembered identity and requires a new browser authorization. This explicitly accepted private-environment policy substitutes an observed fingerprint for public CA/hostname authentication; it is not a public-PKI security claim. No global Host/system trust is changed. The official CLI is unchanged; a preload dispatcher exists only in its dedicated child. Existing supplemental CA settings are not prerequisites. Actual platform/CLI baseline remains0.2.0; OpenBKN0.2.1 in the version is a release identifier.
@@ -132,4 +134,4 @@ Diagnostics displays the Node platform identifier `win32` as Windows; it does no
 
 ## License
 
-[Apache License 2.0](LICENSE)
+Original plugin code is Apache-2.0. Reused Studio modules and their bundled output retain the OpenBKN License. See the [package license texts](LICENSE) and [unchanged Studio license](licenses/openbkn-studio.txt); third-party code retains its own licenses.
