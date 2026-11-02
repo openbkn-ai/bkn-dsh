@@ -1,0 +1,30 @@
+{
+  "managed/excluded lists": {
+    "unchanged": true,
+    "sha256": "e04e1771196465c0f96c1a48b334fa38ba93edc0e1d3516d67ea9cb3abb2f7b7"
+  },
+  "name denial": {
+    "unchanged": true,
+    "sha256": "2a4bf60748330e9f5cb78f9790f6e27fc8bee5e65610d70e15f879d8ab5c66cd"
+  },
+  "network/context guards": {
+    "unchanged": true,
+    "sha256": "e8e15a808a682665d01c2d9aacccbda8edd04f15bcbe2abffcca28c1a5b0285c"
+  },
+  "execution guard": {
+    "unchanged": true,
+    "sha256": "63922eb0cce1a803a2b1dfa918dcd181b29e2082e1fe894f3bc8b36b8ac381a0"
+  },
+  "interaction-lifecycle.ts": {
+    "unchanged": true,
+    "sha256": "dc2169ffeef2cce9c961febb80661bbc2728a347f15252af82cabf9b7e7f264a"
+  },
+  "platform-csv-export.ts": {
+    "unchanged": true,
+    "sha256": "b650fc8583b57ce4dbd084a631a79642bce1ef3ed6c410e9704ee5add7e01588"
+  },
+  "business-context-service.ts": {
+    "unchanged": true,
+    "sha256": "4e73ea03628f077fad684304720e8eca9a69ba986d61d15a3e117c35481424b2"
+  }
+}

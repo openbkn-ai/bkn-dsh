@@ -162,7 +162,7 @@ test('finish while retrieving, file collisions and saved-byte corruption never p
   await assert.rejects(() => corrupt.tool.execute(args, corrupt.exec), /verification failed/)
 })
 
-test('native ToolRuntime mounts export only in the bound agent and enforces lifecycle/context without Host tool access', async () => {
+test('native ToolRuntime keeps queries available as optional CSV services mount and unmount, with independent execution guards', async () => {
   const ctx = new Context()
   const f = fixture()
   const require = createRequire(import.meta.resolve('@deepseek-ai/dsh-tools'))
@@ -170,11 +170,6 @@ test('native ToolRuntime mounts export only in the bound agent and enforces life
   try {
     await ctx.plugin(SystemPrompt)
     await ctx.plugin(ToolRuntime)
-    for (const [name, port] of Object.entries({ fs: f.host.fs, workingDirectory: f.host.workingDirectory, sandboxPolicy: f.host.sandboxPolicy })) {
-      await ctx.plugin(class extends Service {
-        constructor(scope: Context) { super(scope, name as never); Object.assign(this, port) }
-      })
-    }
     let reads = 0
     for (const name of ['mcp__openbkn__bkn_start_interaction', 'mcp__openbkn__bkn_finish_interaction', 'mcp__openbkn__run_code']) {
       ctx.tools.register({
@@ -187,11 +182,29 @@ test('native ToolRuntime mounts export only in the bound agent and enforces life
         },
       })
     }
+    let queries = 0
+    ctx.tools.register({
+      name: 'mcp__openbkn__query_metric', description: 'Controlled query contract',
+      parameters: { type: 'object', properties: { kn_id: { type: 'string' }, bkn_context: { type: 'object' } }, required: ['kn_id', 'bkn_context'] },
+      output: { schema: { type: 'object' }, render: (_args, value) => [{ type: 'text', text: JSON.stringify(value) }] },
+      execute: async () => { queries++; return { value: '534' } },
+    })
     const agent = { id: 'csv-agent', session: { snapshotEvents: () => [] }, ctx: undefined as unknown as Context }
     let scope!: { ctx: Context }
     await ctx.plugin({ inject: ['tools', 'systemPrompt'], apply(inner: Context) { scope = createScope(inner, agent) } })
     agent.ctx = scope.ctx
     mountBoundBusinessNetworkTool(agent as never, { baseUrl: binding.platformBaseUrl, requestTimeoutMs: 1000, maxResultBytes: 1000000, allowInsecureTls: false }, binding)
+    const names = async () => (await ctx.systemPrompt.assemble({ scope: agent })).tools.map(tool => tool.name)
+    const withoutCsv = await names()
+    assert.ok(withoutCsv.includes('mcp__openbkn__query_metric'))
+    assert.ok(withoutCsv.includes('mcp__openbkn__run_code'))
+    assert.ok(!withoutCsv.includes('openbkn_export_csv'))
+    const services = []
+    for (const [name, port] of Object.entries({ fs: f.host.fs, workingDirectory: f.host.workingDirectory, sandboxPolicy: f.host.sandboxPolicy })) {
+      services.push(await ctx.plugin(class extends Service {
+        constructor(scope: Context) { super(scope, name as never); Object.assign(this, port) }
+      }))
+    }
     // Optional service injection settles without postponing the main guard.
     await Promise.resolve(); await Promise.resolve()
     assert.ok(ctx.tools.get('openbkn_export_csv', agent))
@@ -200,9 +213,18 @@ test('native ToolRuntime mounts export only in the bound agent and enforces life
     assert.ok(!(await ctx.systemPrompt.assemble()).tools.some(tool => tool.name === 'openbkn_export_csv'))
     let sequence = 0
     const call = (name: string, input: unknown) => ctx.tools.execute({ name, arguments: input, agent: agent as never, callId: ('csv-' + ++sequence) as never, signal: AbortSignal.timeout(5000) })
+    const query = { kn_id: args.kn_id, bkn_context: context }
+    assert.equal((await call('mcp__openbkn__query_metric', query)).isError, true)
+    assert.equal(queries, 0, 'visibility before start does not grant execution')
     assert.equal((await call('openbkn_export_csv', args)).isError, true)
     assert.equal(reads, 0)
     assert.notEqual((await call('mcp__openbkn__bkn_start_interaction', { conversation_mode: 'new' })).isError, true)
+    assert.notEqual((await call('mcp__openbkn__query_metric', query)).isError, true)
+    assert.equal(queries, 1)
+    for (const bad of [{ ...query, kn_id: 'other' }, { ...query, kn_id: ['kn'] }, { bkn_context: context }, { kn_id: 'kn' }, { ...query, bkn_context: { ...context, interaction_id: 'other' } }]) {
+      assert.equal((await call('mcp__openbkn__query_metric', bad)).isError, true)
+    }
+    assert.equal(queries, 1, 'invalid query scopes and identities still do not dispatch')
     assert.equal((await call('openbkn_export_csv', { ...args, kn_id: 'other' })).isError, true)
     assert.equal((await call('openbkn_export_csv', { ...args, bkn_context: { ...context, interaction_id: 'other' } })).isError, true)
     assert.equal(reads, 0)
@@ -219,7 +241,16 @@ test('native ToolRuntime mounts export only in the bound agent and enforces life
     assert.equal(present.isError, true)
     assert.match(JSON.stringify(present.content), /call openbkn_export_csv/)
     assert.equal(reads, 1, 'the actionable refusal still does not dispatch a Host or platform tool')
+    await services[0]!.dispose()
+    await Promise.resolve(); await Promise.resolve()
+    assert.deepEqual(await names(), withoutCsv, 'CSV service removal only removes the scoped export tool')
+    assert.equal((await call('openbkn_export_csv', args)).isError, true)
+    assert.equal(reads, 1)
+    assert.notEqual((await call('mcp__openbkn__query_metric', query)).isError, true)
+    assert.equal(queries, 2, 'normal queries keep working after optional CSV disappears')
     assert.notEqual((await call('mcp__openbkn__bkn_finish_interaction', { interaction_id: context.interaction_id })).isError, true)
+    assert.equal((await call('mcp__openbkn__query_metric', query)).isError, true)
+    assert.equal(queries, 2)
     assert.equal((await call('openbkn_export_csv', args)).isError, true)
     assert.equal(reads, 1)
   } finally { await ctx.fiber.dispose() }

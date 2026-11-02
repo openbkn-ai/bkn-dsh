@@ -1,0 +1,22 @@
+{
+  "dsh": {
+    "repository": "deepseek-ai/deepseek-harness",
+    "verified_release_commit": "b830ec950faba0a46dda564be3e2d854afed94f1",
+    "default_branch": "master",
+    "current_head": "ce7073d51254c26cd63b22a60835b8f948deb447",
+    "ahead_by": 2508,
+    "relevant_changes_since_release": [],
+    "compare_file_count": 300,
+    "compare_file_list_may_be_truncated": true
+  },
+  "platform": {
+    "repository": "openbkn-ai/bkn-foundry",
+    "verified_release_commit": "81d5752826f3b3f3f72f3ad4cb1e22d45e99ab4b",
+    "default_branch": "main",
+    "current_head": "e1aae8d9366d2b12cbd93a6dde87bb2ff61eaf3f",
+    "ahead_by": 488,
+    "relevant_changes_since_release": [],
+    "compare_file_count": 300,
+    "compare_file_list_may_be_truncated": true
+  }
+}

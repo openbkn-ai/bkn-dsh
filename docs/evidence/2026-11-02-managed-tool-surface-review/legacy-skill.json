@@ -1,0 +1,15 @@
+{
+  "repository": "openbkn-ai/bkn-foundry",
+  "commit": "96c6d92822164616ea271618fbecbcab6702ca3c",
+  "path": "adp/context-loader/agent-retrieval/server/driveradapters/mcp/schemas/execute_skill.json",
+  "properties": [
+    "skill_id",
+    "entry_shell",
+    "timeout"
+  ],
+  "required": [
+    "skill_id",
+    "entry_shell"
+  ],
+  "kn_id_absent": true
+}

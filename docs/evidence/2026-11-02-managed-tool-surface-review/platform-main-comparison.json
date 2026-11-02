@@ -1,0 +1,26 @@
+{
+  "fixture_release_inputs_verified": 34,
+  "main_files": [
+    {
+      "file": "adp/context-loader/agent-retrieval/server/driveradapters/mcp/schemas/tools_meta.json",
+      "current_main_read": true,
+      "release_sha256": "2052710885da52c3a8095da19ed694f33ee539833203255cc808a0da28d0657d",
+      "current_main_sha256": "14d803b8215ccb73510598434ff4bc14f11251403f6016ccc9b56958ab8f8156",
+      "unchanged": false
+    },
+    {
+      "file": "adp/context-loader/agent-retrieval/server/driveradapters/mcp/schemas/execute_skill.json",
+      "current_main_read": true,
+      "release_sha256": "96fa06bc44d1df101288072223f70253384af62ec1fb8456c0a42111a9aeb2e2",
+      "current_main_sha256": "96fa06bc44d1df101288072223f70253384af62ec1fb8456c0a42111a9aeb2e2",
+      "unchanged": true
+    },
+    {
+      "file": "adp/context-loader/agent-retrieval/server/driveradapters/mcp/session_guard.go",
+      "current_main_read": true,
+      "release_sha256": "30937d7d2518a6c7d7ae036026cad331b9a26bdb62c83de8682e9c8bc4039298",
+      "current_main_sha256": "5b0bdacff2c98e4e51a87d1d61ed342240f8f0cc2ec5a948f4845037bea8c5df",
+      "unchanged": false
+    }
+  ]
+}

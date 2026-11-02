@@ -1,5 +1,6 @@
 import assert from 'node:assert/strict'
 import { createRequire } from 'node:module'
+import { readFileSync } from 'node:fs'
 import { pathToFileURL } from 'node:url'
 import test from 'node:test'
 import { Context } from '@deepseek-ai/cordis'
@@ -86,5 +87,109 @@ test('assembly filters the authoritative downstream result and removes no policy
     }))
     assert.ok(!(await f.assemble()).tools.some(tool => tool.name === 'write'))
     assert.ok(!(await f.ctx.systemPrompt.assemble()).sections.some(section => section.name === 'openbkn:effective-tool-routing'))
+  } finally { await f.ctx.fiber.dispose() }
+})
+
+// Independent source-derived catalogues, not the implementation's allowlist.
+// Actions, cross-network enumeration/resources and raw execution are the
+// reviewed exclusions; legacy execute_skill additionally lacks network scope.
+const excluded = new Set([
+  'execute_action', 'get_action_info', 'get_action_execution', 'list_action_executions',
+  'list_knowledge_networks', 'list_resources', 'describe_resource', 'run_sql', 'run_cypher', 'run_shell',
+])
+for (const release of ['v0.1.4', 'v0.1.5', 'v0.2.0-release', '20261018-live']) {
+  test(`managed catalogue preserves all supported ${release} schemas and omits permanently unscoped skill execution`, async () => {
+    const f = await fixture()
+    try {
+      const contract = JSON.parse(readFileSync(new URL(`./fixtures/context-loader-tools-${release}.json`, import.meta.url), 'utf8'))
+      assert.equal(mountBoundBusinessNetworkTool(f.agent as never, config, binding), true)
+      // Register after mounting, as a real MCP connection does.
+      for (const [name, entry] of Object.entries(contract.tools) as Array<[string, { inputSchema?: Record<string, unknown>; knId: string }]>) {
+        f.ctx.tools.register({
+          name: 'mcp__openbkn__' + name, description: `Published ${release} tool`,
+          parameters: entry.inputSchema ?? { type: 'object', properties: ['required', 'optional'].includes(entry.knId) ? { kn_id: { type: 'string' } } : {} },
+          output: { schema: { type: 'string' }, render: (_args, value) => [{ type: 'text', text: value }] },
+          execute: async () => 'fixture',
+        })
+      }
+      const original = (await f.ctx.systemPrompt.assemble()).tools
+      const expected = original.filter(tool => {
+        const name = tool.name.replace('mcp__openbkn__', '')
+        return !excluded.has(name) && !(release === 'v0.1.4' && name === 'execute_skill')
+      })
+      const filtered = (await f.assemble()).tools
+      assert.deepEqual(filtered, expected, 'schemas, descriptions, optional/deployment tools and native order are retained exactly')
+      assert.ok(filtered.some(tool => tool.name === 'mcp__openbkn__query_object_instance'))
+      assert.ok(filtered.some(tool => tool.name === 'mcp__openbkn__query_metric'))
+      assert.ok(filtered.some(tool => tool.name === 'mcp__openbkn__run_code'))
+      assert.ok(!filtered.some(tool => tool.name === 'openbkn_export_csv'), 'missing optional file services do not disable queries or invent CSV availability')
+    } finally { await f.ctx.fiber.dispose() }
+  })
+}
+
+test('native tool restrictions stay effective and business reload restores the original catalogue', async () => {
+  const f = await fixture()
+  try {
+    for (const name of ['write', 'mcp__openbkn__query_metric', 'mcp__openbkn__search_schema']) f.register(name)
+    f.agent.ctx.tools.restrict({ deny: ['mcp__openbkn__query_metric'] })
+    const original = (await f.assemble()).tools
+    let owner!: Context
+    const business = await f.ctx.plugin({ apply(ctx: Context) { owner = ctx } })
+    assert.equal(mountBoundBusinessNetworkTool(f.agent as never, config, binding, undefined, owner), true)
+    assert.deepEqual((await f.assemble()).tools.map(tool => tool.name), ['mcp__openbkn__search_schema'])
+    await business.dispose()
+    assert.deepEqual((await f.assemble()).tools, original, 'filter removal does not keep allowed query tools hidden')
+    assert.ok(!(await f.assemble()).sections.some(section => section.name === 'openbkn:effective-tool-routing'))
+    let replacement!: Context
+    const next = await f.ctx.plugin({ apply(ctx: Context) { replacement = ctx } })
+    assert.equal(mountBoundBusinessNetworkTool(f.agent as never, config, binding, undefined, replacement), true)
+    assert.deepEqual((await f.assemble()).tools.map(tool => tool.name), ['mcp__openbkn__search_schema'])
+    assert.equal((await f.assemble()).sections.filter(section => section.name === 'openbkn:effective-tool-routing').length, 1)
+    await next.dispose()
+  } finally { await f.ctx.fiber.dispose() }
+})
+
+test('skill visibility follows the current registered network schema rather than a static tool-name exclusion', async () => {
+  const f = await fixture()
+  try {
+    const identity = { conversation_id: 'conv-skill', interaction_id: 'int-skill', execution_status: 'active' }
+    f.ctx.tools.register({
+      name: 'mcp__openbkn__bkn_start_interaction', description: 'Controlled lifecycle response',
+      parameters: { type: 'object', properties: {} },
+      output: { schema: { type: 'object' }, render: (_args, value) => [{ type: 'text', text: JSON.stringify(value) }] },
+      execute: async () => identity,
+    })
+    let executions = 0
+    mountBoundBusinessNetworkTool(f.agent as never, config, binding)
+    const registerSkill = (properties: Record<string, unknown>) => f.ctx.tools.register({
+      name: 'mcp__openbkn__execute_skill', description: 'Deployment-provided Skill schema',
+      parameters: { type: 'object', properties },
+      output: { schema: { type: 'string' }, render: (_args, value) => [{ type: 'text', text: value }] },
+      execute: async () => { executions++; return 'fixture' },
+    })
+    let sequence = 0
+    const call = (name: string, args: Record<string, unknown>) => f.ctx.tools.execute({
+      name, arguments: args, agent: f.agent as never, callId: ToolCallId('skill-' + ++sequence), signal: AbortSignal.timeout(5000),
+    })
+    assert.notEqual((await call('mcp__openbkn__bkn_start_interaction', { conversation_mode: 'new' })).isError, true)
+    const visible = async () => (await f.assemble()).tools.some(tool => tool.name === 'mcp__openbkn__execute_skill')
+    const unscoped = registerSkill({})
+    assert.equal(await visible(), false)
+    const refused = await call('mcp__openbkn__execute_skill', {})
+    assert.equal(refused.isError, true)
+    assert.match(JSON.stringify(refused.content), /not scoped to a knowledge network/)
+    assert.equal(executions, 0)
+    unscoped()
+    const scoped = registerSkill({ kn_id: { type: 'string' } })
+    assert.equal(await visible(), true, 'a supported Skill must not be hidden by the legacy exclusion')
+    assert.notEqual((await call('mcp__openbkn__execute_skill', { kn_id: binding.knowledgeNetworkId })).isError, true)
+    assert.equal(executions, 1)
+    for (const args of [{}, { kn_id: 'other' }, { kn_id: [binding.knowledgeNetworkId] }]) {
+      assert.equal((await call('mcp__openbkn__execute_skill', args)).isError, true)
+    }
+    assert.equal(executions, 1, 'visible network-scoped Skill still enforces the original guard')
+    scoped()
+    registerSkill({})
+    assert.equal(await visible(), false, 'reconnection to an unscoped definition cannot leave a cached visible tool')
   } finally { await f.ctx.fiber.dispose() }
 })

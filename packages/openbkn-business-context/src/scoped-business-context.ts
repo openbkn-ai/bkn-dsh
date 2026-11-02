@@ -225,7 +225,12 @@ const scopedPolicyPlugin = (
         const assembly = await next()
         return {
           ...assembly,
-          tools: assembly.tools.filter(tool => unmanagedDenial(tool.name, csvExportRegistered) === undefined),
+          tools: assembly.tools.filter(tool => unmanagedDenial(tool.name, csvExportRegistered) === undefined
+            // The legacy platform registers execute_skill without kn_id. The
+            // unchanged execution guard always refuses that definition, so do
+            // not advertise it. Keep per-call lifecycle/context checks out of
+            // this projection: valid queries must remain visible before start.
+            && (!KN_SCOPE_REQUIRED_TOOLS.includes(tool.name) || declaresKnId(tools.get(tool.name, agent)))),
           // Preserve upstream guidance verbatim and state its session-specific
           // applicability after it. This does not rewrite any durable record.
           sections: [...assembly.sections, { name: 'openbkn:effective-tool-routing', text: MANAGED_TOOL_ROUTING }],
