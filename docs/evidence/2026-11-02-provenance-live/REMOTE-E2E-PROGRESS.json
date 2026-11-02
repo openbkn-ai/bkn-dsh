@@ -1,0 +1,43 @@
+{
+  "date": "2026-11-02",
+  "status": "CI3_real_E2E_with_one_plugin_focus_failure; fix awaiting CI4",
+  "source": "remote chat progress messages; final reports and original evidence not yet received",
+  "threadId": "01a15340-6507-7660-a68d-68994e283415",
+  "hostId": "remote-control:env_e_6ac8760a8c308328a9dcf5dc28dd0d18",
+  "candidate": {
+    "sourceCommit": "f13fe10c4d6041fd7ce7be5007e0740051ec29c0",
+    "tgzSha256": "fea3d0052efc7188e989bd2582be8c6930eea03b903418103da4c28fc96b61a1",
+    "version": "0.2.1-rc.3-openbkn.0.2.1-3",
+    "artifactId": 13122759006
+  },
+  "reportedChecks": {
+    "newNativeDetail": "platform-style UI actually visible with6calls, original input/output and Operationdetails",
+    "originalTextLayer": "close and focus restoration reported passed",
+    "clipboard": "actual product copy then OS paste matches platform Markdown; unsent draft cleared",
+    "zeroFailureFilter": "empty result shown; no substitution with successful calls",
+    "operationSelection": "selected5thcall OperationID matches platform record",
+    "partialSearch": "list-incomplete warning and current interaction retained",
+    "explanationGeneration": "explicit generation returned3inventoryclaimsandgraph; platform validationStatus invalid/invalid_schema_reference displayed unchanged; no repeated generation",
+    "nativeSave": "actual native Save plus OSclipboard output byte-identical to platform Markdown",
+    "graph": "second claim/evidence/technical-step/ontology IDs correspond to selected platform record; one local fullscreen bidirectionalTab/Esc tested",
+    "analysis": "one explicit run; persisted history completed/not_evaluable with0recommendations; UI result matches history"
+  },
+  "sourceMarkdownObservation": "platform original Markdown contains160occurrences of 请求失败。; no plugin cleaning or rewriting",
+  "pendingEvidence": [
+    "final public report and IDs/digests",
+    "environment restoration receipt",
+    "new CI4 exactartifact and affected native focus retest"
+  ],
+  "notInferred": [
+    "HTTPsuccess means modelanalysis success",
+    "APIreadable means actual DSH UI accepted",
+    "6calls cover main-machine double-round or59callBOM",
+    "missing graphs/invalid scenarios passed",
+    "Windows native accepted"
+  ],
+  "recordsAndModelOutputs": "preserve original platform/model content and recorded reasons; no local arbitration or application of suggestions",
+  "businessSemantics": "invalid explanation content is platform-owned; rendering it faithfully is distinct from accepting its business correctness",
+  "pluginFailure": "after analysis transition, focus atHTMLroot; directEscape did not close aside; Tab back inside thenEscape closed onlyaside and restoredtrigger",
+  "inputDeliveryEvidence": "actual POSTbody and final model message not captured; sidepanel prefetch5842bytes is not proof of analysis-time re-read bytes; do not infer loss from model self-report",
+  "recordPreservation": "remote reports original question/answer,6operations andtimeRail unchanged after onegeneration/oneanalysis"
+}

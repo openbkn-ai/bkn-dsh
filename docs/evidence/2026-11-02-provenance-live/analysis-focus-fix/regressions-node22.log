@@ -1,0 +1,214 @@
+TAP version 13
+# Subtest: same-interaction search metadata preserves the mounted evidence view and in-flight generation
+ok 1 - same-interaction search metadata preserves the mounted evidence view and in-flight generation
+  ---
+  duration_ms: 2343.282
+  type: 'test'
+  ...
+# Subtest: same-interaction pagination preserves in-flight analysis; only explicit refresh reloads facts
+ok 2 - same-interaction pagination preserves in-flight analysis; only explicit refresh reloads facts
+  ---
+  duration_ms: 4476.727166
+  type: 'test'
+  ...
+# Subtest: v016 evidence fullscreen consumes Escape and restores the new non-portal fullscreen trigger
+ok 3 - v016 evidence fullscreen consumes Escape and restores the new non-portal fullscreen trigger
+  ---
+  duration_ms: 4692.0945
+  type: 'test'
+  ...
+# Subtest: legacy evidence fullscreen and its Inspector close in inner-to-outer Escape order
+ok 4 - legacy evidence fullscreen and its Inspector close in inner-to-outer Escape order
+  ---
+  duration_ms: 6614.705375
+  type: 'test'
+  ...
+# Subtest: native outer Escape closes only the activated interaction_question popover and restores its trigger
+ok 5 - native outer Escape closes only the activated interaction_question popover and restores its trigger
+  ---
+  duration_ms: 4984.726167
+  type: 'test'
+  ...
+# Subtest: native outer Escape closes only the activated interaction_result popover and restores its trigger
+ok 6 - native outer Escape closes only the activated interaction_result popover and restores its trigger
+  ---
+  duration_ms: 3378.3245
+  type: 'test'
+  ...
+# Subtest: hover original-text preview keeps existing focus and Escape on its trigger closes only the preview
+ok 7 - hover original-text preview keeps existing focus and Escape on its trigger closes only the preview
+  ---
+  duration_ms: 3456.31175
+  type: 'test'
+  ...
+# Subtest: analysis reader Escape closes only its side panel without starting analysis or closing the DSH overlay
+ok 8 - analysis reader Escape closes only its side panel without starting analysis or closing the DSH overlay
+  ---
+  duration_ms: 1507.90925
+  type: 'test'
+  ...
+# Subtest: analysis history dropdown consumes Escape before the analysis panel and outer overlay
+ok 9 - analysis history dropdown consumes Escape before the analysis panel and outer overlay
+  ---
+  duration_ms: 1896.031416
+  type: 'test'
+  ...
+# Subtest: analysis modal Tab wraps last to first before the outer focus trap
+ok 10 - analysis modal Tab wraps last to first before the outer focus trap
+  ---
+  duration_ms: 2110.946834
+  type: 'test'
+  ...
+# Subtest: analysis modal ShiftTab wraps first to last before the outer focus trap
+ok 11 - analysis modal ShiftTab wraps first to last before the outer focus trap
+  ---
+  duration_ms: 2109.252
+  type: 'test'
+  ...
+# Subtest: nonmodal original-text Popover permits Tab to leave its preview
+ok 12 - nonmodal original-text Popover permits Tab to leave its preview
+  ---
+  duration_ms: 3263.097542
+  type: 'test'
+  ...
+# Subtest: analysis lifecycle keeps Escape owned after the focused start control is removed and a not_evaluable result arrives
+ok 13 - analysis lifecycle keeps Escape owned after the focused start control is removed and a not_evaluable result arrives
+  ---
+  duration_ms: 2163.762125
+  type: 'test'
+  ...
+# Subtest: analysis lifecycle restores panel focus when restarting an existing history result removes its button
+ok 14 - analysis lifecycle restores panel focus when restarting an existing history result removes its button
+  ---
+  duration_ms: 2059.33775
+  type: 'test'
+  ...
+# Subtest: analysis lifecycle restores panel focus when late history replaces the focused editor
+ok 15 - analysis lifecycle restores panel focus when late history replaces the focused editor
+  ---
+  duration_ms: 2333.904708
+  type: 'test'
+  ...
+# Subtest: analysis lifecycle preserves another connected portal focus while a pending result arrives
+ok 16 - analysis lifecycle preserves another connected portal focus while a pending result arrives
+  ---
+  duration_ms: 2103.235292
+  type: 'test'
+  ...
+# Subtest: analysis lifecycle preserves its stable close control focus during a result transition
+ok 17 - analysis lifecycle preserves its stable close control focus during a result transition
+  ---
+  duration_ms: 2252.571459
+  type: 'test'
+  ...
+# Subtest: analysis lifecycle restores panel focus when returning from a failed result removes its action
+ok 18 - analysis lifecycle restores panel focus when returning from a failed result removes its action
+  ---
+  duration_ms: 2497.0105
+  type: 'test'
+  ...
+# Subtest: analysis lifecycle recovers browser root focus from a still-connected disabled control
+ok 19 - analysis lifecycle recovers browser root focus from a still-connected disabled control
+  ---
+  duration_ms: 2343.565625
+  type: 'test'
+  ...
+# Subtest: analysis lifecycle recovers panel focus when refreshed history removes its focused combobox
+ok 20 - analysis lifecycle recovers panel focus when refreshed history removes its focused combobox
+  ---
+  duration_ms: 2559.635375
+  type: 'test'
+  ...
+# Subtest: platform detail opens the exact answer outside the first 50 rounds and uses canonical visible labels
+ok 21 - platform detail opens the exact answer outside the first 50 rounds and uses canonical visible labels
+  ---
+  duration_ms: 846.03325
+  type: 'test'
+  ...
+# Subtest: retry attempts remain independently selectable and preserve failed input/output/error facts
+ok 22 - retry attempts remain independently selectable and preserve failed input/output/error facts
+  ---
+  duration_ms: 5341.325791
+  type: 'test'
+  ...
+# Subtest: Markdown copy and download use the exact platform content, while refresh makes no generation or analysis request
+ok 23 - Markdown copy and download use the exact platform content, while refresh makes no generation or analysis request
+  ---
+  duration_ms: 5469.355083
+  type: 'test'
+  ...
+# Subtest: search or an absent list anchor never changes the clicked answer to the first or latest round
+ok 24 - search or an absent list anchor never changes the clicked answer to the first or latest round
+  ---
+  duration_ms: 1305.150125
+  type: 'test'
+  ...
+# Subtest: managed function time rail keeps parent and failed internal calls with recorded payloads
+ok 25 - managed function time rail keeps parent and failed internal calls with recorded payloads
+  ---
+  duration_ms: 7003.521875
+  type: 'test'
+  ...
+# Subtest: saved evidence supports reading and graph modes without auto-generating or changing raw invalid attribution
+ok 26 - saved evidence supports reading and graph modes without auto-generating or changing raw invalid attribution
+  ---
+  duration_ms: 5248.253167
+  type: 'test'
+  ...
+# Subtest: an ungenerated explanation preserves timeline facts and generates only after explicit action
+ok 27 - an ungenerated explanation preserves timeline facts and generates only after explicit action
+  ---
+  duration_ms: 3702.147708
+  type: 'test'
+  ...
+# Subtest: opening the analysis panel does not run an Agent; explicit start uses platform Markdown and displays its result
+ok 28 - opening the analysis panel does not run an Agent; explicit start uses platform Markdown and displays its result
+  ---
+  duration_ms: 5235.560416
+  type: 'test'
+  ...
+# Subtest: the real overlay cancels closed reads, ignores late results, and reopens at the new trusted message and language
+ok 29 - the real overlay cancels closed reads, ignores late results, and reopens at the new trusted message and language
+  ---
+  duration_ms: 924.271792
+  type: 'test'
+  ...
+# Subtest: leaving an evidence view cancels its explicit pending generation and ignores its late result in the next round
+ok 30 - leaving an evidence view cancels its explicit pending generation and ignores its late result in the next round
+  ---
+  duration_ms: 2882.892666
+  type: 'test'
+  ...
+# Subtest: an explicit platform analysis failure retains its returned reason and does not retry by itself
+ok 31 - an explicit platform analysis failure retains its returned reason and does not retry by itself
+  ---
+  duration_ms: 7498.819
+  type: 'test'
+  ...
+# Subtest: shared-input highlighting follows only platform-persisted edges while equal values never invent a relationship
+ok 32 - shared-input highlighting follows only platform-persisted edges while equal values never invent a relationship
+  ---
+  duration_ms: 9921.408
+  type: 'test'
+  ...
+# Subtest: Escape in a legacy graph Inspector closes that Inspector and keeps the real DSH overlay open
+ok 33 - Escape in a legacy graph Inspector closes that Inspector and keeps the real DSH overlay open
+  ---
+  duration_ms: 7164.718833
+  type: 'test'
+  ...
+# Subtest: independent parity fixture contains first-page, attempt, payload and platform-status boundaries
+ok 34 - independent parity fixture contains first-page, attempt, payload and platform-status boundaries
+  ---
+  duration_ms: 12.493625
+  type: 'test'
+  ...
+1..34
+# tests 34
+# suites 0
+# pass 34
+# fail 0
+# cancelled 0
+# skipped 0
+# todo 0
+# duration_ms 64344.043209

@@ -27,10 +27,11 @@ const anchor = fixture.identity.initialInteractionId
 afterEach(() => cleanup())
 after(() => dom.window.close())
 
-function setup(options:{history?:boolean;conversationDelayMs?:number}={}) {
+function setup(options:{history?:boolean;conversationDelayMs?:number;analysis?:Promise<Record<string,unknown>>;readHistory?:()=>Promise<{entries:unknown[]}>}={}) {
   const calls:string[] = []
   const copied:string[] = []
-  const adapter = createPlatformProvenanceAdapter(async request => {
+  const analysisInputs:{interactionId?:string;markdown?:string}[] = []
+  const adapter = createPlatformProvenanceAdapter(async (request,_signal,onAnalysis) => {
     calls.push(request.kind)
     switch(request.kind) {
       case 'conversation':
@@ -39,8 +40,15 @@ function setup(options:{history?:boolean;conversationDelayMs?:number}={}) {
       case 'rounds':return {entries:[fixture.rounds.find((row:{interaction_id:string})=>row.interaction_id===anchor)],total:1,page:1,page_size:50}
       case 'detail':return structuredClone(fixture.details[anchor])
       case 'markdown':return fixture.markdown[anchor]
-      case 'history':return {entries:options.history?structuredClone(fixture.history[anchor]):[]}
+      case 'history':return options.readHistory?await options.readHistory():{entries:options.history?structuredClone(fixture.history[anchor]):[]}
       case 'explanation':return {schema_version:'1',interaction_id:anchor,status:'not_generated'}
+      case 'analyze': {
+        if (!options.analysis) throw new Error('Opening a reader must not generate or analyze')
+        analysisInputs.push({interactionId:request.interactionId,markdown:request.markdown})
+        const result=await options.analysis
+        onAnalysis?.({event:'structured',data:{content:result as never}})
+        return null
+      }
       default:throw new Error('Opening a reader must not generate or analyze')
     }
   }, {async copyText(value){copied.push(value)},downloadMarkdown(){}})
@@ -52,7 +60,7 @@ function setup(options:{history?:boolean;conversationDelayMs?:number}={}) {
     createDetailAdapter:()=>adapter,
     close:()=>controller.close(),
   }
-  return {...render(createElement(ProvenanceOverlay,props as never)),controller,calls,copied}
+  return {...render(createElement(ProvenanceOverlay,props as never)),controller,calls,copied,analysisInputs}
 }
 
 async function ready() {
@@ -190,4 +198,172 @@ test('nonmodal original-text Popover permits Tab to leave its preview',async()=>
     assert.ok(state.controller.getSnapshot().handle)
     assert.equal(state.calls.includes('generate')||state.calls.includes('analyze'),false)
   })
+})
+
+function deferred<T>() {
+  let resolve!:(value:T)=>void, reject!:(reason:unknown)=>void
+  const promise=new Promise<T>((done,fail)=>{resolve=done;reject=fail})
+  return {promise,resolve,reject}
+}
+
+async function analysisPanel(state:ReturnType<typeof setup>) {
+  await ready()
+  const opener=screen.getByRole('button',{name:'交给 BKN Agent 分析'})
+  opener.focus();fireEvent.click(opener)
+  const panel=state.container.querySelector<HTMLElement>('aside[class*="agentPanel"]')
+  assert.ok(panel)
+  return {opener,panel}
+}
+
+test('analysis lifecycle keeps Escape owned after the focused start control is removed and a not_evaluable result arrives',async()=>{
+  const pending=deferred<Record<string,unknown>>()
+  const result={decision:'not_evaluable',conclusion:'平台完成结果原文',recommendations:[]}
+  const original=JSON.stringify(result)
+  const state=setup({analysis:pending.promise})
+  const {opener,panel}=await analysisPanel(state)
+  const start=within(panel).getByRole('button',{name:'开始分析'})
+  start.focus();fireEvent.click(start)
+  assert.equal(start.isConnected,false,'busy replaces the focused editor; it does not merely disable Start')
+  const busyOwned=panel.contains(document.activeElement)
+  await act(async()=>pending.resolve(result))
+  await within(panel).findByText('平台完成结果原文')
+  const completedOwned=panel.contains(document.activeElement)
+  fireEvent.keyDown(document.activeElement!,{key:'Escape'})
+  await act(async()=>{})
+  assert.ok(state.controller.getSnapshot().handle,'analysis completion Escape must retain the outer overlay')
+  assert.ok(!state.container.contains(panel),'Escape must close the completed analysis without needing Tab first')
+  assert.ok(document.activeElement===opener,'completion Escape restores the analysis opener')
+  assert.ok(busyOwned&&completedOwned,'focus stays owned across busy and completed states')
+  assert.equal(JSON.stringify(result),original,'platform not_evaluable and zero recommendations stay unchanged')
+  assert.deepEqual(state.analysisInputs,[{interactionId:anchor,markdown:fixture.markdown[anchor]}])
+  assert.equal(state.calls.filter(kind=>kind==='analyze').length,1)
+  assert.equal(state.calls.includes('generate'),false)
+})
+
+test('analysis lifecycle restores panel focus when restarting an existing history result removes its button',async()=>{
+  const state=setup({history:true})
+  const {opener,panel}=await analysisPanel(state)
+  const restart=await within(panel).findByRole('button',{name:'重新分析'})
+  restart.focus();fireEvent.click(restart)
+  assert.equal(restart.isConnected,false)
+  assert.ok(panel.contains(document.activeElement),'the removed result action cannot leave focus on body')
+  fireEvent.keyDown(document.activeElement!,{key:'Escape'})
+  await waitFor(()=>assert.ok(!state.container.contains(panel)))
+  assert.ok(state.controller.getSnapshot().handle)
+  assert.ok(document.activeElement===opener)
+  assert.equal(state.calls.includes('generate')||state.calls.includes('analyze'),false)
+})
+
+test('analysis lifecycle restores panel focus when late history replaces the focused editor',async()=>{
+  const history=deferred<{entries:unknown[]}>()
+  const state=setup({readHistory:()=>history.promise})
+  const {opener,panel}=await analysisPanel(state)
+  const start=within(panel).getByRole('button',{name:'开始分析'})
+  start.focus()
+  await act(async()=>history.resolve({entries:structuredClone(fixture.history[anchor])}))
+  await within(panel).findByRole('button',{name:'重新分析'})
+  assert.equal(start.isConnected,false)
+  assert.ok(panel.contains(document.activeElement),'an authorized history read cannot strand focus outside its panel')
+  fireEvent.keyDown(document.activeElement!,{key:'Escape'})
+  await waitFor(()=>assert.ok(!state.container.contains(panel)))
+  assert.ok(state.controller.getSnapshot().handle)
+  assert.ok(document.activeElement===opener)
+  assert.equal(state.calls.includes('generate')||state.calls.includes('analyze'),false)
+})
+
+test('analysis lifecycle preserves another connected portal focus while a pending result arrives',async()=>{
+  const pending=deferred<Record<string,unknown>>()
+  const state=setup({analysis:pending.promise})
+  const {panel}=await analysisPanel(state)
+  const start=within(panel).getByRole('button',{name:'开始分析'})
+  start.focus();fireEvent.click(start)
+  const portal=document.createElement('button')
+  portal.textContent='unrelated host portal'
+  document.body.append(portal)
+  try {
+    portal.focus()
+    await act(async()=>pending.resolve({conclusion:'平台异步结果原文',recommendations:[]}))
+    await within(panel).findByText('平台异步结果原文')
+    assert.ok(document.activeElement===portal,'analysis completion must not take focus from another connected portal')
+    fireEvent.keyDown(portal,{key:'Escape'})
+    assert.ok(state.container.contains(panel),'the panel does not globally consume another portal Escape')
+    assert.ok(state.controller.getSnapshot().handle)
+  } finally {portal.remove()}
+})
+
+test('analysis lifecycle preserves its stable close control focus during a result transition',async()=>{
+  const pending=deferred<Record<string,unknown>>()
+  const state=setup({analysis:pending.promise})
+  const {panel}=await analysisPanel(state)
+  const start=within(panel).getByRole('button',{name:'开始分析'})
+  start.focus();fireEvent.click(start)
+  const close=within(panel).getByRole('button',{name:'关闭 BKN Agent 分析'})
+  close.focus()
+  await act(async()=>pending.resolve({conclusion:'平台稳定焦点原文',recommendations:[]}))
+  await within(panel).findByText('平台稳定焦点原文')
+  assert.ok(document.activeElement===close,'connected controls keep their existing focus')
+})
+
+test('analysis lifecycle restores panel focus when returning from a failed result removes its action',async()=>{
+  const pending=deferred<Record<string,unknown>>()
+  const state=setup({analysis:pending.promise})
+  const {opener,panel}=await analysisPanel(state)
+  const start=within(panel).getByRole('button',{name:'开始分析'})
+  start.focus();fireEvent.click(start)
+  await act(async()=>pending.reject(new Error('平台分析失败原文')))
+  const back=await within(panel).findByRole('button',{name:'返回事实输入'})
+  back.focus();fireEvent.click(back)
+  assert.equal(back.isConnected,false)
+  assert.ok(panel.contains(document.activeElement),'removing the error action restores the owned panel')
+  fireEvent.keyDown(document.activeElement!,{key:'Escape'})
+  await waitFor(()=>assert.ok(!state.container.contains(panel)))
+  assert.ok(state.controller.getSnapshot().handle)
+  assert.ok(document.activeElement===opener)
+  assert.equal(state.calls.filter(kind=>kind==='analyze').length,1)
+})
+
+test('analysis lifecycle recovers browser root focus from a still-connected disabled control',async()=>{
+  const history=deferred<{entries:unknown[]}>()
+  const state=setup({readHistory:()=>history.promise})
+  const {opener,panel}=await analysisPanel(state)
+  const close=within(panel).getByRole('button',{name:'关闭 BKN Agent 分析'}) as HTMLButtonElement
+  const root=document.documentElement,previousTabIndex=root.getAttribute('tabindex')
+  try {
+    close.focus();close.disabled=true;close.blur()
+    root.tabIndex=-1;root.focus()
+    assert.ok(close.isConnected&&close.disabled)
+    assert.ok(document.activeElement===root,'model the native browser root fallback after disabling a focused control')
+    await act(async()=>history.resolve({entries:structuredClone(fixture.history[anchor])}))
+    await within(panel).findByRole('button',{name:'重新分析'})
+    assert.ok(panel.contains(document.activeElement),'a connected but disabled owned control must not strand focus on HTML')
+    close.disabled=false
+    fireEvent.keyDown(document.activeElement!,{key:'Escape'})
+    await waitFor(()=>assert.ok(!state.container.contains(panel)))
+    assert.ok(state.controller.getSnapshot().handle)
+    assert.ok(document.activeElement===opener)
+    assert.equal(state.calls.includes('generate')||state.calls.includes('analyze'),false)
+  } finally {
+    if(previousTabIndex===null)root.removeAttribute('tabindex');else root.setAttribute('tabindex',previousTabIndex)
+  }
+})
+
+test('analysis lifecycle recovers panel focus when refreshed history removes its focused combobox',async()=>{
+  const pending=deferred<Record<string,unknown>>()
+  let historyReads=0
+  const state=setup({analysis:pending.promise,readHistory:async()=>({entries:++historyReads===1?structuredClone(fixture.history[anchor]):[]})})
+  const {opener,panel}=await analysisPanel(state)
+  fireEvent.click(await within(panel).findByRole('button',{name:'重新分析'}))
+  const start=within(panel).getByRole('button',{name:'开始分析'})
+  start.focus();fireEvent.click(start)
+  const history=within(panel).getByRole('combobox')
+  history.focus()
+  await act(async()=>pending.resolve({conclusion:'平台空历史刷新结果原文',recommendations:[]}))
+  await within(panel).findByText('平台空历史刷新结果原文')
+  await waitFor(()=>assert.equal(history.isConnected,false))
+  assert.ok(panel.contains(document.activeElement),'removing an owned history control restores panel focus')
+  fireEvent.keyDown(document.activeElement!,{key:'Escape'})
+  await waitFor(()=>assert.ok(!state.container.contains(panel)))
+  assert.ok(state.controller.getSnapshot().handle)
+  assert.ok(document.activeElement===opener)
+  assert.equal(state.calls.filter(kind=>kind==='analyze').length,1)
 })

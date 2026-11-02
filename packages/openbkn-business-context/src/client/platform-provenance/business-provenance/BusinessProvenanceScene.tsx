@@ -29,7 +29,7 @@ import {
   Tooltip,
   Typography,
 } from "antd";
-import { useCallback, useEffect, useRef, useState } from "react";
+import { useCallback, useEffect, useLayoutEffect, useRef, useState } from "react";
 import { useTranslation } from "react-i18next";
 
 import { RecordMissingDetails } from "./RecordMissingDetails.js";
@@ -754,6 +754,7 @@ export function BusinessProvenanceScene({conversation,initialInteractionId}: {co
   const [analysisStreamText, setAnalysisStreamText] = useState("");
   const [analysisPanelOpen, setAnalysisPanelOpen] = useState(false);
   const [analysisPanelElement, setAnalysisPanelElement] = useState<HTMLElement | null>(null);
+  const analysisFocusTarget = useRef<HTMLElement | undefined>(undefined);
   const [analysisHistoryOpen, setAnalysisHistoryOpen] = useState(false);
   const [analysisError, setAnalysisError] = useState<string>();
   const [analysisMarkdown, setAnalysisMarkdown] = useState("");
@@ -765,6 +766,22 @@ export function BusinessProvenanceScene({conversation,initialInteractionId}: {co
     if (analysisHistoryOpen) setAnalysisHistoryOpen(false);
     else setAnalysisPanelOpen(false);
   });
+  useLayoutEffect(() => {
+    if (!analysisPanelOpen || !analysisPanelElement?.isConnected) {
+      analysisFocusTarget.current = undefined;
+      return;
+    }
+    const previous = analysisFocusTarget.current;
+    if (!previous || (previous.isConnected && !previous.matches(":disabled"))) return;
+    analysisFocusTarget.current = undefined;
+    const owner = analysisPanelElement.ownerDocument;
+    const active = owner.activeElement;
+    // Busy/result/history transitions can remove the focused control. Recover
+    // only an owned loss to the browser root, never another control or portal.
+    if (active === null || active === owner.body || active === owner.documentElement) {
+      analysisPanelElement.focus({ preventScroll: true });
+    }
+  }, [analysisPanelOpen, analysisPanelElement, analysisStarting, analysisResult, analysisError, analysisHistory.length, analysisMarkdownLoading]);
   useEffect(() => {
     if (!analysisPanelOpen || !analysisHistory.length) setAnalysisHistoryOpen(false);
   }, [analysisPanelOpen, analysisHistory.length]);
@@ -1487,7 +1504,14 @@ export function BusinessProvenanceScene({conversation,initialInteractionId}: {co
       </section>
       {analysisPanelOpen ? (
         <div className={styles.agentDrawerMask}>
-          <aside ref={setAnalysisPanelElement} className={styles.agentPanel} role="dialog" aria-modal="true" aria-label={bpText("agent.title")} tabIndex={-1}>
+          <aside ref={setAnalysisPanelElement} className={styles.agentPanel} role="dialog" aria-modal="true" aria-label={bpText("agent.title")} tabIndex={-1}
+            onFocusCapture={(event) => { if (event.target instanceof HTMLElement && event.currentTarget.contains(event.target)) analysisFocusTarget.current = event.target; }}
+            onBlurCapture={(event) => {
+              const next = event.relatedTarget;
+              const owner = event.currentTarget.ownerDocument;
+              if (next instanceof Node && next.isConnected && next !== owner.body && next !== owner.documentElement && !event.currentTarget.contains(next)) analysisFocusTarget.current = undefined;
+            }}
+          >
             <header>
               <div>
                 <small>{bpText("agent.title")}</small>

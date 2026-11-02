@@ -1,0 +1,58 @@
+TAP version 13
+# Subtest: analysis lifecycle keeps Escape owned after the focused start control is removed and a not_evaluable result arrives
+ok 1 - analysis lifecycle keeps Escape owned after the focused start control is removed and a not_evaluable result arrives
+  ---
+  duration_ms: 1798.973833
+  type: 'test'
+  ...
+# Subtest: analysis lifecycle restores panel focus when restarting an existing history result removes its button
+ok 2 - analysis lifecycle restores panel focus when restarting an existing history result removes its button
+  ---
+  duration_ms: 1619.582833
+  type: 'test'
+  ...
+# Subtest: analysis lifecycle restores panel focus when late history replaces the focused editor
+ok 3 - analysis lifecycle restores panel focus when late history replaces the focused editor
+  ---
+  duration_ms: 2143.8345
+  type: 'test'
+  ...
+# Subtest: analysis lifecycle preserves another connected portal focus while a pending result arrives
+ok 4 - analysis lifecycle preserves another connected portal focus while a pending result arrives
+  ---
+  duration_ms: 1931.062167
+  type: 'test'
+  ...
+# Subtest: analysis lifecycle preserves its stable close control focus during a result transition
+ok 5 - analysis lifecycle preserves its stable close control focus during a result transition
+  ---
+  duration_ms: 2085.465833
+  type: 'test'
+  ...
+# Subtest: analysis lifecycle restores panel focus when returning from a failed result removes its action
+ok 6 - analysis lifecycle restores panel focus when returning from a failed result removes its action
+  ---
+  duration_ms: 2266.055083
+  type: 'test'
+  ...
+# Subtest: analysis lifecycle recovers browser root focus from a still-connected disabled control
+ok 7 - analysis lifecycle recovers browser root focus from a still-connected disabled control
+  ---
+  duration_ms: 2153.454083
+  type: 'test'
+  ...
+# Subtest: analysis lifecycle recovers panel focus when refreshed history removes its focused combobox
+ok 8 - analysis lifecycle recovers panel focus when refreshed history removes its focused combobox
+  ---
+  duration_ms: 2295.808542
+  type: 'test'
+  ...
+1..8
+# tests 8
+# suites 0
+# pass 8
+# fail 0
+# cancelled 0
+# skipped 0
+# todo 0
+# duration_ms 17699.388958

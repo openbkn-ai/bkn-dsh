@@ -2,7 +2,9 @@
 
 ## 发布前 CI 与远程 E2E（2026-11-02，CI通过、E2E已交接）
 
-**当前E2E前提**：远程已验证实际包归档，但官方CLI拒绝修改desktop-owned profile，尚未安装。转官方Desktop管理入口需用户本人完成欢迎页DeepSeek最终登录（含条款/客户端授权）；目前等待这一步，未开始实机E2E或模型动作。已有测试授权保持，不以CI/归档校验代填实机PASS。
+**最新状态**：CI3 fea3实际包已做原生6调用样本、OS复制/保存、一次生成和一次分析，发现分析状态切换焦点落根后Esc无法关闭侧栏的插件FAIL。局部修复及8回归已完成；官方Node22完整816通过/1跳过、scope2、包126通过，准备CI4精确包复验。CI3分析历史为completed/not_evaluable/0建议，平台原始Markdown占位问题与未捕获实际模型输入分别记录，不由插件修正文案或裁决业务。下方CI3和等待登录文字为历史检查点，不代表焦点修后或完整业务解释通过。
+
+**当前E2E进度**：用户已确认完成远程登录，远程会话已继续官方管理与隔离实例验证，并回报新的业务溯源窗口实际显示6调用、原问答及Operation详情。先前CLI拒绝desktop-owned profile及等待登录均保留为历史；历史会话绑定完成后正常重开才显示新页面的过程也已记录。生成/分析和完整矩阵继续执行，结果待接收，不以单个窗口或CI/归档校验代填全量实机PASS。
 
 当前固定源码 `f13fe10c4d6041fd7ce7be5007e0740051ec29c0` 的 [build-only CI41404675956](https://github.com/openbkn-ai/bkn-dsh/actions/runs/41404675956) 已成功：插件808通过/1Windows专项跳过、仓库79/79、包126文件、两版官方npm Host受控guard/CSV/native/Remote检查通过；npm发布和GitHub Release步骤跳过。实际CI包SHA256 `fea3d0052efc7188e989bd2582be8c6930eea03b903418103da4c28fc96b61a1`，与本地参考126/126文件及解压tar完全一致，仅gzip OS头不同。已将 artifact13122759006及完整摘要放行给指定远程会话执行真实E2E，结果待回报；不能把受控CI填成实机PASS。见[CI实际包身份](../../evidence/2026-11-02-provenance-live/CI-ARTIFACT-IDENTITY.json)。
 

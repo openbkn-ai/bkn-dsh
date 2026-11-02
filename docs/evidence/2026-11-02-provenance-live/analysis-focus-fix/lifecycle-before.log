@@ -1,0 +1,36 @@
+Official Node 22.19.0 / macOS. Controlled synthetic platform data only. Selected assertions and counts; no DOM dumps.
+# Subtest: analysis lifecycle keeps Escape owned after the focused start control is removed and a not_evaluable result arrives
+not ok 1 - analysis lifecycle keeps Escape owned after the focused start control is removed and a not_evaluable result arrives
+  duration_ms: 1787.098708
+  error: 'Escape must close the completed analysis without needing Tab first'
+  expected: true
+  actual: false
+# Subtest: analysis lifecycle restores panel focus when restarting an existing history result removes its button
+not ok 2 - analysis lifecycle restores panel focus when restarting an existing history result removes its button
+  duration_ms: 1590.615875
+  error: 'the removed result action cannot leave focus on body'
+  expected: true
+  actual: false
+# Subtest: analysis lifecycle restores panel focus when late history replaces the focused editor
+not ok 3 - analysis lifecycle restores panel focus when late history replaces the focused editor
+  duration_ms: 2089.656167
+  error: 'an authorized history read cannot strand focus outside its panel'
+  expected: true
+  actual: false
+# Subtest: analysis lifecycle preserves another connected portal focus while a pending result arrives
+ok 4 - analysis lifecycle preserves another connected portal focus while a pending result arrives
+  duration_ms: 1913.490875
+# Subtest: analysis lifecycle preserves its stable close control focus during a result transition
+ok 5 - analysis lifecycle preserves its stable close control focus during a result transition
+  duration_ms: 2032.210083
+# Subtest: analysis lifecycle restores panel focus when returning from a failed result removes its action
+not ok 6 - analysis lifecycle restores panel focus when returning from a failed result removes its action
+  duration_ms: 2262.138583
+  error: 'removing the error action restores the owned panel'
+  expected: true
+  actual: false
+# tests 6
+# pass 2
+# fail 4
+# skipped 0
+# duration_ms 13647.738875

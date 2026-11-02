@@ -1,0 +1,18 @@
+Official Node 22.19.0 / macOS. Controlled synthetic platform data only. Selected assertions and counts; no DOM dumps.
+# Subtest: analysis lifecycle recovers browser root focus from a still-connected disabled control
+not ok 1 - analysis lifecycle recovers browser root focus from a still-connected disabled control
+  duration_ms: 1975.445958
+  error: 'a connected but disabled owned control must not strand focus on HTML'
+  expected: true
+  actual: false
+# Subtest: analysis lifecycle recovers panel focus when refreshed history removes its focused combobox
+not ok 2 - analysis lifecycle recovers panel focus when refreshed history removes its focused combobox
+  duration_ms: 2261.269875
+  error: 'removing an owned history control restores panel focus'
+  expected: true
+  actual: false
+# tests 2
+# pass 0
+# fail 2
+# skipped 0
+# duration_ms 5762.472833
