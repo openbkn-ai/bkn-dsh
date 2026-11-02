@@ -24,7 +24,7 @@
   },
   "sourceMarkdownObservation": "platform original Markdown contains160occurrences of 请求失败。; no plugin cleaning or rewriting",
   "pendingEvidence": [
-    "W3 source hover/click/Escape deterministic reproduction, focus/event ownership and delayed-reopen diagnosis",
+    "W3 output overlapping-popup Escape persistence reproduced twice; deterministic regression, minimum correction and pure-hover Escape policy remain open",
     "native in-flight cancellation, denial/low-privilege/abnormal network paths where safely executable",
     "uncovered final-candidate large/nested/shared-input scenarios, not extrapolated from other machines",
     "analysis-time POST/provider frames and loaded-version/build/exit-code fields remain UNKNOWN"
@@ -165,19 +165,74 @@
       "whole-workflow daily isolation from later fresh-baseline equality"
     ],
     "focusedReview": {
-      "status": "dispatched and active; plan accepted, no supplemental result yet",
+      "status": "completed and received with raw-byte digest verification; output overlapping-popup Escape persistence REPRODUCED twice; not global release acceptance",
       "threadId": "01a19c6a-e785-7f82-a5b4-cda473951fa6",
       "turnId": "01a19d15-4f51-7d63-9846-49e357df608a",
       "requestedModel": "gpt-6.1-sol",
       "requestedThinking": "max",
-      "configurationSource": "user declaration plus explicit send_message_to_thread request; runtime metadata not yet collected",
+      "configurationSource": "user declaration plus explicit tool request; actual runtime model/effort metadata remains UNKNOWN",
       "previousModelUserReported": "terra; exact earlier model/reasoning unverified",
       "plan": "windows-rc5/SOURCE-TEXT-REVIEW-PLAN.zh.md",
       "cases": 6,
       "newBusinessQuestions": 0,
       "newExplanationGenerations": 0,
       "newBknAgentAnalyses": 0,
-      "oldReceiptUnchanged": true
+      "oldReceiptUnchanged": true,
+      "resultReport": "windows-rc5/source-text-review/WINDOWS-CI4-SOURCE-TEXT-REVIEW.json",
+      "resultReportSha256": "f0ed7473cff16d08f4a10b6ccc27053b9a4e01ab58fdcc53d7a8c6701ac489f9",
+      "intakeReview": "windows-rc5/source-text-review/INTAKE-REVIEW.zh.md",
+      "receipt": "windows-rc5/source-text-review/RECEIPT.json",
+      "exportTurnId": "01a19e92-6f0b-70f2-bfa2-f3a8fe48fa93",
+      "confirmationRepeats": 1,
+      "classification": "REPRODUCED",
+      "observations": {
+        "outputHoverThenPopupClick": "REPRODUCED twice: popup remained visible, parent kept, focus returned to search",
+        "keyboardInputOutput": "both paths dismissed popup and kept parent",
+        "pureHoverInputOutput": "parent and popup both closed; NOT_REPRODUCED does not establish desired Escape policy",
+        "inputHoverClick": "click already closed popup; Escape not sent; INCONCLUSIVE for key path"
+      },
+      "unknowns": [
+        "DOM activeElement and dispatched event targets",
+        "short close/reopen between samples",
+        "same-sequence platform behavior",
+        "effective model/effort runtime metadata"
+      ],
+      "nextWork": [
+        "deterministic state/focus/timer regression and browser layout/pointer coverage",
+        "decide pure-hover external-focus Escape ownership",
+        "minimal evidenced correction and exact new-candidate affected Windows retest"
+      ],
+      "platformBusinessWrites": 0,
+      "localIntakeOnly": true
+    },
+    "sourceTextRetest": {
+      "status": "prepared in designated existing chat; awaiting exact new build-only CI artifact before any Host start",
+      "targetHost": "official Windows Desktop0.2.1-rc.5 only",
+      "threadId": "01a19c6a-e785-7f82-a5b4-cda473951fa6",
+      "hostId": "remote-control:env_e_6abf8babb404832890d7c5124118ed3c",
+      "newBusinessQuestions": 0,
+      "newExplanationGenerations": 0,
+      "newBknAgentAnalyses": 0,
+      "platformBusinessWrites": 0,
+      "oldReportsUnchanged": true
     }
+  },
+  "sourceTextCorrection": {
+    "date": "2026-11-03",
+    "status": "local minimum correction, 826 plugin checks, package audit and strengthened real-browser matrix independently passed; new CI/native retest pending",
+    "sourceSceneSha256": "0a95cbb2c9a467cc2c00ccce331d4847e47350e076e50debec429f9c92d597ff",
+    "localArtifactSha256": "75a52410cb0de49d4554d220007e58aa3f5882666825d5f612453689160e4bcb",
+    "localArtifactDelta": "client.js only; other125 files byte-identical to CI4",
+    "record": "SOURCE-TEXT-FIX.zh.md",
+    "validation": "SOURCE-TEXT-LOCAL-VALIDATION.json",
+    "ciRun": null,
+    "sourceCommit": null,
+    "pureHoverEscapePolicy": "hover keeps parent search focus and Escape belongs to parent; explicitly focused source owns local Escape",
+    "productionScope": "SourceText in BusinessProvenanceScene.tsx only; no shared-hook/Host/transport/content changes",
+    "platformQuestions": 0,
+    "explanationGenerations": 0,
+    "agentAnalyses": 0,
+    "platformBusinessWrites": 0,
+    "browserRegression": "SOURCE-TEXT-BROWSER-REGRESSION.json"
   }
 }

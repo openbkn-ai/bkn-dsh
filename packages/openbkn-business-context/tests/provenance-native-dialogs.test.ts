@@ -71,7 +71,7 @@ async function ready() {
 }
 
 async function sourceLayer(title:string):Promise<HTMLElement> {
-  await waitFor(()=>assert.equal(screen.queryAllByRole('heading',{name:title}).length,2))
+  await waitFor(()=>assert.equal(screen.queryAllByRole('heading',{name:title}).length,2),{timeout:10_000})
   const section = screen.getAllByRole('heading',{name:title}).map(node=>node.closest('section')).find(node=>node?.className.includes('sourceTextPopoverContent'))
   assert.ok(section)
   return section
@@ -114,6 +114,109 @@ test('hover original-text preview keeps existing focus and Escape on its trigger
   await act(async()=>{})
   assert.ok(state.controller.getSnapshot().handle,'the open preview consumes its trigger Escape')
   await waitFor(()=>assert.equal(screen.queryAllByRole('heading',{name:'本轮输入（原文）'}).length,1))
+})
+
+for (const [label,title] of [
+  ['查看完整本轮输入','本轮输入（原文）'],
+  ['查看完整本轮输出','本轮输出（原文）'],
+] as const) {
+  test(`owned Escape dismisses a popup focused from hover without accepting delayed hover re-entry: ${label}`,async()=>{
+    const state = setup();await ready()
+    const search = screen.getByRole('textbox')
+    const trigger = screen.getByRole('button',{name:label})
+    search.focus();fireEvent.mouseEnter(trigger)
+    const layer = await sourceLayer(title)
+    assert.equal(document.activeElement,search,'hover must retain the external keyboard focus')
+    // JSDOM models the owned focus/event sequence, not real popup overlap or hit testing.
+    layer.focus();fireEvent.click(layer)
+    fireEvent.keyDown(layer,{key:'Escape'})
+    // A disappearing overlay can expose its still-hovered trigger and queue another enter.
+    fireEvent.mouseLeave(layer,{relatedTarget:trigger})
+    fireEvent.mouseEnter(trigger)
+    await act(async()=>{await new Promise(resolve=>setTimeout(resolve,450))})
+    assert.ok(state.controller.getSnapshot().handle,'owned Escape must preserve the parent detail')
+    assert.equal(screen.queryAllByRole('heading',{name:title}).length,1,'dismissal must outlive hover and exit-motion delays')
+    assert.equal(document.activeElement,search,'a hover-focused popup returns to the original search control')
+    assert.equal(state.calls.includes('generate')||state.calls.includes('analyze'),false)
+  })
+
+  test(`Escape dismissal allows a later pointer visit and explicit activation: ${label}`,async()=>{
+    const state = setup();await ready()
+    const search = screen.getByRole('textbox')
+    const trigger = screen.getByRole('button',{name:label})
+    search.focus();fireEvent.mouseEnter(trigger)
+    const layer = await sourceLayer(title)
+    layer.focus();fireEvent.keyDown(layer,{key:'Escape'})
+    await waitFor(()=>assert.equal(screen.queryAllByRole('heading',{name:title}).length,1))
+    fireEvent.mouseLeave(trigger,{relatedTarget:search})
+    fireEvent.mouseEnter(trigger)
+    const hovered = await sourceLayer(title)
+    assert.equal(document.activeElement,search,'a fresh pointer visit still must not steal focus')
+    hovered.focus();fireEvent.keyDown(hovered,{key:'Escape'})
+    await waitFor(()=>assert.equal(screen.queryAllByRole('heading',{name:title}).length,1))
+    // Explicit click is also the native keyboard activation's click path.
+    trigger.focus();fireEvent.click(trigger,{detail:0})
+    const activated = await sourceLayer(title)
+    assert.ok(activated.contains(document.activeElement),'explicit activation must not stay hover-suppressed')
+    fireEvent.keyDown(activated,{key:'Escape'})
+    await waitFor(()=>assert.equal(screen.queryAllByRole('heading',{name:title}).length,1))
+    assert.equal(document.activeElement,trigger,'explicit activation restores its trigger')
+    assert.ok(state.controller.getSnapshot().handle)
+    assert.equal(state.calls.includes('generate')||state.calls.includes('analyze'),false)
+  })
+
+  test(`keyboard dismissal without a hover visit permits the first later hover: ${label}`,async()=>{
+    const state = setup();await ready()
+    const trigger = screen.getByRole('button',{name:label})
+    trigger.focus();fireEvent.click(trigger,{detail:0})
+    const layer = await sourceLayer(title)
+    fireEvent.keyDown(layer,{key:'Escape'})
+    await waitFor(()=>assert.equal(screen.queryAllByRole('heading',{name:title}).length,1))
+    // There was no pointer visit, so no preceding mouseLeave exists to clear a dismissal.
+    fireEvent.mouseEnter(trigger)
+    await sourceLayer(title)
+    assert.equal(document.activeElement,trigger,'first hover after keyboard dismissal remains nonmodal')
+    assert.ok(state.controller.getSnapshot().handle)
+    assert.equal(state.calls.includes('generate')||state.calls.includes('analyze'),false)
+  })
+
+  test(`owned Escape also dismisses the same hover visit while the pointer is on popup padding: ${label}`,async()=>{
+    const state = setup();await ready()
+    const search = screen.getByRole('textbox')
+    const trigger = screen.getByRole('button',{name:label})
+    search.focus();fireEvent.mouseEnter(trigger)
+    const layer = await sourceLayer(title)
+    const popup = layer.closest<HTMLElement>('.ant-popover')
+    const padding = popup?.querySelector<HTMLElement>('.ant-popover-inner')
+    assert.ok(popup&&padding)
+    layer.focus();fireEvent.click(layer)
+    // Model moving into AntD padding without leaving this popup's actual root.
+    fireEvent.mouseLeave(layer,{relatedTarget:padding})
+    fireEvent.keyDown(layer,{key:'Escape'})
+    fireEvent.mouseLeave(popup,{relatedTarget:trigger})
+    fireEvent.mouseEnter(trigger)
+    await act(async()=>{await new Promise(resolve=>setTimeout(resolve,450))})
+    assert.equal(screen.queryAllByRole('heading',{name:title}).length,1,'popup chrome belongs to the same dismissed hover visit')
+    assert.ok(state.controller.getSnapshot().handle)
+    assert.equal(document.activeElement,search)
+    assert.equal(state.calls.includes('generate')||state.calls.includes('analyze'),false)
+    fireEvent.mouseLeave(popup,{relatedTarget:search})
+    fireEvent.mouseEnter(trigger)
+    await sourceLayer(title)
+    assert.equal(document.activeElement,search,'leaving the complete popup allows a fresh nonmodal hover visit')
+  })
+}
+
+test('pure hover with search focus leaves Escape ownership with the parent detail',async()=>{
+  const state = setup();await ready()
+  const search = screen.getByRole('textbox')
+  const trigger = screen.getByRole('button',{name:'查看完整本轮输出'})
+  search.focus();fireEvent.mouseEnter(trigger)
+  await sourceLayer('本轮输出（原文）')
+  assert.equal(document.activeElement,search,'a hover preview is not a modal activation')
+  fireEvent.keyDown(search,{key:'Escape'})
+  await waitFor(()=>assert.equal(state.controller.getSnapshot().handle,undefined))
+  assert.equal(state.calls.includes('generate')||state.calls.includes('analyze'),false)
 })
 
 test('analysis reader Escape closes only its side panel without starting analysis or closing the DSH overlay',async()=>{

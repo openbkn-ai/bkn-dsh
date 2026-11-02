@@ -1,0 +1,84 @@
+{
+  "date": "2026-11-03",
+  "kind": "source-text-local-validation",
+  "node": "v24.19.0",
+  "pnpm": "11.7.0",
+  "sourceSceneSha256": "0a95cbb2c9a467cc2c00ccce331d4847e47350e076e50debec429f9c92d597ff",
+  "plugin": {
+    "total": 826,
+    "pass": 825,
+    "fail": 0,
+    "skip": 1,
+    "skipReason": "existing Windows-specific test; no Windows acceptance inferred"
+  },
+  "repository": {
+    "total": 79,
+    "pass": 79,
+    "fail": 0
+  },
+  "packageAudit": {
+    "files": 126,
+    "status": "pass"
+  },
+  "localArtifact": "SOURCE-TEXT-LOCAL-ARTIFACT.json",
+  "productionScope": [
+    "packages/openbkn-business-context/src/client/platform-provenance/business-provenance/BusinessProvenanceScene.tsx"
+  ],
+  "notWindowsOrReleaseAcceptance": true,
+  "newPlatformQuestions": 0,
+  "newExplanations": 0,
+  "newAgentAnalyses": 0,
+  "newPlatformBusinessWrites": 0,
+  "logs": [
+    {
+      "path": "release/provenance-live-20261103-source-text/plugin-tests-final.log",
+      "bytes": 85629,
+      "sha256": "86d0dedb73f0436063a98f45d429780e322fbc39f1fb6f3f508ecc39789e7143"
+    },
+    {
+      "path": "release/provenance-live-20261103-source-text/repository-tests.log",
+      "bytes": 10962,
+      "sha256": "2e80b825dedcce22386b78ba1c2b330fc39afa39627c8b3b7095335a64a85937"
+    },
+    {
+      "path": "release/provenance-live-20261103-source-text/package-check-final.log",
+      "bytes": 342,
+      "sha256": "7fe43de3dc9602e71dca8c58578387f14a3cac1b5a905a4735569b94b5698451"
+    }
+  ],
+  "retainedFailureLogs": [
+    {
+      "path": "release/provenance-live-20261102/source-text-jsdom-before.log",
+      "bytes": 2075,
+      "sha256": "7edf8e46f48d715fb0b381ade76dd3d320a9b154affb32af259df8a488725008"
+    },
+    {
+      "path": "release/provenance-live-20261102/source-text-jsdom-first-hover-initial-fix.log",
+      "bytes": 3176,
+      "sha256": "ec5aa7b72cd0d2321d1c5f946784f00a28c5f9b68b1a9b1658578db54aec767d"
+    },
+    {
+      "path": "release/provenance-live-20261102/source-text-jsdom-padding-before.log",
+      "bytes": 1971,
+      "sha256": "2a780855df6209fe6a15dbb8b733c15a46dff48fd9c6f6c2afb9835984c69cb8"
+    }
+  ],
+  "focusedNativeDialogs": {
+    "total": 25,
+    "pass": 25,
+    "added": 9
+  },
+  "focusedLogs": [
+    {
+      "path": "release/provenance-live-20261102/source-text-jsdom-padding-after.log",
+      "bytes": 2619,
+      "sha256": "c4a46844f52306dfe2b103e1fcb91830d23e025c6c678cedb4d4414183bd7c71"
+    },
+    {
+      "path": "release/provenance-live-20261102/source-text-jsdom-complete-popup-final.log",
+      "bytes": 2977,
+      "sha256": "428189130b30a8a29b0159451dc8959d9d070c748578cb1eb1a715c8a4cc5caf"
+    }
+  ],
+  "testHarnessTiming": "One default1s source-layer wait timed out during an intermediate focused run; same case passed in isolation; wait raised to existing ready10s convention, assertions unchanged. Intermediate log retained."
+}

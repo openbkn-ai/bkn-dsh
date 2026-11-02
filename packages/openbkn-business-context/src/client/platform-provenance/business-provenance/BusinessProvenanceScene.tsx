@@ -365,7 +365,32 @@ function SourceText({
   const [open, setOpen] = useState(false);
   const [focusRequested, setFocusRequested] = useState(false);
   const [popoverElement, setPopoverElement] = useState<HTMLElement | null>(null);
+  const popoverRoot = popoverElement?.closest<HTMLElement>(`.${styles.sourceTextPopover}`) ?? popoverElement;
+  const hoveredSource = useRef(false);
+  const dismissedHover = useRef(false);
+  const enterSource = () => {
+    hoveredSource.current = true;
+  };
+  const leaveSource = (event: { relatedTarget: EventTarget | null }) => {
+    const next = event.relatedTarget;
+    if (next instanceof Node && (trigger.current?.contains(next) || popoverRoot?.contains(next))) return;
+    hoveredSource.current = false;
+    dismissedHover.current = false;
+  };
+  useEffect(() => {
+    if (!popoverRoot) return;
+    // AntD padding and the arrow are part of this popup's hover visit as well.
+    popoverRoot.addEventListener("mouseenter", enterSource);
+    popoverRoot.addEventListener("mouseleave", leaveSource);
+    return () => {
+      popoverRoot.removeEventListener("mouseenter", enterSource);
+      popoverRoot.removeEventListener("mouseleave", leaveSource);
+    };
+  }, [popoverRoot]);
   useOwnedLayerFocus(popoverElement, open, () => {
+    // Hiding the popup can expose its still-hovered trigger and queue another enter.
+    // Keep this hover visit dismissed until it leaves both owned elements or is explicitly activated.
+    dismissedHover.current = hoveredSource.current;
     setOpen(false);
     setFocusRequested(false);
   }, {focus:focusRequested,trigger:trigger.current,trapFocus:false});
@@ -383,12 +408,13 @@ function SourceText({
       trigger={["hover", "click"]}
       open={open}
       onOpenChange={(next) => {
+        if (next && dismissedHover.current) return;
         setOpen(next);
         if (!next) setFocusRequested(false);
       }}
       overlayClassName={styles.sourceTextPopover}
       content={
-        <section ref={setPopoverElement} className={styles.sourceTextPopoverContent} role="dialog" aria-label={title} tabIndex={-1}>
+        <section ref={setPopoverElement} className={styles.sourceTextPopoverContent} role="dialog" aria-label={title} tabIndex={-1} onMouseEnter={enterSource} onMouseLeave={leaveSource}>
           <h4>{title}</h4>
           <MarkdownText text={original} variant="document" />
           <Button size="small" icon={<CopyOutlined />} onClick={() => onCopy(original)}>
@@ -397,7 +423,11 @@ function SourceText({
         </section>
       }
     >
-      <button ref={trigger} type="button" className={styles.sourceTextPreview} aria-label={viewLabel} onClick={() => setFocusRequested(true)}>
+      <button ref={trigger} type="button" className={styles.sourceTextPreview} aria-label={viewLabel} onMouseEnter={enterSource} onMouseLeave={leaveSource} onClick={() => {
+        dismissedHover.current = false;
+        setOpen(!open);
+        setFocusRequested(!open);
+      }}>
         <span>{preview || bpText("notRecorded")}</span>
         <small>{bpText("rounds.viewFull")}</small>
       </button>

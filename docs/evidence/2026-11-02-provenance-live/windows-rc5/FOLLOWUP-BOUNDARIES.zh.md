@@ -1,5 +1,7 @@
 # Windows rc.5 回执后的边界待办
 
+**2026-11-03专项核收更新**：输出原文在hover后点击覆盖trigger的弹层section，Escape后指针不动，连续两次层仍可见、父详情保留、焦点回搜索框；复现成立，关闭后重开的机制仍未证。两次纯hover会连父详情关闭，需确认关闭层级；输入hover-click已点击关层，未发Escape；两个键盘例正常。详见[新报告独立复核](./source-text-review/INTAKE-REVIEW.zh.md)。原报告和下述旧记录均保留。下一步应补JSDOM状态回归及真实浏览器布局/pointer覆盖，再作局部修复与精确新包Windows回验；不重跑完整E2E或模型。
+
 2026-11-03。本轮E2E执行与保全已完成，接收的是有范围的实机结果；原始报告保留`PARTIAL_LIVE_NOT_RELEASE_ACCEPTANCE`，不是全部发布或人工验收通过。以下只读复核未修改生产代码或重跑模型。
 
 ## 需先复现和分诊的真实异常

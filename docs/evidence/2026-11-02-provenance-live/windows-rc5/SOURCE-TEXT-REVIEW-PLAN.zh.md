@@ -1,6 +1,6 @@
 # Windows 原文弹层专项复核计划
 
-2026-11-03。用户明确表示已将原 Windows 会话从 terra 切换为 gpt-6.1-sol / MAX，并授权按建议继续定向复核。主会话发送任务时也显式指定该模型和推理档位；目标已接单并开始读取边界文档、核对隔离环境。**当前只有接单和计划，尚无本轮补测结果，不改变旧回执的FAIL或UNKNOWN。** 模型配置来源是用户声明及工具请求；只有实际会话metadata可取得时才补为已核配置，不用模型自述代替。
+2026-11-03。用户明确表示已将原 Windows 会话从 terra 切换为 gpt-6.1-sol / MAX，并授权按建议继续定向复核。主会话发送任务时也显式指定该模型和推理档位。**专项已完成并原字节核收：输出原文重叠点击后的Escape留驻连续两次复现，两个键盘例正常关闭子层；两条纯hover均关闭父详情，输入hover-click因点击已关层未发Escape。不改变旧回执的FAIL或UNKNOWN，也不称六例全通过。** 见[独立接收复核](./source-text-review/INTAKE-REVIEW.zh.md)和[原报告](./source-text-review/WINDOWS-CI4-SOURCE-TEXT-REVIEW.zh.md)。以下保留原计划。模型配置来源是用户声明及工具请求，运行时metadata仍未知。
 
 目标会话为[0.2.1业务溯源win](codex://threads/01a19c6a-e785-7f82-a5b4-cda473951fa6?hostId=remote-control%3Aenv_e_6abf8babb404832890d7c5124118ed3c)，启动回合`01a19d15-4f51-7d63-9846-49e357df608a`。继续官方DSH Desktop0.2.1-rc.5及原隔离profile/userData、真实历史会话；不测试更早Host。插件固定CI4/a520329、run41444758077、TGZ `cf9abdf4ac085506793501f5f4c7e2d3f6ff4bc8c873e07c4b6b401064ec6b8a`、126文件，不重新构建。
 
