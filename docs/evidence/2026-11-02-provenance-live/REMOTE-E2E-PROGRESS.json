@@ -59,11 +59,16 @@
     "threadId": "01a19c6a-e785-7f82-a5b4-cda473951fa6",
     "hostId": "remote-control:env_e_6abf8babb404832890d7c5124118ed3c",
     "title": "0.2.1业务溯源win",
-    "status": "task accepted and active; checking native GUI capability and isolation; no Windows installation or functional PASS inferred",
+    "status": "rc.5 signed official identity/Node24.21 and separate profile/userData reported verified; retained login restored; official rc.5 CLI accepted exact tgz and is processing dependencies; install/cold-start/GUI functionality pending",
     "candidateSource": "a52032956314cf582c0f39ed3dab2f8e80e91085",
     "ciRun": 41444758077,
     "tgzSha256": "cf9abdf4ac085506793501f5f4c7e2d3f6ff4bc8c873e07c4b6b401064ec6b8a",
     "handoff": "WINDOWS-E2E-HANDOFF.zh.md",
-    "acceptanceResult": "pending"
+    "acceptanceResult": "W1-W6 pending; preserve interim UNKNOWN, no failure or PASS inferred for plugin",
+    "targetHost": "official Windows Desktop0.2.1-rc.5 only; do not test earlier versions",
+    "environmentRepairAuthorized": true,
+    "historicalIsolationObservation": "callback opened second instance using task DSH profile and daily Electron userData; remote subsequently observed daily rc.2->rc.5 --updated, two file digest changes and protocol command changes; trigger unknown, originals retained, no overwrite rollback",
+    "historicalReports": "windows-interim/RECEIPT.json",
+    "historicalReportsShaVerified": true
   }
 }

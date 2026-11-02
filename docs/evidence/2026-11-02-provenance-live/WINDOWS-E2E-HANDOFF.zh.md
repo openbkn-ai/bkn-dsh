@@ -2,6 +2,14 @@
 
 2026-11-02。用户已指定 [0.2.1业务溯源win](codex://threads/01a19c6a-e785-7f82-a5b4-cda473951fa6?hostId=remote-control%3Aenv_e_6abf8babb404832890d7c5124118ed3c)（DESKTOP-IEJNBRE）执行发布前E2E。主会话通过线程工具发送了完整验收清单；目标已启动并回报正在检查原生GUI能力及隔离方案，尚未修改日常环境。**这只是任务接收和准备进度，Windows安装/实际加载/功能验收均未据此记为通过。**
 
+## 当前目标与环境恢复授权
+
+用户再次明确：Windows只验收官方DSH Desktop **0.2.1-rc.5**，不再测试rc.2、rc.3或任何更早宿主。CI插件归档仍固定下述cf9ab包，不因环境重建重新打包或触发CI。此前旧Host和隔离环境异常仅作为历史失败，不算当前目标的功能验收。
+
+用户要求持续推进，并授权修复/重建符合条件的测试环境：可在独立路径重新准备官方rc.5、任务profile/userData和必要运行依赖，解决窗口选择、坐标/可访问性操作及登录回调混用等可恢复问题；保留已有授权和证据，保护日常应用、账户、会话及恢复材料，不覆盖未知Before的文件，不全局kill或关闭TLS。无法自动完成的本人身份验证仍交用户，其他独立准备继续。
+
+远程已确认本人登录，但此前回报登录回调出现第二实例、测试profile与日常userData混用；之后观察到日常安装rc.2→rc.5、两个文件摘要及协议关联变化。具体触发原因未证实，保留为隔离异常，不倒推是插件缺陷或恢复旧Host。最新rc.5目标和重建授权已通过线程工具同步，正在恢复环境；W1—W6尚未得到实际通过证据。
+
 ## 固定产物
 
 - 仓库`openbkn-ai/bkn-dsh`，分支`feat/provenance-platform-parity-live`；实际构建源码`a52032956314cf582c0f39ed3dab2f8e80e91085`。后续文档提交不改变此候选。
@@ -12,7 +20,7 @@
 
 ## 执行范围
 
-1. 记录Windows、官方Desktop EXE/ASAR/Host build、实际运行PID和创建时间、Desktop/CLI/插件CLI子进程各自Node身份。二进制安全下载、核归档和126文件，经官方管理入口安装到独立DSH profile/userData，正常退出再冷启动。CLI拒绝desktop-owned profile写入时使用官方GUI，不篡改管理数据库，不装npm latest或重打包。
+1. 记录Windows、官方Desktop0.2.1-rc.5的EXE/ASAR/Host build、实际运行PID和创建时间、Desktop/CLI/插件CLI子进程各自Node身份。二进制安全下载、核归档和126文件，经官方管理入口安装到独立DSH profile/userData，正常退出再冷启动。CLI拒绝desktop-owned profile写入时使用官方GUI，不篡改管理数据库，不装npm latest或重打包。
 2. 从Windows真实DSH回答及合法finish回执打开新版平台式业务溯源；核对平台同记录轮次、原问答、Operation ID、状态和原因。双轮、父/内部调用、共享输入分支、空筛选、partial搜索/刷新和选择保留按实际样本验证；缺样本保留UNKNOWN。API可读不能替代原生入口，不注入handle。缺合法样本时，最多通过官方隔离工作区做1—2轮短小只读KN元数据查询形成真实关联，不重跑业务/CSV用例。
 3. 核对时间链/证据链、阅读/图谱、步骤/来源/证据选择联动、两种局部全屏及缩放。invalid和原因只原样展示，不重判、删原记录或补造关联。业务知识网络目录未改版，不属于本次布局增量；缺绑定时旧降级视图不能算新版通过。
 4. 用产品复制按钮后真实OS粘贴到未发送隔离草稿并读回；原生Save到全新任务路径核原始UTF8字节/SHA。剪贴板文本与文件分别取证，不用脚本代写文件冒充下载，不经默认PowerShell文本重定向/编码往返静默改写CRLF、BOM或末尾换行；有差异留证后分层诊断。
@@ -28,3 +36,12 @@
 逐项PASS/FAIL/UNKNOWN，区分受控、API对照、真实WindowsGUI和人工。失败先保留原件，不循环重跑或改插件其他部分。私有截图/UIA/日志/原payload留远程且不收凭据；公开脱敏JSON和中文MD按原字节给bytes/SHA/base64，在工具输出中使用`WINDOWS_E2E_PUBLIC_REPORT_BEGIN/END`，供主会话接收和独立复核。生成/分析次数及ID、平台终态、环境恢复分列，未知项不补写为通过。
 
 远程不commit/push、不运行远端CI、不改生产代码、不升级Host/平台、不merge/tag/publish或移动latest。主会话维护交接/结果记录；Mac验收、Windows接单、Windows最终实证与正式发布批准分开记账。
+
+
+## 阶段证据与只读恢复线索
+
+旧登录/环境阶段公开报告已按4份SHA原字节接收至[windows-interim](./windows-interim/RECEIPT.json)，并经[独立接收复核](./windows-interim/INTAKE-REVIEW.zh.md)。其旧Host准备、候选未安装和W1—W6 UNKNOWN保持历史，不补写为rc.5通过。远程随后已回报rc.5官方签名/程序摘要及Node24.21核验、双目录隔离和登录恢复；官方rc.5 CLI已接收固定TGZ安装请求并处理依赖。安装退出码、126文件、冷启动和实际功能结果仍待回报。
+
+并行只读检查了本机Mac实际rc.5 ASAR：build `d4db512a969fccf0c5cc7ec8fe38e9c1d27af916`，SHA256 `8dad52f295bdbe9fa71948fdf38ac2ce3c910213d3b89c37174b2af77db9fb31`。ASAR内部`lib/main.js:53–83`使用`DSH_HOME`派生profile，而`:12044`直接使用Electron的`app.getPath('userData')`；只设DSH_HOME不能证明双隔离。这份main未读取`DSH_DESKTOP_USER_DATA_DIR`，但不能因JS未解析`--user-data-dir`而断言Electron原生参数无效。`:13056`注册协议时未主动携带额外隔离参数，`:7659–7665`的second-instance及`:13057–13060`的`dsh://open`仅聚焦；实际Windows包/注册表/argv/落点仍需本机验证。
+
+同一Mac包的登录凭据由原Host OAuth callback接收，原窗口在成功事件后进入工作区（`lib/main.js:12204–12216`，账户插件`:530–601`）；通用协议只是聚焦入口。该静态线索支持先观察原隔离窗口已有登录、避免误选实例，不授权复制凭据或用注册表绕过。它不是Windows实际更新或混用的根因证明。新rc.5 baseline不能抹掉旧2文件摘要及42项mtime观察，不能覆盖缺Before数据，也不能盲恢复旧rc.2协议路径。

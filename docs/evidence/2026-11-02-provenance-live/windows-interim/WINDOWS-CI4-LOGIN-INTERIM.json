@@ -1,0 +1,86 @@
+{
+  "status": "PENDING_USER_CLOSE_CALLBACK_WINDOW",
+  "kind": "windows-ci4-login-callback-interim-not-final",
+  "date": "2026-11-02",
+  "timeZone": "Asia/Taipei",
+  "candidate": {
+    "run": 41444758077,
+    "buildCommit": "a52032956314cf582c0f39ed3dab2f8e80e91085",
+    "documentCommit": "e8bbe823d3c4c85c6423549836338d351d3bad36",
+    "artifactId": 13141832289,
+    "zipBytes": 877321,
+    "zipSha256": "3a7c905c268aad2eaca45d7839d6adb9da57c9bdad06f9bd0f2fd25283d8d8d9",
+    "tgzBytes": 877325,
+    "tgzSha256": "cf9abdf4ac085506793501f5f4c7e2d3f6ff4bc8c873e07c4b6b401064ec6b8a",
+    "files": 126,
+    "manifestMatched": 126,
+    "clientSha256": "fb12b2239c465707d471d86651e74dd39694abd997057e29db896bc3dcf5e8d2",
+    "businessSha256": "bac538d8de54f6b362ba39374b495cf39c6dfe89c4732074cfc966f98e1af7ad"
+  },
+  "environment": {
+    "os": "Windows 10 Pro 10.0.19045 x64",
+    "desktop": "0.2.1-rc.3",
+    "desktopExeSha256": "fd7d298f4ba03ee9bab1719a892afeaef5c09bf50c574a592a64c85f64574c0c",
+    "desktopSignature": "Valid - Hangzhou DeepSeek Artificial Intelligence Co., Ltd.",
+    "electron": "44.7.0",
+    "bundledNode": "24.21.0",
+    "systemNode": "24.21.0",
+    "systemDshCli": "0.2.0-rc.2",
+    "systemOpenBknCli": "0.2.0",
+    "desktopBuildCommit": "UNKNOWN",
+    "hostPid": 1048,
+    "desktopPid": 11704,
+    "hostPort": 53902,
+    "desktopStartLocal": "2026-11-02 21:34:30 +08:00",
+    "isolatedHomeAndUserData": true,
+    "instances": [
+      {
+        "desktopPid": 11704,
+        "createdLocal": "2026-11-02T21:34:30.4798530+08:00",
+        "hostPid": 1048,
+        "hostCreatedLocal": "2026-11-02T21:34:30.9281460+08:00",
+        "port": 53902,
+        "userData": "isolated",
+        "profile": "isolated"
+      },
+      {
+        "desktopPid": 10732,
+        "createdLocal": "2026-11-02T22:03:53.4672370+08:00",
+        "hostPid": 7556,
+        "hostCreatedLocal": "2026-11-02T22:03:53.8044600+08:00",
+        "port": 57956,
+        "userData": "default",
+        "profile": "isolated",
+        "origin": "login URL callback"
+      }
+    ]
+  },
+  "evidence": {
+    "archive": "PASS: bytes and 126 files verified independently; not installed",
+    "gui": "User completed login. Main window seen in callback process; original isolated instance is on onboarding. Screenshot timed out and element click reported coordinate input geometry is unavailable; keyboard focus did not advance in observed attempts.",
+    "tls": "PASS: task-scoped previously trusted platform certificate; TLS verified, HTTP 302",
+    "platformVersion": "UNKNOWN current; no authenticated read",
+    "sample": "Historical Windows session contains non-error finish receipts for multiple interactions on matching platform; current accessibility and platform readability UNKNOWN",
+    "dailyBaseline": "964 previously baselined non-credential profile/session files still hash-equal; URL association visible values unchanged; default Electron userData was not baselined file by file.",
+    "counts": {
+      "newQuestions": 0,
+      "explanationGeneration": 0,
+      "analysis": 0
+    },
+    "callback": "Login URL callback started a second Desktop without isolated user-data-dir; its Host inherited the isolated DSH profile. At least 42 non-credential files in default Electron userData had modification times at/after callback; attribution per file and prior bytes are unknown. No restoration attempted."
+  },
+  "acceptance": {
+    "W1": "UNKNOWN: candidate installation and cold restart pending",
+    "W2": "UNKNOWN: login and native sample access pending",
+    "W3": "UNKNOWN",
+    "W4": "UNKNOWN",
+    "W5": "UNKNOWN",
+    "W6": "UNKNOWN"
+  },
+  "limitations": [
+    "Waiting for user to quit the callback main window via official application menu; both identified instances remain running at this snapshot.",
+    "Candidate not installed; all W1-W6 remain UNKNOWN. No determination of product defect from automation failure.",
+    "Default Electron userData changed after callback; prior bytes were not recorded, so no blanket restoration is safe.",
+    "Final normal exit and ownership, ports, profile/session and protocol association checks are still pending."
+  ]
+}
