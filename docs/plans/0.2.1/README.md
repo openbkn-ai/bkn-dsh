@@ -1,6 +1,8 @@
 # bkn-dsh 0.2.1 接手入口
 
-## 发布前 CI 与远程 E2E（2026-11-02，进行中）
+## 发布前 CI 与远程 E2E（2026-11-02，CI通过、E2E已交接）
+
+当前固定源码 `f13fe10c4d6041fd7ce7be5007e0740051ec29c0` 的 [build-only CI41404675956](https://github.com/openbkn-ai/bkn-dsh/actions/runs/41404675956) 已成功：插件808通过/1Windows专项跳过、仓库79/79、包126文件、两版官方npm Host受控guard/CSV/native/Remote检查通过；npm发布和GitHub Release步骤跳过。实际CI包SHA256 `fea3d0052efc7188e989bd2582be8c6930eea03b903418103da4c28fc96b61a1`，与本地参考126/126文件及解压tar完全一致，仅gzip OS头不同。已将 artifact13122759006及完整摘要放行给指定远程会话执行真实E2E，结果待回报；不能把受控CI填成实机PASS。见[CI实际包身份](../../evidence/2026-11-02-provenance-live/CI-ARTIFACT-IDENTITY.json)。
 
 维护者现已授权提交、推送和 `release-plugin.yml` 的 `publish=false` 构建，并指定远程会话 `01a15340-6507-7660-a68d-68994e283415` 做固定 CI 产物的发布前 E2E。新候选标识为 `0.2.1-rc.3-openbkn.0.2.1-3`，不覆盖已发布 -2。用户另已明确允许在隔离测试会话对应的样本记录上生成/更新依据和开始 BKN Agent 分析，可新增解释/分析记录并调用模型；原问答、业务数据和平台/模型输出不改。默认测试已纳入源码旁的10项适配/剪贴板/列表联动检查。
 

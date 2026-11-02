@@ -1,6 +1,6 @@
 # -3 CI 与远程发布前 E2E
 
-2026-11-02。状态：首轮提交 `a7ab632` 已推送，CI [41400870217](https://github.com/openbkn-ai/bkn-dsh/actions/runs/41400870217) 的两个首屏就绪测试失败，保留原结果并准备修复后新CI。实际artifact/SHA仍待产生，不能使用历史7f5或本地参考包冒充。分支 `feat/provenance-platform-parity-live`，基于 `bc5e67b`，含原main之后已本地验证的managed-tool/CSV修复。新manifest为 `0.2.1-rc.3-openbkn.0.2.1-3`，已发布-2及历史试验包不变。
+2026-11-02。状态：第三轮CI [41404675956](https://github.com/openbkn-ai/bkn-dsh/actions/runs/41404675956) 已成功，固定源码 `f13fe10c4d6041fd7ce7be5007e0740051ec29c0`。实际artifact及独立包审计通过，已放行远程隔离安装与真实E2E；结果尚待回报。前两轮失败和受控复现保留，不被本轮成功覆盖。分支 `feat/provenance-platform-parity-live`，基于 `bc5e67b`，含原main之后已本地验证的managed-tool/CSV修复。新manifest为 `0.2.1-rc.3-openbkn.0.2.1-3`，已发布-2及历史试验包不变。
 
 提交前验证：默认插件测试770项，769通过/1 Windows专项跳过（已含原源码旁10项）；完整仓库79/79、范围保护2/2、包审计126文件通过。本地-3参考包SHA256 `4fd73c118a08238738a5c78c06b7d95dacdc98276aa6d065669d059060e95d41`，相对已实测7f5候选仅package.json版本/测试脚本不同，其余125文件及生产运行资产逐字节一致；仍需接受CI产物，见 [PRE-CI-DELTA.json](./PRE-CI-DELTA.json)。
 
@@ -51,3 +51,14 @@
 第二轮CI41403246674（f330eff）为807通过/1失败/1跳过；首轮就绪项与新增39个fallback都通过。剩余scene-list首项只等按钮存在，在初始解释GET期间点击了禁用按钮，故没有generate请求。deferred GET确定复现后，测试保留禁用时不POST/读取后不自动生成的负向断言，再等待enabled进行一次有效点击；没有加timeout、skip或retry。官方Node22受影响文件2/2，其他动作测试已确认有现有就绪屏障，未改。见 [动作就绪回归](./ci-action-readiness-fix/README.zh.md)。
 
 此后只有测试与证据变化，f330eff生产实现、manifest、依赖和本地e68bd4d9参考包保持不变；新提交仍需新CI产物及远程E2E。此前f330eff的完整本地808/1与本次受影响2/2分别留证，不伪称新commit的完整CI已通过。
+
+## 第三轮实际产物与交接
+
+- source：`f13fe10c4d6041fd7ce7be5007e0740051ec29c0`；CI41404675956成功，publish=false；发布步骤与GitHub Release job跳过。
+- plugin-tarball artifact ID `13122759006`，ZIP SHA256 `8122149c1d1db499173ea9225af807ac63f812aee8d235862188f88c26c609ac`，877186字节；与GitHub artifact digest一致。
+- 内部 `openbkn-dsh-business-context-0.2.1-rc.3-openbkn.0.2.1-3.tgz` SHA256 `fea3d0052efc7188e989bd2582be8c6930eea03b903418103da4c28fc96b61a1`，877043字节、126文件。与e68本地参考126/126内容及整段解压tar完全同字节；仅gzip OS头Mac0x13/Linux0x03导致压缩归档SHA不同，交接始终使用CI实际fea3包。
+- 插件809项：808通过/1Windows专项跳过；仓库79/79；profile MCP companion1/1；包审计126文件通过。Linux/Node22.19官方npm rc.2与rc.3各6项受控检查通过（脚本模型/替代平台），不作为Mac/Windows或真实平台/模型验收。
+- 独立QA已给无包放行阻断的结论；实际文件、许可、metadata和源范围见[包身份](./CI-ARTIFACT-IDENTITY.json)、[独立审计](./CI-ARTIFACT-QA.zh.md)、[CI结果](./CI-RESULT.json)。
+- 已通过Codex线程工具将上述commit/run/artifact/ZIP/tgz摘要、授权动作和验收矩阵交给指定远程会话；接下来由其核对、隔离安装并实际执行。未在此回执中预填E2E通过，未合并/发布/变更latest。后续文档回执提交不改package/runtime，CI产物仍固定f13。
+
+远程接收进展：已独立确认ZIP/tgz摘要、尺寸和126文件清单，正在隔离安装。主机双轮/BOM记录来自另一台DSH，其远程本地合法Session关联尚待确认；可复用远程现有其他真实关联样本，不能注入handle或把API可读记为DSH E2E。尚未开始/完成的项目继续保持待验收。
