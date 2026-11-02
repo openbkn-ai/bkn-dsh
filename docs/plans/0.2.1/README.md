@@ -1,20 +1,16 @@
 # bkn-dsh 0.2.1 接手入口
 
-## 发布前 CI 与远程 E2E（2026-11-02，CI通过、E2E已交接）
+## 发布前 CI 与远程 E2E（2026-11-02）
 
-**最新状态**：CI3 fea3实际包已做原生6调用样本、OS复制/保存、一次生成和一次分析，发现分析状态切换焦点落根后Esc无法关闭侧栏的插件FAIL。局部修复及8回归已完成；官方Node22完整816通过/1跳过、scope2、包126通过，准备CI4精确包复验。CI3分析历史为completed/not_evaluable/0建议，平台原始Markdown占位问题与未捕获实际模型输入分别记录，不由插件修正文案或裁决业务。下方CI3和等待登录文字为历史检查点，不代表焦点修后或完整业务解释通过。
+**当前状态：CI4 通过，分析焦点修复待精确包实机复验。** 源码 `a52032956314cf582c0f39ed3dab2f8e80e91085` 的 [build-only CI41444758077](https://github.com/openbkn-ai/bkn-dsh/actions/runs/41444758077) 已成功：插件816通过/1 Windows专项跳过、仓库79/79、MCP companion1/1、包126文件、官方npm rc.2/rc.3受控guard/CSV/native/Remote检查通过；npm与GitHub发布均跳过。
 
-**当前E2E进度**：用户已确认完成远程登录，远程会话已继续官方管理与隔离实例验证，并回报新的业务溯源窗口实际显示6调用、原问答及Operation详情。先前CLI拒绝desktop-owned profile及等待登录均保留为历史；历史会话绑定完成后正常重开才显示新页面的过程也已记录。生成/分析和完整矩阵继续执行，结果待接收，不以单个窗口或CI/归档校验代填全量实机PASS。
+实际CI4包SHA256 `cf9abdf4ac085506793501f5f4c7e2d3f6ff4bc8c873e07c4b6b401064ec6b8a`，artifact `13141832289`。与本地参考126/126文件及整段解压tar完全相同；相对CI3仅`lib/client.js`变化，Host及其余125文件不变。见[包身份](../../evidence/2026-11-02-provenance-live/CI4-ARTIFACT-IDENTITY.json)、[CI结果](../../evidence/2026-11-02-provenance-live/CI4-RESULT.json)。
 
-当前固定源码 `f13fe10c4d6041fd7ce7be5007e0740051ec29c0` 的 [build-only CI41404675956](https://github.com/openbkn-ai/bkn-dsh/actions/runs/41404675956) 已成功：插件808通过/1Windows专项跳过、仓库79/79、包126文件、两版官方npm Host受控guard/CSV/native/Remote检查通过；npm发布和GitHub Release步骤跳过。实际CI包SHA256 `fea3d0052efc7188e989bd2582be8c6930eea03b903418103da4c28fc96b61a1`，与本地参考126/126文件及解压tar完全一致，仅gzip OS头不同。已将 artifact13122759006及完整摘要放行给指定远程会话执行真实E2E，结果待回报；不能把受控CI填成实机PASS。见[CI实际包身份](../../evidence/2026-11-02-provenance-live/CI-ARTIFACT-IDENTITY.json)。
+**CI3真实结果已接收并核对报告SHA，保留一项FAIL。** 远程官方Mac Desktop rc.5实际安装fea3包并显示平台式详情，已验6调用、原文层、失败0筛选、Operation选择、partial列表、OS复制/原生保存、部分图谱联动及局部全屏；生成1次返回平台partial/invalid_schema_reference，分析1次历史为completed/not_evaluable/0建议。原始Markdown5842字节含160处“请求失败。”，不清洗；实际分析POST与模型最终输入未捕获，不能据模型自述认定输入丢失。原问答、6操作和时间链据报告未变，正常退出及日常配置恢复已核报；私有原件仍留远程。见[远程原报告](../../evidence/2026-11-02-provenance-live/remote-ci3/REMOTE-E2E-REPORT.zh.md)。
 
-维护者现已授权提交、推送和 `release-plugin.yml` 的 `publish=false` 构建，并指定远程会话 `01a15340-6507-7660-a68d-68994e283415` 做固定 CI 产物的发布前 E2E。新候选标识为 `0.2.1-rc.3-openbkn.0.2.1-3`，不覆盖已发布 -2。用户另已明确允许在隔离测试会话对应的样本记录上生成/更新依据和开始 BKN Agent 分析，可新增解释/分析记录并调用模型；原问答、业务数据和平台/模型输出不改。默认测试已纳入源码旁的10项适配/剪贴板/列表联动检查。
+原生FAIL是分析完成后直接Esc不能关闭侧栏；局部焦点修复和8项修前失败/修后通过回归已纳入CI4，独立评审与CodeQL通过。已放行CI4实际包在同一隔离profile/userData上仅复验受影响焦点路径，必要时至多新增一次已授权分析；不重复生成依据或业务问题。双轮/BOM59、取消/迟到、多会话多网络及Windows等未执行项仍按证据层级保留，不能以受控测试代填实机PASS。
 
-首轮CI `41400870217` 的两项首屏就绪测试失败已留档；合法延迟复现后改为有界条件等待。独立评审发现的原生不可用时旧local/Trace降级不可达也已修正，新增39项受信降级/拒绝/身份/迟到回归并独立复核。修后官方Node22完整测试808通过/1跳过、仓库79/79、scope2/2、包126审计通过，准备新commit与第二轮CI；不以历史本地通过覆盖首轮失败。
-
-第二轮CI `41403246674` 又暴露列表测试点击仍禁用的生成按钮，结果807通过/1失败/1跳过。deferred GET稳定复现后补真实enabled条件，受影响Node22测试2/2通过，生产实现仍固定f330eff；准备第三轮CI并保留前两轮失败，不跳过或重复运行掩盖。
-
-[交接与验收清单](../../evidence/2026-11-02-provenance-live/CI-E2E-HANDOFF.zh.md)记录当前阶段及交付边界；此前的“只保留本地、不跑远端CI、只读”描述是历史范围。CI 成功、本地产物等价、真实 E2E 和发布批准分别留证；当前不合并、不打标签、不发布、不改 latest。
+首两轮CI失败、CI3实机FAIL和本地只读候选均保留为历史。候选`0.2.1-rc.3-openbkn.0.2.1-3`尚未发布，已发布-2不变；当前只授权分支提交/推送、publish=false CI及指定远程E2E，不合并、不打标签、不发布、不改latest。详见[交接与验收清单](../../evidence/2026-11-02-provenance-live/CI-E2E-HANDOFF.zh.md)。
 
 ## 0.2.1 发布后本地增量：业务溯源与平台详情一致（2026-11-02）
 

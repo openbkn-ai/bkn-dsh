@@ -1,7 +1,7 @@
 {
   "date": "2026-11-02",
-  "status": "CI3_real_E2E_with_one_plugin_focus_failure; fix awaiting CI4",
-  "source": "remote chat progress messages; final reports and original evidence not yet received",
+  "status": "CI3_real_E2E_with_one_plugin_focus_failure; CI4_success_and_exactartifact_affected_retest_in_progress",
+  "source": "remote CI3 public reports received byte-for-byte and SHA-verified; private originals remain remote",
   "threadId": "01a15340-6507-7660-a68d-68994e283415",
   "hostId": "remote-control:env_e_6ac8760a8c308328a9dcf5dc28dd0d18",
   "candidate": {
@@ -24,9 +24,7 @@
   },
   "sourceMarkdownObservation": "platform original Markdown contains160occurrences of 请求失败。; no plugin cleaning or rewriting",
   "pendingEvidence": [
-    "final public report and IDs/digests",
-    "environment restoration receipt",
-    "new CI4 exactartifact and affected native focus retest"
+    "CI4 affected native focus retest and final receipt"
   ],
   "notInferred": [
     "HTTPsuccess means modelanalysis success",
@@ -39,5 +37,14 @@
   "businessSemantics": "invalid explanation content is platform-owned; rendering it faithfully is distinct from accepting its business correctness",
   "pluginFailure": "after analysis transition, focus atHTMLroot; directEscape did not close aside; Tab back inside thenEscape closed onlyaside and restoredtrigger",
   "inputDeliveryEvidence": "actual POSTbody and final model message not captured; sidepanel prefetch5842bytes is not proof of analysis-time re-read bytes; do not infer loss from model self-report",
-  "recordPreservation": "remote reports original question/answer,6operations andtimeRail unchanged after onegeneration/oneanalysis"
+  "recordPreservation": "remote reports original question/answer,6operations andtimeRail unchanged after onegeneration/oneanalysis",
+  "receivedReport": "remote-ci3/REMOTE-E2E-REPORT.json",
+  "receivedReportSha256": "fe0aae02adbd78fa59fb0b08dcedacd556e17d39b8a4e56159aeb6a12fabf9d9",
+  "ci4": {
+    "runId": 41444758077,
+    "sourceCommit": "a52032956314cf582c0f39ed3dab2f8e80e91085",
+    "tgzSha256": "cf9abdf4ac085506793501f5f4c7e2d3f6ff4bc8c873e07c4b6b401064ec6b8a",
+    "artifactId": 13141832289,
+    "nativeRetest": "in progress on designated remote chat"
+  }
 }

@@ -1,6 +1,6 @@
 # -3 CI 与远程发布前 E2E
 
-2026-11-02。状态：第三轮CI [41404675956](https://github.com/openbkn-ai/bkn-dsh/actions/runs/41404675956) 已成功，固定源码 `f13fe10c4d6041fd7ce7be5007e0740051ec29c0`。实际artifact及独立包审计通过，已放行远程隔离安装与真实E2E；结果尚待回报。前两轮失败和受控复现保留，不被本轮成功覆盖。分支 `feat/provenance-platform-parity-live`，基于 `bc5e67b`，含原main之后已本地验证的managed-tool/CSV修复。新manifest为 `0.2.1-rc.3-openbkn.0.2.1-3`，已发布-2及历史试验包不变。
+2026-11-02。最新状态：源码 `a52032956314cf582c0f39ed3dab2f8e80e91085` 的第四轮 [build-only CI41444758077](https://github.com/openbkn-ai/bkn-dsh/actions/runs/41444758077) 已成功，插件816通过/1跳过、仓库79/79、包126文件。CI4实际包`cf9abdf4…`已核对并放行指定远程会话，仅复验分析焦点生命周期；结果待接收。CI3完整脱敏报告已SHA核收，保留真实分析后Esc的FAIL和平台completed/not_evaluable/0建议。下面各轮计数、等待登录及初次交接文字是历史，不表示当前仍受登录阻塞。分支`feat/provenance-platform-parity-live`、新候选-3；已发布-2不变，不合并/打标签/发布/latest。
 
 提交前验证：默认插件测试770项，769通过/1 Windows专项跳过（已含原源码旁10项）；完整仓库79/79、范围保护2/2、包审计126文件通过。本地-3参考包SHA256 `4fd73c118a08238738a5c78c06b7d95dacdc98276aa6d065669d059060e95d41`，相对已实测7f5候选仅package.json版本/测试脚本不同，其余125文件及生产运行资产逐字节一致；仍需接受CI产物，见 [PRE-CI-DELTA.json](./PRE-CI-DELTA.json)。
 
