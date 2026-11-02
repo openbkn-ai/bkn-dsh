@@ -1,0 +1,20 @@
+✔ a real-observed 9,067,369-byte detail shape survives Reader, Scope and Remote chunks unchanged (63.992167ms)
+✔ Markdown preflight can validate that same large detail without increasing Markdown limits (28.926334ms)
+✔ detail has a bounded 16 MiB allowance while other native data remains at 8 MiB (181.601667ms)
+✔ detail transport resolves verified content without waiting on Remote disposal (0.973166ms)
+✔ detail transport reconstructs UTF-16 split JSON without altering platform content (0.43125ms)
+✔ detail transport rejects missing chunks, duplicate index, mixed encoding and invalid JSON (1.932917ms)
+✔ detail transport counts aggregate UTF-8 bytes, including a split surrogate, at the wire budget (117.836375ms)
+✔ detail transport cancels a stalled Remote promptly and never opens an already cancelled request (2.6105ms)
+✔ detail transport exposes controlled error codes without leaking raw Remote exceptions (0.388209ms)
+✔ analysis events are explicit and preserve platform deltas and structured content (0.20675ms)
+✔ controlled Host failures retain only safe HTTP evidence for platform permission and legacy UI states (1.476084ms)
+✔ a parsed platform analysis error survives the full stream bridge and adapter with its original code and reason (20.895167ms)
+ℹ tests 12
+ℹ suites 0
+ℹ pass 12
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 574.104542

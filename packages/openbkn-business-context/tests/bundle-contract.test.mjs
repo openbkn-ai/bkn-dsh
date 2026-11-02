@@ -2,6 +2,10 @@ import assert from 'node:assert/strict'
 import { existsSync, readFileSync } from 'node:fs'
 import test from 'node:test'
 import vm from 'node:vm'
+import * as React from 'react'
+import * as ReactDOM from 'react-dom'
+import * as ReactJsxRuntime from 'react/jsx-runtime'
+import { JSDOM } from 'jsdom'
 
 const readJson = (path) => JSON.parse(readFileSync(new URL(path, import.meta.url)))
 
@@ -36,9 +40,12 @@ test('build output matches the manifest entry points', () => {
 })
 
 test('browser entry registers a lazy module factory for the DSH module table', () => {
+  const dom = new JSDOM('<!doctype html><html><body></body></html>', { url:'https://dsh.invalid' })
   let registration
   const source = readFileSync(new URL('../lib/client.js', import.meta.url), 'utf8')
   vm.runInNewContext(source, {
+    document: dom.window.document,
+    navigator: dom.window.navigator,
     window: {
       __ModuleLoader__: {
         load: (value) => { registration = value },
@@ -48,12 +55,17 @@ test('browser entry registers a lazy module factory for the DSH module table', (
 
   assert.equal(registration.id, '@openbkn/dsh-business-context')
   const requested = []
+  // The Host supplies these real shared modules. Everything else (including
+  // Node builtins and UI dependency subpaths) must live inside the browser face.
+  const hostModules = { react: React, 'react/jsx-runtime': ReactJsxRuntime, 'react-dom': ReactDOM }
   const exports = registration.factory((id) => {
     requested.push(id)
-    return id === 'react' ? { createContext: value => ({ Provider: () => null, _currentValue: value }) } : {}
+    assert.ok(Object.hasOwn(hostModules,id), `Unexpected browser external: ${id}`)
+    return hostModules[id]
   })
   assert.equal(typeof exports.apply, 'function')
-  assert.deepEqual(requested.sort(), ['react', 'react/jsx-runtime'])
+  assert.deepEqual([...new Set(requested)].sort(), ['react', 'react-dom', 'react/jsx-runtime'])
+  dom.window.close()
 })
 
 test('does not publish an obsolete Host Python runner', () => {

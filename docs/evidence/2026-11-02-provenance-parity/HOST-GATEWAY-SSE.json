@@ -1,0 +1,210 @@
+{
+  "date": "2026-11-02",
+  "node": "24.19.0",
+  "evidenceLevel": "controlled official npm Gateway and final generated codec/runtime; no live platform or UI acceptance",
+  "nativeSource": {
+    "eeCommit": "3a8647e22072a75f253250cfac73af9ef7394547",
+    "path": "bkn-trace/agent-observability/businessprovenance/http.go",
+    "lines": "605-735",
+    "fileSha256": "c4c68e467013275c0dffb660bd5fdf70ff70fcf4350298fe604c90653fdd8092",
+    "eventSequence": [
+      "meta",
+      "token",
+      "tool_call",
+      "meta",
+      "structured",
+      "done"
+    ],
+    "heartbeat": ": keepalive\\n\\n; comment-only, no business event"
+  },
+  "regression": {
+    "before": {
+      "path": "SSE-NATIVE-BEFORE.log",
+      "exitCode": 1,
+      "tests": 3,
+      "pass": 1,
+      "fail": 2,
+      "sha256": "0198449ac4aa22eb6340880b569b4180edcfe5544aa99a0fc6a9d00e07c4d0f7"
+    },
+    "after": {
+      "path": "SSE-NATIVE-AFTER.log",
+      "exitCode": 0,
+      "tests": 50,
+      "pass": 50,
+      "fail": 0,
+      "sha256": "035090303aadf6f2aeba9808d6d46220f9de1726410d7bfa43a4e4159548e006"
+    }
+  },
+  "hosts": [
+    {
+      "evidence": "official npm Gateway and compiled codecs; in-memory GET and explicit analysis SSE stand-in; not live Host UI/platform/model acceptance",
+      "dsh": "0.2.0-rc.2",
+      "cordis": "4.0.4",
+      "verdict": "pass",
+      "hashes": {
+        "business.js": "17008384d5192f11d98767cc2c2bbd922d9225f197edb8d1d41ee1ec447c1e3f",
+        "typert.host.js": "621d8712c01ac62732038cab5dcd1cec2e9c63d75e257dfdd56b71806250fdb4",
+        "typert.remote-client.js": "0c0f66936c9ea62fecb46f63b9f40f8c38b1cc07541c84ef797ac214ffea9878"
+      },
+      "checks": [
+        "compiled stream registration",
+        "locally owned recursive JSON Host and Client codec",
+        "unknown nested fields and platform invalid unchanged",
+        "long raw data chunk carrier round trip",
+        "exact anchor outside first50",
+        "same-conversation member page2",
+        "all default GET endpoints",
+        "safe classified failure",
+        "foreign interaction denied",
+        "invalid action input denied",
+        "cancellation",
+        "explicit native meta token tool_call structured done and heartbeat through compiled Reader Scope Gateway and codecs",
+        "Host native Markdown submitted without browser business text",
+        "contribution unload"
+      ],
+      "platformMethods": [
+        "GET",
+        "POST"
+      ],
+      "controlledAnalysisPOST": 1,
+      "defaultScenePOST": 0,
+      "actualNetworkRequests": 0,
+      "actualPlatformPOST": 0,
+      "requestCount": 18,
+      "resolvedDsh": {
+        "@deepseek-ai/dsh-agent": "0.2.0-rc.2",
+        "@deepseek-ai/dsh-api-gateway": "0.2.0-rc.2",
+        "@deepseek-ai/dsh-attachment": "0.2.0-rc.2",
+        "@deepseek-ai/dsh-brand": "0.2.0-rc.2",
+        "@deepseek-ai/dsh-client-connection": "0.2.0-rc.2",
+        "@deepseek-ai/dsh-credentials": "0.2.0-rc.2",
+        "@deepseek-ai/dsh-deque": "0.2.0-rc.2",
+        "@deepseek-ai/dsh-home-paths": "0.2.0-rc.2",
+        "@deepseek-ai/dsh-http-proxy": "0.2.0-rc.2",
+        "@deepseek-ai/dsh-invariants": "0.2.0-rc.2",
+        "@deepseek-ai/dsh-llm": "0.2.0-rc.2",
+        "@deepseek-ai/dsh-mcp-client": "0.2.0-rc.2",
+        "@deepseek-ai/dsh-ptc-runtime": "0.2.0-rc.2",
+        "@deepseek-ai/dsh-sandbox": "0.2.0-rc.2",
+        "@deepseek-ai/dsh-sandbox-policy": "0.2.0-rc.2",
+        "@deepseek-ai/dsh-scope": "0.2.0-rc.2",
+        "@deepseek-ai/dsh-session": "0.2.0-rc.2",
+        "@deepseek-ai/dsh-session-projection": "0.2.0-rc.2",
+        "@deepseek-ai/dsh-storage": "0.2.0-rc.2",
+        "@deepseek-ai/dsh-storage-domain": "0.2.0-rc.2",
+        "@deepseek-ai/dsh-subprocess": "0.2.0-rc.2",
+        "@deepseek-ai/dsh-system-prompt": "0.2.0-rc.2",
+        "@deepseek-ai/dsh-timeout": "0.2.0-rc.2",
+        "@deepseek-ai/dsh-tools": "0.2.0-rc.2",
+        "@deepseek-ai/dsh-typert-protocol": "0.2.0-rc.2",
+        "@deepseek-ai/dsh-typert-registry": "0.2.0-rc.2",
+        "@deepseek-ai/dsh-user-approval": "0.2.0-rc.2",
+        "@deepseek-ai/dsh-util-crypto": "0.2.0-rc.2",
+        "@deepseek-ai/dsh-util-values": "0.2.0-rc.2"
+      },
+      "npmLockSha256": "d1957219b111872a20d2a1c818ea6b5c93865a6101ce22dc5f2ea39179191599",
+      "npmRegistryTarballSources": [
+        "https://registry.npmmirror.com"
+      ],
+      "isolation": {
+        "runtimeDirectory": "release/provenance-gateway-probe/0.2.0-rc.2/runtime",
+        "dshHome": "release/provenance-gateway-probe/0.2.0-rc.2/runtime/home",
+        "candidateDirectory": "release/provenance-gateway-probe/0.2.0-rc.2/plugin",
+        "globalFetch": "forbidden; zero attempted fallthrough calls",
+        "actualPlatformRequests": 0,
+        "actualModelCalls": 0,
+        "actualPlatformPOST": 0,
+        "controlledExplicitAnalysisPOST": 1,
+        "defaultScenePOST": 0,
+        "cliCalls": 0
+      },
+      "candidateKind": "copied final local compiled lib; not an npm release or installed daily Host"
+    },
+    {
+      "evidence": "official npm Gateway and compiled codecs; in-memory GET and explicit analysis SSE stand-in; not live Host UI/platform/model acceptance",
+      "dsh": "0.2.1-rc.3",
+      "cordis": "4.0.5",
+      "verdict": "pass",
+      "hashes": {
+        "business.js": "17008384d5192f11d98767cc2c2bbd922d9225f197edb8d1d41ee1ec447c1e3f",
+        "typert.host.js": "621d8712c01ac62732038cab5dcd1cec2e9c63d75e257dfdd56b71806250fdb4",
+        "typert.remote-client.js": "0c0f66936c9ea62fecb46f63b9f40f8c38b1cc07541c84ef797ac214ffea9878"
+      },
+      "checks": [
+        "compiled stream registration",
+        "locally owned recursive JSON Host and Client codec",
+        "unknown nested fields and platform invalid unchanged",
+        "long raw data chunk carrier round trip",
+        "exact anchor outside first50",
+        "same-conversation member page2",
+        "all default GET endpoints",
+        "safe classified failure",
+        "foreign interaction denied",
+        "invalid action input denied",
+        "cancellation",
+        "explicit native meta token tool_call structured done and heartbeat through compiled Reader Scope Gateway and codecs",
+        "Host native Markdown submitted without browser business text",
+        "contribution unload"
+      ],
+      "platformMethods": [
+        "GET",
+        "POST"
+      ],
+      "controlledAnalysisPOST": 1,
+      "defaultScenePOST": 0,
+      "actualNetworkRequests": 0,
+      "actualPlatformPOST": 0,
+      "requestCount": 18,
+      "resolvedDsh": {
+        "@deepseek-ai/dsh-agent": "0.2.1-rc.3",
+        "@deepseek-ai/dsh-api-gateway": "0.2.1-rc.3",
+        "@deepseek-ai/dsh-api-remote-access": "0.2.1-rc.3",
+        "@deepseek-ai/dsh-attachment": "0.2.1-rc.3",
+        "@deepseek-ai/dsh-brand": "0.2.1-rc.3",
+        "@deepseek-ai/dsh-client-connection": "0.2.1-rc.3",
+        "@deepseek-ai/dsh-credentials": "0.2.1-rc.3",
+        "@deepseek-ai/dsh-deque": "0.2.1-rc.3",
+        "@deepseek-ai/dsh-fs": "0.2.1-rc.3",
+        "@deepseek-ai/dsh-home-paths": "0.2.1-rc.3",
+        "@deepseek-ai/dsh-http-proxy": "0.2.1-rc.3",
+        "@deepseek-ai/dsh-llm": "0.2.1-rc.3",
+        "@deepseek-ai/dsh-mcp-client": "0.2.1-rc.3",
+        "@deepseek-ai/dsh-ptc-runtime": "0.2.1-rc.3",
+        "@deepseek-ai/dsh-sandbox": "0.2.1-rc.3",
+        "@deepseek-ai/dsh-sandbox-policy": "0.2.1-rc.3",
+        "@deepseek-ai/dsh-scope": "0.2.1-rc.3",
+        "@deepseek-ai/dsh-session": "0.2.1-rc.3",
+        "@deepseek-ai/dsh-session-projection": "0.2.1-rc.3",
+        "@deepseek-ai/dsh-storage": "0.2.1-rc.3",
+        "@deepseek-ai/dsh-storage-domain": "0.2.1-rc.3",
+        "@deepseek-ai/dsh-subprocess": "0.2.1-rc.3",
+        "@deepseek-ai/dsh-system-prompt": "0.2.1-rc.3",
+        "@deepseek-ai/dsh-timeout": "0.2.1-rc.3",
+        "@deepseek-ai/dsh-tools": "0.2.1-rc.3",
+        "@deepseek-ai/dsh-typert-protocol": "0.2.1-rc.3",
+        "@deepseek-ai/dsh-typert-registry": "0.2.1-rc.3",
+        "@deepseek-ai/dsh-user-approval": "0.2.1-rc.3",
+        "@deepseek-ai/dsh-util-crypto": "0.2.1-rc.3",
+        "@deepseek-ai/dsh-util-values": "0.2.1-rc.3",
+        "@deepseek-ai/dsh-working-directory": "0.2.1-rc.3"
+      },
+      "npmLockSha256": "055eefc5f86b62a1354bee0028f60fe52e3b016b2d87e47a075935146d7a235f",
+      "npmRegistryTarballSources": [
+        "https://registry.npmmirror.com"
+      ],
+      "isolation": {
+        "runtimeDirectory": "release/provenance-gateway-probe/0.2.1-rc.3/runtime",
+        "dshHome": "release/provenance-gateway-probe/0.2.1-rc.3/runtime/home",
+        "candidateDirectory": "release/provenance-gateway-probe/0.2.1-rc.3/plugin",
+        "globalFetch": "forbidden; zero attempted fallthrough calls",
+        "actualPlatformRequests": 0,
+        "actualModelCalls": 0,
+        "actualPlatformPOST": 0,
+        "controlledExplicitAnalysisPOST": 1,
+        "defaultScenePOST": 0,
+        "cliCalls": 0
+      },
+      "candidateKind": "copied final local compiled lib; not an npm release or installed daily Host"
+    }
+  ]
+}

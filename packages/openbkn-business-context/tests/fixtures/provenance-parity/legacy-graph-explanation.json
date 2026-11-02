@@ -1,0 +1,209 @@
+{
+  "schema_version": "1",
+  "interaction_id": "int-parity-007",
+  "status": "ready",
+  "generated_at": "2026-11-02T02:11:00Z",
+  "view": {
+    "interactionId": "int-parity-007",
+    "question": "平台问题原文：库存多少？\n第二行原文保留。",
+    "answer": "平台回答原文：123.450000 件。\n这不是 DSH 改写后的回答。",
+    "status": "completed",
+    "evidenceStatus": "partial",
+    "generationStatus": "ready",
+    "requirements": [
+      {
+        "id": "req1",
+        "label": "平台要求原文",
+        "status": "partial",
+        "claimIds": [
+          "claim1"
+        ]
+      }
+    ],
+    "claims": [
+      {
+        "id": "claim1",
+        "label": "平台候选结论",
+        "value": "123.450000",
+        "status": "candidate",
+        "supportStatus": "partial",
+        "attributionStatus": "explicit",
+        "nodeIds": [
+          "e-out"
+        ],
+        "requirementIds": [
+          "req1"
+        ]
+      }
+    ],
+    "execution": {
+      "nodes": [
+        {
+          "id": "x1",
+          "label": "平台查询执行",
+          "kind": "query"
+        }
+      ],
+      "edges": []
+    },
+    "evidence": {
+      "nodes": [
+        {
+          "id": "e-in",
+          "label": "平台共享输入",
+          "kind": "source",
+          "value": "382-000005"
+        },
+        {
+          "id": "e-out",
+          "label": "平台结果原文",
+          "kind": "result",
+          "value": "123.450000"
+        },
+        {
+          "id": "e-unrelated",
+          "label": "同值但无关系原文",
+          "kind": "source",
+          "value": "123.450000"
+        }
+      ],
+      "edges": [
+        {
+          "id": "edge-recorded",
+          "source": "e-in",
+          "target": "e-out",
+          "label": "平台明确关系"
+        }
+      ]
+    },
+    "notices": [],
+    "timeRail": [
+      {
+        "id": "rail-op-retry-1",
+        "order": 1,
+        "operation_id": "op-retry",
+        "attempt": 1,
+        "interface_name": "query_object_instance",
+        "protocol": "mcp",
+        "source_module": "platform-recorded",
+        "status": "failed",
+        "started_at": "2026-11-02T02:10:01Z",
+        "finished_at": "2026-11-02T02:10:02Z",
+        "duration_ms": 101,
+        "input": {
+          "mode": "inline",
+          "media_type": "application/json",
+          "byte_length": 126,
+          "inline": {
+            "kn_id": "kn-parity-owned",
+            "ot_id": "ot-inventory",
+            "condition": {
+              "field": "material_code",
+              "operation": "==",
+              "value": "382-000005"
+            }
+          }
+        },
+        "output": {
+          "mode": "omitted",
+          "media_type": "application/json",
+          "byte_length": 0,
+          "omitted_reason": "call_failed"
+        },
+        "error": {
+          "mode": "inline",
+          "media_type": "application/json",
+          "byte_length": 70,
+          "inline": {
+            "code": "SAMPLE_FAILURE",
+            "reason": "平台原始错误：保持原文"
+          }
+        }
+      },
+      {
+        "id": "rail-op-retry-2",
+        "order": 2,
+        "operation_id": "op-retry",
+        "attempt": 2,
+        "interface_name": "query_object_instance",
+        "protocol": "mcp",
+        "source_module": "platform-recorded",
+        "status": "completed",
+        "started_at": "2026-11-02T02:10:02Z",
+        "finished_at": "2026-11-02T02:10:03Z",
+        "duration_ms": 102,
+        "input": {
+          "mode": "inline",
+          "media_type": "application/json",
+          "byte_length": 126,
+          "inline": {
+            "kn_id": "kn-parity-owned",
+            "ot_id": "ot-inventory",
+            "condition": {
+              "field": "material_code",
+              "operation": "==",
+              "value": "382-000005"
+            }
+          }
+        },
+        "output": {
+          "mode": "inline",
+          "media_type": "application/json",
+          "byte_length": 100,
+          "inline": {
+            "total_count": 1,
+            "rows": [
+              {
+                "material_code": "382-000005",
+                "warehouse": "测试仓",
+                "qty": "123.450000"
+              }
+            ]
+          }
+        }
+      },
+      {
+        "id": "rail-op-unrelated-1",
+        "order": 3,
+        "operation_id": "op-unrelated",
+        "attempt": 1,
+        "interface_name": "get_kn_detail",
+        "protocol": "mcp",
+        "source_module": "platform-recorded",
+        "status": "completed",
+        "started_at": "2026-11-02T02:10:01Z",
+        "finished_at": "2026-11-02T02:10:02Z",
+        "duration_ms": 101,
+        "input": {
+          "mode": "inline",
+          "media_type": "application/json",
+          "byte_length": 126,
+          "inline": {
+            "kn_id": "kn-parity-owned",
+            "ot_id": "ot-inventory",
+            "condition": {
+              "field": "material_code",
+              "operation": "==",
+              "value": "382-000005"
+            }
+          }
+        },
+        "output": {
+          "mode": "inline",
+          "media_type": "application/json",
+          "byte_length": 100,
+          "inline": {
+            "total_count": 1,
+            "rows": [
+              {
+                "material_code": "382-000005",
+                "warehouse": "测试仓",
+                "qty": "123.450000"
+              }
+            ]
+          }
+        }
+      }
+    ]
+  }
+}

@@ -1,0 +1,44 @@
+✖ native analysis Reader preserves meta → token → tool_call → structured → done with comment heartbeats (10.508584ms)
+✖ native analysis Scope preserves every known control event and platform status without interpreting it (0.408333ms)
+✔ native analysis still refuses unknown event names instead of turning them into a completed result (0.61225ms)
+ℹ tests 3
+ℹ suites 0
+ℹ pass 1
+ℹ fail 2
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 194.654625
+
+✖ failing tests:
+
+test at tests/provenance-detail-native-analysis.test.ts:6:415
+✖ native analysis Reader preserves meta → token → tool_call → structured → done with comment heartbeats (10.508584ms)
+  Error [PlatformReaderError]: OpenBKN provenance analysis returned an invalid event.
+      at parseProvenanceSseFrame (/Users/kalias/Documents/project/app/openBKN/bkn-dsh-provenance-parity-20261102/packages/openbkn-business-context/src/platform-reader.ts:455:64)
+      at OpenBknPlatformReader.streamProvenanceDetailAnalysis (/Users/kalias/Documents/project/app/openBKN/bkn-dsh-provenance-parity-20261102/packages/openbkn-business-context/src/platform-reader.ts:287:25)
+      at async collect (/Users/kalias/Documents/project/app/openBKN/bkn-dsh-provenance-parity-20261102/packages/openbkn-business-context/tests/provenance-detail-native-analysis.test.ts:18:99)
+      at async TestContext.<anonymous> (/Users/kalias/Documents/project/app/openBKN/bkn-dsh-provenance-parity-20261102/packages/openbkn-business-context/tests/provenance-detail-native-analysis.test.ts:27:20)
+      at async Test.run (node:internal/test_runner/test:1389:7)
+      at async startSubtestAfterBootstrap (node:internal/test_runner/harness:387:3) {
+    code: 'INVALID_RESPONSE',
+    requiredAction: undefined,
+    httpStatus: undefined,
+    observedSubject: undefined
+  }
+
+test at tests/provenance-detail-native-analysis.test.ts:6:1022
+✖ native analysis Scope preserves every known control event and platform status without interpreting it (0.408333ms)
+  Error [PlatformReaderError]: OpenBKN provenance identity or response is invalid.
+      at invalid (/Users/kalias/Documents/project/app/openBKN/bkn-dsh-provenance-parity-20261102/packages/openbkn-business-context/src/provenance-detail-scope.ts:14:23)
+      at admitProvenanceAnalysisEvent (/Users/kalias/Documents/project/app/openBKN/bkn-dsh-provenance-parity-20261102/packages/openbkn-business-context/src/provenance-detail-scope.ts:19:79)
+      at ProvenanceDetailScope.run (/Users/kalias/Documents/project/app/openBKN/bkn-dsh-provenance-parity-20261102/packages/openbkn-business-context/src/provenance-detail-scope.ts:163:38)
+      at async collect (/Users/kalias/Documents/project/app/openBKN/bkn-dsh-provenance-parity-20261102/packages/openbkn-business-context/tests/provenance-detail-native-analysis.test.ts:18:99)
+      at async TestContext.<anonymous> (/Users/kalias/Documents/project/app/openBKN/bkn-dsh-provenance-parity-20261102/packages/openbkn-business-context/tests/provenance-detail-native-analysis.test.ts:36:18)
+      at async Test.run (node:internal/test_runner/test:1389:7)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:960:7) {
+    code: 'INVALID_RESPONSE',
+    requiredAction: undefined,
+    httpStatus: undefined,
+    observedSubject: undefined
+  }

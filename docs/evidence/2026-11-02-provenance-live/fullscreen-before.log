@@ -1,0 +1,40 @@
+✖ v016 evidence fullscreen consumes Escape and restores the new non-portal fullscreen trigger (2955.607916ms)
+✖ legacy evidence fullscreen and its Inspector close in inner-to-outer Escape order (3392.143917ms)
+ℹ tests 2
+ℹ suites 0
+ℹ pass 0
+ℹ fail 2
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 8207.124917
+
+✖ failing tests:
+
+test at tests/provenance-fullscreen-escape.test.ts:1:4054
+✖ v016 evidence fullscreen consumes Escape and restores the new non-portal fullscreen trigger (2955.607916ms)
+  AssertionError [ERR_ASSERTION]: fullscreen Escape must retain the DSH provenance overlay
+      at TestContext.<anonymous> (/Users/kalias/Documents/project/app/openBKN/bkn-dsh-provenance-parity-live-20261102/packages/openbkn-business-context/tests/provenance-fullscreen-escape.test.ts:68:10)
+      at async Test.run (node:internal/test_runner/test:1389:7)
+      at async startSubtestAfterBootstrap (node:internal/test_runner/harness:387:3) {
+    generatedMessage: false,
+    code: 'ERR_ASSERTION',
+    actual: undefined,
+    expected: true,
+    operator: '==',
+    diff: 'simple'
+  }
+
+test at tests/provenance-fullscreen-escape.test.ts:1:5482
+✖ legacy evidence fullscreen and its Inspector close in inner-to-outer Escape order (3392.143917ms)
+  AssertionError [ERR_ASSERTION]: legacy fullscreen Escape must retain the DSH provenance overlay
+      at TestContext.<anonymous> (/Users/kalias/Documents/project/app/openBKN/bkn-dsh-provenance-parity-live-20261102/packages/openbkn-business-context/tests/provenance-fullscreen-escape.test.ts:90:10)
+      at async Test.run (node:internal/test_runner/test:1389:7)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:960:7) {
+    generatedMessage: false,
+    code: 'ERR_ASSERTION',
+    actual: undefined,
+    expected: true,
+    operator: '==',
+    diff: 'simple'
+  }

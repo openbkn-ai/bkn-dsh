@@ -1,0 +1,13 @@
+✔ native outer Escape closes only the activated interaction_question popover and restores its trigger (3930.502ms)
+✔ native outer Escape closes only the activated interaction_result popover and restores its trigger (3779.87675ms)
+✔ hover original-text preview keeps existing focus and Escape on its trigger closes only the preview (4139.836083ms)
+✔ analysis reader Escape closes only its side panel without starting analysis or closing the DSH overlay (2252.192041ms)
+✔ analysis history dropdown consumes Escape before the analysis panel and outer overlay (2789.419292ms)
+ℹ tests 5
+ℹ suites 0
+ℹ pass 5
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 19758.073083

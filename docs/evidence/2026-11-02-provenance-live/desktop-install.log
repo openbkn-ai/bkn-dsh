@@ -1,0 +1,12 @@
+✓ Lockfile passes supply-chain policies (verified 1h ago)
+Progress: resolved 1, reused 0, downloaded 0, added 0
+Progress: resolved 163, reused 3, downloaded 0, added 0
+[WARN] Issues with peer dependencies found. Run "pnpm peers check" to list them.
+Packages: +180
+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+Progress: resolved 202, reused 182, downloaded 0, added 37
+Progress: resolved 202, reused 182, downloaded 0, added 90
+Progress: resolved 202, reused 182, downloaded 0, added 179
+Progress: resolved 202, reused 182, downloaded 0, added 180, done
+
+Done in 4.6s using pnpm v11.28.5

@@ -1,0 +1,51 @@
+{
+  "checkDate": "2026-11-02",
+  "evidenceLevel": "Read-only source, contract and blob-identity analysis; no new live OpenBKN requests, Host trial, build or tests.",
+  "pluginMain": "cfd377f88fe89a42e97577e62d1f06bec2875a3c",
+  "installedPluginDiskVersion": "0.2.1-rc.3-openbkn.0.2.1-2",
+  "installedDshDiskVersion": "0.2.1-rc.5",
+  "dshOfficialTag": "dsh-v0.2.1-rc.5",
+  "dshOfficialCommit": "b830ec950faba0a46dda564be3e2d854afed94f1",
+  "studioMain": "d8de7dab18b89d5d49fe54ab22166872a32b5f7f",
+  "studioRelease020": "90d3b92a909a3b98ad3e74b78b08ecf4fbdc3535",
+  "localSnapshotDirectory": "/Users/kalias/Documents/project/app/openBKN/platform-local-recovery/upgrade-20261019-020/ee-source/studio/bkn-studio",
+  "snapshotMatchesReleaseForListedFiles": true,
+  "deployedStudioSourceIdentity": "Not verified in this analysis",
+  "files": [
+    {
+      "path": "src/modules/bkn-trace/business-provenance/BusinessProvenanceScene.tsx",
+      "mainGitBlob": "eb286d7b6fec6f5a7585fc6ae0caa5c06e01fe3c",
+      "releaseGitBlob": "5db193c8b16a76364bf5014cc2e624160f48111b"
+    },
+    {
+      "path": "src/modules/bkn-trace/business-provenance/business-provenance.service.ts",
+      "mainGitBlob": "07ead96b3679ee9edd048aecc1b17ec8db3d4787",
+      "releaseGitBlob": "2b512ffce418b2097a6deaf1096c67de7253ac48"
+    },
+    {
+      "path": "src/modules/bkn-trace/business-provenance/call-scope.ts",
+      "mainGitBlob": "e82bffd31c2a3b914853a2ee47adfcb1f2c5e879",
+      "releaseGitBlob": "e82bffd31c2a3b914853a2ee47adfcb1f2c5e879"
+    },
+    {
+      "path": "src/modules/bkn-trace/evidence-chain/BusinessProvenance016.tsx",
+      "mainGitBlob": "d1f237333b79b17a9d4d31351efb3ad71647d51a",
+      "releaseGitBlob": "a713ee230811f93dfc788fe4ccb27d09607e77f6"
+    },
+    {
+      "path": "src/modules/bkn-trace/evidence-chain/EvidenceChainPanels.tsx",
+      "mainGitBlob": "908180db165b32d8f472d32b5c1c57e1d1a752b0",
+      "releaseGitBlob": "d6da98b20ce59b3fbbec49dff806284d50615a73"
+    },
+    {
+      "path": "src/modules/bkn-trace/evidence-chain/evidence-chain.types.ts",
+      "mainGitBlob": "aba7980a850065d2eb89307f4a56ec1c10bfe685",
+      "releaseGitBlob": "24c3a1d4d15b0e4571aade5a20d0982d1da1d3bd"
+    },
+    {
+      "path": "LICENSE",
+      "mainGitBlob": "947981ac7ad85b993e45f2a7b3714a7611abbb4b",
+      "releaseGitBlob": "947981ac7ad85b993e45f2a7b3714a7611abbb4b"
+    }
+  ]
+}

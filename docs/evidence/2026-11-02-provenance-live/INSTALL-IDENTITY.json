@@ -1,0 +1,18 @@
+{
+  "candidateSha256": "55c707f36ab65d15a7ee3433aa1ad12c5bb5d1dc417423ff7e275427304f2af9",
+  "candidateBytes": 870058,
+  "fileCount": 125,
+  "installedFileMatches": 125,
+  "isolatedInstalledPackage": "/Users/kalias/Documents/project/app/openBKN/bkn-dsh-provenance-parity-live-20261102/release/provenance-live-20261102/dsh-home/profiles/desktop/node_modules/@openbkn/dsh-business-context",
+  "profile": "desktop",
+  "dailyProfilePackageUnchanged": true,
+  "sourceBase": "bc5e67bfa1706c0e7f991f59979dbb93efe4a960",
+  "pluginVersion": "0.2.1-rc.3-openbkn.0.2.1-2",
+  "installedEntrypointHashes": {
+    "index.js": "bbed4784d42d49d32cad4889dde1441f12f2556ef828cd27903e9d5c5d8c0b44",
+    "business.js": "885f8cc5c7d940a56d90f629aeb74e4dc6756db6b6f4ed1c0102d4d53c46a9dd",
+    "client.js": "fd3d35da80cdae9d182c42ba2caae6794b779210afcd4bb60e382e50cd5db6cb",
+    "typert.host.js": "621d8712c01ac62732038cab5dcd1cec2e9c63d75e257dfdd56b71806250fdb4",
+    "typert.remote-client.js": "0c0f66936c9ea62fecb46f63b9f40f8c38b1cc07541c84ef797ac214ffea9878"
+  }
+}

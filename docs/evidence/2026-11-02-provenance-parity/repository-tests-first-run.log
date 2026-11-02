@@ -1,0 +1,138 @@
+✔ requires explicit source and output paths (1.25225ms)
+✔ passes the pinned release and compatibility manifests to the builder (31.536125ms)
+✔ a corrupted compatibility manifest fails with the file path and cause (7.957208ms)
+✔ non-JSON pnpm pack output fails with instructions instead of a bare SyntaxError (0.72325ms)
+✔ valid inputs still parse through both helpers (0.81375ms)
+✔ flags build-machine paths in hidden and multi-dot text files (native separators) (12.985666ms)
+✔ flags build-time file: references across YAML, JSON, and Windows forms (17.283583ms)
+✔ removes pnpm install metadata from the bundle (9.0945ms)
+✔ keeps stored-relative in-bundle links and rejects escaping and absolute-stored ones (3.553208ms)
+✔ rebases absolute-stored in-bundle links to relative ones (5.390166ms)
+✔ re-points source-tree links to mirrored bundle paths and copies external ones (8.586916ms)
+✔ a mirrored .bin entry keeps resolving modules relative to its real file (70.444375ms)
+✔ maps links through a bundle subdirectory prefix (runtime shape) (94.867625ms)
+✔ mirror matching follows platform identity rules (pure) (0.9635ms)
+✔ in-bundle directory links pass scanning without EISDIR and keep their contents scanned (3.3305ms)
+✔ prefixForms covers windows-native, forward-slash, and escaped serializations (0.134ms)
+✔ scrubs serialized build roots (native JSON, escaped, and forward forms) and keeps payloads valid (2.912583ms)
+node:fs:484
+    return binding.readFileUtf8(path, stringToFlags(options.flag));
+                   ^
+
+Error: ENOENT: no such file or directory, open '/Users/kalias/Documents/project/app/openBKN/bkn-dsh-provenance-parity-20261102/.github/workflows/automation-claude-review.yml'
+    at readFileSync (node:fs:484:20)
+    at file:///Users/kalias/Documents/project/app/openBKN/bkn-dsh-provenance-parity-20261102/tests/claude-review-plan.test.mjs:6:18
+    at ModuleJob.run (node:internal/modules/esm/module_job:439:25)
+    at async node:internal/modules/esm/loader:643:26
+    at async asyncRunEntryPointWithESMLoader (node:internal/modules/run_main:101:5) {
+  errno: -2,
+  code: 'ENOENT',
+  syscall: 'open',
+  path: '/Users/kalias/Documents/project/app/openBKN/bkn-dsh-provenance-parity-20261102/.github/workflows/automation-claude-review.yml'
+}
+
+Node.js v24.19.0
+✖ tests/claude-review-plan.test.mjs (197.67325ms)
+hint: Using 'master' as the name for the initial branch. This default branch name
+hint: is subject to change. To configure the initial branch name to use in all
+hint: of your new repositories, which will suppress this warning, call:
+hint:
+hint: 	git config --global init.defaultBranch <name>
+hint:
+hint: Names commonly chosen instead of 'master' are 'main', 'trunk' and
+hint: 'development'. The just-created branch can be renamed via this command:
+hint:
+hint: 	git branch -m <name>
+hint: Using 'master' as the name for the initial branch. This default branch name
+hint: is subject to change. To configure the initial branch name to use in all
+hint: of your new repositories, which will suppress this warning, call:
+hint:
+hint: 	git config --global init.defaultBranch <name>
+hint:
+hint: Names commonly chosen instead of 'master' are 'main', 'trunk' and
+hint: 'development'. The just-created branch can be renamed via this command:
+hint:
+hint: 	git branch -m <name>
+hint: Using 'master' as the name for the initial branch. This default branch name
+hint: is subject to change. To configure the initial branch name to use in all
+hint: of your new repositories, which will suppress this warning, call:
+hint:
+hint: 	git config --global init.defaultBranch <name>
+hint:
+hint: Names commonly chosen instead of 'master' are 'main', 'trunk' and
+hint: 'development'. The just-created branch can be renamed via this command:
+hint:
+hint: 	git branch -m <name>
+hint: Using 'master' as the name for the initial branch. This default branch name
+hint: is subject to change. To configure the initial branch name to use in all
+hint: of your new repositories, which will suppress this warning, call:
+hint:
+hint: 	git config --global init.defaultBranch <name>
+hint:
+hint: Names commonly chosen instead of 'master' are 'main', 'trunk' and
+hint: 'development'. The just-created branch can be renamed via this command:
+hint:
+hint: 	git branch -m <name>
+✔ refuses a dirty runtime source before applying compatibility patches (264.032583ms)
+✔ applies and verifies one release-matched compatibility series (303.624875ms)
+✔ builds an explicit patched source into a separate deployed runtime directory (267.440708ms)
+✔ refuses to deploy a runtime into its DSH source checkout (122.380417ms)
+✔ restores direct runtime-closure dependencies omitted by legacy deploy without copying nested node_modules (4.163375ms)
+✔ assembles a self-contained runtime with the patched dependency closure and embedded plugin (24.314334ms)
+✔ rejects a runtime directory without the patched dependency closure (5.089958ms)
+✔ writes a Windows launcher for a Windows bundle (81.391542ms)
+✔ replaces the pristine placeholder override (3.221583ms)
+✔ replaces an already-configured local override and is idempotent (0.515583ms)
+✔ refuses a missing, duplicated, or non-link override (10.64675ms)
+✔ configures the real repository workspace file (16.0965ms)
+✔ pinned test anchors are independent of the open-ended loading policy (4.639292ms)
+✔ DSH native prerelease semantics admit every newer version, including future major releases (2.821083ms)
+✔ stale, bounded and inconsistent engine or peer ranges cannot override the policy (2.070125ms)
+✔ shared Host identity peers have no hidden upper version ceiling (0.448333ms)
+✔ the compatibility gate rejects schema dependency drift and a different source build pin (0.549666ms)
+✔ host identities cannot be duplicated, unpinned or replaced by an unreviewed build version (0.837875ms)
+✔ a second DSH version cannot slip into any development dependency (0.675333ms)
+✔ release naming cannot select an unreviewed Host or disagree with package identity (0.64925ms)
+✔ runtime identity inspection refuses a nested DSH copy even when direct pins agree (20.170291ms)
+✔ posix launcher guard enforces ^22.19.0 || >=24.0.0 on the generated script (6.863709ms)
+✔ windows launcher guard enforces ^22.19.0 || >=24.0.0 on the generated script (0.424417ms)
+✔ windows launcher aborts on guard and bootstrap failure (0.096375ms)
+✔ release companions retain all previously accepted payload bytes for each fixed Host (272.429583ms)
+✔ builds Windows built-in tar arguments for a ZIP archive (2.536792ms)
+✔ assembles, archives, and writes a checksum for one declared target (17.879834ms)
+✔ rejects archive work for an undeclared platform (5.2395ms)
+✔ extracts exactly one version section, not a version it is a prefix of (1.211167ms)
+✔ refuses a version with no or an empty CHANGELOG section (0.515833ms)
+✔ renders the install command for the exact package version, then the changes (0.742625ms)
+✔ the committed CHANGELOG has a section for the committed plugin version (1.471125ms)
+✔ relative links resolve against the released ref; absolute, anchor and rooted links stay (0.121084ms)
+✔ rendered notes carry no relative link and no unconditional provenance claim (0.073ms)
+✔ Windows drive paths use system bsdtar even when Git tar is first on PATH (1.657125ms)
+✔ requires every release profile input (1.045125ms)
+✔ passes explicit paths to the native-profile preparer (0.887959ms)
+✔ delegates release profile creation to DSH native plugin management (3.948458ms)
+✔ 0.2.0-rc.2: a passing Host-root graph cannot hide a private profile Schemastery (synthetic graph) (8.73475ms)
+✔ 0.2.1-rc.3: a passing Host-root graph cannot hide a private profile Schemastery (synthetic graph) (5.870042ms)
+✔ 0.2.1-rc.5: a passing Host-root graph cannot hide a private profile Schemastery (synthetic graph) (27.358875ms)
+✔ 0.2.2-alpha.2: a passing Host-root graph cannot hide a private profile Schemastery (synthetic graph) (4.573542ms)
+✔ 1.0.0: a passing Host-root graph cannot hide a private profile Schemastery (synthetic graph) (3.557709ms)
+✔ a future Host graph is accepted when its profile uses the same physical schema package (31.015917ms)
+✔ the official Host Zod range and exact plugin Zod pin are separate requirements (3.908875ms)
+✔ recognizes only an exact bundled plugin installed as a web profile layer (2.887708ms)
+✔ copies the release-built, native-plugin-managed profile without network access (2.383291ms)
+✔ a corrupted home profile manifest fails closed with context and is never overwritten (3.778167ms)
+✔ a corrupted template manifest fails closed before any home directory is created (1.506458ms)
+ℹ tests 67
+ℹ suites 0
+ℹ pass 66
+ℹ fail 1
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 1245.69725
+
+✖ failing tests:
+
+test at tests/claude-review-plan.test.mjs:1:1
+✖ tests/claude-review-plan.test.mjs (197.67325ms)
+  'test failed'

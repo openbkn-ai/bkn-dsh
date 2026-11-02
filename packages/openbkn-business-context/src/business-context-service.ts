@@ -36,6 +36,8 @@ import { trimTrailingSlashes } from './trailing-slashes.js'
 import { OpenBknPlatformTrust, PlatformConnectionError, connectionFailure } from './platform-trust.js'
 import { PrivatePlatformAccess } from './private-platform-access.js'
 import type {} from './platform-access-profile.js'
+import { ProvenanceDetailScope } from './provenance-detail-scope.js'
+import type { ProvenanceDetailEvent, ProvenanceDetailFailure, ProvenanceDetailRequest } from './provenance-detail-types.js'
 
 declare module '@deepseek-ai/cordis' {
   interface Context {
@@ -73,6 +75,22 @@ interface SessionPersistenceStat {
  * may hold its session unmaterialized (invisible to this process's `stat`).
  */
 const ORPHAN_BINDING_GRACE_MS = 7 * 24 * 60 * 60 * 1000
+
+class ProvenanceSceneChangedError extends Error {}
+
+function provenanceDetailFailure(error: unknown, signal: AbortSignal): Extract<ProvenanceDetailEvent, { kind: 'failure' }> {
+  if (signal.aborted) return { kind: 'failure', code: 'REQUEST_ABORTED' }
+  if (error instanceof ProvenanceSceneChangedError) return { kind: 'failure', code: 'IDENTITY_CHANGED' }
+  const connection = connectionFailure(error)
+  let code: ProvenanceDetailFailure
+  if (connection === 'PLATFORM_IDENTITY_CHANGED' || connection === 'PLATFORM_REAUTHORIZATION_REQUIRED') code = 'AUTHENTICATION_REQUIRED'
+  else if (connection === 'CERTIFICATE_UNTRUSTED') code = 'CERTIFICATE_UNTRUSTED'
+  else if (connection?.startsWith('CERTIFICATE_') || connection === 'TRUST_SCOPE_MISMATCH') code = 'CERTIFICATE_INVALID'
+  else if (connection === 'NETWORK_TIMEOUT') code = 'NETWORK_TIMEOUT'
+  else code = error instanceof PlatformReaderError ? error.code : 'PLATFORM_UNAVAILABLE'
+  const status = error instanceof PlatformReaderError ? error.httpStatus : undefined
+  return { kind: 'failure', code, ...(status !== undefined && Number.isInteger(status) && status >= 100 && status <= 599 ? { httpStatus: status } : {}) }
+}
 
 /**
  * A CLI the host cannot find or execute is reported with its own code, so the
@@ -302,6 +320,40 @@ export class OpenBknBusinessContextService extends TypertRemoteService {
     signal: AbortSignal,
   ): AsyncIterable<ProvenanceView | undefined> {
     yield await this.remoteGetTurnProvenanceView(sessionId, messageId, signal)
+  }
+
+  /** Native platform conversation detail, anchored solely by one trusted DSH answer. */
+  @Remote({ mode: 'stream' })
+  async *provenanceDetailStream(
+    sessionId: SessionId,
+    messageId: string,
+    request: ProvenanceDetailRequest,
+    signal: AbortSignal,
+  ): AsyncIterable<ProvenanceDetailEvent> {
+    signal = this.operationSignal(signal)
+    try {
+      signal.throwIfAborted()
+      const agent = this.ctx.agents.get(sessionId)
+      if (agent === undefined) { yield { kind: 'failure', code: 'SESSION_UNAVAILABLE' }; return }
+      const handle = readDshSessionTurnProvenance(agent.session, messageId)
+      if (handle?.recording !== undefined) { yield { kind: 'failure', code: handle.recording === 'disabled' ? 'TRACE_DISABLED' : 'TRACE_UNAVAILABLE' }; return }
+      if (handle?.interactionId === undefined || handle.conversationId === undefined) { yield { kind: 'failure', code: 'HANDLE_UNAVAILABLE' }; return }
+      const binding = this.bindingOf(agent)
+      if (binding === undefined) { yield { kind: 'failure', code: 'BINDING_REQUIRED' }; return }
+      if (normalizeBaseUrl(binding.platformBaseUrl) !== normalizeBaseUrl(this.config.baseUrl)) { yield { kind: 'failure', code: 'PLATFORM_MISMATCH' }; return }
+      const revision = this.provenanceRevision ?? 0
+      const guard = () => {
+        signal.throwIfAborted()
+        const currentAgent = this.ctx.agents.get(sessionId)
+        const currentBinding = currentAgent === agent ? this.bindingOf(agent) : undefined
+        const currentHandle = currentAgent === agent ? readDshSessionTurnProvenance(agent.session, messageId) : undefined
+        if ((this.provenanceRevision ?? 0) !== revision || !currentBinding || !sameIdentity(binding, currentBinding)
+          || currentHandle?.interactionId !== handle.interactionId || currentHandle?.conversationId !== handle.conversationId
+          || currentHandle?.recording !== handle.recording || currentHandle?.status !== handle.status) throw new ProvenanceSceneChangedError()
+      }
+      const scope = new ProvenanceDetailScope({ conversationId: handle.conversationId, initialInteractionId: handle.interactionId, knowledgeNetworkId: binding.knowledgeNetworkId }, this.platformReader(), guard)
+      for await (const event of scope.run(request, signal)) { guard(); yield event }
+    } catch (error) { yield provenanceDetailFailure(error, signal) }
   }
 
   @Remote('getTurnProvenanceView')

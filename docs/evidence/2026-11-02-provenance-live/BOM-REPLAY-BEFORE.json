@@ -1,0 +1,9 @@
+{
+  "actualResponseSha256": "7463bb3084bc7b94b440bca8cc239aa826bc02dea5dc327f6567f4a05db99001",
+  "actualResponseBytes": 9067369,
+  "replay": "captured actual platform response through production Reader and Scope, no network",
+  "requests": 1,
+  "outcome": "rejected",
+  "code": "OUTPUT_OVERFLOW",
+  "message": "OpenBKN platform response exceeded the safe Host limit."
+}

@@ -1,0 +1,11 @@
+{
+  "previousSha256": "55c707f36ab65d15a7ee3433aa1ad12c5bb5d1dc417423ff7e275427304f2af9",
+  "finalSha256": "77a6b7728dfc89fda994e718a056170250e56d6109515dfd202cba0b780e1415",
+  "finalBytes": 871543,
+  "files": 126,
+  "changes": {
+    "package/lib/client.js": "changed",
+    "package/lib/types/client/platform-provenance/use-owned-layer-focus.d.ts": "added"
+  },
+  "hostBusinessUnchanged": true
+}

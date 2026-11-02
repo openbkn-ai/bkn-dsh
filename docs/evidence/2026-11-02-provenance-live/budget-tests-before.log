@@ -1,0 +1,37 @@
+✖ a real-observed 9,067,369-byte detail shape survives Reader, Scope and Remote chunks unchanged (31.323208ms)
+✖ Markdown preflight can validate that same large detail without increasing Markdown limits (16.19875ms)
+✖ detail has a bounded 16 MiB allowance while other native data remains at 8 MiB (38.027333ms)
+ℹ tests 3
+ℹ suites 0
+ℹ pass 0
+ℹ fail 3
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 286.07125
+
+✖ failing tests:
+
+test at tests/provenance-detail-live-budget.test.ts:1:1967
+✖ a real-observed 9,067,369-byte detail shape survives Reader, Scope and Remote chunks unchanged (31.323208ms)
+  Error [ProvenanceDetailTransportError]: Business provenance could not be read.
+      at <anonymous> (/Users/kalias/Documents/project/app/openBKN/bkn-dsh-provenance-parity-live-20261102/packages/openbkn-business-context/src/client/provenance-detail-bridge.ts:125:102) {
+    code: 'remote-failed',
+    response: undefined
+  }
+
+test at tests/provenance-detail-live-budget.test.ts:1:2262
+✖ Markdown preflight can validate that same large detail without increasing Markdown limits (16.19875ms)
+  Error [ProvenanceDetailTransportError]: Business provenance could not be read.
+      at <anonymous> (/Users/kalias/Documents/project/app/openBKN/bkn-dsh-provenance-parity-live-20261102/packages/openbkn-business-context/src/client/provenance-detail-bridge.ts:125:102) {
+    code: 'remote-failed',
+    response: undefined
+  }
+
+test at tests/provenance-detail-live-budget.test.ts:1:2541
+✖ detail has a bounded 16 MiB allowance while other native data remains at 8 MiB (38.027333ms)
+  Error [ProvenanceDetailTransportError]: Business provenance could not be read.
+      at <anonymous> (/Users/kalias/Documents/project/app/openBKN/bkn-dsh-provenance-parity-live-20261102/packages/openbkn-business-context/src/client/provenance-detail-bridge.ts:125:102) {
+    code: 'remote-failed',
+    response: undefined
+  }

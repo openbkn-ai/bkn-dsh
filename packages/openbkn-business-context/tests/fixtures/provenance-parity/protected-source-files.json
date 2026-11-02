@@ -1,0 +1,285 @@
+{
+  "schemaVersion": 1,
+  "baselineCommit": "bc5e67bfa1706c0e7f991f59979dbb93efe4a960",
+  "scope": "Unrelated plugin source is byte-preserved. Shared-file provenance hunks require separate diff review.",
+  "allowedExistingFiles": {
+    "packages/openbkn-business-context/src/business-context-service.ts": "provenance-only Remote entry points and trusted scope",
+    "packages/openbkn-business-context/src/platform-reader.ts": "fixed provenance record/action routes",
+    "packages/openbkn-business-context/src/native-provenance.ts": "provenance projection",
+    "packages/openbkn-business-context/src/native-provenance-types.ts": "provenance DTO types",
+    "packages/openbkn-business-context/src/types.ts": "shared provenance type surface only",
+    "packages/openbkn-business-context/src/client/index.tsx": "provenance slot wiring only",
+    "packages/openbkn-business-context/src/client/ProvenanceOverlay.tsx": "provenance surface only",
+    "packages/openbkn-business-context/src/client/locales.ts": "timeline terminology only"
+  },
+  "protectedFiles": [
+    {
+      "path": "packages/openbkn-business-context/src/auth.ts",
+      "sha256": "5ffa8ea5033370c4bf83789136746cca24214c9faca229a84ebca31ae76841f6"
+    },
+    {
+      "path": "packages/openbkn-business-context/src/authorization-browser.ts",
+      "sha256": "b6e6ec9c31d91ab155372b29f21288e50df7943e42f49324f0c6754ee8275871"
+    },
+    {
+      "path": "packages/openbkn-business-context/src/business-graph-model.ts",
+      "sha256": "71eeafe921bce892d88da10fca9a948de4ed9f444c69f8cdd88d5c0b5d0f0ed9"
+    },
+    {
+      "path": "packages/openbkn-business-context/src/business-network-catalog.ts",
+      "sha256": "35b8bd3fec871540de43d97daf350cfaac202473f7b544ebc58430276d731382"
+    },
+    {
+      "path": "packages/openbkn-business-context/src/business.ts",
+      "sha256": "c66c53c5eb096522cf3307342117678b4098867f9d91b7406133772166fc0341"
+    },
+    {
+      "path": "packages/openbkn-business-context/src/cli-platform-preload.ts",
+      "sha256": "4250afcf5494dadab5a56a03fb4e68b65bced3cd71e930d06ed76447476df045"
+    },
+    {
+      "path": "packages/openbkn-business-context/src/cli-setup.ts",
+      "sha256": "92b0e302792250c6dd78007a6c8d57f9ef8b5bb0d17ce46abd1e55bc01b0ca1d"
+    },
+    {
+      "path": "packages/openbkn-business-context/src/client/BoundNetworkBadge.tsx",
+      "sha256": "bab5ea48f3657d0e76a12d7382c7a282a0f4d432345eec54da2dc2b473662807"
+    },
+    {
+      "path": "packages/openbkn-business-context/src/client/CertificateControl.tsx",
+      "sha256": "07a816e5263065ac8782c04e0e625a8c58932c66eab85501396abd205a142a2b"
+    },
+    {
+      "path": "packages/openbkn-business-context/src/client/CliSetupControl.tsx",
+      "sha256": "027d55d4ec9740ba7eb9bcf70a8661d2adb6e9940754c36fc31c3fffc1425f00"
+    },
+    {
+      "path": "packages/openbkn-business-context/src/client/NativeProvenancePanel.tsx",
+      "sha256": "6d6c73ba548950f40b6714716f6d4e591cd80e77e5f29ca63a5b495feb6e1f12"
+    },
+    {
+      "path": "packages/openbkn-business-context/src/client/NativeRecordList.tsx",
+      "sha256": "3db96c99d072817a7d3181940ea1d3147949256198a826c49558ffc7a474e50a"
+    },
+    {
+      "path": "packages/openbkn-business-context/src/client/OpenBknContextToolView.tsx",
+      "sha256": "247460a5159ad639fb9f42b53dfabc1871cc75be5a1e78909f0db5823ac3bc8b"
+    },
+    {
+      "path": "packages/openbkn-business-context/src/client/OpenBknDiagnostics.tsx",
+      "sha256": "67f31d478918b5b5c865623a1ce282e18df03847e307dfbf1f3946a54d89159c"
+    },
+    {
+      "path": "packages/openbkn-business-context/src/client/OpenBknEntry.tsx",
+      "sha256": "1b4a522aaabca617b3f248b65e3eec48a9fa5c5d6285172b61822d17ee32413d"
+    },
+    {
+      "path": "packages/openbkn-business-context/src/client/OpenBknOverlay.tsx",
+      "sha256": "b32ebc65a91fc98661aba299ad570adf4b1f7f580b24c507c1022e160d0ad007"
+    },
+    {
+      "path": "packages/openbkn-business-context/src/client/SuggestionDock.tsx",
+      "sha256": "d2d3b2455a38de77335281ff19c4d9e061e6ad56bd6f8bd70663aae6b28075ec"
+    },
+    {
+      "path": "packages/openbkn-business-context/src/client/TurnProvenanceActions.tsx",
+      "sha256": "85063b5f0012642c6a1b8781cf70d27c355d1ad4643714ec201acfbab3e8d7ed"
+    },
+    {
+      "path": "packages/openbkn-business-context/src/client/cli-setup-controller.ts",
+      "sha256": "6125d3d3cb6d7054c1a7da8e13efb5030fa728f3753a44a42ad441081499c496"
+    },
+    {
+      "path": "packages/openbkn-business-context/src/client/diagnostics-controller.ts",
+      "sha256": "0712fc77bb9cca154cd6d037a5ee557565c1421c02b3de06c9f6e8facfdcf370"
+    },
+    {
+      "path": "packages/openbkn-business-context/src/client/diagnostics-copy.ts",
+      "sha256": "6af69e1b11b8a0f9562dffa4cc411b65cbd8b71c74e719c1d26dcc6036e24a80"
+    },
+    {
+      "path": "packages/openbkn-business-context/src/client/diagnostics-export.ts",
+      "sha256": "b3911628b66646e1b7f3ab3fd83c65b4db5a7b0c269f96f1c776c5d4ff583c5c"
+    },
+    {
+      "path": "packages/openbkn-business-context/src/client/diagnostics-target.ts",
+      "sha256": "239ebf2ff322b604756ea03d6d27ebc274fe2fc9fad9cc5d93c930d2229f1a2b"
+    },
+    {
+      "path": "packages/openbkn-business-context/src/client/locale.tsx",
+      "sha256": "df03dc30e97a3b951998d3210730dcac93264069e6b1b701852f6a65eb344d89"
+    },
+    {
+      "path": "packages/openbkn-business-context/src/client/messages.ts",
+      "sha256": "b044a59d0325fd5043f950235284067d81a083977bd47314f61fa7ff8e057d54"
+    },
+    {
+      "path": "packages/openbkn-business-context/src/client/native-provenance-selection.ts",
+      "sha256": "40efb3aa9830ea2dbff105dcc67d733356387aaab262ab4ca31cd130369b45a4"
+    },
+    {
+      "path": "packages/openbkn-business-context/src/client/network-directory.ts",
+      "sha256": "0cc7dbaa4c16ed1e0f1481a414949c35a1783872c8f8a78587c6e244f31eeee0"
+    },
+    {
+      "path": "packages/openbkn-business-context/src/client/openbkn-panel-bridge.ts",
+      "sha256": "c9553e23607e339665b51a0521bec50e196dfaac44277e7bedc2c8b0e5d7c685"
+    },
+    {
+      "path": "packages/openbkn-business-context/src/client/openbkn-ui-controller.ts",
+      "sha256": "d992219a5e4320643a540e3b4b9357ecbae30c3911f0eaee6ea3ceed726d8c02"
+    },
+    {
+      "path": "packages/openbkn-business-context/src/client/pick-workspace-directory.ts",
+      "sha256": "7e343abb5b0be3cde214410bce041ae3c4f6b073fbca44923e7669f1e0b9dd36"
+    },
+    {
+      "path": "packages/openbkn-business-context/src/client/suggestion-dock-controller.ts",
+      "sha256": "24a758bcb6ce0e9e636fb5e88b717e1af46b4aae83cb05ed48da49c0b13f1446"
+    },
+    {
+      "path": "packages/openbkn-business-context/src/client/turn-provenance-controller.ts",
+      "sha256": "1502f30499cd96d36d9e8a32a624e2e434f3fc2ae0fac088edb954284e402992"
+    },
+    {
+      "path": "packages/openbkn-business-context/src/client/use-dialog-focus.ts",
+      "sha256": "8d9908b694848aa998318e9aa3d868cf9dea7e44e7861cde4cba278c3891d9a8"
+    },
+    {
+      "path": "packages/openbkn-business-context/src/config.ts",
+      "sha256": "4cdd9a26396699d356c90839993d2fccb2757cf28f5e0fcda5d3696b73a047ff"
+    },
+    {
+      "path": "packages/openbkn-business-context/src/configuration-service.ts",
+      "sha256": "07a34442e74d85e7f19b3e3d26b6e0464133c12b628b1c07325df77975229188"
+    },
+    {
+      "path": "packages/openbkn-business-context/src/diagnostics-contract.ts",
+      "sha256": "d256c762b7109ec269c8d3a68358c305b235619ece73b92d13ee5ea99b7a745b"
+    },
+    {
+      "path": "packages/openbkn-business-context/src/diagnostics-host-adapter.ts",
+      "sha256": "f23fa0cfb595278d9b8fcb12ec3b24107ff10deb5a669710b63fa8aac60c9216"
+    },
+    {
+      "path": "packages/openbkn-business-context/src/diagnostics-observer.ts",
+      "sha256": "5118404a87a1b0f95e153e7cfa6044a73f47ebb614f2e24d2a69575d127c851b"
+    },
+    {
+      "path": "packages/openbkn-business-context/src/diagnostics-service.ts",
+      "sha256": "4f614c3ecbd02f7696b5bea69c4e50b449172b3288b352200d9adc9ac2e551c9"
+    },
+    {
+      "path": "packages/openbkn-business-context/src/diagnostics.ts",
+      "sha256": "9db570b7c79ce0596ab6bc440a6d0d1b5636c356cb182378eee0f9f1825197b3"
+    },
+    {
+      "path": "packages/openbkn-business-context/src/dsh-session-binding.ts",
+      "sha256": "e6440d740d9ee72a815595aec3c24bd6d569e8e3d9f5c1706d8dfc77840f0a65"
+    },
+    {
+      "path": "packages/openbkn-business-context/src/dsh-session-provenance.ts",
+      "sha256": "6dec79925280837c55ce97bf24f9ebbe449cb1451b902934ae8668d320f738ca"
+    },
+    {
+      "path": "packages/openbkn-business-context/src/index.ts",
+      "sha256": "597ba37ff02a0ce19143771ec23f131ece96a06288b0ca7d99491226884298fa"
+    },
+    {
+      "path": "packages/openbkn-business-context/src/interaction-lifecycle.ts",
+      "sha256": "dc2169ffeef2cce9c961febb80661bbc2728a347f15252af82cabf9b7e7f264a"
+    },
+    {
+      "path": "packages/openbkn-business-context/src/interaction-references.ts",
+      "sha256": "0478b044304685e6412aa4eec60c56e3d7d9ed8bb9e901da235df5221e3776bf"
+    },
+    {
+      "path": "packages/openbkn-business-context/src/managed-session-policy.ts",
+      "sha256": "413d4eb88b7c5cda1552cd181baa3d2ce08f5fae49bda604aef4cf7ebdeda807"
+    },
+    {
+      "path": "packages/openbkn-business-context/src/native-mcp-provenance.ts",
+      "sha256": "e169f6c2c0e70f8c0565134aefbd2382de7bc402b648aca7c155e8256ddbc737"
+    },
+    {
+      "path": "packages/openbkn-business-context/src/network-capability-profile.ts",
+      "sha256": "60f6c4da00e9053fd2b5b1faca2781402e4c9cac10aaf5ff176bc55c8d1b9c8e"
+    },
+    {
+      "path": "packages/openbkn-business-context/src/openbkn-cli-subprocess.ts",
+      "sha256": "16a15d79df073ab3e8bc5b99392a930fbc71f02790a4decde6110b3660e244e5"
+    },
+    {
+      "path": "packages/openbkn-business-context/src/openbkn-mcp-manager.ts",
+      "sha256": "bc6522611331ffc09d849ffa7301bb14307eced5223702320a2705064c83b65a"
+    },
+    {
+      "path": "packages/openbkn-business-context/src/platform-access-profile.ts",
+      "sha256": "a917588ac4a97542c26983c298ba3dcaf214c04d16dddb723b16c5319cea4495"
+    },
+    {
+      "path": "packages/openbkn-business-context/src/platform-csv-export.ts",
+      "sha256": "b650fc8583b57ce4dbd084a631a79642bce1ef3ed6c410e9704ee5add7e01588"
+    },
+    {
+      "path": "packages/openbkn-business-context/src/platform-pin.ts",
+      "sha256": "5bc575ad0d1b2f9f3117339028d1847cfa0cd075c6d1161c88457486dc6eef92"
+    },
+    {
+      "path": "packages/openbkn-business-context/src/platform-trust.ts",
+      "sha256": "d0da1d60d08b770da8cd60e46c1d99eb98aaea79968ebdbbbaa0870883fea716"
+    },
+    {
+      "path": "packages/openbkn-business-context/src/private-platform-access.ts",
+      "sha256": "57298cf702e4750e8a99347a54f5ed31dc0260dd057cdf10c5bcc4aaaa8c78e6"
+    },
+    {
+      "path": "packages/openbkn-business-context/src/provenance-handle.ts",
+      "sha256": "57ace32bb589003c3b19e246f076235298cbfcd97f5ed6afb7e7ce4b4b204895"
+    },
+    {
+      "path": "packages/openbkn-business-context/src/provenance-view.ts",
+      "sha256": "4cffda4bc4ddddd3e7268e901eb4102de55ffae7097e1c79681505499b127b18"
+    },
+    {
+      "path": "packages/openbkn-business-context/src/scoped-business-context.ts",
+      "sha256": "10cf1011e7261778561972ebc63bfb6f27843149f11dbff5469cabe9152f9de9"
+    },
+    {
+      "path": "packages/openbkn-business-context/src/session-binding-store.ts",
+      "sha256": "b9c7d72161fc055ebacb2ca1a46d64ca6d1743d0d955a24eed7d94bdc6bb07ea"
+    },
+    {
+      "path": "packages/openbkn-business-context/src/session-binding.ts",
+      "sha256": "2fe0b61b66268c95a360d16b6e17e8ca9d118a61fe75965f8a15431c17fd852a"
+    },
+    {
+      "path": "packages/openbkn-business-context/src/suggested-prompts.ts",
+      "sha256": "b0e8a33fa5a196e1ae371c379bdf0751edae5cec1f85f886dd454a80f7fbc41b"
+    },
+    {
+      "path": "packages/openbkn-business-context/src/timeline-fold.ts",
+      "sha256": "6a8f594d7c6e1f18af472970ba9c4074fd7dabb1aa65a7e176b62ca1870fdb77"
+    },
+    {
+      "path": "packages/openbkn-business-context/src/tool-result-message.ts",
+      "sha256": "1757480e54806e7476f1676f0aaeb3c79096f1345616b65ac3b6230286c15a98"
+    },
+    {
+      "path": "packages/openbkn-business-context/src/trailing-slashes.ts",
+      "sha256": "5c4c17233a02c4ce8e4e316783a2ebaceac2f17aacddad40b4f5cbf6094943d8"
+    },
+    {
+      "path": "packages/openbkn-business-context/src/turn-provenance.ts",
+      "sha256": "cab7f730735c16e43c79a1aa63d9a872edb54738cb102a7ddf1ccf3db18e64f1"
+    },
+    {
+      "path": "packages/openbkn-business-context/src/turn-timeline.ts",
+      "sha256": "fbc34e6829cbc05eda1f28151e804d9eaa1a091b9c79d6046b37b088913de562"
+    },
+    {
+      "path": "packages/openbkn-business-context/src/workspace-binding-registry.ts",
+      "sha256": "ed2012ed75304fe051b5e0cc7f8bc2b1ea53a07c5b67074b6c4f887d818e8291"
+    }
+  ]
+}

@@ -1,5 +1,15 @@
 # Changelog
 
+## 0.2.1-rc.3-openbkn.0.2.1-3 (unreleased)
+
+- Reuse the platform business-provenance detail layout inside the current DSH conversation: exact answer/round selection, time and evidence chains, operation inspectors, managed-function internal calls, original input/output, Markdown export, explanation actions and BKN Agent analysis/history. Omit the platform list-back action because DSH already supplies the conversation context.
+- Keep platform-owned facts, unknown fields, failure/invalid states and reasons unchanged. Derive platform/conversation identity in the Host, validate same-conversation round membership and network scope, and cancel stale reads/actions after session or authorization changes. No answer arbitration, corrective turns, business calculations or automatic application of Agent suggestions.
+- Preserve the managed tool catalogue and routing fixes, including omission of network-scoped legacy skill definitions without a declared kn_id; retain the execution guard and existing scoped CSV behavior.
+- Correct the Chinese time-chain label, isolate nested Escape and Tab focus behavior, and permit bounded full detail responses up to16 MiB after reproducing a real9 MB record rejection. Other endpoint, Markdown, structure, membership and analysis limits remain unchanged; never truncate the record to fit.
+- Add controlled contract, rendering, transport, permission, cancellation, shared-input and keyboard regressions, including the source-adjacent adapter/clipboard/list tests in the default CI suite. Preserve the reused Studio source license and keep unrelated plugin source under a protected baseline check.
+- Pre-release validation is in progress. The historical local candidate passed Mac Desktop rc.5 read-only checks; that does not accept the forthcoming CI artifact. Real generation/analysis, existing-explanation graphs/fullscreen, Windows native behavior and failure scenarios remain separately scoped acceptance items. Retain the platform search truncation and malformed Markdown observations; do not repair platform/model output in the plugin.
+
+
 ## 0.2.1-rc.3-openbkn.0.2.1-2 (2026-10-30)
 
 - Formal release acceptance (2026-10-30): reuse the existing registry package, source tag and five release assets without rebuilding or repacking. The maintainer explicitly accepts #63's missing actual Remote error-shape evidence and the untriaged rc.5 normal-instance diagnostic-export observation as nonblocking. Close #63 under this adjusted criterion while preserving UNKNOWN fields, the original checklist and historical failures. Official Windows rc.5 installation and runtime component loading pass within their bounded scope; do not claim full rc.5 or universal future-version acceptance. Clear the GitHub prerelease flag; latest promotion remains maintainer-owned. See [formal release notes](docs/evidence/2026-10-30-windows-rc5-load-issue63/FORMAL-RELEASE-NOTES.md).

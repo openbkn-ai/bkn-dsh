@@ -1,0 +1,238 @@
+{
+  "checkedAtUTC": "2026-11-02T06:11:36.034869+00:00",
+  "verdict": "pass artifact identity, preserved scope, and reviewed focus/detail-budget boundaries; native UI acceptance remains separately evidenced by parent",
+  "sourceBaseCommit": "bc5e67bfa1706c0e7f991f59979dbb93efe4a960",
+  "candidate": {
+    "path": "/Users/kalias/Documents/project/app/openBKN/bkn-dsh-provenance-parity-live-20261102/release/openbkn-provenance-parity-live.3.tgz",
+    "sha256": "7f5f6a8630a4b3dcaf05a9e88e90f96bb1bef7f4ba8194ca518a24aefbbf10c5",
+    "bytes": 871946,
+    "files": 126,
+    "matchesInstallIdentity3": true,
+    "manifestVersion": "0.2.1-rc.3-openbkn.0.2.1-2",
+    "unpublished": true,
+    "relativeToFirst": {
+      "added": [
+        "lib/types/client/platform-provenance/use-owned-layer-focus.d.ts"
+      ],
+      "removed": [],
+      "changed": [
+        "lib/business.js",
+        "lib/client.js",
+        "lib/types/provenance-detail-scope.d.ts",
+        "lib/types/provenance-detail-types.d.ts"
+      ],
+      "unchanged": 121
+    },
+    "relativeToSecond": {
+      "added": [],
+      "removed": [],
+      "changed": [
+        "lib/business.js",
+        "lib/client.js",
+        "lib/types/client/platform-provenance/use-owned-layer-focus.d.ts",
+        "lib/types/provenance-detail-scope.d.ts",
+        "lib/types/provenance-detail-types.d.ts"
+      ],
+      "unchanged": 121
+    }
+  },
+  "installed": {
+    "path": "/Users/kalias/Documents/project/app/openBKN/bkn-dsh-provenance-parity-live-20261102/release/provenance-live-20261102/dsh-home/profiles/desktop/node_modules/@openbkn/dsh-business-context",
+    "matchedFiles": 126,
+    "drift": [],
+    "workingTreeContentDrift": [],
+    "semanticSerializationOnly": [
+      "package.json"
+    ],
+    "requiredAssets": {
+      "cordis.patch.yml": true,
+      "lib/index.js": true,
+      "lib/business.js": true,
+      "lib/diagnostics.js": true,
+      "lib/client.js": true,
+      "lib/typert.host.js": true,
+      "lib/typert.remote-client.js": true,
+      "lib/platform-mcp-client.js": true,
+      "licenses/dsh-mcp-client.txt": true,
+      "licenses/openbkn-studio.txt": true
+    },
+    "testOrHarnessAssets": [],
+    "entrypointSha256": {
+      "index.js": "bbed4784d42d49d32cad4889dde1441f12f2556ef828cd27903e9d5c5d8c0b44",
+      "business.js": "bac538d8de54f6b362ba39374b495cf39c6dfe89c4732074cfc966f98e1af7ad",
+      "client.js": "4a69b0af435a76853654b5ac4e38af12effe580ea4ae7a863a3ad458f98c5797",
+      "typert.host.js": "621d8712c01ac62732038cab5dcd1cec2e9c63d75e257dfdd56b71806250fdb4",
+      "typert.remote-client.js": "0c0f66936c9ea62fecb46f63b9f40f8c38b1cc07541c84ef797ac214ffea9878"
+    }
+  },
+  "preservedSource": {
+    "fixtureBaseline": "bc5e67bfa1706c0e7f991f59979dbb93efe4a960",
+    "count": 67,
+    "allMatchBc5AndFixture": true,
+    "aggregateSha256": "848c4d94acead91e1499e5df32b9c9c0719adb860e984f9b4d66a1af8e6d8435",
+    "toolSurfaceFiles": [
+      {
+        "path": "packages/openbkn-business-context/src/managed-session-policy.ts",
+        "sha256": "413d4eb88b7c5cda1552cd181baa3d2ce08f5fae49bda604aef4cf7ebdeda807",
+        "matchesGitAndFixture": true
+      },
+      {
+        "path": "packages/openbkn-business-context/src/scoped-business-context.ts",
+        "sha256": "10cf1011e7261778561972ebc63bfb6f27843149f11dbff5469cabe9152f9de9",
+        "matchesGitAndFixture": true
+      }
+    ]
+  },
+  "compiledToolSurface": {
+    "managedRoutingRetained": true,
+    "knDeclarationFilterRetained": true
+  },
+  "tests": {
+    "pluginDefault": {
+      "source": "plugin-tests-final.log",
+      "sourceSha256": "bc398f154746bb0b2fd82464bcbc8b7da563d43d9d0aa76ad54ec51fb497beb4",
+      "tests": 760,
+      "pass": 759,
+      "fail": 0,
+      "skipped": 1,
+      "executedByThisQA": false
+    },
+    "repositoryFull": {
+      "source": "repository-tests.log",
+      "sourceSha256": "e70dce97805da406305ac4af2c442cf9bd27d6b833d6320c13adcfea5a5443ed",
+      "tests": 79,
+      "pass": 79,
+      "fail": 0,
+      "skipped": 0,
+      "executedByThisQA": false
+    },
+    "scope": {
+      "source": "scope-final.log",
+      "sourceSha256": "258982feef512b16bb7352e11d78fd5a3d354ba295f9aab36a68566e7cf66c4d",
+      "tests": 2,
+      "pass": 2,
+      "fail": 0,
+      "skipped": 0,
+      "executedByThisQA": false
+    },
+    "sourceAdjacentHelpers": {
+      "command": "node --import tsx --test src/client/platform-provenance/*.test.ts",
+      "cwd": "packages/openbkn-business-context",
+      "tests": 10,
+      "pass": 10,
+      "fail": 0,
+      "skipped": 0,
+      "exitCode": 0,
+      "executedByThisQA": true,
+      "cases": {
+        "adapter": 4,
+        "clipboard": 4,
+        "sceneListLifecycle": 2
+      },
+      "note": "Captured tool output; these source-adjacent tests are outside the default package test script."
+    },
+    "independentModalTabRecheck": {
+      "command": "node --import tsx --test --test-name-pattern 'analysis modal (Tab|ShiftTab)' tests/provenance-native-dialogs.test.ts",
+      "tests": 2,
+      "pass": 2,
+      "fail": 0,
+      "exitCode": 0,
+      "executedByThisQA": true,
+      "overlapsDefaultSuite": true
+    }
+  },
+  "countExplanation": {
+    "oldManualCheckpointTotal": 763,
+    "sourceAdjacentTestsExcludedByDefaultCommand": 10,
+    "subsequentlyAddedTabAndNonmodalTests": 3,
+    "subsequentlyAddedLiveBudgetTests": 4,
+    "computedFinalDefaultTotal": 760,
+    "testsWereNotDeletedToReduceTheCount": true
+  },
+  "focusReview": {
+    "initialFinding": "Modal last-control Tab reached the outer close action; independently reproduced before fix.",
+    "closure": "Inner modal wraps Tab/ShiftTab before the outer native listener; independent two-direction recheck passed.",
+    "hoverDoesNotTakeFocus": true,
+    "sourceTextPopoverIsExplicitlyNonmodalAndNotTrapped": true,
+    "historyDropdownEscapePrecedesAnalysisPanel": true,
+    "fullscreenRemountRestoresCurrentTrigger": true,
+    "legacyInspectorUsesLocalHelper": true,
+    "analysisRequestCancellationOrBusinessOutputChanged": false,
+    "sharedOuterFocusHookChanged": false,
+    "remainingRequiredCodeFindings": []
+  },
+  "budgetReview": {
+    "detailHttpBytes": 16777216,
+    "detailScopeBytes": 16777216,
+    "detailPreflightBytes": 16777216,
+    "detailClientDirectAndChunkBytes": 16777216,
+    "otherNativeJsonAndAnalysisBytes": 8388608,
+    "markdownHttpAndHostBytes": 1048576,
+    "membershipAggregateBytes": 8388608,
+    "unchangedStructuralBounds": {
+      "jsonValues": 250000,
+      "depth": 64,
+      "chunkCharacters": 131072,
+      "membershipPages": 100
+    },
+    "legacyNativeReaderBudgetUnchanged": true,
+    "noPayloadTruncationOrPlatformReinterpretation": true,
+    "fixtureIsSyntheticSizeShapeRegression": true,
+    "remainingRequiredCodeFindings": []
+  },
+  "reviewedSourceSha256": {
+    "src/client/platform-provenance/use-owned-layer-focus.ts": "0288cc4562b8196c0dfa89325b1a4a033b86379594ca8a2c690cafe156a9120e",
+    "src/client/platform-provenance/business-provenance/BusinessProvenanceScene.tsx": "1da06c3aa10bc9e55bceae6e5911157bda808c0803b169890021ba89ee725acb",
+    "src/client/platform-provenance/evidence-chain/BusinessProvenance016.tsx": "2e96771b209f06f8dd952eaafeec35c34d4bb2ad7ff5bb104724b2e2fc6050d2",
+    "src/client/platform-provenance/evidence-chain/EvidenceChainPanels.tsx": "0c6fc25c02177c4ed89e518f48f7f69b26e00c12d061091a5b3012d17c988646",
+    "src/provenance-detail-types.ts": "51518e6a7e6bff3a18fcde1dbd3ebfca689090d16d1cccb7f8d35af6357e42c0",
+    "src/provenance-detail-scope.ts": "a30e1fb15ec5e71de813db306a1090c5ef0ee54493390094bb5daa8e90e3fecd",
+    "src/platform-reader.ts": "2b1cac18755182bb950643a6e8f044563a30c5e6be40294a40090eb324bce18b",
+    "src/client/provenance-detail-bridge.ts": "12aa2fddad2b566cdcae4dfe698933d2ab7489dcf12d2e6a9d1acf4f548a308a"
+  },
+  "processSnapshot": [
+    {
+      "pid": 42016,
+      "ppid": 96951,
+      "executable": "/Applications/DeepSeek Harness.app/Contents/MacOS/DeepSeek Harness",
+      "electron3CacheSeen": true,
+      "openPluginModulePaths": []
+    },
+    {
+      "pid": 42384,
+      "ppid": 42016,
+      "executable": "/Applications/DeepSeek Harness.app/Contents/MacOS/DeepSeek Harness",
+      "electron3CacheSeen": false,
+      "openPluginModulePaths": []
+    }
+  ],
+  "processEvidenceLimit": "Open-file checks establish isolated electron-3 usage where shown, but no remaining JS file descriptor means no direct in-memory module hash/path proof. Absence is not evidence of non-loading. No debugger/private-object injection.",
+  "dailyPackage": {
+    "referenceArchiveSha256": "b7b26bb87fe93123c4590012015d08c08e9d9cfe3ba1f4476f7a3bd86859790a",
+    "referenceFiles": 94,
+    "unchangedFiles": 94,
+    "drift": []
+  },
+  "notClaimedByThisQA": [
+    "final third-candidate native UI/keyboard/59-call behavior; parent records this separately",
+    "live generation or analysis POST",
+    "Windows native execution",
+    "human acceptance"
+  ],
+  "historicalReceipts": [
+    "QA.json and QA.zh.md describe first 55c7 candidate only",
+    "77a6 candidate and first keyboard-only checkpoint are historical",
+    "cfd provenance/Gateway artifact hashes are not reused as this final integration identity"
+  ],
+  "mutations": {
+    "productSource": false,
+    "packageOrConfiguration": false,
+    "dailyData": false,
+    "platformOrModelOutputs": false,
+    "realNetworkCalls": 0,
+    "writes": [
+      "FINAL-QA.json",
+      "FINAL-QA.zh.md"
+    ]
+  }
+}

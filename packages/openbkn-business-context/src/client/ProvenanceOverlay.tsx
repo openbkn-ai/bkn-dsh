@@ -1,8 +1,9 @@
 import { useDialogFocus } from './use-dialog-focus.ts'
 import { NativeProvenancePanel } from './NativeProvenancePanel.tsx'
+import { PlatformProvenanceDetail, type PlatformProvenanceAdapter, type BusinessProvenanceConversation } from './platform-provenance/index.tsx'
 import { useOpenBknTranslation } from './locale.tsx'
 import { translateChinese, type OpenBknTranslate } from './messages.ts'
-import { useEffect, useState, type ReactNode } from 'react'
+import { useEffect, useMemo, useState, type ReactNode } from 'react'
 import type { HostObservable, InjectFace, PropsRuntime } from '@deepseek-ai/dsh-client-ui-slots'
 import { buildBusinessGraphModel, businessGraphGeometry } from '../business-graph-model.ts'
 import { foldTimeline, type TimelineFoldGroup } from '../timeline-fold.ts'
@@ -51,13 +52,15 @@ export class ProvenanceOverlayController implements HostObservable<ProvenanceOve
 export interface ProvenanceOverlayInjected {
   hooks: { provenanceOverlay: ProvenanceOverlayController }
   load(sessionId: string, messageId: string, signal?: AbortSignal): Promise<ProvenanceView | undefined>
+  createDetailAdapter?(sessionId: string, messageId: string): PlatformProvenanceAdapter
+  language?(): string
   close(): void
 }
 
 export type ProvenanceOverlayProps = PropsRuntime<'shell.overlay'> & InjectFace<ProvenanceOverlayInjected>
 
 /** Provenance detail lives in an additive shell overlay, never inline in DSH chat. */
-export function ProvenanceOverlay({ useProvenanceOverlay, load, close }: ProvenanceOverlayProps) {
+export function ProvenanceOverlay({ useProvenanceOverlay, load, createDetailAdapter, language, close }: ProvenanceOverlayProps) {
   const t = useOpenBknTranslation()
 
   const state = useProvenanceOverlay((value: ProvenanceOverlayState) => value)
@@ -71,6 +74,7 @@ export function ProvenanceOverlay({ useProvenanceOverlay, load, close }: Provena
   const loading = current === undefined || current.phase === 'loading'
   const dialog = useDialogFocus(state.handle !== undefined, close)
   useEffect(() => {
+    if (createDetailAdapter !== undefined) return
     if (state.handle === undefined || state.sessionId === undefined || state.messageId === undefined) return
     let active = true
     const request = new AbortController()
@@ -83,8 +87,17 @@ export function ProvenanceOverlay({ useProvenanceOverlay, load, close }: Provena
       if (active) setResult({key:requestKey,phase:'failed'})
     })
     return () => { active = false; request.abort() }
-  }, [load, state.handle, state.messageId, state.sessionId, requestKey])
+  }, [load, createDetailAdapter, state.handle, state.messageId, state.sessionId, requestKey])
   if (state.handle === undefined) return null
+
+  if (createDetailAdapter !== undefined && state.sessionId !== undefined && state.messageId !== undefined) {
+    return <div role="presentation" onMouseDown={close} style={backdropStyle}>
+      <section ref={dialog} tabIndex={-1} role="dialog" aria-modal="true" aria-label={t('provenanceLabel')} onMouseDown={event => event.stopPropagation()} style={{ ...dialogStyle, width:'min(1920px, 100%)', maxHeight:'calc(100vh - 40px)', height:'calc(100vh - 40px)', borderRadius:12, position:'relative' }}>
+        <button type="button" aria-label={t('close')} onClick={close} style={{ ...closeStyle, position:'sticky', top:8, float:'right', marginRight:8, zIndex:1100 }}>×</button>
+        <PlatformConversationSurface key={requestKey} sessionId={state.sessionId} messageId={state.messageId} interactionId={state.handle.interactionId} createAdapter={createDetailAdapter} language={language?.()} />
+      </section>
+    </div>
+  }
 
   return <div role="presentation" onMouseDown={close} style={backdropStyle}>
     <section ref={dialog} tabIndex={-1} role="dialog" aria-modal="true" aria-label={t('provenanceLabel')} onMouseDown={event => event.stopPropagation()} style={dialogStyle}>
@@ -98,6 +111,28 @@ export function ProvenanceOverlay({ useProvenanceOverlay, load, close }: Provena
       </>}</main>
     </section>
   </div>
+}
+
+/** A new request remounts the whole platform scene so old rounds and actions never flash. */
+function PlatformConversationSurface({ sessionId, messageId, interactionId, createAdapter, language }: {
+  sessionId: string; messageId: string; interactionId?: string
+  createAdapter(sessionId:string, messageId:string): PlatformProvenanceAdapter
+  language?: string
+}) {
+  const adapter = useMemo(() => createAdapter(sessionId,messageId), [createAdapter,sessionId,messageId])
+  const [conversation,setConversation] = useState<BusinessProvenanceConversation>()
+  const [failed,setFailed] = useState(false)
+  useEffect(() => {
+    const controller = new AbortController()
+    let active = true
+    void adapter.readConversation(controller.signal).then(value => {
+      if (active) setConversation(value)
+    }).catch(() => { if (active) setFailed(true) })
+    return () => { active = false; controller.abort() }
+  }, [adapter])
+  if (!interactionId || failed) return <LoadFailed />
+  if (!conversation) return <Loading />
+  return <PlatformProvenanceDetail conversation={conversation} initialInteractionId={interactionId} adapter={adapter} language={language} />
 }
 
 function Execution({ handle, view }: { handle: ProvenanceHandle; view: ProvenanceView }) {

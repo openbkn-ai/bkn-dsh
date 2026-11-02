@@ -281,3 +281,4 @@ export type {
   DiagnosticsCheck, DiagnosticsCoverage, DiagnosticsEvidenceValue,
   DiagnosticsReport, DiagnosticsSource, DiagnosticsStage, DiagnosticsStatus, DiagnosticsTarget,
 } from './diagnostics-contract.js'
+export type { ProvenanceDetailRequest, ProvenanceDetailEvent, ProvenanceDetailFailure, ProvenanceDetailJsonValue } from './provenance-detail-types.ts'

@@ -1,0 +1,258 @@
+{
+  "baseline": "cfd377f88fe89a42e97577e62d1f06bec2875a3c",
+  "state": "local uncommitted working tree; not pushed",
+  "files": [
+    {
+      "path": "packages/openbkn-business-context/licenses/openbkn-studio.txt",
+      "sha256": "4d2c3b0629c7dc6f0f9b6dfb2b86b2c1993e14bbdb4a1afae16acaf42a5c7186"
+    },
+    {
+      "path": "packages/openbkn-business-context/package.json",
+      "sha256": "af23dea5d1791d3da676e2b1b472a5df98ea323675bdfff018c0ef62c800407f"
+    },
+    {
+      "path": "packages/openbkn-business-context/src/business-context-service.ts",
+      "sha256": "97fce996498c284e86d2964e5799d1e218aed991cf9c4997b2ab6201c36c65b1"
+    },
+    {
+      "path": "packages/openbkn-business-context/src/client/ProvenanceOverlay.tsx",
+      "sha256": "a9e99611d63c955739b895a6116d3d6a2b4bb07d8497049179817cdd53871026"
+    },
+    {
+      "path": "packages/openbkn-business-context/src/client/index.tsx",
+      "sha256": "5a3c4311d3ad839a81a90247e27d24a8b8819c4e15517cd308375d8aa5b1dcd1"
+    },
+    {
+      "path": "packages/openbkn-business-context/src/client/locales.ts",
+      "sha256": "03142cdf39c7b9df3518f5951af0c595307d1b94dedf6f151aa54c757a0a66d2"
+    },
+    {
+      "path": "packages/openbkn-business-context/src/client/platform-provenance/MarkdownText.styles.ts",
+      "sha256": "503b6fba32a510bdcc63838f76c9934fbef0a12b41f4df0e329613de03f4b3e0"
+    },
+    {
+      "path": "packages/openbkn-business-context/src/client/platform-provenance/MarkdownText.tsx",
+      "sha256": "66a60ccc49887e812823e2c71f35395d1eb022f88c699d3e4748f2792297cc1c"
+    },
+    {
+      "path": "packages/openbkn-business-context/src/client/platform-provenance/README.md",
+      "sha256": "42800f82db7c5fdedded035ccba7896b1cdcfb84388840592fbfa844edace3b2"
+    },
+    {
+      "path": "packages/openbkn-business-context/src/client/platform-provenance/adapter.test.ts",
+      "sha256": "9de5892e801f537bef9dd310e208df34b6f46a08c3ad04aae8594e6e18711c4e"
+    },
+    {
+      "path": "packages/openbkn-business-context/src/client/platform-provenance/adapter.tsx",
+      "sha256": "ce67b16e07a500bb180602373f05eb2eb8fce512017cead27037dc513f48b07f"
+    },
+    {
+      "path": "packages/openbkn-business-context/src/client/platform-provenance/business-provenance/BusinessProvenanceScene.styles.ts",
+      "sha256": "92f95b4c4e44b2f1365fc86b129f34ecb72c2e3b2b619727f3985e176d8031af"
+    },
+    {
+      "path": "packages/openbkn-business-context/src/client/platform-provenance/business-provenance/BusinessProvenanceScene.tsx",
+      "sha256": "4fd2096321ff073c53186da3005a4f5362bfcebd286566a2323074168ead3bd8"
+    },
+    {
+      "path": "packages/openbkn-business-context/src/client/platform-provenance/business-provenance/RecordMissingDetails.tsx",
+      "sha256": "77b0a84f1e99c61f7c100d50f4bcbf7a9d523d4b757ef361d685c8a89853ba91"
+    },
+    {
+      "path": "packages/openbkn-business-context/src/client/platform-provenance/business-provenance/business-provenance.service.ts",
+      "sha256": "e2f4305eb960942f00ac681510ffaf09c4006636bb4ad0da43b165ff2b226ff0"
+    },
+    {
+      "path": "packages/openbkn-business-context/src/client/platform-provenance/business-provenance/call-scope.ts",
+      "sha256": "44e2c7b799e897afc715157d1cbeab269dc54e22fc78a69a12c8febb966bbb4c"
+    },
+    {
+      "path": "packages/openbkn-business-context/src/client/platform-provenance/clipboard.test.ts",
+      "sha256": "daf231e5a68bf9b5481e9f150e8f5d70dbd93e02f9e66d96f8ec05bc5a565472"
+    },
+    {
+      "path": "packages/openbkn-business-context/src/client/platform-provenance/clipboard.ts",
+      "sha256": "f9f9801b6c75e7f60e4fed3e487885c1306af7278644468a454438b783f16aaf"
+    },
+    {
+      "path": "packages/openbkn-business-context/src/client/platform-provenance/evidence-chain/BusinessProvenance016.styles.ts",
+      "sha256": "98618f34c16150eba4c38345c53f038c9f77b9459a866a7eb7ba6296a78b74bd"
+    },
+    {
+      "path": "packages/openbkn-business-context/src/client/platform-provenance/evidence-chain/BusinessProvenance016.tsx",
+      "sha256": "35cc728ed94caa13afd0c3c77a8fa478a00f3d1e93c898d3e279f235bcdcd840"
+    },
+    {
+      "path": "packages/openbkn-business-context/src/client/platform-provenance/evidence-chain/CurrentExplanationPanel.styles.ts",
+      "sha256": "0850c613ad67b36e9bee1882a9f952b0fe8b7f8ef8e3e4777c6133dcc16879ac"
+    },
+    {
+      "path": "packages/openbkn-business-context/src/client/platform-provenance/evidence-chain/CurrentExplanationPanel.tsx",
+      "sha256": "9e1d577cf9707755b5424b098b3a1c010a5fd4cd7102b996546137f2dcae56b4"
+    },
+    {
+      "path": "packages/openbkn-business-context/src/client/platform-provenance/evidence-chain/EvidenceChainPanels.styles.ts",
+      "sha256": "8bc8a3d64a5cbf08a73cff4308f2440922076fa86638c024028e8826c21e9f3a"
+    },
+    {
+      "path": "packages/openbkn-business-context/src/client/platform-provenance/evidence-chain/EvidenceChainPanels.tsx",
+      "sha256": "f809f76de0d34d1ef9f4d6cc541707cf109d5b5b9308fb0ef54fc45ee69a6286"
+    },
+    {
+      "path": "packages/openbkn-business-context/src/client/platform-provenance/evidence-chain/chain-layout.ts",
+      "sha256": "45fad81417c967c06e6874300d7b535cc03fda3e1a01d1c269ad0c0f4e5dd0b6"
+    },
+    {
+      "path": "packages/openbkn-business-context/src/client/platform-provenance/evidence-chain/current-explanation.service.ts",
+      "sha256": "baf8bd53342d0b1f555692600c7af45930c9edef3ef81b584e1bd6d1c8ae33e8"
+    },
+    {
+      "path": "packages/openbkn-business-context/src/client/platform-provenance/evidence-chain/evidence-chain.types.ts",
+      "sha256": "fa3214cf17908d28de159fc39c9a89cac7010c78bf3177324814f117b2fcd942"
+    },
+    {
+      "path": "packages/openbkn-business-context/src/client/platform-provenance/format.ts",
+      "sha256": "c1c65e51e03d2c4456a51bc8efcd2a9a49eb6c9ff84e5d61fa535c10e56f071d"
+    },
+    {
+      "path": "packages/openbkn-business-context/src/client/platform-provenance/harness/build.mjs",
+      "sha256": "47d2db06ddd0b04ec70f6c067ffc667bc4136e467acb5a948761eabced6dd846"
+    },
+    {
+      "path": "packages/openbkn-business-context/src/client/platform-provenance/harness/main.tsx",
+      "sha256": "565f3e006a5eb200626b0592117a80626967a1c86b43239dcce6618aff6dd892"
+    },
+    {
+      "path": "packages/openbkn-business-context/src/client/platform-provenance/i18n.ts",
+      "sha256": "af1c828a87c0923853e8a7823e4a97e1524bd460d326917c311159395c2a1897"
+    },
+    {
+      "path": "packages/openbkn-business-context/src/client/platform-provenance/index.tsx",
+      "sha256": "15f379c0cbc31dc498e15591e97acf1595d765fe4088220ffea303ed043dde9b"
+    },
+    {
+      "path": "packages/openbkn-business-context/src/client/platform-provenance/locales/en-US.ts",
+      "sha256": "5776eaf71ffca99fdeaf5c4b83ed3661360d79ffaa8db7f03e10e0a1a289952b"
+    },
+    {
+      "path": "packages/openbkn-business-context/src/client/platform-provenance/locales/zh-CN.ts",
+      "sha256": "a84f3e42f3f1b65121bf89716b95b31494c0886255e798111df96bd761150ba1"
+    },
+    {
+      "path": "packages/openbkn-business-context/src/client/platform-provenance/normalizers.ts",
+      "sha256": "8e9231b9934254dc0f5536e4295f854b6d7501decfd73a06aa46f44c33f5679e"
+    },
+    {
+      "path": "packages/openbkn-business-context/src/client/platform-provenance/scene-list-boundaries.test.ts",
+      "sha256": "d778222aa7e7d23124f26a3c81658b6576957a6d11dbb5a14b1817520d5361bb"
+    },
+    {
+      "path": "packages/openbkn-business-context/src/client/platform-provenance/theme.styles.ts",
+      "sha256": "67645aad8b9a5aa4477f59e85565dec677afa16e31abd04f4c9504cdca588b3c"
+    },
+    {
+      "path": "packages/openbkn-business-context/src/client/platform-provenance/theme.ts",
+      "sha256": "bf40d2cfb982bb6e8d272f17d718b036a636e382aaf7351be07963c565a21d36"
+    },
+    {
+      "path": "packages/openbkn-business-context/src/client/provenance-browser-actions.ts",
+      "sha256": "7eed47e8208a312ed731885893af3a7206f300dcb51cad7643b63a564b1c8849"
+    },
+    {
+      "path": "packages/openbkn-business-context/src/client/provenance-detail-bridge.ts",
+      "sha256": "997e20438f37d21835bdefa9d296029b6b8099e525ad0a3c0ab6c679851ee80d"
+    },
+    {
+      "path": "packages/openbkn-business-context/src/platform-reader.ts",
+      "sha256": "309f7b4f7a0ec0ee176dd4ff1550bacd9cd99211a575bdf82f13d35026551d5b"
+    },
+    {
+      "path": "packages/openbkn-business-context/src/provenance-detail-scope.ts",
+      "sha256": "ad87d0f839daef94b30dff71b19c8d6e8f6ce06f6611a604571131464c1b63aa"
+    },
+    {
+      "path": "packages/openbkn-business-context/src/provenance-detail-types.ts",
+      "sha256": "ec4f00e507ac61572f2a0c76adfec271b815c7bad6480c8e5e713a3065ff6b4e"
+    },
+    {
+      "path": "packages/openbkn-business-context/src/types.ts",
+      "sha256": "1309b49120f3798cc91c87238a728061b4e4ad4bcaec44f4c01aec8ff2b422d9"
+    },
+    {
+      "path": "packages/openbkn-business-context/tests/bundle-contract.test.mjs",
+      "sha256": "929c83c84133aac386ca1931d4a86b9be5938c0ca5bd59a0b85bc5450b4abc03"
+    },
+    {
+      "path": "packages/openbkn-business-context/tests/fixtures/provenance-parity/README.md",
+      "sha256": "75a2f25d2e9d8fe4324b1ba2a844a3dd0a8f651fbc77eaaff09ba8d213651382"
+    },
+    {
+      "path": "packages/openbkn-business-context/tests/fixtures/provenance-parity/conversation.json",
+      "sha256": "a19fd303976a5827323152a761172eadb9bd76241376f3ba60cbc25898fcdc48"
+    },
+    {
+      "path": "packages/openbkn-business-context/tests/fixtures/provenance-parity/legacy-graph-explanation.json",
+      "sha256": "30d18ddc1da36e61fbca696ad4060f95798995aef1880f1897fc1005fb02aa49"
+    },
+    {
+      "path": "packages/openbkn-business-context/tests/fixtures/provenance-parity/protected-source-files.json",
+      "sha256": "82f03dcd4662249af83f80e711c48c5d2c52acd49a944766fffd3068bf60e1ac"
+    },
+    {
+      "path": "packages/openbkn-business-context/tests/fixtures/provenance-parity/shared-input-explanation.json",
+      "sha256": "5fc5b351a1924dc6acd4e0e22993e30248749addfda88080546698580fed779f"
+    },
+    {
+      "path": "packages/openbkn-business-context/tests/probes/provenance-detail-gateway.probe.mjs",
+      "sha256": "92ea0e283a5b8d963e9769e77a6d6336499801e19f430ffda8c2ed22cafa44fa"
+    },
+    {
+      "path": "packages/openbkn-business-context/tests/provenance-detail-boundaries.test.ts",
+      "sha256": "09c7f84dba541167bb26078030528b791cf67c9701e19b8ffd86e063b49166ed"
+    },
+    {
+      "path": "packages/openbkn-business-context/tests/provenance-detail-native-analysis.test.ts",
+      "sha256": "9348f9aebbc93f6f435cfd3f0c70e3762834f1752d5f737783b8be16d6e37dd6"
+    },
+    {
+      "path": "packages/openbkn-business-context/tests/provenance-detail-reader.test.ts",
+      "sha256": "02522a03cdd885b312a9d9ae76fac9beb9d4028e7c91e6e853838be47d61d35c"
+    },
+    {
+      "path": "packages/openbkn-business-context/tests/provenance-detail-service.test.ts",
+      "sha256": "4c224e5b69947098293880cee3fc45169032903f7946d93e20e50f82ef445574"
+    },
+    {
+      "path": "packages/openbkn-business-context/tests/provenance-parity-host.test.ts",
+      "sha256": "3d95d43ba6272010ecf406ac229321da72013acabe336e997619682113d06417"
+    },
+    {
+      "path": "packages/openbkn-business-context/tests/provenance-parity-render.test.ts",
+      "sha256": "cc9ada220ec3ee0e05a5ee4eb4b65c5f3dd01a61a0a4d321cfa8c311a28c2d02"
+    },
+    {
+      "path": "packages/openbkn-business-context/tests/provenance-parity-scope.test.mjs",
+      "sha256": "ef31df7e8e48903df3a7dfcb7cf7e44d1d4a5e306cc6767e737c83f9ffddbe99"
+    },
+    {
+      "path": "packages/openbkn-business-context/tests/provenance-parity-transport.test.ts",
+      "sha256": "b2b6fc8c8601347800f45a5e7e6dd02419b8ed71630978d9425f58bc041d4b26"
+    },
+    {
+      "path": "packages/openbkn-business-context/tests/typert-analysis-contract.test.mjs",
+      "sha256": "ece836c892cccd325eeada4b55717332b23224ce369daa71b5044e89a5f842a5"
+    },
+    {
+      "path": "packages/openbkn-business-context/tsconfig.package.client.json",
+      "sha256": "01c3e40c9b9e64a95c9422cda6e86cff70c63791d4f59bea09073a46f6e0308f"
+    },
+    {
+      "path": "packages/openbkn-business-context/tsdown.config.ts",
+      "sha256": "1f9ff46e78c187aec34564221c477b40e33e28d371131c9e3a1bf63cce05bf21"
+    },
+    {
+      "path": "pnpm-lock.yaml",
+      "sha256": "87af30cb9e923427882133ed6fa59cfe5e8b1b90f98c711d688617d34d750c8f"
+    }
+  ]
+}

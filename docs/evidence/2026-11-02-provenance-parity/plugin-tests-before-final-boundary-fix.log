@@ -1,0 +1,1314 @@
+✔ platform adapter preserves original records, statuses, attempts, payloads, and derived facts (1.685833ms)
+✔ platform adapter uses fixed explicit read/generation actions and carries cancellation (1.588334ms)
+✔ platform adapter rejects another interaction rather than selecting or rewriting it (0.415584ms)
+✔ analysis retains platform tokens, structured result, and platform error code/reason (0.303625ms)
+✔ platform clipboard uses native API verbatim without creating fallback controls (1.323292ms)
+✔ platform clipboard fallback stays in owned container and restores focus and selections (0.250334ms)
+✔ denied native clipboard falls back; rejected copy still cleans up and restores focus (0.643333ms)
+✔ clipboard fallback does not append outside an owned connected viewer (0.207792ms)
+✔ reports the authenticated CLI session without reading a token (2.083042ms)
+✔ requires an OpenBKN login for missing or expired CLI credentials (0.353625ms)
+✔ does not accept an authenticated CLI session for another platform (0.16275ms)
+✔ starts login for the configured platform without passing or retaining a token (0.869958ms)
+✔ reads one CLI token only after the authenticated platform has been fenced (0.4145ms)
+✔ refuses to request a CLI token for an unauthenticated or foreign platform (0.784375ms)
+✔ CLI 0.1.5 omits `expired` when it cannot tell the token expiry: the session is still authenticated (0.175833ms)
+✔ a CLI that has never logged in prints only { hasToken: false }: the user is asked to log in (0.128958ms)
+✔ an expired token still asks for login, and malformed fields are still refused (0.683416ms)
+✔ a locally present CLI token rejected by MCP exposes login and recovers through the existing CLI flow (8.639084ms)
+✔ manual-token and login verification retain an MCP 401 as an authentication-required Remote error (1.298041ms)
+✔ a completed CLI login whose credential is still rejected keeps the login recovery state (0.775625ms)
+✔ MCP permission denial and transport failures do not offer re-login as their classification (2.596375ms)
+✔ catalogue 401 and 403 retain credential recovery with distinct refusal messages (109.037708ms)
+✔ projects an immutable host binding into a read-only header view (1.517541ms)
+✔ renders no badge when the session has no binding or its read fails (0.897458ms)
+✔ retries a not-yet-live session read before settling, then succeeds (5.572583ms)
+✔ settles on absent after exhausting not-yet-live retries (6.943875ms)
+✔ ships a DSH bundle with separate host and browser entry points (2.128708ms)
+✔ activates only its own host row through the bundle patch (0.508ms)
+✔ build output matches the manifest entry points (0.090375ms)
+✔ browser entry registers a lazy module factory for the DSH module table (556.302291ms)
+✔ does not publish an obsolete Host Python runner (2.781875ms)
+✔ does not retain an overly broad runner directory glob (0.436416ms)
+✔ every declared exports/main/types target exists in the packed tarball (946.942375ms)
+✔ declaredTargets walks nested conditions and refuses lookalike pointers (0.257542ms)
+✔ a reloaded service cannot resolve a shared token before this platform was verified (13.379375ms)
+✔ historical provenance can obtain a verified CLI token before panel status and coalesces parallel reads (0.453667ms)
+✔ historical provenance with an expired or missing CLI degrades as authentication-required before any platform or vault access (16.214833ms)
+✔ a disposed historical token read preserves cancellation instead of degrading it as missing authentication (0.177333ms)
+✔ a delayed CLI token from a disposed configuration is never synchronized (0.114833ms)
+✔ changing settings affects only current-platform bound turns, never ordinary sessions (0.20225ms)
+✔ does not load the DSH LLM service for a static empty-session entry (0.0435ms)
+✔ rejects a mismatched platform before it can persist an immutable session binding (0.131459ms)
+✔ rejects a stale or foreign Agent before it can bind a DSH session (0.070708ms)
+✔ enables the business capability only after the binding record is durable (0.463834ms)
+✔ a durable binding write blocks configuration reload until its policy mounts (0.177709ms)
+✔ settings reload rejects a new binding before its durable write begins (0.352458ms)
+✔ a replacement constructor restores an unbound workspace association inside the native save fence (32.250583ms)
+✔ ordinary agent creation cannot borrow the replacement constructor restoration exemption (2.102125ms)
+✔ a disposed replacement constructor cannot persist its startup association (2.65975ms)
+✔ ordinary fork inheritance blocks reload throughout its durable write (0.35425ms)
+✔ reload detects a running bound turn even before its scoped policy restores (0.115834ms)
+✔ stores a token through DSH credentials before testing the managed OpenBKN connection (0.314417ms)
+✔ synchronizes an authenticated CLI token into DSH credentials before reporting ready (0.260375ms)
+✔ refreshes the managed MCP credential before the first step of a bound business turn (0.520875ms)
+✔ does not refresh the MCP connection for later steps or unbound sessions (0.146542ms)
+✔ an unreadable or conflicting binding leaves the turn running as a native, unbound session (0.466959ms)
+✔ auto-binds a new native DSH session when its workspace has one OpenBKN association (0.127125ms)
+✔ leaves a native DSH session unbound when its workspace has no unique association (3.526708ms)
+✔ reads the durable binding for one live session without consulting CLI credentials (0.231625ms)
+✔ reads provenance only from the finalized assistant message in one live session (4.382208ms)
+✔ retains Community execution facts when the formal Enterprise projection is not disclosed (1.196458ms)
+✔ retains Community execution facts when an enabled Enterprise projection is temporarily unavailable (3.9655ms)
+✔ uses the formal Trace 3 business graph without treating BKN Safe capabilities as its gate (3.488583ms)
+✔ returns one introduction only before a bound session has an assistant answer (0.328ms)
+✔ returns no prompt after a bound business session has an assistant answer (0.372292ms)
+✔ returns only a safe network catalogue after confirming the CLI identity is authenticated (4.700958ms)
+✔ refuses to list networks while OpenBKN authentication is not active (0.346375ms)
+✔ binds only a network confirmed in the current identity catalogue (0.481542ms)
+✔ keeps binding available and records a safe diagnostic when the optional capability profile is unavailable (0.954833ms)
+✔ refuses a requested network that is not visible to the current identity (0.308292ms)
+✔ degrades each platform pane by failure class instead of throwing, and always returns the local timeline (48.134917ms)
+✔ global guard: OpenBKN tools run only for an Agent carrying the mounted business policy (1.554084ms)
+✔ concurrent binds of one session to different networks mount the winner with its own capability profile (16.678791ms)
+✔ a missing OpenBKN CLI surfaces as openbkn/cli-unavailable on every CLI entry, with or without a stored token (0.394208ms)
+✔ unrecorded provenance renders a local timeline and explicit degradation without platform reads (0.458291ms)
+✔ navigation-shell detail passes the validated binding boundary and clears prior shape failure (0.271625ms)
+✔ cancelled historical reads stop their CLI before HTTP and never reuse a late token (0.132583ms)
+✔ independent provenance requests do not cancel each other during credential lookup (0.092458ms)
+✔ lays out resolved elements and connects only formal relations with visible endpoints (2.357709ms)
+✔ deduplicates the same resolved element while preserving its first operation source (0.780125ms)
+✔ projects the platform network list into a small UI-safe catalogue (1.861833ms)
+✔ fails closed for malformed or duplicate platform network rows (0.497625ms)
+✔ certificate preview displays identity and requires an explicit checkbox before enabling save (66.269375ms)
+✔ changing platform invalidates pending certificate preview and its late result (27.289ms)
+✔ an invalid stored certificate can be removed, without selecting or trusting a new file (17.897583ms)
+✔ malformed preview errors never render raw stderr or credential text (34.899834ms)
+✔ connection error UI distinguishes TLS, network and missing companion with stable safe codes (13.567375ms)
+✔ availability only requests saving when the resolved CLI path is not persisted (4.286542ms)
+✔ opening advanced settings checks availability without installing (0.285334ms)
+✔ detected absolute path is returned for the draft without installation (0.591916ms)
+✔ duplicate clicks install once and show real installing state (15.909541ms)
+✔ closing during installation leaves Host call running and ignores late path/state (0.381167ms)
+✔ an older detection response cannot replace a new edited path result (0.117083ms)
+✔ polling a Host installation keeps the installing state while awaiting the check (0.113625ms)
+✔ only explicit setup locks the draft during preflight and releases it on refusal (0.0825ms)
+✔ blocked and failure reasons never claim installed or require a restart as proven (0.078166ms)
+✔ fixed version choice reaches Host and mismatch text never suggests overwriting existing CLI (0.422042ms)
+✔ an automatically detected CLI is not mismatched until a platform version is explicitly chosen (0.169042ms)
+✔ a usable existing CLI is resolved and never installed or upgraded (4.367084ms)
+✔ SDK outside PATH is found through npm prefix and can be used without restarting (0.799541ms)
+✔ read-only detection never installs; explicit setup installs only fixed SDK and verifies it (3.97525ms)
+✔ Windows lookup uses the real .cmd path including spaces (2.800958ms)
+✔ the Windows default openbkn.cmd alias uses fallback discovery and explicit install (0.705041ms)
+✔ a missing absolute Windows .cmd path stays custom and cannot install (0.129084ms)
+✔ missing custom paths and invalid path input cannot trigger installation (0.117167ms)
+✔ existing directories are rejected as CLI paths without executing or installing (3.771041ms)
+✔ found but broken CLI and broken existing SDK are never overwritten (0.513167ms)
+✔ file found without execute permission blocks install rather than treating it as absent (0.33125ms)
+✔ missing npm, missing Node and old Node return actionable prerequisites (1.123083ms)
+✔ install exit zero without executable verification is not ready (0.186917ms)
+✔ installation prerequisites follow the supported Node range and reject Node 23 (0.474417ms)
+✔ installed CLI must report the requested version before setup claims success (0.122417ms)
+✔ npm errors are classified without exporting raw secrets (0.892208ms)
+✔ simultaneous setup requests share one installation; reopened checks see installing (14.09425ms)
+✔ aborted read-only detection does not install or project a success (1.287208ms)
+✔ a hung CLI version command receives the 5-second abort and reports timeout (49.144667ms)
+✔ a hung install receives the 180-second abort, clears busy and never verifies success (32.430792ms)
+✔ Host disposal aborts an in-flight installer without leaving busy or reporting ready (4.049458ms)
+✔ version availability cannot clear earlier CLI/authentication diagnostic failures (0.746667ms)
+✔ both fixed SDK targets install and verify the selected version on Mac and Windows (3.484834ms)
+✔ unsupported install targets do not inspect or spawn, and selecting 0.2.0 cannot overwrite 0.1.5 (0.175833ms)
+✔ reopened panels report the actual Host-owned 0.2.0 install target (9.898792ms)
+✔ OpenBKN UI remains additive and does not replace native DSH surfaces (0.850292ms)
+✔ OpenBKN client mounts its generated Remote contribution before using its namespace (2.192334ms)
+✔ OpenBKN client bundles the Remote schema runtime instead of requiring an unmaterialized dependency (88.14575ms)
+✔ first-use configuration stays independent and the ordinary login UI uses only CLI (8.184334ms)
+✔ malformed baseUrl fails configuration validation without echoing its value (5.592083ms)
+✔ valid deployment URLs retain their bytes and existing configuration defaults (1.53075ms)
+✔ DSH settings schema serialization retains URL validation without module closures (0.982208ms)
+✔ real Cordis fiber rejects invalid baseUrl before apply and independent diagnostics remain usable (9.834625ms)
+✔ CLI setup is optional and does not prevent configuration or diagnostics (6.281583ms)
+✔ running turns block CLI installation before touching subprocess (0.301916ms)
+✔ a Host installation cannot race a settings write (2.022542ms)
+✔ fresh default config activates without mounting registry, CLI, MCP or business service (112.533167ms)
+✔ pending diagnostics explicitly leave authentication and connection checks not-run (2.102959ms)
+✔ configuration writes only the two owned fields through the native editor (0.427625ms)
+✔ invalid submission does not write and does not echo configured values (0.495875ms)
+✔ running sessions and inactive business rows cannot write configuration (0.267084ms)
+✔ native override/write rejection is sanitized and original values survive (0.257875ms)
+✔ a missing editor preserves readable healthy config and never invents a pending state (0.213083ms)
+✔ active native resolved values expose an expression-configured URL without evaluating raw nodes (0.505709ms)
+✔ an expression resolving to the empty native default stays pending in settings and diagnostics (1.3915ms)
+✔ inactive fibers use current raw values rather than obsolete resolved configuration (0.261125ms)
+✔ native editing preserves raw expression nodes outside the two submitted fields (0.24ms)
+✔ Host rejects arbitrary install versions before querying configuration or subprocess (0.105083ms)
+✔ configuration changes clear observations and fence writers even when returning to an old address (1.802792ms)
+✔ late reader failures and successes cannot enter the next platform report (1.968042ms)
+✔ late CLI status and invalid-output classifications stay with the old platform lifetime (0.535125ms)
+✔ a delayed executable lookup refusal cannot mark the replacement CLI as missing (0.270542ms)
+✔ a delayed subprocess result cannot replace the next platform CLI observation (0.342709ms)
+✔ late MCP startup success and classified rejection cannot repopulate the new platform report (1.1255ms)
+✔ same-address reader replacement preserves 401 recovery evidence (0.759792ms)
+✔ authentication login forwards only the supplied lifecycle signal (0.508167ms)
+✔ same-address canceled subprocess output cannot overwrite a newer CLI success (1.031292ms)
+✔ same-address canceled authentication status cannot overwrite a new authenticated result (12.428708ms)
+✔ same-address canceled token output cannot add a parse failure after a newer CLI success (24.4065ms)
+✔ same-address canceled response-body completion cannot overwrite a newer reader success (10.098292ms)
+✔ the report schema version and codes are frozen additions (0.497166ms)
+✔ report ids are unique, short hex strings (2.803375ms)
+✔ coverage separates executed, not-run, and insufficient-evidence checks (0.521708ms)
+✔ evidence sanitization keeps only bounded scalars (0.121041ms)
+✔ open loads a report and settles into ready (1.00275ms)
+✔ a failing getReport degrades to the unavailable phase without guessing a cause (0.40575ms)
+✔ a stale in-flight load never overwrites a newer one (0.223042ms)
+✔ close hides the panel but keeps the last report for reopening (0.13575ms)
+✔ the export file name is UTC-stamped and id-suffixed (0.174417ms)
+✔ export writes the serialized report through the download port (0.161084ms)
+✔ serialization is deterministic and terminates with a newline (0.07875ms)
+✔ a missing fiber classifies as module resolution failure (2.434792ms)
+✔ a settled active fiber classifies as loaded (0.433166ms)
+✔ a failed fiber rethrows through await() and classifies validation errors (0.21975ms)
+✔ a failed fiber with an unknown error classifies as initialization failure (0.128458ms)
+✔ a fiber that never started resolves await() but still reports waiting (0.133208ms)
+✔ a stuck lifecycle transition is inconclusive, not healthy (24.185458ms)
+✔ a disposed fiber is never reported as loaded (0.644708ms)
+✔ a recovered fiber reports active rather than a stale failure (0.255125ms)
+✔ field extraction only whitelists known config field names (0.173708ms)
+✔ findOwnEntries picks this package’s two rows out of a loader tree (0.273958ms)
+✔ observations map onto the frozen code table (0.219291ms)
+✔ plain Node does not establish npm host form: official Desktop also spawns a Node host (1.530292ms)
+✔ the buffer never stores raw errors, messages, or causes (1.186042ms)
+✔ reader failures through the real request path keep status and subjects separate (37.720875ms)
+✔ a TLS cause through the real request path classifies as tls-failed (0.438459ms)
+✔ a successful directory read does not clear a provenance failure (9.59225ms)
+✔ canaries never survive the real request path (5.776417ms)
+✔ a corrected platform address supersedes the earlier mismatch (0.117167ms)
+✔ CLI stdout that is not valid JSON records cli-output-invalid (0.358333ms)
+✔ a later success marks the earlier failure as recovered (1.780167ms)
+✔ the buffer is bounded and reports dropped novel keys (0.457875ms)
+✔ outcome counts accumulate per subject and the newest outcome wins (0.117292ms)
+✔ a clean CLI exit reconciles an earlier CLI failure (0.710625ms)
+✔ a parse refusal is reconciled by the next clean CLI exit (0.174ms)
+✔ the MCP classifier projects transport causes onto the context-loader stage (0.141583ms)
+✔ an MCP SDK negotiation failure classifies as the network layer, not TLS (0.054625ms)
+✔ an interface failure is reconciled only by the same interface succeeding (0.525375ms)
+✔ a list success does not mask a detail failure (0.281958ms)
+✔ an MCP SdkError keeps the certificate code in data.cause (0.080583ms)
+✔ a refused MCP credential is auth-rejected, not not-logged-in (0.068ms)
+✔ a lossy CLI output refusal lands as a failure observation (0.107292ms)
+✔ a 200 with an invalid catalogue is a failure, not a recovery (0.261ms)
+✔ the focused diagnostic refresh control survives loading, ready and retry (22.962166ms)
+✔ the focused diagnostic refresh control survives loading, unavailable and retry (1.981375ms)
+✔ Windows platform name is friendly without claiming OS bitness or host form (2.506291ms)
+✔ missing runtime versions remain missing even when a disk version is known (0.351584ms)
+✔ known runtime and disk versions remain independently visible (0.2005ms)
+✔ an open dialog receives focus, wraps visible controls and restores its opener (5.547333ms)
+✔ content updates retain focus and Escape uses the latest close action without leaking listeners (3.043625ms)
+✔ owned keyboard handling yields to consumed, composing and modified gestures (3.059958ms)
+✔ persists a new binding as a plugin record and never touches the session log (4.893875ms)
+✔ a failed write rejects and leaves the session unbound (0.447541ms)
+✔ reselecting the bound network writes nothing; a different network is a conflict (0.226ms)
+✔ reads a binding event an earlier release left in the log, under its original or migrated name (0.138583ms)
+✔ a log event and a plugin record that disagree are reported, never silently resolved (1.217041ms)
+✔ a fork inherits the parent binding only when its copied prefix reaches the bind point (8.384209ms)
+✔ a freshly spawned child (not seeded from the parent log) inherits nothing (0.172458ms)
+✔ a fork that already has its own binding keeps it (0.210834ms)
+✔ the file store round-trips one record per session and leaves no temporary files (20.238958ms)
+✔ the file store fails closed on malformed, foreign, or unsafe records (6.673584ms)
+✔ orphan cleanup removes only old records whose session DSH no longer stores (30.600791ms)
+✔ orphan cleanup of a store that was never written is a no-op (0.711708ms)
+✔ concurrent binds of one session to different networks: exactly one wins, the other conflicts (7.873541ms)
+✔ concurrent binds of one session to the same network are idempotent; other sessions are not blocked (0.2255ms)
+✔ a failed write does not block the next bind of the same session (0.102917ms)
+✔ formal release capture-disabled start retains the platform-issued managed identities (1.448333ms)
+✔ formal release disabled finish preserves identities without fabricating recorded evidence (0.807792ms)
+✔ formal release schemas require managed context on every projected business tool (0.195083ms)
+✔ published required context refuses missing, malformed and different-turn identities (0.189125ms)
+✔ formal unavailable finish degrades honestly and cannot open a new Interaction (0.155125ms)
+✔ an unrecorded result never borrows identities from a different text record (0.174ms)
+✔ malformed live invocation exits before importing the plugin or taking credentials (345.541583ms)
+✔ valid live options retain explicit mode, networks and paths with spaces (2.146084ms)
+✔ CLI failures never expose captured credential-like stdout or stderr (63.238084ms)
+﹣ Windows CLI lookup runs a PATH .cmd and a shim in a path containing spaces and & (0.218875ms) # SKIP
+✔ release package audit accepts only the install-time bundle assets (1270.20125ms)
+✔ initial state is closed with no conversation held (11.239ms)
+✔ a successful start opens the interaction and adopts disclosed ids (0.15675ms)
+✔ a failed start leaves the interaction closed (15.743791ms)
+✔ a successful finish closes the interaction but keeps the conversation (0.226709ms)
+✔ a failed finish keeps the interaction open so the model may retry (0.156833ms)
+✔ a successful finish closes access even when its result cannot disclose usable provenance IDs (9.134416ms)
+✔ onTurnStart resets per-turn flags and preserves whatever conversation the state holds (0.651625ms)
+✔ restoreFrom resumes the conversation of the last logged successful start (0.806791ms)
+✔ restoreFrom drops a conversation the platform invalidated, and never resurrects it (0.597083ms)
+✔ restoreFrom keeps the conversation through non-invalidating failures and guard denials (1.363042ms)
+✔ restoreFrom reads legacy tool-result wrappers too (0.530166ms)
+✔ restoreFrom ignores recorded plugin events and unrelated tools (1.395125ms)
+✔ a fork (a log prefix) resumes the conversation held at its fork point (0.101833ms)
+✔ replaying real logs reproduces the conversation state the plugin recorded at the time (3.962083ms)
+✔ lastConversationEvent returns the durable record verbatim, recordedAt included (0.098458ms)
+✔ classifyFailure marks only platform invalidation codes as conversation-invalid (0.674791ms)
+✔ projectLifecycleOutcome extracts the code from the platform nested error envelope (5.649ms)
+✔ projectLifecycleOutcome still reads a legacy flat envelope and known nested variants (0.235209ms)
+✔ projectLifecycleOutcome treats unparsable or code-less failures as not determinable (0.430042ms)
+✔ projectLifecycleOutcome reads ids from a successful lifecycle result (0.094834ms)
+✔ a non-invalidating failed start never clears the held conversation (0.367833ms)
+✔ a platform-invalidated start drops the held conversation and allows one controlled recovery (0.077792ms)
+✔ rule 2: a managed in-interaction tool is denied before any start, with a retryable next step (0.122042ms)
+✔ rule 2 after the turn completed: the denial forbids further access instead of sending the model into a start that would be rejected (1.903042ms)
+✔ rule 3: start is denied while an interaction is open (0.049ms)
+✔ rule 4: new is denied while a conversation is held, with the exact id in the text (0.035917ms)
+✔ rule 4: continue with a mismatched id is denied with the correct value (1.871333ms)
+✔ rule 4: continue without any held conversation is denied towards new (0.084208ms)
+✔ a matching continue is allowed (0.21325ms)
+✔ rule 5: finish is denied without an open interaction (0.056458ms)
+✔ after a platform-judged invalidation, exactly one controlled new is allowed (0.068709ms)
+✔ a turn that finished its interaction cannot start a second one (0.051625ms)
+✔ retrying a failed start in the same turn stays allowed (0.043708ms)
+✔ an unmatched or absent conversation_mode is left to platform validation (0.0415ms)
+✔ 0.2.0 explicit unrecorded start opens governed access without stale interaction identity (0.227416ms)
+✔ disabled Trace preserves Conversation across turns; errors and unknown missing IDs never open access (0.4115ms)
+✔ lifecycle projection accepts only a valid platform diagnostic suffix, not arbitrary appended text (0.23825ms)
+✔ extracts only explicitly disclosed interaction and operation references (5.900125ms)
+✔ does not create provenance references from an undisclosed interaction or error response (0.173291ms)
+✔ bounds and ignores malformed operation references (0.203708ms)
+✔ English diagnostic metadata separates every label from its value (71.096291ms)
+✔ English sign-in platform label is separated from the displayed URL (7.129083ms)
+✔ both dictionaries cover the same keys and interpolation contracts (1.924875ms)
+✔ an already displayed failure updates zh/en/zh without rereading credentials or reconnecting (1.278959ms)
+✔ native evidence selection survives language changes and never links equal-valued unrelated nodes (17.704667ms)
+✔ diagnostic next actions translate without mutating exported report facts or unknown text (0.254709ms)
+✔ the open login panel switches language while waiting and cancellation never dispatches a second login (2.202125ms)
+✔ closing provenance cancels its read and discards the late response (4995.426166ms)
+✔ claim selection marks only explicitly linked functions while retaining the same-pair catalogue (17.951833ms)
+✔ event selection marks processing by disclosed operation IDs and survives tab changes (14.719417ms)
+✔ changing question pairs resets node, claim and event selections without importing unrelated functions (13.449625ms)
+✔ truly empty ready evidence, not-generated and an omitted oversized native projection remain distinct (3.744334ms)
+✔ unavailable and not-generated evidence never claim that an explanation exists (3.930084ms)
+✔ overlay text and close controls keep visible contrast against their white surface in a dark host (3.303833ms)
+✔ a late response from the closed answer cannot overwrite a newly opened answer (7.672875ms)
+✔ login has a dedicated waiting state and repeated clicks dispatch once (2.1435ms)
+✔ cancel aborts only the active request and discards a late result; retry is independent (0.482041ms)
+✔ bounded login timeout cancels the request without accepting a late response (41.119792ms)
+✔ closing during login aborts its request and reopening has no stale outcome (0.204916ms)
+✔ failed login exposes a controlled state without raw CLI output (0.284833ms)
+✔ login verification returning authentication-required never publishes success or the stale catalogue (7.633875ms)
+✔ login verification returning platform-mismatch never publishes success or the stale catalogue (0.153166ms)
+✔ an unsuccessful verification can retry and succeeds only after authenticated verification (0.160167ms)
+✔ cancellation while verifying status discards a late authenticated result (3.375083ms)
+✔ a verified login result is returned without awaiting iterator cleanup (1.055541ms)
+✔ a login stream without a verified result is refused and disposed (0.900125ms)
+✔ a rejected first login read is preserved and the stream is disposed (1.574708ms)
+✔ the caller cancellation signal still reaches the native login handle (0.181ms)
+✔ preserves numeric precision and only claims files after a supported export succeeds (1.42175ms)
+✔ renders compact managed-session guidance without exposing untrusted platform prose (1.2555ms)
+✔ omits the dynamic section until a matching bounded capability profile is available (0.173875ms)
+✔ quotes the selected network identity as data instead of executable prompt text (0.146958ms)
+✔ recovers spilled business results through managed pagination and distinguishes remote files from delivery (0.526375ms)
+✔ routes the published Function OpenAPI body into flat executor arguments and checks nested execution status (1.213875ms)
+✔ derives the default MCP route from the platform URL (1.399542ms)
+✔ accepts an explicit mcpUrl on the same origin over https (6.220083ms)
+✔ accepts loopback http only when both endpoints are loopback (0.7505ms)
+✔ rejects a plaintext non-loopback mcpUrl even on the same host (0.241125ms)
+✔ rejects a cross-origin mcpUrl regardless of scheme (1.714666ms)
+✔ allows plaintext non-loopback only through the explicit insecure switch (0.177375ms)
+✔ a native service call keeps its MCP child inside the business owner across reload (177.94125ms)
+✔ inactive owners cannot reuse the published-tool fast path or refresh a client (5.159166ms)
+✔ a token resolving after owner disposal cannot mount or change the new diagnostic outcome (0.396458ms)
+✔ a late successful mount is disposed and cannot overwrite the same-platform new owner (0.910667ms)
+✔ a late failed mount from a disposed owner is not classified as a new TLS failure (0.574333ms)
+✔ a dead owner after unpublished-client cleanup cannot record a startup failure (0.528333ms)
+✔ a live owner still mounts, reports success, and refreshes its owned client (0.493458ms)
+✔ associates an explicitly completed OpenBKN MCP interaction with its final assistant answer (2.324791ms)
+✔ keeps a handle v2 without a conversation id when the finish response omits one (0.176333ms)
+✔ does not fabricate provenance when the current turn has no completed OpenBKN interaction (0.056625ms)
+✔ rejects an uncompleted or ambiguous OpenBKN interaction (0.148041ms)
+✔ explicit unrecorded finish is associated only with its own final answer and has no invented IDs (1.750875ms)
+✔ stable binding identity survives fresh record objects on each read (2.4035ms)
+✔ an exact aggregate byte budget is admitted; one byte below degrades only the explanation (26.116541ms)
+✔ aggregate native data never exceeds the frozen ceiling even when configuration permits more (42.984125ms)
+✔ the final native payload respects a 1-byte cap without losing the local timeline (0.304416ms)
+✔ the final native payload respects a 100-byte cap without losing the local timeline (0.418042ms)
+✔ the final native payload respects a 125-byte cap without losing the local timeline (0.392ms)
+✔ the final native payload respects a 126-byte cap without losing the local timeline (0.60925ms)
+✔ detail failure does not discard a readable explanation or local history (0.788042ms)
+✔ duplicate fallback rail degrades the explanation when detail is unavailable, preserving local history (11.301333ms)
+✔ native read failure preserves the independently readable detail and local timeline (0.487542ms)
+✔ binding changes discard in-flight native replies (5.277459ms)
+✔ credential generation changes discard in-flight native replies (0.597208ms)
+✔ missing message handles never dispatch native reads (0.798334ms)
+✔ explicit primary-operation network mismatch rejects both native projections (0.567083ms)
+✔ oversized native arrays are refused before any untrusted element is inspected (12.223375ms)
+✔ the existing pair-graph key limit is checked before any untrusted value is read (0.893167ms)
+✔ schema 1 projection retains disclosed gaps and removes payloads, offsets and unknown fields (3.228875ms)
+✔ identity/schema/text/enum/duplicate refusals never accept a partial parsed explanation (11.021875ms)
+✔ byte and aggregate graph budgets refuse overflow rather than silently truncating (24.866ms)
+✔ duplicate explanation rail IDs reject the whole projection without selecting or renaming an attempt (2.043583ms)
+✔ platform invalid and unfamiliar validation states remain valid read-only records with their raw reasons (16.803625ms)
+✔ not_generated and a valid empty explanation are distinct outcomes (2.334625ms)
+✔ not-generated obeys the exact byte cap including tiny budgets (0.559417ms)
+✔ detail identity is validated and inline time-rail payloads are never projected (2.566458ms)
+✔ native reader uses only exact GET routes with Host credentials and never generates explanations (60.743125ms)
+✔ native 401/403/404 stay distinct and never imply a license cause (1.247792ms)
+✔ invalid native response is observed as failure; success on another subject cannot clear it (15.981792ms)
+✔ native reader refuses path-like identifiers and missing credentials before dispatch (1.137917ms)
+✔ record-integrity gaps and failed checks remain explicit in the detail projection (2.403333ms)
+✔ ready projections enforce exact UTF-8 byte budgets rather than character counts (5.281083ms)
+✔ raising the configured cap cannot raise the native reader ceiling above one million bytes (31.619709ms)
+✔ individual display text accepts 16384 UTF-16 units and refuses the next unit (2.78925ms)
+✔ aggregate nodes include top-level and selected-pair graphs at the exact limit (2.718375ms)
+✔ aggregate edges include top-level and selected-pair graphs at the exact limit (13.577666ms)
+✔ requirements accepts its array limit and refuses limit plus one (0.660542ms)
+✔ claims accepts its array limit and refuses limit plus one (2.069916ms)
+✔ question pairs accepts its array limit and refuses limit plus one (0.67625ms)
+✔ pair graphs accepts its array limit and refuses limit plus one (1.943708ms)
+✔ time rail accepts its array limit and refuses limit plus one (4.155708ms)
+✔ notices accepts its array limit and refuses limit plus one (1.703083ms)
+✔ business inputs accepts its array limit and refuses limit plus one (0.809584ms)
+✔ business outputs accepts its array limit and refuses limit plus one (0.549542ms)
+✔ getNativeInteractionDetail uses the exact fixed GET route and Host credential (0.930958ms)
+✔ getNativeInteractionDetail bounds header-less wire bytes at 8 MiB and cancels an overflowing stream (23.145666ms)
+✔ getNativeInteractionDetail maps malformed JSON, 5xx and transport failures to controlled errors (1.061667ms)
+✔ getNativeInteractionExplanation uses the exact fixed GET route and Host credential (0.774834ms)
+✔ getNativeInteractionExplanation bounds header-less wire bytes at 8 MiB and cancels an overflowing stream (102.863542ms)
+✔ getNativeInteractionExplanation maps malformed JSON, 5xx and transport failures to controlled errors (1.151333ms)
+✔ both native GETs use an independent 30-second timeout and forward explicit cancellation (78.953208ms)
+✔ record pages construct only visible children, reveal a new focus and reset on a context round trip (49.547834ms)
+✔ record pages remember each new focus after manual paging and an A-B-A round trip (1.09075ms)
+✔ different list roles never share page state even at the same position and question pair (5.560541ms)
+✔ repeated reference jumps reveal the same target after manual paging and preserve A-B-A navigation (43.72075ms)
+✔ paging requirements between tabs cannot hide the exact selected retry event (173.984417ms)
+✔ shared definitions remain navigable without highlighting another processing path or reclassifying invalid (20.263041ms)
+✔ shared sourceRef navigation preserves query scope, both input users and candidate records across views (71.789083ms)
+✔ shared sourceRef navigation preserves query scope, both input users and invalid records across views (45.411ms)
+✔ shared sourceRef navigation preserves query scope, both input users and future-platform-status records across views (38.276167ms)
+✔ shared evidenceRefs navigation preserves query scope, both input users and candidate records across views (50.328833ms)
+✔ shared evidenceRefs navigation preserves query scope, both input users and invalid records across views (77.391625ms)
+✔ shared evidenceRefs navigation preserves query scope, both input users and future-platform-status records across views (79.3365ms)
+✔ platform-disclosed dependencies between queries remain navigable with raw invalid records (7.607416ms)
+✔ missing both original fields never get filled from the explanation (2.549708ms)
+✔ missing question original fields never get filled from the explanation (1.876875ms)
+✔ missing answer original fields never get filled from the explanation (1.486375ms)
+✔ original and explanation question/answer texts keep their distinct sources and exact content (1.2515ms)
+✔ explicit empty original strings stay empty instead of being classified as missing (0.700125ms)
+✔ missing explanation text is not filled from an available original record (1.405958ms)
+✔ a access-denied original source never gets replaced by explanation texts (1.925625ms)
+✔ a not-disclosed-or-unavailable original source never gets replaced by explanation texts (1.323875ms)
+✔ a not-generated explanation never hides or changes an available original source (0.620375ms)
+✔ a unavailable explanation never hides or changes an available original source (0.546291ms)
+✔ a reference to an off-page retry reveals both its exact step and event pages (8.353834ms)
+✔ real-shaped schema and operation sources navigate without conflating an operation with a node (1.809667ms)
+✔ retained unlinked processing displays the platform's invalid status and raw reason (11.135333ms)
+✔ retained unlinked processing displays the platform's candidate status and raw reason (35.532833ms)
+✔ retained unlinked processing displays the platform's verified status and raw reason (2.453709ms)
+✔ retained unlinked processing displays the platform's future-platform-status status and raw reason (2.936ms)
+✔ invalid relationship without a business function retains raw status, reason and endpoint navigation (1.344875ms)
+✔ valid dense fanout renders bounded pages while retaining all source and processing records (1281.336667ms)
+✔ platform invalid status and reason stay visible on retained business records (3.733209ms)
+✔ loaded answer ownership is synchronous on direct (3540.522667ms)
+✔ loaded answer ownership is synchronous on close-reopen (3.458333ms)
+✔ loaded answer ownership is synchronous on same-message (4.027334ms)
+✔ selecting a step highlights its exact event and related evidence across tabs without confirming candidates (5.345791ms)
+✔ selecting a retry event never highlights another attempt of the same operation (3.662458ms)
+✔ source and schema selection reverse-link processing, while references navigate to the exact step or execution node (8.181458ms)
+✔ input/output references select disclosed nodes, and a node execution reference changes the view (6.227ms)
+✔ opaque, ambiguous, absent and inconsistent references stay text and do not select a substitute event (3.988291ms)
+✔ changing pairs clears the old selection even when the next pair reuses a node ID (3.260208ms)
+✔ an event linked to multiple business functions shows all recorded associations without choosing a primary function (5.560375ms)
+✔ the actual overlay changes tabs on reference clicks without rereading and resets after close/reopen (7.441834ms)
+✔ shared sourceRef inputs do not merge output paths with candidate records (14.036ms)
+✔ shared sourceRef inputs do not merge output paths with invalid records (3.133875ms)
+✔ shared sourceRef inputs do not merge output paths with future-platform-status records (2.545208ms)
+✔ selecting a shared sourceRef input retains every disclosed query and attempt (7.381292ms)
+✔ shared evidenceRefs inputs do not merge output paths with candidate records (0.990291ms)
+✔ shared evidenceRefs inputs do not merge output paths with invalid records (1.351458ms)
+✔ shared evidenceRefs inputs do not merge output paths with future-platform-status records (2.691292ms)
+✔ selecting a shared evidenceRefs input retains every disclosed query and attempt (3.838209ms)
+✔ an upstream shared input does not turn a branch-specific input into a selection of both queries (1.717458ms)
+✔ equal input values with distinct disclosed IDs do not join queries (3.365083ms)
+✔ a platform-disclosed output used by another query retains that dependency regardless of invalid status (1.005334ms)
+✔ shared definitions never merge independent claim paths with candidate records (1.28025ms)
+✔ shared definitions never merge independent claim paths with invalid records (0.784917ms)
+✔ shared definitions never merge independent claim paths with future-platform-status records (3.240167ms)
+✔ selecting a shared definition retains both disclosed paths without making it an execution owner (1.364833ms)
+✔ schema and operation navigation still works when only the disclosed edges provide those references (14.949875ms)
+✔ unexpected uses_schema roles remain raw records without being guessed into a processing dependency (1.412917ms)
+✔ pinned platform schema references and managed arguments use their disclosed namespaces (0.357416ms)
+✔ schema aliases never choose between two records and argument refs never become same-ID evidence (0.657875ms)
+✔ argument refs retain every disclosed event when steps are absent and missing operations stay unresolved (0.311917ms)
+✔ platform validation changes never rewrite records or turn navigation into a plugin verdict (0.394667ms)
+✔ claim paths include disclosed processing, sources and execution but never equal-valued unrelated nodes (1.72675ms)
+✔ event selection retains exact attempt identity across shared operation IDs (16.343ms)
+✔ step selection retains exact attempt identity across shared operation IDs (5.144ms)
+✔ source, output and execution selections reverse-link disclosed claims and processing (2.449416ms)
+✔ missing, ambiguous and conflicting references stay unresolved instead of fabricating a target (0.9435ms)
+✔ pair selection and cycles remain scoped, bounded and do not import old references (1.120958ms)
+✔ a recorded output reference can link its execution to a supported claim without matching values (1.249959ms)
+✔ top-level explicit evidence edges work without a pair graph, and never leak into a selected-pair graph (0.887875ms)
+✔ IDs reused across entity kinds stay distinct and untyped edges do not guess the endpoint kind (1.144834ms)
+✔ edge operation references link steps and evidence even without a disclosed business function (0.741792ms)
+✔ step/event endpoints and cyclic function relations never broaden an exact attempt selection (0.752792ms)
+✔ builds a deterministic bounded index from a summary knowledge-network detail (1.207667ms)
+✔ fails closed on a mismatched or malformed network detail and caps untrusted rows (1.872ms)
+✔ ignores optional object metadata that is irrelevant to the bounded capability index (0.188125ms)
+✔ navigation shells preserve counts and groups without implying zero concept indices (2.82625ms)
+✔ navigation nulls fail closed below thresholds, with malformed counts, mixed arrays or missing notice/groups (5.212834ms)
+✔ searches safe catalogue fields and prioritizes associated workspaces (0.904542ms)
+✔ shows an initial bounded page and reports remaining directory rows (0.112583ms)
+✔ starts login only for the plugin configured OpenBKN platform (2.423333ms)
+✔ rejects a login request that attempts to select another OpenBKN platform (0.318708ms)
+✔ allows only the fixed CLI token command for Host credential synchronization (0.53575ms)
+✔ spawns the executable DSH resolves, so a Windows PATHEXT shim like openbkn.cmd is found (0.126875ms)
+✔ resolves a configured cliPath instead of the default name (0.094917ms)
+✔ reports a missing CLI as unavailable and never spawns (0.142375ms)
+✔ derives the standard Context Loader endpoint from the configured OpenBKN platform (0.429375ms)
+✔ honours an explicitly configured Context Loader endpoint on the same origin (0.095708ms)
+✔ mounts the compatible MCP client with an ephemeral bearer header and verifies its managed tool (2.958292ms)
+✔ turns an MCP handshake rejection into an actionable re-login hint (G6 finding) (1.736416ms)
+✔ keeps a plain startup failure in its original shape (0.383458ms)
+✔ keeps the HTTP refusal brand across the SDK data.cause wrapper without retaining private errors (0.132583ms)
+✔ recognizes a 403 brand as an account-authorization hint, not re-login (0.180625ms)
+✔ the tool-call timeout defaults to 20 s and is configurable (2.859417ms)
+✔ the panel opens without business services and recovers when they become available (1.319958ms)
+✔ disposing an older business connection does not detach its replacement (0.120333ms)
+✔ configuration is available without business services and survives their reload (0.247292ms)
+✔ business replacement rejects an old reply even when its Remote ignores cancellation (4.415291ms)
+✔ a changed remembered platform starts one browser authorization without a certificate prompt (2.114458ms)
+✔ a fresh platform still waits for the user login action and does not start a browser on mere inspection (0.219541ms)
+✔ directs unavailable RPC and unknown connection failures to diagnostics without guessing credentials (1.654375ms)
+✔ loads only the visible network catalogue after OpenBKN authentication succeeds (1.172167ms)
+✔ does not request the catalogue while OpenBKN authentication is required (0.241416ms)
+✔ returns to sign-in when the platform rejects a locally present credential (0.327916ms)
+✔ explains whether a failed verification came from MCP or the platform catalogue (0.574292ms)
+✔ offers credential recovery without inferring why the platform catalogue rejected a token (0.332833ms)
+✔ keeps the saved token and identifies a temporarily unavailable platform catalogue (0.217416ms)
+✔ creates the selected network session before binding it (0.467625ms)
+✔ binds the selected visible network to the newly opened network session (0.228375ms)
+✔ refreshes native additive session contributions after binding a new session (0.176542ms)
+✔ attributes a browse-only Host refusal to the connection mode (0.571709ms)
+✔ classifies a failing native chooser without exposing raw Host error text (0.173209ms)
+✔ returns to the network list without an error when the chooser is dismissed (0.145375ms)
+✔ keeps raw bind failures out of the displayed message (0.215583ms)
+✔ tells the user how to make the OpenBKN CLI available instead of blaming the token (0.296708ms)
+✔ while the workspace chooser is open, the panel says where to look instead of "binding" (0.410916ms)
+✔ first-use shows configuration without dispatching authentication or catalogue calls (0.199208ms)
+✔ invalid form submissions stay on configuration without saving or connecting (0.384708ms)
+✔ a saved URL is distinct from connection failure and retains the saved settings (0.46975ms)
+✔ a rejected save remains in the form and does not request authentication (1.248209ms)
+✔ closing during authentication drops the response and prevents the next request (0.22875ms)
+✔ close and reopen discard the old login result without replacing the new state (0.245458ms)
+✔ a newer refresh wins when the older catalogue resolves last (30.06775ms)
+✔ closing while a workspace is selected prevents later binding and UI refresh (2.26ms)
+✔ closing during a configuration save ignores the result without connecting (0.11975ms)
+✔ an unavailable configuration entry preserves the healthy business panel (0.133833ms)
+✔ closing during the configuration read prevents reopening the setup form (0.052708ms)
+✔ a readonly configuration view refuses saves until the user retries settings (0.092084ms)
+✔ a readonly editor-unavailable view does not block a healthy business connection (0.056833ms)
+✔ unknown or inactive entries preserve the business failure and diagnostic guidance (0.087291ms)
+✔ Desktop selects once through its native bridge, keeping the picker receiver (0.938625ms)
+✔ browser and unavailable bridges retain the public workspace picker (0.222833ms)
+✔ native cancellation does not open a second Host chooser (0.133542ms)
+✔ native failure is preserved without opening a second Host chooser (0.394167ms)
+✔ CSV transfer preserves BOM, CRLF, Chinese names, and fractional quantities from the canonical result (2.03075ms)
+✔ missing or malformed content returns the controlled incomplete-result error (0.741709ms)
+✔ portable CSV names reject Windows wildcards before delivery (0.265917ms)
+✔ CSV transfer refuses wrong source, digest, size, malformed base64 and invalid UTF-8 (0.367209ms)
+✔ CSV path validation rejects traversal, absolute paths, URLs, commands and non-CSV files (0.195292ms)
+✔ the actual Python reader is confined to this conversation and refuses symlinks and oversized files (316.398875ms)
+✔ workspace resolution follows old immutable Session cwd or the new native service, never process cwd (1.6445ms)
+✔ export creates a new verified file and returns a real path without changing bytes (2.182791ms)
+✔ exported link safely round-trips spaces, parentheses, percent signs and Chinese through native file links (0.41725ms)
+✔ closed interaction, wrong identity/network and read-only mode never dispatch or write (0.666083ms)
+✔ finish while retrieving, file collisions and saved-byte corruption never produce a successful delivery (1.790583ms)
+✔ native ToolRuntime mounts export only in the bound agent and enforces lifecycle/context without Host tool access (21.679834ms)
+✔ captured MCP and reader transports cannot carry old credentials into a newly authorized generation (213.909917ms)
+✔ an MCP token resolved across identity rotation cannot be relabeled as the replacement generation (45.662041ms)
+✔ a reader token resolved across identity rotation cannot be relabeled as the replacement generation (108.286333ms)
+✔ caps a header-less streamed body at the byte limit (62.25325ms)
+✔ does not follow redirects on fixed control-plane routes (0.2895ms)
+✔ rejects a malformed businessDomain before it reaches undici (0.211959ms)
+✔ reads an operations record whose raw outputs exceed the general cap, and admits only the projection (84.144084ms)
+✔ still caps an operations record beyond the operations limit (6.553709ms)
+✔ uses fixed Host routes and keeps the credential out of payloads (32.442875ms)
+✔ posts only a host-bound network id to the fixed Context Loader detail route (0.674083ms)
+✔ projects oversized raw operation records before applying the Host-to-browser size limit (1.154ms)
+✔ rejects missing credentials and cross-platform bindings before a network request (0.905292ms)
+✔ maps authorization failure without exposing the platform response (0.867333ms)
+✔ maps a 403 permission_denied domain gate to LICENSE_REQUIRED without exposing the response (0.624917ms)
+✔ maps a 404 resource_not_disclosed to RECORD_NOT_DISCLOSED without exposing the response (0.238625ms)
+✔ keeps a 404 resource_not_disclosed on non-observability routes a generic platform unavailability (0.203916ms)
+✔ keeps any other 404 a generic platform unavailability (3.203625ms)
+✔ keeps an oversized 404 body a generic platform unavailability (1.038041ms)
+✔ keeps a non-JSON 404 a generic platform unavailability (2.865042ms)
+✔ keeps a 401 permission_denied on observability routes an authentication failure (1.380791ms)
+✔ keeps non-permission 401/403 responses on AUTHENTICATION_REQUIRED (0.678958ms)
+✔ keeps permission_denied on non-observability routes an authentication failure (0.150583ms)
+✔ projects the license edition from bkn-safe capabilities (0.205125ms)
+✔ credential lookup receives the request cancellation before any HTTP dispatch (0.102334ms)
+✔ real self-signed HTTPS fails without extra CA, succeeds only with the confirmed certificate (240.600708ms)
+✔ a confirmed valid issuer still rejects expired and wrong-host actual server certificates (10.778625ms)
+✔ plugin-owned MCP selects its packaged scoped factory; deployment-owned MCP stays refused (30.375ms)
+✔ PEM, date, hostname, fingerprint and normalized origin admission stay strict (6.419083ms)
+✔ directory/Trace HTTP reads share trust, refuse redirects, and never send credentials to another origin (27.330125ms)
+✔ production service blocks imported-CA login before spawn and never lends that CA to local status/token commands (1.302625ms)
+✔ CLI certificate errors are classified without leaking stderr or device/token values (0.337583ms)
+✔ preview alone never enables trust; explicit confirmation, change and removal use native configuration persistence (1.793958ms)
+✔ revocation writes an explicit deny value so inherited trust cannot reappear (0.268291ms)
+✔ revoking an owner aborts a real in-flight HTTPS read and refuses later reads (11.946125ms)
+✔ automatic observation sends no HTTP; authorization persists and ordinary use does not reauthorize (162.508541ms)
+✔ certificate rotation is automatically observed but old authorization and credentials cannot cross it (91.710875ms)
+✔ changing the platform origin or observed server IP requires a new authorization generation (21.934291ms)
+✔ a pinned TLS connection rejects an unobserved replacement before sending any HTTP body (13.215042ms)
+✔ the built CLI preload fences automatic cross-origin fetch and leaves parent TLS unchanged (485.810625ms)
+✔ an expired access token uses official CLI refresh before asking for another browser login (0.6505ms)
+✔ failed refresh still requires authorization and never reports an authenticated state (0.58725ms)
+✔ a cached credential is never reused for a different authorization generation (0.310792ms)
+✔ a changed platform requiring authorization refuses even an existing cached credential (0.195167ms)
+✔ independent automatic-platform reads use the CLI refresh authority rather than a stale service token (0.150792ms)
+✔ a generation changed during a CLI token read cannot be labeled as the new identity (0.198125ms)
+✔ HTTPS default origin supplies port 443 to the pinned TLS connector (11.569667ms)
+✔ explanation cannot read or mutate a cross-KN record even through the trusted anchor (3.828292ms)
+✔ markdown cannot read or mutate a cross-KN record even through the trusted anchor (0.385ms)
+✔ history cannot read or mutate a cross-KN record even through the trusted anchor (0.340666ms)
+✔ generate cannot read or mutate a cross-KN record even through the trusted anchor (0.682209ms)
+✔ analyze cannot read or mutate a cross-KN record even through the trusted anchor (0.432083ms)
+✔ analysis submits only native platform Markdown after a complete scoped detail preflight (1.383083ms)
+✔ a failed detail preflight cannot be treated as a generated explanation or dispatch an action (0.171291ms)
+✔ membership proof enforces an aggregate byte budget across otherwise admissible pages (48.65625ms)
+✔ membership proof has a hard page ceiling and never dispatches a detail fallback (63.469583ms)
+✔ untrusted interaction identity cannot become a route: 42 (0.223708ms)
+✔ untrusted interaction identity cannot become a route: null (0.088292ms)
+✔ untrusted interaction identity cannot become a route: ../../other (0.146083ms)
+✔ untrusted interaction identity cannot become a route: https://other.invalid (0.114208ms)
+✔ untrusted interaction identity cannot become a route: a?token=secret (0.086375ms)
+✔ history root identity is checked even when the returned entries array is empty (0.222166ms)
+✔ request whitelist refuses unsupported fields before any platform dispatch: kind (0.116625ms)
+✔ request whitelist refuses unsupported fields before any platform dispatch: kind,url (0.078292ms)
+✔ request whitelist refuses unsupported fields before any platform dispatch: kind,token (0.068333ms)
+✔ request whitelist refuses unsupported fields before any platform dispatch: kind,markdown (0.07775ms)
+✔ an admitted request is snapshotted before async work and cannot change from GET to POST (0.232292ms)
+✔ native display reads use only fixed scoped GET routes and preserve original platform records above the old display cap (102.140959ms)
+✔ generation is a fixed explicit POST, and a scene guard after credential resolution prevents stale mutation (1.291833ms)
+✔ analysis preserves token, structured output and platform error events across CRLF and UTF-8 chunk boundaries (10.282167ms)
+✔ analysis refuses incomplete or malformed native frames: event: token
+data: {"cont (0.65875ms)
+✔ analysis refuses incomplete or malformed native frames: event: structured
+data: { (0.509375ms)
+✔ analysis refuses incomplete or malformed native frames: event: structured
+data: { (0.34125ms)
+✔ analysis refuses incomplete or malformed native frames: event: token
+data: {"cont (1.743375ms)
+✔ analysis refuses incomplete or malformed native frames: event: unknown
+data: {}
+
+ (0.3355ms)
+✔ analysis refuses incomplete or malformed native frames: event: structured
+data: i (0.25825ms)
+✔ native action safely classifies HTTP 401 (0.535583ms)
+✔ native action safely classifies HTTP 403 (0.307792ms)
+✔ native action safely classifies HTTP 404 (0.206625ms)
+✔ native action safely classifies HTTP 302 (0.278333ms)
+✔ analysis and Markdown enforce independent byte budgets and cancel oversized streams (24.8725ms)
+✔ cancelling a pending analysis read closes its body and returns only a classified cancellation (11.701541ms)
+✔ new native Remote uses one trusted message identity and preserves original platform invalid state (135.762791ms)
+✔ another platform or an absent live session is denied before the reader is used (1.611791ms)
+✔ a binding change while detail is pending cannot emit the old platform result (8.3085ms)
+✔ a handle change while detail is pending cannot emit the old platform result (3.501375ms)
+✔ a agent change while detail is pending cannot emit the old platform result (0.910917ms)
+✔ a revision change while detail is pending cannot emit the old platform result (1.689584ms)
+✔ Host failures have safe fixed classifications and never expose arbitrary exception text or causes (25.337ms)
+✔ already aborted streams never reach the platform (0.184292ms)
+✔ the composed Host scope blocks generate POST when identity changes during its credential lookup (2.448541ms)
+✔ the composed Host scope blocks analyze POST when identity changes during its credential lookup (2.833208ms)
+✔ disposing the Host lifetime cancels a pending read and prevents stale results (1.052542ms)
+✔ two concurrent Remote reads have independent cancellation and cannot consume each other results (3.242916ms)
+✔ normalizes one bounded, display-safe completed-turn provenance handle (1.807667ms)
+✔ reads a schema v1 handle from an older session log and upgrades it in memory without inventing fields (0.238708ms)
+✔ round-trips a v2 handle whose optional identifiers are absent (0.135ms)
+✔ rejects a malformed, unbounded, non-completed, or future-version handle before it reaches the client (0.543291ms)
+✔ treats a stored v1 event and its v2 re-capture as the same turn, not a conflict (0.156625ms)
+✔ still flags a completed message rewritten to a different interaction (0.105708ms)
+✔ restores focus to the native assistant action after closing provenance (0.69075ms)
+✔ trusted answer anchor reads directly outside the first 50 and retains all platform payload, invalid and reason fields (5.473875ms)
+✔ switching to another current-conversation round verifies all required pages before fetching detail (0.975666ms)
+✔ partial or truncated membership never fetches an unverified round or falls back to a different one (1.397625ms)
+✔ foreign conversation membership and foreign detail identities are rejected without changing original data (1.290209ms)
+✔ analysis is an explicit request and uses platform Markdown instead of browser-provided business text (1.344125ms)
+✔ identity invalidation after a read rejects its stale payload instead of emitting a result (0.738542ms)
+✔ platform detail opens the exact answer outside the first 50 rounds and uses canonical visible labels (1560.619375ms)
+✔ retry attempts remain independently selectable and preserve failed input/output/error facts (8363.926875ms)
+✔ Markdown copy and download use the exact platform content, while refresh makes no generation or analysis request (11483.949459ms)
+✔ search or an absent list anchor never changes the clicked answer to the first or latest round (1868.790667ms)
+✔ managed function time rail keeps parent and failed internal calls with recorded payloads (10858.244166ms)
+✔ saved evidence supports reading and graph modes without auto-generating or changing raw invalid attribution (7597.117833ms)
+✔ an ungenerated explanation preserves timeline facts and generates only after explicit action (4711.212459ms)
+✔ opening the analysis panel does not run an Agent; explicit start uses platform Markdown and displays its result (7120.096833ms)
+✔ the real overlay cancels closed reads, ignores late results, and reopens at the new trusted message and language (1572.726333ms)
+✔ leaving an evidence view cancels its explicit pending generation and ignores its late result in the next round (3605.465375ms)
+✔ an explicit platform analysis failure retains its returned reason and does not retry by itself (9890.711709ms)
+✔ shared-input highlighting follows only platform-persisted edges while equal values never invent a relationship (13287.661042ms)
+✖ Escape in a legacy graph Inspector closes that Inspector and keeps the real DSH overlay open (3513.771417ms)
+✔ independent parity fixture contains first-page, attempt, payload and platform-status boundaries (4.897667ms)
+✔ detail transport resolves verified content without waiting on Remote disposal (1.58875ms)
+✔ detail transport reconstructs UTF-16 split JSON without altering platform content (0.547ms)
+✔ detail transport rejects missing chunks, duplicate index, mixed encoding and invalid JSON (0.8715ms)
+✔ detail transport counts aggregate UTF-8 bytes, including a split surrogate, at the wire budget (87.324709ms)
+✔ detail transport cancels a stalled Remote promptly and never opens an already cancelled request (0.523125ms)
+✔ detail transport exposes controlled error codes without leaking raw Remote exceptions (0.207458ms)
+✔ analysis events are explicit and preserve platform deltas and structured content (0.467333ms)
+✔ controlled Host failures retain only safe HTTP evidence for platform permission and legacy UI states (0.349042ms)
+✔ a parsed platform analysis error survives the full stream bridge and adapter with its original code and reason (22.140709ms)
+✔ projects the disclosed network from canonical Trace references, including opaque instance tails (2.731875ms)
+✔ keeps each disclosed reference network and leaves mixed-operation origin unlocated (1.397083ms)
+✔ does not guess a network from malformed or undocumented references (0.174583ms)
+✔ keeps the local timeline and projects receipts when only operations are available (0.210542ms)
+✔ attaches platform facts to aligned timeline nodes and skips them when alignment is uncertain (0.152833ms)
+✔ reads the documented operations field when the Community endpoint does not use entries (0.071291ms)
+✔ keeps the timeline intact and records pane degradations when the platform is unreachable (0.083084ms)
+✔ maps a missing-record degradation to its own evidence reason (0.086625ms)
+✔ distinguishes an unauthorized evidence read from a turn that produced no receipts (0.130375ms)
+✔ prefers platform receipts and keeps mcp-result ids that the platform did not list (0.391375ms)
+✔ projects only the authorized Trace 3 interaction business graph into the business pane (0.32925ms)
+✔ bounds official Trace 3 operation-to-reference edges without deriving missing endpoints (0.255791ms)
+✔ business reload removes agent policy and permits a duplicate-free remount in the same live session (32.47125ms)
+✔ agent disposal cleans the policy before its still-live business owner unloads (3.356584ms)
+✔ mounts the managed policy, guard, and lifecycle listeners in one Agent scope (0.687833ms)
+✔ PTC mode: run_code is refused with a switch-to-Standard instruction, and the prompt says so up front (1.357958ms)
+✔ guards a non-managed tool out regardless of interaction state (0.272ms)
+✔ rule 2: schema access is denied before any start, allowed inside an open interaction (0.114791ms)
+✔ rule 3: a repeat start is denied while the interaction is open (0.082334ms)
+✔ rule 5: finish is denied without an open interaction (0.116917ms)
+✔ a successful start holds the conversation without writing to the session log (0.178375ms)
+✔ a conversation held in the log survives a restore; a plugin event alone restores nothing (0.771292ms)
+✔ rule 4: new is denied while the session holds a conversation, naming the held id (0.30925ms)
+✔ rule 4: a mismatched continue is denied with the correct id (0.540625ms)
+✔ controlled invalidation: the dead id leaves memory and one new is allowed, with no log writes (0.166541ms)
+✔ a turn that finished its interaction cannot open a second one (0.167625ms)
+✔ after the turn completed, a managed tool is told the access is over — not sent into a start that would be rejected (0.157917ms)
+✔ a non-invalidating failure keeps the conversation and denies a careless new (0.109458ms)
+✔ the conversation section renders the held identity and refreshes through state changes (0.088792ms)
+✔ pre-step resets the per-turn state; turn-stopping warns with a countable, locatable record (0.349583ms)
+✔ does not alter a native or differently configured DSH agent scope (0.097125ms)
+✔ tool results and final answers remain native, including legacy detail markers and mismatches (0.848292ms)
+✔ loads only the host selection service at the root instead of registering a global model tool (1.329542ms)
+✔ every Context Loader tool of the supported releases is classified: managed, or reviewed and excluded (12.496459ms)
+✔ discovery to execution on 0.1.5: search_capabilities, execute_tool, and execute_skill run inside an interaction, for the bound network only (0.745792ms)
+✔ every managed tool whose schema takes kn_id refuses another network; excluded tools stay denied and are named (3.528459ms)
+✔ official 0.1.4: find_skills and the skill readers run under that release's own schemas; tools it never published stay refused (0.505667ms)
+✔ default 0.1.5 deployment: execute_skill is not registered, so it is refused and the prompt says skills cannot be executed (0.322042ms)
+✔ the routing rule names only tools the deployment registered, and re-renders once they register (0.281667ms)
+✔ a managed tool whose registered definition cannot be read is refused instead of running unscoped (0.105042ms)
+✔ network scope: kn_id must be the bound network, as a string, and cannot be omitted (0.104875ms)
+✔ 0.2.0 full schemas and explicit Trace degradation keep the production ToolRuntime guard fail closed (64.592125ms)
+✔ 0.2.0 schemas include dynamic lifecycle/context rules and do not turn Trace degradation into cross-network access (23.098792ms)
+✔ official DSH MCP projection preserves disclosed partial reasons as text but drops raw _meta (7.290542ms)
+✔ Trace-unavailable lifecycle survives official DSH coalescing of JSON and BKN_TRACE diagnostic (3.323292ms)
+✔ successful finish without usable IDs closes the native governed window and denies further dispatch (25.514458ms)
+✔ decides a first binding and normalizes it for persistence (82.836417ms)
+✔ reuses the existing binding idempotently instead of writing another one (1.3535ms)
+✔ rejects binding another business network into the same DSH session (0.258459ms)
+✔ rejects a persisted session history with conflicting business network bindings (0.068834ms)
+✔ reads tool text and failure from both logged tool-message generations (1.7035ms)
+✔ marks v4 and legacy failed tool results as errors in the turn timeline (0.393042ms)
+✔ a failed finish result never forms a completed provenance, whatever its text says (0.342417ms)
+✔ recovers the completed interaction from the real official-desktop v4 log (0.462417ms)
+✔ reads plugin records that DSH renamed to plugin:openbkn/* while migrating v3 logs (8.694333ms)
+✔ every provenance recorded in the migrated logs is re-derivable from the logged tool results (7.573959ms)
+✔ creates one network-introduction prompt for an empty business session (2.651125ms)
+✔ does not derive a prompt from blank or unbounded network display text (0.386292ms)
+✔ loads bounded prompt suggestions and retains the last safe result on failure (0.752459ms)
+✔ clears the one empty-session entry when a native business turn begins (0.081666ms)
+✔ reacts only to the native turn-start event (0.076583ms)
+✔ strips every trailing slash exactly like the regex it replaces (2.326875ms)
+✔ stays linear on a long run of slashes followed by a non-slash (3.591084ms)
+✔ loads one assistant message provenance without inventing an absent handle (0.400708ms)
+✔ does not overwrite an established handle when a later read fails (0.116458ms)
+✔ reads a recorded provenance event under its original or migrated name (2.779167ms)
+✔ a v1 and a v2 record of the same interaction agree; a rewrite to another interaction conflicts (0.389625ms)
+✔ re-derives provenance from the logged finish result when nothing was recorded (0.667625ms)
+✔ a recorded event must agree with the re-derived provenance of the same answer (0.251959ms)
+✔ does not fabricate provenance for an answer without a completed interaction (0.112375ms)
+✔ rebuilds a typical turn: question, lifecycle, discovery, retrievals, finish, answer (2.980375ms)
+✔ marks a failed call and keeps an unanswered call as a node without duration (0.361458ms)
+✔ excludes non-OpenBKN tools and other turns (0.214083ms)
+✔ recovers the turn from the final assistant message for v1 handles (0.194541ms)
+✔ never projects argument values or response bodies into summaries (0.207292ms)
+✔ foldTimeline collapses consecutive same-tool same-outcome calls into one group (0.155875ms)
+✔ foldTimeline never folds nodes carrying platform facts (0.152583ms)
+✔ foldTimeline keeps different outcomes and different tools apart (0.101208ms)
+node:internal/modules/package_json_reader:301
+  throw new ERR_MODULE_NOT_FOUND(packageName, fileURLToPath(base), null);
+        ^
+
+Error [ERR_MODULE_NOT_FOUND]: Cannot find package '@deepseek-ai/dsh-typert-generator' imported from /Users/kalias/Documents/project/app/openBKN/bkn-dsh-provenance-parity-20261102/packages/openbkn-business-context/tests/typert-analysis-contract.test.mjs
+    at Object.getPackageJSONURL (node:internal/modules/package_json_reader:301:9)
+    at packageResolve (node:internal/modules/esm/resolve:768:81)
+    at moduleResolve (node:internal/modules/esm/resolve:859:18)
+    at defaultResolve (node:internal/modules/esm/resolve:992:11)
+    at #cachedDefaultResolve (node:internal/modules/esm/loader:701:20)
+    at #resolveAndMaybeBlockOnLoaderThread (node:internal/modules/esm/loader:721:38)
+    at nextStep (node:internal/modules/customization_hooks:189:26)
+    at resolveBaseSync (file:///Users/kalias/Documents/project/app/openBKN/bkn-dsh-provenance-parity-20261102/node_modules/.pnpm/tsx@4.23.13/node_modules/tsx/dist/register-SoqaU4rg.mjs:2:10932)
+    at resolveDirectorySync (file:///Users/kalias/Documents/project/app/openBKN/bkn-dsh-provenance-parity-20261102/node_modules/.pnpm/tsx@4.23.13/node_modules/tsx/dist/register-SoqaU4rg.mjs:2:12238)
+    at resolveTsPathsSync (file:///Users/kalias/Documents/project/app/openBKN/bkn-dsh-provenance-parity-20261102/node_modules/.pnpm/tsx@4.23.13/node_modules/tsx/dist/register-SoqaU4rg.mjs:2:13445) {
+  code: 'ERR_MODULE_NOT_FOUND'
+}
+
+Node.js v24.19.0
+✖ tests/typert-analysis-contract.test.mjs (270.530041ms)
+✔ generates a strict DSH Remote contract for safe authentication status (3.513625ms)
+✔ keeps the repository as a DSH Typert workspace with one publishable bundle package (2.96375ms)
+✔ places all plugin runtime assets inside the publishable package (0.2775ms)
+✔ historical reference labels switch zh/en/zh without rereading or changing platform facts (15.01375ms)
+✔ passive diagnostics explains observation age without relabeling historical pass or changing JSON (14.869334ms)
+✔ brand captions and the sign-in action have normal-text contrast on their actual surfaces (1.589291ms)
+✔ keys a workspace binding by normalized platform and knowledge network (0.707125ms)
+✔ accepts only a concrete, absolute local workspace mapping (2.658375ms)
+✔ resolves the one network associated with a normalized workspace path (0.979416ms)
+✔ fails closed when a workspace has no association or more than one association (0.245458ms)
+✔ refuses to associate a second knowledge network with the same workspace (0.949916ms)
+ℹ tests 742
+ℹ suites 0
+ℹ pass 739
+ℹ fail 2
+ℹ cancelled 0
+ℹ skipped 1
+ℹ todo 0
+ℹ duration_ms 94060.737625
+
+✖ failing tests:
+
+test at tests/provenance-parity-render.test.ts:1:18848
+✖ Escape in a legacy graph Inspector closes that Inspector and keeps the real DSH overlay open (3513.771417ms)
+  Error [TestingLibraryElementError]: Unable to find an accessible element with the role "tab" and name "证据链"
+  
+  Here are the accessible roles:
+  
+    button:
+  
+    Name "open":
+    [36m<button />[39m
+  
+    --------------------------------------------------presentation:
+  
+    Name "":
+    [36m<div[39m
+      [33mrole[39m=[32m"presentation"[39m
+      [33mstyle[39m=[32m"pointer-events: auto; position: fixed; inset: 0; display: grid; place-items: center; background: rgba(15, 23, 42, 0.38); padding: 20px;"[39m
+    [36m/>[39m
+  
+    --------------------------------------------------
+    dialog:
+  
+    Name "OpenBKN 业务溯源":
+    [36m<section[39m
+      [33maria-label[39m=[32m"OpenBKN 业务溯源"[39m
+      [33maria-modal[39m=[32m"true"[39m
+      [33mrole[39m=[32m"dialog"[39m
+      [33mstyle[39m=[32m"min-height: 560px; max-height: calc(100vh - 40px); overflow: auto; border-radius: 12px; background: rgb(255, 255, 255); box-shadow: 0 24px 70px rgb(15 23 42 / 28%); color: rgb(23, 32, 51); height: calc(100vh - 40px); position: relative;"[39m
+      [33mtabindex[39m=[32m"-1"[39m
+    [36m/>[39m
+  
+    --------------------------------------------------
+    button:
+  
+    Name "关闭":
+    [36m<button[39m
+      [33maria-label[39m=[32m"关闭"[39m
+      [33mstyle[39m=[32m"border: 1px solid rgb(217, 224, 234); border-radius: 9px; width: 42px; height: 42px; background: rgb(255, 255, 255); color: rgb(55, 65, 81); font-size: 30px; line-height: 1; cursor: pointer; position: sticky; top: 8px; float: right; margin-right: 8px; z-index: 1100;"[39m
+      [33mtype[39m=[32m"button"[39m
+    [36m/>[39m
+  
+    Name "loading刷新":
+    [36m<button[39m
+      [33mclass[39m=[32m"ant-btn css-dev-only-do-not-override-5ywi3x ant-btn-default ant-btn-color-default ant-btn-variant-outlined ant-btn-loading"[39m
+      [33mtype[39m=[32m"button"[39m
+    [36m/>[39m
+  
+    Name "收起交互轮次":
+    [36m<button[39m
+      [33maria-label[39m=[32m"收起交互轮次"[39m
+      [33mclass[39m=[32m"ant-btn css-dev-only-do-not-override-5ywi3x ant-btn-text ant-btn-color-default ant-btn-variant-text ant-btn-icon-only obp-BusinessProvenanceScene-roundCollapseButton"[39m
+      [33mtype[39m=[32m"button"[39m
+    [36m/>[39m
+  
+    Name "第 23 轮 原始问题第23轮 10:00:23 · 1.3 秒 · 已结束":
+    [36m<button[39m
+      [33mclass[39m=[32m""[39m
+    [36m/>[39m
+  
+    Name "第 22 轮 原始问题第22轮 10:00:22 · 1.3 秒 · 已结束":
+    [36m<button[39m
+      [33mclass[39m=[32m""[39m
+    [36m/>[39m
+  
+    Name "第 21 轮 原始问题第21轮 10:00:21 · 1.3 秒 · 已结束":
+    [36m<button[39m
+      [33mclass[39m=[32m""[39m
+    [36m/>[39m
+  
+    Name "第 20 轮 原始问题第20轮 10:00:20 · 1.3 秒 · 已结束":
+    [36m<button[39m
+      [33mclass[39m=[32m""[39m
+    [36m/>[39m
+  
+    Name "第 19 轮 原始问题第19轮 10:00:19 · 1.3 秒 · 已结束":
+    [36m<button[39m
+      [33mclass[39m=[32m""[39m
+    [36m/>[39m
+  
+    Name "第 18 轮 原始问题第18轮 10:00:18 · 1.3 秒 · 已结束":
+    [36m<button[39m
+      [33mclass[39m=[32m""[39m
+    [36m/>[39m
+  
+    Name "第 17 轮 原始问题第17轮 10:00:17 · 1.3 秒 · 已结束":
+    [36m<button[39m
+      [33mclass[39m=[32m""[39m
+    [36m/>[39m
+  
+    Name "第 16 轮 原始问题第16轮 10:00:16 · 1.3 秒 · 已结束":
+    [36m<button[39m
+      [33mclass[39m=[32m""[39m
+    [36m/>[39m
+  
+    Name "第 15 轮 原始问题第15轮 10:00:15 · 1.3 秒 · 已结束":
+    [36m<button[39m
+      [33mclass[39m=[32m""[39m
+    [36m/>[39m
+  
+    Name "第 14 轮 原始问题第14轮 10:00:14 · 1.3 秒 · 已结束":
+    [36m<button[39m
+      [33mclass[39m=[32m""[39m
+    [36m/>[39m
+  
+    Name "第 13 轮 原始问题第13轮 10:00:13 · 1.3 秒 · 已结束":
+    [36m<button[39m
+      [33mclass[39m=[32m""[39m
+    [36m/>[39m
+  
+    Name "第 12 轮 原始问题第12轮 10:00:12 · 1.3 秒 · 已结束":
+    [36m<button[39m
+      [33mclass[39m=[32m""[39m
+    [36m/>[39m
+  
+    Name "第 11 轮 原始问题第11轮 10:00:11 · 1.3 秒 · 已结束":
+    [36m<button[39m
+      [33mclass[39m=[32m""[39m
+    [36m/>[39m
+  
+    Name "第 10 轮 原始问题第10轮 10:00:10 · 1.3 秒 · 已结束":
+    [36m<button[39m
+      [33mclass[39m=[32m""[39m
+    [36m/>[39m
+  
+    Name "第 9 轮 原始问题第9轮 10:00:09 · 1.3 秒 · 已结束":
+    [36m<button[39m
+      [33mclass[39m=[32m""[39m
+    [36m/>[39m
+  
+    Name "第 8 轮 原始问题第8轮 10:00:08 · 1.3 秒 · 已结束":
+    [36m<button[39m
+      [33mclass[39m=[32m""[39m
+    [36m/>[39m
+  
+    Name "第 7 轮 原始问题第7轮 10:00:07 · 1.3 秒 · 已结束":
+    [36m<button[39m
+      [33mclass[39m=[32m"obp-BusinessProvenanceScene-roundSelected"[39m
+    [36m/>[39m
+  
+    Name "第 6 轮 原始问题第6轮 10:00:06 · 1.3 秒 · 已结束":
+    [36m<button[39m
+      [33mclass[39m=[32m""[39m
+    [36m/>[39m
+  
+    Name "第 5 轮 原始问题第5轮 10:00:05 · 1.3 秒 · 已结束":
+    [36m<button[39m
+      [33mclass[39m=[32m""[39m
+    [36m/>[39m
+  
+    Name "第 4 轮 原始问题第4轮 10:00:04 · 1.3 秒 · 已结束":
+    [36m<button[39m
+      [33mclass[39m=[32m""[39m
+    [36m/>[39m
+  
+    Name "第 3 轮 原始问题第3轮 10:00:03 · 1.3 秒 · 已结束":
+    [36m<button[39m
+      [33mclass[39m=[32m""[39m
+    [36m/>[39m
+  
+    Name "第 2 轮 原始问题第2轮 10:00:02 · 1.3 秒 · 已结束":
+    [36m<button[39m
+      [33mclass[39m=[32m""[39m
+    [36m/>[39m
+  
+    Name "第 1 轮 原始问题第1轮 10:00:01 · 1.3 秒 · 已结束":
+    [36m<button[39m
+      [33mclass[39m=[32m""[39m
+    [36m/>[39m
+  
+    Name "left":
+    [36m<button[39m
+      [33mclass[39m=[32m"ant-pagination-item-link"[39m
+      [33mtabindex[39m=[32m"-1"[39m
+      [33mtype[39m=[32m"button"[39m
+    [36m/>[39m
+  
+    Name "right":
+    [36m<button[39m
+      [33mclass[39m=[32m"ant-pagination-item-link"[39m
+      [33mdisabled[39m=[32m""[39m
+      [33mtabindex[39m=[32m"-1"[39m
+      [33mtype[39m=[32m"button"[39m
+    [36m/>[39m
+  
+    --------------------------------------------------
+    main:
+  
+    Name "":
+    [36m<main[39m
+      [33mclass[39m=[32m"obp-BusinessProvenanceScene-page obp-BusinessProvenanceScene-pageSurface"[39m
+    [36m/>[39m
+  
+    --------------------------------------------------
+    banner:
+  
+    Name "":
+    [36m<header[39m
+      [33mclass[39m=[32m"obp-BusinessProvenanceScene-pageHeader"[39m
+    [36m/>[39m
+  
+    Name "":
+    [36m<header[39m
+      [33mclass[39m=[32m"obp-BusinessProvenanceScene-workspaceHeader"[39m
+    [36m/>[39m
+  
+    --------------------------------------------------
+    heading:
+  
+    Name "业务溯源分析":
+    [36m<h3[39m
+      [33mclass[39m=[32m"ant-typography css-dev-only-do-not-override-5ywi3x"[39m
+    [36m/>[39m
+  
+    Name "样例 Agent 的业务会话":
+    [36m<h1 />[39m
+  
+    Name "交互轮次":
+    [36m<h3 />[39m
+  
+    --------------------------------------------------
+    img:
+  
+    Name "loading":
+    [36m<span[39m
+      [33maria-label[39m=[32m"loading"[39m
+      [33mclass[39m=[32m"anticon anticon-loading anticon-spin"[39m
+      [33mrole[39m=[32m"img"[39m
+    [36m/>[39m
+  
+    Name "menu-fold":
+    [36m<span[39m
+      [33maria-label[39m=[32m"menu-fold"[39m
+      [33mclass[39m=[32m"anticon anticon-menu-fold"[39m
+      [33mrole[39m=[32m"img"[39m
+    [36m/>[39m
+  
+    Name "search":
+    [36m<span[39m
+      [33maria-label[39m=[32m"search"[39m
+      [33mclass[39m=[32m"anticon anticon-search"[39m
+      [33mrole[39m=[32m"img"[39m
+    [36m/>[39m
+  
+    Name "left":
+    [36m<span[39m
+      [33maria-label[39m=[32m"left"[39m
+      [33mclass[39m=[32m"anticon anticon-left"[39m
+      [33mrole[39m=[32m"img"[39m
+    [36m/>[39m
+  
+    Name "right":
+    [36m<span[39m
+      [33maria-label[39m=[32m"right"[39m
+      [33mclass[39m=[32m"anticon anticon-right"[39m
+      [33mrole[39m=[32m"img"[39m
+    [36m/>[39m
+  
+    --------------------------------------------------
+    complementary:
+  
+    Name "":
+    [36m<aside[39m
+      [33mclass[39m=[32m"obp-BusinessProvenanceScene-roundSidebar "[39m
+    [36m/>[39m
+  
+    --------------------------------------------------
+    textbox:
+  
+    Name "":
+    [36m<input[39m
+      [33mclass[39m=[32m"ant-input css-dev-only-do-not-override-5ywi3x"[39m
+      [33mplaceholder[39m=[32m"搜索问题或业务对象"[39m
+      [33mtype[39m=[32m"text"[39m
+      [33mvalue[39m=[32m""[39m
+    [36m/>[39m
+  
+    Name "跳至":
+    [36m<input[39m
+      [33maria-label[39m=[32m"跳至"[39m
+      [33msize[39m=[32m"3"[39m
+      [33mtype[39m=[32m"text"[39m
+      [33mvalue[39m=[32m"2"[39m
+    [36m/>[39m
+  
+    --------------------------------------------------
+    strong:
+  
+    Name "":
+    [36m<strong />[39m
+  
+    Name "":
+    [36m<strong />[39m
+  
+    Name "":
+    [36m<strong />[39m
+  
+    Name "":
+    [36m<strong />[39m
+  
+    Name "":
+    [36m<strong />[39m
+  
+    Name "":
+    [36m<strong />[39m
+  
+    Name "":
+    [36m<strong />[39m
+  
+    Name "":
+    [36m<strong />[39m
+  
+    Name "":
+    [36m<strong />[39m
+  
+    Name "":
+    [36m<strong />[39m
+  
+    Name "":
+    [36m<strong />[39m
+  
+    Name "":
+    [36m<strong />[39m
+  
+    Name "":
+    [36m<strong />[39m
+  
+    Name "":
+    [36m<strong />[39m
+  
+    Name "":
+    [36m<strong />[39m
+  
+    Name "":
+    [36m<strong />[39m
+  
+    Name "":
+    [36m<strong />[39m
+  
+    Name "":
+    [36m<strong />[39m
+  
+    Name "":
+    [36m<strong />[39m
+  
+    Name "":
+    [36m<strong />[39m
+  
+    Name "":
+    [36m<strong />[39m
+  
+    Name "":
+    [36m<strong />[39m
+  
+    Name "":
+    [36m<strong />[39m
+  
+    --------------------------------------------------
+    list:
+  
+    Name "":
+    [36m<ul[39m
+      [33mclass[39m=[32m"ant-pagination ant-pagination-mini css-dev-only-do-not-override-5ywi3x ant-pagination-simple"[39m
+    [36m/>[39m
+  
+    --------------------------------------------------
+    listitem:
+  
+    Name "上一页":
+    [36m<li[39m
+      [33maria-disabled[39m=[32m"false"[39m
+      [33mclass[39m=[32m"ant-pagination-prev"[39m
+      [33mtabindex[39m=[32m"0"[39m
+      [33mtitle[39m=[32m"上一页"[39m
+    [36m/>[39m
+  
+    Name "2/2":
+    [36m<li[39m
+      [33mclass[39m=[32m"ant-pagination-simple-pager"[39m
+      [33mtitle[39m=[32m"2/2"[39m
+    [36m/>[39m
+  
+    Name "下一页":
+    [36m<li[39m
+      [33maria-disabled[39m=[32m"true"[39m
+      [33mclass[39m=[32m"ant-pagination-next ant-pagination-disabled"[39m
+      [33mtabindex[39m=[32m"0"[39m
+      [33mtitle[39m=[32m"下一页"[39m
+    [36m/>[39m
+  
+    --------------------------------------------------
+  
+  Ignored nodes: comments, script, style
+  [36m<body>[39m
+    [36m<textarea[39m
+      [33maria-hidden[39m=[32m"true"[39m
+      [33mname[39m=[32m"hiddenTextarea"[39m
+      [33mstyle[39m=[32m"letter-spacing:initial;line-height:1.5714285714285714;padding-top:4px;padding-bottom:4px;font-family:-apple-system, BlinkMacSystemFont, \"Segoe UI\", Roboto, \"Helvetica Neue\", Arial, \"Noto Sans\", sans-serif, \"Apple Color Emoji\", \"Segoe UI Emoji\", \"Segoe UI Symbol\", \"Noto Color Emoji\";font-weight:;font-size:14px;font-variant:;text-rendering:;text-transform:initial;width:100%;text-indent:initial;padding-left:11px;padding-right:11px;border-width:1px;box-sizing:border-box;word-break:;white-space:pre-wrap;
+    min-height:0 !important;
+    max-height:none !important;
+    height:0 !important;
+    visibility:hidden !important;
+    overflow:hidden !important;
+    position:absolute !important;
+    z-index:-1000 !important;
+    top:0 !important;
+    right:0 !important;
+    pointer-events: none !important;
+  "[39m
+      [33mtab-index[39m=[32m"-1"[39m
+    [36m/>[39m
+    [36m<button>[39m
+      [0mopen[0m
+    [36m</button>[39m
+    [36m<div>[39m
+      [36m<div[39m
+        [33mrole[39m=[32m"presentation"[39m
+        [33mstyle[39m=[32m"pointer-events: auto; position: fixed; inset: 0; display: grid; place-items: center; background: rgba(15, 23, 42, 0.38); padding: 20px;"[39m
+      [36m>[39m
+        [36m<section[39m
+          [33maria-label[39m=[32m"OpenBKN 业务溯源"[39m
+          [33maria-modal[39m=[32m"true"[39m
+          [33mrole[39m=[32m"dialog"[39m
+          [33mstyle[39m=[32m"min-height: 560px; max-height: calc(100vh - 40px); overflow: auto; border-radius: 12px; background: rgb(255, 255, 255); box-shadow: 0 24px 70px rgb(15 23 42 / 28%); color: rgb(23, 32, 51); height: calc(100vh - 40px); position: relative;"[39m
+          [33mtabindex[39m=[32m"-1"[39m
+        [36m>[39m
+          [36m<button[39m
+            [33maria-label[39m=[32m"关闭"[39m
+            [33mstyle[39m=[32m"border: 1px solid rgb(217, 224, 234); border-radius: 9px; width: 42px; height: 42px; background: rgb(255, 255, 255); color: rgb(55, 65, 81); font-size: 30px; line-height: 1; cursor: pointer; position: sticky; top: 8px; float: right; margin-right: 8px; z-index: 1100;"[39m
+            [33mtype[39m=[32m"button"[39m
+          [36m>[39m
+            [0m×[0m
+          [36m</button>[39m
+          [36m<div[39m
+            [33mdata-platform-provenance[39m=[32m"conversation-detail"[39m
+            [33mstyle[39m=[32m"position: relative; isolation: isolate; min-height: 100%; color: rgb(23, 32, 51); background: rgb(247, 249, 252);"[39m
+          [36m>[39m
+            [36m<div[39m
+              [33mclass[39m=[32m"css-dev-only-do-not-override-5ywi3x ant-app"[39m
+            [36m>[39m
+              [36m<main[39m
+                [33mclass[39m=[32m"obp-BusinessProvenanceScene-page obp-BusinessProvenanceScene-pageSurface"[39m
+              [36m>[39m
+                [36m<header[39m
+                  [33mclass[39m=[32m"obp-BusinessProvenanceScene-pageHeader"[39m
+                [36m>[39m
+                  [36m<div>[39m
+                    [36m<h3[39m
+                      [33mclass[39m=[32m"ant-typography css-dev-only-do-not-override-5ywi3x"[39m
+                    [36m>[39m
+                      [0m业务溯源分析[0m
+                    [36m</h3>[39m
+                    [36m<span[39m
+                      [33mclass[39m=[32m"ant-typography css-dev-only-do-not-override-5ywi3x"[39m
+                    [36m>[39m
+                      [0m从真实调用事实查看 Agent 如何使用业务知识网络。[0m
+                    [36m</span>[39m
+                  [36m</div>[39m
+                  [36m<button[39m
+                    [33mclass[39m=[32m"ant-btn css-dev-only-do-not-override-5ywi3x ant-btn-default ant-btn-color-default ant-btn-variant-outlined ant-btn-loading"[39m
+                    [33mtype[39m=[32m"button"[39m
+                  [36m>[39m
+                    [36m<span[39m
+                      [33mclass[39m=[32m"ant-btn-icon ant-btn-loading-icon"[39m
+                    [36m>[39m
+                      [36m<span[39m
+                        [33maria-label[39m=[32m"loading"[39m
+                        [33mclass[39m=[32m"anticon anticon-loading anticon-spin"[39m
+                        [33mrole[39m=[32m"img"[39m
+                      [36m>[39m
+                        [36m<svg[39m
+                          [33maria-hidden[39m=[32m"true"[39m
+                          [33mdata-icon[39m=[32m"loading"[39m
+                          [33mfill[39m=[32m"currentColor"[39m
+                          [33mfocusable[39m=[32m"false"[39m
+                          [33mheight[39m=[32m"1em"[39m
+                          [33mviewBox[39m=[32m"0 0 1024 1024"[39m
+                          [33mwidth[39m=[32m"1em"[39m
+                        [36m>[39m
+                          [36m<path[39m
+                            [33md[39m=[32m"M988 548c-19.9 0-36-16.1-36-36 0-59.4-11.6-117-34.6-171.3a440.45 440.45 0 00-94.3-139.9 437.71 437.71 0 00-139.9-94.3C629 83.6 571.4 72 512 72c-19.9 0-36-16.1-36-36s16.1-36 36-36c69.1 0 136.2 13.5 199.3 40.3C772.3 66 827 103 874 150c47 47 83.9 101.8 109.7 162.7 26.7 63.1 40.2 130.2 40.2 199.3.1 19.9-16 36-35.9 36z"[39m
+                          [36m/>[39m
+                        [36m</svg>[39m
+                      [36m</span>[39m
+                    [36m</span>[39m
+                    [36m<span>[39m
+                      [0m刷新[0m
+                    [36m</span>[39m
+                  [36m</button>[39m
+                [36m</header>[39m
+                [36m<section[39m
+                  [33mclass[39m=[32m"obp-BusinessProvenanceScene-workspace "[39m
+                [36m>[39m
+                  [36m<header[39m
+                    [33mclass[39m=[32m"obp-BusinessProvenanceScene-workspaceHeader"[39m
+                  [36m>[39m
+                    [36m<div[39m
+                      [33mclass[39m=[32m"obp-BusinessProvenanceScene-conversationHeading"[39m
+                    [36m>[39m
+                      [36m<h1>[39m
+                        [0m样例 Agent 的业务会话[0m
+                      [36m</h1>[39m
+                      [36m<span>[39m
+                        [0mconv-parity-owned[0m
+                      [36m</span>[39m
+                      [36m<span>[39m
+                        [0m73 轮交互[0m
+                      [36m</span>[39m
+                      [36m<span>[39m
+                        [0m样例 Agent[0m
+                      [36m</span>[39m
+                    [36m</div>[39m
+                  [36m</header>[39m
+                  [36m<aside[39m
+                    [33mclass[39m=[32m"obp-BusinessProvenanceScene-roundSidebar "[39m
+                  [36m>[39m
+                    [36m<div[39m
+                      [33mclass[39m=[32m"obp-BusinessProvenanceScene-roundSidebarTitle"[39m
+                    [36m>[39m
+                      [36m<div>[39m
+                        [36m<h3>[39m
+                          [0m交互轮次[0m
+                        [36m</h3>[39m
+                        [36m<span...
+      at Object.getElementError (/Users/kalias/Documents/project/app/openBKN/bkn-dsh-provenance-parity-20261102/node_modules/.pnpm/@testing-library+dom@10.4.1/node_modules/@testing-library/dom/dist/config.js:37:19)
+      at /Users/kalias/Documents/project/app/openBKN/bkn-dsh-provenance-parity-20261102/node_modules/.pnpm/@testing-library+dom@10.4.1/node_modules/@testing-library/dom/dist/query-helpers.js:76:38
+      at /Users/kalias/Documents/project/app/openBKN/bkn-dsh-provenance-parity-20261102/node_modules/.pnpm/@testing-library+dom@10.4.1/node_modules/@testing-library/dom/dist/query-helpers.js:52:17
+      at /Users/kalias/Documents/project/app/openBKN/bkn-dsh-provenance-parity-20261102/node_modules/.pnpm/@testing-library+dom@10.4.1/node_modules/@testing-library/dom/dist/query-helpers.js:95:19
+      at TestContext.<anonymous> (/Users/kalias/Documents/project/app/openBKN/bkn-dsh-provenance-parity-20261102/packages/openbkn-business-context/tests/provenance-parity-render.test.ts:294:26)
+      at async Test.run (node:internal/test_runner/test:1389:7)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:960:7)
+
+test at tests/typert-analysis-contract.test.mjs:1:1
+✖ tests/typert-analysis-contract.test.mjs (270.530041ms)
+  'test failed'

@@ -1,0 +1,66 @@
+✔ explanation cannot read or mutate a cross-KN record even through the trusted anchor (2.060959ms)
+✔ markdown cannot read or mutate a cross-KN record even through the trusted anchor (0.122208ms)
+✔ history cannot read or mutate a cross-KN record even through the trusted anchor (0.093917ms)
+✔ generate cannot read or mutate a cross-KN record even through the trusted anchor (0.075084ms)
+✔ analyze cannot read or mutate a cross-KN record even through the trusted anchor (0.109167ms)
+✔ analysis submits only native platform Markdown after a complete scoped detail preflight (0.509834ms)
+✔ a failed detail preflight cannot be treated as a generated explanation or dispatch an action (0.246542ms)
+✔ membership proof enforces an aggregate byte budget across otherwise admissible pages (23.174375ms)
+✔ membership proof has a hard page ceiling and never dispatches a detail fallback (4.089583ms)
+✔ untrusted interaction identity cannot become a route: 42 (0.165583ms)
+✔ untrusted interaction identity cannot become a route: null (0.052917ms)
+✔ untrusted interaction identity cannot become a route: ../../other (0.034208ms)
+✔ untrusted interaction identity cannot become a route: https://other.invalid (0.028709ms)
+✔ untrusted interaction identity cannot become a route: a?token=secret (0.024292ms)
+✔ history root identity is checked even when the returned entries array is empty (0.0935ms)
+✔ request whitelist refuses unsupported fields before any platform dispatch: kind (0.039208ms)
+✔ request whitelist refuses unsupported fields before any platform dispatch: kind,url (0.023958ms)
+✔ request whitelist refuses unsupported fields before any platform dispatch: kind,token (0.022708ms)
+✔ request whitelist refuses unsupported fields before any platform dispatch: kind,markdown (0.030833ms)
+✔ an admitted request is snapshotted before async work and cannot change from GET to POST (0.083834ms)
+✔ native analysis Reader preserves meta → token → tool_call → structured → done with comment heartbeats (25.080083ms)
+✔ native analysis Scope preserves every known control event and platform status without interpreting it (1.1045ms)
+✔ native analysis still refuses unknown event names instead of turning them into a completed result (0.942625ms)
+✔ native display reads use only fixed scoped GET routes and preserve original platform records above the old display cap (21.991166ms)
+✔ generation is a fixed explicit POST, and a scene guard after credential resolution prevents stale mutation (0.576709ms)
+✔ analysis preserves token, structured output and platform error events across CRLF and UTF-8 chunk boundaries (5.406416ms)
+✔ analysis refuses incomplete or malformed native frames: event: token
+data: {"cont (1.123959ms)
+✔ analysis refuses incomplete or malformed native frames: event: structured
+data: { (0.353542ms)
+✔ analysis refuses incomplete or malformed native frames: event: structured
+data: { (0.392875ms)
+✔ analysis refuses incomplete or malformed native frames: event: token
+data: {"cont (0.443167ms)
+✔ analysis refuses incomplete or malformed native frames: event: unknown
+data: {}
+
+ (0.17525ms)
+✔ analysis refuses incomplete or malformed native frames: event: structured
+data: i (0.422417ms)
+✔ native action safely classifies HTTP 401 (0.278791ms)
+✔ native action safely classifies HTTP 403 (0.117375ms)
+✔ native action safely classifies HTTP 404 (0.085708ms)
+✔ native action safely classifies HTTP 302 (0.076625ms)
+✔ analysis and Markdown enforce independent byte budgets and cancel oversized streams (6.203791ms)
+✔ cancelling a pending analysis read closes its body and returns only a classified cancellation (11.037792ms)
+✔ new native Remote uses one trusted message identity and preserves original platform invalid state (2.462541ms)
+✔ another platform or an absent live session is denied before the reader is used (0.198958ms)
+✔ a binding change while detail is pending cannot emit the old platform result (0.260167ms)
+✔ a handle change while detail is pending cannot emit the old platform result (0.241875ms)
+✔ a agent change while detail is pending cannot emit the old platform result (0.116ms)
+✔ a revision change while detail is pending cannot emit the old platform result (0.106125ms)
+✔ Host failures have safe fixed classifications and never expose arbitrary exception text or causes (0.448417ms)
+✔ already aborted streams never reach the platform (0.08875ms)
+✔ the composed Host scope blocks generate POST when identity changes during its credential lookup (1.615125ms)
+✔ the composed Host scope blocks analyze POST when identity changes during its credential lookup (0.468167ms)
+✔ disposing the Host lifetime cancels a pending read and prevents stale results (0.210542ms)
+✔ two concurrent Remote reads have independent cancellation and cannot consume each other results (0.177416ms)
+ℹ tests 50
+ℹ suites 0
+ℹ pass 50
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 401.96525
