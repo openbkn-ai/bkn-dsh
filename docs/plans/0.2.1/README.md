@@ -2,6 +2,8 @@
 
 ## 发布前 CI 与远程 E2E（2026-11-02）
 
+**原文层专项（2026-11-03）**：维护者已将Windows会话设为gpt-6.1-sol/MAX，已安排输入/输出各三类打开序列的定向复核，记录实际焦点、事件归属及延迟关闭/重开；旧W3 FAIL不覆盖，尚无新结果。本轮业务问答/依据生成/BKN Agent分析均为0，见[专项计划](../../evidence/2026-11-02-provenance-live/windows-rc5/SOURCE-TEXT-REVIEW-PLAN.zh.md)。
+
 **Windows接续（2026-11-03核收）**：指定Windows会话已在官方DSH Desktop0.2.1-rc.5完成本轮可执行E2E并正常退出。固定CI4包126/126一致；真实多轮/原答案定位、筛选、操作及图谱选择、原文/全屏、原生保存、分析busy→终态直接Esc与回焦均有实证。生成1次、分析2次、新业务问答0次；同记录平台原文与Save6306字节/SHA完全一致，217处占位在平台原始响应内，粘贴读回124个CRLF仅诊断归一化等同。**仍保留W3原文hover/Escape一次FAIL**，混合hover/click事件和焦点归属待确定性复现，不能宣称Windows全部或正式发布验收通过。见[原始回执](../../evidence/2026-11-02-provenance-live/windows-rc5/WINDOWS-CI4-RESULTS.zh.md)、[接收复核](../../evidence/2026-11-02-provenance-live/windows-rc5/INTAKE-REVIEW.zh.md)及[边界待办](../../evidence/2026-11-02-provenance-live/windows-rc5/FOLLOWUP-BOUNDARIES.zh.md)。早期旧Host/隔离异常保留，不计rc.5通过、不覆盖未知Before数据。
 
 **当前状态：CI4通过，精确包的Mac分析焦点实机复验R1—R4通过；不是全局正式发布验收。** 源码 `a52032956314cf582c0f39ed3dab2f8e80e91085` 的 [build-only CI41444758077](https://github.com/openbkn-ai/bkn-dsh/actions/runs/41444758077) 已成功：插件816通过/1 Windows专项跳过、仓库79/79、MCP companion1/1、包126文件、官方npm rc.2/rc.3受控guard/CSV/native/Remote检查通过；npm与GitHub发布均跳过。
