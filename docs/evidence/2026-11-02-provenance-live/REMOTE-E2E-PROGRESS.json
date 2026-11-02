@@ -54,5 +54,16 @@
     "extraAnalysisStarts": 1,
     "extraExplanationGenerations": 0,
     "preservation": "previous analysis unchanged; original Session/daily profile/Host hashes preserved; two normal exits0, owned processes and ports released, system association byte-restored"
+  },
+  "windows": {
+    "threadId": "01a19c6a-e785-7f82-a5b4-cda473951fa6",
+    "hostId": "remote-control:env_e_6abf8babb404832890d7c5124118ed3c",
+    "title": "0.2.1业务溯源win",
+    "status": "task accepted and active; checking native GUI capability and isolation; no Windows installation or functional PASS inferred",
+    "candidateSource": "a52032956314cf582c0f39ed3dab2f8e80e91085",
+    "ciRun": 41444758077,
+    "tgzSha256": "cf9abdf4ac085506793501f5f4c7e2d3f6ff4bc8c873e07c4b6b401064ec6b8a",
+    "handoff": "WINDOWS-E2E-HANDOFF.zh.md",
+    "acceptanceResult": "pending"
   }
 }

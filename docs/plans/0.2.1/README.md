@@ -2,6 +2,8 @@
 
 ## 发布前 CI 与远程 E2E（2026-11-02）
 
+**Windows接续**：维护者已指定`0.2.1业务溯源win`（DESKTOP-IEJNBRE）接收同一CI4精确包并执行原生E2E。任务已启动，正在检查GUI能力与隔离方案；Windows安装/加载/功能结果仍待回报，不能沿用Mac PASS。见[Windows交接](../../evidence/2026-11-02-provenance-live/WINDOWS-E2E-HANDOFF.zh.md)。
+
 **当前状态：CI4通过，精确包的Mac分析焦点实机复验R1—R4通过；不是全局正式发布验收。** 源码 `a52032956314cf582c0f39ed3dab2f8e80e91085` 的 [build-only CI41444758077](https://github.com/openbkn-ai/bkn-dsh/actions/runs/41444758077) 已成功：插件816通过/1 Windows专项跳过、仓库79/79、MCP companion1/1、包126文件、官方npm rc.2/rc.3受控guard/CSV/native/Remote检查通过；npm与GitHub发布均跳过。
 
 实际CI4包SHA256 `cf9abdf4ac085506793501f5f4c7e2d3f6ff4bc8c873e07c4b6b401064ec6b8a`，artifact `13141832289`。与本地参考126/126文件及整段解压tar完全相同；相对CI3仅`lib/client.js`变化，Host及其余125文件不变。见[包身份](../../evidence/2026-11-02-provenance-live/CI4-ARTIFACT-IDENTITY.json)、[CI结果](../../evidence/2026-11-02-provenance-live/CI4-RESULT.json)。
