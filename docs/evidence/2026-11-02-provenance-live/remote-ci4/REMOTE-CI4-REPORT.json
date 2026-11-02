@@ -1,0 +1,122 @@
+{
+  "kind": "mac-official-desktop-ci4-analysis-focus-affected-validation",
+  "checkedAtUtc": "2026-11-02T12:58:50.261619+00:00",
+  "result": "PASS for scoped focus regression; not global release acceptance",
+  "sourceCommit": "a52032956314cf582c0f39ed3dab2f8e80e91085",
+  "ciRun": 41444758077,
+  "artifactId": 13141832289,
+  "publish": false,
+  "version": "0.2.1-rc.3-openbkn.0.2.1-3",
+  "zipSha256": "3a7c905c268aad2eaca45d7839d6adb9da57c9bdad06f9bd0f2fd25283d8d8d9",
+  "tgzSha256": "cf9abdf4ac085506793501f5f4c7e2d3f6ff4bc8c873e07c4b6b401064ec6b8a",
+  "tgzBytes": 877325,
+  "fileCount": 126,
+  "deltaFromCi3": [
+    "lib/client.js"
+  ],
+  "clientSha256": "fb12b2239c465707d471d86651e74dd39694abd997057e29db896bc3dcf5e8d2",
+  "businessSha256": "bac538d8de54f6b362ba39374b495cf39c6dfe89c4732074cfc966f98e1af7ad",
+  "installation": {
+    "route": "official GUI, same retained isolated profile",
+    "filesBeforeAndAfter": "126/126 exact, no extra",
+    "upgradePid": 98354,
+    "upgradeExitCode": 0,
+    "coldPid": 98726,
+    "coldExitCode": 0,
+    "coldStartAfterExactInstallation": true,
+    "diagnosticLoadedVersionField": "not collected; not filled from disk"
+  },
+  "host": {
+    "officialVersion": "0.2.1-rc.5",
+    "build": "d4db512a969fccf0c5cc7ec8fe38e9c1d27af916",
+    "node": "24.21.0",
+    "electron": "44.7.0",
+    "os": "macOS arm64"
+  },
+  "platform": {
+    "origin": "https://192.168.50.28",
+    "selfReportedVersion": "0.2.0-release.20261016132300.sha81d5752",
+    "deploymentUnchangedByThisRun": true
+  },
+  "sample": {
+    "sessionId": "session-3e319448-0974-4199-a3fb-aa0ee980611a",
+    "interactionId": "int_3e92559bb0fbe9e5f83c110ce7ca3100"
+  },
+  "checks": [
+    {
+      "id": "R1",
+      "result": "PASS",
+      "case": "Existing history result: Tab enters Close, Shift-Tab wraps to Restart; keyboard Restart is local prepare only; removed control focus recovers to aside; direct Escape closes aside only and restores Agent trigger."
+    },
+    {
+      "id": "R2",
+      "result": "PASS",
+      "case": "History combobox portal keeps focus; first Escape leaves aside open with combobox focus; second Escape closes aside only, restores trigger, and preserves parent scene."
+    },
+    {
+      "id": "R3",
+      "result": "PASS",
+      "case": "One keyboard Start from focused button; busy focus=aside, completed focus=aside; no Tab/click/focus repair after Start; direct Escape closes aside only and restores trigger."
+    },
+    {
+      "id": "R4",
+      "result": "PASS",
+      "case": "Read-only reopen shows analysis record 2 completed; API history grows 1 to 2, prior entry unchanged."
+    }
+  ],
+  "newAnalysis": {
+    "beforeCount": 1,
+    "afterCount": 2,
+    "added": [
+      {
+        "analysisId": "a921e0cd-4779-43f2-849e-be4f7c0292a0",
+        "interactionId": "int_3e92559bb0fbe9e5f83c110ce7ca3100",
+        "status": "completed",
+        "decision": "not_evaluable",
+        "recommendations": 0,
+        "startedAt": "2026-11-02T12:55:09.148304Z",
+        "finishedAt": "2026-11-02T12:55:10.455988Z"
+      }
+    ],
+    "priorEntriesUnchanged": true
+  },
+  "explicitExplanationGenerations": 0,
+  "explicitBusinessQuestions": 0,
+  "historicalCi3": {
+    "requiredKeyboardFailureRetained": true,
+    "reportsUnchanged": true,
+    "jsonSha256": "fe0aae02adbd78fa59fb0b08dcedacd556e17d39b8a4e56159aeb6a12fabf9d9",
+    "markdownSha256": "249bf92b5c535bb390ec16524e5ad0c8886cc30c46784b4944b4ec6fe3b21fc7"
+  },
+  "preservation": {
+    "hostAndDailyProfileFilesUnchanged": "6/6",
+    "originalSessionSha256": "1c7b43325b859a55a6deeba5f357b9b1b3d7fe40f58d2637c4f3f8acd6eddb31",
+    "originalSessionUnchanged": true,
+    "taskAuthRetained": true,
+    "completedAttachHelperRemovedOnlyToProtectOldEvidence": true,
+    "newAnalysisRetained": true,
+    "association": {
+      "guardPassed": true,
+      "change": "dsh handler timestamp only",
+      "domainRestored": true,
+      "byteIdenticalToBefore": true,
+      "restoredSha256": "863edaca23c3a4a22e6b01502f2ac3e451c96799f089bbdd9419fda66e033f59"
+    },
+    "harnessProcessesRemaining": 0,
+    "taskPort65201Listening": false,
+    "checkoutClean": true
+  },
+  "limits": [
+    "AX focus observed; DOM activeElement not independently captured.",
+    "No raw SSE frames, analyze-time POST body or provider-bound inputs captured.",
+    "Platform returned not_evaluable with zero recommendations; this is a lifecycle test, not a semantic-quality pass.",
+    "No clipboard/save/CSV/graph/full-matrix/Windows reruns; previous CI3 boundaries remain.",
+    "Knowledge-network directory layout is unchanged and outside this increment.",
+    "No push, PR, merge, tag, publish, latest, Host upgrade or platform replacement."
+  ],
+  "privateEvidence": {
+    "fileCount": 63,
+    "manifestSha256": "782f30d6ae8ffded49f762cade917ddfb6be35cabdf462adc52ae9ed146b1f3f",
+    "screenshotsAndRawRecords": "local only; credential stores excluded"
+  }
+}

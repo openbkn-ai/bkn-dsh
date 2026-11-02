@@ -158,11 +158,28 @@
     "tagged": false,
     "latestChanged": false
   },
-  "evidenceBoundary": "CI uses a scripted model and stand-in platform; native CI4 affected retest remains pending. CI3 native passes, one focus FAIL and platform not_evaluable are preserved separately.",
+  "evidenceBoundary": "CI uses a scripted model and stand-in platform; Mac official Desktop CI4 R1-R4 affected native focus retest PASS is reported separately in remote-ci4/REMOTE-CI4-REPORT.json. This is not global native, Windows, model-quality or release acceptance.",
   "priorFailedRunsPreserved": [
     41400870217,
     41403246674
   ],
   "previousNativeFailure": "remote-ci3/REMOTE-E2E-REPORT.json",
-  "affectedNativeRetest": "handed to designated remote chat using exact CI4 artifact; pending"
+  "affectedNativeRetest": {
+    "status": "PASS for scoped focus regression",
+    "report": "remote-ci4/REMOTE-CI4-REPORT.json",
+    "reportSha256": "145c72e1b5526bd94c31b0b9a22c633608e0a31ab795ca2de12cb8bc1fca6e26",
+    "transportDigestVerified": true,
+    "checks": [
+      "R1",
+      "R2",
+      "R3",
+      "R4"
+    ],
+    "analysisStartsThisRetest": 1,
+    "explanationGenerationsThisRetest": 0,
+    "priorCi3FailureRetained": true,
+    "originalAnalysisRetained": true,
+    "analysisDecision": "not_evaluable",
+    "businessQualityPassInferred": false
+  }
 }

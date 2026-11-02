@@ -2,17 +2,19 @@
 
 ## 发布前 CI 与远程 E2E（2026-11-02）
 
-**当前状态：CI4 通过，分析焦点修复待精确包实机复验。** 源码 `a52032956314cf582c0f39ed3dab2f8e80e91085` 的 [build-only CI41444758077](https://github.com/openbkn-ai/bkn-dsh/actions/runs/41444758077) 已成功：插件816通过/1 Windows专项跳过、仓库79/79、MCP companion1/1、包126文件、官方npm rc.2/rc.3受控guard/CSV/native/Remote检查通过；npm与GitHub发布均跳过。
+**当前状态：CI4通过，精确包的Mac分析焦点实机复验R1—R4通过；不是全局正式发布验收。** 源码 `a52032956314cf582c0f39ed3dab2f8e80e91085` 的 [build-only CI41444758077](https://github.com/openbkn-ai/bkn-dsh/actions/runs/41444758077) 已成功：插件816通过/1 Windows专项跳过、仓库79/79、MCP companion1/1、包126文件、官方npm rc.2/rc.3受控guard/CSV/native/Remote检查通过；npm与GitHub发布均跳过。
 
 实际CI4包SHA256 `cf9abdf4ac085506793501f5f4c7e2d3f6ff4bc8c873e07c4b6b401064ec6b8a`，artifact `13141832289`。与本地参考126/126文件及整段解压tar完全相同；相对CI3仅`lib/client.js`变化，Host及其余125文件不变。见[包身份](../../evidence/2026-11-02-provenance-live/CI4-ARTIFACT-IDENTITY.json)、[CI结果](../../evidence/2026-11-02-provenance-live/CI4-RESULT.json)。
 
 **CI3真实结果已接收并核对报告SHA，保留一项FAIL。** 远程官方Mac Desktop rc.5实际安装fea3包并显示平台式详情，已验6调用、原文层、失败0筛选、Operation选择、partial列表、OS复制/原生保存、部分图谱联动及局部全屏；生成1次返回平台partial/invalid_schema_reference，分析1次历史为completed/not_evaluable/0建议。原始Markdown5842字节含160处“请求失败。”，不清洗；实际分析POST与模型最终输入未捕获，不能据模型自述认定输入丢失。原问答、6操作和时间链据报告未变，正常退出及日常配置恢复已核报；私有原件仍留远程。见[远程原报告](../../evidence/2026-11-02-provenance-live/remote-ci3/REMOTE-E2E-REPORT.zh.md)。
 
-原生FAIL是分析完成后直接Esc不能关闭侧栏；局部焦点修复和8项修前失败/修后通过回归已纳入CI4，独立评审与CodeQL通过。已放行CI4实际包在同一隔离profile/userData上仅复验受影响焦点路径，必要时至多新增一次已授权分析；不重复生成依据或业务问题。双轮/BOM59、取消/迟到、多会话多网络及Windows等未执行项仍按证据层级保留，不能以受控测试代填实机PASS。
+原生FAIL是分析完成后直接Esc不能关闭侧栏；局部焦点修复及8项新增回归（修前6失败/2通过、修后8通过）已纳入CI4，独立评审与CodeQL通过。CI4实际包已通过官方GUI安装并冷启动，同一隔离profile/userData上的历史结果返回编辑、下拉层双重Esc、忙碌/完成后直接Esc及历史重开4项实机通过；只新增1次已授权分析（completed/not_evaluable/0建议），没有生成依据或业务问答。两次正常退出0、日常文件/原会话摘要不变，关联配置逐字节恢复。见[CI4实机报告](../../evidence/2026-11-02-provenance-live/remote-ci4/REMOTE-CI4-REPORT.zh.md)。双轮/BOM59、取消/迟到、多会话多网络及Windows等未执行项仍按证据层级保留，不能以受控测试代填实机PASS。
+
+发布前仍需处理的范围和限制见[当前验收状态与待办](../../evidence/2026-11-02-provenance-live/PRE-RELEASE-STATUS.zh.md)。
 
 首两轮CI失败、CI3实机FAIL和本地只读候选均保留为历史。候选`0.2.1-rc.3-openbkn.0.2.1-3`尚未发布，已发布-2不变；当前只授权分支提交/推送、publish=false CI及指定远程E2E，不合并、不打标签、不发布、不改latest。详见[交接与验收清单](../../evidence/2026-11-02-provenance-live/CI-E2E-HANDOFF.zh.md)。
 
-## 0.2.1 发布后本地增量：业务溯源与平台详情一致（2026-11-02）
+## 历史本地只读检查点：业务溯源与平台详情一致（2026-11-02）
 
 维护者已授权复用平台业务会话详情布局和操作，仅适配当前 DSH 会话等必要差异。本轮按维护者选择只做真实只读验收，不生成/更新依据或启动 Agent 分析，不干预平台和模型输出。
 

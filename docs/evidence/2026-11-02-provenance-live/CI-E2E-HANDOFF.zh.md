@@ -1,6 +1,6 @@
 # -3 CI 与远程发布前 E2E
 
-2026-11-02。最新状态：源码 `a52032956314cf582c0f39ed3dab2f8e80e91085` 的第四轮 [build-only CI41444758077](https://github.com/openbkn-ai/bkn-dsh/actions/runs/41444758077) 已成功，插件816通过/1跳过、仓库79/79、包126文件。CI4实际包`cf9abdf4…`已核对并放行指定远程会话，仅复验分析焦点生命周期；结果待接收。CI3完整脱敏报告已SHA核收，保留真实分析后Esc的FAIL和平台completed/not_evaluable/0建议。下面各轮计数、等待登录及初次交接文字是历史，不表示当前仍受登录阻塞。分支`feat/provenance-platform-parity-live`、新候选-3；已发布-2不变，不合并/打标签/发布/latest。
+2026-11-02。最新状态：源码 `a52032956314cf582c0f39ed3dab2f8e80e91085` 的第四轮 [build-only CI41444758077](https://github.com/openbkn-ai/bkn-dsh/actions/runs/41444758077) 已成功，插件816通过/1跳过、仓库79/79、包126文件。CI4实际包`cf9abdf4…`已在指定远程官方Mac Desktop完成R1—R4最小焦点复验，最终脱敏报告已SHA核收：同一隔离profile官方安装126/126并冷启动，新增分析1次、生成0次，正常退出与配置保全完成。见[CI4回执](./remote-ci4/REMOTE-CI4-REPORT.zh.md)及[当前状态与待办](./PRE-RELEASE-STATUS.zh.md)。CI3完整脱敏报告已SHA核收，保留真实分析后Esc的FAIL和平台completed/not_evaluable/0建议。下面各轮计数、等待登录及初次交接文字是历史，不表示当前仍受登录阻塞。分支`feat/provenance-platform-parity-live`、新候选-3；已发布-2不变，不合并/打标签/发布/latest。
 
 提交前验证：默认插件测试770项，769通过/1 Windows专项跳过（已含原源码旁10项）；完整仓库79/79、范围保护2/2、包审计126文件通过。本地-3参考包SHA256 `4fd73c118a08238738a5c78c06b7d95dacdc98276aa6d065669d059060e95d41`，相对已实测7f5候选仅package.json版本/测试脚本不同，其余125文件及生产运行资产逐字节一致；仍需接受CI产物，见 [PRE-CI-DELTA.json](./PRE-CI-DELTA.json)。
 
@@ -86,3 +86,10 @@
 修复仅Scene局部28行：记录真实DOM焦点，仅原节点卸载/禁用且当前focus为body/html/null、该aside仍open/connected时恢复侧栏；仍聚焦其他控件/portal则不抢，DOM contains排除外部门户合成事件。共享helper/hook、Host、请求和输出不改。8新增生命周期回归修前6失败/2通过、修后8通过，独立复核无必修；最终官方Node22完整817项816通过/1跳过、scope2/2、包审计126文件通过。见 [修复记录](./analysis-focus-fix/README.zh.md)、[新本地包差异](./PRE-CI4-DELTA.json)。
 
 新本地参考34ecc9ec…与前参考仅client.js不同，Host和其余125文件不变。准备第四轮publish=false CI及其精确包的受影响实机复验，不能把受控绿或CI3其他通过项改记为焦点修后PASS。既有历史解释/analysis记录保留；后续复验不重新生成解释，不重跑已过业务问答，只按必要的受影响分析生命周期验证。
+
+
+## CI4 精确包受影响实机验收完成
+
+源码a520329、run41444758077、artifact13141832289，TGZ `cf9abdf4ac085506793501f5f4c7e2d3f6ff4bc8c873e07c4b6b401064ec6b8a`。官方GUI更新同一隔离profile后正常退出并冷启动，安装前后126/126一致；原始CI3报告和FAIL保持不变。历史结果返回编辑、Tab边界、历史下拉两层Escape、一次键盘开始分析后的busy/completed直接Escape和只读历史重开均在原生窗口通过。原生观察是AX焦点及键盘行为，未补造DOM activeElement或诊断loadedVersion字段。
+
+本轮新增analysis `a921e0cd-4779-43f2-849e-be4f7c0292a0`，history1→2、原条目不变；completed/not_evaluable/0建议。没有生成解释或业务问答，没有应用建议。两次正常退出0、任务进程/端口收净，Host/日常profile/原Session摘要不变，系统关联受限恢复后与Before字节一致。JSON与中文报告均按SHA原字节核收，私有原件留远程；不把生命周期PASS当业务质量、全矩阵、Windows或发布批准。源码/包未在验收后再改，后续提交仅文档回执。
