@@ -2,7 +2,7 @@
 
 ## 发布前 CI 与远程 E2E（2026-11-02）
 
-**Windows接续**：维护者已指定`0.2.1业务溯源win`（DESKTOP-IEJNBRE）接收同一CI4精确包并执行原生E2E。当前目标已由维护者明确固定为官方Windows Desktop0.2.1-rc.5，禁止继续旧Host验收；已授权必要的隔离环境修复/重建并要求持续推进。此前登录/窗口及profile混用异常保留为历史，当前正在恢复rc.5环境，Windows安装/加载/功能结果仍待回报，不能沿用Mac PASS。见[Windows交接](../../evidence/2026-11-02-provenance-live/WINDOWS-E2E-HANDOFF.zh.md)。
+**Windows接续**：维护者已指定`0.2.1业务溯源win`（DESKTOP-IEJNBRE）接收同一CI4精确包并执行原生E2E。当前目标已由维护者明确固定为官方Windows Desktop0.2.1-rc.5，禁止继续旧Host验收；已授权必要的隔离环境修复/重建并要求持续推进。此前登录/窗口及profile混用异常保留为历史；据远程回报，rc.5隔离环境已恢复、固定包安装退出0且冷启动启用，新原生工具已能截图/点击/输入。当前等待用户完成新打开的OpenBKN平台设备授权，真实业务溯源功能及最终报告仍待继续，不能沿用Mac PASS。见[Windows交接](../../evidence/2026-11-02-provenance-live/WINDOWS-E2E-HANDOFF.zh.md)。
 
 **当前状态：CI4通过，精确包的Mac分析焦点实机复验R1—R4通过；不是全局正式发布验收。** 源码 `a52032956314cf582c0f39ed3dab2f8e80e91085` 的 [build-only CI41444758077](https://github.com/openbkn-ai/bkn-dsh/actions/runs/41444758077) 已成功：插件816通过/1 Windows专项跳过、仓库79/79、MCP companion1/1、包126文件、官方npm rc.2/rc.3受控guard/CSV/native/Remote检查通过；npm与GitHub发布均跳过。
 

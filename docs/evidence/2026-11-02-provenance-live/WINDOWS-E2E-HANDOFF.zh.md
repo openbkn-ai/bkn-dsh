@@ -45,3 +45,10 @@
 并行只读检查了本机Mac实际rc.5 ASAR：build `d4db512a969fccf0c5cc7ec8fe38e9c1d27af916`，SHA256 `8dad52f295bdbe9fa71948fdf38ac2ce3c910213d3b89c37174b2af77db9fb31`。ASAR内部`lib/main.js:53–83`使用`DSH_HOME`派生profile，而`:12044`直接使用Electron的`app.getPath('userData')`；只设DSH_HOME不能证明双隔离。这份main未读取`DSH_DESKTOP_USER_DATA_DIR`，但不能因JS未解析`--user-data-dir`而断言Electron原生参数无效。`:13056`注册协议时未主动携带额外隔离参数，`:7659–7665`的second-instance及`:13057–13060`的`dsh://open`仅聚焦；实际Windows包/注册表/argv/落点仍需本机验证。
 
 同一Mac包的登录凭据由原Host OAuth callback接收，原窗口在成功事件后进入工作区（`lib/main.js:12204–12216`，账户插件`:530–601`）；通用协议只是聚焦入口。该静态线索支持先观察原隔离窗口已有登录、避免误选实例，不授权复制凭据或用注册表绕过。它不是Windows实际更新或混用的根因证明。新rc.5 baseline不能抹掉旧2文件摘要及42项mtime观察，不能覆盖缺Before数据，也不能盲恢复旧rc.2协议路径。
+
+
+## rc.5 恢复后的当前检查点
+
+据指定远程会话进度，已核实官方rc.5有效签名、EXE/ASAR摘要和Node24.21，DSH profile与Electron userData独立，DeepSeek登录保留。官方rc.5 CLI安装固定TGZ退出0；安装文件再次比对无差异，冷启动后官方插件管理页显示OpenBKN启用。Windows MCP已实际完成截图、窗口/控件树、点击和输入，早期坐标工具故障已有可用路径，不作为停止任务的理由。
+
+本机合法多轮历史及完成回执已找到，平台可读性仍待认证后核实。OpenBKN设备授权首次等待超时，远程已直接重开有效页，请用户本人登录授权；这不是再次登录DeepSeek，也不是重索测试授权。当前功能E2E仍待继续，不能把环境恢复、插件启用或Mac结果填成Windows完整验收通过。新阶段原始回执将在功能完成后按SHA接收，前述历史材料不改写。
