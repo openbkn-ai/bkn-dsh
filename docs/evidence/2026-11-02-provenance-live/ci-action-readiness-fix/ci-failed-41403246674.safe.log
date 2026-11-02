@@ -1,0 +1,16 @@
+CI 41403246674; source f330eff; Node 22.19.0; Ubuntu
+Selected test/timing/assertion/summary only; DOM and unrelated output excluded.
+
+not ok 9 - same-interaction search metadata preserves the mounted evidence view and in-flight generation
+duration_ms: 7344.597934
+0 !== 1
+expected: 1
+actual: 0
+<anonymous> (<CI_WORKSPACE>/packages/openbkn-business-context/src/client/platform-provenance/scene-list-boundaries.test.ts:51:28)
+
+# tests 809
+# pass 807
+# fail 1
+# cancelled 0
+# skipped 1
+# duration_ms 187531.670273

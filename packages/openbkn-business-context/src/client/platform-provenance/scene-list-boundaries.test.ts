@@ -21,10 +21,10 @@ const fixture=JSON.parse(await readFile(new URL('../../../tests/fixtures/provena
 const anchor=fixture.identity.initialInteractionId as string
 function deferred<T>(){let resolve!:(value:T)=>void;const promise=new Promise<T>(finish=>{resolve=finish});return {promise,resolve}}
 afterEach(()=>cleanup())
-function setup(){
+function setup(options:{holdExplanation?:boolean}={}){
   const calls:ProvenanceDetailRequest[]=[]
   const signals:{kind:string;signal?:AbortSignal}[]=[]
-  const list=deferred<JsonValue>(),generate=deferred<JsonValue>(),analysis=deferred<void>()
+  const list=deferred<JsonValue>(),generate=deferred<JsonValue>(),analysis=deferred<void>(),explanation=deferred<JsonValue>()
   const rows={entries:[fixture.rounds.find((row:{interaction_id:string})=>row.interaction_id===anchor)],total:73,page:1,page_size:50}
   const adapter=createPlatformProvenanceAdapter(async(request,signal,onAnalysis):Promise<JsonValue>=>{
     calls.push({...request});signals.push({kind:request.kind,signal})
@@ -32,7 +32,7 @@ function setup(){
       case 'conversation':return {entries:[fixture.conversation],total:1}
       case 'rounds':return request.keyword || request.page===2?await list.promise:structuredClone(rows)
       case 'detail':return structuredClone(fixture.details[anchor])
-      case 'explanation':return {schema_version:'1',interaction_id:anchor,status:'not_generated'}
+      case 'explanation':return options.holdExplanation?await explanation.promise:{schema_version:'1',interaction_id:anchor,status:'not_generated'}
       case 'generate':return await generate.promise
       case 'markdown':return fixture.markdown[anchor]
       case 'history':return {entries:[]}
@@ -40,14 +40,22 @@ function setup(){
     }
   },{async copyText(){},downloadMarkdown(){}})
   const rendered=render(createElement(PlatformProvenanceDetail,{conversation:{conversationId:fixture.conversation.conversation_id,agentName:'测试 Agent',interactionCount:73},initialInteractionId:anchor,adapter,language:'zh'}))
-  return {...rendered,calls,signals,list,generate,analysis,rows}
+  return {...rendered,calls,signals,list,generate,analysis,explanation,rows}
 }
 async function ready(){await screen.findByRole('heading',{name:'本轮业务执行过程'});await act(async()=>{})}
 
 test('same-interaction search metadata preserves the mounted evidence view and in-flight generation',async()=>{
-  const state=setup();await ready()
+  const state=setup({holdExplanation:true});await ready()
   fireEvent.click(screen.getByRole('tab',{name:'证据链'}))
-  fireEvent.click(await screen.findByRole('button',{name:'查看证据链'}))
+  const action=await screen.findByRole('button',{name:'查看证据链'}) as HTMLButtonElement
+  assert.equal(action.disabled,true,'the explanation GET still owns the disabled action')
+  fireEvent.click(action)
+  await act(async()=>{})
+  assert.equal(state.calls.filter(call=>call.kind==='generate').length,0,'clicking a disabled action must not dispatch generation')
+  await act(async()=>state.explanation.resolve({schema_version:'1',interaction_id:anchor,status:'not_generated'}))
+  assert.equal(state.calls.filter(call=>call.kind==='generate').length,0,'reading an explanation must not queue generation')
+  await waitFor(()=>assert.equal(action.disabled,false))
+  fireEvent.click(action)
   await waitFor(()=>assert.equal(state.calls.filter(call=>call.kind==='generate').length,1))
   const signal=state.signals.find(value=>value.kind==='generate')?.signal
   const reads=state.calls.filter(call=>call.kind==='detail').length

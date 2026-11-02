@@ -45,3 +45,9 @@
 包许可证标识改为 `SEE LICENSE IN LICENSE`，LICENSE同时列明插件Apache2.0与复用Studio的OpenBKN条款，原始许可证文件保持不变。README明确 -3 尚未发布、只能安装本次核对的CI tgz，旧npm命令保留已发布-2。已内联UI依赖仍固定在当前runtime dependencies中，安装额外依赖树的非阻断体积问题保留为单独后续项，本轮不调整依赖图。
 
 修复后提交前完整验证：官方Node22.19.0/pnpm11.7.0，809项中808通过/1 Windows专项跳过；完整仓库79/79、范围2/2、包审计126文件通过。新本地参考包e68bd4d9bf75a67e125beb39726a9f8aa05c83e4547aa6b0a841629dd85f3c02，相对首参考仅LICENSE、两份README、package.json、client.js与locales.d.ts不同，Host business.js及其余120文件不变。见 [PRE-CI2-DELTA.json](./PRE-CI2-DELTA.json)，仍待新CI和其实际包的E2E。
+
+## 第二轮 CI 与动作就绪修正
+
+第二轮CI41403246674（f330eff）为807通过/1失败/1跳过；首轮就绪项与新增39个fallback都通过。剩余scene-list首项只等按钮存在，在初始解释GET期间点击了禁用按钮，故没有generate请求。deferred GET确定复现后，测试保留禁用时不POST/读取后不自动生成的负向断言，再等待enabled进行一次有效点击；没有加timeout、skip或retry。官方Node22受影响文件2/2，其他动作测试已确认有现有就绪屏障，未改。见 [动作就绪回归](./ci-action-readiness-fix/README.zh.md)。
+
+此后只有测试与证据变化，f330eff生产实现、manifest、依赖和本地e68bd4d9参考包保持不变；新提交仍需新CI产物及远程E2E。此前f330eff的完整本地808/1与本次受影响2/2分别留证，不伪称新commit的完整CI已通过。

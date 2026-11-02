@@ -1,0 +1,25 @@
+{
+  "ciRun": 41403246674,
+  "url": "https://github.com/openbkn-ai/bkn-dsh/actions/runs/41403246674",
+  "commit": "f330eff9796886c5cca57ccb7729f9452909f1bd",
+  "publishRequested": false,
+  "conclusion": "failure",
+  "stage": "Test plugin and compatibility tooling",
+  "tests": {
+    "total": 809,
+    "pass": 807,
+    "fail": 1,
+    "skip": 1,
+    "durationMs": 187531.670273
+  },
+  "failedTest": {
+    "file": "src/client/platform-provenance/scene-list-boundaries.test.ts",
+    "name": "same-interaction search metadata preserves the mounted evidence view and in-flight generation",
+    "durationMs": 7344.597934,
+    "assertion": "expected generate call count1, actual0",
+    "stackLine": 51
+  },
+  "firstCIFixes": "two original readiness tests and39 added fallback tests passed",
+  "investigation": "generation button is present but disabled while initial explanation read is busy; controlled reproduction pending",
+  "artifactReleasedForE2E": false
+}
