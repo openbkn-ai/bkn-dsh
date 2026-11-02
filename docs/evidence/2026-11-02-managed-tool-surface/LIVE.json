@@ -1,0 +1,124 @@
+{
+  "date": "2026-11-02",
+  "timezone": "Asia/Taipei",
+  "sessionPath": "/Users/kalias/.dsh/sessions/--Users-kalias-Documents-project-app-test_folder--/session-cd99a82a-3ea7-4e5e-af12-8b18a1fdb44a/session.v4.jsonl.zstd",
+  "sessionSha256": "d44f46c5a5c4e09b37d3d218f08ee873bd98a3511db75fa7c20003a5bdd33a2a",
+  "model": "zcode/GLM-5.3-Flash",
+  "headers": [
+    {
+      "seq": 13,
+      "names": [
+        "mcp__openbkn__bkn_finish_interaction",
+        "mcp__openbkn__bkn_start_interaction",
+        "mcp__openbkn__execute_tool",
+        "mcp__openbkn__explore_subgraph",
+        "mcp__openbkn__get_kn_detail",
+        "mcp__openbkn__get_logic_properties_values",
+        "mcp__openbkn__get_object_types",
+        "mcp__openbkn__get_relation_types",
+        "mcp__openbkn__get_skill_content",
+        "mcp__openbkn__list_skills",
+        "mcp__openbkn__query_instance_subgraph",
+        "mcp__openbkn__query_metric",
+        "mcp__openbkn__query_object_instance",
+        "mcp__openbkn__read_skill_file",
+        "mcp__openbkn__run_code",
+        "mcp__openbkn__search_capabilities",
+        "mcp__openbkn__search_instance",
+        "mcp__openbkn__search_schema",
+        "openbkn_export_csv"
+      ]
+    },
+    {
+      "seq": 24,
+      "names": [
+        "mcp__openbkn__bkn_finish_interaction",
+        "mcp__openbkn__bkn_start_interaction",
+        "mcp__openbkn__execute_tool",
+        "mcp__openbkn__explore_subgraph",
+        "mcp__openbkn__get_kn_detail",
+        "mcp__openbkn__get_logic_properties_values",
+        "mcp__openbkn__get_object_types",
+        "mcp__openbkn__get_relation_types",
+        "mcp__openbkn__get_skill_content",
+        "mcp__openbkn__list_skills",
+        "mcp__openbkn__query_instance_subgraph",
+        "mcp__openbkn__query_metric",
+        "mcp__openbkn__query_object_instance",
+        "mcp__openbkn__read_skill_file",
+        "mcp__openbkn__run_code",
+        "mcp__openbkn__search_capabilities",
+        "mcp__openbkn__search_instance",
+        "mcp__openbkn__search_schema",
+        "openbkn_export_csv"
+      ]
+    }
+  ],
+  "systems": [
+    {
+      "seq": 8,
+      "hasEffectiveRouting": true
+    },
+    {
+      "seq": 23,
+      "hasEffectiveRouting": true
+    }
+  ],
+  "calls": [
+    {
+      "seq": 19,
+      "step": 1,
+      "name": "mcp__openbkn__bkn_start_interaction"
+    },
+    {
+      "seq": 26,
+      "step": 2,
+      "name": "mcp__openbkn__search_schema"
+    },
+    {
+      "seq": 31,
+      "step": 3,
+      "name": "mcp__openbkn__query_metric"
+    },
+    {
+      "seq": 36,
+      "step": 4,
+      "name": "mcp__openbkn__query_object_instance"
+    },
+    {
+      "seq": 41,
+      "step": 5,
+      "name": "mcp__openbkn__run_code"
+    },
+    {
+      "seq": 46,
+      "step": 6,
+      "name": "openbkn_export_csv"
+    },
+    {
+      "seq": 51,
+      "step": 7,
+      "name": "mcp__openbkn__bkn_finish_interaction"
+    }
+  ],
+  "toolErrors": [],
+  "exportBeforeFinish": true,
+  "exportReceipt": {
+    "path": "/Users/kalias/Documents/project/app/test_folder/openbkn-4941079f-d411-4387-8595-a1a94d28d321-inventory_382-000005_three_warehouses.csv",
+    "markdown_link": "[CSV](<openbkn-4941079f-d411-4387-8595-a1a94d28d321-inventory_382-000005_three_warehouses.csv>)",
+    "bytes": 168,
+    "sha256": "a8e3d34f809c466b06305068b67bf28cb05614d4f688071290ad5e38dc85c9cf",
+    "source_path": "inventory_382-000005_three_warehouses.csv"
+  },
+  "finish": {
+    "conversation_id": "conv_50556c8cad5f336c1e4dff35e9c02cd5",
+    "execution_status": "completed",
+    "evidence_status": "complete",
+    "interaction_id": "int_4495321d70a59b2709d6f470a85f9133"
+  },
+  "finalLinkMatchesReceipt": true,
+  "finalMarkdownLinkVerbatim": false,
+  "bytesMatchReceipt": true,
+  "sourceUnchangedDuringExtraction": true,
+  "scope": "Actual DSH persisted request catalogues, final visible model text and tool results. No reasoning or credentials copied. UI click-to-open is recorded separately."
+}

@@ -83,6 +83,13 @@ async function scenario(captureDisabled) {
         },
       }))
     }
+    for (const name of ['write', 'mcp__openbkn__run_cypher']) {
+      ctx.tools.register({ name, description: 'Observed forbidden tool-surface fixture',
+        parameters: { type: 'object', properties: {} },
+        output: { schema: { type: 'string' }, render: (_args, value) => [{ type: 'text', text: value }] },
+        execute: async () => { throw new Error('Forbidden tool body must not dispatch') },
+      })
+    }
     const agent = { id: 'csv-probe', session: { header: { cwd: oldHost ? '/workspace' : '/stale-initial-workspace' }, snapshotEvents: () => [] } }
     await createScope(ctx, agent).ctx.plugin({ inject: ['systemPrompt', 'tools'], apply(scoped) {
       agent.ctx = scoped
@@ -91,6 +98,19 @@ async function scenario(captureDisabled) {
     await Promise.resolve(); await Promise.resolve()
     assert.ok(ctx.tools.get(CSV, agent))
     assert.equal(ctx.tools.get(CSV, { id: 'unrelated-agent' }), undefined)
+    ctx.tools.register({ name: 'mcp__openbkn__future_unreviewed', description: 'Late unreviewed fixture',
+      parameters: { type: 'object', properties: {} },
+      output: { schema: { type: 'string' }, render: (_args, value) => [{ type: 'text', text: value }] },
+      execute: async () => { throw new Error('Unreviewed tool body must not dispatch') },
+    })
+    const assembled = await ctx.systemPrompt.assemble({ scope: agent })
+    const modelNames = assembled.tools.map(tool => tool.name)
+    assert.ok(modelNames.includes(CSV))
+    assert.ok(modelNames.includes('mcp__openbkn__run_code'))
+    for (const name of ['write', 'mcp__openbkn__run_cypher', 'mcp__openbkn__future_unreviewed']) assert.ok(!modelNames.includes(name), name)
+    assert.ok((await ctx.systemPrompt.assemble()).tools.some(tool => tool.name === 'write'))
+    assert.equal(assembled.sections.at(-1).name, 'openbkn:effective-tool-routing')
+    checks.push('model catalogue excludes observed and late forbidden tools; managed CSV visible; unbound catalogue unchanged')
     const call = (name, arguments_) => ctx.tools.execute({ name, arguments: arguments_, agent, callId: 'csv-probe-' + ++sequence, signal: AbortSignal.timeout(5000) })
     const denied = async (check, name, arguments_) => {
       const before = { reads, writes }
@@ -116,7 +136,7 @@ async function scenario(captureDisabled) {
     readOnly = true
     await denied('read-only Session', CSV, input)
     readOnly = false
-    for (const name of ['read', 'grep', 'present', 'mcp__openbkn__run_shell']) await denied('Host/excluded ' + name, name, {})
+    for (const name of ['read', 'grep', 'present', 'write', 'mcp__openbkn__run_shell', 'mcp__openbkn__run_cypher', 'mcp__openbkn__future_unreviewed']) await denied('Host/excluded ' + name, name, {})
     corrupt = true
     const invalid = await call(CSV, input)
     assert.equal(invalid.isError, true)

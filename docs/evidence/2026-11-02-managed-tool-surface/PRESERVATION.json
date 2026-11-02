@@ -1,0 +1,13 @@
+{
+  "old_session_and_csv_unchanged": {
+    "/Users/kalias/.dsh/sessions/--Users-kalias-Documents-project-app-test_folder--/session-0b252fdc-9481-4152-8ea9-0e35d883726c/session.v4.jsonl.zstd": true,
+    "/Users/kalias/Documents/project/app/test_folder/openbkn-cbf35bb9-82bd-445f-9949-bc6198f7c923-382-000005_three_warehouse_available_inventory.csv": true
+  },
+  "profile_changed_top_level_fields": [
+    "dependencies"
+  ],
+  "profile_changed_dependencies": [
+    "@openbkn/dsh-business-context"
+  ],
+  "candidate_manifest_semantically_matches_installed": true
+}

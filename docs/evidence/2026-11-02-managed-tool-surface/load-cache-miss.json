@@ -1,0 +1,90 @@
+{
+  "kind": "install-success-but-old-code-still-active; not candidate acceptance",
+  "sessionId": "3c443457-2d14-411b-81d5-4adf6e8fde6d",
+  "title": "021旧代码缓存对照｜未完成CSV交付",
+  "sessionSha256": "1e8312027334585947d8940cfd92b4531781be84ad72394843cfef9e38080916",
+  "requestCatalogues": [
+    {
+      "seq": 13,
+      "count": 66,
+      "forbidden": [
+        "mcp__openbkn__run_cypher",
+        "write"
+      ]
+    },
+    {
+      "seq": 24,
+      "count": 66,
+      "forbidden": [
+        "mcp__openbkn__run_cypher",
+        "write"
+      ]
+    }
+  ],
+  "calls": [
+    {
+      "step": 1,
+      "name": "mcp__openbkn__bkn_start_interaction"
+    },
+    {
+      "step": 2,
+      "name": "mcp__openbkn__search_schema"
+    },
+    {
+      "step": 2,
+      "name": "mcp__openbkn__search_capabilities"
+    },
+    {
+      "step": 3,
+      "name": "mcp__openbkn__run_cypher"
+    },
+    {
+      "step": 4,
+      "name": "mcp__openbkn__run_code"
+    },
+    {
+      "step": 5,
+      "name": "mcp__openbkn__run_code"
+    },
+    {
+      "step": 6,
+      "name": "mcp__openbkn__run_code"
+    },
+    {
+      "step": 7,
+      "name": "mcp__openbkn__bkn_finish_interaction"
+    },
+    {
+      "step": 8,
+      "name": "mcp__openbkn__bkn_finish_interaction"
+    },
+    {
+      "step": 9,
+      "name": "openbkn_export_csv"
+    },
+    {
+      "step": 10,
+      "name": "write"
+    }
+  ],
+  "errors": [
+    {
+      "step": 3,
+      "text": "Error: mcp__openbkn__run_cypher is not supported in an OpenBKN business session by this version of the bkn-dsh plugin. Do not retry it; continue with the managed OpenBKN tools. The separately offered openbkn_export_csv remains available to transfer an existing platform CSV into this Session workspace before finishing the Interaction; it does not enable Host tools or raw queries."
+    },
+    {
+      "step": 8,
+      "text": "Error: No OpenBKN interaction is open; do not call bkn_finish_interaction."
+    },
+    {
+      "step": 9,
+      "text": "Error: This turn already completed its one OpenBKN interaction; no further OpenBKN access is possible in this turn. Answer from the results you already have, and let the user ask again if separate business work is needed."
+    },
+    {
+      "step": 10,
+      "text": "Error: This OpenBKN business session only permits managed OpenBKN tools. The separately offered openbkn_export_csv remains available to transfer an existing platform CSV into this Session workspace before finishing the Interaction; it does not enable Host tools or raw queries."
+    }
+  ],
+  "interactionFinished": true,
+  "action": "Preserved session; allowed turn to finish; normal DSH restart before a fresh candidate run."
+}

@@ -196,6 +196,8 @@ test('native ToolRuntime mounts export only in the bound agent and enforces life
     await Promise.resolve(); await Promise.resolve()
     assert.ok(ctx.tools.get('openbkn_export_csv', agent))
     assert.equal(ctx.tools.get('openbkn_export_csv', { id: 'other' }), undefined)
+    assert.ok((await ctx.systemPrompt.assemble({ scope: agent })).tools.some(tool => tool.name === 'openbkn_export_csv'))
+    assert.ok(!(await ctx.systemPrompt.assemble()).tools.some(tool => tool.name === 'openbkn_export_csv'))
     let sequence = 0
     const call = (name: string, input: unknown) => ctx.tools.execute({ name, arguments: input, agent: agent as never, callId: ('csv-' + ++sequence) as never, signal: AbortSignal.timeout(5000) })
     assert.equal((await call('openbkn_export_csv', args)).isError, true)
