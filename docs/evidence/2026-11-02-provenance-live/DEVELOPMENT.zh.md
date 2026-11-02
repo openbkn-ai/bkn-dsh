@@ -1,5 +1,7 @@
 # DSH 业务溯源：本地打包与只读实机验收
 
+2026-11-03接续：Windows官方rc.5固定CI4包已执行并核收原始回执，关键分析焦点补测通过；保留原文hover/Escape一次FAIL及其他UNKNOWN，不称全部发布验收通过。Windows后段1376项摘要一致不抹掉前段2文件变化和39项不可读。见[当前状态](./PRE-RELEASE-STATUS.zh.md)、[Windows回执](./windows-rc5/WINDOWS-CI4-RESULTS.zh.md)。以下本地只读结果继续作为历史保留。
+
 后续范围更新：维护者已授权推送、build-only CI和远程E2E，并允许在隔离样本生成依据与开始分析。CI3真实脱敏报告已接收，保留分析后Esc的FAIL；局部修复后CI4已通过，精确cf9abdf4包的远程Mac焦点R1—R4实机复验已完成并SHA核收报告；原CI3失败保留，完整矩阵和Windows仍不作通过声明。以下只读结果和7f5候选为历史，不替代新CI包的验收。最新计数/包身份/原始远程报告见[CI/E2E交接](./CI-E2E-HANDOFF.zh.md)。
 
 2026-11-02。当前本地分支 `feat/provenance-platform-parity-live`，集成基线 `bc5e67bfa1706c0e7f991f59979dbb93efe4a960`。本轮本地构建与 Mac Desktop 只读验收通过；不是发布批准、Windows 验收或用户人工验收。

@@ -2,7 +2,7 @@
 
 ## 发布前 CI 与远程 E2E（2026-11-02）
 
-**Windows接续**：维护者已指定`0.2.1业务溯源win`（DESKTOP-IEJNBRE）接收同一CI4精确包并执行原生E2E。当前目标已由维护者明确固定为官方Windows Desktop0.2.1-rc.5，禁止继续旧Host验收；已授权必要的隔离环境修复/重建并要求持续推进。此前登录/窗口及profile混用异常保留为历史；据远程回报，rc.5隔离环境已恢复、固定包安装退出0且冷启动启用，新原生工具已能截图/点击/输入。当前等待用户完成新打开的OpenBKN平台设备授权，真实业务溯源功能及最终报告仍待继续，不能沿用Mac PASS。见[Windows交接](../../evidence/2026-11-02-provenance-live/WINDOWS-E2E-HANDOFF.zh.md)。
+**Windows接续（2026-11-03核收）**：指定Windows会话已在官方DSH Desktop0.2.1-rc.5完成本轮可执行E2E并正常退出。固定CI4包126/126一致；真实多轮/原答案定位、筛选、操作及图谱选择、原文/全屏、原生保存、分析busy→终态直接Esc与回焦均有实证。生成1次、分析2次、新业务问答0次；同记录平台原文与Save6306字节/SHA完全一致，217处占位在平台原始响应内，粘贴读回124个CRLF仅诊断归一化等同。**仍保留W3原文hover/Escape一次FAIL**，混合hover/click事件和焦点归属待确定性复现，不能宣称Windows全部或正式发布验收通过。见[原始回执](../../evidence/2026-11-02-provenance-live/windows-rc5/WINDOWS-CI4-RESULTS.zh.md)、[接收复核](../../evidence/2026-11-02-provenance-live/windows-rc5/INTAKE-REVIEW.zh.md)及[边界待办](../../evidence/2026-11-02-provenance-live/windows-rc5/FOLLOWUP-BOUNDARIES.zh.md)。早期旧Host/隔离异常保留，不计rc.5通过、不覆盖未知Before数据。
 
 **当前状态：CI4通过，精确包的Mac分析焦点实机复验R1—R4通过；不是全局正式发布验收。** 源码 `a52032956314cf582c0f39ed3dab2f8e80e91085` 的 [build-only CI41444758077](https://github.com/openbkn-ai/bkn-dsh/actions/runs/41444758077) 已成功：插件816通过/1 Windows专项跳过、仓库79/79、MCP companion1/1、包126文件、官方npm rc.2/rc.3受控guard/CSV/native/Remote检查通过；npm与GitHub发布均跳过。
 

@@ -1,6 +1,6 @@
 {
   "date": "2026-11-02",
-  "status": "CI3 partial native acceptance with retained focus FAIL; CI4 exact-artifact affected R1-R4 focus retest PASS; not global release acceptance",
+  "status": "Mac CI4 affected focus PASS; Windows rc.5 scoped E2E execution and cleanup complete with W3 hover-Escape FAIL retained; not global release acceptance",
   "source": "remote CI3 and CI4 public reports received byte-for-byte and SHA-verified; private originals remain remote",
   "threadId": "01a15340-6507-7660-a68d-68994e283415",
   "hostId": "remote-control:env_e_6ac8760a8c308328a9dcf5dc28dd0d18",
@@ -24,10 +24,10 @@
   },
   "sourceMarkdownObservation": "platform original Markdown contains160occurrences of 请求失败。; no plugin cleaning or rewriting",
   "pendingEvidence": [
-    "current-candidate two-round/large/nested-call native coverage where claimed",
-    "native cancellation/late-result/multi-network negatives where safely executable",
-    "Windows native coverage",
-    "actual analyze-time POST/provider-bound inputs and raw SSE remain unobserved"
+    "W3 source hover/click/Escape deterministic reproduction, focus/event ownership and delayed-reopen diagnosis",
+    "native in-flight cancellation, denial/low-privilege/abnormal network paths where safely executable",
+    "uncovered final-candidate large/nested/shared-input scenarios, not extrapolated from other machines",
+    "analysis-time POST/provider frames and loaded-version/build/exit-code fields remain UNKNOWN"
   ],
   "notInferred": [
     "HTTPsuccess means modelanalysis success",
@@ -59,19 +59,110 @@
     "threadId": "01a19c6a-e785-7f82-a5b4-cda473951fa6",
     "hostId": "remote-control:env_e_6abf8babb404832890d7c5124118ed3c",
     "title": "0.2.1业务溯源win",
-    "status": "rc.5 isolated profile/userData and retained DeepSeek login reported verified; exact tgz official CLI exit0, installed files matched and plugin enabled after cold start; native Windows screenshot/click/input tools now working; awaiting user-owned OpenBKN device authorization, functional E2E pending",
+    "status": "final scoped native receipt received byte-for-byte and independently reviewed; PARTIAL_LIVE_NOT_RELEASE_ACCEPTANCE",
     "candidateSource": "a52032956314cf582c0f39ed3dab2f8e80e91085",
     "ciRun": 41444758077,
     "tgzSha256": "cf9abdf4ac085506793501f5f4c7e2d3f6ff4bc8c873e07c4b6b401064ec6b8a",
     "handoff": "WINDOWS-E2E-HANDOFF.zh.md",
-    "acceptanceResult": "installation/cold-start readiness reported; W2-W6 and actual platform-linked detail pending, no all-Windows PASS inferred",
-    "targetHost": "official Windows Desktop0.2.1-rc.5 only; do not test earlier versions",
+    "acceptanceResult": "PARTIAL_LIVE_NOT_RELEASE_ACCEPTANCE",
+    "targetHost": "official Windows Desktop0.2.1-rc.5 only",
     "environmentRepairAuthorized": true,
     "historicalIsolationObservation": "callback opened second instance using task DSH profile and daily Electron userData; remote subsequently observed daily rc.2->rc.5 --updated, two file digest changes and protocol command changes; trigger unknown, originals retained, no overwrite rollback",
     "historicalReports": "windows-interim/RECEIPT.json",
     "historicalReportsShaVerified": true,
-    "deepSeekLogin": "confirmed by user and remote tester",
-    "openBknLogin": "first device authorization expired; fresh valid page reopened, user action pending",
-    "environmentRecovery": "signed official rc.5 identity/Node24.21 verified; isolated directories and callback boundaries checked; Windows MCP provides actual screenshot/window tree/click/input"
+    "deepSeekLogin": "confirmed",
+    "openBknLogin": "successful native login/sync and two-network list reported; actual platform records accessed",
+    "environmentRecovery": "signed official rc.5 identity/Node24.21 verified; isolated directories and callback boundaries checked; Windows MCP provides actual screenshot/window tree/click/input",
+    "host": {
+      "os": "Windows 10 Pro 10.0.19045 x64",
+      "desktopVersion": "0.2.1-rc.5",
+      "exeSha256": "7ae939b5a82b220fbd8ad04dfbafaaedb5a49ab43dc884a5db6381f678dd0cc4",
+      "signature": "Valid",
+      "electron": "44.7.0",
+      "bundledNode": "24.21.0",
+      "loadedPluginVersion": "UNKNOWN",
+      "desktopBuildCommit": "UNKNOWN"
+    },
+    "resultReport": "windows-rc5/WINDOWS-CI4-RESULTS.json",
+    "resultReportSha256": "f6d8d108b3f94009d0a36297fe0a506da2b38d949642a6a99227138fa49fadb9",
+    "checks": {
+      "W1": "PASS scoped: installed, enabled and cold-started; loaded version UNKNOWN",
+      "W2": "PASS scoped: original-answer anchors, filtering, refresh, rapid switch and close; in-flight cancellation UNKNOWN",
+      "W3": "PASS scoped: operation, reading/graph selection, warning, fullscreen Escape and keyboard source Escape; FAIL once: hovered source remained visible after Escape until pointer moved",
+      "W4": "PASS raw platform response equals native Save byte-for-byte; clipboard readback differs only by observed CRLF representation",
+      "W5": "PASS scoped: second keyboard-start busy, terminal direct Escape and focus return, plus history switch; model conclusions not_evaluable",
+      "W6": "PASS scoped: observed failed operation, partial record and abandoned round; denial/network/low-privilege paths UNKNOWN"
+    },
+    "sample": {
+      "sessionId": "session-58973674-89a4-43ae-a2b7-9f32e86032e3",
+      "conversationId": "conv_3d9d7a82c9984b25ae8d0c18a47adfe4",
+      "interactionId": "int_b00aabd41e40ea38eb1f9589f6057557",
+      "round": 2,
+      "newBusinessQuestions": 0,
+      "explanationGenerations": 1,
+      "analysisRequests": 2
+    },
+    "markdown": {
+      "platform": {
+        "httpStatus": 200,
+        "bytes": 6306,
+        "sha256": "caeb1e32d62c389d115b07c3e6904cfc9d24ea02da75127eb675f92fbfa68aa7",
+        "crlf": 0,
+        "lf": 124,
+        "utf8Bom": false,
+        "placeholderCount": 217
+      },
+      "save": {
+        "bytes": 6306,
+        "sha256": "caeb1e32d62c389d115b07c3e6904cfc9d24ea02da75127eb675f92fbfa68aa7",
+        "crlf": 0,
+        "lf": 124,
+        "utf8Bom": false,
+        "equalsPlatformBytes": true
+      },
+      "pasteReadbackUtf8": {
+        "bytes": 6430,
+        "sha256": "2c36b056cf2d58766ce034b62386852e743c926b4406756001adfdee16cee77d",
+        "crlf": 124,
+        "lf": 124,
+        "utf8Bom": false,
+        "equalsPlatformBytes": false,
+        "equalsAfterDiagnosticCrLfToLf": true
+      }
+    },
+    "cleanup": {
+      "method": "Application menu Exit",
+      "ownedDesktopPid": 4172,
+      "ownedHostPid": 27724,
+      "ownedProcessesAbsent": true,
+      "ownedPort": 51430,
+      "ownedPortReleased": true,
+      "exitCode": "UNKNOWN",
+      "dailyDesktopPidStillRunning": 17728,
+      "dailyHostPidStillRunning": 11576,
+      "dailyPort": 58794,
+      "freshBeforeTotal": 1415,
+      "freshBeforeUnreadable": 39,
+      "freshBeforeComparable": 1376,
+      "freshBeforeDifferences": 0,
+      "initialBeforeComparable": 964,
+      "initialBeforeDifferences": 2,
+      "initialChanges": [
+        "daily desktop profile package.json",
+        "one daily session file"
+      ],
+      "callbackDefaultUserDataMtimeAfterCountAtLeast": 42,
+      "callbackCauseAndPreexistingBytes": "UNKNOWN",
+      "dailyInstallChangedRc2ToRc5Trigger": "UNKNOWN",
+      "protocolPointsToCurrentDailyRc5": true,
+      "sharedPnpmCacheAdditiveChange": true
+    },
+    "retainedFailure": "one hovered SourceText Escape visibility failure; current focus/keydown/reopen path unknown, not assigned to Windows or platform by inference",
+    "notInferred": [
+      "full Windows/release/human acceptance",
+      "loaded plugin or Desktop build from disk metadata",
+      "clipboard raw-byte equality or precise CRLF conversion layer",
+      "whole-workflow daily isolation from later fresh-baseline equality"
+    ]
   }
 }
