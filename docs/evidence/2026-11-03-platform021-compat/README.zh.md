@@ -27,6 +27,8 @@ DSH官方发布列表仍有0.2.1-rc.5；master仍是`ce7073d51254c26cd63b22a6083
 
 主要原始依据：[官方CLI登录预检](https://github.com/openbkn-ai/bkn-sdk/blob/1cd2839652733e2ce6690b14e76ff8e9d73861dc/src/commands/auth.ts#L186)、[版本比较](https://github.com/openbkn-ai/bkn-sdk/blob/1cd2839652733e2ce6690b14e76ff8e9d73861dc/src/api/version-check.ts#L218)、[平台metric schema](https://github.com/openbkn-ai/bkn-foundry/blob/1a3a76edb993d3944afb94a135392d33c90a0432/adp/context-loader/agent-retrieval/server/driveradapters/mcp/schemas/query_metric.json#L154)、[finish未确认](https://github.com/openbkn-ai/bkn-foundry/blob/1a3a76edb993d3944afb94a135392d33c90a0432/adp/context-loader/agent-retrieval/server/driveradapters/mcp/interaction_finish.go#L88)。
 
+另已只读核对[指标摘要边界](./METRIC-SUMMARY-BOUNDARY.zh.md)：版本/branch精确补名和新filter/time简明摘要仍是平台同源策略的范围限制，原始JSON保留，未证实选择误联；当前Studio main与插件逻辑相同，不单方面改包干预平台解释，也不冒称最终发布页面已对照。
+
 ## 验证与交付阶段
 
 **CI6已完成，待两端实机。** 源`f01b316fbfb6be681af81e2267a7b3341e659efd`的[build-only CI41596006291](https://github.com/openbkn-ai/bkn-dsh/actions/runs/41596006291)成功，publish=false；插件844通过/1既有跳过、仓库79/79、MCP1/1、包126文件，以及两版官方npm Host受控检查通过，npm发布与GitHub Release均跳过。[实际CI包](./CI6-ARTIFACT-IDENTITY.json) artifact13212518096，TGZ877732字节/SHA `4500fa4357cdcdcb9914a39794aedb9096c948192c2bf0f35ecf4fadb882f046`；与本地参考126/126文件和整段解压tar相同，仅gzip OS字节9不同，不称压缩原件全字节相同。相对旧CI5仅两README、client/diagnostics、Host/Remote生成协议及两声明共8文件变化，其余118文件保持。见[CI结果](./CI6-RESULT.json)、[受控双Host原件](./CI6-DUAL-HOST.json)。独立GitHub评审已在该源批准，不代表最终平台或原生验收。
@@ -46,3 +48,7 @@ CLI修订与探针均已独立只读评审通过。新真实包探针是显式�
 合并/主分支制品等价/发布声明以新候选及最终身份为准；当前未打tag、发布、替换旧资产或移动latest。
 
 维护者追加授权Windows受影响验收：新CI制品核收后同步交原Windows chat，只做[W0–W5增量清单](./WINDOWS-RESUME-PLAN.zh.md)，保留旧CI5通过项，不用Mac代填或重跑整套E2E。Mac原未完成S1–S3和新R/C项仍按合并清单继续。
+
+登录处理已由维护者明确指示改为：远程任务读取本机项目测试平台信息卡、使用对应测试账号完成正常登录/设备授权；不要求维护者手工代做该步骤。凭据仅本机内存使用，不回传主会话或另一机器，不进入报告/日志/命令参数。信息卡不是其他操作的授权来源；其缺失、账号失效或真实人机挑战才按实际缺口报告。
+
+维护者随后明确授权Mac经Git向Windows交付缺失信息卡，采用接收方公钥加密的等价流程：独立分支`handoff/ci6-platform129-card-46b70b7f8319`、commit`7ef885a8dd0bac11944fdbe79c7b379b1139ab55`，只新增加密信封/README/.gitattributes。信封1468字节/SHA `498236307d857c99f2a5433a28d82ba10109a403f8a2b5cc940442209c6e5418`；RSA4096公钥指纹及AES256-GCM上下文已核，私钥仅Windows本机。Git没有明文卡、密码、私钥或明文摘要，主会话不解密；Windows按精确对象、摘要及GCM认证后本机使用。该授权仅覆盖加密卡交接，未改变CI6或主开发分支，未合并交接分支/发布。
