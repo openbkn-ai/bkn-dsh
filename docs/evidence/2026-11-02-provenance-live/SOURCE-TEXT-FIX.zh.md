@@ -43,7 +43,7 @@
 
 维护者已在主会话真正提交“已解锁，继续回验”。Windows随后实际核实桌面可操作、前台PID32304对应原隔离rc.5，并返回同一历史会话；先前锁屏门槛已解除。接续回合为 `01a19f37-f9a5-7571-b9b9-524520bb0a23`，该阶段按六类序列及有界边界执行，结果见下；没有重装、重跑模型或以问卷选项代替现场证据。
 
-## 当前核收结论与平台维护
+## CI5首轮核收与平台维护（历史阶段）
 
 两份[Windows原报告](./windows-rc5/ci5-source-text-retest/WINDOWS-CI5-SOURCE-TEXT-RETEST.zh.md)和[独立核收](./windows-rc5/ci5-source-text-retest/INTAKE-REVIEW.zh.md)已保存。六类操作序列按其实际预期通过，原输出故障两轮、键盘关闭后首次hover、明确新激活、跨字段独立和后续父Escape均有范围内实机观察；输入hover-click点击已关层，不称混合Escape通过。实际keydown/DOM目标/采样间短暂重开仍未知。
 
@@ -52,3 +52,17 @@
 主会话02:54:01 UTC记账用户“50.28正在更新”，Windows02:55:25 UTC获知并记账；精确升级起止及版本未知。两条获准只读对照在02:54:27 UTC完成，原conversation/detail均404；它们不是当时GUI失败请求的取证。已停止新平台访问，维护说明与现象相容，但不认定唯一原因或resize因果。server原记录After没有可比较内容，零写操作/本地Session哈希不替代该After。接续按[更新后最小复核](./SOURCE-TEXT-POST-UPGRADE.zh.md)，不重跑无关矩阵或模型。
 
 task菜单正常退出，owned进程/端口释放，日常实例仍运行；1376可比摘要及四份旧报告不变，旧39 null/旧2差异/至少42mtime/未枚举新增路径等限制完整保留。结果为SCOPED_UI_RETEST_WITH_PLATFORM_MAINTENANCE_OPEN_ITEMS，releaseAcceptance=false，不代签人工或全局发布验收。代码和CI5包没有在回验后变化。
+
+## 平台恢复后的有界补核（当前）
+
+两份[新原报告](./windows-rc5/ci5-post-upgrade/WINDOWS-CI5-POST-UPGRADE.zh.md)已按[RECEIPT](./windows-rc5/ci5-post-upgrade/RECEIPT.json)原字节核收；JSON23950字节/SHA c9cb31f0…、中文11182字节/SHA d8c755bb…。仍是ae903656/CI5/14f4bb7f、官方Windows rc.5，本轮只重核client.js与EXE身份，126文件安装匹配引用上一阶段，不写成重新安装或内存加载版本已证。完整接续与限制见[平台恢复后记录](./SOURCE-TEXT-POST-UPGRADE.zh.md)。
+
+平台目标为维护者声明的正式OpenBKN0.2.0，实际health200且ServerVersion0.2.0；原C/I初次GET401与现有隔离凭据过期一致，一次官方SDK正常needsRefresh续期POST200后原C/I均GET200，TLS保持开启。续期前后subject及用户名哈希相同，不替代缺失的升级前subject/scope对照；各服务镜像/commit/Ready和全平台版本一致性仍UNKNOWN。新的200不覆盖维护期间404，不证明旧GUI失败唯一原因；69244字节detail只用于GUI前gate，server after-state没有测量，业务写入0不等于服务器记录已证未变。
+
+严格padding本次完成：仅一次原生1920×800调整，真实UIA命中ant-popover-inner，点(1426,632)同时在自身输出trigger内、section外、另一输入trigger外。真实点击section获焦后只移动到padding，静止指针Escape后各离散采样点至约3s子关父留、未见重开并回自身trigger；名义0.5s采样实际工具返回后约665ms开始，原Bounds恢复。状态为PASS_AT_SAMPLED_TIMES，仅限本次真实几何与离散采样；原窗口无交叠SKIP仍保留，不称采样间绝无瞬态。
+
+Space前提已核为trigger持焦、hover已开。一次必要确认记录open class短清后恢复、UIA短暂offscreen，未捕获视觉关闭区间，故仅为OBSERVED_PREOPEN_CONTEXT_NOT_CLOSED_TO_OPEN_PASS，不把原始“仍开”观察改写成闭态Space打开PASS。两版Scene相同前提的受控对照未观察到对应差异，不作为Windows/平台等价或无因果风险的证明。
+
+离线日志的completed receipt分别映射turn5/第3轮和turn4/第2轮。两次根据渲染位置/特征定位的入口页面分别显示第3/第2轮，与该离线映射及平台轮次相容；实际按钮→M未捕获，不能写成运行时对应已证，也不把第3轮当作目标第2轮锚定错误。UIA未暴露答案messageId、opaque handle、运行时Host receipt或actual selected I，目标入口前又曾手选第2轮，完整运行时锚定及独立跨轮重置仍UNKNOWN，不补记完整PASS。
+
+本轮task正常菜单退出、owned进程/端口释放、日常进程和协议保持；1376项fresh非凭据文件同哈希、六份旧报告和原Session/binding保持按新报告接收。当前隔离副本349153字节与原样本349071字节不同，差异来源UNKNOWN，本轮前后副本不变不抹去该差异；旧39 null、旧2差异、至少42mtime和未枚举新路径等历史限制继续保留。新增问答/依据/分析/业务写入均0，唯一认证POST是正常SDK续期。新原报告为SCOPED_COMPLETED_WITH_RUNTIME_ANCHOR_UNKNOWNS、releaseAcceptance=false；代码与CI5包无变化，不作完整发布验收。

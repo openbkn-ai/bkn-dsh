@@ -65,6 +65,19 @@
   "publishRequested": false,
   "notMergeOrReleaseAuthorization": true,
   "ciArtifactIdentity": "CI5-ARTIFACT-IDENTITY.json",
-  "nativeRetest": "scoped UI receipt accepted; strict padding/maintenance and unclassified observations open",
-  "nativeIntake": "windows-rc5/ci5-source-text-retest/INTAKE-REVIEW.zh.md"
+  "nativeRetest": "post-ready scoped receipt accepted; strict padding PASS at sampled geometry; runtime anchor PARTIAL, Space preopen observation, deployment/serverAfter/isolation limits retained",
+  "nativeIntake": "windows-rc5/ci5-source-text-retest/INTAKE-REVIEW.zh.md",
+  "postUpgradeFollowup": {
+    "status": "SCOPED_COMPLETED_WITH_RUNTIME_ANCHOR_UNKNOWNS",
+    "summary": {
+      "answerAnchor": "PARTIAL_WITH_RUNTIME_UNKNOWNS",
+      "space": "OBSERVED_PREOPEN_CONTEXT_NOT_CLOSED_TO_OPEN_PASS",
+      "strictPaddingOverlap": "PASS_AT_SAMPLED_TIMES",
+      "oldReportsChanged": 0
+    },
+    "report": "windows-rc5/ci5-post-upgrade/WINDOWS-CI5-POST-UPGRADE.json",
+    "reportSha256": "c9cb31f0000fdc3adec3b2c4c4b1240506f73530b08b7defd9cb80c822f2acdc",
+    "intake": "windows-rc5/ci5-post-upgrade/INTAKE-REVIEW.zh.md",
+    "releaseAcceptance": false
+  }
 }

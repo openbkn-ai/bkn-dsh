@@ -1,6 +1,14 @@
 # CLAUDE.md
 
-## CI5 scoped Windows receipt and platform maintenance (2026-11-03)
+## CI5 post-recovery scoped Windows follow-up (2026-11-03)
+
+The new Windows public reports have been received with exact byte/SHA verification on unchanged CI5/source ae903656/TGZ14f4bb7f and official Desktop0.2.1-rc.5. After one native1920x800 resize, genuine padding-over-own-output-trigger Escape showed the child closed and parent retained at the discrete sampled times through about3s, with no reopening observed at those samples; the original bounds were restored. The original geometry's SKIP and the earlier maintenance404 remain historical facts, not new failures or erased results. This is scoped UI evidence, not complete release acceptance. See docs/evidence/2026-11-02-provenance-live/windows-rc5/ci5-post-upgrade/WINDOWS-CI5-POST-UPGRADE.zh.md.
+
+The maintainer declares the platform target as formal OpenBKN0.2.0. Health returned200 with ServerVersion0.2.0; the original conversation/detail GETs recovered from expired-credential401 to200 after one normal managed SDK renewal with TLS verification retained. Subject equality is verified only across that renewal, not against a missing pre-upgrade snapshot. Individual service images/commits/readiness and whole-platform version uniformity remain UNKNOWN. Server record after-state was not measured; zero business writes and local hashes do not establish unchanged server content.
+
+The two entry outcomes showing round3/round2 are compatible with offline turn5/turn4 completed receipts, rendered answer positions/features and current platform rounds; the actual button-to-message mapping, UIA message identity, opaque handle, runtime Host receipt and selected Interaction remain UNKNOWN. The target entry followed a prior manual round2 selection, so it does not independently prove cross-round reset. Space was tested with the trigger focused and hover already open: class cleared/restored and UIA briefly reported offscreen, but no visual closed interval was captured; do not count closed-to-Space-open PASS. A controlled two-Scene comparison is limited to its own focus/fixture conditions. The task exited normally with bounded preservation checks; retain the original/copy-session byte difference and all historical isolation limits. No code/package change, model/business write, new CI, merge/tag/publication or latest promotion follows from receipt.
+
+## Historical CI5 scoped Windows receipt during platform maintenance (2026-11-03)
 
 CI5/source ae90365/TGZ14f4bb7f has now been received on official Windows rc.5 with126 installed files matched. Six basic SourceText sequences and the original overlap/Escape path twice passed within sampled UI scope. Strict padding-over-own-trigger is still SKIP: the original geometry has no intersection, and one reversible task-window resize could not enter the native scene. The task exited normally and bounded file/protocol protection was checked. Keep the raw reports and all earlier failures unchanged; this is not global release or post-upgrade acceptance. See docs/evidence/2026-11-02-provenance-live/windows-rc5/ci5-source-text-retest/INTAKE-REVIEW.zh.md.
 

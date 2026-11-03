@@ -2,7 +2,9 @@
 
 ## 发布前 CI 与远程 E2E（2026-11-02）
 
-**CI5当前核收（2026-11-03）**：修复ae90365只改SourceText，新增9个回归；插件825通过/1跳过、仓库79/79、MCP1/1，实际CI5包14f4bb7f…共126文件，相对CI4仅client.js变。Windows官方rc.5六类操作及原故障两轮在采样范围内通过，键盘关闭后首hover正常；strict padding仍SKIP，单次原生窗口尺寸尝试遇到native不可读/404。维护者确认50.28正在更新，已停止新平台访问；服务器After、GUI请求身份/路径、原入口默认第3轮锚定及Space未分类观察仍待稳定后核。task已正常退出及完成有界保全，旧FAIL/UNKNOWN原件保留；不是全局发布或升级后验收。见[原报告及独立核收](../../evidence/2026-11-02-provenance-live/windows-rc5/ci5-source-text-retest/INTAKE-REVIEW.zh.md)、[更新后最小复核](../../evidence/2026-11-02-provenance-live/SOURCE-TEXT-POST-UPGRADE.zh.md)及[修复记录](../../evidence/2026-11-02-provenance-live/SOURCE-TEXT-FIX.zh.md)。
+**CI5平台恢复后补核（2026-11-03，当前）**：同一ae903656/14f4bb7f…包、官方Windows rc.5，在一次真实宽窗几何下完成strict padding∩自身输出trigger的静止Escape，各离散采样点至约3s子关父留、未见重开，恢复原Bounds；旧原窗口SKIP和维护404保留。目标为维护者声明的正式OpenBKN0.2.0，health200/ServerVersion0.2.0；隔离凭据正常SDK续期后原C/I均200，服务image/commit等仍UNKNOWN。两次入口显示第3/第2轮，与离线receipt、渲染位置/特征及平台轮次相容；实际按钮→M及完整运行时链仍UNKNOWN，且目标点击前已手选第2轮；Space仅为trigger持焦且hover已开下的class/UIA观察，不算closed→Space打开PASS。task已正常退出，serverAfter未测量，不作完整发布验收；代码、包和已发布-2不变。见[新原报告](../../evidence/2026-11-02-provenance-live/windows-rc5/ci5-post-upgrade/WINDOWS-CI5-POST-UPGRADE.zh.md)、[更新后复核记录](../../evidence/2026-11-02-provenance-live/SOURCE-TEXT-POST-UPGRADE.zh.md)及[当前待办](../../evidence/2026-11-02-provenance-live/PRE-RELEASE-STATUS.zh.md)。
+
+**历史CI5首轮核收与平台维护（2026-11-03）**：修复ae90365只改SourceText，新增9个回归；插件825通过/1跳过、仓库79/79、MCP1/1，实际CI5包14f4bb7f…共126文件，相对CI4仅client.js变。Windows官方rc.5六类操作及原故障两轮在采样范围内通过，键盘关闭后首hover正常；strict padding仍SKIP，单次原生窗口尺寸尝试遇到native不可读/404。维护者确认50.28正在更新，已停止新平台访问；服务器After、GUI请求身份/路径、原入口默认第3轮锚定及Space未分类观察仍待稳定后核。task已正常退出及完成有界保全，旧FAIL/UNKNOWN原件保留；不是全局发布或升级后验收。见[原报告及独立核收](../../evidence/2026-11-02-provenance-live/windows-rc5/ci5-source-text-retest/INTAKE-REVIEW.zh.md)、[更新后最小复核](../../evidence/2026-11-02-provenance-live/SOURCE-TEXT-POST-UPGRADE.zh.md)及[修复记录](../../evidence/2026-11-02-provenance-live/SOURCE-TEXT-FIX.zh.md)。
 
 以下CI4条目为历史时点记录，原件保留；当前待办以上述CI5核收和发布前状态为准。
 

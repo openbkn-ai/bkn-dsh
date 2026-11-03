@@ -1,0 +1,297 @@
+{
+  "date": "2026-11-03",
+  "kind": "controlled-Space-focus-baseline-comparison",
+  "evidenceBoundary": "Two natural-focus scenarios only, real Chromium and synthetic in-memory transport. No DSH/Windows/native-platform proof, no actual platform/model requests; does not itself close the old native UNKNOWN. Only Scene differs in the a520 baseline comparison.",
+  "sourceSummary": {
+    "path": "release/provenance-live-20261103-source-text/space-comparison/SUMMARY.json",
+    "bytes": 7855,
+    "sha256": "8a206d9d458773b424d56775996c415017985f90c31f174929087665b1972390"
+  },
+  "runtime": [
+    {
+      "scene": "current",
+      "node": "v24.19.0",
+      "browser": "156.0.8078.79",
+      "viewport": {
+        "width": 1920,
+        "height": 800
+      }
+    },
+    {
+      "scene": "a520329",
+      "node": "v24.19.0",
+      "browser": "156.0.8078.79",
+      "viewport": {
+        "width": 1920,
+        "height": 800
+      }
+    }
+  ],
+  "rawFiles": [
+    {
+      "path": "release/provenance-live-20261103-source-text/space-comparison/current/RESULTS.json",
+      "bytes": 100335,
+      "sha256": "9a407e54b1ff2e96a1ea39fdb2286fd92f1f779dcf653e484bb3d8eac8ad44cd"
+    },
+    {
+      "path": "release/provenance-live-20261103-source-text/space-comparison/a520329/RESULTS.json",
+      "bytes": 100406,
+      "sha256": "fbc2de0296898ca9a7aa34972f4229d33d11dc053706481b9b05cffa0f11b875"
+    }
+  ],
+  "comparison": {
+    "kind": "offline-two-scenario-Space-comparison",
+    "notWindowsAcceptance": true,
+    "doesNotCloseNativeUnknown": true,
+    "sceneOnlyComparison": true,
+    "versions": [
+      {
+        "version": "current",
+        "sourceSha256": "0a95cbb2c9a467cc2c00ccce331d4847e47350e076e50debec429f9c92d597ff",
+        "file": "release/provenance-live-20261103-source-text/space-comparison/current/RESULTS.json",
+        "bytes": 100335,
+        "sha256": "9a407e54b1ff2e96a1ea39fdb2286fd92f1f779dcf653e484bb3d8eac8ad44cd",
+        "cases": [
+          {
+            "id": "A-trigger-focused-hover-Space",
+            "preconditions": {
+              "popupVisible": true,
+              "pointerActuallyOverPopup": true,
+              "naturalFocusMatches": true
+            },
+            "preFocus": {
+              "tag": "BUTTON",
+              "className": "obp-BusinessProvenanceScene-sourceTextPreview ant-popover-open",
+              "label": "查看完整本轮输出",
+              "placeholder": null,
+              "id": ""
+            },
+            "spaceKeydownTargets": [
+              {
+                "tag": "BUTTON",
+                "className": "obp-BusinessProvenanceScene-sourceTextPreview ant-popover-open",
+                "label": "查看完整本轮输出",
+                "placeholder": null,
+                "id": ""
+              }
+            ],
+            "clickTargets": [
+              {
+                "tag": "BUTTON",
+                "className": "obp-BusinessProvenanceScene-sourceTextPreview ant-popover-open",
+                "label": "查看完整本轮输出",
+                "placeholder": null,
+                "id": ""
+              }
+            ],
+            "samples": [
+              {
+                "ms": 8,
+                "visibleLayerCount": 1,
+                "parentOpen": true,
+                "scrollTop": 0
+              },
+              {
+                "ms": 150,
+                "visibleLayerCount": 1,
+                "parentOpen": true,
+                "scrollTop": 0
+              },
+              {
+                "ms": 503,
+                "visibleLayerCount": 1,
+                "parentOpen": true,
+                "scrollTop": 0
+              },
+              {
+                "ms": 1502,
+                "visibleLayerCount": 1,
+                "parentOpen": true,
+                "scrollTop": 0
+              }
+            ]
+          },
+          {
+            "id": "B-section-focused-hover-Space",
+            "preconditions": {
+              "popupVisible": true,
+              "pointerActuallyOverPopup": true,
+              "naturalFocusMatches": true
+            },
+            "preFocus": {
+              "tag": "SECTION",
+              "className": "obp-BusinessProvenanceScene-sourceTextPopoverContent",
+              "label": "本轮输出（原文）",
+              "placeholder": null,
+              "id": ""
+            },
+            "spaceKeydownTargets": [
+              {
+                "tag": "SECTION",
+                "className": "obp-BusinessProvenanceScene-sourceTextPopoverContent",
+                "label": "本轮输出（原文）",
+                "placeholder": null,
+                "id": ""
+              }
+            ],
+            "clickTargets": [],
+            "samples": [
+              {
+                "ms": 2,
+                "visibleLayerCount": 1,
+                "parentOpen": true,
+                "scrollTop": 0
+              },
+              {
+                "ms": 150,
+                "visibleLayerCount": 1,
+                "parentOpen": true,
+                "scrollTop": 269
+              },
+              {
+                "ms": 500,
+                "visibleLayerCount": 1,
+                "parentOpen": true,
+                "scrollTop": 272
+              },
+              {
+                "ms": 1501,
+                "visibleLayerCount": 1,
+                "parentOpen": true,
+                "scrollTop": 272
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "version": "a520329",
+        "sourceSha256": "d1b62e75a0bc787635eb5b5420dad1a6717ea9b0d87c19a1a1de87c36a5b916e",
+        "file": "release/provenance-live-20261103-source-text/space-comparison/a520329/RESULTS.json",
+        "bytes": 100406,
+        "sha256": "fbc2de0296898ca9a7aa34972f4229d33d11dc053706481b9b05cffa0f11b875",
+        "cases": [
+          {
+            "id": "A-trigger-focused-hover-Space",
+            "preconditions": {
+              "popupVisible": true,
+              "pointerActuallyOverPopup": true,
+              "naturalFocusMatches": true
+            },
+            "preFocus": {
+              "tag": "BUTTON",
+              "className": "obp-BusinessProvenanceScene-sourceTextPreview ant-popover-open",
+              "label": "查看完整本轮输出",
+              "placeholder": null,
+              "id": ""
+            },
+            "spaceKeydownTargets": [
+              {
+                "tag": "BUTTON",
+                "className": "obp-BusinessProvenanceScene-sourceTextPreview ant-popover-open",
+                "label": "查看完整本轮输出",
+                "placeholder": null,
+                "id": ""
+              }
+            ],
+            "clickTargets": [
+              {
+                "tag": "BUTTON",
+                "className": "obp-BusinessProvenanceScene-sourceTextPreview ant-popover-open",
+                "label": "查看完整本轮输出",
+                "placeholder": null,
+                "id": ""
+              }
+            ],
+            "samples": [
+              {
+                "ms": 4,
+                "visibleLayerCount": 1,
+                "parentOpen": true,
+                "scrollTop": 0
+              },
+              {
+                "ms": 152,
+                "visibleLayerCount": 1,
+                "parentOpen": true,
+                "scrollTop": 0
+              },
+              {
+                "ms": 501,
+                "visibleLayerCount": 1,
+                "parentOpen": true,
+                "scrollTop": 0
+              },
+              {
+                "ms": 1501,
+                "visibleLayerCount": 1,
+                "parentOpen": true,
+                "scrollTop": 0
+              }
+            ]
+          },
+          {
+            "id": "B-section-focused-hover-Space",
+            "preconditions": {
+              "popupVisible": true,
+              "pointerActuallyOverPopup": true,
+              "naturalFocusMatches": true
+            },
+            "preFocus": {
+              "tag": "SECTION",
+              "className": "obp-BusinessProvenanceScene-sourceTextPopoverContent",
+              "label": "本轮输出（原文）",
+              "placeholder": null,
+              "id": ""
+            },
+            "spaceKeydownTargets": [
+              {
+                "tag": "SECTION",
+                "className": "obp-BusinessProvenanceScene-sourceTextPopoverContent",
+                "label": "本轮输出（原文）",
+                "placeholder": null,
+                "id": ""
+              }
+            ],
+            "clickTargets": [],
+            "samples": [
+              {
+                "ms": 1,
+                "visibleLayerCount": 1,
+                "parentOpen": true,
+                "scrollTop": 0
+              },
+              {
+                "ms": 151,
+                "visibleLayerCount": 1,
+                "parentOpen": true,
+                "scrollTop": 271
+              },
+              {
+                "ms": 501,
+                "visibleLayerCount": 1,
+                "parentOpen": true,
+                "scrollTop": 272
+              },
+              {
+                "ms": 1501,
+                "visibleLayerCount": 1,
+                "parentOpen": true,
+                "scrollTop": 272
+              }
+            ]
+          }
+        ]
+      }
+    ],
+    "conclusion": "Both tested scene versions agree in these controlled premises: A Space targets the naturally focused trigger and synthesizes a button click; the open class clears and returns while pointer remains over the overlapping popup; B Space targets the naturally focused popup section, synthesizes no click, scrolls the original text and keeps the layer open. No observed difference attributable to the minimum Escape correction. This does not determine native Windows focus or root cause."
+  },
+  "newProductionChanges": false,
+  "nativeCorrelation": "Windows post-ready trigger-focused hover-open case also reports class clear/restore and transient UIA offscreen. Actual DOM key/click targets and visual closed interval UNKNOWN; not closed-to-Space-open PASS, no whole-platform/equivalence or causal claim.",
+  "nativeReport": "windows-rc5/ci5-post-upgrade/WINDOWS-CI5-POST-UPGRADE.json",
+  "independentReadOnlyReview": {
+    "rawSizesHashesAndSceneSourcesVerified": true,
+    "comparisonMatchesSourceSummary": true,
+    "method": "observational Scene-only comparison, not a complete CI4/CI5 package replay or a new outcome-equality assertion suite"
+  }
+}
