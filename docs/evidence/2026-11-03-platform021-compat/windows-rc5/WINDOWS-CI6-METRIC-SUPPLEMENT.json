@@ -1,0 +1,158 @@
+{
+  "schemaVersion": 1,
+  "kind": "windows-ci6-metric-prerequisite-and-natural-renewal-supplement",
+  "createdUtc": "2026-11-03T12:57:16.342146+00:00",
+  "clientTimezone": "Asia/Taipei",
+  "parentCi6RunRoot": "C:\\bkn-verify\\provenance-ci4-win-20261102\\ci6-platform021-20261103-154333",
+  "origin": "https://192.168.50.129",
+  "candidateCommit": "f01b316fbfb6be681af81e2267a7b3341e659efd",
+  "ciRun": 41596006291,
+  "candidateReinstalledOrPatched": false,
+  "scope": "Only remaining metric-positive prerequisites plus naturally due normal SDK renewal; no repeated prior object/guard/CSV/native-UI matrix. Original reports immutable.",
+  "overall": "PARTIAL_RENEWAL_PASS_METRIC_POSITIVE_NOT_RUN",
+  "C2_W4_metricPositive": {
+    "status": "NOT_RUN_PREREQUISITE_UNAVAILABLE",
+    "publishedMetricId": null,
+    "publishedVersion": null,
+    "branchSource": "Cached actual same-origin knowledge-network directory disclosed main for both KN; no invented branch",
+    "queryConditions": null,
+    "metricQueryCalls": 0,
+    "definitionGetCalls": 0,
+    "versionListGetCalls": 0,
+    "newManagedInteractions": 0,
+    "finishCalls": 0,
+    "directoryReads": {
+      "atUtc": "2026-11-03T12:57:16.342146+00:00",
+      "directoryRequests": [
+        {
+          "origin": "https://192.168.50.129",
+          "method": "GET",
+          "path": "/api/bkn-backend/v1/knowledge-networks/worldcup_vega_catalog_bkn/object-metrics?branch=main&status=published&offset=0&limit=20",
+          "requestedUtc": "2026-11-03T12:54:13.601Z",
+          "finishedUtc": "2026-11-03T12:54:13.621Z",
+          "httpStatus": 404,
+          "rawResponseBytes": 18,
+          "rawResponseSha256": "99eb12f2ab3c4866a353e098ffa3cb7a967e617c49b98480394ec5d8ea92b094",
+          "responseText": "404 page not found",
+          "metricMetadataDisclosed": false,
+          "classification": "OFFICIAL_SDK_COLLECTION_ROUTE_HTTP_404_NON_JSON",
+          "collectorJsonParseError": "SyntaxError after404; not a metric result or successful directory parse",
+          "sourceContract": "Installed unmodified @openbkn/bkn-sdk0.2.1-rc.1 listObjectMetrics -> /api/bkn-backend/v1/knowledge-networks/{knId}/object-metrics; branch/status/offset/limit from official SDK schema"
+        },
+        {
+          "origin": "https://192.168.50.129",
+          "method": "GET",
+          "path": "/api/bkn-backend/v1/knowledge-networks/supply_ontology_hand/object-metrics?branch=main&status=published&offset=0&limit=20",
+          "requestedUtc": "2026-11-03T12:54:13.628Z",
+          "finishedUtc": "2026-11-03T12:54:13.633Z",
+          "httpStatus": 404,
+          "rawResponseBytes": 18,
+          "rawResponseSha256": "99eb12f2ab3c4866a353e098ffa3cb7a967e617c49b98480394ec5d8ea92b094",
+          "responseText": "404 page not found",
+          "metricMetadataDisclosed": false,
+          "classification": "OFFICIAL_SDK_COLLECTION_ROUTE_HTTP_404_NON_JSON",
+          "collectorJsonParseError": "SyntaxError after404; not a metric result or successful directory parse",
+          "sourceContract": "Installed unmodified @openbkn/bkn-sdk0.2.1-rc.1 listObjectMetrics -> /api/bkn-backend/v1/knowledge-networks/{knId}/object-metrics; branch/status/offset/limit from official SDK schema"
+        }
+      ],
+      "stoppedAfterBoundedReads": true,
+      "notAnAbsenceProof": "These404 responses do not prove either KN has zero metrics; the queried official collection route did not provide metric metadata."
+    },
+    "missingPrerequisite": "Readable same-target official published metric metadata, or an existing disclosed published sample containing metric_id, integer version, branch and valid query constraints. Current official SDK collections404; no ID to select a definition/version route.",
+    "conclusionBoundary": "No claim that platform/KN contains zero metrics; no guessed IDs, default versions, publish/create/modify, alternate-path guessing, repeated enumeration or model call."
+  },
+  "normalSdkRenewal": {
+    "status": "PASS_NORMAL_SDK_RENEWAL",
+    "evidence": {
+      "forced": false,
+      "clockChanged": false,
+      "expiryChanged": false,
+      "before": {
+        "baseUrl": "https://192.168.50.129",
+        "hasToken": true,
+        "expired": true,
+        "refreshAvailable": true,
+        "expiresAt": "2026-11-03T09:44:12.496Z",
+        "storedTlsInsecure": false
+      },
+      "naturallyDue": true,
+      "callStartedUtc": "2026-11-03T12:54:13.475Z",
+      "callFinishedUtc": "2026-11-03T12:54:13.600Z",
+      "after": {
+        "baseUrl": "https://192.168.50.129",
+        "hasToken": true,
+        "expired": false,
+        "refreshAvailable": true,
+        "expiresAt": "2026-11-03T13:54:13.599Z",
+        "storedTlsInsecure": false
+      },
+      "tokenChanged": true,
+      "sameStoredIdentity": true,
+      "status": "PASS_NORMAL_SDK_RENEWAL"
+    },
+    "layer": "Standalone official SDK authority using existing Windows managed generation; not a new native Host login/sync/renewal test",
+    "wireBoundary": "Refresh and automatic version-check HTTP exchanges were not separately wire-captured; directory request records are not a total network-call count",
+    "stateMutation": "Only official normal SDK credential persistence in existing owned129 generation; no manual expiry/clock/credential edits"
+  },
+  "connection": {
+    "cli": "@openbkn/bkn-sdk@0.2.1-rc.1",
+    "managedGeneration": "368a951b-fd07-4c55-b1fb-4e6cb1ec618e",
+    "trust": "Existing unmodified origin/leaf/SPKI/remote pin preload in dedicated Node collector; no global trust-store or Host change",
+    "originFence": "Status active platform129 and resolved context129; pin confines network calls to129",
+    "sdkVersionCheck": "Unmodified default memory check; no skip flag/call",
+    "onlyOrigin129": true,
+    "origin28Requests": 0,
+    "freshLoginRepeated": false
+  },
+  "priorPublicOriginals": [
+    {
+      "path": "C:\\bkn-verify\\provenance-ci4-win-20261102\\ci6-platform021-20261103-154333\\public\\WINDOWS-CI6-LIVE-MCP-TOOLS.json",
+      "bytes": 232727,
+      "sha256": "e351b2f06c4fff47586d9945989b3b1e8eb2157496706e739baaaf5408093242",
+      "sameBytesAndHash": true
+    },
+    {
+      "path": "C:\\bkn-verify\\provenance-ci4-win-20261102\\ci6-platform021-20261103-154333\\public\\WINDOWS-CI6-PLATFORM021-VERIFICATION.json",
+      "bytes": 70348,
+      "sha256": "0935afe5f76d270d5d06dce8661e446a3fc01b840a76ce6cc46df47c9c308ebb",
+      "sameBytesAndHash": true
+    },
+    {
+      "path": "C:\\bkn-verify\\provenance-ci4-win-20261102\\ci6-platform021-20261103-154333\\public\\WINDOWS-CI6-PLATFORM021-VERIFICATION.zh.md",
+      "bytes": 6453,
+      "sha256": "5ca6f948a7aee069d9ed7cb10ee99cdc89c7ff1a493bef073acb796b70bf2ba5",
+      "sameBytesAndHash": true
+    }
+  ],
+  "boundaries": {
+    "original3BytesAndHashesPreserved": true,
+    "oldPassedMatrixRerun": false,
+    "objectQueryCalls": 0,
+    "guardChecksRepeated": 0,
+    "csvChecksRepeated": 0,
+    "modelCalls": 0,
+    "nativeHostLaunched": false,
+    "metricPublishCreateModifyCalls": 0,
+    "productionSourceEdits": false,
+    "packageInstallUpgrade": false,
+    "commitPushMergeTagReleaseLatest": false,
+    "serviceImagesOrCurrentFullDeploymentRef": "NOT_RECOLLECTED; no current image/ref claim from earlier health capture"
+  },
+  "evidenceArtifacts": [
+    {
+      "path": "C:\\bkn-verify\\provenance-ci4-win-20261102\\ci6-platform021-20261103-154333\\metric-supplement-20261103T125256Z\\private\\metric-discovery-receipt.json",
+      "bytes": 3601,
+      "sha256": "47cafbebcc2ab3e4b0e36b3f79db07fe5409b006fee0a86e742425b7b1e58cda"
+    },
+    {
+      "path": "C:\\bkn-verify\\provenance-ci4-win-20261102\\ci6-platform021-20261103-154333\\metric-supplement-20261103T125256Z\\private\\metric-discovery-interpretation.json",
+      "bytes": 2198,
+      "sha256": "fb546b87758b8f205c9abebafd0564ef27dd898bd5cf4e34eb94678516545786"
+    },
+    {
+      "path": "C:\\bkn-verify\\provenance-ci4-win-20261102\\ci6-platform021-20261103-154333\\metric-supplement-20261103T125256Z\\private\\ci6-originals-before.json",
+      "bytes": 768,
+      "sha256": "6dfec7d90e486f6f574dbefbc2d75b9efe200b2b807112f8a75e1122407d9798"
+    }
+  ]
+}

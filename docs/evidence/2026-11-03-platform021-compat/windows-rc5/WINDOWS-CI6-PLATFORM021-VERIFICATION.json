@@ -1,0 +1,1754 @@
+{
+  "schemaVersion": 1,
+  "kind": "windows-ci6-platform021-incremental-verification",
+  "createdUtc": "2026-11-03T09:15:36.228825+00:00",
+  "overall": "PASS_SCOPED_PREVIEW_WITH_NOT_RUN_ITEMS",
+  "conclusion": "Executed Windows preview increments passed; formal0.2.1/final deployment, natural renewal, undisclosed metric execution and same-target native provenance remain unverified. No merge/release acceptance.",
+  "candidateCommit": "f01b316fbfb6be681af81e2267a7b3341e659efd",
+  "ciRun": 41596006291,
+  "publish": false,
+  "environment": {
+    "os": "Windows10Pro19045x64",
+    "automation": "Windows MCP only for GUI; native PowerShell/Node/Python for evidence/isolated files",
+    "runRoot": "C:\\bkn-verify\\provenance-ci4-win-20261102\\ci6-platform021-20261103-154333",
+    "noCuaOrSkyUsedInThisIncrement": true,
+    "sameOfficialHostProfileAndUserData": true
+  },
+  "testCardHandoff": {
+    "ciphertextHashVerified": true,
+    "recipientMatched": true,
+    "gcmAuthenticated": true,
+    "localCardCreated": true,
+    "repository": "openbkn-ai/bkn-dsh",
+    "gitCommit": "7ef885a8dd0bac11944fdbe79c7b379b1139ab55",
+    "encryptedPath": "docs/handoff/2026-11-03-ci6-platform129/platform129-card.enc.json",
+    "ciphertextBytes": 1468,
+    "ciphertextSha256": "498236307d857c99f2a5433a28d82ba10109a403f8a2b5cc940442209c6e5418",
+    "recipientSpkiSha256": "46b70b7f8319dd98ccf8889680f41afe665b7ac6b51cafe18c976e66e1e6e55d",
+    "algorithm": "RSA-OAEP-SHA256+AES-256-GCM",
+    "plaintextContentOrChecksumExported": false,
+    "privateKeyExported": false,
+    "preexistingCardOverwritten": false,
+    "localAcl": "Current user and SYSTEM only on owned handoff directory/card/key",
+    "use": "Local test platform browser/device sign-in only; no Mac session token imported"
+  },
+  "sections": {
+    "W0": {
+      "status": "PASS",
+      "scope": "Actual official Desktop rc.5, actual CI6 package installed through native plugin manager, normal exit then cold launch in same isolated profile/userData",
+      "host": [
+        {
+          "path": "C:\\bkn-verify\\provenance-ci4-win-20261102\\rc5-desktop-app\\DeepSeek Harness.exe",
+          "bytes": 246343144,
+          "sha256": "7ae939b5a82b220fbd8ad04dfbafaaedb5a49ab43dc884a5db6381f678dd0cc4",
+          "mtimeUtc": "2026-10-29T14:02:52.0000000Z",
+          "readable": true,
+          "signatureStatus": "Valid",
+          "signerSubject": "CN=\"Hangzhou DeepSeek Artificial Intelligence Co., Ltd.\", O=\"Hangzhou DeepSeek Artificial Intelligence Co., Ltd.\", L=Hangzhou, S=Zhejiang, C=CN, OID.1.3.6.1.4.1.311.60.2.1.1=Hangzhou, OID.1.3.6.1.4.1.311.60.2.1.2=Zhejiang, OID.1.3.6.1.4.1.311.60.2.1.3=CN, SERIALNUMBER=91330105MACPN4X08Y, OID.2.5.4.15=Private Organization",
+          "productVersion": "0.2.1.0"
+        },
+        {
+          "path": "C:\\bkn-verify\\provenance-ci4-win-20261102\\rc5-desktop-app\\resources\\app.asar",
+          "bytes": 182766714,
+          "sha256": "e1b6f25fa937da98086c3e77af77aa14791105963c4d337a1c42179d232c6915",
+          "mtimeUtc": "2026-10-29T14:02:52.0000000Z",
+          "readable": true,
+          "signatureStatus": "UnknownError",
+          "signerSubject": null,
+          "productVersion": null
+        }
+      ],
+      "nativeAbout": "V0.2.1-rc.5",
+      "nativeDiagnosticsLoadedPackageVersion": "NOT_COLLECTED; no running-version string claimed from Diagnostics",
+      "profile": "C:\\bkn-verify\\provenance-ci4-win-20261102\\home",
+      "electronUserData": "C:\\bkn-verify\\provenance-ci4-win-20261102\\electron-user-data",
+      "coldProcess": {
+        "observedUtc": "2026-11-03T08:01:09.8563118+00:00",
+        "pid": 13368,
+        "parentPid": 32096,
+        "createdUtc": "2026-11-03T08:01:07.7544180Z",
+        "path": "C:\\bkn-verify\\provenance-ci4-win-20261102\\rc5-desktop-app\\DeepSeek Harness.exe",
+        "sessionId": 1,
+        "home": "C:\\bkn-verify\\provenance-ci4-win-20261102\\home",
+        "electronUserData": "C:\\bkn-verify\\provenance-ci4-win-20261102\\electron-user-data",
+        "officialRc5Only": true
+      },
+      "ciCandidate": {
+        "sourceCommit": "f01b316fbfb6be681af81e2267a7b3341e659efd",
+        "ciRun": 41596006291,
+        "artifactId": 13212518096,
+        "tgz": "openbkn-dsh-business-context-0.2.1-rc.3-openbkn.0.2.1-3.tgz",
+        "tgzBytes": 877732,
+        "tgzSha256": "4500fa4357cdcdcb9914a39794aedb9096c948192c2bf0f35ecf4fadb882f046",
+        "zipBytes": 877818,
+        "zipSha256": "ab75ba75ea60a6ec2281015d2a863a8f27063e8f9cbce3524e7daf10580cf5ac"
+      },
+      "publish": false,
+      "installedFiles": 126,
+      "allInstalled126MatchCiAfterNormalExit": true,
+      "changedFilesVersusCi5": [
+        "README.md",
+        "README.zh.md",
+        "lib/client.js",
+        "lib/diagnostics.js",
+        "lib/typert.host.js",
+        "lib/typert.remote-client.js",
+        "lib/types/client/locales.d.ts",
+        "lib/types/types.d.ts"
+      ],
+      "unchangedFilesVersusCi5": 118,
+      "loadedClientBehaviorProof": "New CLI0.2.1 selector and bilingual guidance after cold launch; package bytes independently verified"
+    },
+    "W1": {
+      "status": "PASS",
+      "actualNativeChoices": [
+        "0.1.5",
+        "0.2.0",
+        "0.2.1"
+      ],
+      "chosenTarget": "0.2.1",
+      "zhEvidence": {
+        "atUtc": "2026-11-03T08:10:56.9096474+00:00",
+        "pid": 13368,
+        "hwnd": 6424638,
+        "rows": [
+          {
+            "type": "ControlType.Text",
+            "name": "OpenBKN CLI 执行路径（cliPath）",
+            "value": null,
+            "rect": [
+              1020.0,
+              717.0,
+              206.0,
+              18.0
+            ]
+          },
+          {
+            "type": "ControlType.Edit",
+            "name": "OpenBKN CLI 执行路径",
+            "value": null,
+            "rect": [
+              1020.0,
+              740.0,
+              520.0,
+              38.0
+            ]
+          },
+          {
+            "type": "ControlType.Text",
+            "name": "CLI 安装版本：",
+            "value": null,
+            "rect": [
+              1020.0,
+              832.0,
+              87.0,
+              18.0
+            ]
+          },
+          {
+            "type": "ControlType.ComboBox",
+            "name": "CLI 安装版本",
+            "value": "0.2.1",
+            "rect": [
+              1106.0,
+              830.0,
+              90.0,
+              22.0
+            ]
+          },
+          {
+            "type": "ControlType.Text",
+            "name": "CLI 0.2.0 可用。所选平台版本为 0.2.1，请配置匹配 CLI 的路径或自行更新已有 CLI；插件不会覆盖它。路径已填入，请点击“保存并继续”应用。",
+            "value": null,
+            "rect": [
+              1020.0,
+              862.0,
+              518.0,
+              39.0
+            ]
+          },
+          {
+            "type": "ControlType.Button",
+            "name": "保存并继续",
+            "value": null,
+            "rect": [
+              1020.0,
+              927.0,
+              95.0,
+              38.0
+            ]
+          }
+        ]
+      },
+      "enEvidence": {
+        "atUtc": "2026-11-03T08:19:03.7195334+00:00",
+        "pid": 13368,
+        "hwnd": 6424638,
+        "rows": [
+          {
+            "type": "ControlType.Text",
+            "name": "OpenBKN CLI executable path (cliPath)",
+            "value": null,
+            "rect": [
+              1020.0,
+              718.0,
+              238.0,
+              18.0
+            ]
+          },
+          {
+            "type": "ControlType.Edit",
+            "name": "OpenBKN CLI executable path",
+            "value": null,
+            "rect": [
+              1020.0,
+              741.0,
+              520.0,
+              38.0
+            ]
+          },
+          {
+            "type": "ControlType.Text",
+            "name": "CLI installation version:",
+            "value": null,
+            "rect": [
+              1020.0,
+              833.0,
+              132.0,
+              18.0
+            ]
+          },
+          {
+            "type": "ControlType.ComboBox",
+            "name": "CLI installation version",
+            "value": "0.2.1",
+            "rect": [
+              1151.0,
+              831.0,
+              115.0,
+              22.0
+            ]
+          },
+          {
+            "type": "ControlType.Text",
+            "name": "CLI 0.2.0 is available. The selected platform version is 0.2.1. Configure a matching CLI path or update your existing CLI yourself; the plugin will not overwrite it. The path has been filled in. Click Save and continue to apply it.",
+            "value": null,
+            "rect": [
+              1020.0,
+              863.0,
+              513.0,
+              60.0
+            ]
+          },
+          {
+            "type": "ControlType.Button",
+            "name": "Save and continue",
+            "value": null,
+            "rect": [
+              1020.0,
+              948.0,
+              143.0,
+              38.0
+            ]
+          }
+        ]
+      },
+      "actualExistingCliVersion": "0.2.0",
+      "selectionUpgradesExistingCli": false,
+      "defaultCliFilesUnchanged": true,
+      "configuredIsolatedCmd": "C:\\bkn-verify\\provenance-ci4-win-20261102\\ci6-platform021-20261103-154333\\cli-preview\\openbkn.cmd",
+      "configuredActualCliVersion": "0.2.1-rc.1",
+      "previewNotFormal": true,
+      "actualNativeChildProcessObservation": {
+        "startedUtc": "2026-11-03T08:22:37.6019870+00:00",
+        "finishedUtc": "2026-11-03T08:23:17.6600542+00:00",
+        "hostPid": 23236,
+        "hostCreatedUtc": "2026-11-03T08:01:08.0888490Z",
+        "scope": "Passive CIM polling of actual owned Host child tree only; only version/status command lines recorded, no stdout/token or unrelated process data.",
+        "rows": [
+          {
+            "observedUtc": "2026-11-03T08:22:48.6507945+00:00",
+            "pid": 33480,
+            "parentPid": 23236,
+            "path": "C:\\bkn-verify\\provenance-ci4-win-20261102\\rc5-desktop-app\\DeepSeek Harness.exe",
+            "createdUtc": "2026-11-03T08:22:48.5856870Z",
+            "commandLine": "\"C:\\bkn-verify\\provenance-ci4-win-20261102\\rc5-desktop-app\\DeepSeek Harness.exe\" C:\\bkn-verify\\provenance-ci4-win-20261102\\rc5-desktop-app\\resources\\app.asar\\dsh\\node_modules\\@deepseek-ai\\dsh-subprocess-local\\lib\\runner.js -- C:\\bkn-verify\\provenance-ci4-win-20261102\\ci6-platform021-20261103-154333\\cli-preview\\openbkn.cmd --version"
+          },
+          {
+            "observedUtc": "2026-11-03T08:22:48.7575425+00:00",
+            "pid": 31396,
+            "parentPid": 33480,
+            "path": "C:\\Windows\\system32\\cmd.exe",
+            "createdUtc": "2026-11-03T08:22:48.6722210Z",
+            "commandLine": "C:\\Windows\\system32\\cmd.exe /c C:\\bkn-verify\\provenance-ci4-win-20261102\\ci6-platform021-20261103-154333\\cli-preview\\openbkn.cmd --version"
+          },
+          {
+            "observedUtc": "2026-11-03T08:22:48.8614732+00:00",
+            "pid": 25320,
+            "parentPid": 31396,
+            "path": "C:\\Users\\kalia\\scoop\\apps\\nodejs-lts\\current\\node.exe",
+            "createdUtc": "2026-11-03T08:22:48.7068100Z",
+            "commandLine": "\"node\"   \"C:\\bkn-verify\\provenance-ci4-win-20261102\\ci6-platform021-20261103-154333\\cli-preview\\\\node_modules\\@openbkn\\bkn-sdk\\dist\\cli.js\" --version"
+          }
+        ]
+      },
+      "localeRestored": "中文 via owned native Settings before exit"
+    },
+    "W2": {
+      "status": "PARTIAL",
+      "formalInstall": {
+        "status": "NOT_RUN_UNPUBLISHED",
+        "version": "0.2.1",
+        "url": "https://registry.npmjs.org/@openbkn%2fbkn-sdk/0.2.1",
+        "httpStatus": null,
+        "statusBoundary": "First GET error body persisted, HTTP status not persisted before local scalar-JSON parsing error. No repeated formal request. Main independently reported E404.",
+        "bytes": 26,
+        "sha256": "8314a54ae817b364040b128fad73f8b483ccafe867cd3f1f467234525ed57a76",
+        "errorBody": "version not found: 0.2.1",
+        "formalInstall": "NOT_RUN_UNPUBLISHED"
+      },
+      "previewInstall": {
+        "status": "PASS",
+        "version": "0.2.1-rc.1",
+        "npmGitHead": "1cd2839652733e2ce6690b14e76ff8e9d73861dc",
+        "registry": {
+          "atUtc": "2026-11-03T08:01:04.170217+00:00",
+          "metadataUrl": "https://registry.npmjs.org/@openbkn%2fbkn-sdk/0.2.1-rc.1",
+          "httpStatus": 200,
+          "metadataBytes": 3207,
+          "metadataSha256": "869fcf0d27bd761cb6e28bbb73a933cce86714c875b2f9b78f77fb0a85bb6e34",
+          "name": "@openbkn/bkn-sdk",
+          "version": "0.2.1-rc.1",
+          "gitHead": "1cd2839652733e2ce6690b14e76ff8e9d73861dc",
+          "dist": {
+            "shasum": "be768841d10d1e868ccacda1f4f4bc9067093796",
+            "tarball": "https://registry.npmjs.org/@openbkn/bkn-sdk/-/bkn-sdk-0.2.1-rc.1.tgz",
+            "fileCount": 9,
+            "integrity": "sha512-BW5e1PB1S562XcQjrQcQgYJUFc3125n14sIuXJf2jpiLH73Hr1i3WkhvlBZIR9b2fMn7krb8d/bH0bj7vOCVMw==",
+            "signatures": [
+              {
+                "sig": "MEUCIDQ6bP2swQSpYFmnzYKA9wcoM1xxI9wAvjdV8ZD3iXzeAiEA9yEiZbn3wBAC3pB1USirmOms5Vib95g9FTAWq456uwM=",
+                "keyid": "SHA256:DhQ8wR5APBvFHLF/+Tc+AYvPOdTpcIDqOhxsBHRwC7U"
+              },
+              {
+                "sig": "MEUCIE8tqbGJVZsRW+HN/GG5KDVL4CeC2rAKKnePgaN4jzS5AiEA98zozrYlROxyYtImVvPQK5m0m51yAkUhNb+pKDfRKi8=",
+                "keyid": "SHA256:DhQ8wR5APBvFHLF/+Tc+AYvPOdTpcIDqOhxsBHRwC7U"
+              }
+            ],
+            "attestations": {
+              "url": "https://registry.npmjs.org/-/npm/v1/attestations/@openbkn%2fbkn-sdk@0.2.1-rc.1",
+              "provenance": {
+                "predicateType": "https://slsa.dev/provenance/v1"
+              }
+            },
+            "unpackedSize": 1309306
+          },
+          "dependencies": {
+            "zod": "^3.24.1",
+            "chalk": "^5.4.1",
+            "jszip": "^3.10.1",
+            "undici": "^8.10.2",
+            "js-yaml": "^4.3.2",
+            "commander": "^13.1.0",
+            "@clack/prompts": "^0.9.1"
+          },
+          "tarball": {
+            "path": "C:\\bkn-verify\\provenance-ci4-win-20261102\\ci6-platform021-20261103-154333\\artifact\\openbkn-bkn-sdk-0.2.1-rc.1.tgz",
+            "httpStatus": 200,
+            "bytes": 229968,
+            "sha256": "2122b5995ea4660751810c00316c36ffecad7414baa99218333f8d2434c16f00",
+            "integrity": "sha512-BW5e1PB1S562XcQjrQcQgYJUFc3125n14sIuXJf2jpiLH73Hr1i3WkhvlBZIR9b2fMn7krb8d/bH0bj7vOCVMw==",
+            "integrityMatches": true
+          },
+          "manifestVersion": "0.2.1-rc.1",
+          "bin": {
+            "openbkn": "./dist/cli.js"
+          },
+          "scripts": {
+            "build": "tsup",
+            "dev": "tsup --watch",
+            "typecheck": "tsc --noEmit",
+            "check:version": "node scripts/check-version.mjs",
+            "check:deps": "node scripts/check-no-self-dep.mjs",
+            "capture:returns": "node scripts/capture-returns.mjs",
+            "lint": "npm run check:deps && biome check . && tsc --noEmit",
+            "format": "biome format --write .",
+            "test": "vitest run",
+            "test:e2e:trace-business": "npm run build && node test/e2e/bkn-trace-business-interaction.mjs",
+            "test:e2e:smoke": "npm run build && test/e2e/live-smoke.sh",
+            "test:e2e:suite": "npm run build && test/e2e/live-suite.sh",
+            "test:e2e:write": "npm run build && test/e2e/live-write.sh",
+            "test:cover": "vitest run --coverage",
+            "ci": "npm run lint && npm test",
+            "prepublishOnly": "npm run ci && npm run build"
+          }
+        },
+        "prefix": "C:\\bkn-verify\\provenance-ci4-win-20261102\\ci6-platform021-20261103-154333\\cli-preview",
+        "publishedTarFileMatches": true,
+        "publishedFilesCount": 9,
+        "publishedFileIdentities": [
+          {
+            "file": "LICENSE",
+            "bytes": 11358,
+            "sha256": "cfc7749b96f63bd31c3c42b5c471bf756814053e847c10f3eb003417bc523d30",
+            "matchesPublishedTar": true
+          },
+          {
+            "file": "NOTICE",
+            "bytes": 886,
+            "sha256": "b800a618c0c8df8ec4ce88a4c2df263eca0e84f219583a160d17ea2cc31d3a2e",
+            "matchesPublishedTar": true
+          },
+          {
+            "file": "dist/chunk-EJEAWYKQ.js",
+            "bytes": 382460,
+            "sha256": "4a4c5a33abc26d69805b9c97fd948a3504591a87ef9c3f0e33b61bdc3e13d1d2",
+            "matchesPublishedTar": true
+          },
+          {
+            "file": "dist/cli.js",
+            "bytes": 291089,
+            "sha256": "fc7a889dcb538baad51ac2375db81592d55ad08b2d056923562094dd9f25c9a3",
+            "matchesPublishedTar": true
+          },
+          {
+            "file": "dist/index.js",
+            "bytes": 9176,
+            "sha256": "537334b635b57eab996b0d8d9e1415464493a7c4b0232b8a5eccfa72a3112f68",
+            "matchesPublishedTar": true
+          },
+          {
+            "file": "package.json",
+            "bytes": 2066,
+            "sha256": "abd74594145c4d1cedd0288a87ed9df2b7c34624a6f755257f45b51952788b53",
+            "matchesPublishedTar": true
+          },
+          {
+            "file": "README.md",
+            "bytes": 16308,
+            "sha256": "378f0baca9d53e1b14bdce248d5949497b4d13a007d0ebd6a1c6a9905d1df46a",
+            "matchesPublishedTar": true
+          },
+          {
+            "file": "README.zh.md",
+            "bytes": 11032,
+            "sha256": "bfd70df0a3700a5a587cf52f842d34630a7eeead03f152abcfe4604cb597ebf9",
+            "matchesPublishedTar": true
+          },
+          {
+            "file": "dist/index.d.ts",
+            "bytes": 584931,
+            "sha256": "5bca8bd9d543ca6a097b6100e836ffb19c04c11fb1a958227e9c83be8d692c13",
+            "matchesPublishedTar": true
+          }
+        ],
+        "resolvedDependencyTree": {
+          "name": "cli-preview",
+          "dependencies": {
+            "@openbkn/bkn-sdk": {
+              "version": "0.2.1-rc.1",
+              "overridden": false,
+              "dependencies": {
+                "@clack/prompts": {
+                  "version": "0.9.1",
+                  "overridden": false,
+                  "dependencies": {
+                    "@clack/core": {
+                      "version": "0.4.1",
+                      "overridden": false,
+                      "dependencies": {
+                        "picocolors": {
+                          "version": "1.1.1"
+                        },
+                        "sisteransi": {
+                          "version": "1.0.5"
+                        }
+                      }
+                    },
+                    "picocolors": {
+                      "version": "1.1.1",
+                      "overridden": false
+                    },
+                    "sisteransi": {
+                      "version": "1.0.5",
+                      "overridden": false
+                    }
+                  }
+                },
+                "chalk": {
+                  "version": "5.6.2",
+                  "overridden": false
+                },
+                "commander": {
+                  "version": "13.1.0",
+                  "overridden": false
+                },
+                "js-yaml": {
+                  "version": "4.3.2",
+                  "overridden": false,
+                  "dependencies": {
+                    "argparse": {
+                      "version": "2.0.1",
+                      "overridden": false
+                    }
+                  }
+                },
+                "jszip": {
+                  "version": "3.10.2",
+                  "overridden": false,
+                  "dependencies": {
+                    "lie": {
+                      "version": "3.3.0",
+                      "overridden": false,
+                      "dependencies": {
+                        "immediate": {
+                          "version": "3.0.6",
+                          "overridden": false
+                        }
+                      }
+                    },
+                    "pako": {
+                      "version": "1.0.11",
+                      "overridden": false
+                    },
+                    "readable-stream": {
+                      "version": "2.3.8",
+                      "overridden": false,
+                      "dependencies": {
+                        "core-util-is": {
+                          "version": "1.0.3",
+                          "overridden": false
+                        },
+                        "inherits": {
+                          "version": "2.0.4",
+                          "overridden": false
+                        },
+                        "isarray": {
+                          "version": "1.0.0",
+                          "overridden": false
+                        },
+                        "process-nextick-args": {
+                          "version": "2.0.1",
+                          "overridden": false
+                        },
+                        "safe-buffer": {
+                          "version": "5.1.2",
+                          "overridden": false
+                        },
+                        "string_decoder": {
+                          "version": "1.1.1",
+                          "overridden": false,
+                          "dependencies": {
+                            "safe-buffer": {
+                              "version": "5.1.2"
+                            }
+                          }
+                        },
+                        "util-deprecate": {
+                          "version": "1.0.2",
+                          "overridden": false
+                        }
+                      }
+                    },
+                    "setimmediate": {
+                      "version": "1.0.5",
+                      "overridden": false
+                    }
+                  }
+                },
+                "undici": {
+                  "version": "8.12.3",
+                  "overridden": false
+                },
+                "zod": {
+                  "version": "3.25.76",
+                  "overridden": false
+                }
+              }
+            }
+          }
+        },
+        "installPolicy": "Owned prefix, empty task userconfig, owned npm-cache, exact tarball/SRI, ignore-scripts/no-audit/no-fund; no global npm configuration write"
+      },
+      "defaultCliStillActualVersion": "0.2.0",
+      "dependencyBoundary": "SDK undici8.12.3 and plugin undici8.10.2 are distinct scopes; no plugin dependency upgrade"
+    },
+    "W3": {
+      "status": "PARTIAL",
+      "freshNativeLoginAndSync": "PASS",
+      "platformOrigin": "https://192.168.50.129",
+      "publicStrictCaHealth": {
+        "atUtc": "2026-11-03T07:57:39.336Z",
+        "origin": "https://192.168.50.129",
+        "originSource": "Main-session message: independently observed actual Mac current command origin; no guessed scheme/port. Deployment0.2.1-main is preview, independently verify health here.",
+        "credentialUse": false,
+        "tlsVerification": true,
+        "ca": {
+          "path": "C:/bkn-verify/platform-129/openbkn-test-015-ca.crt",
+          "bytes": 1460,
+          "sha256": "fd6d4aaa860cb744c170df65a24478211895129ec09b3fa302e768b2f7a4a97f"
+        },
+        "calls": [
+          {
+            "name": "normal-node-default-trust",
+            "atUtc": "2026-11-03T07:57:39.305Z",
+            "finishedUtc": "2026-11-03T07:57:39.321Z",
+            "url": "https://192.168.50.129/api/bkn-backend/v1/health",
+            "rejectUnauthorized": true,
+            "errorCode": "UNABLE_TO_VERIFY_LEAF_SIGNATURE",
+            "error": "unable to verify the first certificate; if the root CA is installed locally, try running Node.js with --use-system-ca"
+          },
+          {
+            "name": "existing-origin129-public-ca",
+            "atUtc": "2026-11-03T07:57:39.322Z",
+            "finishedUtc": "2026-11-03T07:57:39.335Z",
+            "url": "https://192.168.50.129/api/bkn-backend/v1/health",
+            "rejectUnauthorized": true,
+            "httpStatus": 200,
+            "bytes": 139,
+            "sha256": "57eeffddda665b880a459eee37396bb9bdf9f593327cefd5f7f9ffe84d9d2d1e",
+            "body": {
+              "ServerName": "bkn-backend",
+              "ServerVersion": "0.2.1-main.20261103005009.sha0acbbb4",
+              "Language": "go",
+              "GoVersion": "go1.26.9",
+              "GoArch": "arm64"
+            },
+            "tls": {
+              "authorized": true,
+              "protocol": "TLSv1.3",
+              "subject": {
+                "CN": "DominicZhangdeMac-mini.local"
+              },
+              "issuer": {
+                "CN": "OpenBKN Test 015 Local CA"
+              },
+              "subjectaltname": "IP Address:192.168.50.129, DNS:DominicZhangdeMac-mini.local, DNS:localhost, IP Address:127.0.0.1",
+              "fingerprint256": "9D:A3:2F:90:48:7A:14:2B:AB:C0:98:3A:54:65:9D:20:4E:20:9A:21:6E:87:FB:09:BA:75:E1:F5:A7:FE:3A:B6",
+              "validFrom": "Oct  9 05:50:30 2026 GMT",
+              "validTo": "Oct  9 05:50:30 2027 GMT"
+            }
+          }
+        ]
+      },
+      "imageIdentity": "UNKNOWN in Windows evidence; no image digest/full deployment commit inferred from health suffix",
+      "formalPlatform021Accepted": false,
+      "actualPreviewPlatform": "0.2.1-main.20261103005009.sha0acbbb4",
+      "nativeBrowserLogin": {
+        "atUtc": "2026-11-03T08:44:07.7997623Z",
+        "platformOrigin": "https://192.168.50.129",
+        "ownedBrowserMatched": true,
+        "originMatchedBeforeSubmit": true,
+        "pinMatched": true,
+        "spkiScopedBrowserTrust": true,
+        "broadTlsIgnore": false,
+        "deviceConfirmationInvoked": true,
+        "localTestAccountLoaded": true,
+        "loginSubmitted": true,
+        "credentialsPrinted": false,
+        "browserPid": 32796,
+        "browserCreatedUtc": "2026-11-03T08:44:07.5714370Z"
+      },
+      "testCardHandoff": {
+        "ciphertextHashVerified": true,
+        "recipientMatched": true,
+        "gcmAuthenticated": true,
+        "localCardCreated": true,
+        "repository": "openbkn-ai/bkn-dsh",
+        "gitCommit": "7ef885a8dd0bac11944fdbe79c7b379b1139ab55",
+        "encryptedPath": "docs/handoff/2026-11-03-ci6-platform129/platform129-card.enc.json",
+        "ciphertextBytes": 1468,
+        "ciphertextSha256": "498236307d857c99f2a5433a28d82ba10109a403f8a2b5cc940442209c6e5418",
+        "recipientSpkiSha256": "46b70b7f8319dd98ccf8889680f41afe665b7ac6b51cafe18c976e66e1e6e55d",
+        "algorithm": "RSA-OAEP-SHA256+AES-256-GCM",
+        "plaintextContentOrChecksumExported": false,
+        "privateKeyExported": false,
+        "preexistingCardOverwritten": false,
+        "localAcl": "Current user and SYSTEM only on owned handoff directory/card/key",
+        "use": "Local test platform browser/device sign-in only; no Mac session token imported"
+      },
+      "credentialSource": "Fresh Windows official device grant from native panel; owned managed generation cli store; official SDK credential/renewal authority",
+      "managedGeneration": "368a951b-fd07-4c55-b1fb-4e6cb1ec618e",
+      "nativeNetworkDirectory": {
+        "status": "PASS",
+        "observedCount": 2,
+        "knowledgeNetworkIds": [
+          "worldcup_vega_catalog_bkn",
+          "supply_ontology_hand"
+        ],
+        "localWorkspaceLinksCreated": 0
+      },
+      "sameOriginRuntimeHostSocket": {
+        "atUtc": "2026-11-03T09:02:30.1600642Z",
+        "hostPid": 23236,
+        "hostCreatedUtc": "2026-11-03T08:01:08.0888490Z",
+        "connections": [
+          {
+            "LocalAddress": "0.0.0.0",
+            "LocalPort": 50554,
+            "RemoteAddress": "0.0.0.0",
+            "RemotePort": 0,
+            "State": 100,
+            "OwningProcess": 23236
+          },
+          {
+            "LocalAddress": "127.0.0.1",
+            "LocalPort": 54637,
+            "RemoteAddress": "127.0.0.1",
+            "RemotePort": 49926,
+            "State": 5,
+            "OwningProcess": 23236
+          },
+          {
+            "LocalAddress": "127.0.0.1",
+            "LocalPort": 54637,
+            "RemoteAddress": "127.0.0.1",
+            "RemotePort": 54642,
+            "State": 5,
+            "OwningProcess": 23236
+          },
+          {
+            "LocalAddress": "127.0.0.1",
+            "LocalPort": 54637,
+            "RemoteAddress": "127.0.0.1",
+            "RemotePort": 54645,
+            "State": 5,
+            "OwningProcess": 23236
+          },
+          {
+            "LocalAddress": "127.0.0.1",
+            "LocalPort": 54637,
+            "RemoteAddress": "0.0.0.0",
+            "RemotePort": 0,
+            "State": 2,
+            "OwningProcess": 23236
+          },
+          {
+            "LocalAddress": "192.168.50.99",
+            "LocalPort": 50554,
+            "RemoteAddress": "192.168.50.129",
+            "RemotePort": 443,
+            "State": 5,
+            "OwningProcess": 23236
+          }
+        ]
+      },
+      "nativePassiveDiagnostics": {
+        "passiveNativeDiagnosticsOnly": true,
+        "atUtc": "2026-11-03T09:01:27.8817256Z",
+        "rows": [
+          {
+            "rect": [
+              983.0,
+              566.0,
+              39.0,
+              17.0
+            ],
+            "name": "Passed"
+          },
+          {
+            "rect": [
+              983.0,
+              622.0,
+              39.0,
+              17.0
+            ],
+            "name": "Passed"
+          },
+          {
+            "rect": [
+              983.0,
+              678.0,
+              39.0,
+              17.0
+            ],
+            "name": "Passed"
+          },
+          {
+            "rect": [
+              983.0,
+              734.0,
+              39.0,
+              17.0
+            ],
+            "name": "Passed"
+          },
+          {
+            "rect": [
+              1029.0,
+              733.0,
+              72.0,
+              18.0
+            ],
+            "name": "observed:cli"
+          },
+          {
+            "rect": [
+              983.0,
+              790.0,
+              39.0,
+              17.0
+            ],
+            "name": "Passed"
+          },
+          {
+            "rect": [
+              1029.0,
+              789.0,
+              123.0,
+              18.0
+            ],
+            "name": "observed:login-state"
+          },
+          {
+            "rect": [
+              1159.0,
+              790.0,
+              77.0,
+              17.0
+            ],
+            "name": "authentication"
+          },
+          {
+            "rect": [
+              983.0,
+              846.0,
+              39.0,
+              17.0
+            ],
+            "name": "Passed"
+          },
+          {
+            "rect": [
+              1029.0,
+              845.0,
+              145.0,
+              18.0
+            ],
+            "name": "observed:context-loader"
+          },
+          {
+            "rect": [
+              1181.0,
+              846.0,
+              79.0,
+              17.0
+            ],
+            "name": "context-loader"
+          },
+          {
+            "rect": [
+              1270.0,
+              846.0,
+              79.0,
+              17.0
+            ],
+            "name": "context-loader"
+          },
+          {
+            "rect": [
+              983.0,
+              902.0,
+              39.0,
+              17.0
+            ],
+            "name": "Passed"
+          },
+          {
+            "rect": [
+              1029.0,
+              901.0,
+              185.0,
+              18.0
+            ],
+            "name": "observed:platform-network-list"
+          },
+          {
+            "rect": [
+              1221.0,
+              902.0,
+              99.0,
+              17.0
+            ],
+            "name": "platform-directory"
+          },
+          {
+            "rect": [
+              1330.0,
+              902.0,
+              114.0,
+              17.0
+            ],
+            "name": "platform-network-list"
+          }
+        ]
+      },
+      "sdkNormalVersionCheckedRead": {
+        "origin": "https://192.168.50.129",
+        "path": "/api/bkn-backend/v1/knowledge-networks?limit=2",
+        "httpStatus": 200,
+        "resultFields": [
+          "status",
+          "statusText",
+          "body"
+        ],
+        "credentialBodyNotExported": true
+      },
+      "normalRenewal": {
+        "status": "NOT_RUN_NOT_NATURALLY_DUE",
+        "refreshAvailable": true,
+        "storedExpiryMetadataPresent": true,
+        "storedExpiryType": "string",
+        "expiresAtUtc": "2026-11-03T09:44:12.496Z",
+        "dueWithin60Seconds": false,
+        "expiryAltered": false,
+        "clockAltered": false,
+        "forcedRefresh": false,
+        "normalAuthorityReturnedCurrentToken": true,
+        "tokenChangedObserved": false
+      },
+      "trustBoundary": {
+        "publicProbe": "Node rejectUnauthorized=true plus existing origin129 CA: TLSv1.3 authorized; default Node trust fails UNABLE_TO_VERIFY_LEAF_SIGNATURE",
+        "managedCliMcpReader": "Unmodified existing private-platform pin transport: exact origin, leaf fingerprint, SPKI and remote identity. Connector substitutes pin validation for CA/name validation (internal rejectUnauthorized=false). This is not a public-CA-chain validation claim. Independently CA-validated leaf matches same pin.",
+        "browser": "Owned official browser profile, exact ignore-certificate-errors-spki-list only; no broad ignore-certificate-errors",
+        "newGlobalTlsBypass": false,
+        "pluginTlsImplementationChanged": false,
+        "connectionScopedPlatformFetch": true
+      },
+      "earlierAuthorizationAttempts": [
+        {
+          "status": "TIMED_OUT",
+          "boundary": "First wait elapsed while encrypted card handoff pending; no completed login"
+        },
+        {
+          "status": "TIMED_OUT",
+          "boundary": "Second wait elapsed during secure UI preparation; later helper encountered already-closed browser, no credential submission by that helper. Subsequent normal flow succeeded."
+        }
+      ],
+      "oldBusinessSessionBindings": "Protected historical50.28 records not retargeted or used as50.129 provenance proof"
+    },
+    "W4": {
+      "status": "PARTIAL",
+      "actualMcpCatalog": {
+        "status": "PASS",
+        "artifact": {
+          "path": "C:\\bkn-verify\\provenance-ci4-win-20261102\\ci6-platform021-20261103-154333\\public\\WINDOWS-CI6-LIVE-MCP-TOOLS.json",
+          "bytes": 232727,
+          "sha256": "e351b2f06c4fff47586d9945989b3b1e8eb2157496706e739baaaf5408093242"
+        },
+        "toolCount": 26,
+        "pages": [
+          {
+            "index": 0,
+            "toolCount": 26,
+            "nextCursorPresent": false
+          }
+        ],
+        "initializeResult": {
+          "protocolVersion": "2024-11-05",
+          "capabilities": {
+            "tools": {
+              "listChanged": true
+            }
+          },
+          "serverInfo": {
+            "name": "context-loader",
+            "version": "1.0.0"
+          }
+        },
+        "fullInputAndOutputSchemasStored": true,
+        "sessionHeaderStored": false,
+        "toolsCallCountInCatalogCapture": 0,
+        "scope": "Independent actual authenticated metadata collector; not native UI provenance",
+        "tlsBooleanInCatalogueMeaning": "Peer identity checked by exact private-platform pin; see W3 trustBoundary, not default public CA trust"
+      },
+      "independentCandidateReader": {
+        "kind": "candidate-platform-reader-live-check",
+        "atUtc": "2026-11-03T08:55:56.183Z",
+        "baseUrl": "https://192.168.50.129",
+        "scope": "Independent execution of actual installed candidate Reader. Native panel network synchronization observed separately; not a DSH provenance UI entry.",
+        "requests": [
+          {
+            "origin": "https://192.168.50.129",
+            "path": "/api/bkn-backend/v1/knowledge-networks",
+            "method": "GET",
+            "httpStatus": 200
+          },
+          {
+            "origin": "https://192.168.50.129",
+            "path": "/api/agent-retrieval/v1/kn/get_kn_detail",
+            "method": "POST",
+            "httpStatus": 200
+          }
+        ],
+        "renewal": {
+          "refreshAvailable": true,
+          "storedExpiryMetadataPresent": true,
+          "storedExpiryType": "string",
+          "expiresAtUtc": "2026-11-03T09:44:12.496Z",
+          "dueWithin60Seconds": false,
+          "expiryAltered": false,
+          "clockAltered": false,
+          "forcedRefresh": false
+        },
+        "dataArtifact": {
+          "path": "C:\\bkn-verify\\provenance-ci4-win-20261102\\ci6-platform021-20261103-154333\\private\\platform129-reader-data.json",
+          "bytes": 20517,
+          "sha256": "38792f122eaea382d5f71b577e3de57b6e5bf0c62a1ff838eec1d2aa0768f268"
+        },
+        "metricDiscovery": [],
+        "detailRootKeys": [
+          "id",
+          "name",
+          "comment",
+          "concept_groups",
+          "object_types",
+          "relation_types",
+          "action_types",
+          "mounted_capabilities"
+        ],
+        "pass": true,
+        "finishedUtc": "2026-11-03T08:55:56.344Z"
+      },
+      "controlledOfficialToolRuntime": {
+        "status": "PASS",
+        "scope": "Independent controlled Cordis Agent/official ToolRuntime plus candidate MCP factory/guard connected to real platform. No model invoked, no original DSH session or binding changed; not a native provenance UI entry.",
+        "runtimeVersion": "0.2.1-rc.5",
+        "hostModules": {
+          "atUtc": "2026-11-03T08:55:44.870Z",
+          "sourceAsar": "C:/bkn-verify/provenance-ci4-win-20261102/rc5-desktop-app/resources/app.asar",
+          "sourceAsarSha256": "e1b6f25fa937da98086c3e77af77aa14791105963c4d337a1c42179d232c6915",
+          "destination": "C:\\bkn-verify\\provenance-ci4-win-20261102\\ci6-platform021-20261103-154333\\private\\official-rc5-modules",
+          "files": 10705,
+          "bytes": 131621894,
+          "selection": "Host runtime JS/CJS/MJS/JSON/WASM only. Read-only archive extraction, no install/build or Host mutation.",
+          "versions": {
+            "dsh-tools": "0.2.1-rc.5",
+            "dsh-system-prompt": "0.2.1-rc.5",
+            "dsh-scope": "0.2.1-rc.5",
+            "cordis": "4.0.5",
+            "schemastery": "3.18.5"
+          }
+        },
+        "checks": [
+          {
+            "name": "actual platform tools registered by candidate factory",
+            "pass": true,
+            "count": 26
+          },
+          {
+            "name": "full live input schemas preserved",
+            "pass": true
+          },
+          {
+            "name": "unmodified candidate policy mounted in real agent scope",
+            "pass": true
+          },
+          {
+            "name": "new drill tool stays denied with zero dispatch",
+            "pass": true,
+            "networkDispatches": 0,
+            "errorReceived": true
+          },
+          {
+            "name": "platform returned real managed identities",
+            "pass": true
+          },
+          {
+            "name": "required current context missing stays denied",
+            "pass": true,
+            "networkDispatches": 0,
+            "errorReceived": true
+          },
+          {
+            "name": "different disclosed knowledge network stays denied",
+            "pass": true,
+            "networkDispatches": 0,
+            "errorReceived": true
+          },
+          {
+            "name": "disclosed bound object schema read succeeded",
+            "pass": true
+          },
+          {
+            "name": "minimal actual object query preserved arguments and response",
+            "pass": true
+          }
+        ],
+        "full26InputSchemasPreserved": true,
+        "registeredSchemaIdentities": [
+          {
+            "name": "bkn_finish_interaction",
+            "inputSchemaExact": true,
+            "inputSha256": "9a3e1e4434f6e5cacae6aa0ccf6d4d2529cb699dc4c9230f93b4f2e1ef54f6d3",
+            "upstreamOutputSchemaPresent": true
+          },
+          {
+            "name": "bkn_start_interaction",
+            "inputSchemaExact": true,
+            "inputSha256": "06e40bf6d5325a88e2c9b6e3c0e6c7e9e9a6ce032732f054a8ebdb92a07b2b5c",
+            "upstreamOutputSchemaPresent": true
+          },
+          {
+            "name": "drill_through_metric",
+            "inputSchemaExact": true,
+            "inputSha256": "033ff8c11617a32d05d69d1f03734591634460059dae4fc9ad3d8883ae776bb0",
+            "upstreamOutputSchemaPresent": true
+          },
+          {
+            "name": "execute_action",
+            "inputSchemaExact": true,
+            "inputSha256": "548f5519d7208a61c20aeac8627c15eb627d915519c34e44ce775e587c58e4c8",
+            "upstreamOutputSchemaPresent": true
+          },
+          {
+            "name": "execute_tool",
+            "inputSchemaExact": true,
+            "inputSha256": "0742b86aec8a8256d68d5fdf1ebb733140b730968b476beb81af206d053bba2e",
+            "upstreamOutputSchemaPresent": true
+          },
+          {
+            "name": "explore_subgraph",
+            "inputSchemaExact": true,
+            "inputSha256": "bfd8aa6f5f6c08e8fd677dc21474ff4e6a55a5c29edaccd7a865318d52283719",
+            "upstreamOutputSchemaPresent": true
+          },
+          {
+            "name": "get_action_execution",
+            "inputSchemaExact": true,
+            "inputSha256": "fa20212e4f3e719bcc4194c748348843bb686a855a1d0770e4927efc21508267",
+            "upstreamOutputSchemaPresent": true
+          },
+          {
+            "name": "get_action_info",
+            "inputSchemaExact": true,
+            "inputSha256": "ced7830e6bcad2b59587fe13f771953be917b950e2d0387b57f9d1d741493a84",
+            "upstreamOutputSchemaPresent": true
+          },
+          {
+            "name": "get_kn_detail",
+            "inputSchemaExact": true,
+            "inputSha256": "ca4a96932fbd1a8612b40b3411605ad0bf39501691524b97f47fc77b6aa2d714",
+            "upstreamOutputSchemaPresent": true
+          },
+          {
+            "name": "get_logic_properties_values",
+            "inputSchemaExact": true,
+            "inputSha256": "5f7dae7afcb42158152baf654216773970c0e5fa1988747f70973e3a982ebb2a",
+            "upstreamOutputSchemaPresent": true
+          },
+          {
+            "name": "get_object_types",
+            "inputSchemaExact": true,
+            "inputSha256": "65b064615dabe447db5c837327c3b8db2ae20dc13bc6f4cf890ca0951208d2f2",
+            "upstreamOutputSchemaPresent": true
+          },
+          {
+            "name": "get_relation_types",
+            "inputSchemaExact": true,
+            "inputSha256": "a55be340e3009b9e44407f2e664599a4a458f43990a0132436d9f553eea802b6",
+            "upstreamOutputSchemaPresent": true
+          },
+          {
+            "name": "get_skill_content",
+            "inputSchemaExact": true,
+            "inputSha256": "346115c3eb3112213cdfcd16d0455d429b4ae5f307c2acaeb636fe9d33703af0",
+            "upstreamOutputSchemaPresent": true
+          },
+          {
+            "name": "list_action_executions",
+            "inputSchemaExact": true,
+            "inputSha256": "3e7ffa8b6f64e1da3e78822d0c8b953fd65d474e9ade0a6cbfd289835d961d29",
+            "upstreamOutputSchemaPresent": true
+          },
+          {
+            "name": "list_knowledge_networks",
+            "inputSchemaExact": true,
+            "inputSha256": "034ac138508e150cd01e9abf7abb916fa2e62a633c543dfedb586d78a159861b",
+            "upstreamOutputSchemaPresent": true
+          },
+          {
+            "name": "list_skills",
+            "inputSchemaExact": true,
+            "inputSha256": "3942bb1954e633c9ae4adcb1b02d3526917c0ae00b3194f522a9459b8f3181d7",
+            "upstreamOutputSchemaPresent": true
+          },
+          {
+            "name": "query_instance_subgraph",
+            "inputSchemaExact": true,
+            "inputSha256": "d90ce3b470d58a105f14f0e699d73de186045bff5a668da975bfca17ad8a4d4c",
+            "upstreamOutputSchemaPresent": true
+          },
+          {
+            "name": "query_metric",
+            "inputSchemaExact": true,
+            "inputSha256": "25be9ed7bd4de149343044d48ec55181aa6473f58007c379c0911c563b7c801f",
+            "upstreamOutputSchemaPresent": true
+          },
+          {
+            "name": "query_object_instance",
+            "inputSchemaExact": true,
+            "inputSha256": "b395fdd69b1ed049edbf69fe016851d8f3e0f1809f02429dfd0a93ca8d09db22",
+            "upstreamOutputSchemaPresent": true
+          },
+          {
+            "name": "read_skill_file",
+            "inputSchemaExact": true,
+            "inputSha256": "de61db6c40bd96a50d5a8f67b75a1ea63281876f8fdaa5fa9f758c78f55c6bb4",
+            "upstreamOutputSchemaPresent": true
+          },
+          {
+            "name": "run_code",
+            "inputSchemaExact": true,
+            "inputSha256": "0c9f29ce7048f9e58563e855f2efdbbe9853d90510232f95fda1198ba38e5bfd",
+            "upstreamOutputSchemaPresent": true
+          },
+          {
+            "name": "run_cypher",
+            "inputSchemaExact": true,
+            "inputSha256": "d48dd331f056c852995d31fa9546d76a547822e9933a8b9de64b09d0909f1ca7",
+            "upstreamOutputSchemaPresent": true
+          },
+          {
+            "name": "run_shell",
+            "inputSchemaExact": true,
+            "inputSha256": "fa4c96fc50004ff05af34aa83abeda7bbf433628b509a61f3799b93325abd8b9",
+            "upstreamOutputSchemaPresent": true
+          },
+          {
+            "name": "search_capabilities",
+            "inputSchemaExact": true,
+            "inputSha256": "a1d48055d38d05aea7381e63391f91f4eee534a360fa12ddf6030b62ade8c6c9",
+            "upstreamOutputSchemaPresent": true
+          },
+          {
+            "name": "search_instance",
+            "inputSchemaExact": true,
+            "inputSha256": "cd76d2f3100921137e4f969f64415db436049850323ee7bc15cefb75190c3c49",
+            "upstreamOutputSchemaPresent": true
+          },
+          {
+            "name": "search_schema",
+            "inputSchemaExact": true,
+            "inputSha256": "286dc89e0aa1252388a351ab76adef221aefcecbe243b899339780f0ff89998d",
+            "upstreamOutputSchemaPresent": true
+          }
+        ],
+        "contextIds": {
+          "conversation_id": "conv_28e4be16452aa61e1b333c34974cda95",
+          "interaction_id": "int_5e58d2c302ac5be6cb23b1f1d545b3a6"
+        },
+        "recording": "NOT_EXPLICITLY_DISCLOSED",
+        "calls": [
+          {
+            "name": "drill_through_metric",
+            "kind": "new-tool-denial",
+            "isError": true,
+            "networkDispatches": 0,
+            "argumentsPassedUnchanged": null,
+            "contentPassedUnchanged": null,
+            "structuredContentPassedUnchanged": null,
+            "boundedError": "mcp__openbkn__drill_through_metric is not supported in an OpenBKN business session by this version of the bkn-dsh plugin. Do not retry it; continue with the managed OpenBKN tools.",
+            "artifact": {
+              "path": "C:\\bkn-verify\\provenance-ci4-win-20261102\\ci6-platform021-20261103-154333\\private\\01-drill_through_metric-actual-runtime-result.json",
+              "bytes": 569,
+              "sha256": "2c8e72b5842b85d552cc0092e09baadbbb1a53e0239acbcb5745318271801ae9"
+            }
+          },
+          {
+            "name": "bkn_start_interaction",
+            "kind": "actual-managed-lifecycle",
+            "isError": false,
+            "networkDispatches": 1,
+            "argumentsPassedUnchanged": true,
+            "contentPassedUnchanged": true,
+            "structuredContentPassedUnchanged": true,
+            "artifact": {
+              "path": "C:\\bkn-verify\\provenance-ci4-win-20261102\\ci6-platform021-20261103-154333\\private\\02-bkn_start_interaction-actual-runtime-result.json",
+              "bytes": 2674,
+              "sha256": "17ef832c3075fb39658dbeb931a62b174bbf3688bd71db4f47faae4cdf40082d"
+            }
+          },
+          {
+            "name": "get_object_types",
+            "kind": "affected-context-denial",
+            "isError": true,
+            "networkDispatches": 0,
+            "argumentsPassedUnchanged": null,
+            "contentPassedUnchanged": null,
+            "structuredContentPassedUnchanged": null,
+            "boundedError": "This platform requires bkn_context with the current conversation_id and interaction_id returned by bkn_start_interaction, including when Trace capture is disabled.",
+            "artifact": {
+              "path": "C:\\bkn-verify\\provenance-ci4-win-20261102\\ci6-platform021-20261103-154333\\private\\03-get_object_types-actual-runtime-result.json",
+              "bytes": 666,
+              "sha256": "cb371b53557a7816ded42426365d74b07d40d117321319eaa800035c708796f0"
+            }
+          },
+          {
+            "name": "get_object_types",
+            "kind": "affected-network-denial",
+            "isError": true,
+            "networkDispatches": 0,
+            "argumentsPassedUnchanged": null,
+            "contentPassedUnchanged": null,
+            "structuredContentPassedUnchanged": null,
+            "boundedError": "This session is bound to OpenBKN knowledge network \"supply_ontology_hand\"; call mcp__openbkn__get_object_types with kn_id \"supply_ontology_hand\". Other networks cannot be queried from this session.",
+            "artifact": {
+              "path": "C:\\bkn-verify\\provenance-ci4-win-20261102\\ci6-platform021-20261103-154333\\private\\04-get_object_types-actual-runtime-result.json",
+              "bytes": 904,
+              "sha256": "14e53d19b1cfd3a003e2c1c9894ee4a0144705470d1c5d98eb09714eed90876d"
+            }
+          },
+          {
+            "name": "get_object_types",
+            "kind": "minimal-disclosed-schema-read",
+            "isError": false,
+            "networkDispatches": 1,
+            "argumentsPassedUnchanged": true,
+            "contentPassedUnchanged": true,
+            "structuredContentPassedUnchanged": true,
+            "artifact": {
+              "path": "C:\\bkn-verify\\provenance-ci4-win-20261102\\ci6-platform021-20261103-154333\\private\\05-get_object_types-actual-runtime-result.json",
+              "bytes": 60519,
+              "sha256": "8ade51fb780f2dce9471fd4ac9df208d97c92269c208acaeabb92d793cdac62d"
+            }
+          },
+          {
+            "name": "query_object_instance",
+            "kind": "minimal-disclosed-object-read",
+            "isError": false,
+            "networkDispatches": 1,
+            "argumentsPassedUnchanged": true,
+            "contentPassedUnchanged": true,
+            "structuredContentPassedUnchanged": true,
+            "artifact": {
+              "path": "C:\\bkn-verify\\provenance-ci4-win-20261102\\ci6-platform021-20261103-154333\\private\\06-query_object_instance-actual-runtime-result.json",
+              "bytes": 14248,
+              "sha256": "895a096be78532095fc6f314368214bd071e56ac45b1ecc42caaf32ff2736f9d"
+            }
+          },
+          {
+            "name": "bkn_finish_interaction",
+            "kind": "actual-managed-finish",
+            "isError": false,
+            "networkDispatches": 1,
+            "argumentsPassedUnchanged": true,
+            "contentPassedUnchanged": true,
+            "structuredContentPassedUnchanged": true,
+            "artifact": {
+              "path": "C:\\bkn-verify\\provenance-ci4-win-20261102\\ci6-platform021-20261103-154333\\private\\07-bkn_finish_interaction-actual-runtime-result.json",
+              "bytes": 2098,
+              "sha256": "f707b55c834b13a0c38ca641bf0956c725a753b2a069f929e739152b01342673"
+            }
+          }
+        ],
+        "requests": [
+          {
+            "origin": "https://192.168.50.129",
+            "path": "/api/agent-retrieval/v1/mcp/",
+            "method": "POST",
+            "rpcMethod": "server/discover",
+            "httpStatus": 404
+          },
+          {
+            "origin": "https://192.168.50.129",
+            "path": "/api/agent-retrieval/v1/mcp/",
+            "method": "POST",
+            "rpcMethod": "initialize",
+            "httpStatus": 200
+          },
+          {
+            "origin": "https://192.168.50.129",
+            "path": "/api/agent-retrieval/v1/mcp/",
+            "method": "POST",
+            "rpcMethod": "notifications/initialized",
+            "httpStatus": 202
+          },
+          {
+            "origin": "https://192.168.50.129",
+            "path": "/api/agent-retrieval/v1/mcp/",
+            "method": "GET",
+            "rpcMethod": null,
+            "httpStatus": 200
+          },
+          {
+            "origin": "https://192.168.50.129",
+            "path": "/api/agent-retrieval/v1/mcp/",
+            "method": "POST",
+            "rpcMethod": "tools/list",
+            "httpStatus": 200
+          },
+          {
+            "origin": "https://192.168.50.129",
+            "path": "/api/agent-retrieval/v1/mcp/",
+            "method": "POST",
+            "rpcMethod": "tools/call",
+            "toolName": "bkn_start_interaction",
+            "httpStatus": 200,
+            "responseBytes": 697,
+            "responseSha256": "46234434031d4def33fc02b805dc07b2b6b11e41b04fcc56e835357b62ea07a8"
+          },
+          {
+            "origin": "https://192.168.50.129",
+            "path": "/api/agent-retrieval/v1/mcp/",
+            "method": "POST",
+            "rpcMethod": "tools/call",
+            "toolName": "get_object_types",
+            "httpStatus": 200,
+            "responseBytes": 17647,
+            "responseSha256": "6c3bad0d387994c750b654864c55ba106e947363075d5e53d05b9351eda2ee64"
+          },
+          {
+            "origin": "https://192.168.50.129",
+            "path": "/api/agent-retrieval/v1/mcp/",
+            "method": "POST",
+            "rpcMethod": "tools/call",
+            "toolName": "query_object_instance",
+            "httpStatus": 200,
+            "responseBytes": 4481,
+            "responseSha256": "53d2fc33f5f8e634b2e9ef98d94006faff521d4088876ec0ab33199ad1471f39"
+          },
+          {
+            "origin": "https://192.168.50.129",
+            "path": "/api/agent-retrieval/v1/mcp/",
+            "method": "POST",
+            "rpcMethod": "tools/call",
+            "toolName": "bkn_finish_interaction",
+            "httpStatus": 200,
+            "responseBytes": 465,
+            "responseSha256": "322d298e4612f030e59432ce17f81ba79a00c36931e1128fbf479187922417dc"
+          }
+        ],
+        "finish": {
+          "attempted": true,
+          "isError": false,
+          "networkDispatches": 1,
+          "actualStatuses": [
+            "completed",
+            "completed"
+          ],
+          "interactionIdUsed": "int_5e58d2c302ac5be6cb23b1f1d545b3a6",
+          "noFabricatedReceipt": true,
+          "retried": false
+        },
+        "partialReasons": [],
+        "businessSourceWrites": 0,
+        "isolatedManagedVerificationInteractionCreated": 1,
+        "newModelQuestions": 0,
+        "modelCalls": 0
+      },
+      "metricQuery": {
+        "status": "NOT_RUN",
+        "reason": "Actual chosen object type did not disclose published metric id plus integer version; none guessed"
+      },
+      "metricBoundary": "Only disclosed id plus integer version could be used. Chosen inventory type did not disclose related_metrics/id/version; no guessed metric call. Full new query_metric schema with required version captured and preserved.",
+      "minimalObjectQuery": "PASS; disclosed supply_ontology_hand_inventory, limit1, current real bkn_context; actual arguments and content/structuredContent unchanged",
+      "nativeSameTargetProvenance": {
+        "status": "NOT_RUN_NO_SAME_TARGET_DSH_RECORD",
+        "reason": "No DSH answer/session bound to50.129 supplied or created. Protected original50.28 sessions not rebound. Controlled interaction is not a native DSH entry/opaque handle."
+      },
+      "modelE2E": {
+        "status": "NOT_RUN_BY_SCOPE",
+        "reason": "No new model question, evidence generation or Agent analysis in this incremental plan"
+      },
+      "finishUnconfirmedErrorBranch": {
+        "status": "NOT_RUN",
+        "reason": "Actual finish succeeded; no synthetic refusal/forced branch"
+      },
+      "serverDiscover404": "Official MCP discovery probe404 then normal initialize200/tools-list200 and actual calls succeeded; preserved, not classified as business-call failure"
+    },
+    "W5": {
+      "status": "PASS",
+      "normalExit": {
+        "atUtc": "2026-11-03T09:04:43.5625513Z",
+        "method": "Normal owned Application menu Exit",
+        "forceKillUsed": false,
+        "ownedProcesses": [
+          {
+            "stillSameProcess": false,
+            "pid": 13368,
+            "pidReused": false,
+            "beforeCreatedUtc": "2026-11-03T08:01:07.754418Z"
+          },
+          {
+            "stillSameProcess": false,
+            "pid": 11072,
+            "pidReused": false,
+            "beforeCreatedUtc": "2026-11-03T08:01:07.919481Z"
+          },
+          {
+            "stillSameProcess": false,
+            "pid": 25024,
+            "pidReused": false,
+            "beforeCreatedUtc": "2026-11-03T08:01:07.922262Z"
+          },
+          {
+            "stillSameProcess": false,
+            "pid": 34320,
+            "pidReused": false,
+            "beforeCreatedUtc": "2026-11-03T08:01:07.930949Z"
+          },
+          {
+            "stillSameProcess": false,
+            "pid": 23236,
+            "pidReused": false,
+            "beforeCreatedUtc": "2026-11-03T08:01:08.088849Z"
+          }
+        ],
+        "remainingTaskExeCount": 0,
+        "port54637Listeners": [],
+        "ownedTreeGone": true,
+        "portReleased": true
+      },
+      "dailyExistingFiles": {
+        "count": 1376,
+        "sameBytesAndHash": 1376,
+        "changedBytes": 0,
+        "changedMtimes": 0
+      },
+      "oldPublicReports": {
+        "count": 18,
+        "sameBytesAndHash": 18
+      },
+      "originalSessionAndBindingFiles": {
+        "count": 4,
+        "sameBytesAndHash": 4
+      },
+      "defaultCliUnchanged": {
+        "files": 2,
+        "sameBytesAndHash": 2,
+        "actualVersion": "0.2.0"
+      },
+      "hostFilesUnchanged": {
+        "count": 2,
+        "sameBytesAndHash": 2,
+        "exeSignature": {
+          "status": "Valid",
+          "signerSubject": "CN=\"Hangzhou DeepSeek Artificial Intelligence Co., Ltd.\", O=\"Hangzhou DeepSeek Artificial Intelligence Co., Ltd.\", L=Hangzhou, S=Zhejiang, C=CN, OID.1.3.6.1.4.1.311.60.2.1.1=Hangzhou, OID.1.3.6.1.4.1.311.60.2.1.2=Zhejiang, OID.1.3.6.1.4.1.311.60.2.1.3=CN, SERIALNUMBER=91330105MACPN4X08Y, OID.2.5.4.15=Private Organization"
+        }
+      },
+      "dailyProcesses": [
+        {
+          "pid": 17728,
+          "afterCreatedUtc": "2026-11-02T14:08:41.3162180Z",
+          "sameIdentity": true,
+          "pathSame": true,
+          "beforeCreatedUtc": "2026-11-02T14:08:41.316218Z"
+        },
+        {
+          "pid": 11984,
+          "afterCreatedUtc": "2026-11-02T14:08:41.4948750Z",
+          "sameIdentity": true,
+          "pathSame": true,
+          "beforeCreatedUtc": "2026-11-02T14:08:41.494875Z"
+        },
+        {
+          "pid": 13556,
+          "afterCreatedUtc": "2026-11-02T14:08:41.4970890Z",
+          "sameIdentity": true,
+          "pathSame": true,
+          "beforeCreatedUtc": "2026-11-02T14:08:41.497089Z"
+        },
+        {
+          "pid": 10548,
+          "afterCreatedUtc": "2026-11-02T14:08:41.5078130Z",
+          "sameIdentity": true,
+          "pathSame": true,
+          "beforeCreatedUtc": "2026-11-02T14:08:41.507813Z"
+        },
+        {
+          "pid": 11576,
+          "afterCreatedUtc": "2026-11-02T14:08:41.6697240Z",
+          "sameIdentity": true,
+          "pathSame": true,
+          "beforeCreatedUtc": "2026-11-02T14:08:41.669724Z"
+        }
+      ],
+      "dailyListeners": [
+        {
+          "stillListeningSameOwner": true,
+          "localAddress": "127.0.0.1",
+          "owner": 11576,
+          "port": 58794
+        }
+      ],
+      "protocol": {
+        "after": "\"C:\\Users\\kalia\\AppData\\Local\\Programs\\DeepSeek Harness\\DeepSeek Harness.exe\" \"%1\"",
+        "same": true,
+        "before": "\"C:\\Users\\kalia\\AppData\\Local\\Programs\\DeepSeek Harness\\DeepSeek Harness.exe\" \"%1\""
+      },
+      "expectedIsolatedProfileChangedPaths": [
+        "C:\\bkn-verify\\provenance-ci4-win-20261102\\home\\profiles\\desktop\\package.json",
+        "C:\\bkn-verify\\provenance-ci4-win-20261102\\home\\profiles\\desktop\\pnpm-lock.yaml",
+        "C:\\bkn-verify\\provenance-ci4-win-20261102\\home\\profiles\\desktop\\cordis.patch.yml"
+      ],
+      "guardArtifact": {
+        "path": "C:\\bkn-verify\\provenance-ci4-win-20261102\\ci6-platform021-20261103-154333\\private\\end-preservation-guard.json",
+        "bytes": 1269588,
+        "sha256": "5c1d1de8693d2cfc30e06dc15c3afb97b5a99841b9591c4544329184b9d6f829"
+      },
+      "historicalLimits": {
+        "historicalDifferences": "Prior 9642 profile/session byte differences and callback/shared-cache effects are not rolled back or attributed to CI6 by this fresh guard",
+        "historicalNull39": "UNKNOWN retained",
+        "existing1376DailyFilesOnly": true,
+        "wholeMachineZeroChangeClaim": false,
+        "newDailyPaths": "NOT_ENUMERATED"
+      },
+      "localSensitiveHandoffFiles": "Only in current-user/SYSTEM restricted local directory; no plaintext/key export or checksum"
+    }
+  },
+  "notRun": [
+    {
+      "item": "Formal CLI0.2.1 install/final acceptance",
+      "status": "NOT_RUN_UNPUBLISHED"
+    },
+    {
+      "item": "Formal platform0.2.1/final image identity",
+      "status": "NOT_RUN_PREVIEW_OR_UNKNOWN"
+    },
+    {
+      "item": "Natural credential renewal",
+      "status": "NOT_RUN_NOT_NATURALLY_DUE"
+    },
+    {
+      "item": "Published metric query",
+      "status": "NOT_RUN_NOT_DISCLOSED"
+    },
+    {
+      "item": "Same-target native DSH provenance entry",
+      "status": "NOT_RUN_NO_SAME_TARGET_DSH_RECORD"
+    },
+    {
+      "item": "Model E2E / evidence generation / Agent analysis",
+      "status": "NOT_RUN_BY_SCOPE"
+    },
+    {
+      "item": "Forced finish_unconfirmed refusal",
+      "status": "NOT_RUN"
+    }
+  ],
+  "collectorCorrections": [
+    {
+      "problem": "Formal registry scalar JSON assumed object after body persisted",
+      "resolution": "Reused saved body, did not repeat formal query; HTTP status unrecorded, not rewritten as404"
+    },
+    {
+      "problem": "First health collector read res.socket after end",
+      "resolution": "Captured TLS metadata in response callback; later strict probe passed, initial exception local observation issue"
+    },
+    {
+      "problem": "Ordinary Node could not resolve Host schemastery peer",
+      "resolution": "Read-only exact rc.5 ASAR module extraction and task-local peer resolver; no candidate/Host patch"
+    },
+    {
+      "problem": "Preservation helper reserved Host variable, then DateTime coercion lost subsecond precision",
+      "resolution": "Task helper renamed variable and JSON dates read as strings. Final pass; initial false timestamp/process comparison retained in end-preservation-guard-attempt1.json. Exact ticks independently matched; no restart inferred."
+    }
+  ],
+  "boundaries": {
+    "oldCi4Ci5ReportsPreserved": 18,
+    "oldSourceTextAnchorGeometrySpaceCopyAnalysisAndFullGuardMatrixRerun": false,
+    "productionSourceOrPackageEdits": false,
+    "newCI": false,
+    "commitOrPush": false,
+    "mergeTagReleaseLatest": false,
+    "originalSessionBindingMutation": false,
+    "dailyHostOrDefaultCliUpgrade": false,
+    "businessOutputRecomputedOrRepaired": false,
+    "wholeMachineZeroChangeClaim": false,
+    "deployedServiceImageDigests": "UNKNOWN",
+    "fullDeploymentGitRef": "UNKNOWN; backend health suffix self-report only"
+  },
+  "evidence": [
+    {
+      "path": "C:\\bkn-verify\\provenance-ci4-win-20261102\\ci6-platform021-20261103-154333\\private\\CI6-ARTIFACT-IDENTITY.json",
+      "bytes": 15807,
+      "sha256": "e283e871d291e6449badc6b8fe2b02655a94de0304d5a09b9f6a205c34e4736c"
+    },
+    {
+      "path": "C:\\bkn-verify\\provenance-ci4-win-20261102\\ci6-platform021-20261103-154333\\private\\package-audit-before-install.json",
+      "bytes": 50137,
+      "sha256": "3070d443cc48bfd14187cfcb014583915c1a0bff6d620f0e606a42780c3f32e3"
+    },
+    {
+      "path": "C:\\bkn-verify\\provenance-ci4-win-20261102\\ci6-platform021-20261103-154333\\private\\package-installed-ci6.json",
+      "bytes": 26983,
+      "sha256": "81a40c3a8b1f7499dd1ec4abe1cad05bac6de2091a9f9db097c5acec61625bbb"
+    },
+    {
+      "path": "C:\\bkn-verify\\provenance-ci4-win-20261102\\ci6-platform021-20261103-154333\\private\\package-after-normal-exit.json",
+      "bytes": 37764,
+      "sha256": "793e6a616afe926ad7fa136cb94602f180fc15efb302b782e0ce6f2b61b247cf"
+    },
+    {
+      "path": "C:\\bkn-verify\\provenance-ci4-win-20261102\\ci6-platform021-20261103-154333\\private\\official-rc5-about-ci6-update.png",
+      "bytes": 43876,
+      "sha256": "6c9c04b1e37d461a5b193d2298ad9f886688cfbe6c21dbda4e792d9330cb1c2e"
+    },
+    {
+      "path": "C:\\bkn-verify\\provenance-ci4-win-20261102\\ci6-platform021-20261103-154333\\private\\cli-controls-zh-target021.json",
+      "bytes": 1491,
+      "sha256": "f2dbd221dfa5aecee8cd38ba962cc422d0c631707886b3207ef9fa618fa2c019"
+    },
+    {
+      "path": "C:\\bkn-verify\\provenance-ci4-win-20261102\\ci6-platform021-20261103-154333\\private\\cli-controls-en-target021.json",
+      "bytes": 1557,
+      "sha256": "700a0d06c245ed521a9789cce0c6feecae1f9eee554952fadee8a7ae5bdc2536"
+    },
+    {
+      "path": "C:\\bkn-verify\\provenance-ci4-win-20261102\\ci6-platform021-20261103-154333\\private\\actual-cli-subprocesses.json",
+      "bytes": 1857,
+      "sha256": "0473d5d74945f029e01fe24943afa138007e0cc0da3069328246542fc5f41d19"
+    },
+    {
+      "path": "C:\\bkn-verify\\provenance-ci4-win-20261102\\ci6-platform021-20261103-154333\\private\\native-login-sync-success.png",
+      "bytes": 31610,
+      "sha256": "0d05099d9f35f6c73cfc0aac4b0d3f5b084b58aa1810c9657bd6d045122860b0"
+    },
+    {
+      "path": "C:\\bkn-verify\\provenance-ci4-win-20261102\\ci6-platform021-20261103-154333\\private\\native-passive-diagnostics.json",
+      "bytes": 2263,
+      "sha256": "7964fda46d40d6f7276b5fce8894f84c401c42a7ff157ee82d1ed2b109a977da"
+    },
+    {
+      "path": "C:\\bkn-verify\\provenance-ci4-win-20261102\\ci6-platform021-20261103-154333\\private\\native-host-connections-before-exit.json",
+      "bytes": 1293,
+      "sha256": "a6d119de5ba5b20f0c75fc79e1ea113d3d96f23c4270d1989aff91a04d67720e"
+    },
+    {
+      "path": "C:\\bkn-verify\\provenance-ci4-win-20261102\\ci6-platform021-20261103-154333\\private\\platform129-health.json",
+      "bytes": 2132,
+      "sha256": "1a72bdce2bebaa9392dda4fd201c631ca82d526886e2789d95e2c55fceff5d88"
+    },
+    {
+      "path": "C:\\bkn-verify\\provenance-ci4-win-20261102\\ci6-platform021-20261103-154333\\private\\platform129-reader-receipt.json",
+      "bytes": 1439,
+      "sha256": "24fa0aae8a22cc71d506fe3735ab1683098da9930c6427b5563c7c6ea3eeb498"
+    },
+    {
+      "path": "C:\\bkn-verify\\provenance-ci4-win-20261102\\ci6-platform021-20261103-154333\\private\\ci6-live-toolruntime-receipt.json",
+      "bytes": 15084,
+      "sha256": "800b6ccad1f59a7602c9ed7bbd76497e53164bd50bf12c30499200541a6ec2ba"
+    },
+    {
+      "path": "C:\\bkn-verify\\provenance-ci4-win-20261102\\ci6-platform021-20261103-154333\\private\\live-mcp-ci6-receipt.json",
+      "bytes": 15936,
+      "sha256": "5c1df4986264c76ef1cb53c781a59562292d50c510cd3ba57b090a8fca130d89"
+    },
+    {
+      "path": "C:\\bkn-verify\\provenance-ci4-win-20261102\\ci6-platform021-20261103-154333\\private\\owned-locale-restored-zh.json",
+      "bytes": 1073,
+      "sha256": "60a4ff7e5717243dcde8082cff614ea9217a097086ecf347e9beab5c73dbe716"
+    },
+    {
+      "path": "C:\\bkn-verify\\provenance-ci4-win-20261102\\ci6-platform021-20261103-154333\\private\\cold-normal-exit.json",
+      "bytes": 1034,
+      "sha256": "d738871b445b4d0a110bccf641309a5a720a468593e71427714f44cca48e92ef"
+    },
+    {
+      "path": "C:\\bkn-verify\\provenance-ci4-win-20261102\\ci6-platform021-20261103-154333\\private\\end-preservation-guard.json",
+      "bytes": 1269588,
+      "sha256": "5c1d1de8693d2cfc30e06dc15c3afb97b5a99841b9591c4544329184b9d6f829"
+    }
+  ]
+}

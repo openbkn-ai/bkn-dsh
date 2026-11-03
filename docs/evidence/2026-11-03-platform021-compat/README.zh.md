@@ -29,9 +29,15 @@ DSH官方发布列表仍有0.2.1-rc.5；master仍是`ce7073d51254c26cd63b22a6083
 
 另已只读核对[指标摘要边界](./METRIC-SUMMARY-BOUNDARY.zh.md)：版本/branch精确补名和新filter/time简明摘要仍是平台同源策略的范围限制，原始JSON保留，未证实选择误联；当前Studio main与插件逻辑相同，不单方面改包干预平台解释，也不冒称最终发布页面已对照。
 
+## 两端首轮核收与剩余门槛
+
+见[核收与发布分级](./INTAKE-REVIEW.zh.md)、[十一份原件身份](./RECEIVED-ARTIFACTS.json)、[Mac报告](./mac-rc5/MAC-CI6-RESULTS.zh.md)及[Windows报告](./windows-rc5/WINDOWS-CI6-PLATFORM021-VERIFICATION.zh.md)。两端原生安装/CLI入口/旧版本保护/登录同步及受控实平台最小调用已有明确通过证据。Windows独立SDK自然续期补充通过，指标正例缺披露仍未执行。
+
+用户最新明确能力矩阵：**50.28企业版正式020＋独立匹配CLI020补Mac S1–S3；50.129社区main021＋官方CLI rc.1主测新CLI兼容。** 129企业溯源404不再作为发布阻断；其实际请求/当时UNKNOWN及历史真实样本来源保留。本机28卡已按收件人加密交两端，两端四项认证均通过，见[回执](./CARD-028-HANDOFF.json)。[Mac企业28最终补充](./mac-rc5/MAC-CI6-EE028-FIELD-RECONCILIATION.zh.md)已核收：原生登录/入口恢复、同记录Reader与Studio响应一致，但当前未披露原文，S1–S3均NOT_RUN；Swift独立进程预检false仅作工具限制。正式CLI021精确安装与Mac边界验收/普通发布流程仍待闭合，现有包保持。Windows只收卡、不重跑旧矩阵。
+
 ## 验证与交付阶段
 
-**CI6已完成，待两端实机。** 源`f01b316fbfb6be681af81e2267a7b3341e659efd`的[build-only CI41596006291](https://github.com/openbkn-ai/bkn-dsh/actions/runs/41596006291)成功，publish=false；插件844通过/1既有跳过、仓库79/79、MCP1/1、包126文件，以及两版官方npm Host受控检查通过，npm发布与GitHub Release均跳过。[实际CI包](./CI6-ARTIFACT-IDENTITY.json) artifact13212518096，TGZ877732字节/SHA `4500fa4357cdcdcb9914a39794aedb9096c948192c2bf0f35ecf4fadb882f046`；与本地参考126/126文件和整段解压tar相同，仅gzip OS字节9不同，不称压缩原件全字节相同。相对旧CI5仅两README、client/diagnostics、Host/Remote生成协议及两声明共8文件变化，其余118文件保持。见[CI结果](./CI6-RESULT.json)、[受控双Host原件](./CI6-DUAL-HOST.json)。独立GitHub评审已在该源批准，不代表最终平台或原生验收。
+**CI6和两端首轮增量回执已核收，剩余验收未放行。** 源`f01b316fbfb6be681af81e2267a7b3341e659efd`的[build-only CI41596006291](https://github.com/openbkn-ai/bkn-dsh/actions/runs/41596006291)成功，publish=false；插件844通过/1既有跳过、仓库79/79、MCP1/1、包126文件，以及两版官方npm Host受控检查通过，npm发布与GitHub Release均跳过。[实际CI包](./CI6-ARTIFACT-IDENTITY.json) artifact13212518096，TGZ877732字节/SHA `4500fa4357cdcdcb9914a39794aedb9096c948192c2bf0f35ecf4fadb882f046`；与本地参考126/126文件和整段解压tar相同，仅gzip OS字节9不同，不称压缩原件全字节相同。相对旧CI5仅两README、client/diagnostics、Host/Remote生成协议及两声明共8文件变化，其余118文件保持。见[CI结果](./CI6-RESULT.json)、[受控双Host原件](./CI6-DUAL-HOST.json)。独立GitHub评审已在该源批准，不代表最终平台或原生验收。
 
 本轮再次对公共npm精确查询`@openbkn/bkn-sdk@0.2.1`仍返回E404；正式安装与最终CLI验收继续待办。已有0.2.1-main/rc可在其真实版本/源/部署配对下做预发布范围测试，不改manifest伪装正式版，不绕过检查或偷偷改用旧CLI替代指定目标。
 
