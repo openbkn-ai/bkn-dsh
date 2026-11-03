@@ -1,0 +1,10 @@
+{
+  "version": 1,
+  "algorithm": "RSA-OAEP-SHA256+AES-256-GCM",
+  "recipientSpkiSha256": "46b70b7f8319dd98ccf8889680f41afe665b7ac6b51cafe18c976e66e1e6e55d",
+  "context": "openbkn-ci6-test-platform-129|run=41596006291|recipient=46b70b7f8319dd98ccf8889680f41afe665b7ac6b51cafe18c976e66e1e6e55d",
+  "wrappedKey": "EVSbk4Dio+eAVDBrBzGr/k1s/9rzbceHBpZ2/2PY5z3mGhUIkrEel53yG+KejGbdmwK6K9V7+fn6uKDbysoYRAZqtEZ7ruKC68pQd4VuodVNQpUgvp4l0Lw9taLRV9WW2CawutkPL+qFmoIRf1rg3vPKOscxeOz9vCcKYWZ+A2Lu/s4be7kpmdfHUh1jPDuzvoX/KPozgdFmYNA6BNqyXzZc5kVkToEAo8JOt+Y66MHZ0Z1iILPmaLHJqIOZXU4kFaHtcXd06Wn82FJrs8xI+vK/2WM41w8tNOuapXrckpd9Dr4lXYJusr9IQ1mz12jfZil1Lkda9ugt0VxRNkDsLK48kaxDKRvuIk6fhqFBSes3s1EzvDDaKCbRKIM0XgfJymPnKcz8ZYNGa2mz8eC7P8C5963cmg/nWaDg55hTONRPX9RjqSpo03ftbvSxJtZJOnAETwQ25d3iANxl8Lbi/GQ23TOLzJMH4JfOzeLAw8kequeJLgO3GVle7rMEI/IMswC2XHBl3CuHHnUnQRj+C4R95//uvHI9/vCBce0g8/UPqYv3CcfZsl5Fzfx29xVjPNrz/qhzbjXfpw+KTr7ucZicmY4PoKLNx4BsJRsnBaan0u15SoP0zs/ZJxG0EWc9xHLkOo81QyJxmv6TxUh55O/AKvTlyaNz+ZBoiX3BD7U=",
+  "iv": "UC/MuzLnkI4FQpHs",
+  "tag": "4azHI7G4/t+hV44lg3xJpg==",
+  "ciphertext": "raMSvwQKyw7CW4D9keKh020RU5eVwvb9ZVb2LUwRMU0oNaTtMmCrdFfg6kOlkk7MUvvMf6qGho8ew6kBaHl6gOf6jfPKWtti1Ai9q3cMkK9Vvd3suAzrdlyBR6h8dtFLeM85PfkQSdPTHVTPL+V1e6Z/h+uhHiXog8Su/uL3QZpp8BezhZLMA54TH4M2Zf8sgu/ixL06ygwOYVUpExxj9/OoEjESB6tBD1z+G5aO0a0OUaMoONYOcbT51dxSZdbkIxNM9aEOXW4j28wSyTExZclb7HwZ5zM1TVu6LPaB3kcQX9H1D3lrJ5kc9X8b++6S3anzvnlevG9UbgQThZ/nB4+UdyYKAkGlQT2kPzvp7PRj3SOPOBVCTwSw4RJnI8NP"
+}
