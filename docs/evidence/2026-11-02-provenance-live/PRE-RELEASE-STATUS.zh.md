@@ -4,6 +4,8 @@
 
 当前源码 `ae903656193d3fc5214469bc0e6ee1108e233075`，候选 `0.2.1-rc.3-openbkn.0.2.1-3`，[CI41548846010](https://github.com/openbkn-ai/bkn-dsh/actions/runs/41548846010) publish=false成功。插件825通过/1既有Windows专项跳过、仓库79/79、MCP1/1、包126文件；本地真实Chromium矩阵另有独立核收。实际TGZ SHA `14f4bb7fb61c892017343c832fdc8b37d892706b9a7aa2146779eef00ee9e3ff` 与本地参考126/126和整段tar相同；相对CI4仅client.js变化，其他125文件逐字节不变，源码仅SourceText局部交互变化。见[CI5审计](./CI5-ARTIFACT-QA.zh.md)、[修复记录](./SOURCE-TEXT-FIX.zh.md)。
 
+随后只做[离线测试工具维护](./schema-extractor-maintenance/README.zh.md)：15项回归和一次固定源码真实Go提取通过；旧fixture及生产源码/包不变，没有新业务/模型/E2E/CI。#120已按该项开发与验证完成关闭；修复包含在候选-3，PR121仍草稿未合并，公开latest/rc仍为-2，不能称公开版本已修复。
+
 本次[最终Windows原报告](./windows-rc5/ci5-anchor-session-audit/WINDOWS-CI5-ANCHOR-SESSION-AUDIT.zh.md)及[三文件传输回执](./windows-rc5/ci5-anchor-session-audit/RECEIPT.json)已按bytes/SHA接收。82字节是追加一帧Host `session/end-seed`空data记录，解压新增69字节；原压缩文件和解压内容均为隔离副本的精确前缀，原265条完整记录的原始行、所有键值与顺序、业务问答、工具输入结果、C/I/KN和两个binding保持。并非全文件相同或纯压缩差异；历史追加者未知不自动构成业务损坏阻断。
 
 真实原答案入口按第3轮→正常关闭→第2轮执行，未点轮次列表或构造handle/Remote调用。实际S/M、Host context的C/initialI/currentI/KN及detail.interaction_id对应可见第3轮47调用、第2轮4调用，限定跨回答功能锚定通过，旧手选第2轮的验收缺口已由新序列闭合。opaque handle、wire ID、全部中间hop和loaded version未单独采到，属于观察限制，不否定已闭合的功能。首个长Sources暂停后出现加载失败，禁用断点一次普通刷新恢复；第二入口用不暂停logpoint取证，保留前次失败/恢复观察，不认定唯一因果或产品故障。
@@ -42,5 +44,5 @@ Windows官方rc.5安装126/126匹配、六类基本序列按各自预期通过�
 1. **本轮必要补核已闭合。** 会话82字节差异已分类、无手选跨答案功能锚定通过、平台时点运行身份和完整MCP目录已核；当前没有由这些疑点支持的必修改包项。缺opaque handle、每层调用栈或额外内部版本字段不再列为独立阻断。若出现新的错误Interaction、业务记录损坏、核心合同不满足或边界失守证据，仍按产品故障处理。
 2. **平台内容与分析输入取证限制。** 原Markdown占位、缺失调用和invalid原因忠实保留；not_evaluable/0建议不当业务质量通过，实际POST/provider帧缺失也不据模型自述裁决插件丢输入。Space未拍到瞬态、serverAfter未测、退出码及历史隔离细节等不是独立阻断，不为补字段重跑模型；插件不清洗、补造、重判或应用建议。
 3. **发布声明限于已有证据。** 在途取消/低权限/异常网络、大记录或managed父子/共享输入的未覆盖原生组合，以及CI5新增Mac受影响回验等不补写PASS；不把未宣称的组合一律转成必须重跑的门槛，也不外推未来Host兼容。历史失败、UNKNOWN、原窗口SKIP和当前采样范围保留。
-4. **后续维护与适配差异。** 测试提取器应按JSON Schema位置处理注释并覆盖同名description数据字段，旧基线信息丢失限制保留，本轮不改提取器/fixture/allowlist或重建包。partial搜索不补全、安全错误分类、KN预检回退边界及固定Studio来源差异继续记录；依赖体积和知识网络目录改版不在本次范围。
+4. **测试工具维护已完成，适配差异继续记录。** 提取器已按JSON Schema位置处理注释并覆盖同名description字段等关键边界，15项回归通过；新离线投影独立留证，旧基线信息丢失限制保留，不覆盖旧fixture，不改allowlist或重建包。partial搜索不补全、安全错误分类、KN预检回退边界及固定Studio来源差异继续记录；依赖体积和知识网络目录改版不在本次范围。
 5. **完成正常发布流程并取得相应授权。** 按既定PR审批、main候选文件等价、标签及发布流程执行；技术疑点收口不自动授权合并、打标签、发布或latest，也不代签人工体验验收。候选、已发布-2及latest保持现状。

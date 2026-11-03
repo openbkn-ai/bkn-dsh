@@ -24,8 +24,8 @@ Windows差异与以下固定正式源码指针相符；三个字段在原正式�
 
 真正需要阻断的是核心lifecycle缺失/变化、当前调用不能满足的核心名称/必需参数/类型变化、网络或bkn_context边界不能验证，或禁止工具意外暴露/可执行。已审排除项、条件工具未启用、Host-local工具不在平台目录，以及这三处旧提取器信息损失不能直接判成核心故障。本轮元数据核对不替代业务调用成功证明，既有通过项也不重跑。
 
-## 非阻断的验证工具维护项
+## 非阻断的验证工具维护项（已本地修复）
 
-后续应将提取器改为按JSON Schema位置处理注释，并补`properties.description`等同名业务属性的回归。旧投影的丢失信息不能声称已恢复，应保留其来源与限制；新基线需记录完整实采/固定source及摘要。这是测试工具质量维护项，不要求当前插件包重建。本轮只记录问题，未修改提取脚本、fixture、allowlist或现有包。
+后续授权的本地维护已完成：提取器按已知JSON Schema位置处理注释，保留`properties.description`等同名业务属性及literal数据，15项聚焦回归通过。真实离线Go builder对同一固定正式source生成新投影，仅恢复上述3处可选字段；新生成日期、算法版本、完整投影与摘要见[维护记录](./schema-extractor-maintenance/README.zh.md)。这不是新的live采集或业务执行，不证明全部当前schema等价。旧投影保持原字节及其丢失信息限制，未原地修补；allowlist、插件和现有包未改，不要求包重建。此前“只记录问题”的阶段作为修复前历史保留。
 
 接收方补核：当前run_code的inputSchema与outputSchema与上述独立正式历史live fixture全部键值及数组顺序相同，CSV caller使用code+bkn_context、exit_code/stdout形状相容；未新增执行。主source投影仍缺inline定义，不改其历史UNKNOWN；run_shell已审排除，不因旧schema未采再设硬门槛。

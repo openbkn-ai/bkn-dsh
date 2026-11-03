@@ -1,5 +1,11 @@
 # CLAUDE.md
 
+## Scoped schema-extractor maintenance and issue #120 closeout (2026-11-03)
+
+The maintainer authorizes the offline test-tool repair and the evidence-based status update for issue #120. The extractor now removes documentation only at known JSON Schema positions, preserving same-named data properties and literal data. Fifteen focused Python regressions pass; an offline real-Go projection of fixed formal source81d575 restores exactly three optional description fields. New output records the actual generation time and projection version and refuses to overwrite an existing path. Historical fixtures and raw acceptance reports remain unchanged. See docs/evidence/2026-11-02-provenance-live/schema-extractor-maintenance/README.zh.md. This maintenance stays local; no production/package change, passed business/model replay, build CI or publication is included.
+
+Issue #120 is completed under the maintainer's per-issue development/validation rule. Both managed-tool fixes are present in unchanged CI5 candidate-3; the original native Mac rehearsal and subsequent controlled Skill/packed checks remain separately attributed. PR #121 is still draft/unmerged and npm latest/rc still point to released-2 without this increment. Issue closure does not mean merge, publication, daily-install replacement or global release acceptance. Project-board status was not verified because the local GitHub CLI token lacks project scopes.
+
 ## CI5 final scoped evidence reconciliation (2026-11-03)
 
 The final Windows session/anchor audit and complete25-tool MCP catalogue have been received with exact byte/SHA verification. On unchanged source ae903656/CI5/TGZ14f4bb7f and official Desktop0.2.1-rc.5, this scoped follow-up found no product blocker requiring another package change. It does not authorize merge/tag/publication/latest or claim full-version, model-execution or global release acceptance. See docs/evidence/2026-11-02-provenance-live/windows-rc5/ci5-anchor-session-audit/WINDOWS-CI5-ANCHOR-SESSION-AUDIT.zh.md and RELEASE-GATE-TRIAGE.zh.md.
@@ -328,6 +334,7 @@ node --test compat/dsh-0.2.0-rc.2/tests/*.test.mjs tests/*.test.mjs runtime/test
 pnpm run package:check
 node scripts/dsh-host-compatibility.mjs
 node scripts/test-dsh-hosts.mjs --plugin <local-tgz> --output <fresh-isolated-directory>
+python3 -B -m unittest discover -s tests -p 'test_capture_context_loader020.py' -v  # offline extractor regressions; Python standard library only
 
 pnpm runtime:profile -- --runtime release/runtime --plugin <tgz> --output release/profile
 pnpm runtime:package -- --runtime release/runtime --profile release/profile --plugin <tgz> --output release/artifacts --platform darwin-arm64
