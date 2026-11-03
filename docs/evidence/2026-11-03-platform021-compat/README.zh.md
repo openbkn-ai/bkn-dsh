@@ -29,6 +29,10 @@ DSH官方发布列表仍有0.2.1-rc.5；master仍是`ce7073d51254c26cd63b22a6083
 
 ## 验证与交付阶段
 
+**CI6已完成，待两端实机。** 源`f01b316fbfb6be681af81e2267a7b3341e659efd`的[build-only CI41596006291](https://github.com/openbkn-ai/bkn-dsh/actions/runs/41596006291)成功，publish=false；插件844通过/1既有跳过、仓库79/79、MCP1/1、包126文件，以及两版官方npm Host受控检查通过，npm发布与GitHub Release均跳过。[实际CI包](./CI6-ARTIFACT-IDENTITY.json) artifact13212518096，TGZ877732字节/SHA `4500fa4357cdcdcb9914a39794aedb9096c948192c2bf0f35ecf4fadb882f046`；与本地参考126/126文件和整段解压tar相同，仅gzip OS字节9不同，不称压缩原件全字节相同。相对旧CI5仅两README、client/diagnostics、Host/Remote生成协议及两声明共8文件变化，其余118文件保持。见[CI结果](./CI6-RESULT.json)、[受控双Host原件](./CI6-DUAL-HOST.json)。独立GitHub评审已在该源批准，不代表最终平台或原生验收。
+
+本轮再次对公共npm精确查询`@openbkn/bkn-sdk@0.2.1`仍返回E404；正式安装与最终CLI验收继续待办。已有0.2.1-main/rc可在其真实版本/源/部署配对下做预发布范围测试，不改manifest伪装正式版，不绕过检查或偷偷改用旧CLI替代指定目标。
+
 本地实现和验证已完成，见[验证台账](./LOCAL-VALIDATION.json)：生产仅4处CLI类型/安装谓词/UI/双语指引文件共7行替换，不改认证、MCP、Reader、执行guard或SourceText。新增9项CLI回归，相关4文件74/74通过；旧实现选跑10项为8失败/2通过（不覆盖旧CLI显示原本正确）。新增10项平台source合同回归使用官方MCP factory与ToolRuntime，核参数/结果透传、拒绝无dispatch、finish未确认与显式同I重试及新工具继续拒绝。首次装配失败来自绕过官方factory，不当生产红绿证据。
 
 整合后插件共845项：844通过、1既有Windows专项跳过；仓库79/79；类型检查和126文件包审计通过。真实公开CLI/SDK020与021rc.1各8个场景，[16/16 loopback探针通过](./PROBE-SUMMARY.json)，覆盖匹配/拒绝无后续dispatch、status/token、正常合成refresh、过期拒绝与device提示后拒绝不保存。仅临时synthetic凭据/合成HTTP服务，不读取个人store，不调用真实平台/模型，不把rc.1记成正式制品通过。复用公开依赖代码1079文件；undici8.12.3属于该SDK范围内，不是插件8.10.2或注册表认证的全部传递依赖闭包。探针及原始报告按各自任务归因，SDK报告中“未改生产”不覆盖本轮另有的CLI4文件修订。
@@ -40,3 +44,5 @@ CLI修订与探针均已独立只读评审通过。新真实包探针是显式�
 远程Mac chat `01a15340-6507-7660-a68d-68994e283415`已获得维护者授权，在开发和新包固定后排在现任务之后做50.129兼容验收。维护者随后要求等待新包后一起继续当前未完成的复核；原SourceText任务已暂停收态，其S1–S3与新兼容R/C项逐项保存在[合并续验清单](./MAC-RESUME-PLAN.zh.md)，不漏项或以新任务覆盖旧任务。先只读核该机真实CLI包、平台health/image/ref与目录schema，再限定到新登录/正常token续期/证书作用域、新metric合同与managed context/拒绝，以及CSV/溯源受影响链路；不升级当前0.2.0环境，不改原平台或模型输出，不重跑无关矩阵。若实际部署或最终CLI仍不是正式目标，则保留预发布验证标签和最终门槛，不把已有通过直接改写为正式0.2.1接受。
 
 合并/主分支制品等价/发布声明以新候选及最终身份为准；当前未打tag、发布、替换旧资产或移动latest。
+
+维护者追加授权Windows受影响验收：新CI制品核收后同步交原Windows chat，只做[W0–W5增量清单](./WINDOWS-RESUME-PLAN.zh.md)，保留旧CI5通过项，不用Mac代填或重跑整套E2E。Mac原未完成S1–S3和新R/C项仍按合并清单继续。

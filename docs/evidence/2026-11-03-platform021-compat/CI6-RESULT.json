@@ -1,0 +1,64 @@
+{
+  "checkedAtUtc": "2026-11-03T07:36:38.850624+00:00",
+  "runId": 41596006291,
+  "url": "https://github.com/openbkn-ai/bkn-dsh/actions/runs/41596006291",
+  "sourceCommit": "f01b316fbfb6be681af81e2267a7b3341e659efd",
+  "conclusion": "success",
+  "publish": false,
+  "npmPublish": "skipped",
+  "githubRelease": "skipped",
+  "pluginTests": {
+    "total": 845,
+    "pass": 844,
+    "skip": 1,
+    "fail": 0
+  },
+  "repositoryTests": {
+    "total": 79,
+    "pass": 79,
+    "skip": 0,
+    "fail": 0
+  },
+  "mcpTests": {
+    "total": 1,
+    "pass": 1,
+    "fail": 0
+  },
+  "packageFiles": 126,
+  "dualOfficialNpmHosts": [
+    {
+      "version": "0.2.0-rc.2",
+      "status": "pass",
+      "checks": {
+        "guard-formal": "pass",
+        "guard-formal-disabled": "pass",
+        "guard-legacy": "pass",
+        "csv-export": "pass",
+        "native-output": "pass",
+        "remote": "pass"
+      }
+    },
+    {
+      "version": "0.2.1-rc.3",
+      "status": "pass",
+      "checks": {
+        "guard-formal": "pass",
+        "guard-formal-disabled": "pass",
+        "guard-legacy": "pass",
+        "csv-export": "pass",
+        "native-output": "pass",
+        "remote": "pass"
+      }
+    }
+  ],
+  "review": {
+    "commit": "f01b316fbfb6be681af81e2267a7b3341e659efd",
+    "state": "APPROVED",
+    "submittedAt": "2026-11-03T07:25:17Z"
+  },
+  "identity": "CI6-ARTIFACT-IDENTITY.json",
+  "logBytes": 1930171,
+  "logSha256": "0ccde503b7102af495811010d83e2468a4f9616c11e90fb6c4dcae9e1c9225d6",
+  "finalPlatformCliNativeAcceptance": "PENDING",
+  "boundary": "CI and controlled npm runtimes are separate from final CLI0.2.1 and Mac/Windows native acceptance. All CI5 artifacts and old evidence are retained."
+}
