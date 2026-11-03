@@ -1,6 +1,6 @@
 {
   "date": "2026-11-02",
-  "status": "Mac CI4 affected focus PASS; Windows rc.5 scoped E2E execution and cleanup complete with W3 hover-Escape FAIL retained; not global release acceptance",
+  "status": "CI5 sourceText scoped native UI receipt accepted; platform maintenance and open observations remain; historical CI4 failures retained; no global release acceptance",
   "source": "remote CI3 and CI4 public reports received byte-for-byte and SHA-verified; private originals remain remote",
   "threadId": "01a15340-6507-7660-a68d-68994e283415",
   "hostId": "remote-control:env_e_6ac8760a8c308328a9dcf5dc28dd0d18",
@@ -24,7 +24,7 @@
   },
   "sourceMarkdownObservation": "platform original Markdown contains160occurrences of 请求失败。; no plugin cleaning or rewriting",
   "pendingEvidence": [
-    "W3 output overlapping-popup Escape persistence reproduced twice; deterministic regression, minimum correction and pure-hover Escape policy remain open",
+    "CI5 original overlap path passed twice within sampled scope; strict native paddingSKIP, GUI identity/round anchoring/Space observations and post-upgrade platform reads remain open",
     "native in-flight cancellation, denial/low-privilege/abnormal network paths where safely executable",
     "uncovered final-candidate large/nested/shared-input scenarios, not extrapolated from other machines",
     "analysis-time POST/provider frames and loaded-version/build/exit-code fields remain UNKNOWN"
@@ -206,7 +206,7 @@
       "localIntakeOnly": true
     },
     "sourceTextRetest": {
-      "status": "CI5 actual archive and installed126 files reported matched; native cases NOT_RUN, waiting for human OS desktop unlock",
+      "status": "SCOPED_UI_RETEST_WITH_PLATFORM_MAINTENANCE_OPEN_ITEMS",
       "targetHost": "official Windows Desktop0.2.1-rc.5 only",
       "threadId": "01a19c6a-e785-7f82-a5b4-cda473951fa6",
       "hostId": "remote-control:env_e_6abf8babb404832890d7c5124118ed3c",
@@ -215,22 +215,48 @@
       "newBknAgentAnalyses": 0,
       "platformBusinessWrites": 0,
       "oldReportsUnchanged": true,
-      "turnId": "01a19eb7-803e-7b02-8016-7188213a1492",
+      "turnId": "01a19f37-f9a5-7571-b9b9-524520bb0a23",
       "sourceCommit": "ae903656193d3fc5214469bc0e6ee1108e233075",
       "ciRun": 41548846010,
       "artifactId": 13191140519,
       "tgzSha256": "14f4bb7fb61c892017343c832fdc8b37d892706b9a7aa2146779eef00ee9e3ff",
       "handoff": "WINDOWS-SOURCE-TEXT-RETEST-HANDOFF.zh.md",
       "installedFilesReportedMatched": 126,
-      "nativeCasesExecuted": 0,
-      "environmentObservation": "remote read-only check: Windows MCP, isolated rc.5 and active Console all Session1 on DESKTOP-IEJNBRE; WTS lock flag0, foreground LockApp.exe and activation blocked; no wrong RDP-session inference",
-      "requiresHumanAction": "unlock DESKTOP-IEJNBRE Windows desktop; no DSH/OpenBKN relogin or credentials requested",
-      "humanUnlockReply": "not received; rendered 已解锁 option is not a submitted answer"
+      "environmentObservation": "actual unlock verified; native matrix completed; task then exited normally, owned processes and port49269 released; daily remained running",
+      "humanUnlockReply": "genuine submitted main-chat answer 已解锁，继续回验",
+      "installTurnId": "01a19eb7-803e-7b02-8016-7188213a1492",
+      "desktopInteractiveReported": true,
+      "nativeCasesBeforeUnlock": 0,
+      "platformMaintenanceConfirmedByUser": true,
+      "platformMaintenanceNoticeUtc": "2026-11-03T02:54:01Z",
+      "platformMaintenanceStartEnd": "UNKNOWN",
+      "targetPlatformVersion": "UNKNOWN",
+      "nativeReportReceived": true,
+      "receipt": "windows-rc5/ci5-source-text-retest/RECEIPT.json",
+      "report": "windows-rc5/ci5-source-text-retest/WINDOWS-CI5-SOURCE-TEXT-RETEST.json",
+      "reportSha256": "d72cabe556c50e34b41cfc75ca1186e0b3ed5f8d2585c57940def45859d0a561",
+      "intake": "windows-rc5/ci5-source-text-retest/INTAKE-REVIEW.zh.md",
+      "basicSequencesPassed": 6,
+      "coreOverlapRuns": 2,
+      "strictPaddingOverlap": "SKIP",
+      "releaseAcceptance": false,
+      "foregroundDuringMatrixPid": 32304,
+      "platformMaintenanceNoticeTimeBasis": "main clock recording after conveying user statement, not exact human-message receipt or upgrade start",
+      "platformMaintenanceLearnedAtRemoteUtc": "2026-11-03T02:55:25Z",
+      "guiFailureRequestIdsPaths": "UNKNOWN",
+      "serverAfterComparableContent": "not obtained; direct status404 probes exist",
+      "openObservations": [
+        "strict padding native intersection not executed",
+        "GUI fallback identity/path/wire receipt absent",
+        "last ordinary original-answer reopen defaulted to round3; anchoring not verified",
+        "hovered-output-Space setup unclassified",
+        "post-upgrade platform version/contracts/record After unverified"
+      ]
     }
   },
   "sourceTextCorrection": {
     "date": "2026-11-03",
-    "status": "CI5 success and exact archive independently audited; source-matched PR approval/CodeQL passed; Windows installation reported complete, native retest awaiting human desktop unlock",
+    "status": "local/CI5/browser checks and scoped Windows UI receipt accepted; strict padding and maintenance-dependent/identity/Space items open",
     "sourceSceneSha256": "0a95cbb2c9a467cc2c00ccce331d4847e47350e076e50debec429f9c92d597ff",
     "localArtifactSha256": "75a52410cb0de49d4554d220007e58aa3f5882666825d5f612453689160e4bcb",
     "localArtifactDelta": "client.js only; other125 files byte-identical to CI4",
@@ -248,6 +274,19 @@
     "ciArtifact": "CI5-ARTIFACT-IDENTITY.json",
     "ciResult": "CI5-RESULT.json",
     "ciArtifactId": 13191140519,
-    "ciTgzSha256": "14f4bb7fb61c892017343c832fdc8b37d892706b9a7aa2146779eef00ee9e3ff"
+    "ciTgzSha256": "14f4bb7fb61c892017343c832fdc8b37d892706b9a7aa2146779eef00ee9e3ff",
+    "nativeReport": "windows-rc5/ci5-source-text-retest/WINDOWS-CI5-SOURCE-TEXT-RETEST.json",
+    "nativeReportSha256": "d72cabe556c50e34b41cfc75ca1186e0b3ed5f8d2585c57940def45859d0a561",
+    "nativeIntake": "windows-rc5/ci5-source-text-retest/INTAKE-REVIEW.zh.md",
+    "releaseAcceptance": false
+  },
+  "lastUpdatedLocalDate": "2026-11-03",
+  "candidateEvidenceStage": "historical CI3 baseline; see currentCandidate for current build-only artifact",
+  "currentCandidate": {
+    "sourceCommit": "ae903656193d3fc5214469bc0e6ee1108e233075",
+    "ciRun": 41548846010,
+    "artifactId": 13191140519,
+    "tgzSha256": "14f4bb7fb61c892017343c832fdc8b37d892706b9a7aa2146779eef00ee9e3ff",
+    "version": "0.2.1-rc.3-openbkn.0.2.1-3"
   }
 }

@@ -28,6 +28,6 @@
 
 ## 接续边界
 
-SourceText修复后的Windows受影响回验尚需单独接收，不能从本审计补记PASS；沿用官方Windows Desktop0.2.1-rc.5、精确新CI包及隔离旧样本。此次没有启动DSH、平台请求或模型，没有修改平台和模型原始输出。原文纯hover不夺焦、父搜索持焦时Escape归父的DSH适配策略不等于已证平台现场同序列一致。
+SourceText修复后的Windows受影响回验现已[单独核收](./windows-rc5/ci5-source-text-retest/INTAKE-REVIEW.zh.md)：六类基本UI及原故障两轮采样通过，严格padding交叠和维护下的读取/未分类观察仍开放，不从包审计推导全局PASS。沿用官方Windows Desktop0.2.1-rc.5、精确新CI包及隔离旧样本。包审计本身没有启动DSH、平台请求或模型，没有修改平台和模型原始输出。原文纯hover不夺焦、父搜索持焦时Escape归父的DSH适配策略不等于已证平台现场同序列一致。
 
 本审计只新增这三份CI5记录及忽略目录中的下载/审计文件；未改产品源码、包、CI4记录或其他工作树内容，未commit/push。

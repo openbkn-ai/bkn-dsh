@@ -29,12 +29,26 @@
 
 [上游只读核对](./SOURCE-TEXT-UPSTREAM.zh.md)确认固定Studio/Foundry release及官方DSH rc.5没有升级；未发布main的其他合同变化单独记录，不宣称兼容已扩展。
 
-本地门槛及独立评审已核收。修复已提交/推送为 `ae903656193d3fc5214469bc0e6ee1108e233075`，对应PR独立批准和CodeQL通过，见[评审记录](./SOURCE-TEXT-REVIEW-CI-STATUS.json)。新build-only [CI41548846010](https://github.com/openbkn-ai/bkn-dsh/actions/runs/41548846010) 已成功，实际npm发布及GitHub Release均跳过。精确TGZ SHA `14f4bb7fb61c892017343c832fdc8b37d892706b9a7aa2146779eef00ee9e3ff`，artifact13191140519，126/126及整段解压tar与本地参考相同，相对CI4仍只有client.js变化。主会话独立重算TGZ、路径和tar后，已派原Windows会话按[定向清单](./WINDOWS-SOURCE-TEXT-RETEST-HANDOFF.zh.md)回验，回合 `01a19eb7-803e-7b02-8016-7188213a1492` 已启动，结果待核收。见[CI实际包审计](./CI5-ARTIFACT-QA.zh.md)及[实际CI结果](./CI5-RESULT.json)。旧包和已发布-2保持不变，不补记原生PASS。
+本地门槛及独立评审已核收。修复已提交/推送为 `ae903656193d3fc5214469bc0e6ee1108e233075`，对应PR独立批准和CodeQL通过，见[评审记录](./SOURCE-TEXT-REVIEW-CI-STATUS.json)。新build-only [CI41548846010](https://github.com/openbkn-ai/bkn-dsh/actions/runs/41548846010) 已成功，实际npm发布及GitHub Release均跳过。精确TGZ SHA `14f4bb7fb61c892017343c832fdc8b37d892706b9a7aa2146779eef00ee9e3ff`，artifact13191140519，126/126及整段解压tar与本地参考相同，相对CI4仍只有client.js变化。主会话独立重算TGZ、路径和tar后，已派原Windows会话按[定向清单](./WINDOWS-SOURCE-TEXT-RETEST-HANDOFF.zh.md)回验，安装回合 `01a19eb7-803e-7b02-8016-7188213a1492` 与解锁后回合 `01a19f37-f9a5-7571-b9b9-524520bb0a23` 已完成，报告已原字节核收。见[CI实际包审计](./CI5-ARTIFACT-QA.zh.md)及[实际CI结果](./CI5-RESULT.json)。旧包和已发布-2保持不变，不补记原生PASS。
 
 本轮新增业务问答、依据生成、Agent分析、平台业务写入均为0。不会重跑完整业务E2E，不自动合并、打标签、发布或移动latest。Windows最终回验必须安装新CI精确候选，不能以本地源码或本地包替代。
 
-## Windows安装后环境门槛
+## 历史安装后锁屏门槛（已解除）
 
-远程已回报CI5实际ZIP/TGZ与安装后的126文件均匹配，新Before已保存、task/day进程及端口分列、协议按精确守卫恢复为日常rc.5。当前前景是LockApp.exe锁屏，task窗口激活受阻，六类原生交互均未执行。主会话已请求本人解锁DESKTOP-IEJNBRE Windows桌面；不是要求DSH或OpenBKN重新登录，不索要凭据。问卷中显示的“已解锁”选项不是已提交答复，不能当成桌面解锁证据。得到真实答复后仍需核实实际可交互桌面，再继续同一精确包回验；安装/进程存在不作新UI加载或原生PASS。
+远程已回报CI5实际ZIP/TGZ与安装后的126文件均匹配，新Before已保存、task/day进程及端口分列、协议按精确守卫恢复为日常rc.5。当时前景是LockApp.exe锁屏，task窗口激活受阻，六类原生交互均未执行。主会话已请求本人解锁DESKTOP-IEJNBRE Windows桌面；不是要求DSH或OpenBKN重新登录，不索要凭据。问卷中显示的“已解锁”选项不是已提交答复，不能当成桌面解锁证据。得到真实答复后仍需核实实际可交互桌面，再继续同一精确包回验；安装/进程存在不作新UI加载或原生PASS。
 
-后续只读会话核对确认Windows MCP、隔离rc.5与当前Console均在同一Session1；WTS锁标志为0、前景LockApp且窗口激活受阻，已排除控制器误连其他RDP会话。仍需本人实际解锁，不通过修改安全策略、凭据复制或降级宿主绕过。
+后续只读会话核对确认Windows MCP、隔离rc.5与当前Console均在同一Session1；WTS锁标志为0、前景LockApp且窗口激活受阻，已排除控制器误连其他RDP会话。当时需本人实际解锁，不通过修改安全策略、凭据复制或降级宿主绕过。
+
+## 解锁后的继续执行
+
+维护者已在主会话真正提交“已解锁，继续回验”。Windows随后实际核实桌面可操作、前台PID32304对应原隔离rc.5，并返回同一历史会话；先前锁屏门槛已解除。接续回合为 `01a19f37-f9a5-7571-b9b9-524520bb0a23`，该阶段按六类序列及有界边界执行，结果见下；没有重装、重跑模型或以问卷选项代替现场证据。
+
+## 当前核收结论与平台维护
+
+两份[Windows原报告](./windows-rc5/ci5-source-text-retest/WINDOWS-CI5-SOURCE-TEXT-RETEST.zh.md)和[独立核收](./windows-rc5/ci5-source-text-retest/INTAKE-REVIEW.zh.md)已保存。六类操作序列按其实际预期通过，原输出故障两轮、键盘关闭后首次hover、明确新激活、跨字段独立和后续父Escape均有范围内实机观察；输入hover-click点击已关层，不称混合Escape通过。实际keydown/DOM目标/采样间短暂重开仍未知。
+
+原窗口strict padding无交叠条件；一次可逆task窗口1920×800调整后，原生场景两次回退NATIVE_NOT_AVAILABLE/记录404，strict仍SKIP，已恢复原Bounds。最后入口默认第3轮仅证明可开、不证明原答案锚定；hover后Space仍开的设置观察未分类，保留为稳定后待核，不用另一次再开通过覆盖。
+
+主会话02:54:01 UTC记账用户“50.28正在更新”，Windows02:55:25 UTC获知并记账；精确升级起止及版本未知。两条获准只读对照在02:54:27 UTC完成，原conversation/detail均404；它们不是当时GUI失败请求的取证。已停止新平台访问，维护说明与现象相容，但不认定唯一原因或resize因果。server原记录After没有可比较内容，零写操作/本地Session哈希不替代该After。接续按[更新后最小复核](./SOURCE-TEXT-POST-UPGRADE.zh.md)，不重跑无关矩阵或模型。
+
+task菜单正常退出，owned进程/端口释放，日常实例仍运行；1376可比摘要及四份旧报告不变，旧39 null/旧2差异/至少42mtime/未枚举新增路径等限制完整保留。结果为SCOPED_UI_RETEST_WITH_PLATFORM_MAINTENANCE_OPEN_ITEMS，releaseAcceptance=false，不代签人工或全局发布验收。代码和CI5包没有在回验后变化。

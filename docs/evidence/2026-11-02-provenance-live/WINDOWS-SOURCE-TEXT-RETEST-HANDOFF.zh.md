@@ -4,7 +4,7 @@
 
 ## 候选与启动门槛
 
-源码 `ae903656193d3fc5214469bc0e6ee1108e233075`，build-only CI [41548846010](https://github.com/openbkn-ai/bkn-dsh/actions/runs/41548846010)，publish=false。包版本仍是未发布的 `0.2.1-rc.3-openbkn.0.2.1-3`，不覆盖已发布-2。**CI已成功并通过实际包审计，Windows已接单执行回合 `01a19eb7-803e-7b02-8016-7188213a1492`，修后结果待核收。** 交付artifact13191140519，ZIP877540字节/SHA `ade22f125ead5bce70c29e06f22d509949ff0a006cd8047e8d6f8d81702e38f3`；TGZ877506字节/SHA `14f4bb7fb61c892017343c832fdc8b37d892706b9a7aa2146779eef00ee9e3ff`。只安装此实际CI包，不安装本地参考包或重测旧CI4。
+源码 `ae903656193d3fc5214469bc0e6ee1108e233075`，build-only CI [41548846010](https://github.com/openbkn-ai/bkn-dsh/actions/runs/41548846010)，publish=false。包版本仍是未发布的 `0.2.1-rc.3-openbkn.0.2.1-3`，不覆盖已发布-2。**CI已成功并通过实际包审计，Windows已接单执行回合 `01a19eb7-803e-7b02-8016-7188213a1492`，修后结果已按[原报告](./windows-rc5/ci5-source-text-retest/WINDOWS-CI5-SOURCE-TEXT-RETEST.zh.md)和[独立核收](./windows-rc5/ci5-source-text-retest/INTAKE-REVIEW.zh.md)接收。** 交付artifact13191140519，ZIP877540字节/SHA `ade22f125ead5bce70c29e06f22d509949ff0a006cd8047e8d6f8d81702e38f3`；TGZ877506字节/SHA `14f4bb7fb61c892017343c832fdc8b37d892706b9a7aa2146779eef00ee9e3ff`。只安装此实际CI包，不安装本地参考包或重测旧CI4。
 
 本地参考SHA `75a52410cb0de49d4554d220007e58aa3f5882666825d5f612453689160e4bcb`，126文件；client.js SHA `f7184c97d65d9bf72c192172f8e1815aee022d05df5c54905dc3c7a32c113e10`。相对CI4只有client.js变化，其余125文件逐字节相同；实际CI包与本地参考126/126文件及整段解压tar相同，只是gzip头不同；主会话与包审计worker各自完成字节核对后才派发，详见[CI5身份](./CI5-ARTIFACT-IDENTITY.json)。
 
@@ -30,6 +30,12 @@
 
 完成长GUI回合后先给摘要和两报告原始字节数/SHA，主会话另起短回合读取原文件字节并base64导出。私有截图/UIA原件留远程，不混入公开Git证据。无额外CI、commit/push、merge/tag/publish/latest操作由Windows执行。
 
-## 当前执行门槛
+## 历史锁屏门槛（已解除）
 
 CI5安装后的126文件匹配已由远程回报；LockApp.exe锁屏使task窗口无法激活，六类交互NOT_RUN。等待本人实际解锁Windows桌面，不重复DSH/OpenBKN登录，不以问卷默认选项当答复。不得绕过OS锁或修改安全策略，实际桌面可交互后继续原清单。
+
+## 已执行结果与接续
+
+实际解锁后回合01a19f37-f9a5-7571-b9b9-524520bb0a23已完成；六类基本序列和核心两轮采样通过，strict padding原窗口无交叠而SKIP，唯一普通task尺寸变更又遇原生不可读/404。窗口已恢复、task菜单退出，收态和原件保护已核收。
+
+维护者确认平台50.28正在更新，已停止新平台访问；严格padding及当前server可读/After、实际GUI失败请求身份，以及原入口默认第3轮/Space设置观察仍待稳定后核。按SOURCE-TEXT-POST-UPGRADE.zh.md最小接续，不自动重跑完整矩阵、模型或构建，不修改平台和模型内容，也不直接认定resize或升级为唯一原因。

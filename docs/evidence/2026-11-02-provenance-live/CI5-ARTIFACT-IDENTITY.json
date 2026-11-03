@@ -168,7 +168,7 @@
     "licenses/openbkn-studio.txt": "4d2c3b0629c7dc6f0f9b6dfb2b86b2c1993e14bbdb4a1afae16acaf42a5c7186",
     "package.json": "6f5276e393867fb06870da3bd1bb49e3a04157dd9be553b602b491c8ae846ecd"
   },
-  "nativeAcceptance": "PENDING; artifact identity and controlled CI do not establish Windows Desktop acceptance",
+  "nativeAcceptance": "SCOPED_UI_RETEST_WITH_PLATFORM_MAINTENANCE_OPEN_ITEMS; see ci5-source-text-retest receipt; not global release/post-upgrade acceptance",
   "publishRequested": false,
   "npmPublishStep": "skipped",
   "githubReleaseJob": "skipped",
