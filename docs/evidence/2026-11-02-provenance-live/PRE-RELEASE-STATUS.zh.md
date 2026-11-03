@@ -1,6 +1,6 @@
 # -3 当前验收状态与发布前待办
 
-**SourceText修复接续（2026-11-03）**：本地最小修复及必要检查已完成，只有Scene内原文弹层变化。插件825通过/1既有Windows专项跳过、仓库79/79、包126文件；本地包相对CI4仅client.js不同。纯hover保持不夺焦/父层Escape归属；明确进入原文层后仅关子层，覆盖完整popup padding及键盘关闭后的首次hover。真实浏览器矩阵及加强断言已独立核收；修复ae90365已推送，PR独立批准及CodeQL通过，[新build-only CI41548846010](https://github.com/openbkn-ai/bkn-dsh/actions/runs/41548846010)已成功，实际TGZ14f4bb7f…与本地126文件/tar相同、相对CI4仅client.js变，发布均跳过；Windows指定会话已接单运行[精确新包定向回验](./WINDOWS-SOURCE-TEXT-RETEST-HANDOFF.zh.md)。**旧Windows FAIL和所有UNKNOWN继续保留，新候选CI通过，尚无Windows修后验收结论。** 见[修复记录](./SOURCE-TEXT-FIX.zh.md)。以下CI4结果均指旧包。
+**SourceText修复接续（2026-11-03）**：本地最小修复及必要检查已完成，只有Scene内原文弹层变化。插件825通过/1既有Windows专项跳过、仓库79/79、包126文件；本地包相对CI4仅client.js不同。纯hover保持不夺焦/父层Escape归属；明确进入原文层后仅关子层，覆盖完整popup padding及键盘关闭后的首次hover。真实浏览器矩阵及加强断言已独立核收；修复ae90365已推送，PR独立批准及CodeQL通过，[新build-only CI41548846010](https://github.com/openbkn-ai/bkn-dsh/actions/runs/41548846010)已成功，实际TGZ14f4bb7f…与本地126文件/tar相同、相对CI4仅client.js变，发布均跳过；Windows指定会话已接单运行[精确新包定向回验](./WINDOWS-SOURCE-TEXT-RETEST-HANDOFF.zh.md)。**旧Windows FAIL和所有UNKNOWN继续保留，新候选CI通过，尚无Windows修后验收结论。** 见[修复记录](./SOURCE-TEXT-FIX.zh.md)。以下CI4结果均指旧包。 Windows后续已回报新包安装126/126匹配，但当前LockApp.exe锁屏、task激活受阻，六类交互NOT_RUN；等待本人解锁Windows桌面，安装不等于原生验收。
 
 2026-11-03更新。提交、推送、CI4出包/审计、Mac受影响回归和Windows官方DSH Desktop0.2.1-rc.5的本轮E2E执行及收态均已完成。**Windows专项已核收并连续两次复现输出原文Escape留驻；原回执仍为PARTIAL_LIVE_NOT_RELEASE_ACCEPTANCE，原W3 FAIL保留，不能称全部发布或人工验收通过。** PR #121保持草稿，未合并、打标签、发布或移动latest。
 
@@ -15,7 +15,7 @@
 
 ## 仍需处理的事项
 
-1. **修复已复现的W3边界并确认纯hover的Escape归属。** [六例专项原报告](./windows-rc5/source-text-review/WINDOWS-CI4-SOURCE-TEXT-REVIEW.zh.md)及[独立复核](./windows-rc5/source-text-review/INTAKE-REVIEW.zh.md)已按原字节/SHA核收：输出hover后在重叠坐标点击popup section，Escape后指针留驻，连续两次弹层仍可见、父详情保留、焦点回搜索框。两个键盘例正常；两条纯hover会连父详情关闭，不能作交互通过；输入hover-click因点击已关层没有发送Escape。DOM派发目标、是否短暂关闭后重开、平台同序列行为仍未知。本轮新增问答/生成/分析/业务写入均0。应先补确定性失败回归，区分JSDOM事件/焦点/计时与浏览器真实布局/遮挡pointer覆盖，再作最小修复和精确新包Windows受影响回验。无需再换模型或重跑完整E2E，旧FAIL不覆盖。
+1. **完成CI5精确包的Windows受影响回验。** 已通过[六例专项原报告](./windows-rc5/source-text-review/WINDOWS-CI4-SOURCE-TEXT-REVIEW.zh.md)确认旧CI4输出重叠点击后Escape留驻连续两次复现。随后先补失败回归再作SourceText最小修复，JSDOM新增9例、真实浏览器布局/pointer/完整popup padding和键盘首hover均已通过，CI5实际包也已审计。纯hover不夺焦、外部搜索焦点Esc归父详情的DSH适配策略已明确；不是平台现场同序列一致性证明。Windows已回报CI5安装126/126匹配，但同Session1的Console、MCP与task正处LockApp锁屏，六类原生交互NOT_RUN，等待本人实际解锁后继续[定向回验](./WINDOWS-SOURCE-TEXT-RETEST-HANDOFF.zh.md)。旧FAIL和DOM/短暂重开的原现场UNKNOWN保持，受控机制不替代原生结果。本轮问答/生成/分析/业务写入均0，不重跑完整E2E。
 2. **保留平台内容及分析输入的限制。** 平台原Markdown占位、缺失调用和invalid原因忠实保留；Mac及Windows分析均有not_evaluable/0建议，不作为业务质量通过。实际分析时POST/provider最终输入及原始SSE未捕获，不能据模型自述认定插件丢输入。插件不清洗、补造、重判或应用建议。
 3. **明确未覆盖的原生声明范围。** Windows在途取消/低权限拒绝/异常网络、内存加载版本与Desktop build等仍未知；大记录、managed父子/共享输入及两种图谱全屏的未覆盖组合不从其他机器、旧候选或受控测试补记。此次不再安排早于rc.5的Windows宿主；不同/未来Host兼容也不由本轮概括。
 4. **保留已知适配差异。** partial搜索不补全；HTTP失败使用安全分类、不透传任意错误体；detail不可读时KN预检不走平台Trace Markdown回退。UI基于固定Studio release来源，不代表未发布main逐项一致；重复依赖体积为后续项，知识网络目录未改版。

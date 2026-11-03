@@ -166,10 +166,11 @@
   },
   "evidenceBoundary": "Linux CI with two controlled official npm runtimes, a stand-in platform and a scripted model. No native Windows Desktop, real-platform/model-quality, human or global release acceptance is inferred. The new Windows affected retest is tracked separately; all CI4 failures and unknowns remain intact.",
   "affectedWindowsRetest": {
-    "status": "DISPATCHED and active; no result yet, not established by CI audit",
+    "status": "installed126 files reported matched; native interactions NOT_RUN pending human Windows desktop unlock",
     "targetHost": "official Windows Desktop0.2.1-rc.5 only",
     "turnId": "01a19eb7-803e-7b02-8016-7188213a1492",
-    "handoff": "WINDOWS-SOURCE-TEXT-RETEST-HANDOFF.zh.md"
+    "handoff": "WINDOWS-SOURCE-TEXT-RETEST-HANDOFF.zh.md",
+    "nativeCasesExecuted": 0
   },
   "preservedPriorCandidate": {
     "runId": 41444758077,

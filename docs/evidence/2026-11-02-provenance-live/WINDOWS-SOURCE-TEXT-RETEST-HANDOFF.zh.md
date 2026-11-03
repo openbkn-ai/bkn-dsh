@@ -29,3 +29,7 @@
 正常菜单退出task实例，按fresh Before/After/current核查owned进程和端口、可读清单及协议恢复。继续保留39不可比、旧2文件变化和至少42mtime观察等历史限制，不能用新基线抹掉旧问题。不要全局kill或强行回滚日常文件。
 
 完成长GUI回合后先给摘要和两报告原始字节数/SHA，主会话另起短回合读取原文件字节并base64导出。私有截图/UIA原件留远程，不混入公开Git证据。无额外CI、commit/push、merge/tag/publish/latest操作由Windows执行。
+
+## 当前执行门槛
+
+CI5安装后的126文件匹配已由远程回报；LockApp.exe锁屏使task窗口无法激活，六类交互NOT_RUN。等待本人实际解锁Windows桌面，不重复DSH/OpenBKN登录，不以问卷默认选项当答复。不得绕过OS锁或修改安全策略，实际桌面可交互后继续原清单。

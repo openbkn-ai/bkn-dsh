@@ -2,7 +2,7 @@
 
 ## 发布前 CI 与远程 E2E（2026-11-02）
 
-**原文层局部修复（2026-11-03）**：已先复现再修复留驻hover重开，并补齐开发中发现的键盘关闭后首hover、popup padding边界。仅SourceText生产源码变化，本地插件825通过/1既有Windows专项跳过、仓库79/79、包126文件；相对旧CI4仅client.js不同。纯hover不夺焦且Escape仍归父详情，显式进入原文层后Escape只关子层。修复ae90365已推送、独立评审和CodeQL通过，[新build-only CI41548846010](https://github.com/openbkn-ai/bkn-dsh/actions/runs/41548846010)成功，实际TGZ14f4bb7f…/126文件已独立审计；指定Windows会话已开始精确新包定向回验，旧FAIL/UNKNOWN保持，见[修复与回验记录](../../evidence/2026-11-02-provenance-live/SOURCE-TEXT-FIX.zh.md)。
+**原文层局部修复（2026-11-03）**：已先复现再修复留驻hover重开，并补齐开发中发现的键盘关闭后首hover、popup padding边界。仅SourceText生产源码变化，本地插件825通过/1既有Windows专项跳过、仓库79/79、包126文件；相对旧CI4仅client.js不同。纯hover不夺焦且Escape仍归父详情，显式进入原文层后Escape只关子层。修复ae90365已推送、独立评审和CodeQL通过，[新build-only CI41548846010](https://github.com/openbkn-ai/bkn-dsh/actions/runs/41548846010)成功，实际TGZ14f4bb7f…/126文件已独立审计；指定Windows会话已核新包安装126文件，但Windows桌面锁屏，原生交互NOT_RUN，待本人解锁后继续；旧FAIL/UNKNOWN保持，见[修复与回验记录](../../evidence/2026-11-02-provenance-live/SOURCE-TEXT-FIX.zh.md)。
 
 **原文层专项（2026-11-03已核收）**：指定Sol/MAX会话完成六类序列及一次有界确认。输出hover后点击覆盖trigger的弹层section，Escape后指针留驻，连续两次弹层仍可见；两个键盘例正常。两条纯hover会同时关闭父详情，需确认交互预期；输入hover-click已点击关层，未发Escape。DOM派发目标、短暂关闭后重开和平台对照仍未知，旧W3 FAIL保留，不能称六例全通过。本轮业务问答/依据生成/BKN Agent分析/业务写入均0，原件和精确CI4包不变。下一步是确定性回归、最小修复和受影响Windows回验，见[独立复核](../../evidence/2026-11-02-provenance-live/windows-rc5/source-text-review/INTAKE-REVIEW.zh.md)。
 
