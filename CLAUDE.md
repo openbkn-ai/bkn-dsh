@@ -1,5 +1,13 @@
 # CLAUDE.md
 
+## Authorized platform 0.2.1 compatibility before release (2026-11-03)
+
+The maintainer now authorizes continuing release preparation and explicitly chooses to add platform0.2.1 compatibility before publication while retaining older supported versions. This supersedes the previous local-only checkpoint for the required feature-branch pushes, review and build-only candidate work. Keep publication pending final artifact and affected isolated acceptance; do not treat the npm0.2.1-rc.1 or Foundry main snapshot as the final0.2.1 release. Formal CLI0.2.1 and an identified0.2.1 acceptance deployment are not yet verified available.
+
+Limit changes to the fixed CLI0.2.1 installation target, corresponding version guidance/tests, independent new platform contract fixtures and any separately justified compatibility correction. The plugin does not directly depend on the OpenBKN SDK; do not add or upgrade one merely to match a version label. Preserve explicit installation, existing-CLI protection, old targets, TLS and official version checks. Never bypass BKN_SKIP_VERSION_CHECK or rewrite platform schemas/arguments/results/model answers. New metric version/query requirements remain platform/model-owned and new tools remain denied until separately reviewed. Preserve historical fixtures and all accepted CI5 artifacts. Existing Windows passes are not rerun merely for bookkeeping.
+
+The previously designated Mac chat is continuing only the CI5 SourceText affected read-only acceptance on official Desktop0.2.1-rc.5. No new question, explanation, analysis or business write is included in that task. Its result remains tied to the exact CI5 artifact, separately from the forthcoming CLI/platform compatibility candidate. See the platform compatibility handoff and evidence record added with this increment.
+
 ## Scoped schema-extractor maintenance and issue #120 closeout (2026-11-03)
 
 The maintainer authorizes the offline test-tool repair and the evidence-based status update for issue #120. The extractor now removes documentation only at known JSON Schema positions, preserving same-named data properties and literal data. Fifteen focused Python regressions pass; an offline real-Go projection of fixed formal source81d575 restores exactly three optional description fields. New output records the actual generation time and projection version and refuses to overwrite an existing path. Historical fixtures and raw acceptance reports remain unchanged. See docs/evidence/2026-11-02-provenance-live/schema-extractor-maintenance/README.zh.md. This maintenance stays local; no production/package change, passed business/model replay, build CI or publication is included.

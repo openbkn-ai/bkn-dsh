@@ -1,0 +1,75 @@
+{
+  "checkedAtUtc": "2026-11-03T07:19:52.641442+00:00",
+  "baselineCommit": "b16be10272edcae6267ddadda4ca8b851e3ad02e",
+  "productionScope": "Only the four listed CLI install-version/type/UI/locale files; no auth/MCP/Reader/guard/SourceText implementation change.",
+  "productionSourceSha256": {
+    "packages/openbkn-business-context/src/cli-setup.ts": "f64f9265a5e2f1008ff20f689ff59cc063c8364680abb12e0b09b8f0155d38ac",
+    "packages/openbkn-business-context/src/client/CliSetupControl.tsx": "e4a72d3296e4d7a7d6761b79480ccf779738d233f30d5645798e8ddce05fc425",
+    "packages/openbkn-business-context/src/client/locales.ts": "9e97d9c8470a6ead049b4adbfdc4328aec6d6c1ca193adcb7ad47d5aa65fc006",
+    "packages/openbkn-business-context/src/types.ts": "3f3b6129b14e35e8f150ac8aad62130d9d702a26b8774a2f8a756b0bc7c8c24f"
+  },
+  "localChecks": {
+    "plugin": {
+      "path": "release/platform021-compat-20261103/plugin-test.log",
+      "bytes": 87745,
+      "sha256": "ef62bc24c51c8fa7feaeef9d63de41b92864952b4172f872f76dc95b483a4d01",
+      "counts": {
+        "tests": 845,
+        "pass": 844,
+        "fail": 0,
+        "skipped": 1
+      }
+    },
+    "repository": {
+      "path": "release/platform021-compat-20261103/repo-test.log",
+      "bytes": 10957,
+      "sha256": "9d3b7988016e6fd72202eb7438104a7472904ebac1b625930634533af3478955",
+      "counts": {
+        "tests": 79,
+        "pass": 79,
+        "fail": 0,
+        "skipped": 0
+      }
+    },
+    "typecheck": {
+      "path": "release/platform021-compat-20261103/typecheck.log",
+      "bytes": 75,
+      "sha256": "e9bde1b9c430b1f263cf72baa9160a680b8c6a2046c94728f535c5a45341fd3b"
+    },
+    "packageAudit": {
+      "path": "release/platform021-compat-20261103/package-check.log",
+      "bytes": 342,
+      "sha256": "7fe43de3dc9602e71dca8c58578387f14a3cac1b5a905a4735569b94b5698451"
+    }
+  },
+  "controlledCliFocused": {
+    "tests": 74,
+    "passed": 74,
+    "newTestMethods": 9,
+    "originalSelectedRun": {
+      "tests": 10,
+      "failed": 8,
+      "passed": 2
+    }
+  },
+  "platformSourceContract": {
+    "tests": 10,
+    "passed": 10,
+    "source": "1a3a76edb993d3944afb94a135392d33c90a0432",
+    "boundary": "Selected source preparation contracts, not final platform0.2.1 or live acceptance; first harness failures were corrected to use the official MCP factory, not claimed as production red-green."
+  },
+  "sdkCliLoopback": {
+    "tests": 16,
+    "passed": 16,
+    "versions": [
+      "0.2.0",
+      "0.2.1-rc.1"
+    ],
+    "boundary": "Actual public packages, synthetic HTTP loopback and temporary synthetic stores; no real platform, TLS or native Host acceptance."
+  },
+  "packageVersion": "0.2.1-rc.3-openbkn.0.2.1-3",
+  "finalCli021AndNativeAcceptance": "PENDING",
+  "existingCi5Sha256": "14f4bb7fb61c892017343c832fdc8b37d892706b9a7aa2146779eef00ee9e3ff",
+  "publishedAssetsChanged": false,
+  "businessOrModelExecutionInitiatedByMainTask": 0
+}

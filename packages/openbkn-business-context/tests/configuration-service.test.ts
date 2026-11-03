@@ -173,8 +173,25 @@ test('native editing preserves raw expression nodes outside the two submitted fi
 
 test('Host rejects arbitrary install versions before querying configuration or subprocess', async () => {
   const f = fixture()
-  for (const target of ['latest', '0.2.1', '0.2.0\n--other', null, {}]) {
+  for (const target of ['latest', 'rc', '0.2.1-rc.1', '^0.2.1', '0.2.2', '0.2.1\n--other', null, {}]) {
     assert.equal((await f.service.installCli('openbkn', target as never)).reason, 'unsupported-version')
   }
   assert.equal(f.calls(), 0)
+})
+
+test('Host forwards the explicit 0.2.1 install target but preserves the running-turn gate', async () => {
+  const f = fixture({ baseUrl: 'https://platform.example', cliPath: 'openbkn' })
+  const installs: unknown[][] = []
+  const ready = { state: 'ready', canInstall: false, resolvedPath: '/tools/openbkn', version: '0.2.1' }
+  Object.defineProperty(f.service, 'cliSetup', { value: {
+    isInstalling: false,
+    async install(...args: unknown[]) { installs.push(args); return ready },
+  } })
+  assert.deepEqual(await f.service.installCli('openbkn', '0.2.1'), ready)
+  assert.deepEqual(installs, [['openbkn', '0.2.1']])
+  f.setRunning(true)
+  assert.deepEqual(await f.service.installCli('openbkn', '0.2.1'), { state: 'blocked', canInstall: false, reason: 'busy' })
+  assert.equal(installs.length, 1)
+  assert.equal(f.calls(), 0)
+  assert.deepEqual(f.entry.options.config, { baseUrl: 'https://platform.example', cliPath: 'openbkn' })
 })

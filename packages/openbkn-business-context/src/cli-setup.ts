@@ -7,7 +7,7 @@ import type { OpenBknCliInstallVersion, OpenBknCliSetupView } from './types.js'
 
 export const CLI_INSTALL_VERSION = '0.1.5'
 export function isCliInstallVersion(value: unknown): value is OpenBknCliInstallVersion {
-  return value === '0.1.5' || value === '0.2.0'
+  return value === '0.1.5' || value === '0.2.0' || value === '0.2.1'
 }
 const OUTPUT_LIMIT = 16 * 1024
 const INSPECT_MS = 5_000

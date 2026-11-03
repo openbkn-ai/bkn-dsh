@@ -136,3 +136,16 @@ test('an automatically detected CLI is not mismatched until a platform version i
   assert.match(cliSetupMessage({ phase: 'missing', result: missing }, undefined, '0.1.5'), /安装 0.1.5/)
   assert.match(cliSetupMessage({ phase: 'missing', result: missing }, undefined, '0.2.0'), /安装 0.2.0/)
 })
+
+test('an explicit 0.2.1 selection reaches Host unchanged and retains the no-upgrade warning', async () => {
+  const received: string[] = []
+  const controller = new CliSetupController({ checkCli: async () => missing, installCli: async (_path, target) => {
+    received.push(target); return { ...ready, version: target }
+  } }, () => {})
+  try {
+    await controller.detectAndInstall('openbkn', '0.2.1')
+    assert.deepEqual(received, ['0.2.1'])
+    assert.match(cliSetupMessage({ phase: 'missing', result: missing }, undefined, '0.2.1'), /安装 0.2.1/)
+    assert.match(cliSetupMessage({ phase: 'ready', result: { ...ready, version: '0.2.0' } }, '/tools/openbkn', '0.2.1'), /平台版本为 0.2.1.*不会覆盖/)
+  } finally { controller.dispose() }
+})

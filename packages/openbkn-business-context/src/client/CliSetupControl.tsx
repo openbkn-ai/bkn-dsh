@@ -34,7 +34,7 @@ export function CliSetupControl({ cliPath, savedCliPath, disabled, port, onResol
   return <div>
     <label style={{ fontSize: 13 }}>{t('cLIInstallationVersion')}<select aria-label={t('cLIInstallationVersionText1')} disabled={disabled || lockPath} value={state.result?.targetVersion ?? targetVersion ?? ''} onChange={event => setTargetVersion(event.target.value as OpenBknCliInstallVersion)}>
       <option value="" disabled>{t('selectAVersion')}</option>
-      <option value="0.1.5">0.1.5</option><option value="0.2.0">0.2.0</option>
+      <option value="0.1.5">0.1.5</option><option value="0.2.0">0.2.0</option><option value="0.2.1">0.2.1</option>
     </select></label>
     <p role="status" aria-live="polite" style={{ margin: '10px 0', fontSize: 13, color: '#64748b', lineHeight: 1.6 }}>{cliSetupMessage(state, savedCliPath, targetVersion, t)}</p>
     {state.phase !== 'ready' ? <>

@@ -2,6 +2,7 @@
 
 ## 0.2.1-rc.3-openbkn.0.2.1-3 (unreleased)
 
+- Add a fixed official CLI0.2.1 installation target while retaining0.1.5/0.2.0, explicit selection and existing-installation protection. Preserve the official platform-version check and TLS policy; do not add a direct OpenBKN SDK dependency. Cover the new metric/lifecycle source contracts without rewriting platform schemas, arguments, results or model answers. Final0.2.1 artifact and isolated deployment acceptance remain pending; RC/source and loopback probes are preliminary evidence.
 - Reuse the platform business-provenance detail layout inside the current DSH conversation: exact answer/round selection, time and evidence chains, operation inspectors, managed-function internal calls, original input/output, Markdown export, explanation actions and BKN Agent analysis/history. Omit the platform list-back action because DSH already supplies the conversation context.
 - Keep platform-owned facts, unknown fields, failure/invalid states and reasons unchanged. Derive platform/conversation identity in the Host, validate same-conversation round membership and network scope, and cancel stale reads/actions after session or authorization changes. No answer arbitration, corrective turns, business calculations or automatic application of Agent suggestions.
 - Preserve the managed tool catalogue and routing fixes, including omission of network-scoped legacy skill definitions without a declared kn_id; retain the execution guard and existing scoped CSV behavior.
