@@ -1,6 +1,12 @@
 # 平台更新后的受影响复核
 
-## 本次接续结果（公开原件已核收）
+## 发布疑点的必要补核（当前）
+
+在同一CI5/14f4bb7f及官方Windows rc.5上，已完成不手选轮次的真实两答案3→2锚定：实际S/M、Host C/initialI/currentI/KN、detail I与可见47/4调用相符。82压缩字节差异已证明仅追加Host end-seed空data一帧，旧265完整记录和binding不变，非业务损坏。当前MCP25目录及schema无损留存，三处可选输出数据属性来自旧extractor信息损失，固定正式source补证与现场一致；未新增tools/call或模型。主会话另补齐了实际平台运行镜像/Ready与入口时点快照。
+
+三份[最终原件及必要限定](./windows-rc5/ci5-anchor-session-audit/INTAKE-REVIEW.zh.md)已核收；见[明确发布判断](./RELEASE-GATE-TRIAGE.zh.md)和[MCP来源分级](./MCP-CONTRACT-TRIAGE.zh.md)。本轮疑点未见需改现有包的产品阻断，opaque handle/每hop、部分loadedVersion、Space瞬态、serverAfter和历史caller未知不再一概当功能故障。整体发布仍走正常流程；不代签全版本、所有业务调用或人工验收，不自动合并/标签/发布/latest。以下保留旧阶段当时的PARTIAL/UNKNOWN，不回填历史通过。
+
+## 前一阶段接续结果（历史原件已核收）
 
 维护者确认环境就绪，声明目标为OpenBKN 0.2.0正式版。Windows原会话已完成只读接续，固定CI5/source ae90365/TGZ14f4bb7f及官方DSH Desktop 0.2.1-rc.5。两份[最终公开原件](./windows-rc5/ci5-post-upgrade/WINDOWS-CI5-POST-UPGRADE.zh.md)按字节数和SHA完整接收，主会话与独立只读评审核收一致，见[核收及剩余限制](./windows-rc5/ci5-post-upgrade/INTAKE-REVIEW.zh.md)。结果为SCOPED_COMPLETED_WITH_RUNTIME_ANCHOR_UNKNOWNS，不是完整发布验收。
 

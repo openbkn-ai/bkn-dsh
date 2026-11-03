@@ -1,0 +1,52 @@
+{
+  "kind": "read-only-thread-tool-argument-excerpt",
+  "executionTurnId": "01a19fd1-3eef-7e51-8ceb-53a44c710603",
+  "threadId": "01a19c6a-e785-7f82-a5b4-cda473951fa6",
+  "hostId": "remote-control:env_e_6abf8babb404832890d7c5124118ed3c",
+  "source": "read_thread includeOutputs=false tool Type arguments, retrieved by main chat after raw report intake",
+  "evidenceBoundary": "Shows the recorded text entered through the UI automation tool, including repeated edits. These expressions read current locals/result fields and contain no expected S/M/C/I/KN literal values. This excerpt alone is not a private screenshot, evaluated console output, or proof of each installed source location; pair with the received audit observations. No GUI or platform action was rerun.",
+  "expressions": [
+    {
+      "executionTurnId": "01a19fd1-3eef-7e51-8ceb-53a44c710603",
+      "toolCallId": "exec-71698cc4-262d-4f6c-92c3-e43e4e7de03b",
+      "tool": "Type",
+      "text": "JSON.stringify({p:\"anchor-factory\",s:sessionId,m:messageId})"
+    },
+    {
+      "executionTurnId": "01a19fd1-3eef-7e51-8ceb-53a44c710603",
+      "toolCallId": "exec-5aafa4a2-9cd3-4339-813e-3851fe6ece64",
+      "tool": "Type",
+      "text": "JSON.stringify({p:\"anchor-context\",q:request,e:event})"
+    },
+    {
+      "executionTurnId": "01a19fd1-3eef-7e51-8ceb-53a44c710603",
+      "toolCallId": "exec-c8ad423e-8f40-448b-a8b1-7f109a0d69fc",
+      "tool": "Type",
+      "text": "JSON.stringify({p:\"anchor-detail\",q:request,i:value?.interaction_id,n:value?.operations?.length})"
+    },
+    {
+      "executionTurnId": "01a19fd1-3eef-7e51-8ceb-53a44c710603",
+      "toolCallId": "exec-1e8ac035-b6e1-477d-91b8-363ff12b1a42",
+      "tool": "Type",
+      "text": "JSON.stringify({p:\"anchor-detail\",q:request,i:value?.interaction_id,n:value?.operations?.length})"
+    },
+    {
+      "executionTurnId": "01a19fd1-3eef-7e51-8ceb-53a44c710603",
+      "toolCallId": "exec-3040ce61-63c4-4157-bf73-e3307720c386",
+      "tool": "Type",
+      "text": "JSON.stringify({p:\"anchor-factory\",s:sessionId,m:messageId})"
+    },
+    {
+      "executionTurnId": "01a19fd1-3eef-7e51-8ceb-53a44c710603",
+      "toolCallId": "exec-adbb9a3c-49e1-47c8-8b79-8bf3a54a954c",
+      "tool": "Type",
+      "text": "JSON.stringify({p:\"anchor-context\",q:request,e:event})"
+    },
+    {
+      "executionTurnId": "01a19fd1-3eef-7e51-8ceb-53a44c710603",
+      "toolCallId": "exec-87af86b3-2e4e-4e8b-9c5d-379167af65fc",
+      "tool": "Type",
+      "text": "JSON.stringify({p:\"anchor-detail\",q:request,i:value?.interaction_id,n:value?.operations?.length})"
+    }
+  ]
+}

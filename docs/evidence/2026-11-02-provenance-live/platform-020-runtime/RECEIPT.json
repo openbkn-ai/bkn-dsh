@@ -1,0 +1,92 @@
+{
+  "source": "main chat current read-only Kubernetes/Docker safe metadata capture; no platform/Host/package changes",
+  "sourceDirectory": "release/provenance-live-20261103-source-text/platform-runtime-audit-20261103T052219Z",
+  "observedLocalDate": "2026-11-03",
+  "timezone": "Asia/Taipei",
+  "localObservationInterval": "2026-11-03T13:22:19.521262+08:00/2026-11-03T13:22:20.083205+08:00",
+  "independentReadOnlyReview": true,
+  "files": [
+    {
+      "file": "workloads.tsv",
+      "bytes": 2629,
+      "sha256": "2e21b0acbb1e7ceedaad0d0c35e5816d2fd47c378bf0bcacef9a946429acfd6b"
+    },
+    {
+      "file": "pods.tsv",
+      "bytes": 8045,
+      "sha256": "55a6800c33f9d76da73e3db7721f5ea1c12fa70ed5e87e7331c0392353cc8693"
+    },
+    {
+      "file": "ingress-routes.tsv",
+      "bytes": 1782,
+      "sha256": "a6dace083be5ca2349baeefaed5a7370b1e445bf09ac974e39a4677845ca2f85"
+    },
+    {
+      "file": "nodes.tsv",
+      "bytes": 72,
+      "sha256": "80c56025c6c1d0b8283dedcd99d8a5a517bda7c689a0ffa581625f863d696275"
+    },
+    {
+      "file": "kind-published-ports.tsv",
+      "bytes": 90,
+      "sha256": "e50a09c62d96d97847ebdb38455dd3ef6403c7a692f889f301d561138f3d09b8"
+    },
+    {
+      "file": "MANIFEST.json",
+      "bytes": 1575,
+      "sha256": "396c88ea9853d3861cb9f7927120dd8b7f2626aab94a5af4648d126e9b57ac61"
+    }
+  ],
+  "columnSchemas": {
+    "workloads.tsv": [
+      "kind",
+      "name",
+      "generation",
+      "observedGeneration",
+      "desiredReplicas",
+      "readyReplicas",
+      "updatedReplicas",
+      "specContainerNames",
+      "specContainerImages"
+    ],
+    "pods.tsv": [
+      "name",
+      "uid",
+      "phase",
+      "node",
+      "podReadyCondition",
+      "ownerKinds",
+      "containerStatuses(name|image|imageID|ready|restartCount;)"
+    ],
+    "ingress-routes.tsv": [
+      "name",
+      "ingressClassName",
+      "routes(path|serviceName|servicePort;)"
+    ],
+    "nodes.tsv": [
+      "name",
+      "uid",
+      "kubeletVersion",
+      "nodeReadyCondition"
+    ],
+    "kind-published-ports.tsv": [
+      "name",
+      "publishedPorts"
+    ]
+  },
+  "summary": {
+    "deployments": 21,
+    "generationObservedMatches": 21,
+    "desiredReadyUpdatedOne": 21,
+    "availableReplicas": "NOT_COLLECTED",
+    "pods": 23,
+    "runningReadyPods": 22,
+    "succeededMigrationJobs": 1,
+    "containerStatuses": 25,
+    "readyContainerStatuses": 24,
+    "exact020ApplicationDeployments": 15,
+    "all25ContainerStatusesHaveRuntimeDigest": true
+  },
+  "gateScope": "environment/actual-image-identity portion verified for this snapshot; live MCP catalogue independent; not universal formal-version equivalence or business acceptance",
+  "sourceCommitMapping": "UNKNOWN; provenance limitation, runtime tags/digests directly observed"
+}

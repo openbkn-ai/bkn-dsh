@@ -293,5 +293,7 @@
     "rawSizesHashesAndSceneSourcesVerified": true,
     "comparisonMatchesSourceSummary": true,
     "method": "observational Scene-only comparison, not a complete CI4/CI5 package replay or a new outcome-equality assertion suite"
-  }
+  },
+  "releaseGateDisposition": "Space transition evidence remains bounded, not a standalone release blocker; runtime anchor and copy concerns separately closed by current real-entry audit",
+  "releaseGateReview": "RELEASE-GATE-TRIAGE.zh.md"
 }

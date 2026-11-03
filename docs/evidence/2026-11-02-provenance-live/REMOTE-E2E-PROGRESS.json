@@ -1,6 +1,6 @@
 {
   "date": "2026-11-02",
-  "status": "CI5 scoped post-ready Windows follow-up received and independently reviewed; strict padding sampled PASS, anchor PARTIAL and Space observation/identity limits retained; no global release acceptance",
+  "status": "Targeted Windows runtime anchoring and session-byte semantics verified; actual platform image identity/current MCP metadata reviewed; no product blocker identified in authorized audit; normal release workflow remains",
   "source": "remote CI3 and CI4 public reports received byte-for-byte and SHA-verified; private originals remain remote",
   "threadId": "01a15340-6507-7660-a68d-68994e283415",
   "hostId": "remote-control:env_e_6ac8760a8c308328a9dcf5dc28dd0d18",
@@ -24,7 +24,7 @@
   },
   "sourceMarkdownObservation": "platform original Markdown contains160occurrences of 请求失败。; no plugin cleaning or rewriting",
   "pendingEvidence": [
-    "Post-ready strict native padding passed at genuine sampled geometry; runtime full answer anchoring remains partial, Space is classified preopen observation, service identity/contracts and server After unverified",
+    "focal runtime-anchor/copy/image/catalogue gates closed; normal release workflow and bounded evidence/claim disclosures remain, not every UNKNOWN is a product blocker",
     "native in-flight cancellation, denial/low-privilege/abnormal network paths where safely executable",
     "uncovered final-candidate large/nested/shared-input scenarios, not extrapolated from other machines",
     "analysis-time POST/provider frames and loaded-version/build/exit-code fields remain UNKNOWN"
@@ -306,12 +306,58 @@
       "strictPaddingLimit": "genuine inner padding point outside section and inside own output trigger; true section focus, stationary Escape; child closed and parent retained at discrete sampled times through about3s only; nominal0.5 sample starts about665ms",
       "cleanup": "normal menu exit; task PIDs/port65235 absent; original Bounds/showCmd restored; day processes UTC identity and port58794 retained;1376 current file hashes/6 old reports/original Session/binding/protocol unchanged; historical exclusions retained",
       "isolatedSessionCopy": "349153 bytes versus original349071;82-byte difference origin UNKNOWN; each individually unchanged this followup",
-      "serverAfter": "NOT_MEASURED;69244-byte detail is pre-GUI gate, zero business writes is not server immutability proof"
+      "serverAfter": "NOT_MEASURED;69244-byte detail is pre-GUI gate, zero business writes is not server immutability proof",
+      "historicalPhase": true,
+      "currentFollowup": "releaseGateAudit"
+    },
+    "releaseGateAudit": {
+      "status": "NO_PRODUCT_BLOCKER_IDENTIFIED_IN_AUTHORIZED_AUDIT",
+      "sourceCommit": "ae903656193d3fc5214469bc0e6ee1108e233075",
+      "ciRun": 41548846010,
+      "artifactTgzSha256": "14f4bb7fb61c892017343c832fdc8b37d892706b9a7aa2146779eef00ee9e3ff",
+      "technicalDecision": {
+        "session82Bytes": "PASS_CLASSIFIED_HOST_METADATA_APPEND",
+        "crossAnswerAnchor": "PASS_SCOPED_REAL_ENTRY",
+        "liveMcpMetadata": "PASS_CAPTURE_AND_CLASSIFICATION_WITH_LIMITS",
+        "blockingFindingsInAuthorizedScope": [],
+        "wholeReleaseAccepted": false,
+        "releaseDecision": "Not made by this audit. No merge, publication, tagging or release action.",
+        "allSchemasCompletelyEqual": false
+      },
+      "report": "windows-rc5/ci5-anchor-session-audit/WINDOWS-CI5-ANCHOR-SESSION-AUDIT.json",
+      "reportSha256": "927ff267031a767cd5b5b1f103bf26ba02c3f62175f1ba8372be3e57b2dc23cc",
+      "catalogue": "windows-rc5/ci5-anchor-session-audit/MCP-TOOLS-CATALOGUE.json",
+      "catalogueSha256": "33731e33d4c564dc32556a89692823e3bddc72860411d37a5aa150633994c645",
+      "intake": "windows-rc5/ci5-anchor-session-audit/INTAKE-REVIEW.zh.md",
+      "triage": "RELEASE-GATE-TRIAGE.zh.md",
+      "imageRuntimeIntake": "platform-020-runtime/INTAKE-REVIEW.zh.md",
+      "mcpSourceReview": "MCP-CONTRACT-TRIAGE.zh.md",
+      "logpointArgumentEvidence": "windows-rc5/ci5-anchor-session-audit/LOGPOINT-ARGUMENT-EVIDENCE.json",
+      "normalSdkAuthenticationIsNotBusinessWrite": true,
+      "newBusinessQuestions": 0,
+      "newExplanationGenerations": 0,
+      "newAgentAnalyses": 0,
+      "platformBusinessWritesInitiated": 0,
+      "toolCallsForMcpMetadata": 0,
+      "actualImageIdentity": "verified at2026-11-03T13:22:19+08:00 snapshot;21Deployments,25runtime imageIDs; infrastructure/auxiliary version and registry-alias boundaries retained",
+      "directory": "25unique tools,25input+25output schemas,complete single page,18managed offered+7reviewed exclude,execute_skill/find_skills absent; no unclassified names or allowlist changes",
+      "runCodeSupplement": "current input/output JSON values equal separate formal0.2.0 historical live fixture including annotations/array order; caller shape compatible, no execution rerun",
+      "notClaimed": [
+        "whole release acceptance",
+        "all-tool runtime or model business quality",
+        "full schema equality to lossy historical projection",
+        "server-record After byte invariance",
+        "whole historical machine isolation"
+      ],
+      "remainingRequiredActions": "normal PR approval/merge and main candidate equivalence/release authorization, scope/limitation disclosure; no package change required by these findings",
+      "nonBlockingVerificationMaintenance": "make extractor annotation removal schema-position-aware; retain data properties nameddescription/title/examples/$comment and preserve old fixture provenance",
+      "globalReleaseAcceptance": false,
+      "publicationAuthorized": false
     }
   },
   "sourceTextCorrection": {
     "date": "2026-11-03",
-    "status": "local/CI5/browser and scoped Windows receipts accepted; post-ready strict padding sampled PASS, full runtime anchor and Space/service/isolation evidence limits retained",
+    "status": "correction and focal acceptance gates reviewed; no new package repair required by this audit, historical failures retained",
     "sourceSceneSha256": "0a95cbb2c9a467cc2c00ccce331d4847e47350e076e50debec429f9c92d597ff",
     "localArtifactSha256": "75a52410cb0de49d4554d220007e58aa3f5882666825d5f612453689160e4bcb",
     "localArtifactDelta": "client.js only; other125 files byte-identical to CI4",
@@ -336,7 +382,8 @@
     "releaseAcceptance": false,
     "postUpgradeReport": "windows-rc5/ci5-post-upgrade/WINDOWS-CI5-POST-UPGRADE.json",
     "postUpgradeReportSha256": "c9cb31f0000fdc3adec3b2c4c4b1240506f73530b08b7defd9cb80c822f2acdc",
-    "postUpgradeIntake": "windows-rc5/ci5-post-upgrade/INTAKE-REVIEW.zh.md"
+    "postUpgradeIntake": "windows-rc5/ci5-post-upgrade/INTAKE-REVIEW.zh.md",
+    "finalIntake": "windows-rc5/ci5-anchor-session-audit/INTAKE-REVIEW.zh.md"
   },
   "lastUpdatedLocalDate": "2026-11-03",
   "candidateEvidenceStage": "historical CI3 baseline; see currentCandidate for current build-only artifact",
@@ -346,5 +393,49 @@
     "artifactId": 13191140519,
     "tgzSha256": "14f4bb7fb61c892017343c832fdc8b37d892706b9a7aa2146779eef00ee9e3ff",
     "version": "0.2.1-rc.3-openbkn.0.2.1-3"
+  },
+  "currentReleaseGateReview": {
+    "status": "NO_PRODUCT_BLOCKER_IDENTIFIED_IN_AUTHORIZED_AUDIT",
+    "sourceCommit": "ae903656193d3fc5214469bc0e6ee1108e233075",
+    "ciRun": 41548846010,
+    "artifactTgzSha256": "14f4bb7fb61c892017343c832fdc8b37d892706b9a7aa2146779eef00ee9e3ff",
+    "technicalDecision": {
+      "session82Bytes": "PASS_CLASSIFIED_HOST_METADATA_APPEND",
+      "crossAnswerAnchor": "PASS_SCOPED_REAL_ENTRY",
+      "liveMcpMetadata": "PASS_CAPTURE_AND_CLASSIFICATION_WITH_LIMITS",
+      "blockingFindingsInAuthorizedScope": [],
+      "wholeReleaseAccepted": false,
+      "releaseDecision": "Not made by this audit. No merge, publication, tagging or release action.",
+      "allSchemasCompletelyEqual": false
+    },
+    "report": "windows-rc5/ci5-anchor-session-audit/WINDOWS-CI5-ANCHOR-SESSION-AUDIT.json",
+    "reportSha256": "927ff267031a767cd5b5b1f103bf26ba02c3f62175f1ba8372be3e57b2dc23cc",
+    "catalogue": "windows-rc5/ci5-anchor-session-audit/MCP-TOOLS-CATALOGUE.json",
+    "catalogueSha256": "33731e33d4c564dc32556a89692823e3bddc72860411d37a5aa150633994c645",
+    "intake": "windows-rc5/ci5-anchor-session-audit/INTAKE-REVIEW.zh.md",
+    "triage": "RELEASE-GATE-TRIAGE.zh.md",
+    "imageRuntimeIntake": "platform-020-runtime/INTAKE-REVIEW.zh.md",
+    "mcpSourceReview": "MCP-CONTRACT-TRIAGE.zh.md",
+    "logpointArgumentEvidence": "windows-rc5/ci5-anchor-session-audit/LOGPOINT-ARGUMENT-EVIDENCE.json",
+    "normalSdkAuthenticationIsNotBusinessWrite": true,
+    "newBusinessQuestions": 0,
+    "newExplanationGenerations": 0,
+    "newAgentAnalyses": 0,
+    "platformBusinessWritesInitiated": 0,
+    "toolCallsForMcpMetadata": 0,
+    "actualImageIdentity": "verified at2026-11-03T13:22:19+08:00 snapshot;21Deployments,25runtime imageIDs; infrastructure/auxiliary version and registry-alias boundaries retained",
+    "directory": "25unique tools,25input+25output schemas,complete single page,18managed offered+7reviewed exclude,execute_skill/find_skills absent; no unclassified names or allowlist changes",
+    "runCodeSupplement": "current input/output JSON values equal separate formal0.2.0 historical live fixture including annotations/array order; caller shape compatible, no execution rerun",
+    "notClaimed": [
+      "whole release acceptance",
+      "all-tool runtime or model business quality",
+      "full schema equality to lossy historical projection",
+      "server-record After byte invariance",
+      "whole historical machine isolation"
+    ],
+    "remainingRequiredActions": "normal PR approval/merge and main candidate equivalence/release authorization, scope/limitation disclosure; no package change required by these findings",
+    "nonBlockingVerificationMaintenance": "make extractor annotation removal schema-position-aware; retain data properties nameddescription/title/examples/$comment and preserve old fixture provenance",
+    "globalReleaseAcceptance": false,
+    "publicationAuthorized": false
   }
 }

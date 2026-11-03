@@ -1,0 +1,33 @@
+{
+  "source": "designated Windows chat finalized public reports; private originals remain remote",
+  "threadId": "01a19c6a-e785-7f82-a5b4-cda473951fa6",
+  "hostId": "remote-control:env_e_6abf8babb404832890d7c5124118ed3c",
+  "executionTurnIds": [
+    "01a19fd1-3eef-7e51-8ceb-53a44c710603"
+  ],
+  "exportTurnId": "01a1a013-3995-7df0-b730-2d399367a606",
+  "exportTurnIds": [
+    "01a1a013-3995-7df0-b730-2d399367a606"
+  ],
+  "transportNote": "Initial Windows MCP PowerShell chunk outputs were not exposed by read_thread. Same unchanged files were exported again through11 native exec_command outputs. Deterministic gzip+base64 is transport only; compressed sizes/digests and complete chunks are checked, then decompressed raw bytes checked against execution-turn sizes/SHA before writes. Original BOM/CRLF retained; no plugin repack or verification rerun.",
+  "receivedLocalDate": "2026-11-03",
+  "files": [
+    {
+      "file": "WINDOWS-CI5-ANCHOR-SESSION-AUDIT.json",
+      "utf8Bytes": 54606,
+      "sha256": "927ff267031a767cd5b5b1f103bf26ba02c3f62175f1ba8372be3e57b2dc23cc"
+    },
+    {
+      "file": "WINDOWS-CI5-ANCHOR-SESSION-AUDIT.zh.md",
+      "utf8Bytes": 9180,
+      "sha256": "7463d29afbef855f2729440ddafe43164dd2a7722b14dca2e8a1e183a2b2a4de"
+    },
+    {
+      "file": "MCP-TOOLS-CATALOGUE.json",
+      "utf8Bytes": 187156,
+      "sha256": "33731e33d4c564dc32556a89692823e3bddc72860411d37a5aa150633994c645"
+    }
+  ],
+  "transportDigestsVerified": true,
+  "evidenceBoundary": "Receiving side verifies public bytes and report consistency, not private screenshots or whole-machine state. This receipt does not itself establish native or global release acceptance."
+}
