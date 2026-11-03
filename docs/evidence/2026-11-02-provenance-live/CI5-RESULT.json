@@ -1,0 +1,190 @@
+{
+  "runId": 41548846010,
+  "runUrl": "https://github.com/openbkn-ai/bkn-dsh/actions/runs/41548846010",
+  "headSha": "ae903656193d3fc5214469bc0e6ee1108e233075",
+  "conclusion": "success",
+  "publishRequested": false,
+  "buildJobId": 125631042126,
+  "githubReleaseJobId": 125634501120,
+  "plugin": {
+    "tests": 826,
+    "pass": 825,
+    "fail": 0,
+    "skip": 1
+  },
+  "repository": {
+    "tests": 79,
+    "pass": 79,
+    "fail": 0,
+    "skip": 0
+  },
+  "mcpCompanion": {
+    "tests": 1,
+    "pass": 1,
+    "fail": 0,
+    "skip": 0
+  },
+  "packageAuditFiles": 126,
+  "controlledDualHosts": {
+    "evidence": "controlled official npm runtime; stand-in platform and scripted model only",
+    "artifact": {
+      "sha256": "14f4bb7fb61c892017343c832fdc8b37d892706b9a7aa2146779eef00ee9e3ff",
+      "version": "0.2.1-rc.3-openbkn.0.2.1-3"
+    },
+    "node": "v22.19.0",
+    "platform": "linux",
+    "arch": "x64",
+    "hosts": [
+      {
+        "version": "0.2.0-rc.2",
+        "tag": "dsh-v0.2.0-rc.2",
+        "commit": "639ed015397290b3745d163aafe02ffee4aa3f84",
+        "cordis": "4.0.4",
+        "schemastery": "3.18.4",
+        "packageManager": "pnpm@11.7.0",
+        "checks": {
+          "guard-formal": "pass",
+          "guard-formal-disabled": "pass",
+          "guard-legacy": "pass",
+          "csv-export": "pass",
+          "native-output": "pass",
+          "remote": "pass"
+        },
+        "status": "pass",
+        "resolvedDsh": {
+          "@deepseek-ai/dsh-agent": "0.2.0-rc.2",
+          "@deepseek-ai/dsh-agent-loop": "0.2.0-rc.2",
+          "@deepseek-ai/dsh-api-gateway": "0.2.0-rc.2",
+          "@deepseek-ai/dsh-attachment": "0.2.0-rc.2",
+          "@deepseek-ai/dsh-brand": "0.2.0-rc.2",
+          "@deepseek-ai/dsh-client-connection": "0.2.0-rc.2",
+          "@deepseek-ai/dsh-client-locale": "0.2.0-rc.2",
+          "@deepseek-ai/dsh-credentials": "0.2.0-rc.2",
+          "@deepseek-ai/dsh-deque": "0.2.0-rc.2",
+          "@deepseek-ai/dsh-home-paths": "0.2.0-rc.2",
+          "@deepseek-ai/dsh-http-proxy": "0.2.0-rc.2",
+          "@deepseek-ai/dsh-invariants": "0.2.0-rc.2",
+          "@deepseek-ai/dsh-llm": "0.2.0-rc.2",
+          "@deepseek-ai/dsh-mcp-client": "0.2.0-rc.2",
+          "@deepseek-ai/dsh-ptc-runtime": "0.2.0-rc.2",
+          "@deepseek-ai/dsh-sandbox": "0.2.0-rc.2",
+          "@deepseek-ai/dsh-sandbox-policy": "0.2.0-rc.2",
+          "@deepseek-ai/dsh-scope": "0.2.0-rc.2",
+          "@deepseek-ai/dsh-session": "0.2.0-rc.2",
+          "@deepseek-ai/dsh-session-persistence": "0.2.0-rc.2",
+          "@deepseek-ai/dsh-session-projection": "0.2.0-rc.2",
+          "@deepseek-ai/dsh-storage": "0.2.0-rc.2",
+          "@deepseek-ai/dsh-storage-domain": "0.2.0-rc.2",
+          "@deepseek-ai/dsh-subprocess": "0.2.0-rc.2",
+          "@deepseek-ai/dsh-system-prompt": "0.2.0-rc.2",
+          "@deepseek-ai/dsh-timeout": "0.2.0-rc.2",
+          "@deepseek-ai/dsh-tools": "0.2.0-rc.2",
+          "@deepseek-ai/dsh-typert-protocol": "0.2.0-rc.2",
+          "@deepseek-ai/dsh-typert-registry": "0.2.0-rc.2",
+          "@deepseek-ai/dsh-user-approval": "0.2.0-rc.2",
+          "@deepseek-ai/dsh-util-crypto": "0.2.0-rc.2",
+          "@deepseek-ai/dsh-util-values": "0.2.0-rc.2"
+        },
+        "resolvedSchemaVersion": "3.18.4",
+        "resolvedZodVersion": "4.4.3"
+      },
+      {
+        "version": "0.2.1-rc.3",
+        "tag": "dsh-v0.2.1-rc.3",
+        "commit": "1f81c047fc48fa190a683e469daa699857e9afe8",
+        "cordis": "4.0.5",
+        "schemastery": "3.18.5",
+        "packageManager": "pnpm@11.28.5",
+        "checks": {
+          "guard-formal": "pass",
+          "guard-formal-disabled": "pass",
+          "guard-legacy": "pass",
+          "csv-export": "pass",
+          "native-output": "pass",
+          "remote": "pass"
+        },
+        "status": "pass",
+        "resolvedDsh": {
+          "@deepseek-ai/dsh-agent": "0.2.1-rc.3",
+          "@deepseek-ai/dsh-agent-loop": "0.2.1-rc.3",
+          "@deepseek-ai/dsh-api-gateway": "0.2.1-rc.3",
+          "@deepseek-ai/dsh-api-remote-access": "0.2.1-rc.3",
+          "@deepseek-ai/dsh-attachment": "0.2.1-rc.3",
+          "@deepseek-ai/dsh-brand": "0.2.1-rc.3",
+          "@deepseek-ai/dsh-client-connection": "0.2.1-rc.3",
+          "@deepseek-ai/dsh-client-locale": "0.2.1-rc.3",
+          "@deepseek-ai/dsh-credentials": "0.2.1-rc.3",
+          "@deepseek-ai/dsh-deque": "0.2.1-rc.3",
+          "@deepseek-ai/dsh-fs": "0.2.1-rc.3",
+          "@deepseek-ai/dsh-home-paths": "0.2.1-rc.3",
+          "@deepseek-ai/dsh-http-proxy": "0.2.1-rc.3",
+          "@deepseek-ai/dsh-llm": "0.2.1-rc.3",
+          "@deepseek-ai/dsh-mcp-client": "0.2.1-rc.3",
+          "@deepseek-ai/dsh-ptc-runtime": "0.2.1-rc.3",
+          "@deepseek-ai/dsh-sandbox": "0.2.1-rc.3",
+          "@deepseek-ai/dsh-sandbox-policy": "0.2.1-rc.3",
+          "@deepseek-ai/dsh-scope": "0.2.1-rc.3",
+          "@deepseek-ai/dsh-session": "0.2.1-rc.3",
+          "@deepseek-ai/dsh-session-persistence": "0.2.1-rc.3",
+          "@deepseek-ai/dsh-session-projection": "0.2.1-rc.3",
+          "@deepseek-ai/dsh-storage": "0.2.1-rc.3",
+          "@deepseek-ai/dsh-storage-domain": "0.2.1-rc.3",
+          "@deepseek-ai/dsh-subprocess": "0.2.1-rc.3",
+          "@deepseek-ai/dsh-system-prompt": "0.2.1-rc.3",
+          "@deepseek-ai/dsh-timeout": "0.2.1-rc.3",
+          "@deepseek-ai/dsh-tools": "0.2.1-rc.3",
+          "@deepseek-ai/dsh-typert-protocol": "0.2.1-rc.3",
+          "@deepseek-ai/dsh-typert-registry": "0.2.1-rc.3",
+          "@deepseek-ai/dsh-user-approval": "0.2.1-rc.3",
+          "@deepseek-ai/dsh-util-crypto": "0.2.1-rc.3",
+          "@deepseek-ai/dsh-util-values": "0.2.1-rc.3",
+          "@deepseek-ai/dsh-working-directory": "0.2.1-rc.3"
+        },
+        "resolvedSchemaVersion": "3.18.5",
+        "resolvedZodVersion": "4.4.3"
+      }
+    ]
+  },
+  "controlledArtifact": {
+    "id": 13190007845,
+    "zipSha256": "e25182a751abbc7a555d2832e87a69e2f6c342b5f355fc18d0cd87b70ca74f05",
+    "zipBytes": 66506,
+    "reportSha256": "7418464d6cb84e1dcc3713f4e522484c1d8a9017f493f2064d121e3a93d9a6a2"
+  },
+  "candidate": {
+    "artifactId": 13191140519,
+    "tgzSha256": "14f4bb7fb61c892017343c832fdc8b37d892706b9a7aa2146779eef00ee9e3ff",
+    "files": 126,
+    "clientSha256": "f7184c97d65d9bf72c192172f8e1815aee022d05df5c54905dc3c7a32c113e10"
+  },
+  "publication": {
+    "npm": "skipped",
+    "githubRelease": "skipped",
+    "merged": false,
+    "tagged": false,
+    "latestChanged": false
+  },
+  "evidenceBoundary": "Linux CI with two controlled official npm runtimes, a stand-in platform and a scripted model. No native Windows Desktop, real-platform/model-quality, human or global release acceptance is inferred. The new Windows affected retest is tracked separately; all CI4 failures and unknowns remain intact.",
+  "affectedWindowsRetest": {
+    "status": "DISPATCHED and active; no result yet, not established by CI audit",
+    "targetHost": "official Windows Desktop0.2.1-rc.5 only",
+    "turnId": "01a19eb7-803e-7b02-8016-7188213a1492",
+    "handoff": "WINDOWS-SOURCE-TEXT-RETEST-HANDOFF.zh.md"
+  },
+  "preservedPriorCandidate": {
+    "runId": 41444758077,
+    "source": "a52032956314cf582c0f39ed3dab2f8e80e91085",
+    "tgzSha256": "cf9abdf4ac085506793501f5f4c7e2d3f6ff4bc8c873e07c4b6b401064ec6b8a"
+  },
+  "verification": {
+    "buildJobLogSha256": "d0241aa6138256531314a19cc034c480324d8c874e02d0f0fd96a291f1332432",
+    "actualPublishStepSkipped": true,
+    "actualGithubReleaseJobSkipped": true,
+    "localReferenceFilesEqual": 126,
+    "localReferenceUncompressedTarEqual": true,
+    "changedSinceCi4": [
+      "lib/client.js"
+    ],
+    "unchangedSinceCi4": 125
+  }
+}

@@ -1,0 +1,69 @@
+{
+  "date": "2026-11-03",
+  "sourceCommit": "ae903656193d3fc5214469bc0e6ee1108e233075",
+  "pr": "https://github.com/openbkn-ai/bkn-dsh/pull/121",
+  "draft": true,
+  "approvedReview": {
+    "id": 5745127693,
+    "state": "APPROVED",
+    "commitId": "ae903656193d3fc5214469bc0e6ee1108e233075",
+    "submittedAt": "2026-11-02T23:56:22Z",
+    "htmlUrl": "https://github.com/openbkn-ai/bkn-dsh/pull/121#pullrequestreview-5745127693"
+  },
+  "checks": [
+    {
+      "bucket": "pass",
+      "name": "verdict",
+      "state": "SUCCESS",
+      "workflow": "Claude Code Review"
+    },
+    {
+      "bucket": "pass",
+      "name": "verify",
+      "state": "SUCCESS",
+      "workflow": "Claude Code Review"
+    },
+    {
+      "bucket": "pass",
+      "name": "CodeQL",
+      "state": "SUCCESS",
+      "workflow": ""
+    },
+    {
+      "bucket": "pass",
+      "name": "review (All files)",
+      "state": "SUCCESS",
+      "workflow": "Claude Code Review"
+    },
+    {
+      "bucket": "pass",
+      "name": "plan",
+      "state": "SUCCESS",
+      "workflow": "Claude Code Review"
+    },
+    {
+      "bucket": "pass",
+      "name": "Analyze (actions)",
+      "state": "SUCCESS",
+      "workflow": "CodeQL"
+    },
+    {
+      "bucket": "pass",
+      "name": "Analyze (javascript-typescript)",
+      "state": "SUCCESS",
+      "workflow": "CodeQL"
+    },
+    {
+      "bucket": "pass",
+      "name": "Analyze (python)",
+      "state": "SUCCESS",
+      "workflow": "CodeQL"
+    }
+  ],
+  "buildOnlyRun": 41548846010,
+  "buildStatusAtRecording": "completed/success",
+  "publishRequested": false,
+  "notMergeOrReleaseAuthorization": true,
+  "ciArtifactIdentity": "CI5-ARTIFACT-IDENTITY.json",
+  "nativeRetest": "dispatched and active; no result yet"
+}

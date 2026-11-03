@@ -1,6 +1,6 @@
 # -3 当前验收状态与发布前待办
 
-**SourceText修复接续（2026-11-03）**：本地最小修复及必要检查已完成，只有Scene内原文弹层变化。插件825通过/1既有Windows专项跳过、仓库79/79、包126文件；本地包相对CI4仅client.js不同。纯hover保持不夺焦/父层Escape归属；明确进入原文层后仅关子层，覆盖完整popup padding及键盘关闭后的首次hover。真实浏览器矩阵及加强断言已独立核收，将提交新build-only候选并安排Windows精确新包回验。**旧Windows FAIL和所有UNKNOWN继续保留，新候选尚无CI/Windows验收。** 见[修复记录](./SOURCE-TEXT-FIX.zh.md)。以下CI4结果均指旧包。
+**SourceText修复接续（2026-11-03）**：本地最小修复及必要检查已完成，只有Scene内原文弹层变化。插件825通过/1既有Windows专项跳过、仓库79/79、包126文件；本地包相对CI4仅client.js不同。纯hover保持不夺焦/父层Escape归属；明确进入原文层后仅关子层，覆盖完整popup padding及键盘关闭后的首次hover。真实浏览器矩阵及加强断言已独立核收；修复ae90365已推送，PR独立批准及CodeQL通过，[新build-only CI41548846010](https://github.com/openbkn-ai/bkn-dsh/actions/runs/41548846010)已成功，实际TGZ14f4bb7f…与本地126文件/tar相同、相对CI4仅client.js变，发布均跳过；Windows指定会话已接单运行[精确新包定向回验](./WINDOWS-SOURCE-TEXT-RETEST-HANDOFF.zh.md)。**旧Windows FAIL和所有UNKNOWN继续保留，新候选CI通过，尚无Windows修后验收结论。** 见[修复记录](./SOURCE-TEXT-FIX.zh.md)。以下CI4结果均指旧包。
 
 2026-11-03更新。提交、推送、CI4出包/审计、Mac受影响回归和Windows官方DSH Desktop0.2.1-rc.5的本轮E2E执行及收态均已完成。**Windows专项已核收并连续两次复现输出原文Escape留驻；原回执仍为PARTIAL_LIVE_NOT_RELEASE_ACCEPTANCE，原W3 FAIL保留，不能称全部发布或人工验收通过。** PR #121保持草稿，未合并、打标签、发布或移动latest。
 

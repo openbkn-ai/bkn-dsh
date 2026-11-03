@@ -29,6 +29,6 @@
 
 [上游只读核对](./SOURCE-TEXT-UPSTREAM.zh.md)确认固定Studio/Foundry release及官方DSH rc.5没有升级；未发布main的其他合同变化单独记录，不宣称兼容已扩展。
 
-本地门槛及独立评审已核收。下一步按此前集成授权提交、推送新build-only候选并审计实际CI包，再交给原Windows会话做受影响回验；新CI及Windows结果仍待执行。旧包和已发布-2保持不变，不补记原生PASS。
+本地门槛及独立评审已核收。修复已提交/推送为 `ae903656193d3fc5214469bc0e6ee1108e233075`，对应PR独立批准和CodeQL通过，见[评审记录](./SOURCE-TEXT-REVIEW-CI-STATUS.json)。新build-only [CI41548846010](https://github.com/openbkn-ai/bkn-dsh/actions/runs/41548846010) 已成功，实际npm发布及GitHub Release均跳过。精确TGZ SHA `14f4bb7fb61c892017343c832fdc8b37d892706b9a7aa2146779eef00ee9e3ff`，artifact13191140519，126/126及整段解压tar与本地参考相同，相对CI4仍只有client.js变化。主会话独立重算TGZ、路径和tar后，已派原Windows会话按[定向清单](./WINDOWS-SOURCE-TEXT-RETEST-HANDOFF.zh.md)回验，回合 `01a19eb7-803e-7b02-8016-7188213a1492` 已启动，结果待核收。见[CI实际包审计](./CI5-ARTIFACT-QA.zh.md)及[实际CI结果](./CI5-RESULT.json)。旧包和已发布-2保持不变，不补记原生PASS。
 
 本轮新增业务问答、依据生成、Agent分析、平台业务写入均为0。不会重跑完整业务E2E，不自动合并、打标签、发布或移动latest。Windows最终回验必须安装新CI精确候选，不能以本地源码或本地包替代。
