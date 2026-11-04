@@ -84,7 +84,7 @@
 - [x] 集群重建 + ingress（containerd 代理改 `host.docker.internal:10808`；registry.k8s.io 摘要镜像经 `docker pull`+`ctr import` 注入）
 - [x] 数据层（mariadb/redis/kafka/opensearch）Running；无 arm64 的镜像以 amd64+Rosetta 注入运行
 - [x] OpenBKN 主栈 helm 安装完成；`sandbox-control-plane`/`agent-retrieval`/`agent-operator-integration` 的 `0.1.4-hotfix-supply-sample-p1` 标签在 SWR 不存在，已回退 `:0.1.4`
-- [x] bkn-backend 起动依赖解决：0.1.4 chart 仍引用 ISF 时代 `authorization-private:30920`（开源 foundry 已移除该服务，`isf install` 命令在当前 deploy.sh 中不存在）→ 以许可型桩恢复（宿主 `authz-stub.mjs` + 无选择器 Service/Endpoints 指向 `0.250.250.254`；`/policy` 须答 204），工件与重启方式存于工作区 `platform-local-recovery/`
+- [x] bkn-backend 起动依赖解决：0.1.4 chart 仍引用旧版授权服务 `authorization-private:30920`（开源 foundry 已移除该服务）→ 以许可型桩恢复（宿主 `authz-stub.mjs` + 无选择器 Service/Endpoints 指向 `0.250.250.254`；`/policy` 须答 204），工件与重启方式存于工作区 `platform-local-recovery/`
 - [x] EE 镜像切换 + optimizer bootstrap 完成
 - [x] license 重应用：导入成功，capabilities 报 `licensed:true / enterprise / valid`（存储+签名有效即生效）；**发行侧激活返回 409「已在另一实例上激活」**——彻底解决需授权方解绑旧实例指纹（用户侧动作）
 - [x] HTTPS 恢复：新生成自签证书（CN=192.168.50.28），ingress 统一 `nginx` class + 控制器默认证书；DSH 以 `platform-local-recovery/tls/openbkn-dev-ca-20260923.pem` 作为 `NODE_EXTRA_CA_CERTS`（旧 `~/.dsh/openbkn-dev-ca.pem` 已不匹配）
