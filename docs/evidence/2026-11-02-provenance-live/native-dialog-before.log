@@ -1,0 +1,85 @@
+✖ native outer Escape closes only the activated interaction_question popover and restores its trigger (3251.6625ms)
+✖ native outer Escape closes only the activated interaction_result popover and restores its trigger (3008.884ms)
+✖ hover original-text preview keeps existing focus and Escape on its trigger closes only the preview (3112.682542ms)
+✖ analysis reader Escape closes only its side panel without starting analysis or closing the DSH overlay (1723.539375ms)
+✖ analysis history dropdown consumes Escape before the analysis panel and outer overlay (2144.037834ms)
+ℹ tests 5
+ℹ suites 0
+ℹ pass 0
+ℹ fail 5
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 15148.851417
+
+✖ failing tests:
+
+test at tests/provenance-native-dialogs.test.ts:1:4882
+✖ native outer Escape closes only the activated interaction_question popover and restores its trigger (3251.6625ms)
+  AssertionError [ERR_ASSERTION]: first Escape must not close the DSH provenance overlay
+      at TestContext.<anonymous> (/Users/kalias/Documents/project/app/openBKN/bkn-dsh-provenance-parity-live-20261102/packages/openbkn-business-context/tests/provenance-native-dialogs.test.ts:84:12)
+      at async Test.run (node:internal/test_runner/test:1389:7)
+      at async startSubtestAfterBootstrap (node:internal/test_runner/harness:387:3) {
+    generatedMessage: false,
+    code: 'ERR_ASSERTION',
+    actual: undefined,
+    expected: true,
+    operator: '==',
+    diff: 'simple'
+  }
+
+test at tests/provenance-native-dialogs.test.ts:1:4882
+✖ native outer Escape closes only the activated interaction_result popover and restores its trigger (3008.884ms)
+  AssertionError [ERR_ASSERTION]: first Escape must not close the DSH provenance overlay
+      at TestContext.<anonymous> (/Users/kalias/Documents/project/app/openBKN/bkn-dsh-provenance-parity-live-20261102/packages/openbkn-business-context/tests/provenance-native-dialogs.test.ts:84:12)
+      at async Test.run (node:internal/test_runner/test:1389:7)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:960:7) {
+    generatedMessage: false,
+    code: 'ERR_ASSERTION',
+    actual: undefined,
+    expected: true,
+    operator: '==',
+    diff: 'simple'
+  }
+
+test at tests/provenance-native-dialogs.test.ts:1:6056
+✖ hover original-text preview keeps existing focus and Escape on its trigger closes only the preview (3112.682542ms)
+  AssertionError [ERR_ASSERTION]: the open preview consumes its trigger Escape
+      at TestContext.<anonymous> (/Users/kalias/Documents/project/app/openBKN/bkn-dsh-provenance-parity-live-20261102/packages/openbkn-business-context/tests/provenance-native-dialogs.test.ts:103:10)
+      at async Test.run (node:internal/test_runner/test:1389:7)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:960:7) {
+    generatedMessage: false,
+    code: 'ERR_ASSERTION',
+    actual: undefined,
+    expected: true,
+    operator: '==',
+    diff: 'simple'
+  }
+
+test at tests/provenance-native-dialogs.test.ts:1:6855
+✖ analysis reader Escape closes only its side panel without starting analysis or closing the DSH overlay (1723.539375ms)
+  AssertionError [ERR_ASSERTION]: analysis reader Escape must not close the DSH provenance overlay
+      at TestContext.<anonymous> (/Users/kalias/Documents/project/app/openBKN/bkn-dsh-provenance-parity-live-20261102/packages/openbkn-business-context/tests/provenance-native-dialogs.test.ts:116:10)
+      at async Test.run (node:internal/test_runner/test:1389:7)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:960:7) {
+    generatedMessage: false,
+    code: 'ERR_ASSERTION',
+    actual: undefined,
+    expected: true,
+    operator: '==',
+    diff: 'simple'
+  }
+
+test at tests/provenance-native-dialogs.test.ts:1:7912
+✖ analysis history dropdown consumes Escape before the analysis panel and outer overlay (2144.037834ms)
+  AssertionError [ERR_ASSERTION]: history Escape must not close the DSH overlay
+      at TestContext.<anonymous> (/Users/kalias/Documents/project/app/openBKN/bkn-dsh-provenance-parity-live-20261102/packages/openbkn-business-context/tests/provenance-native-dialogs.test.ts:136:10)
+      at async Test.run (node:internal/test_runner/test:1389:7)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:960:7) {
+    generatedMessage: false,
+    code: 'ERR_ASSERTION',
+    actual: undefined,
+    expected: true,
+    operator: '==',
+    diff: 'simple'
+  }

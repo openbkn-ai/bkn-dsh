@@ -1,0 +1,150 @@
+{
+  "checkedUtc": "2026-11-03T07:07:32.902171+00:00",
+  "plugin": {
+    "worktreeHead": "b16be10272edcae6267ddadda4ca8b851e3ad02e",
+    "frozenProductionSource": "ae903656193d3fc5214469bc0e6ee1108e233075",
+    "candidateSha256": "14f4bb7fb61c892017343c832fdc8b37d892706b9a7aa2146779eef00ee9e3ff",
+    "directDependencies": {
+      "zod": "4.4.3",
+      "undici": "8.10.2",
+      "@modelcontextprotocol/client": "2.0.0",
+      "@ant-design/icons": "6.1.0",
+      "antd": "5.29.2",
+      "i18next": "25.6.0",
+      "react-i18next": "16.2.0",
+      "react-markdown": "10.1.0",
+      "remark-gfm": "4.0.1"
+    },
+    "openBknSdkInPackageDependencies": false,
+    "openBknSdkInPnpmLock": false,
+    "archiveLiteralReferences": [
+      "package/lib/diagnostics.js"
+    ],
+    "boundary": "OpenBKN SDK is external inside the selected CLI. Host reader and DSH MCP adapter do not import the OpenBKN SDK."
+  },
+  "registry": {
+    "source": "https://registry.npmjs.org/%40openbkn%2Fbkn-sdk",
+    "sha256": "864eea5af08f11de717aeea1d052dfc5cdbf1afe1bcf2407f667d4b76be5a6fa",
+    "distTags": {
+      "alpha": "0.1.1-alpha.19",
+      "rc": "0.2.1-rc.1",
+      "latest": "0.2.0"
+    },
+    "stableVersion": "0.2.0",
+    "previewVersion": "0.2.1-rc.1",
+    "formal021Published": false
+  },
+  "downloads": [
+    {
+      "label": "source-2098f276",
+      "url": "https://codeload.github.com/openbkn-ai/bkn-sdk/tar.gz/2098f276eaabd1f31a30ac3ed58d5ba8d5bd5e6d",
+      "bytes": 981532,
+      "sha256": "41b29acb2aec5101dff070a526b1923cdf00a28290b0f883afd8bb8602ca1e78",
+      "npmIntegrityVerified": false,
+      "root": "release/sdk021-impact-20261103/source-2098f276"
+    },
+    {
+      "label": "source-1cd28396",
+      "url": "https://codeload.github.com/openbkn-ai/bkn-sdk/tar.gz/1cd2839652733e2ce6690b14e76ff8e9d73861dc",
+      "bytes": 1059120,
+      "sha256": "5f7e8d489c97f56135a461207d6c9810549859a697dc66755184d2433d66c254",
+      "npmIntegrityVerified": false,
+      "root": "release/sdk021-impact-20261103/source-1cd28396"
+    },
+    {
+      "label": "source-57d39f0f",
+      "url": "https://codeload.github.com/openbkn-ai/bkn-sdk/tar.gz/57d39f0f94804105db89b6151bfaf8a3ffddf888",
+      "bytes": 1067557,
+      "sha256": "3104ef38c0b007d07034cb42a94b96f594fc32843f37b8e81a79f094edd83f70",
+      "npmIntegrityVerified": false,
+      "root": "release/sdk021-impact-20261103/source-57d39f0f"
+    },
+    {
+      "label": "npm-0.1.5",
+      "url": "https://registry.npmjs.org/@openbkn/bkn-sdk/-/bkn-sdk-0.1.5.tgz",
+      "bytes": 205845,
+      "sha256": "cb39260fd10756c297f5eaf4604af1b4891c279c21745665c6627c0cf2ecad31",
+      "npmIntegrityVerified": true,
+      "root": "release/sdk021-impact-20261103/npm-0.1.5"
+    },
+    {
+      "label": "npm-0.2.0",
+      "url": "https://registry.npmjs.org/@openbkn/bkn-sdk/-/bkn-sdk-0.2.0.tgz",
+      "bytes": 219091,
+      "sha256": "d227f6264597d727e7931bef4118f099df20d42402ff32e306f6d65e8a6b273f",
+      "npmIntegrityVerified": true,
+      "root": "release/sdk021-impact-20261103/npm-0.2.0"
+    },
+    {
+      "label": "npm-0.2.1-rc.1",
+      "url": "https://registry.npmjs.org/@openbkn/bkn-sdk/-/bkn-sdk-0.2.1-rc.1.tgz",
+      "bytes": 229968,
+      "sha256": "2122b5995ea4660751810c00316c36ffecad7414baa99218333f8d2434c16f00",
+      "npmIntegrityVerified": true,
+      "root": "release/sdk021-impact-20261103/npm-0.2.1-rc.1"
+    }
+  ],
+  "sdkRefs": {
+    "stableGitHead": "2098f276eaabd1f31a30ac3ed58d5ba8d5bd5e6d",
+    "previewGitHead": "1cd2839652733e2ce6690b14e76ff8e9d73861dc",
+    "mainRefFromCoordinatedCliAudit": "57d39f0f94804105db89b6151bfaf8a3ffddf888"
+  },
+  "unchangedTransportAndStoredAuthFiles": {
+    "src/api/tls.ts": "60cebf06d37a929d15dca07800936eb5f771658a8b7f2f8e46170135bf608d9d",
+    "src/api/auth-fetch.ts": "8b8cc21043dc9c420b848a27bb6b0221bde703f08c39ae6670d36b5b4ee419d6",
+    "src/auth/jwt.ts": "44c2390073ca4caa641e250aa01b5ae6172d6f5635fdd5f2310b906039580c70",
+    "src/config/store.ts": "b3dd99c8f6dc68cd51be32054ddeca10c853a6f7985bf8e262763a395c769332",
+    "src/api/version-check.ts": "8fa5f89653e6ee39f172815b78cda813943a9ae982b059a1cce89ef40190acd0",
+    "src/api/lifecycle.ts": "89f59c1a9cf6997d4cf812f6e5a50c7d9e33d269b7e9de40e78b3cfc14403022",
+    "src/api/trace.ts": "61dee5040a666d3bbd46ef30adacbc2d2e567e84fca82ed18702e49f9e720e8e"
+  },
+  "stableToReleaseChangedSourcePaths": [
+    "src/api/context-loader.ts",
+    "src/api/http.ts",
+    "src/api/knowledge-networks.ts",
+    "src/api/object-metrics.ts",
+    "src/api/safe.ts",
+    "src/api/vega-discovery.ts",
+    "src/api/vega-semantic.ts",
+    "src/api/vega.ts",
+    "src/auth/oauth-app.ts",
+    "src/auth/oauth.ts",
+    "src/client.ts",
+    "src/commands/bkn.ts",
+    "src/commands/describe.ts",
+    "src/commands/vega.ts",
+    "src/config/resolve.ts",
+    "src/help/returns.json",
+    "src/index.ts",
+    "src/resources/knowledge-networks.ts",
+    "src/resources/oauth.ts",
+    "src/types.ts",
+    "src/utils/bkn-validate.ts",
+    "src/utils/errors.ts"
+  ],
+  "releaseToMainChangedSourcePaths": [
+    "src/api/object-metrics.ts",
+    "src/api/resources.ts"
+  ],
+  "findings": [
+    "No direct OpenBKN SDK dependency exists to upgrade in this plugin package. MCP protocol client2.0.0 is a separate SDK.",
+    "TLS/CA transport, stored-credential store, JWT, refresh mechanics, lifecycle and trace modules are unchanged between020,021rc and inspected main.",
+    "New app-owned OAuth registration/PKCE and ClientOptions.tokens/clientId/onTokenRefresh are additive; current CLI-based plugin auth does not call them.",
+    "SDK typed requests still perform exact base-patch version preflight:020 and021 are incompatible by design, including preview prerelease stripping. Existing external SDK must match actual target platform version; never bypass this with global skip/TLS disable.",
+    "Public kn.metric* API/type removal and new objectMetric* API affect direct SDK consumers; this plugin does not call them, so they do not require direct SDK compile migration here.",
+    "SDK MCP adapter recognizes shared error_code envelopes and drill_through_metric; platform contract and plugin guard implications must be checked independently. Do not expand allowed tools because SDK advertises a name."
+  ],
+  "minimumFollowupBefore021Claim": [
+    "Confirm final platform health version and exact released/selected SDK CLI version, preserving the020 pairing; auth installer target support is coordinated with the CLI audit.",
+    "On an isolated matching021 SDK/CLI, validate the existing auth status/token/device-login contract, normal refresh and scoped certificate-pinned transport; no current evidence claims this runtime acceptance.",
+    "Use metadata/schema and controlled contract fixtures to check original HTTP Reader routes/result envelopes and DSH MCP context/error/guard behavior, including new names denied until reviewed.",
+    "New package/CI/affected native testing only if an actual plugin code/input change is selected and authorized; no SDK app OAuth rewrite solely to adopt a new convenience API."
+  ],
+  "notRun": [
+    "SDK or CLI installation/execution",
+    "auth/login/refresh or credential access",
+    "Host/platform/model/business/E2E/tests",
+    "CI/publication/push"
+  ],
+  "evidenceBoundary": "Read-only public metadata, exact tarball integrity and source diffs. No SDK execution or platform021 compatibility acceptance."
+}

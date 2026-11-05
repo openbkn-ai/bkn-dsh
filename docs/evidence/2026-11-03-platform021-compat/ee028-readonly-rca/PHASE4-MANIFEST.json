@@ -1,0 +1,40 @@
+{
+  "createdAt": "2026-11-03T15:30:34.675869+00:00",
+  "phase": "4-recovery-preflight",
+  "stage3OriginalsPreserved": true,
+  "rawQueryBusinessValuesRetained": false,
+  "artifactContentRequested": false,
+  "sharedWrites": 0,
+  "privateHandoff": {
+    "path": "/Users/kalias/Documents/project/app/openBKN/bkn-dsh-provenance-parity-live-20261102/release/platform021-compat-20261103/s123-recovery-20261103/ops/private/original-artifact-metadata.json",
+    "fileMode": "0o600",
+    "parentMode": "0o700",
+    "valuesOrHashNotPublished": true
+  },
+  "files": [
+    {
+      "name": "stage4-recovery-preflight.json",
+      "bytes": 9492,
+      "mode": "0o600",
+      "sha256": "7c11ca50b7ef27122113a5df7401db86b816bdf766112dd076608f8b03b212f4"
+    },
+    {
+      "name": "stage4-port-forward-preflight.json",
+      "bytes": 583,
+      "mode": "0o600",
+      "sha256": "5568fdbe0267df5d30ba6894b61272989327b6b0601fdd61fb0e15ea64018ccb"
+    },
+    {
+      "name": "PHASE4-RECOVERY-PREFLIGHT.zh.md",
+      "bytes": 4267,
+      "mode": "0o600",
+      "sha256": "390af68dd333aa87bcdbf5f55b8e51bb29f10246b8ab4415abbc0f2510c4052f"
+    },
+    {
+      "name": "PHASE4-COMMAND-SOURCE-INDEX.md",
+      "bytes": 1945,
+      "mode": "0o600",
+      "sha256": "2964bf0dc84414f635c20117a0aa38752e3d05a0f92d74a0439cde1dbcffde96"
+    }
+  ]
+}

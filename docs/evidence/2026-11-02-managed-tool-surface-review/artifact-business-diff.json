@@ -1,0 +1,4 @@
+{
+  "format": "unified diff",
+  "text": "--- rehearsed/business.js\n\n+++ review/business.js\n\n@@ -1533,7 +1533,7 @@\n\n \t\t\t\tconst assembly = await next();\n \t\t\t\treturn {\n \t\t\t\t\t...assembly,\n-\t\t\t\t\ttools: assembly.tools.filter((tool) => unmanagedDenial(tool.name, csvExportRegistered) === void 0),\n+\t\t\t\t\ttools: assembly.tools.filter((tool) => unmanagedDenial(tool.name, csvExportRegistered) === void 0 && (!KN_SCOPE_REQUIRED_TOOLS.includes(tool.name) || declaresKnId(tools.get(tool.name, agent)))),\n \t\t\t\t\tsections: [...assembly.sections, {\n \t\t\t\t\t\tname: \"openbkn:effective-tool-routing\",\n \t\t\t\t\t\ttext: MANAGED_TOOL_ROUTING\n"
+}

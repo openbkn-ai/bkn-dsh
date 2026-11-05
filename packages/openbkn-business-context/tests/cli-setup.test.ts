@@ -299,8 +299,8 @@ test('version availability cannot clear earlier CLI/authentication diagnostic fa
   } finally { passiveDiagnostics.clear() }
 })
 
-test('both fixed SDK targets install and verify the selected version on Mac and Windows', async () => {
-  for (const platform of ['darwin', 'win32'] as const) for (const version of ['0.1.5', '0.2.0'] as const) {
+test('all fixed SDK targets install and verify the selected version on Mac and Windows', async () => {
+  for (const platform of ['darwin', 'win32'] as const) for (const version of ['0.1.5', '0.2.0', '0.2.1'] as const) {
     const f = fixture(platform)
     f.setVersion(0, version)
     assert.equal((await f.setup.install('openbkn', version)).version, version)
@@ -312,13 +312,34 @@ test('both fixed SDK targets install and verify the selected version on Mac and 
 
 test('unsupported install targets do not inspect or spawn, and selecting 0.2.0 cannot overwrite 0.1.5', async () => {
   const f = fixture()
-  for (const target of ['latest', '0.2.1', '0.2.0 --other', null, {}]) {
+  for (const target of ['latest', 'rc', '^0.2.1', '0.2.1-rc.1', '0.2.2', '0.2.1 --other', '0.2.1\n--other', null, {}]) {
     assert.equal((await f.setup.install('openbkn', target as never)).reason, 'unsupported-version')
   }
   assert.equal(f.commands.length, 0)
   f.available.set('openbkn', '/existing/openbkn')
   assert.equal((await f.setup.install('openbkn', '0.2.0')).version, '0.1.5')
   assert.equal(f.commands.some(argv => argv[1] === 'install'), false)
+})
+
+test('selecting 0.2.1 never upgrades an existing CLI on Mac or Windows', async () => {
+  for (const platform of ['darwin', 'win32'] as const) for (const version of ['0.1.5', '0.2.0', '0.2.1-rc.1'] as const) {
+    const f = fixture(platform)
+    f.available.set('openbkn', '/existing/openbkn')
+    f.setVersion(0, version)
+    assert.deepEqual(await f.setup.install('openbkn', '0.2.1'), {
+      state: 'ready', canInstall: false, resolvedPath: '/existing/openbkn', version,
+    })
+    assert.ok(f.commands.every(argv => argv[1] === '--version'))
+  }
+})
+
+test('a 0.2.1 installation must verify the final version rather than an older CLI or an rc', async () => {
+  for (const version of ['0.2.0', '0.2.1-rc.1']) {
+    const f = fixture()
+    f.setVersion(0, version)
+    assert.deepEqual(await f.setup.install('openbkn', '0.2.1'), { state: 'failed', canInstall: false, reason: 'verification-failed' })
+    assert.equal(f.commands.find(argv => argv[1] === 'install')?.[3], '@openbkn/bkn-sdk@0.2.1')
+  }
 })
 
 test('reopened panels report the actual Host-owned 0.2.0 install target', async () => {
@@ -332,4 +353,20 @@ test('reopened panels report the actual Host-owned 0.2.0 install target', async 
   assert.equal((await installing).version, '0.2.0')
   assert.equal((await duplicate).version, '0.2.0')
   assert.equal(f.commands.filter(argv => argv[1] === 'install').length, 1)
+})
+
+test('a Host-owned 0.2.1 install keeps its target when an older panel submits another version', async () => {
+  const f = fixture()
+  f.setVersion(0, '0.2.1'); f.hold()
+  const installing = f.setup.install('openbkn', '0.2.1')
+  try {
+    await new Promise(resolve => setImmediate(resolve))
+    assert.deepEqual(await f.setup.check('openbkn'), { state: 'installing', canInstall: false, targetVersion: '0.2.1' })
+    const duplicate = f.setup.install('openbkn', '0.2.0')
+    assert.equal(duplicate, installing)
+    f.release()
+    assert.equal((await installing).version, '0.2.1')
+    assert.equal(f.commands.filter(argv => argv[1] === 'install').length, 1)
+    assert.equal(f.commands.find(argv => argv[1] === 'install')?.[3], '@openbkn/bkn-sdk@0.2.1')
+  } finally { f.release(); f.setup.dispose() }
 })

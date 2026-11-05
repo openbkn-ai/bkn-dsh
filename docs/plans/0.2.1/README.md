@@ -1,5 +1,51 @@
 # bkn-dsh 0.2.1 接手入口
 
+## 新增平台0.2.1兼容后再发布（2026-11-03）
+
+**2026-11-04 Mac补证已核收**：私下复用Windows真实原Session，经官方Macrc.5隔离恢复，仅header.cwd本机适配、264原事件原始行和原binding不变。S1、S3四键盘路径及S2左padding在限定原生观察范围通过；S2矩形是截图估计，精确DOM/AX命中未知、arrow未测。见[回执与边界](../../evidence/2026-11-03-platform021-compat/MAC-SOURCE-TEXT-CLOSEOUT.zh.md)。原Mac迁移#82独立，不再当作所有Mac测试前置。包与平台/模型输出不改，无Windows重跑/新CI；正式CLI021安装仍待验。
+
+**历史前提恢复阶段：Mac原生鼠标权限已恢复，原样本当时缺原文。** 两份新权限回执已按bytes/SHA核收并独立复核；当前平台索引未见原question/result，原备份仍在。目标历史迁移组因call_facts输入被拒绝；已定位迁移器将持久化控制metadata直接塞入严格原生DTO的静态契约缺口，不能删字段、改回答或只补两条artifact绕过校验。见[只读RCA与当前三项状态](../../evidence/2026-11-03-platform021-compat/EE028-READONLY-RCA.zh.md)、[平台迁移后续范围](../../evidence/2026-11-03-platform021-compat/PLATFORM-RECOVERY-PLAN.zh.md)。正式CLI0.2.1安装按维护者要求保留待验，本轮未查询/安装；现有CI6包、已过项、平台/模型输出不变，没有远端CI或发布。
+
+维护者已选择补齐平台0.2.1兼容、保留旧版后再发-3。新增固定CLI0.2.1安装目标及受影响测试，不绕过官方版本检查，不新增直接SDK依赖，不干预平台/模型输出。新版query_metric与finish未确认合同独立补测；Foundry main与SDK rc仅为准备基线，不冒称最终平台/CLI通过。开发和新候选固定后，原远程Mac会话在其现任务后使用50.129核实际身份并做最小隔离验收；已验0.2.0及CI5/Windows历史不覆盖或为记账重跑。当前工作与发布门槛见[兼容记录](../../evidence/2026-11-03-platform021-compat/README.zh.md)。
+
+**CI6出包完成**：f01b316 / CI41596006291（publish=false），844通过/1跳过、仓库79/79、MCP1/1、双官方npm Host受控通过；artifact13212518096，126文件/TGZ4500fa43…。本地/CI逐文件和解压tar一致，8文件相对CI5变化、118不变。两端新CLI预发布范围增量与后续补充已核收，见[逐项判断](../../evidence/2026-11-03-platform021-compat/INTAKE-REVIEW.zh.md)；企业28只补Mac原S1–S3。正式CLI0.2.1最近一次历史查询为E404，本轮明确保留待验，不重查/安装；现有包和已通过项不重跑，未发布/latest。
+
+## 发布前 CI 与远程 E2E（2026-11-02）
+
+**测试工具维护与#120收尾（2026-11-03，最新）**：已修复schema提取器误删同名业务字段的问题，15项聚焦回归通过；对固定正式源码81d575执行真实Go builder，新投影26工具/24schema，仅恢复3处可选description输出字段，其余工具结构、lifecycle示例与源输入摘要保持。新输出带真实生成日期/算法版本并拒绝覆盖既存文件；旧fixture和原报告不变。[维护记录及新投影](../../evidence/2026-11-02-provenance-live/schema-extractor-maintenance/README.zh.md)保留完整边界。#120按该项开发验证完成关闭completed，修复已在CI5候选-3；PR121仍草稿未合并，npm latest/rc仍是未含此增量的-2，不称已发布修复。本轮仅本地测试工具/文档修改，不推送、不跑远端CI、不改插件包或重跑业务/模型。
+
+**CI5疑点收口（2026-11-03，当前）**：同一ae903656/14f4bb7f…包、官方Windows rc.5，82压缩字节差异已证为追加一条Host空data的session/end-seed；原265条完整记录及binding未变，不称两文件全字节相同。真实答案入口不手选轮次完成3→关闭→2，实际S/M、Host C/initialI/currentI/KN、detail I与可见47/4调用对齐，限定功能锚定通过。平台实际image/Ready快照和25项MCP目录/schema已采；3处可选description输出字段差异已由固定正式源码补证为旧提取器信息丢失，不宣称全schema等价或新业务调用成功。本轮疑点未见需要改包的产品阻断，剩正常发布流程、声明范围和取证限制；旧PARTIAL、82UNKNOWN及失败留历史。源码、包和已发布-2不变，不自动合并/发布/latest。见[最终原报告](../../evidence/2026-11-02-provenance-live/windows-rc5/ci5-anchor-session-audit/WINDOWS-CI5-ANCHOR-SESSION-AUDIT.zh.md)、[发布判断](../../evidence/2026-11-02-provenance-live/RELEASE-GATE-TRIAGE.zh.md)及[当前状态](../../evidence/2026-11-02-provenance-live/PRE-RELEASE-STATUS.zh.md)。
+
+**历史CI5平台恢复后补核（2026-11-03）**：同一ae903656/14f4bb7f…包、官方Windows rc.5，在一次真实宽窗几何下完成strict padding∩自身输出trigger的静止Escape，各离散采样点至约3s子关父留、未见重开，恢复原Bounds；旧原窗口SKIP和维护404保留。目标为维护者声明的正式OpenBKN0.2.0，health200/ServerVersion0.2.0；隔离凭据正常SDK续期后原C/I均200，服务image/commit等仍UNKNOWN。两次入口显示第3/第2轮，与离线receipt、渲染位置/特征及平台轮次相容；实际按钮→M及完整运行时链仍UNKNOWN，且目标点击前已手选第2轮；Space仅为trigger持焦且hover已开下的class/UIA观察，不算closed→Space打开PASS。task已正常退出，serverAfter未测量，不作完整发布验收；代码、包和已发布-2不变。见[新原报告](../../evidence/2026-11-02-provenance-live/windows-rc5/ci5-post-upgrade/WINDOWS-CI5-POST-UPGRADE.zh.md)、[更新后复核记录](../../evidence/2026-11-02-provenance-live/SOURCE-TEXT-POST-UPGRADE.zh.md)及[当前待办](../../evidence/2026-11-02-provenance-live/PRE-RELEASE-STATUS.zh.md)。
+
+**历史CI5首轮核收与平台维护（2026-11-03）**：修复ae90365只改SourceText，新增9个回归；插件825通过/1跳过、仓库79/79、MCP1/1，实际CI5包14f4bb7f…共126文件，相对CI4仅client.js变。Windows官方rc.5六类操作及原故障两轮在采样范围内通过，键盘关闭后首hover正常；strict padding仍SKIP，单次原生窗口尺寸尝试遇到native不可读/404。维护者确认50.28正在更新，已停止新平台访问；服务器After、GUI请求身份/路径、原入口默认第3轮锚定及Space未分类观察仍待稳定后核。task已正常退出及完成有界保全，旧FAIL/UNKNOWN原件保留；不是全局发布或升级后验收。见[原报告及独立核收](../../evidence/2026-11-02-provenance-live/windows-rc5/ci5-source-text-retest/INTAKE-REVIEW.zh.md)、[更新后最小复核](../../evidence/2026-11-02-provenance-live/SOURCE-TEXT-POST-UPGRADE.zh.md)及[修复记录](../../evidence/2026-11-02-provenance-live/SOURCE-TEXT-FIX.zh.md)。
+
+以下CI4条目为历史时点记录，原件保留；当前待办以上述CI5核收和发布前状态为准。
+
+**历史CI4原文层专项（2026-11-03已核收）**：指定Sol/MAX会话完成六类序列及一次有界确认。输出hover后点击覆盖trigger的弹层section，Escape后指针留驻，连续两次弹层仍可见；两个键盘例正常。两条纯hover会同时关闭父详情，需确认交互预期；输入hover-click已点击关层，未发Escape。DOM派发目标、短暂关闭后重开和平台对照仍未知，旧W3 FAIL保留，不能称六例全通过。本轮业务问答/依据生成/BKN Agent分析/业务写入均0，原件和精确CI4包不变。下一步是确定性回归、最小修复和受影响Windows回验，见[独立复核](../../evidence/2026-11-02-provenance-live/windows-rc5/source-text-review/INTAKE-REVIEW.zh.md)。
+
+**历史CI4 Windows接续（2026-11-03核收）**：指定Windows会话已在官方DSH Desktop0.2.1-rc.5完成本轮可执行E2E并正常退出。固定CI4包126/126一致；真实多轮/原答案定位、筛选、操作及图谱选择、原文/全屏、原生保存、分析busy→终态直接Esc与回焦均有实证。生成1次、分析2次、新业务问答0次；同记录平台原文与Save6306字节/SHA完全一致，217处占位在平台原始响应内，粘贴读回124个CRLF仅诊断归一化等同。**仍保留原W3 hover/Escape一次FAIL**；上方新专项另已连续两次复现特定输出重叠点击序列，实际DOM事件及是否关闭后重开仍未知，不能宣称Windows全部或正式发布验收通过。见[原始回执](../../evidence/2026-11-02-provenance-live/windows-rc5/WINDOWS-CI4-RESULTS.zh.md)、[接收复核](../../evidence/2026-11-02-provenance-live/windows-rc5/INTAKE-REVIEW.zh.md)及[边界待办](../../evidence/2026-11-02-provenance-live/windows-rc5/FOLLOWUP-BOUNDARIES.zh.md)。早期旧Host/隔离异常保留，不计rc.5通过、不覆盖未知Before数据。
+
+**历史CI4状态：CI4通过，精确包的Mac分析焦点实机复验R1—R4通过；不是全局正式发布验收。** 源码 `a52032956314cf582c0f39ed3dab2f8e80e91085` 的 [build-only CI41444758077](https://github.com/openbkn-ai/bkn-dsh/actions/runs/41444758077) 已成功：插件816通过/1 Windows专项跳过、仓库79/79、MCP companion1/1、包126文件、官方npm rc.2/rc.3受控guard/CSV/native/Remote检查通过；npm与GitHub发布均跳过。
+
+实际CI4包SHA256 `cf9abdf4ac085506793501f5f4c7e2d3f6ff4bc8c873e07c4b6b401064ec6b8a`，artifact `13141832289`。与本地参考126/126文件及整段解压tar完全相同；相对CI3仅`lib/client.js`变化，Host及其余125文件不变。见[包身份](../../evidence/2026-11-02-provenance-live/CI4-ARTIFACT-IDENTITY.json)、[CI结果](../../evidence/2026-11-02-provenance-live/CI4-RESULT.json)。
+
+**CI3真实结果已接收并核对报告SHA，保留一项FAIL。** 远程官方Mac Desktop rc.5实际安装fea3包并显示平台式详情，已验6调用、原文层、失败0筛选、Operation选择、partial列表、OS复制/原生保存、部分图谱联动及局部全屏；生成1次返回平台partial/invalid_schema_reference，分析1次历史为completed/not_evaluable/0建议。原始Markdown5842字节含160处“请求失败。”，不清洗；实际分析POST与模型最终输入未捕获，不能据模型自述认定输入丢失。原问答、6操作和时间链据报告未变，正常退出及日常配置恢复已核报；私有原件仍留远程。见[远程原报告](../../evidence/2026-11-02-provenance-live/remote-ci3/REMOTE-E2E-REPORT.zh.md)。
+
+原生FAIL是分析完成后直接Esc不能关闭侧栏；局部焦点修复及8项新增回归（修前6失败/2通过、修后8通过）已纳入CI4，独立评审与CodeQL通过。CI4实际包已通过官方GUI安装并冷启动，同一隔离profile/userData上的历史结果返回编辑、下拉层双重Esc、忙碌/完成后直接Esc及历史重开4项实机通过；只新增1次已授权分析（completed/not_evaluable/0建议），没有生成依据或业务问答。两次正常退出0、日常文件/原会话摘要不变，关联配置逐字节恢复。见[CI4实机报告](../../evidence/2026-11-02-provenance-live/remote-ci4/REMOTE-CI4-REPORT.zh.md)。双轮/BOM59、取消/迟到、多会话多网络及Windows等未执行项仍按证据层级保留，不能以受控测试代填实机PASS。
+
+发布前仍需处理的范围和限制见[当前验收状态与待办](../../evidence/2026-11-02-provenance-live/PRE-RELEASE-STATUS.zh.md)。
+
+首两轮CI失败、CI3实机FAIL和本地只读候选均保留为历史。候选`0.2.1-rc.3-openbkn.0.2.1-3`尚未发布，已发布-2不变；当前只授权分支提交/推送、publish=false CI及指定远程E2E，不合并、不打标签、不发布、不改latest。详见[交接与验收清单](../../evidence/2026-11-02-provenance-live/CI-E2E-HANDOFF.zh.md)。
+
+## 历史本地只读检查点：业务溯源与平台详情一致（2026-11-02）
+
+维护者已授权复用平台业务会话详情布局和操作，仅适配当前 DSH 会话等必要差异。本轮按维护者选择只做真实只读验收，不生成/更新依据或启动 Agent 分析，不干预平台和模型输出。
+
+当前本地集成分支为 `feat/provenance-platform-parity-live`，基于 `bc5e67b`，保留已验证的工具面/CSV修复；原 `cfd377f` 分支及证据作为历史。第三候选 SHA256 `7f5f6a8630a4b3dcaf05a9e88e90f96bb1bef7f4ba8194ca518a24aefbbf10c5` 已经本地打包、官方CLI隔离安装126/126核对和Mac Desktop rc.5真实只读验收。内层焦点/Tab/Escape及真实9MB详情预算问题已复现、回归并实机复验；标准插件测试759通过/1跳过，源码旁测试另10/10，完整仓库79/79。日常DSH已恢复，原插件94/94保持不变。
+
+详见[本地实机开发与验收记录](../../evidence/2026-11-02-provenance-live/DEVELOPMENT.zh.md)及[最终独立QA](../../evidence/2026-11-02-provenance-live/FINAL-QA.zh.md)。真实生成/分析、无现成解释的图谱/全屏、Windows及部分故障场景仍未完成；平台搜索限制和Markdown原文异常保留，不由插件修正。未推送、未运行远端CI、未发布或改现有包。以下正式发布收口仍描述已发布固定-2；本地同manifest版本候选不可当作已发布包。
+
 ## 正式发布收口：两项非阻断遗留已明确接受，#63已关闭（2026-10-30）
 
 维护者明确决定：“接受这两项为本次非阻断遗留，按现有-2正式发布，#63可以关闭。”这调整了本次发布/关单标准，不将缺失技术证据改记为PASS。

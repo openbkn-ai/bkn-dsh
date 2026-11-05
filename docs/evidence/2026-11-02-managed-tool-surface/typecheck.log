@@ -1,0 +1,2 @@
+$ pnpm --filter @openbkn/dsh-business-context run typecheck
+$ tsc -b ../..

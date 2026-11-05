@@ -1,0 +1,70 @@
+{
+  "schemaVersion": 1,
+  "scope": "Public exact SDK/CLI packages, controlled HTTP loopback; not formal 0.2.1, DSH, TLS or live platform acceptance.",
+  "sourceAnalysis": "release/sdk021-impact-20261103/SDK-IMPACT.json",
+  "controlledResult": {
+    "path": "release/sdk021-impact-20261103/contract-probe-1/RESULT.json",
+    "sha256": "c86d6e91fd7c0af4372e0b28502df521362166fe90665b8991b55322832d9ac3",
+    "summary": {
+      "total": 16,
+      "passed": 16,
+      "failed": 0
+    },
+    "status": "PASS",
+    "startedAt": "2026-11-03T07:14:06.175Z",
+    "finishedAt": "2026-11-03T07:14:09.643Z"
+  },
+  "newTrackedFiles": [
+    {
+      "path": "scripts/probe-openbkn-sdk021-contract.mjs",
+      "bytes": 21089,
+      "sha256": "74b9a073e0ff681f6d58e6b4cd51040e0185f1c830bfbdf7bb7edff963348722"
+    },
+    {
+      "path": "tests/fixtures/openbkn-sdk021-package-metadata.json",
+      "bytes": 6034,
+      "sha256": "152f9f3c4a2ae136283bb558c66dabe01916a11a076349d88eec4a5bfd4b35b0"
+    }
+  ],
+  "notModifiedByThisTask": [
+    "plugin production code",
+    "package.json",
+    "pnpm-lock.yaml",
+    "build inputs",
+    "CI configuration",
+    "installed/global CLI",
+    "credentials/config outside new synthetic stores",
+    "existing fixture and evidence files"
+  ],
+  "actualPackageArchiveDigests": [
+    {
+      "version": "0.2.0",
+      "sha256": "d227f6264597d727e7931bef4118f099df20d42402ff32e306f6d65e8a6b273f",
+      "gitHead": "2098f276eaabd1f31a30ac3ed58d5ba8d5bd5e6d"
+    },
+    {
+      "version": "0.2.1-rc.1",
+      "sha256": "2122b5995ea4660751810c00316c36ffecad7414baa99218333f8d2434c16f00",
+      "gitHead": "1cd2839652733e2ce6690b14e76ff8e9d73861dc"
+    }
+  ],
+  "dependencies": {
+    "files": 1079,
+    "bytes": 9315835,
+    "manifestSha256": "2cde43a52ae3d7063ef02398576426b0b674da0aef3afaaf4f99a9fa497d58ea",
+    "direct": {
+      "zod": "3.25.76",
+      "chalk": "5.6.2",
+      "jszip": "3.10.2",
+      "undici": "8.12.3",
+      "js-yaml": "4.3.2",
+      "commander": "13.1.0",
+      "@clack/prompts": "0.9.1"
+    }
+  },
+  "minimumRemainingValidation": [
+    "Published formal 0.2.1 package registry integrity and exact deployed platform identity when available",
+    "Final candidate package audit plus affected isolated Host auth/pin/refresh/MCP/Reader validation; preserve existing old target coverage",
+    "No evidence of app OAuth migration need or direct SDK dependency to upgrade"
+  ]
+}

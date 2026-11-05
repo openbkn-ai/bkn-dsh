@@ -1,0 +1,23 @@
+[
+  {
+    "file": "packages/core/system-prompt/src/index.ts",
+    "release_read": true,
+    "main_read": true,
+    "unchanged": false,
+    "diff_lines": 111
+  },
+  {
+    "file": "packages/core/tools/src/index.ts",
+    "release_read": true,
+    "main_read": true,
+    "unchanged": false,
+    "diff_lines": 2187
+  },
+  {
+    "file": "packages/core/scope/src/index.ts",
+    "release_read": true,
+    "main_read": true,
+    "unchanged": true,
+    "diff_lines": 0
+  }
+]

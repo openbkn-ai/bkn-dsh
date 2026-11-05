@@ -1,0 +1,1093 @@
+{
+  "observedAt": "2026-11-03T15:16:42.245167+00:00",
+  "targetInteractionId": "int_3e92559bb0fbe9e5f83c110ce7ca3100",
+  "noArtifactContentRequested": true,
+  "noApplicationEnsureIndexCalled": true,
+  "commands": [
+    {
+      "method": "GET",
+      "path": "bkn-trace-evidence-v2-artifacts/_search",
+      "body": {
+        "size": 25,
+        "track_total_hits": true,
+        "_source": [
+          "artifact_id",
+          "artifact_type",
+          "interaction_id",
+          "operation_id",
+          "source_ref",
+          "trace_id",
+          "effective_subject_id",
+          "application_principal_id",
+          "knowledge_network_ids",
+          "bkn.account.type",
+          "bkn.account.id",
+          "observed_at",
+          "as_of",
+          "content_type",
+          "schema_version"
+        ],
+        "query": {
+          "term": {
+            "interaction_id": "int_3e92559bb0fbe9e5f83c110ce7ca3100"
+          }
+        }
+      }
+    },
+    {
+      "method": "GET",
+      "path": "_resolve/index/bkn-trace-core?expand_wildcards=all",
+      "body": null
+    },
+    {
+      "method": "GET",
+      "path": "bkn-trace-core/_mapping",
+      "body": null
+    },
+    {
+      "method": "GET",
+      "path": "bkn-trace-core/_search",
+      "body": {
+        "size": 20,
+        "track_total_hits": true,
+        "_source": [
+          "receipt_id",
+          "schema_version",
+          "owner",
+          "conversation_id",
+          "interaction_id",
+          "operation_id",
+          "receipt_status",
+          "evidence_durability",
+          "request_id",
+          "trace_id",
+          "artifact_refs",
+          "partial_reasons",
+          "knowledge_network_ids",
+          "issued_at",
+          "terminal_at"
+        ],
+        "query": {
+          "term": {
+            "interaction_id.keyword": "int_3e92559bb0fbe9e5f83c110ce7ca3100"
+          }
+        }
+      }
+    }
+  ],
+  "artifactQuery": {
+    "httpStatus": 200,
+    "total": {
+      "value": 0,
+      "relation": "eq"
+    },
+    "sizeBound": 25,
+    "returned": 0,
+    "metadata": []
+  },
+  "projectionResolution": {
+    "configuredIndex": "bkn-trace-core",
+    "httpStatus": 200,
+    "data": {
+      "indices": [],
+      "aliases": [
+        {
+          "name": "bkn-trace-core",
+          "indices": [
+            "bkn-trace-core-history-18e46c52e70bc3bd"
+          ]
+        }
+      ],
+      "data_streams": []
+    }
+  },
+  "projectionMapping": {
+    "httpStatus": 200,
+    "indices": [
+      {
+        "name": "bkn-trace-core-history-18e46c52e70bc3bd",
+        "fields": [
+          {
+            "path": "actor_name_snapshot",
+            "type": "text"
+          },
+          {
+            "path": "actor_name_snapshot.keyword",
+            "type": "keyword"
+          },
+          {
+            "path": "agent_name",
+            "type": "text"
+          },
+          {
+            "path": "agent_name.keyword",
+            "type": "keyword"
+          },
+          {
+            "path": "artifact_manifest_hash",
+            "type": "text"
+          },
+          {
+            "path": "artifact_manifest_hash.keyword",
+            "type": "keyword"
+          },
+          {
+            "path": "artifact_refs",
+            "type": "text"
+          },
+          {
+            "path": "artifact_refs.keyword",
+            "type": "keyword"
+          },
+          {
+            "path": "assembly_completeness",
+            "type": "text"
+          },
+          {
+            "path": "assembly_completeness.keyword",
+            "type": "keyword"
+          },
+          {
+            "path": "attempt",
+            "type": "long"
+          },
+          {
+            "path": "attempt_status",
+            "type": "text"
+          },
+          {
+            "path": "attempt_status.keyword",
+            "type": "keyword"
+          },
+          {
+            "path": "bkn",
+            "type": "object"
+          },
+          {
+            "path": "bkn.trace",
+            "type": "object"
+          },
+          {
+            "path": "bkn.trace.schema",
+            "type": "object"
+          },
+          {
+            "path": "bkn.trace.schema.version",
+            "type": "text"
+          },
+          {
+            "path": "bkn.trace.schema.version.keyword",
+            "type": "keyword"
+          },
+          {
+            "path": "business_refs",
+            "type": "object"
+          },
+          {
+            "path": "business_refs.display_hint",
+            "type": "text"
+          },
+          {
+            "path": "business_refs.display_hint.keyword",
+            "type": "keyword"
+          },
+          {
+            "path": "business_refs.ref_id",
+            "type": "text"
+          },
+          {
+            "path": "business_refs.ref_id.keyword",
+            "type": "keyword"
+          },
+          {
+            "path": "business_refs.ref_type",
+            "type": "text"
+          },
+          {
+            "path": "business_refs.ref_type.keyword",
+            "type": "keyword"
+          },
+          {
+            "path": "business_refs.version",
+            "type": "text"
+          },
+          {
+            "path": "business_refs.version.keyword",
+            "type": "keyword"
+          },
+          {
+            "path": "causality_status",
+            "type": "text"
+          },
+          {
+            "path": "causality_status.keyword",
+            "type": "keyword"
+          },
+          {
+            "path": "closed_at",
+            "type": "date"
+          },
+          {
+            "path": "closure_manifest",
+            "type": "object"
+          },
+          {
+            "path": "closure_manifest.answer_artifact_ref",
+            "type": "text"
+          },
+          {
+            "path": "closure_manifest.answer_artifact_ref.keyword",
+            "type": "keyword"
+          },
+          {
+            "path": "closure_manifest.assembler_deadline",
+            "type": "date"
+          },
+          {
+            "path": "closure_manifest.completion_manifest_version",
+            "type": "text"
+          },
+          {
+            "path": "closure_manifest.completion_manifest_version.keyword",
+            "type": "keyword"
+          },
+          {
+            "path": "closure_manifest.completion_reason",
+            "type": "text"
+          },
+          {
+            "path": "closure_manifest.completion_reason.keyword",
+            "type": "keyword"
+          },
+          {
+            "path": "closure_manifest.expected_operations",
+            "type": "object"
+          },
+          {
+            "path": "closure_manifest.expected_operations.operation_id",
+            "type": "text"
+          },
+          {
+            "path": "closure_manifest.expected_operations.operation_id.keyword",
+            "type": "keyword"
+          },
+          {
+            "path": "closure_manifest.expected_operations.required",
+            "type": "boolean"
+          },
+          {
+            "path": "closure_manifest.expected_receipts",
+            "type": "object"
+          },
+          {
+            "path": "closure_manifest.expected_receipts.receipt_id",
+            "type": "text"
+          },
+          {
+            "path": "closure_manifest.expected_receipts.receipt_id.keyword",
+            "type": "keyword"
+          },
+          {
+            "path": "closure_manifest.expected_receipts.required",
+            "type": "boolean"
+          },
+          {
+            "path": "completion_manifest_version",
+            "type": "text"
+          },
+          {
+            "path": "completion_manifest_version.keyword",
+            "type": "keyword"
+          },
+          {
+            "path": "conversation_id",
+            "type": "text"
+          },
+          {
+            "path": "conversation_id.keyword",
+            "type": "keyword"
+          },
+          {
+            "path": "created_at",
+            "type": "date"
+          },
+          {
+            "path": "creation_auth_method",
+            "type": "text"
+          },
+          {
+            "path": "creation_auth_method.keyword",
+            "type": "keyword"
+          },
+          {
+            "path": "emitted_at",
+            "type": "date"
+          },
+          {
+            "path": "envelope",
+            "type": "object"
+          },
+          {
+            "path": "event_id",
+            "type": "text"
+          },
+          {
+            "path": "event_id.keyword",
+            "type": "keyword"
+          },
+          {
+            "path": "event_type",
+            "type": "text"
+          },
+          {
+            "path": "event_type.keyword",
+            "type": "keyword"
+          },
+          {
+            "path": "evidence_durability",
+            "type": "text"
+          },
+          {
+            "path": "evidence_durability.keyword",
+            "type": "keyword"
+          },
+          {
+            "path": "evidence_status",
+            "type": "text"
+          },
+          {
+            "path": "evidence_status.keyword",
+            "type": "keyword"
+          },
+          {
+            "path": "execution_status",
+            "type": "text"
+          },
+          {
+            "path": "execution_status.keyword",
+            "type": "keyword"
+          },
+          {
+            "path": "external_conversation_key",
+            "type": "text"
+          },
+          {
+            "path": "external_conversation_key.keyword",
+            "type": "keyword"
+          },
+          {
+            "path": "generation",
+            "type": "long"
+          },
+          {
+            "path": "included_event_ids",
+            "type": "text"
+          },
+          {
+            "path": "included_event_ids.keyword",
+            "type": "keyword"
+          },
+          {
+            "path": "included_receipt_ids",
+            "type": "text"
+          },
+          {
+            "path": "included_receipt_ids.keyword",
+            "type": "keyword"
+          },
+          {
+            "path": "interaction_id",
+            "type": "text"
+          },
+          {
+            "path": "interaction_id.keyword",
+            "type": "keyword"
+          },
+          {
+            "path": "issued_at",
+            "type": "date"
+          },
+          {
+            "path": "knowledge_network_ids",
+            "type": "text"
+          },
+          {
+            "path": "knowledge_network_ids.keyword",
+            "type": "keyword"
+          },
+          {
+            "path": "lease_epoch",
+            "type": "long"
+          },
+          {
+            "path": "lease_expires_at",
+            "type": "date"
+          },
+          {
+            "path": "lease_token",
+            "type": "text"
+          },
+          {
+            "path": "lease_token.keyword",
+            "type": "keyword"
+          },
+          {
+            "path": "lease_version",
+            "type": "long"
+          },
+          {
+            "path": "observed_at",
+            "type": "date"
+          },
+          {
+            "path": "observed_evidence_refs",
+            "type": "text"
+          },
+          {
+            "path": "observed_evidence_refs.keyword",
+            "type": "keyword"
+          },
+          {
+            "path": "one_shot",
+            "type": "boolean"
+          },
+          {
+            "path": "operation_business_edges",
+            "type": "object"
+          },
+          {
+            "path": "operation_business_edges.business_ref",
+            "type": "object"
+          },
+          {
+            "path": "operation_business_edges.business_ref.ref_id",
+            "type": "text"
+          },
+          {
+            "path": "operation_business_edges.business_ref.ref_id.keyword",
+            "type": "keyword"
+          },
+          {
+            "path": "operation_business_edges.business_ref.ref_type",
+            "type": "text"
+          },
+          {
+            "path": "operation_business_edges.business_ref.ref_type.keyword",
+            "type": "keyword"
+          },
+          {
+            "path": "operation_business_edges.business_ref.version",
+            "type": "text"
+          },
+          {
+            "path": "operation_business_edges.business_ref.version.keyword",
+            "type": "keyword"
+          },
+          {
+            "path": "operation_business_edges.observed_at",
+            "type": "date"
+          },
+          {
+            "path": "operation_business_edges.operation_id",
+            "type": "text"
+          },
+          {
+            "path": "operation_business_edges.operation_id.keyword",
+            "type": "keyword"
+          },
+          {
+            "path": "operation_business_edges.role",
+            "type": "text"
+          },
+          {
+            "path": "operation_business_edges.role.keyword",
+            "type": "keyword"
+          },
+          {
+            "path": "operation_id",
+            "type": "keyword"
+          },
+          {
+            "path": "operation_key",
+            "type": "text"
+          },
+          {
+            "path": "operation_key.keyword",
+            "type": "keyword"
+          },
+          {
+            "path": "ordinal",
+            "type": "long"
+          },
+          {
+            "path": "owner",
+            "type": "object"
+          },
+          {
+            "path": "owner.application_principal_id",
+            "type": "text"
+          },
+          {
+            "path": "owner.application_principal_id.keyword",
+            "type": "keyword"
+          },
+          {
+            "path": "owner.effective_subject_id",
+            "type": "text"
+          },
+          {
+            "path": "owner.effective_subject_id.keyword",
+            "type": "keyword"
+          },
+          {
+            "path": "owner.effective_subject_type",
+            "type": "text"
+          },
+          {
+            "path": "owner.effective_subject_type.keyword",
+            "type": "keyword"
+          },
+          {
+            "path": "parent_operation_id",
+            "type": "text"
+          },
+          {
+            "path": "parent_operation_id.keyword",
+            "type": "keyword"
+          },
+          {
+            "path": "parent_revision_id",
+            "type": "text"
+          },
+          {
+            "path": "parent_revision_id.keyword",
+            "type": "keyword"
+          },
+          {
+            "path": "partial_reasons",
+            "type": "text"
+          },
+          {
+            "path": "partial_reasons.keyword",
+            "type": "keyword"
+          },
+          {
+            "path": "payload_hash",
+            "type": "text"
+          },
+          {
+            "path": "payload_hash.keyword",
+            "type": "keyword"
+          },
+          {
+            "path": "producer_epoch",
+            "type": "long"
+          },
+          {
+            "path": "producer_id",
+            "type": "text"
+          },
+          {
+            "path": "producer_id.keyword",
+            "type": "keyword"
+          },
+          {
+            "path": "producer_sequence",
+            "type": "long"
+          },
+          {
+            "path": "producer_stream_id",
+            "type": "text"
+          },
+          {
+            "path": "producer_stream_id.keyword",
+            "type": "keyword"
+          },
+          {
+            "path": "receipt_id",
+            "type": "text"
+          },
+          {
+            "path": "receipt_id.keyword",
+            "type": "keyword"
+          },
+          {
+            "path": "receipt_status",
+            "type": "text"
+          },
+          {
+            "path": "receipt_status.keyword",
+            "type": "keyword"
+          },
+          {
+            "path": "request_id",
+            "type": "text"
+          },
+          {
+            "path": "request_id.keyword",
+            "type": "keyword"
+          },
+          {
+            "path": "required",
+            "type": "boolean"
+          },
+          {
+            "path": "retryable",
+            "type": "boolean"
+          },
+          {
+            "path": "revision_id",
+            "type": "text"
+          },
+          {
+            "path": "revision_id.keyword",
+            "type": "keyword"
+          },
+          {
+            "path": "revision_no",
+            "type": "long"
+          },
+          {
+            "path": "row_version",
+            "type": "long"
+          },
+          {
+            "path": "schema_version",
+            "type": "text"
+          },
+          {
+            "path": "schema_version.keyword",
+            "type": "keyword"
+          },
+          {
+            "path": "span_id",
+            "type": "text"
+          },
+          {
+            "path": "span_id.keyword",
+            "type": "keyword"
+          },
+          {
+            "path": "started_at",
+            "type": "date"
+          },
+          {
+            "path": "status",
+            "type": "text"
+          },
+          {
+            "path": "status.keyword",
+            "type": "keyword"
+          },
+          {
+            "path": "terminal_at",
+            "type": "date"
+          },
+          {
+            "path": "tool_name",
+            "type": "text"
+          },
+          {
+            "path": "tool_name.keyword",
+            "type": "keyword"
+          },
+          {
+            "path": "trace_id",
+            "type": "text"
+          },
+          {
+            "path": "trace_id.keyword",
+            "type": "keyword"
+          },
+          {
+            "path": "trigger",
+            "type": "text"
+          },
+          {
+            "path": "trigger.keyword",
+            "type": "keyword"
+          },
+          {
+            "path": "updated_at",
+            "type": "date"
+          }
+        ]
+      }
+    ]
+  },
+  "projectionReceipts": {
+    "httpStatus": 200,
+    "total": {
+      "value": 21,
+      "relation": "eq"
+    },
+    "sizeBound": 20,
+    "returned": 20,
+    "metadata": [
+      {
+        "receiptIdPresent": false,
+        "schemaVersion": null,
+        "interactionMatchesTarget": true,
+        "conversationMatchesTarget": false,
+        "operationIdPresent": false,
+        "status": null,
+        "evidenceDurability": null,
+        "requestIdPresent": false,
+        "traceIdPresent": false,
+        "artifactRefCount": 0,
+        "ownerEffectiveSubjectPresent": false,
+        "ownerApplicationPrincipalPresent": false,
+        "knowledgeNetworkCount": 0,
+        "issuedAt": null,
+        "terminalAt": null,
+        "partialReasonCount": 0
+      },
+      {
+        "receiptIdPresent": false,
+        "schemaVersion": null,
+        "interactionMatchesTarget": true,
+        "conversationMatchesTarget": true,
+        "operationIdPresent": false,
+        "status": null,
+        "evidenceDurability": null,
+        "requestIdPresent": true,
+        "traceIdPresent": true,
+        "artifactRefCount": 0,
+        "ownerEffectiveSubjectPresent": true,
+        "ownerApplicationPrincipalPresent": true,
+        "knowledgeNetworkCount": 0,
+        "issuedAt": null,
+        "terminalAt": null,
+        "partialReasonCount": 0
+      },
+      {
+        "receiptIdPresent": false,
+        "schemaVersion": null,
+        "interactionMatchesTarget": true,
+        "conversationMatchesTarget": true,
+        "operationIdPresent": false,
+        "status": null,
+        "evidenceDurability": null,
+        "requestIdPresent": false,
+        "traceIdPresent": false,
+        "artifactRefCount": 0,
+        "ownerEffectiveSubjectPresent": false,
+        "ownerApplicationPrincipalPresent": false,
+        "knowledgeNetworkCount": 0,
+        "issuedAt": null,
+        "terminalAt": "2026-11-02T05:09:11.42844Z",
+        "partialReasonCount": 0
+      },
+      {
+        "receiptIdPresent": false,
+        "schemaVersion": null,
+        "interactionMatchesTarget": true,
+        "conversationMatchesTarget": true,
+        "operationIdPresent": true,
+        "status": null,
+        "evidenceDurability": null,
+        "requestIdPresent": true,
+        "traceIdPresent": true,
+        "artifactRefCount": 0,
+        "ownerEffectiveSubjectPresent": true,
+        "ownerApplicationPrincipalPresent": true,
+        "knowledgeNetworkCount": 0,
+        "issuedAt": null,
+        "terminalAt": null,
+        "partialReasonCount": 0
+      },
+      {
+        "receiptIdPresent": false,
+        "schemaVersion": null,
+        "interactionMatchesTarget": true,
+        "conversationMatchesTarget": true,
+        "operationIdPresent": true,
+        "status": null,
+        "evidenceDurability": null,
+        "requestIdPresent": true,
+        "traceIdPresent": true,
+        "artifactRefCount": 0,
+        "ownerEffectiveSubjectPresent": true,
+        "ownerApplicationPrincipalPresent": true,
+        "knowledgeNetworkCount": 0,
+        "issuedAt": null,
+        "terminalAt": null,
+        "partialReasonCount": 0
+      },
+      {
+        "receiptIdPresent": false,
+        "schemaVersion": null,
+        "interactionMatchesTarget": true,
+        "conversationMatchesTarget": true,
+        "operationIdPresent": true,
+        "status": null,
+        "evidenceDurability": null,
+        "requestIdPresent": true,
+        "traceIdPresent": true,
+        "artifactRefCount": 0,
+        "ownerEffectiveSubjectPresent": true,
+        "ownerApplicationPrincipalPresent": true,
+        "knowledgeNetworkCount": 0,
+        "issuedAt": null,
+        "terminalAt": null,
+        "partialReasonCount": 0
+      },
+      {
+        "receiptIdPresent": false,
+        "schemaVersion": null,
+        "interactionMatchesTarget": true,
+        "conversationMatchesTarget": true,
+        "operationIdPresent": true,
+        "status": null,
+        "evidenceDurability": null,
+        "requestIdPresent": true,
+        "traceIdPresent": true,
+        "artifactRefCount": 0,
+        "ownerEffectiveSubjectPresent": true,
+        "ownerApplicationPrincipalPresent": true,
+        "knowledgeNetworkCount": 0,
+        "issuedAt": null,
+        "terminalAt": null,
+        "partialReasonCount": 0
+      },
+      {
+        "receiptIdPresent": false,
+        "schemaVersion": null,
+        "interactionMatchesTarget": true,
+        "conversationMatchesTarget": true,
+        "operationIdPresent": true,
+        "status": null,
+        "evidenceDurability": null,
+        "requestIdPresent": true,
+        "traceIdPresent": true,
+        "artifactRefCount": 0,
+        "ownerEffectiveSubjectPresent": true,
+        "ownerApplicationPrincipalPresent": true,
+        "knowledgeNetworkCount": 0,
+        "issuedAt": null,
+        "terminalAt": null,
+        "partialReasonCount": 0
+      },
+      {
+        "receiptIdPresent": false,
+        "schemaVersion": null,
+        "interactionMatchesTarget": true,
+        "conversationMatchesTarget": true,
+        "operationIdPresent": false,
+        "status": null,
+        "evidenceDurability": null,
+        "requestIdPresent": true,
+        "traceIdPresent": true,
+        "artifactRefCount": 0,
+        "ownerEffectiveSubjectPresent": true,
+        "ownerApplicationPrincipalPresent": true,
+        "knowledgeNetworkCount": 0,
+        "issuedAt": null,
+        "terminalAt": null,
+        "partialReasonCount": 0
+      },
+      {
+        "receiptIdPresent": true,
+        "schemaVersion": "3.0.0",
+        "interactionMatchesTarget": true,
+        "conversationMatchesTarget": true,
+        "operationIdPresent": true,
+        "status": "completed",
+        "evidenceDurability": "durable",
+        "requestIdPresent": true,
+        "traceIdPresent": true,
+        "artifactRefCount": 0,
+        "ownerEffectiveSubjectPresent": true,
+        "ownerApplicationPrincipalPresent": true,
+        "knowledgeNetworkCount": 1,
+        "issuedAt": "2026-11-02T05:08:56.634523Z",
+        "terminalAt": "2026-11-02T05:08:56.685419Z",
+        "partialReasonCount": 0
+      },
+      {
+        "receiptIdPresent": false,
+        "schemaVersion": null,
+        "interactionMatchesTarget": true,
+        "conversationMatchesTarget": true,
+        "operationIdPresent": true,
+        "status": null,
+        "evidenceDurability": null,
+        "requestIdPresent": false,
+        "traceIdPresent": false,
+        "artifactRefCount": 0,
+        "ownerEffectiveSubjectPresent": false,
+        "ownerApplicationPrincipalPresent": false,
+        "knowledgeNetworkCount": 0,
+        "issuedAt": null,
+        "terminalAt": null,
+        "partialReasonCount": 0
+      },
+      {
+        "receiptIdPresent": false,
+        "schemaVersion": null,
+        "interactionMatchesTarget": true,
+        "conversationMatchesTarget": true,
+        "operationIdPresent": true,
+        "status": null,
+        "evidenceDurability": null,
+        "requestIdPresent": false,
+        "traceIdPresent": false,
+        "artifactRefCount": 0,
+        "ownerEffectiveSubjectPresent": false,
+        "ownerApplicationPrincipalPresent": false,
+        "knowledgeNetworkCount": 0,
+        "issuedAt": null,
+        "terminalAt": null,
+        "partialReasonCount": 0
+      },
+      {
+        "receiptIdPresent": false,
+        "schemaVersion": null,
+        "interactionMatchesTarget": true,
+        "conversationMatchesTarget": true,
+        "operationIdPresent": true,
+        "status": null,
+        "evidenceDurability": null,
+        "requestIdPresent": false,
+        "traceIdPresent": false,
+        "artifactRefCount": 0,
+        "ownerEffectiveSubjectPresent": false,
+        "ownerApplicationPrincipalPresent": false,
+        "knowledgeNetworkCount": 0,
+        "issuedAt": null,
+        "terminalAt": null,
+        "partialReasonCount": 0
+      },
+      {
+        "receiptIdPresent": false,
+        "schemaVersion": null,
+        "interactionMatchesTarget": true,
+        "conversationMatchesTarget": true,
+        "operationIdPresent": true,
+        "status": null,
+        "evidenceDurability": null,
+        "requestIdPresent": false,
+        "traceIdPresent": false,
+        "artifactRefCount": 0,
+        "ownerEffectiveSubjectPresent": false,
+        "ownerApplicationPrincipalPresent": false,
+        "knowledgeNetworkCount": 0,
+        "issuedAt": null,
+        "terminalAt": null,
+        "partialReasonCount": 0
+      },
+      {
+        "receiptIdPresent": false,
+        "schemaVersion": null,
+        "interactionMatchesTarget": true,
+        "conversationMatchesTarget": true,
+        "operationIdPresent": true,
+        "status": null,
+        "evidenceDurability": null,
+        "requestIdPresent": false,
+        "traceIdPresent": false,
+        "artifactRefCount": 0,
+        "ownerEffectiveSubjectPresent": false,
+        "ownerApplicationPrincipalPresent": false,
+        "knowledgeNetworkCount": 0,
+        "issuedAt": null,
+        "terminalAt": null,
+        "partialReasonCount": 0
+      },
+      {
+        "receiptIdPresent": true,
+        "schemaVersion": "3.0.0",
+        "interactionMatchesTarget": true,
+        "conversationMatchesTarget": true,
+        "operationIdPresent": true,
+        "status": "completed",
+        "evidenceDurability": "durable",
+        "requestIdPresent": true,
+        "traceIdPresent": true,
+        "artifactRefCount": 0,
+        "ownerEffectiveSubjectPresent": true,
+        "ownerApplicationPrincipalPresent": true,
+        "knowledgeNetworkCount": 1,
+        "issuedAt": "2026-11-02T05:08:56.737352Z",
+        "terminalAt": "2026-11-02T05:08:56.753583Z",
+        "partialReasonCount": 0
+      },
+      {
+        "receiptIdPresent": true,
+        "schemaVersion": "3.0.0",
+        "interactionMatchesTarget": true,
+        "conversationMatchesTarget": true,
+        "operationIdPresent": true,
+        "status": "completed",
+        "evidenceDurability": "durable",
+        "requestIdPresent": true,
+        "traceIdPresent": true,
+        "artifactRefCount": 0,
+        "ownerEffectiveSubjectPresent": true,
+        "ownerApplicationPrincipalPresent": true,
+        "knowledgeNetworkCount": 1,
+        "issuedAt": "2026-11-02T05:08:37.858964Z",
+        "terminalAt": "2026-11-02T05:08:37.90207Z",
+        "partialReasonCount": 0
+      },
+      {
+        "receiptIdPresent": true,
+        "schemaVersion": "3.0.0",
+        "interactionMatchesTarget": true,
+        "conversationMatchesTarget": true,
+        "operationIdPresent": true,
+        "status": "completed",
+        "evidenceDurability": "durable",
+        "requestIdPresent": true,
+        "traceIdPresent": true,
+        "artifactRefCount": 0,
+        "ownerEffectiveSubjectPresent": true,
+        "ownerApplicationPrincipalPresent": true,
+        "knowledgeNetworkCount": 0,
+        "issuedAt": "2026-11-02T05:08:41.245714Z",
+        "terminalAt": "2026-11-02T05:08:41.402896Z",
+        "partialReasonCount": 0
+      },
+      {
+        "receiptIdPresent": true,
+        "schemaVersion": "3.0.0",
+        "interactionMatchesTarget": true,
+        "conversationMatchesTarget": true,
+        "operationIdPresent": true,
+        "status": "completed",
+        "evidenceDurability": "durable",
+        "requestIdPresent": true,
+        "traceIdPresent": true,
+        "artifactRefCount": 0,
+        "ownerEffectiveSubjectPresent": true,
+        "ownerApplicationPrincipalPresent": true,
+        "knowledgeNetworkCount": 1,
+        "issuedAt": "2026-11-02T05:08:52.03032Z",
+        "terminalAt": "2026-11-02T05:08:52.220001Z",
+        "partialReasonCount": 0
+      },
+      {
+        "receiptIdPresent": true,
+        "schemaVersion": "3.0.0",
+        "interactionMatchesTarget": true,
+        "conversationMatchesTarget": true,
+        "operationIdPresent": true,
+        "status": "completed",
+        "evidenceDurability": "durable",
+        "requestIdPresent": true,
+        "traceIdPresent": true,
+        "artifactRefCount": 0,
+        "ownerEffectiveSubjectPresent": true,
+        "ownerApplicationPrincipalPresent": true,
+        "knowledgeNetworkCount": 1,
+        "issuedAt": "2026-11-02T05:08:35.910907Z",
+        "terminalAt": "2026-11-02T05:08:36.081085Z",
+        "partialReasonCount": 0
+      }
+    ]
+  },
+  "crossMetadataMatches": {
+    "artifactOwnerMatchesAnyReceiptOwner": []
+  },
+  "completedAt": "2026-11-03T15:16:42.436707+00:00"
+}

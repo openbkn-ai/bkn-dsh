@@ -1,0 +1,45 @@
+{
+  "targetIp": "192.168.50.28",
+  "context": "kind-bkn-dev",
+  "apiServer": "https://127.0.0.1:63845",
+  "namespace": "openbkn",
+  "tlsVerification": true,
+  "targetIpIsLocalInterfaceVerified": true,
+  "source": "existing configured context, read-only Kubernetes safe-field queries; no Secret/env/config export",
+  "records": [
+    {
+      "name": "workloads",
+      "requestedUtc": "2026-11-03T05:22:19.521262+00:00",
+      "returnedUtc": "2026-11-03T05:22:19.730903+00:00",
+      "bytes": 2629,
+      "sha256": "2e21b0acbb1e7ceedaad0d0c35e5816d2fd47c378bf0bcacef9a946429acfd6b"
+    },
+    {
+      "name": "pods",
+      "requestedUtc": "2026-11-03T05:22:19.731238+00:00",
+      "returnedUtc": "2026-11-03T05:22:19.782828+00:00",
+      "bytes": 8045,
+      "sha256": "55a6800c33f9d76da73e3db7721f5ea1c12fa70ed5e87e7331c0392353cc8693"
+    },
+    {
+      "name": "ingress-routes",
+      "requestedUtc": "2026-11-03T05:22:19.783146+00:00",
+      "returnedUtc": "2026-11-03T05:22:19.819096+00:00",
+      "bytes": 1782,
+      "sha256": "a6dace083be5ca2349baeefaed5a7370b1e445bf09ac974e39a4677845ca2f85"
+    },
+    {
+      "name": "nodes",
+      "requestedUtc": "2026-11-03T05:22:19.819351+00:00",
+      "returnedUtc": "2026-11-03T05:22:19.852173+00:00",
+      "bytes": 72,
+      "sha256": "80c56025c6c1d0b8283dedcd99d8a5a517bda7c689a0ffa581625f863d696275"
+    },
+    {
+      "name": "kind-published-ports",
+      "bytes": 90,
+      "sha256": "e50a09c62d96d97847ebdb38455dd3ef6403c7a692f889f301d561138f3d09b8",
+      "collectedUtc": "2026-11-03T05:22:20.083205+00:00"
+    }
+  ]
+}

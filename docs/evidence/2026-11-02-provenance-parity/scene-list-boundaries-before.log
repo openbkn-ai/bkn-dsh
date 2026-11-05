@@ -1,0 +1,44 @@
+✖ same-interaction search metadata preserves the mounted evidence view and in-flight generation (2042.322625ms)
+✖ same-interaction pagination preserves in-flight analysis; only explicit refresh reloads facts (3637.781833ms)
+ℹ tests 2
+ℹ suites 0
+ℹ pass 0
+ℹ fail 2
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 7206.354333
+
+✖ failing tests:
+
+test at src/client/platform-provenance/scene-list-boundaries.test.ts:1:3663
+✖ same-interaction search metadata preserves the mounted evidence view and in-flight generation (2042.322625ms)
+  AssertionError [ERR_ASSERTION]: list loading must not unmount the active detail view
+  
+  false !== true
+  
+      at TestContext.<anonymous> (/Users/kalias/Documents/project/app/openBKN/bkn-dsh-provenance-parity-20261102/packages/openbkn-business-context/src/client/platform-provenance/scene-list-boundaries.test.ts:59:10)
+      at async Test.run (node:internal/test_runner/test:1054:7)
+      at async startSubtestAfterBootstrap (node:internal/test_runner/harness:297:3) {
+    generatedMessage: false,
+    code: 'ERR_ASSERTION',
+    actual: false,
+    expected: true,
+    operator: 'strictEqual'
+  }
+
+test at src/client/platform-provenance/scene-list-boundaries.test.ts:1:5273
+✖ same-interaction pagination preserves in-flight analysis; only explicit refresh reloads facts (3637.781833ms)
+  AssertionError [ERR_ASSERTION]: pagination must not reload the selected facts
+  
+  4 !== 3
+  
+      at TestContext.<anonymous> (/Users/kalias/Documents/project/app/openBKN/bkn-dsh-provenance-parity-20261102/packages/openbkn-business-context/src/client/platform-provenance/scene-list-boundaries.test.ts:79:10)
+      at async Test.run (node:internal/test_runner/test:1054:7)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:744:7) {
+    generatedMessage: false,
+    code: 'ERR_ASSERTION',
+    actual: 4,
+    expected: 3,
+    operator: 'strictEqual'
+  }

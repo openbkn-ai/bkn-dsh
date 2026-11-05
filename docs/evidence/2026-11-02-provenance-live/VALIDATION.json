@@ -1,0 +1,93 @@
+{
+  "date": "2026-11-02",
+  "scope": "local build, isolated macOS Desktop rc.5 read-only acceptance; not release approval",
+  "sourceBaseCommit": "bc5e67bfa1706c0e7f991f59979dbb93efe4a960",
+  "branch": "feat/provenance-platform-parity-live",
+  "candidate": {
+    "sha256": "7f5f6a8630a4b3dcaf05a9e88e90f96bb1bef7f4ba8194ca518a24aefbbf10c5",
+    "bytes": 871946,
+    "files": 126,
+    "exactInstalledFiles": 126,
+    "version": "0.2.1-rc.3-openbkn.0.2.1-2",
+    "freshElectronUserData": "release/provenance-live-20261102/electron-3",
+    "sourceBaseCommit": "bc5e67bfa1706c0e7f991f59979dbb93efe4a960",
+    "businessSha256": "bac538d8de54f6b362ba39374b495cf39c6dfe89c4732074cfc966f98e1af7ad",
+    "clientSha256": "4a69b0af435a76853654b5ac4e38af12effe580ea4ae7a863a3ad458f98c5797"
+  },
+  "commands": {
+    "plugin": "Node24/pnpm11.7.0 pnpm test in packages/openbkn-business-context (builds host and client)",
+    "repository": "node --test compat/dsh-0.2.0-rc.2/tests/*.test.mjs tests/*.test.mjs runtime/tests/*.test.mjs",
+    "packageCheck": "node scripts/package-bundle.mjs --check",
+    "scope": "node --test docs/evidence/2026-11-02-provenance-parity/check-current-scope.mjs"
+  },
+  "results": {
+    "plugin": {
+      "total": 760,
+      "pass": 759,
+      "skip": 1,
+      "fail": 0
+    },
+    "sourceAdjacentSupplement": {
+      "pass": 10,
+      "fail": 0
+    },
+    "repository": {
+      "pass": 79,
+      "fail": 0
+    },
+    "scope": {
+      "pass": 2,
+      "fail": 0
+    },
+    "packageAudit": "pass126files"
+  },
+  "logs": {
+    "plugin-tests-final.log": {
+      "sha256": "bc398f154746bb0b2fd82464bcbc8b7da563d43d9d0aa76ad54ec51fb497beb4",
+      "bytes": 78628
+    },
+    "repository-tests.log": {
+      "sha256": "e70dce97805da406305ac4af2c442cf9bd27d6b833d6320c13adcfea5a5443ed",
+      "bytes": 10952
+    },
+    "scope-final.log": {
+      "sha256": "258982feef512b16bb7352e11d78fd5a3d354ba295f9aab36a68566e7cf66c4d",
+      "bytes": 317
+    },
+    "package-check-final.log": {
+      "sha256": "ae8f16c0211547f19047e4d3bdf6d8dc2d49f1498e47f591afa3bfcfce256efb",
+      "bytes": 300
+    }
+  },
+  "actualNativeReceipts": {
+    "NATIVE-READONLY-3.json": {
+      "sha256": "2e06846dc04de98b6d523c69660f0b8a2870174ba2a22136bd524fdc1c349401"
+    },
+    "ROUND-SELECTION-3.json": {
+      "sha256": "8158f47bf0214c9ac2a86d38d14a1b428f6009f94c8a92ce4a5c5a5b6a434a28"
+    },
+    "CLIPBOARD-NATIVE-3.json": {
+      "sha256": "3b4a976b9bde4d166f8dd82fe8a9ebfb5b72d9228b2ca9cebe42bc0eeb94b6b7"
+    },
+    "DOWNLOAD-NATIVE-3.json": {
+      "sha256": "986a55d4dd7441f5bb62cd0826b94efa8c17fc53f194b236f93872b1b77265aa"
+    },
+    "DAILY-RESTORE.json": {
+      "sha256": "c955421c7a467a1cb4f81d7f215cd884ff7e0ae1b695e81319fef5bee500c53c"
+    }
+  },
+  "platformDataLimitation": {
+    "search": "projection_scan_cap_reached / partial / truncated, original selection retained",
+    "markdown": "captured BOM Markdown has700 original 请求失败。 occurrences, plugin preserves it; root cause not investigated"
+  },
+  "notPerformed": [
+    "remote CI",
+    "push",
+    "release/publish/latest modification",
+    "real generation/update explanation",
+    "start Agent analysis/model run",
+    "Windows native acceptance",
+    "real existing-explanation graph/fullscreen acceptance"
+  ],
+  "dailyHostRestored": true
+}

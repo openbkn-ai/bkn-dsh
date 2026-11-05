@@ -1,0 +1,411 @@
+{
+  "schema_version": "1",
+  "interaction_id": "int-parity-007",
+  "status": "ready",
+  "generated_at": "2026-11-02T02:11:00Z",
+  "view": {
+    "interactionId": "int-parity-007",
+    "question": "平台问题原文：库存多少？\n第二行原文保留。",
+    "answer": "平台回答原文：123.450000 件。\n这不是 DSH 改写后的回答。",
+    "status": "completed",
+    "evidenceStatus": "partial",
+    "generationStatus": "ready",
+    "requirements": [],
+    "claims": [
+      {
+        "id": "c-inventory",
+        "label": "库存结论",
+        "value": "共享测试值",
+        "status": "candidate",
+        "supportStatus": "partial",
+        "nodeIds": [
+          "e-inventory"
+        ]
+      },
+      {
+        "id": "c-orders",
+        "label": "订单结论",
+        "value": "共享测试值",
+        "status": "candidate",
+        "supportStatus": "partial",
+        "nodeIds": [
+          "e-orders"
+        ]
+      }
+    ],
+    "execution": {
+      "nodes": [
+        {
+          "id": "x1",
+          "label": "平台查询执行",
+          "kind": "query"
+        }
+      ],
+      "edges": []
+    },
+    "evidence": {
+      "nodes": [
+        {
+          "id": "e-in",
+          "label": "平台共享输入",
+          "kind": "source",
+          "value": "382-000005"
+        },
+        {
+          "id": "e-out",
+          "label": "平台结果原文",
+          "kind": "result",
+          "value": "123.450000"
+        },
+        {
+          "id": "e-unrelated",
+          "label": "同值但无关系原文",
+          "kind": "source",
+          "value": "123.450000"
+        }
+      ],
+      "edges": [
+        {
+          "id": "edge-recorded",
+          "source": "e-in",
+          "target": "e-out",
+          "label": "平台明确关系"
+        }
+      ]
+    },
+    "notices": [],
+    "timeRail": [
+      {
+        "id": "rail-op-retry-1",
+        "order": 1,
+        "operation_id": "op-retry",
+        "attempt": 1,
+        "interface_name": "query_object_instance",
+        "protocol": "mcp",
+        "source_module": "platform-recorded",
+        "status": "failed",
+        "started_at": "2026-11-02T02:10:01Z",
+        "finished_at": "2026-11-02T02:10:02Z",
+        "duration_ms": 101,
+        "input": {
+          "mode": "inline",
+          "media_type": "application/json",
+          "byte_length": 126,
+          "inline": {
+            "kn_id": "kn-parity-owned",
+            "ot_id": "ot-inventory",
+            "condition": {
+              "field": "material_code",
+              "operation": "==",
+              "value": "382-000005"
+            }
+          }
+        },
+        "output": {
+          "mode": "omitted",
+          "media_type": "application/json",
+          "byte_length": 0,
+          "omitted_reason": "call_failed"
+        },
+        "error": {
+          "mode": "inline",
+          "media_type": "application/json",
+          "byte_length": 70,
+          "inline": {
+            "code": "SAMPLE_FAILURE",
+            "reason": "平台原始错误：保持原文"
+          }
+        }
+      },
+      {
+        "id": "rail-op-retry-2",
+        "order": 2,
+        "operation_id": "op-retry",
+        "attempt": 2,
+        "interface_name": "query_object_instance",
+        "protocol": "mcp",
+        "source_module": "platform-recorded",
+        "status": "completed",
+        "started_at": "2026-11-02T02:10:02Z",
+        "finished_at": "2026-11-02T02:10:03Z",
+        "duration_ms": 102,
+        "input": {
+          "mode": "inline",
+          "media_type": "application/json",
+          "byte_length": 126,
+          "inline": {
+            "kn_id": "kn-parity-owned",
+            "ot_id": "ot-inventory",
+            "condition": {
+              "field": "material_code",
+              "operation": "==",
+              "value": "382-000005"
+            }
+          }
+        },
+        "output": {
+          "mode": "inline",
+          "media_type": "application/json",
+          "byte_length": 100,
+          "inline": {
+            "total_count": 1,
+            "rows": [
+              {
+                "material_code": "382-000005",
+                "warehouse": "测试仓",
+                "qty": "123.450000"
+              }
+            ]
+          }
+        }
+      },
+      {
+        "id": "rail-op-unrelated-1",
+        "order": 3,
+        "operation_id": "op-unrelated",
+        "attempt": 1,
+        "interface_name": "get_kn_detail",
+        "protocol": "mcp",
+        "source_module": "platform-recorded",
+        "status": "completed",
+        "started_at": "2026-11-02T02:10:01Z",
+        "finished_at": "2026-11-02T02:10:02Z",
+        "duration_ms": 101,
+        "input": {
+          "mode": "inline",
+          "media_type": "application/json",
+          "byte_length": 126,
+          "inline": {
+            "kn_id": "kn-parity-owned",
+            "ot_id": "ot-inventory",
+            "condition": {
+              "field": "material_code",
+              "operation": "==",
+              "value": "382-000005"
+            }
+          }
+        },
+        "output": {
+          "mode": "inline",
+          "media_type": "application/json",
+          "byte_length": 100,
+          "inline": {
+            "total_count": 1,
+            "rows": [
+              {
+                "material_code": "382-000005",
+                "warehouse": "测试仓",
+                "qty": "123.450000"
+              }
+            ]
+          }
+        }
+      }
+    ],
+    "questionPairs": [
+      {
+        "id": "pair1",
+        "question": "平台问题原文：库存多少？\n第二行原文保留。",
+        "answer": "平台回答原文：123.450000 件。\n这不是 DSH 改写后的回答。",
+        "summary": "共享输入的两条平台查询",
+        "status": "partial",
+        "claimIds": [
+          "c-inventory",
+          "c-orders"
+        ]
+      }
+    ],
+    "selectedPairGraphs": {
+      "pair1": {
+        "claims": [
+          {
+            "id": "c-inventory",
+            "label": "库存结论",
+            "value": "共享测试值",
+            "status": "candidate",
+            "supportStatus": "partial",
+            "nodeIds": [
+              "e-inventory"
+            ]
+          },
+          {
+            "id": "c-orders",
+            "label": "订单结论",
+            "value": "共享测试值",
+            "status": "candidate",
+            "supportStatus": "partial",
+            "nodeIds": [
+              "e-orders"
+            ]
+          }
+        ],
+        "evidenceNodes": [
+          {
+            "id": "e-shared",
+            "label": "共享业务输入",
+            "kind": "source",
+            "value": "共享测试值"
+          },
+          {
+            "id": "e-inventory",
+            "label": "库存返回原文",
+            "kind": "result",
+            "value": "共享测试值"
+          },
+          {
+            "id": "e-orders",
+            "label": "订单返回原文",
+            "kind": "result",
+            "value": "共享测试值"
+          },
+          {
+            "id": "e-unrelated",
+            "label": "相同值无平台边",
+            "kind": "source",
+            "value": "共享测试值"
+          }
+        ],
+        "schemaNodes": [],
+        "businessFunctions": [
+          {
+            "id": "fn-inventory",
+            "displayName": "库存查询原文",
+            "capabilityKind": "query",
+            "businessPurpose": "平台用途原文",
+            "businessInputs": [
+              {
+                "name": "输入",
+                "value": "共享测试值",
+                "sourceRef": "e-shared",
+                "evidenceRefs": [
+                  "e-shared"
+                ]
+              }
+            ],
+            "logicSummary": "平台处理原文，不由插件计算",
+            "businessOutputs": [
+              {
+                "summary": "共享测试值",
+                "evidenceRefs": [
+                  "e-inventory"
+                ],
+                "adoptedRowRefs": []
+              }
+            ],
+            "operationIds": [
+              "fn-inventory-op"
+            ],
+            "supportsClaimIds": [
+              "c-inventory"
+            ],
+            "schemaRefs": [],
+            "validationStatus": "valid",
+            "reasonCode": "platform-recorded-valid",
+            "technicalExecution": {
+              "interfaceNames": [
+                "query_object_instance"
+              ],
+              "completeness": "partial",
+              "inputPayloadRef": "rail-op-retry-2/input",
+              "outputPayloadRef": "rail-op-retry-2/output"
+            }
+          },
+          {
+            "id": "fn-orders",
+            "displayName": "销售订单查询原文",
+            "capabilityKind": "query",
+            "businessPurpose": "平台用途原文",
+            "businessInputs": [
+              {
+                "name": "输入",
+                "value": "共享测试值",
+                "sourceRef": "e-shared",
+                "evidenceRefs": [
+                  "e-shared"
+                ]
+              }
+            ],
+            "logicSummary": "平台处理原文，不由插件计算",
+            "businessOutputs": [
+              {
+                "summary": "共享测试值",
+                "evidenceRefs": [
+                  "e-orders"
+                ],
+                "adoptedRowRefs": []
+              }
+            ],
+            "operationIds": [
+              "fn-orders-op"
+            ],
+            "supportsClaimIds": [
+              "c-orders"
+            ],
+            "schemaRefs": [],
+            "validationStatus": "valid",
+            "reasonCode": "platform-recorded-valid",
+            "technicalExecution": {
+              "interfaceNames": [
+                "query_object_instance"
+              ],
+              "completeness": "partial",
+              "inputPayloadRef": "rail-op-retry-2/input",
+              "outputPayloadRef": "rail-op-retry-2/output"
+            }
+          }
+        ],
+        "executionSteps": [],
+        "edges": [
+          {
+            "edgeId": "persisted-edge-0",
+            "kind": "support",
+            "fromId": "e-shared",
+            "toId": "fn-inventory",
+            "operationIds": [],
+            "validationStatus": "valid"
+          },
+          {
+            "edgeId": "persisted-edge-1",
+            "kind": "support",
+            "fromId": "fn-inventory",
+            "toId": "e-inventory",
+            "operationIds": [],
+            "validationStatus": "valid"
+          },
+          {
+            "edgeId": "persisted-edge-2",
+            "kind": "support",
+            "fromId": "e-inventory",
+            "toId": "c-inventory",
+            "operationIds": [],
+            "validationStatus": "valid"
+          },
+          {
+            "edgeId": "persisted-edge-3",
+            "kind": "support",
+            "fromId": "e-shared",
+            "toId": "fn-orders",
+            "operationIds": [],
+            "validationStatus": "valid"
+          },
+          {
+            "edgeId": "persisted-edge-4",
+            "kind": "support",
+            "fromId": "fn-orders",
+            "toId": "e-orders",
+            "operationIds": [],
+            "validationStatus": "valid"
+          },
+          {
+            "edgeId": "persisted-edge-5",
+            "kind": "support",
+            "fromId": "e-orders",
+            "toId": "c-orders",
+            "operationIds": [],
+            "validationStatus": "valid"
+          }
+        ]
+      }
+    }
+  }
+}

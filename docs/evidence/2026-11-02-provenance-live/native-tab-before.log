@@ -1,0 +1,45 @@
+✖ analysis modal Tab wraps last to first before the outer focus trap (2489.928959ms)
+✖ analysis modal ShiftTab wraps first to last before the outer focus trap (2042.482458ms)
+✔ nonmodal original-text Popover permits Tab to leave its preview (3079.682416ms)
+ℹ tests 3
+ℹ suites 0
+ℹ pass 1
+ℹ fail 2
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 9657.855709
+
+✖ failing tests:
+
+test at tests/provenance-native-dialogs.test.ts:1:9577
+✖ analysis modal Tab wraps last to first before the outer focus trap (2489.928959ms)
+  AssertionError [ERR_ASSERTION]: Tab must stay in the inner analysis modal
+      at <anonymous> (/Users/kalias/Documents/project/app/openBKN/bkn-dsh-provenance-parity-live-20261102/packages/openbkn-business-context/tests/provenance-native-dialogs.test.ts:166:14)
+      at async withVisibleClientRects (/Users/kalias/Documents/project/app/openBKN/bkn-dsh-provenance-parity-live-20261102/packages/openbkn-business-context/tests/provenance-native-dialogs.test.ts:151:8)
+      at async TestContext.<anonymous> (/Users/kalias/Documents/project/app/openBKN/bkn-dsh-provenance-parity-live-20261102/packages/openbkn-business-context/tests/provenance-native-dialogs.test.ts:156:5)
+      at async Test.run (node:internal/test_runner/test:1389:7)
+      at async startSubtestAfterBootstrap (node:internal/test_runner/harness:387:3) {
+    generatedMessage: false,
+    code: 'ERR_ASSERTION',
+    actual: false,
+    expected: true,
+    operator: '==',
+    diff: 'simple'
+  }
+
+test at tests/provenance-native-dialogs.test.ts:1:9577
+✖ analysis modal ShiftTab wraps first to last before the outer focus trap (2042.482458ms)
+  AssertionError [ERR_ASSERTION]: the inner modal wraps at its own boundary
+      at <anonymous> (/Users/kalias/Documents/project/app/openBKN/bkn-dsh-provenance-parity-live-20261102/packages/openbkn-business-context/tests/provenance-native-dialogs.test.ts:167:14)
+      at async withVisibleClientRects (/Users/kalias/Documents/project/app/openBKN/bkn-dsh-provenance-parity-live-20261102/packages/openbkn-business-context/tests/provenance-native-dialogs.test.ts:151:8)
+      at async TestContext.<anonymous> (/Users/kalias/Documents/project/app/openBKN/bkn-dsh-provenance-parity-live-20261102/packages/openbkn-business-context/tests/provenance-native-dialogs.test.ts:156:5)
+      at async Test.run (node:internal/test_runner/test:1389:7)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:960:7) {
+    generatedMessage: false,
+    code: 'ERR_ASSERTION',
+    actual: false,
+    expected: true,
+    operator: '==',
+    diff: 'simple'
+  }

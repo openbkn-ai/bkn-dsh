@@ -1,0 +1,13 @@
+Node 22.19.0 macOS; initial explanation GET deliberately deferred.
+The disabled=true and disabled-click/no-generate assertions pass; after releasing GET, the old click sequence still leaves generate count 0.
+# Subtest: same-interaction search metadata preserves the mounted evidence view and in-flight generation
+not ok 1 - same-interaction search metadata preserves the mounted evidence view and in-flight generation
+  duration_ms: 2407.025583
+    0 !== 1
+  expected: 1
+  actual: 0
+# tests 1
+# pass 0
+# fail 1
+# skipped 0
+# duration_ms 3975.171458

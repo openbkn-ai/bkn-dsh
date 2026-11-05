@@ -1,0 +1,23 @@
+{
+  "target_call_facts_read": 6,
+  "source_selection": "existing reference index and exact offset seeks",
+  "outer_reserved_field": "call_facts[].output._trace_evidence_completion",
+  "field_present_count": 6,
+  "field_json_type": "object",
+  "field_inside_business_inline": false,
+  "static_runner_ref": "4339b846c39a40dfe627594dfb64d5ec79255bb1",
+  "static_runner_tag": "v0.2.0",
+  "historical_runner_execution_pin": "NOT_CAPTURED",
+  "native_pod_binary_source_pin": "UNKNOWN",
+  "fixed_core_ref": "81d5752826f3b3f3f72f3ad4cb1e22d45e99ab4b",
+  "fixed_core_strict_decoder_rejects_field": true,
+  "fixed_core_rejection_stage": "input",
+  "manifest_reason": "native_core_import_failed_input",
+  "native_storage_codec_preserves_control_metadata": true,
+  "offline_validator_run": "NOT_RUN",
+  "new_platform_build": "NOT_RUN",
+  "business_values_or_content_exported": false,
+  "platform_requests": 0,
+  "platform_writes": 0,
+  "product_or_migration_code_changed": false
+}

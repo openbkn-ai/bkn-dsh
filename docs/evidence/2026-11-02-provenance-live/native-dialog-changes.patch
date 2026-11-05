@@ -1,0 +1,188 @@
+--- before/business-provenance/BusinessProvenanceScene.tsx
++++ after/business-provenance/BusinessProvenanceScene.tsx
+@@ -38,6 +38,7 @@
+ import i18n from "../i18n.js";
+ import { MarkdownText } from "../MarkdownText.js";
+ import { usePlatformProvenanceAdapter } from "../adapter.js";
++import { useOwnedLayerFocus } from "../use-owned-layer-focus.js";
+ import {
+   type BusinessProvenanceAnalysisHistory,
+   type BusinessProvenanceConversation,
+@@ -360,6 +361,14 @@
+   viewLabel: string;
+   onCopy: (value: string) => void;
+ }) {
++  const trigger = useRef<HTMLButtonElement>(null);
++  const [open, setOpen] = useState(false);
++  const [focusRequested, setFocusRequested] = useState(false);
++  const [popoverElement, setPopoverElement] = useState<HTMLElement | null>(null);
++  useOwnedLayerFocus(popoverElement, open, () => {
++    setOpen(false);
++    setFocusRequested(false);
++  }, {focus:focusRequested,trigger:trigger.current});
+   if (!original) {
+     if (!preview) return <p className={styles.sourceTextUnavailable}>{bpText("notRecorded")}</p>;
+     return (
+@@ -372,9 +381,14 @@
+   return (
+     <Popover
+       trigger={["hover", "click"]}
++      open={open}
++      onOpenChange={(next) => {
++        setOpen(next);
++        if (!next) setFocusRequested(false);
++      }}
+       overlayClassName={styles.sourceTextPopover}
+       content={
+-        <section className={styles.sourceTextPopoverContent}>
++        <section ref={setPopoverElement} className={styles.sourceTextPopoverContent} role="dialog" aria-label={title} tabIndex={-1}>
+           <h4>{title}</h4>
+           <MarkdownText text={original} variant="document" />
+           <Button size="small" icon={<CopyOutlined />} onClick={() => onCopy(original)}>
+@@ -383,7 +397,7 @@
+         </section>
+       }
+     >
+-      <button type="button" className={styles.sourceTextPreview} aria-label={viewLabel}>
++      <button ref={trigger} type="button" className={styles.sourceTextPreview} aria-label={viewLabel} onClick={() => setFocusRequested(true)}>
+         <span>{preview || bpText("notRecorded")}</span>
+         <small>{bpText("rounds.viewFull")}</small>
+       </button>
+@@ -739,11 +753,21 @@
+   const [analysisHistory, setAnalysisHistory] = useState<BusinessProvenanceAnalysisHistory[]>([]);
+   const [analysisStreamText, setAnalysisStreamText] = useState("");
+   const [analysisPanelOpen, setAnalysisPanelOpen] = useState(false);
++  const [analysisPanelElement, setAnalysisPanelElement] = useState<HTMLElement | null>(null);
++  const [analysisHistoryOpen, setAnalysisHistoryOpen] = useState(false);
+   const [analysisError, setAnalysisError] = useState<string>();
+   const [analysisMarkdown, setAnalysisMarkdown] = useState("");
+   const [analysisMarkdownLoading, setAnalysisMarkdownLoading] = useState(false);
+   const analysisController = useRef<AbortController | undefined>(undefined);
+   const timelineInspectorRef = useRef<HTMLElement>(null);
++
++  useOwnedLayerFocus(analysisPanelElement, analysisPanelOpen, () => {
++    if (analysisHistoryOpen) setAnalysisHistoryOpen(false);
++    else setAnalysisPanelOpen(false);
++  });
++  useEffect(() => {
++    if (!analysisPanelOpen || !analysisHistory.length) setAnalysisHistoryOpen(false);
++  }, [analysisPanelOpen, analysisHistory.length]);
+ 
+   useEffect(() => {
+     if (timelineInspectorRef.current) timelineInspectorRef.current.scrollTop = 0;
+@@ -1463,7 +1487,7 @@
+       </section>
+       {analysisPanelOpen ? (
+         <div className={styles.agentDrawerMask}>
+-          <aside className={styles.agentPanel}>
++          <aside ref={setAnalysisPanelElement} className={styles.agentPanel} role="dialog" aria-modal="true" aria-label={bpText("agent.title")} tabIndex={-1}>
+             <header>
+               <div>
+                 <small>{bpText("agent.title")}</small>
+@@ -1493,6 +1517,8 @@
+             {analysisHistory.length ? (
+               <Select
+                 aria-label={bpText("agent.history")}
++                open={analysisHistoryOpen}
++                onOpenChange={setAnalysisHistoryOpen}
+                 value={
+                   analysisHistory.find((item) => item.result === analysisResult)?.analysisId ??
+                   analysisHistory[0]?.analysisId
+--- before/evidence-chain/BusinessProvenance016.tsx
++++ after/evidence-chain/BusinessProvenance016.tsx
+@@ -5,9 +5,10 @@
+  * Conditions. See LICENSE for the full text.
+  */
+ 
+-import { useEffect, useMemo, useState } from "react";
++import { useEffect, useMemo, useRef, useState } from "react";
+ import { createPortal } from "react-dom";
+ import { usePlatformProvenancePortal } from "../adapter.js";
++import { useOwnedLayerFocus } from "../use-owned-layer-focus.js";
+ import { Alert, Empty, Tag } from "antd";
+ import i18n from "../i18n.js";
+ import { RecordMissingDetails } from "../business-provenance/RecordMissingDetails.js";
+@@ -1342,6 +1343,16 @@
+   const [mode, setMode] = useState<DisplayMode>("reading");
+   const [activePanel, setActivePanel] = useState<WorkspacePanel>(panel);
+   const [fullScreen, setFullScreen] = useState(false);
++  const [fullScreenElement, setFullScreenElement] = useState<HTMLDivElement | null>(null);
++  const fullScreenTrigger = useRef<HTMLButtonElement>(null);
++  const wasFullScreen = useRef(false);
++  useOwnedLayerFocus(fullScreenElement, fullScreen, () => setFullScreen(false));
++  useEffect(() => {
++    // The Portal transition remounts its trigger; restore the current button,
++    // rather than the disconnected element that opened fullscreen.
++    if (wasFullScreen.current && !fullScreen) fullScreenTrigger.current?.focus();
++    wasFullScreen.current = fullScreen;
++  }, [fullScreen]);
+   const [selectedClaimId, setSelectedClaimId] = useState<string>();
+   useEffect(
+     () => setSelectedId(firstPairId),
+@@ -1379,7 +1390,14 @@
+   const supported = view.claims.filter((claim) => claim.supportStatus === "supported").length;
+   const failed = (view.timeRail || []).filter((item) => item.status === "failed").length;
+   const content = (
+-    <div className={`${styles.shell} ${fullScreen ? styles.fullScreen : ""}`}>
++    <div
++      className={`${styles.shell} ${fullScreen ? styles.fullScreen : ""}`}
++      ref={setFullScreenElement}
++      tabIndex={fullScreen ? -1 : undefined}
++      role={fullScreen ? "dialog" : undefined}
++      aria-modal={fullScreen || undefined}
++      aria-label={fullScreen ? p16Text("reading.processAndEvidence") : undefined}
++    >
+       <header className={styles.workspaceToolbar}>
+         {!evidenceOnly ? (
+           <div className={styles.primaryTabs} role="tablist" aria-label={p16Text("workspace.tabs")}>
+@@ -1409,6 +1427,7 @@
+           </div>
+         )}
+         <button
++          ref={fullScreenTrigger}
+           type="button"
+           className={styles.fullScreenButton}
+           aria-label={
+--- before/evidence-chain/EvidenceChainPanels.tsx
++++ after/evidence-chain/EvidenceChainPanels.tsx
+@@ -15,6 +15,7 @@
+ } from "react";
+ import { createPortal } from "react-dom";
+ import { usePlatformProvenancePortal } from "../adapter.js";
++import { useOwnedLayerFocus } from "../use-owned-layer-focus.js";
+ import { useTranslation } from "react-i18next";
+ import { layoutChain } from "./chain-layout.js";
+ import type {
+@@ -1070,6 +1071,15 @@
+   const [metadata, setMetadata] = useState(false);
+   const [executionId, setExecutionId] = useState<string>();
+   const [fullScreen, setFullScreen] = useState(false);
++  const [fullScreenElement, setFullScreenElement] = useState<HTMLDivElement | null>(null);
++  const fullScreenTrigger = useRef<HTMLButtonElement>(null);
++  const wasFullScreen = useRef(false);
++  useOwnedLayerFocus(fullScreenElement, fullScreen, () => setFullScreen(false));
++  useEffect(() => {
++    // Fullscreen changes the Portal parent and replaces the old opener.
++    if (wasFullScreen.current && !fullScreen) fullScreenTrigger.current?.focus();
++    wasFullScreen.current = fullScreen;
++  }, [fullScreen]);
+   const [answerExpanded, setAnswerExpanded] = useState(false);
+   const factMode = view.claims.length === 0;
+   const supportStatus = answerSupportStatus(view);
+@@ -1190,6 +1200,8 @@
+     <ViewportPortal active={fullScreen}>
+       <div
+         className={`${styles.root} ${fullScreen ? styles.fullScreen : ""}`}
++        ref={setFullScreenElement}
++        tabIndex={fullScreen ? -1 : undefined}
+         role={fullScreen ? "dialog" : undefined}
+         aria-modal={fullScreen || undefined}
+         aria-label={fullScreen ? fullScreenLabel : undefined}
+@@ -1204,6 +1216,7 @@
+               {view.revisionLabel} · {t(`bknTrace.evidenceChain.status.${view.status}`)}
+             </span>
+             <button
++              ref={fullScreenTrigger}
+               className={styles.fullScreenButton}
+               onClick={() => setFullScreen((value) => !value)}
+             >

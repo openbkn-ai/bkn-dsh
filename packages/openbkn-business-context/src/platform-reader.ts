@@ -5,6 +5,7 @@ import type { BusinessNetworkBinding } from './session-binding.js'
 import { httpStatusEvidence, passiveDiagnostics, transportMarkersOf, type PassiveDiagnosticsWriter } from './diagnostics-observer.js'
 import type { DiagnosticsStage } from './diagnostics-contract.js'
 import { trimTrailingSlashes } from './trailing-slashes.js'
+import { PROVENANCE_DETAIL_LIMITS, provenanceDetailResponseLimit, type ProvenanceDetailRequest } from './provenance-detail-types.js'
 
 export type PlatformReaderErrorCode = 'ACCESS_DENIED' | 'NATIVE_NOT_AVAILABLE'
   | 'AUTHENTICATION_REQUIRED'
@@ -22,6 +23,10 @@ interface RequestOptions {
   readonly licenseGated?: boolean
   /** Host cap on the raw response body; defaults to `MAX_PLATFORM_RESPONSE_BYTES`. */
   readonly maxResponseBytes?: number
+  /** Only the fixed provenance Markdown route opts into plain text. */
+  readonly responseType?: 'text'
+  /** Only the scene-scoped provenance adapter supplies this last-moment identity guard. */
+  readonly beforeDispatch?: () => void | Promise<void>
 }
 
 /** A bounded Host-side error. It never includes platform response bodies. */
@@ -211,6 +216,89 @@ export class OpenBknPlatformReader {
     return this.readNative(interactionId, true, signal, value => projectNativeExplanation(value, interactionId, Math.min(this.config.maxResultBytes, NATIVE_PROVENANCE_LIMITS.dtoBytes)))
   }
 
+  /** Complete native display records. Identity/membership is checked by the Host scene scope. */
+  async readProvenanceDetailData(
+    request: ProvenanceDetailRequest,
+    conversationId: string,
+    interactionId: string,
+    signal: AbortSignal,
+    beforeDispatch?: () => void | Promise<void>,
+  ): Promise<JsonValue> {
+    const prefix = '/api/agent-observability/v1/business-provenance'
+    const options: RequestOptions = { nativeProvenance: true, maxResponseBytes: provenanceDetailResponseLimit(request.kind), beforeDispatch }
+    if (request.kind === 'conversation' || request.kind === 'rounds') {
+      const query = new URLSearchParams({ conversation_id: conversationId, page: String(request.page ?? 1), page_size: String(request.pageSize ?? PROVENANCE_DETAIL_LIMITS.listPageSize) })
+      if (request.kind === 'rounds' && request.keyword) query.set('keyword', request.keyword)
+      return this.get(`${prefix}/${request.kind === 'conversation' ? 'conversations' : 'interactions'}?${query}`, signal, options)
+    }
+    const route = `${prefix}/interactions/${encodeURIComponent(interactionId)}`
+    if (request.kind === 'detail') return this.get(route, signal, options)
+    if (request.kind === 'explanation') return this.get(`${route}/explanations`, signal, options)
+    if (request.kind === 'history') return this.get(`${route}/analysis`, signal, options)
+    if (request.kind === 'markdown') return this.get(`${route}/markdown`, signal, { ...options, responseType: 'text', maxResponseBytes: PROVENANCE_DETAIL_LIMITS.markdownBytes })
+    if (request.kind === 'generate') return this.request(`${route}/explanations`, { method: 'POST', headers: { 'content-type': 'application/json' }, body: '{}' }, signal, { ...options, timeoutMs: PROVENANCE_DETAIL_LIMITS.actionTimeoutMs })
+    throw new PlatformReaderError('INVALID_RESPONSE', 'Unsupported provenance read operation.')
+  }
+
+  /** The platform owns analysis. Only an explicit scene action calls this fixed POST. */
+  async *streamProvenanceDetailAnalysis(interactionId: string, markdown: string, signal: AbortSignal, beforeDispatch?: () => void | Promise<void>): AsyncIterable<{ event: string; data: JsonValue }> {
+    if (signal.aborted) throw new PlatformReaderError('REQUEST_ABORTED', 'OpenBKN provenance request was cancelled.')
+    const url = fixedUrl(this.config.baseUrl, `/api/agent-observability/v1/business-provenance/interactions/${encodeURIComponent(interactionId)}/analysis`, this.config.allowInsecureTls)
+    const token = await this.config.resolveToken?.(signal)
+    signal.throwIfAborted()
+    if (!token?.trim()) throw new PlatformReaderError('AUTHENTICATION_REQUIRED', 'OpenBKN authentication is required.')
+    await beforeDispatch?.()
+    signal.throwIfAborted()
+    const requestSignal = AbortSignal.any([signal, AbortSignal.timeout(PROVENANCE_DETAIL_LIMITS.actionTimeoutMs)])
+    let response: Response
+    try {
+      response = await this.fetcher(url, { method: 'POST', redirect: 'error', signal: requestSignal, headers: {
+        authorization: `Bearer ${token}`, 'x-business-domain': this.config.businessDomain?.trim() || 'bd_public',
+        accept: 'text/event-stream', 'content-type': 'application/json',
+      }, body: JSON.stringify({ markdown }) })
+    } catch (cause) {
+      throw new PlatformReaderError(signal.aborted ? 'REQUEST_ABORTED' : 'PLATFORM_UNAVAILABLE', 'OpenBKN provenance analysis could not be read.', { cause })
+    }
+    const refuse = (failure: PlatformReaderError): never => { void response.body?.cancel().catch(() => {}); throw failure }
+    if (response.status === 401) refuse(new PlatformReaderError('AUTHENTICATION_REQUIRED', 'OpenBKN authentication is required.', { httpStatus: 401 }))
+    if (response.status === 403) refuse(new PlatformReaderError('ACCESS_DENIED', 'Native provenance access denied.', { httpStatus: 403 }))
+    if (response.status === 404) refuse(new PlatformReaderError('NATIVE_NOT_AVAILABLE', 'Native provenance record not disclosed or route unavailable.', { httpStatus: 404 }))
+    if (!response.ok || !response.body) refuse(new PlatformReaderError('PLATFORM_UNAVAILABLE', 'OpenBKN provenance analysis is unavailable.', { httpStatus: response.status }))
+    if (!response.headers.get('content-type')?.toLowerCase().startsWith('text/event-stream')) refuse(new PlatformReaderError('INVALID_RESPONSE', 'OpenBKN provenance analysis returned an invalid stream.'))
+    if (Number(response.headers.get('content-length')) > PROVENANCE_DETAIL_LIMITS.wireBytes) refuse(new PlatformReaderError('OUTPUT_OVERFLOW', 'OpenBKN provenance analysis exceeded the safe Host limit.'))
+    const body = response.body
+    if (!body) throw new PlatformReaderError('INVALID_RESPONSE', 'OpenBKN provenance analysis returned no stream.')
+    const reader = body.getReader(), decoder = new TextDecoder()
+    const cancel = () => { void reader.cancel().catch(() => {}) }
+    requestSignal.addEventListener('abort', cancel, { once: true })
+    let buffer = '', bytes = 0, structured = false
+    try {
+      for (;;) {
+        requestSignal.throwIfAborted()
+        const { done, value } = await reader.read()
+        requestSignal.throwIfAborted()
+        bytes += value?.byteLength ?? 0
+        if (bytes > PROVENANCE_DETAIL_LIMITS.wireBytes) throw new PlatformReaderError('OUTPUT_OVERFLOW', 'OpenBKN provenance analysis exceeded the safe Host limit.')
+        buffer += decoder.decode(value, { stream: !done })
+        buffer = buffer.replace(/\r\n/g, '\n')
+        const frames = buffer.split('\n\n'); buffer = frames.pop() ?? ''
+        if (done && buffer.trim()) { frames.push(buffer); buffer = '' }
+        for (const frame of frames) {
+          const event = parseProvenanceSseFrame(frame)
+          if (!event) continue
+          if (event.event === 'structured') structured = true
+          yield event
+          if (event.event === 'error') return
+        }
+        if (done) break
+      }
+      if (!structured) throw new PlatformReaderError('INVALID_RESPONSE', 'OpenBKN provenance analysis returned no structured result.')
+    } catch (cause) {
+      if (cause instanceof PlatformReaderError) throw cause
+      throw new PlatformReaderError(signal.aborted ? 'REQUEST_ABORTED' : 'PLATFORM_UNAVAILABLE', 'OpenBKN provenance analysis could not be read.', { cause })
+    } finally { requestSignal.removeEventListener('abort', cancel); await reader.cancel().catch(() => {}); reader.releaseLock() }
+  }
+
   private async readNative<T>(interactionId: string, explanations: boolean, signal: AbortSignal, project: (value: unknown) => T): Promise<T> {
     const subject = explanations ? 'platform-native-explanations' : 'platform-native-detail'
     try {
@@ -262,6 +350,8 @@ export class OpenBknPlatformReader {
     if (token === undefined || token.trim().length === 0) {
       throw new PlatformReaderError('AUTHENTICATION_REQUIRED', 'OpenBKN authentication is required.')
     }
+    if (options?.beforeDispatch) await options.beforeDispatch()
+    if (signal.aborted) throw new PlatformReaderError('REQUEST_ABORTED', 'OpenBKN context request was cancelled.')
     const timeout = AbortSignal.timeout(options?.timeoutMs ?? this.config.requestTimeoutMs)
     const requestSignal = AbortSignal.any([signal, timeout])
     let response: Response
@@ -338,6 +428,7 @@ export class OpenBknPlatformReader {
       throw new PlatformReaderError('PLATFORM_UNAVAILABLE', 'OpenBKN platform data is temporarily unavailable.', { cause: error })
     }
     if (signal.aborted) throw new PlatformReaderError('REQUEST_ABORTED', 'OpenBKN context request was cancelled.')
+    if (options?.responseType === 'text') return text
     let value: unknown
     try { value = JSON.parse(text) } catch (error: unknown) {
       throw new PlatformReaderError('INVALID_RESPONSE', 'OpenBKN platform returned an invalid response.', { cause: error })
@@ -351,6 +442,26 @@ export class OpenBknPlatformReader {
     }
     return value
   }
+}
+
+function parseProvenanceSseFrame(frame: string): { event: string; data: JsonValue } | undefined {
+  let event = 'message'
+  const lines: string[] = []
+  for (const line of frame.split('\n')) {
+    if (line.startsWith('event:')) event = line.slice(6).trim()
+    if (line.startsWith('data:')) lines.push(line.slice(5).trimStart())
+  }
+  if (!lines.length) return undefined
+  if (!['meta', 'token', 'tool_call', 'structured', 'error', 'done'].includes(event)) throw new PlatformReaderError('INVALID_RESPONSE', 'OpenBKN provenance analysis returned an invalid event.')
+  try {
+    const data: unknown = JSON.parse(lines.join('\n'))
+    if (data === null || typeof data !== 'object' || Array.isArray(data)) throw new Error('shape')
+    const value = data as Record<string, unknown>
+    if (event === 'token' && typeof value.content !== 'string') throw new Error('shape')
+    if (event === 'structured' && (value.content === null || typeof value.content !== 'object' || Array.isArray(value.content))) throw new Error('shape')
+    if (event === 'error' && (value.message !== undefined && typeof value.message !== 'string' || value.code !== undefined && typeof value.code !== 'string')) throw new Error('shape')
+    return { event, data: data as JsonValue }
+  } catch { throw new PlatformReaderError('INVALID_RESPONSE', 'OpenBKN provenance analysis returned an invalid event.') }
 }
 
 function projectOperations(value: JsonValue): JsonValue {

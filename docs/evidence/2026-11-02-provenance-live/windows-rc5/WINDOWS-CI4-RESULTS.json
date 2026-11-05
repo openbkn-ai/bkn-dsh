@@ -1,0 +1,84 @@
+{
+  "kind": "windows-ci4-live-receipt",
+  "status": "PARTIAL_LIVE_NOT_RELEASE_ACCEPTANCE",
+  "date": "2026-11-02",
+  "timezone": "Asia/Taipei",
+  "candidate": {
+    "ciRun": 41444758077,
+    "sourceCommit": "a52032956314cf582c0f39ed3dab2f8e80e91085",
+    "docsCommit": "e8bbe823d3c4c85c6423549836338d351d3bad36",
+    "artifactId": 13141832289,
+    "zipBytes": 877321,
+    "zipSha256": "3a7c905c268aad2eaca45d7839d6adb9da57c9bdad06f9bd0f2fd25283d8d8d9",
+    "tgzBytes": 877325,
+    "tgzSha256": "cf9abdf4ac085506793501f5f4c7e2d3f6ff4bc8c873e07c4b6b401064ec6b8a",
+    "publishedFiles": 126,
+    "installedFileHashesMatched": 126
+  },
+  "host": {
+    "os": "Windows 10 Pro 10.0.19045 x64",
+    "desktopVersion": "0.2.1-rc.5",
+    "exeSha256": "7ae939b5a82b220fbd8ad04dfbafaaedb5a49ab43dc884a5db6381f678dd0cc4",
+    "signature": "Valid",
+    "electron": "44.7.0",
+    "bundledNode": "24.21.0",
+    "loadedPluginVersion": "UNKNOWN",
+    "desktopBuildCommit": "UNKNOWN"
+  },
+  "sample": {
+    "sessionId": "session-58973674-89a4-43ae-a2b7-9f32e86032e3",
+    "conversationId": "conv_3d9d7a82c9984b25ae8d0c18a47adfe4",
+    "interactionId": "int_b00aabd41e40ea38eb1f9589f6057557",
+    "round": 2,
+    "newBusinessQuestions": 0,
+    "explanationGenerations": 1,
+    "analysisRequests": 2
+  },
+  "checks": {
+    "W1": "PASS scoped: installed, enabled and cold-started; loaded version UNKNOWN",
+    "W2": "PASS scoped: original-answer anchors, filtering, refresh, rapid switch and close; in-flight cancellation UNKNOWN",
+    "W3": "PASS scoped: operation, reading/graph selection, warning, fullscreen Escape and keyboard source Escape; FAIL once: hovered source remained visible after Escape until pointer moved",
+    "W4": "PASS raw platform response equals native Save byte-for-byte; clipboard readback differs only by observed CRLF representation",
+    "W5": "PASS scoped: second keyboard-start busy, terminal direct Escape and focus return, plus history switch; model conclusions not_evaluable",
+    "W6": "PASS scoped: observed failed operation, partial record and abandoned round; denial/network/low-privilege paths UNKNOWN"
+  },
+  "markdown": {
+    "platform": {"httpStatus": 200, "bytes": 6306, "sha256": "caeb1e32d62c389d115b07c3e6904cfc9d24ea02da75127eb675f92fbfa68aa7", "crlf": 0, "lf": 124, "utf8Bom": false, "placeholderCount": 217},
+    "save": {"bytes": 6306, "sha256": "caeb1e32d62c389d115b07c3e6904cfc9d24ea02da75127eb675f92fbfa68aa7", "crlf": 0, "lf": 124, "utf8Bom": false, "equalsPlatformBytes": true},
+    "pasteReadbackUtf8": {"bytes": 6430, "sha256": "2c36b056cf2d58766ce034b62386852e743c926b4406756001adfdee16cee77d", "crlf": 124, "lf": 124, "utf8Bom": false, "equalsPlatformBytes": false, "equalsAfterDiagnosticCrLfToLf": true}
+  },
+  "analysisHistory": [
+    {"analysisId": "775cc859-f9fa-46bb-8266-bebf8421abbf", "status": "completed", "startedAt": "2026-11-02T15:18:27.344524Z", "finishedAt": "2026-11-02T15:18:28.617434Z", "result": "not_evaluable", "busyAndTerminalDirectEscapeObserved": false},
+    {"analysisId": "a1c5f424-6193-4468-8320-ef27ee266432", "status": "completed", "startedAt": "2026-11-02T15:43:47.827773Z", "finishedAt": "2026-11-02T15:43:50.022233Z", "result": "not_evaluable", "busyAndTerminalDirectEscapeObserved": true}
+  ],
+  "cleanup": {
+    "method": "Application menu Exit",
+    "ownedDesktopPid": 4172,
+    "ownedHostPid": 27724,
+    "ownedProcessesAbsent": true,
+    "ownedPort": 51430,
+    "ownedPortReleased": true,
+    "exitCode": "UNKNOWN",
+    "dailyDesktopPidStillRunning": 17728,
+    "dailyHostPidStillRunning": 11576,
+    "dailyPort": 58794,
+    "freshBeforeTotal": 1415,
+    "freshBeforeUnreadable": 39,
+    "freshBeforeComparable": 1376,
+    "freshBeforeDifferences": 0,
+    "initialBeforeComparable": 964,
+    "initialBeforeDifferences": 2,
+    "initialChanges": ["daily desktop profile package.json", "one daily session file"],
+    "callbackDefaultUserDataMtimeAfterCountAtLeast": 42,
+    "callbackCauseAndPreexistingBytes": "UNKNOWN",
+    "dailyInstallChangedRc2ToRc5Trigger": "UNKNOWN",
+    "protocolPointsToCurrentDailyRc5": true,
+    "sharedPnpmCacheAdditiveChange": true
+  },
+  "limitations": [
+    "The source platform raw Markdown already contains 217 failure placeholders; backend cause UNKNOWN.",
+    "Final analysis POST body and provider frames were not captured.",
+    "No claim of whole-workflow daily-profile isolation or full human acceptance.",
+    "No production source change, publish, merge, tag or new remote CI."
+  ]
+}

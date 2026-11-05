@@ -41,7 +41,7 @@ export interface PlatformCertificatePreview extends CertificateIdentity {
 }
 
 /** Bounded CLI setup result; installer output and credentials never cross this boundary. */
-export type OpenBknCliInstallVersion = '0.1.5' | '0.2.0'
+export type OpenBknCliInstallVersion = '0.1.5' | '0.2.0' | '0.2.1'
 
 export interface OpenBknCliSetupView {
   readonly state: 'ready' | 'missing' | 'blocked' | 'installing' | 'failed'
@@ -281,3 +281,4 @@ export type {
   DiagnosticsCheck, DiagnosticsCoverage, DiagnosticsEvidenceValue,
   DiagnosticsReport, DiagnosticsSource, DiagnosticsStage, DiagnosticsStatus, DiagnosticsTarget,
 } from './diagnostics-contract.js'
+export type { ProvenanceDetailRequest, ProvenanceDetailEvent, ProvenanceDetailFailure, ProvenanceDetailJsonValue } from './provenance-detail-types.ts'

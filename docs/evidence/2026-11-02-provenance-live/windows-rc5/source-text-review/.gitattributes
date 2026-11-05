@@ -1,0 +1,2 @@
+# Keep received reports byte-identical, including their original CRLF bytes.
+WINDOWS-CI4-SOURCE-TEXT-REVIEW.* -text

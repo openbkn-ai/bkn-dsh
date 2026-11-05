@@ -1,0 +1,826 @@
+{
+  "date": "2026-11-03",
+  "kind": "independently-received-controlled-browser-regression",
+  "evidenceBoundary": "Real Chromium DOM/layout/pointer on synthetic in-memory transport; not Windows Desktop, deployed-platform parity, model quality or release acceptance. Raw originals remain in ignored release directories.",
+  "browser": "156.0.8078.79",
+  "node": "v24.19.0",
+  "viewport": {
+    "width": 1920,
+    "height": 800
+  },
+  "sourceSceneSha256": "0a95cbb2c9a467cc2c00ccce331d4847e47350e076e50debec429f9c92d597ff",
+  "rawFinal": {
+    "path": "release/source-text-pointer-after-assertion-review/RESULTS.json",
+    "bytes": 415024,
+    "sha256": "ae023c4320af482575ed958ab3598f9aad5d04e050d5320c76adf1b6a98c0282"
+  },
+  "validationStatus": "PASS",
+  "strictProbeExitCode": 0,
+  "baselineRaw": {
+    "path": "release/source-text-pointer-before-corrected/RESULTS.json",
+    "bytes": 163261,
+    "sha256": "745d13c0e0e7a79dd83b6b33f003a5cf470e131b30920d95dbb4204b99daeead"
+  },
+  "baselineScope": "Scene-only frozen baseline; other modules from working tree",
+  "baselineCommit": "a52032956314cf582c0f39ed3dab2f8e80e91085",
+  "baselineCases": [
+    {
+      "id": "output-hover-click",
+      "hit": {
+        "tag": "DIV",
+        "className": "obp-md-md obp-md-doc",
+        "inPopup": true,
+        "inTrigger": false
+      },
+      "preEscape": {
+        "visibleLayerCount": 1,
+        "parentOpen": true,
+        "active": {
+          "tag": "SECTION",
+          "className": "obp-BusinessProvenanceScene-sourceTextPopoverContent",
+          "label": "本轮输出（原文）",
+          "placeholder": null
+        }
+      },
+      "escapeSent": true,
+      "samples": [
+        {
+          "ms": 6,
+          "visibleLayerCount": 1,
+          "parentOpen": true,
+          "active": {
+            "tag": "INPUT",
+            "className": "ant-input css-dev-only-do-not-override-5ywi3x",
+            "label": null,
+            "placeholder": "搜索问题或业务对象"
+          }
+        },
+        {
+          "ms": 151,
+          "visibleLayerCount": 0,
+          "parentOpen": true,
+          "active": {
+            "tag": "INPUT",
+            "className": "ant-input css-dev-only-do-not-override-5ywi3x",
+            "label": null,
+            "placeholder": "搜索问题或业务对象"
+          }
+        },
+        {
+          "ms": 502,
+          "visibleLayerCount": 1,
+          "parentOpen": true,
+          "active": {
+            "tag": "INPUT",
+            "className": "ant-input css-dev-only-do-not-override-5ywi3x",
+            "label": null,
+            "placeholder": "搜索问题或业务对象"
+          }
+        },
+        {
+          "ms": 1501,
+          "visibleLayerCount": 1,
+          "parentOpen": true,
+          "active": {
+            "tag": "INPUT",
+            "className": "ant-input css-dev-only-do-not-override-5ywi3x",
+            "label": null,
+            "placeholder": "搜索问题或业务对象"
+          }
+        }
+      ]
+    },
+    {
+      "id": "output-hover",
+      "hit": {
+        "tag": "DIV",
+        "className": "obp-md-md obp-md-doc",
+        "inPopup": true,
+        "inTrigger": false
+      },
+      "preEscape": {
+        "visibleLayerCount": 1,
+        "parentOpen": true,
+        "active": {
+          "tag": "INPUT",
+          "className": "ant-input css-dev-only-do-not-override-5ywi3x",
+          "label": null,
+          "placeholder": "搜索问题或业务对象"
+        }
+      },
+      "escapeSent": true,
+      "samples": [
+        {
+          "ms": 7,
+          "visibleLayerCount": 0,
+          "parentOpen": false,
+          "active": {
+            "tag": "BUTTON",
+            "className": "",
+            "label": null,
+            "placeholder": null
+          }
+        },
+        {
+          "ms": 152,
+          "visibleLayerCount": 0,
+          "parentOpen": false,
+          "active": {
+            "tag": "BUTTON",
+            "className": "",
+            "label": null,
+            "placeholder": null
+          }
+        },
+        {
+          "ms": 502,
+          "visibleLayerCount": 0,
+          "parentOpen": false,
+          "active": {
+            "tag": "BUTTON",
+            "className": "",
+            "label": null,
+            "placeholder": null
+          }
+        },
+        {
+          "ms": 1501,
+          "visibleLayerCount": 0,
+          "parentOpen": false,
+          "active": {
+            "tag": "BUTTON",
+            "className": "",
+            "label": null,
+            "placeholder": null
+          }
+        }
+      ]
+    },
+    {
+      "id": "output-keyboard",
+      "hit": {
+        "tag": "DIV",
+        "className": "obp-md-md obp-md-doc",
+        "inPopup": true,
+        "inTrigger": false
+      },
+      "preEscape": {
+        "visibleLayerCount": 1,
+        "parentOpen": true,
+        "active": {
+          "tag": "SECTION",
+          "className": "obp-BusinessProvenanceScene-sourceTextPopoverContent",
+          "label": "本轮输出（原文）",
+          "placeholder": null
+        }
+      },
+      "escapeSent": true,
+      "samples": [
+        {
+          "ms": 5,
+          "visibleLayerCount": 1,
+          "parentOpen": true,
+          "active": {
+            "tag": "BUTTON",
+            "className": "obp-BusinessProvenanceScene-sourceTextPreview",
+            "label": "查看完整本轮输出",
+            "placeholder": null
+          }
+        },
+        {
+          "ms": 152,
+          "visibleLayerCount": 1,
+          "parentOpen": true,
+          "active": {
+            "tag": "BUTTON",
+            "className": "obp-BusinessProvenanceScene-sourceTextPreview",
+            "label": "查看完整本轮输出",
+            "placeholder": null
+          }
+        },
+        {
+          "ms": 502,
+          "visibleLayerCount": 0,
+          "parentOpen": true,
+          "active": {
+            "tag": "BUTTON",
+            "className": "obp-BusinessProvenanceScene-sourceTextPreview",
+            "label": "查看完整本轮输出",
+            "placeholder": null
+          }
+        },
+        {
+          "ms": 1501,
+          "visibleLayerCount": 0,
+          "parentOpen": true,
+          "active": {
+            "tag": "BUTTON",
+            "className": "obp-BusinessProvenanceScene-sourceTextPreview",
+            "label": "查看完整本轮输出",
+            "placeholder": null
+          }
+        }
+      ]
+    },
+    {
+      "id": "input-hover-click",
+      "hit": {
+        "tag": "SMALL",
+        "className": "",
+        "inPopup": false,
+        "inTrigger": true
+      },
+      "preEscape": {
+        "visibleLayerCount": 0,
+        "parentOpen": true,
+        "active": {
+          "tag": "BUTTON",
+          "className": "obp-BusinessProvenanceScene-sourceTextPreview",
+          "label": "查看完整本轮输入",
+          "placeholder": null
+        }
+      },
+      "escapeSent": false,
+      "samples": []
+    },
+    {
+      "id": "input-hover",
+      "hit": {
+        "tag": "SMALL",
+        "className": "",
+        "inPopup": false,
+        "inTrigger": true
+      },
+      "preEscape": {
+        "visibleLayerCount": 1,
+        "parentOpen": true,
+        "active": {
+          "tag": "INPUT",
+          "className": "ant-input css-dev-only-do-not-override-5ywi3x",
+          "label": null,
+          "placeholder": "搜索问题或业务对象"
+        }
+      },
+      "escapeSent": true,
+      "samples": [
+        {
+          "ms": 6,
+          "visibleLayerCount": 0,
+          "parentOpen": false,
+          "active": {
+            "tag": "BUTTON",
+            "className": "",
+            "label": null,
+            "placeholder": null
+          }
+        },
+        {
+          "ms": 151,
+          "visibleLayerCount": 0,
+          "parentOpen": false,
+          "active": {
+            "tag": "BUTTON",
+            "className": "",
+            "label": null,
+            "placeholder": null
+          }
+        },
+        {
+          "ms": 500,
+          "visibleLayerCount": 0,
+          "parentOpen": false,
+          "active": {
+            "tag": "BUTTON",
+            "className": "",
+            "label": null,
+            "placeholder": null
+          }
+        },
+        {
+          "ms": 1500,
+          "visibleLayerCount": 0,
+          "parentOpen": false,
+          "active": {
+            "tag": "BUTTON",
+            "className": "",
+            "label": null,
+            "placeholder": null
+          }
+        }
+      ]
+    },
+    {
+      "id": "input-keyboard",
+      "hit": {
+        "tag": "SMALL",
+        "className": "",
+        "inPopup": false,
+        "inTrigger": true
+      },
+      "preEscape": {
+        "visibleLayerCount": 1,
+        "parentOpen": true,
+        "active": {
+          "tag": "SECTION",
+          "className": "obp-BusinessProvenanceScene-sourceTextPopoverContent",
+          "label": "本轮输入（原文）",
+          "placeholder": null
+        }
+      },
+      "escapeSent": true,
+      "samples": [
+        {
+          "ms": 5,
+          "visibleLayerCount": 1,
+          "parentOpen": true,
+          "active": {
+            "tag": "BUTTON",
+            "className": "obp-BusinessProvenanceScene-sourceTextPreview",
+            "label": "查看完整本轮输入",
+            "placeholder": null
+          }
+        },
+        {
+          "ms": 152,
+          "visibleLayerCount": 1,
+          "parentOpen": true,
+          "active": {
+            "tag": "BUTTON",
+            "className": "obp-BusinessProvenanceScene-sourceTextPreview",
+            "label": "查看完整本轮输入",
+            "placeholder": null
+          }
+        },
+        {
+          "ms": 502,
+          "visibleLayerCount": 0,
+          "parentOpen": true,
+          "active": {
+            "tag": "BUTTON",
+            "className": "obp-BusinessProvenanceScene-sourceTextPreview",
+            "label": "查看完整本轮输入",
+            "placeholder": null
+          }
+        },
+        {
+          "ms": 1502,
+          "visibleLayerCount": 0,
+          "parentOpen": true,
+          "active": {
+            "tag": "BUTTON",
+            "className": "obp-BusinessProvenanceScene-sourceTextPreview",
+            "label": "查看完整本轮输入",
+            "placeholder": null
+          }
+        }
+      ]
+    }
+  ],
+  "finalCases": [
+    {
+      "id": "output-hover-click",
+      "hit": {
+        "tag": "DIV",
+        "className": "obp-md-md obp-md-doc",
+        "inPopup": true,
+        "inTrigger": false
+      },
+      "preEscape": {
+        "visibleLayerCount": 1,
+        "parentOpen": true,
+        "active": {
+          "tag": "SECTION",
+          "className": "obp-BusinessProvenanceScene-sourceTextPopoverContent",
+          "label": "本轮输出（原文）",
+          "placeholder": null
+        }
+      },
+      "escapeSent": true,
+      "samples": [
+        {
+          "ms": 8,
+          "visibleLayerCount": 1,
+          "parentOpen": true,
+          "active": {
+            "tag": "INPUT",
+            "className": "ant-input css-dev-only-do-not-override-5ywi3x",
+            "label": null,
+            "placeholder": "搜索问题或业务对象"
+          }
+        },
+        {
+          "ms": 153,
+          "visibleLayerCount": 1,
+          "parentOpen": true,
+          "active": {
+            "tag": "INPUT",
+            "className": "ant-input css-dev-only-do-not-override-5ywi3x",
+            "label": null,
+            "placeholder": "搜索问题或业务对象"
+          }
+        },
+        {
+          "ms": 503,
+          "visibleLayerCount": 0,
+          "parentOpen": true,
+          "active": {
+            "tag": "INPUT",
+            "className": "ant-input css-dev-only-do-not-override-5ywi3x",
+            "label": null,
+            "placeholder": "搜索问题或业务对象"
+          }
+        },
+        {
+          "ms": 1503,
+          "visibleLayerCount": 0,
+          "parentOpen": true,
+          "active": {
+            "tag": "INPUT",
+            "className": "ant-input css-dev-only-do-not-override-5ywi3x",
+            "label": null,
+            "placeholder": "搜索问题或业务对象"
+          }
+        }
+      ]
+    },
+    {
+      "id": "output-hover",
+      "hit": {
+        "tag": "DIV",
+        "className": "obp-md-md obp-md-doc",
+        "inPopup": true,
+        "inTrigger": false
+      },
+      "preEscape": {
+        "visibleLayerCount": 1,
+        "parentOpen": true,
+        "active": {
+          "tag": "INPUT",
+          "className": "ant-input css-dev-only-do-not-override-5ywi3x",
+          "label": null,
+          "placeholder": "搜索问题或业务对象"
+        }
+      },
+      "escapeSent": true,
+      "samples": [
+        {
+          "ms": 6,
+          "visibleLayerCount": 0,
+          "parentOpen": false,
+          "active": {
+            "tag": "BUTTON",
+            "className": "",
+            "label": null,
+            "placeholder": null
+          }
+        },
+        {
+          "ms": 153,
+          "visibleLayerCount": 0,
+          "parentOpen": false,
+          "active": {
+            "tag": "BUTTON",
+            "className": "",
+            "label": null,
+            "placeholder": null
+          }
+        },
+        {
+          "ms": 502,
+          "visibleLayerCount": 0,
+          "parentOpen": false,
+          "active": {
+            "tag": "BUTTON",
+            "className": "",
+            "label": null,
+            "placeholder": null
+          }
+        },
+        {
+          "ms": 1503,
+          "visibleLayerCount": 0,
+          "parentOpen": false,
+          "active": {
+            "tag": "BUTTON",
+            "className": "",
+            "label": null,
+            "placeholder": null
+          }
+        }
+      ]
+    },
+    {
+      "id": "output-keyboard",
+      "hit": {
+        "tag": "DIV",
+        "className": "obp-md-md obp-md-doc",
+        "inPopup": true,
+        "inTrigger": false
+      },
+      "preEscape": {
+        "visibleLayerCount": 1,
+        "parentOpen": true,
+        "active": {
+          "tag": "SECTION",
+          "className": "obp-BusinessProvenanceScene-sourceTextPopoverContent",
+          "label": "本轮输出（原文）",
+          "placeholder": null
+        }
+      },
+      "escapeSent": true,
+      "samples": [
+        {
+          "ms": 4,
+          "visibleLayerCount": 1,
+          "parentOpen": true,
+          "active": {
+            "tag": "BUTTON",
+            "className": "obp-BusinessProvenanceScene-sourceTextPreview",
+            "label": "查看完整本轮输出",
+            "placeholder": null
+          }
+        },
+        {
+          "ms": 153,
+          "visibleLayerCount": 1,
+          "parentOpen": true,
+          "active": {
+            "tag": "BUTTON",
+            "className": "obp-BusinessProvenanceScene-sourceTextPreview",
+            "label": "查看完整本轮输出",
+            "placeholder": null
+          }
+        },
+        {
+          "ms": 501,
+          "visibleLayerCount": 0,
+          "parentOpen": true,
+          "active": {
+            "tag": "BUTTON",
+            "className": "obp-BusinessProvenanceScene-sourceTextPreview",
+            "label": "查看完整本轮输出",
+            "placeholder": null
+          }
+        },
+        {
+          "ms": 1503,
+          "visibleLayerCount": 0,
+          "parentOpen": true,
+          "active": {
+            "tag": "BUTTON",
+            "className": "obp-BusinessProvenanceScene-sourceTextPreview",
+            "label": "查看完整本轮输出",
+            "placeholder": null
+          }
+        }
+      ],
+      "firstHoverAfterKeyboardEscape": {
+        "visibleLayerCount": 1,
+        "parentOpen": true,
+        "active": {
+          "tag": "BUTTON",
+          "className": "obp-BusinessProvenanceScene-sourceTextPreview ant-popover-open",
+          "label": "查看完整本轮输出",
+          "placeholder": null
+        }
+      }
+    },
+    {
+      "id": "input-hover-click",
+      "hit": {
+        "tag": "SMALL",
+        "className": "",
+        "inPopup": false,
+        "inTrigger": true
+      },
+      "preEscape": {
+        "visibleLayerCount": 0,
+        "parentOpen": true,
+        "active": {
+          "tag": "BUTTON",
+          "className": "obp-BusinessProvenanceScene-sourceTextPreview",
+          "label": "查看完整本轮输入",
+          "placeholder": null
+        }
+      },
+      "escapeSent": false,
+      "samples": []
+    },
+    {
+      "id": "input-hover",
+      "hit": {
+        "tag": "SMALL",
+        "className": "",
+        "inPopup": false,
+        "inTrigger": true
+      },
+      "preEscape": {
+        "visibleLayerCount": 1,
+        "parentOpen": true,
+        "active": {
+          "tag": "INPUT",
+          "className": "ant-input css-dev-only-do-not-override-5ywi3x",
+          "label": null,
+          "placeholder": "搜索问题或业务对象"
+        }
+      },
+      "escapeSent": true,
+      "samples": [
+        {
+          "ms": 4,
+          "visibleLayerCount": 0,
+          "parentOpen": false,
+          "active": {
+            "tag": "BUTTON",
+            "className": "",
+            "label": null,
+            "placeholder": null
+          }
+        },
+        {
+          "ms": 151,
+          "visibleLayerCount": 0,
+          "parentOpen": false,
+          "active": {
+            "tag": "BUTTON",
+            "className": "",
+            "label": null,
+            "placeholder": null
+          }
+        },
+        {
+          "ms": 501,
+          "visibleLayerCount": 0,
+          "parentOpen": false,
+          "active": {
+            "tag": "BUTTON",
+            "className": "",
+            "label": null,
+            "placeholder": null
+          }
+        },
+        {
+          "ms": 1502,
+          "visibleLayerCount": 0,
+          "parentOpen": false,
+          "active": {
+            "tag": "BUTTON",
+            "className": "",
+            "label": null,
+            "placeholder": null
+          }
+        }
+      ]
+    },
+    {
+      "id": "input-keyboard",
+      "hit": {
+        "tag": "SMALL",
+        "className": "",
+        "inPopup": false,
+        "inTrigger": true
+      },
+      "preEscape": {
+        "visibleLayerCount": 1,
+        "parentOpen": true,
+        "active": {
+          "tag": "SECTION",
+          "className": "obp-BusinessProvenanceScene-sourceTextPopoverContent",
+          "label": "本轮输入（原文）",
+          "placeholder": null
+        }
+      },
+      "escapeSent": true,
+      "samples": [
+        {
+          "ms": 5,
+          "visibleLayerCount": 1,
+          "parentOpen": true,
+          "active": {
+            "tag": "BUTTON",
+            "className": "obp-BusinessProvenanceScene-sourceTextPreview",
+            "label": "查看完整本轮输入",
+            "placeholder": null
+          }
+        },
+        {
+          "ms": 152,
+          "visibleLayerCount": 1,
+          "parentOpen": true,
+          "active": {
+            "tag": "BUTTON",
+            "className": "obp-BusinessProvenanceScene-sourceTextPreview",
+            "label": "查看完整本轮输入",
+            "placeholder": null
+          }
+        },
+        {
+          "ms": 504,
+          "visibleLayerCount": 0,
+          "parentOpen": true,
+          "active": {
+            "tag": "BUTTON",
+            "className": "obp-BusinessProvenanceScene-sourceTextPreview",
+            "label": "查看完整本轮输入",
+            "placeholder": null
+          }
+        },
+        {
+          "ms": 1501,
+          "visibleLayerCount": 0,
+          "parentOpen": true,
+          "active": {
+            "tag": "BUTTON",
+            "className": "obp-BusinessProvenanceScene-sourceTextPreview",
+            "label": "查看完整本轮输入",
+            "placeholder": null
+          }
+        }
+      ],
+      "firstHoverAfterKeyboardEscape": {
+        "visibleLayerCount": 1,
+        "parentOpen": true,
+        "active": {
+          "tag": "BUTTON",
+          "className": "obp-BusinessProvenanceScene-sourceTextPreview ant-popover-open",
+          "label": "查看完整本轮输入",
+          "placeholder": null
+        }
+      }
+    }
+  ],
+  "finalBoundaryIds": [
+    "leave-combined-area-then-hover",
+    "explicit-click-after-owned-escape",
+    "explicit-keyboard-and-parent-escape",
+    "unmount-reopen-and-other-source",
+    "popup-padding-overlapping-trigger"
+  ],
+  "padding": {
+    "executable": true,
+    "coverage": "PASS",
+    "samples": [
+      {
+        "ms": 500,
+        "visibleLayerCount": 0,
+        "parentOpen": true,
+        "active": {
+          "tag": "INPUT",
+          "className": "ant-input css-dev-only-do-not-override-5ywi3x",
+          "label": null,
+          "placeholder": "搜索问题或业务对象"
+        }
+      },
+      {
+        "ms": 1500,
+        "visibleLayerCount": 0,
+        "parentOpen": true,
+        "active": {
+          "tag": "INPUT",
+          "className": "ant-input css-dev-only-do-not-override-5ywi3x",
+          "label": null,
+          "placeholder": "搜索问题或业务对象"
+        }
+      }
+    ]
+  },
+  "observedTransportKinds": [
+    "conversation",
+    "rounds",
+    "detail",
+    "markdown",
+    "history"
+  ],
+  "pageErrors": [],
+  "refusedRequests": [],
+  "newPlatformRequests": 0,
+  "newModelRequests": 0,
+  "independentProbeReview": "required-owned prerequisites, parent retention, all-snapshot transport denial, padding executable classification and finally cleanup verified read-only",
+  "retainedIntermediateReports": [
+    {
+      "path": "release/source-text-pointer-before-node24/RESULTS.json",
+      "bytes": 74104,
+      "sha256": "3b572d5b89524b3ee01021392856b76cfdcdd8ff6cd142fafd1a45cb66be91e0"
+    },
+    {
+      "path": "release/source-text-pointer-after-first/RESULTS.json",
+      "bytes": 359846,
+      "sha256": "e905578fa34bbd85f73dcc6f66402abbe5889b92b75c7a0afd9c9e0d603bf376"
+    },
+    {
+      "path": "release/source-text-pointer-after-final/RESULTS.json",
+      "bytes": 365810,
+      "sha256": "d1731ea317d51d99b419bba6618d5a796081ec2f6c11ca0e04df032e73b77fba"
+    },
+    {
+      "path": "release/source-text-pointer-padding-review/RESULTS.json",
+      "bytes": 40653,
+      "sha256": "04a1d9c93c26adc99a720abfcd0cb580269420e4d2310f9b540c6999aa225a61"
+    },
+    {
+      "path": "release/source-text-pointer-after-complete/RESULTS.json",
+      "bytes": 402092,
+      "sha256": "a494e801ddac026d8caeafbb5bb56a0a82359f1ec852ce836c35c3fd127bfb7c"
+    }
+  ]
+}

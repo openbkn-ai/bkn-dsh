@@ -1,0 +1,188 @@
+{
+  "schemaVersion": 1,
+  "kind": "macos-ci3-native-provenance-e2e",
+  "date": "2026-11-02 Asia/Taipei",
+  "overall": "FAIL: post-analysis keyboard focus/escape; passing cases retained",
+  "formalAcceptanceEligible": false,
+  "candidate": {
+    "version": "0.2.1-rc.3-openbkn.0.2.1-3",
+    "commit": "f13fe10c4d6041fd7ce7be5007e0740051ec29c0",
+    "ciRun": 41404675956,
+    "artifactId": 13122759006,
+    "artifactName": "plugin-tarball",
+    "zipBytes": 877186,
+    "zipSha256": "8122149c1d1db499173ea9225af807ac63f812aee8d235862188f88c26c609ac",
+    "tgzBytes": 877043,
+    "tgzSha256": "fea3d0052efc7188e989bd2582be8c6930eea03b903418103da4c28fc96b61a1",
+    "installedFiles": 126,
+    "mismatches": 0,
+    "extraFiles": 0,
+    "githubMetadataHeadAndDigestVerified": true
+  },
+  "environment": {
+    "platform": "macOS arm64",
+    "officialDesktop": "0.2.1-rc.5",
+    "desktopBuild": "d4db512a969fccf0c5cc7ec8fe38e9c1d27af916",
+    "buildDirty": false,
+    "initialSignature": "strict verify passed; vendor signature and stapled notarization",
+    "exeSha256": "b7ca6fc3356ebdb4daa79827e6433c4c1a9cdd2196014a693ee873bae54d9949",
+    "asarSha256": "8dad52f295bdbe9fa71948fdf38ac2ce3c910213d3b89c37174b2af77db9fb31",
+    "embeddedNode": "24.21.0",
+    "electron": "44.7.0",
+    "officialCli": "0.2.0",
+    "independentApiCliNode": "24.19.0",
+    "pluginCliChildInterpreter": "UNKNOWN; carrier probe not repeated",
+    "rootPid": 96749,
+    "psCreatedLocal": "Mon Nov  2 19:32:42 2026",
+    "spawnRequestedUtc": "2026-11-02T11:32:42.199048+00:00",
+    "backendListener": "127.0.0.1:62362",
+    "server": "https://192.168.50.28",
+    "healthSelfReport": "0.2.0-release.20261016132300.sha81d5752",
+    "deploymentImageIdentity": "UNKNOWN; no deployment audit",
+    "runtimeDiagnostic": "bootstrap/business/diagnostics component-loaded; f43c6c3e",
+    "diagnosticLoadedVersionField": "not collected; not filled from disk"
+  },
+  "record": {
+    "sessionId": "session-3e319448-0974-4199-a3fb-aa0ee980611a",
+    "conversationId": "conv_9360664929df807edc5797d4190fa239",
+    "interactionId": "int_3e92559bb0fbe9e5f83c110ce7ca3100",
+    "operationIds": [
+      "op_e1bf392789701007f1220482e9efc9a9",
+      "op_88640314ae4e866def85235055d4e744",
+      "op_cfd3ee395889a24fe989c898013da417",
+      "op_b7157ce0632684fe9e46935c92f1d212",
+      "op_8a316d6a637b2a2428c01f522f67b429",
+      "op_d77b0100020708479d99ffde90b9487a"
+    ],
+    "origin": "Genuine local native finish-call/result association; byte-identical single-Session clone; public Workspace header/cwd validation; no fabricated handle/seed",
+    "newNativeBusinessTurns": 0
+  },
+  "passes": [
+    "Actual official Desktop UI installation/enabling; 126/126 exact",
+    "Three runtime components and new business-provenance-analysis scene visible",
+    "Missing task binding/auth: honest BINDING_REQUIRED with genuine local timeline; focused close returns to entry",
+    "Bound real answer opens the matching platform question/answer and six calls",
+    "Zero-failure filter shows no matches; selecting call five shows its exact Operation ID and recorded input/output previews",
+    "Partial search explicitly preserves current interaction; clear/refresh retains round one",
+    "Both source popovers open; direct focused Escape closes only that layer; nonmodal Tab can leave source popover",
+    "Product copy -> actual OS paste into unsent draft contains exact raw Markdown; draft cleared",
+    "Native save dialog -> isolated file is byte-identical to platform raw Markdown",
+    "Three generated claim labels match API; claim two, evidence/step/schema identities match API",
+    "Reading/graph mode; ontology/technical layers; local fullscreen Tab wrap and Escape/return focus",
+    "Agent sidebar opens before explicit start; prefetched display equals raw Markdown; pre-start Tab trap holds",
+    "One explicit analysis: visible progress -> structured result -> one completed history; readonly reopen matches persisted summary"
+  ],
+  "failure": {
+    "id": "post-analysis-escape-focus",
+    "status": "FAIL",
+    "observed": "After the single live analysis completed, AX reported the HTML content node; pressing Escape did not close the visible Agent sidebar.",
+    "cause": "not diagnosed here; AX is not a DOM focus oracle",
+    "recovery": "One Tab moved focus to the history combo; Escape then closed only the sidebar and returned focus to its trigger.",
+    "doNotMarkCandidateAllPass": true
+  },
+  "platformResults": {
+    "generation": {
+      "clicks": 1,
+      "from": "not_generated",
+      "resourceStatus": "ready",
+      "generationStatus": "ready",
+      "generatedAt": "2026-11-02T11:49:34.239078101Z",
+      "claims": 3,
+      "uiSupportedClaims": 0,
+      "pairStatus": "partial",
+      "invalidSchemaReferences": 10,
+      "apiTopGraphNodes": 144,
+      "apiTopGraphEdges": 234,
+      "entireTopGraphNotAccepted": true,
+      "rawBodySha256": "feb2ebee2f63bea4399c4e6bb2d29e24bebd9464da7e3ca90a88cf69d2603b8c"
+    },
+    "analysis": {
+      "starts": 1,
+      "analysisId": "db975623-4176-42b8-a084-7dffd7ec83f6",
+      "status": "completed",
+      "decision": "not_evaluable",
+      "recommendations": 0,
+      "startedAt": "2026-11-02T12:01:07.103866Z",
+      "finishedAt": "2026-11-02T12:01:10.33627Z",
+      "persistedSummaryMatchesUi": true,
+      "modelSelfReport": "Says it only received request-failure text and cannot evaluate; this is not an input oracle"
+    },
+    "markdown": {
+      "bytes": 5842,
+      "sha256": "4512e97e159d882f016719e9b76dcad53aba7a4a9a840b8db2311d1e939038d3",
+      "upstreamFailurePlaceholders": 160,
+      "beforeAfterReadEqual": true,
+      "noPluginCleaning": true
+    }
+  },
+  "unknown": [
+    "Actual analyze-time refetch/POST digest and provider-bound messages: not captured; history has no input echo",
+    "Raw SSE meta/token/tool_call/structured/error/done frame coverage not captured; only native progress/result and persisted history observed",
+    "Other-machine two-round/59-call/managed-function nested-call UI: no legitimate local association; not replaced by API-only success",
+    "Safe native in-flight cancellation/late-result race and manufactured auth/slow-network negatives not covered",
+    "Complete Windows/new-model/whole-platform compatibility not inferred"
+  ],
+  "observations": [
+    "After clear-search plus explicit refresh, interaction remains round one but call detail returns to call one; precise trigger/Studio parity not isolated, no new defect verdict",
+    "Local fullscreen screenshot shows outer close near the exit-fullscreen control; pointer hit testing not performed",
+    "Output popover renders MarkdownText; literal raw Markdown containment in AX is not a valid byte oracle"
+  ],
+  "setupDeviations": [
+    "Official CLI rejects desktop-profile mutation (exit 1); official GUI plugin manager used successfully",
+    "Manual login relay expired before successful grant; setup records kept, no login-regression claim",
+    "History was first loaded before workspace binding and correctly used fallback; normal cold load after binding showed the new scene",
+    "Auxiliary reads initially used an old independent CLI grant (QUERY_OAUTH_REQUIRED); current plugin-owned CLI grant used for accepted API comparisons; first failed bodies not retained, hashes/exit retained and one bounded diagnostic repeat saved"
+  ],
+  "preservation": {
+    "originalQuestionAnswerOperationsTimeRailUnchanged": true,
+    "originalSessionSha256": "1c7b43325b859a55a6deeba5f357b9b1b3d7fe40f58d2637c4f3f8acd6eddb31",
+    "originalSessionUnchanged": true,
+    "original70RowsPreservedInTaskCopy": true,
+    "taskAdditionalEventTypes": [
+      "session/end-seed"
+    ],
+    "protectedExeAsarAndFourDailyProfileFilesUnchanged": true,
+    "installed126Unchanged": true,
+    "associationOnlyObservedDshTimestampRestored": true,
+    "associationBeforeRestoredSha256": "863edaca23c3a4a22e6b01502f2ac3e451c96799f089bbdd9419fda66e033f59",
+    "associationByteEquality": true,
+    "normalExitCodes": [
+      0,
+      0,
+      0
+    ],
+    "capturedOwnedIdentitiesRemaining": 0,
+    "deepSeekHarnessProcessesRemaining": 0,
+    "recordedPortsReleased": [
+      55552,
+      62362
+    ],
+    "authFootprints": "Normal task grants and approved explanation/analysis records retained; no credential rollback; no whole-machine snapshot claim",
+    "wholeBusinessDatabaseAudit": "not performed"
+  },
+  "scope": {
+    "productCodeModified": false,
+    "hostOrPlatformReplaced": false,
+    "businessWriteRequested": false,
+    "suggestionsApplied": false,
+    "localRepackOrBuild": false,
+    "remotePushMergeTagPublishCiOrLatest": false,
+    "checkoutClean": true
+  },
+  "privateEvidence": {
+    "manifestSha256": "9fd6af6c44a65d4b35cad876fe824681645fb88ed4b92c7266b1e5c5d5fe9548",
+    "files": 127,
+    "credentialsExcluded": true,
+    "rawFilesAndScreenshotsRemainRemote": true,
+    "keyFiles": [
+      "native-scene-loaded-private.png",
+      "generated-evidence-full-ax-private.txt",
+      "graph-with-layers-private.png",
+      "KEYBOARD-FAILURE.json",
+      "ANALYSIS-INPUT-BOUNDARY.json",
+      "NATIVE-SAVE.json",
+      "CLIPBOARD-REAL-OS.json",
+      "ASSOCIATION-RESTORE.json"
+    ]
+  }
+}

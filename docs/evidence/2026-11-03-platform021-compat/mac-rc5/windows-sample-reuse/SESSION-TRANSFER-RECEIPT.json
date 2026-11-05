@@ -1,0 +1,40 @@
+{
+  "kind": "private-genuine-session-transfer-receipt",
+  "sender": "existing Windows test chat",
+  "recipient": "existing Mac test chat",
+  "fileCount": 2,
+  "attachments": "none",
+  "sublogs": "none",
+  "sourceSession": {
+    "bytes": 349071,
+    "sha256": "49cce19d02d2410b8e34cc8b9d0568d88e871f02325427eb5357f5df3c13469c"
+  },
+  "sourceBinding": {
+    "bytes": 286,
+    "sha256": "008b60ef33f7842b580c16b6bc15eb8148a7330118cfd8f4e55cc802e8e27a7f"
+  },
+  "ciphertext": {
+    "bytes": 623045,
+    "sha256": "a4681ff0a52a000fd0cf54212bc477f2822c2cd22e98648d31f18c28b7729697"
+  },
+  "encryption": "RSA-OAEP-SHA256 / AES-256-GCM with authenticated context",
+  "recipientPublicKeySha256": "b8798c5ea99878055b2ff60396d3f9b5010e9ee17efd8f141f313e01175fc8c8",
+  "tls": "Request-scoped trusted certificate and rejectUnauthorized=true; no global TLS override",
+  "senderRelayRecipientReportedMatching": true,
+  "macGcmAndBothFileHashesMatched": true,
+  "relayCloseout": {
+    "pid": 41298,
+    "startedAt": "2026-11-04T02:59:33.634907+00:00",
+    "stoppedAt": "2026-11-04T03:14:54.750807+00:00",
+    "port": 61266,
+    "portClosed": true,
+    "ciphertextReceived": true,
+    "macAuthenticatedReceiptReported": true,
+    "platformStateChanged": false
+  },
+  "originalFilesRetained": true,
+  "windowsTestsReplayed": false,
+  "gitDataHandoffUsed": false,
+  "sourcePreparationInterruption": "Sender ACL helper error before upload; existing ciphertext reused after permission verification; original failure retained",
+  "privacy": "No original message content, credentials, full profile, key material or transport authentication in this public receipt"
+}

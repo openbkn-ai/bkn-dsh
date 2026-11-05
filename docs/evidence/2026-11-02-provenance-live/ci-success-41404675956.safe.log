@@ -1,0 +1,17 @@
+build, test and publish	Test plugin and compatibility tooling	2026-11-02T07:17:36.6315555Z ok 9 - same-interaction search metadata preserves the mounted evidence view and in-flight generation
+build, test and publish	Test plugin and compatibility tooling	2026-11-02T07:18:06.2055186Z ok 635 - v016 evidence fullscreen consumes Escape and restores the new non-portal fullscreen trigger
+build, test and publish	Test plugin and compatibility tooling	2026-11-02T07:18:34.3737772Z ok 682 - native outer Escape closes only the activated interaction_question popover and restores its trigger
+build, test and publish	Test plugin and compatibility tooling	2026-11-02T07:20:32.9921013Z # tests 809
+build, test and publish	Test plugin and compatibility tooling	2026-11-02T07:20:32.9921612Z # pass 808
+build, test and publish	Test plugin and compatibility tooling	2026-11-02T07:20:32.9921912Z # fail 0
+build, test and publish	Test plugin and compatibility tooling	2026-11-02T07:20:32.9922524Z # skipped 1
+build, test and publish	Test plugin and compatibility tooling	2026-11-02T07:20:33.9369833Z # tests 79
+build, test and publish	Test plugin and compatibility tooling	2026-11-02T07:20:33.9370440Z # pass 79
+build, test and publish	Test plugin and compatibility tooling	2026-11-02T07:20:33.9370727Z # fail 0
+build, test and publish	Test plugin and compatibility tooling	2026-11-02T07:20:33.9371376Z # skipped 0
+build, test and publish	Test plugin and compatibility tooling	2026-11-02T07:20:35.3394828Z Package audit passed: @openbkn/dsh-business-context@0.2.1-rc.3-openbkn.0.2.1-3 (126 files)
+build, test and publish	Preserve the reviewed profile MCP companions	2026-11-02T07:20:45.7037560Z # tests 1
+build, test and publish	Preserve the reviewed profile MCP companions	2026-11-02T07:20:45.7039234Z # pass 1
+build, test and publish	Preserve the reviewed profile MCP companions	2026-11-02T07:20:45.7041382Z # fail 0
+build, test and publish	Preserve the reviewed profile MCP companions	2026-11-02T07:20:45.7042849Z # skipped 0
+build, test and publish	Summarize	2026-11-02T07:20:59.4936134Z [36;1m  echo "- publish requested: false"[0m

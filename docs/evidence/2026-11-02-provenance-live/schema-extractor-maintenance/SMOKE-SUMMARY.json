@@ -1,0 +1,117 @@
+{
+  "sourceCommit": "81d5752826f3b3f3f72f3ad4cb1e22d45e99ab4b",
+  "tools": 26,
+  "schemaTools": 24,
+  "output": "release/schema-projection-maintenance-20261103/context-loader-tools-v0.2.0-schema-position-aware-v1.json",
+  "outputBytes": 89917,
+  "outputSha256": "500d50967bdecab30ba0557de41119b06279548ba9659f5c8750d1c9ba838fa5",
+  "projectionMetadata": {
+    "captured": "2026-11-03",
+    "generatedAt": "2026-11-03T06:52:38Z",
+    "projectionVersion": "schema-position-aware-v1",
+    "historicalCaptureDate": "2026-10-19"
+  },
+  "sourceMetadataChanges": [
+    {
+      "pointer": "/source/captured",
+      "kind": "changed",
+      "old": "2026-10-19",
+      "new": "2026-11-03"
+    },
+    {
+      "pointer": "/source/generatedAt",
+      "kind": "added",
+      "value": "2026-11-03T06:52:38Z"
+    },
+    {
+      "pointer": "/source/historicalCaptureDate",
+      "kind": "added",
+      "value": "2026-10-19"
+    },
+    {
+      "pointer": "/source/method",
+      "kind": "changed",
+      "old": "Source projection of full-profile metadata minus retiredTools and compact-only gateways, with pure Go lifecycle/offerBKNContext/publishedInputSchema builders executed via encoding/json. Descriptions omitted. Not a live tools/list.",
+      "new": "Source projection of full-profile metadata minus retiredTools and compact-only gateways, with pure Go lifecycle/offerBKNContext/publishedInputSchema builders executed via encoding/json. Schema-position annotations omitted; same-named data properties and literal data preserved. Not a live tools/list."
+    },
+    {
+      "pointer": "/source/projectionVersion",
+      "kind": "added",
+      "value": "schema-position-aware-v1"
+    }
+  ],
+  "structuralChanges": [
+    {
+      "pointer": "/tools/list_knowledge_networks/outputSchema/properties/entries/items/properties/description",
+      "kind": "added",
+      "value": {
+        "type": "string"
+      }
+    },
+    {
+      "pointer": "/tools/list_skills/outputSchema/properties/entries/items/properties/description",
+      "kind": "added",
+      "value": {
+        "type": "string"
+      }
+    },
+    {
+      "pointer": "/tools/search_capabilities/outputSchema/properties/capabilities/items/properties/description",
+      "kind": "added",
+      "value": {
+        "type": "string"
+      }
+    }
+  ],
+  "lifecycleExamplesEqual": true,
+  "inputSourceDigestsEqual": true,
+  "threePinnedSourceChecks": [
+    {
+      "tool": "list_knowledge_networks",
+      "sourceSha256": "7b755b50573f6f905d60acdda318bc19ec4c0e5df705e177ea1bf40603da8389",
+      "optionalType": "string",
+      "projectedField": {
+        "type": "string"
+      }
+    },
+    {
+      "tool": "list_skills",
+      "sourceSha256": "af24edc5eff681471c10e0f4f1d3248b04a3d4f1e8a6b17e1036459f2f510040",
+      "optionalType": "string",
+      "projectedField": {
+        "type": "string"
+      }
+    },
+    {
+      "tool": "search_capabilities",
+      "sourceSha256": "14d5efd9e54260e3f42b495b97e0596a5b62d2d6a5da3c864bd19d3350acbc22",
+      "optionalType": "string",
+      "projectedField": {
+        "type": "string"
+      }
+    }
+  ],
+  "legacyImportSideEffect": "CONFIRMED: parse_args called during import; probe stopped before source/Go access",
+  "historicalFixtureUnchanged": true,
+  "historicalFixtureSha256": "8f7420958e8b1f11ef3d0ac234d7ff9616c256c364c307896afe712a89ccb804",
+  "ci5TgzUnchangedSha256": "14f4bb7fb61c892017343c832fdc8b37d892706b9a7aa2146779eef00ee9e3ff",
+  "cliCommand": "PYTHONDONTWRITEBYTECODE=1 GOTOOLCHAIN=local GOPROXY=off GOSUMDB=off GO111MODULE=off GOWORK=off python3 -B scripts/capture-context-loader020.py release/schema-projection-maintenance-20261103/fixed-source release/schema-projection-maintenance-20261103/context-loader-tools-v0.2.0-schema-position-aware-v1.json --release v0.2.0",
+  "testCommand": "PYTHONDONTWRITEBYTECODE=1 python3 -B -m unittest discover -s tests -p 'test_capture_context_loader020.py' -v",
+  "goToolchain": {
+    "path": "/Users/kalias/.local/bin/go",
+    "version": "go1.25.5 darwin/arm64",
+    "downloadsDisabled": true
+  },
+  "focusedRegression": {
+    "testMethods": 15,
+    "pass": 15,
+    "fail": 0,
+    "legacyStructuralRed": {
+      "failingMethods": 6,
+      "failingAssertionsIncludingSubtests": 14,
+      "boundary": "Original structural function retained after import/lifecycle refactor; import side effect was separately probed against immutable HEAD."
+    }
+  },
+  "independentReview": "Read-only approved; no required changes. Dangling-symlink protection is code-reviewed, not separately runtime-tested.",
+  "productionBuildDependencyInputsUnchanged": true
+}

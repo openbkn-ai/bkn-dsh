@@ -1,8 +1,10 @@
 import { useDialogFocus } from './use-dialog-focus.ts'
 import { NativeProvenancePanel } from './NativeProvenancePanel.tsx'
+import { PlatformProvenanceDetail, type PlatformProvenanceAdapter, type BusinessProvenanceConversation } from './platform-provenance/index.tsx'
 import { useOpenBknTranslation } from './locale.tsx'
 import { translateChinese, type OpenBknTranslate } from './messages.ts'
-import { useEffect, useState, type ReactNode } from 'react'
+import { ProvenanceDetailTransportError } from './provenance-detail-bridge.ts'
+import { useCallback, useEffect, useMemo, useState, type ReactNode } from 'react'
 import type { HostObservable, InjectFace, PropsRuntime } from '@deepseek-ai/dsh-client-ui-slots'
 import { buildBusinessGraphModel, businessGraphGeometry } from '../business-graph-model.ts'
 import { foldTimeline, type TimelineFoldGroup } from '../timeline-fold.ts'
@@ -10,6 +12,9 @@ import type { ProvenanceBusinessView, ProvenanceDegradation, ProvenanceHandle, P
 import type {} from '@deepseek-ai/dsh-client-ui-layout/client'
 
 type Tab = 'events' | 'evidence'
+type NativeFailureCode = ProvenanceDetailTransportError['code'] | 'UNKNOWN'
+type FallbackReason = 'NATIVE_NOT_AVAILABLE' | 'TRACE_DISABLED' | 'TRACE_UNAVAILABLE'
+  | 'BINDING_REQUIRED' | 'AUTHENTICATION_REQUIRED' | 'HANDLE_UNAVAILABLE'
 
 export interface ProvenanceOverlayState {
   readonly requestId?: number
@@ -51,19 +56,25 @@ export class ProvenanceOverlayController implements HostObservable<ProvenanceOve
 export interface ProvenanceOverlayInjected {
   hooks: { provenanceOverlay: ProvenanceOverlayController }
   load(sessionId: string, messageId: string, signal?: AbortSignal): Promise<ProvenanceView | undefined>
+  createDetailAdapter?(sessionId: string, messageId: string): PlatformProvenanceAdapter
+  language?(): string
   close(): void
 }
 
 export type ProvenanceOverlayProps = PropsRuntime<'shell.overlay'> & InjectFace<ProvenanceOverlayInjected>
 
 /** Provenance detail lives in an additive shell overlay, never inline in DSH chat. */
-export function ProvenanceOverlay({ useProvenanceOverlay, load, close }: ProvenanceOverlayProps) {
+export function ProvenanceOverlay({ useProvenanceOverlay, load, createDetailAdapter, language, close }: ProvenanceOverlayProps) {
   const t = useOpenBknTranslation()
 
   const state = useProvenanceOverlay((value: ProvenanceOverlayState) => value)
   const requestKey = JSON.stringify([state.sessionId,state.messageId,state.requestId])
   const [selectedTab, setTab] = useState<Tab>('events')
-  const [result, setResult] = useState<{key:string;phase:'loading'|'ready'|'failed';view?:ProvenanceView}>()
+  const [fallback, setFallback] = useState<{key:string;reason:FallbackReason}>()
+  const entryFallback = state.handle === undefined ? undefined : localOnlyReason(state.handle)
+  const fallbackReason = createDetailAdapter === undefined ? undefined : entryFallback ?? (fallback?.key === requestKey ? fallback.reason : undefined)
+  const requestFallback = useCallback((reason:FallbackReason) => setFallback({key:requestKey,reason}), [requestKey])
+  const [result, setResult] = useState<{key:string;phase:'loading'|'ready'|'failed';view?:ProvenanceView;failure?:NativeFailureCode}>()
   // Ownership is checked during render: an effect cannot hide old content before its first commit.
   const current = result?.key === requestKey ? result : undefined
   const view = current?.view
@@ -71,33 +82,132 @@ export function ProvenanceOverlay({ useProvenanceOverlay, load, close }: Provena
   const loading = current === undefined || current.phase === 'loading'
   const dialog = useDialogFocus(state.handle !== undefined, close)
   useEffect(() => {
+    if (createDetailAdapter !== undefined && fallbackReason === undefined) return
     if (state.handle === undefined || state.sessionId === undefined || state.messageId === undefined) return
+    const expected = state.handle
     let active = true
     const request = new AbortController()
     setTab('events'); setResult({key:requestKey,phase:'loading'})
     void load(state.sessionId, state.messageId, request.signal).then(next => {
-      if (active) setResult({key:requestKey,phase:'ready',view:next})
+      if (!active) return
+      // The trusted Host owns the read. A response for another turn must still
+      // never replace the currently selected local or platform record.
+      if (fallbackReason !== undefined && next !== undefined && (next.interactionId !== expected.interactionId ||
+        (expected.conversationId !== undefined && next.conversationId !== expected.conversationId))) {
+        setResult({key:requestKey,phase:'failed',failure:'IDENTITY_CHANGED'})
+      } else setResult({key:requestKey,phase:'ready',view:next})
     }).catch(() => {
       // Platform facts degrade inside the view; reaching here means the turn
       // record itself could not be read, which stays a whole-panel failure.
       if (active) setResult({key:requestKey,phase:'failed'})
     })
     return () => { active = false; request.abort() }
-  }, [load, state.handle, state.messageId, state.sessionId, requestKey])
+  }, [load, createDetailAdapter, fallbackReason, state.handle, state.messageId, state.sessionId, requestKey])
   if (state.handle === undefined) return null
+
+  if (createDetailAdapter !== undefined && fallbackReason === undefined && state.sessionId !== undefined && state.messageId !== undefined) {
+    return <div role="presentation" onMouseDown={close} style={backdropStyle}>
+      <section ref={dialog} tabIndex={-1} role="dialog" aria-modal="true" aria-label={t('provenanceLabel')} onMouseDown={event => event.stopPropagation()} style={{ ...dialogStyle, width:'min(1920px, 100%)', maxHeight:'calc(100vh - 40px)', height:'calc(100vh - 40px)', borderRadius:12, position:'relative' }}>
+        <button type="button" aria-label={t('close')} onClick={close} style={{ ...closeStyle, position:'sticky', top:8, float:'right', marginRight:8, zIndex:1100 }}>×</button>
+        <PlatformConversationSurface key={requestKey} sessionId={state.sessionId} messageId={state.messageId} interactionId={state.handle.interactionId} createAdapter={createDetailAdapter} language={language?.()} onFallback={requestFallback} />
+      </section>
+    </div>
+  }
 
   return <div role="presentation" onMouseDown={close} style={backdropStyle}>
     <section ref={dialog} tabIndex={-1} role="dialog" aria-modal="true" aria-label={t('provenanceLabel')} onMouseDown={event => event.stopPropagation()} style={dialogStyle}>
       <header style={headerStyle}><div><div style={eyebrowStyle}>{t('provenanceEyebrow')}</div><h2 style={{ margin: '4px 0 0', fontSize: 28 }}>{t('businessProvenance')}</h2></div><button type="button" aria-label={t('close')} onClick={close} style={closeStyle}>×</button></header>
       <nav aria-label={t('provenanceViews')} style={tabBarStyle}><TabButton active={tab === 'events'} onClick={() => setTab('events')}>{t('nativeEvents')}</TabButton><TabButton active={tab === 'evidence'} onClick={() => setTab('evidence')}>{t('evidenceChain')}</TabButton></nav>
-      <main style={{ padding: 24 }}>{loading ? <Loading /> : current?.phase === 'failed' || view === undefined ? <LoadFailed /> : <>
+      <main style={{ padding: 24 }}>{fallbackReason === undefined ? null : <FallbackNotice reason={fallbackReason} />}{loading ? <Loading /> : current?.failure !== undefined ? <NativeReadFailed code={current.failure} /> : current?.phase === 'failed' || view === undefined ? <LoadFailed /> : <>
         <NativeProvenancePanel key={requestKey} view={view} tab={tab} onTabChange={setTab} />
-        <details style={{ marginTop: 24 }}><summary>{t('nativeHistoricalRecords')}</summary>
+        <details open={fallbackReason === undefined ? undefined : true} style={{ marginTop: 24 }}><summary>{t('nativeHistoricalRecords')}</summary>
           <Execution handle={state.handle} view={view} /><BusinessGraph view={view} /><EvidenceChain view={view} />
         </details>
       </>}</main>
     </section>
   </div>
+}
+
+/** A new request remounts the whole platform scene so old rounds and actions never flash. */
+function PlatformConversationSurface({ sessionId, messageId, interactionId, createAdapter, language, onFallback }: {
+  sessionId: string; messageId: string; interactionId?: string
+  createAdapter(sessionId:string, messageId:string): PlatformProvenanceAdapter
+  language?: string
+  onFallback(reason:FallbackReason):void
+}) {
+  const adapter = useMemo(() => createAdapter(sessionId,messageId), [createAdapter,sessionId,messageId])
+  const [conversation,setConversation] = useState<BusinessProvenanceConversation>()
+  const [failure,setFailure] = useState<NativeFailureCode>()
+  useEffect(() => {
+    const controller = new AbortController()
+    let active = true
+    void adapter.readConversation(controller.signal).then(value => {
+      if (active) setConversation(value)
+    }).catch(error => {
+      if (!active) return
+      const code = nativeFailureCode(error)
+      if (isFallbackReason(code)) onFallback(code)
+      else setFailure(code)
+    })
+    return () => { active = false; controller.abort() }
+  }, [adapter,onFallback])
+  if (failure !== undefined) return <NativeReadFailed code={failure} />
+  if (!interactionId) return <NativeReadFailed code="HANDLE_UNAVAILABLE" />
+  if (!conversation) return <Loading />
+  return <PlatformProvenanceDetail conversation={conversation} initialInteractionId={interactionId} adapter={adapter} language={language} />
+}
+
+function localOnlyReason(handle:ProvenanceHandle):FallbackReason|undefined {
+  if (handle.recording === 'disabled') return 'TRACE_DISABLED'
+  if (handle.recording === 'unavailable') return 'TRACE_UNAVAILABLE'
+  if (!handle.interactionId || !handle.conversationId) return 'HANDLE_UNAVAILABLE'
+  return undefined
+}
+
+function isFallbackReason(code:NativeFailureCode):code is Exclude<FallbackReason,'HANDLE_UNAVAILABLE'> {
+  return code === 'NATIVE_NOT_AVAILABLE' || code === 'TRACE_DISABLED' || code === 'TRACE_UNAVAILABLE' ||
+    code === 'BINDING_REQUIRED' || code === 'AUTHENTICATION_REQUIRED'
+}
+
+/** Only the production transport's fixed classifications may select a fallback. */
+function nativeFailureCode(error:unknown):NativeFailureCode {
+  if (!(error instanceof ProvenanceDetailTransportError)) return 'UNKNOWN'
+  switch (error.code) {
+    case 'ACCESS_DENIED': case 'NATIVE_NOT_AVAILABLE': case 'AUTHENTICATION_REQUIRED': case 'LICENSE_REQUIRED':
+    case 'RECORD_NOT_DISCLOSED': case 'PLATFORM_MISMATCH': case 'PLATFORM_UNAVAILABLE': case 'REQUEST_ABORTED':
+    case 'OUTPUT_OVERFLOW': case 'INVALID_RESPONSE': case 'IDENTITY_CHANGED': case 'TRACE_DISABLED':
+    case 'TRACE_UNAVAILABLE': case 'SESSION_UNAVAILABLE': case 'HANDLE_UNAVAILABLE': case 'BINDING_REQUIRED':
+    case 'CERTIFICATE_UNTRUSTED': case 'CERTIFICATE_INVALID': case 'NETWORK_TIMEOUT':
+    case 'invalid-stream': case 'incomplete-stream': case 'result-too-large': case 'remote-failed': return error.code
+    default: return 'UNKNOWN'
+  }
+}
+
+function nativeFailureCopy(code:NativeFailureCode,t:OpenBknTranslate):string {
+  switch (code) {
+    case 'AUTHENTICATION_REQUIRED': return t('nativeAuthRequired')
+    case 'ACCESS_DENIED': return t('nativeAccessDenied')
+    case 'RECORD_NOT_DISCLOSED': return t('nativeNotDisclosed')
+    case 'INVALID_RESPONSE': case 'invalid-stream': case 'incomplete-stream': return t('nativeInvalid')
+    case 'OUTPUT_OVERFLOW': case 'result-too-large': return t('nativeTooLarge')
+    case 'IDENTITY_CHANGED': return t('nativeIdentityChanged')
+    case 'PLATFORM_MISMATCH': return t('nativePlatformMismatch')
+    case 'BINDING_REQUIRED': return t('nativeBindingRequired')
+    case 'TRACE_DISABLED': return t('thePlatformExplicitlyDisabledTraceCollectionThisTurn')
+    case 'TRACE_UNAVAILABLE': return t('thePlatformExplicitlyReportedTraceUnavailableThisTurn')
+    case 'NATIVE_NOT_AVAILABLE': case 'HANDLE_UNAVAILABLE': return t('nativeUnavailable')
+    default: return t('nativeReadFailed')
+  }
+}
+
+function NativeReadFailed({code}:{code:NativeFailureCode}) {
+  const t = useOpenBknTranslation()
+  return <div style={emptyStyle}><strong>{t('businessProvenanceCouldNotBeRead')}</strong><span>{nativeFailureCopy(code,t)}</span><code>{code}</code></div>
+}
+
+function FallbackNotice({reason}:{reason:FallbackReason}) {
+  const t = useOpenBknTranslation()
+  return <div data-provenance-fallback={reason} role="status" style={{marginBottom:20,padding:16,border:'1px solid #cbd5e1',borderRadius:8,color:'#64748b'}}>{nativeFailureCopy(reason,t)} <code>{reason}</code></div>
 }
 
 function Execution({ handle, view }: { handle: ProvenanceHandle; view: ProvenanceView }) {

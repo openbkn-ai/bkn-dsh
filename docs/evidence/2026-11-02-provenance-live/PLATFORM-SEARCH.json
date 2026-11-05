@@ -1,0 +1,11 @@
+{
+  "url": "https://192.168.50.28/api/agent-observability/v1/business-provenance/interactions?page=1&page_size=50&keyword=SAMPLE-NOT&conversation_id=conv_1c027aaa36b601844ad14dbe3f0cc7f5",
+  "status": 200,
+  "partial": true,
+  "truncated": true,
+  "total": 0,
+  "entries": [],
+  "partial_reasons": [
+    "projection_scan_cap_reached"
+  ]
+}

@@ -1,0 +1,58 @@
+TAP version 13
+# Subtest: native outer Escape closes only the activated interaction_question popover and restores its trigger
+ok 1 - native outer Escape closes only the activated interaction_question popover and restores its trigger
+  ---
+  duration_ms: 4855.393708
+  type: 'test'
+  ...
+# Subtest: native outer Escape closes only the activated interaction_result popover and restores its trigger
+ok 2 - native outer Escape closes only the activated interaction_result popover and restores its trigger
+  ---
+  duration_ms: 3387.338125
+  type: 'test'
+  ...
+# Subtest: hover original-text preview keeps existing focus and Escape on its trigger closes only the preview
+ok 3 - hover original-text preview keeps existing focus and Escape on its trigger closes only the preview
+  ---
+  duration_ms: 3479.886333
+  type: 'test'
+  ...
+# Subtest: analysis reader Escape closes only its side panel without starting analysis or closing the DSH overlay
+ok 4 - analysis reader Escape closes only its side panel without starting analysis or closing the DSH overlay
+  ---
+  duration_ms: 1532.966833
+  type: 'test'
+  ...
+# Subtest: analysis history dropdown consumes Escape before the analysis panel and outer overlay
+ok 5 - analysis history dropdown consumes Escape before the analysis panel and outer overlay
+  ---
+  duration_ms: 1966.721791
+  type: 'test'
+  ...
+# Subtest: analysis modal Tab wraps last to first before the outer focus trap
+ok 6 - analysis modal Tab wraps last to first before the outer focus trap
+  ---
+  duration_ms: 2150.107166
+  type: 'test'
+  ...
+# Subtest: analysis modal ShiftTab wraps first to last before the outer focus trap
+ok 7 - analysis modal ShiftTab wraps first to last before the outer focus trap
+  ---
+  duration_ms: 2168.061458
+  type: 'test'
+  ...
+# Subtest: nonmodal original-text Popover permits Tab to leave its preview
+ok 8 - nonmodal original-text Popover permits Tab to leave its preview
+  ---
+  duration_ms: 3272.135292
+  type: 'test'
+  ...
+1..8
+# tests 8
+# suites 0
+# pass 8
+# fail 0
+# cancelled 0
+# skipped 0
+# todo 0
+# duration_ms 24591.582833

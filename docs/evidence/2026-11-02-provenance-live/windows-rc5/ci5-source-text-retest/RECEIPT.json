@@ -1,0 +1,25 @@
+{
+  "source": "designated Windows chat finalized public reports; private originals remain remote",
+  "threadId": "01a19c6a-e785-7f82-a5b4-cda473951fa6",
+  "hostId": "remote-control:env_e_6abf8babb404832890d7c5124118ed3c",
+  "executionTurnIds": [
+    "01a19eb7-803e-7b02-8016-7188213a1492",
+    "01a19f37-f9a5-7571-b9b9-524520bb0a23"
+  ],
+  "exportTurnId": "01a19f60-a7c0-7630-8de6-d655382480bd",
+  "receivedLocalDate": "2026-11-03",
+  "files": [
+    {
+      "file": "WINDOWS-CI5-SOURCE-TEXT-RETEST.json",
+      "utf8Bytes": 13688,
+      "sha256": "d72cabe556c50e34b41cfc75ca1186e0b3ed5f8d2585c57940def45859d0a561"
+    },
+    {
+      "file": "WINDOWS-CI5-SOURCE-TEXT-RETEST.zh.md",
+      "utf8Bytes": 8196,
+      "sha256": "34c54803c1c80b66b9f925aa750ec25cbe33d8b4c773913830c01743247bf53d"
+    }
+  ],
+  "transportDigestsVerified": true,
+  "evidenceBoundary": "Receiving side verifies public bytes and report consistency, not private screenshots or whole-machine state. This receipt does not itself establish native or global release acceptance."
+}

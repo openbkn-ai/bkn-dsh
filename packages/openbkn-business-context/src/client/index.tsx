@@ -32,6 +32,9 @@ import {
   directoryPickerFailure, workspaceSelectionCancelled, type NetworkSessionMode, type OpenBknUiPort,
 } from './openbkn-ui-controller.ts'
 import { ProvenanceOverlay, ProvenanceOverlayController } from './ProvenanceOverlay.tsx'
+import { createPlatformProvenanceAdapter } from './platform-provenance/index.tsx'
+import { createProvenanceDetailTransport } from './provenance-detail-bridge.ts'
+import { provenanceBrowserActions } from './provenance-browser-actions.ts'
 import type { ProvenanceView } from '../types.ts'
 import { SuggestionDock } from './SuggestionDock.tsx'
 import { TurnProvenanceActions } from './TurnProvenanceActions.tsx'
@@ -194,6 +197,11 @@ function registerSlots(ctx: Context, panel: OpenBknPanelBridge): void {
     name: 'shell.overlay', id: 'openbkn-business-provenance', order: 110,
     inject: () => ({
       hooks: { provenanceOverlay },
+      createDetailAdapter: (sessionId: SessionId, messageId: string) => createPlatformProvenanceAdapter(
+        createProvenanceDetailTransport((request, signal) => ctx.remote.openbknBusinessContext.provenanceDetailStream(sessionId, messageId, request, signal)),
+        provenanceBrowserActions,
+      ),
+      language: () => ctx.locale.getSnapshot().active,
       load: async (sessionId: SessionId, messageId: string, signal?: AbortSignal) => {
         const read = ctx.remote.openbknBusinessContext.getTurnProvenanceViewStream(sessionId, messageId, signal)
         try {

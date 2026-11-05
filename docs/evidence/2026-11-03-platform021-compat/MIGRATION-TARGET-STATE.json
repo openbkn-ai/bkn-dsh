@@ -1,0 +1,63 @@
+{
+  "provenance": "Source agent private read-only inspection of existing local migration manifests; no platform execution",
+  "target_interaction_manifest_match": true,
+  "target_skipped_entry_ordinal": 24,
+  "reason": "native_core_preflight_rejected",
+  "failure_stage": "call_facts",
+  "native_preflight": {
+    "aggregate": {
+      "reason": "native_core_import_failed_input",
+      "verified": false
+    },
+    "stage": {
+      "reason": "native_core_import_failed_input",
+      "verified": false
+    },
+    "unit": {
+      "reason": "native_core_import_failed_input",
+      "verified": false
+    }
+  },
+  "more_specific_error_fields_available": false,
+  "target_group_counts": {
+    "conversations": 1,
+    "interactions": 1,
+    "operations": 6,
+    "receipts": 6,
+    "call_facts": 6,
+    "assembly_revisions": 1,
+    "idempotency_records": 1
+  },
+  "dependency_manifest_target_listed": true,
+  "batch_artifacts_excluded_from_plan": 4,
+  "target_artifact_specific_exclusion_status_found": false,
+  "backup_target_artifacts": {
+    "question": 1,
+    "result": 1,
+    "schema_version": "2.2.0",
+    "operation_id_empty": true,
+    "content_type_after_private_decode": "string",
+    "question_utf8_bytes": 147,
+    "result_utf8_bytes": 2852,
+    "both_stored_content_hashes_match_original_scalar_content": true,
+    "object_wrapper_would_change_both_hashes": true,
+    "current_platform_body_exact_comparison": "NOT_RUN"
+  },
+  "final_migration_report": {
+    "state": "partial_requires_reconciliation",
+    "source_records": 32915,
+    "verified_records": 32822,
+    "retained_records": 93,
+    "skipped_core_interaction_groups": 106,
+    "core_projection_verified": true,
+    "core_projection_documents": 15432
+  },
+  "platform_writes": 0,
+  "limits": [
+    "No source/body/hash/owner/ref values exported",
+    "Actual deployed image source commit unknown",
+    "Target artifacts not individually listed by final exclusion manifests",
+    "Field-level call_facts rejection still under read-only investigation",
+    "No shared-platform recovery or native S1-S3 execution"
+  ]
+}

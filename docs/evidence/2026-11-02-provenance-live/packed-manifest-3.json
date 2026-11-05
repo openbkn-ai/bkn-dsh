@@ -1,0 +1,385 @@
+{
+  "name": "@openbkn/dsh-business-context",
+  "version": "0.2.1-rc.3-openbkn.0.2.1-2",
+  "filename": "/Users/kalias/Documents/project/app/openBKN/bkn-dsh-provenance-parity-live-20261102/release/openbkn-provenance-parity-live.3.tgz",
+  "files": [
+    {
+      "path": "cordis.patch.yml"
+    },
+    {
+      "path": "lib/business.js"
+    },
+    {
+      "path": "lib/cli-platform-preload.js"
+    },
+    {
+      "path": "lib/client.js"
+    },
+    {
+      "path": "lib/diagnostics-observer-sh5pQR15.js"
+    },
+    {
+      "path": "lib/diagnostics.js"
+    },
+    {
+      "path": "lib/index.js"
+    },
+    {
+      "path": "lib/platform-mcp-client.js"
+    },
+    {
+      "path": "lib/platform-pin-DDsRy117.js"
+    },
+    {
+      "path": "lib/platform-trust-Shxz3iLt.js"
+    },
+    {
+      "path": "lib/typert.host.d.ts"
+    },
+    {
+      "path": "lib/typert.host.js"
+    },
+    {
+      "path": "lib/typert.remote-client.d.ts"
+    },
+    {
+      "path": "lib/typert.remote-client.js"
+    },
+    {
+      "path": "lib/types/auth.d.ts"
+    },
+    {
+      "path": "lib/types/authorization-browser.d.ts"
+    },
+    {
+      "path": "lib/types/business-context-service.d.ts"
+    },
+    {
+      "path": "lib/types/business-graph-model.d.ts"
+    },
+    {
+      "path": "lib/types/business-network-catalog.d.ts"
+    },
+    {
+      "path": "lib/types/business.d.ts"
+    },
+    {
+      "path": "lib/types/cli-platform-preload.d.ts"
+    },
+    {
+      "path": "lib/types/cli-setup.d.ts"
+    },
+    {
+      "path": "lib/types/client/BoundNetworkBadge.d.ts"
+    },
+    {
+      "path": "lib/types/client/CertificateControl.d.ts"
+    },
+    {
+      "path": "lib/types/client/cli-setup-controller.d.ts"
+    },
+    {
+      "path": "lib/types/client/CliSetupControl.d.ts"
+    },
+    {
+      "path": "lib/types/client/diagnostics-controller.d.ts"
+    },
+    {
+      "path": "lib/types/client/diagnostics-copy.d.ts"
+    },
+    {
+      "path": "lib/types/client/diagnostics-export.d.ts"
+    },
+    {
+      "path": "lib/types/client/diagnostics-target.d.ts"
+    },
+    {
+      "path": "lib/types/client/index.d.ts"
+    },
+    {
+      "path": "lib/types/client/locale.d.ts"
+    },
+    {
+      "path": "lib/types/client/locales.d.ts"
+    },
+    {
+      "path": "lib/types/client/messages.d.ts"
+    },
+    {
+      "path": "lib/types/client/native-provenance-selection.d.ts"
+    },
+    {
+      "path": "lib/types/client/NativeProvenancePanel.d.ts"
+    },
+    {
+      "path": "lib/types/client/NativeRecordList.d.ts"
+    },
+    {
+      "path": "lib/types/client/network-directory.d.ts"
+    },
+    {
+      "path": "lib/types/client/openbkn-panel-bridge.d.ts"
+    },
+    {
+      "path": "lib/types/client/openbkn-ui-controller.d.ts"
+    },
+    {
+      "path": "lib/types/client/OpenBknContextToolView.d.ts"
+    },
+    {
+      "path": "lib/types/client/OpenBknDiagnostics.d.ts"
+    },
+    {
+      "path": "lib/types/client/OpenBknEntry.d.ts"
+    },
+    {
+      "path": "lib/types/client/OpenBknOverlay.d.ts"
+    },
+    {
+      "path": "lib/types/client/pick-workspace-directory.d.ts"
+    },
+    {
+      "path": "lib/types/client/platform-provenance/adapter.d.ts"
+    },
+    {
+      "path": "lib/types/client/platform-provenance/business-provenance/business-provenance.service.d.ts"
+    },
+    {
+      "path": "lib/types/client/platform-provenance/business-provenance/BusinessProvenanceScene.d.ts"
+    },
+    {
+      "path": "lib/types/client/platform-provenance/business-provenance/BusinessProvenanceScene.styles.d.ts"
+    },
+    {
+      "path": "lib/types/client/platform-provenance/business-provenance/call-scope.d.ts"
+    },
+    {
+      "path": "lib/types/client/platform-provenance/business-provenance/RecordMissingDetails.d.ts"
+    },
+    {
+      "path": "lib/types/client/platform-provenance/clipboard.d.ts"
+    },
+    {
+      "path": "lib/types/client/platform-provenance/evidence-chain/BusinessProvenance016.d.ts"
+    },
+    {
+      "path": "lib/types/client/platform-provenance/evidence-chain/BusinessProvenance016.styles.d.ts"
+    },
+    {
+      "path": "lib/types/client/platform-provenance/evidence-chain/chain-layout.d.ts"
+    },
+    {
+      "path": "lib/types/client/platform-provenance/evidence-chain/current-explanation.service.d.ts"
+    },
+    {
+      "path": "lib/types/client/platform-provenance/evidence-chain/CurrentExplanationPanel.d.ts"
+    },
+    {
+      "path": "lib/types/client/platform-provenance/evidence-chain/CurrentExplanationPanel.styles.d.ts"
+    },
+    {
+      "path": "lib/types/client/platform-provenance/evidence-chain/evidence-chain.types.d.ts"
+    },
+    {
+      "path": "lib/types/client/platform-provenance/evidence-chain/EvidenceChainPanels.d.ts"
+    },
+    {
+      "path": "lib/types/client/platform-provenance/evidence-chain/EvidenceChainPanels.styles.d.ts"
+    },
+    {
+      "path": "lib/types/client/platform-provenance/format.d.ts"
+    },
+    {
+      "path": "lib/types/client/platform-provenance/i18n.d.ts"
+    },
+    {
+      "path": "lib/types/client/platform-provenance/index.d.ts"
+    },
+    {
+      "path": "lib/types/client/platform-provenance/locales/en-US.d.ts"
+    },
+    {
+      "path": "lib/types/client/platform-provenance/locales/zh-CN.d.ts"
+    },
+    {
+      "path": "lib/types/client/platform-provenance/MarkdownText.d.ts"
+    },
+    {
+      "path": "lib/types/client/platform-provenance/MarkdownText.styles.d.ts"
+    },
+    {
+      "path": "lib/types/client/platform-provenance/normalizers.d.ts"
+    },
+    {
+      "path": "lib/types/client/platform-provenance/theme.d.ts"
+    },
+    {
+      "path": "lib/types/client/platform-provenance/theme.styles.d.ts"
+    },
+    {
+      "path": "lib/types/client/platform-provenance/use-owned-layer-focus.d.ts"
+    },
+    {
+      "path": "lib/types/client/provenance-browser-actions.d.ts"
+    },
+    {
+      "path": "lib/types/client/provenance-detail-bridge.d.ts"
+    },
+    {
+      "path": "lib/types/client/ProvenanceOverlay.d.ts"
+    },
+    {
+      "path": "lib/types/client/suggestion-dock-controller.d.ts"
+    },
+    {
+      "path": "lib/types/client/SuggestionDock.d.ts"
+    },
+    {
+      "path": "lib/types/client/turn-provenance-controller.d.ts"
+    },
+    {
+      "path": "lib/types/client/TurnProvenanceActions.d.ts"
+    },
+    {
+      "path": "lib/types/client/use-dialog-focus.d.ts"
+    },
+    {
+      "path": "lib/types/config.d.ts"
+    },
+    {
+      "path": "lib/types/configuration-service.d.ts"
+    },
+    {
+      "path": "lib/types/diagnostics-contract.d.ts"
+    },
+    {
+      "path": "lib/types/diagnostics-host-adapter.d.ts"
+    },
+    {
+      "path": "lib/types/diagnostics-observer.d.ts"
+    },
+    {
+      "path": "lib/types/diagnostics-service.d.ts"
+    },
+    {
+      "path": "lib/types/diagnostics.d.ts"
+    },
+    {
+      "path": "lib/types/dsh-session-binding.d.ts"
+    },
+    {
+      "path": "lib/types/dsh-session-provenance.d.ts"
+    },
+    {
+      "path": "lib/types/index.d.ts"
+    },
+    {
+      "path": "lib/types/interaction-lifecycle.d.ts"
+    },
+    {
+      "path": "lib/types/interaction-references.d.ts"
+    },
+    {
+      "path": "lib/types/managed-session-policy.d.ts"
+    },
+    {
+      "path": "lib/types/native-mcp-provenance.d.ts"
+    },
+    {
+      "path": "lib/types/native-provenance-types.d.ts"
+    },
+    {
+      "path": "lib/types/native-provenance.d.ts"
+    },
+    {
+      "path": "lib/types/network-capability-profile.d.ts"
+    },
+    {
+      "path": "lib/types/openbkn-cli-subprocess.d.ts"
+    },
+    {
+      "path": "lib/types/openbkn-mcp-manager.d.ts"
+    },
+    {
+      "path": "lib/types/platform-access-profile.d.ts"
+    },
+    {
+      "path": "lib/types/platform-csv-export.d.ts"
+    },
+    {
+      "path": "lib/types/platform-pin.d.ts"
+    },
+    {
+      "path": "lib/types/platform-reader.d.ts"
+    },
+    {
+      "path": "lib/types/platform-trust.d.ts"
+    },
+    {
+      "path": "lib/types/private-platform-access.d.ts"
+    },
+    {
+      "path": "lib/types/provenance-detail-scope.d.ts"
+    },
+    {
+      "path": "lib/types/provenance-detail-types.d.ts"
+    },
+    {
+      "path": "lib/types/provenance-handle.d.ts"
+    },
+    {
+      "path": "lib/types/provenance-view.d.ts"
+    },
+    {
+      "path": "lib/types/scoped-business-context.d.ts"
+    },
+    {
+      "path": "lib/types/session-binding-store.d.ts"
+    },
+    {
+      "path": "lib/types/session-binding.d.ts"
+    },
+    {
+      "path": "lib/types/suggested-prompts.d.ts"
+    },
+    {
+      "path": "lib/types/timeline-fold.d.ts"
+    },
+    {
+      "path": "lib/types/tool-result-message.d.ts"
+    },
+    {
+      "path": "lib/types/trailing-slashes.d.ts"
+    },
+    {
+      "path": "lib/types/turn-provenance.d.ts"
+    },
+    {
+      "path": "lib/types/turn-timeline.d.ts"
+    },
+    {
+      "path": "lib/types/types.d.ts"
+    },
+    {
+      "path": "lib/types/workspace-binding-registry.d.ts"
+    },
+    {
+      "path": "LICENSE"
+    },
+    {
+      "path": "licenses/dsh-mcp-client.txt"
+    },
+    {
+      "path": "licenses/openbkn-studio.txt"
+    },
+    {
+      "path": "package.json"
+    },
+    {
+      "path": "README.md"
+    },
+    {
+      "path": "README.zh.md"
+    }
+  ]
+}

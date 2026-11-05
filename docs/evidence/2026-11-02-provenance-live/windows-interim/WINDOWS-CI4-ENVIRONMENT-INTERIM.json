@@ -1,0 +1,108 @@
+{
+  "status": "BLOCKED_ISOLATION_INCIDENT",
+  "kind": "windows-ci4-interim-environment-change-not-final",
+  "date": "2026-11-02",
+  "timeZone": "Asia/Taipei",
+  "candidate": {
+    "run": 41444758077,
+    "buildCommit": "a52032956314cf582c0f39ed3dab2f8e80e91085",
+    "documentCommit": "e8bbe823d3c4c85c6423549836338d351d3bad36",
+    "artifactId": 13141832289,
+    "zipBytes": 877321,
+    "zipSha256": "3a7c905c268aad2eaca45d7839d6adb9da57c9bdad06f9bd0f2fd25283d8d8d9",
+    "tgzBytes": 877325,
+    "tgzSha256": "cf9abdf4ac085506793501f5f4c7e2d3f6ff4bc8c873e07c4b6b401064ec6b8a",
+    "files": 126,
+    "manifestMatched": 126,
+    "clientSha256": "fb12b2239c465707d471d86651e74dd39694abd997057e29db896bc3dcf5e8d2",
+    "businessSha256": "bac538d8de54f6b362ba39374b495cf39c6dfe89c4732074cfc966f98e1af7ad"
+  },
+  "environment": {
+    "os": "Windows 10 Pro 10.0.19045 x64",
+    "desktop": "0.2.1-rc.3",
+    "desktopExeSha256": "fd7d298f4ba03ee9bab1719a892afeaef5c09bf50c574a592a64c85f64574c0c",
+    "desktopSignature": "Valid - Hangzhou DeepSeek Artificial Intelligence Co., Ltd.",
+    "electron": "44.7.0",
+    "bundledNode": "24.21.0",
+    "systemNode": "24.21.0",
+    "systemDshCli": "0.2.0-rc.2",
+    "systemOpenBknCli": "0.2.0",
+    "desktopBuildCommit": "UNKNOWN",
+    "hostPid": 1048,
+    "desktopPid": 11704,
+    "hostPort": 53902,
+    "desktopStartLocal": "2026-11-02 21:34:30 +08:00",
+    "isolatedHomeAndUserData": true,
+    "instances": [
+      {
+        "desktopPid": 11704,
+        "createdLocal": "2026-11-02T21:34:30.4798530+08:00",
+        "hostPid": 1048,
+        "hostCreatedLocal": "2026-11-02T21:34:30.9281460+08:00",
+        "port": 53902,
+        "userData": "isolated",
+        "profile": "isolated"
+      },
+      {
+        "desktopPid": 10732,
+        "createdLocal": "2026-11-02T22:03:53.4672370+08:00",
+        "hostPid": 7556,
+        "hostCreatedLocal": "2026-11-02T22:03:53.8044600+08:00",
+        "port": 57956,
+        "userData": "default",
+        "profile": "isolated",
+        "origin": "login URL callback"
+      }
+    ]
+  },
+  "evidence": {
+    "archive": "PASS: bytes and 126 files verified independently; not installed",
+    "gui": "User completed login; two test Desktop instances subsequently exited. GUI screenshot and click automation unavailable; no candidate installation attempted.",
+    "tls": "PASS: task-scoped previously trusted platform certificate; TLS verified, HTTP 302",
+    "platformVersion": "UNKNOWN current; no authenticated read",
+    "sample": "Historical Windows session contains non-error finish receipts for multiple interactions on matching platform; current accessibility and platform readability UNKNOWN",
+    "dailyBaseline": "Of 964 baselined non-credential profile/session files, 962 still hash-equal and 2 changed: desktop profile package.json and one session file. Existing plugin package.json and lib/client.js match their recorded baseline hashes. These counts do not include newly added files.",
+    "counts": {
+      "newQuestions": 0,
+      "explanationGeneration": 0,
+      "analysis": 0
+    },
+    "callback": "Login callback spawned second Desktop using isolated DSH_HOME but default Electron userData. Default userData had at least 42 non-credential files with modification times at or after callback; no byte-level baseline exists.",
+    "environmentChange": {
+      "beforeDesktopVersion": "0.2.0-rc.2",
+      "beforeExeSha256": "df4e91fd91f6f1bee19a1990b0e167bfe06abf8353279d82bbb8e60edb6ba0d3",
+      "afterDesktopVersion": "0.2.1-rc.5",
+      "afterExeSha256": "7ae939b5a82b220fbd8ad04dfbafaaedb5a49ab43dc884a5db6381f678dd0cc4",
+      "afterStartArgument": "--updated",
+      "afterDesktopPid": 17728,
+      "afterHostPid": 11576,
+      "afterStartedLocal": "2026-11-02 22:08:41 +08:00",
+      "cause": "UNKNOWN; do not infer initiating action",
+      "protocolAssociation": "changed from earlier task Desktop path to normal installed Desktop path; no restoration attempted",
+      "profilePackage": {
+        "beforeSha256": "1481a32f6d658c9b85d1619a9f8e1fe42fbf870455a9bbcef9ed63e905335b05",
+        "afterSha256": "05674686288976d6c2a1594985cd3efcfd7461268b2d4019cd80941d0901f1e1"
+      },
+      "session": {
+        "beforeBytes": 403,
+        "beforeSha256": "49380b1f1ad56a053461ee2eef583ff1b57f68017cd9d43eb937f980f29a2619",
+        "afterBytes": 502,
+        "afterSha256": "4389dee2e2d6be4210336f216fc1c8630d3c2cf0ba264e5d30ce7314eadce167"
+      }
+    }
+  },
+  "acceptance": {
+    "W1": "UNKNOWN: candidate installation and cold restart pending",
+    "W2": "UNKNOWN: login and native sample access pending",
+    "W3": "UNKNOWN",
+    "W4": "UNKNOWN",
+    "W5": "UNKNOWN",
+    "W6": "UNKNOWN"
+  },
+  "limitations": [
+    "Unplanned installed Desktop update and normal data changes exceed the isolation goal; all further Desktop actions paused pending investigation.",
+    "Both test Desktop and Host processes exited; normal Desktop is running and has not been closed by this test.",
+    "No rollback or registry restoration attempted because a full before snapshot and reliable causation are unavailable.",
+    "Candidate not installed, no new business question, explanation generation or analysis; W1-W6 UNKNOWN."
+  ]
+}

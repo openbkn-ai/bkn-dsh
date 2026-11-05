@@ -1,0 +1,128 @@
+$ tsc -p tsconfig.package.client.json && tsdown --env.DSH_BUILD_FACE client
+ℹ tsdown v0.22.14 powered by rolldown v1.2.7
+ℹ config file: /Users/kalias/Documents/project/app/openBKN/bkn-dsh-provenance-parity-live-20261102/packages/openbkn-business-context/tsdown.config.ts 
+ℹ entry: src/client/index.tsx
+ℹ target: node22.19.0
+ℹ tsconfig: tsconfig.json
+ℹ Build start
+
+ WARN  We recommend using the ESM format instead of CommonJS.
+The ESM format is compatible with modern platforms and runtimes, and most new libraries are now distributed only in ESM format.
+Learn more at https://nodejs.org/en/learn/modules/publishing-a-package#how-did-we-get-here
+
+ℹ Hint: consider adding deps.onlyBundle option to avoid unintended bundling of dependencies, or set deps.onlyBundle: false to disable this hint.
+See more at https://tsdown.dev/options/dependencies#deps-onlybundle
+Detected dependencies in bundle:
+- zod
+- classnames
+- @babel/runtime
+- rc-util
+- react-is
+- rc-resize-observer
+- resize-observer-polyfill
+- @emotion/hash
+- @ant-design/cssinjs
+- @emotion/unitless
+- stylis
+- @ant-design/icons
+- antd
+- rc-pagination
+- rc-picker
+- @ant-design/fast-color
+- @ant-design/colors
+- @ant-design/cssinjs-utils
+- rc-motion
+- @ant-design/icons-svg
+- rc-notification
+- @rc-component/color-picker
+- @rc-component/portal
+- rc-dialog
+- rc-field-form
+- @rc-component/async-validator
+- rc-select
+- rc-overflow
+- @rc-component/trigger
+- rc-virtual-list
+- rc-tooltip
+- throttle-debounce
+- rc-input
+- rc-textarea
+- toggle-selection
+- copy-to-clipboard
+- i18next
+- react-i18next
+- use-sync-external-store
+- clsx
+- @rc-component/util
+- devlop
+- comma-separated-tokens
+- estree-util-is-identifier-name
+- hast-util-whitespace
+- property-information
+- space-separated-tokens
+- inline-style-parser
+- style-to-object
+- unist-util-position
+- unist-util-stringify-position
+- vfile-message
+- hast-util-to-jsx-runtime
+- html-url-attributes
+- mdast-util-to-string
+- decode-named-character-reference
+- micromark-util-chunked
+- micromark-util-combine-extensions
+- micromark-util-decode-numeric-character-reference
+- micromark-util-normalize-identifier
+- micromark-util-character
+- micromark-util-sanitize-uri
+- micromark-factory-space
+- micromark
+- micromark-util-edit-map
+- micromark-util-classify-character
+- micromark-util-resolve-all
+- micromark-core-commonmark
+- micromark-util-subtokenize
+- micromark-factory-destination
+- micromark-factory-label
+- micromark-factory-title
+- micromark-factory-whitespace
+- micromark-util-html-tag-name
+- micromark-util-decode-string
+- mdast-util-from-markdown
+- remark-parse
+- mdast-util-to-hast
+- trim-lines
+- @ungap/structured-clone
+- unist-util-is
+- unist-util-visit-parents
+- unist-util-visit
+- remark-rehype
+- bail
+- is-plain-obj
+- trough
+- vfile
+- unified
+- react-markdown
+- ccount
+- escape-string-regexp
+- mdast-util-find-and-replace
+- mdast-util-gfm-autolink-literal
+- mdast-util-gfm-footnote
+- mdast-util-gfm-strikethrough
+- markdown-table
+- mdast-util-phrasing
+- mdast-util-to-markdown
+- longest-streak
+- mdast-util-gfm-table
+- mdast-util-gfm-task-list-item
+- mdast-util-gfm
+- micromark-extension-gfm-autolink-literal
+- micromark-extension-gfm-footnote
+- micromark-extension-gfm-strikethrough
+- micromark-extension-gfm-table
+- micromark-extension-gfm-task-list-item
+- micromark-extension-gfm
+- remark-gfm
+ℹ lib/client.js  3.02 MB
+ℹ 1 files, total: 3.02 MB
+✔ Build complete in 480ms

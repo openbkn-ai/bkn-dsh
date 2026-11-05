@@ -1,0 +1,101 @@
+{
+  "date": "2026-11-02",
+  "baseline": "cfd377f88fe89a42e97577e62d1f06bec2875a3c",
+  "branch": "feat/provenance-platform-parity",
+  "node": "24.19.0",
+  "pnpm": "11.7.0",
+  "workingTree": "local and uncommitted",
+  "plugin": {
+    "result": "pass",
+    "tests": 747,
+    "pass": 746,
+    "fail": 0,
+    "skipped": 1,
+    "command": "node --import tsx --test tests/*.test.mjs tests/*.test.ts src/client/platform-provenance/*.test.ts",
+    "log": "plugin-tests.log",
+    "cwd": "packages/openbkn-business-context",
+    "skipReason": "existing Windows-specific process validation requires Windows"
+  },
+  "repository": {
+    "result": "pass",
+    "tests": 68,
+    "pass": 68,
+    "fail": 0,
+    "skipped": 0,
+    "command": "node --test tests/*.test.mjs",
+    "log": "repository-tests.log"
+  },
+  "scope": {
+    "result": "pass",
+    "tests": 2,
+    "pass": 2,
+    "fail": 0,
+    "skipped": 0,
+    "command": "node --test docs/evidence/2026-11-02-provenance-parity/check-current-scope.mjs",
+    "log": "scope-check.log",
+    "protectedNonProvenanceSourceFiles": 67
+  },
+  "build": {
+    "result": "pass",
+    "command": "pnpm --filter @openbkn/dsh-business-context run build",
+    "log": "local-build.log"
+  },
+  "packageAudit": {
+    "result": "pass",
+    "command": "node scripts/package-bundle.mjs --check",
+    "log": "package-check.log"
+  },
+  "lock": {
+    "frozenInstall": "pass",
+    "log": "frozen-lockfile.log",
+    "baselineExistingPackagesAndSnapshotsUnchanged": "LOCK-CHECK.json"
+  },
+  "compiledGateway": {
+    "result": "pass",
+    "hosts": [
+      "0.2.0-rc.2",
+      "0.2.1-rc.3"
+    ],
+    "evidence": "HOST-GATEWAY-SSE.json",
+    "controlledOnly": true,
+    "actualNetworkCalls": 0,
+    "actualPlatformPosts": 0,
+    "note": "explicit analysis uses one in-memory simulated POST per Host; default viewing remains GET only"
+  },
+  "artifact": {
+    "path": "release/openbkn-provenance-parity-local.tgz",
+    "sha256": "c0debad668fd6f8dc21ee2187c62a00fb46f5291b4f0f33c433adc8b30cfe327",
+    "bytes": 869455,
+    "files": 125,
+    "byteExactWorkingTreeFiles": 124,
+    "differences": [
+      {
+        "path": "package.json",
+        "kind": "serialization only; parsed JSON identical"
+      }
+    ],
+    "localUnpublished": true,
+    "notInstalled": true,
+    "manifestVersion": "0.2.1-rc.3-openbkn.0.2.1-2"
+  },
+  "notRun": [
+    "actual DSH desktop UI with this artifact",
+    "same-record live platform comparison",
+    "native macOS clipboard/file-save acceptance",
+    "Windows native acceptance",
+    "live platform permission/TLS/long record cases",
+    "actual platform explanation generation or Agent analysis",
+    "human acceptance"
+  ],
+  "unchanged": [
+    "installed plugin",
+    "daily DSH profile",
+    "published package/tag/Release/latest",
+    "platform/model outputs"
+  ],
+  "remoteActions": {
+    "push": false,
+    "remoteCI": false,
+    "publish": false
+  }
+}

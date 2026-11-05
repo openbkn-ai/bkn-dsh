@@ -1,0 +1,71 @@
+{
+  "reviewed_commit": "00b1181",
+  "baseline_before_tool_surface_change": "cfd377f88fe89a42e97577e62d1f06bec2875a3c",
+  "branch": "fix/021-managed-tool-surface",
+  "issue": 120,
+  "finding": {
+    "severity": "P2",
+    "description": "Legacy execute_skill without kn_id remained advertised despite permanent execution-guard denial.",
+    "before_fix": {
+      "tests": 20,
+      "pass": 19,
+      "fail": 1
+    },
+    "fix": "Hide only KN_SCOPE_REQUIRED_TOOLS whose registered definitions lack kn_id. Do not apply lifecycle/context argument checks to catalogue visibility."
+  },
+  "validation": {
+    "plugin": {
+      "tests": 667,
+      "pass": 666,
+      "skip": 1,
+      "fail": 0
+    },
+    "repository": {
+      "pass": 79,
+      "fail": 0
+    },
+    "typecheck": "pass",
+    "package_check": "94 files pass",
+    "official_runtime_versions": [
+      "0.2.0-rc.2",
+      "0.2.1-rc.3"
+    ],
+    "csv_and_query_scenarios_per_runtime": 2,
+    "formal_guard_assertions_per_runtime": 20,
+    "source_and_packed_guards_unchanged": true,
+    "recorded_csv_query_checks_per_scenario": 36
+  },
+  "candidate": {
+    "sha256": "c049a6e9a245afbc739f86d077e61a3df029babb8869602b01ea74561de7ed76",
+    "archive": "/Users/kalias/Documents/project/app/openBKN/bkn-dsh-tool-surface-20261102/release/tool-surface-review/managed-tool-surface-review.tgz",
+    "manifest_version": "0.2.1-rc.3-openbkn.0.2.1-2",
+    "changed_files": [
+      "lib/business.js"
+    ],
+    "unchanged_files": 93,
+    "unpublished": true,
+    "installed_into_desktop": false
+  },
+  "live_scope": {
+    "new_model_run": false,
+    "previous_rehearsal_candidate_preserved": true,
+    "previous_sessions_and_csvs_hashes_unchanged": true,
+    "note": "Prior rc.5 native acceptance belongs to b7b26bb8, not the new review archive. The two captured 19-tool requests did not contain execute_skill; unchanged behavior there is an inference from the exact predicate delta, not new native acceptance."
+  },
+  "upstream_scope": {
+    "checked_date": "2026-11-02",
+    "dsh_latest_release_observed": "dsh-v0.2.1-rc.5",
+    "platform_latest_release_observed": "v0.2.0",
+    "formal_fixture_source_inputs_verified": 34,
+    "unreleased_dsh_main_changes_tool_assembly_contract": true,
+    "unreleased_main_compatible": null,
+    "new_platform_metadata_tool": "drill_through_metric",
+    "unreviewed_tools_remain_denied": true
+  },
+  "remote": {
+    "push": false,
+    "PR": false,
+    "CI": false,
+    "publication": false
+  }
+}

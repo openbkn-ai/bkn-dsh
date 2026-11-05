@@ -1,0 +1,14 @@
+{
+  "candidateSha256": "55c707f36ab65d15a7ee3433aa1ad12c5bb5d1dc417423ff7e275427304f2af9",
+  "dsh": "0.2.1-rc.5",
+  "interactionId": "int_e44fec6083bba2588f962c49343cddeb",
+  "steps": [
+    "open first-answer provenance",
+    "click full original output",
+    "press Escape"
+  ],
+  "popoverVisibleBefore": true,
+  "focusStayedOnTrigger": true,
+  "outerVisibleAfter": false,
+  "verdict": "fail: Escape closed the outer viewer"
+}

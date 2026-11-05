@@ -1,0 +1,31 @@
+{
+  "receivedAt": "2026-11-03T15:39:26.839531+00:00",
+  "threadId": "01a15340-6507-7660-a68d-68994e283415",
+  "turnId": "01a1a201-7759-7181-b31f-7b0889a46f8f",
+  "transport": "Actual commandExecution stdout JSON envelope; base64 and gzip byte lengths, decompressed bytes and SHA256 verified",
+  "previousElevenReportsUnchanged": true,
+  "acceptedScope": "Task-owned native pointer permission and System Settings calibration only",
+  "notAcceptedAs": [
+    "DSH S1",
+    "DSH S2",
+    "DSH S3",
+    "DSH window coordinate calibration",
+    "full release acceptance"
+  ],
+  "files": [
+    {
+      "file": "mac-rc5/MAC-CI6-NATIVE-POINTER-PERMISSION.json",
+      "bytes": 11674,
+      "sha256": "8722081465ba89fafcf6bdd269e7f7a689016ea59e8171aa307a50f7dc6ca360",
+      "commandExecutionId": "exec-649cef4a-21fa-4d25-8b86-95c9e8099896",
+      "outputTruncated": false
+    },
+    {
+      "file": "mac-rc5/MAC-CI6-NATIVE-POINTER-PERMISSION.zh.md",
+      "bytes": 4856,
+      "sha256": "d0271d7b63f9b83c25025fea12353a40f451fd80f5d8933596b8a4e5381799bd",
+      "commandExecutionId": "exec-2d0b7cb4-b618-417a-8c3d-bc80db8a060d",
+      "outputTruncated": false
+    }
+  ]
+}

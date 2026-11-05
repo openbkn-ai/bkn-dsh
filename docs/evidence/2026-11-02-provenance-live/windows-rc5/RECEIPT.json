@@ -1,0 +1,23 @@
+{
+  "source": "designated Windows chat public final report exported in short transfer turn; private originals remain remote",
+  "threadId": "01a19c6a-e785-7f82-a5b4-cda473951fa6",
+  "hostId": "remote-control:env_e_6abf8babb404832890d7c5124118ed3c",
+  "exportTurnId": "01a19cfe-d1ba-7bd0-98fb-f37bca5b12b3",
+  "receivedLocalDate": "2026-11-03",
+  "files": [
+    {
+      "file": "WINDOWS-CI4-RESULTS.json",
+      "utf8Bytes": 4495,
+      "sha256": "f6d8d108b3f94009d0a36297fe0a506da2b38d949642a6a99227138fa49fadb9",
+      "encoding": "base64"
+    },
+    {
+      "file": "WINDOWS-CI4-RESULTS.zh.md",
+      "utf8Bytes": 7919,
+      "sha256": "49cbf6161602d34860838575c304d459210c360e2d5998f3874d13fafbe1a378",
+      "encoding": "base64"
+    }
+  ],
+  "transportDigestsVerified": true,
+  "evidenceBoundary": "Native observations from designated Windows tester; receiving side verifies public bytes and candidate identity, not private screenshots or whole-machine audit. Preserve earlier isolation anomalies separately."
+}

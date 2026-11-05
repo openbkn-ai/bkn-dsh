@@ -1,0 +1,29 @@
+{
+  "source": "designated Windows chat finalized public reports; private originals remain remote",
+  "threadId": "01a19c6a-e785-7f82-a5b4-cda473951fa6",
+  "hostId": "remote-control:env_e_6abf8babb404832890d7c5124118ed3c",
+  "executionTurnIds": [
+    "01a19f94-994a-77c2-ae61-e3d64f3cee78"
+  ],
+  "exportTurnId": "01a19fc6-722c-7fc3-8ef1-134d7de6c745",
+  "exportTurnIds": [
+    "01a19fc3-c41a-7a61-9ebb-07647882506b",
+    "01a19fc6-722c-7fc3-8ef1-134d7de6c745"
+  ],
+  "transportNote": "First short export returned whole-file base64 despite requested chunks. Markdown was complete; JSON was truncated by per-item20000-character limit. Only JSON was exported again in four independent framed chunks. All bytes are validated against the completed execution-turn digests before public-file writes.",
+  "receivedLocalDate": "2026-11-03",
+  "files": [
+    {
+      "file": "WINDOWS-CI5-POST-UPGRADE.json",
+      "utf8Bytes": 23950,
+      "sha256": "c9cb31f0000fdc3adec3b2c4c4b1240506f73530b08b7defd9cb80c822f2acdc"
+    },
+    {
+      "file": "WINDOWS-CI5-POST-UPGRADE.zh.md",
+      "utf8Bytes": 11182,
+      "sha256": "d8c755bba37f19ce917ff16b290d1fe23f444684bd4441ea4c497f6173f834c6"
+    }
+  ],
+  "transportDigestsVerified": true,
+  "evidenceBoundary": "Receiving side verifies public bytes and report consistency, not private screenshots or whole-machine state. This receipt does not itself establish native or global release acceptance."
+}

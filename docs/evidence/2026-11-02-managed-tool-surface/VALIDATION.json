@@ -1,0 +1,51 @@
+{
+  "issue": "https://github.com/openbkn-ai/bkn-dsh/issues/120",
+  "project": "https://github.com/orgs/openbkn-ai/projects/12",
+  "assignee": "kalias",
+  "branch": "fix/021-managed-tool-surface",
+  "baseline": "cfd377f88fe89a42e97577e62d1f06bec2875a3c",
+  "localUnpublished": true,
+  "candidateSha256": "b7b26bb87fe93123c4590012015d08c08e9d9cfe3ba1f4476f7a3bd86859790a",
+  "manifestVersion": "0.2.1-rc.3-openbkn.0.2.1-2",
+  "checks": {
+    "focused": 55,
+    "plugin": {
+      "tests": 661,
+      "pass": 660,
+      "skip": 1,
+      "fail": 0
+    },
+    "repository": {
+      "pass": 79,
+      "fail": 0
+    },
+    "typecheck": "pass",
+    "packageAudit": "pass",
+    "controlledHosts": [
+      "0.2.0-rc.2",
+      "0.2.1-rc.3"
+    ]
+  },
+  "actualHost": {
+    "diskAppVersion": "0.2.1-rc.5",
+    "freshSessionId": "cd99a82a-3ea7-4e5e-af12-8b18a1fdb44a",
+    "title": "021修复后｜三仓库存CSV演示",
+    "requestToolCounts": [
+      19,
+      19
+    ],
+    "toolErrorCount": 0,
+    "secondsShownByUI": 70,
+    "fileVerification": "pass",
+    "clickToOpen": "pass",
+    "knownCacheMissPreserved": true
+  },
+  "remote": {
+    "issueCreated": true,
+    "projectAssociated": true,
+    "codePush": false,
+    "PR": false,
+    "CI": false,
+    "publication": false
+  }
+}

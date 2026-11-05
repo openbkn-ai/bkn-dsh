@@ -1,0 +1,12 @@
+Node 24.19.0; first conversation transport delayed once by 1200 ms; default readiness waiting unchanged.
+✖ native outer Escape closes only the activated interaction_question popover and restores its trigger (1033.96375ms)
+ℹ tests 1
+ℹ suites 0
+ℹ pass 0
+ℹ fail 1
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 2845.142875
+✖ native outer Escape closes only the activated interaction_question popover and restores its trigger (1033.96375ms)
+  Error: Unable to find role="heading" and name "本轮业务执行过程"

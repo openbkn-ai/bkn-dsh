@@ -11,14 +11,18 @@ export default defineConfig(({ env }) => {
     outDir: 'lib',
     format: ['cjs'],
     platform: 'browser',
+    // tsdown defaults CJS resolution to Node even for a browser module-table
+    // factory. Keep conditional imports (notably vfile) on their browser face.
+    inputOptions: { platform: 'browser' },
     dts: false,
     clean: false,
+    define: { 'process.env.NODE_ENV': '"production"' },
     // DSH's module table already supplies React. Bundling it would introduce
     // React's Node-only development branch (`process.env`) into the browser
     // factory, which runs without a Node global.
     deps: {
-      neverBundle: ['react', 'react/jsx-runtime'],
-      alwaysBundle: ['zod'],
+      neverBundle: ['react', 'react/jsx-runtime', 'react-dom', 'react-dom/client'],
+      alwaysBundle: [/^zod(?:\/|$)/, /^antd(?:\/|$)/, /^@ant-design\/icons(?:\/|$)/, 'react-markdown', 'remark-gfm', 'i18next', 'react-i18next'],
     },
     // The generated Remote descriptor imports Zod at runtime. Third-party
     // client bundles do not receive transitive dependencies as DSH module

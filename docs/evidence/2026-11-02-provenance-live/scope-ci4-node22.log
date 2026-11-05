@@ -1,0 +1,22 @@
+TAP version 13
+# Subtest: provenance parity keeps unrelated plugin source byte-for-byte at the local baseline
+ok 1 - provenance parity keeps unrelated plugin source byte-for-byte at the local baseline
+  ---
+  duration_ms: 7.3115
+  type: 'test'
+  ...
+# Subtest: new source files remain confined to the provenance detail surface and its Host transport
+ok 2 - new source files remain confined to the provenance detail surface and its Host transport
+  ---
+  duration_ms: 0.982042
+  type: 'test'
+  ...
+1..2
+# tests 2
+# suites 0
+# pass 2
+# fail 0
+# cancelled 0
+# skipped 0
+# todo 0
+# duration_ms 34.846708

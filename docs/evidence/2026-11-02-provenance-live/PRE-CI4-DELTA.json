@@ -1,0 +1,20 @@
+{
+  "previousLocalReferenceSha256": "e68bd4d9bf75a67e125beb39726a9f8aa05c83e4547aa6b0a841629dd85f3c02",
+  "ci4LocalReferenceSha256": "34ecc9ec67992001caf2bb76caee51d2b03132f5ca005f10343be38e62e1b07a",
+  "bytes": 877325,
+  "files": 126,
+  "changedFiles": [
+    "lib/client.js"
+  ],
+  "newFiles": [],
+  "removedFiles": [],
+  "hostBusinessUnchanged": true,
+  "productionChange": "analysis-aside owned-focus recovery only; platform/model outputs unchanged",
+  "localValidation": {
+    "Node": "22.19.0",
+    "tests": 817,
+    "pass": 816,
+    "skip": 1
+  },
+  "ci4AndNativeRetest": "pending; CI3 native root-focus Escape failure preserved"
+}

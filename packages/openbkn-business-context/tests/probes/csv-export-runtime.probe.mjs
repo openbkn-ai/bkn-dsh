@@ -37,7 +37,7 @@ const oldHost = require('@deepseek-ai/dsh-tools/package.json').version === '0.2.
 
 async function scenario(captureDisabled) {
   const ctx = new Context(), files = new Map(), checks = []
-  let reads = 0, writes = 0, readOnly = false, corrupt = false, sequence = 0
+  let reads = 0, writes = 0, queries = 0, skills = 0, readOnly = false, corrupt = false, sequence = 0
   const runContext = captureDisabled ? {
     conversation_id: fixture.lifecycleExamples.captureDisabledStart.conversation_id,
     interaction_id: fixture.lifecycleExamples.captureDisabledStart.interaction_id,
@@ -63,7 +63,7 @@ async function scenario(captureDisabled) {
     })) await ctx.plugin(class extends Service {
       constructor(scope) { super(scope, name); Object.assign(this, port) }
     })
-    for (const name of ['bkn_start_interaction', 'run_code', 'bkn_finish_interaction']) {
+    for (const name of ['bkn_start_interaction', 'query_metric', 'query_object_instance', 'run_code', 'bkn_finish_interaction']) {
       ctx.tools.register(createMcpToolDefinition(ctx, {
         name: 'mcp__openbkn__' + name, rawName: name, description: 'formal platform fixture', inputSchema: name === 'run_code' ? runCodeFixture.inputSchema : fixture.tools[name].inputSchema,
         call: async actual => {
@@ -77,12 +77,34 @@ async function scenario(captureDisabled) {
               schema: 'openbkn.csv.v1', path: args.path, size: bytes.length,
               sha256: corrupt ? '0'.repeat(64) : sha256, data_base64: bytes.toString('base64'),
             }) }
+          } else if (name === 'query_metric' || name === 'query_object_instance') {
+            assert.equal(actual.kn_id, binding.knowledgeNetworkId)
+            assert.deepEqual(actual.bkn_context, runContext)
+            queries++
+            body = { fixture_query: name, quantity: '61950.0945' }
           } else if (captureDisabled) body = fixture.lifecycleExamples[name === 'bkn_start_interaction' ? 'captureDisabledStart' : 'captureDisabledFinish']
           else body = { ...context, execution_status: name === 'bkn_start_interaction' ? 'active' : 'completed' }
           return { content: [{ type: 'text', text: JSON.stringify(body) }] }
         },
       }))
     }
+    for (const name of ['write', 'mcp__openbkn__run_cypher']) {
+      ctx.tools.register({ name, description: 'Observed forbidden tool-surface fixture',
+        parameters: { type: 'object', properties: {} },
+        output: { schema: { type: 'string' }, render: (_args, value) => [{ type: 'text', text: value }] },
+        execute: async () => { throw new Error('Forbidden tool body must not dispatch') },
+      })
+    }
+    const registerSkill = inputSchema => ctx.tools.register(createMcpToolDefinition(ctx, {
+      name: 'mcp__openbkn__execute_skill', rawName: 'execute_skill', description: 'Controlled deployment-specific Skill definition', inputSchema,
+      call: async actual => {
+        assert.equal(actual.kn_id, binding.knowledgeNetworkId)
+        assert.deepEqual(actual.bkn_context, runContext)
+        skills++
+        return { content: [{ type: 'text', text: '{}' }] }
+      },
+    }))
+    const removeLegacySkill = registerSkill({ type: 'object', properties: { skill_id: { type: 'string' }, entry_shell: { type: 'string' } } })
     const agent = { id: 'csv-probe', session: { header: { cwd: oldHost ? '/workspace' : '/stale-initial-workspace' }, snapshotEvents: () => [] } }
     await createScope(ctx, agent).ctx.plugin({ inject: ['systemPrompt', 'tools'], apply(scoped) {
       agent.ctx = scoped
@@ -91,17 +113,58 @@ async function scenario(captureDisabled) {
     await Promise.resolve(); await Promise.resolve()
     assert.ok(ctx.tools.get(CSV, agent))
     assert.equal(ctx.tools.get(CSV, { id: 'unrelated-agent' }), undefined)
+    ctx.tools.register({ name: 'mcp__openbkn__future_unreviewed', description: 'Late unreviewed fixture',
+      parameters: { type: 'object', properties: {} },
+      output: { schema: { type: 'string' }, render: (_args, value) => [{ type: 'text', text: value }] },
+      execute: async () => { throw new Error('Unreviewed tool body must not dispatch') },
+    })
+    const assembled = await ctx.systemPrompt.assemble({ scope: agent })
+    const modelNames = assembled.tools.map(tool => tool.name)
+    assert.ok(modelNames.includes(CSV))
+    assert.ok(modelNames.includes('mcp__openbkn__run_code'))
+    for (const name of ['query_metric', 'query_object_instance']) {
+      assert.deepEqual(assembled.tools.find(tool => tool.name === 'mcp__openbkn__' + name).parameters, fixture.tools[name].inputSchema)
+    }
+    for (const name of ['write', 'mcp__openbkn__run_cypher', 'mcp__openbkn__future_unreviewed']) assert.ok(!modelNames.includes(name), name)
+    assert.ok(!modelNames.includes('mcp__openbkn__execute_skill'), 'legacy Skill without network scope is never offered')
+    assert.ok((await ctx.systemPrompt.assemble()).tools.some(tool => tool.name === 'write'))
+    assert.equal(assembled.sections.at(-1).name, 'openbkn:effective-tool-routing')
+    checks.push('model catalogue excludes observed and late forbidden tools; managed CSV visible; unbound catalogue unchanged')
     const call = (name, arguments_) => ctx.tools.execute({ name, arguments: arguments_, agent, callId: 'csv-probe-' + ++sequence, signal: AbortSignal.timeout(5000) })
     const denied = async (check, name, arguments_) => {
-      const before = { reads, writes }
+      const before = { reads, writes, queries, skills }
       assert.equal((await call(name, arguments_)).isError, true, check)
-      assert.deepEqual({ reads, writes }, before, check + ': no platform dispatch or file write')
+      assert.deepEqual({ reads, writes, queries, skills }, before, check + ': no platform dispatch or file write')
       checks.push(check)
     }
     await denied('closed Interaction', CSV, input)
     assert.notEqual((await call('mcp__openbkn__bkn_start_interaction', {
       conversation_mode: 'new', question: 'controlled CSV guard probe', agent_name: 'bkn-agent-dsh-business-context',
     })).isError, true)
+    await denied('legacy unscoped Skill remains refused', 'mcp__openbkn__execute_skill', { skill_id: 'fixture', entry_shell: 'python main.py' })
+    removeLegacySkill()
+    registerSkill(fixture.tools.execute_skill.inputSchema)
+    const scopedSkill = (await ctx.systemPrompt.assemble({ scope: agent })).tools.find(tool => tool.name === 'mcp__openbkn__execute_skill')
+    assert.deepEqual(scopedSkill.parameters, fixture.tools.execute_skill.inputSchema)
+    const skillArgs = { kn_id: binding.knowledgeNetworkId, bkn_context: runContext, skill_id: 'fixture', entry_shell: 'python main.py' }
+    assert.notEqual((await call('mcp__openbkn__execute_skill', skillArgs)).isError, true)
+    assert.equal(skills, 1)
+    await denied('scoped Skill still rejects another network', 'mcp__openbkn__execute_skill', { ...skillArgs, kn_id: 'other' })
+    checks.push('unscoped Skill hidden/refused; replacing with the published scoped schema restores visibility and valid dispatch')
+    for (const [name, query] of [
+      ['query_metric', { kn_id: binding.knowledgeNetworkId, metric_id: 'fixture-metric', bkn_context: runContext }],
+      ['query_object_instance', { kn_id: binding.knowledgeNetworkId, ot_id: 'fixture-object-type', bkn_context: runContext }],
+    ]) {
+      const result = await call('mcp__openbkn__' + name, query)
+      assert.notEqual(result.isError, true, JSON.stringify(result.content))
+      const { kn_id: _network, ...missingNetwork } = query
+      const { bkn_context: _identity, ...missingContext } = query
+      for (const bad of [missingNetwork, missingContext, { ...query, kn_id: 'other' }, { ...query, kn_id: [] }, { ...query, bkn_context: { ...runContext, interaction_id: 'other' } }]) {
+        await denied(name + ': wrong/missing network/context', 'mcp__openbkn__' + name, bad)
+      }
+    }
+    assert.equal(queries, 2)
+    checks.push('published metric/object schemas preserved; both valid queries dispatch while invalid scopes/identities do not')
     for (const [check, arguments_] of [
       ['wrong network', { ...input, kn_id: 'other' }],
       ['missing network', { path: args.path, bkn_context: runContext }],
@@ -116,7 +179,7 @@ async function scenario(captureDisabled) {
     readOnly = true
     await denied('read-only Session', CSV, input)
     readOnly = false
-    for (const name of ['read', 'grep', 'present', 'mcp__openbkn__run_shell']) await denied('Host/excluded ' + name, name, {})
+    for (const name of ['read', 'grep', 'present', 'write', 'mcp__openbkn__run_shell', 'mcp__openbkn__run_cypher', 'mcp__openbkn__future_unreviewed']) await denied('Host/excluded ' + name, name, {})
     corrupt = true
     const invalid = await call(CSV, input)
     assert.equal(invalid.isError, true)
@@ -136,7 +199,7 @@ async function scenario(captureDisabled) {
       interaction_id: runContext.interaction_id, outcome: 'completed', answer: 'controlled CSV guard probe completed',
     })).isError, true)
     await denied('finished Interaction', CSV, input)
-    return { capture: captureDisabled ? 'disabled' : 'enabled', workspaceContract: oldHost ? 'immutable Session header; no workingDirectory service' : 'native workingDirectory service overrides initial header', checks, passed: true, reads, writes, unrelatedAgentInvisible: true }
+    return { capture: captureDisabled ? 'disabled' : 'enabled', workspaceContract: oldHost ? 'immutable Session header; no workingDirectory service' : 'native workingDirectory service overrides initial header', checks, passed: true, reads, writes, queries, skills, unrelatedAgentInvisible: true }
   } finally { await ctx.fiber.dispose() }
 }
 

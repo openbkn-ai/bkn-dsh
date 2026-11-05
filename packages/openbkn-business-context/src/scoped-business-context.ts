@@ -1,6 +1,7 @@
 import type { Context } from '@deepseek-ai/cordis'
 import type { Agent } from '@deepseek-ai/dsh-agent'
 import type { ToolExecution, ToolExecutionResult } from '@deepseek-ai/dsh-tools'
+import type { AssembleContext, PromptAssembly } from '@deepseek-ai/dsh-system-prompt'
 import {
   FINISH_INTERACTION_TOOL,
   START_INTERACTION_TOOL,
@@ -11,7 +12,7 @@ import {
   restoreFrom,
   type InteractionLifecycleState,
 } from './interaction-lifecycle.js'
-import { buildManagedSessionPolicy, capabilityRoutingText, type CapabilityToolAvailability } from './managed-session-policy.js'
+import { buildManagedSessionPolicy, capabilityRoutingText, MANAGED_TOOL_ROUTING, type CapabilityToolAvailability } from './managed-session-policy.js'
 import type { NetworkCapabilityProfile } from './network-capability-profile.js'
 import type { PlatformReaderConfig } from './platform-reader.js'
 import type { BusinessNetworkBinding } from './types.js'
@@ -29,6 +30,7 @@ interface ScopedTools {
 }
 
 interface ScopedAgentEvents {
+  on(event: 'system-prompt/assemble', listener: (assembly: PromptAssembly, context: AssembleContext, next: () => Promise<PromptAssembly>) => Promise<PromptAssembly>): () => void
   on(event: 'tools/result', listener: (exec: Readonly<ToolExecution>, result: Readonly<ToolExecutionResult>) => void): () => void
   on(event: 'agent/pre-step', listener: (payload: { readonly step: number }, next: () => Promise<unknown>) => Promise<unknown>): () => void
   on(event: 'agent/turn-stopping', listener: (payload: { readonly turn: number; readonly signal?: AbortSignal }) => void): () => void
@@ -214,12 +216,26 @@ const scopedPolicyPlugin = (
       const systemPrompt = (ctx as Context & { systemPrompt: ScopedSystemPrompt }).systemPrompt
       const tools = (ctx as Context & { tools: ScopedTools }).tools
       const events = ctx as Context & { on: ScopedAgentEvents['on'] }
-      // Context Loader tools are dynamically registered after the agent is
-      // created, so `restrict()` cannot safely name them here. A scoped guard is
-      // DSH's monotonic enforcement point and works regardless of registration
-      // timing; it also covers tools contributed by the agent preset itself.
+      // Context Loader tools register dynamically. Filter the fully assembled
+      // model catalogue on every request rather than restricting unknown names
+      // at mount time. The independent execution guard below remains authoritative.
       let lifecycle: InteractionLifecycleState = restoreFrom(agent.session.snapshotEvents())
       let csvExportRegistered = false
+      disposers.push(events.on('system-prompt/assemble', async (_assembly, _context, next) => {
+        const assembly = await next()
+        return {
+          ...assembly,
+          tools: assembly.tools.filter(tool => unmanagedDenial(tool.name, csvExportRegistered) === undefined
+            // The legacy platform registers execute_skill without kn_id. The
+            // unchanged execution guard always refuses that definition, so do
+            // not advertise it. Keep per-call lifecycle/context checks out of
+            // this projection: valid queries must remain visible before start.
+            && (!KN_SCOPE_REQUIRED_TOOLS.includes(tool.name) || declaresKnId(tools.get(tool.name, agent)))),
+          // Preserve upstream guidance verbatim and state its session-specific
+          // applicability after it. This does not rewrite any durable record.
+          sections: [...assembly.sections, { name: 'openbkn:effective-tool-routing', text: MANAGED_TOOL_ROUTING }],
+        }
+      }))
       // File services are optional preset capabilities and require their own
       // Cordis injection scope. Their absence must not disable business access.
       if (typeof ctx.inject === 'function') {

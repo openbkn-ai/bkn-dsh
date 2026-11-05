@@ -1,0 +1,1298 @@
+{
+  "kind": "WINDOWS-CI5-ANCHOR-SESSION-AUDIT",
+  "schemaVersion": 1,
+  "startedUtc": "2026-11-03T05:11:37.3113510+00:00",
+  "finishedUtc": "2026-11-03T06:09:19.150Z",
+  "timezone": "Asia/Taipei",
+  "decision": {
+    "session82Bytes": "PASS_CLASSIFIED_HOST_METADATA_APPEND",
+    "crossAnswerAnchor": "PASS_SCOPED_REAL_ENTRY",
+    "liveMcpMetadata": "PASS_CAPTURE_AND_CLASSIFICATION_WITH_LIMITS",
+    "blockingFindingsInAuthorizedScope": [],
+    "wholeReleaseAccepted": false,
+    "releaseDecision": "Not made by this audit. No merge, publication, tagging or release action.",
+    "allSchemasCompletelyEqual": false
+  },
+  "scope": {
+    "guiTool": "Windows MCP only",
+    "authorized": "Full offline byte/frame/record audit; real answer3 -> close -> answer2 provenance anchor; metadata-only full MCP catalogue/schema classification.",
+    "unchanged": "Same CI5 package, installed plugin, official Desktop EXE/ASAR, isolated home/userData and existing business records.",
+    "excluded": "No new question/explanation/Agent analysis, model/business tool execution, tools/call, install/build/package change, previous geometry/Space/source-text matrix rerun, source repair/persistence-open audit or original record write."
+  },
+  "candidate": {
+    "sourceCommit": "ae903656193d3fc5214469bc0e6ee1108e233075",
+    "ciRun": "https://github.com/openbkn-ai/bkn-dsh/actions/runs/41548846010",
+    "artifactId": 13191140519,
+    "publish": false,
+    "zip": {
+      "bytes": 877540,
+      "sha256": "ade22f125ead5bce70c29e06f22d509949ff0a006cd8047e8d6f8d81702e38f3"
+    },
+    "tgz": {
+      "name": "openbkn-dsh-business-context-0.2.1-rc.3-openbkn.0.2.1-3.tgz",
+      "bytes": 877506,
+      "sha256": "14f4bb7fb61c892017343c832fdc8b37d892706b9a7aa2146779eef00ee9e3ff"
+    },
+    "installedFileCount": 126,
+    "clientSha256": "f7184c97d65d9bf72c192172f8e1815aee022d05df5c54905dc3c7a32c113e10",
+    "businessSha256": "bac538d8de54f6b362ba39374b495cf39c6dfe89c4732074cfc966f98e1af7ad"
+  },
+  "host": {
+    "officialVersion": "0.2.1-rc.5",
+    "os": "Windows10 Pro19045 x64",
+    "exe": {
+      "bytes": 246343144,
+      "sha256": "7ae939b5a82b220fbd8ad04dfbafaaedb5a49ab43dc884a5db6381f678dd0cc4",
+      "signature": "Valid"
+    },
+    "asar": {
+      "bytes": 182766714,
+      "sha256": "e1b6f25fa937da98086c3e77af77aa14791105963c4d337a1c42179d232c6915"
+    },
+    "owned": {
+      "pid": 7304,
+      "createdUtc": "2026-11-03T05:20:57.5429220Z",
+      "hostPid": 31716,
+      "children": [
+        34064,
+        21872,
+        29864,
+        31716
+      ],
+      "port": 57663,
+      "hwnd": 788542
+    },
+    "liveBuildCommit": "UNKNOWN",
+    "servedClientDigest": "UNKNOWN",
+    "loadedPluginVersion": "UNKNOWN",
+    "actualModelMetadata": "UNKNOWN"
+  },
+  "offlineSession": {
+    "status": "PASS_CLASSIFIED_HOST_METADATA_APPEND",
+    "method": "Full JSON grammar parse preserving every object key/value, duplicate keys, object key order, array order, string values and number lexemes; no persistence/codec/provenance parser; no field filtering or normalization. Raw JSONL comparisons separately retained. Canonical hashes sort object keys only; arrays and scalar lexemes unchanged.",
+    "decoder": {
+      "node": "v24.21.0",
+      "zstd": "1.5.7",
+      "method": "Native decoder advanced by engine.bytesWritten until entire input consumed. Independently partition every zstd magic candidate; each exact segment must decompress and consume fully. Both boundary sequences and combined outputs must match. No finishFlush, truncation, repair or persistence open."
+    },
+    "original": {
+      "path": "C:\\bkn-verify\\first-use8-desktop\\dsh-home\\sessions\\--C-bkn-verify-first-use8-desktop-workspaces-supply-ontology--\\session-58973674-89a4-43ae-a2b7-9f32e86032e3\\session.v4.jsonl.zstd",
+      "compressedBytes": 349071,
+      "compressedSha256": "49cce19d02d2410b8e34cc8b9d0568d88e871f02325427eb5357f5df3c13469c",
+      "frameCount": 145,
+      "fullyConsumed": true,
+      "totalConsumedBytes": 349071,
+      "trailingUnconsumedBytes": 0,
+      "independentFrameVerification": "PASS",
+      "decompressedBytes": 1324189,
+      "decompressedSha256": "f718069545724cc7ad9d270e04a45cda5e8f02b8fcdd16da55c3a6c24b04b726",
+      "utf8FatalDecode": "PASS",
+      "bom": false,
+      "lfCount": 265,
+      "crCount": 0
+    },
+    "isolated": {
+      "path": "C:\\bkn-verify\\provenance-ci4-win-20261102\\home\\sessions\\--C-bkn-verify-first-use8-desktop-workspaces-supply-ontology--\\session-58973674-89a4-43ae-a2b7-9f32e86032e3\\session.v4.jsonl.zstd",
+      "compressedBytes": 349153,
+      "compressedSha256": "81bbe0c2a2351dbfd3bbf1e5e091d162167eddc05256db144806d5ad26a4552b",
+      "frameCount": 146,
+      "fullyConsumed": true,
+      "totalConsumedBytes": 349153,
+      "trailingUnconsumedBytes": 0,
+      "independentFrameVerification": "PASS",
+      "decompressedBytes": 1324258,
+      "decompressedSha256": "822d692d65a71fcb10382a820c13e62326ba9833153bf36f71b3c53c61d6f14d",
+      "utf8FatalDecode": "PASS",
+      "bom": false,
+      "lfCount": 266,
+      "crCount": 0
+    },
+    "equality": {
+      "compressedBytesIdentical": false,
+      "decompressedBytesIdentical": false,
+      "originalCompressedExactPrefix": true,
+      "compressedAppendedBytes": 82,
+      "originalDecodedExactPrefix": true,
+      "decodedAppendedBytes": 69
+    },
+    "records": {
+      "original": 265,
+      "isolated": 266,
+      "common": 265,
+      "allCommonRawLinesIdentical": true,
+      "allCommonKeysValuesAndObjectKeyOrderIdentical": true,
+      "allCommonCanonicalRecordsIdentical": true,
+      "objectKeyOrderChanges": [],
+      "duplicateKeys": [],
+      "fullDifferenceCount": 1,
+      "differences": [
+        {
+          "pointer": "/records/265",
+          "kind": "added",
+          "before": {
+            "type": "missing"
+          },
+          "after": {
+            "type": "object",
+            "canonicalTypedBytes": 155,
+            "canonicalTypedSha256": "6701e6d5e930af8839fbb97b0a8006988a048df6e050c9707b612a07ecb676c4",
+            "length": 4
+          }
+        }
+      ],
+      "addedRecords": [
+        {
+          "recordIndex": 265,
+          "type": "session/end-seed",
+          "keys": [
+            "type",
+            "seq",
+            "time",
+            "data"
+          ],
+          "rawLine": {
+            "lineIndex": 265,
+            "bytes": 68,
+            "sha256": "ffc65639154131d45af89f039d6f70d7649d8a81955e25366a7591d4a4874f0f"
+          },
+          "value": {
+            "type": "object",
+            "canonicalTypedBytes": 155,
+            "canonicalTypedSha256": "6701e6d5e930af8839fbb97b0a8006988a048df6e050c9707b612a07ecb676c4",
+            "length": 4
+          }
+        }
+      ],
+      "originalAllRecordsTypedSha256": "b6056f1599c699c2c24e572b2d4d7a1116b393bd81b8d8aca43ec843a18bb0c7",
+      "isolatedAllRecordsTypedSha256": "219817850ba454b176648a655bd8f658509aec15a90a674def2a6678fcd24764",
+      "originalTypeGroups": {
+        "agent/inbox/spliced": {
+          "count": 12,
+          "completeOrderedRecordsTypedSha256": "395fd8aee3f716a7b01b88f08690c27d8a3cf2a790607827cf0df002f3c3f00c"
+        },
+        "approval/policy": {
+          "count": 1,
+          "completeOrderedRecordsTypedSha256": "1c6078b52179855c4c004511f68aa44c55a820b0fbbf5b4cd6ad6f1b5f880505"
+        },
+        "assistant/message": {
+          "count": 31,
+          "completeOrderedRecordsTypedSha256": "d34f49cc6301d2fb627ddac948fdf156a01e0366bfa177d7a4265858d9d26fab"
+        },
+        "developer/message": {
+          "count": 5,
+          "completeOrderedRecordsTypedSha256": "c727789cdc4756c2e518f6fd2c102597a6e700859b12edc9bc74cbf76b75d67f"
+        },
+        "permission/preset": {
+          "count": 1,
+          "completeOrderedRecordsTypedSha256": "e4f8ad2c8f4d023fbd1fe8d6da8ec4408e91132d313b7420c04e45fb90b51ece"
+        },
+        "request/context": {
+          "count": 1,
+          "completeOrderedRecordsTypedSha256": "ba98814a2fe62b2bd19c1b528d04f8d55770567e4553e725b149cad436c87796"
+        },
+        "request/header": {
+          "count": 6,
+          "completeOrderedRecordsTypedSha256": "692c9346567639cf3dc37ca84919bb2eaad3930af7f9d2281ed81d0c759867d4"
+        },
+        "sandbox/mode": {
+          "count": 1,
+          "completeOrderedRecordsTypedSha256": "6e07bdc6299b0413dc512799e015be9b1ffb2217c3406140fbea0a6261f797f4"
+        },
+        "session": {
+          "count": 1,
+          "completeOrderedRecordsTypedSha256": "d4aa8046f18dccc0cc25c31367436999c5177d8448f9c8a367a8068aaca04240"
+        },
+        "session-log-deepseek/delivery-accepted": {
+          "count": 32,
+          "completeOrderedRecordsTypedSha256": "dfe541da09bd13c037c7cd5b176471bd3e6f3e8771a6ec783b000f983b1926bb"
+        },
+        "session/end-seed": {
+          "count": 1,
+          "completeOrderedRecordsTypedSha256": "1e2c71578bcbbb3e2e8630995a1bf233c259ba85ebae5197a4240e3d3d6e4fb4"
+        },
+        "session/title": {
+          "count": 2,
+          "completeOrderedRecordsTypedSha256": "1d995281f4c39f8701fca9555087cae4ef8899bf97552fe3e56cf7690aa3a6c0"
+        },
+        "session/title-llm-request": {
+          "count": 1,
+          "completeOrderedRecordsTypedSha256": "6e8c272eb546c8caaef95d80b4d541e52902a5dec6e25e08e3f303be67432c1c"
+        },
+        "step/end": {
+          "count": 31,
+          "completeOrderedRecordsTypedSha256": "4df05ac67ccc758bd6004399365cb02ebb14edb70055fec4ab6f6ec8b3136a98"
+        },
+        "step/start": {
+          "count": 31,
+          "completeOrderedRecordsTypedSha256": "0cc32948116142755273bc5c6a09f5d347be753c30077e4eb47ef77619e44c89"
+        },
+        "system/message": {
+          "count": 6,
+          "completeOrderedRecordsTypedSha256": "371f4af76744a74e263fe139cf065720aa0546e5aaa1f83b269eb12fa74922a9"
+        },
+        "tool/call": {
+          "count": 41,
+          "completeOrderedRecordsTypedSha256": "61fc4d2df8ed5030749e49457c412e11f3dfbd4d3ceda62855ae138d2ac2016c"
+        },
+        "tool/result": {
+          "count": 41,
+          "completeOrderedRecordsTypedSha256": "3ece87a69c03e279394cda5943b07df8573c79db526cb18f228e93d3487b8103"
+        },
+        "turn/end": {
+          "count": 6,
+          "completeOrderedRecordsTypedSha256": "3d69e8f9564e30e61f010bc7269956450d7586a17884dd44642fe312e98dc428"
+        },
+        "turn/start": {
+          "count": 6,
+          "completeOrderedRecordsTypedSha256": "e82f4f871674282fe9dedc2228459fc857aea21ea76d57e4ea1cbce6493abcbb"
+        },
+        "user/message": {
+          "count": 8,
+          "completeOrderedRecordsTypedSha256": "83af4a8adfd3b7c3804d50919142b9151d3efeaaca34702c53128ba5eda36f9f"
+        }
+      },
+      "isolatedTypeGroups": {
+        "agent/inbox/spliced": {
+          "count": 12,
+          "completeOrderedRecordsTypedSha256": "395fd8aee3f716a7b01b88f08690c27d8a3cf2a790607827cf0df002f3c3f00c"
+        },
+        "approval/policy": {
+          "count": 1,
+          "completeOrderedRecordsTypedSha256": "1c6078b52179855c4c004511f68aa44c55a820b0fbbf5b4cd6ad6f1b5f880505"
+        },
+        "assistant/message": {
+          "count": 31,
+          "completeOrderedRecordsTypedSha256": "d34f49cc6301d2fb627ddac948fdf156a01e0366bfa177d7a4265858d9d26fab"
+        },
+        "developer/message": {
+          "count": 5,
+          "completeOrderedRecordsTypedSha256": "c727789cdc4756c2e518f6fd2c102597a6e700859b12edc9bc74cbf76b75d67f"
+        },
+        "permission/preset": {
+          "count": 1,
+          "completeOrderedRecordsTypedSha256": "e4f8ad2c8f4d023fbd1fe8d6da8ec4408e91132d313b7420c04e45fb90b51ece"
+        },
+        "request/context": {
+          "count": 1,
+          "completeOrderedRecordsTypedSha256": "ba98814a2fe62b2bd19c1b528d04f8d55770567e4553e725b149cad436c87796"
+        },
+        "request/header": {
+          "count": 6,
+          "completeOrderedRecordsTypedSha256": "692c9346567639cf3dc37ca84919bb2eaad3930af7f9d2281ed81d0c759867d4"
+        },
+        "sandbox/mode": {
+          "count": 1,
+          "completeOrderedRecordsTypedSha256": "6e07bdc6299b0413dc512799e015be9b1ffb2217c3406140fbea0a6261f797f4"
+        },
+        "session": {
+          "count": 1,
+          "completeOrderedRecordsTypedSha256": "d4aa8046f18dccc0cc25c31367436999c5177d8448f9c8a367a8068aaca04240"
+        },
+        "session-log-deepseek/delivery-accepted": {
+          "count": 32,
+          "completeOrderedRecordsTypedSha256": "dfe541da09bd13c037c7cd5b176471bd3e6f3e8771a6ec783b000f983b1926bb"
+        },
+        "session/end-seed": {
+          "count": 2,
+          "completeOrderedRecordsTypedSha256": "48094ae5bacff5af53d90451476114bb248d64895e8d612bc40299a278f520e9"
+        },
+        "session/title": {
+          "count": 2,
+          "completeOrderedRecordsTypedSha256": "1d995281f4c39f8701fca9555087cae4ef8899bf97552fe3e56cf7690aa3a6c0"
+        },
+        "session/title-llm-request": {
+          "count": 1,
+          "completeOrderedRecordsTypedSha256": "6e8c272eb546c8caaef95d80b4d541e52902a5dec6e25e08e3f303be67432c1c"
+        },
+        "step/end": {
+          "count": 31,
+          "completeOrderedRecordsTypedSha256": "4df05ac67ccc758bd6004399365cb02ebb14edb70055fec4ab6f6ec8b3136a98"
+        },
+        "step/start": {
+          "count": 31,
+          "completeOrderedRecordsTypedSha256": "0cc32948116142755273bc5c6a09f5d347be753c30077e4eb47ef77619e44c89"
+        },
+        "system/message": {
+          "count": 6,
+          "completeOrderedRecordsTypedSha256": "371f4af76744a74e263fe139cf065720aa0546e5aaa1f83b269eb12fa74922a9"
+        },
+        "tool/call": {
+          "count": 41,
+          "completeOrderedRecordsTypedSha256": "61fc4d2df8ed5030749e49457c412e11f3dfbd4d3ceda62855ae138d2ac2016c"
+        },
+        "tool/result": {
+          "count": 41,
+          "completeOrderedRecordsTypedSha256": "3ece87a69c03e279394cda5943b07df8573c79db526cb18f228e93d3487b8103"
+        },
+        "turn/end": {
+          "count": 6,
+          "completeOrderedRecordsTypedSha256": "3d69e8f9564e30e61f010bc7269956450d7586a17884dd44642fe312e98dc428"
+        },
+        "turn/start": {
+          "count": 6,
+          "completeOrderedRecordsTypedSha256": "e82f4f871674282fe9dedc2228459fc857aea21ea76d57e4ea1cbce6493abcbb"
+        },
+        "user/message": {
+          "count": 8,
+          "completeOrderedRecordsTypedSha256": "83af4a8adfd3b7c3804d50919142b9151d3efeaaca34702c53128ba5eda36f9f"
+        }
+      },
+      "unchangedTypeGroups": [
+        "agent/inbox/spliced",
+        "approval/policy",
+        "assistant/message",
+        "developer/message",
+        "permission/preset",
+        "request/context",
+        "request/header",
+        "sandbox/mode",
+        "session",
+        "session-log-deepseek/delivery-accepted",
+        "session/title",
+        "session/title-llm-request",
+        "step/end",
+        "step/start",
+        "system/message",
+        "tool/call",
+        "tool/result",
+        "turn/end",
+        "turn/start",
+        "user/message"
+      ]
+    },
+    "bindings": {
+      "bytesIdentical": true,
+      "files": [
+        {
+          "path": "C:\\bkn-verify\\first-use8-desktop\\dsh-home\\openbkn\\session-bindings\\session-58973674-89a4-43ae-a2b7-9f32e86032e3.json",
+          "bytes": 286,
+          "sha256": "008b60ef33f7842b580c16b6bc15eb8148a7330118cfd8f4e55cc802e8e27a7f"
+        },
+        {
+          "path": "C:\\bkn-verify\\provenance-ci4-win-20261102\\home\\openbkn\\session-bindings\\session-58973674-89a4-43ae-a2b7-9f32e86032e3.json",
+          "bytes": 286,
+          "sha256": "008b60ef33f7842b580c16b6bc15eb8148a7330118cfd8f4e55cc802e8e27a7f"
+        }
+      ]
+    },
+    "classification": {
+      "kind": "Host non-business metadata append",
+      "notJustCompressionOrFormatting": true,
+      "oneAddedEventType": "session/end-seed",
+      "addedDataShape": "empty object",
+      "businessHistory": "All original ordered records, user/assistant texts, tool calls/results, lifecycle receipts, IDs, numeric lexemes, times, C/I/KN and both bindings are unchanged. Sole extra record is the resume marker.",
+      "builtCodeSupport": {
+        "asarSha256": "e1b6f25fa937da98086c3e77af77aa14791105963c4d337a1c42179d232c6915",
+        "module": "dsh/node_modules/@deepseek-ai/dsh-session/lib/index.js",
+        "moduleSha256": "2f5dd07cb5c744a29abbb8003a8a4cefd9e582c6e2538074ca299a0ddd02a3bf",
+        "line": 1428,
+        "observedRule": "Non-snapshot seeded restore whose last event is not session/end-seed appends session/end-seed with empty data.",
+        "kind": "Static read of actual packaged Windows ASAR; no Session or persistence code executed."
+      },
+      "historicalAppendCaller": "UNKNOWN: exact historical process/call stack not captured. Marker shape and packaged resume code support metadata classification, not proof of historical caller.",
+      "releaseBlocker": false
+    },
+    "evidence": [
+      {
+        "file": "private/zstd-full-frame-audit.json",
+        "bytes": 113555,
+        "sha256": "478519a836eeaff3917d28e853d87556955229e4f899e7582bbb172e30fd88e8"
+      },
+      {
+        "file": "private/full-record-comparison.json",
+        "bytes": 10162,
+        "sha256": "c6034430c1ac176885532300e733bc10e7e3b58092a699791c7cf3ce74fdcc12"
+      },
+      {
+        "file": "private/full-record-exact-differences.json",
+        "bytes": 1010,
+        "sha256": "c07c6b402c459d8e1dc104fd3a0aa65911015642e81adcbeb07c0208233cb47c"
+      },
+      {
+        "file": "private/complete-record-order.json",
+        "bytes": 48581,
+        "sha256": "9b338b1f2fd2a92bb1830aba39fee9db3a0a82406b730cc0931aa38059af34b8"
+      },
+      {
+        "file": "private/windows-built-end-seed-evidence.json",
+        "bytes": 93384,
+        "sha256": "375220db2f8326948d3d378e8e2880dbc502b6d81c2bc111c6a34fcbef1d23dd"
+      }
+    ],
+    "privateBoundary": "Exact added-record values, number lexemes and full decompressed bodies remain private. Public diff contains pointers/types/lengths/hashes only."
+  },
+  "anchor": {
+    "status": "PASS_SCOPED_REAL_ENTRY",
+    "acceptance": "Different real answer footers produced different actual S/M -> Host C/initialI/currentI/KN -> same detail.interaction_id. Native selection changed3 ->2 without a round-list click.",
+    "first": {
+      "entryObservedUtc": "2026-11-03T05:28:05.2886776+00:00",
+      "sessionId": "session-58973674-89a4-43ae-a2b7-9f32e86032e3",
+      "messageId": "8d5d7d8b-ec23-4628-889a-7ec132fcad28",
+      "hostContextObservedUtc": "2026-11-03T05:28:47.4858876+00:00",
+      "hostContext": {
+        "kind": "context",
+        "conversationId": "conv_3d9d7a82c9984b25ae8d0c18a47adfe4",
+        "initialInteractionId": "int_c3d3f535dde4e5771e41d2dd5b781aee",
+        "knowledgeNetworkId": "supply_ontology_hand",
+        "interactionId": "int_c3d3f535dde4e5771e41d2dd5b781aee"
+      },
+      "actualDetail": {
+        "observedUtc": "2026-11-03T05:30:58.5495254+00:00",
+        "request": {
+          "kind": "detail",
+          "interactionId": "int_c3d3f535dde4e5771e41d2dd5b781aee"
+        },
+        "eventKind": "end",
+        "interactionId": "int_c3d3f535dde4e5771e41d2dd5b781aee",
+        "operations": 47,
+        "timeRail": 47,
+        "characters": 519616
+      },
+      "observationMode": "Built-in Sources paused locals and received event; read-only JSON.stringify actual request/end/chunks; no new RPC or hooks.",
+      "nativeAfterResumeRefresh": {
+        "atUtc": "2026-11-03T05:33:55.2525306+00:00",
+        "selectedRound": 3,
+        "selectedClassObserved": true,
+        "callCount": 47,
+        "callCountObserved": true,
+        "callCountEvidence": {
+          "file": "private/answer3-unpaused-stable.png",
+          "bytes": 90311,
+          "sha256": "c1f615035469a6c41c55e87691e33e32102440a548b22b46d141d16111c21381"
+        },
+        "evidence": {
+          "file": "private/answer3-unpaused-refresh-uia.json",
+          "bytes": 388,
+          "sha256": "43113f04650844932fbc99b373f6436649b52b4dc212a0ca88a26c0d5f7e98b9"
+        }
+      }
+    },
+    "second": {
+      "observedUtc": "2026-11-03T05:44:42.0044159+00:00",
+      "sessionId": "session-58973674-89a4-43ae-a2b7-9f32e86032e3",
+      "messageId": "5f3949b4-75d3-4a3f-978d-e16d9a828e86",
+      "hostContext": {
+        "kind": "context",
+        "conversationId": "conv_3d9d7a82c9984b25ae8d0c18a47adfe4",
+        "initialInteractionId": "int_b00aabd41e40ea38eb1f9589f6057557",
+        "knowledgeNetworkId": "supply_ontology_hand",
+        "interactionId": "int_b00aabd41e40ea38eb1f9589f6057557"
+      },
+      "actualDetail": {
+        "request": {
+          "kind": "detail",
+          "interactionId": "int_b00aabd41e40ea38eb1f9589f6057557"
+        },
+        "interactionId": "int_b00aabd41e40ea38eb1f9589f6057557",
+        "operations": 4
+      },
+      "observationMode": "Temporary built-in DevTools unpaused logpoints on already executing normal factory, received context and finish(value); identifiers/counts only.",
+      "native": {
+        "atUtc": "2026-11-03T05:44:43.3966219+00:00",
+        "selectedRound": 2,
+        "selectedClassObserved": true,
+        "callCount": 4,
+        "callCountObserved": true,
+        "callCountEvidence": "UI Automation text",
+        "evidence": {
+          "file": "private/answer2-native-final-uia.json",
+          "bytes": 546,
+          "sha256": "737a33f255e046078845ff88c153df58aa3c975fbee95a16081c6f4612814d5b"
+        }
+      }
+    },
+    "cross": {
+      "order": "answer3 entry -> normal close -> page up six times in original conversation -> answer2 entry",
+      "messageChanged": true,
+      "interactionChanged": true,
+      "noRoundListClicks": true,
+      "noManualInitialInteraction": true,
+      "noNewRpcOrReplay": true,
+      "noNewQuestionOrAnalysis": true,
+      "noModelOrBusinessWrite": true,
+      "noStaleSelectedRound": true
+    },
+    "events": [
+      {
+        "id": "answer3-real-footer-open",
+        "point": [
+          1224,
+          603
+        ],
+        "buttonRect": [
+          1178,
+          590,
+          91,
+          26
+        ],
+        "requestedUtc": "2026-11-03T05:27:19.292Z",
+        "returnedUtc": "2026-11-03T05:27:19.858Z"
+      },
+      {
+        "id": "answer3-read-only-refresh-after-debug-pauses",
+        "atUtc": "2026-11-03T05:33:28.463Z",
+        "breakpointsDisabled": true,
+        "noRoundListClick": true,
+        "reason": "long debugger pauses preceded round-load failure; no product causation assigned"
+      },
+      {
+        "id": "close-answer3-native-before-cross",
+        "point": [
+          1866,
+          342
+        ],
+        "requestedUtc": "2026-11-03T05:42:49.445Z",
+        "lastObservedSelectedRound": 3,
+        "returnedUtc": "2026-11-03T05:42:50.010Z"
+      },
+      {
+        "id": "answer2-real-footer-open-cross",
+        "point": [
+          1224,
+          446
+        ],
+        "buttonRect": [
+          1178,
+          433,
+          91,
+          26
+        ],
+        "requestedUtc": "2026-11-03T05:43:39.263Z",
+        "priorNativeSelectedRound": 3,
+        "noRoundListClicks": true,
+        "returnedUtc": "2026-11-03T05:43:39.822Z"
+      },
+      {
+        "id": "native-application-exit",
+        "pid": 7304,
+        "hwnd": 788542,
+        "requestedUtc": "2026-11-03T05:46:16.277Z",
+        "returnedUtc": "2026-11-03T05:46:16.843Z"
+      }
+    ],
+    "interactionObservation": {
+      "first": "Actual Sources locals/context/end were paused. After resume, round/markdown load failed; breakpoints disabled and one normal Refresh recovered native round3 with47calls.",
+      "second": "Normal caller observed through temporary unpaused built-in DevTools logpoints. Native selected round2 with4calls, previous selection3.",
+      "productFailure": "Not established by paused-observation load failure; no wrong interaction/stale selected round observed.",
+      "sourceEdits": false,
+      "newRemoteCalls": false,
+      "fetchOrWebSocketHooksInTestedApplication": false,
+      "manualHandleOrAnchorInjection": false,
+      "diagnosticCleanup": {
+        "atUtc": "2026-11-03T05:45:34.2865057+00:00",
+        "remainingTemporaryLogpointLines": [],
+        "allRemoved": true,
+        "sourceCodeNotEditedOrSaved": true
+      }
+    },
+    "limits": {
+      "opaqueHandle": "UNKNOWN: no standalone opaque handle captured",
+      "wireStreamId": "UNKNOWN: transport stream/wire id not captured",
+      "hostIntermediateRpcHop": "UNKNOWN: local source observation, not a full wire trace",
+      "network": "Built-in Network showed no applicable WebSocket frame surface for this local transport; missing wire capture is an observation limit.",
+      "firstPauseInterference": "Long Sources pauses preceded round/markdown load failure after resume. Breakpoints were disabled; one ordinary read-only Refresh recovered selected round3 and47calls. Pause interference is a plausible explanation, not a uniquely proven cause or an automatic product FAIL.",
+      "nativeMissingFields": "Server record integrity was missing/partial; round3 input/output not recorded as current API. No missing business content was manufactured."
+    },
+    "evidence": [
+      {
+        "file": "private/runtime-anchor-proof-v2.json",
+        "bytes": 6456,
+        "sha256": "8ffcbf008b6110c06775d8f7fce53b66b63b44fc5ca155e24b51013e74ed8b5b"
+      },
+      {
+        "file": "private/answer3-factory-locals.json",
+        "bytes": 717,
+        "sha256": "2b20b0c7b5d226de4b30dca593ace1215dc1a8bec26624dad0d8f4db2f346220"
+      },
+      {
+        "file": "private/answer3-detail-context.json",
+        "bytes": 1547,
+        "sha256": "4331a8a80f8c761817e569e7ae014f8fc9c416658e5aeb02f153272be350817f"
+      },
+      {
+        "file": "private/answer3-detail-result-safe.json",
+        "bytes": 861,
+        "sha256": "d95550c578bc0b1093337e7a6c7030c4cf348c1ead1b47d2ac225d72479db396"
+      },
+      {
+        "file": "private/answer3-unpaused-stable.png",
+        "bytes": 90311,
+        "sha256": "c1f615035469a6c41c55e87691e33e32102440a548b22b46d141d16111c21381"
+      },
+      {
+        "file": "private/answer2-runtime-logpoints.json",
+        "bytes": 10697,
+        "sha256": "a027d04feb8f2290537a10b42719eb9a2249fbf2163c210dfa249bebefe93046"
+      },
+      {
+        "file": "private/answer2-native-final-uia.json",
+        "bytes": 546,
+        "sha256": "737a33f255e046078845ff88c153df58aa3c975fbee95a16081c6f4612814d5b"
+      },
+      {
+        "file": "private/answer2-native-final.png",
+        "bytes": 113641,
+        "sha256": "8f9ce1c198b0401080bb33ccdd31b4f80f68548202df86bd6d4f62ad1df88f53"
+      }
+    ]
+  },
+  "platformReadGate": {
+    "atUtc": "2026-11-03T05:20:01.423Z",
+    "finishedUtc": "2026-11-03T05:20:04.930Z",
+    "status": "PASS",
+    "baseUrl": "https://192.168.50.28",
+    "tlsVerification": true,
+    "normalSdkRefresh": true,
+    "forcedAuthentication": false,
+    "sameSubject": true,
+    "sameUsername": true,
+    "calls": [
+      {
+        "phase": "normal-sdk-auth",
+        "method": "POST",
+        "path": "/oauth2/token",
+        "requestedUtc": "2026-11-03T05:20:01.425Z",
+        "returnedUtc": "2026-11-03T05:20:01.529Z",
+        "httpStatus": 200
+      },
+      {
+        "phase": "read-only-anchor-gate",
+        "method": "GET",
+        "path": "/api/bkn-backend/v1/health",
+        "requestedUtc": "2026-11-03T05:20:01.532Z",
+        "returnedUtc": "2026-11-03T05:20:01.543Z",
+        "httpStatus": 200
+      },
+      {
+        "phase": "read-only-anchor-gate",
+        "method": "GET",
+        "path": "/api/agent-observability/v1/business-provenance/conversations?conversation_id=conv_3d9d7a82c9984b25ae8d0c18a47adfe4&page=1&page_size=50",
+        "requestedUtc": "2026-11-03T05:20:01.544Z",
+        "returnedUtc": "2026-11-03T05:20:01.615Z",
+        "httpStatus": 200
+      },
+      {
+        "phase": "read-only-anchor-gate",
+        "method": "GET",
+        "path": "/api/agent-observability/v1/business-provenance/interactions?conversation_id=conv_3d9d7a82c9984b25ae8d0c18a47adfe4&page=1&page_size=50",
+        "requestedUtc": "2026-11-03T05:20:01.615Z",
+        "returnedUtc": "2026-11-03T05:20:03.583Z",
+        "httpStatus": 200
+      },
+      {
+        "phase": "read-only-anchor-gate",
+        "method": "GET",
+        "path": "/api/agent-observability/v1/business-provenance/interactions/int_b00aabd41e40ea38eb1f9589f6057557",
+        "requestedUtc": "2026-11-03T05:20:03.584Z",
+        "returnedUtc": "2026-11-03T05:20:04.276Z",
+        "httpStatus": 200
+      },
+      {
+        "phase": "read-only-anchor-gate",
+        "method": "GET",
+        "path": "/api/agent-observability/v1/business-provenance/interactions/int_c3d3f535dde4e5771e41d2dd5b781aee",
+        "requestedUtc": "2026-11-03T05:20:04.284Z",
+        "returnedUtc": "2026-11-03T05:20:04.867Z",
+        "httpStatus": 200
+      }
+    ],
+    "readResponses": [
+      {
+        "path": "/api/agent-observability/v1/business-provenance/conversations?conversation_id=conv_3d9d7a82c9984b25ae8d0c18a47adfe4&page=1&page_size=50",
+        "httpStatus": 200,
+        "responseBytes": 7455,
+        "responseSha256": "118827de33fc6ab6eed7c4fd857bbd7797fe8c628eaf3d273f96ba98d29a85da"
+      },
+      {
+        "path": "/api/agent-observability/v1/business-provenance/interactions?conversation_id=conv_3d9d7a82c9984b25ae8d0c18a47adfe4&page=1&page_size=50",
+        "httpStatus": 200,
+        "responseBytes": 11390,
+        "responseSha256": "e7fb822547242dbf92529f3c64070794498b3e7cab2d0e6aeaa427094f9a8086"
+      },
+      {
+        "path": "/api/agent-observability/v1/business-provenance/interactions/int_b00aabd41e40ea38eb1f9589f6057557",
+        "httpStatus": 200,
+        "responseBytes": 69244,
+        "responseSha256": "150f5409f426413784f7de8882562f0df0d41a7a02dd9acd8f42bdcb2d1644c8"
+      },
+      {
+        "path": "/api/agent-observability/v1/business-provenance/interactions/int_c3d3f535dde4e5771e41d2dd5b781aee",
+        "httpStatus": 200,
+        "responseBytes": 585453,
+        "responseSha256": "b0e7e1921a6e1ac55e3907d1738aab6ec69a18491ff38e830c7d464af03ca267"
+      }
+    ],
+    "currentRounds": [
+      {
+        "interactionId": "int_00dc823da8b422c548ef792bb0361b85",
+        "conversationId": "conv_3d9d7a82c9984b25ae8d0c18a47adfe4",
+        "roundNumber": 4,
+        "status": "abandoned",
+        "inputPreviewSha256": null,
+        "outputPreviewSha256": null
+      },
+      {
+        "interactionId": "int_c3d3f535dde4e5771e41d2dd5b781aee",
+        "conversationId": "conv_3d9d7a82c9984b25ae8d0c18a47adfe4",
+        "roundNumber": 3,
+        "status": "completed",
+        "inputPreviewSha256": null,
+        "outputPreviewSha256": null
+      },
+      {
+        "interactionId": "int_b00aabd41e40ea38eb1f9589f6057557",
+        "conversationId": "conv_3d9d7a82c9984b25ae8d0c18a47adfe4",
+        "roundNumber": 2,
+        "status": "completed",
+        "inputPreviewSha256": "61997bd1efbe165f44958e359c2d74d69a4bc74b957dfdcd72ca37823bc9f640",
+        "outputPreviewSha256": "7f65fb1d3e2a71831f9ace9b6f5e4a7aba56fe5bac557a3dff2b747ea763e751"
+      },
+      {
+        "interactionId": "int_3bda877eb0d04b041a9390c97184fba7",
+        "conversationId": "conv_3d9d7a82c9984b25ae8d0c18a47adfe4",
+        "roundNumber": 1,
+        "status": "completed",
+        "inputPreviewSha256": null,
+        "outputPreviewSha256": null
+      }
+    ],
+    "currentRecordIntegrity": "missing/partial in current API; round3 input/output absent; native warning preserved.",
+    "deploymentIdentity": "Not independently established in this Windows audit. Main-session deployment/Ready/image mapping evidence remains separate."
+  },
+  "mcp": {
+    "status": "PASS_CAPTURE_AND_CLASSIFICATION_WITH_LIMITS",
+    "capturedUtc": "2026-11-03T05:51:50.609Z",
+    "finishedUtc": "2026-11-03T05:51:50.733Z",
+    "endpoint": "https://192.168.50.28/api/agent-retrieval/v1/mcp/",
+    "tlsVerification": true,
+    "credentials": "Existing isolated official SDK/CLI config + existing CA, currentTokenFresh only. Native MCP collector using SDK identity; no credential bytes/MCP session header persisted.",
+    "transportChoice": "SDK context client discards initialize body/serverInfo and does not expose session headers. Standalone read-only MCP protocol collector uses official SDK credential and verified existing CA; no client configuration/allowlist/package change.",
+    "requests": [
+      {
+        "method": "initialize",
+        "path": "/api/agent-retrieval/v1/mcp/",
+        "requestedUtc": "2026-11-03T05:51:50.611Z",
+        "requestId": 1,
+        "returnedUtc": "2026-11-03T05:51:50.676Z",
+        "httpStatus": 200,
+        "contentType": "application/json",
+        "responseBytes": 9838,
+        "responseSha256": "a5956c73a530fcb47a90059e9eefc44416ed5e9f66284d29d743273b59f704e7"
+      },
+      {
+        "method": "notifications/initialized",
+        "path": "/api/agent-retrieval/v1/mcp/",
+        "requestedUtc": "2026-11-03T05:51:50.678Z",
+        "requestId": null,
+        "returnedUtc": "2026-11-03T05:51:50.692Z",
+        "httpStatus": 202,
+        "contentType": null,
+        "responseBytes": 0,
+        "responseSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      },
+      {
+        "method": "tools/list",
+        "path": "/api/agent-retrieval/v1/mcp/",
+        "requestedUtc": "2026-11-03T05:51:50.692Z",
+        "requestId": 2,
+        "returnedUtc": "2026-11-03T05:51:50.700Z",
+        "httpStatus": 200,
+        "contentType": "application/json",
+        "responseBytes": 123546,
+        "responseSha256": "51007218c94268637b95e10af5ff8cf17294648593b0b8a0a467075014f2182c"
+      }
+    ],
+    "protocolVersion": "2024-11-05",
+    "serverInfo": {
+      "name": "context-loader",
+      "version": "1.0.0"
+    },
+    "serverInfoBoundary": "Self-reported MCP ServerInfo only; context-loader1.0.0 does not prove platform release/build/all-service version.",
+    "pages": [
+      {
+        "index": 0,
+        "toolCount": 25,
+        "nextCursorPresent": false
+      }
+    ],
+    "complete": true,
+    "toolsCallCount": 0,
+    "toolCount": 25,
+    "catalog": {
+      "path": "C:\\bkn-verify\\provenance-ci4-win-20261102\\ci5-anchor-session-audit-20261103-131137\\public\\MCP-TOOLS-CATALOGUE.json",
+      "bytes": 187156,
+      "sha256": "33731e33d4c564dc32556a89692823e3bddc72860411d37a5aa150633994c645"
+    },
+    "allToolNames": [
+      "bkn_finish_interaction",
+      "bkn_start_interaction",
+      "execute_action",
+      "execute_tool",
+      "explore_subgraph",
+      "get_action_execution",
+      "get_action_info",
+      "get_kn_detail",
+      "get_logic_properties_values",
+      "get_object_types",
+      "get_relation_types",
+      "get_skill_content",
+      "list_action_executions",
+      "list_knowledge_networks",
+      "list_skills",
+      "query_instance_subgraph",
+      "query_metric",
+      "query_object_instance",
+      "read_skill_file",
+      "run_code",
+      "run_cypher",
+      "run_shell",
+      "search_capabilities",
+      "search_instance",
+      "search_schema"
+    ],
+    "supportedBaseline": {
+      "tag": "v0.2.0",
+      "commit": "81d5752826f3b3f3f72f3ad4cb1e22d45e99ab4b",
+      "repository": "openbkn-ai/bkn-foundry",
+      "method": "Source projection of full-profile metadata minus retiredTools and compact-only gateways, with pure Go lifecycle/offerBKNContext/publishedInputSchema builders executed via encoding/json. Descriptions omitted. Not a live tools/list.",
+      "condition": "Community source; skill.executeEnabled=true; EE extras absent",
+      "fixture": {
+        "path": "C:\\bkn-verify\\provenance-ci4-win-20261102\\checkout\\packages\\openbkn-business-context\\tests\\fixtures\\context-loader-tools-v0.2.0-release.json",
+        "bytes": 92745,
+        "sha256": "25f72bcf05268d31dfbb457e5156646466b05f811db865fe4f559832f203fe7f"
+      },
+      "baselineChanged": false,
+      "historicalLiveSubstitution": false
+    },
+    "installedClassification": {
+      "managedCount": 20,
+      "managedOffered": [
+        "bkn_finish_interaction",
+        "bkn_start_interaction",
+        "execute_tool",
+        "explore_subgraph",
+        "get_kn_detail",
+        "get_logic_properties_values",
+        "get_object_types",
+        "get_relation_types",
+        "get_skill_content",
+        "list_skills",
+        "query_instance_subgraph",
+        "query_metric",
+        "query_object_instance",
+        "read_skill_file",
+        "run_code",
+        "search_capabilities",
+        "search_instance",
+        "search_schema"
+      ],
+      "managedNotOffered": [
+        "execute_skill",
+        "find_skills"
+      ],
+      "reviewedExcludedOffered": [
+        "execute_action",
+        "get_action_execution",
+        "get_action_info",
+        "list_action_executions",
+        "list_knowledge_networks",
+        "run_cypher",
+        "run_shell"
+      ],
+      "unclassifiedLiveDenied": [],
+      "newLiveNames": [],
+      "sourceToolNotOffered": [
+        "execute_skill"
+      ],
+      "managedListMatchesSource": true,
+      "allowListChanged": false,
+      "hostLocalCsvOutsidePlatformCatalogue": true
+    },
+    "comparison": {
+      "exactSchemaStatusCounts": {
+        "EXACT_EQUAL": 2,
+        "DESCRIPTION_ONLY_DIFFERENCES": 41,
+        "NON_DESCRIPTION_DIFFERENCES": 3,
+        "BASELINE_UNKNOWN": 4,
+        "LIVE_SCHEMA_ABSENT": 0,
+        "NOT_OFFERED_LIVE": 2,
+        "NO_SOURCE_TOOL": 0
+      },
+      "method": "All tools and full input/output schema exact canonical-object-key comparison; arrays preserved. Second view removes JSON Schema annotation description keys at schema locations only; property names, enum/default/example object contents and unknown extension values stay exact because baseline explicitly omitted documentation. Every exact and non-description difference retained; no allow-list or schema changes.",
+      "knownCommonInputOutputSchemas": 46,
+      "fixtureProjectionMatches": 46,
+      "projectionMismatches": [],
+      "fullSchemasEqual": false,
+      "baselineProjectionLossRule": {
+        "path": "C:\\bkn-verify\\provenance-ci4-win-20261102\\checkout\\scripts\\capture-context-loader020.py",
+        "bytes": 8246,
+        "sha256": "5083a70ccf55675db5ec4e47d3613335afae28e1ace22d188ee2f09793bde571",
+        "lines": [
+          104,
+          109
+        ],
+        "rule": "Recursively removes every key named description, title, examples or $comment, including data property names inside properties. This is more lossy than removing schema annotation keywords."
+      },
+      "threeDataPropertyBlindSpots": [
+        {
+          "tool": "list_knowledge_networks",
+          "classification": "source-reviewed-excluded",
+          "livePointer": "/outputSchema/properties/entries/items/properties/description",
+          "sourcePointer": "/output_schema/properties/entries/items/properties/description",
+          "currentDefinition": {
+            "type": "string",
+            "description": "描述"
+          },
+          "currentFieldRequired": false,
+          "currentItemRequiredAbsent": true,
+          "currentOutputRootRequiredAbsent": true,
+          "sourceFile": "list_knowledge_networks.json",
+          "sourceSha256": "7b755b50573f6f905d60acdda318bc19ec4c0e5df705e177ea1bf40603da8389",
+          "currentValidationMatchesMainSuppliedPinnedSource": true,
+          "pinnedSourceDigestMatchesFixture": true,
+          "input": {
+            "required": [
+              "bkn_context"
+            ],
+            "knId": null,
+            "bknContext": {
+              "description": "Managed session context. Copy both IDs from bkn_start_interaction, even when Trace capture is disabled.",
+              "properties": {
+                "conversation_id": {
+                  "description": "conversation_id returned by bkn_start_interaction.",
+                  "type": "string"
+                },
+                "interaction_id": {
+                  "description": "interaction_id returned by bkn_start_interaction.",
+                  "type": "string"
+                }
+              },
+              "required": [
+                "conversation_id",
+                "interaction_id"
+              ],
+              "type": "object"
+            }
+          }
+        },
+        {
+          "tool": "list_skills",
+          "classification": "installed-managed",
+          "livePointer": "/outputSchema/properties/entries/items/properties/description",
+          "sourcePointer": "/output_schema/properties/entries/items/properties/description",
+          "currentDefinition": {
+            "type": "string",
+            "description": "技能描述"
+          },
+          "currentFieldRequired": false,
+          "currentItemRequiredAbsent": true,
+          "currentOutputRootRequiredAbsent": true,
+          "sourceFile": "list_skills.json",
+          "sourceSha256": "af24edc5eff681471c10e0f4f1d3248b04a3d4f1e8a6b17e1036459f2f510040",
+          "currentValidationMatchesMainSuppliedPinnedSource": true,
+          "pinnedSourceDigestMatchesFixture": true,
+          "input": {
+            "required": [
+              "bkn_context"
+            ],
+            "knId": null,
+            "bknContext": {
+              "description": "Managed session context. Copy both IDs from bkn_start_interaction, even when Trace capture is disabled.",
+              "properties": {
+                "conversation_id": {
+                  "description": "conversation_id returned by bkn_start_interaction.",
+                  "type": "string"
+                },
+                "interaction_id": {
+                  "description": "interaction_id returned by bkn_start_interaction.",
+                  "type": "string"
+                }
+              },
+              "required": [
+                "conversation_id",
+                "interaction_id"
+              ],
+              "type": "object"
+            }
+          }
+        },
+        {
+          "tool": "search_capabilities",
+          "classification": "installed-managed",
+          "livePointer": "/outputSchema/properties/capabilities/items/properties/description",
+          "sourcePointer": "/output_schema/properties/capabilities/items/properties/description",
+          "currentDefinition": {
+            "type": "string",
+            "description": "能力说明"
+          },
+          "currentFieldRequired": false,
+          "currentItemRequiredAbsent": true,
+          "currentOutputRootRequiredAbsent": true,
+          "sourceFile": "search_capabilities.json",
+          "sourceSha256": "14d5efd9e54260e3f42b495b97e0596a5b62d2d6a5da3c864bd19d3350acbc22",
+          "currentValidationMatchesMainSuppliedPinnedSource": true,
+          "pinnedSourceDigestMatchesFixture": true,
+          "input": {
+            "required": [
+              "kn_id",
+              "bkn_context"
+            ],
+            "knId": {
+              "description": "必填。知识网络 ID。调用者须有该网络本身的查看权限；范围取自该网络已挂载的能力，未挂载则返回空。",
+              "type": "string"
+            },
+            "bknContext": {
+              "description": "Managed session context. Copy both IDs from bkn_start_interaction, even when Trace capture is disabled.",
+              "properties": {
+                "conversation_id": {
+                  "description": "conversation_id returned by bkn_start_interaction.",
+                  "type": "string"
+                },
+                "interaction_id": {
+                  "description": "interaction_id returned by bkn_start_interaction.",
+                  "type": "string"
+                }
+              },
+              "required": [
+                "conversation_id",
+                "interaction_id"
+              ],
+              "type": "object"
+            }
+          }
+        }
+      ],
+      "sideEvidence": {
+        "path": "C:\\bkn-verify\\provenance-ci4-win-20261102\\ci5-anchor-session-audit-20261103-131137\\private\\main-supplied-pinned-source-evidence.json",
+        "bytes": 2205,
+        "sha256": "755696b841d609dd9e46a37d5f801ad19d56376f250c56cf4bca91b4bcec2be5",
+        "localUpstreamGitShowPerformed": false,
+        "boundary": "Static source side evidence. Does not reconstruct any historical live response bytes. Formal supported source pin remains v0.2.0; old fixture remains unchanged."
+      },
+      "ptcSourceSchemasUnknown": [
+        "run_code",
+        "run_shell"
+      ],
+      "executeSkillAbsence": "Source fixture assumes skill.executeEnabled=true. Current tool absent; live configuration not read. Offered-tool policy handles absence; no automatic blocker."
+    },
+    "fieldImpact": {
+      "status": "NONBLOCKING_BASELINE_EXTRACTION_LOSS_WITH_STATIC_SOURCE_SUPPORT",
+      "findings": [
+        "Inspected managed guard reads registered inputSchema/parameters, kn_id and required bkn_context; these three fields are in outputSchema only.",
+        "declaresKnId checks property presence, not arbitrary kn_id schema type compatibility. Current captured input definitions are retained here; no broad schema-type auto-exclusion claim.",
+        "The tools/result listener in this managed lifecycle path projects only start/finish lifecycle results; no hardcoded decoding of these three tools output description fields was found in the inspected fixed paths.",
+        "search_capabilities availability is queried by registered tool name. list_skills is offered/managed. list_knowledge_networks is reviewed-excluded and remains denied in the installed managed session.",
+        "execute_skill absence is represented by offered-tool policy; kn_id-less execute_skill has a special scope denial. openbkn_export_csv is a Host-local tool, outside the platform 25-tool catalogue."
+      ],
+      "kind": "STATIC_ONLY",
+      "businessExecution": "NOT_RUN",
+      "productBlocker": false,
+      "sourceHistoryBoundary": "Main-session independent git show supplied exact source pointers/digests matching fixed fixture pin. This audit compared declarations with live metadata, did not perform upstream git show locally or reconstruct historical live bytes."
+    },
+    "evidence": [
+      {
+        "file": "private/live-mcp-schema-comparison-v2.json",
+        "bytes": 186868,
+        "sha256": "f6150b25d4c08d78967dcac78ed3191efa5dbd832e86c7d809b0559d7b22a580"
+      },
+      {
+        "file": "private/live-mcp-baseline-limits.json",
+        "bytes": 7260,
+        "sha256": "d00fd6559daf72bab5ebb853d09191ba6f2aad73ec278338655741c91b1e8412"
+      },
+      {
+        "file": "private/mcp-field-impact.json",
+        "bytes": 14627,
+        "sha256": "d33404cd6abcee7304b341918be293ac3d95c9489553f1d9726cf53ac60a4af8"
+      }
+    ],
+    "runtimeBusinessCompatibility": "NOT_TESTED. Tool count/projection equality does not establish full runtime compatibility.",
+    "originalCaptureMetadataArtifact": {
+      "path": "C:\\bkn-verify\\provenance-ci4-win-20261102\\ci5-anchor-session-audit-20261103-131137\\public\\WINDOWS-CI5-LIVE-MCP-TOOLS.json",
+      "bytes": 194534,
+      "sha256": "7d08b333eed3d8c10a969204858d348cb30f6b6b74c82c8941830c58d580d3ea"
+    },
+    "catalogueBoundary": "Aggregated JSON-value artifact derived offline from the already captured complete tools/list. Tool definitions are copied without removing any keys or normalizing values, including data properties named description. This is not the raw HTTP response byte packet.",
+    "catalogueDefinitionPreservation": {
+      "allCapturedToolDefinitionsCopied": true,
+      "toolOrderPreservedFromSourceArtifact": true,
+      "inputOutputSchemaKeysAndValuesPreserved": true,
+      "recursiveDescriptionOrOtherKeyPruning": false,
+      "arrayOrderPreserved": true,
+      "toolDefinitionRedactions": [],
+      "boundary": "Directory/schema metadata only. No request headers, token or MCP session credential is included; no business tool response was captured for this artifact."
+    }
+  },
+  "preservation": {
+    "verifiedThisRun": {
+      "packageAndHostFilesCompared": 128,
+      "packageAndHostSame": 128,
+      "sourceSessionAndBindingFilesCompared": 4,
+      "allSourceFilesSame": true,
+      "dailyFilesCompared": 1376,
+      "dailyFilesSame": 1376,
+      "dailyChanged": [],
+      "dailyMissing": [],
+      "dailyUnreadable": [],
+      "existingPublicReports": [
+        {
+          "matchesBefore": true,
+          "sha256": "f6d8d108b3f94009d0a36297fe0a506da2b38d949642a6a99227138fa49fadb9",
+          "path": "C:\\bkn-verify\\provenance-ci4-win-20261102\\public\\WINDOWS-CI4-RESULTS.json",
+          "bytes": 4495
+        },
+        {
+          "matchesBefore": true,
+          "sha256": "49cbf6161602d34860838575c304d459210c360e2d5998f3874d13fafbe1a378",
+          "path": "C:\\bkn-verify\\provenance-ci4-win-20261102\\public\\WINDOWS-CI4-RESULTS.zh.md",
+          "bytes": 7919
+        },
+        {
+          "matchesBefore": true,
+          "sha256": "f0ed7473cff16d08f4a10b6ccc27053b9a4e01ab58fdcc53d7a8c6701ac489f9",
+          "path": "C:\\bkn-verify\\provenance-ci4-win-20261102\\source-text-review-20261103-002954\\public\\WINDOWS-CI4-SOURCE-TEXT-REVIEW.json",
+          "bytes": 7813
+        },
+        {
+          "matchesBefore": true,
+          "sha256": "e2def505927b296543c15734aeadfbebb9fc5bad8c5e7afe673d20e30d9e4339",
+          "path": "C:\\bkn-verify\\provenance-ci4-win-20261102\\source-text-review-20261103-002954\\public\\WINDOWS-CI4-SOURCE-TEXT-REVIEW.zh.md",
+          "bytes": 6169
+        },
+        {
+          "matchesBefore": true,
+          "sha256": "d72cabe556c50e34b41cfc75ca1186e0b3ed5f8d2585c57940def45859d0a561",
+          "path": "C:\\bkn-verify\\provenance-ci4-win-20261102\\ci5-source-text-retest-20261103-080424\\public\\WINDOWS-CI5-SOURCE-TEXT-RETEST.json",
+          "bytes": 13688
+        },
+        {
+          "matchesBefore": true,
+          "sha256": "34c54803c1c80b66b9f925aa750ec25cbe33d8b4c773913830c01743247bf53d",
+          "path": "C:\\bkn-verify\\provenance-ci4-win-20261102\\ci5-source-text-retest-20261103-080424\\public\\WINDOWS-CI5-SOURCE-TEXT-RETEST.zh.md",
+          "bytes": 8196
+        },
+        {
+          "matchesBefore": true,
+          "sha256": "c9cb31f0000fdc3adec3b2c4c4b1240506f73530b08b7defd9cb80c822f2acdc",
+          "path": "C:\\bkn-verify\\provenance-ci4-win-20261102\\ci5-post-upgrade-20261103-120609\\public\\WINDOWS-CI5-POST-UPGRADE.json",
+          "bytes": 23950
+        },
+        {
+          "matchesBefore": true,
+          "sha256": "d8c755bba37f19ce917ff16b290d1fe23f444684bd4441ea4c497f6173f834c6",
+          "path": "C:\\bkn-verify\\provenance-ci4-win-20261102\\ci5-post-upgrade-20261103-120609\\public\\WINDOWS-CI5-POST-UPGRADE.zh.md",
+          "bytes": 11182
+        }
+      ],
+      "protocol": {
+        "action": "unchanged",
+        "before": "\"C:\\Users\\kalia\\AppData\\Local\\Programs\\DeepSeek Harness\\DeepSeek Harness.exe\" \"%1\"",
+        "after": "\"C:\\Users\\kalia\\AppData\\Local\\Programs\\DeepSeek Harness\\DeepSeek Harness.exe\" \"%1\"",
+        "observedCurrent": "\"C:\\Users\\kalia\\AppData\\Local\\Programs\\DeepSeek Harness\\DeepSeek Harness.exe\" \"%1\"",
+        "matchesFreshBefore": true
+      },
+      "ownedTaskExit": {
+        "atUtc": "2026-11-03T05:46:18.1640867+00:00",
+        "ownedRemaining": [],
+        "ownedListenersRemaining": [],
+        "dailyProcesses": [
+          {
+            "pid": 17728,
+            "alive": true,
+            "pathSame": true,
+            "creationSame": true
+          },
+          {
+            "pid": 11984,
+            "alive": true,
+            "pathSame": true,
+            "creationSame": true
+          },
+          {
+            "pid": 13556,
+            "alive": true,
+            "pathSame": true,
+            "creationSame": true
+          },
+          {
+            "pid": 10548,
+            "alive": true,
+            "pathSame": true,
+            "creationSame": true
+          },
+          {
+            "pid": 11576,
+            "alive": true,
+            "pathSame": true,
+            "creationSame": true
+          }
+        ],
+        "dailyListener": [
+          {
+            "LocalAddress": "127.0.0.1",
+            "LocalPort": 58794,
+            "OwningProcess": 11576
+          }
+        ],
+        "taskExePathProcessCount": 0,
+        "launcherRemaining": false,
+        "method": "native Application > Exit; no Stop-Process"
+      },
+      "diagnosticCleanup": {
+        "atUtc": "2026-11-03T05:45:34.2865057+00:00",
+        "remainingTemporaryLogpointLines": [],
+        "allRemoved": true,
+        "sourceCodeNotEditedOrSaved": true
+      },
+      "window": {
+        "before": [
+          632,
+          290,
+          1296,
+          828
+        ],
+        "after": [
+          632,
+          290,
+          1296,
+          828
+        ],
+        "showCmdBefore": 1,
+        "showCmdAfter": 1,
+        "resized": false
+      },
+      "byteGuardUtc": "2026-11-03T05:47:08.4975717+00:00"
+    },
+    "historicalLimits": {
+      "oldNullBaselineEntries": 39,
+      "oldNullBaselineStatus": "UNKNOWN",
+      "prior964BaselineDifferences": [
+        "daily profile package.json",
+        "daily session993270e5..."
+      ],
+      "priorCallbackDefaultUserData": "At least42 mtime changes; original full before snapshot missing, cause UNKNOWN.",
+      "priorRc2ToRc5Trigger": "UNKNOWN",
+      "sharedPnpmCache": "Prior additive changes retained; no install this run.",
+      "newDailyPaths": "NOT_ENUMERATED",
+      "wholeHistoryIsolationGuaranteed": false
+    },
+    "conclusion": "Fresh guard is clean for protected files/owned processes in this run; it does not erase earlier differences or guarantee full historical isolation."
+  },
+  "evidenceIndex": {
+    "path": "C:\\bkn-verify\\provenance-ci4-win-20261102\\ci5-anchor-session-audit-20261103-131137\\private\\evidence-manifest.json",
+    "bytes": 7919,
+    "sha256": "a187f71350de32d6e742e3db665fdd073cb7dce80835a1ad4f55c4fa06a8f574",
+    "fileCount": 43,
+    "privateEvidenceExported": false
+  },
+  "remainingUnknowns": [
+    "Historical caller of added end-seed marker",
+    "Opaque handle, wire stream ID and full intermediate transport hop",
+    "Actual Desktop build commit/served client digest/plugin runtime version/model metadata",
+    "Full PTC source schema equality and all-tool runtime compatibility",
+    "Absent execute_skill configuration",
+    "Historical baseline nulls/differences and new daily paths"
+  ],
+  "priorReports": "Eight existing public reports retained byte-for-byte. This independent audit narrows previously unknown issues, without rewriting prior reports or rerunning their matrices.",
+  "finalizedUtc": "2026-11-03T06:12:41.760Z"
+}

@@ -1,0 +1,116 @@
+✔ requires explicit source and output paths (1.577ms)
+✔ passes the pinned release and compatibility manifests to the builder (4.407416ms)
+✔ a corrupted compatibility manifest fails with the file path and cause (2.803042ms)
+✔ non-JSON pnpm pack output fails with instructions instead of a bare SyntaxError (0.18425ms)
+✔ valid inputs still parse through both helpers (0.329958ms)
+✔ flags build-machine paths in hidden and multi-dot text files (native separators) (2.983417ms)
+✔ flags build-time file: references across YAML, JSON, and Windows forms (2.260083ms)
+✔ removes pnpm install metadata from the bundle (1.574916ms)
+✔ keeps stored-relative in-bundle links and rejects escaping and absolute-stored ones (3.37575ms)
+✔ rebases absolute-stored in-bundle links to relative ones (13.449709ms)
+✔ re-points source-tree links to mirrored bundle paths and copies external ones (8.234958ms)
+✔ a mirrored .bin entry keeps resolving modules relative to its real file (41.811125ms)
+✔ maps links through a bundle subdirectory prefix (runtime shape) (62.7155ms)
+✔ mirror matching follows platform identity rules (pure) (0.165209ms)
+✔ in-bundle directory links pass scanning without EISDIR and keep their contents scanned (3.007042ms)
+✔ prefixForms covers windows-native, forward-slash, and escaped serializations (0.335291ms)
+✔ scrubs serialized build roots (native JSON, escaped, and forward forms) and keeps payloads valid (2.859291ms)
+✔ review planner includes every file beyond the first 100 and retains late auth changes (53.181875ms)
+✔ review planner rejects an incomplete paginated list instead of claiming full review (77.898125ms)
+hint: Using 'master' as the name for the initial branch. This default branch name
+hint: is subject to change. To configure the initial branch name to use in all
+hint: of your new repositories, which will suppress this warning, call:
+hint:
+hint: 	git config --global init.defaultBranch <name>
+hint:
+hint: Names commonly chosen instead of 'master' are 'main', 'trunk' and
+hint: 'development'. The just-created branch can be renamed via this command:
+hint:
+hint: 	git branch -m <name>
+hint: Using 'master' as the name for the initial branch. This default branch name
+hint: is subject to change. To configure the initial branch name to use in all
+hint: of your new repositories, which will suppress this warning, call:
+hint:
+hint: 	git config --global init.defaultBranch <name>
+hint:
+hint: Names commonly chosen instead of 'master' are 'main', 'trunk' and
+hint: 'development'. The just-created branch can be renamed via this command:
+hint:
+hint: 	git branch -m <name>
+hint: Using 'master' as the name for the initial branch. This default branch name
+hint: is subject to change. To configure the initial branch name to use in all
+hint: of your new repositories, which will suppress this warning, call:
+hint:
+hint: 	git config --global init.defaultBranch <name>
+hint:
+hint: Names commonly chosen instead of 'master' are 'main', 'trunk' and
+hint: 'development'. The just-created branch can be renamed via this command:
+hint:
+hint: 	git branch -m <name>
+hint: Using 'master' as the name for the initial branch. This default branch name
+hint: is subject to change. To configure the initial branch name to use in all
+hint: of your new repositories, which will suppress this warning, call:
+hint:
+hint: 	git config --global init.defaultBranch <name>
+hint:
+hint: Names commonly chosen instead of 'master' are 'main', 'trunk' and
+hint: 'development'. The just-created branch can be renamed via this command:
+hint:
+hint: 	git branch -m <name>
+✔ refuses a dirty runtime source before applying compatibility patches (172.6675ms)
+✔ applies and verifies one release-matched compatibility series (96.920958ms)
+✔ builds an explicit patched source into a separate deployed runtime directory (96.2115ms)
+✔ refuses to deploy a runtime into its DSH source checkout (35.968916ms)
+✔ restores direct runtime-closure dependencies omitted by legacy deploy without copying nested node_modules (1.381583ms)
+✔ assembles a self-contained runtime with the patched dependency closure and embedded plugin (14.638167ms)
+✔ rejects a runtime directory without the patched dependency closure (1.239667ms)
+✔ writes a Windows launcher for a Windows bundle (7.028875ms)
+✔ replaces the pristine placeholder override (0.802084ms)
+✔ replaces an already-configured local override and is idempotent (0.180458ms)
+✔ refuses a missing, duplicated, or non-link override (1.038458ms)
+✔ configures the real repository workspace file (0.326417ms)
+✔ pinned test anchors are independent of the open-ended loading policy (2.431959ms)
+✔ DSH native prerelease semantics admit every newer version, including future major releases (3.155125ms)
+✔ stale, bounded and inconsistent engine or peer ranges cannot override the policy (3.751083ms)
+✔ shared Host identity peers have no hidden upper version ceiling (1.287292ms)
+✔ the compatibility gate rejects schema dependency drift and a different source build pin (0.439083ms)
+✔ host identities cannot be duplicated, unpinned or replaced by an unreviewed build version (0.91625ms)
+✔ a second DSH version cannot slip into any development dependency (0.657666ms)
+✔ release naming cannot select an unreviewed Host or disagree with package identity (0.777709ms)
+✔ runtime identity inspection refuses a nested DSH copy even when direct pins agree (14.741458ms)
+✔ posix launcher guard enforces ^22.19.0 || >=24.0.0 on the generated script (3.078084ms)
+✔ windows launcher guard enforces ^22.19.0 || >=24.0.0 on the generated script (0.122583ms)
+✔ windows launcher aborts on guard and bootstrap failure (0.062125ms)
+✔ release companions retain all previously accepted payload bytes for each fixed Host (148.480042ms)
+✔ builds Windows built-in tar arguments for a ZIP archive (1.174833ms)
+✔ assembles, archives, and writes a checksum for one declared target (2.323875ms)
+✔ rejects archive work for an undeclared platform (0.222916ms)
+✔ extracts exactly one version section, not a version it is a prefix of (0.8295ms)
+✔ refuses a version with no or an empty CHANGELOG section (0.455542ms)
+✔ renders the install command for the exact package version, then the changes (0.464042ms)
+✔ the committed CHANGELOG has a section for the committed plugin version (0.849333ms)
+✔ relative links resolve against the released ref; absolute, anchor and rooted links stay (0.089583ms)
+✔ rendered notes carry no relative link and no unconditional provenance claim (0.057708ms)
+✔ Windows drive paths use system bsdtar even when Git tar is first on PATH (1.136417ms)
+✔ requires every release profile input (0.41175ms)
+✔ passes explicit paths to the native-profile preparer (4.3355ms)
+✔ delegates release profile creation to DSH native plugin management (10.143666ms)
+✔ 0.2.0-rc.2: a passing Host-root graph cannot hide a private profile Schemastery (synthetic graph) (5.263916ms)
+✔ 0.2.1-rc.3: a passing Host-root graph cannot hide a private profile Schemastery (synthetic graph) (4.157666ms)
+✔ 0.2.1-rc.5: a passing Host-root graph cannot hide a private profile Schemastery (synthetic graph) (4.253583ms)
+✔ 0.2.2-alpha.2: a passing Host-root graph cannot hide a private profile Schemastery (synthetic graph) (4.742167ms)
+✔ 1.0.0: a passing Host-root graph cannot hide a private profile Schemastery (synthetic graph) (2.985917ms)
+✔ a future Host graph is accepted when its profile uses the same physical schema package (8.766375ms)
+✔ the official Host Zod range and exact plugin Zod pin are separate requirements (4.183833ms)
+✔ recognizes only an exact bundled plugin installed as a web profile layer (2.232791ms)
+✔ copies the release-built, native-plugin-managed profile without network access (1.522208ms)
+✔ a corrupted home profile manifest fails closed with context and is never overwritten (3.027083ms)
+✔ a corrupted template manifest fails closed before any home directory is created (1.653083ms)
+ℹ tests 68
+ℹ suites 0
+ℹ pass 68
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 480.1485

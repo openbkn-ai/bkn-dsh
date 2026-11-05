@@ -1,0 +1,36 @@
+{
+  "source": "designated Windows chat marked public interim reports; private originals remain remote",
+  "threadId": "01a19c6a-e785-7f82-a5b4-cda473951fa6",
+  "hostId": "remote-control:env_e_6abf8babb404832890d7c5124118ed3c",
+  "files": [
+    {
+      "file": "WINDOWS-CI4-LOGIN-INTERIM.json",
+      "utf8Bytes": 4158,
+      "sha256": "c0827f18f23ccf9af74bd423ba57e6cb72cd53e367ef9d0187392f5436a86f9f",
+      "encoding": "base64"
+    },
+    {
+      "file": "WINDOWS-CI4-LOGIN-INTERIM.zh.md",
+      "utf8Bytes": 1552,
+      "sha256": "4483d540da521d8a0da7fdc09850b269145297689cfcfe717f3cdacc92da6888",
+      "encoding": "base64"
+    },
+    {
+      "file": "WINDOWS-CI4-ENVIRONMENT-INTERIM.json",
+      "utf8Bytes": 5211,
+      "sha256": "f1b5981f2e528fc6104bed59abfe9fec0e147b71cce916436d1a06f611d9aa16",
+      "encoding": "base64"
+    },
+    {
+      "file": "WINDOWS-CI4-ENVIRONMENT-INTERIM.zh.md",
+      "utf8Bytes": 1613,
+      "sha256": "395fe690813f3c2a4d16cde4535f6cf7b123ca8d2ad3594ac97a3d70ef6faffa",
+      "encoding": "base64"
+    }
+  ],
+  "transportDigestsVerified": true,
+  "historicalInterimOnly": true,
+  "notWindowsAcceptance": true,
+  "currentTarget": "official Windows Desktop0.2.1-rc.5 only; user authorizes repair/reprovisioning and continued E2E",
+  "evidenceBoundary": "Archive receipt and historical login/isolation anomalies only; W1-W6 not run at those checkpoints. Preserve user-data changes and unknown cause. Source checks and Mac runs cannot fill Windows PASS."
+}

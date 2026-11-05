@@ -1,0 +1,195 @@
+{
+  "schemaVersion": 1,
+  "receivedAtUtc": "2026-11-03T12:50:34Z",
+  "candidate": {
+    "source": "f01b316fbfb6be681af81e2267a7b3341e659efd",
+    "ciRun": 41596006291,
+    "artifact": 13212518096,
+    "tgzBytes": 877732,
+    "tgzSha256": "4500fa4357cdcdcb9914a39794aedb9096c948192c2bf0f35ecf4fadb882f046",
+    "changed": false
+  },
+  "method": "Public gzip/base64 envelopes read from completed native command outputs; each decoded original verified before writing; no private screenshots, credentials or model/business bodies transferred.",
+  "files": [
+    {
+      "path": "mac-rc5/MAC-CI6-RESULTS.json",
+      "bytes": 13183,
+      "sha256": "1d325c745e4988437426b2af3673ec88897591ab6a96ad9f04bac9085a725873",
+      "sourceThread": "01a15340-6507-7660-a68d-68994e283415",
+      "nativeCommand": "exec-420f39cd-7643-4591-96a6-e469ed92bbe2",
+      "gzipBytes": 5451,
+      "verified": true
+    },
+    {
+      "path": "mac-rc5/MAC-CI6-RESULTS.zh.md",
+      "bytes": 5351,
+      "sha256": "1843cb905433b9f3f762c8f18edfc2b8a3c94fe165df7b777aba84690f6caa78",
+      "sourceThread": "01a15340-6507-7660-a68d-68994e283415",
+      "nativeCommand": "exec-ac9f277d-7c88-447a-8be2-c0c33a77d00f",
+      "gzipBytes": 3458,
+      "verified": true
+    },
+    {
+      "path": "windows-rc5/WINDOWS-CI6-PLATFORM021-VERIFICATION.json",
+      "bytes": 70348,
+      "sha256": "0935afe5f76d270d5d06dce8661e446a3fc01b840a76ce6cc46df47c9c308ebb",
+      "sourceThread": "01a19c6a-e785-7f82-a5b4-cda473951fa6",
+      "gzipBytes": 16896,
+      "gzipSha256": "532b42db8da97db9763cf34d647873bd200078b684c50655da21fa104ce6d34e",
+      "base64Chunks": 3,
+      "verified": true
+    },
+    {
+      "path": "windows-rc5/WINDOWS-CI6-PLATFORM021-VERIFICATION.zh.md",
+      "bytes": 6453,
+      "sha256": "5ca6f948a7aee069d9ed7cb10ee99cdc89c7ff1a493bef073acb796b70bf2ba5",
+      "sourceThread": "01a19c6a-e785-7f82-a5b4-cda473951fa6",
+      "gzipBytes": 4113,
+      "gzipSha256": "fa291b2f8f7ca1e2a97b9760b6b2cc1321ff87e4cf2fca7b98dadf2a11918ee4",
+      "base64Chunks": 1,
+      "verified": true
+    },
+    {
+      "path": "windows-rc5/WINDOWS-CI6-LIVE-MCP-TOOLS.json",
+      "bytes": 232727,
+      "sha256": "e351b2f06c4fff47586d9945989b3b1e8eb2157496706e739baaaf5408093242",
+      "sourceThread": "01a19c6a-e785-7f82-a5b4-cda473951fa6",
+      "gzipBytes": 48149,
+      "gzipSha256": "7b510fdcbbb8056ef1b5705f76bed7ca0eb826a03c62f9c698360c5e36282645",
+      "base64Chunks": 9,
+      "verified": true
+    }
+  ],
+  "checks": {
+    "windowsEveryChunkHash": true,
+    "windowsCompressedHashAndLength": true,
+    "allOriginalByteCounts": true,
+    "allOriginalSha256": true,
+    "originalReportsUnmodified": true
+  },
+  "review": {
+    "mac": "Independent read-only review found no reported CI6 product regression; natural renewal remains unobserved.",
+    "windows": "Independent hashes, catalogue/schema classification and evidence-level review passed; native UI and controlled ToolRuntime claims remain separate.",
+    "windowsSupplement": "Independent bytes/SHA and SDK/platform collection-route review passed. Normal SDK natural renewal is verified; native Host renewal is not claimed. Both official metric collections returned404; no metric ID/version inferred and no old accepted business case replayed.",
+    "macSupplement": "Independent original-byte and evidence-boundary review passed.129 native404 observations remain unchanged; later maintainer Community declaration excludes Enterprise UI from this target.",
+    "macEnterpriseSupplement": "PASS: independently reviewed11-report intake including finalEE28 bytes/SHA, same-record operation identity/Studio match, source-field absence and limits. No public secrets/body or new product regression evidence. S1-S3 remain NOT_RUN; caller equality/unique cause not claimed."
+  },
+  "currentInstruction": {
+    "origin": "Per-capability matrix; supersedes temporary129-only checkpoint",
+    "platform": "Observed 0.2.1-main.20261103005009.sha0acbbb4, with separately recorded service images; not a formal release deployment.",
+    "cli": "Official 0.2.1-rc.1",
+    "oldOrigin": "https://192.168.50.28",
+    "oldOriginUse": "Restored Enterprise020 UI acceptance target per latest maintainer clarification; encrypted local28 card handoff authorized to both designated recipients.",
+    "macS1S2S3": "Enterprise28 GUI normal authentication and original native entry succeeded. Original S/C/I and6operation IDs match historical data; current Reader/Studio bytes/SHA match and omit full source fields.3other known I also omit fields;4local Sessions bounded search yielded no second28entry. S1-S3 remain NOT_RUN. Swift readonly post-event permission preflight=false; no permission change/event injection.",
+    "windowsIncrement": "Completed CLI021 increment and independent SDK renewal. Metric positive remains undisclosed/NOT_RUN. Receive encrypted28 card only; do not replay accepted matrices.",
+    "matrix": [
+      {
+        "origin": "https://192.168.50.28",
+        "edition": "Enterprise",
+        "platform": "Formal0.2.0, maintainer confirmed",
+        "cli": "Task-isolated matching official0.2.0",
+        "purpose": "Original Mac S1-S3 only; preserve original records/bindings"
+      },
+      {
+        "origin": "https://192.168.50.129",
+        "edition": "Community",
+        "platform": "Observed0.2.1-main.20261103005009.sha0acbbb4",
+        "cli": "Official0.2.1-rc.1",
+        "purpose": "New CLI compatibility increment; native Enterprise business-provenance is outside deployment scope"
+      }
+    ]
+  },
+  "notClaimed": [
+    "Formal CLI 0.2.1 installation",
+    "Final platform 0.2.1 acceptance",
+    "Native 50.129 provenance entry",
+    "Mac S1-S3",
+    "New model E2E",
+    "Whole-machine zero changes"
+  ],
+  "supplements": [
+    {
+      "path": "windows-rc5/WINDOWS-CI6-METRIC-SUPPLEMENT.json",
+      "bytes": 8312,
+      "sha256": "f66299fbad8e2a51de77c22de721b86a29ffd1b0d622bc54a5d9c31109267c8b",
+      "sourceThread": "01a19c6a-e785-7f82-a5b4-cda473951fa6",
+      "nativeCommand": "exec-5880d3d0-f4ae-49ef-83a5-1fba8700e7e2",
+      "gzipBytes": 2932,
+      "gzipSha256": "067b212ca57787fab9ec6c34335b6363928a167a37e912bd34612204fcc8e71e",
+      "verified": true
+    },
+    {
+      "path": "windows-rc5/WINDOWS-CI6-METRIC-SUPPLEMENT.zh.md",
+      "bytes": 2850,
+      "sha256": "bdabab989bec93c5f22a7dfc23ab866dabaa59adb7e39bc7dfe57fce24e12316",
+      "sourceThread": "01a19c6a-e785-7f82-a5b4-cda473951fa6",
+      "nativeCommand": "exec-72419a35-eed8-4e8a-a81c-190ff3aaa12f",
+      "gzipBytes": 1966,
+      "gzipSha256": "063ea1cd4bf663428ff6970e3e18040e28f540d45faacc8874e7f1b0c492718c",
+      "verified": true
+    },
+    {
+      "path": "mac-rc5/MAC-CI6-SOURCE-TEXT-129-SUPPLEMENT.json",
+      "bytes": 10237,
+      "sha256": "20f35c3a0c34de07e13be1c61e5ef791fff34b6748040a9e43c3df0ff0965ea5",
+      "sourceThread": "01a15340-6507-7660-a68d-68994e283415",
+      "nativeCommand": "exec-8ff6bf1d-508b-49a1-a59f-7a392a52d9f8",
+      "gzipBytes": 3592,
+      "verified": true
+    },
+    {
+      "path": "mac-rc5/MAC-CI6-SOURCE-TEXT-129-SUPPLEMENT.zh.md",
+      "bytes": 4744,
+      "sha256": "20f1c3cb37875298cc6c86f449c3dd3d4f8872cc3082c4038dcd29794ead7b14",
+      "sourceThread": "01a15340-6507-7660-a68d-68994e283415",
+      "nativeCommand": "exec-2cb4724a-1a43-4631-aec3-284ce27b822c",
+      "gzipBytes": 2977,
+      "verified": true
+    },
+    {
+      "path": "mac-rc5/MAC-CI6-EE028-FIELD-RECONCILIATION.json",
+      "bytes": 17898,
+      "sha256": "2e4ff83649325beb88f334f2ef420663a2330904952a17629812de3168d01631",
+      "sourceThread": "01a15340-6507-7660-a68d-68994e283415",
+      "nativeCommands": [
+        "exec-c6c099c7-96d1-453e-86fd-4ef9a6da6ebc",
+        "exec-2a43ec9f-0b15-4672-9a3c-d118fe035c8b"
+      ],
+      "gzipBytes": 6696,
+      "base64Parts": 2,
+      "verified": true
+    },
+    {
+      "path": "mac-rc5/MAC-CI6-EE028-FIELD-RECONCILIATION.zh.md",
+      "bytes": 6185,
+      "sha256": "417d1e0ee5a735125b4dd69005aeed1948eb7dccca26618f80beea165cb34c02",
+      "sourceThread": "01a15340-6507-7660-a68d-68994e283415",
+      "nativeCommands": [
+        "exec-6566bdb6-77c2-410c-8230-6af6f21e5617"
+      ],
+      "gzipBytes": 3880,
+      "base64Parts": 1,
+      "verified": true
+    }
+  ],
+  "lastSupplementCheckedAtUtc": "2026-11-03T13:10:55Z",
+  "totalRawFiles": 11,
+  "releaseDependencyCheck": {
+    "kind": "official-exact-cli-availability-check",
+    "checkedAtUtc": "2026-11-03T14:06:12.242Z",
+    "url": "https://registry.npmjs.org/%40openbkn%2Fbkn-sdk/0.2.1",
+    "httpStatus": 404,
+    "version": null,
+    "gitHead": null,
+    "integrity": null,
+    "source": "Public npm registry; read only; no installation or tests"
+  },
+  "outOfScope": [
+    {
+      "origin": "https://192.168.50.129",
+      "capability": "Enterprise native business-provenance UI",
+      "source": "Latest explicit maintainer environment-edition declaration",
+      "effect": "Native404 does not independently block this Community CLI compatibility scope."
+    }
+  ]
+}

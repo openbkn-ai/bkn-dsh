@@ -1,0 +1,26 @@
+{
+  "source": "designated Windows chat public reports exported as raw bytes in a separate short turn; private originals remain remote",
+  "threadId": "01a19c6a-e785-7f82-a5b4-cda473951fa6",
+  "hostId": "remote-control:env_e_6abf8babb404832890d7c5124118ed3c",
+  "executionTurnId": "01a19d15-4f51-7d63-9846-49e357df608a",
+  "exportTurnId": "01a19e92-6f0b-70f2-bfa2-f3a8fe48fa93",
+  "receivedLocalDate": "2026-11-03",
+  "files": [
+    {
+      "file": "WINDOWS-CI4-SOURCE-TEXT-REVIEW.json",
+      "utf8Bytes": 7813,
+      "sha256": "f0ed7473cff16d08f4a10b6ccc27053b9a4e01ab58fdcc53d7a8c6701ac489f9",
+      "encoding": "base64"
+    },
+    {
+      "file": "WINDOWS-CI4-SOURCE-TEXT-REVIEW.zh.md",
+      "utf8Bytes": 6169,
+      "sha256": "e2def505927b296543c15734aeadfbebb9fc5bad8c5e7afe673d20e30d9e4339",
+      "encoding": "base64"
+    }
+  ],
+  "transportDigestsVerified": true,
+  "candidateIdentityMatchesPriorCi4Audit": true,
+  "originalWindowsReportsUnchangedLocally": true,
+  "evidenceBoundary": "Receiving side verifies public report bytes, identity and internal consistency; private screenshots, UIA timeline and runtime model metadata were not independently acquired. Reproduction does not establish the exact reopen mechanism or platform parity."
+}

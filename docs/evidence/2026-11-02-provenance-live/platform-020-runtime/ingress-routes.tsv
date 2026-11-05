@@ -1,0 +1,13 @@
+agent-observability	nginx	/api/agent-observability/v1|agent-observability|8080;/api/observability/v1|agent-observability|8080;
+agent-operator-integration-ingress	nginx	/api/agent-operator-integration/v1|agent-operator-integration|9000;/api/capabilities-lab/v1|agent-operator-integration|9000;
+agent-retrieval-ingress	nginx	/api/agent-retrieval/v1|agent-retrieval|30779;
+bkn-backend-ingress	nginx	/api/bkn-backend/v1|bkn-backend-svc|13014;/api/ontology-manager/v1|bkn-backend-svc|13014;
+bkn-safe-ingress	nginx	/login|bkn-safe|3000;/consent|bkn-safe|3000;/device|bkn-safe|3000;/device/success|bkn-safe|3000;/change-password|bkn-safe|3000;/api/safe/v1/auth/change-password|bkn-safe|3000;/api/safe/v1/admin|bkn-safe|3000;/api/safe/v1/me|bkn-safe|3000;/api/safe/v1/permission-requests|bkn-safe|3000;/api/safe/v1/capabilities|bkn-safe|3000;/oauth2|bkn-safe-hydra-public|4444;/.well-known/openid-configuration|bkn-safe-hydra-public|4444;/.well-known/jwks.json|bkn-safe-hydra-public|4444;/userinfo|bkn-safe-hydra-public|4444;
+bkn-sample-studio	nginx	/api/studio|bkn-sample-studio|8080;
+bkn-studio-ingress	nginx	/studio|bkn-studio|80;/|bkn-studio|80;
+install-status	nginx	/install-status|install-status|80;/install-status.json|install-status|80;/install-status.pods.json|install-status|80;/install-status.workloads.json|install-status|80;/install-status.events.json|install-status|80;/install-status/logs|install-status|80;
+mf-model-api-ingress	nginx	/api/mf-model-api|mf-model-api|9898;
+mf-model-manager-ingress	nginx	/api/mf-model-manager|mf-model-manager|9898;
+ontology-query-ingress	nginx	/api/ontology-query/v1|ontology-query-svc|13018;
+oss-gateway-backend-ingress	nginx	/api/oss-gateway|oss-gateway-backend|8080;
+vega-backend-ingress	nginx	/api/vega-backend/v1|vega-backend-svc|13014;

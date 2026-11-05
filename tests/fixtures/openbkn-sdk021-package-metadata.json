@@ -1,0 +1,155 @@
+{
+  "schemaVersion": 1,
+  "scope": "Exact published packages exercised only against synthetic loopback servers. 0.2.1-rc.1 is not formal 0.2.1 release acceptance. Historical 0.1.5 support is outside this focused probe.",
+  "capturedAt": "2026-11-03T07:07:32.902171Z",
+  "registry": {
+    "url": "https://registry.npmjs.org/%40openbkn%2Fbkn-sdk",
+    "snapshotSha256": "864eea5af08f11de717aeea1d052dfc5cdbf1afe1bcf2407f667d4b76be5a6fa",
+    "distTags": {
+      "alpha": "0.1.1-alpha.19",
+      "rc": "0.2.1-rc.1",
+      "latest": "0.2.0"
+    },
+    "formal021Published": false
+  },
+  "repository": "https://github.com/openbkn-ai/bkn-sdk",
+  "sourceRefs": {
+    "formal020": "2098f276eaabd1f31a30ac3ed58d5ba8d5bd5e6d",
+    "release021Branch": "1cd2839652733e2ce6690b14e76ff8e9d73861dc",
+    "main": "57d39f0f94804105db89b6151bfaf8a3ffddf888"
+  },
+  "packages": [
+    {
+      "name": "@openbkn/bkn-sdk",
+      "version": "0.2.0",
+      "prerelease": false,
+      "publishedAt": "2026-10-15T08:35:03.639Z",
+      "gitHead": "2098f276eaabd1f31a30ac3ed58d5ba8d5bd5e6d",
+      "tarball": "https://registry.npmjs.org/@openbkn/bkn-sdk/-/bkn-sdk-0.2.0.tgz",
+      "archiveName": "npm-0.2.0.tgz",
+      "archiveBytes": 219091,
+      "sha256": "d227f6264597d727e7931bef4118f099df20d42402ff32e306f6d65e8a6b273f",
+      "integrity": "sha512-JTNhOs7zopjbFCp3A8L4dpOW2bUXI1lLMRKM6eRb60Is3pZjz8t9ny5wOh3IgT8ckMi8dGzsiiCAP/m8XPU4nA==",
+      "shasum": "7954f667fe3a5a765f0a1b5fb2cc2a08421f9a00",
+      "fileCount": 9,
+      "files": {
+        "package/LICENSE": {
+          "bytes": 11358,
+          "sha256": "cfc7749b96f63bd31c3c42b5c471bf756814053e847c10f3eb003417bc523d30"
+        },
+        "package/NOTICE": {
+          "bytes": 886,
+          "sha256": "b800a618c0c8df8ec4ce88a4c2df263eca0e84f219583a160d17ea2cc31d3a2e"
+        },
+        "package/dist/chunk-XNXE76OW.js": {
+          "bytes": 369200,
+          "sha256": "2d516aa9e07ff461cb9c877a6c03f4752db85a668f9d675910c8a80f53d7c6a8"
+        },
+        "package/dist/cli.js": {
+          "bytes": 289874,
+          "sha256": "18445a26bfb20f7a8cc8eecb50f499ff12c0ed564e0e3d8741850fcbe43f82a5"
+        },
+        "package/dist/index.js": {
+          "bytes": 1096,
+          "sha256": "8dca4834961c1d66a8cbcc59811453240ae8f8a64f168d3f3d81217db64dc834"
+        },
+        "package/package.json": {
+          "bytes": 2061,
+          "sha256": "e32b9d45b8e6c3fe8607a2f70255a7acf6c74d47b2570007be3d8f4035550c65"
+        },
+        "package/README.md": {
+          "bytes": 11951,
+          "sha256": "f926b7d80f7d6e802c7bda1a9662840378572725558b0822f8a287467f59d2b5"
+        },
+        "package/README.zh.md": {
+          "bytes": 10832,
+          "sha256": "f102d8a9da0de6ba40eddba0ab4fefda8ef18798146031b33672fd61da0037cb"
+        },
+        "package/dist/index.d.ts": {
+          "bytes": 527618,
+          "sha256": "7bbeda4a6257f4016a6e10475e95b449d7945ea678504782c39ab7bd85147d07"
+        }
+      },
+      "dependencies": {
+        "zod": "^3.24.1",
+        "chalk": "^5.4.1",
+        "jszip": "^3.10.1",
+        "undici": "^8.10.2",
+        "js-yaml": "^4.3.2",
+        "commander": "^13.1.0",
+        "@clack/prompts": "^0.9.1"
+      },
+      "versionGate": {
+        "matchingPlatform": "0.2.0",
+        "mismatchingPlatform": "0.2.1",
+        "source": "https://github.com/openbkn-ai/bkn-sdk/blob/2098f276eaabd1f31a30ac3ed58d5ba8d5bd5e6d/src/api/version-check.ts#L218-L229"
+      }
+    },
+    {
+      "name": "@openbkn/bkn-sdk",
+      "version": "0.2.1-rc.1",
+      "prerelease": true,
+      "publishedAt": "2026-11-01T14:46:39.840Z",
+      "gitHead": "1cd2839652733e2ce6690b14e76ff8e9d73861dc",
+      "tarball": "https://registry.npmjs.org/@openbkn/bkn-sdk/-/bkn-sdk-0.2.1-rc.1.tgz",
+      "archiveName": "npm-0.2.1-rc.1.tgz",
+      "archiveBytes": 229968,
+      "sha256": "2122b5995ea4660751810c00316c36ffecad7414baa99218333f8d2434c16f00",
+      "integrity": "sha512-BW5e1PB1S562XcQjrQcQgYJUFc3125n14sIuXJf2jpiLH73Hr1i3WkhvlBZIR9b2fMn7krb8d/bH0bj7vOCVMw==",
+      "shasum": "be768841d10d1e868ccacda1f4f4bc9067093796",
+      "fileCount": 9,
+      "files": {
+        "package/LICENSE": {
+          "bytes": 11358,
+          "sha256": "cfc7749b96f63bd31c3c42b5c471bf756814053e847c10f3eb003417bc523d30"
+        },
+        "package/NOTICE": {
+          "bytes": 886,
+          "sha256": "b800a618c0c8df8ec4ce88a4c2df263eca0e84f219583a160d17ea2cc31d3a2e"
+        },
+        "package/dist/chunk-EJEAWYKQ.js": {
+          "bytes": 382460,
+          "sha256": "4a4c5a33abc26d69805b9c97fd948a3504591a87ef9c3f0e33b61bdc3e13d1d2"
+        },
+        "package/dist/cli.js": {
+          "bytes": 291089,
+          "sha256": "fc7a889dcb538baad51ac2375db81592d55ad08b2d056923562094dd9f25c9a3"
+        },
+        "package/dist/index.js": {
+          "bytes": 9176,
+          "sha256": "537334b635b57eab996b0d8d9e1415464493a7c4b0232b8a5eccfa72a3112f68"
+        },
+        "package/package.json": {
+          "bytes": 2066,
+          "sha256": "abd74594145c4d1cedd0288a87ed9df2b7c34624a6f755257f45b51952788b53"
+        },
+        "package/README.md": {
+          "bytes": 16308,
+          "sha256": "378f0baca9d53e1b14bdce248d5949497b4d13a007d0ebd6a1c6a9905d1df46a"
+        },
+        "package/README.zh.md": {
+          "bytes": 11032,
+          "sha256": "bfd70df0a3700a5a587cf52f842d34630a7eeead03f152abcfe4604cb597ebf9"
+        },
+        "package/dist/index.d.ts": {
+          "bytes": 584931,
+          "sha256": "5bca8bd9d543ca6a097b6100e836ffb19c04c11fb1a958227e9c83be8d692c13"
+        }
+      },
+      "dependencies": {
+        "zod": "^3.24.1",
+        "chalk": "^5.4.1",
+        "jszip": "^3.10.1",
+        "undici": "^8.10.2",
+        "js-yaml": "^4.3.2",
+        "commander": "^13.1.0",
+        "@clack/prompts": "^0.9.1"
+      },
+      "versionGate": {
+        "matchingPlatform": "0.2.1",
+        "mismatchingPlatform": "0.2.0",
+        "source": "https://github.com/openbkn-ai/bkn-sdk/blob/1cd2839652733e2ce6690b14e76ff8e9d73861dc/src/api/version-check.ts#L218-L229"
+      }
+    }
+  ]
+}

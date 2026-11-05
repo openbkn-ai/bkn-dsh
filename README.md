@@ -16,6 +16,8 @@ Bring governed OpenBKN business knowledge into DeepSeek Harness conversations.
 
 ## 0.2.1 version and compatibility
 
+The unpublished `-3` increment also prepares platform0.2.1 compatibility: its explicit CLI installer adds fixed0.2.1 while retaining0.1.5/0.2.0 and existing-installation protection. A fresh login requires the CLI version matching the platform; CLI0.2.0 rejects platform0.2.1. Final0.2.1 artifact and isolated acceptance are pending; rc/source probes are separate evidence. See the [compatibility work and release gate](docs/evidence/2026-11-03-platform021-compat/README.zh.md). Published npm instructions below still select `-2`.
+
 This release line uses `0.2.1-rc.3-openbkn.0.2.1-2` and permits loading on official DSH `0.2.0-rc.2` or `>=0.2.1-rc.3`, with no upper version bound. The OpenBKN `0.2.1` component is the version identity requested by the maintainer. Actual platform evidence remains on retained official OpenBKN `0.2.0` and CLI `0.2.0`; it does not establish acceptance on an unreleased OpenBKN `0.2.1` platform. Consult the matching GitHub Release acceptance record for the tested coverage and known limitations.
 
 This revision ships the native MCP same-origin protection with the plugin and loads it through the business module; no separate profile companion or official Host modification is required. Companion instructions for the earlier base release remain historical. Frozen -30/-31/-32 and historical verdicts are preserved.

@@ -11,7 +11,7 @@ import { OpenBknUiController } from '../src/client/openbkn-ui-controller.ts'
 import { NativeProvenancePanel } from '../src/client/NativeProvenancePanel.tsx'
 import { projectNativeExplanation } from '../src/native-provenance.ts'
 import { diagnosticAction } from '../src/client/diagnostics-copy.ts'
-import type { ProvenanceView } from '../src/types.ts'
+import type { OpenBknCliSetupView, ProvenanceView } from '../src/types.ts'
 
 function localeHarness() {
   let snapshot = { active: 'zh', revision: 0, locales: [] }; const listeners = new Set<() => void>()
@@ -60,6 +60,101 @@ test('both dictionaries cover the same keys and interpolation contracts', () => 
     assert.ok(en[key].trim(), key)
   }
   assert.equal(translateMessage('en', '__unknown__' as OpenBknMessageKey),'Text unavailable')
+})
+
+for (const language of ['zh', 'en']) test(`the ${language} CLI selector explicitly installs 0.2.1 and locks its selected target`, async () => {
+  const { CliSetupControl } = await import('../src/client/CliSetupControl.tsx')
+  const harness = localeHarness(); harness.set(language)
+  const Component = localized(CliSetupControl, harness.locale)
+  const requested: string[] = []
+  let finish!: (value: OpenBknCliSetupView) => void
+  const pending = new Promise<OpenBknCliSetupView>(resolve => { finish = resolve })
+  const props = {
+    cliPath: 'openbkn', savedCliPath: 'openbkn', disabled: false,
+    port: {
+      checkCli: async () => ({ state: 'missing' as const, canInstall: true }),
+      installCli: async (_path: string, target: string) => { requested.push(target); return pending },
+    },
+    onResolved() {}, onBusy() {},
+  }
+  let renderer!: ReturnType<typeof create>
+  try {
+    await act(async () => { renderer = create(createElement(Component, props)); await new Promise(resolve => setImmediate(resolve)) })
+    const select = () => renderer.root.findByType('select')
+    assert.deepEqual(select().findAllByType('option').map(option => option.props.value), ['', '0.1.5', '0.2.0', '0.2.1'])
+    assert.equal(select().props.value, '')
+    assert.equal(renderer.root.findByType('button').props.disabled, true)
+    assert.deepEqual(requested, [])
+    assert.match(visibleText(renderer.toJSON()), language === 'zh'
+      ? /与平台一致的 CLI 版本：0\.1\.5、0\.2\.0 或 0\.2\.1/
+      : /CLI version matching your platform: 0\.1\.5, 0\.2\.0 or 0\.2\.1/)
+    act(() => select().props.onChange({ target: { value: '0.2.0' } }))
+    act(() => select().props.onChange({ target: { value: '0.2.1' } }))
+    assert.equal(select().props.value, '0.2.1')
+    assert.equal(renderer.root.findByType('button').props.disabled, false)
+    assert.deepEqual(requested, [], 'selecting a version must not start installation')
+    await act(async () => { renderer.root.findByType('button').props.onClick(); await new Promise(resolve => setImmediate(resolve)) })
+    assert.deepEqual(requested, ['0.2.1'])
+    assert.equal(select().props.disabled, true)
+    assert.equal(select().props.value, '0.2.1')
+    assert.equal(renderer.root.findByType('button').props.disabled, true)
+    assert.match(visibleText(renderer.toJSON()), /CLI 0\.2\.1/)
+    await act(async () => {
+      finish({ state: 'ready', canInstall: false, resolvedPath: '/tools/openbkn', version: '0.2.1' })
+      await pending
+    })
+    assert.equal(renderer.root.findAllByType('button').length, 0)
+    assert.equal(select().props.value, '0.2.1')
+  } finally { if (renderer) act(() => renderer.unmount()) }
+})
+
+test('a reopened CLI selector shows the Host-owned 0.2.1 target without dispatching another install', async () => {
+  const { CliSetupControl } = await import('../src/client/CliSetupControl.tsx')
+  const harness = localeHarness(); const Component = localized(CliSetupControl, harness.locale)
+  let installs = 0
+  let renderer!: ReturnType<typeof create>
+  try {
+    await act(async () => {
+      renderer = create(createElement(Component, {
+        cliPath: 'openbkn', savedCliPath: 'openbkn', disabled: false,
+        port: {
+          checkCli: async () => ({ state: 'installing' as const, canInstall: false, targetVersion: '0.2.1' as const }),
+          installCli: async () => { installs++; return { state: 'missing' as const, canInstall: true } },
+        }, onResolved() {}, onBusy() {},
+      }))
+      await new Promise(resolve => setImmediate(resolve))
+    })
+    const select = renderer.root.findByType('select')
+    assert.ok(select.findAllByType('option').some(option => option.props.value === '0.2.1'))
+    assert.equal(select.props.value, '0.2.1')
+    assert.equal(select.props.disabled, true)
+    assert.match(visibleText(renderer.toJSON()), /CLI 0\.2\.1/)
+    assert.equal(installs, 0)
+  } finally { if (renderer) act(() => renderer.unmount()) }
+})
+
+test('choosing platform 0.2.1 with an existing 0.2.0 CLI shows the no-overwrite warning without installing', async () => {
+  const { CliSetupControl } = await import('../src/client/CliSetupControl.tsx')
+  const harness = localeHarness(); const Component = localized(CliSetupControl, harness.locale)
+  let installs = 0
+  let renderer!: ReturnType<typeof create>
+  try {
+    await act(async () => {
+      renderer = create(createElement(Component, {
+        cliPath: 'openbkn', savedCliPath: '/existing/openbkn', disabled: false,
+        port: {
+          checkCli: async () => ({ state: 'ready' as const, canInstall: false, resolvedPath: '/existing/openbkn', version: '0.2.0' }),
+          installCli: async () => { installs++; return { state: 'missing' as const, canInstall: true } },
+        }, onResolved() {}, onBusy() {},
+      }))
+      await new Promise(resolve => setImmediate(resolve))
+    })
+    act(() => renderer.root.findByType('select').props.onChange({ target: { value: '0.2.1' } }))
+    assert.match(visibleText(renderer.toJSON()), /CLI 0\.2\.0 可用/)
+    assert.match(visibleText(renderer.toJSON()), /平台版本为 0\.2\.1.*不会覆盖/)
+    assert.equal(renderer.root.findAllByType('button').length, 0)
+    assert.equal(installs, 0)
+  } finally { if (renderer) act(() => renderer.unmount()) }
 })
 test('an already displayed failure updates zh/en/zh without rereading credentials or reconnecting', async () => {
   let calls = 0

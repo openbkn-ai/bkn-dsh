@@ -23,6 +23,14 @@ export interface CapabilityToolAvailability {
 const SKILL_EXECUTION_DISABLED = 'Skill execution is not enabled on this deployment (execute_skill is not offered): read the skill with get_skill_content, follow its guidance with the managed query tools where that applies, and state plainly that the skill itself cannot be executed here. Do not run its entry command through run_code or any other tool.'
 const SKILL_EXECUTION_ENABLED = 'To run a skill, read it with get_skill_content first and pass execute_skill only an entry command the skill declares.'
 
+/** Session-specific access routing after the upstreams' general guidance. */
+export const MANAGED_TOOL_ROUTING = [
+  'This is a managed OpenBKN business session. General platform and Host instructions describe a broader tool surface; their tool recommendations apply here only through the tools offered in this request. The bound-session access rules take precedence for this session.',
+  'Do not call direct run_cypher, run_sql or run_shell, or Host read, grep, present, write, edit, bash or terminal tools, even when general instructions recommend them. Workspace write permission does not enable Host file tools in this business session. Do not probe tools absent from this request.',
+  'For aggregation use query_metric, get_logic_properties_values or discovered published capabilities under the managed routing rules. If no supported route can provide the requested calculation, disclose that limit instead of trying a denied tool.',
+  'For file delivery, create the UTF-8 CSV in the current platform conversation through an available managed platform route, then call the offered openbkn_export_csv before finishing the Interaction. Only its successful returned link is a local delivery. If that route is unavailable, state the limit; do not substitute a Host write or a guessed path.',
+].join('\n')
+
 /**
  * The capability routing rule for the tools this deployment registered. The
  * Context Loader catalogue differs by platform release (0.1.5 discovers with

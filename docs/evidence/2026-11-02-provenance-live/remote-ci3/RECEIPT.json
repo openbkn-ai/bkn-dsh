@@ -1,0 +1,21 @@
+{
+  "source": "designated remote chat tool-output public report; private originals not copied",
+  "threadId": "01a15340-6507-7660-a68d-68994e283415",
+  "hostId": "remote-control:env_e_6ac8760a8c308328a9dcf5dc28dd0d18",
+  "files": [
+    {
+      "file": "REMOTE-E2E-REPORT.json",
+      "utf8Bytes": 9215,
+      "sha256": "fe0aae02adbd78fa59fb0b08dcedacd556e17d39b8a4e56159aeb6a12fabf9d9",
+      "encoding": "base64"
+    },
+    {
+      "file": "REMOTE-E2E-REPORT.zh.md",
+      "utf8Bytes": 3663,
+      "sha256": "249bf92b5c535bb390ec16524e5ad0c8886cc30c46784b4944b4ec6fe3b21fc7",
+      "encoding": "base64"
+    }
+  ],
+  "transportDigestsVerified": true,
+  "evidenceBoundary": "Native observations reported by remote tester; main receiver verifies receipt bytes and identity, not private originals or independent whole-machine/business-database audit"
+}

@@ -1,0 +1,35 @@
+{
+  "observedAt": "2026-11-03T15:15:25.768894+00:00",
+  "method": "existing node containerd content GET only; no pull/run service binary",
+  "imageID": "sha256:716cea21364e5030096675a3d55be17a77fbab9548099620263883b98e5c1fe3",
+  "platformConfigs": [
+    {
+      "platform": {
+        "architecture": "arm64",
+        "os": "linux"
+      },
+      "manifestDigest": "sha256:757b317c18755cb558bd9921f3352910368db6054359cef859e9573b6662336b",
+      "configDigest": "sha256:c9d2f2f24d0bb9845d01b8606b422d8ecc957d1abb2955072e23682d7f42f7f7",
+      "cachedConfigAvailable": true,
+      "created": "2026-10-16T07:14:54.742425072Z",
+      "selectedBuildLabels": {},
+      "otherLabelNames": [],
+      "entrypointExecutable": "/app/agent-observability",
+      "entrypointArgCount": 1,
+      "cmdExecutable": null,
+      "cmdArgCount": 0,
+      "envNames": [
+        "PATH",
+        "SSL_CERT_FILE"
+      ],
+      "workingDir": "/app"
+    },
+    {
+      "platform": {
+        "architecture": "amd64",
+        "os": "linux"
+      },
+      "cachedConfigAvailable": false
+    }
+  ]
+}

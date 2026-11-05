@@ -1,0 +1,68 @@
+✔ managed request catalogue hides observed forbidden tools, including late and scoped registrations, while guards still deny without dispatch (8.796667ms)
+✔ managed routing is appended after conflicting general guidance without rewriting its source (1.429083ms)
+✔ assembly filters the authoritative downstream result and removes no policy from unrelated scopes (1.428333ms)
+✖ managed catalogue preserves all supported v0.1.4 schemas and omits permanently unscoped skill execution (6.208209ms)
+✔ managed catalogue preserves all supported v0.1.5 schemas and omits permanently unscoped skill execution (3.697791ms)
+✔ managed catalogue preserves all supported v0.2.0-release schemas and omits permanently unscoped skill execution (4.144125ms)
+✔ managed catalogue preserves all supported 20261018-live schemas and omits permanently unscoped skill execution (6.484083ms)
+✔ native tool restrictions stay effective and business reload restores the original catalogue (1.909792ms)
+✔ CSV transfer preserves BOM, CRLF, Chinese names, and fractional quantities from the canonical result (1.201916ms)
+✔ missing or malformed content returns the controlled incomplete-result error (0.175458ms)
+✔ portable CSV names reject Windows wildcards before delivery (0.081792ms)
+✔ CSV transfer refuses wrong source, digest, size, malformed base64 and invalid UTF-8 (0.18325ms)
+✔ CSV path validation rejects traversal, absolute paths, URLs, commands and non-CSV files (0.111583ms)
+✔ the actual Python reader is confined to this conversation and refuses symlinks and oversized files (150.304ms)
+✔ workspace resolution follows old immutable Session cwd or the new native service, never process cwd (1.678625ms)
+✔ export creates a new verified file and returns a real path without changing bytes (1.056625ms)
+✔ exported link safely round-trips spaces, parentheses, percent signs and Chinese through native file links (0.274792ms)
+✔ closed interaction, wrong identity/network and read-only mode never dispatch or write (0.527708ms)
+✔ finish while retrieving, file collisions and saved-byte corruption never produce a successful delivery (0.494625ms)
+✔ native ToolRuntime keeps queries available as optional CSV services mount and unmount, with independent execution guards (11.77ms)
+ℹ tests 20
+ℹ suites 0
+ℹ pass 19
+ℹ fail 1
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 348.986958
+
+✖ failing tests:
+
+test at tests/managed-tool-surface.test.ts:1:5388
+✖ managed catalogue preserves all supported v0.1.4 schemas and omits permanently unscoped skill execution (6.208209ms)
+  AssertionError [ERR_ASSERTION]: schemas, descriptions, optional/deployment tools and native order are retained exactly
+  + actual - expected
+  ... Skipped lines
+
+    [
+      {
+        description: 'Published v0.1.4 tool',
+        name: 'mcp__openbkn__bkn_finish_interaction',
+        parameters: {
+  ...
+        description: 'Published v0.1.4 tool',
+  +     name: 'mcp__openbkn__execute_skill',
+  +     parameters: {
+  +       properties: {},
+  +       type: 'object'
+  +     }
+  +   },
+  +   {
+  +     description: 'Published v0.1.4 tool',
+        name: 'mcp__openbkn__explore_subgraph',
+        parameters: {
+          properties: {
+            kn_id: {
+              type: 'string'
+
+      at TestContext.<anonymous> (/Users/kalias/Documents/project/app/openBKN/bkn-dsh-tool-surface-20261102/packages/openbkn-business-context/tests/managed-tool-surface.test.ts:121:14)
+      at async Test.run (node:internal/test_runner/test:1389:7)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:960:7) {
+    generatedMessage: false,
+    code: 'ERR_ASSERTION',
+    actual: [ { name: 'mcp__openbkn__bkn_finish_interaction', description: 'Published v0.1.4 tool', parameters: [Object] }, { name: 'mcp__openbkn__bkn_start_interaction', description: 'Published v0.1.4 tool', parameters: [Object] }, { name: 'mcp__openbkn__execute_skill', description: 'Published v0.1.4 tool', parameters: [Object] }, { name: 'mcp__openbkn__explore_subgraph', description: 'Published v0.1.4 tool', parameters: [Object] }, { name: 'mcp__openbkn__find_skills', description: 'Published v0.1.4 tool', parameters: [Object] }, { name: 'mcp__openbkn__get_kn_detail', description: 'Published v0.1.4 tool', parameters: [Object] }, { name: 'mcp__openbkn__get_logic_properties_values', description: 'Published v0.1.4 tool', parameters: [Object] }, { name: 'mcp__openbkn__get_object_types', description: 'Published v0.1.4 tool', parameters: [Object] }, { name: 'mcp__openbkn__get_relation_types', description: 'Published v0.1.4 tool', parameters: [Object] }, { name: 'mcp__openbkn__get_skill_content', description: 'Published v0.1.4 tool', parameters: [Object] }, { name: 'mcp__openbkn__list_skills', description: 'Published v0.1.4 tool', parameters: [Object] }, { name: 'mcp__openbkn__query_instance_subgraph', description: 'Published v0.1.4 tool', parameters: [Object] }, { name: 'mcp__openbkn__query_metric', description: 'Published v0.1.4 tool', parameters: [Object] }, { name: 'mcp__openbkn__query_object_instance', description: 'Published v0.1.4 tool', parameters: [Object] }, { name: 'mcp__openbkn__read_skill_file', description: 'Published v0.1.4 tool', parameters: [Object] }, { name: 'mcp__openbkn__run_code', description: 'Published v0.1.4 tool', parameters: [Object] }, { name: 'mcp__openbkn__search_instance', description: 'Published v0.1.4 tool', parameters: [Object] }, { name: 'mcp__openbkn__search_schema', description: 'Published v0.1.4 tool', parameters: [Object] } ],
+    expected: [ { name: 'mcp__openbkn__bkn_finish_interaction', description: 'Published v0.1.4 tool', parameters: [Object] }, { name: 'mcp__openbkn__bkn_start_interaction', description: 'Published v0.1.4 tool', parameters: [Object] }, { name: 'mcp__openbkn__explore_subgraph', description: 'Published v0.1.4 tool', parameters: [Object] }, { name: 'mcp__openbkn__find_skills', description: 'Published v0.1.4 tool', parameters: [Object] }, { name: 'mcp__openbkn__get_kn_detail', description: 'Published v0.1.4 tool', parameters: [Object] }, { name: 'mcp__openbkn__get_logic_properties_values', description: 'Published v0.1.4 tool', parameters: [Object] }, { name: 'mcp__openbkn__get_object_types', description: 'Published v0.1.4 tool', parameters: [Object] }, { name: 'mcp__openbkn__get_relation_types', description: 'Published v0.1.4 tool', parameters: [Object] }, { name: 'mcp__openbkn__get_skill_content', description: 'Published v0.1.4 tool', parameters: [Object] }, { name: 'mcp__openbkn__list_skills', description: 'Published v0.1.4 tool', parameters: [Object] }, { name: 'mcp__openbkn__query_instance_subgraph', description: 'Published v0.1.4 tool', parameters: [Object] }, { name: 'mcp__openbkn__query_metric', description: 'Published v0.1.4 tool', parameters: [Object] }, { name: 'mcp__openbkn__query_object_instance', description: 'Published v0.1.4 tool', parameters: [Object] }, { name: 'mcp__openbkn__read_skill_file', description: 'Published v0.1.4 tool', parameters: [Object] }, { name: 'mcp__openbkn__run_code', description: 'Published v0.1.4 tool', parameters: [Object] }, { name: 'mcp__openbkn__search_instance', description: 'Published v0.1.4 tool', parameters: [Object] }, { name: 'mcp__openbkn__search_schema', description: 'Published v0.1.4 tool', parameters: [Object] } ],
+    operator: 'deepStrictEqual',
+    diff: 'simple'
+  }

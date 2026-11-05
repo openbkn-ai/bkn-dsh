@@ -1,0 +1,437 @@
+{
+  "kind": "mac-ci6-genuine-session-source-text-final-followup",
+  "atUtc": "2026-11-04T03:53:23.484917+00:00",
+  "formalAcceptanceEligible": false,
+  "candidate": {
+    "sourceCommit": "f01b316fbfb6be681af81e2267a7b3341e659efd",
+    "ciRun": 41596006291,
+    "artifactId": 13212518096,
+    "version": "0.2.1-rc.3-openbkn.0.2.1-3",
+    "tgzBytes": 877732,
+    "tgzSha256": "4500fa4357cdcdcb9914a39794aedb9096c948192c2bf0f35ecf4fadb882f046",
+    "installedFilesMatched": 126,
+    "businessSha256": "bac538d8de54f6b362ba39374b495cf39c6dfe89c4732074cfc966f98e1af7ad",
+    "clientSha256": "9ebfcac8f12743770b6d3e064ee5407ad49bd76ff742e5858c64c75148b30acd"
+  },
+  "environment": {
+    "officialMacDesktop": "0.2.1-rc.5",
+    "node": "24.21.0",
+    "electron": "44.7.0",
+    "platformOrigin": "https://192.168.50.28",
+    "platformTarget": "formal 0.2.0 EE",
+    "matchingCli": "official 0.2.0",
+    "sourceSessionPlatform": "Windows",
+    "newMacIsolation": true,
+    "platformVersionBoundary": "Maintainer-designated formal0.2.0 EE; per-service images not re-audited here."
+  },
+  "genuineSource": {
+    "sessionId": "session-58973674-89a4-43ae-a2b7-9f32e86032e3",
+    "conversationId": "conv_3d9d7a82c9984b25ae8d0c18a47adfe4",
+    "interactionId": "int_b00aabd41e40ea38eb1f9589f6057557",
+    "messageId": "5f3949b4-75d3-4a3f-978d-e16d9a828e86",
+    "knId": "supply_ontology_hand"
+  },
+  "prerequisite": {
+    "previousSingleNativeReaderGet": 200,
+    "interactionQuestionBytes": 77,
+    "interactionResultBytes": 2597,
+    "independentReaderNotRepeated": true,
+    "rootConversationNotIndependentlyReturnedByThatDetailResponse": true
+  },
+  "transfer": {
+    "tlsVerified": true,
+    "rsaOaepSha256": true,
+    "aes256GcmAuthenticated": true,
+    "aadMatched": true,
+    "cipherBytes": 623045,
+    "cipherSha256": "a4681ff0a52a000fd0cf54212bc477f2822c2cd22e98648d31f18c28b7729697",
+    "privateKeyKeptLocal": true,
+    "sourceSessionBytes": 349071,
+    "sourceSessionSha256": "49cce19d02d2410b8e34cc8b9d0568d88e871f02325427eb5357f5df3c13469c",
+    "sourceBindingBytes": 286,
+    "sourceBindingSha256": "008b60ef33f7842b580c16b6bc15eb8148a7330118cfd8f4e55cc802e8e27a7f",
+    "rootConfirmedRelayStopped": true
+  },
+  "restoration": {
+    "originalAttempt": "Official Mac persistence actually refused the Windows cwd in the header; original failure retained.",
+    "rootAuthorizedWorkingCopyCwdAdaptation": true,
+    "officialApi": "SessionPersistence.create/append/flush/open + WorkspaceRegistry.create/attachSession",
+    "changedHeaderKeys": [
+      "cwd"
+    ],
+    "originalEvents": 264,
+    "allOriginalEventsDeepEqual": true,
+    "allOriginalEventRawLinesByteIdentical": true,
+    "sameSessionAndMessageIds": true,
+    "sameConversationInteractionAndKnowledgeNetwork": true,
+    "originalBindingByteIdentical": true,
+    "extraHostRecords": [
+      {
+        "type": "session/end-seed",
+        "seq": 264,
+        "dataKeys": [],
+        "dataIsEmptyObject": true
+      }
+    ],
+    "originalAndWorkingBytesNeedNotBeEqual": true,
+    "originalFilesStillImmutable": true,
+    "workspaceAttachSucceeded": true,
+    "normalAnswerEntrySelectedTargetInteraction": true,
+    "localExistingAuthorizedRecordAndCliStoreCopiedWithoutChangingAuthorizationFlags": true,
+    "noNewBrowserLogin": true,
+    "finalComparison": {
+      "kind": "mac-ci6-final-generation3-session-candidate-comparison",
+      "atUtc": "2026-11-04T03:48:24.209Z",
+      "original": {
+        "bytes": 349071,
+        "records": 265,
+        "frames": 145
+      },
+      "work": {
+        "bytes": 139000,
+        "records": 266,
+        "frames": 3
+      },
+      "changedHeaderKeys": [
+        "cwd"
+      ],
+      "all264OriginalEventObjectsUnchanged": true,
+      "all264OriginalEventRawLinesUnchanged": true,
+      "eventDifferences": [],
+      "rawLineDifferences": [],
+      "extraRecords": [
+        {
+          "type": "session/end-seed",
+          "seq": 264,
+          "emptyData": true
+        }
+      ],
+      "candidateFiles": 126,
+      "candidateMismatches": [],
+      "tgzSha256": "4500fa4357cdcdcb9914a39794aedb9096c948192c2bf0f35ecf4fadb882f046"
+    },
+    "localCwdAdaptationIsNotPlatformMigrationFix": true
+  },
+  "results": {
+    "S1": {
+      "status": "PASS",
+      "path": "real output hover -> click popup body over its own trigger -> Escape; pointer remains at own trigger",
+      "samples": [
+        {
+          "targetMs": 1000,
+          "actualMs": 1378,
+          "childPresent": false,
+          "parentPresent": true
+        },
+        {
+          "targetMs": 3000,
+          "actualMs": 3080,
+          "childPresent": false,
+          "parentPresent": true
+        }
+      ],
+      "osPointerStayedAt": {
+        "x": 1127,
+        "y": 405
+      },
+      "pressedMouseButtons": []
+    },
+    "S2": {
+      "kind": "mac-ci6-native-strict-left-padding-over-own-output-trigger",
+      "escapeRequestedUtc": "2026-11-04T03:43:54.767Z",
+      "samples": [
+        {
+          "targetMs": 1000,
+          "actualMs": 1351,
+          "observedUtc": "2026-11-04T03:43:56.118Z",
+          "childPresent": false,
+          "parentPresent": true,
+          "focus": "4 container OpenBKN 业务溯源"
+        },
+        {
+          "targetMs": 3000,
+          "actualMs": 3082,
+          "observedUtc": "2026-11-04T03:43:57.849Z",
+          "childPresent": false,
+          "parentPresent": true,
+          "focus": "4 container OpenBKN 业务溯源"
+        }
+      ],
+      "pointer": {
+        "x": 1108,
+        "y": 370
+      },
+      "buttons": [],
+      "nativeWindowBounds": {
+        "x": 0,
+        "y": 30,
+        "width": 1920,
+        "height": 820
+      },
+      "paddingScreenPoint": {
+        "x": 1108,
+        "y": 370
+      },
+      "paddingWindowPoint": {
+        "x": 1108,
+        "y": 340
+      },
+      "childBodyWasFocusedBeforePadding": true,
+      "nativeScreenshotGeometryEstimates": {
+        "wholeOutputTrigger": {
+          "x": 1088,
+          "y": 280,
+          "width": 752,
+          "height": 68
+        },
+        "popupInner": {
+          "x": 1104,
+          "y": 260,
+          "width": 720,
+          "height": 540
+        },
+        "section": {
+          "x": 1116,
+          "y": 272,
+          "width": 696,
+          "height": 516
+        },
+        "leftAntdPaddingX": [
+          1104,
+          1116
+        ]
+      },
+      "domRectsNotInstrumented": true,
+      "arrowPathNotTested": true,
+      "status": "PASS_FOR_STRICT_LEFT_PADDING_PATH",
+      "focusAfterMovingToPadding": "native AX: container 本轮输出（原文）",
+      "targetLocationProof": "Native screenshot localization plus OS pointer before/after and frozen layout. Exact DOM/AX node hit not collected.",
+      "actualDomRects": "UNKNOWN/not instrumented; all rects in nativeScreenshotGeometryEstimates remain estimates.",
+      "arrowRect": "UNKNOWN/not measured",
+      "normalPreparation": "Official Window>Zoom1920x971; only bottom-edge height resize to820; rail unchanged. No CSS/DOM/DPI manipulation.",
+      "officialPanelMaxWidth": "min(1920px,100%)",
+      "popupMaxWidth": "min(720px,100vw-32px)",
+      "noS1S3RerunInThisFollowup": true,
+      "initialSkipRemainsHistorical": true
+    },
+    "S3": {
+      "status": "PASS",
+      "paths": [
+        {
+          "kind": "输入",
+          "key": "Return",
+          "startedUtc": "2026-11-04T03:31:20.049Z",
+          "escapeRequestedUtc": "2026-11-04T03:31:21.077Z",
+          "firstHoverRequestedUtc": "2026-11-04T03:31:22.127Z",
+          "observedUtc": "2026-11-04T03:31:22.790Z",
+          "samplingAfterEachActionMs": 400,
+          "keyOpened": true,
+          "escapeClosedChild": true,
+          "escapeRetainedParent": true,
+          "focusReturnedToOwnTrigger": true,
+          "firstActualHoverReopened": true
+        },
+        {
+          "kind": "输入",
+          "key": "space",
+          "startedUtc": "2026-11-04T03:31:23.780Z",
+          "escapeRequestedUtc": "2026-11-04T03:31:24.545Z",
+          "firstHoverRequestedUtc": "2026-11-04T03:31:25.312Z",
+          "observedUtc": "2026-11-04T03:31:25.981Z",
+          "samplingAfterEachActionMs": 400,
+          "keyOpened": true,
+          "escapeClosedChild": true,
+          "escapeRetainedParent": true,
+          "focusReturnedToOwnTrigger": true,
+          "firstActualHoverReopened": true
+        },
+        {
+          "kind": "输出",
+          "key": "Return",
+          "startedUtc": "2026-11-04T03:31:37.593Z",
+          "escapeRequestedUtc": "2026-11-04T03:31:38.379Z",
+          "firstHoverRequestedUtc": "2026-11-04T03:31:39.148Z",
+          "observedUtc": "2026-11-04T03:31:39.811Z",
+          "samplingAfterEachActionMs": 400,
+          "keyOpened": true,
+          "escapeClosedChild": true,
+          "escapeRetainedParent": true,
+          "focusReturnedToOwnTrigger": true,
+          "firstActualHoverReopened": true
+        },
+        {
+          "kind": "输出",
+          "key": "space",
+          "startedUtc": "2026-11-04T03:31:40.848Z",
+          "escapeRequestedUtc": "2026-11-04T03:31:41.633Z",
+          "firstHoverRequestedUtc": "2026-11-04T03:31:42.399Z",
+          "observedUtc": "2026-11-04T03:31:43.065Z",
+          "samplingAfterEachActionMs": 400,
+          "keyOpened": true,
+          "escapeClosedChild": true,
+          "escapeRetainedParent": true,
+          "focusReturnedToOwnTrigger": true,
+          "firstActualHoverReopened": true
+        }
+      ],
+      "initialFastSamplingRetained": "First input Enter probe sampled the exit/entry transitions too early and reported unclassified contradictory presence. Original snapshots/results retained. Four final paths sampled after 400ms; this is scoped UI evidence, not a unique-cause proof.",
+      "initialEarlySamplingBoundary": {
+        "initialNoSettlingDelayProgrammed": true,
+        "exactEarlyActionLatency": "UNKNOWN",
+        "originalEarlyBooleans": {
+          "keyOpened": true,
+          "escapeClosedChild": false,
+          "firstActualHoverReopened": false
+        },
+        "uniqueCause": "UNKNOWN; transition/sampling timing is consistent but not independently proved",
+        "noZeroLatencyOrContinuousClaim": true
+      }
+    }
+  },
+  "closeout": {
+    "exitCodes": [
+      0,
+      0,
+      0,
+      0
+    ],
+    "officialHostOrOwnHelperProcessesRemaining": 0,
+    "boundedProtectedFilesMatched": true,
+    "sourceBindingUnchanged": true,
+    "fixedCandidateFilesMatched": 126,
+    "fixedTgzUnchanged": true,
+    "launchServicesOnlyOwnDshHandlerTimestampChanged": true,
+    "launchServicesRestoredByteIdentical": true,
+    "newWorkcopyBindingPruneInFirstRejectedAttempt": "Original binding retained; first failed isolation copy disappeared, consistent with orphan pruning. Actual writer not observed. Successful adapted copy retained its byte-identical binding.",
+    "checkoutClean": true,
+    "finalRootPid": 36675,
+    "taskPortsNoLongerListening": [
+      57535,
+      57696,
+      58330
+    ],
+    "originalBindingByteIdentical": true,
+    "protectedScope": "OfficialEXE/ASAR, received originals, old task binding registry/YAML, original daily Mac sourceSession; no full-home snapshot.",
+    "noWholeSystemOrTccImmutabilityClaim": true,
+    "windowBoundsSeeHistory": true
+  },
+  "scope": {
+    "noModelQuestion": true,
+    "noExplanationOrAnalysisPost": true,
+    "noBusinessWrite": true,
+    "normalGuiNativeGetsOccurred": true,
+    "serverAfterNotMeasured": true,
+    "noHostOrPluginModification": true,
+    "noPlatformUpgradeOrConfigChange": true,
+    "noPushCiMergeTagOrPublish": true,
+    "noPassedMatrixRerun": true,
+    "S2NotCountedAsPass": false,
+    "noGlobalReleaseOrFullCompatibilityClaim": true,
+    "S2PassScope": "Strict left-padding path only; arrowNOT_RUN",
+    "platformMigrationIssue82": "independent; not fixed by local cwd metadata adaptation",
+    "formalCli021Install": "PENDING/NOT_RUN; no registry/install retry"
+  },
+  "privateEvidence": {
+    "manifestFiles": 124,
+    "manifestSha256": "50e36cc71ef840c726db1f1c17f4f1aa406915f55530955a60ac05aaa7bb7db9",
+    "originalsScreenshotsAxAuthAndRegistryNotReturned": true,
+    "noPrivateOriginalsUploadedToGitOrPublicFiles": true
+  },
+  "ciRun": 41596006291,
+  "genuineSourceObservation": {
+    "sourceS": "original native header",
+    "sourceM": "original assistant/message record index163",
+    "sourceC_I": "original retained events/finish receipt and visible native provenance selection",
+    "sourceKN": "immutable original binding",
+    "guiEntry": "normal Host transcript, second existing answer action selected targetI; C visible and currentRound2",
+    "runtimeButtonMessageIdOrOpaqueHandleWire": "UNKNOWN/not independently instrumented here; no manually supplied handle",
+    "guiFullBodyEqualityVsIndependentReader": "NOT_MEASURED; no repeat independent Reader GET"
+  },
+  "initialS2Stage": {
+    "kind": "mac-ci6-S2-native-geometry-limit",
+    "status": "SKIP",
+    "reason": "No native padding/arrow over its own output trigger was observed in the original geometry or after the only allowed resize. Popup body overlap is covered by S1, separately.",
+    "nativeResizeAttempts": 1,
+    "nativeRestoreAttempts": 1,
+    "beforeBounds": {
+      "x": 320,
+      "y": 66,
+      "width": 1280,
+      "height": 820
+    },
+    "afterResizeBounds": {
+      "x": 320,
+      "y": 66,
+      "width": 1305,
+      "height": 720
+    },
+    "afterRestoreBounds": {
+      "x": 320,
+      "y": 66,
+      "width": 1305,
+      "height": 820
+    },
+    "originalWidthRestored": false,
+    "widthRestoreCause": "UNKNOWN; no second geometry attempt or forced resize",
+    "noCssOrDomGeometryChange": true,
+    "onlyNewIsolatedWindowAffected": true,
+    "evidence": [
+      "S2-window-before.json",
+      "S2-window-resized.json",
+      "S2-resized-hover-private.png",
+      "S2-window-restored.json"
+    ]
+  },
+  "windowHistory": {
+    "initial": {
+      "x": 320,
+      "y": 66,
+      "width": 1280,
+      "height": 820
+    },
+    "firstResize": {
+      "x": 320,
+      "y": 66,
+      "width": 1305,
+      "height": 720
+    },
+    "firstRestore": {
+      "x": 320,
+      "y": 66,
+      "width": 1305,
+      "height": 820
+    },
+    "width1305Cause": "UNKNOWN; official minWidth520/active960 does not explain it",
+    "freshFollowup": {
+      "x": 320,
+      "y": 66,
+      "width": 1280,
+      "height": 820
+    },
+    "normalZoom": {
+      "x": 0,
+      "y": 30,
+      "width": 1920,
+      "height": 971
+    },
+    "testedScene": {
+      "x": 0,
+      "y": 30,
+      "width": 1920,
+      "height": 820
+    },
+    "restored": {
+      "x": 320,
+      "y": 106,
+      "width": 1280,
+      "height": 820
+    },
+    "restorationPositionDeviation": "Native Center40px lower than initial; only this new isolated window, now normally exited. Width and height restored. No daily window moved."
+  },
+  "priorPublicReport": {
+    "file": "MAC-CI6-GENUINE-SESSION-SOURCE-TEXT.json",
+    "bytes": 8681,
+    "sha256": "343518ffa5aac39b1b9073d8b8aa301b6de6f55d85d60b7903d0ca9758159b7b",
+    "unchanged": true
+  }
+}
