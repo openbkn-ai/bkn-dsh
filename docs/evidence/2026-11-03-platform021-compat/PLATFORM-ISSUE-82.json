@@ -1,0 +1,26 @@
+{
+  "issue": "https://github.com/openbkn-ai/openbkn-deploy/issues/82",
+  "number": 82,
+  "state": "open",
+  "createdAt": "2026-11-03T22:57:40Z",
+  "assignees": [
+    "lbb1656",
+    "leecky"
+  ],
+  "relatedIssues": [
+    "https://github.com/openbkn-ai/openbkn-deploy/issues/36"
+  ],
+  "assignmentBasis": "Live assignees of openbkn-deploy #36 and #35; prior observability routing to leecky",
+  "titleAndBodyReadbackMatched": true,
+  "assigneesReadbackMatched": true,
+  "independentPrepublicationReview": "Passed after changing live sample to inspected historical sample",
+  "publicBusinessTextOrCredentialsIncluded": false,
+  "pluginPackage": {
+    "bytes": 877732,
+    "sha256": "4500fa4357cdcdcb9914a39794aedb9096c948192c2bf0f35ecf4fadb882f046",
+    "unchanged": true
+  },
+  "migrationCodeChangedByThisTask": false,
+  "platformDataChangedByThisTask": false,
+  "remoteBuildOrReleaseDispatchedByThisTask": false
+}

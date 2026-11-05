@@ -1,0 +1,113 @@
+{
+  "createdAt": "2026-11-03T15:21:11.750065+00:00",
+  "classification": "task-private evidence; public-safe metadata content",
+  "directoryMode": "0o700",
+  "rawChannels": [
+    {
+      "channel": "Kubernetes deployment/pod/route configuration",
+      "retainedRaw": false,
+      "handling": "selected metadata saved; raw discarded from process memory"
+    },
+    {
+      "channel": "OpenSearch mappings/settings/stats",
+      "retainedRaw": false,
+      "handling": "metadata-only responses summarized; selected safe metadata saved"
+    },
+    {
+      "channel": "OpenSearch target queries",
+      "retainedRaw": false,
+      "handling": "_source metadata allowlist only; owner/ref values compared in memory and not persisted"
+    },
+    {
+      "channel": "container stdout/stderr",
+      "retainedRaw": false,
+      "handling": "zero lines; no body retained"
+    },
+    {
+      "channel": "image OCI metadata",
+      "retainedRaw": false,
+      "handling": "selected cached manifest/config build metadata only"
+    },
+    {
+      "channel": "local pre020 artifact backup",
+      "retainedRaw": false,
+      "handling": "source agent independent streaming; only redacted metadata/lengths integrated; ops did not reread backup"
+    }
+  ],
+  "receiptFacts": {
+    "receiptCount": 6,
+    "allCompleted": true,
+    "allDurable": true,
+    "allArtifactRefsEmpty": true,
+    "closureAnswerRefPresentCount": 1
+  },
+  "files": [
+    {
+      "name": "COMMAND_SOURCE_INDEX.md",
+      "bytes": 4255,
+      "mode": "0o600",
+      "sha256": "f6fb62ec5397f62b1efec3e1d70fe3ad863540402213f0dd783c167f05b28035"
+    },
+    {
+      "name": "PHASE3-RCA.zh.md",
+      "bytes": 8883,
+      "mode": "0o600",
+      "sha256": "ecf11f530ec827b422d8520f43f41731f689f2587f6e4e83c5674f29a5d165ef"
+    },
+    {
+      "name": "stage3-image-build-metadata.json",
+      "bytes": 1070,
+      "mode": "0o600",
+      "sha256": "8dfa0af00a761560a580c8de8b83327d5a7c9b19996377f2f6980402146e79cb"
+    },
+    {
+      "name": "stage3-local-backup-metadata.json",
+      "bytes": 1964,
+      "mode": "0o600",
+      "sha256": "532f2f87993613c790894240db23f9d87045c062b4f561a2853334f4c4f06719"
+    },
+    {
+      "name": "stage3-log-config-metadata.json",
+      "bytes": 532,
+      "mode": "0o600",
+      "sha256": "f76d7017f1afcdc9d3e7e0fc5bf354049f138c174fc356b030a39a79609e1031"
+    },
+    {
+      "name": "stage3-opensearch-schema.json",
+      "bytes": 7827,
+      "mode": "0o600",
+      "sha256": "6cedac2bdbe87da745b671c8d00d383580e78c554953ac89ad0f70b3bd5434e0"
+    },
+    {
+      "name": "stage3-port-forward-inventory.json",
+      "bytes": 583,
+      "mode": "0o600",
+      "sha256": "374a47d5197792feaf5c38437c04b2d01326d5ac55d8b1c089e2ddefaea338a8"
+    },
+    {
+      "name": "stage3-port-forward-schema.json",
+      "bytes": 583,
+      "mode": "0o600",
+      "sha256": "f75c345d95854027ee111e27938b9e02eb626617771ee83f1b3b468a6c33af92"
+    },
+    {
+      "name": "stage3-port-forward-target.json",
+      "bytes": 583,
+      "mode": "0o600",
+      "sha256": "de1b2ebc5bb8587475e0e727c218f38948db44192319cd22662df07e9de77365"
+    },
+    {
+      "name": "stage3-projection-index-inventory.json",
+      "bytes": 16726,
+      "mode": "0o600",
+      "sha256": "0b2d760072e02d20e9cc363c5a9512f7816aa5e1d2f25b6b16b912392851ec12"
+    },
+    {
+      "name": "stage3-target-metadata.json",
+      "bytes": 30034,
+      "mode": "0o600",
+      "sha256": "60a5702719319e9bcc9604963254d3091579cb525f79a0493d16a08075ec6a81"
+    }
+  ],
+  "updatedAt": "2026-11-03T15:24:25.875850+00:00"
+}

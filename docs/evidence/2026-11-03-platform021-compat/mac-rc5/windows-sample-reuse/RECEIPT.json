@@ -1,0 +1,62 @@
+{
+  "receivedAt": "2026-11-04T04:01:10.288484+00:00",
+  "sourceThread": "01a15340-6507-7660-a68d-68994e283415",
+  "sourceTurn": "01a1a48b-8e72-7053-b199-771e2020cec5",
+  "transport": "Actual commandExecution stdout gzip+base64; compressed size, decompressed bytes, UTF8 and SHA256 checked",
+  "files": [
+    {
+      "file": "MAC-CI6-GENUINE-SESSION-SOURCE-TEXT-FINAL.json",
+      "bytes": 15036,
+      "sha256": "d69bc661fa09329d21c9fe7f3fd166c0f272ecc6c9e7557a208ece70259dfced",
+      "sourceCommandExecutionId": "exec-03a8dee1-d489-4630-b348-559a22da3bfb",
+      "gzipBytes": 5127,
+      "nativeStdoutTruncated": false
+    },
+    {
+      "file": "MAC-CI6-GENUINE-SESSION-SOURCE-TEXT-FINAL.zh.md",
+      "bytes": 5971,
+      "sha256": "baa5fe37207300bdc5d82e8e4a47fd0fcf44b8da01cab80a1e42eed6ad0e9cf7",
+      "sourceCommandExecutionId": "exec-3f421afa-645c-4f0e-985c-ab66721e2645",
+      "gzipBytes": 3708,
+      "nativeStdoutTruncated": false
+    }
+  ],
+  "review": "Public original byte identity and internal consistency independently checked by root; primary native operation remains attributed to remote Mac",
+  "acceptance": "SCOPED_NATIVE_S1_S3_AND_VISUAL_LEFT_PADDING_S2",
+  "formalAcceptanceEligible": false,
+  "limits": [
+    "S2 rectangles are native screenshot estimates; exact DOM/AX hit unknown",
+    "S2 arrow not run",
+    "S3 immediate/continuous transition behavior not established; 400ms stable observations",
+    "Button/message wire and opaque handle not independently instrumented",
+    "GUI full-body equality against independent Reader not remeasured",
+    "Server-side After snapshot not measured",
+    "Only bounded protected-file/process checks; no whole-home/system audit",
+    "Final isolated-window position 40px lower; width/height restored"
+  ],
+  "originalReportsPreserved": true,
+  "businessTextCredentialsOrTransportSecretsPublished": false,
+  "packageChanged": false,
+  "platformBusinessWrites": false,
+  "geometryCoordinateFrameClarification": {
+    "sourceTurn": "01a1a4b4-084e-70d3-a46a-f29b6568534b",
+    "frame": "native window screenshot including top area; not DOM viewport",
+    "nativeScale": 1,
+    "screenPoint": [
+      1108,
+      370
+    ],
+    "windowOrigin": [
+      0,
+      30
+    ],
+    "windowScreenshotPoint": [
+      1108,
+      340
+    ],
+    "estimatedOwnTriggerAndInnerContainPoint": true,
+    "estimatedSectionDoesNotContainPoint": true,
+    "exactDomAxHit": "UNKNOWN",
+    "originalReportsUnchanged": true
+  }
+}

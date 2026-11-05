@@ -1,0 +1,295 @@
+{
+  "observedAt": "2026-11-03T15:28:26.208541+00:00",
+  "queryContext": "native HTTP via owned localhost port-forward; no Authorization header; OpenSearch effective principal/DLS/FLS unknown",
+  "targetInteractionId": "int_3e92559bb0fbe9e5f83c110ce7ca3100",
+  "noArtifactContentRequested": true,
+  "sourcePrivateMetadataPath": "/Users/kalias/Documents/project/app/openBKN/bkn-dsh-provenance-parity-live-20261102/release/platform021-compat-20261103/s123-recovery-20261103/ops/private/original-artifact-metadata.json",
+  "commands": [
+    {
+      "method": "GET",
+      "endpointClass": "target receipt metadata",
+      "sourceIncludes": [
+        "receipt_id",
+        "interaction_id",
+        "conversation_id",
+        "operation_id",
+        "request_id",
+        "trace_id",
+        "owner",
+        "knowledge_network_ids",
+        "artifact_refs",
+        "receipt_status",
+        "evidence_durability"
+      ],
+      "exactSelectorValuesWithheld": true
+    },
+    {
+      "method": "GET",
+      "endpointClass": "current artifact by original real document ID",
+      "sourceIncludes": [
+        "artifact_id",
+        "artifact_type",
+        "interaction_id",
+        "operation_id",
+        "trace_id",
+        "bkn.request.id",
+        "bkn.account.id",
+        "bkn.account.type",
+        "effective_subject_id",
+        "application_principal_id",
+        "knowledge_network_ids",
+        "schema_version",
+        "content_type",
+        "observed_at"
+      ],
+      "exactSelectorValuesWithheld": true
+    },
+    {
+      "method": "GET",
+      "endpointClass": "current artifact by original real document ID",
+      "sourceIncludes": [
+        "artifact_id",
+        "artifact_type",
+        "interaction_id",
+        "operation_id",
+        "trace_id",
+        "bkn.request.id",
+        "bkn.account.id",
+        "bkn.account.type",
+        "effective_subject_id",
+        "application_principal_id",
+        "knowledge_network_ids",
+        "schema_version",
+        "content_type",
+        "observed_at"
+      ],
+      "exactSelectorValuesWithheld": true
+    },
+    {
+      "method": "GET",
+      "endpointClass": "evidence aggregate by exact private trace-derived ID",
+      "sourceIncludes": [
+        "document_id",
+        "trace_id",
+        "bkn.request.id",
+        "bkn.conversation.id",
+        "bkn.account.id",
+        "bkn.account.type",
+        "effective_subject_id",
+        "application_principal_id",
+        "knowledge_network_ids",
+        "aggregate",
+        "events.event_type",
+        "events.interaction_id",
+        "events.operation_id",
+        "events.trace_id",
+        "events.bkn.request.id",
+        "events.payload.question_artifact_ref",
+        "events.payload.result_artifact_ref",
+        "events.payload.input_artifact_ref",
+        "events.payload.query_artifact_ref",
+        "events.payload.reason_artifact_ref"
+      ],
+      "exactSelectorValuesWithheld": true
+    },
+    {
+      "method": "GET",
+      "endpointClass": "exact original trace metadata fallback",
+      "sourceIncludes": [
+        "document_id",
+        "trace_id",
+        "bkn.request.id",
+        "bkn.conversation.id",
+        "bkn.account.id",
+        "bkn.account.type",
+        "effective_subject_id",
+        "application_principal_id",
+        "knowledge_network_ids",
+        "aggregate",
+        "events.event_type",
+        "events.interaction_id",
+        "events.operation_id",
+        "events.trace_id",
+        "events.bkn.request.id",
+        "events.payload.question_artifact_ref",
+        "events.payload.result_artifact_ref",
+        "events.payload.input_artifact_ref",
+        "events.payload.query_artifact_ref",
+        "events.payload.reason_artifact_ref"
+      ],
+      "exactSelectorValuesWithheld": true
+    },
+    {
+      "method": "GET",
+      "endpointClass": "evidence aggregate by exact private trace-derived ID",
+      "sourceIncludes": [
+        "document_id",
+        "trace_id",
+        "bkn.request.id",
+        "bkn.conversation.id",
+        "bkn.account.id",
+        "bkn.account.type",
+        "effective_subject_id",
+        "application_principal_id",
+        "knowledge_network_ids",
+        "aggregate",
+        "events.event_type",
+        "events.interaction_id",
+        "events.operation_id",
+        "events.trace_id",
+        "events.bkn.request.id",
+        "events.payload.question_artifact_ref",
+        "events.payload.result_artifact_ref",
+        "events.payload.input_artifact_ref",
+        "events.payload.query_artifact_ref",
+        "events.payload.reason_artifact_ref"
+      ],
+      "exactSelectorValuesWithheld": true
+    },
+    {
+      "method": "GET",
+      "endpointClass": "exact original trace metadata fallback",
+      "sourceIncludes": [
+        "document_id",
+        "trace_id",
+        "bkn.request.id",
+        "bkn.conversation.id",
+        "bkn.account.id",
+        "bkn.account.type",
+        "effective_subject_id",
+        "application_principal_id",
+        "knowledge_network_ids",
+        "aggregate",
+        "events.event_type",
+        "events.interaction_id",
+        "events.operation_id",
+        "events.trace_id",
+        "events.bkn.request.id",
+        "events.payload.question_artifact_ref",
+        "events.payload.result_artifact_ref",
+        "events.payload.input_artifact_ref",
+        "events.payload.query_artifact_ref",
+        "events.payload.reason_artifact_ref"
+      ],
+      "exactSelectorValuesWithheld": true
+    }
+  ],
+  "artifactChecks": [
+    {
+      "artifactType": "question",
+      "originalArtifactRefSyntaxValid": true,
+      "originalInteractionMatchesTarget": true,
+      "originalOperationIdAbsentOrEmpty": true,
+      "currentByIdHttpStatus": 404,
+      "currentByIdFoundInQueryContext": false,
+      "currentFoundRawFlag": false,
+      "originalRequestMatchesTargetReceiptCount": 0,
+      "originalTraceMatchesTargetReceiptCount": 0,
+      "originalOwnerMatchesTargetReceiptCount": 6,
+      "originalAccountScopePresent": true,
+      "currentMetadataTypeMatches": null,
+      "currentOwnerMatchesOriginal": null
+    },
+    {
+      "artifactType": "result",
+      "originalArtifactRefSyntaxValid": true,
+      "originalInteractionMatchesTarget": true,
+      "originalOperationIdAbsentOrEmpty": true,
+      "currentByIdHttpStatus": 404,
+      "currentByIdFoundInQueryContext": false,
+      "currentFoundRawFlag": false,
+      "originalRequestMatchesTargetReceiptCount": 0,
+      "originalTraceMatchesTargetReceiptCount": 0,
+      "originalOwnerMatchesTargetReceiptCount": 6,
+      "originalAccountScopePresent": true,
+      "currentMetadataTypeMatches": null,
+      "currentOwnerMatchesOriginal": null
+    }
+  ],
+  "traceMetadata": [
+    {
+      "privateTraceOrdinal": 1,
+      "aggregateHttpStatus": 404,
+      "aggregateFoundInQueryContext": false,
+      "fallbackSearchHttpStatus": 200,
+      "fallbackSearchTotal": {
+        "value": 0,
+        "relation": "eq"
+      },
+      "returnedDocCount": 0,
+      "projectedEventMetadataCount": 0,
+      "byArtifact": [
+        {
+          "artifactType": "question",
+          "originalTraceMetadataDocCount": 0,
+          "topLevelTraceIdMatches": null,
+          "originalRequestMatchesAnyTrace": null,
+          "ownerMatchesAnyTrace": null,
+          "accountMatchesAnyTrace": null,
+          "matchingArtifactLinkCount": 0,
+          "validTypeRoleLinkCount": 0,
+          "links": [],
+          "linkRoleAssessment": "UNKNOWN: no original trace metadata returned in query context"
+        }
+      ]
+    },
+    {
+      "privateTraceOrdinal": 2,
+      "aggregateHttpStatus": 404,
+      "aggregateFoundInQueryContext": false,
+      "fallbackSearchHttpStatus": 200,
+      "fallbackSearchTotal": {
+        "value": 0,
+        "relation": "eq"
+      },
+      "returnedDocCount": 0,
+      "projectedEventMetadataCount": 0,
+      "byArtifact": [
+        {
+          "artifactType": "result",
+          "originalTraceMetadataDocCount": 0,
+          "topLevelTraceIdMatches": null,
+          "originalRequestMatchesAnyTrace": null,
+          "ownerMatchesAnyTrace": null,
+          "accountMatchesAnyTrace": null,
+          "matchingArtifactLinkCount": 0,
+          "validTypeRoleLinkCount": 0,
+          "links": [],
+          "linkRoleAssessment": "UNKNOWN: no original trace metadata returned in query context"
+        }
+      ]
+    }
+  ],
+  "receiptMetadata": {
+    "httpStatus": 200,
+    "sizeBound": 16,
+    "total": {
+      "value": 6,
+      "relation": "eq"
+    },
+    "returned": 6,
+    "allTargetI": true,
+    "allOwnerConsistent": true,
+    "allCompleted": true,
+    "allDurable": true
+  },
+  "completedAt": "2026-11-03T15:28:26.478536+00:00",
+  "conditionalSourceFinding": {
+    "sourceCommit": "81d5752826f3b3f3f72f3ad4cb1e22d45e99ab4b",
+    "notDeployedSourcePin": true,
+    "terminalArtifactsMayRebindRequestTraceInMemory": true,
+    "sourceLocation": "opensearchcoreprojection/source.go:552-612",
+    "doesNotRequireStoredOriginalTraceForThisFallback": true,
+    "doesNotRequireChangingOriginalIdsOrReceipts": true,
+    "nativeImportValidationOrReadbackRun": false
+  },
+  "independentBackupHashReceipt": {
+    "sourceAgent": "/root/platform021_mcp_delta",
+    "originalScalarQuestionStoredHashMatchesFixedAlgorithm": true,
+    "originalScalarResultStoredHashMatchesFixedAlgorithm": true,
+    "wrappingAsTextObjectWouldChangeBothHashes": true,
+    "fullNormalizeOrNativeValidatorRun": false,
+    "crossHostOriginalContentExactComparisonRun": false,
+    "hashValuesRetained": false
+  }
+}

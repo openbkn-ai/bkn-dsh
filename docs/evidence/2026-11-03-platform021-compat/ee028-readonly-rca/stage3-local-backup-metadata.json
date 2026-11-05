@@ -1,0 +1,58 @@
+{
+  "reportedAt": "2026-11-03T15:24:25.875224+00:00",
+  "sourceAgent": "/root/platform021_mcp_delta",
+  "evidenceMethod": "independent task-authorized private streaming read; ops did not repeat backup read",
+  "backupPath": "/Users/kalias/Documents/project/app/openBKN/platform-local-recovery/backup-20261103-pre020/artifacts-015-backup.ndjson",
+  "bytes": 413343949,
+  "mtime": "2026-11-03T11:34:22+08:00",
+  "jsonLines": 7062,
+  "parseErrors": 0,
+  "documentShape": "flat artifact document",
+  "targetInteractionMatches": 2,
+  "distinctArtifactIds": 2,
+  "targetArtifacts": [
+    {
+      "artifactType": "question",
+      "schemaVersion": "2.2.0",
+      "operationIdAbsentOrEmpty": true,
+      "artifactIdPresent": true,
+      "requestIdPresent": true,
+      "traceIdPresent": true,
+      "contentHashPresent": true,
+      "contentJsonDecodedType": "string",
+      "nonemptyAfterGoTrimSpace": true,
+      "utf8Bytes": 147,
+      "accountMetadataPresent": true,
+      "effectiveSubjectPresent": true,
+      "applicationPrincipalPresent": true,
+      "knowledgeNetworkCount": 0
+    },
+    {
+      "artifactType": "result",
+      "schemaVersion": "2.2.0",
+      "operationIdAbsentOrEmpty": true,
+      "artifactIdPresent": true,
+      "requestIdPresent": true,
+      "traceIdPresent": true,
+      "contentHashPresent": true,
+      "contentJsonDecodedType": "string",
+      "nonemptyAfterGoTrimSpace": true,
+      "utf8Bytes": 2852,
+      "accountMetadataPresent": true,
+      "effectiveSubjectPresent": true,
+      "applicationPrincipalPresent": true,
+      "knowledgeNetworkCount": 0
+    }
+  ],
+  "unknown": [
+    "current Summary actual q/r refs",
+    "current by-ref document existence",
+    "complete request/link-role match",
+    "stored content_hash validity",
+    "actual deployed source commit",
+    "server-side query visibility constraints"
+  ],
+  "noContentOrRefValuesRetained": true,
+  "backupUnchangedPerSourceAgent": true,
+  "importOrWriteCount": 0
+}

@@ -1,0 +1,25 @@
+{
+  "observedAt": "2026-11-03T15:15:42.815293+00:00",
+  "containers": [
+    {
+      "name": "agent-observability",
+      "explicitCommandCount": 0,
+      "explicitArgCount": 0,
+      "volumeMounts": [],
+      "loggingConfigEnv": [
+        {
+          "name": "BKN_TRACE_LOG_LEVEL",
+          "source": "literal",
+          "present": true,
+          "enum": "info"
+        },
+        {
+          "name": "OPENSEARCH_LOG_INDEX",
+          "source": "literal",
+          "present": true
+        }
+      ]
+    }
+  ],
+  "volumes": []
+}

@@ -1,0 +1,24 @@
+{
+  "createdAt": "2026-11-03T15:28:26.208392+00:00",
+  "ownerPid": 22399,
+  "launcherPid": 22398,
+  "listenAddress": "127.0.0.1",
+  "port": 54524,
+  "target": "resource/service/opensearch-cluster-master:9200",
+  "command": [
+    "kubectl",
+    "--context",
+    "kind-bkn-dev",
+    "--request-timeout=20s",
+    "-n",
+    "resource",
+    "port-forward",
+    "--address=127.0.0.1",
+    "service/opensearch-cluster-master",
+    "54524:9200"
+  ],
+  "closedAt": "2026-11-03T15:28:26.479645+00:00",
+  "exitCode": -15,
+  "processStillRunning": false,
+  "capturedProcessLogsWithheld": true
+}

@@ -1,0 +1,307 @@
+{
+  "observedAt": "2026-11-03T15:14:42.021610+00:00",
+  "readOnly": true,
+  "noArtifactContentRequested": true,
+  "indices": [
+    {
+      "index": "bkn-trace-evidence-v2",
+      "settings": {
+        "httpStatus": 200,
+        "data": {
+          "bkn-trace-evidence-v2": {
+            "settings": {
+              "index": {
+                "creation_date": "1790142423286",
+                "uuid": "aFX-ZKysSeyQFW-fsIyiIw",
+                "version": {
+                  "created": "136408227"
+                }
+              }
+            }
+          }
+        }
+      },
+      "mapping": {
+        "httpStatus": 200,
+        "indices": [
+          {
+            "name": "bkn-trace-evidence-v2",
+            "fields": [
+              {
+                "path": "accepted_event_count",
+                "type": "integer"
+              },
+              {
+                "path": "aggregate",
+                "type": "boolean"
+              },
+              {
+                "path": "application_principal_id",
+                "type": "keyword"
+              },
+              {
+                "path": "bkn",
+                "type": "object"
+              },
+              {
+                "path": "bkn.account",
+                "type": "object"
+              },
+              {
+                "path": "bkn.account.id",
+                "type": "keyword"
+              },
+              {
+                "path": "bkn.account.type",
+                "type": "keyword"
+              },
+              {
+                "path": "bkn.conversation",
+                "type": "object"
+              },
+              {
+                "path": "bkn.conversation.id",
+                "type": "keyword"
+              },
+              {
+                "path": "bkn.request",
+                "type": "object"
+              },
+              {
+                "path": "bkn.request.id",
+                "type": "keyword"
+              },
+              {
+                "path": "bkn.tenant",
+                "type": "object"
+              },
+              {
+                "path": "bkn.tenant.id",
+                "type": "keyword"
+              },
+              {
+                "path": "bkn.trace",
+                "type": "object"
+              },
+              {
+                "path": "bkn.trace.schema",
+                "type": "object"
+              },
+              {
+                "path": "bkn.trace.schema.version",
+                "type": "keyword"
+              },
+              {
+                "path": "business_domain",
+                "type": "keyword"
+              },
+              {
+                "path": "business_ref_count",
+                "type": "integer"
+              },
+              {
+                "path": "claim_count",
+                "type": "integer"
+              },
+              {
+                "path": "claim_ids",
+                "type": "keyword"
+              },
+              {
+                "path": "document_id",
+                "type": "keyword"
+              },
+              {
+                "path": "effective_subject_id",
+                "type": "keyword"
+              },
+              {
+                "path": "events",
+                "type": "object"
+              },
+              {
+                "path": "evidence_ref_count",
+                "type": "integer"
+              },
+              {
+                "path": "ingested_at",
+                "type": "date"
+              },
+              {
+                "path": "knowledge_network_ids",
+                "type": "keyword"
+              },
+              {
+                "path": "observed_start",
+                "type": "date"
+              },
+              {
+                "path": "trace_id",
+                "type": "keyword"
+              }
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "index": "bkn-trace-evidence-v2-artifacts",
+      "settings": {
+        "httpStatus": 200,
+        "data": {
+          "bkn-trace-evidence-v2-artifacts": {
+            "settings": {
+              "index": {
+                "creation_date": "1793677586335",
+                "uuid": "srUc_dzaQEm3N8H54jM0jw",
+                "version": {
+                  "created": "136408227"
+                }
+              }
+            }
+          }
+        }
+      },
+      "mapping": {
+        "httpStatus": 200,
+        "indices": [
+          {
+            "name": "bkn-trace-evidence-v2-artifacts",
+            "fields": [
+              {
+                "path": "agent_or_app",
+                "type": "keyword"
+              },
+              {
+                "path": "application_principal_id",
+                "type": "keyword"
+              },
+              {
+                "path": "artifact_id",
+                "type": "keyword"
+              },
+              {
+                "path": "artifact_type",
+                "type": "keyword"
+              },
+              {
+                "path": "as_of",
+                "type": "date"
+              },
+              {
+                "path": "bkn",
+                "type": "object"
+              },
+              {
+                "path": "bkn.account",
+                "type": "object"
+              },
+              {
+                "path": "bkn.account.id",
+                "type": "keyword"
+              },
+              {
+                "path": "bkn.account.type",
+                "type": "keyword"
+              },
+              {
+                "path": "bkn.request",
+                "type": "object"
+              },
+              {
+                "path": "bkn.request.id",
+                "type": "keyword"
+              },
+              {
+                "path": "business_refs",
+                "type": "keyword"
+              },
+              {
+                "path": "claim_id",
+                "type": "keyword"
+              },
+              {
+                "path": "content_hash",
+                "type": "keyword"
+              },
+              {
+                "path": "content_json",
+                "type": "keyword"
+              },
+              {
+                "path": "content_type",
+                "type": "keyword"
+              },
+              {
+                "path": "effective_subject_id",
+                "type": "keyword"
+              },
+              {
+                "path": "initiator",
+                "type": "keyword"
+              },
+              {
+                "path": "interaction_id",
+                "type": "keyword"
+              },
+              {
+                "path": "knowledge_network_ids",
+                "type": "keyword"
+              },
+              {
+                "path": "observed_at",
+                "type": "date"
+              },
+              {
+                "path": "operation_id",
+                "type": "keyword"
+              },
+              {
+                "path": "schema_version",
+                "type": "keyword"
+              },
+              {
+                "path": "snapshot_ref",
+                "type": "keyword"
+              },
+              {
+                "path": "source_ref",
+                "type": "keyword"
+              },
+              {
+                "path": "source_version",
+                "type": "keyword"
+              },
+              {
+                "path": "trace_id",
+                "type": "keyword"
+              }
+            ]
+          }
+        ]
+      }
+    }
+  ],
+  "resolution": {
+    "httpStatus": 200,
+    "data": {
+      "indices": [
+        {
+          "name": "bkn-trace-evidence-v2",
+          "attributes": [
+            "open"
+          ]
+        },
+        {
+          "name": "bkn-trace-evidence-v2-artifacts",
+          "attributes": [
+            "open"
+          ]
+        }
+      ],
+      "aliases": [],
+      "data_streams": []
+    }
+  },
+  "completedAt": "2026-11-03T15:14:42.389129+00:00"
+}

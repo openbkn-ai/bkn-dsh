@@ -2,9 +2,13 @@
 
 ## 新增平台0.2.1兼容后再发布（2026-11-03）
 
+**2026-11-04 Mac补证已核收**：私下复用Windows真实原Session，经官方Macrc.5隔离恢复，仅header.cwd本机适配、264原事件原始行和原binding不变。S1、S3四键盘路径及S2左padding在限定原生观察范围通过；S2矩形是截图估计，精确DOM/AX命中未知、arrow未测。见[回执与边界](../../evidence/2026-11-03-platform021-compat/MAC-SOURCE-TEXT-CLOSEOUT.zh.md)。原Mac迁移#82独立，不再当作所有Mac测试前置。包与平台/模型输出不改，无Windows重跑/新CI；正式CLI021安装仍待验。
+
+**历史前提恢复阶段：Mac原生鼠标权限已恢复，原样本当时缺原文。** 两份新权限回执已按bytes/SHA核收并独立复核；当前平台索引未见原question/result，原备份仍在。目标历史迁移组因call_facts输入被拒绝；已定位迁移器将持久化控制metadata直接塞入严格原生DTO的静态契约缺口，不能删字段、改回答或只补两条artifact绕过校验。见[只读RCA与当前三项状态](../../evidence/2026-11-03-platform021-compat/EE028-READONLY-RCA.zh.md)、[平台迁移后续范围](../../evidence/2026-11-03-platform021-compat/PLATFORM-RECOVERY-PLAN.zh.md)。正式CLI0.2.1安装按维护者要求保留待验，本轮未查询/安装；现有CI6包、已过项、平台/模型输出不变，没有远端CI或发布。
+
 维护者已选择补齐平台0.2.1兼容、保留旧版后再发-3。新增固定CLI0.2.1安装目标及受影响测试，不绕过官方版本检查，不新增直接SDK依赖，不干预平台/模型输出。新版query_metric与finish未确认合同独立补测；Foundry main与SDK rc仅为准备基线，不冒称最终平台/CLI通过。开发和新候选固定后，原远程Mac会话在其现任务后使用50.129核实际身份并做最小隔离验收；已验0.2.0及CI5/Windows历史不覆盖或为记账重跑。当前工作与发布门槛见[兼容记录](../../evidence/2026-11-03-platform021-compat/README.zh.md)。
 
-**CI6出包完成**：f01b316 / CI41596006291（publish=false），844通过/1跳过、仓库79/79、MCP1/1、双官方npm Host受控通过；artifact13212518096，126文件/TGZ4500fa43…。本地/CI逐文件和解压tar一致，8文件相对CI5变化、118不变。Mac待接续原未完成SourceText与新CLI/平台项，Windows按追加授权做增量验证；两端使用同一新CI包，既有通过不重跑。正式CLI0.2.1公共包仍E404，最终身份/实机门槛未勾填，未发布/latest。
+**CI6出包完成**：f01b316 / CI41596006291（publish=false），844通过/1跳过、仓库79/79、MCP1/1、双官方npm Host受控通过；artifact13212518096，126文件/TGZ4500fa43…。本地/CI逐文件和解压tar一致，8文件相对CI5变化、118不变。两端新CLI预发布范围增量与后续补充已核收，见[逐项判断](../../evidence/2026-11-03-platform021-compat/INTAKE-REVIEW.zh.md)；企业28只补Mac原S1–S3。正式CLI0.2.1最近一次历史查询为E404，本轮明确保留待验，不重查/安装；现有包和已通过项不重跑，未发布/latest。
 
 ## 发布前 CI 与远程 E2E（2026-11-02）
 
