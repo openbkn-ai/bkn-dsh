@@ -44,6 +44,7 @@ def validate_receipt(d):
     require(d.get('candidate_sha256') == SHA and d.get('candidate_source') == SOURCE,
             'Receipt refers to a different candidate')
     require(d.get('platform') == '0.2.1' and d.get('cli') == '0.2.1', 'Formal versions required')
+    require(d.get('host_version') == '0.2.1-rc.5', 'Native Host acceptance must use official rc.5')
     require(d.get('mac_native') is True and d.get('windows_native') is True,
             'Both affected native forms must be accepted')
     require(d.get('platform_origin') == 'https://192.168.50.129', 'Wrong acceptance platform')
@@ -73,7 +74,7 @@ def validate_archive(raw):
 
 
 def validate_source_changes(paths):
-    allowed = {'CLAUDE.md', '.github/workflows/release-plugin.yml',
+    allowed = {'CLAUDE.md', 'README.md', 'README.zh.md', 'CHANGELOG.md', '.github/workflows/release-plugin.yml',
                'scripts/publish-accepted-ci6.py', 'tests/test_publish_accepted_ci6.py'}
     require(all(p in allowed or p.startswith('docs/') for p in paths),
             'Files outside reviewed release plumbing/documentation changed')
@@ -93,10 +94,21 @@ def metadata():
 def registry_archive():
     # Do not follow an arbitrary dist.tarball returned by registry metadata.
     url = REGISTRY + '/@openbkn/dsh-business-context/-/dsh-business-context-' + VERSION + '.tgz'
-    with urllib.request.urlopen(url, timeout=60) as response:
-        raw = response.read(2_000_000)
-    validate_archive(raw)
-    return raw
+    for attempt in range(12):
+        try:
+            with urllib.request.urlopen(url, timeout=60) as response:
+                raw = response.read(2_000_000)
+            validate_archive(raw)
+            return raw
+        except urllib.error.HTTPError as error:
+            if error.code not in (404, 408, 429) and error.code < 500:
+                raise
+            if attempt == 11:
+                raise
+        except (urllib.error.URLError, TimeoutError):
+            if attempt == 11:
+                raise
+        time.sleep(10)
 
 
 def prepare():
@@ -111,6 +123,10 @@ def prepare():
         require(str(p).startswith('docs/evidence/') and '..' not in p.parts, 'Invalid evidence path')
         require(hashlib.sha256(p.read_bytes()).hexdigest() == row['sha256'], 'Evidence byte mismatch')
     validate_origin(gh('actions/runs/' + str(RUN)), gh('actions/artifacts/' + str(ARTIFACT)))
+    # The accepted source predates a squash merge and need not be in main's history.
+    if subprocess.run(['git', 'cat-file', '-e', SOURCE + '^{commit}'], capture_output=True).returncode:
+        subprocess.run(['git', 'fetch', '--no-tags', 'origin', SOURCE], check=True)
+    require(command('git', 'rev-parse', SOURCE + '^{commit}') == SOURCE, 'Missing accepted source')
     validate_source_changes(command('git', 'diff', '--name-only', SOURCE, 'HEAD').splitlines())
     # Release plumbing/documentation may differ; all compilation inputs must match.
     inputs = ['packages', 'compat', 'runtime', 'package.json', 'pnpm-lock.yaml',
@@ -161,14 +177,15 @@ def release():
         # Creation itself fails closed for auth/network errors or existing refs.
         subprocess.run(['gh', 'api', '--method', 'POST', 'repos/' + REPO + '/git/refs',
                         '-f', 'ref=refs/tags/' + tag, '-f', 'sha=' + os.environ['GITHUB_SHA']], check=True)
-    manifest = json.loads(Path('runtime/openbkn-dsh-runtime.manifest.json').read_text())
-    host = manifest['plugin'].get('hostVersion', manifest['dsh']['tag'].removeprefix('dsh-v'))
+    receipt = json.loads(RECEIPT.read_text())
+    validate_receipt(receipt)
+    host = receipt['host_version']
     notes = command('node', 'scripts/plugin-release-notes.mjs', '--version', VERSION,
                     '--package', NAME, '--dsh-tag', 'dsh-v' + host, '--ref', tag)
     (OUT / 'notes.md').write_text(notes + '\n')
     exists = subprocess.run(['gh', 'release', 'view', tag], capture_output=True).returncode == 0
     if not exists:
-        subprocess.run(['gh', 'release', 'create', tag, '--verify-tag', '--latest',
+        subprocess.run(['gh', 'release', 'create', tag, '--verify-tag', '--latest=false',
                         '--title', 'bkn-dsh plugin ' + VERSION, '--notes-file', str(OUT / 'notes.md'),
                         str(OUT / FILENAME), str(OUT / (FILENAME + '.sha256')),
                         *map(str, sorted(Path('compat/mcp-profile-backport').glob('*.tgz'))),

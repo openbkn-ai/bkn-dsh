@@ -1,0 +1,614 @@
+{
+  "schemaVersion": 1,
+  "reportKind": "Windows formal CLI 0.2.1 native panel completion",
+  "status": "PASS_SCOPED_FORMAL_CLI021_NATIVE",
+  "startedUtc": "2026-11-06T04:54:36.0649652Z",
+  "taskStartedUtc": "2026-11-06T04:46:19.0225067Z",
+  "generatedUtc": "2026-11-06T05:17:40.099982+00:00",
+  "taskRoot": "C:\\bkn-verify\\provenance-ci4-win-20261102\\formal-cli021-20261106T044618Z",
+  "platformOrigin": "https://192.168.50.129",
+  "scope": {
+    "purpose": "Complete only the previously unexecuted formal CLI 0.2.1 native install, native browser login, MCP connection and one directory read.",
+    "desktopControl": "Windows-MCP",
+    "nativeInstallButtonClicks": 1,
+    "platform28Accessed": false,
+    "newModelQuestionSubmitted": false,
+    "agentAnalysisStarted": false,
+    "oldGuardCsvSourceTextAndBusinessUiTestsRepeated": false,
+    "candidateModified": false,
+    "hostModified": false,
+    "defaultCliUpdated": false,
+    "releaseMergePushOrTagPerformed": false
+  },
+  "fixedCandidate": {
+    "version": "0.2.1-rc.3-openbkn.0.2.1-3",
+    "sourceCommit": "f01b316fbfb6be681af81e2267a7b3341e659efd",
+    "ciRun": 41596006291,
+    "artifactId": 13212518096,
+    "originalTgz": {
+      "path": "C:/bkn-verify/provenance-ci4-win-20261102/ci6-platform021-20261103-154333/artifact/openbkn-dsh-business-context-0.2.1-rc.3-openbkn.0.2.1-3.tgz",
+      "bytes": 877732,
+      "sha256": "4500fa4357cdcdcb9914a39794aedb9096c948192c2bf0f35ecf4fadb882f046"
+    },
+    "publishedMemberCount": 126,
+    "all126InstalledMembersMatchAfter": true,
+    "buildOrRepackPerformedThisTask": false,
+    "newCiTriggered": false
+  },
+  "officialHost": {
+    "release": "DeepSeek Harness Desktop 0.2.1-rc.5",
+    "files": [
+      {
+        "mtimeUtc": "2026-10-29T14:02:52.0000000Z",
+        "bytes": 246343144,
+        "path": "C:\\bkn-verify\\provenance-ci4-win-20261102\\rc5-desktop-app\\DeepSeek Harness.exe",
+        "sha256": "7ae939b5a82b220fbd8ad04dfbafaaedb5a49ab43dc884a5db6381f678dd0cc4",
+        "readable": true
+      },
+      {
+        "mtimeUtc": "2026-10-29T14:02:52.0000000Z",
+        "bytes": 182766714,
+        "path": "C:\\bkn-verify\\provenance-ci4-win-20261102\\rc5-desktop-app\\resources\\app.asar",
+        "sha256": "e1b6f25fa937da98086c3e77af77aa14791105963c4d337a1c42179d232c6915",
+        "readable": true
+      }
+    ],
+    "exeAuthenticodeStatus": "Valid",
+    "exeSignerSubject": "CN=\"Hangzhou DeepSeek Artificial Intelligence Co., Ltd.\", O=\"Hangzhou DeepSeek Artificial Intelligence Co., Ltd.\", L=Hangzhou, S=Zhejiang, C=CN, OID.1.3.6.1.4.1.311.60.2.1.1=Hangzhou, OID.1.3.6.1.4.1.311.60.2.1.2=Zhejiang, OID.1.3.6.1.4.1.311.60.2.1.3=CN, SERIALNUMBER=91330105MACPN4X08Y, OID.2.5.4.15=Private Organization",
+    "samePinnedExecutableAndAsarAfter": true,
+    "asarIndependentlyAuthenticodeSignedClaimed": false,
+    "nativeDiagnosticDshVersionCollected": false,
+    "nativeDiagnosticLoadedPluginVersionCollected": false,
+    "versionBoundary": "Host release identity is tied to the pinned official artifact; this native diagnostic did not report Host or loaded plugin version."
+  },
+  "nativeInstallation": {
+    "status": "PASS",
+    "route": [
+      "OpenBKN",
+      "Settings",
+      "Advanced",
+      "fixed version 0.2.1",
+      "Detect and install CLI"
+    ],
+    "freshPrefix": "C:\\bkn-verify\\provenance-ci4-win-20261102\\formal-cli021-20261106T044618Z\\cli-prefix",
+    "priorDefaultCli": "0.2.0",
+    "defaultCliHiddenOnlyInOwnedChildPath": true,
+    "processGlobalEnvironmentModified": false,
+    "npmRegistry": "https://registry.npmjs.org",
+    "npmPrefixScope": "Owned Host child process only",
+    "metadataAndTarballPrefetchWasInstallation": false,
+    "nativeInstallNodeProcessCount": 1,
+    "installProcess": {
+      "hostWorkerPid": 28556,
+      "runnerPid": 2836,
+      "cmdPid": 27664,
+      "nodePid": 17680,
+      "nodeCreatedUtc": "2026-11-06T04:57:42.7462340Z",
+      "npmArgv": [
+        "install",
+        "--global",
+        "@openbkn/bkn-sdk@0.2.1",
+        "--prefix",
+        "C:\\bkn-verify\\provenance-ci4-win-20261102\\formal-cli021-20261106T044618Z\\cli-prefix",
+        "--ignore-scripts",
+        "--no-audit",
+        "--no-fund",
+        "--loglevel=error"
+      ]
+    },
+    "installStartedObservedUtc": "2026-11-06T04:57:42.0073275Z",
+    "readyObservedUtc": "2026-11-06T04:58:22.1892409Z",
+    "nativeReadyMessage": "CLI 0.2.1 可用。路径已填入，请点击“保存并继续”应用。",
+    "autoFilledAbsoluteCliPath": "C:\\bkn-verify\\provenance-ci4-win-20261102\\formal-cli021-20261106T044618Z\\cli-prefix\\openbkn.cmd",
+    "nativeSaveApplied": true,
+    "actualVersion": "0.2.1",
+    "actualVersionExitCode": 0,
+    "nativeVersionProbeProcessChains": [
+      {
+        "runnerPid": 1972,
+        "cmdPid": 11504,
+        "nodePid": 1732
+      },
+      {
+        "runnerPid": 12036,
+        "cmdPid": 28636,
+        "nodePid": 6384
+      }
+    ],
+    "externalAdditionalInstallPerformed": false
+  },
+  "officialNpmIdentity": {
+    "status": "PASS",
+    "metadataUrl": "https://registry.npmjs.org/@openbkn%2fbkn-sdk/0.2.1",
+    "metadataHttpStatus": 200,
+    "metadataBytes": 3151,
+    "metadataSha256": "cf9e669d95a14d1c5fc8f8708312a918e1016537f864cd9400e5e5485494cfd8",
+    "version": "0.2.1",
+    "gitHead": "41e57219ca774e3c9f82050851a39a7e25678e43",
+    "tarballUrl": "https://registry.npmjs.org/@openbkn/bkn-sdk/-/bkn-sdk-0.2.1.tgz",
+    "tarballBytes": 232660,
+    "tarballSha256": "d699db94b0ab61b1b888c8b3936b21723827a0ae8849f78f8ebd64fb725e4452",
+    "integrity": "sha512-8t1tm/X0Z/9IwWcp5uL4XlegfOQliFvIzsMHCcZLcttxnbd+RcCYilQ6OQE0gw1Sl2kotrgkiwN3rRQOWPu5bw==",
+    "integrityVerified": true,
+    "sha1Verified": true,
+    "actualNativeNpmCacheTarballExactOfficialBytes": true,
+    "actualNativeNpmCacheOriginEntries": [
+      {
+        "key": "make-fetch-happen:request-cache:https://registry.npmjs.org/@openbkn/bkn-sdk/-/bkn-sdk-0.2.1.tgz",
+        "integrity": "sha512-8t1tm/X0Z/9IwWcp5uL4XlegfOQliFvIzsMHCcZLcttxnbd+RcCYilQ6OQE0gw1Sl2kotrgkiwN3rRQOWPu5bw==",
+        "size": 232660,
+        "time": 1793941067074
+      }
+    ],
+    "installedPublishedFilesAllMatch": true,
+    "installedPublishedFileCount": 9,
+    "installedPublishedFiles": [
+      {
+        "file": "LICENSE",
+        "bytes": 11358,
+        "sha256": "cfc7749b96f63bd31c3c42b5c471bf756814053e847c10f3eb003417bc523d30",
+        "matchesOfficialTar": true
+      },
+      {
+        "file": "NOTICE",
+        "bytes": 886,
+        "sha256": "b800a618c0c8df8ec4ce88a4c2df263eca0e84f219583a160d17ea2cc31d3a2e",
+        "matchesOfficialTar": true
+      },
+      {
+        "file": "dist/chunk-GN67OWX7.js",
+        "bytes": 387640,
+        "sha256": "dd93e3ebb2425cd91d2a11a051f688959b6f5b0263813660bc39458cab133100",
+        "matchesOfficialTar": true
+      },
+      {
+        "file": "dist/cli.js",
+        "bytes": 292317,
+        "sha256": "75f81194d50ad431fa8727d5fd578107daf90950e02fbc594011a8ba04f1359b",
+        "matchesOfficialTar": true
+      },
+      {
+        "file": "dist/index.js",
+        "bytes": 9176,
+        "sha256": "3e05356d3bee26f1aeef5c27ca9cbd7674f4aeb7dc7511e1044090d62015b95b",
+        "matchesOfficialTar": true
+      },
+      {
+        "file": "package.json",
+        "bytes": 2061,
+        "sha256": "084e66e2b883b61572882e80e264d0c108983fd9db931c761ea4f2519cb28085",
+        "matchesOfficialTar": true
+      },
+      {
+        "file": "README.md",
+        "bytes": 16308,
+        "sha256": "378f0baca9d53e1b14bdce248d5949497b4d13a007d0ebd6a1c6a9905d1df46a",
+        "matchesOfficialTar": true
+      },
+      {
+        "file": "README.zh.md",
+        "bytes": 11032,
+        "sha256": "bfd70df0a3700a5a587cf52f842d34630a7eeead03f152abcfe4604cb597ebf9",
+        "matchesOfficialTar": true
+      },
+      {
+        "file": "dist/index.d.ts",
+        "bytes": 608553,
+        "sha256": "47c69011e31b1e79df04d5a2b1090f8be3573487d52a443b1b43ba04c87a9645",
+        "matchesOfficialTar": true
+      }
+    ],
+    "resolvedNestedDependencyVersions": {
+      "@clack/core": "0.4.1",
+      "@clack/prompts": "0.9.1",
+      "argparse": "2.0.1",
+      "chalk": "5.6.2",
+      "commander": "13.1.0",
+      "core-util-is": "1.0.3",
+      "immediate": "3.0.6",
+      "inherits": "2.0.4",
+      "isarray": "1.0.0",
+      "js-yaml": "4.3.2",
+      "jszip": "3.10.2",
+      "lie": "3.3.0",
+      "pako": "1.0.11",
+      "picocolors": "1.1.1",
+      "process-nextick-args": "2.0.1",
+      "readable-stream": "2.3.8",
+      "safe-buffer": "5.1.2",
+      "setimmediate": "1.0.5",
+      "sisteransi": "1.0.5",
+      "string_decoder": "1.1.1",
+      "undici": "8.12.4",
+      "util-deprecate": "1.0.2",
+      "zod": "3.25.76"
+    }
+  },
+  "platformHealth": {
+    "status": "PASS",
+    "observedUtc": "2026-11-06T04:50:53.150Z",
+    "origin": "https://192.168.50.129",
+    "path": "/api/bkn-backend/v1/health",
+    "httpStatus": 200,
+    "serverName": "bkn-backend",
+    "serverVersion": "0.2.1",
+    "strictTlsRejectUnauthorized": true,
+    "tlsAuthorized": true,
+    "tlsProtocol": "TLSv1.3",
+    "leafFingerprint256": "9D:A3:2F:90:48:7A:14:2B:AB:C0:98:3A:54:65:9D:20:4E:20:9A:21:6E:87:FB:09:BA:75:E1:F5:A7:FE:3A:B6",
+    "caSha256": "fd6d4aaa860cb744c170df65a24478211895129ec09b3fa302e768b2f7a4a97f",
+    "rawResponseBytes": 108,
+    "rawResponseSha256": "d501da233502fb1359c3622a9711b2d5322c2dddd23dbab3d1d19c33bedc8cd4",
+    "chartImageInventoryVerifiedLocally": false
+  },
+  "nativeBrowserLogin": {
+    "status": "PASS",
+    "cliPath": "C:\\bkn-verify\\provenance-ci4-win-20261102\\formal-cli021-20261106T044618Z\\cli-prefix\\openbkn.cmd",
+    "flow": "Native OpenBKN CLI login and synchronize button, then normal device authorization in owned browser",
+    "initialExisting129AuthorizationReusedBySave": true,
+    "freshLoginPreparation": "Official formal CLI auth logout of only the existing isolated 129 managed store; source verified local token removal, no server revocation.",
+    "manualTokenOrExpiryFileEditing": false,
+    "defaultOrDailyCredentialStoreSelected": false,
+    "ownedBrowserPid": 28536,
+    "browserCreatedUtc": "2026-11-06T05:09:35.1506340Z",
+    "generation": "368a951b-fd07-4c55-b1fb-4e6cb1ec618e",
+    "originVerifiedBeforeSubmit": true,
+    "pinMatched": true,
+    "spkiScopedBrowserTrust": true,
+    "broadTlsIgnore": false,
+    "deviceConfirmationInvoked": true,
+    "local129CardLoaded": true,
+    "loginSubmitted": true,
+    "nativeSuccessText": "登录并同步成功。",
+    "nativeSuccessObservedUtc": "2026-11-06T05:10:09.0605868Z",
+    "networkCardsVisible": 2,
+    "credentialsOrAuthorizationParametersExported": false
+  },
+  "nativeHostMcpAndReadonlyDirectory": {
+    "status": "PASS_NATIVE_OBSERVED",
+    "ownerRootPid": 2652,
+    "hostWorkerPid": 28556,
+    "diagnosticMode": "passive",
+    "diagnosticShortId": "c6556b8b",
+    "diagnosticGeneratedLocalDisplay": "2026/11/6 13:10:30",
+    "timezone": "Asia/Taipei",
+    "ageFieldsFrozenAtReportGeneration": true,
+    "stages": [
+      {
+        "stage": "cli",
+        "status": "PASS",
+        "observations": {
+          "failureCount": 1,
+          "lastOutcomeAgoMs": 33522,
+          "recovered": true,
+          "lastFailureCode": "cli-missing",
+          "exitCode": 0
+        }
+      },
+      {
+        "stage": "login-state",
+        "status": "PASS",
+        "observations": {
+          "failureCount": 1,
+          "lastOutcomeAgoMs": 34037,
+          "recovered": true,
+          "lastFailureCode": "not-logged-in",
+          "loggedIn": true
+        }
+      },
+      {
+        "stage": "context-loader",
+        "status": "PASS",
+        "observations": {
+          "failureCount": 0,
+          "lastOutcomeAgoMs": 33414,
+          "toolsPublished": true
+        }
+      },
+      {
+        "stage": "platform-network-list",
+        "status": "PASS",
+        "observations": {
+          "failureCount": 0,
+          "lastOutcomeAgoMs": 36159,
+          "networkCount": 2
+        }
+      }
+    ],
+    "sourceCoupling": {
+      "businessModule": "C:\\bkn-verify\\provenance-ci4-win-20261102\\home\\profiles\\desktop\\node_modules\\@openbkn\\dsh-business-context\\lib\\business.js",
+      "platformMcpModule": "C:\\bkn-verify\\provenance-ci4-win-20261102\\home\\profiles\\desktop\\node_modules\\@openbkn\\dsh-business-context\\lib\\platform-mcp-client.js",
+      "mcpPublication": "context-loader pass is recorded after the mounted MCP client connects, synchronizes tools, and the required managed interaction tool is registered.",
+      "readOnlyPath": "GET /api/bkn-backend/v1/knowledge-networks?limit=100",
+      "directoryResult": "Native directory observation networkCount=2 and two native View cards; no business contents exported.",
+      "sourceIntegrity": "The referenced modules are covered by the unchanged original 126-member CI6 manifest."
+    },
+    "hostWorkerConnectionTo129443Observed": true,
+    "rawMcpPacketCapturePerformed": false,
+    "toolCatalogCountReenumerated": false,
+    "objectQueryOrDetailExtraReadPerformed": false,
+    "observationBoundary": "Native diagnostic is a historical observation of this current process. It is corroborated by the immediately preceding successful browser login and native directory sync; it is not an independent fresh probe."
+  },
+  "normalExitAndRestoration": {
+    "status": "PASS",
+    "normalApplicationExitInvoked": true,
+    "forcedTerminationUsed": false,
+    "ownedPidsBefore": [
+      2652,
+      25080,
+      15444,
+      26108,
+      28556
+    ],
+    "remainingOwnedCount": 0,
+    "ownedLoopbackPort": 64413,
+    "portHasListenerAfterExit": false,
+    "ownedAuthorizationBrowserRemaining": 0,
+    "originalIsolatedConfigRestoredBytes": true,
+    "onlyTemporaryCliPathDifference": true,
+    "restoredConfigOriginalSha256": "f687d31c0d2ddeb8ee820afe8d912194f3dd254a37ac3acb8c33348c8866dba5",
+    "hostTouchedUnchangedCordisYmlMtimeRestored": true,
+    "mtimeCleanupDidNotRewriteContent": true
+  },
+  "protection": {
+    "status": "PASS_SCOPED",
+    "snapshotUtc": "2026-11-06T05:13:49.6557469Z",
+    "cleanupCompletedUtc": "2026-11-06T05:14:26.5530908Z",
+    "groups": {
+      "daily": {
+        "readableAfter": 1376,
+        "differences": 0,
+        "bytesAndMtimeUnchanged": true,
+        "count": 1376
+      },
+      "old-reports": {
+        "readableAfter": 23,
+        "differences": 0,
+        "bytesAndMtimeUnchanged": true,
+        "count": 23
+      },
+      "sources": {
+        "readableAfter": 4,
+        "differences": 0,
+        "bytesAndMtimeUnchanged": true,
+        "count": 4
+      },
+      "default-cli": {
+        "readableAfter": 2,
+        "differences": 0,
+        "bytesAndMtimeUnchanged": true,
+        "count": 2
+      },
+      "old-isolated-profile": {
+        "differences": 0,
+        "count": 5,
+        "readableAfter": 5,
+        "bytesAndMtimeUnchanged": true
+      },
+      "host": {
+        "readableAfter": 2,
+        "differences": 0,
+        "bytesAndMtimeUnchanged": true,
+        "count": 2
+      }
+    },
+    "defaultCliVersionAfter": "0.2.0",
+    "defaultCliVersionUnchanged": true,
+    "protocolUnchanged": true,
+    "candidate126MembersUnchanged": true,
+    "hostExeSignatureValid": true,
+    "newDailyPaths": "NOT_ENUMERATED",
+    "oldIsolatedElectronUserDataChangesExpected": true,
+    "ownedPlatform129AuthorizationStoreChangesExpected": true,
+    "allMachineZeroChangeClaimed": false
+  },
+  "preparationAndCollectorNotes": [
+    "A fresh software-only cloned DSH_HOME stopped at the Host Welcome/login screen before any install acceptance action; it was normally closed. Final acceptance reused the prior isolated DSH_HOME and completed personal Host login.",
+    "The first Python-to-cmd version collector had a quoting syntax error. Native Host version probes and direct PowerShell invocation succeeded; official published files and actual npm cache bytes matched.",
+    "The browser login helper first ran before the new owned browser had a window handle. It submitted no credentials then; adding the window-readiness wait completed the same native login without another native login button click.",
+    "The initial protection collector found only a Host-touched mtime on byte-identical isolated cordis.yml. Its original mtime was restored and only the affected profile group was checked again. Initial evidence is retained."
+  ],
+  "notRunOrScopeRestrictions": [
+    {
+      "item": "CE enterprise provenance",
+      "status": "UNSUPPORTED_SCOPE_RETAINED",
+      "detail": "No EE capability probe or provenance endpoint call was added in this Windows supplement."
+    },
+    {
+      "item": "129 formal 17-chart inventory",
+      "status": "MAIN_SESSION_EVIDENCE_ONLY",
+      "detail": "Main session provided formal chart verification. Windows verified the 0.2.1 health endpoint, not every server image/chart."
+    },
+    {
+      "item": "Existing native business provenance, metrics, model questions, guard/CSV/SourceText matrices",
+      "status": "NOT_RERUN",
+      "detail": "Existing reports remain unchanged; this supplement does not broaden prior conclusions."
+    },
+    {
+      "item": "Historical full-machine evidence boundary",
+      "status": "RETAINED",
+      "detail": "Known prior unknown-file, phase/cache/callback limits remain in the original reports. The 1376 daily-file check is a disclosed baseline, not a new whole-machine enumeration."
+    }
+  ],
+  "evidenceHandling": {
+    "publicContains": [
+      "derived observations",
+      "public package identities",
+      "native evidence paths, byte lengths and SHA256 only"
+    ],
+    "privateNativeScreenshotsAndAccessibilityRecordsRemainLocal": true,
+    "publicContainsCredentialsTokensDeviceCodesOAuthUrlsBusinessBodiesScreenshotsOrAccessibilityTrees": false
+  },
+  "localEvidence": [
+    {
+      "file": "C:\\bkn-verify\\provenance-ci4-win-20261102\\formal-cli021-20261106T044618Z\\private\\environment-before.json",
+      "bytes": 582,
+      "sha256": "5e235d9a10b152567ccf3953dc03b0922baf53ea22d7ba1ad82025329ae3cf34"
+    },
+    {
+      "file": "C:\\bkn-verify\\provenance-ci4-win-20261102\\formal-cli021-20261106T044618Z\\private\\profile-preparation.json",
+      "bytes": 2134,
+      "sha256": "b6c4d0060e0e46c2cd367baa04211f03fa1cb9ea11a646364f6faa3f5580ced4"
+    },
+    {
+      "file": "C:\\bkn-verify\\provenance-ci4-win-20261102\\formal-cli021-20261106T044618Z\\private\\profile-reuse-decision.json",
+      "bytes": 311,
+      "sha256": "b9a964550b093c432c0b9063411de03423c179289494740719814fdb8bf709c7"
+    },
+    {
+      "file": "C:\\bkn-verify\\provenance-ci4-win-20261102\\formal-cli021-20261106T044618Z\\private\\owned-launch.json",
+      "bytes": 1074,
+      "sha256": "67e15e79f5e7274ec0127f5a025988935f8e6ac028f9b1ba716b9f451dce35d8"
+    },
+    {
+      "file": "C:\\bkn-verify\\provenance-ci4-win-20261102\\formal-cli021-20261106T044618Z\\private\\native-cli-setup-initial.json",
+      "bytes": 1706,
+      "sha256": "4f09966285d0672b49eab35dd462303cf8f2abbca20ec35d0e456e9fe9059b3b"
+    },
+    {
+      "file": "C:\\bkn-verify\\provenance-ci4-win-20261102\\formal-cli021-20261106T044618Z\\private\\native-selected-formal021.json",
+      "bytes": 733,
+      "sha256": "d812bdbefb8e7346f1e6e491881a87bb611053ee32593198ed391bead846dbfd"
+    },
+    {
+      "file": "C:\\bkn-verify\\provenance-ci4-win-20261102\\formal-cli021-20261106T044618Z\\private\\native-install-start.json",
+      "bytes": 1980,
+      "sha256": "c16e7860fa85e9e9e2f45d747f827f661c3026ae7bd74471c3f3cbb5c5e81770"
+    },
+    {
+      "file": "C:\\bkn-verify\\provenance-ci4-win-20261102\\formal-cli021-20261106T044618Z\\private\\native-install-result.json",
+      "bytes": 1857,
+      "sha256": "6efc8d6f4abec965c02a534bb583ada298066b16c3ab308b77c0db4ef6f1a5d2"
+    },
+    {
+      "file": "C:\\bkn-verify\\provenance-ci4-win-20261102\\formal-cli021-20261106T044618Z\\private\\native-install-processes.json",
+      "bytes": 5021,
+      "sha256": "652d6b3b8c8a1d6410c7da0976987f49ebf6eb84ab19dcf5e0248dd2587ba20c"
+    },
+    {
+      "file": "C:\\bkn-verify\\provenance-ci4-win-20261102\\formal-cli021-20261106T044618Z\\private\\native-formal021-before-install.png",
+      "bytes": 32730,
+      "sha256": "403c869fac6f6ba24df179e9da30c9ea28c04d1ebc18f26219632ab2e388203d"
+    },
+    {
+      "file": "C:\\bkn-verify\\provenance-ci4-win-20261102\\formal-cli021-20261106T044618Z\\private\\native-formal021-installed.png",
+      "bytes": 18891,
+      "sha256": "9728c33ad85604e70480a591e5d12bf349f5b5c3902e80c22ad8432ebc95aa7c"
+    },
+    {
+      "file": "C:\\bkn-verify\\provenance-ci4-win-20261102\\formal-cli021-20261106T044618Z\\private\\npm-formal-identity.json",
+      "bytes": 1028,
+      "sha256": "46243d5c3c41965d2a1978a51fd11310f3790b645e18d209f86d3a15e4022962"
+    },
+    {
+      "file": "C:\\bkn-verify\\provenance-ci4-win-20261102\\formal-cli021-20261106T044618Z\\private\\installed-formal-identity.json",
+      "bytes": 3941,
+      "sha256": "f290234b779469ec5ab95a7e015c6ca8074fd78594297228ea6f2f761f5cb001"
+    },
+    {
+      "file": "C:\\bkn-verify\\provenance-ci4-win-20261102\\formal-cli021-20261106T044618Z\\private\\formal-cli-version.json",
+      "bytes": 202,
+      "sha256": "9b9eef9d7f54ff17b6c3e0c07647c94cf83c7ab1d19d3846ba30171fba6aed7a"
+    },
+    {
+      "file": "C:\\bkn-verify\\provenance-ci4-win-20261102\\formal-cli021-20261106T044618Z\\private\\platform129-health-now.json",
+      "bytes": 842,
+      "sha256": "2b8f049f22983969d7c362ee71164b4732497ffd7fdf52c203e9064d1554fb75"
+    },
+    {
+      "file": "C:\\bkn-verify\\provenance-ci4-win-20261102\\formal-cli021-20261106T044618Z\\private\\native-login-preparation.json",
+      "bytes": 542,
+      "sha256": "7677a8575275b91e33ba18e1d1051e0e6745f22372c7b9639768ff4eb3f90c7d"
+    },
+    {
+      "file": "C:\\bkn-verify\\provenance-ci4-win-20261102\\formal-cli021-20261106T044618Z\\private\\native-browser-login.json",
+      "bytes": 504,
+      "sha256": "9f4e075ed7e63ad47c7c2cd2b9c03f56f94145408a9cd34376549f2a9b9a5232"
+    },
+    {
+      "file": "C:\\bkn-verify\\provenance-ci4-win-20261102\\formal-cli021-20261106T044618Z\\private\\native-login-panel-result.json",
+      "bytes": 1286,
+      "sha256": "9f31331b11c91caa9e8af9ccbcf3bfa385f267a25ce37a54798f861cffa0c7ab"
+    },
+    {
+      "file": "C:\\bkn-verify\\provenance-ci4-win-20261102\\formal-cli021-20261106T044618Z\\private\\native-diagnostics-initial.json",
+      "bytes": 4155,
+      "sha256": "9e0203b780db4dae8d3e81cf6a95f1fa192e34a4d1b9cdb10cf8759dec672412"
+    },
+    {
+      "file": "C:\\bkn-verify\\provenance-ci4-win-20261102\\formal-cli021-20261106T044618Z\\private\\native-diagnostics-summary.json",
+      "bytes": 1544,
+      "sha256": "3392c8730095301904a1450106fce6ff3bce1ed75d0741ad5036fe392ac0f3d2"
+    },
+    {
+      "file": "C:\\bkn-verify\\provenance-ci4-win-20261102\\formal-cli021-20261106T044618Z\\private\\native-diagnostics-formal021.png",
+      "bytes": 54888,
+      "sha256": "0e6e551cb36509135c8afde9abc76e57a521e1d5f5baee188519262823d35a2e"
+    },
+    {
+      "file": "C:\\bkn-verify\\provenance-ci4-win-20261102\\formal-cli021-20261106T044618Z\\private\\owned-runtime.json",
+      "bytes": 4258,
+      "sha256": "457a457de123834ea31d2dd7bf598203f92d5913c438d20ececf0b3b91e6f651"
+    },
+    {
+      "file": "C:\\bkn-verify\\provenance-ci4-win-20261102\\formal-cli021-20261106T044618Z\\private\\normal-exit.json",
+      "bytes": 371,
+      "sha256": "fd0049a6923ae177eab0f9c7a281efaea3b3e0ad06dce57328f70e5396432eef"
+    },
+    {
+      "file": "C:\\bkn-verify\\provenance-ci4-win-20261102\\formal-cli021-20261106T044618Z\\private\\configuration-restoration.json",
+      "bytes": 598,
+      "sha256": "59b65158bb2c272a0cbc068e15f4c77bab546919aac9ebc66539c35e1f371fe2"
+    },
+    {
+      "file": "C:\\bkn-verify\\provenance-ci4-win-20261102\\formal-cli021-20261106T044618Z\\private\\isolated-profile-mtime-restoration.json",
+      "bytes": 467,
+      "sha256": "be82c6021060a82fc392c62b193f97d9fa6a402f0e114d4699f1bd2975ac6e4f"
+    },
+    {
+      "file": "C:\\bkn-verify\\provenance-ci4-win-20261102\\formal-cli021-20261106T044618Z\\private\\preservation-after.json",
+      "bytes": 2066,
+      "sha256": "e2251e880bcafae30d2392546fd447574685b672fb47ff8f1ac629d7228b31a5"
+    },
+    {
+      "file": "C:\\bkn-verify\\provenance-ci4-win-20261102\\formal-cli021-20261106T044618Z\\private\\preservation-final.json",
+      "bytes": 2180,
+      "sha256": "5e0e4e8b73a7cc5bc2bae1820248dae75335f22999b8323c0d84df62482d22bb"
+    },
+    {
+      "file": "C:\\bkn-verify\\provenance-ci4-win-20261102\\formal-cli021-20261106T044618Z\\private\\daily-before.json",
+      "bytes": 409502,
+      "sha256": "4c182ca749c3106e8b63fa0868000ca962b0c90b03c7a41cada54ee38ce0dfc9"
+    },
+    {
+      "file": "C:\\bkn-verify\\provenance-ci4-win-20261102\\formal-cli021-20261106T044618Z\\private\\daily-after.json",
+      "bytes": 409502,
+      "sha256": "e10e8d2b0dca4d61b826302f6750afa7ccaf227b904413c34a5e101a5513eb8f"
+    },
+    {
+      "file": "C:\\bkn-verify\\provenance-ci4-win-20261102\\formal-cli021-20261106T044618Z\\private\\old-reports-before.json",
+      "bytes": 7258,
+      "sha256": "359196b9b87e00bc98a819d243cdafb03bed421dbfe998eb77d793b444807380"
+    },
+    {
+      "file": "C:\\bkn-verify\\provenance-ci4-win-20261102\\formal-cli021-20261106T044618Z\\private\\old-reports-after.json",
+      "bytes": 7258,
+      "sha256": "bd640734cba27fa30156570162e2cc4d329bfe65982462b9527c8c658803cd28"
+    },
+    {
+      "file": "C:\\bkn-verify\\provenance-ci4-win-20261102\\formal-cli021-20261106T044618Z\\private\\sources-before.json",
+      "bytes": 1441,
+      "sha256": "695703946bbb34b11ef64bdbe031fdd9381999bf7036d41668891d873b4788e8"
+    },
+    {
+      "file": "C:\\bkn-verify\\provenance-ci4-win-20261102\\formal-cli021-20261106T044618Z\\private\\sources-after.json",
+      "bytes": 1441,
+      "sha256": "95a145c50ad6e55fe72f8c1d67c4d09aa7c556c474e6f5ae84a7b5ce3e766526"
+    },
+    {
+      "file": "C:\\bkn-verify\\provenance-ci4-win-20261102\\formal-cli021-20261106T044618Z\\private\\ci6-package-after.json",
+      "bytes": 27446,
+      "sha256": "572900513b31035ebe90c31286076c3f4c7a9cfbcaeed76647a2bec3299a9546"
+    }
+  ]
+}

@@ -1,8 +1,8 @@
 # Changelog
 
-## 0.2.1-rc.3-openbkn.0.2.1-3 (unreleased)
+## 0.2.1-rc.3-openbkn.0.2.1-3 (2026-11-06)
 
-- Add a fixed official CLI0.2.1 installation target while retaining0.1.5/0.2.0, explicit selection and existing-installation protection. Preserve the official platform-version check and TLS policy; do not add a direct OpenBKN SDK dependency. Cover the new metric/lifecycle source contracts without rewriting platform schemas, arguments, results or model answers. Final0.2.1 artifact and isolated deployment acceptance remain pending; RC/source and loopback probes are preliminary evidence.
+- Add a fixed official CLI0.2.1 installation target while retaining0.1.5/0.2.0, explicit selection and existing-installation protection. Preserve the official platform-version check and TLS policy; do not add a direct OpenBKN SDK dependency. Cover the new metric/lifecycle source contracts without rewriting platform schemas, arguments, results or model answers. Publish the unchanged accepted CI6 artifact; formal-platform/CLI native increment receipts supplement the separately retained controlled and historical evidence.
 - Reuse the platform business-provenance detail layout inside the current DSH conversation: exact answer/round selection, time and evidence chains, operation inspectors, managed-function internal calls, original input/output, Markdown export, explanation actions and BKN Agent analysis/history. Omit the platform list-back action because DSH already supplies the conversation context.
 - Keep platform-owned facts, unknown fields, failure/invalid states and reasons unchanged. Derive platform/conversation identity in the Host, validate same-conversation round membership and network scope, and cancel stale reads/actions after session or authorization changes. No answer arbitration, corrective turns, business calculations or automatic application of Agent suggestions.
 - Preserve the managed tool catalogue and routing fixes, including omission of network-scoped legacy skill definitions without a declared kn_id; retain the execution guard and existing scoped CSV behavior.
@@ -11,7 +11,7 @@
 - Keep a source-text popover dismissed after its owned Escape while the pointer remains over its trigger or full popup, including popup padding. Preserve a fresh pointer visit and explicit click/keyboard activation; pure hover retains the existing keyboard focus and parent-dialog Escape ownership. Platform/model content is unchanged.
 - Add controlled contract, rendering, transport, permission, cancellation, shared-input and keyboard regressions, including the source-adjacent adapter/clipboard/list tests in the default CI suite. Preserve the reused Studio source license and keep unrelated plugin source under a protected baseline check.
 - Identify the combined plugin/Studio license texts explicitly in package metadata and the package LICENSE; preserve the unchanged upstream license copy and third-party notices.
-- Pre-release validation is in progress. The historical local candidate passed Mac Desktop rc.5 read-only checks; that does not accept the forthcoming CI artifact. Real generation/analysis, existing-explanation graphs/fullscreen, Windows native behavior and failure scenarios remain separately scoped acceptance items. Retain the platform search truncation and malformed Markdown observations; do not repair platform/model output in the plugin.
+- Acceptance is tied to the exact CI6 archive and separately attributed Mac/Windows native reports, including the formal platform/CLI increment. Earlier local, CI5 and controlled probes retain their own scopes; real generation/analysis, read-only checks and failure scenarios are not interchangeable. Retain the platform search truncation and malformed Markdown observations; do not repair platform/model output in the plugin.
 
 
 ## 0.2.1-rc.3-openbkn.0.2.1-2 (2026-10-30)
