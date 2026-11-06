@@ -63,11 +63,17 @@ class AcceptedReleaseTests(unittest.TestCase):
 
     def test_only_reviewed_promotion_plumbing_and_docs_can_differ(self):
         m.validate_source_changes(['docs/evidence/report.json', 'CLAUDE.md',
-                                   'scripts/publish-accepted-ci6.py'])
+                                   'scripts/publish-accepted-ci6.py', 'README.md', 'CHANGELOG.md'])
         for path in ['packages/openbkn-business-context/src/auth.ts', 'pnpm-lock.yaml',
                      '.npmrc', '.github/workflows/other.yml', 'scripts/build.mjs']:
             with self.subTest(path=path), self.assertRaises(ValueError):
                 m.validate_source_changes(['docs/report.md', path])
+
+    def test_both_latest_promotions_are_separate(self):
+        text = (Path(__file__).parents[1] / 'scripts/publish-accepted-ci6.py').read_text()
+        self.assertIn("'--latest=false'", text)
+        self.assertNotIn("'dist-tag', 'add'", text)
+        self.assertNotIn("'--latest',", text)
 
     def test_workflow_never_combines_rebuild_with_promotion(self):
         text = (Path(__file__).parents[1] / '.github/workflows/release-plugin.yml').read_text()

@@ -73,7 +73,7 @@ def validate_archive(raw):
 
 
 def validate_source_changes(paths):
-    allowed = {'CLAUDE.md', '.github/workflows/release-plugin.yml',
+    allowed = {'CLAUDE.md', 'README.md', 'README.zh.md', 'CHANGELOG.md', '.github/workflows/release-plugin.yml',
                'scripts/publish-accepted-ci6.py', 'tests/test_publish_accepted_ci6.py'}
     require(all(p in allowed or p.startswith('docs/') for p in paths),
             'Files outside reviewed release plumbing/documentation changed')
@@ -168,7 +168,7 @@ def release():
     (OUT / 'notes.md').write_text(notes + '\n')
     exists = subprocess.run(['gh', 'release', 'view', tag], capture_output=True).returncode == 0
     if not exists:
-        subprocess.run(['gh', 'release', 'create', tag, '--verify-tag', '--latest',
+        subprocess.run(['gh', 'release', 'create', tag, '--verify-tag', '--latest=false',
                         '--title', 'bkn-dsh plugin ' + VERSION, '--notes-file', str(OUT / 'notes.md'),
                         str(OUT / FILENAME), str(OUT / (FILENAME + '.sha256')),
                         *map(str, sorted(Path('compat/mcp-profile-backport').glob('*.tgz'))),
