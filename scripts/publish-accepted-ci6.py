@@ -94,10 +94,21 @@ def metadata():
 def registry_archive():
     # Do not follow an arbitrary dist.tarball returned by registry metadata.
     url = REGISTRY + '/@openbkn/dsh-business-context/-/dsh-business-context-' + VERSION + '.tgz'
-    with urllib.request.urlopen(url, timeout=60) as response:
-        raw = response.read(2_000_000)
-    validate_archive(raw)
-    return raw
+    for attempt in range(12):
+        try:
+            with urllib.request.urlopen(url, timeout=60) as response:
+                raw = response.read(2_000_000)
+            validate_archive(raw)
+            return raw
+        except urllib.error.HTTPError as error:
+            if error.code not in (404, 408, 429) and error.code < 500:
+                raise
+            if attempt == 11:
+                raise
+        except (urllib.error.URLError, TimeoutError):
+            if attempt == 11:
+                raise
+        time.sleep(10)
 
 
 def prepare():
@@ -112,6 +123,10 @@ def prepare():
         require(str(p).startswith('docs/evidence/') and '..' not in p.parts, 'Invalid evidence path')
         require(hashlib.sha256(p.read_bytes()).hexdigest() == row['sha256'], 'Evidence byte mismatch')
     validate_origin(gh('actions/runs/' + str(RUN)), gh('actions/artifacts/' + str(ARTIFACT)))
+    # The accepted source predates a squash merge and need not be in main's history.
+    if subprocess.run(['git', 'cat-file', '-e', SOURCE + '^{commit}'], capture_output=True).returncode:
+        subprocess.run(['git', 'fetch', '--no-tags', 'origin', SOURCE], check=True)
+    require(command('git', 'rev-parse', SOURCE + '^{commit}') == SOURCE, 'Missing accepted source')
     validate_source_changes(command('git', 'diff', '--name-only', SOURCE, 'HEAD').splitlines())
     # Release plumbing/documentation may differ; all compilation inputs must match.
     inputs = ['packages', 'compat', 'runtime', 'package.json', 'pnpm-lock.yaml',

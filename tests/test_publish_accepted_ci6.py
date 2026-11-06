@@ -2,6 +2,8 @@ import hashlib
 import importlib.util
 from pathlib import Path
 import unittest
+from unittest import mock
+import urllib.error
 
 spec = importlib.util.spec_from_file_location('accepted', Path(__file__).parents[1] / 'scripts/publish-accepted-ci6.py')
 m = importlib.util.module_from_spec(spec)
@@ -83,6 +85,33 @@ class AcceptedReleaseTests(unittest.TestCase):
         self.assertIn('inputs.publish && inputs.publish_accepted_ci6', job)
         for forbidden in ['pnpm ', 'runtime:build', 'npm test', 'node --test']:
             self.assertNotIn(forbidden, job)
+
+    def test_registry_cdn_lag_is_retried(self):
+        response = mock.MagicMock()
+        response.__enter__.return_value.read.return_value = b'accepted'
+        lag = urllib.error.HTTPError('url', 404, 'not propagated', {}, None)
+        with mock.patch.object(m.urllib.request, 'urlopen', side_effect=[lag, response]) as call, \
+                mock.patch.object(m.time, 'sleep') as sleep, mock.patch.object(m, 'validate_archive'):
+            self.assertEqual(m.registry_archive(), b'accepted')
+            self.assertEqual(call.call_count, 2)
+            sleep.assert_called_once_with(10)
+
+    def test_registry_wrong_bytes_are_not_retried(self):
+        response = mock.MagicMock()
+        response.__enter__.return_value.read.return_value = b'wrong'
+        with mock.patch.object(m.urllib.request, 'urlopen', return_value=response) as call, \
+                mock.patch.object(m.time, 'sleep') as sleep, self.assertRaises(ValueError):
+            m.registry_archive()
+        self.assertEqual(call.call_count, 1)
+        sleep.assert_not_called()
+
+    def test_registry_auth_failure_is_not_retried(self):
+        denied = urllib.error.HTTPError('url', 401, 'denied', {}, None)
+        with mock.patch.object(m.urllib.request, 'urlopen', side_effect=denied) as call, \
+                mock.patch.object(m.time, 'sleep') as sleep, self.assertRaises(urllib.error.HTTPError):
+            m.registry_archive()
+        self.assertEqual(call.call_count, 1)
+        sleep.assert_not_called()
 
 
 if __name__ == '__main__':
