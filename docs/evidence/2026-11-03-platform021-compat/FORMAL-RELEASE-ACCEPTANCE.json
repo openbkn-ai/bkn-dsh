@@ -1,0 +1,45 @@
+{
+  "status": "PASS",
+  "candidate_sha256": "4500fa4357cdcdcb9914a39794aedb9096c948192c2bf0f35ecf4fadb882f046",
+  "candidate_source": "f01b316fbfb6be681af81e2267a7b3341e659efd",
+  "candidate_run": 41596006291,
+  "candidate_artifact": 13212518096,
+  "version": "0.2.1-rc.3-openbkn.0.2.1-3",
+  "platform": "0.2.1",
+  "cli": "0.2.1",
+  "host_version": "0.2.1-rc.5",
+  "platform_origin": "https://192.168.50.129",
+  "mac_native": true,
+  "windows_native": true,
+  "evidence_files": [
+    {
+      "path": "docs/evidence/2026-11-03-platform021-compat/formal-20261106/platform129/ACCEPTANCE.json",
+      "sha256": "32bf200d5d679002cc4f44e61c7cb0ce1409ce519915592520b086dcb9006396"
+    },
+    {
+      "path": "docs/evidence/2026-11-03-platform021-compat/formal-20261106/windows/FORMAL-CLI021-NATIVE-WINDOWS-REPORT.json",
+      "sha256": "72dd773a2321dba66d32208f39a34b79aa7219dba2b63951bebd9e76b16928ab"
+    },
+    {
+      "path": "docs/evidence/2026-11-03-platform021-compat/formal-20261106/windows/FORMAL-CLI021-NATIVE-WINDOWS-REPORT.md",
+      "sha256": "ef926c59bb36ccddabbcd44c8f3e278bc13ff9f77cc6f7dd62962044abedf728"
+    },
+    {
+      "path": "docs/evidence/2026-11-03-platform021-compat/formal-20261106/mac/MAC-CI6-FORMAL021-CE129-RESULTS.json",
+      "sha256": "a7d408e30d53df63db52b83f7e721b578d6ac7678d8a8bfc3dc1c26594e96dae"
+    },
+    {
+      "path": "docs/evidence/2026-11-03-platform021-compat/formal-20261106/mac/MAC-CI6-FORMAL021-CE129-RESULTS.zh.md",
+      "sha256": "23048f4e55d6a84cabdd0a088bfea390d245c646b248ae0b1724efc41963fc78"
+    }
+  ],
+  "limits": [
+    "Formal CE platform does not provide Enterprise provenance; earlier EE020 evidence retained separately.",
+    "No repeated model/business/guard/CSV/SourceText matrices.",
+    "Historical scoped observation and platform recovery limitations remain preserved.",
+    "Mac raw formalAcceptanceEligible=false is retained: its author provides task-scoped evidence, not independent whole-version acceptance or publication authority. This aggregate records the maintainer-authorized necessary increment disposition.",
+    "Mac save failures with an added verification observer retain UNKNOWN unique cause; original normal configuration subsequently saved and authenticated successfully without product changes.",
+    "Mac standalone tools/list and packed Reader capture is separate from native login evidence; Windows MCP publication and directory are current-process passive observations. No business/model matrix replay."
+  ],
+  "acceptance_scope": "Necessary formal CE0.2.1/CLI0.2.1 native increment on official Mac and Windows Desktop rc.5, combined with retained exact-CI6 acceptance; not all Host forms or universal compatibility."
+}
