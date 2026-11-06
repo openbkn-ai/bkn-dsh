@@ -1,0 +1,299 @@
+{
+  "kind": "mac-ci6-formal-cli021-ce129-affected-validation",
+  "generatedAtUtc": "2026-11-06T05:30:59.874275+00:00",
+  "formalAcceptanceEligible": false,
+  "sourceCiRun": 41596006291,
+  "scope": "Only missing formal CLI021 installation, normal129 authorization/network sync, one metadata catalogue and packed Reader directory/detail delta; no release authorization or whole-version acceptance.",
+  "fixedIdentity": {
+    "sourceCommit": "f01b316fbfb6be681af81e2267a7b3341e659efd",
+    "ciArtifact": 13212518096,
+    "pluginVersion": "0.2.1-rc.3-openbkn.0.2.1-3",
+    "tgzBytes": 877732,
+    "tgzSha256": "4500fa4357cdcdcb9914a39794aedb9096c948192c2bf0f35ecf4fadb882f046",
+    "installedFiles": 126,
+    "host": "Official Mac Desktop0.2.1-rc.5",
+    "node": "24.21.0",
+    "electron": "44.7.0",
+    "hostExeSha256": "b7ca6fc3356ebdb4daa79827e6433c4c1a9cdd2196014a693ee873bae54d9949",
+    "hostAsarSha256": "8dad52f295bdbe9fa71948fdf38ac2ce3c910213d3b89c37174b2af77db9fb31",
+    "codesignDeepStrictVerifyExit": 0,
+    "platformOrigin": "https://192.168.50.129",
+    "platformVersion": "Formal CE0.2.1/17Chart per deployment-chat confirmation; no deployment reacceptance here",
+    "enterprisePlatform28": "Not accessed or changed"
+  },
+  "A_formalCliInstallation": {
+    "status": "PASS",
+    "mechanism": "Original fixed candidate panel, one actual installation into a new task npm prefix; daily/default CLI preserved. Missing-CLI install stage alone used fresh subprocess HOME, then normal real HOME restored for browser stage.",
+    "officialRegistry": "https://registry.npmjs.org",
+    "npmPackage": "@openbkn/bkn-sdk@0.2.1",
+    "npmGitHead": "41e57219ca774e3c9f82050851a39a7e25678e43",
+    "officialArchiveBytes": 232660,
+    "officialArchiveSha256": "d699db94b0ab61b1b888c8b3936b21723827a0ae8849f78f8ebd64fb725e4452",
+    "sriVerified": true,
+    "officialArchiveFileCount": 9,
+    "installedArchiveFilesAllByteIdentical": true,
+    "actualVersion": "0.2.1",
+    "versionExitCode": 0,
+    "panelDetectedVersion": "0.2.1",
+    "taskPrefixAutofilled": true,
+    "loadedClassIdentity": true,
+    "servicesPresent": {
+      "bootstrap": true,
+      "business": true,
+      "diagnostics": true
+    },
+    "businessSha256": "bac538d8de54f6b362ba39374b495cf39c6dfe89c4732074cfc966f98e1af7ad",
+    "clientSha256": "9ebfcac8f12743770b6d3e064ee5407ad49bd76ff742e5858c64c75148b30acd"
+  },
+  "B_normalPlatformAuthorization": {
+    "status": "PASS",
+    "origin": "https://192.168.50.129",
+    "normalPanelSavedExplicitFormalCliPath": true,
+    "sameProductCertificateGeneration": true,
+    "productAuthorized": true,
+    "peerIpMatches": true,
+    "peerIssuedByOriginalCardCa": true,
+    "peerSignatureVerifiedByOriginalCardCa": true,
+    "originalCaChainVerifyExit": 0,
+    "noOsTrustChange": true,
+    "uiSuccessText": "登录并同步成功",
+    "uiNetworkCount": 2,
+    "waitingTextAbsentAtSuccessObservation": true,
+    "normalFlow": "Official CLI device flow; existing account from protected card; no direct token injection, AppKey bypass, manually marked authorization, or business tool dispatch.",
+    "browserAutomationBoundary": "Owned authorization Chrome was not exposed to computer use. Same official device page was continued in an agent-created normal Chrome tab, with exact origin/device URL kept in memory only. No interstitial bypass. Two task tabs closed; daily Chrome left alive.",
+    "attempts": "First two flows timed out before a confirmed authorization; third flow completed. No wrong-password or certificate failure was observed.",
+    "successfulFlowStartUtc": "2026-11-06T05:15:26.537Z",
+    "browserAuthorizationCompletionExactUtc": "UNKNOWN",
+    "runtimeManagerInstanceIdentity": "Not separately instrumented in final normal-profile stage; native login/sync result is the evidence, not a new wire/observer claim."
+  },
+  "C_metadataAndPackedReader": {
+    "status": "PASS",
+    "capture": {
+      "kind": "formal021-ce129-mcp-catalogue-reader",
+      "startedUtc": "2026-11-06T05:27:14.091Z",
+      "origin": "https://192.168.50.129",
+      "cliVersion": "0.2.1",
+      "sourceCiRun": 41596006291,
+      "installedPackage": "0.2.1-rc.3-openbkn.0.2.1-3",
+      "requests": [
+        {
+          "kind": "mcp",
+          "method": "POST",
+          "rpc": "initialize"
+        },
+        {
+          "kind": "mcp",
+          "method": "POST",
+          "rpc": "notifications/initialized"
+        },
+        {
+          "kind": "mcp",
+          "method": "GET",
+          "rpc": null
+        },
+        {
+          "kind": "mcp",
+          "method": "POST",
+          "rpc": "tools/list"
+        },
+        {
+          "kind": "reader",
+          "method": "GET",
+          "path": "/api/bkn-backend/v1/knowledge-networks"
+        },
+        {
+          "kind": "reader",
+          "method": "POST",
+          "path": "/api/agent-retrieval/v1/kn/get_kn_detail"
+        }
+      ],
+      "toolsCallCount": 0,
+      "auth": {
+        "originMatched": true,
+        "tokenPresent": true,
+        "statusKeys": [
+          "baseUrl",
+          "userId",
+          "hasToken",
+          "username",
+          "expired"
+        ]
+      },
+      "listPageCount": 1,
+      "catalogue": {
+        "success": true,
+        "toolCount": 26,
+        "names": [
+          "bkn_finish_interaction",
+          "bkn_start_interaction",
+          "drill_through_metric",
+          "execute_action",
+          "execute_tool",
+          "explore_subgraph",
+          "get_action_execution",
+          "get_action_info",
+          "get_kn_detail",
+          "get_logic_properties_values",
+          "get_object_types",
+          "get_relation_types",
+          "get_skill_content",
+          "list_action_executions",
+          "list_knowledge_networks",
+          "list_skills",
+          "query_instance_subgraph",
+          "query_metric",
+          "query_object_instance",
+          "read_skill_file",
+          "run_code",
+          "run_cypher",
+          "run_shell",
+          "search_capabilities",
+          "search_instance",
+          "search_schema"
+        ]
+      },
+      "networkList": {
+        "success": true,
+        "rootKeys": [
+          "entries",
+          "total_count"
+        ],
+        "networkCount": 2
+      },
+      "networkDetail": {
+        "success": true,
+        "knowledgeNetworkId": "supply_ontology_hand",
+        "objectTypeCount": 15,
+        "relationTypeCount": 19,
+        "actionTypeCount": 3,
+        "navigationOnly": false
+      },
+      "success": true,
+      "finishedUtc": "2026-11-06T05:27:14.500Z"
+    },
+    "comparison": {
+      "kind": "formal021-ce129-existing-catalogue-structural-comparison",
+      "atUtc": "2026-11-06T05:27:42.979872+00:00",
+      "projectionVersion": "schema-position-aware-v1",
+      "retained": {
+        "bytes": 220515,
+        "sha256": "2cd12471522cc27e2a29d22020f9cbb666df822f1c87f1fdf9bdbd7aa967dc57",
+        "toolCount": 26,
+        "versionBoundary": "Retained actual129 capture before formal021 deployment; not a whole-platform version proof"
+      },
+      "current": {
+        "bytes": 220515,
+        "sha256": "0c32a37c8d89840f8e33720a57ba4784265cd5a321c15c169d9d0f980ca69243",
+        "toolCount": 26,
+        "platformVersionBoundary": "Deployment chat confirmed formal CE0.2.1/17Chart; not independently redeployed or reaudited in this task"
+      },
+      "added": [],
+      "removed": [],
+      "structuralDifferences": [],
+      "documentationOnlySchemaDifferences": [],
+      "allInputOutputStructuralSchemasEqual": true,
+      "noNewToolsAllowed": true,
+      "toolsCallCount": 0
+    },
+    "fullParsedCatalogueEqualToRetainedActualCapture": true,
+    "all26InputAndOutputSchemasFullyEqual": true,
+    "metadataImplementation": "Standalone isolated script using existing MCP client v2 and frozen package platform-pin fetch. Separate from native UI/manager acceptance.",
+    "readerImplementation": "Frozen packed OpenBknPlatformReader + buildNetworkCapabilityProfile, actual readonly directory and summary-detail responses.",
+    "noFurtherBusinessReplayNeeded": "No added/removed tools or schema differences found. No managed business/CSV/guard/SourceText matrix was repeated.",
+    "newToolsRemainDenied": true
+  },
+  "anomaliesAndCorrections": [
+    {
+      "item": "Save failure with extra passive verification observer",
+      "historyRetained": true,
+      "resolution": "Removed only added task observer and reopened normal task profile; original native panel save then succeeded.",
+      "uniqueCause": "UNKNOWN; no package/Host modification and no claim that observer definitively caused failure."
+    },
+    {
+      "item": "Read-only capture assembly",
+      "historyRetained": true,
+      "initial": "Script syntax error before execution; initial script retained.",
+      "second": "MODULE_NOT_FOUND for nonprovided @modelcontextprotocol/sdk/client/index.js before platform requests.",
+      "resolution": "Reused already-installed @modelcontextprotocol/client v2; one actual tools/list page succeeded. No dependency installation or observer added."
+    },
+    {
+      "item": "CA checks",
+      "historyRetained": true,
+      "initial": "Leaf/root fingerprint mismatch was not a trust failure; system OpenSSL verify_ip option unsupported.",
+      "resolution": "Corrected certificate chain verification exit0 and local X509 IP/issuer/signature checks all passed."
+    },
+    {
+      "item": "Final inventory check",
+      "historyRetained": true,
+      "initial": "Comparator wrongly compared SHA strings with inventory objects, falsely listing all files.",
+      "resolution": "Corrected only verifier to compare bytes plus SHA256;126/126 match, no package changes."
+    },
+    {
+      "item": "Old pointer permission answer",
+      "resolution": "Delayed user reply belongs to already-completed SourceText work. Pointer helper not run, old S1-S3 not reopened."
+    },
+    {
+      "item": "Computer-use privacy boundary",
+      "historyRetainedLocally": true,
+      "observation": "One initial daily Chrome inventory exposed old shortcut metadata in private tool output; no such values copied to public reports. Subsequent authorization observations suppressed raw trees and device URLs."
+    }
+  ],
+  "closeout": {
+    "normalMenuExitCodes": [
+      0,
+      0,
+      0
+    ],
+    "finalRootPid": 83929,
+    "ownedHostHelperProcessesRemaining": 0,
+    "recordedTaskPorts": [
+      {
+        "port": 56428,
+        "listeners": 0
+      },
+      {
+        "port": 56714,
+        "listeners": 0
+      },
+      {
+        "port": 57293,
+        "listeners": 0
+      }
+    ],
+    "installed126FilesMatch": true,
+    "unexpectedPluginFiles": [],
+    "protectedArtifactFileCount": 7,
+    "protectedArtifactsAllUnchanged": true,
+    "protectionScope": "Fixed tgz, official EXE/ASAR, default CLI wrapper, prior isolated profile/binding, daily profile YAML; no whole-home/platform-data immutability claim.",
+    "launchServices": {
+      "kind": "guarded-own-dsh-association-timestamp-restoration",
+      "currentEqualsCapturedAfter": true,
+      "scope": "One existing dsh LaunchServices handler modification timestamp only; no whole-home or TCC claim",
+      "onlyTimestampChanged": true,
+      "restoredByteIdenticalBefore": true,
+      "finishedUtc": "2026-11-06T05:29:25.892445+00:00"
+    },
+    "gitHead": "f01b316fbfb6be681af81e2267a7b3341e659efd",
+    "gitStatusClean": true,
+    "newTaskAuthorizedCredentials": "Remain local and preserved; not printed or restored to expired credentials.",
+    "rawEvidencePreserved": true,
+    "privateEvidenceFiles": 66,
+    "privateManifestBytes": 12976,
+    "privateManifestSha256": "0a1ef12fac666227516f2885d2d1ce9a3038c9f71916883454117e57b7897d4b"
+  },
+  "notRun": [
+    "No new model question, explanation or BKN Agent analysis",
+    "No tools/call, managed Interaction, business query or write",
+    "No metric/configuration/platform/deployment changes",
+    "No50.28 access",
+    "No already-passed UI/SourceText/Windows/guard/CSV/full-matrix replay",
+    "No Host or fixed-package modification",
+    "No push, CI, PR, merge, tag, release or latest change"
+  ],
+  "limits": [
+    "Task-level affected validation only; global release/whole-platform compatibility not declared.",
+    "CE-native provenance route/explanation limitations were not retested or reclassified.",
+    "No full user-home, TCC or server-data before/after audit; existing bounded protection only.",
+    "Browser exact authorization-completion timestamp and final native manager object/wire identity remain uninstrumented."
+  ]
+}

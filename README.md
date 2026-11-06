@@ -44,7 +44,7 @@ Enterprise decisions need trusted business objects, metrics, rules, relationship
 
 bkn-dsh is an additive DeepSeek Harness plugin that lets authorized users select one OpenBKN business knowledge network for a conversation, analyze within that explicit scope, and inspect available business provenance for each completed answer.
 
-> Version prerequisite: provenance availability depends on the deployed OpenBKN version, routes and account permissions. On formal 0.2.0 Community, standard Interaction/operation records are available, while the optional native business-provenance routes are not mounted. Nonempty native business interpretation requires the corresponding extension. Historical 0.1.4 read-route results do not establish 0.2.0 feature availability; a 404 alone is not a license diagnosis.
+> Version prerequisite: provenance availability depends on the deployed OpenBKN version, routes and account permissions. Community Interaction/operation records and Enterprise native business provenance have separate acceptance scopes. The formal Community 0.2.1 increment does not replace the retained nonempty Enterprise 0.2.0 native-provenance evidence; see the [acceptance record](docs/evidence/2026-11-03-platform021-compat/README.zh.md). OpenBKN #2517 and earlier 0.1.4/0.2.0 route observations retain their historical scope; a 404 alone is not a license diagnosis.
 
 ## Who it serves
 
