@@ -1,8 +1,8 @@
 # bkn-dsh
 
-> Revision `0.2.1-rc.3-openbkn.0.2.1-2` admits DSH `0.2.1-rc.3` and every newer version, including alpha, rc, stable and future major releases; `0.2.0-rc.2` remains admitted. Loading admission is distinct from verified compatibility. Build/test anchors remain pinned, and existing interface, permission and dependency-identity checks remain enabled.
+> Revision `0.2.1-rc.3-openbkn.0.2.1-3` admits DSH `0.2.1-rc.3` and every newer version, including alpha, rc, stable and future major releases; `0.2.0-rc.2` remains admitted. Loading admission is distinct from verified compatibility. Build/test anchors remain pinned, and existing interface, permission and dependency-identity checks remain enabled.
 
-Current rc: `0.2.1-rc.3-openbkn.0.2.1-2`. See the [plugin instructions](packages/openbkn-business-context/README.md) for automatic login, packaged MCP and trust boundaries; development records below retain their historical verdicts.
+Release target: `0.2.1-rc.3-openbkn.0.2.1-3`, retaining the exact accepted CI6 archive. Publication is complete only after the matching npm version and GitHub Release exist. See the [formal acceptance record](docs/evidence/2026-11-03-platform021-compat/FORMAL-RELEASE-ACCEPTANCE.json). See the [plugin instructions](packages/openbkn-business-context/README.md) for automatic login, packaged MCP and trust boundaries; development records below retain their historical verdicts.
 
 **Recent updates (September 21–October 12):** [English](docs/releases/2026-10-12-recent-updates.md) · [中文](docs/releases/2026-10-12-recent-updates.zh.md).
 
@@ -16,9 +16,9 @@ Bring governed OpenBKN business knowledge into DeepSeek Harness conversations.
 
 ## 0.2.1 version and compatibility
 
-The unpublished `-3` increment also prepares platform0.2.1 compatibility: its explicit CLI installer adds fixed0.2.1 while retaining0.1.5/0.2.0 and existing-installation protection. A fresh login requires the CLI version matching the platform; CLI0.2.0 rejects platform0.2.1. Final0.2.1 artifact and isolated acceptance are pending; rc/source probes are separate evidence. See the [compatibility work and release gate](docs/evidence/2026-11-03-platform021-compat/README.zh.md). Published npm instructions below still select `-2`.
+This revision adds a fixed official CLI `0.2.1` installation target while retaining `0.1.5`/`0.2.0`, explicit selection and existing-installation protection. Use the CLI matching the platform: CLI `0.2.0` rejects a fresh login against platform `0.2.1`. The final increment uses formal OpenBKN `0.2.1` CE and CLI `0.2.1`; prior formal `0.2.0` and Enterprise provenance evidence remains separately attributed. See the [formal acceptance record](docs/evidence/2026-11-03-platform021-compat/FORMAL-RELEASE-ACCEPTANCE.json) for artifact identity, actual coverage and limitations.
 
-This release line uses `0.2.1-rc.3-openbkn.0.2.1-2` and permits loading on official DSH `0.2.0-rc.2` or `>=0.2.1-rc.3`, with no upper version bound. The OpenBKN `0.2.1` component is the version identity requested by the maintainer. Actual platform evidence remains on retained official OpenBKN `0.2.0` and CLI `0.2.0`; it does not establish acceptance on an unreleased OpenBKN `0.2.1` platform. Consult the matching GitHub Release acceptance record for the tested coverage and known limitations.
+Loading admission remains `0.2.0-rc.2 || >=0.2.1-rc.3`, without an upper bound. Native affected-path acceptance uses official Desktop `0.2.1-rc.5` on Mac and Windows; admission does not claim verified compatibility with every newer release. Community deployments do not supply Enterprise provenance routes. Published content, invalid/unknown states and model answers remain platform-owned.
 
 This revision ships the native MCP same-origin protection with the plugin and loads it through the business module; no separate profile companion or official Host modification is required. Companion instructions for the earlier base release remain historical. Frozen -30/-31/-32 and historical verdicts are preserved.
 
@@ -77,24 +77,24 @@ Historical acceptance of earlier packages on macOS arm64 covered all three forms
 
 ### Before you start
 
-1. **OpenBKN CLI.** For the tested formal OpenBKN 0.2.0, use official CLI `@openbkn/bkn-sdk@0.2.0`; retain an existing compatible installation. For historical OpenBKN 0.1.5, use `npm install -g @openbkn/bkn-sdk@0.1.5`; for 0.1.4, use `@openbkn/bkn-sdk@0.1.4` (`0.1.5-rc.1` also works). CLI `0.1.5-rc.2` and later require the platform health/version endpoint, which 0.1.4 lacks. You can configure the plugin before signing in; the panel starts CLI authorization when needed. DSH must find `openbkn` on its own process `PATH`. The macOS desktop app reads the login-shell environment; Windows uses `openbkn.cmd`. If discovery fails, set the CLI's absolute path in **设置 → 高级设置** (Settings → Advanced settings). On Windows, name the shim itself, for example `C:/Users/<you>/AppData/Roaming/npm/openbkn.cmd`; `where.exe openbkn` shows its location.
+1. **OpenBKN CLI.** Use official `@openbkn/bkn-sdk@0.2.1` for platform 0.2.1, or matching CLI 0.2.0 for platform 0.2.0; retain an existing compatible installation. For historical OpenBKN 0.1.5, use `npm install -g @openbkn/bkn-sdk@0.1.5`; for 0.1.4, use `@openbkn/bkn-sdk@0.1.4` (`0.1.5-rc.1` also works). CLI `0.1.5-rc.2` and later require the platform health/version endpoint, which 0.1.4 lacks. You can configure the plugin before signing in; the panel starts CLI authorization when needed. DSH must find `openbkn` on its own process `PATH`. The macOS desktop app reads the login-shell environment; Windows uses `openbkn.cmd`. If discovery fails, set the CLI's absolute path in **设置 → 高级设置** (Settings → Advanced settings). On Windows, name the shim itself, for example `C:/Users/<you>/AppData/Roaming/npm/openbkn.cmd`; `where.exe openbkn` shows its location.
 2. **pnpm, for the npm CLI only.** The npm `dsh` hands `plugin add` to the `pnpm` on `PATH`; install it first (`npm install -g pnpm@11.7.0`, the version DSH itself uses). The desktop app bundles its own.
 3. **Private-platform authorization.** This rc uses installed Chrome/Edge and the official CLI in an owned authorization flow. The plugin automatically records the private peer and pins its connection; no manual CA import, shell profile or user-wide CA environment setting is required. First-contact identity is observed rather than authenticated by public CA/hostname checks; identity changes require fresh browser authorization. See the [plugin trust boundaries](packages/openbkn-business-context/README.md). Existing global CA settings are preserved.
 4. **Use Standard mode.** A session bound to an OpenBKN network must run in DSH's **Standard mode** (标准模式). PTC mode is not supported yet: the plugin refuses `run_code` there and the model asks you to start a new session in Standard mode. The mode is chosen in the mode menu before the first message is sent and cannot be changed afterwards.
 
 ### 1. Install the plugin
 
-In DSH's **Plugins** page, choose **Add plugin** and enter `@openbkn/dsh-business-context@0.2.1-rc.3-openbkn.0.2.1-2`. Select your registry and install the package. You can also install from a terminal while DSH is stopped; the desktop app must have been started once to create its profile:
+In DSH's **Plugins** page, choose **Add plugin** and enter `@openbkn/dsh-business-context@0.2.1-rc.3-openbkn.0.2.1-3`. Select your registry and install the package. You can also install from a terminal while DSH is stopped; the desktop app must have been started once to create its profile:
 
 ```bash
 # Desktop app (macOS). “Manage dsh command…” can also add dsh to PATH.
-"/Applications/DeepSeek Harness.app/Contents/Resources/runtime/cli/bin/dsh" plugin --profile desktop add @openbkn/dsh-business-context@0.2.1-rc.3-openbkn.0.2.1-2
+"/Applications/DeepSeek Harness.app/Contents/Resources/runtime/cli/bin/dsh" plugin --profile desktop add @openbkn/dsh-business-context@0.2.1-rc.3-openbkn.0.2.1-3
 
 # npm CLI
-dsh plugin --profile web add @openbkn/dsh-business-context@0.2.1-rc.3-openbkn.0.2.1-2
+dsh plugin --profile web add @openbkn/dsh-business-context@0.2.1-rc.3-openbkn.0.2.1-3
 
 # Source build, from the DSH checkout root
-node apps/cli/lib/bin.js plugin --profile web add @openbkn/dsh-business-context@0.2.1-rc.3-openbkn.0.2.1-2
+node apps/cli/lib/bin.js plugin --profile web add @openbkn/dsh-business-context@0.2.1-rc.3-openbkn.0.2.1-3
 ```
 
 On Windows, use `dsh.cmd` in place of `dsh`. Use the actual profile and `DSH_HOME` of the Host you run; the default `desktop` and `web` profiles are separate. To install a downloaded package, replace the package spec with its absolute `.tgz` path.
@@ -178,8 +178,8 @@ Check your version with `dsh --version`, then pair it like this:
 
 | Your DSH version | Compatibility series | Plugin to install | Prebuilt runtime archive |
 | --- | --- | --- | --- |
-| `dsh-v0.2.0-rc.2` (current pin): desktop app, npm CLI, or source build | not needed to use the plugin; [`compat/dsh-0.2.0-rc.2/`](compat/dsh-0.2.0-rc.2/) builds it from source | `@openbkn/dsh-business-context@0.2.1-rc.3-openbkn.0.2.1-2` from npm or a published `.tgz` (Standard mode) | discontinued; last one: [openbkn-dsh-runtime-v0.2.0-rc.2-openbkn.0.2.0](https://github.com/openbkn-ai/bkn-dsh/releases/tag/openbkn-dsh-runtime-v0.2.0-rc.2-openbkn.0.2.0) |
-| `>=0.2.1-rc.3` (loading attempts; untested versions remain unverified) | official Host; old build generator retained | `@openbkn/dsh-business-context@0.2.1-rc.3-openbkn.0.2.1-2`; recorded coverage and limits in the matching Release | no new runtime archive |
+| `dsh-v0.2.0-rc.2` (current pin): desktop app, npm CLI, or source build | not needed to use the plugin; [`compat/dsh-0.2.0-rc.2/`](compat/dsh-0.2.0-rc.2/) builds it from source | `@openbkn/dsh-business-context@0.2.1-rc.3-openbkn.0.2.1-3` from npm or a published `.tgz` (Standard mode) | discontinued; last one: [openbkn-dsh-runtime-v0.2.0-rc.2-openbkn.0.2.0](https://github.com/openbkn-ai/bkn-dsh/releases/tag/openbkn-dsh-runtime-v0.2.0-rc.2-openbkn.0.2.0) |
+| `>=0.2.1-rc.3` (loading attempts; untested versions remain unverified) | official Host; old build generator retained | `@openbkn/dsh-business-context@0.2.1-rc.3-openbkn.0.2.1-3`; recorded coverage and limits in the matching Release | no new runtime archive |
 | `dsh-v0.1.7-rc.2` (previous series) | [`compat/dsh-0.1.7-rc.2/`](compat/dsh-0.1.7-rc.2/) (archived) | `@openbkn/dsh-business-context@0.1.7-rc.2-openbkn.0.2.0` from npm, or build from git tag [`v0.1.7-rc.2-openbkn.0.2.0`](https://github.com/openbkn-ai/bkn-dsh/tree/v0.1.7-rc.2-openbkn.0.2.0) | [openbkn-dsh-runtime-v0.1.7-rc.2-openbkn.0.2.0](https://github.com/openbkn-ai/bkn-dsh/releases/tag/openbkn-dsh-runtime-v0.1.7-rc.2-openbkn.0.2.0) |
 | `dsh-v0.1.6-alpha.2` (previous series) | [`compat/dsh-0.1.6-alpha.2/`](compat/dsh-0.1.6-alpha.2/) (archived) | `@openbkn/dsh-business-context@0.1.5-rc.2` from npm, or a source build from git tag [`v0.1.5-rc.2`](https://github.com/openbkn-ai/bkn-dsh/tree/v0.1.5-rc.2) | [openbkn-dsh-runtime-v0.1.6-alpha.2-openbkn.1](https://github.com/openbkn-ai/bkn-dsh/releases/tag/openbkn-dsh-runtime-v0.1.6-alpha.2-openbkn.1) |
 

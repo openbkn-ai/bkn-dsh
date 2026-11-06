@@ -44,6 +44,7 @@ def validate_receipt(d):
     require(d.get('candidate_sha256') == SHA and d.get('candidate_source') == SOURCE,
             'Receipt refers to a different candidate')
     require(d.get('platform') == '0.2.1' and d.get('cli') == '0.2.1', 'Formal versions required')
+    require(d.get('host_version') == '0.2.1-rc.5', 'Native Host acceptance must use official rc.5')
     require(d.get('mac_native') is True and d.get('windows_native') is True,
             'Both affected native forms must be accepted')
     require(d.get('platform_origin') == 'https://192.168.50.129', 'Wrong acceptance platform')
@@ -161,8 +162,9 @@ def release():
         # Creation itself fails closed for auth/network errors or existing refs.
         subprocess.run(['gh', 'api', '--method', 'POST', 'repos/' + REPO + '/git/refs',
                         '-f', 'ref=refs/tags/' + tag, '-f', 'sha=' + os.environ['GITHUB_SHA']], check=True)
-    manifest = json.loads(Path('runtime/openbkn-dsh-runtime.manifest.json').read_text())
-    host = manifest['plugin'].get('hostVersion', manifest['dsh']['tag'].removeprefix('dsh-v'))
+    receipt = json.loads(RECEIPT.read_text())
+    validate_receipt(receipt)
+    host = receipt['host_version']
     notes = command('node', 'scripts/plugin-release-notes.mjs', '--version', VERSION,
                     '--package', NAME, '--dsh-tag', 'dsh-v' + host, '--ref', tag)
     (OUT / 'notes.md').write_text(notes + '\n')

@@ -11,7 +11,7 @@ spec.loader.exec_module(m)
 class AcceptedReleaseTests(unittest.TestCase):
     def receipt(self):
         return dict(status='PASS', candidate_sha256=m.SHA, candidate_source=m.SOURCE,
-                    platform='0.2.1', cli='0.2.1', mac_native=True, windows_native=True,
+                    platform='0.2.1', cli='0.2.1', host_version='0.2.1-rc.5', mac_native=True, windows_native=True,
                     platform_origin='https://192.168.50.129', evidence_files=[{'path': 'docs/evidence/report'}])
 
     def run_artifact(self):
@@ -31,7 +31,7 @@ class AcceptedReleaseTests(unittest.TestCase):
                 d = self.receipt(); d[field] = value; m.validate_receipt(d)
 
     def test_prerelease_or_wrong_origin_refused(self):
-        for field, value in [('cli', '0.2.1-rc.2'), ('platform', '0.2.1-main'),
+        for field, value in [('cli', '0.2.1-rc.2'), ('platform', '0.2.1-main'), ('host_version', '0.2.1-rc.3'),
                              ('platform_origin', 'https://192.168.50.28')]:
             with self.subTest(field=field), self.assertRaises(ValueError):
                 d = self.receipt(); d[field] = value; m.validate_receipt(d)

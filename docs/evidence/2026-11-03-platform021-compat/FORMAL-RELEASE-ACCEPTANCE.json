@@ -1,0 +1,25 @@
+{
+  "status": "PENDING",
+  "candidate_sha256": "4500fa4357cdcdcb9914a39794aedb9096c948192c2bf0f35ecf4fadb882f046",
+  "candidate_source": "f01b316fbfb6be681af81e2267a7b3341e659efd",
+  "candidate_run": 41596006291,
+  "candidate_artifact": 13212518096,
+  "version": "0.2.1-rc.3-openbkn.0.2.1-3",
+  "platform": "0.2.1",
+  "cli": "0.2.1",
+  "host_version": "0.2.1-rc.5",
+  "platform_origin": "https://192.168.50.129",
+  "mac_native": false,
+  "windows_native": false,
+  "evidence_files": [
+    {
+      "path": "docs/evidence/2026-11-03-platform021-compat/formal-20261106/platform129/ACCEPTANCE.json",
+      "sha256": "32bf200d5d679002cc4f44e61c7cb0ce1409ce519915592520b086dcb9006396"
+    }
+  ],
+  "limits": [
+    "Formal CE platform does not provide Enterprise provenance; earlier EE020 evidence retained separately.",
+    "No repeated model/business/guard/CSV/SourceText matrices.",
+    "Historical scoped observation and platform recovery limitations remain preserved."
+  ]
+}
